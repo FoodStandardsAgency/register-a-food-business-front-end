@@ -2,9 +2,9 @@ import dynamic from "next/dynamic";
 import "accessible-autocomplete/dist/accessible-autocomplete.min.css";
 
 import {
+  findMatches,
   inputValueFunction,
-  suggestionFunction,
-  suggest
+  suggestionFunction
 } from "./BusinessTypeLookupFunctions";
 
 const Autocomplete = dynamic(import("accessible-autocomplete/react"), {
@@ -18,7 +18,11 @@ const templates = {
 
 const BusinessTypeLookup = props => (
   <div>
-    <Autocomplete source={suggest} templates={templates} autoselect={true} />
+    <Autocomplete
+      source={findMatches}
+      templates={templates}
+      autoselect={true}
+    />
   </div>
 );
 

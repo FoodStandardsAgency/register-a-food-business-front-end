@@ -1,7 +1,7 @@
 import businessTypesJSON from "./business-type-transformed.json";
 import stemmer from "stemmer";
 
-const suggest = (query, returnResultsArray) => {
+const findMatches = (query, returnResultsArray) => {
   const businessTypesArray = Object.values(
     JSON.parse(JSON.stringify(businessTypesJSON))
   );
@@ -55,14 +55,7 @@ const suggest = (query, returnResultsArray) => {
     resultsArray = displayNameMatchArray.concat(searchTermMatchArray);
 
     // sort the results alphabetically by displayName
-    resultsArray.sort(
-      (a, b) =>
-        a.displayName < b.displayName
-          ? -1
-          : a.displayName > b.displayName
-            ? 1
-            : 0
-    );
+    resultsArray.sort((a, b) => (a.displayName < b.displayName ? -1 : 1));
   } else {
     resultsArray = [];
   }
@@ -89,4 +82,4 @@ const inputValueFunction = selectedSuggestion =>
         : "")
     : undefined;
 
-module.exports = { inputValueFunction, suggestionFunction, suggest };
+module.exports = { findMatches, inputValueFunction, suggestionFunction };
