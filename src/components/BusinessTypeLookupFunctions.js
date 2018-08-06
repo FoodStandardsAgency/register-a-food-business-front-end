@@ -77,6 +77,11 @@ const suggestionFunction = suggestionToBeDisplayed => {
 };
 
 const inputValueFunction = selectedSuggestion =>
-  selectedSuggestion ? selectedSuggestion.displayName : undefined;
+  selectedSuggestion
+    ? selectedSuggestion.displayName +
+      (selectedSuggestion.searchTerm
+        ? " (" + selectedSuggestion.searchTerm + ")"
+        : "")
+    : undefined;
 
 module.exports = { inputValueFunction, suggestionFunction, suggest };
