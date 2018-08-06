@@ -1,32 +1,27 @@
 import businessTypesJSON from "./business-type-transformed.json";
+import stemmer from "stemmer";
 
 const suggest = (query, returnResultsArray) => {
   const businessTypesArray = Object.values(
     JSON.parse(JSON.stringify(businessTypesJSON))
   );
 
-  const checkForQueryMatch = (displayName, query, searchTerm) => {
-    const wordArray = displayName
+  const checkForQueryMatch = (searchableText, query) => {
+    const wordArray = searchableText
       .toLowerCase()
       .split(" ")
       .filter(word => word !== "");
-
-    if (searchTerm) {
-      wordArray.concat(
-        searchTerm
-          .toLowerCase()
-          .split(" ")
-          .filter(word => word !== "")
-      );
-    }
 
     const queryArray = query
       .toLowerCase()
       .split(" ")
       .filter(word => word !== "");
 
-    let matching = queryArray.some(
-      word => wordArray.findIndex(entry => entry.startsWith(word)) !== -1
+    const matching = queryArray.some(
+      word =>
+        wordArray.findIndex(entry => {
+          return entry.startsWith(word) || entry.startsWith(stemmer(word));
+        }) !== -1
     );
 
     return matching;
@@ -54,7 +49,7 @@ const suggest = (query, returnResultsArray) => {
 
     searchTermMatchArray = businessTypesArray.filter(entry =>
       // check for matching words and beginnings of words (including the displayName)
-      checkForQueryMatch(entry.searchTerm, query, entry.displayName)
+      checkForQueryMatch(entry.searchTerm, query)
     );
 
     resultsArray = displayNameMatchArray.concat(searchTermMatchArray);
