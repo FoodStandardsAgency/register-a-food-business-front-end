@@ -31,7 +31,10 @@ const ApplicationComplete = props => {
           panelBody={[
             "Your unique food business registration number is:",
             <br />,
-            <span className="bold">{props.fsaRegistrationNumber}</span>
+            <br />,
+            <span className="bold" id="fsa-rn">
+              {props.fsaRegistrationNumber}
+            </span>
           ]}
         />
       ) : (
