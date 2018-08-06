@@ -53,6 +53,16 @@ const suggest = (query, returnResultsArray) => {
     );
 
     resultsArray = displayNameMatchArray.concat(searchTermMatchArray);
+
+    // sort the results alphabetically by displayName
+    resultsArray.sort(
+      (a, b) =>
+        a.displayName < b.displayName
+          ? -1
+          : a.displayName > b.displayName
+            ? 1
+            : 0
+    );
   } else {
     resultsArray = [];
   }
