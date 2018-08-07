@@ -11,11 +11,14 @@ import PropTypes from "prop-types";
 
 const BusinessType = props => (
   <FsaLayout>
+    <BackButton editMode={props.editMode} originator="business-type" />
+    <Header level={2}>What kind of food business are you registering?</Header>
+
     <form action={`/continue/business-type/${props.editMode}`} method="post">
-      <BackButton editMode={props.editMode} originator="business-type" />
-      <Header level={2}>What kind of food business are you registering?</Header>
       <ContentItem.B_30_15>
-        <BusinessTypeLookup id="businessTypeLookup" />
+        <ContentItem.B_30_15>
+          <BusinessTypeLookup id="businessTypeLookup" {...props} />
+        </ContentItem.B_30_15>
       </ContentItem.B_30_15>
       <ContinueButton editMode={props.editMode} />
     </form>

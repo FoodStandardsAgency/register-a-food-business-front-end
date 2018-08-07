@@ -274,6 +274,15 @@ const schema = {
     },
     anyOf: [{ required: ["supply_other"] }, { required: ["supply_directly"] }]
   },
+  "/business-type": {
+    type: "object",
+    properties: {
+      business_type: {
+        type: "string",
+        validation: validatePostCode
+      }
+    }
+  },
   "/registration-summary": {
     type: "object",
     properties: {}

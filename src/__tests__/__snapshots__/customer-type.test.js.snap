@@ -777,33 +777,33 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
         <div
           className="emotion-35"
         >
+          <div
+            className="emotion-20 emotion-21"
+          >
+            <a
+              href="/back/customer-type"
+              id="back-link"
+            >
+              Back
+            </a>
+          </div>
+          <h2
+            className="emotion-22"
+            size={undefined}
+          >
+            Who will this establishment supply food to?
+          </h2>
+          <div
+            className="emotion-23"
+          >
+            <p>
+              Select all that apply
+            </p>
+          </div>
           <form
             action="/continue/customer-type/undefined"
             method="post"
           >
-            <div
-              className="emotion-20 emotion-21"
-            >
-              <a
-                href="/back/customer-type"
-                id="back-link"
-              >
-                Back
-              </a>
-            </div>
-            <h2
-              className="emotion-22"
-              size={undefined}
-            >
-              Who will this establishment supply food to?
-            </h2>
-            <div
-              className="emotion-23"
-            >
-              <p>
-                Select all that apply
-              </p>
-            </div>
             <div
               className="emotion-20 emotion-21"
             >

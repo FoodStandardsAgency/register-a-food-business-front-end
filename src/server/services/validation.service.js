@@ -41,7 +41,9 @@ const errorMessages = {
   establishment_opening_status:
     "You must select a trading status before continuing",
   establishment_opening_date: "Not a valid opening date",
-  customer_type: "You must select an option before continuing"
+  customer_type: "You must select an option before continuing",
+  business_type:
+    "You must search for and select a business type before continuing"
 };
 
 const validator = new Validator();

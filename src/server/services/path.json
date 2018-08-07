@@ -114,6 +114,10 @@
     "on": true,
     "switches": {}
   },
+  "/business-type": {
+    "on": true,
+    "switches": {}
+  },
   "/registration-summary": {
     "on": true,
     "switches": {}
