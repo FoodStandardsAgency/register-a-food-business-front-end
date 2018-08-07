@@ -14,6 +14,12 @@ deploy:
       branch: develop
   - provider: azure_web_apps
     verbose: true
+    site: register-a-food-business-dev
+    slot: register-a-food-business-dev-double
+    on: 
+      branch: develop
+  - provider: azure_web_apps
+    verbose: true
     site: TEST-REGISTER-A-FOOD-BUSINESS
     on: 
       branch: master
