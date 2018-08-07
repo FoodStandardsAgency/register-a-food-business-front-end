@@ -5,7 +5,7 @@ git:
 script: 
   - yarn format:verify
   - yarn lint
-  - yarn test
+  - yarn test:ci
 deploy:
   - provider: azure_web_apps
     verbose: true
