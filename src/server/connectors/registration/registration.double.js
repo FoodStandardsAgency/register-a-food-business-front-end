@@ -18,6 +18,7 @@ const {
   validateDate
 } = require("@slice-and-dice/register-a-food-business-validation");
 const { Validator } = require("jsonschema");
+const moment = require("moment");
 const validator = new Validator();
 
 // Set validation rules on validator
@@ -245,7 +246,13 @@ const registrationDouble = body => {
         operatorId: 1,
         activitiesId: 1,
         premiseId: 1,
-        metadataId: 1
+        metadataId: 1,
+        reg_submission_date: moment().format("YYYY MM DD"),
+        "fsa-rn": "12486-sdmbf",
+        tascomiResponse: {
+          id: "25",
+          online_reference: "0000025"
+        }
       }),
       status: 200
     };
