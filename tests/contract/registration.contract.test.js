@@ -1,6 +1,6 @@
 jest.mock("../../src/server/config.js", () => ({
   SUBMIT_URL:
-    "https://register-a-food-business-service-dev.azurewebsites.net/api/registration/createNewRegistration"
+    "https://register-a-food-business-service-dev-double.azurewebsites.net/api/registration/createNewRegistration"
 }));
 const {
   sendRequest
@@ -102,6 +102,15 @@ describe("Registration contract", () => {
       const doubleJsonResponse = doubleResponse.json();
       expect(typeof realJsonResponse.regId).toBe(
         typeof doubleJsonResponse.regId
+      );
+      expect(typeof realJsonResponse["fsa-rn"]).toBe(
+        typeof doubleJsonResponse["fsa-rn"]
+      );
+      expect(realJsonResponse.tascomiResponse).toEqual(
+        doubleJsonResponse.tascomiResponse
+      );
+      expect(realJsonResponse.reg_submission_date).toEqual(
+        doubleJsonResponse.reg_submission_date
       );
     });
   });
