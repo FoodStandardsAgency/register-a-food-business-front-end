@@ -16,7 +16,7 @@ const templates = {
   suggestion: suggestionFunction
 };
 
-const BusinessTypeLookup = props => (
+const BusinessTypeLookup = () => (
   <div>
     <Autocomplete
       source={findMatches}
