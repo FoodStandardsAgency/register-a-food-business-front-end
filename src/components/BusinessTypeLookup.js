@@ -10,9 +10,7 @@ import {
 
 import { ErrorText, HintText } from "govuk-react";
 
-const Autocomplete = dynamic(import("accessible-autocomplete/react"), {
-  loading: () => <p>Loading business type search...</p>
-});
+const Autocomplete = dynamic(import("accessible-autocomplete/react"));
 
 const templates = {
   inputValue: inputValueFunction,
