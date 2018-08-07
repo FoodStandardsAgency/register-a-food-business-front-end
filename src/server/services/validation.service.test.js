@@ -1,9 +1,14 @@
 const { validate } = require("./validation.service");
 const {
   combineDate,
-  removeBracketsFromBusinessType
+  separateBracketsFromBusinessType
 } = require("./data-transform.service");
 jest.mock("./data-transform.service");
+
+separateBracketsFromBusinessType.mockImplementation(() => ({
+  business_type: "Example",
+  business_type_search_term: "test"
+}));
 
 describe("validator.service validate()", () => {
   describe("Given a correctly formatted input", () => {
@@ -100,7 +105,7 @@ describe("validator.service validate()", () => {
       validate("/business-type", {
         business_type: "Example (Test)"
       });
-      expect(removeBracketsFromBusinessType).toHaveBeenCalled();
+      expect(separateBracketsFromBusinessType).toHaveBeenCalled();
     });
   });
 });

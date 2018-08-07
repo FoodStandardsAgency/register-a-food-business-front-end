@@ -461,6 +461,33 @@ const FoodActivitiesTable = props => (
         )}
       </Table.Row>
     ) : null}
+
+    {props.business_type ? (
+      <Table.Row id="businessTypeRow">
+        <Table.CellHeader>Business type</Table.CellHeader>
+        <Table.Cell className="summaryTableDataCell">
+          <div className="bold" id="business_type">
+            {props.business_type}
+          </div>
+          {/* TODO JMB: uncomment the below if user testing shows that displaying the search term is beneficial */}
+          {/* {props.business_type_search_term ? (
+            <div
+              style={{ fontSize: "0.8em", color: "#6f777b" }}
+              id="business_type_search_term"
+            >
+              {props.business_type_search_term}
+            </div>
+          ) : null} */}
+        </Table.Cell>
+        {props.hideChangeButtons ? null : (
+          <Table.Cell className="summaryTableChangeCell">
+            <AnchorTag id="changeBusinessTypeRow" href="/edit/business-type">
+              Change
+            </AnchorTag>
+          </Table.Cell>
+        )}
+      </Table.Row>
+    ) : null}
   </React.Fragment>
 );
 

@@ -68,6 +68,17 @@ const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
     }
   }
 
+  if (data.business_type) {
+    const separatedBusinessTypeSearchTerm = separateBracketsFromBusinessType(
+      data.business_type
+    );
+
+    data.business_type = separatedBusinessTypeSearchTerm.business_type;
+
+    data.business_type_search_term =
+      separatedBusinessTypeSearchTerm.business_type_search_term;
+  }
+
   return data;
 };
 
@@ -104,7 +115,11 @@ const transformAnswersForSubmit = (cumulativeAnswers, addressLookups) => {
     "establishment_town",
     "establishment_type"
   ];
-  const activities_keys = ["customer_type", "business_type"];
+  const activities_keys = [
+    "customer_type",
+    "business_type",
+    "business_type_search_term"
+  ];
   const metadata_keys = ["declaration1", "declaration2", "declaration3"];
   const submitObject = {
     registration: {
@@ -119,10 +134,6 @@ const transformAnswersForSubmit = (cumulativeAnswers, addressLookups) => {
   };
 
   const data = transformAnswersForSummary(cumulativeAnswers, addressLookups);
-
-  if (data.business_type) {
-    data.business_type = removeBracketsFromBusinessType(data.business_type);
-  }
 
   establishment_details_keys.forEach(key => {
     if (data[key]) {
@@ -193,8 +204,9 @@ const combineOperatorTypes = (operator_type, registration_role) => {
 
 const combineDate = (day, month, year) => `${year}-${month}-${day}`;
 
-const removeBracketsFromBusinessType = text => {
-  let strippedBusinessType = text;
+const separateBracketsFromBusinessType = text => {
+  let strippedBusinessType = text.trim();
+  let strippedSearchTerm = undefined;
 
   const indexOfOpeningBracket = text.lastIndexOf("(");
   const indexOfClosingBracket = text.lastIndexOf(")");
@@ -213,15 +225,22 @@ const removeBracketsFromBusinessType = text => {
       indexOfClosingBracket + 1
     );
 
-    strippedBusinessType = text.replace(textInBrackets, "");
+    strippedBusinessType = text.replace(textInBrackets, "").trim();
+    strippedSearchTerm = textInBrackets
+      .slice(1, -1)
+      .replace(/^\w/, firstLetter => firstLetter.toUpperCase())
+      .trim();
   }
 
-  return strippedBusinessType.trim();
+  return {
+    business_type: strippedBusinessType,
+    business_type_search_term: strippedSearchTerm
+  };
 };
 
 module.exports = {
   transformAnswersForSummary,
   transformAnswersForSubmit,
   combineDate,
-  removeBracketsFromBusinessType
+  separateBracketsFromBusinessType
 };

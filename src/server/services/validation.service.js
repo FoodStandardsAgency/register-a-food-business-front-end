@@ -3,7 +3,7 @@ const winston = require("winston");
 const schema = require("./schema");
 const {
   combineDate,
-  removeBracketsFromBusinessType
+  separateBracketsFromBusinessType
 } = require("./data-transform.service");
 
 const errorMessages = {
@@ -77,9 +77,9 @@ module.exports.validate = (page, answers) => {
     }
 
     if (page === "/business-type") {
-      answersToValidate.business_type = removeBracketsFromBusinessType(
+      answersToValidate.business_type = separateBracketsFromBusinessType(
         answers.business_type
-      );
+      ).business_type;
     }
 
     const validatorResult = validator.validate(answersToValidate, schema[page]);

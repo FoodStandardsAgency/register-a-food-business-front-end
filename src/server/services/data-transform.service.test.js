@@ -2,7 +2,7 @@ import {
   transformAnswersForSubmit,
   transformAnswersForSummary,
   combineDate,
-  removeBracketsFromBusinessType
+  separateBracketsFromBusinessType
 } from "./data-transform.service";
 
 describe("data-transform.service transformAnswersForSummary()", () => {
@@ -19,6 +19,18 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       const result = transformAnswersForSummary(testCumulativeAnswers);
       expect(typeof result).toBe("object");
     });
+
+    describe("Given that business_type is part of cumulative answers", () => {
+      const businessType = {
+        business_type: "Example (test)"
+      };
+      it("should assign business_type and business_type_search_term to the result", () => {
+        const result = transformAnswersForSummary(businessType);
+        expect(result.business_type).toBe("Example");
+        expect(result.business_type_search_term).toBe("Test");
+      });
+    });
+
     describe("Given that supply_other and supply_directly are part of cumulative answers", () => {
       const supplyBoth = {
         supply_other: "True",
@@ -312,13 +324,6 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     ).toBeDefined();
   });
 
-  it("assigns business_type to the result of removeBracketsFromBusinessType()", () => {
-    const result = transformAnswersForSubmit(testCumulativeAnswers);
-    expect(result.registration.establishment.activities.business_type).toBe(
-      "Example"
-    );
-  });
-
   it("should only add the data fields it is given", () => {
     const result = transformAnswersForSubmit(testCumulativeAnswers);
     expect(
@@ -360,7 +365,7 @@ describe("data-transform.service combineDate()", () => {
   });
 });
 
-describe("data-transform.service removeBracketsFromBusinessType()", () => {
+describe("data-transform.service separateBracketsFromBusinessType()", () => {
   describe("given a valid input without brackets", () => {
     it("should return the original input text but without any excess spaces", () => {
       // Arrange
@@ -371,8 +376,9 @@ describe("data-transform.service removeBracketsFromBusinessType()", () => {
       ];
       //Act
       goodTypes.forEach(text => {
-        const result = removeBracketsFromBusinessType(text);
-        expect(result).toBe(text.trim());
+        const result = separateBracketsFromBusinessType(text);
+        expect(result.business_type).toBe(text.trim());
+        expect(result.business_type_search_term).toBe(undefined);
       });
     });
   });
@@ -380,10 +386,13 @@ describe("data-transform.service removeBracketsFromBusinessType()", () => {
   describe("given a valid input with brackets", () => {
     it("should return the input text but without the exact section contained in brackets", () => {
       //Act
-      const result = removeBracketsFromBusinessType(
+      const result = separateBracketsFromBusinessType(
         "Butcher (example search term with space after) "
       );
-      expect(result).toBe("Butcher");
+      expect(result.business_type).toBe("Butcher");
+      expect(result.business_type_search_term).toBe(
+        "Example search term with space after"
+      );
     });
   });
 
@@ -397,8 +406,9 @@ describe("data-transform.service removeBracketsFromBusinessType()", () => {
       ];
       //Act
       badTypes.forEach(text => {
-        const result = removeBracketsFromBusinessType(text);
-        expect(result).toBe(text.trim());
+        const result = separateBracketsFromBusinessType(text);
+        expect(result.business_type).toBe(text.trim());
+        expect(result.business_type_search_term).toBe(undefined);
       });
     });
   });
