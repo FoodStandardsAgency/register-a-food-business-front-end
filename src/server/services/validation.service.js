@@ -1,7 +1,10 @@
 const { Validator } = require("jsonschema");
 const winston = require("winston");
 const schema = require("./schema");
-const { combineDate } = require("./data-transform.service");
+const {
+  combineDate,
+  removeBracketsFromBusinessType
+} = require("./data-transform.service");
 
 const errorMessages = {
   declaration1: "You must tick all the declarations before continuing",
@@ -42,8 +45,7 @@ const errorMessages = {
     "You must select a trading status before continuing",
   establishment_opening_date: "Not a valid opening date",
   customer_type: "You must select an option before continuing",
-  business_type:
-    "You must search for and select a business type before continuing"
+  business_type: "You must select a valid business type before continuing"
 };
 
 const validator = new Validator();
@@ -71,6 +73,12 @@ module.exports.validate = (page, answers) => {
         answers.day,
         answers.month,
         answers.year
+      );
+    }
+
+    if (page === "/business-type") {
+      answersToValidate.business_type = removeBracketsFromBusinessType(
+        answers.business_type
       );
     }
 

@@ -104,7 +104,7 @@ const transformAnswersForSubmit = (cumulativeAnswers, addressLookups) => {
     "establishment_town",
     "establishment_type"
   ];
-  const activities_keys = ["customer_type"];
+  const activities_keys = ["customer_type", "business_type"];
   const metadata_keys = ["declaration1", "declaration2", "declaration3"];
   const submitObject = {
     registration: {
@@ -117,7 +117,13 @@ const transformAnswersForSubmit = (cumulativeAnswers, addressLookups) => {
       metadata: {}
     }
   };
+
   const data = transformAnswersForSummary(cumulativeAnswers, addressLookups);
+
+  if (data.business_type) {
+    data.business_type = removeBracketsFromBusinessType(data.business_type);
+  }
+
   establishment_details_keys.forEach(key => {
     if (data[key]) {
       submitObject.registration.establishment.establishment_details[key] =
@@ -187,8 +193,35 @@ const combineOperatorTypes = (operator_type, registration_role) => {
 
 const combineDate = (day, month, year) => `${year}-${month}-${day}`;
 
+const removeBracketsFromBusinessType = text => {
+  let strippedBusinessType = text;
+
+  const indexOfOpeningBracket = text.lastIndexOf("(");
+  const indexOfClosingBracket = text.lastIndexOf(")");
+
+  if (
+    // if brackets both exist
+    indexOfOpeningBracket !== -1 &&
+    indexOfClosingBracket !== -1 &&
+    // if brackets are in the correct order
+    indexOfOpeningBracket < indexOfClosingBracket &&
+    // if there is no text after the final bracket
+    text.substring(indexOfClosingBracket + 1).trim() === ""
+  ) {
+    const textInBrackets = text.slice(
+      indexOfOpeningBracket,
+      indexOfClosingBracket + 1
+    );
+
+    strippedBusinessType = text.replace(textInBrackets, "");
+  }
+
+  return strippedBusinessType.trim();
+};
+
 module.exports = {
   transformAnswersForSummary,
   transformAnswersForSubmit,
-  combineDate
+  combineDate,
+  removeBracketsFromBusinessType
 };

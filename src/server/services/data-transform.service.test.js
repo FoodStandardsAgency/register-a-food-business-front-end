@@ -1,7 +1,8 @@
 import {
   transformAnswersForSubmit,
   transformAnswersForSummary,
-  combineDate
+  combineDate,
+  removeBracketsFromBusinessType
 } from "./data-transform.service";
 
 describe("data-transform.service transformAnswersForSummary()", () => {
@@ -300,7 +301,8 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     establishment_trading_name: "John's Apples",
     establishment_postcode: "SW12 9RQ",
     supply_directly: true,
-    declaration1: "Declaration"
+    declaration1: "Declaration",
+    business_type: "Example (test)"
   };
 
   it("turns flat data into structured data", () => {
@@ -308,6 +310,13 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     expect(
       result.registration.establishment.operator.operator_first_name
     ).toBeDefined();
+  });
+
+  it("assigns business_type to the result of removeBracketsFromBusinessType()", () => {
+    const result = transformAnswersForSubmit(testCumulativeAnswers);
+    expect(result.registration.establishment.activities.business_type).toBe(
+      "Example"
+    );
   });
 
   it("should only add the data fields it is given", () => {
@@ -348,5 +357,49 @@ describe("data-transform.service combineDate()", () => {
 
     // Assert
     expect(result).toBe("1993-03-29");
+  });
+});
+
+describe("data-transform.service removeBracketsFromBusinessType()", () => {
+  describe("given a valid input without brackets", () => {
+    it("should return the original input text but without any excess spaces", () => {
+      // Arrange
+      const goodTypes = [
+        "Butcher",
+        "Fruit and vegetable farm",
+        "Example with space at end  "
+      ];
+      //Act
+      goodTypes.forEach(text => {
+        const result = removeBracketsFromBusinessType(text);
+        expect(result).toBe(text.trim());
+      });
+    });
+  });
+
+  describe("given a valid input with brackets", () => {
+    it("should return the input text but without the exact section contained in brackets", () => {
+      //Act
+      const result = removeBracketsFromBusinessType(
+        "Butcher (example search term with space after) "
+      );
+      expect(result).toBe("Butcher");
+    });
+  });
+
+  describe("given an invalid input", () => {
+    it("should return the original input text but without any excess spaces", () => {
+      // Arrange
+      const badTypes = [
+        "Butcher (valid up until here) but not here",
+        "Fruit and vegetable farm (opening but no closing",
+        "Brackets but invalid )("
+      ];
+      //Act
+      badTypes.forEach(text => {
+        const result = removeBracketsFromBusinessType(text);
+        expect(result).toBe(text.trim());
+      });
+    });
   });
 });
