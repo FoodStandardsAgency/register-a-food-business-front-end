@@ -77,8 +77,12 @@ describe("Router: ", () => {
       expect(router.post.mock.calls[2][0]).toBe("/findaddress/:originator");
     });
 
+    it("should set up cleansession route", () => {
+      expect(router.get.mock.calls[4][0]).toBe("/cleansession");
+    });
+
     it("should set up generic Next route", () => {
-      expect(router.get.mock.calls[4][0]).toBe("*");
+      expect(router.get.mock.calls[5][0]).toBe("*");
     });
   });
 
@@ -431,13 +435,70 @@ describe("Router: ", () => {
     });
   });
 
+  describe("GET to /cleansession", () => {
+    describe("given an error occurs on session destroy", () => {
+      const req = {
+        session: {
+          example: "value",
+          destroy: jest.fn(callback => callback("this is an error"))
+        }
+      };
+
+      const res = {
+        redirect: jest.fn()
+      };
+
+      beforeEach(() => {
+        handler = router.get.mock.calls[4][1];
+        handler(req, res);
+      });
+
+      it("Should not have cleared the session", () => {
+        expect(req.session.example).toEqual("value");
+      });
+
+      it("Should call res.redirect with target of '/'", () => {
+        expect(res.redirect).toHaveBeenCalledWith("back");
+      });
+    });
+
+    describe("given session destroy is successful and no errors occur", () => {
+      const req = {
+        session: {
+          example: "value",
+          destroy: jest.fn(callback => {
+            delete req.session.example;
+            callback();
+          })
+        }
+      };
+
+      const res = {
+        redirect: jest.fn()
+      };
+
+      beforeEach(() => {
+        handler = router.get.mock.calls[4][1];
+        handler(req, res);
+      });
+
+      it("Should set the session to be an empty object", () => {
+        expect(req.session.example).not.toBeDefined();
+      });
+
+      it("Should call res.redirect with target of '/'", () => {
+        expect(res.redirect).toHaveBeenCalledWith("/");
+      });
+    });
+  });
+
   describe("GET to *", () => {
     const req = {
       session: {}
     };
 
     beforeEach(() => {
-      handler = router.get.mock.calls[4][1];
+      handler = router.get.mock.calls[5][1];
 
       handler(req, "response");
     });
