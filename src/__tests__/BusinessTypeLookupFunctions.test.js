@@ -1,3 +1,11 @@
+import stemmer from "stemmer";
+
+import {
+  inputValueFunction,
+  suggestionFunction,
+  findMatches
+} from "../components/BusinessTypeLookupFunctions";
+
 jest.mock("stemmer");
 jest.mock("../components/business-type-transformed.json", () => [
   {
@@ -25,14 +33,6 @@ jest.mock("../components/business-type-transformed.json", () => [
     searchTerm: "retail"
   }
 ]);
-
-import stemmer from "stemmer";
-
-import {
-  inputValueFunction,
-  suggestionFunction,
-  findMatches
-} from "../components/BusinessTypeLookupFunctions";
 
 describe("Function: inputValueFunction", () => {
   describe("Given that selectedSuggestion exists", () => {
