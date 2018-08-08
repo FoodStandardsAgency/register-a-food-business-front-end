@@ -9,6 +9,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * cleansession route
 
+## v1.28.0 - 8th August 2018 (unreleased)
+
+### Added
+
+* SDB-5 business type lookup
+
 ## v1.27.2 - 1st August 2018 (unreleased)
 
 ### Modified

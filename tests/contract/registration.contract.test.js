@@ -34,7 +34,9 @@ const validBody = {
         establishment_type: "Somewhere"
       },
       activities: {
-        customer_type: "End consumer"
+        customer_type: "End consumer",
+        business_type: "Livestock farm",
+        business_type_search_term: "Example"
       }
     },
     metadata: {
@@ -74,7 +76,9 @@ const invalidBody = {
         establishment_type: "Somewhere"
       },
       activities: {
-        customer_type: "End consumer"
+        customer_type: "End consumer",
+        business_type: "Livestock farm",
+        business_type_search_term: "Example"
       }
     },
     metadata: {

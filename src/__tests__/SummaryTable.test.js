@@ -24,7 +24,8 @@ const mandatoryTableRows = [
   "establishmentContactDetailsRow",
   "establishmentEmailRow",
   "contactRepresentativeRow",
-  "establishmentOpeningDateRow"
+  "establishmentOpeningDateRow",
+  "businessTypeRow"
 ];
 
 const editableTableRows = [
@@ -39,7 +40,8 @@ const editableTableRows = [
   "operatorEmailRow",
   "establishmentContactDetailsRow",
   "establishmentEmailRow",
-  "contactRepresentativeRow"
+  "contactRepresentativeRow",
+  "businessTypeRow"
 ];
 
 // (only optional if it's optional within that page. Does not apply to pages that are optional or could be skipped.)
@@ -69,7 +71,8 @@ const testMandatoryAnswers = {
   contact_representative_number: "123456789",
   contact_representative_name: "Jill",
   establishment_opening_date: "2018-12-06",
-  establishment_type: "Mobile or moveable premise"
+  establishment_type: "Mobile or moveable premise",
+  business_type: "Livestock farm"
 };
 
 // a supplementary set of all optional answer fields with example data
