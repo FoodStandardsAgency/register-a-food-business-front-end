@@ -4,5 +4,5 @@ div.errorStyling {
 }
 
 .errorStyling .autocomplete__input {
-  border: 3px solid #b10e1e !important;
+  border: 3px solid #b10e1e;
 }
