@@ -25,7 +25,7 @@ const lineHeight = {
 const BusinessTypeLookup = props => (
   <div className={props.validatorErrors.business_type ? "errorStyling" : null}>
     <HintText style={lineHeight}>
-      For example cafe, hospital canteen or commerical bakery
+      For example cafe, hospital canteen or commercial bakery
     </HintText>
     {props.validatorErrors.business_type ? (
       <ErrorText style={lineHeight}>

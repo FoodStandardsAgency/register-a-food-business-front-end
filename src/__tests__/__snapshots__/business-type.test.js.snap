@@ -663,7 +663,7 @@ exports[`<BusinessType /> matches the previous snapshot 1`] = `
                       }
                     }
                   >
-                    For example cafe, hospital canteen or commerical bakery
+                    For example cafe, hospital canteen or commercial bakery
                   </span>
                   <div
                     aria-expanded="false"
