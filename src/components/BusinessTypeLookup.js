@@ -10,6 +10,9 @@ import {
 
 import { ErrorText, HintText } from "govuk-react";
 
+// dynamic import used because Autocomplete component from AlphaGov uses the document object on import.
+// Therefore it must be imported on the client side not on the server side.
+// TODO JMB: contribute back to the AlphaGov repository to avoid or delay reliance on the document object.
 const Autocomplete = dynamic(import("accessible-autocomplete/react"));
 
 const templates = {
