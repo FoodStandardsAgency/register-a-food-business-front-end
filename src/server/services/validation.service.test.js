@@ -1,6 +1,14 @@
 const { validate } = require("./validation.service");
-const { combineDate } = require("./data-transform.service");
+const {
+  combineDate,
+  separateBracketsFromBusinessType
+} = require("./data-transform.service");
 jest.mock("./data-transform.service");
+
+separateBracketsFromBusinessType.mockImplementation(() => ({
+  business_type: "Example",
+  business_type_search_term: "test"
+}));
 
 describe("validator.service validate()", () => {
   describe("Given a correctly formatted input", () => {
@@ -68,7 +76,7 @@ describe("validator.service validate()", () => {
     });
   });
 
-  describe("When given an opening date page ", () => {
+  describe("When given an opening date page", () => {
     describe("proactive to validate", () => {
       it("should combine the date before validating", () => {
         validate("/establishment-opening-date-proactive", {
@@ -89,6 +97,15 @@ describe("validator.service validate()", () => {
         });
         expect(combineDate).toHaveBeenCalled();
       });
+    });
+  });
+
+  describe("When given the business-type page", () => {
+    it("should remove any brackets from valid input before validating", () => {
+      validate("/business-type", {
+        business_type: "Example (Test)"
+      });
+      expect(separateBracketsFromBusinessType).toHaveBeenCalled();
     });
   });
 });
