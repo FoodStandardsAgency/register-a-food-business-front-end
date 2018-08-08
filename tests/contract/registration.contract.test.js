@@ -1,6 +1,6 @@
 jest.mock("../../src/server/config.js", () => ({
   SUBMIT_URL:
-    "https://register-a-food-business-service-dev.azurewebsites.net/api/registration/createNewRegistration"
+    "https://register-a-food-business-service-dev-double.azurewebsites.net/api/registration/createNewRegistration"
 }));
 const {
   sendRequest
