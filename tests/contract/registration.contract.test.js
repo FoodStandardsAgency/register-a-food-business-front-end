@@ -107,6 +107,15 @@ describe("Registration contract", () => {
       expect(typeof realJsonResponse.regId).toBe(
         typeof doubleJsonResponse.regId
       );
+      expect(typeof realJsonResponse["fsa-rn"]).toBe(
+        typeof doubleJsonResponse["fsa-rn"]
+      );
+      expect(realJsonResponse.tascomiResponse).toEqual(
+        doubleJsonResponse.tascomiResponse
+      );
+      expect(realJsonResponse.reg_submission_date).toEqual(
+        doubleJsonResponse.reg_submission_date
+      );
     });
   });
 
