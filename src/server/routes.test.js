@@ -439,14 +439,10 @@ describe("Router: ", () => {
     describe("given an error occurs on session destroy", () => {
       const req = {
         session: {
-          example: "value"
+          example: "value",
+          destroy: jest.fn(callback => callback("this is an error"))
         }
       };
-
-      Object.defineProperty(req.session, "destroy", {
-        enumerable: false,
-        value: jest.fn(callback => callback("this is an error"))
-      });
 
       const res = {
         redirect: jest.fn()
@@ -458,7 +454,7 @@ describe("Router: ", () => {
       });
 
       it("Should not have cleared the session", () => {
-        expect(req.session).toEqual({ example: "value" });
+        expect(req.session.example).toEqual("value");
       });
 
       it("Should call res.redirect with target of '/'", () => {
@@ -468,16 +464,14 @@ describe("Router: ", () => {
 
     describe("given session destroy is successful and no errors occur", () => {
       const req = {
-        session: { example: "value" }
+        session: {
+          example: "value",
+          destroy: jest.fn(callback => {
+            delete req.session.example;
+            callback();
+          })
+        }
       };
-
-      Object.defineProperty(req.session, "destroy", {
-        enumerable: false,
-        value: jest.fn(callback => {
-          delete req.session.example;
-          callback();
-        })
-      });
 
       const res = {
         redirect: jest.fn()
@@ -489,7 +483,7 @@ describe("Router: ", () => {
       });
 
       it("Should set the session to be an empty object", () => {
-        expect(req.session).toEqual({});
+        expect(req.session.example).not.toBeDefined();
       });
 
       it("Should call res.redirect with target of '/'", () => {
