@@ -274,6 +274,25 @@ const schema = {
     },
     anyOf: [{ required: ["supply_other"] }, { required: ["supply_directly"] }]
   },
+  "/business-import-export": {
+    type: "object",
+    properties: {
+      directly_import: {
+        type: "string"
+      },
+      directly_export: {
+        type: "string"
+      },
+      no_import_export: {
+        type: "string"
+      }
+    },
+    anyOf: [
+      { required: ["directly_import"] },
+      { required: ["directly_export"] },
+      { required: ["no_import_export"] }
+    ]
+  },
   "/registration-summary": {
     type: "object",
     properties: {}
