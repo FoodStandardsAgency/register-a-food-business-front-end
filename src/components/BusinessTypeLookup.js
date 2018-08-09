@@ -39,6 +39,7 @@ const BusinessTypeLookup = props => (
       source={findMatches}
       templates={templates}
       autoselect={true}
+      displayMenu="overlay"
       confirmOnBlur={false}
       name="business_type"
       defaultValue={props.cumulativeAnswers.business_type}

@@ -714,7 +714,7 @@ exports[`<BusinessType /> matches the previous snapshot 1`] = `
                       value=""
                     />
                     <ul
-                      className="autocomplete__menu autocomplete__menu--inline autocomplete__menu--hidden"
+                      className="autocomplete__menu autocomplete__menu--overlay autocomplete__menu--hidden"
                       id="undefined__listbox"
                       role="listbox"
                     />
