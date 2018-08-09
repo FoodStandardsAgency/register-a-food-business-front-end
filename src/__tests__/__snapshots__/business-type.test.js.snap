@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CustomerType /> matches the previous snapshot 1`] = `
+exports[`<BusinessType /> matches the previous snapshot 1`] = `
 .emotion-10 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -310,12 +310,12 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-38 {
+.emotion-32 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-36 {
+.emotion-30 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -328,7 +328,7 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-36 {
+  .emotion-30 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -336,7 +336,7 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-35 {
+.emotion-29 {
   background: transparent;
   margin: 0 0 15px;
   text-indent: 0px;
@@ -344,22 +344,22 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-35 {
+  .emotion-29 {
     width: 100%;
     margin: 0 15px;
   }
 
-  .emotion-35:first-child {
+  .emotion-29:first-child {
     margin-left: 0;
   }
 
-  .emotion-35:last-child {
+  .emotion-29:last-child {
     margin-right: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-35 {
+  .emotion-29 {
     width: 66.6667%;
   }
 }
@@ -397,195 +397,43 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-23 {
-  font-family: "nta",Arial,sans-serif;
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.25;
-  margin-bottom: 15px;
-}
-
-.emotion-23 > p {
-  margin: 0;
-}
-
-.emotion-23 > p > code {
-  padding: 0.2em 0.4em;
-  margin: 0px;
-  font-size: 85%;
-  background-color: rgba(27,31,35,0.05);
-  border-radius: 3px;
-}
-
-.emotion-23 > pre {
-  padding: 16px;
-  overflow: auto;
-  font-size: 85%;
-  line-height: 1.45;
-  background-color: #f6f8fa;
-  border-radius: 3px;
-}
-
-.emotion-23 > pre > code {
-  display: inline;
-  padding: 0px;
-  margin: 0px;
-  border: 0px;
-  overflow: visible;
-  line-height: inherit;
-  word-wrap: normal;
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-23 {
-    font-size: 19px;
-    line-height: 1.3;
-  }
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-23 {
-    margin-bottom: 20px;
-  }
-}
-
-.emotion-31 {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  box-sizing: border-box;
-  width: 100%;
-  margin-bottom: 0;
-}
-
-.emotion-31:after {
-  content: '';
-  display: table;
-  clear: both;
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-31 {
-    margin-bottom: 0;
-  }
-}
-
 .emotion-24 {
+  padding-bottom: 30px;
+}
+
+@media only screen and (max-width:641px) {
+  .emotion-24 {
+    padding-bottom: 15px;
+  }
+}
+
+.emotion-23 {
+  display: block;
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: block;
-  clear: none;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.25;
-  color: #0b0c0c;
-  padding-bottom: 2px;
-  margin-bottom: 0;
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-24 {
-    font-size: 19px;
-    line-height: 1.3;
-  }
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-24 {
-    margin-bottom: 0;
-  }
-}
-
-.emotion-27 {
-  display: block;
-  position: relative;
-  padding: 0 0 0 38px;
-  margin-bottom: 10px;
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-27 {
-    margin-bottom: 10px;
-  }
-}
-
-.emotion-25 {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 38px;
-  height: 38px;
-  z-index: 1;
-  margin: 0;
-  zoom: 1;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.emotion-25:checked + span:after {
-  opacity: 1;
-}
-
-.emotion-25:focus + span:before {
-  box-shadow: 0 0 0 4px #ffbf47;
-}
-
-.emotion-25 + span {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.emotion-26 {
-  font-family: "nta",Arial,sans-serif;
   font-weight: 400;
   text-transform: none;
   font-size: 16px;
   line-height: 1.25;
-  cursor: pointer;
-  padding: 8px 10px 9px 12px;
-  display: block;
-  color: #0b0c0c;
+  color: #6f777b;
+  margin-bottom: 0;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-26 {
+  .emotion-23 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
-.emotion-26::before {
-  content: '';
-  display: block;
-  border: 2px solid #0b0c0c;
-  background: transparent;
-  width: 34px;
-  height: 34px;
-  position: absolute;
-  top: 0;
-  left: 0;
+@media only screen and (min-width:641px) {
+  .emotion-23 {
+    margin-bottom: 0;
+  }
 }
 
-.emotion-26::after {
-  content: '';
-  border: solid;
-  border-width: 0 0 5px 5px;
-  background: transparent;
-  border-top-color: transparent;
-  width: 17px;
-  height: 7px;
-  position: absolute;
-  top: 10px;
-  left: 8px;
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  zoom: 1;
-  opacity: 0;
-}
-
-.emotion-34 {
+.emotion-28 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -620,34 +468,34 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-34:hover {
+.emotion-28:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-34:focus {
+.emotion-28:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-34:active {
+.emotion-28:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-34:visited {
+.emotion-28:visited {
   color: #00823b;
 }
 
-.emotion-34 svg {
+.emotion-28 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-34 {
+  .emotion-28 {
     margin-bottom: 20px;
   }
 }
@@ -766,22 +614,22 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-38"
+    className="emotion-32"
   >
     <div
       className="emotion-15"
     >
       <div
-        className="emotion-36"
+        className="emotion-30"
       >
         <div
-          className="emotion-35"
+          className="emotion-29"
         >
           <div
             className="emotion-20 emotion-21"
           >
             <a
-              href="/back/customer-type"
+              href="/back/business-type"
               id="back-link"
             >
               Back
@@ -791,68 +639,91 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
             className="emotion-22"
             size={undefined}
           >
-            Who will this establishment supply food to?
+            What kind of food business are you registering?
           </h2>
-          <div
-            className="emotion-23"
-          >
-            <p>
-              Select all that apply
-            </p>
-          </div>
           <form
-            action="/continue/customer-type/undefined"
+            action="/continue/business-type/undefined"
             method="post"
           >
             <div
-              className="emotion-20 emotion-21"
+              className="emotion-24 emotion-25"
             >
               <div
-                className="emotion-31"
+                className="emotion-24 emotion-25"
               >
-                <span
-                  className="emotion-24"
+                <div
+                  className={null}
                 >
-                  
-                </span>
-                <label
-                  className="emotion-27"
-                >
-                  <input
-                    className="emotion-25"
-                    defaultChecked={undefined}
-                    id="customer_type_supply_other"
-                    name="supply_other"
-                    type="checkbox"
-                    value="It will supply food to other businesses to process, sell or serve"
-                  />
                   <span
-                    className="emotion-26"
+                    className="emotion-23"
+                    style={
+                      Object {
+                        "lineHeight": "1.6em",
+                        "padding": 0,
+                      }
+                    }
                   >
-                    It will supply food to other businesses to process, sell or serve
+                    For example cafe, hospital canteen or commercial bakery
                   </span>
-                </label>
-                <label
-                  className="emotion-27"
-                >
-                  <input
-                    className="emotion-25"
-                    defaultChecked={undefined}
-                    id="customer_type_supply_directly"
-                    name="supply_directly"
-                    type="checkbox"
-                    value="It will supply food directly to end consumer"
-                  />
-                  <span
-                    className="emotion-26"
+                  <div
+                    aria-expanded="false"
+                    className="autocomplete__wrapper"
+                    onKeyDown={[Function]}
+                    role="combobox"
                   >
-                    It will supply food directly to end consumers
-                  </span>
-                </label>
+                    <div
+                      aria-atomic="true"
+                      aria-live="polite"
+                      role="status"
+                      style={
+                        Object {
+                          "border": "0",
+                          "clip": "rect(0 0 0 0)",
+                          "height": "1px",
+                          "marginBottom": "-1px",
+                          "marginRight": "-1px",
+                          "overflow": "hidden",
+                          "padding": "0",
+                          "position": "absolute",
+                          "whiteSpace": "nowrap",
+                          "width": "1px",
+                        }
+                      }
+                    >
+                      No search results.
+                      <span>
+                        ,,
+                      </span>
+                    </div>
+                    
+                    <input
+                      aria-activedescendant={false}
+                      aria-owns="undefined__listbox"
+                      autoComplete="off"
+                      className="autocomplete__input autocomplete__input--default"
+                      id={undefined}
+                      name="business_type"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      placeholder=""
+                      required={false}
+                      role="textbox"
+                      type="text"
+                      value=""
+                    />
+                    <ul
+                      className="autocomplete__menu autocomplete__menu--overlay autocomplete__menu--hidden"
+                      id="undefined__listbox"
+                      role="listbox"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
             <button
-              className="emotion-34"
+              className="emotion-28"
               disabled={false}
               id="continue-button"
               type="submit"

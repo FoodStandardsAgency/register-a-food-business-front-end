@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<SummaryTable /> matches the previous snapshot 1`] = `
-.emotion-106 {
+.emotion-111 {
   border: 0;
   border-collapse: collapse;
   box-sizing: border-box;
@@ -15,7 +15,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-106 {
+  .emotion-111 {
     font-size: 16px;
     line-height: 1.25;
   }
@@ -155,7 +155,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
 }
 
 <table
-  className="emotion-106"
+  className="emotion-111"
 >
   <caption
     className="emotion-0"
@@ -878,6 +878,39 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
           disabled={undefined}
           href="/edit/business-import-export"
           id="changeActivitiesBusinessImportExportRow"
+          onClick={undefined}
+        >
+          Change
+        </a>
+      </td>
+    </tr>
+    <tr
+      className="emotion-5"
+      id="businessTypeRow"
+    >
+      <th
+        className="emotion-2"
+      >
+        Business type
+      </th>
+      <td
+        className="summaryTableDataCell emotion-2"
+      >
+        <div
+          className="bold"
+          id="business_type"
+        >
+          Livestock farm
+        </div>
+      </td>
+      <td
+        className="summaryTableChangeCell emotion-2"
+      >
+        <a
+          className="emotion-8"
+          disabled={undefined}
+          href="/edit/business-type"
+          id="changeBusinessTypeRow"
           onClick={undefined}
         >
           Change

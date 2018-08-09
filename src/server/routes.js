@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { info } = require("winston");
+const { info, error } = require("winston");
 const { QA_KEY } = require("./config");
 const { handle } = require("./next");
 
@@ -134,6 +134,19 @@ module.exports = () => {
 
     info(`Routes: /findaddress/:originator route finished`);
     res.redirect(response.redirectRoute);
+  });
+
+  router.get("/cleansession", (req, res) => {
+    info(`Routes: /cleansession route called`);
+    req.session.destroy(err => {
+      if (err) {
+        error(`Routes: /cleansession route failed with error: ${err}`);
+        res.redirect("back");
+      } else {
+        info(`Routes: /cleansession route finished with route "/"`);
+        res.redirect("/");
+      }
+    });
   });
 
   router.get("*", (req, res) => {

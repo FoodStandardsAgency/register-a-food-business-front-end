@@ -1,0 +1,8 @@
+div.errorStyling {
+  border-left: 4px solid #b10e1e;
+  padding-left: 10px;
+}
+
+.errorStyling .autocomplete__input {
+  border: 3px solid #b10e1e;
+}

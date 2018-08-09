@@ -15,7 +15,8 @@ const {
   validateCompanyName,
   validateEmail,
   validatePastDate,
-  validateFutureDate
+  validateFutureDate,
+  validateBusinessType
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const schema = {
@@ -273,6 +274,15 @@ const schema = {
       }
     },
     anyOf: [{ required: ["supply_other"] }, { required: ["supply_directly"] }]
+  },
+  "/business-type": {
+    type: "object",
+    properties: {
+      business_type: {
+        type: "string",
+        validation: validateBusinessType
+      }
+    }
   },
   "/business-import-export": {
     type: "object",
