@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
+exports[`<ImportExportActivities /> matches the previous snapshot 1`] = `
 .emotion-10 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -310,12 +310,12 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-47 {
+.emotion-46 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-45 {
+.emotion-44 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -328,7 +328,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-45 {
+  .emotion-44 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -336,7 +336,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-44 {
+.emotion-43 {
   background: transparent;
   margin: 0 0 15px;
   text-indent: 0px;
@@ -344,22 +344,22 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-44 {
+  .emotion-43 {
     width: 100%;
     margin: 0 15px;
   }
 
-  .emotion-44:first-child {
+  .emotion-43:first-child {
     margin-left: 0;
   }
 
-  .emotion-44:last-child {
+  .emotion-43:last-child {
     margin-right: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-44 {
+  .emotion-43 {
     width: 66.6667%;
   }
 }
@@ -397,44 +397,17 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-41 {
-  padding-bottom: 30px;
-}
-
-@media only screen and (max-width:641px) {
-  .emotion-41 {
-    padding-bottom: 15px;
-  }
-}
-
-.emotion-40 {
-  border: 0;
-  border-collapse: collapse;
-  box-sizing: border-box;
-  border-spacing: 0;
+.emotion-23 {
+  display: block;
   font-family: "nta",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   text-transform: none;
-  font-size: 14px;
-  line-height: 1.1428571429;
-  width: 100%;
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-40 {
-    font-size: 16px;
-    line-height: 1.25;
-  }
-}
-
-.emotion-23 {
-  font-family: "nta",Arial,sans-serif;
-  font-weight: 700;
   font-size: 16px;
   line-height: 1.25;
-  text-align: left;
-  text-transform: none;
-  width: 100%;
+  color: #6f777b;
+  margin-bottom: 5px;
 }
 
 @media only screen and (min-width:641px) {
@@ -444,26 +417,9 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-25 {
-  border: 0;
-  border-bottom: 1px solid #bfc1c3;
-  font-family: "nta",Arial,sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.25;
-  padding: 0.63158em 1.05263em 0.47368em 0;
-  text-align: left;
-  text-transform: none;
-}
-
-.emotion-25:last-child {
-  padding-right: 0;
-}
-
 @media only screen and (min-width:641px) {
-  .emotion-25 {
-    font-size: 19px;
-    line-height: 1.3;
+  .emotion-23 {
+    margin-bottom: 5px;
   }
 }
 
@@ -472,7 +428,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   margin: 0;
   font-size: 16px;
   line-height: 1.25;
-  margin-bottom: 0;
+  margin-bottom: 15px;
 }
 
 .emotion-24 > p {
@@ -515,11 +471,208 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
 
 @media only screen and (min-width:641px) {
   .emotion-24 {
+    margin-bottom: 20px;
+  }
+}
+
+.emotion-36 {
+  padding-bottom: 30px;
+}
+
+@media only screen and (max-width:641px) {
+  .emotion-36 {
+    padding-bottom: 15px;
+  }
+}
+
+.emotion-35 {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.emotion-35:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-35 {
     margin-bottom: 0;
   }
 }
 
-.emotion-43 {
+.emotion-25 {
+  font-family: "nta",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: block;
+  clear: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #0b0c0c;
+  padding-bottom: 2px;
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-25 {
+    font-size: 19px;
+    line-height: 1.3;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-25 {
+    margin-bottom: 0;
+  }
+}
+
+.emotion-28 {
+  display: block;
+  position: relative;
+  padding: 0 0 0 38px;
+  margin-bottom: 10px;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-28 {
+    margin-bottom: 10px;
+  }
+}
+
+.emotion-26 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 38px;
+  height: 38px;
+  z-index: 1;
+  margin: 0;
+  zoom: 1;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.emotion-26:checked + span:after {
+  opacity: 1;
+}
+
+.emotion-26:focus + span:before {
+  box-shadow: 0 0 0 4px #ffbf47;
+}
+
+.emotion-26 + span {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.emotion-27 {
+  font-family: "nta",Arial,sans-serif;
+  font-weight: 400;
+  text-transform: none;
+  font-size: 16px;
+  line-height: 1.25;
+  cursor: pointer;
+  padding: 8px 10px 9px 12px;
+  display: block;
+  color: #0b0c0c;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-27 {
+    font-size: 19px;
+    line-height: 1.3;
+  }
+}
+
+.emotion-27::before {
+  content: '';
+  display: block;
+  border: 2px solid #0b0c0c;
+  background: transparent;
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.emotion-27::after {
+  content: '';
+  border: solid;
+  border-width: 0 0 5px 5px;
+  background: transparent;
+  border-top-color: transparent;
+  width: 17px;
+  height: 7px;
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  zoom: 1;
+  opacity: 0;
+}
+
+.emotion-41 {
+  margin-bottom: 20px;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-41 {
+    margin-bottom: 30px;
+  }
+}
+
+.emotion-39 {
+  display: inline-block;
+  cursor: pointer;
+  color: #005ea5;
+  font-family: "nta",Arial,sans-serif;
+  font-size: 19px;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.emotion-39:hover {
+  color: #2b8cc4;
+}
+
+.emotion-39:focus {
+  outline: 4px solid #ffbf47;
+  background: #ffbf47;
+}
+
+.emotion-38 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  -webkit-text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
+}
+
+.emotion-40 {
+  box-sizing: border-box;
+  border-left-style: solid;
+  border-left-width: 5px;
+  border-color: #bfc1c3;
+  padding: 15px;
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-40 {
+    margin-bottom: 0;
+  }
+}
+
+.emotion-42 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -554,34 +707,34 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-43:hover {
+.emotion-42:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-43:focus {
+.emotion-42:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-43:active {
+.emotion-42:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-43:visited {
+.emotion-42:visited {
   color: #00823b;
 }
 
-.emotion-43 svg {
+.emotion-42 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-43 {
+  .emotion-42 {
     margin-bottom: 20px;
   }
 }
@@ -700,135 +853,149 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-47"
+    className="emotion-46"
   >
     <div
       className="emotion-15"
     >
       <div
-        className="emotion-45"
+        className="emotion-44"
       >
         <div
-          className="emotion-44"
+          className="emotion-43"
         >
-          <div
-            className="emotion-20 emotion-21"
-          >
-            <a
-              href="/back/registration-summary"
-              id="back-link"
-            >
-              Back
-            </a>
-          </div>
-          <h2
-            className="emotion-22"
-            size={undefined}
-          >
-            Check your answers
-          </h2>
-          <div
-            className="emotion-41 emotion-42"
-          >
-            <table
-              className="emotion-40"
-            >
-              <caption
-                className="emotion-23"
-              />
-              <tbody
-                className="emotion-18"
-              >
-                <tr
-                  className="emotion-18"
-                >
-                  <th
-                    className="emotion-25"
-                  >
-                    <div
-                      className="emotion-24"
-                    >
-                      <p>
-                        <strong>
-                          Operator details
-                        </strong>
-                      </p>
-                    </div>
-                  </th>
-                  <td
-                    className="emotion-25"
-                  >
-                    <div />
-                  </td>
-                  <td
-                    className="emotion-25"
-                  >
-                    <div />
-                  </td>
-                </tr>
-                <tr
-                  className="emotion-18"
-                >
-                  <th
-                    className="emotion-25"
-                  >
-                    <div
-                      className="emotion-24"
-                    >
-                      <p>
-                        <strong>
-                          Establishment details
-                        </strong>
-                      </p>
-                    </div>
-                  </th>
-                  <td
-                    className="emotion-25"
-                  >
-                    <div />
-                  </td>
-                  <td
-                    className="emotion-25"
-                  >
-                    <div />
-                  </td>
-                </tr>
-                <tr
-                  className="emotion-18"
-                >
-                  <th
-                    className="emotion-25"
-                  >
-                    <div
-                      className="emotion-24"
-                    >
-                      <p>
-                        <strong>
-                          Activities
-                        </strong>
-                      </p>
-                    </div>
-                  </th>
-                  <td
-                    className="emotion-25"
-                  >
-                    <div />
-                  </td>
-                  <td
-                    className="emotion-25"
-                  >
-                    <div />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
           <form
-            action="/continue/registration-summary"
+            action="/continue/business-import-export/undefined"
             method="post"
           >
+            <div
+              className="emotion-20 emotion-21"
+            >
+              <a
+                href="/back/business-import-export"
+                id="back-link"
+              >
+                Back
+              </a>
+            </div>
+            <h2
+              className="emotion-22"
+              size={undefined}
+            >
+              Will this food business import or export any food from outside the UK?
+            </h2>
+            <span
+              className="emotion-23"
+            >
+              This does not include any food imported or exported by other food businesses.
+            </span>
+            <div
+              className="emotion-24"
+            >
+              <p>
+                Select all that apply
+              </p>
+            </div>
+            <div
+              className="emotion-36 emotion-37"
+            >
+              <div
+                className="emotion-35"
+              >
+                <span
+                  className="emotion-25"
+                >
+                  
+                </span>
+                <label
+                  className="emotion-28"
+                >
+                  <input
+                    className="emotion-26"
+                    defaultChecked={undefined}
+                    id="business_import_export_directly_import"
+                    name="directly_import"
+                    type="checkbox"
+                    value="Directly import"
+                  />
+                  <span
+                    className="emotion-27"
+                  >
+                    Directly import food
+                  </span>
+                </label>
+                <label
+                  className="emotion-28"
+                >
+                  <input
+                    className="emotion-26"
+                    defaultChecked={undefined}
+                    id="business_import_export_directly_export"
+                    name="directly_export"
+                    type="checkbox"
+                    value="Directly export"
+                  />
+                  <span
+                    className="emotion-27"
+                  >
+                    Directly export food
+                  </span>
+                </label>
+                <label
+                  className="emotion-28"
+                >
+                  <input
+                    className="emotion-26"
+                    defaultChecked={undefined}
+                    id="business_import_export_none"
+                    name="no_import_export"
+                    type="checkbox"
+                    value="None"
+                  />
+                  <span
+                    className="emotion-27"
+                  >
+                    No import or export activities
+                  </span>
+                </label>
+              </div>
+            </div>
+            <details
+              className="emotion-41"
+              id="hiddenTextImportExportActivities"
+            >
+              <summary
+                className="emotion-39"
+              >
+                <span
+                  className="emotion-38"
+                >
+                  More information about import and export activities
+                </span>
+              </summary>
+              <div
+                className="emotion-40"
+              >
+                <span>
+                  If a food business is directly importing or exporting food outside of the UK, there are some extra requirements for the busines to follow.
+                  <br />
+                  <br />
+                  Find out more by visiting the
+                   
+                  <a
+                    href="https://www.food.gov.uk/business-guidance/imports-exports"
+                    id="link-fsa-website"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Food Standards Agency website
+                  </a>
+                  .
+                </span>
+              </div>
+            </details>
             <button
-              className="emotion-43"
+              className="emotion-42"
               disabled={false}
               id="continue-button"
               type="submit"

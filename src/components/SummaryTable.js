@@ -434,7 +434,7 @@ const FoodActivitiesTable = props => (
   <React.Fragment>
     <Table.Row TITLE>
       <Table.CellHeader>
-        <Paragraph mb={0}>**Food activities**</Paragraph>
+        <Paragraph mb={0}>**Activities**</Paragraph>
       </Table.CellHeader>
       <Table.Cell>
         <div />
@@ -457,6 +457,27 @@ const FoodActivitiesTable = props => (
         {props.hideChangeButtons ? null : (
           <Table.Cell>
             <div />
+          </Table.Cell>
+        )}
+      </Table.Row>
+    ) : null}
+
+    {props.business_import_export ? (
+      <Table.Row id="activitiesBusinessImportExportRow">
+        <Table.CellHeader>Food activities</Table.CellHeader>
+        <Table.Cell className="summaryTableDataCell">
+          <div className="bold" id="business_import_export">
+            {props.business_import_export}
+          </div>
+        </Table.Cell>
+        {props.hideChangeButtons ? null : (
+          <Table.Cell className="summaryTableChangeCell">
+            <AnchorTag
+              id="changeActivitiesBusinessImportExportRow"
+              href="/edit/business-import-export"
+            >
+              Change
+            </AnchorTag>
           </Table.Cell>
         )}
       </Table.Row>
@@ -495,5 +516,6 @@ SummaryTable.propTypes = {
   establishment_street: PropTypes.string,
   establishment_town: PropTypes.string,
   establishment_postcode: PropTypes.string,
-  customer_type: PropTypes.string
+  customer_type: PropTypes.string,
+  business_import_export: PropTypes.string
 };

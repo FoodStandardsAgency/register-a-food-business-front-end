@@ -15,6 +15,15 @@ const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
   delete data.supply_directly;
   delete data.supply_other;
 
+  data.business_import_export = transformBusinessImportExport(
+    data.directly_import,
+    data.directly_export,
+    data.no_import_export
+  );
+  delete data.directly_import;
+  delete data.directly_export;
+  delete data.no_import_export;
+
   data.establishment_opening_date = combineDate(
     data.day,
     data.month,
@@ -150,6 +159,29 @@ const transformAnswersForSubmit = (cumulativeAnswers, addressLookups) => {
   });
 
   return submitObject;
+};
+const transformBusinessImportExport = (
+  directly_import,
+  directly_export,
+  no_import_export
+) => {
+  if (directly_import && directly_export && no_import_export) {
+    return "Directly import and Export";
+  } else if (directly_import && no_import_export) {
+    return "Directly import";
+  } else if (directly_export && no_import_export) {
+    return "Directly export";
+  } else if (directly_import && directly_export) {
+    return "Directly import and Export";
+  } else if (directly_import) {
+    return "Directly import";
+  } else if (directly_export) {
+    return "Directly export";
+  } else if (no_import_export) {
+    return "None";
+  } else {
+    return undefined;
+  }
 };
 
 const transformCustomerType = (supply_directly, supply_other) => {

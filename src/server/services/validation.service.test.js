@@ -67,6 +67,19 @@ describe("validator.service validate()", () => {
       );
     });
   });
+  describe("When given the business-import-export page with invalid data", () => {
+    it("should return the business-import-export error", () => {
+      const result = validate("/business-import-export", {
+        directly_import: undefined,
+        directly_export: undefined,
+        no_import_export: undefined
+      });
+
+      expect(result.errors.business_import_export).toBe(
+        "You must select an option before continuing"
+      );
+    });
+  });
 
   describe("When given an opening date page ", () => {
     describe("proactive to validate", () => {

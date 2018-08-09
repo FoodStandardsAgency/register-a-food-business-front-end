@@ -19,6 +19,7 @@ const mandatoryTableRows = [
   "operatorCompaniesHouseRow",
   "operatorCharityNameRow",
   "activitiesCustomersRow",
+  "activitiesBusinessImportExportRow",
   "operatorContactDetailsRow",
   "operatorEmailRow",
   "establishmentContactDetailsRow",
@@ -39,7 +40,8 @@ const editableTableRows = [
   "operatorEmailRow",
   "establishmentContactDetailsRow",
   "establishmentEmailRow",
-  "contactRepresentativeRow"
+  "contactRepresentativeRow",
+  "activitiesBusinessImportExportRow"
 ];
 
 // (only optional if it's optional within that page. Does not apply to pages that are optional or could be skipped.)
@@ -61,6 +63,7 @@ const testMandatoryAnswers = {
   operator_company_house_number: "AA123456",
   operator_charity_name: "Charity name",
   customer_type: "End consumer and Other buisnesses",
+  business_import_export: "None",
   operator_primary_number: "1234567",
   operator_email: "operator@email.com",
   establishment_primary_number: "12345678",
