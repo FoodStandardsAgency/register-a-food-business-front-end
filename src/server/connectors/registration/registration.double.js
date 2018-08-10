@@ -16,8 +16,10 @@ const {
   validateCharityNumber,
   validateCustomerType,
   validateBusinessType,
-  validateDate
+  validateDate,
+  validateImportExportActivities
 } = require("@slice-and-dice/register-a-food-business-validation");
+
 const { Validator } = require("jsonschema");
 const moment = require("moment");
 const validator = new Validator();
@@ -213,9 +215,17 @@ const schema = {
               business_type_search_term: {
                 type: "string",
                 validation: validateFirstLine
+              },
+              import_export_activities: {
+                type: "string",
+                validation: validateImportExportActivities
               }
             },
-            required: ["customer_type", "business_type"]
+            required: [
+              "customer_type",
+              "business_type",
+              "import_export_activities"
+            ]
           }
         },
         required: ["establishment_details", "operator", "premise", "activities"]
