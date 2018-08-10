@@ -10,13 +10,38 @@ expect.addSnapshotSerializer(createSerializer(emotion));
 
 const mandatoryTableRows = [
   "establishmentAddressRow",
+  "establishmentAddressTypeRow",
   "operatorAddressRow",
   "establishmentTradingNameRow",
   "operatorNameRow",
   "operatorTypeRow",
   "operatorCompanyNameRow",
   "operatorCompaniesHouseRow",
-  "operatorCharityNameRow"
+  "operatorCharityNameRow",
+  "activitiesCustomersRow",
+  "operatorContactDetailsRow",
+  "operatorEmailRow",
+  "establishmentContactDetailsRow",
+  "establishmentEmailRow",
+  "contactRepresentativeRow",
+  "establishmentOpeningDateRow",
+  "businessTypeRow"
+];
+
+const editableTableRows = [
+  "establishmentAddressTypeRow",
+  "establishmentTradingNameRow",
+  "operatorNameRow",
+  "operatorCompanyNameRow",
+  "operatorCompaniesHouseRow",
+  "operatorCharityNameRow",
+  "operatorCharityNumberRow",
+  "operatorContactDetailsRow",
+  "operatorEmailRow",
+  "establishmentContactDetailsRow",
+  "establishmentEmailRow",
+  "contactRepresentativeRow",
+  "businessTypeRow"
 ];
 
 // (only optional if it's optional within that page. Does not apply to pages that are optional or could be skipped.)
@@ -36,7 +61,18 @@ const testMandatoryAnswers = {
   operator_last_name: "Appleseed",
   operator_company_name: "Company name",
   operator_company_house_number: "AA123456",
-  operator_charity_name: "Charity name"
+  operator_charity_name: "Charity name",
+  customer_type: "End consumer and Other buisnesses",
+  operator_primary_number: "1234567",
+  operator_email: "operator@email.com",
+  establishment_primary_number: "12345678",
+  establishment_email: "establishment@email.com",
+  contact_representative_email: "representative@email.com",
+  contact_representative_number: "123456789",
+  contact_representative_name: "Jill",
+  establishment_opening_date: "2018-12-06",
+  establishment_type: "Mobile or moveable premise",
+  business_type: "Livestock farm"
 };
 
 // a supplementary set of all optional answer fields with example data
@@ -46,7 +82,10 @@ const testOptionalAnswers = {
   establishment_town: "Town",
   operator_street: "Street name",
   operator_town: "Town",
-  operator_charity_number: "123456"
+  contact_representative_role: "Coder",
+  operator_charity_number: "123456",
+  establishment_secondary_number: "7654321",
+  operator_secondary_number: "7654321"
 };
 
 // the complete set of possible answer fields with example data
@@ -67,6 +106,10 @@ const wrapperMinimum = mount(<SummaryTable {...testMandatoryAnswers} />);
 // the summary table mounted with the complete set of possible answers
 const wrapperComprehensive = mount(
   <SummaryTable {...testComprehensiveAnswers} />
+);
+
+const wrapperApplicationComplete = mount(
+  <SummaryTable {...testComprehensiveAnswers} hideChangeButtons={true} />
 );
 
 // the summary table mounted without any valid answers
@@ -100,6 +143,30 @@ describe("<SummaryTable />", () => {
       expect(rows.length).toEqual(allTableRows.length);
     });
 
+    describe("when given a props of hideChangeButtons = true", () => {
+      it("It doesn't render a change button in all editable rows", () => {
+        editableTableRows.forEach(tableRowName => {
+          const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);
+          const buttonId = `change${tableRowName.charAt(0).toUpperCase() +
+            tableRowName.substr(1)}`;
+          const button = row.find(`Anchor#${buttonId}`);
+
+          expect(button.length).toBe(0);
+        });
+      });
+    });
+
+    it("renders a change button in all editable rows", () => {
+      editableTableRows.forEach(tableRowName => {
+        const row = wrapperComprehensive.find(`Row#${tableRowName}`);
+        const buttonId = `change${tableRowName.charAt(0).toUpperCase() +
+          tableRowName.substr(1)}`;
+        const button = row.find(`Anchor#${buttonId}`);
+
+        expect(button.length).toBe(1);
+      });
+    });
+
     it("renders all table rows", () => {
       allTableRows.forEach(tableRowName => {
         const row = wrapperComprehensive.find(`Row#${tableRowName}`);
@@ -121,7 +188,7 @@ describe("<SummaryTable />", () => {
         const row = wrapperMinimum.find(`Row#${tableRowName}`);
         expect(row.length).toBe(1);
 
-        const answerCells = row.find("td");
+        const answerCells = row.find("td.summaryTableDataCell");
         expect(answerCells.text()).not.toBe("");
       });
     });

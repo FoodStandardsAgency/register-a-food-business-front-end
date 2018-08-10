@@ -5,15 +5,38 @@ git:
 script: 
   - yarn format:verify
   - yarn lint
-  - yarn test
+  - yarn test:ci
 deploy:
   - provider: azure_web_apps
     verbose: true
-    site: register-a-food-business-dev
+    site: dev-register-a-food-business
     on: 
       branch: develop
   - provider: azure_web_apps
     verbose: true
-    site: TEST-REGISTER-A-FOOD-BUSINESS
+    site: dev-register-a-food-business
+    slot: dev-register-a-food-business-double
+    on: 
+      branch: develop
+  - provider: azure_web_apps
+    verbose: true
+    site: test-register-a-food-business
+    on: 
+      branch: develop
+  - provider: azure_web_apps
+    verbose: true
+    site: test-register-a-food-business
+    slot: test-register-a-food-business-double
+    on: 
+      branch: develop
+  - provider: azure_web_apps
+    verbose: true
+    site: staging-register-a-food-business
+    on: 
+      branch: release
+  - provider: azure_web_apps
+    verbose: true
+    site: prod-register-a-food-business
+    slot: prod-register-a-food-business-double
     on: 
       branch: master

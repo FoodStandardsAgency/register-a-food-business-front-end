@@ -1,18 +1,29 @@
 const { submit } = require("../services/submit.service");
+const {
+  transformAnswersForSubmit
+} = require("../services/data-transform.service");
 
-const submitController = async submissionData => {
+const submitController = async (submissionData, addressLookups) => {
   const controllerResponse = {
     submissionErrors: {},
-    redirectRoute: null
+    redirectRoute: null,
+    submissionDate: ""
   };
 
   if (submissionData && Object.getOwnPropertyNames(submissionData).length > 0) {
-    const response = await submit(submissionData);
-    if (response.errors && Object.keys(response.errors).length > 0) {
-      // TODO JMB: add errors to the original page via session
-      controllerResponse.redirectRoute = "back";
+    const transformedData = transformAnswersForSubmit(
+      submissionData,
+      addressLookups
+    );
+    const response = await submit(transformedData);
+    const res = await response.json();
+
+    if (response.status === 200) {
+      controllerResponse.redirectRoute = "/summary-confirmation";
+      controllerResponse.submissionDate = res.reg_submission_date;
+      controllerResponse.fsaRegistrationNumber = res["fsa-rn"];
     } else {
-      controllerResponse.redirectRoute = "/application-complete";
+      controllerResponse.redirectRoute = "back";
     }
   } else {
     controllerResponse.submissionErrors.emptyData =

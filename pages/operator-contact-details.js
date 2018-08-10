@@ -3,14 +3,23 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  ContinueButton
+  ContinueButton,
+  ProcessedErrorSummary,
+  OnHandleErrorClick
 } from "../src/components";
 import { Header, InputField, Paragraph, HiddenText } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OperatorContactDetails = props => (
   <FsaLayout>
-    <BackButton originator="operator-contact-details" />
+    <BackButton
+      editMode={props.editMode}
+      originator="operator-contact-details"
+    />
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
     <Header level={2}>Operator contact details</Header>
 
     <HiddenText summaryText={"What is a food business operator?"}>
@@ -21,7 +30,10 @@ const OperatorContactDetails = props => (
       </Paragraph>
     </HiddenText>
 
-    <form action="/continue/operator-contact-details" method="post">
+    <form
+      action={`/continue/operator-contact-details/${props.editMode}`}
+      method="post"
+    >
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
@@ -33,10 +45,10 @@ const OperatorContactDetails = props => (
             id="operator_primary_number"
             meta={{
               touched: true,
-              error: props.validatorErrors["operator_primary_number"]
+              error: props.validatorErrors.operator_primary_number
             }}
           >
-            Primary phone number
+            Main phone number
           </InputField>
         </ContentItem.B_30_15>
 
@@ -50,7 +62,7 @@ const OperatorContactDetails = props => (
             id="operator_secondary_number"
             meta={{
               touched: true,
-              error: props.validatorErrors["operator_secondary_number"]
+              error: props.validatorErrors.operator_secondary_number
             }}
           >
             Secondary phone number (optional)
@@ -70,7 +82,7 @@ const OperatorContactDetails = props => (
             ]}
             meta={{
               touched: true,
-              error: props.validatorErrors["operator_email"]
+              error: props.validatorErrors.operator_email
             }}
           >
             Email address
@@ -78,7 +90,7 @@ const OperatorContactDetails = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton />
+      <ContinueButton editMode={props.editMode} />
     </form>
   </FsaLayout>
 );

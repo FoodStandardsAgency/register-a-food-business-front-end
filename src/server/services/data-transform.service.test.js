@@ -1,6 +1,11 @@
-import { transformAnswersForSubmit } from "./data-transform.service";
+import {
+  transformAnswersForSubmit,
+  transformAnswersForSummary,
+  combineDate,
+  separateBracketsFromBusinessType
+} from "./data-transform.service";
 
-describe("session-management.service transformAnswersForSubmit()", () => {
+describe("data-transform.service transformAnswersForSummary()", () => {
   const testCumulativeAnswers = {
     operator_first_name: "John",
     operator_last_name: "Appleseed",
@@ -11,8 +16,52 @@ describe("session-management.service transformAnswersForSubmit()", () => {
 
   describe("given a cumulative answers object", () => {
     it("returns an object", () => {
-      const result = transformAnswersForSubmit(testCumulativeAnswers);
+      const result = transformAnswersForSummary(testCumulativeAnswers);
       expect(typeof result).toBe("object");
+    });
+
+    describe("Given that business_type is part of cumulative answers", () => {
+      const businessType = {
+        business_type: "Example (test)"
+      };
+      it("should assign business_type and business_type_search_term to the result", () => {
+        const result = transformAnswersForSummary(businessType);
+        expect(result.business_type).toBe("Example");
+        expect(result.business_type_search_term).toBe("Test");
+      });
+    });
+
+    describe("Given that supply_other and supply_directly are part of cumulative answers", () => {
+      const supplyBoth = {
+        supply_other: "True",
+        supply_directly: "True"
+      };
+      it("Should return a customer_type value of 'End consumer and other businesses'", () => {
+        const result = transformAnswersForSummary(supplyBoth);
+        expect(result.customer_type).toBe("End consumer and other businesses");
+      });
+    });
+
+    describe("Given that only supply_other is part of cumulative answers", () => {
+      const supplyDirectlyOnly = {
+        supply_other: "True"
+      };
+
+      it("Should return a customer_type value of 'Other businesses'", () => {
+        const result = transformAnswersForSummary(supplyDirectlyOnly);
+        expect(result.customer_type).toBe("Other businesses");
+      });
+    });
+
+    describe("Given that only supply_directly is part of cumulative answers", () => {
+      const supplyDirectlyOnly = {
+        supply_directly: "True"
+      };
+
+      it("Should return a customer_type value of 'End consumer'", () => {
+        const result = transformAnswersForSummary(supplyDirectlyOnly);
+        expect(result.customer_type).toBe("End consumer");
+      });
     });
 
     describe("given the registration_role is not Representative and operator_type is not passed", () => {
@@ -22,14 +71,14 @@ describe("session-management.service transformAnswersForSubmit()", () => {
       };
 
       it("the transformed data contains a field called operator_type that equals the passed registration_role data", () => {
-        const result = transformAnswersForSubmit(registrationRoleOnly);
+        const result = transformAnswersForSummary(registrationRoleOnly);
         expect(result.operator_type).toEqual(
           registrationRoleOnly.registration_role
         );
       });
 
       it("the transformed data does not contain a field called registration_role", () => {
-        const result = transformAnswersForSubmit(registrationRoleOnly);
+        const result = transformAnswersForSummary(registrationRoleOnly);
         expect(result.registration_role).toBe(undefined);
       });
     });
@@ -42,7 +91,7 @@ describe("session-management.service transformAnswersForSubmit()", () => {
       };
 
       it("the transformed data contains a field called operator_type that does not equal the passed registration_role data", () => {
-        const result = transformAnswersForSubmit(
+        const result = transformAnswersForSummary(
           registrationRoleAndOperatorType
         );
         expect(result.operator_type).not.toEqual(
@@ -51,14 +100,14 @@ describe("session-management.service transformAnswersForSubmit()", () => {
       });
 
       it("the transformed data does not contain a field called registration_role", () => {
-        const result = transformAnswersForSubmit(
+        const result = transformAnswersForSummary(
           registrationRoleAndOperatorType
         );
         expect(result.registration_role).toBe(undefined);
       });
 
       it("the transformed data contains a field called operator_type that does not equal the original operator_type data", () => {
-        const result = transformAnswersForSubmit(
+        const result = transformAnswersForSummary(
           registrationRoleAndOperatorType
         );
         expect(result.operator_type).not.toEqual(
@@ -76,7 +125,7 @@ describe("session-management.service transformAnswersForSubmit()", () => {
             other_data: "example"
           };
 
-          const result = transformAnswersForSubmit(data);
+          const result = transformAnswersForSummary(data);
 
           expect(result.operator_type).toBe(
             `${operatorType} (registered by a representative)`
@@ -92,7 +141,274 @@ describe("session-management.service transformAnswersForSubmit()", () => {
       };
 
       it("throws an error", () => {
-        expect(() => transformAnswersForSubmit(data)).toThrow(Error);
+        expect(() => transformAnswersForSummary(data)).toThrow(Error);
+      });
+    });
+
+    describe("given an addressLookups object with operator_postcode_find and establishment_postcode_find arrays", () => {
+      const testAddressLookups = {
+        operator_postcode_find: [
+          {
+            addressline1: "Allies Computing Ltd",
+            addressline2: "Manor Farm Barns",
+            addressline3: "Fox Road",
+            addressline4: "Framingham Pigot",
+            summaryline:
+              "Allies Computing Ltd, Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
+            organisation: "Allies Computing Ltd",
+            buildingname: "Manor Farm Barns",
+            premise: "Manor Farm Barns",
+            street: "Fox Road",
+            dependentlocality: "Framingham Pigot",
+            posttown: "Norwich",
+            county: "Norfolk",
+            postcode: "NR14 7PZ"
+          },
+          {
+            addressline1: "Room 36",
+            addressline2: "Block 1 Arthur Vick",
+            addressline3: "Gibbet Hill Road",
+            summaryline:
+              "Room 36, Block 1 Arthur Vick, Gibbet Hill Road, Coventry, West Midlands, CV4 7AL",
+            subbuildingname: "Room 36",
+            buildingname: "Block 1 Arthur Vick",
+            premise: "Room 36, Block 1 Arthur Vick",
+            street: "Gibbet Hill Road",
+            posttown: "Norwich",
+            county: "Norfolk",
+            postcode: "NR14 7PZ"
+          }
+        ],
+        establishment_postcode_find: [
+          {
+            addressline1: "Example",
+            addressline2: "Example line 2",
+            addressline3: "Gibbet Hill Road",
+            summaryline:
+              "Room 36, Block 1 Arthur Vick, Gibbet Hill Road, Coventry, West Midlands, CV4 7AL",
+            subbuildingname: "Room 36",
+            buildingname: "Block 1 Arthur Vick",
+            premise: "Example premise line",
+            street: "Example street",
+            posttown: "Example town",
+            county: "Norfolk",
+            postcode: "AA11 1AA"
+          },
+          {
+            addressline1: "Allies Computing Ltd",
+            addressline2: "Manor Farm Barns",
+            addressline3: "Fox Road",
+            addressline4: "Framingham Pigot",
+            summaryline:
+              "Allies Computing Ltd, Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
+            organisation: "Allies Computing Ltd",
+            buildingname: "Manor Farm Barns",
+            premise: "Manor Farm Barns",
+            street: "Fox Road",
+            dependentlocality: "Framingham Pigot",
+            posttown: "Norwich",
+            county: "Norfolk",
+            postcode: "NR14 7PZ"
+          }
+        ]
+      };
+
+      describe("given operator_address_selected is in cumulativeAnswers with a value of 1", () => {
+        const cumulativeAnswersOpAddSelected = {
+          operator_address_selected: "1"
+        };
+
+        const correctResponse = {
+          operator_first_line: "Room 36, Block 1 Arthur Vick",
+          operator_street: "Gibbet Hill Road",
+          operator_town: "Norwich",
+          operator_postcode: "NR14 7PZ"
+        };
+
+        it("returns correctly formatted operator address fields that match the second entry in the address lookup results", () => {
+          expect(
+            transformAnswersForSummary(
+              cumulativeAnswersOpAddSelected,
+              testAddressLookups
+            )
+          ).toMatchObject(correctResponse);
+        });
+
+        describe("given that operator_first_line already exists (showing that the manual address page has been filled out)", () => {
+          const cumulativeAnswersOpAddSelectedWithManual = {
+            operator_address_selected: "1",
+            operator_first_line: "Room 36, Block 1 Arthur Vick",
+            operator_postcode: "NR14 7PZ"
+          };
+
+          const manualAddressDataOnly = {
+            operator_first_line: "Room 36, Block 1 Arthur Vick",
+            operator_postcode: "NR14 7PZ"
+          };
+
+          it("returns the original manual address data and deletes the operator_address_selected value", () => {
+            expect(
+              transformAnswersForSummary(
+                cumulativeAnswersOpAddSelectedWithManual,
+                testAddressLookups
+              )
+            ).toMatchObject(manualAddressDataOnly);
+          });
+        });
+      });
+
+      describe("given establishment_address_selected is in cumulativeAnswers with a value of 0", () => {
+        const cumulativeAnswersEstAddSelected = {
+          establishment_address_selected: "0"
+        };
+
+        const correctResponse = {
+          establishment_first_line: "Example premise line",
+          establishment_street: "Example street",
+          establishment_town: "Example town",
+          establishment_postcode: "AA11 1AA"
+        };
+
+        it("returns correctly formatted establishment address fields that match the first entry in the address lookup results", () => {
+          expect(
+            transformAnswersForSummary(
+              cumulativeAnswersEstAddSelected,
+              testAddressLookups
+            )
+          ).toMatchObject(correctResponse);
+        });
+
+        describe("given that establishment_first_line already exists (showing that the manual address page has been filled out)", () => {
+          const cumulativeAnswersEstAddSelectedWithManual = {
+            establishment_address_selected: "0",
+            establishment_first_line: "Example premise line",
+            establishment_postcode: "AA11 1AA"
+          };
+
+          const manualAddressDataOnly = {
+            establishment_first_line: "Example premise line",
+            establishment_postcode: "AA11 1AA"
+          };
+
+          it("returns the original manual address data and deletes the establishment_address_selected value", () => {
+            expect(
+              transformAnswersForSummary(
+                cumulativeAnswersEstAddSelectedWithManual,
+                testAddressLookups
+              )
+            ).toMatchObject(manualAddressDataOnly);
+          });
+        });
+      });
+    });
+  });
+});
+
+describe("data-transform.service transformAnswersForSubmit()", () => {
+  const testCumulativeAnswers = {
+    operator_first_name: "John",
+    operator_last_name: "Appleseed",
+    operator_primary_number: "01234 567890",
+    operator_email: "john@appleseed.com",
+    establishment_trading_name: "John's Apples",
+    establishment_postcode: "SW12 9RQ",
+    supply_directly: true,
+    declaration1: "Declaration",
+    business_type: "Example (test)"
+  };
+
+  it("turns flat data into structured data", () => {
+    const result = transformAnswersForSubmit(testCumulativeAnswers);
+    expect(
+      result.registration.establishment.operator.operator_first_name
+    ).toBeDefined();
+  });
+
+  it("should only add the data fields it is given", () => {
+    const result = transformAnswersForSubmit(testCumulativeAnswers);
+    expect(
+      result.registration.establishment.operator.operator_company_name
+    ).not.toBeDefined();
+  });
+
+  it("should combine data using the summary function", () => {
+    const testCumulativeAnswersDate = {
+      day: "28",
+      month: "03",
+      year: "2018",
+      operator_first_name: "John",
+      operator_last_name: "Appleseed",
+      operator_primary_number: "01234 567890",
+      operator_email: "john@appleseed.com",
+      establishment_trading_name: "John's Apples"
+    };
+    const result = transformAnswersForSubmit(testCumulativeAnswersDate);
+    expect(
+      result.registration.establishment.establishment_details
+        .establishment_opening_date
+    ).toBe("2018-03-28");
+  });
+});
+
+describe("data-transform.service combineDate()", () => {
+  it("combines inputs into single string", () => {
+    // Arrange
+    const day = "29";
+    const month = "03";
+    const year = "1993";
+
+    // Act
+    const result = combineDate(day, month, year);
+
+    // Assert
+    expect(result).toBe("1993-03-29");
+  });
+});
+
+describe("data-transform.service separateBracketsFromBusinessType()", () => {
+  describe("given a valid input without brackets", () => {
+    it("should return the original input text but without any excess spaces", () => {
+      // Arrange
+      const goodTypes = [
+        "Butcher",
+        "Fruit and vegetable farm",
+        "Example with space at end  "
+      ];
+      //Act
+      goodTypes.forEach(text => {
+        const result = separateBracketsFromBusinessType(text);
+        expect(result.business_type).toBe(text.trim());
+        expect(result.business_type_search_term).toBe(undefined);
+      });
+    });
+  });
+
+  describe("given a valid input with brackets", () => {
+    it("should return the input text but without the exact section contained in brackets", () => {
+      //Act
+      const result = separateBracketsFromBusinessType(
+        "Butcher (example search term with space after) "
+      );
+      expect(result.business_type).toBe("Butcher");
+      expect(result.business_type_search_term).toBe(
+        "Example search term with space after"
+      );
+    });
+  });
+
+  describe("given an invalid input", () => {
+    it("should return the original input text but without any excess spaces", () => {
+      // Arrange
+      const badTypes = [
+        "Butcher (valid up until here) but not here",
+        "Fruit and vegetable farm (opening but no closing",
+        "Brackets but invalid )("
+      ];
+      //Act
+      badTypes.forEach(text => {
+        const result = separateBracketsFromBusinessType(text);
+        expect(result.business_type).toBe(text.trim());
+        expect(result.business_type_search_term).toBe(undefined);
       });
     });
   });

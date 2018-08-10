@@ -8,23 +8,29 @@ import {
 } from "../src/components";
 import { Header } from "govuk-react";
 import PropTypes from "prop-types";
+import { transformAnswersForSummary } from "../src/server/services/data-transform.service";
 
-const RegistrationSummary = props => (
-  <FsaLayout>
-    <BackButton originator="registration-summary" />
-    <Header level={3}>
-      Please check that the details you entered are correct.
-    </Header>
+const RegistrationSummary = props => {
+  const transformedData = transformAnswersForSummary(
+    props.cumulativeAnswers,
+    props.addressLookups
+  );
 
-    <ContentItem.B_30_15>
-      <SummaryTable {...props.submissionData} />
-    </ContentItem.B_30_15>
+  return (
+    <FsaLayout>
+      <BackButton editMode={props.editMode} originator="registration-summary" />
+      <Header level={2}>Check your answers</Header>
 
-    <form action="/continue/registration-summary" method="post">
-      <ContinueButton />
-    </form>
-  </FsaLayout>
-);
+      <ContentItem.B_30_15>
+        <SummaryTable {...transformedData} />
+      </ContentItem.B_30_15>
+
+      <form action="/continue/registration-summary" method="post">
+        <ContinueButton />
+      </form>
+    </FsaLayout>
+  );
+};
 
 export default SessionWrapper(RegistrationSummary);
 

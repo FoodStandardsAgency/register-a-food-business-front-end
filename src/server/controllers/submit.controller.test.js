@@ -20,9 +20,8 @@ describe("Function: submitController: ", () => {
   describe("When submit returns an error", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({
-        errors: {
-          random: "error"
-        }
+        status: "500",
+        json: () => ({ reg_submission_date: "10 Jul 2018" })
       }));
       response = await submitController({ some: "data" });
     });
@@ -35,13 +34,23 @@ describe("Function: submitController: ", () => {
   describe("When submit does NOT return an error", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({
-        errors: {}
+        status: 200,
+        json: () => ({
+          reg_submission_date: "10 Jul 2018",
+          "fsa-rn": "D9YC4B-KFK5JE-PKR7VX"
+        })
       }));
       response = await submitController({ some: "data" });
     });
 
-    it("Should set redirectRoute to application-complete", () => {
-      expect(response.redirectRoute).toBe("/application-complete");
+    it("Should set redirectRoute to summary-confirmation", () => {
+      expect(response.redirectRoute).toBe("/summary-confirmation");
+    });
+    it("Should should return reg_submission_date", () => {
+      expect(response.submissionDate).toBe("10 Jul 2018");
+    });
+    it("Should should return fsa_rn", () => {
+      expect(response.fsaRegistrationNumber).toBe("D9YC4B-KFK5JE-PKR7VX");
     });
   });
 });

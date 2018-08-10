@@ -3,12 +3,18 @@ import { shallow, mount } from "enzyme";
 import renderer from "react-test-renderer";
 import * as emotion from "emotion";
 import { createSerializer } from "jest-emotion";
+import { transformAnswersForSummary } from "../server/services/data-transform.service";
+jest.mock("../server/services/data-transform.service");
 
 expect.addSnapshotSerializer(createSerializer(emotion));
 
-const submissionData = {
+const cumulativeAnswers = {
   establishment_first_line: "Example first line"
 };
+
+const testAddressLookups = { example: [] };
+
+const testSwitches = {};
 
 describe("<RegistrationSummary />", () => {
   it("renders without crashing", () => {
@@ -17,23 +23,54 @@ describe("<RegistrationSummary />", () => {
   });
 
   it("matches the previous snapshot", () => {
-    const tree = renderer.create(<RegistrationSummary />).toJSON();
+    const tree = renderer
+      .create(
+        <RegistrationSummary
+          cumulativeAnswers={cumulativeAnswers}
+          switches={testSwitches}
+        />
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it("gets given props", () => {
     const wrapper = mount(
-      <RegistrationSummary submissionData={submissionData} />
+      <RegistrationSummary
+        cumulativeAnswers={cumulativeAnswers}
+        switches={testSwitches}
+      />
     );
-    const establishmentFirstLine = wrapper.props().submissionData
+    const establishmentFirstLine = wrapper.props().cumulativeAnswers
       .establishment_first_line;
     expect(establishmentFirstLine).toBe("Example first line");
   });
 
   describe("SummaryTable component", () => {
+    transformAnswersForSummary.mockImplementation(() => ({ test: "answer" }));
+
+    it("Gets given transformedAnswers ", () => {
+      const wrapper = mount(
+        <RegistrationSummary
+          cumulativeAnswers={cumulativeAnswers}
+          switches={testSwitches}
+          addressLookups={testAddressLookups}
+        />
+      );
+      const summaryTable = wrapper.find("SummaryTable");
+      expect(transformAnswersForSummary).toHaveBeenLastCalledWith(
+        cumulativeAnswers,
+        testAddressLookups
+      );
+      expect(summaryTable.props().test).toBe("answer");
+    });
+
     it("renders", () => {
       const wrapper = mount(
-        <RegistrationSummary submissionData={submissionData} />
+        <RegistrationSummary
+          cumulativeAnswers={cumulativeAnswers}
+          switches={testSwitches}
+        />
       );
       const summaryTable = wrapper.find("SummaryTable");
       expect(summaryTable.length).toBe(1);

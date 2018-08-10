@@ -3,24 +3,39 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  ContinueButton
+  ContinueButton,
+  ProcessedErrorSummary,
+  OnHandleErrorClick
 } from "../src/components";
 import { Header, InputField, HiddenText, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OperatorCharityDetails = props => (
   <FsaLayout>
-    <BackButton originator="operator-charity-details" />
+    <BackButton
+      editMode={props.editMode}
+      originator="operator-charity-details"
+    />
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
     <Header level={2}>Details of the operating charity</Header>
 
-    <HiddenText summaryText={"What is a food business operator?"}>
+    <HiddenText
+      id="hiddenTextFBO"
+      summaryText={"What is a food business operator?"}
+    >
       <Paragraph mb={0}>
         A food business operator is the person, charity or company who makes the
         decisions about the food business, what it serves and how it operates.
       </Paragraph>
     </HiddenText>
 
-    <form action="/continue/operator-charity-details" method="post">
+    <form
+      action={`/continue/operator-charity-details/${props.editMode}`}
+      method="post"
+    >
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
@@ -56,7 +71,10 @@ const OperatorCharityDetails = props => (
           </InputField>
         </ContentItem.B_30_15>
 
-        <HiddenText summaryText={"Questions about charity reference numbers"}>
+        <HiddenText
+          id="hiddenTextCharityNumbers"
+          summaryText={"Questions about charity reference numbers"}
+        >
           <span>
             Charities that are registered with the Charities Commission will
             have a charity reference number. You can find your charity reference
@@ -73,7 +91,7 @@ const OperatorCharityDetails = props => (
         </HiddenText>
       </ContentItem.B_30_15>
 
-      <ContinueButton />
+      <ContinueButton editMode={props.editMode} />
     </form>
   </FsaLayout>
 );

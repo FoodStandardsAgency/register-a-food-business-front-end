@@ -2,7 +2,7 @@ const SessionWrapper = Page => {
   const wrapper = props => <Page {...props} />;
 
   wrapper.getInitialProps = ({ req }) => {
-    return {
+    const initialProps = {
       cumulativeAnswers:
         req && req.session && req.session.cumulativeAnswers
           ? req.session.cumulativeAnswers
@@ -11,12 +11,29 @@ const SessionWrapper = Page => {
         req && req.session && req.session.validatorErrors
           ? req.session.validatorErrors
           : {},
-      submissionData:
-        req && req.session && req.session.submissionData
-          ? req.session.submissionData
-          : {},
-      referenceNumber: "34672462"
+      switches:
+        req && req.session && req.session.switches ? req.session.switches : {},
+      fsaRegistrationNumber:
+        req && req.session && req.session.fsaRegistrationNumber
+          ? req.session.fsaRegistrationNumber
+          : "",
+      submissionDate:
+        req && req.session && req.session.submissionDate
+          ? req.session.submissionDate
+          : "",
+      localCouncil: "Rushmoor Borough Council",
+      localCouncilEmail: "food@rushmoorboroughcouncil.gov.uk",
+      addressLookups:
+        req && req.session && req.session.addressLookups
+          ? req.session.addressLookups
+          : {}
     };
+
+    req && req.query && req.query.edit === "on"
+      ? (initialProps.editMode = true)
+      : (initialProps.editMode = false);
+
+    return initialProps;
   };
 
   return wrapper;

@@ -3,6 +3,152 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.29.1 - 8th August 2018 (unreleased)
+
+### Modified
+
+* Change invalid business type error message (design review)
+
+## v1.29.0 - 8th August 2018 (unreleased)
+
+### Added
+
+* cleansession route
+
+## v1.28.0 - 8th August 2018 (unreleased)
+
+### Added
+
+* SDB-5 business type lookup
+
+## v1.27.2 - 1st August 2018 (unreleased)
+
+### Modified
+
+* Passed addressLookups through submit route
+
+## v1.27.1 - 1st August 2018 (unreleased)
+
+### Modified
+
+* Update Next to 6.1.1
+
+## v1.27.0 - 1st August 2018 (unreleased)
+
+### Added
+
+* SDB-47 Registration confirmation number
+
+## v1.26.0 - 1st August 2018 (unreleased)
+
+### Added
+
+* SDB-12 Advanced address lookup
+
+## v1.25.0 - 31st July 2018 (unreleased)
+
+### Added
+
+* SDB-236 Registration submission date
+
+## v1.24.1 - 31st July 2018 (unreleased)
+
+### Modified
+
+* Updated application-complete page to registration-summary page and reflect design
+
+## v1.24.0 - 27th July 2018 (unreleased)
+
+### Added
+
+* SDB-50 Establishment Address Type
+
+## v1.23.0 - 27th July 2018 (unreleased)
+
+### Modified
+
+* Modified output of data transforms to match new data structure
+
+## v1.22.2 - 27th July 2018 (unreleased)
+
+### Modified
+
+* Design review fixes for edit summary page
+
+## v1.22.1 - 27th July 2018 (unreleased)
+
+### Modified
+
+* Bugfix for edit mode when clicking the browser back button
+
+## v1.22.0 - 25th July 2018 (unreleased)
+
+### Added
+
+* SDB-157 Edit summary page - items not influencing registration flow
+
+## v1.21.2 - 17th July 2018 (unreleased)
+
+### Modified
+
+* Removed day, month, year from submission data, combined establishment_opening_date already exists
+
+## v1.21.1 - 17th July 2018 (unreleased)
+
+### Modified
+
+* Removed day, month, year from submission data, combined establishment_opening_date already exists
+
+## v1.21.0 - 17th July 2018 (unreleased)
+
+### Added
+
+* SDB-114 Adding proactive establishment trading date
+* SDB-115 Adding retroactive establishment trading date
+
+## v1.20.0 - 13th July 2018 (unreleased)
+
+### Added
+
+* SDB-252 Adding Error summary boxes to all pages
+
+## v1.19.0 - 13th July 2018 (unreleased)
+
+### Added
+
+* SDB-373 Adding Beta banner to all pages
+
+## v1.18.1 - 12th July 2018 (unreleased)
+
+### Modified
+
+* Modifield validateStreet to be validateOptionalString
+
+## v1.18.0 - 12th July 2018 (unreleased)
+
+### Added
+
+* SDB-241 Contact representative
+
+## v1.17.0 - 11th July 2018 (unreleased)
+
+### Added
+
+* SDB-117 Customer Type
+
+## v1.16.0 - 10th July 2018 (unreleased)
+
+### Added
+
+* Modified session storage to use database
+
+## v1.15.0 - 10th July 2018 (unreleased)
+
+### Added
+
+* SDB-113 Added establishment contact details page with 'reuse operator contact details' button
+* Add switches route and controller
+
 ## v1.14.4 - 4th July 2018 (unreleased)
 
 ### Modified
