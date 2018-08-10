@@ -83,7 +83,7 @@ describe("validator.service validate()", () => {
         no_import_export: undefined
       });
 
-      expect(result.errors.business_import_export).toBe(
+      expect(result.errors.import_export_activities).toBe(
         "You must select an option before continuing"
       );
     });

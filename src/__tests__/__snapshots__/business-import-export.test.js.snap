@@ -913,7 +913,7 @@ exports[`<ImportExportActivities /> matches the previous snapshot 1`] = `
                   <input
                     className="emotion-26"
                     defaultChecked={undefined}
-                    id="business_import_export_directly_import"
+                    id="import_export_activities_directly_import"
                     name="directly_import"
                     type="checkbox"
                     value="Directly import"
@@ -930,7 +930,7 @@ exports[`<ImportExportActivities /> matches the previous snapshot 1`] = `
                   <input
                     className="emotion-26"
                     defaultChecked={undefined}
-                    id="business_import_export_directly_export"
+                    id="import_export_activities_directly_export"
                     name="directly_export"
                     type="checkbox"
                     value="Directly export"
@@ -947,7 +947,7 @@ exports[`<ImportExportActivities /> matches the previous snapshot 1`] = `
                   <input
                     className="emotion-26"
                     defaultChecked={undefined}
-                    id="business_import_export_none"
+                    id="import_export_activities_none"
                     name="no_import_export"
                     type="checkbox"
                     value="None"

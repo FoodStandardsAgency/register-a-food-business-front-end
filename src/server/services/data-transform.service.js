@@ -15,7 +15,7 @@ const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
   delete data.supply_directly;
   delete data.supply_other;
 
-  data.business_import_export = transformBusinessImportExport(
+  data.import_export_activities = transformBusinessImportExport(
     data.directly_import,
     data.directly_export,
     data.no_import_export
@@ -183,13 +183,13 @@ const transformBusinessImportExport = (
   no_import_export
 ) => {
   if (directly_import && directly_export && no_import_export) {
-    return "Directly import and Export";
+    return "Directly import and export";
   } else if (directly_import && no_import_export) {
     return "Directly import";
   } else if (directly_export && no_import_export) {
     return "Directly export";
   } else if (directly_import && directly_export) {
-    return "Directly import and Export";
+    return "Directly import and export";
   } else if (directly_import) {
     return "Directly import";
   } else if (directly_export) {

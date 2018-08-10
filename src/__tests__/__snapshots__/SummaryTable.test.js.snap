@@ -865,7 +865,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
       >
         <div
           className="bold"
-          id="business_import_export"
+          id="import_export_activities"
         >
           None
         </div>

@@ -39,12 +39,12 @@ const ImportExportActivities = props => (
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.business_import_export
+            error: props.validatorErrors.import_export_activities
           }}
         >
           <Checkbox
             name="directly_import"
-            id="business_import_export_directly_import"
+            id="import_export_activities_directly_import"
             value="Directly import"
             defaultChecked={props.cumulativeAnswers.directly_import}
           >
@@ -52,7 +52,7 @@ const ImportExportActivities = props => (
           </Checkbox>
           <Checkbox
             name="directly_export"
-            id="business_import_export_directly_export"
+            id="import_export_activities_directly_export"
             value="Directly export"
             defaultChecked={props.cumulativeAnswers.directly_export}
           >
@@ -60,7 +60,7 @@ const ImportExportActivities = props => (
           </Checkbox>
           <Checkbox
             name="no_import_export"
-            id="business_import_export_none"
+            id="import_export_activities_none"
             value="None"
             defaultChecked={props.cumulativeAnswers.no_import_export}
           >

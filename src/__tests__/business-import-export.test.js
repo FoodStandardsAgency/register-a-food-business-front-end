@@ -59,7 +59,7 @@ describe("<ImportExportActivities />", () => {
         />
       );
       const importExportActivitiesCheckBox = wrapper.find(
-        "Checkbox#business_import_export_directly_import"
+        "Checkbox#import_export_activities_directly_import"
       );
       expect(importExportActivitiesCheckBox.props().defaultChecked).toBe(
         "default"
@@ -78,7 +78,7 @@ describe("<ImportExportActivities />", () => {
         />
       );
       const importExportActivitiesCheckBox = wrapper.find(
-        "Checkbox#business_import_export_directly_export"
+        "Checkbox#import_export_activities_directly_export"
       );
       expect(importExportActivitiesCheckBox.props().defaultChecked).toBe(
         "default"
@@ -96,7 +96,7 @@ describe("<ImportExportActivities />", () => {
         />
       );
       const importExportActivitiesCheckBox = wrapper.find(
-        "Checkbox#business_import_export_none"
+        "Checkbox#import_export_activities_none"
       );
       expect(importExportActivitiesCheckBox.props().defaultChecked).toBe(
         "default"
@@ -107,7 +107,7 @@ describe("<ImportExportActivities />", () => {
   describe("top-level MultiChoice element", () => {
     it("renders the correct error", () => {
       const validatorErrors = {
-        business_import_export: "test error"
+        import_export_activities: "test error"
       };
       const wrapper = mount(
         <ImportExportActivities

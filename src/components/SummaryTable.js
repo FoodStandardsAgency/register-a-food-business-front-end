@@ -462,12 +462,12 @@ const FoodActivitiesTable = props => (
       </Table.Row>
     ) : null}
 
-    {props.business_import_export ? (
+    {props.import_export_activities ? (
       <Table.Row id="activitiesBusinessImportExportRow">
         <Table.CellHeader>Food activities</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
-          <div className="bold" id="business_import_export">
-            {props.business_import_export}
+          <div className="bold" id="import_export_activities">
+            {props.import_export_activities}
           </div>
         </Table.Cell>
         {props.hideChangeButtons ? null : (
@@ -544,5 +544,5 @@ SummaryTable.propTypes = {
   establishment_town: PropTypes.string,
   establishment_postcode: PropTypes.string,
   customer_type: PropTypes.string,
-  business_import_export: PropTypes.string
+  import_export_activities: PropTypes.string
 };

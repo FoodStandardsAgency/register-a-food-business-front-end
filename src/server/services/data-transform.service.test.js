@@ -309,10 +309,10 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         directly_export: "True",
         no_import_export: "True"
       };
-      it("Should return a business_import_export value of 'Directly import and Export'", () => {
+      it("Should return a import_export_activities value of 'Directly import and Export'", () => {
         const result = transformAnswersForSummary(cumulativeAnswers);
-        expect(result.business_import_export).toBe(
-          "Directly import and Export"
+        expect(result.import_export_activities).toBe(
+          "Directly import and export"
         );
       });
     });
@@ -321,10 +321,10 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         directly_import: "True",
         directly_export: "True"
       };
-      it("Should return a business_import_export value of 'Directly import and Export'", () => {
+      it("Should return a import_export_activities value of 'Directly import and Export'", () => {
         const result = transformAnswersForSummary(cumulativeAnswers);
-        expect(result.business_import_export).toBe(
-          "Directly import and Export"
+        expect(result.import_export_activities).toBe(
+          "Directly import and export"
         );
       });
     });
@@ -333,9 +333,9 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         directly_import: "True",
         no_import_export: "True"
       };
-      it("Should return a business_import_export value of 'Directly import'", () => {
+      it("Should return a import_export_activities value of 'Directly import'", () => {
         const result = transformAnswersForSummary(cumulativeAnswers);
-        expect(result.business_import_export).toBe("Directly import");
+        expect(result.import_export_activities).toBe("Directly import");
       });
     });
     describe("Given that directly_export and no_import_export are part of cumulative answers", () => {
@@ -343,45 +343,45 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         directly_export: "True",
         no_import_export: "True"
       };
-      it("Should return a business_import_export value of 'Directly export'", () => {
+      it("Should return a import_export_activities value of 'Directly export'", () => {
         const result = transformAnswersForSummary(cumulativeAnswers);
-        expect(result.business_import_export).toBe("Directly export");
+        expect(result.import_export_activities).toBe("Directly export");
       });
     });
     describe("Given that only directly_export is part of cumulative answers", () => {
       const cumulativeAnswers = {
         directly_export: "True"
       };
-      it("Should return a business_import_export value of 'Directly export'", () => {
+      it("Should return a import_export_activities value of 'Directly export'", () => {
         const result = transformAnswersForSummary(cumulativeAnswers);
-        expect(result.business_import_export).toBe("Directly export");
+        expect(result.import_export_activities).toBe("Directly export");
       });
     });
     describe("Given that only directly_import is part of cumulative answers", () => {
       const cumulativeAnswers = {
         directly_import: "True"
       };
-      it("Should return a business_import_export value of 'Directly import'", () => {
+      it("Should return a import_export_activities value of 'Directly import'", () => {
         const result = transformAnswersForSummary(cumulativeAnswers);
-        expect(result.business_import_export).toBe("Directly import");
+        expect(result.import_export_activities).toBe("Directly import");
       });
     });
     describe("Given that only no_import_export is part of cumulative answers", () => {
       const cumulativeAnswers = {
         no_import_export: "True"
       };
-      it("Should return a business_import_export value of 'None'", () => {
+      it("Should return a import_export_activities value of 'None'", () => {
         const result = transformAnswersForSummary(cumulativeAnswers);
-        expect(result.business_import_export).toBe("None");
+        expect(result.import_export_activities).toBe("None");
       });
     });
     describe("Given that somethig ohter than the allowed combinations of no_import_export, direct_import and direct_export is part of cumulative answers", () => {
       const cumulativeAnswers = {
         random: "True"
       };
-      it("Should return a business_import_export value of undefined", () => {
+      it("Should return a import_export_activities value of undefined", () => {
         const result = transformAnswersForSummary(cumulativeAnswers);
-        expect(result.business_import_export).toBe(undefined);
+        expect(result.import_export_activities).toBe(undefined);
       });
     });
   });
