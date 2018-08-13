@@ -24,6 +24,17 @@ const ApplicationComplete = props => {
           props.localCouncilEmail
         }.**`}
       </Paragraph>
+      <InsetText>
+        <Paragraph mb={0}>
+          Please keep note of this registration number for your records.
+        </Paragraph>
+      </InsetText>
+      <Paragraph>
+        {`A copy of this registration has been sent to **${
+          props.recipient
+        }.** You
+        can also download a copy of the registration submission confirmation.`}
+      </Paragraph>
       {props.fsaRegistrationNumber ? (
         <Panel
           id="panelWithNumber"
@@ -114,5 +125,6 @@ ApplicationComplete.propTypes = {
   localCouncil: PropTypes.string,
   localCouncilEmail: PropTypes.string,
   submissionDate: PropTypes.string,
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string)
+  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  recipient: PropTypes.string
 };

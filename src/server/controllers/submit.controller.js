@@ -7,7 +7,11 @@ const submitController = async (submissionData, addressLookups) => {
   const controllerResponse = {
     submissionErrors: {},
     redirectRoute: null,
-    submissionDate: ""
+    submissionDate: "",
+    fsaRegistrationNumber: "",
+    email_fbo: {
+      recipient: ""
+    }
   };
 
   if (submissionData && Object.getOwnPropertyNames(submissionData).length > 0) {
@@ -22,6 +26,7 @@ const submitController = async (submissionData, addressLookups) => {
       controllerResponse.redirectRoute = "/summary-confirmation";
       controllerResponse.submissionDate = res.reg_submission_date;
       controllerResponse.fsaRegistrationNumber = res["fsa-rn"];
+      controllerResponse.recipient = res.email_fbo.recipient;
     } else {
       controllerResponse.redirectRoute = "back";
     }

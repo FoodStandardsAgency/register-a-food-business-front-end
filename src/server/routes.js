@@ -53,6 +53,8 @@ module.exports = () => {
     );
     req.session.submissionDate = response.submissionDate;
     req.session.fsaRegistrationNumber = response.fsaRegistrationNumber;
+    req.session.recipient = response.recipient;
+
     info(`Routes: /submit route finished with route ${response.redirectRoute}`);
     res.redirect(response.redirectRoute);
   });

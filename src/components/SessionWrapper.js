@@ -21,6 +21,11 @@ const SessionWrapper = Page => {
         req && req.session && req.session.submissionDate
           ? req.session.submissionDate
           : "",
+      recipient:
+        req && req.session && req.session.recipient
+          ? req.session.recipient
+          : "",
+
       localCouncil: "Rushmoor Borough Council",
       localCouncilEmail: "food@rushmoorboroughcouncil.gov.uk",
       addressLookups:
