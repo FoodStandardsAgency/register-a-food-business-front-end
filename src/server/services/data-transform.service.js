@@ -127,7 +127,8 @@ const transformAnswersForSubmit = (cumulativeAnswers, addressLookups) => {
   const activities_keys = [
     "customer_type",
     "business_type",
-    "business_type_search_term"
+    "business_type_search_term",
+    "import_export_activities"
   ];
   const metadata_keys = ["declaration1", "declaration2", "declaration3"];
   const submitObject = {
