@@ -271,6 +271,10 @@ const registrationDouble = body => {
         tascomiResponse: {
           id: "25",
           online_reference: "0000025"
+        },
+        email_fbo: {
+          success: true,
+          recipient: "operator@email.com"
         }
       }),
       status: 200

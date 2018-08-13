@@ -65,6 +65,14 @@ describe("<SessionWrapper />", () => {
       expect(typeof initialProps.submissionDate).toBe("string");
     });
 
+    it("returns a 'recipient' object as part of the initial props", () => {
+      const WrappedComponent = SessionWrapper(ExampleComponent);
+      const initialProps = WrappedComponent.getInitialProps({
+        req: { session: {} }
+      });
+      expect(typeof initialProps.recipient).toBe("string");
+    });
+
     describe("given a url query that includes an edit value", () => {
       it("returns an editMode value that is true", () => {
         const WrappedComponent = SessionWrapper(ExampleComponent);
@@ -85,7 +93,7 @@ describe("<SessionWrapper />", () => {
       });
     });
 
-    it("returns 'validatorErrors', 'cumulativeAnswers', 'submissionDate', 'fsaRegistrationNumber', 'addressLookups', and 'switches' even if req is undefined", () => {
+    it("returns 'validatorErrors', 'cumulativeAnswers', 'submissionDate', 'fsaRegistrationNumber', 'recipient', 'addressLookups', and 'switches' even if req is undefined", () => {
       const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({});
       expect(typeof initialProps.validatorErrors).toBe("object");
@@ -94,6 +102,7 @@ describe("<SessionWrapper />", () => {
       expect(typeof initialProps.addressLookups).toBe("object");
       expect(typeof initialProps.submissionDate).toBe("string");
       expect(typeof initialProps.fsaRegistrationNumber).toBe("string");
+      expect(typeof initialProps.recipient).toBe("string");
     });
   });
 
@@ -191,6 +200,20 @@ describe("<SessionWrapper />", () => {
         expect(componentProps.fsaRegistrationNumber).toBe(
           exampleFsaRegistrationNumber
         );
+      });
+    });
+
+    describe("given that req.session.recipient is defined", () => {
+      it("props.recipient is the same as the session.recipient", () => {
+        const WrappedComponent = SessionWrapper(ExampleComponent);
+        const exampleRecipient = "blank@blank.com";
+        const initialProps = WrappedComponent.getInitialProps({
+          req: {
+            session: { recipient: exampleRecipient }
+          }
+        });
+        const componentProps = WrappedComponent(initialProps).props;
+        expect(componentProps.recipient).toBe(exampleRecipient);
       });
     });
 

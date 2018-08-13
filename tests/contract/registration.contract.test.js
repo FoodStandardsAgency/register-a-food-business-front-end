@@ -118,6 +118,7 @@ describe("Registration contract", () => {
       expect(realJsonResponse.reg_submission_date).toEqual(
         doubleJsonResponse.reg_submission_date
       );
+      expect(realJsonResponse.email_fbo).toEqual(doubleJsonResponse.email_fbo);
     });
   });
 

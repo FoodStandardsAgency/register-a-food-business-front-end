@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.31.0 - 13th August 2018 (unreleased)
+
+### Added
+
+* SDB-48 FBO confirmation email to registration summary
+
 ## v1.30.0 - 9th August 2018 (unreleased)
 
 ### Added
