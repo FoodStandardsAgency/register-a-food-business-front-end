@@ -36,7 +36,8 @@ const validBody = {
       activities: {
         customer_type: "End consumer",
         business_type: "Livestock farm",
-        business_type_search_term: "Example"
+        business_type_search_term: "Example",
+        import_export_activities: "None"
       }
     },
     metadata: {
@@ -78,7 +79,8 @@ const invalidBody = {
       activities: {
         customer_type: "End consumer",
         business_type: "Livestock farm",
-        business_type_search_term: "Example"
+        business_type_search_term: "Example",
+        import_export_activities: "None"
       }
     },
     metadata: {

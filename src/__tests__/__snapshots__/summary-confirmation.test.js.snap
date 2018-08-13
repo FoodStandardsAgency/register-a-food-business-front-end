@@ -870,7 +870,7 @@ exports[`<ApplicationComplete /> matches the previous snapshot 1`] = `
             className="emotion-21"
           >
             <p>
-              09 Aug 2018
+              10 Aug 2018
             </p>
           </div>
           <div
@@ -1051,7 +1051,7 @@ exports[`<ApplicationComplete /> matches the previous snapshot 1`] = `
                   >
                     <p>
                       <strong>
-                        Food activities
+                        Activities
                       </strong>
                     </p>
                   </div>

@@ -284,6 +284,25 @@ const schema = {
       }
     }
   },
+  "/business-import-export": {
+    type: "object",
+    properties: {
+      directly_import: {
+        type: "string"
+      },
+      directly_export: {
+        type: "string"
+      },
+      no_import_export: {
+        type: "string"
+      }
+    },
+    anyOf: [
+      { required: ["directly_import"] },
+      { required: ["directly_export"] },
+      { required: ["no_import_export"] }
+    ]
+  },
   "/registration-summary": {
     type: "object",
     properties: {}

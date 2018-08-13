@@ -118,6 +118,10 @@
     "on": true,
     "switches": {}
   },
+  "/business-import-export": {
+    "on": true,
+    "switches": {}
+  },
   "/registration-summary": {
     "on": true,
     "switches": {}
