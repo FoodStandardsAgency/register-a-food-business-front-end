@@ -30,10 +30,7 @@ const ApplicationComplete = props => {
         </Paragraph>
       </InsetText>
       <Paragraph>
-        {`A copy of this registration has been sent to **${
-          props.recipient
-        }.** You
-        can also download a copy of the registration submission confirmation.`}
+        {`A copy of this registration has been sent to **${props.recipient}.**`}
       </Paragraph>
       {props.fsaRegistrationNumber ? (
         <Panel
