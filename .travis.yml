@@ -29,10 +29,14 @@ jobs:
         - provider: azure_web_apps
           verbose: true
           site: dev-register-a-food-business
+          on:
+            branch: develop
         - provider: azure_web_apps
           verbose: true
           site: dev-register-a-food-business
           slot: dev-register-a-food-business-double
+          on:
+            branch: develop
     - stage: test build and deploy
       script:
         - yarn test:integration
@@ -40,16 +44,22 @@ jobs:
         - provider: azure_web_apps
           verbose: true
           site: test-register-a-food-business
+          on:
+            branch: develop
         - provider: azure_web_apps
           verbose: true
           site: test-register-a-food-business
           slot: test-register-a-food-business-double
+          on:
+            branch: develop
     - stage: staging deploy
       script: echo "No tests to run"
       deploy:
         - provider: azure_web_apps
           verbose: true
           site: staging-register-a-food-business
+          on:
+            branch: release
     - stage: prod deploy
       script: echo "No tests to run"
       deploy:
