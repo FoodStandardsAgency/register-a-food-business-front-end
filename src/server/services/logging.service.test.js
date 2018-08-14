@@ -5,6 +5,8 @@ jest.mock("winston", () => ({
 const { info, error } = require("winston");
 const { logEmitter } = require("./logging.service");
 
+jest.unmock("./logging.service");
+
 describe("logEmitter", () => {
   describe("on functionCall event", () => {
     it("should call winston info", () => {
@@ -13,9 +15,23 @@ describe("logEmitter", () => {
     });
   });
 
+  describe("on functionCallWith event", () => {
+    it("should call winston info", () => {
+      logEmitter.emit("functionCallWith");
+      expect(info).toBeCalled();
+    });
+  });
+
   describe("on functionSuccess event", () => {
     it("should call winston info", () => {
       logEmitter.emit("functionSuccess");
+      expect(info).toBeCalled();
+    });
+  });
+
+  describe("on functionSuccessWith event", () => {
+    it("should call winston info", () => {
+      logEmitter.emit("functionSuccessWith");
       expect(info).toBeCalled();
     });
   });
