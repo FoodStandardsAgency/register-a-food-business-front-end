@@ -29,7 +29,7 @@ const ApplicationComplete = props => {
           Please keep note of this registration number for your records.
         </Paragraph>
       </InsetText>
-      <Paragraph>
+      <Paragraph id="receiveConfirmationEmail">
         {`A copy of this registration has been sent to **${props.recipient}.**`}
       </Paragraph>
       {props.fsaRegistrationNumber ? (
