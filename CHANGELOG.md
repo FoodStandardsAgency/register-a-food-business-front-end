@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.31.2 - 14th August 2018 (unreleased)
+
+### Added
+
+* SDB-22 LC Notify response to integration and contract tests
+
 ## v1.31.1 - 14th August 2018 (unreleased)
 
 ### Modified

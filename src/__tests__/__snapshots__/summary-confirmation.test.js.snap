@@ -854,7 +854,7 @@ exports[`<ApplicationComplete /> matches the previous snapshot 1`] = `
             </div>
           </div>
           <div
-            className="emotion-21"
+            className="receiveConfirmationEmail emotion-21"
           >
             <p>
               A copy of this registration has been sent to 
