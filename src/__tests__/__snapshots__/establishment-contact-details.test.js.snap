@@ -932,7 +932,7 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
             <a
               className="emotion-3"
               href="/index"
-              target="new"
+              target="_blank"
             >
               <div
                 className="emotion-2"
@@ -979,7 +979,7 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
           <a
             className="emotion-7"
             href="/index"
-            target="new"
+            target="_blank"
           >
             <h3
               className="emotion-6"
@@ -1015,7 +1015,7 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
             className="emotion-3"
             href="https://goo.gl/forms/WB5adxvWQdDIfVvs2"
             id="feedbackLink"
-            target="new"
+            target="_blank"
           >
             your feedback
           </a>
