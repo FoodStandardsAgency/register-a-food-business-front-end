@@ -3,7 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## v1.31.2 - 14th August 2018 (unreleased)
+## v1.31.3 - 15th August 2018 (unreleased)
+
+### Modified
+
+* SDB-640 Links to open in new tabs
+
+## v1.31.2 - 15th August 2018 (unreleased)
 
 ### Added
 

@@ -715,7 +715,7 @@ exports[`<ApplicationComplete /> matches the previous snapshot 1`] = `
             <a
               className="emotion-3"
               href="/index"
-              target="new"
+              target="_blank"
             >
               <div
                 className="emotion-2"
@@ -762,7 +762,7 @@ exports[`<ApplicationComplete /> matches the previous snapshot 1`] = `
           <a
             className="emotion-7"
             href="/index"
-            target="new"
+            target="_blank"
           >
             <h3
               className="emotion-6"
@@ -798,7 +798,7 @@ exports[`<ApplicationComplete /> matches the previous snapshot 1`] = `
             className="emotion-3"
             href="https://goo.gl/forms/WB5adxvWQdDIfVvs2"
             id="feedbackLink"
-            target="new"
+            target="_blank"
           >
             your feedback
           </a>
@@ -947,7 +947,8 @@ exports[`<ApplicationComplete /> matches the previous snapshot 1`] = `
               href="https://www.food.gov.uk/business-guidance"
               id="foodSafetyLink"
               onClick={undefined}
-              target="new"
+              rel="noopener noreferrer"
+              target="_blank"
             >
               Food safety and how to run a food business (including Northern Ireland)
             </a>
@@ -961,7 +962,8 @@ exports[`<ApplicationComplete /> matches the previous snapshot 1`] = `
               href="https://www.businesscompanion.info/en/in-depth-guides"
               id="standardGuidanceLink"
               onClick={undefined}
-              target="new"
+              rel="noopener noreferrer"
+              target="_blank"
             >
               Standards guidance for England and Wales
             </a>
@@ -975,7 +977,8 @@ exports[`<ApplicationComplete /> matches the previous snapshot 1`] = `
               href="https://www.food.gov.uk/business-guidance/food-hygiene-ratings-for-businesses"
               id="fhrsScoreLink"
               onClick={undefined}
-              target="new"
+              rel="noopener noreferrer"
+              target="_blank"
             >
               How to achieve a high FHRS score and how to appeal
             </a>
@@ -989,7 +992,8 @@ exports[`<ApplicationComplete /> matches the previous snapshot 1`] = `
               href="https://www.gov.uk/guidance/local-regulation-primary-authority"
               id="primaryAuthorityLink"
               onClick={undefined}
-              target="new"
+              rel="noopener noreferrer"
+              target="_blank"
             >
               Do you qualify for primary authority partnership and how to get one
             </a>
