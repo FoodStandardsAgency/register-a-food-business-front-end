@@ -43,7 +43,8 @@ const editableTableRows = [
   "establishmentEmailRow",
   "contactRepresentativeRow",
   "activitiesBusinessImportExportRow",
-  "businessTypeRow"
+  "businessTypeRow",
+  "activitiesCustomersRow"
 ];
 
 // (only optional if it's optional within that page. Does not apply to pages that are optional or could be skipped.)
