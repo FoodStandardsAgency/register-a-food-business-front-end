@@ -12,7 +12,7 @@ const validBody = {
         establishment_trading_name: "Itsu",
         establishment_primary_number: "329857245",
         establishment_secondary_number: "84345245",
-        establishment_email: "django@uk.ibm.com",
+        establishment_email: "fsatestemail.valid@gmail.com",
         establishment_opening_date: "2018-06-07"
       },
       operator: {
@@ -23,7 +23,7 @@ const validBody = {
         operator_street: "Some St.",
         operator_town: "London",
         operator_primary_number: "9827235",
-        operator_email: "operator@email.com",
+        operator_email: "fsatestemail.valid@gmail.com",
         operator_type: "Sole trader"
       },
       premise: {
@@ -122,6 +122,7 @@ describe("Registration contract", () => {
         doubleJsonResponse.reg_submission_date
       );
       expect(realJsonResponse.email_fbo).toEqual(doubleJsonResponse.email_fbo);
+      expect(realJsonResponse.email_lc).toEqual(doubleJsonResponse.email_lc);
     });
   });
 

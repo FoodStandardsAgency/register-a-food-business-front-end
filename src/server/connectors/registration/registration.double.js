@@ -274,7 +274,11 @@ const registrationDouble = body => {
         },
         email_fbo: {
           success: true,
-          recipient: "operator@email.com"
+          recipient: "fsatestemail.valid@gmail.com"
+        },
+        email_lc: {
+          success: true,
+          recipient: "fsatestemail.valid@gmail.com"
         }
       }),
       status: 200
