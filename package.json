@@ -19,7 +19,9 @@
       "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'"
   },
   "dependencies": {
-    "@babel/core": "7.0.0-beta.47",
+    "@babel/core": "7.0.0-rc.1",
+    "@babel/polyfill": "7.0.0-rc.1",
+    "@babel/preset-env": "7.0.0-rc.1",
     "@govuk-react/icon-crown": "0.0.5",
     "@govuk-react/icons": "0.2.7",
     "@slice-and-dice/register-a-food-business-validation": "1.10.1",
