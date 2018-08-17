@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.31.4 - 17th August 2018 (unreleased)
+
+### Modified
+
+* SDB-727 IE11 business type box fix
+
 ## v1.31.3 - 15th August 2018 (unreleased)
 
 ### Modified
