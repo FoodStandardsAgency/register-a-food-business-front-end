@@ -455,8 +455,13 @@ const FoodActivitiesTable = props => (
           </div>
         </Table.Cell>
         {props.hideChangeButtons ? null : (
-          <Table.Cell>
-            <div />
+          <Table.Cell className="summaryTableChangeCell">
+            <AnchorTag
+              id="changeActivitiesCustomersRow"
+              href="/edit/customer-type"
+            >
+              Change
+            </AnchorTag>
           </Table.Cell>
         )}
       </Table.Row>
