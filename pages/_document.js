@@ -52,6 +52,7 @@ export default class MyDocument extends Document {
             content="width=device-width, initial-scale=1.0"
             charSet="UTF-8"
           />
+          <meta name="format-detection" content="telephone=no" />
           <title>Register a food business</title>
           <link rel="stylesheet" href="/_next/static/style.css" />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
