@@ -32,7 +32,8 @@ export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     const page = renderPage();
     const styles = extractCritical(page.html);
-    return { ...page, ...styles };
+    const gtmAuth = process.env.GTM_AUTH;
+    return { ...page, ...styles, gtmAuth };
   }
 
   constructor(props) {
@@ -47,6 +48,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          {/* {this.props.gtmAuth} */}
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
