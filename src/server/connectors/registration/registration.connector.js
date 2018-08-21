@@ -2,8 +2,6 @@ const fetch = require("node-fetch");
 const { SUBMIT_URL, API_SECRET, CLIENT_NAME } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { registrationDouble } = require("./registration.double");
-console.log(CLIENT_NAME);
-console.log(process.env.CLIENT_NAME);
 const sendRequest = async body => {
   const DOUBLE_MODE = process.env.DOUBLE_MODE;
   try {
