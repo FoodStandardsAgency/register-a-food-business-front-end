@@ -37,7 +37,11 @@ describe("Function: submitController: ", () => {
         status: 200,
         json: () => ({
           reg_submission_date: "10 Jul 2018",
-          "fsa-rn": "D9YC4B-KFK5JE-PKR7VX"
+          "fsa-rn": "D9YC4B-KFK5JE-PKR7VX",
+          email_fbo: {
+            success: true,
+            recipient: "operator@email.com"
+          }
         })
       }));
       response = await submitController({ some: "data" });
@@ -51,6 +55,9 @@ describe("Function: submitController: ", () => {
     });
     it("Should should return fsa_rn", () => {
       expect(response.fsaRegistrationNumber).toBe("D9YC4B-KFK5JE-PKR7VX");
+    });
+    it("Should should return recipient", () => {
+      expect(response.recipient).toBe("operator@email.com");
     });
   });
 });

@@ -234,7 +234,8 @@ describe("Router: ", () => {
         submissionErrors: {},
         redirectRoute: "/summary-confirmation",
         submissionDate: "date",
-        fsaRegistrationNumber: "12345678"
+        fsaRegistrationNumber: "12345678",
+        recipient: "blank@blank.com"
       }));
 
       handler = router.get.mock.calls[1][1];
@@ -265,6 +266,7 @@ describe("Router: ", () => {
     it("Should update session", () => {
       expect(req.session.submissionDate).toEqual("date");
       expect(req.session.fsaRegistrationNumber).toEqual("12345678");
+      expect(req.session.recipient).toEqual("blank@blank.com");
     });
 
     it("Should set redirect to response", () => {

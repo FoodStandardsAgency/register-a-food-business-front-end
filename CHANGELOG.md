@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.31.4 - 17th August 2018 (unreleased)
+
+### Modified
+
+* SDB-727 IE11 business type box fix
+
+## v1.31.3 - 15th August 2018 (unreleased)
+
+### Modified
+
+* SDB-640 Links to open in new tabs
+
+## v1.31.2 - 15th August 2018 (unreleased)
+
+### Added
+
+* SDB-22 LC Notify response to integration and contract tests
+
+## v1.31.1 - 14th August 2018 (unreleased)
+
+### Modified
+
+* Update to business-type-transformed.json file
+
+## v1.31.0 - 13th August 2018 (unreleased)
+
+### Added
+
+* SDB-48 FBO confirmation email to registration summary
+
+## v1.30.0 - 9th August 2018 (unreleased)
+
+### Added
+
+* SDB-124 business import and export activities
+
 ## v1.29.1 - 8th August 2018 (unreleased)
 
 ### Modified

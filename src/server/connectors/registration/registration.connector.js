@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
-const { info } = require("winston");
 const { SUBMIT_URL } = require("../../config");
+const { logEmitter } = require("../../services/logging.service");
 const { registrationDouble } = require("./registration.double");
 
 const sendRequest = async body => {
@@ -8,11 +8,14 @@ const sendRequest = async body => {
   try {
     let res;
     if (DOUBLE_MODE === "true") {
-      info("registration.connector: running in double mode");
+      logEmitter.emit("doubleMode", "registration.connector", "sendRequest");
       res = registrationDouble(body);
     } else {
-      info(
-        `registration.connector: sendRequest: called with URL: ${SUBMIT_URL}`
+      logEmitter.emit(
+        "functionCallWith",
+        "registration.connector",
+        "sendRequest",
+        SUBMIT_URL
       );
       res = await fetch(SUBMIT_URL, {
         method: "POST",
@@ -20,10 +23,15 @@ const sendRequest = async body => {
         body: body
       });
     }
-    info(`registration.connector: sendRequest: finished`);
+    logEmitter.emit("functionSuccess", "registration.connector", "sendRequest");
     return res;
   } catch (err) {
-    info(`registration.connector: sendRequest: failed with error: ${err}`);
+    logEmitter.emit(
+      "functionFail",
+      "registration.connector",
+      "sendRequest",
+      err
+    );
     return err;
   }
 };

@@ -1,16 +1,17 @@
 const {
   sendRequest
 } = require("../connectors/registration/registration.connector");
-const { info } = require("winston");
+const { logEmitter } = require("../../server/services/logging.service");
 
 module.exports.submit = async submissionData => {
-  info(`submit.service: submit: called`);
+  logEmitter.emit("functionCall", "submit.service", "submit");
   try {
     const stringSubmissionData = JSON.stringify(submissionData);
     const response = await sendRequest(stringSubmissionData);
+    logEmitter.emit("functionSuccess", "submit.service", "submit");
     return response;
   } catch (err) {
-    info(`submit.service: submit: failled with err: ${err}`);
+    logEmitter.emit("functionFail", "submit.service", "submit", err);
     return err;
   }
 };

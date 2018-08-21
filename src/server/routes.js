@@ -1,7 +1,7 @@
 const { Router } = require("express");
-const { info, error } = require("winston");
 const { QA_KEY } = require("./config");
 const { handle } = require("./next");
+const { logEmitter } = require("./services/logging.service");
 
 const continueController = require("./controllers/continue.controller");
 const submitController = require("./controllers/submit.controller");
@@ -13,8 +13,7 @@ module.exports = () => {
   const router = Router();
 
   router.post("/continue/:originator/:editMode?", (req, res) => {
-    info(`Routes: /continue route called`);
-
+    logEmitter.emit("functionCall", "Routes", "/continue route");
     const editMode = req.params.editMode === "true" ? true : false;
 
     const response = continueController(
@@ -29,51 +28,70 @@ module.exports = () => {
     req.session.validatorErrors = response.validatorErrors;
     req.session.switches = response.switches;
 
-    info(
-      `Routes: /continue route finished with route ${response.redirectRoute}`
-    );
+    logEmitter.emit("functionSuccess", "Routes", "/continue route");
     res.redirect(response.redirectRoute);
   });
 
   router.get("/back/:originator", (req, res) => {
-    info(`Routes: /back route called`);
+    logEmitter.emit("functionCall", "Routes", "/back route");
     const response = backController(
       `/${req.params.originator}`,
       req.session.cumulativeAnswers
     );
-    info(`Routes: /back route finished with route ${response}`);
+    logEmitter.emit("functionSuccessWith", "Routes", "/back route", response);
     res.redirect(response);
   });
 
   router.get("/submit", async (req, res) => {
-    info(`Routes: /submit route called`);
+    logEmitter.emit("functionCall", "Routes", "/submit route");
     const response = await submitController(
       req.session.cumulativeAnswers,
       req.session.addressLookups
     );
     req.session.submissionDate = response.submissionDate;
     req.session.fsaRegistrationNumber = response.fsaRegistrationNumber;
-    info(`Routes: /submit route finished with route ${response.redirectRoute}`);
+    req.session.recipient = response.recipient;
+
+    logEmitter.emit(
+      "functionSuccessWith",
+      "Routes",
+      "/back route",
+      response.redirectRoute
+    );
     res.redirect(response.redirectRoute);
   });
 
   router.get("/qa/:target", (req, res) => {
-    info(`Routes: /qa/:target route called`);
+    logEmitter.emit("functionCall", "Routers", "/qa/:target route");
     if (req.query.QA_KEY && req.query.QA_KEY === QA_KEY) {
       const target = req.params.target;
       delete req.query.QA_KEY;
       req.session.cumulativeAnswers = req.query;
-      info(`Routes: /qa/:target route finished with route /${target}`);
+      logEmitter.emit(
+        "functionSuccessWith",
+        "Routes",
+        "/qa/:target route",
+        target
+      );
       res.redirect(`/${target}`);
     } else {
-      info(`Routes: /qa/:target route finished with 403 not permitted`);
+      logEmitter.emit(
+        "functionFail",
+        "Routes",
+        "/qa/:target route",
+        "403 not permitted"
+      );
       res.status(403);
       res.send("Not permitted");
     }
   });
 
   router.post("/switches/:switchName/:action/:originator", (req, res) => {
-    info(`Routes: /switches/:switchName/:action route called`);
+    logEmitter.emit(
+      "functionCall",
+      "Routers",
+      "/switches/:switchName/:action route"
+    );
 
     if (!req.session.switches) {
       req.session.switches = {};
@@ -95,21 +113,29 @@ module.exports = () => {
     req.session.switches[switchName] = response.newSwitchState;
     req.session.cumulativeAnswers = response.cumulativeAnswers;
 
-    info(`Routes: /switches/:switchName/:action route finished`);
+    logEmitter.emit(
+      "functionSuccess",
+      "Routers",
+      "/switches/:switchName/:action route"
+    );
     res.redirect("back");
   });
 
   router.get("/edit/:target", (req, res) => {
-    info(`Routes: /edit/:target route called`);
+    logEmitter.emit("functionCall", "Routers", "/edit/:target route");
 
     const target = req.params.target;
 
-    info(`Routes: /edit/:target route finished`);
+    logEmitter.emit("functionSuccess", "Routers", "/edit/:target route");
     res.redirect(`/${target}?edit=on`);
   });
 
   router.post("/findaddress/:originator", async (req, res) => {
-    info(`Routes: /findaddress/:originator route called`);
+    logEmitter.emit(
+      "functionCall",
+      "Routers",
+      "/findaddress/:originator route"
+    );
 
     const response = await findAddressController(
       `/${req.params.originator}`,
@@ -132,18 +158,27 @@ module.exports = () => {
       response.switches
     );
 
-    info(`Routes: /findaddress/:originator route finished`);
+    logEmitter.emit(
+      "functionSuccess",
+      "Routers",
+      "/findaddress/:originator route"
+    );
     res.redirect(response.redirectRoute);
   });
 
   router.get("/cleansession", (req, res) => {
-    info(`Routes: /cleansession route called`);
+    logEmitter.emit("functionCall", "Routers", "/cleansession route");
     req.session.destroy(err => {
       if (err) {
-        error(`Routes: /cleansession route failed with error: ${err}`);
+        logEmitter.emit("functionFail", "Routers", "/cleansession route", err);
         res.redirect("back");
       } else {
-        info(`Routes: /cleansession route finished with route "/"`);
+        logEmitter.emit(
+          "functionSuccessWith",
+          "Routers",
+          "/cleansession route",
+          "route '/'"
+        );
         res.redirect("/");
       }
     });

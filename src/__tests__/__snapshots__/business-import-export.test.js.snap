@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CustomerType /> matches the previous snapshot 1`] = `
+exports[`<ImportExportActivities /> matches the previous snapshot 1`] = `
 .emotion-10 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -310,12 +310,12 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-38 {
+.emotion-46 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-36 {
+.emotion-44 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -328,7 +328,7 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-36 {
+  .emotion-44 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -336,7 +336,7 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-35 {
+.emotion-43 {
   background: transparent;
   margin: 0 0 15px;
   text-indent: 0px;
@@ -344,22 +344,22 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-35 {
+  .emotion-43 {
     width: 100%;
     margin: 0 15px;
   }
 
-  .emotion-35:first-child {
+  .emotion-43:first-child {
     margin-left: 0;
   }
 
-  .emotion-35:last-child {
+  .emotion-43:last-child {
     margin-right: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-35 {
+  .emotion-43 {
     width: 66.6667%;
   }
 }
@@ -398,42 +398,16 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
 }
 
 .emotion-23 {
+  display: block;
   font-family: "nta",Arial,sans-serif;
-  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  text-transform: none;
   font-size: 16px;
   line-height: 1.25;
-  margin-bottom: 15px;
-}
-
-.emotion-23 > p {
-  margin: 0;
-}
-
-.emotion-23 > p > code {
-  padding: 0.2em 0.4em;
-  margin: 0px;
-  font-size: 85%;
-  background-color: rgba(27,31,35,0.05);
-  border-radius: 3px;
-}
-
-.emotion-23 > pre {
-  padding: 16px;
-  overflow: auto;
-  font-size: 85%;
-  line-height: 1.45;
-  background-color: #f6f8fa;
-  border-radius: 3px;
-}
-
-.emotion-23 > pre > code {
-  display: inline;
-  padding: 0px;
-  margin: 0px;
-  border: 0px;
-  overflow: visible;
-  line-height: inherit;
-  word-wrap: normal;
+  color: #6f777b;
+  margin-bottom: 5px;
 }
 
 @media only screen and (min-width:641px) {
@@ -445,11 +419,73 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
 
 @media only screen and (min-width:641px) {
   .emotion-23 {
+    margin-bottom: 5px;
+  }
+}
+
+.emotion-24 {
+  font-family: "nta",Arial,sans-serif;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.25;
+  margin-bottom: 15px;
+}
+
+.emotion-24 > p {
+  margin: 0;
+}
+
+.emotion-24 > p > code {
+  padding: 0.2em 0.4em;
+  margin: 0px;
+  font-size: 85%;
+  background-color: rgba(27,31,35,0.05);
+  border-radius: 3px;
+}
+
+.emotion-24 > pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+}
+
+.emotion-24 > pre > code {
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-24 {
+    font-size: 19px;
+    line-height: 1.3;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-24 {
     margin-bottom: 20px;
   }
 }
 
-.emotion-31 {
+.emotion-36 {
+  padding-bottom: 30px;
+}
+
+@media only screen and (max-width:641px) {
+  .emotion-36 {
+    padding-bottom: 15px;
+  }
+}
+
+.emotion-35 {
   padding: 0;
   margin: 0;
   border: 0;
@@ -458,19 +494,19 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   margin-bottom: 0;
 }
 
-.emotion-31:after {
+.emotion-35:after {
   content: '';
   display: table;
   clear: both;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-31 {
+  .emotion-35 {
     margin-bottom: 0;
   }
 }
 
-.emotion-24 {
+.emotion-25 {
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -485,19 +521,19 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-24 {
+  .emotion-25 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-24 {
+  .emotion-25 {
     margin-bottom: 0;
   }
 }
 
-.emotion-27 {
+.emotion-28 {
   display: block;
   position: relative;
   padding: 0 0 0 38px;
@@ -505,12 +541,12 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-27 {
+  .emotion-28 {
     margin-bottom: 10px;
   }
 }
 
-.emotion-25 {
+.emotion-26 {
   position: absolute;
   left: 0;
   top: 0;
@@ -523,20 +559,20 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   cursor: pointer;
 }
 
-.emotion-25:checked + span:after {
+.emotion-26:checked + span:after {
   opacity: 1;
 }
 
-.emotion-25:focus + span:before {
+.emotion-26:focus + span:before {
   box-shadow: 0 0 0 4px #ffbf47;
 }
 
-.emotion-25 + span {
+.emotion-26 + span {
   opacity: 1;
   pointer-events: auto;
 }
 
-.emotion-26 {
+.emotion-27 {
   font-family: "nta",Arial,sans-serif;
   font-weight: 400;
   text-transform: none;
@@ -549,13 +585,13 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-26 {
+  .emotion-27 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
-.emotion-26::before {
+.emotion-27::before {
   content: '';
   display: block;
   border: 2px solid #0b0c0c;
@@ -567,7 +603,7 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   left: 0;
 }
 
-.emotion-26::after {
+.emotion-27::after {
   content: '';
   border: solid;
   border-width: 0 0 5px 5px;
@@ -585,7 +621,58 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   opacity: 0;
 }
 
-.emotion-34 {
+.emotion-41 {
+  margin-bottom: 20px;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-41 {
+    margin-bottom: 30px;
+  }
+}
+
+.emotion-39 {
+  display: inline-block;
+  cursor: pointer;
+  color: #005ea5;
+  font-family: "nta",Arial,sans-serif;
+  font-size: 19px;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.emotion-39:hover {
+  color: #2b8cc4;
+}
+
+.emotion-39:focus {
+  outline: 4px solid #ffbf47;
+  background: #ffbf47;
+}
+
+.emotion-38 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  -webkit-text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
+}
+
+.emotion-40 {
+  box-sizing: border-box;
+  border-left-style: solid;
+  border-left-width: 5px;
+  border-color: #bfc1c3;
+  padding: 15px;
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-40 {
+    margin-bottom: 0;
+  }
+}
+
+.emotion-42 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -620,34 +707,34 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-34:hover {
+.emotion-42:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-34:focus {
+.emotion-42:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-34:active {
+.emotion-42:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-34:visited {
+.emotion-42:visited {
   color: #00823b;
 }
 
-.emotion-34 svg {
+.emotion-42 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-34 {
+  .emotion-42 {
     margin-bottom: 20px;
   }
 }
@@ -766,93 +853,149 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-38"
+    className="emotion-46"
   >
     <div
       className="emotion-15"
     >
       <div
-        className="emotion-36"
+        className="emotion-44"
       >
         <div
-          className="emotion-35"
+          className="emotion-43"
         >
-          <div
-            className="emotion-20 emotion-21"
-          >
-            <a
-              href="/back/customer-type"
-              id="back-link"
-            >
-              Back
-            </a>
-          </div>
-          <h2
-            className="emotion-22"
-            size={undefined}
-          >
-            Who will this establishment supply food to?
-          </h2>
-          <div
-            className="emotion-23"
-          >
-            <p>
-              Select all that apply
-            </p>
-          </div>
           <form
-            action="/continue/customer-type/undefined"
+            action="/continue/business-import-export/undefined"
             method="post"
           >
             <div
               className="emotion-20 emotion-21"
             >
+              <a
+                href="/back/business-import-export"
+                id="back-link"
+              >
+                Back
+              </a>
+            </div>
+            <h2
+              className="emotion-22"
+              size={undefined}
+            >
+              Will this food business import or export any food from outside the UK?
+            </h2>
+            <span
+              className="emotion-23"
+            >
+              This does not include any food imported or exported by other food businesses.
+            </span>
+            <div
+              className="emotion-24"
+            >
+              <p>
+                Select all that apply
+              </p>
+            </div>
+            <div
+              className="emotion-36 emotion-37"
+            >
               <div
-                className="emotion-31"
+                className="emotion-35"
               >
                 <span
-                  className="emotion-24"
+                  className="emotion-25"
                 >
                   
                 </span>
                 <label
-                  className="emotion-27"
+                  className="emotion-28"
                 >
                   <input
-                    className="emotion-25"
+                    className="emotion-26"
                     defaultChecked={undefined}
-                    id="customer_type_supply_other"
-                    name="supply_other"
+                    id="import_export_activities_directly_import"
+                    name="directly_import"
                     type="checkbox"
-                    value="It will supply food to other businesses to process, sell or serve"
+                    value="Directly import"
                   />
                   <span
-                    className="emotion-26"
+                    className="emotion-27"
                   >
-                    It will supply food to other businesses to process, sell or serve
+                    Directly import food
                   </span>
                 </label>
                 <label
-                  className="emotion-27"
+                  className="emotion-28"
                 >
                   <input
-                    className="emotion-25"
+                    className="emotion-26"
                     defaultChecked={undefined}
-                    id="customer_type_supply_directly"
-                    name="supply_directly"
+                    id="import_export_activities_directly_export"
+                    name="directly_export"
                     type="checkbox"
-                    value="It will supply food directly to end consumer"
+                    value="Directly export"
                   />
                   <span
-                    className="emotion-26"
+                    className="emotion-27"
                   >
-                    It will supply food directly to end consumers
+                    Directly export food
+                  </span>
+                </label>
+                <label
+                  className="emotion-28"
+                >
+                  <input
+                    className="emotion-26"
+                    defaultChecked={undefined}
+                    id="import_export_activities_none"
+                    name="no_import_export"
+                    type="checkbox"
+                    value="None"
+                  />
+                  <span
+                    className="emotion-27"
+                  >
+                    No import or export activities
                   </span>
                 </label>
               </div>
             </div>
+            <details
+              className="emotion-41"
+              id="hiddenTextImportExportActivities"
+            >
+              <summary
+                className="emotion-39"
+              >
+                <span
+                  className="emotion-38"
+                >
+                  More information about import and export activities
+                </span>
+              </summary>
+              <div
+                className="emotion-40"
+              >
+                <span>
+                  If a food business is directly importing or exporting food outside of the UK, there are some extra requirements for the busines to follow.
+                  <br />
+                  <br />
+                  Find out more by visiting the
+                   
+                  <a
+                    href="https://www.food.gov.uk/business-guidance/imports-exports"
+                    id="link-fsa-website"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Food Standards Agency website
+                  </a>
+                  .
+                </span>
+              </div>
+            </details>
             <button
-              className="emotion-34"
+              className="emotion-42"
               disabled={false}
               id="continue-button"
               type="submit"

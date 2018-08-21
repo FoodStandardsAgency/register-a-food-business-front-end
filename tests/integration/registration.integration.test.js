@@ -19,7 +19,7 @@ const validBody = {
         operator_street: "Some St.",
         operator_town: "London",
         operator_primary_number: "9827235",
-        operator_email: "operator@email.com",
+        operator_email: "fsatestemail.valid@gmail.com",
         operator_type: "Sole trader"
       },
       premise: {
@@ -32,7 +32,8 @@ const validBody = {
       activities: {
         customer_type: "End consumer",
         business_type: "Livestock farm",
-        business_type_search_term: "Example"
+        business_type_search_term: "Example",
+        import_export_activities: "None"
       }
     },
     metadata: {

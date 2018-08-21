@@ -24,6 +24,14 @@ const ApplicationComplete = props => {
           props.localCouncilEmail
         }.**`}
       </Paragraph>
+      <InsetText>
+        <Paragraph mb={0}>
+          Please keep note of this registration number for your records.
+        </Paragraph>
+      </InsetText>
+      <Paragraph className="receiveConfirmationEmail">
+        {`A copy of this registration has been sent to **${props.recipient}.**`}
+      </Paragraph>
       {props.fsaRegistrationNumber ? (
         <Panel
           id="panelWithNumber"
@@ -69,7 +77,8 @@ const ApplicationComplete = props => {
         <AnchorTag
           id="foodSafetyLink"
           href="https://www.food.gov.uk/business-guidance"
-          target="new"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Food safety and how to run a food business (including Northern
           Ireland)
@@ -79,7 +88,8 @@ const ApplicationComplete = props => {
         <AnchorTag
           id="standardGuidanceLink"
           href="https://www.businesscompanion.info/en/in-depth-guides"
-          target="new"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Standards guidance for England and Wales
         </AnchorTag>
@@ -88,7 +98,8 @@ const ApplicationComplete = props => {
         <AnchorTag
           id="fhrsScoreLink"
           href="https://www.food.gov.uk/business-guidance/food-hygiene-ratings-for-businesses"
-          target="new"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           How to achieve a high FHRS score and how to appeal
         </AnchorTag>
@@ -97,7 +108,8 @@ const ApplicationComplete = props => {
         <AnchorTag
           id="primaryAuthorityLink"
           href="https://www.gov.uk/guidance/local-regulation-primary-authority"
-          target="new"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Do you qualify for primary authority partnership and how to get one
         </AnchorTag>
@@ -114,5 +126,6 @@ ApplicationComplete.propTypes = {
   localCouncil: PropTypes.string,
   localCouncilEmail: PropTypes.string,
   submissionDate: PropTypes.string,
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string)
+  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  recipient: PropTypes.string
 };
