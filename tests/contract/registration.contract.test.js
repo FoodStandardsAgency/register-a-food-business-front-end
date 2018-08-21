@@ -1,7 +1,5 @@
-jest.mock("../../src/server/config.js", () => ({
-  SUBMIT_URL:
-    "https://dev-register-a-food-business-service.azurewebsites.net/api/registration/createNewRegistration"
-}));
+process.env.SUBMIT_URL =
+  "http://localhost:4000/api/registration/createNewRegistration";
 const {
   sendRequest
 } = require("../../src/server/connectors/registration/registration.connector");
@@ -90,11 +88,13 @@ const invalidBody = {
     }
   }
 };
+
 describe("Registration contract", () => {
   describe("Valid requests", () => {
     it("Should return the same status", async () => {
       process.env.DOUBLE_MODE = false;
       const realResponse = await sendRequest(JSON.stringify(validBody));
+      console.log(realResponse);
       process.env.DOUBLE_MODE = true;
       const doubleResponse = await sendRequest(JSON.stringify(validBody));
       expect(realResponse.status).toBe(doubleResponse.status);

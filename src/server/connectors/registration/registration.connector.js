@@ -1,8 +1,9 @@
 const fetch = require("node-fetch");
-const { SUBMIT_URL } = require("../../config");
+const { SUBMIT_URL, API_SECRET, CLIENT_NAME } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { registrationDouble } = require("./registration.double");
-
+console.log(CLIENT_NAME);
+console.log(process.env.CLIENT_NAME);
 const sendRequest = async body => {
   const DOUBLE_MODE = process.env.DOUBLE_MODE;
   try {
@@ -17,10 +18,15 @@ const sendRequest = async body => {
         "sendRequest",
         SUBMIT_URL
       );
+      const headers = {
+        "Content-Type": "application/json",
+        "api-secret": API_SECRET,
+        "client-name": CLIENT_NAME
+      };
       res = await fetch(SUBMIT_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: body
+        headers,
+        body
       });
     }
     logEmitter.emit("functionSuccess", "registration.connector", "sendRequest");
