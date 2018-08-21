@@ -48,6 +48,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          {/* Start Google Tag Manager */}
           <script
             dangerouslySetInnerHTML={{
               __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -57,6 +58,7 @@ export default class MyDocument extends Document {
           })(window,document,'script','dataLayer','GTM-PKW3XC7');`
             }}
           />
+          {/* End Google Tag Manager */}
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
