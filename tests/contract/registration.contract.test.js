@@ -64,7 +64,7 @@ const invalidBody = {
         operator_street: "Some St.",
         operator_town: "London",
         operator_primary_number: "9827235",
-        operator_email: "django@email.com",
+        operator_email: "fsatestemail.valid@gmail.com",
         operator_type: "Sole trader"
       },
       premise: {
@@ -94,7 +94,6 @@ describe("Registration contract", () => {
     it("Should return the same status", async () => {
       process.env.DOUBLE_MODE = false;
       const realResponse = await sendRequest(JSON.stringify(validBody));
-      console.log(realResponse);
       process.env.DOUBLE_MODE = true;
       const doubleResponse = await sendRequest(JSON.stringify(validBody));
       expect(realResponse.status).toBe(doubleResponse.status);
@@ -141,7 +140,7 @@ describe("Registration contract", () => {
       const doubleResponse = await sendRequest(JSON.stringify(invalidBody));
       const realJsonResponse = await realResponse.json();
       const doubleJsonResponse = doubleResponse.json();
-      expect(realJsonResponse.error).toBe(doubleJsonResponse.error);
+      expect(realJsonResponse).toEqual(doubleJsonResponse);
     });
   });
 });
