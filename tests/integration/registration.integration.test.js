@@ -61,12 +61,12 @@ describe("Registration service", () => {
   describe("When given an invalid request", () => {
     it("should return 500 response", async () => {
       const result = await sendRequest(JSON.stringify({ registration: {} }));
-      expect(result.status).toBe(500);
+      expect(result.status).toBe(400);
     });
 
-    it("should return json function with error", async () => {
+    it("should return json function with errorCode", async () => {
       const result = await sendRequest(JSON.stringify({ registration: {} }));
-      expect(result.json().error).toBeDefined();
+      expect(result.json().errorCode).toBeDefined();
     });
   });
 });
