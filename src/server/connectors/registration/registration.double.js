@@ -252,9 +252,18 @@ const registrationDouble = body => {
   );
   if (validatorResult.errors.length) {
     return {
-      status: 500,
+      status: 400,
       json: () => ({
-        error: '[{"key":"establishment","message":"Invalid operator email"}]'
+        errorCode: "3",
+        developerMessage:
+          "Validation error, check request body vs validation schema",
+        userMessages: [
+          {
+            property:
+              "instance.establishment.establishment_details.establishment_email",
+            message: "Invalid operator email"
+          }
+        ]
       })
     };
   } else {
