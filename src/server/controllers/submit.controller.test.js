@@ -1,13 +1,31 @@
+jest.mock("../services/data-transform.service");
 jest.mock("../services/submit.service");
 
+const {
+  transformAnswersForSubmit
+} = require("../services/data-transform.service");
 const { submit } = require("../services/submit.service");
+
 const submitController = require("./submit.controller");
 
+const testLcUrl = "example-lc";
+const testSubmissionData = { some: "data" };
+const testAddressLookups = {};
+
+const submitArgs = [testLcUrl, testSubmissionData, testAddressLookups];
+
+let response;
+
 describe("Function: submitController: ", () => {
-  let response;
+  beforeEach(() => {
+    transformAnswersForSubmit.mockImplementation(() => ({
+      transformedDataExample: "value"
+    }));
+  });
+
   describe("When given empty submission data", () => {
     beforeEach(async () => {
-      response = await submitController({});
+      response = await submitController(testLcUrl, {}, testAddressLookups);
     });
 
     it("it should return emptyData error", () => {
@@ -23,7 +41,7 @@ describe("Function: submitController: ", () => {
         status: "500",
         json: () => ({ reg_submission_date: "10 Jul 2018" })
       }));
-      response = await submitController({ some: "data" });
+      response = await submitController(...submitArgs);
     });
 
     it("Should set redirectRoute to back", () => {
@@ -40,11 +58,12 @@ describe("Function: submitController: ", () => {
           "fsa-rn": "D9YC4B-KFK5JE-PKR7VX",
           email_fbo: {
             success: true,
-            recipient: "operator@email.com"
-          }
+            recipient: "fbo@example.com"
+          },
+          lc_config: { example: "data" }
         })
       }));
-      response = await submitController({ some: "data" });
+      response = await submitController(...submitArgs);
     });
 
     it("Should set redirectRoute to summary-confirmation", () => {
@@ -56,8 +75,11 @@ describe("Function: submitController: ", () => {
     it("Should should return fsa_rn", () => {
       expect(response.fsaRegistrationNumber).toBe("D9YC4B-KFK5JE-PKR7VX");
     });
-    it("Should should return recipient", () => {
-      expect(response.recipient).toBe("operator@email.com");
+    it("Should should return email_fbo", () => {
+      expect(response.email_fbo.recipient).toBe("fbo@example.com");
+    });
+    it("Should should return lc_config", () => {
+      expect(response.lc_config.example).toBe("data");
     });
   });
 });
