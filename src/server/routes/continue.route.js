@@ -21,8 +21,17 @@ const continueRouter = () => {
     req.session.validatorErrors = response.validatorErrors;
     req.session.switches = response.switches;
 
-    logEmitter.emit("functionSuccess", "Routes", "/continue route");
-    res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
+    logEmitter.emit(
+      "functionSuccessWith",
+      "Routes",
+      "/continue route",
+      response.redirectRoute
+    );
+    if (response.redirectRoute === "/submit") {
+      res.redirect("/submit");
+    } else {
+      res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
+    }
   });
 
   return router;
