@@ -17,11 +17,6 @@ describe("<ApplicationComplete />", () => {
     expect(wrapper.length).toBe(1);
   });
 
-  it("matches the previous snapshot", () => {
-    const tree = renderer.create(<ApplicationComplete />).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
   describe("SummaryTable component", () => {
     it("Gets given transformedAnswers ", () => {
       transformAnswersForSummary.mockImplementation(() => ({ test: "answer" }));
