@@ -29,7 +29,7 @@ const submitController = async (lcUrl, submissionData, addressLookups) => {
       controllerResponse.email_fbo = res.email_fbo;
       controllerResponse.lc_config = res.lc_config;
     } else {
-      controllerResponse.redirectRoute = "/back";
+      controllerResponse.redirectRoute = "back";
     }
   } else {
     controllerResponse.submissionErrors.emptyData =

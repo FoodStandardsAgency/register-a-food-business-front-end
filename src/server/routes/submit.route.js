@@ -24,7 +24,7 @@ const submitRouter = () => {
       "/submit route",
       response.redirectRoute
     );
-    if (response.redirectRoute === "/back") {
+    if (response.redirectRoute === "back") {
       res.redirect("back");
     }
     res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
