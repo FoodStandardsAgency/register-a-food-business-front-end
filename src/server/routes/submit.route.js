@@ -5,7 +5,7 @@ const submitController = require("../controllers/submit.controller");
 const submitRouter = () => {
   const router = Router();
 
-  router.get("/submit", async (req, res) => {
+  router.get("", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/submit route");
     const response = await submitController(
       // TODO JMB: stubbed LC url - unit tests need to be updated once complete.
@@ -21,9 +21,12 @@ const submitRouter = () => {
     logEmitter.emit(
       "functionSuccessWith",
       "Routes",
-      "/back route",
+      "/submit route",
       response.redirectRoute
     );
+    if (response.redirectRoute === "/back") {
+      res.redirect("back");
+    }
     res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
   });
 
