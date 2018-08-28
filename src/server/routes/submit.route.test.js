@@ -46,7 +46,7 @@ describe("Submit route: ", () => {
       req = {
         session: {
           cumulativeAnswers: {
-            some: "answers",
+            some: "answers"
           },
           council: "cardiff",
           addressLookups: ["1"]

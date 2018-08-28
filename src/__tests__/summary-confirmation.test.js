@@ -1,6 +1,5 @@
 import ApplicationComplete from "../../pages/summary-confirmation";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
 import * as emotion from "emotion";
 import { createSerializer } from "jest-emotion";
 import { transformAnswersForSummary } from "../server/services/data-transform.service";
