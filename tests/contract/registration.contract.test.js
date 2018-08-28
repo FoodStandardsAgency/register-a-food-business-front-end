@@ -1,7 +1,5 @@
-jest.mock("../../src/server/config.js", () => ({
-  SUBMIT_URL:
-    "https://dev-register-a-food-business-service.azurewebsites.net/api/registration/createNewRegistration"
-}));
+process.env.SUBMIT_URL =
+  "http://localhost:4000/api/registration/createNewRegistration";
 const {
   sendRequest
 } = require("../../src/server/connectors/registration/registration.connector");
@@ -66,7 +64,7 @@ const invalidBody = {
         operator_street: "Some St.",
         operator_town: "London",
         operator_primary_number: "9827235",
-        operator_email: "django@email.com",
+        operator_email: "fsatestemail.valid@gmail.com",
         operator_type: "Sole trader"
       },
       premise: {
@@ -90,6 +88,7 @@ const invalidBody = {
     }
   }
 };
+
 describe("Registration contract", () => {
   describe("Valid requests", () => {
     it("Should return the same status", async () => {
@@ -141,7 +140,7 @@ describe("Registration contract", () => {
       const doubleResponse = await sendRequest(JSON.stringify(invalidBody));
       const realJsonResponse = await realResponse.json();
       const doubleJsonResponse = doubleResponse.json();
-      expect(realJsonResponse.error).toBe(doubleJsonResponse.error);
+      expect(realJsonResponse).toEqual(doubleJsonResponse);
     });
   });
 });

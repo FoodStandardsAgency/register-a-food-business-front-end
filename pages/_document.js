@@ -32,7 +32,8 @@ export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     const page = renderPage();
     const styles = extractCritical(page.html);
-    return { ...page, ...styles };
+    const gtmAuth = process.env.GTM_AUTH;
+    return { ...page, ...styles, gtmAuth };
   }
 
   constructor(props) {
@@ -47,11 +48,25 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          {/* Start Google Tag Manager */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl+ '${
+            this.props.gtmAuth
+          }';f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-PKW3XC7');`
+            }}
+          />
+          {/* End Google Tag Manager */}
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
             charSet="UTF-8"
           />
+          <meta name="format-detection" content="telephone=no" />
           <title>Register a food business</title>
           <link rel="stylesheet" href="/_next/static/style.css" />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />

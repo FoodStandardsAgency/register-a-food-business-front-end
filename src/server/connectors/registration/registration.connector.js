@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const { SUBMIT_URL } = require("../../config");
+const { SUBMIT_URL, API_SECRET, CLIENT_NAME } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { registrationDouble } = require("./registration.double");
 
@@ -17,10 +17,15 @@ const sendRequest = async body => {
         "sendRequest",
         SUBMIT_URL
       );
+      const headers = {
+        "Content-Type": "application/json",
+        "api-secret": API_SECRET,
+        "client-name": CLIENT_NAME
+      };
       res = await fetch(SUBMIT_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: body
+        headers,
+        body
       });
     }
     logEmitter.emit("functionSuccess", "registration.connector", "sendRequest");

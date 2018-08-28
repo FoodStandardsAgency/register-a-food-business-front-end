@@ -12,16 +12,25 @@ const ApplicationComplete = props => {
     props.cumulativeAnswers,
     props.addressLookups
   );
+
   return (
     <FsaLayout>
       <Header level={2}>Your food business registration confirmation</Header>
       <Paragraph>
         {`Thank you for submitting your food business registration. Your
         registration has been sent to **${
-          props.localCouncil
+          props.lcConfig.hygieneAndStandards
+            ? props.lcConfig.hygieneAndStandards.local_council
+            : props.lcConfig.hygiene.local_council +
+              "** and **" +
+              props.lcConfig.standards.local_council
         }.** To contact the food
         team at your Local Council please email **${
-          props.localCouncilEmail
+          props.lcConfig.hygieneAndStandards
+            ? props.lcConfig.hygieneAndStandards.local_council_email
+            : props.lcConfig.hygiene.local_council_email +
+              "** or **" +
+              props.lcConfig.standards.local_council_email
         }.**`}
       </Paragraph>
       <InsetText>
@@ -30,7 +39,9 @@ const ApplicationComplete = props => {
         </Paragraph>
       </InsetText>
       <Paragraph className="receiveConfirmationEmail">
-        {`A copy of this registration has been sent to **${props.recipient}.**`}
+        {`A copy of this registration has been sent to **${
+          props.emailFbo.recipient
+        }.**`}
       </Paragraph>
       {props.fsaRegistrationNumber ? (
         <Panel
