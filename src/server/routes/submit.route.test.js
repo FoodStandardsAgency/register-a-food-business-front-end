@@ -41,13 +41,14 @@ describe("Submit route: ", () => {
         lc_config: lc_config
       }));
 
-      handler = router.get.mock.calls[1][1];
+      handler = router.get.mock.calls[0][1];
 
       req = {
         session: {
           cumulativeAnswers: {
-            some: "answers"
+            some: "answers",
           },
+          council: "cardiff",
           addressLookups: ["1"]
         }
       };
@@ -59,6 +60,7 @@ describe("Submit route: ", () => {
 
     it("Should call submitController with cumulativeAnswers", () => {
       expect(submitController).toHaveBeenCalledWith(
+        "cardiff",
         {
           some: "answers"
         },
@@ -75,7 +77,7 @@ describe("Submit route: ", () => {
     });
 
     it("Should set redirect to response", () => {
-      expect(res.redirect).toBeCalledWith("/summary-confirmation");
+      expect(res.redirect).toBeCalledWith("/new/cardiff/summary-confirmation");
     });
   });
 });
