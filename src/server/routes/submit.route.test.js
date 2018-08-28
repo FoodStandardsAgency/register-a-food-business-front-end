@@ -16,23 +16,38 @@ describe("Submit route: ", () => {
 
   describe("GET to /submit", () => {
     let res, req;
+    const lc_config = {
+      hygiene: {
+        code: 4221,
+        local_council: "District Council",
+        local_council_notify_emails: ["fsatestemail.valid@gmail.com"],
+        local_council_email: "fsatestemail.valid@gmail.com"
+      },
+      standards: {
+        code: 4226,
+        local_council: "County Council",
+        local_council_notify_emails: ["fsatestemail.valid@gmail.com"],
+        local_council_email: "fsatestemail.valid@gmail.com"
+      }
+    };
+
     beforeEach(() => {
       submitController.mockImplementation(() => ({
         submissionErrors: {},
         redirectRoute: "/summary-confirmation",
         submissionDate: "date",
         fsaRegistrationNumber: "12345678",
-        recipient: "blank@blank.com"
+        email_fbo: { recipient: "fbo@example.com", success: true },
+        lc_config: lc_config
       }));
 
-      handler = router.get.mock.calls[0][1];
+      handler = router.get.mock.calls[1][1];
 
       req = {
         session: {
           cumulativeAnswers: {
             some: "answers"
           },
-          council: "council",
           addressLookups: ["1"]
         }
       };
@@ -54,11 +69,13 @@ describe("Submit route: ", () => {
     it("Should update session", () => {
       expect(req.session.submissionDate).toEqual("date");
       expect(req.session.fsaRegistrationNumber).toEqual("12345678");
-      expect(req.session.recipient).toEqual("blank@blank.com");
+      expect(req.session.email_fbo.recipient).toEqual("fbo@example.com");
+      expect(req.session.email_fbo.success).toEqual(true);
+      expect(req.session.lc_config).toEqual(lc_config);
     });
 
     it("Should set redirect to response", () => {
-      expect(res.redirect).toBeCalledWith("/new/council/summary-confirmation");
+      expect(res.redirect).toBeCalledWith("/summary-confirmation");
     });
   });
 });
