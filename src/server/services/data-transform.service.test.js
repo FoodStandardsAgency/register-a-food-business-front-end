@@ -388,6 +388,8 @@ describe("data-transform.service transformAnswersForSummary()", () => {
 });
 
 describe("data-transform.service transformAnswersForSubmit()", () => {
+  const testLcUrl = "some-council-url";
+
   const testCumulativeAnswers = {
     operator_first_name: "John",
     operator_last_name: "Appleseed",
@@ -400,15 +402,27 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     business_type: "Example (test)"
   };
 
-  it("turns flat data into structured data", () => {
-    const result = transformAnswersForSubmit(testCumulativeAnswers);
+  const testAddressLookups = {};
+
+  it("turns flat data into structured data, with the Local Council URL", () => {
+    const result = transformAnswersForSubmit(
+      testLcUrl,
+      testCumulativeAnswers,
+      testAddressLookups
+    );
     expect(
       result.registration.establishment.operator.operator_first_name
     ).toBeDefined();
+
+    expect(result.local_council_url).toBe("some-council-url");
   });
 
   it("should only add the data fields it is given", () => {
-    const result = transformAnswersForSubmit(testCumulativeAnswers);
+    const result = transformAnswersForSubmit(
+      testLcUrl,
+      testCumulativeAnswers,
+      testAddressLookups
+    );
     expect(
       result.registration.establishment.operator.operator_company_name
     ).not.toBeDefined();
@@ -425,7 +439,11 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       operator_email: "john@appleseed.com",
       establishment_trading_name: "John's Apples"
     };
-    const result = transformAnswersForSubmit(testCumulativeAnswersDate);
+    const result = transformAnswersForSubmit(
+      testLcUrl,
+      testCumulativeAnswersDate,
+      testAddressLookups
+    );
     expect(
       result.registration.establishment.establishment_details
         .establishment_opening_date

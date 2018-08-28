@@ -91,7 +91,11 @@ const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
   return data;
 };
 
-const transformAnswersForSubmit = (cumulativeAnswers, addressLookups) => {
+const transformAnswersForSubmit = (
+  lcUrl,
+  cumulativeAnswers,
+  addressLookups
+) => {
   const establishment_details_keys = [
     "establishment_trading_name",
     "establishment_primary_number",
@@ -140,7 +144,8 @@ const transformAnswersForSubmit = (cumulativeAnswers, addressLookups) => {
         activities: {}
       },
       metadata: {}
-    }
+    },
+    local_council_url: lcUrl
   };
 
   const data = transformAnswersForSummary(cumulativeAnswers, addressLookups);
@@ -178,6 +183,7 @@ const transformAnswersForSubmit = (cumulativeAnswers, addressLookups) => {
 
   return submitObject;
 };
+
 const transformBusinessImportExport = (
   directly_import,
   directly_export,

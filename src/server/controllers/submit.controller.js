@@ -3,19 +3,19 @@ const {
   transformAnswersForSubmit
 } = require("../services/data-transform.service");
 
-const submitController = async (submissionData, addressLookups) => {
+const submitController = async (lcUrl, submissionData, addressLookups) => {
   const controllerResponse = {
     submissionErrors: {},
     redirectRoute: null,
     submissionDate: "",
     fsaRegistrationNumber: "",
-    email_fbo: {
-      recipient: ""
-    }
+    email_fbo: {},
+    lc_details: {}
   };
 
   if (submissionData && Object.getOwnPropertyNames(submissionData).length > 0) {
     const transformedData = transformAnswersForSubmit(
+      lcUrl,
       submissionData,
       addressLookups
     );
@@ -26,7 +26,8 @@ const submitController = async (submissionData, addressLookups) => {
       controllerResponse.redirectRoute = "/summary-confirmation";
       controllerResponse.submissionDate = res.reg_submission_date;
       controllerResponse.fsaRegistrationNumber = res["fsa-rn"];
-      controllerResponse.recipient = res.email_fbo.recipient;
+      controllerResponse.email_fbo = res.email_fbo;
+      controllerResponse.lc_config = res.lc_config;
     } else {
       controllerResponse.redirectRoute = "back";
     }
