@@ -1,6 +1,7 @@
 const {
   sendRequest
 } = require("../../src/server/connectors/registration/registration.connector");
+
 const validBody = {
   registration: {
     establishment: {
@@ -41,20 +42,68 @@ const validBody = {
       declaration2: "Declaration",
       declaration3: "Declaration"
     }
-  }
+  },
+  local_council_url: "this is set in the tests"
 };
+
 describe("Registration service", () => {
-  process.env.DOUBLE_MODE = true;
+  beforeEach(() => {
+    process.env.DOUBLE_MODE = true;
+  });
+
   describe("When given a valid request", () => {
     it("should return 200 response", async () => {
+      validBody.local_council_url = "cardiff";
       const result = await sendRequest(JSON.stringify(validBody));
+
       expect(result.status).toBe(200);
     });
 
-    it("should return json function with Ids", async () => {
-      const result = await sendRequest(JSON.stringify(validBody));
-      expect(result.json).toBeDefined();
-      expect(result.json().regId).toBeDefined();
+    describe("given a local council that manages hygiene and standards", () => {
+      it("should return a json function with the required data", async () => {
+        validBody.local_council_url = "cardiff";
+        const result = await sendRequest(JSON.stringify(validBody));
+
+        expect(result.json).toBeDefined();
+        const resultJson = result.json();
+        expect(resultJson.regId).toBeDefined();
+        expect(resultJson["fsa-rn"]).toBeDefined();
+        expect(resultJson.tascomiResponse.id).toBeDefined();
+        expect(resultJson.tascomiResponse.online_reference).toBeDefined();
+        expect(resultJson.reg_submission_date).toBeDefined();
+        expect(resultJson.email_fbo.recipient).toBeDefined();
+        expect(resultJson.email_lc.hygieneAndStandards.recipient).toBeDefined();
+        expect(
+          resultJson.lc_config.hygieneAndStandards.local_council
+        ).toBeDefined();
+        expect(
+          resultJson.lc_config.hygieneAndStandards.local_council_email
+        ).toBeDefined();
+      });
+    });
+
+    describe("given a local council that has a separate council for standards", () => {
+      it("should return a json function with the required data", async () => {
+        validBody.local_council_url = "west-dorset";
+        const result = await sendRequest(JSON.stringify(validBody));
+
+        expect(result.json).toBeDefined();
+        const resultJson = result.json();
+        expect(resultJson.regId).toBeDefined();
+        expect(resultJson["fsa-rn"]).toBeDefined();
+        expect(resultJson.tascomiResponse.id).toBeDefined();
+        expect(resultJson.tascomiResponse.online_reference).toBeDefined();
+        expect(resultJson.reg_submission_date).toBeDefined();
+        expect(resultJson.email_fbo.recipient).toBeDefined();
+        expect(resultJson.email_lc.hygiene.recipient).toBeDefined();
+        expect(resultJson.lc_config.hygiene.local_council).toBeDefined();
+        expect(resultJson.lc_config.hygiene.local_council_email).toBeDefined();
+        expect(resultJson.email_lc.standards.recipient).toBeDefined();
+        expect(resultJson.lc_config.standards.local_council).toBeDefined();
+        expect(
+          resultJson.lc_config.standards.local_council_email
+        ).toBeDefined();
+      });
     });
   });
 

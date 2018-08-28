@@ -39,7 +39,6 @@ const getAddressesByPostcode = async (
   if (firstRes.status === 200) {
     firstJson = firstRes.json();
   } else {
-    console.log(firstRes);
     logEmitter.emit(
       "functionFail",
       "address-lookup-api.connector",

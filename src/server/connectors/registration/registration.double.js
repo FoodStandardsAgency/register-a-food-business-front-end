@@ -241,7 +241,8 @@ const schema = {
       }
     },
     required: ["establishment", "metadata"]
-  }
+  },
+  local_council_url: { type: "string" }
 };
 
 const registrationDouble = body => {
@@ -267,6 +268,66 @@ const registrationDouble = body => {
       })
     };
   } else {
+    const lcConfigCombined = {
+      hygieneAndStandards: {
+        _id: 8015,
+        local_council: "City of Cardiff Council",
+        local_council_email: "both@example.com",
+        local_council_notify_emails: ["both@example.com"],
+        local_council_url: "cardiff"
+      }
+    };
+
+    const lcConfigSplit = {
+      hygiene: {
+        code: 4221,
+        local_council: "West Dorset District Council",
+        local_council_notify_emails: ["hygiene@example.com"],
+        local_council_email: "hygiene@example.com"
+      },
+      standards: {
+        code: 4226,
+        local_council: "Dorset County Council",
+        local_council_notify_emails: ["standards@example.com"],
+        local_council_email: "standards@example.com"
+      }
+    };
+
+    const lcEmailCombined = {
+      hygieneAndStandards: {
+        success: true,
+        recipient: "both@example.com"
+      }
+    };
+
+    const lcEmailSplit = {
+      hygiene: {
+        success: true,
+        recipient: "hygiene@example.com"
+      },
+      standards: {
+        success: true,
+        recipient: "standards@example.com"
+      }
+    };
+
+    let lcConfig;
+    let lcEmail;
+
+    if (objectBody.local_council_url === "cardiff") {
+      lcConfig = lcConfigCombined;
+      lcEmail = lcEmailCombined;
+    } else if (objectBody.local_council_url === "west-dorset") {
+      lcConfig = lcConfigSplit;
+      lcEmail = lcEmailSplit;
+    } else {
+      throw new Error(
+        `registration.double: the council "${
+          objectBody.local_council_url
+        }" is not supported by the double.`
+      );
+    }
+
     return {
       json: () => ({
         regId: 1,
@@ -285,10 +346,8 @@ const registrationDouble = body => {
           success: true,
           recipient: "fsatestemail.valid@gmail.com"
         },
-        email_lc: {
-          success: true,
-          recipient: "fsatestemail.valid@gmail.com"
-        }
+        email_lc: lcEmail,
+        lc_config: lcConfig
       }),
       status: 200
     };

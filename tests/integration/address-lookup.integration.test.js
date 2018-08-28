@@ -40,7 +40,9 @@ describe("Address lookup API service", () => {
       } catch (err) {
         result = err;
       }
-      expect(result.message).toBe("Address lookup API is down");
+      expect(result.message).toBe(
+        "Address lookup API responded with non-200 status: 500"
+      );
     });
   });
 });

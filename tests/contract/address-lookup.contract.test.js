@@ -2,10 +2,6 @@ const {
   getAddressesByPostcode
 } = require("../../src/server/connectors/address-lookup/address-lookup-api.connector");
 
-// country,
-// postcode,
-// addressCountLimit = 100
-
 const validInputNormalLength = ["uk", "BS249ST", 100];
 const validInputEmpty = ["uk", "AA111AA", 100];
 const invalidInput = ["notacountry", "AA111AA", 100];
