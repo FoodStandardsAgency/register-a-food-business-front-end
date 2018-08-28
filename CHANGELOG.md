@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.33.0 - 28th August 2018 (unreleased)
+
+### Added 
+
+* SDB-733 Custom domain names per LC
+
 ## v1.32.0 - 23rd August 2018 (unreleased)
 
 ### Added 
