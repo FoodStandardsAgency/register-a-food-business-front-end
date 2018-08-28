@@ -4,6 +4,7 @@ import TopNav, { asNavLinkAnchor, asTopNavAnchor } from "@govuk-react/top-nav";
 import Main from "@govuk-react/main";
 import PhaseBanner from "@govuk-react/phase-banner";
 import styled from "react-emotion";
+import CookieBanner from "./CookieBanner";
 
 const AnchorTag = asTopNavAnchor("a");
 const link = "/index";
@@ -33,6 +34,7 @@ const HeaderMain = styled(Main)({
 
 const FsaHeader = () => (
   <StyledHeader>
+    <CookieBanner />
     <TopNav company={Company} serviceTitle={ServiceTitle} />
     <HeaderMain>
       <PhaseBanner level="beta">
