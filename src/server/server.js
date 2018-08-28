@@ -29,7 +29,7 @@ module.exports = async dbUrl => {
   const options = Object.assign(sessionOptions, storeOptions);
   app.use(session(options));
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded());
+  app.use(bodyParser.urlencoded({ extended: true }));
 
   await Next.prepare();
 

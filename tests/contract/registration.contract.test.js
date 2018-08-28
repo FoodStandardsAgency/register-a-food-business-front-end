@@ -1,7 +1,5 @@
-jest.mock("../../src/server/config.js", () => ({
-  SUBMIT_URL:
-    "https://register-a-food-business-service-dev-double.azurewebsites.net/api/registration/createNewRegistration"
-}));
+process.env.SUBMIT_URL =
+  "http://localhost:4000/api/registration/createNewRegistration";
 const {
   sendRequest
 } = require("../../src/server/connectors/registration/registration.connector");
@@ -12,7 +10,7 @@ const validBody = {
         establishment_trading_name: "Itsu",
         establishment_primary_number: "329857245",
         establishment_secondary_number: "84345245",
-        establishment_email: "django@uk.ibm.com",
+        establishment_email: "fsatestemail.valid@gmail.com",
         establishment_opening_date: "2018-06-07"
       },
       operator: {
@@ -23,7 +21,7 @@ const validBody = {
         operator_street: "Some St.",
         operator_town: "London",
         operator_primary_number: "9827235",
-        operator_email: "operator@email.com",
+        operator_email: "fsatestemail.valid@gmail.com",
         operator_type: "Sole trader"
       },
       premise: {
@@ -36,7 +34,8 @@ const validBody = {
       activities: {
         customer_type: "End consumer",
         business_type: "Livestock farm",
-        business_type_search_term: "Example"
+        business_type_search_term: "Example",
+        import_export_activities: "None"
       }
     },
     metadata: {
@@ -65,7 +64,7 @@ const invalidBody = {
         operator_street: "Some St.",
         operator_town: "London",
         operator_primary_number: "9827235",
-        operator_email: "django@email.com",
+        operator_email: "fsatestemail.valid@gmail.com",
         operator_type: "Sole trader"
       },
       premise: {
@@ -78,7 +77,8 @@ const invalidBody = {
       activities: {
         customer_type: "End consumer",
         business_type: "Livestock farm",
-        business_type_search_term: "Example"
+        business_type_search_term: "Example",
+        import_export_activities: "None"
       }
     },
     metadata: {
@@ -88,6 +88,7 @@ const invalidBody = {
     }
   }
 };
+
 describe("Registration contract", () => {
   describe("Valid requests", () => {
     it("Should return the same status", async () => {
@@ -110,12 +111,17 @@ describe("Registration contract", () => {
       expect(typeof realJsonResponse["fsa-rn"]).toBe(
         typeof doubleJsonResponse["fsa-rn"]
       );
-      expect(realJsonResponse.tascomiResponse).toEqual(
-        doubleJsonResponse.tascomiResponse
+      expect(typeof realJsonResponse.tascomiResponse.id).toEqual(
+        typeof doubleJsonResponse.tascomiResponse.id
+      );
+      expect(typeof realJsonResponse.tascomiResponse.online_reference).toEqual(
+        typeof doubleJsonResponse.tascomiResponse.online_reference
       );
       expect(realJsonResponse.reg_submission_date).toEqual(
         doubleJsonResponse.reg_submission_date
       );
+      expect(realJsonResponse.email_fbo).toEqual(doubleJsonResponse.email_fbo);
+      expect(realJsonResponse.email_lc).toEqual(doubleJsonResponse.email_lc);
     });
   });
 
@@ -134,7 +140,7 @@ describe("Registration contract", () => {
       const doubleResponse = await sendRequest(JSON.stringify(invalidBody));
       const realJsonResponse = await realResponse.json();
       const doubleJsonResponse = doubleResponse.json();
-      expect(realJsonResponse.error).toBe(doubleJsonResponse.error);
+      expect(realJsonResponse).toEqual(doubleJsonResponse);
     });
   });
 });

@@ -302,9 +302,94 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       });
     });
   });
+  describe("Using the transformBusinessImportExport function", () => {
+    describe("Given that directly_import, directly_export and no_import_export are part of cumulative answers", () => {
+      const cumulativeAnswers = {
+        directly_import: "True",
+        directly_export: "True",
+        no_import_export: "True"
+      };
+      it("Should return a import_export_activities value of 'Directly import and Export'", () => {
+        const result = transformAnswersForSummary(cumulativeAnswers);
+        expect(result.import_export_activities).toBe(
+          "Directly import and export"
+        );
+      });
+    });
+    describe("Given that directly_import and directly_export are part of cumulative answers", () => {
+      const cumulativeAnswers = {
+        directly_import: "True",
+        directly_export: "True"
+      };
+      it("Should return a import_export_activities value of 'Directly import and Export'", () => {
+        const result = transformAnswersForSummary(cumulativeAnswers);
+        expect(result.import_export_activities).toBe(
+          "Directly import and export"
+        );
+      });
+    });
+    describe("Given that directly_import and no_import_export are part of cumulative answers", () => {
+      const cumulativeAnswers = {
+        directly_import: "True",
+        no_import_export: "True"
+      };
+      it("Should return a import_export_activities value of 'Directly import'", () => {
+        const result = transformAnswersForSummary(cumulativeAnswers);
+        expect(result.import_export_activities).toBe("Directly import");
+      });
+    });
+    describe("Given that directly_export and no_import_export are part of cumulative answers", () => {
+      const cumulativeAnswers = {
+        directly_export: "True",
+        no_import_export: "True"
+      };
+      it("Should return a import_export_activities value of 'Directly export'", () => {
+        const result = transformAnswersForSummary(cumulativeAnswers);
+        expect(result.import_export_activities).toBe("Directly export");
+      });
+    });
+    describe("Given that only directly_export is part of cumulative answers", () => {
+      const cumulativeAnswers = {
+        directly_export: "True"
+      };
+      it("Should return a import_export_activities value of 'Directly export'", () => {
+        const result = transformAnswersForSummary(cumulativeAnswers);
+        expect(result.import_export_activities).toBe("Directly export");
+      });
+    });
+    describe("Given that only directly_import is part of cumulative answers", () => {
+      const cumulativeAnswers = {
+        directly_import: "True"
+      };
+      it("Should return a import_export_activities value of 'Directly import'", () => {
+        const result = transformAnswersForSummary(cumulativeAnswers);
+        expect(result.import_export_activities).toBe("Directly import");
+      });
+    });
+    describe("Given that only no_import_export is part of cumulative answers", () => {
+      const cumulativeAnswers = {
+        no_import_export: "True"
+      };
+      it("Should return a import_export_activities value of 'None'", () => {
+        const result = transformAnswersForSummary(cumulativeAnswers);
+        expect(result.import_export_activities).toBe("None");
+      });
+    });
+    describe("Given that somethig ohter than the allowed combinations of no_import_export, direct_import and direct_export is part of cumulative answers", () => {
+      const cumulativeAnswers = {
+        random: "True"
+      };
+      it("Should return a import_export_activities value of undefined", () => {
+        const result = transformAnswersForSummary(cumulativeAnswers);
+        expect(result.import_export_activities).toBe(undefined);
+      });
+    });
+  });
 });
 
 describe("data-transform.service transformAnswersForSubmit()", () => {
+  const testLcUrl = "some-council-url";
+
   const testCumulativeAnswers = {
     operator_first_name: "John",
     operator_last_name: "Appleseed",
@@ -317,15 +402,27 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     business_type: "Example (test)"
   };
 
-  it("turns flat data into structured data", () => {
-    const result = transformAnswersForSubmit(testCumulativeAnswers);
+  const testAddressLookups = {};
+
+  it("turns flat data into structured data, with the Local Council URL", () => {
+    const result = transformAnswersForSubmit(
+      testLcUrl,
+      testCumulativeAnswers,
+      testAddressLookups
+    );
     expect(
       result.registration.establishment.operator.operator_first_name
     ).toBeDefined();
+
+    expect(result.local_council_url).toBe("some-council-url");
   });
 
   it("should only add the data fields it is given", () => {
-    const result = transformAnswersForSubmit(testCumulativeAnswers);
+    const result = transformAnswersForSubmit(
+      testLcUrl,
+      testCumulativeAnswers,
+      testAddressLookups
+    );
     expect(
       result.registration.establishment.operator.operator_company_name
     ).not.toBeDefined();
@@ -342,7 +439,11 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       operator_email: "john@appleseed.com",
       establishment_trading_name: "John's Apples"
     };
-    const result = transformAnswersForSubmit(testCumulativeAnswersDate);
+    const result = transformAnswersForSubmit(
+      testLcUrl,
+      testCumulativeAnswersDate,
+      testAddressLookups
+    );
     expect(
       result.registration.establishment.establishment_details
         .establishment_opening_date

@@ -65,6 +65,22 @@ describe("<SessionWrapper />", () => {
       expect(typeof initialProps.submissionDate).toBe("string");
     });
 
+    it("returns a 'emailFbo' object as part of the initial props", () => {
+      const WrappedComponent = SessionWrapper(ExampleComponent);
+      const initialProps = WrappedComponent.getInitialProps({
+        req: { session: {} }
+      });
+      expect(typeof initialProps.emailFbo).toBe("object");
+    });
+
+    it("returns a 'lcConfig' object as part of the initial props", () => {
+      const WrappedComponent = SessionWrapper(ExampleComponent);
+      const initialProps = WrappedComponent.getInitialProps({
+        req: { session: {} }
+      });
+      expect(typeof initialProps.lcConfig).toBe("object");
+    });
+
     describe("given a url query that includes an edit value", () => {
       it("returns an editMode value that is true", () => {
         const WrappedComponent = SessionWrapper(ExampleComponent);
@@ -85,7 +101,7 @@ describe("<SessionWrapper />", () => {
       });
     });
 
-    it("returns 'validatorErrors', 'cumulativeAnswers', 'submissionDate', 'fsaRegistrationNumber', 'addressLookups', and 'switches' even if req is undefined", () => {
+    it("returns session data even if req is undefined", () => {
       const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({});
       expect(typeof initialProps.validatorErrors).toBe("object");
@@ -94,6 +110,8 @@ describe("<SessionWrapper />", () => {
       expect(typeof initialProps.addressLookups).toBe("object");
       expect(typeof initialProps.submissionDate).toBe("string");
       expect(typeof initialProps.fsaRegistrationNumber).toBe("string");
+      expect(typeof initialProps.emailFbo).toBe("object");
+      expect(typeof initialProps.lcConfig).toBe("object");
     });
   });
 
@@ -128,6 +146,28 @@ describe("<SessionWrapper />", () => {
         });
         const componentProps = WrappedComponent(initialProps).props;
         expect(componentProps.editMode).toBeDefined();
+      });
+    });
+
+    describe("given that req.session.lc_config is undefined", () => {
+      it("props.lcConfig is defined", () => {
+        const WrappedComponent = SessionWrapper(ExampleComponent);
+        const initialProps = WrappedComponent.getInitialProps({
+          req: { session: {} }
+        });
+        const componentProps = WrappedComponent(initialProps).props;
+        expect(componentProps.lcConfig).toBeDefined();
+      });
+    });
+
+    describe("given that req.session.email_fbo is undefined", () => {
+      it("props.emailFbo is defined", () => {
+        const WrappedComponent = SessionWrapper(ExampleComponent);
+        const initialProps = WrappedComponent.getInitialProps({
+          req: { session: {} }
+        });
+        const componentProps = WrappedComponent(initialProps).props;
+        expect(componentProps.emailFbo).toBeDefined();
       });
     });
 
@@ -191,6 +231,34 @@ describe("<SessionWrapper />", () => {
         expect(componentProps.fsaRegistrationNumber).toBe(
           exampleFsaRegistrationNumber
         );
+      });
+    });
+
+    describe("given that req.session.email_fbo is defined", () => {
+      it("props.emailFbo is the same as the session.emailFbo", () => {
+        const WrappedComponent = SessionWrapper(ExampleComponent);
+        const exampleEmailFbo = { success: true, recipient: "fbo@example.com" };
+        const initialProps = WrappedComponent.getInitialProps({
+          req: {
+            session: { email_fbo: exampleEmailFbo }
+          }
+        });
+        const componentProps = WrappedComponent(initialProps).props;
+        expect(componentProps.emailFbo).toBe(exampleEmailFbo);
+      });
+    });
+
+    describe("given that req.session.lc_config is defined", () => {
+      it("props.lcConfig is the same as the session.lcConfig", () => {
+        const WrappedComponent = SessionWrapper(ExampleComponent);
+        const exampleLcConfig = { example: "data" };
+        const initialProps = WrappedComponent.getInitialProps({
+          req: {
+            session: { lc_config: exampleLcConfig }
+          }
+        });
+        const componentProps = WrappedComponent(initialProps).props;
+        expect(componentProps.lcConfig).toBe(exampleLcConfig);
       });
     });
 

@@ -15,6 +15,15 @@ const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
   delete data.supply_directly;
   delete data.supply_other;
 
+  data.import_export_activities = transformBusinessImportExport(
+    data.directly_import,
+    data.directly_export,
+    data.no_import_export
+  );
+  delete data.directly_import;
+  delete data.directly_export;
+  delete data.no_import_export;
+
   data.establishment_opening_date = combineDate(
     data.day,
     data.month,
@@ -82,7 +91,11 @@ const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
   return data;
 };
 
-const transformAnswersForSubmit = (cumulativeAnswers, addressLookups) => {
+const transformAnswersForSubmit = (
+  lcUrl,
+  cumulativeAnswers,
+  addressLookups
+) => {
   const establishment_details_keys = [
     "establishment_trading_name",
     "establishment_primary_number",
@@ -118,7 +131,8 @@ const transformAnswersForSubmit = (cumulativeAnswers, addressLookups) => {
   const activities_keys = [
     "customer_type",
     "business_type",
-    "business_type_search_term"
+    "business_type_search_term",
+    "import_export_activities"
   ];
   const metadata_keys = ["declaration1", "declaration2", "declaration3"];
   const submitObject = {
@@ -130,7 +144,8 @@ const transformAnswersForSubmit = (cumulativeAnswers, addressLookups) => {
         activities: {}
       },
       metadata: {}
-    }
+    },
+    local_council_url: lcUrl
   };
 
   const data = transformAnswersForSummary(cumulativeAnswers, addressLookups);
@@ -167,6 +182,30 @@ const transformAnswersForSubmit = (cumulativeAnswers, addressLookups) => {
   });
 
   return submitObject;
+};
+
+const transformBusinessImportExport = (
+  directly_import,
+  directly_export,
+  no_import_export
+) => {
+  if (directly_import && directly_export && no_import_export) {
+    return "Directly import and export";
+  } else if (directly_import && no_import_export) {
+    return "Directly import";
+  } else if (directly_export && no_import_export) {
+    return "Directly export";
+  } else if (directly_import && directly_export) {
+    return "Directly import and export";
+  } else if (directly_import) {
+    return "Directly import";
+  } else if (directly_export) {
+    return "Directly export";
+  } else if (no_import_export) {
+    return "None";
+  } else {
+    return undefined;
+  }
 };
 
 const transformCustomerType = (supply_directly, supply_other) => {

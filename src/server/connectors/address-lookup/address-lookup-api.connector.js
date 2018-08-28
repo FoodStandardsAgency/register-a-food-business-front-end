@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
-const winston = require("winston");
 const { ADDRESS_API_URL_BASE, ADDRESS_API_URL_QUERY } = require("../../config");
+const { logEmitter } = require("../../services/logging.service");
 const { addressLookupDouble } = require("./address-lookup-api.double");
 
 const getAddressesByPostcode = async (
@@ -8,8 +8,11 @@ const getAddressesByPostcode = async (
   postcode,
   addressCountLimit = 100
 ) => {
-  winston.info(
-    `lookupAPI.connector: getAddressesByPostcode: called with postcode: ${postcode}`
+  logEmitter.emit(
+    "functionCallWith",
+    "address-lookup-api.connector",
+    "getAddressByPostcode",
+    postcode
   );
 
   const DOUBLE_MODE = process.env.DOUBLE_MODE;
@@ -36,6 +39,12 @@ const getAddressesByPostcode = async (
   if (firstRes.status === 200) {
     firstJson = firstRes.json();
   } else {
+    logEmitter.emit(
+      "functionFail",
+      "address-lookup-api.connector",
+      "getAddressByPostcode",
+      "Address lookup API is down"
+    );
     throw new Error("Address lookup API is down");
   }
 
@@ -116,8 +125,10 @@ const getAddressesByPostcode = async (
   //   );
   //   return firstJson;
   // }
-  winston.info(
-    `lookupAPI.connector: getAddressesByPostcode: finished with one API request`
+  logEmitter.emit(
+    "functionSuccess",
+    "address-lookup-api.connector",
+    "getAddressByPostcode"
   );
   return firstJson;
 };

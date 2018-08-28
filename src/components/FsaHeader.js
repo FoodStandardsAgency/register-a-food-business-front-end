@@ -10,7 +10,7 @@ const link = "/index";
 const feedbackLink = "https://goo.gl/forms/WB5adxvWQdDIfVvs2";
 
 const Company = (
-  <AnchorTag href={link} target="new">
+  <AnchorTag href={link} target="_blank">
     <TopNav.IconTitle icon={<CrownIcon width="36" height="32" />}>
       GOV.UK
     </TopNav.IconTitle>
@@ -19,7 +19,7 @@ const Company = (
 
 const NavAnchor = asNavLinkAnchor("a");
 const ServiceTitle = (
-  <NavAnchor href={link} target="new">
+  <NavAnchor href={link} target="_blank">
     <Header mb={0} level={3}>
       Register a food business
     </Header>
@@ -37,7 +37,7 @@ const FsaHeader = () => (
     <HeaderMain>
       <PhaseBanner level="beta">
         This is a prototype -{" "}
-        <AnchorTag id="feedbackLink" href={feedbackLink} target="new">
+        <AnchorTag id="feedbackLink" href={feedbackLink} target="_blank">
           your feedback
         </AnchorTag>{" "}
         will help us improve it

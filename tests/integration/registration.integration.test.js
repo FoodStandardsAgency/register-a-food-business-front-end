@@ -19,7 +19,7 @@ const validBody = {
         operator_street: "Some St.",
         operator_town: "London",
         operator_primary_number: "9827235",
-        operator_email: "operator@email.com",
+        operator_email: "fsatestemail.valid@gmail.com",
         operator_type: "Sole trader"
       },
       premise: {
@@ -32,7 +32,8 @@ const validBody = {
       activities: {
         customer_type: "End consumer",
         business_type: "Livestock farm",
-        business_type_search_term: "Example"
+        business_type_search_term: "Example",
+        import_export_activities: "None"
       }
     },
     metadata: {
@@ -60,12 +61,12 @@ describe("Registration service", () => {
   describe("When given an invalid request", () => {
     it("should return 500 response", async () => {
       const result = await sendRequest(JSON.stringify({ registration: {} }));
-      expect(result.status).toBe(500);
+      expect(result.status).toBe(400);
     });
 
-    it("should return json function with error", async () => {
+    it("should return json function with errorCode", async () => {
       const result = await sendRequest(JSON.stringify({ registration: {} }));
-      expect(result.json().error).toBeDefined();
+      expect(result.json().errorCode).toBeDefined();
     });
   });
 });

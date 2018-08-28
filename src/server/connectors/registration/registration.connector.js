@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
-const { info } = require("winston");
-const { SUBMIT_URL } = require("../../config");
+const { SUBMIT_URL, API_SECRET, CLIENT_NAME } = require("../../config");
+const { logEmitter } = require("../../services/logging.service");
 const { registrationDouble } = require("./registration.double");
 
 const sendRequest = async body => {
@@ -8,22 +8,35 @@ const sendRequest = async body => {
   try {
     let res;
     if (DOUBLE_MODE === "true") {
-      info("registration.connector: running in double mode");
+      logEmitter.emit("doubleMode", "registration.connector", "sendRequest");
       res = registrationDouble(body);
     } else {
-      info(
-        `registration.connector: sendRequest: called with URL: ${SUBMIT_URL}`
+      logEmitter.emit(
+        "functionCallWith",
+        "registration.connector",
+        "sendRequest",
+        SUBMIT_URL
       );
+      const headers = {
+        "Content-Type": "application/json",
+        "api-secret": API_SECRET,
+        "client-name": CLIENT_NAME
+      };
       res = await fetch(SUBMIT_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: body
+        headers,
+        body
       });
     }
-    info(`registration.connector: sendRequest: finished`);
+    logEmitter.emit("functionSuccess", "registration.connector", "sendRequest");
     return res;
   } catch (err) {
-    info(`registration.connector: sendRequest: failed with error: ${err}`);
+    logEmitter.emit(
+      "functionFail",
+      "registration.connector",
+      "sendRequest",
+      err
+    );
     return err;
   }
 };
