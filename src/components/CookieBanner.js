@@ -105,9 +105,14 @@ const CookieBanner = props => (
             policy](https://www.food.gov.uk/cookie-policy).
           </BannerParagraph>
           <BannerActionContainer>
-            <BannerParagraph id="cookieReject" mb={2} blackLink>
+            {/* <BannerParagraph id="cookieReject" mb={2} blackLink>
               [I don't accept cookies](../switches/cookiesRejected/on/multiPage)
-            </BannerParagraph>
+            </BannerParagraph> */}
+            <form action="/switches/cookiesRejected/on/multiPage" method="post">
+              <CookieButton id="cookieAccept" type="submit">
+                I don't accept cookies
+              </CookieButton>
+            </form>
             <form
               action="/switches/hideCookieBanner/on/multiPage"
               method="post"
