@@ -19,16 +19,25 @@ describe("New route: ", () => {
     router = newRouter();
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe("GET to /new/:lc/page", () => {
-    describe("When req.session.council is undefined", () => {
+    describe("When req.session.council is undefined and page is not index", () => {
       let req, res;
 
       beforeEach(() => {
         handler = router.get.mock.calls[0][1];
         req = {
-          session: {},
+          session: {
+            regenerate: cb => {
+              cb();
+            }
+          },
           params: {
-            lc: "cardiff"
+            lc: "cardiff",
+            page: "operator-type"
           }
         };
 
@@ -53,7 +62,10 @@ describe("New route: ", () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
-            council: "cardiff"
+            council: "cardiff",
+            regenerate: cb => {
+              cb();
+            }
           },
           params: {
             page: "new page",
@@ -78,7 +90,10 @@ describe("New route: ", () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
-            council: "cardiff"
+            council: "cardiff",
+            regenerate: cb => {
+              cb();
+            }
           },
           params: {
             lc: "cardiff"
@@ -102,7 +117,10 @@ describe("New route: ", () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
-            council: "not a supported council"
+            council: "not a supported council",
+            regenerate: cb => {
+              cb();
+            }
           },
           params: {
             lc: "not a supported council"
