@@ -16,7 +16,7 @@ const ApplicationComplete = props => {
   return (
     <FsaLayout>
       <Header level={2}>Your food business registration confirmation</Header>
-      <Paragraph>
+      <Paragraph className="yourRegistrationHasBeenSentTo">
         {`Thank you for submitting your food business registration. Your
         registration has been sent to **${
           props.lcConfig.hygieneAndStandards
