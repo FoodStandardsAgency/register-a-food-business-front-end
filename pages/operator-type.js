@@ -10,7 +10,7 @@ import { Header, Radio, MultiChoice, HiddenText, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OperatorType = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton editMode={props.editMode} originator="operator-type" />
     <Header level={2}>Who operates this business?</Header>
 

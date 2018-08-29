@@ -10,7 +10,7 @@ import { Header, InputField, HiddenText } from "govuk-react";
 import PropTypes from "prop-types";
 
 const LimitedCompanyDetails = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton
       editMode={props.editMode}
       originator="operator-company-details"

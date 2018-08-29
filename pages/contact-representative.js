@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 
 const ContactRepresentative = props => {
   return (
-    <FsaLayout>
+    <FsaLayout {...props}>
       <BackButton
         editMode={props.editMode}
         originator="contact-representative"

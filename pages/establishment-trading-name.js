@@ -9,7 +9,7 @@ import { Header, InputField, HiddenText, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const EstablishmentTradingName = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton
       editMode={props.editMode}
       originator="establishment-trading-name"

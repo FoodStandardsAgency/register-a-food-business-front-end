@@ -14,7 +14,7 @@ describe("<FsaLayout />", () => {
 
   it("renders child elements", () => {
     const wrapper = shallow(
-      <FsaLayout>
+      <FsaLayout {...props}>
         <div>A child element</div>
       </FsaLayout>
     );

@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 const AnchorTag = asAnchor("a");
 
 const EstablishmentAddressLookup = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton
       editMode={props.switches.editMode}
       originator="establishment-address-select"

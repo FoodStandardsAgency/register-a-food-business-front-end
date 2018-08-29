@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 const AnchorTag = asAnchor("a");
 
 const OperatorAddressLookup = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton
       editMode={props.switches.editMode}
       originator="operator-address-select"

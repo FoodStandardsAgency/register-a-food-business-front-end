@@ -9,7 +9,7 @@ import { Header, Radio, MultiChoice, HiddenText, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const EstablishmentAddressType = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton
       editMode={props.editMode}
       originator="establishment-address-type"

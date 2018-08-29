@@ -44,6 +44,7 @@ const BannerRow = styled("div")`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  ${props => (props.justifyRight ? "justify-content: flex-end;" : null)};
 `;
 
 const BannerActionContainer = styled("div")`
@@ -52,7 +53,7 @@ const BannerActionContainer = styled("div")`
   align-items: flex-end;
 `;
 
-const AcceptButton = styled(Button)`
+const CookieButton = styled(Button)`
   margin-bottom: 0px;
   background-color: white;
   box-shadow: 0 2px 0 #4e80b4;
@@ -72,29 +73,53 @@ const AcceptButton = styled(Button)`
   }
 `;
 
-const CookieBanner = () => (
-  <Banner>
-    <BannerBody>
-      <BannerParagraph mb={2}>
-        This website uses cookies. We use cookies to create the registration and
-        analyse how the service is performing. We do not share any information
-        with advertisers or social media platforms. We do not store any
-        information about you in the cookie.
-      </BannerParagraph>
-      <BannerRow>
+const CookieBanner = props => (
+  <Banner id="cookieBanner">
+    {props.switches.cookiesRejected ? (
+      <BannerBody>
         <BannerParagraph mb={2}>
-          [Find our more about what cookies
-          are](https://www.gov.uk/help/cookies) and [read our cookie
-          policy](https://www.food.gov.uk/cookie-policy).
+          You have chosen not to accept optional cookies. This means you will
+          only be using one cookie to save your progress through the
+          registration and create the summary page.
         </BannerParagraph>
-        <BannerActionContainer>
-          <BannerParagraph mb={2} blackLink>
-            [I don't accept cookies](../disable-cookies)
+        <BannerRow justifyRight>
+          <form action="/switches/hideCookieBanner/on/multiPage" method="post">
+            <CookieButton id="cookieClose" type="submit">
+              Close
+            </CookieButton>
+          </form>
+        </BannerRow>
+      </BannerBody>
+    ) : (
+      <BannerBody>
+        <BannerParagraph mb={2}>
+          This website uses cookies. We use cookies to create the registration
+          and analyse how the service is performing. We do not share any
+          information with advertisers or social media platforms. We do not
+          store any information about you in the cookie.
+        </BannerParagraph>
+        <BannerRow>
+          <BannerParagraph mb={2}>
+            [Find our more about what cookies
+            are](https://www.gov.uk/help/cookies) and [read our cookie
+            policy](https://www.food.gov.uk/cookie-policy).
           </BannerParagraph>
-          <AcceptButton>I accept cookies</AcceptButton>
-        </BannerActionContainer>
-      </BannerRow>
-    </BannerBody>
+          <BannerActionContainer>
+            <BannerParagraph id="cookieReject" mb={2} blackLink>
+              [I don't accept cookies](../switches/cookiesRejected/on/multiPage)
+            </BannerParagraph>
+            <form
+              action="/switches/hideCookieBanner/on/multiPage"
+              method="post"
+            >
+              <CookieButton id="cookieAccept" type="submit">
+                I accept cookies
+              </CookieButton>
+            </form>
+          </BannerActionContainer>
+        </BannerRow>
+      </BannerBody>
+    )}
   </Banner>
 );
 

@@ -19,7 +19,6 @@ const switchesRouter = () => {
     const action = req.params.action;
 
     const currentSwitchState = req.session.switches[switchName];
-
     const response = switchesController(
       currentSwitchState,
       action,
@@ -29,12 +28,13 @@ const switchesRouter = () => {
     );
 
     req.session.switches[switchName] = response.newSwitchState;
+
     req.session.cumulativeAnswers = response.cumulativeAnswers;
 
     logEmitter.emit(
       "functionSuccess",
       "Routers",
-      "/switches/:switchName/:action route"
+      "/switches/:switchName/:action/:originator route"
     );
     res.redirect("back");
   });

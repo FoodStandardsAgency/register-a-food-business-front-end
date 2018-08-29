@@ -3,7 +3,7 @@ import { GridRow, GridCol, Main } from "govuk-react";
 
 const FsaLayout = props => (
   <div>
-    <FsaHeader />
+    <FsaHeader {...props} />
     <Main>
       <GridRow>
         <GridCol columnTwoThirds>{props.children}</GridCol>
