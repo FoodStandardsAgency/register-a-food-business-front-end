@@ -517,6 +517,50 @@ const FoodActivitiesTable = props => (
   </React.Fragment>
 );
 
+const DeclarationTable = props => (
+  <React.Fragment>
+    <Table.Row TITLE>
+      <Table.CellHeader>
+        <Paragraph mb={0}>**Declaration**</Paragraph>
+      </Table.CellHeader>
+      <Table.Cell>
+        <div />
+      </Table.Cell>
+    </Table.Row>
+
+    {props.declaration1 ? (
+      <Table.Row id="declaration1Row">
+        <Table.CellHeader>
+          <span id="declaration1">{props.declaration1}</span>
+        </Table.CellHeader>
+        <Table.Cell className="summaryTableDataCell">
+          <div className="bold">Accepted</div>
+        </Table.Cell>
+      </Table.Row>
+    ) : null}
+    {props.declaration2 ? (
+      <Table.Row id="declaration2Row">
+        <Table.CellHeader>
+          <span id="declaration2">{props.declaration2}</span>
+        </Table.CellHeader>
+        <Table.Cell className="summaryTableDataCell">
+          <div className="bold">Accepted</div>
+        </Table.Cell>
+      </Table.Row>
+    ) : null}
+    {props.declaration3 ? (
+      <Table.Row id="declaration3Row">
+        <Table.CellHeader>
+          <span id="declaration3">{props.declaration3}</span>
+        </Table.CellHeader>
+        <Table.Cell className="summaryTableDataCell">
+          <div className="bold">Accepted</div>
+        </Table.Cell>
+      </Table.Row>
+    ) : null}
+  </React.Fragment>
+);
+
 const SummaryTable = props => (
   <Table
     body={
@@ -524,6 +568,7 @@ const SummaryTable = props => (
         <OperatorDetailsTable {...props} />
         <EstablishmentDetailsTable {...props} />
         <FoodActivitiesTable {...props} />
+        {props.hideChangeButtons ? <DeclarationTable {...props} /> : null}
       </React.Fragment>
     }
   />

@@ -1,9 +1,17 @@
 import SessionWrapper from "../src/components/SessionWrapper";
 import { FsaLayout, ContentItem, SummaryTable } from "../src/components";
-import { Header, Panel, Paragraph, InsetText, asAnchor } from "govuk-react";
+import {
+  Header,
+  Panel,
+  Paragraph,
+  InsetText,
+  asAnchor,
+  HintText
+} from "govuk-react";
 import PropTypes from "prop-types";
 import { transformAnswersForSummary } from "../src/server/services/data-transform.service";
 import moment from "moment";
+import styled from "react-emotion";
 
 const AnchorTag = asAnchor("a");
 
@@ -13,76 +21,111 @@ const ApplicationComplete = props => {
     props.addressLookups
   );
 
+  const FsaPanel = styled(Panel)`
+    h2 {
+      display: none;
+    }
+  `;
+
   return (
     <FsaLayout>
-      <Header level={2}>Your food business registration confirmation</Header>
-      <Paragraph className="yourRegistrationHasBeenSentTo">
-        {`Thank you for submitting your food business registration. Your
-        registration has been sent to **${
-          props.lcConfig.hygieneAndStandards
-            ? props.lcConfig.hygieneAndStandards.local_council
-            : props.lcConfig.hygiene.local_council +
-              "** and **" +
-              props.lcConfig.standards.local_council
-        }.** To contact the food
-        team at your Local Council please email **${
-          props.lcConfig.hygieneAndStandards
-            ? props.lcConfig.hygieneAndStandards.local_council_email
-            : props.lcConfig.hygiene.local_council_email +
-              "** or **" +
-              props.lcConfig.standards.local_council_email
-        }.**`}
-      </Paragraph>
-      <InsetText>
-        <Paragraph mb={0}>
-          Please keep note of this registration number for your records.
-        </Paragraph>
-      </InsetText>
-      <Paragraph className="receiveConfirmationEmail">
-        {`A copy of this registration has been sent to **${
-          props.emailFbo.recipient
-        }.**`}
+      <Header level={2}>Submission complete</Header>
+      <Paragraph>
+        Thank you for submitting your food business registration.
       </Paragraph>
       {props.fsaRegistrationNumber ? (
-        <Panel
+        <FsaPanel
           id="panelWithNumber"
-          panelTitle="Registration submitted"
+          panelTitle=""
           panelBody={[
-            "Your unique food business registration number is:",
+            "Your unique food business registration number is",
             <br />,
             <br />,
             <span className="bold" id="fsa-rn">
-              {props.fsaRegistrationNumber}
+              {props.fsaRegistrationNumber.split("-").join(" - ")}
             </span>
           ]}
         />
       ) : (
-        <Panel
+        <FsaPanel
           id="panelWithText"
           panelTitle="Registration submitted"
           panelBody={"Awaiting registration number"}
         />
       )}
+      <InsetText>
+        <Paragraph mb={0}>
+          Please keep note of this registration number for your records.
+        </Paragraph>
+      </InsetText>
 
-      <Paragraph mb={1}>**Submitted on**</Paragraph>
-      <Paragraph>
-        {moment(props.submissionDate).format("DD MMM YYYY")}
-      </Paragraph>
-      <Paragraph mb={1}>**Responsible Local Authority**</Paragraph>
-      <Paragraph>{props.localCouncil}</Paragraph>
+      <ContentItem.B_30_15>
+        <Header level={3} mb={1}>
+          Submitted on
+        </Header>
+        <Paragraph mb={0}>
+          {moment(props.submissionDate).format("DD MMM YYYY")}
+        </Paragraph>
+      </ContentItem.B_30_15>
+
+      <Header level={3} mb={2}>
+        Your registration has been sent to:
+      </Header>
+      {props.lcConfig.hygieneAndStandards ? (
+        <ContentItem.B_30_15 id="hygieneAndStandardsCouncil">
+          <Header level={4} mb={1}>
+            {props.lcConfig.hygieneAndStandards.local_council}
+          </Header>
+          <Paragraph mb={0}>
+            {props.lcConfig.hygieneAndStandards.local_council_email}
+          </Paragraph>
+        </ContentItem.B_30_15>
+      ) : (
+        <div>
+          <ContentItem.B_30_15 id="hygieneCouncil">
+            <Header level={4} mb={1}>
+              {props.lcConfig.hygiene.local_council}
+            </Header>
+            <Paragraph mb={0}>
+              {props.lcConfig.hygiene.local_council_email}
+            </Paragraph>
+            <HintText>Reponsible local council for food hygiene</HintText>
+          </ContentItem.B_30_15>
+          <ContentItem.B_30_15 id="standardsCouncil">
+            <Header level={4} mb={1}>
+              {props.lcConfig.standards.local_council}
+            </Header>
+            <Paragraph mb={0}>
+              {props.lcConfig.standards.local_council_email}
+            </Paragraph>
+            <HintText>Responsible for food standards</HintText>
+          </ContentItem.B_30_15>
+        </div>
+      )}
+
+      <ContentItem.B_30_15>
+        <Paragraph className="receiveConfirmationEmail">
+          {`A copy of this registration has been sent to **${
+            props.emailFbo.recipient
+          }.**`}
+        </Paragraph>
+      </ContentItem.B_30_15>
+
       <Header level={2}>What's next?</Header>
       <InsetText>
         <Paragraph mb={0}>
-          **The council may contact you before the inspection to discuss how
-          your business operates or to offer advice. You may receive an
-          unannounced food inspection from your local council soon after you
-          start trading.**
+          **You may receive an unannounced food inspection from your local
+          council soon after you start trading.**
         </Paragraph>
       </InsetText>
-      <Paragraph>
-        Meanwhile, there are some things you can do to help prepare for the
-        opening of your business opening.
-      </Paragraph>
+      <ContentItem.B_30_15>
+        <Paragraph>
+          The council may contact you before the inspection to discuss how your
+          business operates or to offer advice. Meanwhile, there are some things
+          you can do to help prepare for the opening of your business opening.
+        </Paragraph>
+      </ContentItem.B_30_15>
+
       <Header level={2}>Find out here what you can do to prepare:</Header>
       <ContentItem.B_20_20>
         <AnchorTag
@@ -134,8 +177,7 @@ export default SessionWrapper(ApplicationComplete);
 
 ApplicationComplete.propTypes = {
   fsaRegistrationNumber: PropTypes.string,
-  localCouncil: PropTypes.string,
-  localCouncilEmail: PropTypes.string,
+  lcConfig: PropTypes.object,
   submissionDate: PropTypes.string,
   cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
   recipient: PropTypes.string
