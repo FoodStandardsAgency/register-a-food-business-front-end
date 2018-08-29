@@ -121,5 +121,45 @@ describe("Continue route: ", () => {
         expect(res.redirect).toBeCalledWith("/new/council/newPage");
       });
     });
+
+    describe("given that the controller response redirects to submit", () => {
+      let req, res;
+
+      beforeEach(() => {
+        continueController.mockImplementation(() => ({
+          validatorErrors: {},
+          redirectRoute: "/submit",
+          cumulativeAnswers: {
+            new: "answers"
+          },
+          switches: { exampleSwitch: true }
+        }));
+
+        handler = router.post.mock.calls[0][1];
+
+        req = {
+          session: {
+            cumulativeAnswers: {},
+            switches: {},
+            council: "council"
+          },
+          body: "body",
+          params: {
+            originator: "originator",
+            editMode: "true"
+          }
+        };
+
+        res = {
+          redirect: jest.fn()
+        };
+
+        handler(req, res);
+      });
+
+      it("Should call redirect", () => {
+        expect(res.redirect).toBeCalledWith("/submit");
+      });
+    });
   });
 });
