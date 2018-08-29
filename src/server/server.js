@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const { info } = require("winston");
 const routes = require("./routes");
 const { Next } = require("./next");
+const { COOKIE_SECRET, COOKIE_SECURE } = require("./config");
 
 module.exports = async dbUrl => {
   const app = express();
@@ -22,10 +23,16 @@ module.exports = async dbUrl => {
   }
 
   const sessionOptions = {
-    secret: "TEMPORARYSECRET",
+    secret: process.env.COOKIE_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    maxAge: 2160000
   };
+  if (process.env.COOKIE_SECURE === "true") {
+    sessionOptions.cookie = {
+      secure: true
+    };
+  }
   const options = Object.assign(sessionOptions, storeOptions);
   app.use(session(options));
   app.use(bodyParser.json());
