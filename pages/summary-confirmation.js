@@ -98,7 +98,7 @@ const ApplicationComplete = props => {
             <Paragraph mb={0}>
               {props.lcConfig.standards.local_council_email}
             </Paragraph>
-            <HintText>Responsible for food standards</HintText>
+            <HintText>Responsible local council for food standards</HintText>
           </ContentItem.B_30_15>
         </div>
       )}
