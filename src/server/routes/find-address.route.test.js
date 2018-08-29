@@ -17,7 +17,7 @@ describe("findAddress route: ", () => {
 
   afterEach(() => {
     jest.clearAllMocks();
-  })
+  });
 
   describe("POST to /findaddress/:originator", () => {
     describe("When session.save works", () => {
@@ -35,11 +35,11 @@ describe("findAddress route: ", () => {
           originator: "/some-page"
         }
       };
-  
+
       const res = {
         redirect: jest.fn()
       };
-  
+
       beforeEach(() => {
         findAddressController.mockImplementation(() => ({
           cumulativeAnswers: { example: "answer" },

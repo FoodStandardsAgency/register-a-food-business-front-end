@@ -7,7 +7,6 @@ const bodyParser = require("body-parser");
 const { info } = require("winston");
 const routes = require("./routes");
 const { Next } = require("./next");
-const { COOKIE_SECRET, COOKIE_SECURE } = require("./config");
 
 module.exports = async dbUrl => {
   const app = express();

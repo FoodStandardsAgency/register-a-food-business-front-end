@@ -57,23 +57,17 @@ describe("server: ", () => {
   });
 
   describe("When COOKIE SECURE is set", () => {
-    beforeEach(async () => {
+    it("should call session with secure", async () => {
       process.env.COOKIE_SECURE = true;
       result = await server(undefined);
-    });
-
-    it("should call session with secure", () => {
       expect(session.mock.calls[0][0].cookie.secure).toBe(true);
     });
   });
 
   describe("When COOKIE SECURE is not set", () => {
-    beforeEach(async () => {
+    it("should not call session with secure", async () => {
       process.env.COOKIE_SECURE = false;
       result = await server(undefined);
-    });
-
-    it("should not call session with secure", () => {
       expect(session.mock.calls[0][0].cookie).toBe(undefined);
     });
   });
