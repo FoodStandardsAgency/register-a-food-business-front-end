@@ -113,7 +113,7 @@ const wrapperComprehensive = mount(
 );
 
 const wrapperApplicationComplete = mount(
-  <SummaryTable {...testComprehensiveAnswers} hideChangeButtons={true} />
+  <SummaryTable {...testComprehensiveAnswers} applicationCompletePage={true} />
 );
 
 // the summary table mounted without any valid answers
@@ -147,7 +147,7 @@ describe("<SummaryTable />", () => {
       expect(rows.length).toEqual(allTableRows.length);
     });
 
-    describe("when given a props of hideChangeButtons = true", () => {
+    describe("when given a props of applicationCompletePage = true", () => {
       it("It doesn't render a change button in all editable rows", () => {
         editableTableRows.forEach(tableRowName => {
           const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);

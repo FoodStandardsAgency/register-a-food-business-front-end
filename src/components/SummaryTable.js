@@ -32,7 +32,7 @@ const AnchorTag = asAnchor("a");
 
 const OperatorDetailsTable = props => (
   <React.Fragment>
-    {props.hideChangeButtons ? (
+    {props.applicationCompletePage ? (
       <Table.Row>
         <Table.CellHeader>
           <div />
@@ -50,7 +50,7 @@ const OperatorDetailsTable = props => (
       <Table.Cell>
         <div />
       </Table.Cell>
-      {props.hideChangeButtons ? null : (
+      {props.applicationCompletePage ? null : (
         <Table.Cell>
           <div />
         </Table.Cell>
@@ -65,7 +65,7 @@ const OperatorDetailsTable = props => (
             {props.operator_company_name}
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorCompanyNameRow"
@@ -86,7 +86,7 @@ const OperatorDetailsTable = props => (
             {props.operator_company_house_number}
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorCompaniesHouseRow"
@@ -107,7 +107,7 @@ const OperatorDetailsTable = props => (
             {props.operator_charity_name}
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorCharityNameRow"
@@ -128,7 +128,7 @@ const OperatorDetailsTable = props => (
             {props.operator_charity_number}
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorCharityNumberRow"
@@ -150,7 +150,7 @@ const OperatorDetailsTable = props => (
             <span id="operator_last_name">{props.operator_last_name}</span>
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag id="changeOperatorNameRow" href="/edit/operator-name">
               Change
@@ -171,7 +171,7 @@ const OperatorDetailsTable = props => (
             <div id="operator_postcode">{props.operator_postcode}</div>
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell>
             <div />
           </Table.Cell>
@@ -192,7 +192,7 @@ const OperatorDetailsTable = props => (
             </div>
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorContactDetailsRow"
@@ -213,7 +213,7 @@ const OperatorDetailsTable = props => (
             {props.operator_type}
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell>
             <div />
           </Table.Cell>
@@ -229,7 +229,7 @@ const OperatorDetailsTable = props => (
             {props.operator_email}
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorEmailRow"
@@ -265,7 +265,7 @@ const OperatorDetailsTable = props => (
             {props.contact_representative_email}
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeContactRepresentativeRow"
@@ -289,7 +289,7 @@ const EstablishmentDetailsTable = props => (
       <Table.Cell>
         <div />
       </Table.Cell>
-      {props.hideChangeButtons ? null : (
+      {props.applicationCompletePage ? null : (
         <Table.Cell>
           <div />
         </Table.Cell>
@@ -304,7 +304,7 @@ const EstablishmentDetailsTable = props => (
             {props.establishment_trading_name}
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeEstablishmentTradingNameRow"
@@ -336,7 +336,7 @@ const EstablishmentDetailsTable = props => (
             </div>
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell>
             <div />
           </Table.Cell>
@@ -352,7 +352,7 @@ const EstablishmentDetailsTable = props => (
             {props.establishment_type}
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeEstablishmentAddressTypeRow"
@@ -378,7 +378,7 @@ const EstablishmentDetailsTable = props => (
             </div>
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeEstablishmentContactDetailsRow"
@@ -399,7 +399,7 @@ const EstablishmentDetailsTable = props => (
             {props.establishment_email}
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeEstablishmentEmailRow"
@@ -420,7 +420,7 @@ const EstablishmentDetailsTable = props => (
             {moment(props.establishment_opening_date).format("DD MMM YYYY")}
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell>
             <div />
           </Table.Cell>
@@ -439,7 +439,7 @@ const FoodActivitiesTable = props => (
       <Table.Cell>
         <div />
       </Table.Cell>
-      {props.hideChangeButtons ? null : (
+      {props.applicationCompletePage ? null : (
         <Table.Cell>
           <div />
         </Table.Cell>
@@ -454,7 +454,7 @@ const FoodActivitiesTable = props => (
             {props.customer_type}
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeActivitiesCustomersRow"
@@ -475,7 +475,7 @@ const FoodActivitiesTable = props => (
             {props.import_export_activities}
           </div>
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeActivitiesBusinessImportExportRow"
@@ -505,7 +505,7 @@ const FoodActivitiesTable = props => (
             </div>
           ) : null} */}
         </Table.Cell>
-        {props.hideChangeButtons ? null : (
+        {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag id="changeBusinessTypeRow" href="/edit/business-type">
               Change
@@ -517,6 +517,46 @@ const FoodActivitiesTable = props => (
   </React.Fragment>
 );
 
+const DeclarationTable = props => (
+  <React.Fragment>
+    <Table.Row TITLE>
+      <Table.CellHeader>
+        <Paragraph mb={0}>**Declaration**</Paragraph>
+      </Table.CellHeader>
+      <Table.Cell>
+        <div />
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row id="declaration1Row">
+      <Table.CellHeader>
+        <span id="declaration1">{props.declaration1}</span>
+      </Table.CellHeader>
+      <Table.Cell className="summaryTableDataCell">
+        <div className="bold">Accepted</div>
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row id="declaration2Row">
+      <Table.CellHeader>
+        <span id="declaration2">{props.declaration2}</span>
+      </Table.CellHeader>
+      <Table.Cell className="summaryTableDataCell">
+        <div className="bold">Accepted</div>
+      </Table.Cell>
+    </Table.Row>
+
+    <Table.Row id="declaration3Row">
+      <Table.CellHeader>
+        <span id="declaration3">{props.declaration3}</span>
+      </Table.CellHeader>
+      <Table.Cell className="summaryTableDataCell">
+        <div className="bold">Accepted</div>
+      </Table.Cell>
+    </Table.Row>
+  </React.Fragment>
+);
+
 const SummaryTable = props => (
   <Table
     body={
@@ -524,6 +564,7 @@ const SummaryTable = props => (
         <OperatorDetailsTable {...props} />
         <EstablishmentDetailsTable {...props} />
         <FoodActivitiesTable {...props} />
+        {props.applicationCompletePage ? <DeclarationTable {...props} /> : null}
       </React.Fragment>
     }
   />

@@ -42,7 +42,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeAnswers={cumulativeAnswers}
-          hideChangeButtons={true}
+          applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           emailFbo={emailFbo}
         />
@@ -54,7 +54,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeAnswers={cumulativeAnswers}
-          hideChangeButtons={true}
+          applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           emailFbo={emailFbo}
         />
@@ -69,7 +69,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeAnswers={cumulativeAnswers}
-          hideChangeButtons={true}
+          applicationCompletePage={true}
           fsaRegistrationNumber="12345"
           lcConfig={lcConfigCombined}
           emailFbo={emailFbo}
@@ -82,7 +82,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeAnswers={cumulativeAnswers}
-          hideChangeButtons={true}
+          applicationCompletePage={true}
           fsaRegistrationNumber={undefined}
           lcConfig={lcConfigCombined}
           emailFbo={emailFbo}
@@ -98,7 +98,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeAnswers={cumulativeAnswers}
-          hideChangeButtons={true}
+          applicationCompletePage={true}
           lcConfig={lcConfigSplit}
           emailFbo={lcConfigSplit}
         />
