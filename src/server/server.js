@@ -33,6 +33,7 @@ module.exports = async dbUrl => {
     sessionOptions.cookie.secure = true;
   }
   const options = Object.assign(sessionOptions, storeOptions);
+  app.set("trust proxy", 1);
   app.use(session(options));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
