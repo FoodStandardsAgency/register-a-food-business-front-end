@@ -20,21 +20,6 @@ const BannerBody = styled("div")`
 
 const BannerParagraph = styled(Paragraph)`
   font-size: ${fontSize};
-  ${props =>
-    props.blackLink
-      ? `
-    margin: 0 20px;
-    a {
-      color: #0b0c0c;
-      &:hover {
-        color: #4a4a4a;
-      }
-      &:visited {
-        color: #2f2f2f;
-      }
-    }
-    `
-      : null};
   @media only screen and (min-width: 641px) {
     font-size: ${fontSize};
   }
@@ -69,7 +54,24 @@ const CookieButton = styled(Button)`
   font-size: ${fontSize};
   @media only screen and (min-width: 641px) {
     font-size: ${fontSize};
-    margin-bottom: 10px;
+    margin-bottom: 0px;
+  }
+`;
+
+const RejectCookiesButton = styled("button")`
+  margin: 0 20px;
+  font-size: ${fontSize};
+  color: #0b0c0c;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    color: #4a4a4a;
+  }
+  &:visited {
+    color: #2f2f2f;
   }
 `;
 
@@ -99,19 +101,16 @@ const CookieBanner = props => (
           store any information about you in the cookie.
         </BannerParagraph>
         <BannerRow>
-          <BannerParagraph mb={2}>
+          <BannerParagraph mb={0}>
             [Find our more about what cookies
             are](https://www.gov.uk/help/cookies) and [read our cookie
             policy](https://www.food.gov.uk/cookie-policy).
           </BannerParagraph>
           <BannerActionContainer>
-            {/* <BannerParagraph id="cookieReject" mb={2} blackLink>
-              [I don't accept cookies](../switches/cookiesRejected/on/multiPage)
-            </BannerParagraph> */}
             <form action="/switches/cookiesRejected/on/multiPage" method="post">
-              <CookieButton id="cookieAccept" type="submit">
+              <RejectCookiesButton id="cookieReject" type="submit">
                 I don't accept cookies
-              </CookieButton>
+              </RejectCookiesButton>
             </form>
             <form
               action="/switches/hideCookieBanner/on/multiPage"
