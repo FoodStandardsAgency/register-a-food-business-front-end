@@ -22,11 +22,18 @@ module.exports = async dbUrl => {
   }
 
   const sessionOptions = {
-    secret: "TEMPORARYSECRET",
+    secret: process.env.COOKIE_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 86400000
+    }
   };
+  if (process.env.COOKIE_SECURE === "true") {
+    sessionOptions.cookie.secure = true;
+  }
   const options = Object.assign(sessionOptions, storeOptions);
+  app.set("trust proxy", 1);
   app.use(session(options));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));

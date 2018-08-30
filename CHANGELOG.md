@@ -3,21 +3,39 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.34.1 - 30th August 2018 (unreleased)
+
+### Added
+
+* Unit testing for LC lookup
+
+## v1.34.0 - 30th August 2018 (unreleased)
+
+### Added
+
+* Secure cookies and timeout rules
+
+## v1.33.2 - 29th August 2018 (unreleased)
+
+### Modified
+
+* QA route modified to work with new URL format containing council
+
 ## v1.33.1 - 28th August 2018 (unreleased)
 
-### Added 
+### Added
 
 * Redirect routes
 
 ## v1.33.0 - 28th August 2018 (unreleased)
 
-### Added 
+### Added
 
 * SDB-733 Custom domain names per LC
 
 ## v1.32.0 - 23rd August 2018 (unreleased)
 
-### Added 
+### Added
 
 * Added Google Tag Manager tracking code
 
