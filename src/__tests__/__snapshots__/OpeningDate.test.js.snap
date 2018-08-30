@@ -1,7 +1,292 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<OpeningDate /> matches the previous snapshot 1`] = `
+.emotion-16 {
+  background-color: #d9e8f2;
+}
+
+.emotion-14 {
+  width: calc(100% - 30px);
+  max-width: 960px;
+  margin: auto;
+  padding: 15px 0;
+}
+
+@media (min-width:641px) {
+  .emotion-14 {
+    width: calc(100% - 60px);
+  }
+}
+
+.emotion-1 {
+  font-family: "nta",Arial,sans-serif;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.25;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.emotion-1 > p {
+  margin: 0;
+}
+
+.emotion-1 > p > code {
+  padding: 0.2em 0.4em;
+  margin: 0px;
+  font-size: 85%;
+  background-color: rgba(27,31,35,0.05);
+  border-radius: 3px;
+}
+
+.emotion-1 > pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+}
+
+.emotion-1 > pre > code {
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-1 {
+    font-size: 19px;
+    line-height: 1.3;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-1 {
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-1 {
+    font-size: 16px;
+  }
+}
+
+.emotion-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.emotion-5 {
+  font-family: "nta",Arial,sans-serif;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.25;
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+.emotion-5 > p {
+  margin: 0;
+}
+
+.emotion-5 > p > code {
+  padding: 0.2em 0.4em;
+  margin: 0px;
+  font-size: 85%;
+  background-color: rgba(27,31,35,0.05);
+  border-radius: 3px;
+}
+
+.emotion-5 > pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+}
+
+.emotion-5 > pre > code {
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-5 {
+    font-size: 19px;
+    line-height: 1.3;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-5 {
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-5 {
+    font-size: 16px;
+  }
+}
+
+.emotion-2 {
+  color: #005ea5;
+}
+
+.emotion-2:hover {
+  color: #2b8cc4;
+}
+
+.emotion-2:visited {
+  color: #4c2c92;
+}
+
 .emotion-10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.emotion-6 {
+  margin: 0 20px;
+  font-size: 16px;
+  color: #0b0c0c;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.emotion-6:hover {
+  color: #4a4a4a;
+}
+
+.emotion-6:visited {
+  color: #2f2f2f;
+}
+
+.emotion-9 {
+  background-color: #00823b;
+  border: none;
+  box-shadow: 0 2px 0 #003618;
+  color: #ffffff;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font-family: "nta",Arial,sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  line-height: 1.25;
+  outline-offset: -1px;
+  outline: 1px solid transparent;
+  padding: .526315em .789473em .263157em;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-appearance: none;
+  -webkit-font-smoothing: antialiased;
+  opacity: 1;
+  pointer-events: auto;
+  padding-right: .84211em;
+  margin-bottom: 15px;
+  margin-bottom: 0px;
+  background-color: white;
+  box-shadow: 0 2px 0 #4e80b4;
+  color: #0b0c0c;
+  font-size: 16px;
+}
+
+.emotion-9:hover {
+  background-color: #00692f;
+  color: #ffffff;
+}
+
+.emotion-9:focus {
+  color: #ffffff;
+  background-color: #00692f;
+  outline: 3px solid #ffbf47;
+}
+
+.emotion-9:active {
+  position: relative;
+  top: 2px;
+  box-shadow: 0 0 0 #003618;
+}
+
+.emotion-9:visited {
+  color: #00823b;
+}
+
+.emotion-9 svg {
+  max-width: 15px;
+  margin-left: 20px;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-9 {
+    margin-bottom: 20px;
+  }
+}
+
+.emotion-9:hover {
+  background-color: #f2f2f2;
+  color: #0b0c0c;
+}
+
+.emotion-9:focus {
+  background-color: #f2f2f2;
+  color: #0b0c0c;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-9 {
+    font-size: 16px;
+    margin-bottom: 0px;
+  }
+}
+
+.emotion-28 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -19,13 +304,13 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-10 {
+  .emotion-28 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
-.emotion-9 {
+.emotion-27 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -40,7 +325,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-9 {
+  .emotion-27 {
     padding: calc(10px * 0.8) 0;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -49,7 +334,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-5 {
+.emotion-23 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -61,14 +346,14 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-5 {
+  .emotion-23 {
     display: block;
     padding-right: 15px;
     width: 33.33%;
   }
 }
 
-.emotion-4 {
+.emotion-22 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -85,7 +370,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
   font-size: 30px;
 }
 
-.emotion-3 {
+.emotion-21 {
   color: #ffffff;
   -webkit-text-decoration: none;
   text-decoration: none;
@@ -96,30 +381,30 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
   line-height: 1;
 }
 
-.emotion-3:hover {
+.emotion-21:hover {
   border-bottom-color: #ffffff;
 }
 
-.emotion-3:focus {
+.emotion-21:focus {
   outline: 3px solid #ffbf47;
 }
 
-.emotion-2 {
+.emotion-20 {
   vertical-align: baseline;
 }
 
-.emotion-0 {
+.emotion-18 {
   width: 36px;
   max-height: 27px;
   display: inline-block;
   margin-right: 7px;
 }
 
-.emotion-1 {
+.emotion-19 {
   display: inline-block;
 }
 
-.emotion-8 {
+.emotion-26 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -135,7 +420,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-8 {
+  .emotion-26 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -146,7 +431,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-7 {
+.emotion-25 {
   color: #ffffff;
   -webkit-text-decoration: none;
   text-decoration: none;
@@ -157,25 +442,25 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
   line-height: 1;
 }
 
-.emotion-7:hover {
+.emotion-25:hover {
   border-bottom-color: #ffffff;
 }
 
-.emotion-7:focus {
+.emotion-25:focus {
   outline: 3px solid #ffbf47;
 }
 
-.emotion-7:focus {
+.emotion-25:focus {
   color: #0b0c0c;
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-7:focus:hover {
+.emotion-25:focus:hover {
   border-bottom-color: #0b0c0c;
 }
 
-.emotion-6 {
+.emotion-24 {
   font-family: "nta",Arial,sans-serif;
   font-weight: bold;
   margin: 0;
@@ -186,7 +471,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-6 {
+  .emotion-24 {
     font-size: 24px;
     line-height: 1.25;
     margin-bottom: 20px;
@@ -194,18 +479,18 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media print {
-  .emotion-6 {
+  .emotion-24 {
     font-size: 16px;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-6 {
+  .emotion-24 {
     margin-bottom: 0;
   }
 }
 
-.emotion-11 {
+.emotion-29 {
   border-bottom: 10px solid #005ea5;
   max-width: 960px;
   margin: 0 auto;
@@ -213,18 +498,18 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-11 {
+  .emotion-29 {
     width: calc(100% - 60px);
   }
 }
 
-.emotion-17 {
+.emotion-35 {
   padding-top: 30px;
   text-align: center;
   padding-top: 0;
 }
 
-.emotion-15 {
+.emotion-33 {
   max-width: 960px;
   margin-left: 15px;
   margin-right: 15px;
@@ -232,19 +517,19 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-15 {
+  .emotion-33 {
     margin-left: 30px;
     margin-right: 30px;
   }
 }
 
 @media only screen and (min-width:1020px) {
-  .emotion-15 {
+  .emotion-33 {
     margin: 0 auto;
   }
 }
 
-.emotion-14 {
+.emotion-32 {
   border-bottom: 1px solid #bfc1c3;
   box-sizing: border-box;
   padding-top: 10px;
@@ -258,23 +543,23 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-14 {
+  .emotion-32 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
-.emotion-14 > a {
+.emotion-32 > a {
   color: #005ea5;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-14 {
+  .emotion-32 {
     margin-bottom: 0;
   }
 }
 
-.emotion-12 {
+.emotion-30 {
   display: inline-block;
   margin: 0 8px 0 0;
   padding: 2px 5px;
@@ -297,7 +582,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-12 {
+  .emotion-30 {
     font-size: 16px;
     line-height: 1.25;
     padding-bottom: 0;
@@ -305,17 +590,17 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-12 {
+  .emotion-30 {
     margin-bottom: 0;
   }
 }
 
-.emotion-50 {
+.emotion-68 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-48 {
+.emotion-66 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -328,7 +613,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-48 {
+  .emotion-66 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -336,7 +621,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-47 {
+.emotion-65 {
   background: transparent;
   margin: 0 0 15px;
   text-indent: 0px;
@@ -344,37 +629,37 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-47 {
+  .emotion-65 {
     width: 100%;
     margin: 0 15px;
   }
 
-  .emotion-47:first-child {
+  .emotion-65:first-child {
     margin-left: 0;
   }
 
-  .emotion-47:last-child {
+  .emotion-65:last-child {
     margin-right: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-47 {
+  .emotion-65 {
     width: 66.6667%;
   }
 }
 
-.emotion-20 {
+.emotion-38 {
   padding-bottom: 45px;
 }
 
 @media only screen and (max-width:641px) {
-  .emotion-20 {
+  .emotion-38 {
     padding-bottom: 30px;
   }
 }
 
-.emotion-22 {
+.emotion-40 {
   font-family: "nta",Arial,sans-serif;
   font-weight: bold;
   margin: 0;
@@ -384,7 +669,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-22 {
+  .emotion-40 {
     font-size: 36px;
     line-height: 1.1111111111111112;
     margin-bottom: 20px;
@@ -392,22 +677,22 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media print {
-  .emotion-22 {
+  .emotion-40 {
     font-size: 18px;
   }
 }
 
-.emotion-24 {
+.emotion-42 {
   padding-bottom: 30px;
 }
 
 @media only screen and (max-width:641px) {
-  .emotion-24 {
+  .emotion-42 {
     padding-bottom: 15px;
   }
 }
 
-.emotion-23 {
+.emotion-41 {
   font-family: "nta",Arial,sans-serif;
   margin: 0;
   font-size: 16px;
@@ -415,11 +700,11 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
   margin-bottom: 0;
 }
 
-.emotion-23 > p {
+.emotion-41 > p {
   margin: 0;
 }
 
-.emotion-23 > p > code {
+.emotion-41 > p > code {
   padding: 0.2em 0.4em;
   margin: 0px;
   font-size: 85%;
@@ -427,7 +712,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
   border-radius: 3px;
 }
 
-.emotion-23 > pre {
+.emotion-41 > pre {
   padding: 16px;
   overflow: auto;
   font-size: 85%;
@@ -436,7 +721,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
   border-radius: 3px;
 }
 
-.emotion-23 > pre > code {
+.emotion-41 > pre > code {
   display: inline;
   padding: 0px;
   margin: 0px;
@@ -447,29 +732,29 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-23 {
+  .emotion-41 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-23 {
+  .emotion-41 {
     margin-bottom: 0;
   }
 }
 
-.emotion-30 {
+.emotion-48 {
   margin-bottom: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-30 {
+  .emotion-48 {
     margin-bottom: 30px;
   }
 }
 
-.emotion-27 {
+.emotion-45 {
   display: inline-block;
   cursor: pointer;
   color: #005ea5;
@@ -479,23 +764,23 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
   margin-bottom: 5px;
 }
 
-.emotion-27:hover {
+.emotion-45:hover {
   color: #2b8cc4;
 }
 
-.emotion-27:focus {
+.emotion-45:focus {
   outline: 4px solid #ffbf47;
   background: #ffbf47;
 }
 
-.emotion-26 {
+.emotion-44 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
 }
 
-.emotion-29 {
+.emotion-47 {
   box-sizing: border-box;
   border-left-style: solid;
   border-left-width: 5px;
@@ -505,12 +790,12 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-29 {
+  .emotion-47 {
     margin-bottom: 0;
   }
 }
 
-.emotion-43 {
+.emotion-61 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -522,12 +807,12 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-43 {
+  .emotion-61 {
     margin-bottom: 30px;
   }
 }
 
-.emotion-31 {
+.emotion-49 {
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -542,19 +827,19 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-31 {
+  .emotion-49 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-31 {
+  .emotion-49 {
     margin-bottom: 0;
   }
 }
 
-.emotion-32 {
+.emotion-50 {
   display: block;
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -568,19 +853,19 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-32 {
+  .emotion-50 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-32 {
+  .emotion-50 {
     margin-bottom: 0;
   }
 }
 
-.emotion-42 {
+.emotion-60 {
   font-family: "nta",Arial,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
@@ -588,17 +873,17 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
   display: flex;
 }
 
-.emotion-42 > label {
+.emotion-60 > label {
   width: 50px;
   margin-right: 20px;
   margin-bottom: 0;
 }
 
-.emotion-42 > label.year {
+.emotion-60 > label.year {
   width: 70px;
 }
 
-.emotion-35 {
+.emotion-53 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -610,19 +895,19 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
   margin-bottom: 0;
 }
 
-.emotion-35:after {
+.emotion-53:after {
   content: '';
   display: table;
   clear: both;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-35 {
+  .emotion-53 {
     margin-bottom: 0;
   }
 }
 
-.emotion-34 {
+.emotion-52 {
   box-sizing: border-box;
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -638,18 +923,18 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-34 {
+  .emotion-52 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
-.emotion-34:focus {
+.emotion-52:focus {
   outline: 3px solid #ffbf47;
   outline-offset: 0;
 }
 
-.emotion-46 {
+.emotion-64 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -684,65 +969,134 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-46:hover {
+.emotion-64:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-46:focus {
+.emotion-64:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-46:active {
+.emotion-64:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-46:visited {
+.emotion-64:visited {
   color: #00823b;
 }
 
-.emotion-46 svg {
+.emotion-64 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-46 {
+  .emotion-64 {
     margin-bottom: 20px;
   }
 }
 
 <div>
   <div
-    className="emotion-18 emotion-19"
+    className="emotion-36 emotion-37"
   >
     <div
-      className="emotion-10"
+      className="emotion-16 emotion-17"
+      id="cookieBanner"
+    >
+      <div
+        className="emotion-14 emotion-15"
+      >
+        <div
+          className="emotion-0 emotion-1"
+        >
+          <p>
+            This website uses cookies. We use cookies to create the registration and analyse how the service is performing. We do not share any information with advertisers or social media platforms. We do not store any information about you in the cookie.
+          </p>
+        </div>
+        <div
+          className="emotion-12 emotion-13"
+        >
+          <div
+            className="emotion-0 emotion-5"
+          >
+            <p>
+              <a
+                className="emotion-2"
+                href="https://www.gov.uk/help/cookies"
+              >
+                Find our more about what cookies are
+              </a>
+               and 
+              <a
+                className="emotion-2"
+                href="https://www.food.gov.uk/cookie-policy"
+              >
+                read our cookie policy
+              </a>
+              .
+            </p>
+          </div>
+          <div
+            className="emotion-10 emotion-11"
+          >
+            <form
+              action="/switches/cookiesRejected/on/multiPage"
+              method="post"
+            >
+              <button
+                className="emotion-6 emotion-7"
+                id="cookieReject"
+                type="submit"
+              >
+                I don't accept cookies
+              </button>
+            </form>
+            <form
+              action="/switches/hideCookieBanner/on/multiPage"
+              method="post"
+            >
+              <button
+                className="emotion-8 emotion-9"
+                disabled={false}
+                id="cookieAccept"
+                type="submit"
+              >
+                I accept cookies
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="emotion-28"
       color="#ffffff"
     >
       <div
-        className="emotion-9"
+        className="emotion-27"
       >
         <div
-          className="emotion-5"
+          className="emotion-23"
         >
           <div
-            className="emotion-4"
+            className="emotion-22"
           >
             <a
-              className="emotion-3"
+              className="emotion-21"
               href="/index"
               target="_blank"
             >
               <div
-                className="emotion-2"
+                className="emotion-20"
               >
                 <span
-                  className="emotion-0"
+                  className="emotion-18"
                 >
                   <svg
                     className={undefined}
@@ -769,7 +1123,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
                   </svg>
                 </span>
                 <span
-                  className="emotion-1"
+                  className="emotion-19"
                 >
                   GOV.UK
                 </span>
@@ -778,15 +1132,15 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
           </div>
         </div>
         <div
-          className="emotion-8"
+          className="emotion-26"
         >
           <a
-            className="emotion-7"
+            className="emotion-25"
             href="/index"
             target="_blank"
           >
             <h3
-              className="emotion-6"
+              className="emotion-24"
               mb={0}
               size={undefined}
             >
@@ -797,26 +1151,26 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
       </div>
     </div>
     <div
-      className="emotion-11"
+      className="emotion-29"
     />
     <div
-      className="emotion-16 emotion-17"
+      className="emotion-34 emotion-35"
     >
       <div
-        className="emotion-15"
+        className="emotion-33"
       >
         <div
-          className="emotion-14"
+          className="emotion-32"
         >
           <strong
-            className="emotion-12"
+            className="emotion-30"
           >
             beta
           </strong>
           This is a prototype -
            
           <a
-            className="emotion-3"
+            className="emotion-21"
             href="https://goo.gl/forms/WB5adxvWQdDIfVvs2"
             id="feedbackLink"
             target="_blank"
@@ -830,19 +1184,19 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-50"
+    className="emotion-68"
   >
     <div
-      className="emotion-15"
+      className="emotion-33"
     >
       <div
-        className="emotion-48"
+        className="emotion-66"
       >
         <div
-          className="emotion-47"
+          className="emotion-65"
         >
           <div
-            className="emotion-20 emotion-21"
+            className="emotion-38 emotion-39"
           >
             <a
               href="/back/establishment-opening-date-retroactive"
@@ -852,16 +1206,16 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
             </a>
           </div>
           <h2
-            className="emotion-22"
+            className="emotion-40"
             size={undefined}
           >
             Trading date
           </h2>
           <div
-            className="emotion-24 emotion-25"
+            className="emotion-42 emotion-43"
           >
             <div
-              className="emotion-23"
+              className="emotion-41"
             >
               <p>
                 Establishments begin trading when they first start serving or manufacturing food for customers.
@@ -869,23 +1223,23 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
             </div>
           </div>
           <details
-            className="emotion-30"
+            className="emotion-48"
             id="hiddenTextEstablishment"
           >
             <summary
-              className="emotion-27"
+              className="emotion-45"
             >
               <span
-                className="emotion-26"
+                className="emotion-44"
               >
                 What is an establishment?
               </span>
             </summary>
             <div
-              className="emotion-29"
+              className="emotion-47"
             >
               <div
-                className="emotion-23"
+                className="emotion-41"
               >
                 <p>
                   An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.
@@ -898,14 +1252,14 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
             method="post"
           >
             <div
-              className="emotion-24 emotion-25"
+              className="emotion-42 emotion-43"
             >
               <div
-                className="emotion-43"
+                className="emotion-61"
                 id="establishment_opening_date"
               >
                 <span
-                  className="emotion-31"
+                  className="emotion-49"
                 >
                   <span
                     className="bold"
@@ -914,52 +1268,52 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
                   </span>
                 </span>
                 <span
-                  className="emotion-32"
+                  className="emotion-50"
                 >
                   For example, 14 09 2017
                 </span>
                 <span />
                 <div
-                  className="emotion-42"
+                  className="emotion-60"
                 >
                   <label
-                    className="emotion-35"
+                    className="emotion-53"
                   >
                     <span
-                      className="emotion-31"
+                      className="emotion-49"
                     >
                       Day
                     </span>
                     <input
-                      className="emotion-34"
+                      className="emotion-52"
                       name="day"
                       type="text"
                     />
                   </label>
                   <label
-                    className="emotion-35"
+                    className="emotion-53"
                   >
                     <span
-                      className="emotion-31"
+                      className="emotion-49"
                     >
                       Month
                     </span>
                     <input
-                      className="emotion-34"
+                      className="emotion-52"
                       name="month"
                       type="text"
                     />
                   </label>
                   <label
-                    className="year emotion-35"
+                    className="year emotion-53"
                   >
                     <span
-                      className="emotion-31"
+                      className="emotion-49"
                     >
                       Year
                     </span>
                     <input
-                      className="emotion-34"
+                      className="emotion-52"
                       name="year"
                       type="text"
                     />
@@ -968,7 +1322,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
               </div>
             </div>
             <button
-              className="emotion-46"
+              className="emotion-64"
               disabled={false}
               id="continue-button"
               type="submit"
