@@ -10,7 +10,8 @@ const {
   newRouter,
   qaRouter,
   submitRouter,
-  switchesRouter
+  switchesRouter,
+  setCookieRouter
 } = require("./routes/index");
 
 module.exports = () => {
@@ -25,6 +26,7 @@ module.exports = () => {
   router.use("/qa", qaRouter());
   router.use("/submit", submitRouter());
   router.use("/switches", switchesRouter());
+  router.use("/setcookie", setCookieRouter());
 
   router.get("*", (req, res) => {
     handle(req, res);

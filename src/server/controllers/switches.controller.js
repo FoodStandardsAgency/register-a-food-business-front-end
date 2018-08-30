@@ -38,8 +38,6 @@ const switchesController = (
     newAnswers
   );
 
-  console.log(controllerResponse);
-
   return controllerResponse;
 };
 

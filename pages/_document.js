@@ -33,8 +33,8 @@ export default class MyDocument extends Document {
     const page = renderPage();
     const styles = extractCritical(page.html);
     const gtmAuth = process.env.GTM_AUTH;
-    const switches = req.session.switches;
-    return { ...page, ...styles, gtmAuth, switches };
+    const cookies = req.cookies;
+    return { ...page, ...styles, gtmAuth, cookies };
   }
 
   constructor(props) {
@@ -50,27 +50,7 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           {/* Begin Google Tag Manager and Google cookie deletion script */}
-          {this.props.switches && this.props.switches.cookiesRejected ? (
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `
-                if (typeof window !== "undefined") {
-                  var googleCookies = document.cookie.split(';').filter(function(c) {
-                    return c.trim().indexOf('_g') === 0;
-                  }).map(function(c) {
-                    return c.trim();
-                  });
-
-                  googleCookies.forEach(function(cookie) {
-                    console.log(cookie);
-                    var cookieName = cookie.substr(0, cookie.indexOf('='));
-                    document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-                  })
-                }
-                `
-              }}
-            />
-          ) : (
+          {this.props.cookies.acceptAllCookies === "false" ? null : (
             <script
               dangerouslySetInnerHTML={{
                 __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

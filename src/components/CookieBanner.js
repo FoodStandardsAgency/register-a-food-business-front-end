@@ -1,5 +1,5 @@
 import styled from "react-emotion";
-import { Paragraph, Button } from "govuk-react";
+import { Paragraph, Button, asAnchor } from "govuk-react";
 
 const fontSize = "16px";
 
@@ -27,15 +27,35 @@ const BannerParagraph = styled(Paragraph)`
 
 const BannerRow = styled("div")`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   ${props => (props.justifyRight ? "justify-content: flex-end;" : null)};
+  @media only screen and (min-width: 641px) {
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-end;
+  }
 `;
 
 const BannerActionContainer = styled("div")`
   display: flex;
-  flex-wrap: nowrap;
-  align-items: flex-end;
+  align-items: flex-start;
+  margin-top: 10px;
+  justify-content: space-between;
+  width: 100%;
+  @media only screen and (min-width: 641px) {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    margin-top: 0px;
+    align-items: flex-end;
+  }
+`;
+
+const BannerLinkContainer = styled("div")`
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
 `;
 
 const CookieButton = styled(Button)`
@@ -59,7 +79,7 @@ const CookieButton = styled(Button)`
 `;
 
 const RejectCookiesButton = styled("button")`
-  margin: 0 20px;
+  margin-right: 20px;
   font-size: ${fontSize};
   color: #0b0c0c;
   background-color: transparent;
@@ -67,6 +87,7 @@ const RejectCookiesButton = styled("button")`
   padding: 0;
   text-decoration: underline;
   cursor: pointer;
+  text-align: left;
   &:hover {
     color: #4a4a4a;
   }
@@ -75,55 +96,47 @@ const RejectCookiesButton = styled("button")`
   }
 `;
 
-const CookieBanner = props => (
+const AnchorTag = styled(asAnchor("a"))`
+  padding: 5px;
+  font-size: ${fontSize};
+  @media only screen and (min-width: 641px) {
+    font-size: ${fontSize};
+  }
+`;
+
+const CookieBanner = () => (
   <Banner id="cookieBanner">
-    {props.switches.cookiesRejected ? (
-      <BannerBody>
-        <BannerParagraph mb={2}>
-          You have chosen not to accept optional cookies. This means you will
-          only be using one cookie to save your progress through the
-          registration and create the summary page.
-        </BannerParagraph>
-        <BannerRow justifyRight>
-          <form action="/switches/hideCookieBanner/on/multiPage" method="post">
-            <CookieButton id="cookieClose" type="submit">
-              Close
+    <BannerBody>
+      <BannerParagraph mb={2}>
+        Register a food business uses a cookie to create the registration. We
+        also use optional cookies to analyse how the service is performing. We
+        do not share any information with advertisers or social media platforms.
+        We do not store any information about you in the cookie.
+      </BannerParagraph>
+      <BannerRow>
+        <BannerLinkContainer>
+          <AnchorTag href="https://www.gov.uk/help/cookies">
+            Find out more about cookies
+          </AnchorTag>
+          <AnchorTag href="https://www.food.gov.uk/cookie-policy">
+            Read our cookie policy
+          </AnchorTag>
+        </BannerLinkContainer>
+
+        <BannerActionContainer>
+          <form action="/setcookie/acceptAllCookies/false" method="post">
+            <RejectCookiesButton id="cookieReject" type="submit">
+              I do not accept optional cookies
+            </RejectCookiesButton>
+          </form>
+          <form action="/setcookie/acceptAllCookies/true" method="post">
+            <CookieButton id="cookieAccept" type="submit">
+              I accept cookies
             </CookieButton>
           </form>
-        </BannerRow>
-      </BannerBody>
-    ) : (
-      <BannerBody>
-        <BannerParagraph mb={2}>
-          This website uses cookies. We use cookies to create the registration
-          and analyse how the service is performing. We do not share any
-          information with advertisers or social media platforms. We do not
-          store any information about you in the cookie.
-        </BannerParagraph>
-        <BannerRow>
-          <BannerParagraph mb={0}>
-            [Find our more about what cookies
-            are](https://www.gov.uk/help/cookies) and [read our cookie
-            policy](https://www.food.gov.uk/cookie-policy).
-          </BannerParagraph>
-          <BannerActionContainer>
-            <form action="/switches/cookiesRejected/on/multiPage" method="post">
-              <RejectCookiesButton id="cookieReject" type="submit">
-                I don't accept cookies
-              </RejectCookiesButton>
-            </form>
-            <form
-              action="/switches/hideCookieBanner/on/multiPage"
-              method="post"
-            >
-              <CookieButton id="cookieAccept" type="submit">
-                I accept cookies
-              </CookieButton>
-            </form>
-          </BannerActionContainer>
-        </BannerRow>
-      </BannerBody>
-    )}
+        </BannerActionContainer>
+      </BannerRow>
+    </BannerBody>
   </Banner>
 );
 

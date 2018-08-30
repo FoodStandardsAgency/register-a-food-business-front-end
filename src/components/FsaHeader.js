@@ -34,7 +34,10 @@ const HeaderMain = styled(Main)({
 
 const FsaHeader = props => (
   <StyledHeader>
-    {props.switches.hideCookieBanner ? null : <CookieBanner {...props} />}
+    {props.acceptAllCookies === "true" ||
+    props.acceptAllCookies === "false" ? null : (
+      <CookieBanner />
+    )}
     <TopNav company={Company} serviceTitle={ServiceTitle} />
     <HeaderMain>
       <PhaseBanner level="beta">
