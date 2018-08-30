@@ -168,7 +168,7 @@ const ApplicationComplete = props => {
           Do you qualify for primary authority partnership and how to get one
         </AnchorTag>
       </ContentItem.B_20_20>
-      <SummaryTable {...transformedData} hideChangeButtons={true} />
+      <SummaryTable {...transformedData} applicationCompletePage={true} />
     </FsaLayout>
   );
 };
