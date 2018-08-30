@@ -23,7 +23,10 @@ describe("QA Route: ", () => {
 
         req = {
           session: {
-            council: "original-council"
+            council: "original-council",
+            save: cb => {
+              cb();
+            }
           },
           query: {
             QA_KEY: "abcd",
@@ -62,7 +65,11 @@ describe("QA Route: ", () => {
         handler = router.get.mock.calls[0][1];
 
         req = {
-          session: {},
+          session: {
+            save: cb => {
+              cb();
+            }
+          },
           query: {
             QA_KEY: null,
             registration_role: "Representative",

@@ -32,7 +32,10 @@ describe("Continue route: ", () => {
         session: {
           cumulativeAnswers: {},
           switches: {},
-          council: "council"
+          council: "council",
+          save: cb => {
+            cb();
+          }
         },
         body: "body",
         params: {
@@ -86,7 +89,10 @@ describe("Continue route: ", () => {
           session: {
             cumulativeAnswers: {},
             switches: {},
-            council: "council"
+            council: "council",
+            save: cb => {
+              cb();
+            }
           },
           body: "body",
           params: {
@@ -141,7 +147,10 @@ describe("Continue route: ", () => {
           session: {
             cumulativeAnswers: {},
             switches: {},
-            council: "council"
+            council: "council",
+            save: cb => {
+              cb();
+            }
           },
           body: "body",
           params: {
@@ -159,6 +168,51 @@ describe("Continue route: ", () => {
 
       it("Should call redirect", () => {
         expect(res.redirect).toBeCalledWith("/submit");
+      });
+    });
+
+    describe("given that req.session.save throws an error", () => {
+      let req, res, response;
+      beforeEach(() => {
+        continueController.mockImplementation(() => ({
+          validatorErrors: {},
+          redirectRoute: "/submit",
+          cumulativeAnswers: {
+            new: "answers"
+          },
+          switches: { exampleSwitch: true }
+        }));
+
+        handler = router.post.mock.calls[0][1];
+
+        req = {
+          session: {
+            cumulativeAnswers: {},
+            switches: {},
+            council: "council",
+            save: cb => {
+              cb("session save error");
+            }
+          },
+          body: "body",
+          params: {
+            originator: "originator",
+            editMode: "true"
+          }
+        };
+
+        res = {
+          redirect: jest.fn()
+        };
+        try {
+          handler(req, res);
+        } catch (err) {
+          response = err;
+        }
+      });
+
+      it("Should throw an error", () => {
+        expect(response).toBe("session save error");
       });
     });
   });

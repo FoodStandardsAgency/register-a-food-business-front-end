@@ -36,7 +36,13 @@ const switchesRouter = () => {
       "Routers",
       "/switches/:switchName/:action route"
     );
-    res.redirect("back");
+    req.session.save(err => {
+      if (err) {
+        logEmitter.emit("functionFail", "Routers", "/switches route", err);
+        throw err;
+      }
+      res.redirect("back");
+    });
   });
 
   return router;

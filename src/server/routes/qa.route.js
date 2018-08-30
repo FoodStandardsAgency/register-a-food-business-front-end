@@ -18,7 +18,9 @@ const qaRouter = () => {
         "/qa/:lc/:target route",
         target
       );
-      res.redirect(`/new/${req.session.council}/${target}`);
+      req.session.save(() => {
+        res.redirect(`/new/${req.session.council}/${target}`);
+      });
     } else {
       logEmitter.emit(
         "functionFail",

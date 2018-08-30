@@ -38,7 +38,13 @@ const findAddressRouter = () => {
       "Routers",
       "/findaddress/:originator route"
     );
-    res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
+    req.session.save(err => {
+      if (err) {
+        logEmitter.emit("functionFail", "Routers", "/find-address route", err);
+        throw err;
+      }
+      res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
+    });
   });
 
   return router;
