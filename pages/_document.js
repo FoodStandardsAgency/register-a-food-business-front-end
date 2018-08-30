@@ -49,7 +49,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          {/* Begin Google Tag Manager and cookie deletion script */}
+          {/* Begin Google Tag Manager and Google cookie deletion script */}
           {this.props.switches && this.props.switches.cookiesRejected ? (
             <script
               dangerouslySetInnerHTML={{
