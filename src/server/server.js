@@ -25,12 +25,12 @@ module.exports = async dbUrl => {
     secret: process.env.COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
-    maxAge: 2160000
+    cookie: {
+      maxAge: 86400000
+    }
   };
   if (process.env.COOKIE_SECURE === "true") {
-    sessionOptions.cookie = {
-      secure: true
-    };
+    sessionOptions.cookie.secure = true;
   }
   const options = Object.assign(sessionOptions, storeOptions);
   app.use(session(options));

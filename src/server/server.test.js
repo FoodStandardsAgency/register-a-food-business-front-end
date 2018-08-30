@@ -68,7 +68,7 @@ describe("server: ", () => {
     it("should not call session with secure", async () => {
       process.env.COOKIE_SECURE = false;
       result = await server(undefined);
-      expect(session.mock.calls[0][0].cookie).toBe(undefined);
+      expect(session.mock.calls[0][0].cookie.secure).toBe(undefined);
     });
   });
 });
