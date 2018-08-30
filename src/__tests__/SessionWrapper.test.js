@@ -81,6 +81,14 @@ describe("<SessionWrapper />", () => {
       expect(typeof initialProps.lcConfig).toBe("object");
     });
 
+    it("returns a 'acceptAllCookies' as undefined as part of the initial props", () => {
+      const WrappedComponent = SessionWrapper(ExampleComponent);
+      const initialProps = WrappedComponent.getInitialProps({
+        req: { session: {} }
+      });
+      expect(typeof initialProps.acceptAllCookies).toBe("undefined");
+    });
+
     describe("given a url query that includes an edit value", () => {
       it("returns an editMode value that is true", () => {
         const WrappedComponent = SessionWrapper(ExampleComponent);
@@ -172,13 +180,24 @@ describe("<SessionWrapper />", () => {
     });
 
     describe("given that req.session.addressLookups is undefined", () => {
-      it("props.switches is object with an editMode property", () => {
+      it("props.addressLookups is defined", () => {
         const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {} }
         });
         const componentProps = WrappedComponent(initialProps).props;
         expect(componentProps.addressLookups).toEqual({});
+      });
+    });
+
+    describe("given that req.session.acceptAllCookies is undefined", () => {
+      it("props.acceptAllCookies is defined", () => {
+        const WrappedComponent = SessionWrapper(ExampleComponent);
+        const initialProps = WrappedComponent.getInitialProps({
+          req: { session: {} }
+        });
+        const componentProps = WrappedComponent(initialProps).props;
+        expect(componentProps.acceptAllCookies).toEqual(undefined);
       });
     });
 
@@ -276,7 +295,7 @@ describe("<SessionWrapper />", () => {
     });
 
     describe("given that req.session.addressLookups is defined", () => {
-      it("props.validatorErrors is the same as the session.validatorErrors", () => {
+      it("props.addressLookups is the same as the session.addressLookups", () => {
         const WrappedComponent = SessionWrapper(ExampleComponent);
         const exampleAddressLookup = { test: [] };
         const initialProps = WrappedComponent.getInitialProps({
@@ -284,6 +303,17 @@ describe("<SessionWrapper />", () => {
         });
         const componentProps = WrappedComponent(initialProps).props;
         expect(componentProps.addressLookups).toBe(exampleAddressLookup);
+      });
+    });
+
+    describe("given that req.cookies.acceptAllCookies is defined", () => {
+      it("props.acceptAllCookies is the same as the cookies.acceptAllCookies", () => {
+        const WrappedComponent = SessionWrapper(ExampleComponent);
+        const initialProps = WrappedComponent.getInitialProps({
+          req: { cookies: { acceptAllCookies: "true" } }
+        });
+        const componentProps = WrappedComponent(initialProps).props;
+        expect(componentProps.acceptAllCookies).toBe("true");
       });
     });
   });
