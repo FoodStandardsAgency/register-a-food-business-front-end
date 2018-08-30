@@ -29,11 +29,12 @@ injectGlobal`
 `;
 
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
+  static getInitialProps({ renderPage, req }) {
     const page = renderPage();
     const styles = extractCritical(page.html);
     const gtmAuth = process.env.GTM_AUTH;
-    return { ...page, ...styles, gtmAuth };
+    const switches = req.session.switches;
+    return { ...page, ...styles, gtmAuth, switches };
   }
 
   constructor(props) {
@@ -45,24 +46,45 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    console.log(this.props.switches);
-
     return (
       <html>
         <Head>
-          {this.props.switches && this.props.switches.cookiesRejected ? null : (
+          {/* Begin Google Tag Manager and cookie deletion script */}
+          {this.props.switches && this.props.switches.cookiesRejected ? (
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                if (typeof window !== "undefined") {
+                  var googleCookies = document.cookie.split(';').filter(function(c) {
+                    return c.trim().indexOf('_g') === 0;
+                  }).map(function(c) {
+                    return c.trim();
+                  });
+
+                  googleCookies.forEach(function(cookie) {
+                    console.log(cookie);
+                    var cookieName = cookie.substr(0, cookie.indexOf('='));
+                    document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                  })
+                }
+                `
+              }}
+            />
+          ) : (
             <script
               dangerouslySetInnerHTML={{
                 __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl+ '${
-            this.props.gtmAuth
-          }';f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-PKW3XC7');`
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl+ '${
+              this.props.gtmAuth
+            }';f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-PKW3XC7');
+            `
               }}
             />
           )}
+          {/* End Google Tag Manager script */}
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
