@@ -18,14 +18,20 @@ const newRouter = () => {
   router.get("/:lc/:page?", (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/new route");
     if (allowedCouncils.includes(req.params.lc)) {
-      // Save council to session if not yet there
-      if (!req.session.council) {
-        req.session.council = req.params.lc;
-      }
-
       const page = req.params.page || "index";
 
-      Next.render(req, res, `/${page}`);
+      if (page === "index") {
+        req.session.regenerate(() => {
+          req.session.council = req.params.lc;
+          Next.render(req, res, `/index`);
+        });
+      } else {
+        // Save council to session if not yet there
+        if (!req.session.council) {
+          req.session.council = req.params.lc;
+        }
+        Next.render(req, res, `/${page}`);
+      }
     } else {
       Next.render(req, res, "/unsupported-council");
     }

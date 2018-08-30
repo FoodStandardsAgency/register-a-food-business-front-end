@@ -27,11 +27,17 @@ const continueRouter = () => {
       "/continue route",
       response.redirectRoute
     );
-    if (response.redirectRoute === "/submit") {
-      res.redirect("/submit");
-    } else {
-      res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
-    }
+    req.session.save(err => {
+      if (err) {
+        logEmitter.emit("functionFail", "Routers", "/continue route", err);
+        throw err;
+      }
+      if (response.redirectRoute === "/submit") {
+        res.redirect("/submit");
+      } else {
+        res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
+      }
+    });
   });
 
   return router;
