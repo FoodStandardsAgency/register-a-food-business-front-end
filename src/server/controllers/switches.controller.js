@@ -23,7 +23,7 @@ const switchesController = (
 
   let cleanedPreviousAnswers = Object.assign({}, previousAnswers);
 
-  if (newAnswersArray.length > 0 && currentPage !== "multiPage") {
+  if (newAnswersArray.length > 0) {
     // remove any answers that were previously given a truthy value but have since been emptied
     cleanedPreviousAnswers = cleanEmptiedAnswers(
       previousAnswers,

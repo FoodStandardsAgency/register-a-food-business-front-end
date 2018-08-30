@@ -49,7 +49,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          {/* Begin Google Tag Manager and Google cookie deletion script */}
+          {/* Start Google Tag Manager */}
           {this.props.cookies.acceptAllCookies === "false" ? null : (
             <script
               dangerouslySetInnerHTML={{
@@ -64,7 +64,7 @@ export default class MyDocument extends Document {
               }}
             />
           )}
-          {/* End Google Tag Manager script */}
+          {/* End Google Tag Manager */}
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"

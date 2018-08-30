@@ -30,7 +30,6 @@ const BannerRow = styled("div")`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  ${props => (props.justifyRight ? "justify-content: flex-end;" : null)};
   @media only screen and (min-width: 641px) {
     justify-content: space-between;
     flex-direction: row;

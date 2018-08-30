@@ -16,9 +16,4 @@ describe("<CookieBanner />", () => {
     const tree = renderer.create(<CookieBanner />).toJSON();
     expect(tree).toMatchSnapshot();
   });
-
-  // it("", () => {
-  //   const tree = renderer.create(<CookieBanner />).toJSON();
-  //   expect(tree).toMatchSnapshot();
-  // });
 });
