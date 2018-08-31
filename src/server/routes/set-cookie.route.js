@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 
@@ -8,12 +9,11 @@ const setCookieRouter = () => {
 
     const cookieName = req.params.cookieName;
     const newValue = req.params.newValue;
-
     if (cookieName === "acceptAllCookies") {
       res.cookie("acceptAllCookies", newValue, {
-        // Cookie preferences set to expire after 25 days
-        maxAge: 2160000000
-        // secure: process.env.COOKIE_SECURE === "true"
+        // User's cookie preferences set to expire after 25 days
+        maxAge: 2160000000,
+        secure: process.env.COOKIE_SECURE === "true"
       });
 
       if (newValue === "false") {
