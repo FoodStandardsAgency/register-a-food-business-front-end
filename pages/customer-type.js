@@ -9,7 +9,7 @@ import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const CustomerType = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton editMode={props.editMode} originator="customer-type" />
     <Header level={2}>Who will this establishment supply food to?</Header>
     <Paragraph>Select all that apply</Paragraph>

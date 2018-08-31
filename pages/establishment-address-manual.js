@@ -17,7 +17,7 @@ import {
 import PropTypes from "prop-types";
 
 const EstablishmentAddress = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton
       editMode={props.editMode}
       href={

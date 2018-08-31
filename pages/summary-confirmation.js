@@ -28,7 +28,7 @@ const ApplicationComplete = props => {
   `;
 
   return (
-    <FsaLayout>
+    <FsaLayout {...props}>
       <Header level={2}>Submission complete</Header>
       <Paragraph>
         Thank you for submitting your food business registration.

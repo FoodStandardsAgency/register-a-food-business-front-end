@@ -4,6 +4,7 @@ const express = require("express");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const { info } = require("winston");
 const routes = require("./routes");
 const { Next } = require("./next");
@@ -26,15 +27,20 @@ module.exports = async dbUrl => {
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 86400000
+      // Session cookie set to expire after 24 hours
+      maxAge: 86400000,
+      httpOnly: true
     }
   };
+
   if (process.env.COOKIE_SECURE === "true") {
     sessionOptions.cookie.secure = true;
   }
+
   const options = Object.assign(sessionOptions, storeOptions);
   app.set("trust proxy", 1);
   app.use(session(options));
+  app.use(cookieParser());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 

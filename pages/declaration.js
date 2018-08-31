@@ -9,7 +9,7 @@ import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const Declaration = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <form action={`/continue/declaration/${props.editMode}`} method="post">
       <BackButton editMode={props.editMode} originator="declaration" />
       <Header level={2}>Declaration</Header>

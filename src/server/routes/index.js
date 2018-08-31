@@ -7,6 +7,7 @@ const { newRouter } = require("./new.route");
 const { qaRouter } = require("./qa.route");
 const { submitRouter } = require("./submit.route");
 const { switchesRouter } = require("./switches.route");
+const { setCookieRouter } = require("./set-cookie.route");
 
 module.exports = {
   backRouter,
@@ -17,5 +18,6 @@ module.exports = {
   newRouter,
   qaRouter,
   submitRouter,
-  switchesRouter
+  switchesRouter,
+  setCookieRouter
 };

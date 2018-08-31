@@ -17,6 +17,7 @@ const newRouter = () => {
 
   router.get("/:lc/:page?", (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/new route");
+
     if (allowedCouncils.includes(req.params.lc)) {
       const page = req.params.page || "index";
 

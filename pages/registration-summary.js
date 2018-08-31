@@ -17,7 +17,7 @@ const RegistrationSummary = props => {
   );
 
   return (
-    <FsaLayout>
+    <FsaLayout {...props}>
       <BackButton editMode={props.editMode} originator="registration-summary" />
       <Header level={2}>Check your answers</Header>
 

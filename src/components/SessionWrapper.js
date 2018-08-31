@@ -32,7 +32,11 @@ const SessionWrapper = Page => {
       addressLookups:
         req && req.session && req.session.addressLookups
           ? req.session.addressLookups
-          : {}
+          : {},
+      acceptAllCookies:
+        req && req.cookies && req.cookies.acceptAllCookies
+          ? req.cookies.acceptAllCookies
+          : undefined
     };
 
     req && req.query && req.query.edit === "on"

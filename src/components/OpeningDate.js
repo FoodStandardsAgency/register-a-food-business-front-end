@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 const OpeningDate = props => {
   return (
-    <FsaLayout>
+    <FsaLayout {...props}>
       {props.cumulativeAnswers.establishment_opening_status ===
       "Establishment is not trading yet" ? (
         <BackButton
