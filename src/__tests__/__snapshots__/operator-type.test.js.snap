@@ -122,6 +122,7 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+  margin-right: 20px;
 }
 
 .emotion-2 {
@@ -1047,6 +1048,7 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
               className="emotion-2 emotion-3"
               disabled={undefined}
               href="https://www.gov.uk/help/cookies"
+              id="cookieInfo"
               onClick={undefined}
             >
               Find out more about cookies
@@ -1055,6 +1057,7 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
               className="emotion-2 emotion-3"
               disabled={undefined}
               href="https://www.food.gov.uk/cookie-policy"
+              id="cookiePolicy"
               onClick={undefined}
             >
               Read our cookie policy
