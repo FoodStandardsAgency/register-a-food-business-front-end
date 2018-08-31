@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.35.1 - 31st August 2018 (unreleased)
+
+### Modified
+
+* Fixed white border around app in production mode
+
 ## v1.35.0 - 30th August 2018 (unreleased)
 
 ### Added
