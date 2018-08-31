@@ -1,6 +1,6 @@
 {
   "name": "register_a_food_business_front_end",
-  "version": "1.35.0",
+  "version": "1.35.1",
   "scripts": {
     "debug": "node --inspect src/server/index.js",
     "dev": "node src/server/index.js",
@@ -45,7 +45,6 @@
     "jsonschema": "1.2.4",
     "next": "6.1.1",
     "node-fetch": "2.1.2",
-    "normalize.css": "8.0.0",
     "prop-types": "15.6.1",
     "react": "16.3.2",
     "react-dom": "16.3.2",
