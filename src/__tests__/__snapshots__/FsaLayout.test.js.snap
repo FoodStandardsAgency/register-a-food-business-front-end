@@ -689,6 +689,7 @@ exports[`<FsaLayout /> matches the previous snapshot 1`] = `
               href="https://www.gov.uk/help/cookies"
               id="cookieInfo"
               onClick={undefined}
+              target="_blank"
             >
               Find out more about cookies
             </a>
@@ -698,6 +699,7 @@ exports[`<FsaLayout /> matches the previous snapshot 1`] = `
               href="https://www.food.gov.uk/cookie-policy"
               id="cookiePolicy"
               onClick={undefined}
+              target="_blank"
             >
               Read our cookie policy
             </a>
@@ -707,7 +709,7 @@ exports[`<FsaLayout /> matches the previous snapshot 1`] = `
           >
             <form
               action="/setcookie/acceptAllCookies/false"
-              method="post"
+              method="get"
             >
               <button
                 className="emotion-8 emotion-9"
@@ -719,7 +721,7 @@ exports[`<FsaLayout /> matches the previous snapshot 1`] = `
             </form>
             <form
               action="/setcookie/acceptAllCookies/true"
-              method="post"
+              method="get"
             >
               <button
                 className="emotion-10 emotion-11"

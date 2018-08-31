@@ -115,24 +115,29 @@ const CookieBanner = () => (
       </BannerParagraph>
       <BannerRow>
         <BannerLinkContainer>
-          <AnchorTag id="cookieInfo" href="https://www.gov.uk/help/cookies">
+          <AnchorTag
+            id="cookieInfo"
+            href="https://www.gov.uk/help/cookies"
+            target="_blank"
+          >
             Find out more about cookies
           </AnchorTag>
           <AnchorTag
             id="cookiePolicy"
             href="https://www.food.gov.uk/cookie-policy"
+            target="_blank"
           >
             Read our cookie policy
           </AnchorTag>
         </BannerLinkContainer>
 
         <BannerActionContainer>
-          <form action="/setcookie/acceptAllCookies/false" method="post">
+          <form action="/setcookie/acceptAllCookies/false" method="get">
             <RejectCookiesButton id="cookieReject" type="submit">
               I do not accept optional cookies
             </RejectCookiesButton>
           </form>
-          <form action="/setcookie/acceptAllCookies/true" method="post">
+          <form action="/setcookie/acceptAllCookies/true" method="get">
             <CookieButton id="cookieAccept" type="submit">
               I accept cookies
             </CookieButton>

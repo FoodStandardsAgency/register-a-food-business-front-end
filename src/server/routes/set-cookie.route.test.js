@@ -12,71 +12,36 @@ describe("Set Cookie route: ", () => {
     router = setCookieRouter();
   });
 
-  describe("POST to /setcookie/:cookieName/:newValue", () => {
+  describe("GET to /setcookie/:cookieName/:newValue", () => {
     describe("When cookieName is 'acceptAllCookies'", () => {
       describe("When newValue is 'true'", () => {
-        describe("When COOKIE_SECURE is true", () => {
-          let res, req;
+        let res, req;
 
-          beforeEach(() => {
-            process.env.COOKIE_SECURE = "true";
-            handler = router.post.mock.calls[0][1];
-            req = {
-              params: { cookieName: "acceptAllCookies", newValue: "true" }
-            };
-            res = {
-              redirect: jest.fn(),
-              cookie: jest.fn()
-            };
-            res.cookie.mockClear();
-            res.redirect.mockClear();
-            handler(req, res);
-          });
-
-          it("should call res.cookie once with 'acceptAllCookies', the new value, a max age of 25 days, and secure as true", () => {
-            expect(res.cookie).toHaveBeenCalledTimes(1);
-            expect(res.cookie).toHaveBeenLastCalledWith(
-              "acceptAllCookies",
-              "true",
-              { maxAge: 2160000000, secure: true }
-            );
-          });
-
-          it("should call res.redirect with 'back'", () => {
-            expect(res.redirect).toHaveBeenCalledWith("back");
-          });
+        beforeEach(() => {
+          handler = router.get.mock.calls[0][1];
+          req = {
+            params: { cookieName: "acceptAllCookies", newValue: "true" }
+          };
+          res = {
+            redirect: jest.fn(),
+            cookie: jest.fn()
+          };
+          res.cookie.mockClear();
+          res.redirect.mockClear();
+          handler(req, res);
         });
 
-        describe("When COOKIE_SECURE is false", () => {
-          let res, req;
+        it("should call res.cookie once with 'acceptAllCookies', the new value, a max age of 25 days", () => {
+          expect(res.cookie).toHaveBeenCalledTimes(1);
+          expect(res.cookie).toHaveBeenLastCalledWith(
+            "acceptAllCookies",
+            "true",
+            { maxAge: 2160000000 }
+          );
+        });
 
-          beforeEach(() => {
-            process.env.COOKIE_SECURE = "false";
-            handler = router.post.mock.calls[0][1];
-            req = {
-              params: { cookieName: "acceptAllCookies", newValue: "true" }
-            };
-            res = {
-              redirect: jest.fn(),
-              cookie: jest.fn()
-            };
-            res.cookie.mockClear();
-            res.redirect.mockClear();
-            handler(req, res);
-          });
-
-          it("should call res.cookie once with 'acceptAllCookies', the new value, a max age of 25 days, and secure as false", () => {
-            expect(res.cookie).toHaveBeenCalledTimes(1);
-            expect(res.cookie).toHaveBeenLastCalledWith(
-              "acceptAllCookies",
-              "true",
-              { maxAge: 2160000000, secure: false }
-            );
-          });
-
-          it("should call res.redirect with 'back'", () => {
-            expect(res.redirect).toHaveBeenCalledWith("back");
-          });
+        it("should call res.redirect with 'back'", () => {
+          expect(res.redirect).toHaveBeenCalledWith("back");
         });
       });
 
@@ -85,7 +50,7 @@ describe("Set Cookie route: ", () => {
 
         beforeEach(() => {
           process.env.COOKIE_SECURE = "true";
-          handler = router.post.mock.calls[0][1];
+          handler = router.get.mock.calls[0][1];
           req = {
             params: { cookieName: "acceptAllCookies", newValue: "false" },
             cookies: {
@@ -103,10 +68,9 @@ describe("Set Cookie route: ", () => {
           handler(req, res);
         });
 
-        it("should call res.cookie with 'acceptAllCookies', the new value, a max age of 25 days, and secure as whichever value was chosen", () => {
+        it("should call res.cookie with 'acceptAllCookies', the new value, a max age of 25 days", () => {
           expect(res.cookie).toHaveBeenCalledWith("acceptAllCookies", "false", {
-            maxAge: 2160000000,
-            secure: true
+            maxAge: 2160000000
           });
         });
 
@@ -130,9 +94,10 @@ describe("Set Cookie route: ", () => {
       let res, req;
 
       beforeEach(() => {
-        process.env.COOKIE_SECURE = "false";
-        handler = router.post.mock.calls[0][1];
-        req = { params: { cookieName: "notRecognised", newValue: "true" } };
+        handler = router.get.mock.calls[0][1];
+        req = {
+          params: { cookieName: "notRecognised", newValue: "true" }
+        };
         res = {
           redirect: jest.fn(),
           cookie: jest.fn()

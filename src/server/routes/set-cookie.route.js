@@ -4,7 +4,7 @@ const { logEmitter } = require("../services/logging.service");
 
 const setCookieRouter = () => {
   const router = Router();
-  router.post("/:cookieName/:newValue", (req, res) => {
+  router.get("/:cookieName/:newValue", (req, res) => {
     logEmitter.emit("functionCall", "Routers", "/cookie/:cookieName route");
 
     const cookieName = req.params.cookieName;
@@ -12,8 +12,7 @@ const setCookieRouter = () => {
     if (cookieName === "acceptAllCookies") {
       res.cookie("acceptAllCookies", newValue, {
         // User's cookie preferences set to expire after 25 days
-        maxAge: 2160000000,
-        secure: process.env.COOKIE_SECURE === "true"
+        maxAge: 2160000000
       });
 
       if (newValue === "false") {
