@@ -55,6 +55,7 @@ const BannerLinkContainer = styled("div")`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  margin-right: 20px;
 `;
 
 const CookieButton = styled(Button)`
@@ -114,10 +115,13 @@ const CookieBanner = () => (
       </BannerParagraph>
       <BannerRow>
         <BannerLinkContainer>
-          <AnchorTag href="https://www.gov.uk/help/cookies">
+          <AnchorTag id="cookieInfo" href="https://www.gov.uk/help/cookies">
             Find out more about cookies
           </AnchorTag>
-          <AnchorTag href="https://www.food.gov.uk/cookie-policy">
+          <AnchorTag
+            id="cookiePolicy"
+            href="https://www.food.gov.uk/cookie-policy"
+          >
             Read our cookie policy
           </AnchorTag>
         </BannerLinkContainer>
