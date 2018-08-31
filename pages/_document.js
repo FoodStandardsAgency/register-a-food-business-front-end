@@ -8,7 +8,7 @@
 import Document, { Head, Main, NextScript } from "next/document";
 import { extractCritical } from "emotion-server";
 import { hydrate, injectGlobal } from "react-emotion";
-import "normalize.css/normalize.css";
+import NormalizeCSS from "../src/components/NormalizeCSS";
 
 // Adds server generated styles to emotion cache.
 // '__NEXT_DATA__.ids' is set in '_document.js'
@@ -17,6 +17,7 @@ if (typeof window !== "undefined" && typeof __NEXT_DATA__ !== "undefined") {
 }
 
 injectGlobal`
+  ${NormalizeCSS}
   html, body {
     font-family: sans-serif;
     font-size: 19px;

@@ -15,10 +15,8 @@
     "test:securityall": "snyk wizard",
     "test:security": "snyk wizard --severity-threshold=medium",
     "lint": "eslint ./src ./pages",
-    "format:verify":
-      "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
-    "format":
-      "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'"
+    "format:verify": "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
+    "format": "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'"
   },
   "dependencies": {
     "@babel/core": "7.0.0-rc.1",
@@ -45,7 +43,6 @@
     "jsonschema": "1.2.4",
     "next": "6.1.1",
     "node-fetch": "2.1.2",
-    "normalize.css": "8.0.0",
     "prop-types": "15.6.1",
     "react": "16.3.2",
     "react-dom": "16.3.2",
