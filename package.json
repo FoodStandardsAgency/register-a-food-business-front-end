@@ -14,7 +14,7 @@
     "test:contract": "jest tests/contract/*.js",
     "test:securityallWizard": "snyk wizard",
     "test:securityWizard": "snyk wizard --severity-threshold=medium",
-    "test:security": "snyk test --severity-threshold=medium",
+    "test:security": "snyk auth && snyk test --severity-threshold=medium",
     "lint": "eslint ./src ./pages",
     "format:verify":
       "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
