@@ -605,12 +605,12 @@ exports[`<OperatorCompanyDetails /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-70 {
+.emotion-68 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-68 {
+.emotion-66 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -623,7 +623,7 @@ exports[`<OperatorCompanyDetails /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-68 {
+  .emotion-66 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -631,7 +631,7 @@ exports[`<OperatorCompanyDetails /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-67 {
+.emotion-65 {
   background: transparent;
   margin: 0 0 15px;
   text-indent: 0px;
@@ -639,22 +639,22 @@ exports[`<OperatorCompanyDetails /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-67 {
+  .emotion-65 {
     width: 100%;
     margin: 0 15px;
   }
 
-  .emotion-67:first-child {
+  .emotion-65:first-child {
     margin-left: 0;
   }
 
-  .emotion-67:last-child {
+  .emotion-65:last-child {
     margin-right: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-67 {
+  .emotion-65 {
     width: 66.6667%;
   }
 }
@@ -994,7 +994,7 @@ exports[`<OperatorCompanyDetails /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-66 {
+.emotion-64 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -1029,34 +1029,34 @@ exports[`<OperatorCompanyDetails /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-66:hover {
+.emotion-64:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-66:focus {
+.emotion-64:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-66:active {
+.emotion-64:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-66:visited {
+.emotion-64:visited {
   color: #00823b;
 }
 
-.emotion-66 svg {
+.emotion-64 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-66 {
+  .emotion-64 {
     margin-bottom: 20px;
   }
 }
@@ -1231,7 +1231,7 @@ exports[`<OperatorCompanyDetails /> matches the previous snapshot 1`] = `
           >
             beta
           </strong>
-          This is a prototype -
+          This is a new service -
            
           <a
             className="emotion-23"
@@ -1248,16 +1248,16 @@ exports[`<OperatorCompanyDetails /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-70"
+    className="emotion-68"
   >
     <div
       className="emotion-35"
     >
       <div
-        className="emotion-68"
+        className="emotion-66"
       >
         <div
-          className="emotion-67"
+          className="emotion-65"
         >
           <div
             className="emotion-40 emotion-41"
@@ -1309,91 +1309,87 @@ exports[`<OperatorCompanyDetails /> matches the previous snapshot 1`] = `
             <div
               className="emotion-52 emotion-53"
             >
-              <div
-                className="emotion-52 emotion-53"
+              <label
+                className="emotion-51"
+                id="operator_company_name"
               >
-                <label
-                  className="emotion-51"
-                  id="operator_company_name"
+                <span
+                  className="emotion-48"
                 >
-                  <span
-                    className="emotion-48"
-                  >
-                    Registered company name
-                  </span>
-                  <span
-                    className="emotion-49"
-                  >
-                    The name of the registered company that is acting as the operator of this food business.
-                  </span>
-                  <input
-                    autoComplete="organization"
-                    className="emotion-50"
-                    defaultValue={undefined}
-                    name="operator_company_name"
-                    type="text"
-                  />
-                </label>
-              </div>
-              <div
-                className="emotion-52 emotion-53"
-              >
-                <label
-                  className="emotion-51"
-                  id="operator_company_house_number"
+                  Registered company name
+                </span>
+                <span
+                  className="emotion-49"
                 >
-                  <span
-                    className="emotion-48"
-                  >
-                    Companies House number
-                  </span>
-                  <span
-                    className="emotion-49"
-                  >
-                    Every registered company will have a Companies House reference number.
-                  </span>
-                  <input
-                    autoComplete="off"
-                    className="emotion-50"
-                    defaultValue={undefined}
-                    name="operator_company_house_number"
-                    type="text"
-                  />
-                </label>
-              </div>
-              <details
-                className="emotion-63"
-              >
-                <summary
-                  className="emotion-61"
-                >
-                  <span
-                    className="emotion-60"
-                  >
-                    Questions about Companies House numbers
-                  </span>
-                </summary>
-                <div
-                  className="emotion-62"
-                >
-                  <span>
-                    Every limited company has to be registered with Companies House, and will have a company reference number. You can find your company reference number by visiting the
-                     
-                    <a
-                      href="https://beta.companieshouse.gov.uk/"
-                      id="link-companies-house"
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      Companies House website
-                    </a>
-                    .
-                  </span>
-                </div>
-              </details>
+                  The name of the registered company that is acting as the operator of this food business.
+                </span>
+                <input
+                  autoComplete="organization"
+                  className="emotion-50"
+                  defaultValue={undefined}
+                  name="operator_company_name"
+                  type="text"
+                />
+              </label>
             </div>
+            <div
+              className="emotion-52 emotion-53"
+            >
+              <label
+                className="emotion-51"
+                id="operator_company_house_number"
+              >
+                <span
+                  className="emotion-48"
+                >
+                  Companies House number
+                </span>
+                <span
+                  className="emotion-49"
+                >
+                  Every registered company will have a Companies House reference number.
+                </span>
+                <input
+                  autoComplete="off"
+                  className="emotion-50"
+                  defaultValue={undefined}
+                  name="operator_company_house_number"
+                  type="text"
+                />
+              </label>
+            </div>
+            <details
+              className="emotion-63"
+            >
+              <summary
+                className="emotion-61"
+              >
+                <span
+                  className="emotion-60"
+                >
+                  I don't know my Companies House number
+                </span>
+              </summary>
+              <div
+                className="emotion-62"
+              >
+                <span>
+                  Every limited company has to be registered with Companies House, and will have a company reference number. You can find your company reference number by visiting the
+                   
+                  <a
+                    href="https://beta.companieshouse.gov.uk/"
+                    id="link-companies-house"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Companies House website
+                  </a>
+                  .
+                </span>
+              </div>
+            </details>
             <button
-              className="emotion-66"
+              className="emotion-64"
               disabled={false}
               id="continue-button"
               type="submit"

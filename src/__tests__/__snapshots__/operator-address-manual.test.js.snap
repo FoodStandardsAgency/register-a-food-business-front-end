@@ -605,12 +605,12 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-79 {
+.emotion-82 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-77 {
+.emotion-80 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -623,7 +623,7 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-77 {
+  .emotion-80 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -631,7 +631,7 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-76 {
+.emotion-79 {
   background: transparent;
   margin: 0 0 15px;
   text-indent: 0px;
@@ -639,22 +639,22 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-76 {
+  .emotion-79 {
     width: 100%;
     margin: 0 15px;
   }
 
-  .emotion-76:first-child {
+  .emotion-79:first-child {
     margin-left: 0;
   }
 
-  .emotion-76:last-child {
+  .emotion-79:last-child {
     margin-right: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-76 {
+  .emotion-79 {
     width: 66.6667%;
   }
 }
@@ -669,12 +669,12 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-52 {
+.emotion-55 {
   margin-bottom: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-52 {
+  .emotion-55 {
     margin-bottom: 30px;
   }
 }
@@ -826,6 +826,42 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
 }
 
 .emotion-49 {
+  padding-bottom: 30px;
+}
+
+@media only screen and (max-width:641px) {
+  .emotion-49 {
+    padding-bottom: 15px;
+  }
+}
+
+.emotion-48 {
+  display: block;
+  font-family: "nta",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  text-transform: none;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #6f777b;
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-48 {
+    font-size: 19px;
+    line-height: 1.3;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-48 {
+    margin-bottom: 0;
+  }
+}
+
+.emotion-52 {
   display: inline-block;
   cursor: pointer;
   color: #005ea5;
@@ -835,23 +871,23 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   margin-bottom: 5px;
 }
 
-.emotion-49:hover {
+.emotion-52:hover {
   color: #2b8cc4;
 }
 
-.emotion-49:focus {
+.emotion-52:focus {
   outline: 4px solid #ffbf47;
   background: #ffbf47;
 }
 
-.emotion-48 {
+.emotion-51 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
 }
 
-.emotion-51 {
+.emotion-54 {
   box-sizing: border-box;
   border-left-style: solid;
   border-left-width: 5px;
@@ -861,12 +897,12 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-51 {
+  .emotion-54 {
     margin-bottom: 0;
   }
 }
 
-.emotion-50 {
+.emotion-53 {
   font-family: "nta",Arial,sans-serif;
   margin: 0;
   font-size: 16px;
@@ -874,11 +910,11 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   margin-bottom: 0;
 }
 
-.emotion-50 > p {
+.emotion-53 > p {
   margin: 0;
 }
 
-.emotion-50 > p > code {
+.emotion-53 > p > code {
   padding: 0.2em 0.4em;
   margin: 0px;
   font-size: 85%;
@@ -886,7 +922,7 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   border-radius: 3px;
 }
 
-.emotion-50 > pre {
+.emotion-53 > pre {
   padding: 16px;
   overflow: auto;
   font-size: 85%;
@@ -895,7 +931,7 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   border-radius: 3px;
 }
 
-.emotion-50 > pre > code {
+.emotion-53 > pre > code {
   display: inline;
   padding: 0px;
   margin: 0px;
@@ -906,29 +942,19 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-50 {
+  .emotion-53 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-50 {
+  .emotion-53 {
     margin-bottom: 0;
   }
 }
 
-.emotion-56 {
-  padding-bottom: 30px;
-}
-
-@media only screen and (max-width:641px) {
-  .emotion-56 {
-    padding-bottom: 15px;
-  }
-}
-
-.emotion-55 {
+.emotion-58 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -941,25 +967,25 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   margin-bottom: 0;
 }
 
-.emotion-55:after {
+.emotion-58:after {
   content: '';
   display: table;
   clear: both;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-55 {
+  .emotion-58 {
     margin-bottom: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-55 {
+  .emotion-58 {
     margin-bottom: 0;
   }
 }
 
-.emotion-53 {
+.emotion-56 {
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -974,19 +1000,19 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-53 {
+  .emotion-56 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-53 {
+  .emotion-56 {
     margin-bottom: 0;
   }
 }
 
-.emotion-54 {
+.emotion-57 {
   box-sizing: border-box;
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -1002,25 +1028,25 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-54 {
+  .emotion-57 {
     font-size: 19px;
     line-height: 1.3;
     width: 50%;
   }
 }
 
-.emotion-54:focus {
+.emotion-57:focus {
   outline: 3px solid #ffbf47;
   outline-offset: 0;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-54 {
+  .emotion-57 {
     margin-bottom: 0;
   }
 }
 
-.emotion-75 {
+.emotion-78 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -1055,34 +1081,34 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-75:hover {
+.emotion-78:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-75:focus {
+.emotion-78:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-75:active {
+.emotion-78:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-75:visited {
+.emotion-78:visited {
   color: #00823b;
 }
 
-.emotion-75 svg {
+.emotion-78 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-75 {
+  .emotion-78 {
     margin-bottom: 20px;
   }
 }
@@ -1257,7 +1283,7 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
           >
             beta
           </strong>
-          This is a prototype -
+          This is a new service -
            
           <a
             className="emotion-23"
@@ -1274,16 +1300,16 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-79"
+    className="emotion-82"
   >
     <div
       className="emotion-35"
     >
       <div
-        className="emotion-77"
+        className="emotion-80"
       >
         <div
-          className="emotion-76"
+          className="emotion-79"
         >
           <div
             className="emotion-40 emotion-41"
@@ -1328,23 +1354,32 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
           >
             What is the operator's address?
           </h2>
+          <div
+            className="emotion-49 emotion-50"
+          >
+            <span
+              className="emotion-48"
+            >
+              Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company.
+            </span>
+          </div>
           <details
-            className="emotion-52"
+            className="emotion-55"
           >
             <summary
-              className="emotion-49"
+              className="emotion-52"
             >
               <span
-                className="emotion-48"
+                className="emotion-51"
               >
                 What is a food business operator?
               </span>
             </summary>
             <div
-              className="emotion-51"
+              className="emotion-54"
             >
               <div
-                className="emotion-50"
+                className="emotion-53"
               >
                 <p>
                   The food business operator is the person, charity or company who makes the decisions about the food business, what it serves and how it operates.
@@ -1357,23 +1392,23 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
             method="post"
           >
             <div
-              className="emotion-56 emotion-57"
+              className="emotion-49 emotion-50"
             >
               <div
-                className="emotion-56 emotion-57"
+                className="emotion-49 emotion-50"
               >
                 <label
-                  className="emotion-55"
+                  className="emotion-58"
                   id="operator_first_line"
                 >
                   <span
-                    className="emotion-53"
+                    className="emotion-56"
                   >
                     First line of address
                   </span>
                   <input
                     autoComplete="address-line1"
-                    className="emotion-54"
+                    className="emotion-57"
                     defaultValue={undefined}
                     name="operator_first_line"
                     type="text"
@@ -1381,20 +1416,20 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
                 </label>
               </div>
               <div
-                className="emotion-56 emotion-57"
+                className="emotion-49 emotion-50"
               >
                 <label
-                  className="emotion-55"
+                  className="emotion-58"
                   id="operator_street"
                 >
                   <span
-                    className="emotion-53"
+                    className="emotion-56"
                   >
                     Street (optional)
                   </span>
                   <input
                     autoComplete="address-line2"
-                    className="emotion-54"
+                    className="emotion-57"
                     defaultValue={undefined}
                     name="operator_street"
                     type="text"
@@ -1402,20 +1437,20 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
                 </label>
               </div>
               <div
-                className="emotion-56 emotion-57"
+                className="emotion-49 emotion-50"
               >
                 <label
-                  className="emotion-55"
+                  className="emotion-58"
                   id="operator_town"
                 >
                   <span
-                    className="emotion-53"
+                    className="emotion-56"
                   >
                     Town or city (optional)
                   </span>
                   <input
                     autoComplete="locality"
-                    className="emotion-54"
+                    className="emotion-57"
                     defaultValue={undefined}
                     name="operator_town"
                     type="text"
@@ -1423,20 +1458,20 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
                 </label>
               </div>
               <div
-                className="emotion-56 emotion-57"
+                className="emotion-49 emotion-50"
               >
                 <label
-                  className="emotion-55"
+                  className="emotion-58"
                   id="operator_postcode"
                 >
                   <span
-                    className="emotion-53"
+                    className="emotion-56"
                   >
                     Postcode
                   </span>
                   <input
                     autoComplete="postal-code"
-                    className="emotion-54"
+                    className="emotion-57"
                     defaultValue={undefined}
                     name="operator_postcode"
                     type="text"
@@ -1445,7 +1480,7 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
               </div>
             </div>
             <button
-              className="emotion-75"
+              className="emotion-78"
               disabled={false}
               id="continue-button"
               type="submit"

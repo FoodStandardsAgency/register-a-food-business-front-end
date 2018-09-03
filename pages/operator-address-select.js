@@ -5,7 +5,14 @@ import {
   BackButton,
   ContinueButton
 } from "../src/components";
-import { Header, HiddenText, Paragraph, Select, asAnchor } from "govuk-react";
+import {
+  Header,
+  HiddenText,
+  Paragraph,
+  Select,
+  asAnchor,
+  HintText
+} from "govuk-react";
 import PropTypes from "prop-types";
 
 const AnchorTag = asAnchor("a");
@@ -17,6 +24,13 @@ const OperatorAddressLookup = props => (
       originator="operator-address-select"
     />
     <Header level={2}>What is the operator's address?</Header>
+    <ContentItem.B_30_15>
+      <HintText>
+        Operator address is the contact address for the operator. For example
+        home address for a sole trader or headquarters address for a limited
+        company.
+      </HintText>
+    </ContentItem.B_30_15>
 
     <HiddenText
       id="hiddenTextFBO"
@@ -61,17 +75,9 @@ const OperatorAddressLookup = props => (
             <option>No addresses found</option>
           )}
         </Select>
-
-        <HiddenText
-          id="hiddenTextCantFindAddress"
-          summaryText={"I can't find my address in the list"}
-        >
-          <Paragraph mb={0}>
-            If your postcode is correct but you can't find your address in the
-            list, you can [enter your address
-            manually](./operator-address-manual) instead.
-          </Paragraph>
-        </HiddenText>
+        <AnchorTag id="cantFindAddressLink" href="/operator-address-manual">
+          I can't find my address in the list
+        </AnchorTag>
       </ContentItem.B_30_15>
 
       <ContinueButton editMode={props.switches.editMode} />

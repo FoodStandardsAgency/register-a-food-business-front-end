@@ -66,16 +66,12 @@ const EstablishmentAddressLookup = props => (
           )}
         </Select>
 
-        <HiddenText
-          id="hiddenTextCantFindAddress"
-          summaryText={"I can't find my address in the list"}
+        <AnchorTag
+          id="cantFindAddressLink"
+          href="/establishment-address-manual"
         >
-          <Paragraph mb={0}>
-            If your postcode is correct but you can't find your address in the
-            list, you can [enter your address
-            manually](./establishment-address-manual) instead.
-          </Paragraph>
-        </HiddenText>
+          I can't find my address in the list
+        </AnchorTag>
       </ContentItem.B_30_15>
 
       <ContinueButton editMode={props.switches.editMode} />

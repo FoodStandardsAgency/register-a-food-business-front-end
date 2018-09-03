@@ -6,7 +6,7 @@ import {
   ContinueButton,
   SummaryTable
 } from "../src/components";
-import { Header } from "govuk-react";
+import { Header, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 import { transformAnswersForSummary } from "../src/server/services/data-transform.service";
 
@@ -19,8 +19,10 @@ const RegistrationSummary = props => {
   return (
     <FsaLayout {...props}>
       <BackButton editMode={props.editMode} originator="registration-summary" />
-      <Header level={2}>Check your answers</Header>
-
+      <ContentItem.B_30_15>
+        <Header level={2}>Check your answers</Header>
+        <HintText>You must check your answers before you continue</HintText>
+      </ContentItem.B_30_15>
       <ContentItem.B_30_15>
         <SummaryTable {...transformedData} />
       </ContentItem.B_30_15>

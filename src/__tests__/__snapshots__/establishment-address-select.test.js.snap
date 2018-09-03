@@ -605,12 +605,12 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-69 {
+.emotion-64 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-67 {
+.emotion-62 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -623,7 +623,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-67 {
+  .emotion-62 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -631,7 +631,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-66 {
+.emotion-61 {
   background: transparent;
   margin: 0 0 15px;
   text-indent: 0px;
@@ -639,22 +639,22 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-66 {
+  .emotion-61 {
     width: 100%;
     margin: 0 15px;
   }
 
-  .emotion-66:first-child {
+  .emotion-61:first-child {
     margin-left: 0;
   }
 
-  .emotion-66:last-child {
+  .emotion-61:last-child {
     margin-right: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-66 {
+  .emotion-61 {
     width: 66.6667%;
   }
 }
@@ -955,19 +955,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   outline-offset: 0;
 }
 
-.emotion-59 {
-  color: #005ea5;
-}
-
-.emotion-59:hover {
-  color: #2b8cc4;
-}
-
-.emotion-59:visited {
-  color: #4c2c92;
-}
-
-.emotion-65 {
+.emotion-60 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -1002,34 +990,34 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-65:hover {
+.emotion-60:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-65:focus {
+.emotion-60:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-65:active {
+.emotion-60:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-65:visited {
+.emotion-60:visited {
   color: #00823b;
 }
 
-.emotion-65 svg {
+.emotion-60 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-65 {
+  .emotion-60 {
     margin-bottom: 20px;
   }
 }
@@ -1204,7 +1192,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
           >
             beta
           </strong>
-          This is a prototype -
+          This is a new service -
            
           <a
             className="emotion-23"
@@ -1221,16 +1209,16 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-69"
+    className="emotion-64"
   >
     <div
       className="emotion-35"
     >
       <div
-        className="emotion-67"
+        className="emotion-62"
       >
         <div
-          className="emotion-66"
+          className="emotion-61"
         >
           <div
             className="emotion-40 emotion-41"
@@ -1329,41 +1317,18 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
                   </option>
                 </select>
               </label>
-              <details
-                className="emotion-47"
-                id="hiddenTextCantFindAddress"
+              <a
+                className="emotion-49"
+                disabled={undefined}
+                href="/establishment-address-manual"
+                id="cantFindAddressLink"
+                onClick={undefined}
               >
-                <summary
-                  className="emotion-44"
-                >
-                  <span
-                    className="emotion-43"
-                  >
-                    I can't find my address in the list
-                  </span>
-                </summary>
-                <div
-                  className="emotion-46"
-                >
-                  <div
-                    className="emotion-45"
-                  >
-                    <p>
-                      If your postcode is correct but you can't find your address in the list, you can 
-                      <a
-                        className="emotion-59"
-                        href="./establishment-address-manual"
-                      >
-                        enter your address manually
-                      </a>
-                       instead.
-                    </p>
-                  </div>
-                </div>
-              </details>
+                I can't find my address in the list
+              </a>
             </div>
             <button
-              className="emotion-65"
+              className="emotion-60"
               disabled={false}
               id="continue-button"
               type="submit"
