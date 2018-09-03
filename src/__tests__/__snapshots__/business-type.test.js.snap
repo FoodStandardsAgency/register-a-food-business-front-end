@@ -605,12 +605,12 @@ exports[`<BusinessType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-52 {
+.emotion-54 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-50 {
+.emotion-52 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -623,7 +623,7 @@ exports[`<BusinessType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-50 {
+  .emotion-52 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -631,7 +631,7 @@ exports[`<BusinessType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-49 {
+.emotion-51 {
   background: transparent;
   margin: 0 0 15px;
   text-indent: 0px;
@@ -639,22 +639,22 @@ exports[`<BusinessType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-49 {
+  .emotion-51 {
     width: 100%;
     margin: 0 15px;
   }
 
-  .emotion-49:first-child {
+  .emotion-51:first-child {
     margin-left: 0;
   }
 
-  .emotion-49:last-child {
+  .emotion-51:last-child {
     margin-right: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-49 {
+  .emotion-51 {
     width: 66.6667%;
   }
 }
@@ -728,7 +728,7 @@ exports[`<BusinessType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-48 {
+.emotion-50 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -763,34 +763,34 @@ exports[`<BusinessType /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-48:hover {
+.emotion-50:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-48:focus {
+.emotion-50:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-48:active {
+.emotion-50:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-48:visited {
+.emotion-50:visited {
   color: #00823b;
 }
 
-.emotion-48 svg {
+.emotion-50 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-48 {
+  .emotion-50 {
     margin-bottom: 20px;
   }
 }
@@ -965,7 +965,7 @@ exports[`<BusinessType /> matches the previous snapshot 1`] = `
           >
             beta
           </strong>
-          This is a prototype -
+          This is a new service -
            
           <a
             className="emotion-23"
@@ -982,16 +982,16 @@ exports[`<BusinessType /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-52"
+    className="emotion-54"
   >
     <div
       className="emotion-35"
     >
       <div
-        className="emotion-50"
+        className="emotion-52"
       >
         <div
-          className="emotion-49"
+          className="emotion-51"
         >
           <div
             className="emotion-40 emotion-41"
@@ -1019,79 +1019,87 @@ exports[`<BusinessType /> matches the previous snapshot 1`] = `
               <div
                 className="emotion-44 emotion-45"
               >
-                <div
-                  className={null}
-                >
-                  <span
-                    className="emotion-43"
-                    style={
-                      Object {
-                        "lineHeight": "1.6em",
-                        "padding": 0,
-                      }
-                    }
-                  >
-                    For example cafe, hospital canteen or commercial bakery
-                  </span>
+                <div>
                   <div
-                    aria-expanded="false"
-                    className="autocomplete__wrapper"
-                    onKeyDown={[Function]}
-                    role="combobox"
+                    className="emotion-44 emotion-45"
+                  >
+                    <span
+                      className="emotion-43"
+                    >
+                      For example: 
+                      <br />
+                       Cafe 
+                      <br />
+                       Food delivery service 
+                      <br />
+                       Commercial bakery 
+                      <br />
+                       Beef jerky manufacturer
+                    </span>
+                  </div>
+                  <div
+                    className={null}
                   >
                     <div
-                      aria-atomic="true"
-                      aria-live="polite"
-                      role="status"
-                      style={
-                        Object {
-                          "border": "0",
-                          "clip": "rect(0 0 0 0)",
-                          "height": "1px",
-                          "marginBottom": "-1px",
-                          "marginRight": "-1px",
-                          "overflow": "hidden",
-                          "padding": "0",
-                          "position": "absolute",
-                          "whiteSpace": "nowrap",
-                          "width": "1px",
-                        }
-                      }
+                      aria-expanded="false"
+                      className="autocomplete__wrapper"
+                      onKeyDown={[Function]}
+                      role="combobox"
                     >
-                      No search results.
-                      <span>
-                        ,,
-                      </span>
+                      <div
+                        aria-atomic="true"
+                        aria-live="polite"
+                        role="status"
+                        style={
+                          Object {
+                            "border": "0",
+                            "clip": "rect(0 0 0 0)",
+                            "height": "1px",
+                            "marginBottom": "-1px",
+                            "marginRight": "-1px",
+                            "overflow": "hidden",
+                            "padding": "0",
+                            "position": "absolute",
+                            "whiteSpace": "nowrap",
+                            "width": "1px",
+                          }
+                        }
+                      >
+                        No search results.
+                        <span>
+                          ,,
+                        </span>
+                      </div>
+                      
+                      <input
+                        aria-activedescendant={false}
+                        aria-owns="undefined__listbox"
+                        autoComplete="off"
+                        className="autocomplete__input autocomplete__input--default"
+                        id={undefined}
+                        name="business_type"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        placeholder=""
+                        required={false}
+                        role="textbox"
+                        type="text"
+                        value=""
+                      />
+                      <ul
+                        className="autocomplete__menu autocomplete__menu--overlay autocomplete__menu--hidden"
+                        id="undefined__listbox"
+                        role="listbox"
+                      />
                     </div>
-                    
-                    <input
-                      aria-activedescendant={false}
-                      aria-owns="undefined__listbox"
-                      autoComplete="off"
-                      className="autocomplete__input autocomplete__input--default"
-                      id={undefined}
-                      name="business_type"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      placeholder=""
-                      required={false}
-                      role="textbox"
-                      type="text"
-                      value=""
-                    />
-                    <ul
-                      className="autocomplete__menu autocomplete__menu--overlay autocomplete__menu--hidden"
-                      id="undefined__listbox"
-                      role="listbox"
-                    />
                   </div>
                 </div>
               </div>
             </div>
             <button
-              className="emotion-48"
+              className="emotion-50"
               disabled={false}
               id="continue-button"
               type="submit"

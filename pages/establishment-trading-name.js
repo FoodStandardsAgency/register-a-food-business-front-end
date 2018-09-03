@@ -14,7 +14,7 @@ const EstablishmentTradingName = props => (
       editMode={props.editMode}
       originator="establishment-trading-name"
     />
-    <Header level={2}>New food business establishment</Header>
+    <Header level={2}>Trading name</Header>
 
     <HiddenText summaryText={"What is an establishment?"}>
       <Paragraph mb={0}>
