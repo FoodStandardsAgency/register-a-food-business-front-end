@@ -17,11 +17,6 @@ const EstablishmentAddress = props => (
 
     <Header level={2}>Establishment address</Header>
 
-    <Paragraph>
-      If you are registering a mobile food business, please use the location
-      where it is normally stored overnight.
-    </Paragraph>
-
     <HiddenText summaryText={"What is an establishment?"}>
       <Paragraph mb={0}>
         An establishment is the location of your food business, and the food

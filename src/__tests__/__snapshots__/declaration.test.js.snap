@@ -1117,7 +1117,7 @@ exports[`<Declaration /> matches the previous snapshot 1`] = `
           >
             beta
           </strong>
-          This is a prototype -
+          This is a new service -
            
           <a
             className="emotion-23"
@@ -1169,7 +1169,7 @@ exports[`<Declaration /> matches the previous snapshot 1`] = `
               className="emotion-43"
             >
               <p>
-                Before submitting this food business registration, please review these statements. Tick each box to agree.
+                Review these statements and tick all three boxes to agree.
               </p>
             </div>
             <div
@@ -1212,7 +1212,7 @@ exports[`<Declaration /> matches the previous snapshot 1`] = `
                   <span
                     className="emotion-46"
                   >
-                    I, or the operator, will notify food authorities of any significant changes to the business activity, including closure, within 28 days of the change happening.
+                    The operator will notify their local council of any significant changes to the business activity, including closure, within 28 days of the change happening.
                   </span>
                 </label>
                 <label
@@ -1228,7 +1228,7 @@ exports[`<Declaration /> matches the previous snapshot 1`] = `
                   <span
                     className="emotion-46"
                   >
-                    I, or the operator, understands the operator is legally responsible for the safety and authenticity of the food being produced or served at this establishment.
+                    The operator understands they are legally responsible for the safety and authenticity of the food being produced or served at this establishment.
                   </span>
                 </label>
               </div>

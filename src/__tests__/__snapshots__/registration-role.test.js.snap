@@ -1054,7 +1054,7 @@ exports[`<RegistrationRole /> matches the previous snapshot 1`] = `
           >
             beta
           </strong>
-          This is a prototype -
+          This is a new service -
            
           <a
             className="emotion-23"
@@ -1161,7 +1161,7 @@ exports[`<RegistrationRole /> matches the previous snapshot 1`] = `
                   <span
                     className="emotion-45"
                   >
-                    I represent a person, charity or company that operates it
+                    I represent a person, charity or limited company that operates it
                   </span>
                 </label>
               </div>

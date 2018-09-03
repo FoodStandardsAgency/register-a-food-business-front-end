@@ -1,6 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<BusinessTypeLookup /> matches the previous snapshot 1`] = `
+.emotion-1 {
+  padding-bottom: 30px;
+}
+
+@media only screen and (max-width:641px) {
+  .emotion-1 {
+    padding-bottom: 15px;
+  }
+}
+
 .emotion-0 {
   display: block;
   font-family: "nta",Arial,sans-serif;
@@ -27,73 +37,81 @@ exports[`<BusinessTypeLookup /> matches the previous snapshot 1`] = `
   }
 }
 
-<div
-  className={null}
->
-  <span
-    className="emotion-0"
-    style={
-      Object {
-        "lineHeight": "1.6em",
-        "padding": 0,
-      }
-    }
-  >
-    For example cafe, hospital canteen or commercial bakery
-  </span>
+<div>
   <div
-    aria-expanded="false"
-    className="autocomplete__wrapper"
-    onKeyDown={[Function]}
-    role="combobox"
+    className="emotion-1 emotion-2"
+  >
+    <span
+      className="emotion-0"
+    >
+      For example: 
+      <br />
+       Cafe 
+      <br />
+       Food delivery service 
+      <br />
+       Commercial bakery 
+      <br />
+       Beef jerky manufacturer
+    </span>
+  </div>
+  <div
+    className={null}
   >
     <div
-      aria-atomic="true"
-      aria-live="polite"
-      role="status"
-      style={
-        Object {
-          "border": "0",
-          "clip": "rect(0 0 0 0)",
-          "height": "1px",
-          "marginBottom": "-1px",
-          "marginRight": "-1px",
-          "overflow": "hidden",
-          "padding": "0",
-          "position": "absolute",
-          "whiteSpace": "nowrap",
-          "width": "1px",
-        }
-      }
+      aria-expanded="false"
+      className="autocomplete__wrapper"
+      onKeyDown={[Function]}
+      role="combobox"
     >
-      No search results.
-      <span>
-        ,,
-      </span>
+      <div
+        aria-atomic="true"
+        aria-live="polite"
+        role="status"
+        style={
+          Object {
+            "border": "0",
+            "clip": "rect(0 0 0 0)",
+            "height": "1px",
+            "marginBottom": "-1px",
+            "marginRight": "-1px",
+            "overflow": "hidden",
+            "padding": "0",
+            "position": "absolute",
+            "whiteSpace": "nowrap",
+            "width": "1px",
+          }
+        }
+      >
+        No search results.
+        <span>
+          ,,
+        </span>
+      </div>
+      
+      <input
+        aria-activedescendant={false}
+        aria-owns="undefined__listbox"
+        autoComplete="off"
+        className="autocomplete__input autocomplete__input--default"
+        id={undefined}
+        name="business_type"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        placeholder=""
+        required={false}
+        role="textbox"
+        type="text"
+        value=""
+      />
+      <ul
+        className="autocomplete__menu autocomplete__menu--overlay autocomplete__menu--hidden"
+        id="undefined__listbox"
+        role="listbox"
+      />
     </div>
-    
-    <input
-      aria-activedescendant={false}
-      aria-owns="undefined__listbox"
-      autoComplete="off"
-      className="autocomplete__input autocomplete__input--default"
-      id={undefined}
-      name="business_type"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      placeholder=""
-      required={false}
-      role="textbox"
-      type="text"
-      value=""
-    />
-    <ul
-      className="autocomplete__menu autocomplete__menu--overlay autocomplete__menu--hidden"
-      id="undefined__listbox"
-      role="listbox"
-    />
   </div>
 </div>
 `;

@@ -1160,7 +1160,7 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
           >
             beta
           </strong>
-          This is a prototype -
+          This is a new service -
            
           <a
             className="emotion-23"
@@ -1202,7 +1202,7 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
             className="emotion-42"
             size={undefined}
           >
-            New food business establishment
+            Trading name
           </h2>
           <details
             className="emotion-47"

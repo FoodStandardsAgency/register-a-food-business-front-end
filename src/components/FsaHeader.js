@@ -41,7 +41,7 @@ const FsaHeader = props => (
     <TopNav company={Company} serviceTitle={ServiceTitle} />
     <HeaderMain>
       <PhaseBanner level="beta">
-        This is a prototype -{" "}
+        This is a new service -{" "}
         <AnchorTag id="feedbackLink" href={feedbackLink} target="_blank">
           your feedback
         </AnchorTag>{" "}

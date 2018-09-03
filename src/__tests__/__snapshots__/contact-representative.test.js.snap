@@ -1335,7 +1335,7 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
           >
             beta
           </strong>
-          This is a prototype -
+          This is a new service -
            
           <a
             className="emotion-23"

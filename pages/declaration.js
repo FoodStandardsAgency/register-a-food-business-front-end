@@ -15,8 +15,7 @@ const Declaration = props => (
       <Header level={2}>Declaration</Header>
 
       <Paragraph>
-        Before submitting this food business registration, please review these
-        statements. Tick each box to agree.
+        Review these statements and tick all three boxes to agree.
       </Paragraph>
 
       <ContentItem.B_45_30>
@@ -49,7 +48,7 @@ const Declaration = props => (
             error={props.validatorErrors["declaration2"]}
             defaultChecked={props.cumulativeAnswers.declaration2}
           >
-            I, or the operator, will notify food authorities of any significant
+            The operator will notify their local council of any significant
             changes to the business activity, including closure, within 28 days
             of the change happening.
           </Checkbox>
@@ -62,9 +61,9 @@ const Declaration = props => (
             error={props.validatorErrors["declaration3"]}
             defaultChecked={props.cumulativeAnswers.declaration3}
           >
-            I, or the operator, understands the operator is legally responsible
-            for the safety and authenticity of the food being produced or served
-            at this establishment.
+            The operator understands they are legally responsible for the safety
+            and authenticity of the food being produced or served at this
+            establishment.
           </Checkbox>
         </MultiChoice>
       </ContentItem.B_45_30>

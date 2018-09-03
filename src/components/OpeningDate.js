@@ -1,5 +1,11 @@
 import { FsaLayout, ContentItem, BackButton, ContinueButton } from "./";
-import { Header, HiddenText, Paragraph, DateInput } from "govuk-react";
+import {
+  Header,
+  HiddenText,
+  Paragraph,
+  DateInput,
+  HintText
+} from "govuk-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 
@@ -21,10 +27,10 @@ const OpeningDate = props => {
       <Header level={2}>Trading date</Header>
 
       <ContentItem.B_30_15>
-        <Paragraph mb={0}>
+        <HintText>
           Establishments begin trading when they first start serving or
           manufacturing food for customers.
-        </Paragraph>
+        </HintText>
       </ContentItem.B_30_15>
 
       <HiddenText
@@ -76,6 +82,15 @@ const OpeningDate = props => {
               </ContentItem.B_30_15>
             </div>
           </ContentItem.B_30_15>
+          <HiddenText
+            summaryText={"I don't know when this establishment began trading"}
+          >
+            <Paragraph mb={0}>
+              Trading begins the day your business started to serve or make food
+              or the day you took over the business as an operator. If you do
+              not remember the exact date, use an estimated date.
+            </Paragraph>
+          </HiddenText>
           <ContinueButton editMode={props.editMode} />
         </form>
       ) : (
@@ -85,18 +100,26 @@ const OpeningDate = props => {
           }`}
           method="post"
         >
-          <ContentItem.B_30_15>
-            <DateInput
-              inputNames={{ day: "day", month: "month", year: "year" }}
-              hintText="For example, 14 09 2017"
-              errorText={props.validatorErrors.establishment_opening_date}
-              id="establishment_opening_date"
-            >
-              <span className="bold">
-                What date did this establishment begin trading?
-              </span>
-            </DateInput>
-          </ContentItem.B_30_15>
+          <DateInput
+            inputNames={{ day: "day", month: "month", year: "year" }}
+            hintText="For example, 14 09 2017"
+            errorText={props.validatorErrors.establishment_opening_date}
+            id="establishment_opening_date"
+          >
+            <span className="bold">
+              When is this establishment expected to begin trading?
+            </span>
+          </DateInput>
+          <HiddenText
+            summaryText={"I don't know when this establishment began trading"}
+          >
+            <Paragraph mb={0}>
+              Food businesses are required to register at least 28 days before
+              they begin trading. If you are not sure when this business will
+              open, it may be to early to register. You can also use an
+              estimated date.
+            </Paragraph>
+          </HiddenText>
           <ContinueButton editMode={props.editMode} />
         </form>
       )}

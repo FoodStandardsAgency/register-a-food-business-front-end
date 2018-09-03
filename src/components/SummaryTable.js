@@ -57,6 +57,22 @@ const OperatorDetailsTable = props => (
       )}
     </Table.Row>
 
+    {props.operator_type ? (
+      <Table.Row id="operatorTypeRow">
+        <Table.CellHeader>Operator type</Table.CellHeader>
+        <Table.Cell className="summaryTableDataCell">
+          <div className="bold" id="operator_type">
+            {props.operator_type}
+          </div>
+        </Table.Cell>
+        {props.applicationCompletePage ? null : (
+          <Table.Cell>
+            <div />
+          </Table.Cell>
+        )}
+      </Table.Row>
+    ) : null}
+
     {props.operator_company_name ? (
       <Table.Row id="operatorCompanyNameRow">
         <Table.CellHeader>Company name</Table.CellHeader>
@@ -181,7 +197,7 @@ const OperatorDetailsTable = props => (
 
     {props.operator_primary_number ? (
       <Table.Row id="operatorContactDetailsRow">
-        <Table.CellHeader>Contact number</Table.CellHeader>
+        <Table.CellHeader>Phone number</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold">
             <div id="operator_primary_number">
@@ -200,22 +216,6 @@ const OperatorDetailsTable = props => (
             >
               Change
             </AnchorTag>
-          </Table.Cell>
-        )}
-      </Table.Row>
-    ) : null}
-
-    {props.operator_type ? (
-      <Table.Row id="operatorTypeRow">
-        <Table.CellHeader>Operator type</Table.CellHeader>
-        <Table.Cell className="summaryTableDataCell">
-          <div className="bold" id="operator_type">
-            {props.operator_type}
-          </div>
-        </Table.Cell>
-        {props.applicationCompletePage ? null : (
-          <Table.Cell>
-            <div />
           </Table.Cell>
         )}
       </Table.Row>
@@ -298,7 +298,7 @@ const EstablishmentDetailsTable = props => (
 
     {props.establishment_trading_name ? (
       <Table.Row id="establishmentTradingNameRow">
-        <Table.CellHeader>Establishment name</Table.CellHeader>
+        <Table.CellHeader>Trading name</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold" id="establishment_trading_name">
             {props.establishment_trading_name}
@@ -367,7 +367,7 @@ const EstablishmentDetailsTable = props => (
 
     {props.establishment_primary_number ? (
       <Table.Row id="establishmentContactDetailsRow">
-        <Table.CellHeader>Contact number</Table.CellHeader>
+        <Table.CellHeader>Phone number</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold">
             <div id="establishment_primary_number">
@@ -414,7 +414,7 @@ const EstablishmentDetailsTable = props => (
 
     {props.establishment_opening_date ? (
       <Table.Row id="establishmentOpeningDateRow">
-        <Table.CellHeader>Opening date</Table.CellHeader>
+        <Table.CellHeader>Trading date</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold" id="establishment_opening_date">
             {moment(props.establishment_opening_date).format("DD MMM YYYY")}
@@ -467,27 +467,6 @@ const FoodActivitiesTable = props => (
       </Table.Row>
     ) : null}
 
-    {props.import_export_activities ? (
-      <Table.Row id="activitiesBusinessImportExportRow">
-        <Table.CellHeader>Food activities</Table.CellHeader>
-        <Table.Cell className="summaryTableDataCell">
-          <div className="bold" id="import_export_activities">
-            {props.import_export_activities}
-          </div>
-        </Table.Cell>
-        {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
-            <AnchorTag
-              id="changeActivitiesBusinessImportExportRow"
-              href="/edit/business-import-export"
-            >
-              Change
-            </AnchorTag>
-          </Table.Cell>
-        )}
-      </Table.Row>
-    ) : null}
-
     {props.business_type ? (
       <Table.Row id="businessTypeRow">
         <Table.CellHeader>Business type</Table.CellHeader>
@@ -508,6 +487,27 @@ const FoodActivitiesTable = props => (
         {props.applicationCompletePage ? null : (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag id="changeBusinessTypeRow" href="/edit/business-type">
+              Change
+            </AnchorTag>
+          </Table.Cell>
+        )}
+      </Table.Row>
+    ) : null}
+
+    {props.import_export_activities ? (
+      <Table.Row id="activitiesBusinessImportExportRow">
+        <Table.CellHeader>Import and export</Table.CellHeader>
+        <Table.Cell className="summaryTableDataCell">
+          <div className="bold" id="import_export_activities">
+            {props.import_export_activities}
+          </div>
+        </Table.Cell>
+        {props.applicationCompletePage ? null : (
+          <Table.Cell className="summaryTableChangeCell">
+            <AnchorTag
+              id="changeActivitiesBusinessImportExportRow"
+              href="/edit/business-import-export"
+            >
               Change
             </AnchorTag>
           </Table.Cell>
