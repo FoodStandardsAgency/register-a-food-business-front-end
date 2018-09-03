@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.35.2 - 3rd September 2018 (unreleased)
+
+### Modified
+
+* Fixed bug on opening date pages - cookie banner now hides and shows correctly
+
 ## v1.35.1 - 31st August 2018 (unreleased)
 
 ### Modified
