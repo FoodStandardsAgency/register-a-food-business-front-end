@@ -18,6 +18,7 @@ if (typeof window !== "undefined" && typeof __NEXT_DATA__ !== "undefined") {
 
 injectGlobal`
   ${NormalizeCSS}
+  
   html, body {
     font-family: sans-serif;
     font-size: 19px;
