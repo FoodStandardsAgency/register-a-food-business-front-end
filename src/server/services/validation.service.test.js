@@ -18,7 +18,7 @@ describe("validator.service validate()", () => {
         declaration2: "This is a truthy value",
         declaration3: "This is a truthy value"
       });
-      expect(result).toEqual({ errors: {}, pageNotFound: "" });
+      expect(result).toEqual({ errors: {} });
     });
   });
 
@@ -37,14 +37,20 @@ describe("validator.service validate()", () => {
     it("should return an error", () => {
       // Arrange
       const page = "/random-page";
-
+      let result;
       // Act
-      const result = validate(page, {
-        randomFields: "blah"
-      });
+      try {
+        result = validate(page, {
+          randomFields: "blah"
+        });
+      } catch (err) {
+        result = err;
+      }
 
       // Assert
-      expect(result.pageNotFound).toBe("/random-page");
+      expect(result.message).toBe(
+        "Could not find schema for page: /random-page"
+      );
     });
   });
 
@@ -59,7 +65,7 @@ describe("validator.service validate()", () => {
       });
 
       // Assert
-      expect(result).toEqual({ errors: {}, pageNotFound: "" });
+      expect(result).toEqual({ errors: {} });
     });
   });
 

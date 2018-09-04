@@ -17,7 +17,7 @@ import {
 import PropTypes from "prop-types";
 
 const EstablishmentAddress = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton
       editMode={props.editMode}
       href={
@@ -31,11 +31,6 @@ const EstablishmentAddress = props => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Header level={2}>Establishment address</Header>
-
-    <Paragraph>
-      If you are registering a mobile food business, please use the location
-      where it is normally stored overnight.
-    </Paragraph>
 
     <HiddenText summaryText={"What is an establishment?"}>
       <Paragraph mb={0}>

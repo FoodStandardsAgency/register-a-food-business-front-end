@@ -9,7 +9,7 @@ import { Header, Radio, MultiChoice } from "govuk-react";
 import PropTypes from "prop-types";
 
 const RegistrationRole = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton editMode={props.editMode} originator="registration-role" />
     <Header level={2}>What is your role in this food business?</Header>
 
@@ -53,7 +53,7 @@ const RegistrationRole = props => (
               props.cumulativeAnswers.registration_role === "Representative"
             }
           >
-            I represent a person, charity or company that operates it
+            I represent a person, charity or limited company that operates it
           </Radio>
         </MultiChoice>
       </ContentItem.B_45_30>

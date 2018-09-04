@@ -11,6 +11,8 @@ import CheckboxButton from "./CheckboxButton";
 import OnHandleErrorClick from "./OnHandleErrorClick";
 import ProcessedErrorSummary from "./ProcessedErrorSummary";
 import BusinessTypeLookup from "./BusinessTypeLookup";
+import CookieBanner from "./CookieBanner";
+
 export {
   SessionWrapper,
   FsaHeader,
@@ -24,5 +26,6 @@ export {
   CheckboxButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  BusinessTypeLookup
+  BusinessTypeLookup,
+  CookieBanner
 };

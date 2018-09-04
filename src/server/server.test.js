@@ -1,4 +1,4 @@
-jest.mock("express", () => () => ({ use: jest.fn() }));
+jest.mock("express", () => () => ({ use: jest.fn(), set: jest.fn() }));
 jest.mock("express-session");
 jest.mock("connect-mongo", () => {
   return () => {
@@ -9,6 +9,7 @@ jest.mock("connect-mongo", () => {
 });
 jest.mock("./routes");
 jest.mock("./next");
+
 const session = require("express-session");
 const { Next } = require("./next");
 const server = require("./server");
@@ -52,6 +53,22 @@ describe("server: ", () => {
     });
     it("Should set up session connection to memory", () => {
       expect(session.mock.calls[0][0].store).not.toBeDefined();
+    });
+  });
+
+  describe("When COOKIE SECURE is set", () => {
+    it("should call session with secure", async () => {
+      process.env.COOKIE_SECURE = true;
+      result = await server(undefined);
+      expect(session.mock.calls[0][0].cookie.secure).toBe(true);
+    });
+  });
+
+  describe("When COOKIE SECURE is not set", () => {
+    it("should not call session with secure", async () => {
+      process.env.COOKIE_SECURE = false;
+      result = await server(undefined);
+      expect(session.mock.calls[0][0].cookie.secure).toBe(undefined);
     });
   });
 });

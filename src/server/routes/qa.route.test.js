@@ -23,7 +23,10 @@ describe("QA Route: ", () => {
 
         req = {
           session: {
-            council: "council"
+            council: "original-council",
+            save: cb => {
+              cb();
+            }
           },
           query: {
             QA_KEY: "abcd",
@@ -31,6 +34,7 @@ describe("QA Route: ", () => {
             operator_type: "A company"
           },
           params: {
+            lc: "cardiff",
             target: "registration-summary"
           }
         };
@@ -44,9 +48,13 @@ describe("QA Route: ", () => {
         expect(req.session.cumulativeAnswers).toEqual(req.query);
       });
 
+      it("Should set session.council to the lc param", () => {
+        expect(req.session.council).toEqual(req.params.lc);
+      });
+
       it("Should redirect to registration summary page", () => {
         expect(res.redirect).toBeCalledWith(
-          "/new/council/registration-summary"
+          "/new/cardiff/registration-summary"
         );
       });
     });
@@ -57,7 +65,11 @@ describe("QA Route: ", () => {
         handler = router.get.mock.calls[0][1];
 
         req = {
-          session: {},
+          session: {
+            save: cb => {
+              cb();
+            }
+          },
           query: {
             QA_KEY: null,
             registration_role: "Representative",

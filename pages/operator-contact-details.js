@@ -11,7 +11,7 @@ import { Header, InputField, Paragraph, HiddenText } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OperatorContactDetails = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton
       editMode={props.editMode}
       originator="operator-contact-details"

@@ -9,9 +9,9 @@ jest.mock("../connectors/address-lookup/address-lookup-api.connector");
 const v = new Validator();
 
 describe("address.service getUkAddressesByPostcode()", () => {
-  describe("given a postcode argument", () => {
-    let response;
+  let response;
 
+  describe("given a postcode argument", () => {
     beforeEach(async () => {
       getAddressesByPostcode.mockImplementation(() => smallAddressResponseJSON);
 
@@ -36,6 +36,24 @@ describe("address.service getUkAddressesByPostcode()", () => {
         "NR14 7PZ",
         500
       );
+    });
+  });
+
+  describe("given the connector throws an error", () => {
+    beforeEach(async () => {
+      getAddressesByPostcode.mockImplementation(() => {
+        throw new Error("Some error");
+      });
+
+      try {
+        response = await getUkAddressesByPostcode("NR14 7PZ");
+      } catch (err) {
+        response = err;
+      }
+    });
+
+    it("Should throw the error", () => {
+      expect(response.message).toBe("Some error");
     });
   });
 });

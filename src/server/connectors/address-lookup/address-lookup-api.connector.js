@@ -43,9 +43,11 @@ const getAddressesByPostcode = async (
       "functionFail",
       "address-lookup-api.connector",
       "getAddressByPostcode",
-      "Address lookup API is down"
+      `Address lookup API responded with non-200 status: ${firstRes.status}`
     );
-    throw new Error("Address lookup API is down");
+    throw new Error(
+      `Address lookup API responded with non-200 status: ${firstRes.status}`
+    );
   }
 
   // TODO JMB: debug multi-call code

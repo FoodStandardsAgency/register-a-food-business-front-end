@@ -37,24 +37,11 @@ describe("<ApplicationComplete />", () => {
   });
 
   describe("SummaryTable component", () => {
-    it("Gets given transformedAnswers ", () => {
-      transformAnswersForSummary.mockImplementation(() => ({ test: "answer" }));
-      const wrapper = mount(
-        <ApplicationComplete
-          cumulativeAnswers={cumulativeAnswers}
-          hideChangeButtons={true}
-          lcConfig={lcConfigCombined}
-          emailFbo={emailFbo}
-        />
-      );
-      const summaryTable = wrapper.find("SummaryTable");
-      expect(summaryTable.props().test).toBe("answer");
-    });
     it("renders", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeAnswers={cumulativeAnswers}
-          hideChangeButtons={true}
+          applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           emailFbo={emailFbo}
         />
@@ -69,7 +56,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeAnswers={cumulativeAnswers}
-          hideChangeButtons={true}
+          applicationCompletePage={true}
           fsaRegistrationNumber="12345"
           lcConfig={lcConfigCombined}
           emailFbo={emailFbo}
@@ -82,7 +69,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeAnswers={cumulativeAnswers}
-          hideChangeButtons={true}
+          applicationCompletePage={true}
           fsaRegistrationNumber={undefined}
           lcConfig={lcConfigCombined}
           emailFbo={emailFbo}
@@ -98,7 +85,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeAnswers={cumulativeAnswers}
-          hideChangeButtons={true}
+          applicationCompletePage={true}
           lcConfig={lcConfigSplit}
           emailFbo={lcConfigSplit}
         />
