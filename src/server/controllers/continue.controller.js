@@ -4,6 +4,7 @@ const {
   switchOffManualAddressInput
 } = require("../services/path.service");
 const { validate } = require("../services/validation.service");
+const { logEmitter } = require("../services/logging.service");
 const {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
@@ -17,6 +18,7 @@ const continueController = (
   switches,
   editMode
 ) => {
+  logEmitter.emit("functionCall", "continue.controller", "continueController");
   const controllerResponse = {
     validatorErrors: {},
     redirectRoute: null,
@@ -24,6 +26,8 @@ const continueController = (
     switches: {}
   };
 
+  try {
+  } catch (err) {}
   const newAnswersArray = Object.values(newAnswers);
 
   let cleanedPreviousAnswers = Object.assign({}, previousAnswers);
