@@ -28,7 +28,7 @@ const newRouter = () => {
             "functionSuccessWith",
             "Routes",
             "/new route",
-            "Rendering page: /index"
+            "Session regenerated. Rendering page: /index"
           );
           Next.render(req, res, `/index`);
         });
