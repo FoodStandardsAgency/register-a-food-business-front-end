@@ -17,7 +17,7 @@ if (typeof window !== "undefined" && typeof __NEXT_DATA__ !== "undefined") {
 }
 
 injectGlobal`
-  ${NormalizeCSS}
+  ${NormalizeCSS};
 `;
 
 export default class MyDocument extends Document {
