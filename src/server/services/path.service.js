@@ -1,4 +1,5 @@
 const pathJSON = require("../services/path.json");
+const { logEmitter } = require("./logging.service");
 
 const moveAlongPath = (path, currentPage, movement) => {
   logEmitter.emit("functionCall", "path.service", "moveAlongPath");
@@ -88,7 +89,7 @@ const editPath = cumulativeAnswers => {
   }
 };
 
-switchOffManualAddressInput = (newPath, currentPage) => {
+const switchOffManualAddressInput = (newPath, currentPage) => {
   logEmitter.emit(
     "functionCall",
     "path.service",

@@ -1,4 +1,5 @@
 const schema = require("./schema");
+const { logEmitter } = require("./logging.service");
 
 const cleanInactivePathAnswers = (cumulativeAnswers, path) => {
   logEmitter.emit(

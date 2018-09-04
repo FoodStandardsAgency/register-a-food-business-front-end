@@ -1,5 +1,5 @@
 const { Validator } = require("jsonschema");
-const winston = require("winston");
+const { logEmitter } = require("./logging.service");
 const schema = require("./schema");
 const {
   combineDate,
@@ -110,7 +110,7 @@ const validate = (page, answers) => {
         result.errors[key] = error.message;
       });
     } else {
-      throw new Error(`Could not find schema for page: ${[page]}`);
+      throw new Error(`Could not find schema for page: ${page}`);
     }
     logEmitter.emit(
       "functionSuccessWith",

@@ -1,4 +1,4 @@
-const { logEmitter } = require("../services/logging.service");
+const { logEmitter } = require("./logging.service");
 
 const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
   logEmitter.emit(

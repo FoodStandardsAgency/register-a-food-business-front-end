@@ -1,6 +1,7 @@
 const {
   getAddressesByPostcode
 } = require("../connectors/address-lookup/address-lookup-api.connector");
+const { logEmitter } = require("./logging.service");
 
 const getUkAddressesByPostcode = async postcode => {
   logEmitter.emit(
