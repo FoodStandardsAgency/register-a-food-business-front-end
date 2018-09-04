@@ -1273,7 +1273,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
                 <span
                   className="bold"
                 >
-                  When is this establishment expected to begin trading?
+                  What date did this establishment begin trading?
                 </span>
               </span>
               <span
@@ -1348,7 +1348,7 @@ exports[`<OpeningDate /> matches the previous snapshot 1`] = `
                   className="emotion-48"
                 >
                   <p>
-                    Food businesses are required to register at least 28 days before they begin trading. If you are not sure when this business will open, it may be to early to register. You can also use an estimated date.
+                    Trading begins the day your business started to serve or make food or the day you took over the business as an operator. If you do not remember the exact date, use an estimated date.
                   </p>
                 </div>
               </div>

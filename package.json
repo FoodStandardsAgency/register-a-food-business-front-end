@@ -12,8 +12,9 @@
     "test:watch": "jest ./src --watch",
     "test:integration": "jest tests/integration/*.js",
     "test:contract": "jest tests/contract/*.js",
-    "test:securityall": "snyk wizard",
-    "test:security": "snyk wizard --severity-threshold=medium",
+    "test:securityallWizard": "snyk wizard",
+    "test:securityWizard": "snyk wizard --severity-threshold=medium",
+    "test:security": "snyk auth && snyk test --severity-threshold=medium",
     "lint": "eslint ./src ./pages",
     "format:verify":
       "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
