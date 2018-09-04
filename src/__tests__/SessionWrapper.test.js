@@ -41,6 +41,14 @@ describe("<SessionWrapper />", () => {
       expect(typeof initialProps.validatorErrors).toBe("object");
     });
 
+    it("returns a 'transformedData' object as part of the initial props", () => {
+      const WrappedComponent = SessionWrapper(ExampleComponent);
+      const initialProps = WrappedComponent.getInitialProps({
+        req: { session: {} }
+      });
+      expect(typeof initialProps.transformedData).toBe("object");
+    });
+
     it("returns a 'switches' object as part of the initial props", () => {
       const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({
@@ -120,6 +128,7 @@ describe("<SessionWrapper />", () => {
       expect(typeof initialProps.fsaRegistrationNumber).toBe("string");
       expect(typeof initialProps.emailFbo).toBe("object");
       expect(typeof initialProps.lcConfig).toBe("object");
+      expect(typeof initialProps.transformedData).toBe("object");
     });
   });
 
@@ -201,6 +210,17 @@ describe("<SessionWrapper />", () => {
       });
     });
 
+    describe("given that req.session.transformedData is undefined", () => {
+      it("props.transformedData is defined", () => {
+        const WrappedComponent = SessionWrapper(ExampleComponent);
+        const initialProps = WrappedComponent.getInitialProps({
+          req: { session: {} }
+        });
+        const componentProps = WrappedComponent(initialProps).props;
+        expect(componentProps.transformedData).toEqual({});
+      });
+    });
+
     describe("given that req.session.cumulativeAnswers is defined", () => {
       it("props.cumulativeAnswers is the same as the session.cumulativeAnswers", () => {
         const WrappedComponent = SessionWrapper(ExampleComponent);
@@ -278,6 +298,20 @@ describe("<SessionWrapper />", () => {
         });
         const componentProps = WrappedComponent(initialProps).props;
         expect(componentProps.lcConfig).toBe(exampleLcConfig);
+      });
+    });
+
+    describe("given that req.session.transformedData is defined", () => {
+      it("props.lcConfig is the same as the session.lcConfig", () => {
+        const WrappedComponent = SessionWrapper(ExampleComponent);
+        const exampleTransformedData = { example: "transformed data" };
+        const initialProps = WrappedComponent.getInitialProps({
+          req: {
+            session: { transformedData: exampleTransformedData }
+          }
+        });
+        const componentProps = WrappedComponent(initialProps).props;
+        expect(componentProps.transformedData).toBe(exampleTransformedData);
       });
     });
 

@@ -37,19 +37,6 @@ describe("<ApplicationComplete />", () => {
   });
 
   describe("SummaryTable component", () => {
-    it("Gets given transformedAnswers ", () => {
-      transformAnswersForSummary.mockImplementation(() => ({ test: "answer" }));
-      const wrapper = mount(
-        <ApplicationComplete
-          cumulativeAnswers={cumulativeAnswers}
-          applicationCompletePage={true}
-          lcConfig={lcConfigCombined}
-          emailFbo={emailFbo}
-        />
-      );
-      const summaryTable = wrapper.find("SummaryTable");
-      expect(summaryTable.props().test).toBe("answer");
-    });
     it("renders", () => {
       const wrapper = mount(
         <ApplicationComplete

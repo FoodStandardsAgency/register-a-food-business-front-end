@@ -34,7 +34,6 @@ describe("Submit route: ", () => {
 
       beforeEach(() => {
         submitController.mockImplementation(() => ({
-          submissionErrors: {},
           redirectRoute: "/summary-confirmation",
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
@@ -92,7 +91,6 @@ describe("Submit route: ", () => {
 
       beforeEach(() => {
         submitController.mockImplementation(() => ({
-          submissionErrors: {},
           redirectRoute: "back",
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
@@ -130,7 +128,6 @@ describe("Submit route: ", () => {
 
       beforeEach(async () => {
         submitController.mockImplementation(() => ({
-          submissionErrors: {},
           redirectRoute: "back",
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",

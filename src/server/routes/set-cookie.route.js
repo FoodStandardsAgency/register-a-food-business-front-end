@@ -5,7 +5,7 @@ const { logEmitter } = require("../services/logging.service");
 const setCookieRouter = () => {
   const router = Router();
   router.get("/:cookieName/:newValue", (req, res) => {
-    logEmitter.emit("functionCall", "Routers", "/cookie/:cookieName route");
+    logEmitter.emit("functionCall", "Routes", "/cookie/:cookieName route");
 
     const cookieName = req.params.cookieName;
     const newValue = req.params.newValue;
@@ -29,7 +29,7 @@ const setCookieRouter = () => {
       }
     }
 
-    logEmitter.emit("functionSuccess", "Routers", "/cookie/:cookieName route");
+    logEmitter.emit("functionSuccess", "Routes", "/cookie/:cookieName route");
     res.redirect("back");
   });
 

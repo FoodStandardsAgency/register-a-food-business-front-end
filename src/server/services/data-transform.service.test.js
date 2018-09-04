@@ -6,6 +6,8 @@ import {
 } from "./data-transform.service";
 
 describe("data-transform.service transformAnswersForSummary()", () => {
+  let result;
+
   const testCumulativeAnswers = {
     operator_first_name: "John",
     operator_last_name: "Appleseed",
@@ -16,7 +18,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
 
   describe("given a cumulative answers object", () => {
     it("returns an object", () => {
-      const result = transformAnswersForSummary(testCumulativeAnswers);
+      result = transformAnswersForSummary(testCumulativeAnswers);
       expect(typeof result).toBe("object");
     });
 
@@ -25,7 +27,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         business_type: "Example (test)"
       };
       it("should assign business_type and business_type_search_term to the result", () => {
-        const result = transformAnswersForSummary(businessType);
+        result = transformAnswersForSummary(businessType);
         expect(result.business_type).toBe("Example");
         expect(result.business_type_search_term).toBe("Test");
       });
@@ -37,7 +39,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         supply_directly: "True"
       };
       it("Should return a customer_type value of 'End consumer and other businesses'", () => {
-        const result = transformAnswersForSummary(supplyBoth);
+        result = transformAnswersForSummary(supplyBoth);
         expect(result.customer_type).toBe("End consumer and other businesses");
       });
     });
@@ -48,7 +50,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       };
 
       it("Should return a customer_type value of 'Other businesses'", () => {
-        const result = transformAnswersForSummary(supplyDirectlyOnly);
+        result = transformAnswersForSummary(supplyDirectlyOnly);
         expect(result.customer_type).toBe("Other businesses");
       });
     });
@@ -59,7 +61,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       };
 
       it("Should return a customer_type value of 'End consumer'", () => {
-        const result = transformAnswersForSummary(supplyDirectlyOnly);
+        result = transformAnswersForSummary(supplyDirectlyOnly);
         expect(result.customer_type).toBe("End consumer");
       });
     });
@@ -71,14 +73,14 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       };
 
       it("the transformed data contains a field called operator_type that equals the passed registration_role data", () => {
-        const result = transformAnswersForSummary(registrationRoleOnly);
+        result = transformAnswersForSummary(registrationRoleOnly);
         expect(result.operator_type).toEqual(
           registrationRoleOnly.registration_role
         );
       });
 
       it("the transformed data does not contain a field called registration_role", () => {
-        const result = transformAnswersForSummary(registrationRoleOnly);
+        result = transformAnswersForSummary(registrationRoleOnly);
         expect(result.registration_role).toBe(undefined);
       });
     });
@@ -91,25 +93,19 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       };
 
       it("the transformed data contains a field called operator_type that does not equal the passed registration_role data", () => {
-        const result = transformAnswersForSummary(
-          registrationRoleAndOperatorType
-        );
+        result = transformAnswersForSummary(registrationRoleAndOperatorType);
         expect(result.operator_type).not.toEqual(
           registrationRoleAndOperatorType.registration_role
         );
       });
 
       it("the transformed data does not contain a field called registration_role", () => {
-        const result = transformAnswersForSummary(
-          registrationRoleAndOperatorType
-        );
+        result = transformAnswersForSummary(registrationRoleAndOperatorType);
         expect(result.registration_role).toBe(undefined);
       });
 
       it("the transformed data contains a field called operator_type that does not equal the original operator_type data", () => {
-        const result = transformAnswersForSummary(
-          registrationRoleAndOperatorType
-        );
+        result = transformAnswersForSummary(registrationRoleAndOperatorType);
         expect(result.operator_type).not.toEqual(
           registrationRoleAndOperatorType.operator_type
         );
@@ -125,7 +121,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
             other_data: "example"
           };
 
-          const result = transformAnswersForSummary(data);
+          result = transformAnswersForSummary(data);
 
           expect(result.operator_type).toBe(
             `${operatorType} (registered by a representative)`
@@ -302,7 +298,10 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       });
     });
   });
+
   describe("Using the transformBusinessImportExport function", () => {
+    let result;
+
     describe("Given that directly_import, directly_export and no_import_export are part of cumulative answers", () => {
       const cumulativeAnswers = {
         directly_import: "True",
@@ -310,7 +309,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         no_import_export: "True"
       };
       it("Should return a import_export_activities value of 'Directly import and Export'", () => {
-        const result = transformAnswersForSummary(cumulativeAnswers);
+        result = transformAnswersForSummary(cumulativeAnswers);
         expect(result.import_export_activities).toBe(
           "Directly import and export"
         );
@@ -322,7 +321,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         directly_export: "True"
       };
       it("Should return a import_export_activities value of 'Directly import and Export'", () => {
-        const result = transformAnswersForSummary(cumulativeAnswers);
+        result = transformAnswersForSummary(cumulativeAnswers);
         expect(result.import_export_activities).toBe(
           "Directly import and export"
         );
@@ -334,7 +333,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         no_import_export: "True"
       };
       it("Should return a import_export_activities value of 'Directly import'", () => {
-        const result = transformAnswersForSummary(cumulativeAnswers);
+        result = transformAnswersForSummary(cumulativeAnswers);
         expect(result.import_export_activities).toBe("Directly import");
       });
     });
@@ -344,7 +343,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         no_import_export: "True"
       };
       it("Should return a import_export_activities value of 'Directly export'", () => {
-        const result = transformAnswersForSummary(cumulativeAnswers);
+        result = transformAnswersForSummary(cumulativeAnswers);
         expect(result.import_export_activities).toBe("Directly export");
       });
     });
@@ -353,7 +352,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         directly_export: "True"
       };
       it("Should return a import_export_activities value of 'Directly export'", () => {
-        const result = transformAnswersForSummary(cumulativeAnswers);
+        result = transformAnswersForSummary(cumulativeAnswers);
         expect(result.import_export_activities).toBe("Directly export");
       });
     });
@@ -362,7 +361,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         directly_import: "True"
       };
       it("Should return a import_export_activities value of 'Directly import'", () => {
-        const result = transformAnswersForSummary(cumulativeAnswers);
+        result = transformAnswersForSummary(cumulativeAnswers);
         expect(result.import_export_activities).toBe("Directly import");
       });
     });
@@ -371,7 +370,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         no_import_export: "True"
       };
       it("Should return a import_export_activities value of 'None'", () => {
-        const result = transformAnswersForSummary(cumulativeAnswers);
+        result = transformAnswersForSummary(cumulativeAnswers);
         expect(result.import_export_activities).toBe("None");
       });
     });
@@ -380,7 +379,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         random: "True"
       };
       it("Should return a import_export_activities value of undefined", () => {
-        const result = transformAnswersForSummary(cumulativeAnswers);
+        result = transformAnswersForSummary(cumulativeAnswers);
         expect(result.import_export_activities).toBe(undefined);
       });
     });
@@ -388,6 +387,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
 });
 
 describe("data-transform.service transformAnswersForSubmit()", () => {
+  let result;
   const testLcUrl = "some-council-url";
 
   const testCumulativeAnswers = {
@@ -405,7 +405,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
   const testAddressLookups = {};
 
   it("turns flat data into structured data, with the Local Council URL", () => {
-    const result = transformAnswersForSubmit(
+    result = transformAnswersForSubmit(
       testLcUrl,
       testCumulativeAnswers,
       testAddressLookups
@@ -418,7 +418,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
   });
 
   it("should only add the data fields it is given", () => {
-    const result = transformAnswersForSubmit(
+    result = transformAnswersForSubmit(
       testLcUrl,
       testCumulativeAnswers,
       testAddressLookups
@@ -439,7 +439,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       operator_email: "john@appleseed.com",
       establishment_trading_name: "John's Apples"
     };
-    const result = transformAnswersForSubmit(
+    result = transformAnswersForSubmit(
       testLcUrl,
       testCumulativeAnswersDate,
       testAddressLookups
@@ -452,6 +452,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
 });
 
 describe("data-transform.service combineDate()", () => {
+  let result;
   it("combines inputs into single string", () => {
     // Arrange
     const day = "29";
@@ -459,7 +460,7 @@ describe("data-transform.service combineDate()", () => {
     const year = "1993";
 
     // Act
-    const result = combineDate(day, month, year);
+    result = combineDate(day, month, year);
 
     // Assert
     expect(result).toBe("1993-03-29");
@@ -467,6 +468,8 @@ describe("data-transform.service combineDate()", () => {
 });
 
 describe("data-transform.service separateBracketsFromBusinessType()", () => {
+  let result;
+
   describe("given a valid input without brackets", () => {
     it("should return the original input text but without any excess spaces", () => {
       // Arrange
@@ -477,7 +480,7 @@ describe("data-transform.service separateBracketsFromBusinessType()", () => {
       ];
       //Act
       goodTypes.forEach(text => {
-        const result = separateBracketsFromBusinessType(text);
+        result = separateBracketsFromBusinessType(text);
         expect(result.business_type).toBe(text.trim());
         expect(result.business_type_search_term).toBe(undefined);
       });
@@ -487,7 +490,7 @@ describe("data-transform.service separateBracketsFromBusinessType()", () => {
   describe("given a valid input with brackets", () => {
     it("should return the input text but without the exact section contained in brackets", () => {
       //Act
-      const result = separateBracketsFromBusinessType(
+      result = separateBracketsFromBusinessType(
         "Butcher (example search term with space after) "
       );
       expect(result.business_type).toBe("Butcher");
@@ -507,7 +510,7 @@ describe("data-transform.service separateBracketsFromBusinessType()", () => {
       ];
       //Act
       badTypes.forEach(text => {
-        const result = separateBracketsFromBusinessType(text);
+        result = separateBracketsFromBusinessType(text);
         expect(result.business_type).toBe(text.trim());
         expect(result.business_type_search_term).toBe(undefined);
       });

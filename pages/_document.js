@@ -17,17 +17,7 @@ if (typeof window !== "undefined" && typeof __NEXT_DATA__ !== "undefined") {
 }
 
 injectGlobal`
-  ${NormalizeCSS}
-  
-  html, body {
-    font-family: sans-serif;
-    font-size: 19px;
-    color: #0b0c0c;
-  }
-
-  .bold {
-    font-weight: bold;
-  }
+  ${NormalizeCSS};
 `;
 
 export default class MyDocument extends Document {

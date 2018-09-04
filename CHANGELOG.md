@@ -3,7 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## v1.35.3 - 4rd September 2018 (unreleased)
+## v1.36.0 - 4th September 2018 (unreleased)
+
+### Added
+
+* Added global log coverage
+
+## v1.35.3 - 4th September 2018 (unreleased)
 
 ### Modified
 
