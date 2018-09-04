@@ -113,6 +113,8 @@ const transformAnswersForSubmit = (
     "operator_primary_number",
     "operator_secondary_number",
     "operator_email",
+    "contact_representative_name",
+    "contact_representative_role",
     "contact_representative_number",
     "contact_representative_email",
     "operator_type",
