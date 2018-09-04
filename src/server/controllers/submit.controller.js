@@ -12,7 +12,6 @@ const submitController = async (lcUrl, submissionData, addressLookups) => {
     email_fbo: {},
     lc_details: {}
   };
-
   if (submissionData && Object.getOwnPropertyNames(submissionData).length > 0) {
     const transformedData = transformAnswersForSubmit(
       lcUrl,
