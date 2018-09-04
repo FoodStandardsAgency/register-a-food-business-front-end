@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.35.3 - 4rd September 2018 (unreleased)
+
+### Modified
+
+* Added missing contact_representative_role and contact_representative_name on submit
+
 ## v1.35.2 - 3rd September 2018 (unreleased)
 
 ### Modified
