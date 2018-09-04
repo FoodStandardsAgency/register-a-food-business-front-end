@@ -24,10 +24,16 @@ const submitRouter = () => {
       "/submit route",
       response.redirectRoute
     );
-    if (response.redirectRoute === "/back") {
+    if (response.redirectRoute === "back") {
       res.redirect("back");
     }
-    res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
+    req.session.save(err => {
+      if (err) {
+        logEmitter.emit("functionFail", "Routes", "/submit route", err);
+        throw err;
+      }
+      res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
+    });
   });
 
   return router;

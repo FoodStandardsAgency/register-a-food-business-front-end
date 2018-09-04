@@ -16,7 +16,7 @@ import {
 import PropTypes from "prop-types";
 
 const ImportExportActivities = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <form
       action={`/continue/business-import-export/${props.editMode}`}
       method="post"

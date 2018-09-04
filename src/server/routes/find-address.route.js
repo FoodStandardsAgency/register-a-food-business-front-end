@@ -6,11 +6,7 @@ const findAddressRouter = () => {
   const router = Router();
 
   router.post("/:originator", async (req, res) => {
-    logEmitter.emit(
-      "functionCall",
-      "Routers",
-      "/findaddress/:originator route"
-    );
+    logEmitter.emit("functionCall", "Routes", "/findaddress/:originator route");
 
     const response = await findAddressController(
       `/${req.params.originator}`,
@@ -35,10 +31,16 @@ const findAddressRouter = () => {
 
     logEmitter.emit(
       "functionSuccess",
-      "Routers",
+      "Routes",
       "/findaddress/:originator route"
     );
-    res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
+    req.session.save(err => {
+      if (err) {
+        logEmitter.emit("functionFail", "Routes", "/find-address route", err);
+        throw err;
+      }
+      res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
+    });
   });
 
   return router;

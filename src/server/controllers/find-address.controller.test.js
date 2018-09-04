@@ -63,6 +63,28 @@ describe("Function: findAddressController: ", () => {
       });
     });
 
+    describe("given one of the services throws an error", () => {
+      beforeEach(async () => {
+        getUkAddressesByPostcode.mockImplementation(() => {
+          throw new Error("Some error");
+        });
+
+        try {
+          response = await findAddressController(
+            "/establishment-address",
+            testPreviousAnswers,
+            {}
+          );
+        } catch (err) {
+          response = err;
+        }
+      });
+
+      it("Should throw the error", () => {
+        expect(response.message).toBe("Some error");
+      });
+    });
+
     describe("given that no addresses are returned", () => {
       beforeEach(async () => {
         getUkAddressesByPostcode.mockImplementation(

@@ -10,7 +10,7 @@ logEmitter.on("functionCall", (module, functionName) => {
 });
 
 logEmitter.on("functionCallWith", (module, functionName, data) => {
-  info(`${module}: ${functionName} called with ${data}`);
+  info(`${module}: ${functionName} called with: ${data}`);
 });
 
 logEmitter.on("functionSuccess", (module, functionName) => {
@@ -18,7 +18,7 @@ logEmitter.on("functionSuccess", (module, functionName) => {
 });
 
 logEmitter.on("functionSuccessWith", (module, functionName, data) => {
-  info(`${module}: ${functionName} successful with ${data}`);
+  info(`${module}: ${functionName} successful with: ${data}`);
 });
 
 logEmitter.on("functionFail", (module, functionName, err) => {

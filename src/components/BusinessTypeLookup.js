@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import "accessible-autocomplete/dist/accessible-autocomplete.min.css";
 import "./BusinessTypeLookup.css";
+import ContentItem from "./ContentItem";
 
 import {
   findMatches,
@@ -26,24 +27,31 @@ const lineHeight = {
 };
 
 const BusinessTypeLookup = props => (
-  <div className={props.validatorErrors.business_type ? "errorStyling" : null}>
-    <HintText style={lineHeight}>
-      For example cafe, hospital canteen or commercial bakery
-    </HintText>
-    {props.validatorErrors.business_type ? (
-      <ErrorText style={lineHeight}>
-        {props.validatorErrors.business_type}
-      </ErrorText>
-    ) : null}
-    <Autocomplete
-      source={findMatches}
-      templates={templates}
-      autoselect={true}
-      displayMenu="overlay"
-      confirmOnBlur={false}
-      name="business_type"
-      defaultValue={props.cumulativeAnswers.business_type}
-    />
+  <div>
+    <ContentItem.B_30_15>
+      <HintText>
+        For example: <br /> Cafe <br /> Food delivery service <br /> Commercial
+        bakery <br /> Beef jerky manufacturer
+      </HintText>
+    </ContentItem.B_30_15>
+    <div
+      className={props.validatorErrors.business_type ? "errorStyling" : null}
+    >
+      {props.validatorErrors.business_type ? (
+        <ErrorText style={lineHeight}>
+          {props.validatorErrors.business_type}
+        </ErrorText>
+      ) : null}
+      <Autocomplete
+        source={findMatches}
+        templates={templates}
+        autoselect={true}
+        displayMenu="overlay"
+        confirmOnBlur={false}
+        name="business_type"
+        defaultValue={props.cumulativeAnswers.business_type}
+      />
+    </div>
   </div>
 );
 

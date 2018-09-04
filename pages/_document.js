@@ -8,7 +8,7 @@
 import Document, { Head, Main, NextScript } from "next/document";
 import { extractCritical } from "emotion-server";
 import { hydrate, injectGlobal } from "react-emotion";
-import "normalize.css/normalize.css";
+import NormalizeCSS from "../src/components/NormalizeCSS";
 
 // Adds server generated styles to emotion cache.
 // '__NEXT_DATA__.ids' is set in '_document.js'
@@ -17,23 +17,16 @@ if (typeof window !== "undefined" && typeof __NEXT_DATA__ !== "undefined") {
 }
 
 injectGlobal`
-  html, body {
-    font-family: sans-serif;
-    font-size: 19px;
-    color: #0b0c0c;
-  }
-
-  .bold {
-    font-weight: bold;
-  }
+  ${NormalizeCSS};
 `;
 
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
+  static getInitialProps({ renderPage, req }) {
     const page = renderPage();
     const styles = extractCritical(page.html);
     const gtmAuth = process.env.GTM_AUTH;
-    return { ...page, ...styles, gtmAuth };
+    const cookies = req.cookies;
+    return { ...page, ...styles, gtmAuth, cookies };
   }
 
   constructor(props) {
@@ -49,17 +42,20 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           {/* Start Google Tag Manager */}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl+ '${
-            this.props.gtmAuth
-          }';f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-PKW3XC7');`
-            }}
-          />
+          {this.props.cookies.acceptAllCookies === "false" ? null : (
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl+ '${
+              this.props.gtmAuth
+            }';f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-PKW3XC7');
+            `
+              }}
+            />
+          )}
           {/* End Google Tag Manager */}
           <meta
             name="viewport"

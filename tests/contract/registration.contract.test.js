@@ -1,5 +1,6 @@
 process.env.SUBMIT_URL =
   "http://localhost:4000/api/registration/createNewRegistration";
+
 const {
   sendRequest
 } = require("../../src/server/connectors/registration/registration.connector");
@@ -43,7 +44,8 @@ const validBody = {
       declaration2: "Declaration",
       declaration3: "Declaration"
     }
-  }
+  },
+  local_council_url: "this is set during the tests"
 };
 
 const invalidBody = {
@@ -86,42 +88,106 @@ const invalidBody = {
       declaration2: "Declaration",
       declaration3: "Declaration"
     }
-  }
+  },
+  local_council_url: "cardiff"
 };
 
 describe("Registration contract", () => {
   describe("Valid requests", () => {
-    it("Should return the same status", async () => {
-      process.env.DOUBLE_MODE = false;
-      const realResponse = await sendRequest(JSON.stringify(validBody));
-      process.env.DOUBLE_MODE = true;
-      const doubleResponse = await sendRequest(JSON.stringify(validBody));
-      expect(realResponse.status).toBe(doubleResponse.status);
+    describe("given a local council that manages hygiene and standards", () => {
+      beforeEach(() => {
+        validBody.local_council_url = "cardiff";
+      });
+
+      it("Should return the same status", async () => {
+        process.env.DOUBLE_MODE = false;
+        const realResponse = await sendRequest(JSON.stringify(validBody));
+        process.env.DOUBLE_MODE = true;
+        const doubleResponse = await sendRequest(JSON.stringify(validBody));
+        expect(realResponse.status).toBe(doubleResponse.status);
+      });
+
+      it("should return the same result from res.json()", async () => {
+        process.env.DOUBLE_MODE = false;
+        const realResponse = await sendRequest(JSON.stringify(validBody));
+        process.env.DOUBLE_MODE = true;
+        const doubleResponse = await sendRequest(JSON.stringify(validBody));
+        const realJsonResponse = await realResponse.json();
+        const doubleJsonResponse = doubleResponse.json();
+        expect(typeof realJsonResponse.regId).toBe(
+          typeof doubleJsonResponse.regId
+        );
+        expect(typeof realJsonResponse["fsa-rn"]).toBe(
+          typeof doubleJsonResponse["fsa-rn"]
+        );
+        expect(typeof realJsonResponse.tascomiResponse.id).toEqual(
+          typeof doubleJsonResponse.tascomiResponse.id
+        );
+        expect(
+          typeof realJsonResponse.tascomiResponse.online_reference
+        ).toEqual(typeof doubleJsonResponse.tascomiResponse.online_reference);
+        expect(realJsonResponse.reg_submission_date).toEqual(
+          doubleJsonResponse.reg_submission_date
+        );
+        expect(typeof realJsonResponse.email_fbo.recipient).toEqual(
+          typeof doubleJsonResponse.email_fbo.recipient
+        );
+        expect(
+          typeof realJsonResponse.email_lc.hygieneAndStandards.recipient
+        ).toEqual(
+          typeof doubleJsonResponse.email_lc.hygieneAndStandards.recipient
+        );
+        expect(
+          typeof realJsonResponse.lc_config.hygieneAndStandards.local_council
+        ).toEqual(
+          typeof doubleJsonResponse.lc_config.hygieneAndStandards.local_council
+        );
+        expect(
+          typeof realJsonResponse.lc_config.hygieneAndStandards
+            .local_council_email
+        ).toEqual(
+          typeof doubleJsonResponse.lc_config.hygieneAndStandards
+            .local_council_email
+        );
+      });
     });
-    it("should return the same result from res.json()", async () => {
-      process.env.DOUBLE_MODE = false;
-      const realResponse = await sendRequest(JSON.stringify(validBody));
-      process.env.DOUBLE_MODE = true;
-      const doubleResponse = await sendRequest(JSON.stringify(validBody));
-      const realJsonResponse = await realResponse.json();
-      const doubleJsonResponse = doubleResponse.json();
-      expect(typeof realJsonResponse.regId).toBe(
-        typeof doubleJsonResponse.regId
-      );
-      expect(typeof realJsonResponse["fsa-rn"]).toBe(
-        typeof doubleJsonResponse["fsa-rn"]
-      );
-      expect(typeof realJsonResponse.tascomiResponse.id).toEqual(
-        typeof doubleJsonResponse.tascomiResponse.id
-      );
-      expect(typeof realJsonResponse.tascomiResponse.online_reference).toEqual(
-        typeof doubleJsonResponse.tascomiResponse.online_reference
-      );
-      expect(realJsonResponse.reg_submission_date).toEqual(
-        doubleJsonResponse.reg_submission_date
-      );
-      expect(realJsonResponse.email_fbo).toEqual(doubleJsonResponse.email_fbo);
-      expect(realJsonResponse.email_lc).toEqual(doubleJsonResponse.email_lc);
+
+    describe("given a local council that has a separate council for standards", () => {
+      beforeEach(() => {
+        validBody.local_council_url = "west-dorset";
+      });
+
+      it("should return the same result from res.json()", async () => {
+        process.env.DOUBLE_MODE = false;
+        const realResponse = await sendRequest(JSON.stringify(validBody));
+        process.env.DOUBLE_MODE = true;
+        const doubleResponse = await sendRequest(JSON.stringify(validBody));
+        const realJsonResponse = await realResponse.json();
+        const doubleJsonResponse = doubleResponse.json();
+
+        expect(typeof realJsonResponse.email_lc.hygiene.recipient).toEqual(
+          typeof doubleJsonResponse.email_lc.hygiene.recipient
+        );
+        expect(typeof realJsonResponse.lc_config.hygiene.local_council).toEqual(
+          typeof doubleJsonResponse.lc_config.hygiene.local_council
+        );
+        expect(
+          typeof realJsonResponse.lc_config.hygiene.local_council_email
+        ).toEqual(
+          typeof doubleJsonResponse.lc_config.hygiene.local_council_email
+        );
+        expect(typeof realJsonResponse.email_lc.standards.recipient).toEqual(
+          typeof doubleJsonResponse.email_lc.standards.recipient
+        );
+        expect(
+          typeof realJsonResponse.lc_config.standards.local_council
+        ).toEqual(typeof doubleJsonResponse.lc_config.standards.local_council);
+        expect(
+          typeof realJsonResponse.lc_config.standards.local_council_email
+        ).toEqual(
+          typeof doubleJsonResponse.lc_config.standards.local_council_email
+        );
+      });
     });
   });
 

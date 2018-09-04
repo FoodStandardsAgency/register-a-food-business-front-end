@@ -10,7 +10,7 @@ import { Header } from "govuk-react";
 import PropTypes from "prop-types";
 
 const BusinessType = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton editMode={props.editMode} originator="business-type" />
     <Header level={2}>What kind of food business are you registering?</Header>
 

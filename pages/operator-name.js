@@ -11,7 +11,7 @@ import { Header, InputField, Paragraph, HiddenText } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OperatorName = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton editMode={props.editMode} originator="operator-name" />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}

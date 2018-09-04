@@ -16,7 +16,7 @@ import {
 import PropTypes from "prop-types";
 
 const EstablishmentOpeningStatus = props => (
-  <FsaLayout>
+  <FsaLayout {...props}>
     <BackButton
       editMode={props.editMode}
       originator="establishment-opening-status"

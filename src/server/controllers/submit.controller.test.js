@@ -25,11 +25,15 @@ describe("Function: submitController: ", () => {
 
   describe("When given empty submission data", () => {
     beforeEach(async () => {
-      response = await submitController(testLcUrl, {}, testAddressLookups);
+      try {
+        response = await submitController(testLcUrl, {}, testAddressLookups);
+      } catch (err) {
+        response = err;
+      }
     });
 
-    it("it should return emptyData error", () => {
-      expect(response.submissionErrors.emptyData).toBe(
+    it("it should throw an error", () => {
+      expect(response.message).toBe(
         "/submit route was called with an empty submission data object"
       );
     });
