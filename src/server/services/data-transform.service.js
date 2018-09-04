@@ -180,55 +180,44 @@ const transformAnswersForSubmit = (
     local_council_url: lcUrl
   };
 
-  try {
-    const data = transformAnswersForSummary(cumulativeAnswers, addressLookups);
+  const data = transformAnswersForSummary(cumulativeAnswers, addressLookups);
+  establishment_details_keys.forEach(key => {
+    if (data[key]) {
+      submitObject.registration.establishment.establishment_details[key] =
+        data[key];
+    }
+  });
 
-    establishment_details_keys.forEach(key => {
-      if (data[key]) {
-        submitObject.registration.establishment.establishment_details[key] =
-          data[key];
-      }
-    });
+  operator_keys.forEach(key => {
+    if (data[key]) {
+      submitObject.registration.establishment.operator[key] = data[key];
+    }
+  });
 
-    operator_keys.forEach(key => {
-      if (data[key]) {
-        submitObject.registration.establishment.operator[key] = data[key];
-      }
-    });
+  premise_keys.forEach(key => {
+    if (data[key]) {
+      submitObject.registration.establishment.premise[key] = data[key];
+    }
+  });
 
-    premise_keys.forEach(key => {
-      if (data[key]) {
-        submitObject.registration.establishment.premise[key] = data[key];
-      }
-    });
+  activities_keys.forEach(key => {
+    if (data[key]) {
+      submitObject.registration.establishment.activities[key] = data[key];
+    }
+  });
 
-    activities_keys.forEach(key => {
-      if (data[key]) {
-        submitObject.registration.establishment.activities[key] = data[key];
-      }
-    });
+  metadata_keys.forEach(key => {
+    if (data[key]) {
+      submitObject.registration.metadata[key] = data[key];
+    }
+  });
 
-    metadata_keys.forEach(key => {
-      if (data[key]) {
-        submitObject.registration.metadata[key] = data[key];
-      }
-    });
-
-    logEmitter.emit(
-      "functionSuccess",
-      "data-transform.service",
-      "transformAnswersForSubmit"
-    );
-    return submitObject;
-  } catch (err) {
-    logEmitter.emit(
-      "functionFail",
-      "data-transform.service",
-      "transformAnswersForSubmit",
-      err
-    );
-    throw err;
-  }
+  logEmitter.emit(
+    "functionSuccess",
+    "data-transform.service",
+    "transformAnswersForSubmit"
+  );
+  return submitObject;
 };
 
 const transformBusinessImportExport = (
@@ -277,7 +266,7 @@ const combineOperatorTypes = (operator_type, registration_role) => {
       newOperatorType = registration_role;
     } else {
       throw new Error(`
-      data-transform.service.js operatorTypeTransform():
+      data-transform.service operatorTypeTransform():
       The registration_role value was ${registration_role}.
       The operator_type value was ${operator_type}.
       This combination of values is not valid.

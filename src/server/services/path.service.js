@@ -96,32 +96,22 @@ const switchOffManualAddressInput = (newPath, currentPage) => {
     "switchOffManualAddressInput"
   );
 
-  try {
-    const manualAddressSwitchedPath = JSON.parse(JSON.stringify(newPath));
+  const manualAddressSwitchedPath = JSON.parse(JSON.stringify(newPath));
 
-    if (currentPage === "/establishment-address-select") {
-      manualAddressSwitchedPath["/establishment-address-manual"].on = false;
-    }
-
-    if (currentPage === "/operator-address-select") {
-      manualAddressSwitchedPath["/operator-address-manual"].on = false;
-    }
-
-    logEmitter.emit(
-      "functionSuccess",
-      "path.service",
-      "switchOffManualAddressInput"
-    );
-    return manualAddressSwitchedPath;
-  } catch (err) {
-    logEmitter.emit(
-      "functionFail",
-      "path.service",
-      "switchOffManualAddressInput",
-      err
-    );
-    throw err;
+  if (currentPage === "/establishment-address-select") {
+    manualAddressSwitchedPath["/establishment-address-manual"].on = false;
   }
+
+  if (currentPage === "/operator-address-select") {
+    manualAddressSwitchedPath["/operator-address-manual"].on = false;
+  }
+
+  logEmitter.emit(
+    "functionSuccess",
+    "path.service",
+    "switchOffManualAddressInput"
+  );
+  return manualAddressSwitchedPath;
 };
 
 module.exports = { moveAlongPath, editPath, switchOffManualAddressInput };
