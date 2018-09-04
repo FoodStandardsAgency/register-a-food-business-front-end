@@ -66,9 +66,9 @@ const continueController = (
         "functionSuccessWith",
         "continue.controller",
         "continueController",
-        `validatorErrors: ${
+        `validatorErrors: ${JSON.stringify(
           controllerResponse.validatorErrors
-        }. redirectRoute: ${controllerResponse.redirectRoute}`
+        )}. redirectRoute: ${controllerResponse.redirectRoute}`
       );
       return controllerResponse;
     }

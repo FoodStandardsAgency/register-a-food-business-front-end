@@ -18,7 +18,7 @@ const moveAlongPath = (path, currentPage, movement) => {
         "functionSuccessWith",
         "path.service",
         "moveAlongPath",
-        `Next page in path: "${nextPage}"`
+        `Page to move to in path: "${nextPage}"`
       );
       return nextPage;
     } else {

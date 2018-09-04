@@ -116,7 +116,7 @@ const validate = (page, answers) => {
       "functionSuccessWith",
       "validation.service",
       "validate",
-      result
+      `Validation messages: ${JSON.stringify(result.errors)}`
     );
     return result;
   } catch (err) {
