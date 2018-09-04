@@ -1,6 +1,9 @@
 const { Router } = require("express");
-const { logEmitter } = require("../services/logging.service");
 const { Next } = require("../next");
+const { logEmitter } = require("../services/logging.service");
+const {
+  transformAnswersForSummary
+} = require("../services/data-transform.service");
 
 const allowedCouncils = [
   "cardiff",
@@ -38,13 +41,36 @@ const newRouter = () => {
           req.session.council = req.params.lc;
         }
 
-        logEmitter.emit(
-          "functionSuccessWith",
-          "Routes",
-          "/new route",
-          `Rendering page: ${page}`
-        );
-        Next.render(req, res, `/${page}`);
+        // Transform the data into summary format on pages where it is required
+        if (
+          page === "registration-summary" ||
+          page === "summary-confirmation"
+        ) {
+          req.session.transformedData = transformAnswersForSummary(
+            req.session.cumulativeAnswers,
+            req.session.addressLookups
+          );
+
+          req.session.save(() => {
+            logEmitter.emit(
+              "functionSuccessWith",
+              "Routes",
+              "/new route",
+              `Rendering page: ${page}`
+            );
+
+            Next.render(req, res, `/${page}`);
+          });
+        } else {
+          logEmitter.emit(
+            "functionSuccessWith",
+            "Routes",
+            "/new route",
+            `Rendering page: ${page}`
+          );
+
+          Next.render(req, res, `/${page}`);
+        }
       }
     } else {
       logEmitter.emit(
