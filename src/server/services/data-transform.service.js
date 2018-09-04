@@ -1,94 +1,117 @@
+const { logEmitter } = require("../services/logging.service");
+
 const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
+  logEmitter.emit(
+    "functionCall",
+    "data-transform.service",
+    "transformAnswersForSummary"
+  );
+
   const data = Object.assign({}, cumulativeAnswers);
 
-  data.operator_type = combineOperatorTypes(
-    data.operator_type,
-    data.registration_role
-  );
-
-  delete data.registration_role;
-
-  data.customer_type = transformCustomerType(
-    data.supply_directly,
-    data.supply_other
-  );
-  delete data.supply_directly;
-  delete data.supply_other;
-
-  data.import_export_activities = transformBusinessImportExport(
-    data.directly_import,
-    data.directly_export,
-    data.no_import_export
-  );
-  delete data.directly_import;
-  delete data.directly_export;
-  delete data.no_import_export;
-
-  data.establishment_opening_date = combineDate(
-    data.day,
-    data.month,
-    data.year
-  );
-
-  delete data.day;
-  delete data.month;
-  delete data.year;
-  delete data.establishment_opening_status;
-
-  if (data.operator_address_selected) {
-    if (data.operator_first_line) {
-      delete data.operator_address_selected;
-    } else {
-      const operatorAddressLookupData =
-        addressLookups.operator_postcode_find[data.operator_address_selected];
-
-      data.operator_first_line = operatorAddressLookupData["premise"];
-
-      data.operator_street = operatorAddressLookupData["street"];
-
-      data.operator_town = operatorAddressLookupData["posttown"];
-
-      data.operator_postcode = operatorAddressLookupData["postcode"];
-
-      delete data.operator_postcode_find;
-      delete data.operator_address_selected;
-    }
-  }
-
-  if (data.establishment_address_selected) {
-    if (data.establishment_first_line) {
-      delete data.establishment_address_selected;
-    } else {
-      const establishmentAddressLookupData =
-        addressLookups.establishment_postcode_find[
-          data.establishment_address_selected
-        ];
-
-      data.establishment_first_line = establishmentAddressLookupData["premise"];
-
-      data.establishment_street = establishmentAddressLookupData["street"];
-
-      data.establishment_town = establishmentAddressLookupData["posttown"];
-
-      data.establishment_postcode = establishmentAddressLookupData["postcode"];
-
-      delete data.establishment_postcode_find;
-      delete data.establishment_address_selected;
-    }
-  }
-
-  if (data.business_type) {
-    const separatedBusinessTypeSearchTerm = separateBracketsFromBusinessType(
-      data.business_type
+  try {
+    data.operator_type = combineOperatorTypes(
+      data.operator_type,
+      data.registration_role
     );
+    delete data.registration_role;
 
-    data.business_type = separatedBusinessTypeSearchTerm.business_type;
+    data.customer_type = transformCustomerType(
+      data.supply_directly,
+      data.supply_other
+    );
+    delete data.supply_directly;
+    delete data.supply_other;
 
-    data.business_type_search_term =
-      separatedBusinessTypeSearchTerm.business_type_search_term;
+    data.import_export_activities = transformBusinessImportExport(
+      data.directly_import,
+      data.directly_export,
+      data.no_import_export
+    );
+    delete data.directly_import;
+    delete data.directly_export;
+    delete data.no_import_export;
+
+    data.establishment_opening_date = combineDate(
+      data.day,
+      data.month,
+      data.year
+    );
+    delete data.day;
+    delete data.month;
+    delete data.year;
+    delete data.establishment_opening_status;
+
+    if (data.operator_address_selected) {
+      if (data.operator_first_line) {
+        delete data.operator_address_selected;
+      } else {
+        const operatorAddressLookupData =
+          addressLookups.operator_postcode_find[data.operator_address_selected];
+
+        data.operator_first_line = operatorAddressLookupData["premise"];
+
+        data.operator_street = operatorAddressLookupData["street"];
+
+        data.operator_town = operatorAddressLookupData["posttown"];
+
+        data.operator_postcode = operatorAddressLookupData["postcode"];
+
+        delete data.operator_postcode_find;
+        delete data.operator_address_selected;
+      }
+    }
+
+    if (data.establishment_address_selected) {
+      if (data.establishment_first_line) {
+        delete data.establishment_address_selected;
+      } else {
+        const establishmentAddressLookupData =
+          addressLookups.establishment_postcode_find[
+            data.establishment_address_selected
+          ];
+
+        data.establishment_first_line =
+          establishmentAddressLookupData["premise"];
+
+        data.establishment_street = establishmentAddressLookupData["street"];
+
+        data.establishment_town = establishmentAddressLookupData["posttown"];
+
+        data.establishment_postcode =
+          establishmentAddressLookupData["postcode"];
+
+        delete data.establishment_postcode_find;
+        delete data.establishment_address_selected;
+      }
+    }
+
+    if (data.business_type) {
+      const separatedBusinessTypeSearchTerm = separateBracketsFromBusinessType(
+        data.business_type
+      );
+
+      data.business_type = separatedBusinessTypeSearchTerm.business_type;
+
+      data.business_type_search_term =
+        separatedBusinessTypeSearchTerm.business_type_search_term;
+    }
+
+    logEmitter.emit(
+      "functionSuccess",
+      "data-transform.service",
+      "transformAnswersForSummary"
+    );
+    return data;
+  } catch (err) {
+    logEmitter.emit(
+      "functionFail",
+      "data-transform-service",
+      "transformAnswersForSummary",
+      err
+    );
+    throw err;
   }
-
-  return data;
 };
 
 const transformAnswersForSubmit = (
@@ -96,6 +119,12 @@ const transformAnswersForSubmit = (
   cumulativeAnswers,
   addressLookups
 ) => {
+  logEmitter.emit(
+    "functionCall",
+    "data-transform.service",
+    "transformAnswersForSubmit"
+  );
+
   const establishment_details_keys = [
     "establishment_trading_name",
     "establishment_primary_number",
@@ -136,6 +165,7 @@ const transformAnswersForSubmit = (
     "business_type_search_term",
     "import_export_activities"
   ];
+
   const metadata_keys = ["declaration1", "declaration2", "declaration3"];
   const submitObject = {
     registration: {
@@ -150,40 +180,55 @@ const transformAnswersForSubmit = (
     local_council_url: lcUrl
   };
 
-  const data = transformAnswersForSummary(cumulativeAnswers, addressLookups);
+  try {
+    const data = transformAnswersForSummary(cumulativeAnswers, addressLookups);
 
-  establishment_details_keys.forEach(key => {
-    if (data[key]) {
-      submitObject.registration.establishment.establishment_details[key] =
-        data[key];
-    }
-  });
+    establishment_details_keys.forEach(key => {
+      if (data[key]) {
+        submitObject.registration.establishment.establishment_details[key] =
+          data[key];
+      }
+    });
 
-  operator_keys.forEach(key => {
-    if (data[key]) {
-      submitObject.registration.establishment.operator[key] = data[key];
-    }
-  });
+    operator_keys.forEach(key => {
+      if (data[key]) {
+        submitObject.registration.establishment.operator[key] = data[key];
+      }
+    });
 
-  premise_keys.forEach(key => {
-    if (data[key]) {
-      submitObject.registration.establishment.premise[key] = data[key];
-    }
-  });
+    premise_keys.forEach(key => {
+      if (data[key]) {
+        submitObject.registration.establishment.premise[key] = data[key];
+      }
+    });
 
-  activities_keys.forEach(key => {
-    if (data[key]) {
-      submitObject.registration.establishment.activities[key] = data[key];
-    }
-  });
+    activities_keys.forEach(key => {
+      if (data[key]) {
+        submitObject.registration.establishment.activities[key] = data[key];
+      }
+    });
 
-  metadata_keys.forEach(key => {
-    if (data[key]) {
-      submitObject.registration.metadata[key] = data[key];
-    }
-  });
+    metadata_keys.forEach(key => {
+      if (data[key]) {
+        submitObject.registration.metadata[key] = data[key];
+      }
+    });
 
-  return submitObject;
+    logEmitter.emit(
+      "functionSuccess",
+      "data-transform.service",
+      "transformAnswersForSubmit"
+    );
+    return submitObject;
+  } catch (err) {
+    logEmitter.emit(
+      "functionFail",
+      "data-transform.service",
+      "transformAnswersForSubmit",
+      err
+    );
+    throw err;
+  }
 };
 
 const transformBusinessImportExport = (

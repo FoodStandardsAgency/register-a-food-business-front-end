@@ -10,16 +10,18 @@ const backController = (currentPage, previousAnswers = {}) => {
   try {
     newPath = editPath(previousAnswers);
     previousPage = moveAlongPath(newPath, currentPage, -1);
+
+    logEmitter.emit(
+      "functionSuccessWith",
+      "back.controller",
+      "backController",
+      `Previous page is ${previousPage}`
+    );
+    return previousPage;
   } catch (err) {
     logEmitter.emit("functionFail", "back.controller", "backController", err);
+    throw err;
   }
-
-  logEmitter.emit(
-    "functionSuccess",
-    "address-lookup-api.connector",
-    "getAddressByPostcode"
-  );
-  return previousPage;
 };
 
 module.exports = backController;

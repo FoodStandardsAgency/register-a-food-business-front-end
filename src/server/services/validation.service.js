@@ -58,55 +58,71 @@ validator.attributes.validation = (instance, schema, options, ctx) => {
   }
 };
 
-module.exports.validate = (page, answers) => {
+const validate = (page, answers) => {
+  logEmitter.emit("functionCall", "validation.service", "validate");
+
   const result = {
-    errors: {},
-    pageNotFound: ""
+    errors: {}
   };
+
   const answersToValidate = Object.assign({}, answers);
 
-  if (schema[page]) {
-    if (
-      page === "/establishment-opening-date-proactive" ||
-      page === "/establishment-opening-date-retroactive"
-    ) {
-      answersToValidate.establishment_opening_date = combineDate(
-        answers.day,
-        answers.month,
-        answers.year
+  try {
+    if (schema[page]) {
+      if (
+        page === "/establishment-opening-date-proactive" ||
+        page === "/establishment-opening-date-retroactive"
+      ) {
+        answersToValidate.establishment_opening_date = combineDate(
+          answers.day,
+          answers.month,
+          answers.year
+        );
+      }
+
+      if (page === "/business-type") {
+        answersToValidate.business_type = separateBracketsFromBusinessType(
+          answers.business_type
+        ).business_type;
+      }
+
+      const validatorResult = validator.validate(
+        answersToValidate,
+        schema[page]
       );
-    }
+      if (
+        validatorResult.schema.properties.directly_import &&
+        validatorResult.errors.length > 0
+      ) {
+        result.errors.import_export_activities =
+          errorMessages.import_export_activities;
+      }
+      if (
+        validatorResult.schema.properties.supply_other &&
+        validatorResult.errors.length > 0
+      ) {
+        result.errors.customer_type = errorMessages.customer_type;
+      }
 
-    if (page === "/business-type") {
-      answersToValidate.business_type = separateBracketsFromBusinessType(
-        answers.business_type
-      ).business_type;
+      // turn errors into key:value pairs
+      validatorResult.errors.forEach(error => {
+        const key = error.property.split(".")[1];
+        result.errors[key] = error.message;
+      });
+    } else {
+      throw new Error(`Could not find schema for page: ${[page]}`);
     }
-
-    const validatorResult = validator.validate(answersToValidate, schema[page]);
-    if (
-      validatorResult.schema.properties.directly_import &&
-      validatorResult.errors.length > 0
-    ) {
-      result.errors.import_export_activities =
-        errorMessages.import_export_activities;
-    }
-    if (
-      validatorResult.schema.properties.supply_other &&
-      validatorResult.errors.length > 0
-    ) {
-      result.errors.customer_type = errorMessages.customer_type;
-    }
-
-    // turn errors into key:value pairs
-    validatorResult.errors.forEach(error => {
-      const key = error.property.split(".")[1];
-      result.errors[key] = error.message;
-    });
-  } else {
-    winston.error(`Could not find schema for page: ${[page]}`);
-    result.pageNotFound = page;
+    logEmitter.emit(
+      "functionSuccessWith",
+      "validation.service",
+      "validate",
+      result
+    );
+    return result;
+  } catch (err) {
+    logEmitter.emit("functionFail", "validation.service", "validate", err);
+    throw err;
   }
-
-  return result;
 };
+
+module.exports = { validate };

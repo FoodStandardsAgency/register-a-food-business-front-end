@@ -31,9 +31,22 @@ const newRouter = () => {
         if (!req.session.council) {
           req.session.council = req.params.lc;
         }
+
+        logEmitter.emit(
+          "functionSuccessWith",
+          "Routes",
+          "/new route",
+          `Rendering page: ${page}`
+        );
         Next.render(req, res, `/${page}`);
       }
     } else {
+      logEmitter.emit(
+        "functionSuccessWith",
+        "Routes",
+        "/new route",
+        `Unsupported council: "${req.params.lc}". Rendering error page.`
+      );
       Next.render(req, res, "/unsupported-council");
     }
   });

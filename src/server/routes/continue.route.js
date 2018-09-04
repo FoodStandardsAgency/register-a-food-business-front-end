@@ -29,7 +29,7 @@ const continueRouter = () => {
     );
     req.session.save(err => {
       if (err) {
-        logEmitter.emit("functionFail", "Routers", "/continue route", err);
+        logEmitter.emit("functionFail", "Routes", "/continue route", err);
         throw err;
       }
       if (response.redirectRoute === "/submit") {

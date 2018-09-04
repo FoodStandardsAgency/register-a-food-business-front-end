@@ -5,11 +5,11 @@ const editRouter = () => {
   const router = Router();
 
   router.get("/:target", (req, res) => {
-    logEmitter.emit("functionCall", "Routers", "/edit/:target route");
+    logEmitter.emit("functionCall", "Routes", "/edit/:target route");
 
     const target = req.params.target;
 
-    logEmitter.emit("functionSuccess", "Routers", "/edit/:target route");
+    logEmitter.emit("functionSuccess", "Routes", "/edit/:target route");
     res.redirect(`/${target}?edit=on`);
   });
 

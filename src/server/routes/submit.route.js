@@ -29,7 +29,7 @@ const submitRouter = () => {
     }
     req.session.save(err => {
       if (err) {
-        logEmitter.emit("functionFail", "Routers", "/submit route", err);
+        logEmitter.emit("functionFail", "Routes", "/submit route", err);
         throw err;
       }
       res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
