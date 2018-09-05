@@ -29,7 +29,6 @@
     "@govuk-react/icons": "0.2.7",
     "@slice-and-dice/register-a-food-business-validation": "1.10.3",
     "@storybook/addons": "3.3.0",
-    "@zeit/next-css": "0.2.0",
     "accessible-autocomplete": "1.6.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-plugin-emotion": "9.1.2",

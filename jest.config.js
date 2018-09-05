@@ -23,6 +23,7 @@ module.exports = {
     "!src/server/config.js",
     "!src/components/index.js",
     "!src/components/NormalizeCSS.js",
+    "!src/components/AccessibleAutocompleteCSS.js",
     "!src/**/*.double.js",
     "!tests/**/*.js"
   ],

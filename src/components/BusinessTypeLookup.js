@@ -1,13 +1,20 @@
 import dynamic from "next/dynamic";
-import "accessible-autocomplete/dist/accessible-autocomplete.min.css";
-import "./BusinessTypeLookup.css";
 import ContentItem from "./ContentItem";
-
+import { css } from "emotion";
+import AccessibleAutocompleteCSS from "./AccessibleAutocompleteCSS";
 import {
   findMatches,
   inputValueFunction,
   suggestionFunction
 } from "./BusinessTypeLookupFunctions";
+
+const autocompleteErrorStyling = css`
+  border-left: 4px solid #b10e1e;
+  padding-left: 10px;
+  .autocomplete__input {
+    border: 3px solid #b10e1e;
+  }
+`;
 
 import { ErrorText, HintText } from "govuk-react";
 
@@ -35,7 +42,9 @@ const BusinessTypeLookup = props => (
       </HintText>
     </ContentItem.B_30_15>
     <div
-      className={props.validatorErrors.business_type ? "errorStyling" : null}
+      className={
+        props.validatorErrors.business_type ? autocompleteErrorStyling : null
+      }
     >
       {props.validatorErrors.business_type ? (
         <ErrorText style={lineHeight}>
@@ -43,6 +52,7 @@ const BusinessTypeLookup = props => (
         </ErrorText>
       ) : null}
       <Autocomplete
+        className={AccessibleAutocompleteCSS}
         source={findMatches}
         templates={templates}
         autoselect={true}
