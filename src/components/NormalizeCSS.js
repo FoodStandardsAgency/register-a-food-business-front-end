@@ -9,6 +9,13 @@ const NormalizeCSS = css`
     color: #0b0c0c;
   }
 
+  html {
+    background-color: #dee0e2;
+  }
+  body {
+    background-color: white;
+  }
+
   .bold {
     font-weight: bold;
   }
