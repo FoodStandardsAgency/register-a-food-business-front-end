@@ -16,7 +16,7 @@ const FooterBody = styled("div")`
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
-  padding: 15px 0;
+  padding: 30px 0px;
   display: flex;
   flex-direction: column;
 
@@ -83,8 +83,7 @@ const FooterText = styled("p")`
 `;
 
 const FooterCopyrightContainer = styled("div")`
-  margin: 15px;
-  margin-bottom: 0px;
+  margin: 0px 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
