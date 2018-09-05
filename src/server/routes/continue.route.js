@@ -6,7 +6,12 @@ const continueRouter = () => {
   const router = Router();
 
   router.post("/:originator/:editMode?", (req, res) => {
-    logEmitter.emit("functionCall", "Routes", "/continue route");
+    logEmitter.emit(
+      "functionCallWith",
+      "Routes",
+      "/continue route",
+      `Originator: ${req.session.council}/${req.params.originator}`
+    );
     const editMode = req.params.editMode === "true" ? true : false;
 
     const response = continueController(
@@ -29,7 +34,7 @@ const continueRouter = () => {
     );
     req.session.save(err => {
       if (err) {
-        logEmitter.emit("functionFail", "Routers", "/continue route", err);
+        logEmitter.emit("functionFail", "Routes", "/continue route", err);
         throw err;
       }
       if (response.redirectRoute === "/submit") {

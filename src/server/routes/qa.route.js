@@ -6,7 +6,7 @@ const qaRouter = () => {
   const router = Router();
 
   router.get("/:lc/:target", (req, res) => {
-    logEmitter.emit("functionCall", "Routers", "/qa/:lc/:target route");
+    logEmitter.emit("functionCall", "Routes", "/qa/:lc/:target route");
     if (req.query.QA_KEY && req.query.QA_KEY === QA_KEY) {
       req.session.council = req.params.lc;
       const target = req.params.target;

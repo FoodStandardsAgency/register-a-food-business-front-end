@@ -309,4 +309,27 @@ describe("Function: continueController: ", () => {
       });
     });
   });
+
+  describe("When one of the services throws an error", () => {
+    beforeEach(() => {
+      cleanEmptiedAnswers.mockImplementation(() => {
+        throw new Error("Some error");
+      });
+
+      try {
+        response = continueController(
+          "/final-page",
+          {},
+          exampleAnswers,
+          exampleSwitches
+        );
+      } catch (err) {
+        response = err;
+      }
+    });
+
+    it("should throw an error", () => {
+      expect(response.message).toBe("Some error");
+    });
+  });
 });

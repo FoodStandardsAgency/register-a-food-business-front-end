@@ -1,15 +1,37 @@
 const {
   getAddressesByPostcode
 } = require("../connectors/address-lookup/address-lookup-api.connector");
+const { logEmitter } = require("./logging.service");
 
 const getUkAddressesByPostcode = async postcode => {
-  const addressLookupResponse = await getAddressesByPostcode(
-    "uk",
-    postcode,
-    500
+  logEmitter.emit(
+    "functionCall",
+    "address.service",
+    "getUkAddressesByPostcode"
   );
 
-  return addressLookupResponse;
+  try {
+    const addressLookupResponse = await getAddressesByPostcode(
+      "uk",
+      postcode,
+      500
+    );
+
+    logEmitter.emit(
+      "functionSuccess",
+      "address.service",
+      "getUkAddressesByPostcode"
+    );
+    return addressLookupResponse;
+  } catch (err) {
+    logEmitter.emit(
+      "functionFail",
+      "address.service",
+      "getUkAddressesByPostcode",
+      err
+    );
+    throw err;
+  }
 };
 
 module.exports = { getUkAddressesByPostcode };

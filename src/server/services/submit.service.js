@@ -1,9 +1,9 @@
 const {
   sendRequest
 } = require("../connectors/registration/registration.connector");
-const { logEmitter } = require("../../server/services/logging.service");
+const { logEmitter } = require("./logging.service");
 
-module.exports.submit = async submissionData => {
+const submit = async submissionData => {
   logEmitter.emit("functionCall", "submit.service", "submit");
   try {
     const stringSubmissionData = JSON.stringify(submissionData);
@@ -15,3 +15,5 @@ module.exports.submit = async submissionData => {
     return err;
   }
 };
+
+module.exports = { submit };

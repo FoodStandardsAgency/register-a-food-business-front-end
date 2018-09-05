@@ -18,7 +18,8 @@ describe("Cleansession route: ", () => {
       const req = {
         session: {
           example: "value",
-          destroy: jest.fn(callback => callback("this is an error"))
+          destroy: jest.fn(callback => callback("this is an error")),
+          council: "council"
         }
       };
 
@@ -35,7 +36,7 @@ describe("Cleansession route: ", () => {
         expect(req.session.example).toEqual("value");
       });
 
-      it("Should call res.redirect with target of '/'", () => {
+      it("Should call res.redirect with target of 'back'", () => {
         expect(res.redirect).toHaveBeenCalledWith("back");
       });
     });
@@ -47,7 +48,8 @@ describe("Cleansession route: ", () => {
           destroy: jest.fn(callback => {
             delete req.session.example;
             callback();
-          })
+          }),
+          council: "council"
         }
       };
 
@@ -64,8 +66,8 @@ describe("Cleansession route: ", () => {
         expect(req.session.example).not.toBeDefined();
       });
 
-      it("Should call res.redirect with target of '/'", () => {
-        expect(res.redirect).toHaveBeenCalledWith("/");
+      it("Should call res.redirect with target of '/new/council/'", () => {
+        expect(res.redirect).toHaveBeenCalledWith("/new/council/");
       });
     });
   });

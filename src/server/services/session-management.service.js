@@ -1,6 +1,13 @@
 const schema = require("./schema");
+const { logEmitter } = require("./logging.service");
 
 const cleanInactivePathAnswers = (cumulativeAnswers, path) => {
+  logEmitter.emit(
+    "functionCall",
+    "session-management.service",
+    "cleanInactivePathAnswers"
+  );
+
   const cleanedAnswers = Object.assign({}, cumulativeAnswers);
 
   for (let answer in cleanedAnswers) {
@@ -16,6 +23,12 @@ const cleanInactivePathAnswers = (cumulativeAnswers, path) => {
       delete cleanedAnswers[answer];
     }
   }
+
+  logEmitter.emit(
+    "functionSuccess",
+    "session-management.service",
+    "cleanInactivePathAnswers"
+  );
   return cleanedAnswers;
 };
 
@@ -24,6 +37,11 @@ const cleanEmptiedAnswers = (
   newAnswersArray,
   currentPage
 ) => {
+  logEmitter.emit(
+    "functionCall",
+    "session-management.service",
+    "cleanEmptiedAnswers"
+  );
   const cleanedAnswers = Object.assign({}, cumulativeAnswers);
 
   for (let schemaDefinedAnswer in schema[currentPage].properties) {
@@ -35,10 +53,21 @@ const cleanEmptiedAnswers = (
     }
   }
 
+  logEmitter.emit(
+    "functionSuccess",
+    "session-management.service",
+    "cleanEmptiedAnswers"
+  );
   return cleanedAnswers;
 };
 
 const cleanSwitches = (cumulativeAnswers, switches) => {
+  logEmitter.emit(
+    "functionCall",
+    "session-management.service",
+    "cleanSwitches"
+  );
+
   const cleanedSwitches = Object.assign({}, switches);
 
   if (switches) {
@@ -65,6 +94,11 @@ const cleanSwitches = (cumulativeAnswers, switches) => {
     }
   }
 
+  logEmitter.emit(
+    "functionSuccess",
+    "session-management.service",
+    "cleanSwitches"
+  );
   return cleanedSwitches;
 };
 

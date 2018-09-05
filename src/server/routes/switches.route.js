@@ -7,7 +7,7 @@ const switchesRouter = () => {
   router.post("/:switchName/:action/:originator", (req, res) => {
     logEmitter.emit(
       "functionCall",
-      "Routers",
+      "Routes",
       "/switches/:switchName/:action route"
     );
 
@@ -33,12 +33,12 @@ const switchesRouter = () => {
 
     logEmitter.emit(
       "functionSuccess",
-      "Routers",
+      "Routes",
       "/switches/:switchName/:action/:originator route"
     );
     req.session.save(err => {
       if (err) {
-        logEmitter.emit("functionFail", "Routers", "/switches route", err);
+        logEmitter.emit("functionFail", "Routes", "/switches route", err);
         throw err;
       }
       res.redirect("back");

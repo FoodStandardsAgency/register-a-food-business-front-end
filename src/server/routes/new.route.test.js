@@ -4,6 +4,7 @@ jest.mock("express", () => ({
     get: jest.fn()
   }))
 }));
+jest.mock("../services/data-transform.service");
 jest.mock("../next", () => ({
   Next: {
     render: jest.fn()
@@ -12,6 +13,9 @@ jest.mock("../next", () => ({
 
 const { Next } = require("../next");
 const { newRouter } = require("./new.route");
+const {
+  transformAnswersForSummary
+} = require("../services/data-transform.service");
 
 describe("New route: ", () => {
   let router, handler;
@@ -80,6 +84,45 @@ describe("New route: ", () => {
 
       it("Should call Next.render with page", () => {
         expect(Next.render).toBeCalledWith(req, res, "/new page");
+      });
+
+      describe("When page is registration-summary", () => {
+        beforeEach(() => {
+          transformAnswersForSummary.mockImplementation(() => ({
+            example: "data"
+          }));
+          handler = router.get.mock.calls[0][1];
+          req = {
+            session: {
+              council: "cardiff",
+              save: cb => {
+                cb();
+              }
+            },
+            params: {
+              page: "registration-summary",
+              lc: "cardiff"
+            }
+          };
+
+          res = "res";
+
+          handler(req, res);
+        });
+
+        it("Should call Next.render with page", () => {
+          expect(Next.render).toBeCalledWith(
+            expect.anything(),
+            res,
+            "/registration-summary"
+          );
+        });
+
+        it("Should set session.transformedData", () => {
+          expect(req.session.transformedData).toEqual({
+            example: "data"
+          });
+        });
       });
     });
 

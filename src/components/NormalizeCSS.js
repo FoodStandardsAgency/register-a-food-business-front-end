@@ -1,6 +1,19 @@
 import { css } from "emotion";
 
 const NormalizeCSS = css`
+  /* Start FSA-specific normalize options */
+  html,
+  body {
+    font-family: sans-serif;
+    font-size: 19px;
+    color: #0b0c0c;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+  /* End FSA-specific normalize options */
+
   /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 
   /* Document

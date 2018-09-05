@@ -7,6 +7,10 @@ const SessionWrapper = Page => {
         req && req.session && req.session.cumulativeAnswers
           ? req.session.cumulativeAnswers
           : {},
+      transformedData:
+        req && req.session && req.session.transformedData
+          ? req.session.transformedData
+          : {},
       validatorErrors:
         req && req.session && req.session.validatorErrors
           ? req.session.validatorErrors
