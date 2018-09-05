@@ -1,5 +1,6 @@
 import FsaHeader from "./FsaHeader";
 import { GridRow, GridCol, Main } from "govuk-react";
+import FsaFooter from "./FsaFooter";
 
 const FsaLayout = props => (
   <div>
@@ -9,6 +10,7 @@ const FsaLayout = props => (
         <GridCol columnTwoThirds>{props.children}</GridCol>
       </GridRow>
     </Main>
+    <FsaFooter />
   </div>
 );
 

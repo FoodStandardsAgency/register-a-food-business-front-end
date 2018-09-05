@@ -12,7 +12,7 @@ import OnHandleErrorClick from "./OnHandleErrorClick";
 import ProcessedErrorSummary from "./ProcessedErrorSummary";
 import BusinessTypeLookup from "./BusinessTypeLookup";
 import CookieBanner from "./CookieBanner";
-
+import FsaFooter from "./FsaFooter";
 export {
   SessionWrapper,
   FsaHeader,
@@ -27,5 +27,6 @@ export {
   ProcessedErrorSummary,
   OnHandleErrorClick,
   BusinessTypeLookup,
-  CookieBanner
+  CookieBanner,
+  FsaFooter
 };
