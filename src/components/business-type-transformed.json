@@ -304,6 +304,7 @@
   { "displayName": "Commercial bakery", "searchTerm": "cake" },
   { "displayName": "Commercial bakery", "searchTerm": "bread" },
   { "displayName": "Commercial bakery", "searchTerm": "maker" },
+  { "displayName": "Commercial bakery", "searchTerm": "producer" },
   {
     "displayName": "Ready to eat meals or food manufacturer",
     "searchTerm": "dish"
