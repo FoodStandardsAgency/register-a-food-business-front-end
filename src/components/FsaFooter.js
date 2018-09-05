@@ -138,7 +138,7 @@ const FsaFooter = () => (
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               target="_blank"
               rel="noopener noreferrer"
-              id="open-government-licence"
+              id="openGovernmentLicence"
             >
               Open Government Licence v3.0,
             </FooterInlineLink>{" "}
