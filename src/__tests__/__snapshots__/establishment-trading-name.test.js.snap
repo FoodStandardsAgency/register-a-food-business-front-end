@@ -1002,14 +1002,14 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-83 {
+.emotion-85 {
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
 }
 
-.emotion-81 {
+.emotion-83 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -1024,7 +1024,7 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-81 {
+  .emotion-83 {
     width: calc(100% - 60px);
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -1036,7 +1036,7 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-73 {
+.emotion-75 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1050,7 +1050,7 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
   justify-content: flex-end;
 }
 
-.emotion-65 {
+.emotion-67 {
   margin-bottom: 15px;
 }
 
@@ -1093,30 +1093,30 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
   color: #171819;
 }
 
-.emotion-67 {
+.emotion-69 {
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-67 {
+  .emotion-69 {
     margin-bottom: 0px;
   }
 }
 
-.emotion-71 {
+.emotion-73 {
   font-size: 14px;
   margin: 0;
   display: inline-block;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-71 {
+  .emotion-73 {
     font-size: 16px;
   }
 }
 
-.emotion-69 {
+.emotion-71 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1127,24 +1127,24 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
   color: #454a4c;
 }
 
-.emotion-69:focus {
+.emotion-71:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-69:visited {
+.emotion-71:visited {
   color: #2e358b;
 }
 
-.emotion-69:visited {
+.emotion-71:visited {
   color: #454a4c;
 }
 
-.emotion-69:hover {
+.emotion-71:hover {
   color: #171819;
 }
 
-.emotion-79 {
+.emotion-81 {
   margin: 0px 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1164,7 +1164,7 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
   text-align: center;
 }
 
-.emotion-75 {
+.emotion-77 {
   margin-bottom: 10px;
 }
 
@@ -1445,22 +1445,23 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-83 emotion-84"
+    className="emotion-85 emotion-86"
     id="fsaFooter"
   >
     <div
-      className="emotion-81 emotion-82"
+      className="emotion-83 emotion-84"
     >
       <div
-        className="emotion-73 emotion-74"
+        className="emotion-75 emotion-76"
       >
         <div
-          className="emotion-65 emotion-66"
+          className="emotion-67 emotion-68"
         >
           <a
             className="emotion-61 emotion-62"
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
+            rel="noopener noreferrer"
             target="_blank"
           >
             Cookies
@@ -1469,14 +1470,24 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
             className="emotion-61 emotion-62"
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
+            rel="noopener noreferrer"
             target="_blank"
           >
             Privacy
           </a>
+          <a
+            className="emotion-61 emotion-62"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
+            id="feedbackFooter"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Feedback
+          </a>
         </div>
         <div>
           <div
-            className="emotion-67 emotion-68"
+            className="emotion-69 emotion-70"
           >
             <svg
               class="govuk-footer__licence-logo"
@@ -1494,12 +1505,12 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
             </svg>
           </div>
           <p
-            className="emotion-71 emotion-72"
+            className="emotion-73 emotion-74"
           >
             All content is available under the
              
             <a
-              className="emotion-69 emotion-70"
+              className="emotion-71 emotion-72"
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
               rel="noopener noreferrer"
@@ -1513,10 +1524,10 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
         </div>
       </div>
       <div
-        className="emotion-79 emotion-80"
+        className="emotion-81 emotion-82"
       >
         <svg
-          className="emotion-75 emotion-76"
+          className="emotion-77 emotion-78"
           height="102"
           viewBox="0 0 124 102"
           width="124"
@@ -1544,7 +1555,7 @@ exports[`<EstablishmentTradingName /> matches the previous snapshot 1`] = `
           </g>
         </svg>
         <p
-          className="emotion-71 emotion-72"
+          className="emotion-73 emotion-74"
         >
           © Crown copyright
         </p>

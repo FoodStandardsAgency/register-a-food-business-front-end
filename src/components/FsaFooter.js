@@ -104,6 +104,7 @@ const FsaFooter = () => (
             id="cookiePolicyFooter"
             href="https://www.food.gov.uk/cookie-policy"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Cookies
           </FooterLink>
@@ -111,8 +112,17 @@ const FsaFooter = () => (
             id="privacyPolicyFooter"
             href="https://www.food.gov.uk/privacy-policy"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Privacy
+          </FooterLink>
+          <FooterLink
+            id="feedbackFooter"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Feedback
           </FooterLink>
         </FooterLinkContainer>
         <div>

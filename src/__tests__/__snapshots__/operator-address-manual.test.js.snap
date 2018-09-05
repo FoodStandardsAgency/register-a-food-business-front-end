@@ -1125,14 +1125,14 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-105 {
+.emotion-107 {
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
 }
 
-.emotion-103 {
+.emotion-105 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -1147,7 +1147,7 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-103 {
+  .emotion-105 {
     width: calc(100% - 60px);
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -1159,7 +1159,7 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-95 {
+.emotion-97 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1173,7 +1173,7 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   justify-content: flex-end;
 }
 
-.emotion-87 {
+.emotion-89 {
   margin-bottom: 15px;
 }
 
@@ -1216,30 +1216,30 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   color: #171819;
 }
 
-.emotion-89 {
+.emotion-91 {
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-89 {
+  .emotion-91 {
     margin-bottom: 0px;
   }
 }
 
-.emotion-93 {
+.emotion-95 {
   font-size: 14px;
   margin: 0;
   display: inline-block;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-93 {
+  .emotion-95 {
     font-size: 16px;
   }
 }
 
-.emotion-91 {
+.emotion-93 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1250,24 +1250,24 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   color: #454a4c;
 }
 
-.emotion-91:focus {
+.emotion-93:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-91:visited {
+.emotion-93:visited {
   color: #2e358b;
 }
 
-.emotion-91:visited {
+.emotion-93:visited {
   color: #454a4c;
 }
 
-.emotion-91:hover {
+.emotion-93:hover {
   color: #171819;
 }
 
-.emotion-101 {
+.emotion-103 {
   margin: 0px 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1287,7 +1287,7 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
   text-align: center;
 }
 
-.emotion-97 {
+.emotion-99 {
   margin-bottom: 10px;
 }
 
@@ -1658,22 +1658,23 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-105 emotion-106"
+    className="emotion-107 emotion-108"
     id="fsaFooter"
   >
     <div
-      className="emotion-103 emotion-104"
+      className="emotion-105 emotion-106"
     >
       <div
-        className="emotion-95 emotion-96"
+        className="emotion-97 emotion-98"
       >
         <div
-          className="emotion-87 emotion-88"
+          className="emotion-89 emotion-90"
         >
           <a
             className="emotion-83 emotion-84"
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
+            rel="noopener noreferrer"
             target="_blank"
           >
             Cookies
@@ -1682,14 +1683,24 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
             className="emotion-83 emotion-84"
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
+            rel="noopener noreferrer"
             target="_blank"
           >
             Privacy
           </a>
+          <a
+            className="emotion-83 emotion-84"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
+            id="feedbackFooter"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Feedback
+          </a>
         </div>
         <div>
           <div
-            className="emotion-89 emotion-90"
+            className="emotion-91 emotion-92"
           >
             <svg
               class="govuk-footer__licence-logo"
@@ -1707,12 +1718,12 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
             </svg>
           </div>
           <p
-            className="emotion-93 emotion-94"
+            className="emotion-95 emotion-96"
           >
             All content is available under the
              
             <a
-              className="emotion-91 emotion-92"
+              className="emotion-93 emotion-94"
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
               rel="noopener noreferrer"
@@ -1726,10 +1737,10 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
         </div>
       </div>
       <div
-        className="emotion-101 emotion-102"
+        className="emotion-103 emotion-104"
       >
         <svg
-          className="emotion-97 emotion-98"
+          className="emotion-99 emotion-100"
           height="102"
           viewBox="0 0 124 102"
           width="124"
@@ -1757,7 +1768,7 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
           </g>
         </svg>
         <p
-          className="emotion-93 emotion-94"
+          className="emotion-95 emotion-96"
         >
           © Crown copyright
         </p>
