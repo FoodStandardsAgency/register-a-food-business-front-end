@@ -1023,14 +1023,14 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-88 {
+.emotion-90 {
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
 }
 
-.emotion-86 {
+.emotion-88 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -1045,7 +1045,7 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-86 {
+  .emotion-88 {
     width: calc(100% - 60px);
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -1057,7 +1057,7 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-78 {
+.emotion-80 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1071,7 +1071,7 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
   justify-content: flex-end;
 }
 
-.emotion-70 {
+.emotion-72 {
   margin-bottom: 15px;
 }
 
@@ -1114,30 +1114,30 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
   color: #171819;
 }
 
-.emotion-72 {
+.emotion-74 {
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-72 {
+  .emotion-74 {
     margin-bottom: 0px;
   }
 }
 
-.emotion-76 {
+.emotion-78 {
   font-size: 14px;
   margin: 0;
   display: inline-block;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-76 {
+  .emotion-78 {
     font-size: 16px;
   }
 }
 
-.emotion-74 {
+.emotion-76 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1148,24 +1148,24 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
   color: #454a4c;
 }
 
-.emotion-74:focus {
+.emotion-76:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-74:visited {
+.emotion-76:visited {
   color: #2e358b;
 }
 
-.emotion-74:visited {
+.emotion-76:visited {
   color: #454a4c;
 }
 
-.emotion-74:hover {
+.emotion-76:hover {
   color: #171819;
 }
 
-.emotion-84 {
+.emotion-86 {
   margin: 0px 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1185,7 +1185,7 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
   text-align: center;
 }
 
-.emotion-80 {
+.emotion-82 {
   margin-bottom: 10px;
 }
 
@@ -1501,17 +1501,17 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-88 emotion-89"
+    className="emotion-90 emotion-91"
     id="fsaFooter"
   >
     <div
-      className="emotion-86 emotion-87"
+      className="emotion-88 emotion-89"
     >
       <div
-        className="emotion-78 emotion-79"
+        className="emotion-80 emotion-81"
       >
         <div
-          className="emotion-70 emotion-71"
+          className="emotion-72 emotion-73"
         >
           <a
             className="emotion-66 emotion-67"
@@ -1519,6 +1519,7 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
             onClick={undefined}
+            rel="noopener noreferrer"
             target="_blank"
           >
             Cookies
@@ -1529,14 +1530,26 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
             onClick={undefined}
+            rel="noopener noreferrer"
             target="_blank"
           >
             Privacy
           </a>
+          <a
+            className="emotion-66 emotion-67"
+            disabled={undefined}
+            href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
+            id="feedbackFooter"
+            onClick={undefined}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Feedback
+          </a>
         </div>
         <div>
           <div
-            className="emotion-72 emotion-73"
+            className="emotion-74 emotion-75"
           >
             <svg
               class="govuk-footer__licence-logo"
@@ -1554,12 +1567,12 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
             </svg>
           </div>
           <p
-            className="emotion-76 emotion-77"
+            className="emotion-78 emotion-79"
           >
             All content is available under the
              
             <a
-              className="emotion-74 emotion-75"
+              className="emotion-76 emotion-77"
               disabled={undefined}
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
@@ -1575,10 +1588,10 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
         </div>
       </div>
       <div
-        className="emotion-84 emotion-85"
+        className="emotion-86 emotion-87"
       >
         <svg
-          className="emotion-80 emotion-81"
+          className="emotion-82 emotion-83"
           height="102"
           viewBox="0 0 124 102"
           width="124"
@@ -1606,7 +1619,7 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
           </g>
         </svg>
         <p
-          className="emotion-76 emotion-77"
+          className="emotion-78 emotion-79"
         >
           © Crown copyright
         </p>
