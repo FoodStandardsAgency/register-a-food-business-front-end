@@ -947,14 +947,14 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-81 {
+.emotion-83 {
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
 }
 
-.emotion-79 {
+.emotion-81 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -969,7 +969,7 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-79 {
+  .emotion-81 {
     width: calc(100% - 60px);
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -981,7 +981,7 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-71 {
+.emotion-73 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -995,7 +995,7 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   justify-content: flex-end;
 }
 
-.emotion-63 {
+.emotion-65 {
   margin-bottom: 15px;
 }
 
@@ -1038,30 +1038,30 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   color: #171819;
 }
 
-.emotion-65 {
+.emotion-67 {
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-65 {
+  .emotion-67 {
     margin-bottom: 0px;
   }
 }
 
-.emotion-69 {
+.emotion-71 {
   font-size: 14px;
   margin: 0;
   display: inline-block;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-69 {
+  .emotion-71 {
     font-size: 16px;
   }
 }
 
-.emotion-67 {
+.emotion-69 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1072,24 +1072,24 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   color: #454a4c;
 }
 
-.emotion-67:focus {
+.emotion-69:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-67:visited {
+.emotion-69:visited {
   color: #2e358b;
 }
 
-.emotion-67:visited {
+.emotion-69:visited {
   color: #454a4c;
 }
 
-.emotion-67:hover {
+.emotion-69:hover {
   color: #171819;
 }
 
-.emotion-77 {
+.emotion-79 {
   margin: 0px 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1109,7 +1109,7 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
   text-align: center;
 }
 
-.emotion-73 {
+.emotion-75 {
   margin-bottom: 10px;
 }
 
@@ -1399,17 +1399,17 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-81 emotion-82"
+    className="emotion-83 emotion-84"
     id="fsaFooter"
   >
     <div
-      className="emotion-79 emotion-80"
+      className="emotion-81 emotion-82"
     >
       <div
-        className="emotion-71 emotion-72"
+        className="emotion-73 emotion-74"
       >
         <div
-          className="emotion-63 emotion-64"
+          className="emotion-65 emotion-66"
         >
           <a
             className="emotion-59 emotion-60"
@@ -1417,6 +1417,7 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
             onClick={undefined}
+            rel="noopener noreferrer"
             target="_blank"
           >
             Cookies
@@ -1427,14 +1428,26 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
             onClick={undefined}
+            rel="noopener noreferrer"
             target="_blank"
           >
             Privacy
           </a>
+          <a
+            className="emotion-59 emotion-60"
+            disabled={undefined}
+            href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
+            id="feedbackFooter"
+            onClick={undefined}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Feedback
+          </a>
         </div>
         <div>
           <div
-            className="emotion-65 emotion-66"
+            className="emotion-67 emotion-68"
           >
             <svg
               class="govuk-footer__licence-logo"
@@ -1452,12 +1465,12 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
             </svg>
           </div>
           <p
-            className="emotion-69 emotion-70"
+            className="emotion-71 emotion-72"
           >
             All content is available under the
              
             <a
-              className="emotion-67 emotion-68"
+              className="emotion-69 emotion-70"
               disabled={undefined}
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
@@ -1473,10 +1486,10 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
         </div>
       </div>
       <div
-        className="emotion-77 emotion-78"
+        className="emotion-79 emotion-80"
       >
         <svg
-          className="emotion-73 emotion-74"
+          className="emotion-75 emotion-76"
           height="102"
           viewBox="0 0 124 102"
           width="124"
@@ -1504,7 +1517,7 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
           </g>
         </svg>
         <p
-          className="emotion-69 emotion-70"
+          className="emotion-71 emotion-72"
         >
           © Crown copyright
         </p>

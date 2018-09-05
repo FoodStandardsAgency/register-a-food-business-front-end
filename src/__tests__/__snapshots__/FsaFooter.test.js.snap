@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FsaFooter /> matches the previous snapshot 1`] = `
-.emotion-22 {
+.emotion-24 {
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
 }
 
-.emotion-20 {
+.emotion-22 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -23,7 +23,7 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-20 {
+  .emotion-22 {
     width: calc(100% - 60px);
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -35,7 +35,7 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-12 {
+.emotion-14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -49,7 +49,7 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
   justify-content: flex-end;
 }
 
-.emotion-4 {
+.emotion-6 {
   margin-bottom: 15px;
 }
 
@@ -92,30 +92,30 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
   color: #171819;
 }
 
-.emotion-6 {
+.emotion-8 {
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-6 {
+  .emotion-8 {
     margin-bottom: 0px;
   }
 }
 
-.emotion-10 {
+.emotion-12 {
   font-size: 14px;
   margin: 0;
   display: inline-block;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-10 {
+  .emotion-12 {
     font-size: 16px;
   }
 }
 
-.emotion-8 {
+.emotion-10 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -126,24 +126,24 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
   color: #454a4c;
 }
 
-.emotion-8:focus {
+.emotion-10:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-8:visited {
+.emotion-10:visited {
   color: #2e358b;
 }
 
-.emotion-8:visited {
+.emotion-10:visited {
   color: #454a4c;
 }
 
-.emotion-8:hover {
+.emotion-10:hover {
   color: #171819;
 }
 
-.emotion-18 {
+.emotion-20 {
   margin: 0px 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -163,22 +163,22 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
   text-align: center;
 }
 
-.emotion-14 {
+.emotion-16 {
   margin-bottom: 10px;
 }
 
 <div
-  className="emotion-22 emotion-23"
+  className="emotion-24 emotion-25"
   id="fsaFooter"
 >
   <div
-    className="emotion-20 emotion-21"
+    className="emotion-22 emotion-23"
   >
     <div
-      className="emotion-12 emotion-13"
+      className="emotion-14 emotion-15"
     >
       <div
-        className="emotion-4 emotion-5"
+        className="emotion-6 emotion-7"
       >
         <a
           className="emotion-0 emotion-1"
@@ -186,6 +186,7 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
           href="https://www.food.gov.uk/cookie-policy"
           id="cookiePolicyFooter"
           onClick={undefined}
+          rel="noopener noreferrer"
           target="_blank"
         >
           Cookies
@@ -196,14 +197,26 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
           href="https://www.food.gov.uk/privacy-policy"
           id="privacyPolicyFooter"
           onClick={undefined}
+          rel="noopener noreferrer"
           target="_blank"
         >
           Privacy
         </a>
+        <a
+          className="emotion-0 emotion-1"
+          disabled={undefined}
+          href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
+          id="feedbackFooter"
+          onClick={undefined}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Feedback
+        </a>
       </div>
       <div>
         <div
-          className="emotion-6 emotion-7"
+          className="emotion-8 emotion-9"
         >
           <svg
             class="govuk-footer__licence-logo"
@@ -221,12 +234,12 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
           </svg>
         </div>
         <p
-          className="emotion-10 emotion-11"
+          className="emotion-12 emotion-13"
         >
           All content is available under the
            
           <a
-            className="emotion-8 emotion-9"
+            className="emotion-10 emotion-11"
             disabled={undefined}
             href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
             id="openGovernmentLicence"
@@ -242,10 +255,10 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
       </div>
     </div>
     <div
-      className="emotion-18 emotion-19"
+      className="emotion-20 emotion-21"
     >
       <svg
-        className="emotion-14 emotion-15"
+        className="emotion-16 emotion-17"
         height="102"
         viewBox="0 0 124 102"
         width="124"
@@ -273,7 +286,7 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
         </g>
       </svg>
       <p
-        className="emotion-10 emotion-11"
+        className="emotion-12 emotion-13"
       >
         © Crown copyright
       </p>

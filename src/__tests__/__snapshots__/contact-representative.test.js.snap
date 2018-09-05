@@ -1165,14 +1165,14 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-104 {
+.emotion-106 {
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
 }
 
-.emotion-102 {
+.emotion-104 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -1187,7 +1187,7 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-102 {
+  .emotion-104 {
     width: calc(100% - 60px);
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -1199,7 +1199,7 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-94 {
+.emotion-96 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1213,7 +1213,7 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
   justify-content: flex-end;
 }
 
-.emotion-86 {
+.emotion-88 {
   margin-bottom: 15px;
 }
 
@@ -1256,30 +1256,30 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
   color: #171819;
 }
 
-.emotion-88 {
+.emotion-90 {
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-88 {
+  .emotion-90 {
     margin-bottom: 0px;
   }
 }
 
-.emotion-92 {
+.emotion-94 {
   font-size: 14px;
   margin: 0;
   display: inline-block;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-92 {
+  .emotion-94 {
     font-size: 16px;
   }
 }
 
-.emotion-90 {
+.emotion-92 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1290,24 +1290,24 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
   color: #454a4c;
 }
 
-.emotion-90:focus {
+.emotion-92:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-90:visited {
+.emotion-92:visited {
   color: #2e358b;
 }
 
-.emotion-90:visited {
+.emotion-92:visited {
   color: #454a4c;
 }
 
-.emotion-90:hover {
+.emotion-92:hover {
   color: #171819;
 }
 
-.emotion-100 {
+.emotion-102 {
   margin: 0px 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1327,7 +1327,7 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
   text-align: center;
 }
 
-.emotion-96 {
+.emotion-98 {
   margin-bottom: 10px;
 }
 
@@ -1714,17 +1714,17 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-104 emotion-105"
+    className="emotion-106 emotion-107"
     id="fsaFooter"
   >
     <div
-      className="emotion-102 emotion-103"
+      className="emotion-104 emotion-105"
     >
       <div
-        className="emotion-94 emotion-95"
+        className="emotion-96 emotion-97"
       >
         <div
-          className="emotion-86 emotion-87"
+          className="emotion-88 emotion-89"
         >
           <a
             className="emotion-82 emotion-83"
@@ -1732,6 +1732,7 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
             onClick={undefined}
+            rel="noopener noreferrer"
             target="_blank"
           >
             Cookies
@@ -1742,14 +1743,26 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
             onClick={undefined}
+            rel="noopener noreferrer"
             target="_blank"
           >
             Privacy
           </a>
+          <a
+            className="emotion-82 emotion-83"
+            disabled={undefined}
+            href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
+            id="feedbackFooter"
+            onClick={undefined}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Feedback
+          </a>
         </div>
         <div>
           <div
-            className="emotion-88 emotion-89"
+            className="emotion-90 emotion-91"
           >
             <svg
               class="govuk-footer__licence-logo"
@@ -1767,12 +1780,12 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
             </svg>
           </div>
           <p
-            className="emotion-92 emotion-93"
+            className="emotion-94 emotion-95"
           >
             All content is available under the
              
             <a
-              className="emotion-90 emotion-91"
+              className="emotion-92 emotion-93"
               disabled={undefined}
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
@@ -1788,10 +1801,10 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
         </div>
       </div>
       <div
-        className="emotion-100 emotion-101"
+        className="emotion-102 emotion-103"
       >
         <svg
-          className="emotion-96 emotion-97"
+          className="emotion-98 emotion-99"
           height="102"
           viewBox="0 0 124 102"
           width="124"
@@ -1819,7 +1832,7 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
           </g>
         </svg>
         <p
-          className="emotion-92 emotion-93"
+          className="emotion-94 emotion-95"
         >
           © Crown copyright
         </p>
