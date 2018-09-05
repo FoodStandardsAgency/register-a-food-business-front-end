@@ -1,6 +1,7 @@
 const fetch = require("node-fetch");
 const { SUBMIT_URL, API_SECRET, CLIENT_NAME } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
+const { statusEmitter } = require("../../services/status.service");
 const { registrationDouble } = require("./registration.double");
 
 const sendRequest = async body => {
@@ -28,6 +29,7 @@ const sendRequest = async body => {
         body
       });
     }
+    statusEmitter.emit("incrementCount", "submissions");
     logEmitter.emit("functionSuccess", "registration.connector", "sendRequest");
     return res;
   } catch (err) {
