@@ -1020,18 +1020,18 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-92 {
+.emotion-94 {
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
 }
 
-.emotion-90 {
+.emotion-92 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
-  padding: 15px 0;
+  padding: 30px 0px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1042,7 +1042,7 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-90 {
+  .emotion-92 {
     width: calc(100% - 60px);
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -1054,7 +1054,7 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-82 {
+.emotion-84 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1080,11 +1080,11 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
   display: inline-block;
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  display: block;
   color: #454a4c;
-  font-size: 14px;
   margin-right: 15px;
   margin-bottom: 5px;
+  display: block;
+  font-size: 14px;
 }
 
 .emotion-72:focus {
@@ -1103,6 +1103,14 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
   }
 }
 
+.emotion-72:visited {
+  color: #454a4c;
+}
+
+.emotion-72:hover {
+  color: #171819;
+}
+
 .emotion-78 {
   margin-right: 10px;
   margin-bottom: 15px;
@@ -1114,21 +1122,48 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-80 {
+.emotion-82 {
   font-size: 14px;
   margin: 0;
   display: inline-block;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-80 {
+  .emotion-82 {
     font-size: 16px;
   }
 }
 
-.emotion-88 {
-  margin: 15px;
-  margin-bottom: 0px;
+.emotion-80 {
+  color: #005ea5;
+  padding: 3px;
+  margin: -3px;
+  outline-color: transparent;
+  display: inline-block;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #454a4c;
+}
+
+.emotion-80:focus {
+  background-color: #ffbf47;
+  outline: 3px solid #ffbf47;
+}
+
+.emotion-80:visited {
+  color: #2e358b;
+}
+
+.emotion-80:visited {
+  color: #454a4c;
+}
+
+.emotion-80:hover {
+  color: #171819;
+}
+
+.emotion-90 {
+  margin: 0px 15px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1147,7 +1182,7 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
   text-align: center;
 }
 
-.emotion-84 {
+.emotion-86 {
   margin-bottom: 10px;
 }
 
@@ -1486,14 +1521,14 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-92 emotion-93"
+    className="emotion-94 emotion-95"
     id="fsaFooter"
   >
     <div
-      className="emotion-90 emotion-91"
+      className="emotion-92 emotion-93"
     >
       <div
-        className="emotion-82 emotion-83"
+        className="emotion-84 emotion-85"
       >
         <div
           className="emotion-76 emotion-77"
@@ -1539,13 +1574,16 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
             </svg>
           </div>
           <p
-            className="emotion-80 emotion-81"
+            className="emotion-82 emotion-83"
           >
             All content is available under the
              
             <a
+              className="emotion-80 emotion-81"
+              disabled={undefined}
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="open-government-licence"
+              onClick={undefined}
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -1557,10 +1595,10 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
         </div>
       </div>
       <div
-        className="emotion-88 emotion-89"
+        className="emotion-90 emotion-91"
       >
         <svg
-          className="emotion-84 emotion-85"
+          className="emotion-86 emotion-87"
           height="102"
           viewBox="0 0 124 102"
           width="124"
@@ -1588,7 +1626,7 @@ exports[`<OperatorType /> matches the previous snapshot 1`] = `
           </g>
         </svg>
         <p
-          className="emotion-80 emotion-81"
+          className="emotion-82 emotion-83"
         >
           © Crown copyright
         </p>
