@@ -654,9 +654,21 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
+
+}
+
+@media only screen and (min-width:641px) {
   .emotion-64 {
     width: 66.6667%;
   }
+}
+
+@media only screen and (min-width:641px) {
+
+}
+
+@media only screen and (min-width:641px) {
+
 }
 
 .emotion-40 {
@@ -1240,20 +1252,16 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
           >
             <a
               className="emotion-2 emotion-3"
-              disabled={undefined}
               href="https://www.gov.uk/help/cookies"
               id="cookieInfo"
-              onClick={undefined}
               target="_blank"
             >
               Find out more about cookies
             </a>
             <a
               className="emotion-2 emotion-3"
-              disabled={undefined}
               href="https://www.food.gov.uk/cookie-policy"
               id="cookiePolicy"
-              onClick={undefined}
               target="_blank"
             >
               Read our cookie policy
@@ -1316,7 +1324,6 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
                   className="emotion-20"
                 >
                   <svg
-                    className={undefined}
                     fill="currentColor"
                     height="32"
                     style={
@@ -1359,7 +1366,6 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
             <h3
               className="emotion-26"
               mb={0}
-              size={undefined}
             >
               Register a food business
             </h3>
@@ -1424,7 +1430,6 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
           </div>
           <h2
             className="emotion-42"
-            size={undefined}
           >
             What is the operator's address?
           </h2>
@@ -1474,22 +1479,18 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
               >
                 <h3
                   className="emotion-51"
-                  size={undefined}
                 >
                   Postcode
                 </h3>
                 <h4
                   className="emotion-53"
                   id="operatorPostcodeDisplay"
-                  size={undefined}
                 >
                   undefined  
                   <a
                     className="emotion-52"
-                    disabled={undefined}
                     href="/operator-address"
                     id="changeOperatorPostcode"
-                    onClick={undefined}
                   >
                     Change
                   </a>
@@ -1497,7 +1498,6 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
               </div>
               <h3
                 className="emotion-51"
-                size={undefined}
               >
                 Select an address
               </h3>
@@ -1520,10 +1520,8 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
               </label>
               <a
                 className="emotion-52"
-                disabled={undefined}
                 href="/operator-address-manual"
                 id="cantFindAddressLink"
-                onClick={undefined}
               >
                 I can't find my address in the list
               </a>
@@ -1556,20 +1554,16 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
         >
           <a
             className="emotion-68 emotion-69"
-            disabled={undefined}
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
-            onClick={undefined}
             target="_blank"
           >
             Cookies
           </a>
           <a
             className="emotion-68 emotion-69"
-            disabled={undefined}
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
-            onClick={undefined}
             target="_blank"
           >
             Privacy
@@ -1601,10 +1595,8 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
              
             <a
               className="emotion-76 emotion-77"
-              disabled={undefined}
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
-              onClick={undefined}
               rel="noopener noreferrer"
               target="_blank"
             >

@@ -182,20 +182,16 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
       >
         <a
           className="emotion-0 emotion-1"
-          disabled={undefined}
           href="https://www.food.gov.uk/cookie-policy"
           id="cookiePolicyFooter"
-          onClick={undefined}
           target="_blank"
         >
           Cookies
         </a>
         <a
           className="emotion-0 emotion-1"
-          disabled={undefined}
           href="https://www.food.gov.uk/privacy-policy"
           id="privacyPolicyFooter"
-          onClick={undefined}
           target="_blank"
         >
           Privacy
@@ -227,10 +223,8 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
            
           <a
             className="emotion-8 emotion-9"
-            disabled={undefined}
             href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
             id="openGovernmentLicence"
-            onClick={undefined}
             rel="noopener noreferrer"
             target="_blank"
           >

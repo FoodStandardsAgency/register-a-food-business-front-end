@@ -42,6 +42,7 @@ const BusinessTypeLookup = props => (
       </HintText>
     </ContentItem.B_30_15>
     <div
+      id="autocompleteContainer"
       className={
         props.validatorErrors.business_type ? autocompleteErrorStyling : null
       }

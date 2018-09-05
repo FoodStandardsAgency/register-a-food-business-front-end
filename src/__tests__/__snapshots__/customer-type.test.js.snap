@@ -654,9 +654,21 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
+
+}
+
+@media only screen and (min-width:641px) {
   .emotion-55 {
     width: 66.6667%;
   }
+}
+
+@media only screen and (min-width:641px) {
+
+}
+
+@media only screen and (min-width:641px) {
+
 }
 
 .emotion-40 {
@@ -1139,20 +1151,16 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
           >
             <a
               className="emotion-2 emotion-3"
-              disabled={undefined}
               href="https://www.gov.uk/help/cookies"
               id="cookieInfo"
-              onClick={undefined}
               target="_blank"
             >
               Find out more about cookies
             </a>
             <a
               className="emotion-2 emotion-3"
-              disabled={undefined}
               href="https://www.food.gov.uk/cookie-policy"
               id="cookiePolicy"
-              onClick={undefined}
               target="_blank"
             >
               Read our cookie policy
@@ -1215,7 +1223,6 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
                   className="emotion-20"
                 >
                   <svg
-                    className={undefined}
                     fill="currentColor"
                     height="32"
                     style={
@@ -1258,7 +1265,6 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
             <h3
               className="emotion-26"
               mb={0}
-              size={undefined}
             >
               Register a food business
             </h3>
@@ -1323,7 +1329,6 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
           </div>
           <h2
             className="emotion-42"
-            size={undefined}
           >
             Who will this establishment supply food to?
           </h2>
@@ -1354,7 +1359,6 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
                 >
                   <input
                     className="emotion-45"
-                    defaultChecked={undefined}
                     id="customer_type_supply_other"
                     name="supply_other"
                     type="checkbox"
@@ -1371,7 +1375,6 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
                 >
                   <input
                     className="emotion-45"
-                    defaultChecked={undefined}
                     id="customer_type_supply_directly"
                     name="supply_directly"
                     type="checkbox"
@@ -1413,20 +1416,16 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
         >
           <a
             className="emotion-59 emotion-60"
-            disabled={undefined}
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
-            onClick={undefined}
             target="_blank"
           >
             Cookies
           </a>
           <a
             className="emotion-59 emotion-60"
-            disabled={undefined}
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
-            onClick={undefined}
             target="_blank"
           >
             Privacy
@@ -1458,10 +1457,8 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
              
             <a
               className="emotion-67 emotion-68"
-              disabled={undefined}
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
-              onClick={undefined}
               rel="noopener noreferrer"
               target="_blank"
             >
