@@ -1,12 +1,17 @@
 import dynamic from "next/dynamic";
 import ContentItem from "./ContentItem";
 import { css } from "emotion";
-import AccessibleAutocompleteCSS from "./AccessibleAutocompleteCSS";
 import {
   findMatches,
   inputValueFunction,
   suggestionFunction
 } from "./BusinessTypeLookupFunctions";
+import { ErrorText, HintText } from "govuk-react";
+
+// dynamic import used because Autocomplete component from AlphaGov uses the document object on import.
+// Therefore it must be imported on the client side not on the server side.
+// TODO JMB: contribute back to the AlphaGov repository to avoid or delay reliance on the document object.
+const Autocomplete = dynamic(import("accessible-autocomplete/react"));
 
 const autocompleteErrorStyling = css`
   border-left: 4px solid #b10e1e;
@@ -15,13 +20,6 @@ const autocompleteErrorStyling = css`
     border: 3px solid #b10e1e;
   }
 `;
-
-import { ErrorText, HintText } from "govuk-react";
-
-// dynamic import used because Autocomplete component from AlphaGov uses the document object on import.
-// Therefore it must be imported on the client side not on the server side.
-// TODO JMB: contribute back to the AlphaGov repository to avoid or delay reliance on the document object.
-const Autocomplete = dynamic(import("accessible-autocomplete/react"));
 
 const templates = {
   inputValue: inputValueFunction,
@@ -53,7 +51,6 @@ const BusinessTypeLookup = props => (
         </ErrorText>
       ) : null}
       <Autocomplete
-        className={AccessibleAutocompleteCSS}
         source={findMatches}
         templates={templates}
         autoselect={true}
