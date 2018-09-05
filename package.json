@@ -1,6 +1,6 @@
 {
   "name": "register_a_food_business_front_end",
-  "version": "1.37.0",
+  "version": "1.37.1",
   "scripts": {
     "debug": "node --inspect src/server/index.js",
     "dev": "node src/server/index.js",
@@ -29,7 +29,6 @@
     "@govuk-react/icons": "0.2.7",
     "@slice-and-dice/register-a-food-business-validation": "1.10.5",
     "@storybook/addons": "3.3.0",
-    "@zeit/next-css": "0.2.0",
     "accessible-autocomplete": "1.6.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-plugin-emotion": "9.1.2",
@@ -39,8 +38,8 @@
     "cookie-parser": "^1.4.3",
     "dotenv": "6.0.0",
     "dotenv-webpack": "^1.5.7",
-    "emotion": "9.1.3",
-    "emotion-server": "9.1.3",
+    "emotion": "9.2.8",
+    "emotion-server": "9.2.8",
     "express": "4.16.3",
     "express-session": "1.15.6",
     "govuk-react": "0.2.9",
@@ -48,9 +47,9 @@
     "next": "6.1.1",
     "node-fetch": "2.1.2",
     "prop-types": "15.6.1",
-    "react": "16.3.2",
-    "react-dom": "16.3.2",
-    "react-emotion": "9.1.3",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
+    "react-emotion": "9.2.8",
     "react-markdown": "3.3.2",
     "react-router-dom": "4.2.2",
     "stemmer": "1.0.2",
@@ -60,9 +59,9 @@
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",
-    "babel-jest": "22.4.3",
-    "enzyme": "3.3.0",
-    "enzyme-adapter-react-16": "1.1.1",
+    "babel-jest": "23.4.2",
+    "enzyme": "3.6.0",
+    "enzyme-adapter-react-16": "1.4.0",
     "eslint": "4.19.1",
     "eslint-config-react-app": "2.1.0",
     "eslint-loader": "2.0.0",
@@ -71,11 +70,11 @@
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-prettier": "2.6.0",
     "eslint-plugin-react": "7.8.2",
-    "jest": "22.4.3",
-    "jest-emotion": "9.1.3",
+    "jest": "23.5.0",
+    "jest-emotion": "9.2.7",
     "prettier": "1.12.1",
-    "react-test-renderer": "16.3.2",
-    "snyk": "^1.93.0"
+    "react-test-renderer": "16.4.2",
+    "snyk": "^1.94.0"
   },
   "license": "MIT"
 }
