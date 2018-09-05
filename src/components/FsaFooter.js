@@ -38,14 +38,30 @@ const FooterLinkContainer = styled("div")`
 `;
 
 const FooterLink = styled(asAnchor("a"))`
-  display: block;
   color: #454a4c;
-  font-size: ${fontSizeSmall};
   margin-right: 15px;
   margin-bottom: 5px;
+  display: block;
+  font-size: ${fontSizeSmall};
   @media (min-width: 641px) {
     display: inline-block;
     font-size: ${fontSizeNormal};
+  }
+  &:visited {
+    color: #454a4c;
+  }
+  &:hover {
+    color: #171819;
+  }
+`;
+
+const FooterInlineLink = styled(asAnchor("a"))`
+  color: #454a4c;
+  &:visited {
+    color: #454a4c;
+  }
+  &:hover {
+    color: #171819;
   }
 `;
 
@@ -119,14 +135,14 @@ const FsaFooter = () => (
           </OGLLogo>
           <FooterText>
             All content is available under the{" "}
-            <a
+            <FooterInlineLink
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               target="_blank"
               rel="noopener noreferrer"
               id="open-government-licence"
             >
               Open Government Licence v3.0,
-            </a>{" "}
+            </FooterInlineLink>{" "}
             except where otherwise stated
           </FooterText>
         </div>
