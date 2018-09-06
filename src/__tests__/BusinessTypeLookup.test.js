@@ -22,20 +22,24 @@ describe("<BusinessTypeLookup />", () => {
   });
 
   describe("given validatorErrors.business_type", () => {
-    it("renders the top-level div with errorStyling className and renders the ErrorText component", () => {
-      const wrapper = shallow(
+    it("renders the container div with different styling", () => {
+      const wrapperNoErrors = shallow(
+        <BusinessTypeLookup validatorErrors={{}} cumulativeAnswers />
+      );
+      const appliedClassNameNoErrors = wrapperNoErrors
+        .find("#autocompleteContainer")
+        .prop("className");
+      const wrapperErrors = shallow(
         <BusinessTypeLookup
           validatorErrors={{ business_type: "An error" }}
           cumulativeAnswers
         />
       );
-      const topLevelDivWithClassName = wrapper.find("div.errorStyling");
-      expect(topLevelDivWithClassName.length).toBe(1);
+      const appliedClassNameErrors = wrapperErrors
+        .find("#autocompleteContainer")
+        .prop("className");
 
-      const errorTextComponent = wrapper.find("Styled(ErrorText)");
-      expect(errorTextComponent.length).toBe(1);
+      expect(appliedClassNameNoErrors).not.toEqual(appliedClassNameErrors);
     });
   });
 });
-
-describe("Function:suggest", () => {});

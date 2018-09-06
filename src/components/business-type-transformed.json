@@ -40,9 +40,9 @@
   { "displayName": "Fishing boat", "searchTerm": "seafood" },
   { "displayName": "Fishing boat", "searchTerm": "shellfish" },
   { "displayName": "Fishing boat", "searchTerm": "oyster" },
-  { "displayName": "Fishing boat", "searchTerm": "mussels" },
-  { "displayName": "Fishing boat", "searchTerm": "clams" },
-  { "displayName": "Fishing boat", "searchTerm": "prawns" },
+  { "displayName": "Fishing boat", "searchTerm": "mussel" },
+  { "displayName": "Fishing boat", "searchTerm": "clam" },
+  { "displayName": "Fishing boat", "searchTerm": "prawn" },
   { "displayName": "Fishing boat", "searchTerm": "lobster" },
   { "displayName": "Fishing boat", "searchTerm": "crab" },
   { "displayName": "Fishing boat", "searchTerm": "shrimp" },
@@ -55,9 +55,9 @@
   { "displayName": "Fish farm", "searchTerm": "seafood" },
   { "displayName": "Fish farm", "searchTerm": "shellfish" },
   { "displayName": "Fish farm", "searchTerm": "oyster" },
-  { "displayName": "Fish farm", "searchTerm": "mussels" },
-  { "displayName": "Fish farm", "searchTerm": "clams" },
-  { "displayName": "Fish farm", "searchTerm": "prawns" },
+  { "displayName": "Fish farm", "searchTerm": "mussel" },
+  { "displayName": "Fish farm", "searchTerm": "clam" },
+  { "displayName": "Fish farm", "searchTerm": "prawn" },
   { "displayName": "Fish farm", "searchTerm": "lobster" },
   { "displayName": "Fish farm", "searchTerm": "crab" },
   { "displayName": "Fish farm", "searchTerm": "shrimp" },
@@ -68,12 +68,12 @@
   { "displayName": "Fish farm", "searchTerm": "carp" },
   { "displayName": "Fish farm", "searchTerm": "aquaculture" },
   { "displayName": "Fish farm", "searchTerm": "mariculture" },
-  { "displayName": "Meat product manufacturer", "searchTerm": "processing" },
-  { "displayName": "Meat product manufacturer", "searchTerm": "preserving" },
-  { "displayName": "Meat product manufacturer", "searchTerm": "airdrying" },
-  { "displayName": "Meat product manufacturer", "searchTerm": "salting" },
+  { "displayName": "Meat product manufacturer", "searchTerm": "process" },
+  { "displayName": "Meat product manufacturer", "searchTerm": "preserve" },
+  { "displayName": "Meat product manufacturer", "searchTerm": "airdry" },
+  { "displayName": "Meat product manufacturer", "searchTerm": "salt" },
   { "displayName": "Meat product manufacturer", "searchTerm": "jerky" },
-  { "displayName": "Meat product manufacturer", "searchTerm": "curing" },
+  { "displayName": "Meat product manufacturer", "searchTerm": "cure" },
   { "displayName": "Meat product manufacturer", "searchTerm": "beef" },
   { "displayName": "Meat product manufacturer", "searchTerm": "pork" },
   { "displayName": "Meat product manufacturer", "searchTerm": "mutton" },
@@ -81,9 +81,9 @@
   { "displayName": "Meat product manufacturer", "searchTerm": "chicken" },
   { "displayName": "Meat product manufacturer", "searchTerm": "insect" },
   { "displayName": "Meat product manufacturer", "searchTerm": "biltong" },
-  { "displayName": "Meat product manufacturer", "searchTerm": "smoking" },
-  { "displayName": "Meat product manufacturer", "searchTerm": "drying" },
-  { "displayName": "Meat product manufacturer", "searchTerm": "mincing" },
+  { "displayName": "Meat product manufacturer", "searchTerm": "smoke" },
+  { "displayName": "Meat product manufacturer", "searchTerm": "dry" },
+  { "displayName": "Meat product manufacturer", "searchTerm": "mince" },
   { "displayName": "Meat product manufacturer", "searchTerm": "ham" },
   { "displayName": "Meat product manufacturer", "searchTerm": "maker" },
   { "displayName": "Meat product manufacturer", "searchTerm": "producer" },
@@ -91,14 +91,14 @@
   { "displayName": "Abattoir", "searchTerm": "slaughter" },
   { "displayName": "Abattoir", "searchTerm": "butcher" },
   { "displayName": "Abattoir", "searchTerm": "halal" },
-  { "displayName": "Abattoir", "searchTerm": "cutting" },
+  { "displayName": "Abattoir", "searchTerm": "cut" },
   {
     "displayName": "Fish and shellfish product manufacturer",
-    "searchTerm": "processing"
+    "searchTerm": "process"
   },
   {
     "displayName": "Fish and shellfish product manufacturer",
-    "searchTerm": "preserving"
+    "searchTerm": "preserve"
   },
   {
     "displayName": "Fish and shellfish product manufacturer",
@@ -134,31 +134,27 @@
   },
   {
     "displayName": "Fish and shellfish product manufacturer",
-    "searchTerm": "smoking"
+    "searchTerm": "smoke"
   },
   {
     "displayName": "Fish and shellfish product manufacturer",
-    "searchTerm": "salting"
+    "searchTerm": "salt"
   },
   {
     "displayName": "Fish and shellfish product manufacturer",
-    "searchTerm": "smoked"
+    "searchTerm": "dry"
   },
   {
     "displayName": "Fish and shellfish product manufacturer",
-    "searchTerm": "drying"
+    "searchTerm": "airdry"
   },
   {
     "displayName": "Fish and shellfish product manufacturer",
-    "searchTerm": "airdrying"
+    "searchTerm": "brine"
   },
   {
     "displayName": "Fish and shellfish product manufacturer",
-    "searchTerm": "brining"
-  },
-  {
-    "displayName": "Fish and shellfish product manufacturer",
-    "searchTerm": "pickling"
+    "searchTerm": "pickle"
   },
   {
     "displayName": "Fish and shellfish product manufacturer",
@@ -170,9 +166,9 @@
   },
   { "displayName": "Shellfish purification centre", "searchTerm": "plant" },
   { "displayName": "Shellfish purification centre", "searchTerm": "oyster" },
-  { "displayName": "Shellfish purification centre", "searchTerm": "mussels" },
-  { "displayName": "Shellfish purification centre", "searchTerm": "clams" },
-  { "displayName": "Shellfish purification centre", "searchTerm": "prawns" },
+  { "displayName": "Shellfish purification centre", "searchTerm": "mussel" },
+  { "displayName": "Shellfish purification centre", "searchTerm": "clam" },
+  { "displayName": "Shellfish purification centre", "searchTerm": "prawn" },
   { "displayName": "Shellfish purification centre", "searchTerm": "lobster" },
   { "displayName": "Shellfish purification centre", "searchTerm": "crab" },
   { "displayName": "Shellfish purification centre", "searchTerm": "shrimp" },
@@ -181,15 +177,15 @@
     "displayName": "Shellfish purification centre",
     "searchTerm": "depuration"
   },
-  { "displayName": "Potato product manufacturer", "searchTerm": "processing" },
-  { "displayName": "Potato product manufacturer", "searchTerm": "preserving" },
+  { "displayName": "Potato product manufacturer", "searchTerm": "process" },
+  { "displayName": "Potato product manufacturer", "searchTerm": "preserve" },
   { "displayName": "Potato product manufacturer", "searchTerm": "chip" },
   { "displayName": "Potato product manufacturer", "searchTerm": "crisp" },
   { "displayName": "Potato product manufacturer", "searchTerm": "canning" },
   { "displayName": "Potato product manufacturer", "searchTerm": "freezing" },
   { "displayName": "Potato product manufacturer", "searchTerm": "mash" },
   { "displayName": "Potato product manufacturer", "searchTerm": "maker" },
-  { "displayName": "Potato product manufacturer", "searchTerm": "produce" },
+  { "displayName": "Potato product manufacturer", "searchTerm": "producer" },
   {
     "displayName": "Fruit and vegetable juice manufacturer",
     "searchTerm": "drink"
@@ -220,15 +216,11 @@
   },
   {
     "displayName": "Fruit and vegetable juice manufacturer",
-    "searchTerm": "produce"
+    "searchTerm": "producer"
   },
   {
     "displayName": "Fruit and vegetable product manufacturer",
-    "searchTerm": "processor"
-  },
-  {
-    "displayName": "Fruit and vegetable product manufacturer",
-    "searchTerm": "processing"
+    "searchTerm": "process"
   },
   {
     "displayName": "Fruit and vegetable product manufacturer",
@@ -236,15 +228,15 @@
   },
   {
     "displayName": "Fruit and vegetable product manufacturer",
-    "searchTerm": "preserving"
+    "searchTerm": "preserve"
   },
   {
     "displayName": "Fruit and vegetable product manufacturer",
-    "searchTerm": "drying"
+    "searchTerm": "dry"
   },
   {
     "displayName": "Fruit and vegetable product manufacturer",
-    "searchTerm": "pickling"
+    "searchTerm": "pickle"
   },
   {
     "displayName": "Fruit and vegetable product manufacturer",
@@ -252,11 +244,11 @@
   },
   {
     "displayName": "Fruit and vegetable product manufacturer",
-    "searchTerm": "freezing"
+    "searchTerm": "freeze"
   },
   {
     "displayName": "Fruit and vegetable product manufacturer",
-    "searchTerm": "salting"
+    "searchTerm": "salt"
   },
   {
     "displayName": "Fruit and vegetable product manufacturer",
@@ -272,7 +264,7 @@
   },
   {
     "displayName": "Fruit and vegetable product manufacturer",
-    "searchTerm": "produce"
+    "searchTerm": "producer"
   },
   { "displayName": "Oil and/or fat manufacturer", "searchTerm": "lard" },
   { "displayName": "Oil and/or fat manufacturer", "searchTerm": "butter" },
@@ -284,12 +276,9 @@
   { "displayName": "Oil and/or fat manufacturer", "searchTerm": "olive" },
   { "displayName": "Oil and/or fat manufacturer", "searchTerm": "sunflower" },
   { "displayName": "Oil and/or fat manufacturer", "searchTerm": "maker" },
-  { "displayName": "Oil and/or fat manufacturer", "searchTerm": "produce" },
+  { "displayName": "Oil and/or fat manufacturer", "searchTerm": "producer" },
   { "displayName": "Dairies and cheese manufacturer", "searchTerm": "yoghurt" },
-  {
-    "displayName": "Dairies and cheese manufacturer",
-    "searchTerm": "processing"
-  },
+  { "displayName": "Dairies and cheese manufacturer", "searchTerm": "process" },
   { "displayName": "Dairies and cheese manufacturer", "searchTerm": "factory" },
   { "displayName": "Dairies and cheese manufacturer", "searchTerm": "fromage" },
   { "displayName": "Dairies and cheese manufacturer", "searchTerm": "cream" },
@@ -297,22 +286,25 @@
   { "displayName": "Dairies and cheese manufacturer", "searchTerm": "milk" },
   { "displayName": "Dairies and cheese manufacturer", "searchTerm": "whey" },
   { "displayName": "Dairies and cheese manufacturer", "searchTerm": "maker" },
-  { "displayName": "Dairies and cheese manufacturer", "searchTerm": "produce" },
+  {
+    "displayName": "Dairies and cheese manufacturer",
+    "searchTerm": "producer"
+  },
   { "displayName": "Ice cream manufacturer", "searchTerm": "icecream" },
-  { "displayName": "Ice cream manufacturer", "searchTerm": "processing" },
+  { "displayName": "Ice cream manufacturer", "searchTerm": "process" },
   { "displayName": "Ice cream manufacturer", "searchTerm": "factory" },
   { "displayName": "Ice cream manufacturer", "searchTerm": "frozen" },
   { "displayName": "Ice cream manufacturer", "searchTerm": "gelato" },
   { "displayName": "Ice cream manufacturer", "searchTerm": "yoghurt" },
   { "displayName": "Ice cream manufacturer", "searchTerm": "maker" },
-  { "displayName": "Ice cream manufacturer", "searchTerm": "produce" },
+  { "displayName": "Ice cream manufacturer", "searchTerm": "producer" },
   { "displayName": "Commercial bakery", "searchTerm": "patisserie" },
   { "displayName": "Commercial bakery", "searchTerm": "pastry" },
-  { "displayName": "Commercial bakery", "searchTerm": "manufacturer" },
+  { "displayName": "Commercial bakery", "searchTerm": "manufacture" },
   { "displayName": "Commercial bakery", "searchTerm": "cake" },
   { "displayName": "Commercial bakery", "searchTerm": "bread" },
   { "displayName": "Commercial bakery", "searchTerm": "maker" },
-  { "displayName": "Commercial bakery", "searchTerm": "produce" },
+  { "displayName": "Commercial bakery", "searchTerm": "producer" },
   {
     "displayName": "Ready to eat meals or food manufacturer",
     "searchTerm": "dish"
@@ -339,18 +331,51 @@
   },
   {
     "displayName": "Ready to eat meals or food manufacturer",
-    "searchTerm": "produce"
+    "searchTerm": "producer"
   },
-  { "displayName": "TBC - Nathan will decide", "searchTerm": "homogenised" },
-  { "displayName": "TBC - Nathan will decide", "searchTerm": "dietic" },
-  { "displayName": "TBC - Nathan will decide", "searchTerm": "nutrition" },
-  { "displayName": "TBC - Nathan will decide", "searchTerm": "medical" },
-  { "displayName": "TBC - Nathan will decide", "searchTerm": "manufacturer" },
-  { "displayName": "TBC - Nathan will decide", "searchTerm": "diet" },
-  { "displayName": "TBC - Nathan will decide", "searchTerm": "health" },
-  { "displayName": "TBC - Nathan will decide", "searchTerm": "weaning" },
-  { "displayName": "TBC - Nathan will decide", "searchTerm": "maker" },
-  { "displayName": "TBC - Nathan will decide", "searchTerm": "produce" },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "homogenise"
+  },
+  { "displayName": "Dietic or baby food manufacturer", "searchTerm": "dietic" },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "formula"
+  },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "protein"
+  },
+  { "displayName": "Dietic or baby food manufacturer", "searchTerm": "powder" },
+  { "displayName": "Dietic or baby food manufacturer", "searchTerm": "gluten" },
+  { "displayName": "Dietic or baby food manufacturer", "searchTerm": "celiac" },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "lactose"
+  },
+  { "displayName": "Dietic or baby food manufacturer", "searchTerm": "infant" },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "supplement"
+  },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "nutrition"
+  },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "medical"
+  },
+  { "displayName": "Dietic or baby food manufacturer", "searchTerm": "health" },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "weaning"
+  },
+  { "displayName": "Dietic or baby food manufacturer", "searchTerm": "maker" },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "producer"
+  },
   { "displayName": "Manufacturer of other food products", "searchTerm": "ice" },
   {
     "displayName": "Manufacturer of other food products",
@@ -358,11 +383,7 @@
   },
   {
     "displayName": "Manufacturer of other food products",
-    "searchTerm": "processor"
-  },
-  {
-    "displayName": "Manufacturer of other food products",
-    "searchTerm": "processing"
+    "searchTerm": "process"
   },
   {
     "displayName": "Manufacturer of other food products",
@@ -370,15 +391,11 @@
   },
   {
     "displayName": "Manufacturer of other food products",
-    "searchTerm": "make"
-  },
-  {
-    "displayName": "Manufacturer of other food products",
-    "searchTerm": "produce"
-  },
-  {
-    "displayName": "Manufacturer of other food products",
     "searchTerm": "maker"
+  },
+  {
+    "displayName": "Manufacturer of other food products",
+    "searchTerm": "producer"
   },
   { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "brew" },
   {
@@ -410,7 +427,7 @@
   { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "rum" },
   { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "craft" },
   { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "maker" },
-  { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "produce" },
+  { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "producer" },
   { "displayName": "Non alcoholic drinks manufacturer", "searchTerm": "soft" },
   { "displayName": "Non alcoholic drinks manufacturer", "searchTerm": "soda" },
   { "displayName": "Non alcoholic drinks manufacturer", "searchTerm": "water" },
@@ -449,7 +466,7 @@
   { "displayName": "Non alcoholic drinks manufacturer", "searchTerm": "maker" },
   {
     "displayName": "Non alcoholic drinks manufacturer",
-    "searchTerm": "produce"
+    "searchTerm": "producer"
   },
   { "displayName": "Mineral water packer", "searchTerm": "sparkling" },
   { "displayName": "Mineral water packer", "searchTerm": "carbonated" },
@@ -473,19 +490,19 @@
   { "displayName": "Food storage facility", "searchTerm": "coldstore" },
   { "displayName": "Food storage facility", "searchTerm": "unit" },
   { "displayName": "Food storage facility", "searchTerm": "refrigerated" },
+  { "displayName": "Food storage facility", "searchTerm": "distributer" },
   { "displayName": "Food broker", "searchTerm": "agent" },
   { "displayName": "Food broker", "searchTerm": "negotiator" },
   { "displayName": "Food broker", "searchTerm": "intermediator" },
   { "displayName": "Food broker", "searchTerm": "mediator" },
   { "displayName": "Food broker", "searchTerm": "consultant" },
-  { "displayName": "Food broker", "searchTerm": "buying" },
-  { "displayName": "Food broker", "searchTerm": "selling" },
   { "displayName": "Food broker", "searchTerm": "buyer" },
   { "displayName": "Wholesaler", "searchTerm": "supplier" },
   { "displayName": "Wholesaler", "searchTerm": "bulk" },
-  { "displayName": "Wholesaler", "searchTerm": "produce" },
+  { "displayName": "Wholesaler", "searchTerm": "producer" },
   { "displayName": "Wholesaler", "searchTerm": "trade" },
   { "displayName": "Wholesaler", "searchTerm": "grocer" },
+  { "displayName": "Wholesaler", "searchTerm": "distribute" },
   { "displayName": "Cash and carry", "searchTerm": "wholesale" },
   { "displayName": "Cash and carry", "searchTerm": "supplier" },
   { "displayName": "Cash and carry", "searchTerm": "membership" },
@@ -496,6 +513,7 @@
   { "displayName": "Haulage company", "searchTerm": "freightage" },
   { "displayName": "Haulage company", "searchTerm": "shipment" },
   { "displayName": "Haulage company", "searchTerm": "logistics" },
+  { "displayName": "Haulage company", "searchTerm": "distributer" },
   { "displayName": "Online retailer", "searchTerm": "internet" },
   { "displayName": "Online retailer", "searchTerm": "amazon" },
   { "displayName": "Online retailer", "searchTerm": "ebay" },
@@ -509,14 +527,8 @@
   { "displayName": "Supermarket", "searchTerm": "grocery" },
   { "displayName": "Supermarket", "searchTerm": "market" },
   { "displayName": "Supermarket", "searchTerm": "store" },
-  { "displayName": "Supermarket", "searchTerm": "convenience" },
   { "displayName": "Supermarket", "searchTerm": "shop" },
   { "displayName": "Supermarket", "searchTerm": "retail" },
-  { "displayName": "Supermarket", "searchTerm": "store" },
-  {
-    "displayName": "Local convenience store or corner shop",
-    "searchTerm": "supermarket"
-  },
   {
     "displayName": "Local convenience store or corner shop",
     "searchTerm": "cornershop"
@@ -531,23 +543,16 @@
   },
   {
     "displayName": "Local convenience store or corner shop",
-    "searchTerm": "license"
-  },
-  {
-    "displayName": "Local convenience store or corner shop",
     "searchTerm": "retail"
   },
   { "displayName": "Farm gate sales", "searchTerm": "eggs" },
   { "displayName": "Farm gate sales", "searchTerm": "potatoes" },
-  { "displayName": "Farm gate sales", "searchTerm": "farmshop" },
   { "displayName": "Farm gate sales", "searchTerm": "gatesale" },
   { "displayName": "Farm gate sales", "searchTerm": "retail" },
+  { "displayName": "Farm gate sales", "searchTerm": "milk" },
+  { "displayName": "Farm gate sales", "searchTerm": "raw" },
   { "displayName": "Farm shop", "searchTerm": "retail" },
   { "displayName": "Farm shop", "searchTerm": "farmshop" },
-  {
-    "displayName": "Sweet shop or Confectioner",
-    "searchTerm": "confectionery"
-  },
   { "displayName": "Sweet shop or Confectioner", "searchTerm": "candy" },
   { "displayName": "Sweet shop or Confectioner", "searchTerm": "dessert" },
   { "displayName": "Sweet shop or Confectioner", "searchTerm": "chocolatier" },
@@ -557,7 +562,6 @@
   { "displayName": "Butcher", "searchTerm": "meat" },
   { "displayName": "Butcher", "searchTerm": "halal" },
   { "displayName": "Butcher", "searchTerm": "retail" },
-  { "displayName": "Butcher", "searchTerm": "consumer" },
   { "displayName": "Butcher", "searchTerm": "cutting" },
   { "displayName": "Butcher", "searchTerm": "store" },
   { "displayName": "Butcher", "searchTerm": "shop" },
@@ -577,7 +581,6 @@
   { "displayName": "Greengrocer", "searchTerm": "store" },
   { "displayName": "Health food shop", "searchTerm": "retail" },
   { "displayName": "Health food shop", "searchTerm": "vitamins" },
-  { "displayName": "Health food shop", "searchTerm": "supplements" },
   { "displayName": "Health food shop", "searchTerm": "organic" },
   { "displayName": "Health food shop", "searchTerm": "freefrom" },
   { "displayName": "Health food shop", "searchTerm": "natural" },
@@ -585,7 +588,6 @@
   { "displayName": "Health food shop", "searchTerm": "goodness" },
   { "displayName": "Health food shop", "searchTerm": "wellness" },
   { "displayName": "Health food shop", "searchTerm": "nutrition" },
-  { "displayName": "Health food shop", "searchTerm": "dietary" },
   { "displayName": "Health food shop", "searchTerm": "store" },
   { "displayName": "Bakery", "searchTerm": "pastry" },
   { "displayName": "Bakery", "searchTerm": "shop" },
@@ -594,11 +596,8 @@
   { "displayName": "Bakery", "searchTerm": "retail" },
   { "displayName": "Bakery", "searchTerm": "bread" },
   { "displayName": "Bakery", "searchTerm": "cake" },
-  { "displayName": "Bakery", "searchTerm": "cookies" },
+  { "displayName": "Bakery", "searchTerm": "cookie" },
   { "displayName": "Bakery", "searchTerm": "store" },
-  { "displayName": "Newsagent or Post Office", "searchTerm": "supermarket" },
-  { "displayName": "Newsagent or Post Office", "searchTerm": "postoffice" },
-  { "displayName": "Newsagent or Post Office", "searchTerm": "convenience" },
   { "displayName": "Newsagent or Post Office", "searchTerm": "shop" },
   { "displayName": "Newsagent or Post Office", "searchTerm": "tobacconist" },
   { "displayName": "Newsagent or Post Office", "searchTerm": "newsstand" },
@@ -625,11 +624,9 @@
   { "displayName": "Off licence", "searchTerm": "retail" },
   { "displayName": "Off licence", "searchTerm": "shop" },
   { "displayName": "Off licence", "searchTerm": "store" },
-  { "displayName": "Petrol station or garage", "searchTerm": "supermarket" },
   { "displayName": "Petrol station or garage", "searchTerm": "retail" },
   { "displayName": "Petrol station or garage", "searchTerm": "gas" },
   { "displayName": "Petrol station or garage", "searchTerm": "store" },
-  { "displayName": "Petrol station or garage", "searchTerm": "convenience" },
   { "displayName": "Petrol station or garage", "searchTerm": "shop" },
   { "displayName": "Petrol station or garage", "searchTerm": "store" },
   { "displayName": "Delicatessen", "searchTerm": "ham" },
@@ -639,22 +636,16 @@
   { "displayName": "Delicatessen", "searchTerm": "charcuterie" },
   { "displayName": "Delicatessen", "searchTerm": "shop" },
   { "displayName": "Delicatessen", "searchTerm": "store" },
-  { "displayName": "Chemist", "searchTerm": "supermarket" },
   { "displayName": "Chemist", "searchTerm": "pharmacy" },
   { "displayName": "Chemist", "searchTerm": "retail" },
   { "displayName": "Chemist", "searchTerm": "apothecary" },
   { "displayName": "Chemist", "searchTerm": "shop" },
   { "displayName": "Chemist", "searchTerm": "store" },
-  { "displayName": "Any other retailer", "searchTerm": "supermarket" },
   { "displayName": "Any other retailer", "searchTerm": "shop" },
   { "displayName": "Any other retailer", "searchTerm": "store" },
   { "displayName": "Any other retailer", "searchTerm": "grocery" },
   { "displayName": "Any other retailer", "searchTerm": "market" },
-  { "displayName": "Any other retailer", "searchTerm": "convenience" },
-  { "displayName": "Any other retailer", "searchTerm": "shop" },
   { "displayName": "Any other retailer", "searchTerm": "foodbank" },
-  { "displayName": "Any other retailer", "searchTerm": "tea" },
-  { "displayName": "Any other retailer", "searchTerm": "coffee" },
   { "displayName": "Any other retailer", "searchTerm": "playground" },
   { "displayName": "Any other retailer", "searchTerm": "softplay" },
   { "displayName": "Any other retailer", "searchTerm": "museum" },
@@ -673,7 +664,7 @@
   { "displayName": "Any other retailer", "searchTerm": "theatre" },
   { "displayName": "Any other retailer", "searchTerm": "cinema" },
   { "displayName": "Any other retailer", "searchTerm": "stadium" },
-  { "displayName": "Any other retailer", "searchTerm": "cirkus" },
+  { "displayName": "Any other retailer", "searchTerm": "circus" },
   { "displayName": "Any other retailer", "searchTerm": "concert" },
   { "displayName": "Any other retailer", "searchTerm": "music" },
   { "displayName": "Any other retailer", "searchTerm": "bingo" },
@@ -757,6 +748,10 @@
   },
   {
     "displayName": "Restaurant, cafe, canteen or fast food",
+    "searchTerm": "pizza"
+  },
+  {
+    "displayName": "Restaurant, cafe, canteen or fast food",
     "searchTerm": "lunch"
   },
   {
@@ -785,7 +780,7 @@
   },
   {
     "displayName": "Restaurant, cafe, canteen or fast food",
-    "searchTerm": "juice bar"
+    "searchTerm": "juice"
   },
   {
     "displayName": "Restaurant, cafe, canteen or fast food",
@@ -909,7 +904,7 @@
   },
   {
     "displayName": "Restaurant, cafe, canteen or fast food",
-    "searchTerm": "cirkus"
+    "searchTerm": "circus"
   },
   {
     "displayName": "Restaurant, cafe, canteen or fast food",
@@ -961,12 +956,10 @@
   },
   { "displayName": "Hostel or bed and breakfast ", "searchTerm": "B&B" },
   { "displayName": "Hostel or bed and breakfast ", "searchTerm": "&" },
-  { "displayName": "Hostel or bed and breakfast ", "searchTerm": "B & B" },
   { "displayName": "Hostel or bed and breakfast ", "searchTerm": "B and B" },
   { "displayName": "Hostel or bed and breakfast ", "searchTerm": "guesthouse" },
   { "displayName": "Hostel or bed and breakfast ", "searchTerm": "inn" },
   { "displayName": "Hostel or bed and breakfast ", "searchTerm": "motel" },
-  { "displayName": "Hostel or bed and breakfast ", "searchTerm": "resort" },
   {
     "displayName": "Hostel or bed and breakfast ",
     "searchTerm": "accomodation"
@@ -976,7 +969,6 @@
   { "displayName": "Hostel or bed and breakfast ", "searchTerm": "airbnb" },
   { "displayName": "Hotel", "searchTerm": "guesthouse" },
   { "displayName": "Hotel", "searchTerm": "inn" },
-  { "displayName": "Hotel", "searchTerm": "motel" },
   { "displayName": "Hotel", "searchTerm": "resort" },
   { "displayName": "Hotel", "searchTerm": "accomodation" },
   { "displayName": "Hotel", "searchTerm": "retreat" },
@@ -993,7 +985,6 @@
   { "displayName": "Pub serving meals", "searchTerm": "nightclub" },
   { "displayName": "Pub serving meals", "searchTerm": "club" },
   { "displayName": "Pub serving meals", "searchTerm": "stadium" },
-  { "displayName": "Pub serving meals", "searchTerm": "cirkus" },
   { "displayName": "Pub serving meals", "searchTerm": "concert" },
   { "displayName": "Pub serving meals", "searchTerm": "music" },
   { "displayName": "Pub serving meals", "searchTerm": "bartending" },
@@ -1004,7 +995,6 @@
   { "displayName": "Pub serving meals", "searchTerm": "racetrack" },
   { "displayName": "Pub serving meals", "searchTerm": "bowling" },
   { "displayName": "Pub serving meals", "searchTerm": "park" },
-  { "displayName": "Pub serving meals", "searchTerm": "amusement" },
   { "displayName": "Pub serving meals", "searchTerm": "fairground" },
   { "displayName": "Pub serving meals", "searchTerm": "casino" },
   { "displayName": "Pub serving meals", "searchTerm": "attraction" },
@@ -1039,7 +1029,7 @@
   },
   {
     "displayName": "Pub serving only snacks and drinks",
-    "searchTerm": "cirkus"
+    "searchTerm": "circus"
   },
   {
     "displayName": "Pub serving only snacks and drinks",
@@ -1112,6 +1102,10 @@
   },
   {
     "displayName": "Take away with no food consumed on site",
+    "searchTerm": "delivery"
+  },
+  {
+    "displayName": "Take away with no food consumed on site",
     "searchTerm": "to go"
   },
   {
@@ -1160,10 +1154,6 @@
   },
   {
     "displayName": "Take away with no food consumed on site",
-    "searchTerm": "cafe"
-  },
-  {
-    "displayName": "Take away with no food consumed on site",
     "searchTerm": "canteen"
   },
   {
@@ -1201,6 +1191,10 @@
   {
     "displayName": "Take away with no food consumed on site",
     "searchTerm": "kebab"
+  },
+  {
+    "displayName": "Take away with no food consumed on site",
+    "searchTerm": "pizza"
   },
   {
     "displayName": "Take away with no food consumed on site",
@@ -1356,7 +1350,7 @@
   },
   {
     "displayName": "Take away with no food consumed on site",
-    "searchTerm": "cirkus"
+    "searchTerm": "circus"
   },
   {
     "displayName": "Take away with no food consumed on site",
@@ -1436,6 +1430,7 @@
   { "displayName": "Hospital", "searchTerm": "health" },
   { "displayName": "Hospital", "searchTerm": "clinic" },
   { "displayName": "Hospital", "searchTerm": "infirmary" },
+  { "displayName": "Hospital", "searchTerm": "canteen" },
   { "displayName": "Hospital", "searchTerm": "hospice" },
   { "displayName": "Childminder", "searchTerm": "minder" },
   { "displayName": "Childminder", "searchTerm": "babysitter" },
@@ -1476,15 +1471,14 @@
   { "displayName": "Mobile retailer", "searchTerm": "market" },
   { "displayName": "Mobile retailer", "searchTerm": "bazar" },
   { "displayName": "Mobile retailer", "searchTerm": "foodtruck" },
-  { "displayName": "Mobile retailer", "searchTerm": "food truck" },
-  { "displayName": "Mobile retailer", "searchTerm": "food van" },
+  { "displayName": "Mobile retailer", "searchTerm": "truck" },
   { "displayName": "Mobile retailer", "searchTerm": "pop up" },
   { "displayName": "Mobile retailer", "searchTerm": "popup" },
   { "displayName": "Mobile retailer", "searchTerm": "vehicle" },
   { "displayName": "Mobile retailer", "searchTerm": "stall" },
   { "displayName": "Mobile retailer", "searchTerm": "car" },
   { "displayName": "Mobile retailer", "searchTerm": "bike" },
-  { "displayName": "Mobile retailer", "searchTerm": "ice cream van" },
+  { "displayName": "Mobile retailer", "searchTerm": "ice cream" },
   { "displayName": "Mobile retailer", "searchTerm": "van" },
   { "displayName": "Mobile retailer", "searchTerm": "festival" },
   { "displayName": "Mobile retailer", "searchTerm": "retail" },
@@ -1494,21 +1488,21 @@
   { "displayName": "Mobile caterer", "searchTerm": "market" },
   { "displayName": "Mobile caterer", "searchTerm": "bazar" },
   { "displayName": "Mobile caterer", "searchTerm": "foodtruck" },
-  { "displayName": "Mobile caterer", "searchTerm": "food truck" },
+  { "displayName": "Mobile caterer", "searchTerm": "truck" },
   { "displayName": "Mobile caterer", "searchTerm": "pop up" },
   { "displayName": "Mobile caterer", "searchTerm": "popup" },
   { "displayName": "Mobile caterer", "searchTerm": "vehicle" },
   { "displayName": "Mobile caterer", "searchTerm": "stall" },
   { "displayName": "Mobile caterer", "searchTerm": "car" },
   { "displayName": "Mobile caterer", "searchTerm": "bike" },
-  { "displayName": "Mobile caterer", "searchTerm": "ice cream van" },
+  { "displayName": "Mobile caterer", "searchTerm": "ice cream" },
   { "displayName": "Mobile caterer", "searchTerm": "van" },
   { "displayName": "Mobile caterer", "searchTerm": "festival" },
   { "displayName": "Mobile caterer", "searchTerm": "event" },
   { "displayName": "Mobile caterer", "searchTerm": "party" },
   { "displayName": "Mobile caterer", "searchTerm": "function" },
-  { "displayName": "Mobile caterer", "searchTerm": "burger van" },
-  { "displayName": "Mobile caterer", "searchTerm": "food van" },
+  { "displayName": "Mobile caterer", "searchTerm": "burger" },
+  { "displayName": "Mobile caterer", "searchTerm": "food" },
   { "displayName": "Mobile caterer", "searchTerm": "hot dog stand" },
   { "displayName": "Mobile caterer", "searchTerm": "street" },
   { "displayName": "Mobile caterer", "searchTerm": "vendor" },
@@ -1525,11 +1519,8 @@
   { "displayName": "Movable food establishment", "searchTerm": "coach" },
   { "displayName": "Movable food establishment", "searchTerm": "bus" },
   { "displayName": "Movable food establishment", "searchTerm": "tram" },
-  { "displayName": "Contract caterer", "searchTerm": "wedding" },
-  { "displayName": "Contract caterer", "searchTerm": "event" },
-  { "displayName": "Contract caterer", "searchTerm": "party" },
-  { "displayName": "Contract caterer", "searchTerm": "occasion" },
-  { "displayName": "Contract caterer", "searchTerm": "function" },
+  { "displayName": "Contract caterer", "searchTerm": "office" },
+  { "displayName": "Contract caterer", "searchTerm": "lunch" },
   { "displayName": "Home caterer", "searchTerm": "baker" },
   { "displayName": "Home caterer", "searchTerm": "cake" },
   { "displayName": "Home caterer", "searchTerm": "cupcake" },
