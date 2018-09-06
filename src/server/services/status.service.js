@@ -1,17 +1,7 @@
-const EventEmitter = require("events");
-
 const status = {
   registrationsStarted: 0,
   submissions: 0
 };
-
-class StatusUpdate extends EventEmitter {}
-
-const statusEmitter = new StatusUpdate();
-
-statusEmitter.on("incrementCount", counterName => {
-  status[counterName]++;
-});
 
 const getStatus = statusName => {
   if (statusName) {
@@ -21,4 +11,19 @@ const getStatus = statusName => {
   }
 };
 
-module.exports = { statusEmitter, getStatus };
+const setStatus = (statusName, newStatus) => {
+  status[statusName] = newStatus;
+};
+
+const incrementStatusCount = statusName => {
+  if (Number.isInteger(status[statusName])) {
+    status[statusName]++;
+  } else {
+    const message = `Status name "${
+      status[statusName]
+    }" is not an integer. Unable to increment.`;
+    throw new Error(message);
+  }
+};
+
+module.exports = { getStatus, setStatus, incrementStatusCount };
