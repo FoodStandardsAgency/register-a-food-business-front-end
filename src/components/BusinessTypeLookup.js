@@ -1,20 +1,25 @@
 import dynamic from "next/dynamic";
-import "accessible-autocomplete/dist/accessible-autocomplete.min.css";
-import "./BusinessTypeLookup.css";
 import ContentItem from "./ContentItem";
-
+import { css } from "emotion";
 import {
   findMatches,
   inputValueFunction,
   suggestionFunction
 } from "./BusinessTypeLookupFunctions";
-
 import { ErrorText, HintText } from "govuk-react";
 
 // dynamic import used because Autocomplete component from AlphaGov uses the document object on import.
 // Therefore it must be imported on the client side not on the server side.
 // TODO JMB: contribute back to the AlphaGov repository to avoid or delay reliance on the document object.
 const Autocomplete = dynamic(import("accessible-autocomplete/react"));
+
+const autocompleteErrorStyling = css`
+  border-left: 4px solid #b10e1e;
+  padding-left: 10px;
+  .autocomplete__input {
+    border: 3px solid #b10e1e;
+  }
+`;
 
 const templates = {
   inputValue: inputValueFunction,
@@ -35,7 +40,10 @@ const BusinessTypeLookup = props => (
       </HintText>
     </ContentItem.B_30_15>
     <div
-      className={props.validatorErrors.business_type ? "errorStyling" : null}
+      id="autocompleteContainer"
+      className={
+        props.validatorErrors.business_type ? autocompleteErrorStyling : null
+      }
     >
       {props.validatorErrors.business_type ? (
         <ErrorText style={lineHeight}>

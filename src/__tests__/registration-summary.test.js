@@ -12,8 +12,6 @@ const cumulativeAnswers = {
   establishment_first_line: "Example first line"
 };
 
-const testAddressLookups = { example: [] };
-
 const testSwitches = {};
 
 describe("<RegistrationSummary />", () => {

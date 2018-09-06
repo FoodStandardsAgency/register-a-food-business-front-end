@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.37.1 - 5th September 2018 (unreleased)
+
+### Modified
+
+* Fix Snyk vulnerabilities by removing and updating packages
+
+## v1.37.0 - 5th September 2018 (unreleased)
+
+### Added
+
+* SDB-647 FSA Footer
+
 ## v1.36.0 - 4th September 2018 (unreleased)
 
 ### Added

@@ -9,6 +9,7 @@ import Document, { Head, Main, NextScript } from "next/document";
 import { extractCritical } from "emotion-server";
 import { hydrate, injectGlobal } from "react-emotion";
 import NormalizeCSS from "../src/components/NormalizeCSS";
+import AccessibleAutocompleteCSS from "../src/components/AccessibleAutocompleteCSS";
 
 // Adds server generated styles to emotion cache.
 // '__NEXT_DATA__.ids' is set in '_document.js'
@@ -17,6 +18,7 @@ if (typeof window !== "undefined" && typeof __NEXT_DATA__ !== "undefined") {
 }
 
 injectGlobal`
+  ${AccessibleAutocompleteCSS};
   ${NormalizeCSS};
 `;
 
@@ -39,7 +41,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <html lang="en">
         <Head>
           {/* Start Google Tag Manager */}
           {this.props.cookies.acceptAllCookies === "false" ? null : (
