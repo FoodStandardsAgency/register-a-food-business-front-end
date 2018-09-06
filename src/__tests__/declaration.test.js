@@ -1,5 +1,5 @@
 import Declaration from "../../pages/declaration";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import renderer from "react-test-renderer";
 import * as emotion from "emotion";
 import { createSerializer } from "jest-emotion";
@@ -20,6 +20,22 @@ describe("<Declaration />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<Declaration />);
     expect(wrapper.length).toBe(1);
+  });
+
+  it("displays a disabled button when submission button has been clicked", () => {
+    const wrapper = mount(
+      shallow(
+        <Declaration
+          validatorErrors={testValidatorErrors}
+          cumulativeAnswers={testCumulativeAnswers}
+          switches={testSwitches}
+        />
+      ).get(0)
+    );
+
+    expect(wrapper.find("ContinueButton").prop("disabled")).toBe(undefined);
+    wrapper.find("ContinueButton").simulate("click");
+    expect(wrapper.find("ContinueButton").prop("disabled")).toBe(true);
   });
 
   it("matches the previous snapshot", () => {

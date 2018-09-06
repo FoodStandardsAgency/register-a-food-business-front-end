@@ -1355,7 +1355,6 @@ exports[`<Declaration /> matches the previous snapshot 1`] = `
         >
           <form
             action="/continue/declaration/undefined"
-            id="submitRegistration"
             method="post"
           >
             <div

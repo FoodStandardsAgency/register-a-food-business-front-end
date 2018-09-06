@@ -29,7 +29,7 @@ class Declaration extends React.Component {
     this.setState({
       submitClicked: true
     });
-    document.getElementById("submitRegistration").submit();
+    this.refs.submitRegistration.submit();
   }
 
   render() {
@@ -38,7 +38,7 @@ class Declaration extends React.Component {
         <form
           action={`/continue/declaration/${this.props.editMode}`}
           method="post"
-          id="submitRegistration"
+          ref="submitRegistration"
         >
           <BackButton editMode={this.props.editMode} originator="declaration" />
           <Header level={2}>Declaration</Header>
