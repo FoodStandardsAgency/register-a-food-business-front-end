@@ -1,7 +1,10 @@
 const { logEmitter } = require("./logging.service");
-const { getStoredStatus } = require("../connectors/status/status.connector");
+const {
+  getStoredStatus,
+  updateStoredStatus
+} = require("../connectors/status/status.connector");
 
-const getStatus = statusName => {
+const getStatus = async statusName => {
   logEmitter.emit("functionCall", "status.service", "getStatus");
   const status = getStoredStatus();
 
@@ -24,11 +27,9 @@ const getStatus = statusName => {
   }
 };
 
-const setStatus = (statusName, newStatus) => {
+const setStatus = async (statusName, newStatus) => {
   logEmitter.emit("functionCall", "status.service", "setStatus");
-  const status = getStoredStatus();
-
-  status[statusName] = newStatus;
+  updateStoredStatus(statusName, newStatus);
 
   logEmitter.emit(
     "functionSuccessWith",
@@ -39,12 +40,16 @@ const setStatus = (statusName, newStatus) => {
   return status[statusName];
 };
 
-const incrementStatusCount = statusName => {
+const incrementStatusCount = async statusName => {
   logEmitter.emit("functionCall", "status.service", "setStatus");
-  const status = getStoredStatus();
+  const status = await getStoredStatus();
+  currentValue = status[statusName];
 
-  if (Number.isInteger(status[statusName])) {
-    status[statusName]++;
+  if (Number.isInteger(status)) {
+    const newValue = status++;
+
+    await updateStoredStatus(statusName, newValue);
+
     logEmitter.emit(
       "functionSuccessWith",
       "status.service",

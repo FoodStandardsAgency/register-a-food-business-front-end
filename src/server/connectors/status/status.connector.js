@@ -1,4 +1,4 @@
-const getStoredStatus = () => ({
+const getStoredStatus = async () => ({
   registrationsStarted: 0,
   submissionsSucceeded: 0,
   submissionsFailed: 0,
