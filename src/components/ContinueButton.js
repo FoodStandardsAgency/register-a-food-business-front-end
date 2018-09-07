@@ -3,6 +3,8 @@ import { ButtonArrow } from "@govuk-react/icons";
 
 const ContinueButton = props => (
   <Button
+    onClick={props.onClick}
+    disabled={props.disabled}
     id="continue-button"
     type="submit"
     icon={props.type === "begin" ? <ButtonArrow /> : null}
