@@ -73,7 +73,7 @@ const ApplicationComplete = props => (
           {props.lcConfig.hygieneAndStandards.local_council_email}
         </Paragraph>
         {props.lcConfig.hygieneAndStandards.local_council_phone_number ? (
-          <Paragraph mb={0}>
+          <Paragraph mb={0} id="hygieneAndStandardsNumber">
             {props.lcConfig.hygieneAndStandards.local_council_phone_number}
           </Paragraph>
         ) : null}
@@ -88,7 +88,7 @@ const ApplicationComplete = props => (
             {props.lcConfig.hygiene.local_council_email}
           </Paragraph>
           {props.lcConfig.hygiene.local_council_phone_number ? (
-            <Paragraph mb={0}>
+            <Paragraph mb={0} id="hygieneNumber">
               {props.lcConfig.hygiene.local_council_phone_number}
             </Paragraph>
           ) : null}
@@ -102,7 +102,7 @@ const ApplicationComplete = props => (
             {props.lcConfig.standards.local_council_email}
           </Paragraph>
           {props.lcConfig.standards.local_council_phone_number ? (
-            <Paragraph mb={0}>
+            <Paragraph mb={0} id="standardsNumber">
               {props.lcConfig.standards.local_council_phone_number}
             </Paragraph>
           ) : null}
