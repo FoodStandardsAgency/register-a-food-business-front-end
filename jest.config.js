@@ -6,7 +6,7 @@ module.exports = {
     "path.json": "<rootDir>/src/__mocks__/pathMock.json",
     "schema.js": "<rootDir>/src/__mocks__/schemaMock.js",
     "logging.service": "<rootDir>/src/__mocks__/logging.service.js",
-    "status.service": "<rootDir>/src/__mocks__/status.service.js"
+    "statusEmitter.service": "<rootDir>/src/__mocks__/statusEmitter.service.js"
   },
   collectCoverageFrom: [
     "src/**/*.{js}",

@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const { Next } = require("../next");
 const { logEmitter } = require("../services/logging.service");
-const { statusEmitter } = require("../services/status.service");
 const {
   transformAnswersForSummary
 } = require("../services/data-transform.service");
@@ -29,7 +28,6 @@ const newRouter = () => {
         req.session.regenerate(() => {
           req.session.council = req.params.lc;
 
-          statusEmitter.emit("incrementCount", "registrationsStarted");
           logEmitter.emit(
             "functionSuccessWith",
             "Routes",

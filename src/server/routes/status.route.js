@@ -5,7 +5,7 @@ const { getStatus } = require("../services/status.service");
 const statusRouter = () => {
   const router = Router();
 
-  router.get("/", (req, res) => {
+  router.get("/all", (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/status route");
     const status = getStatus();
     logEmitter.emit("functionSuccess", "Routes", "/status route");
@@ -27,7 +27,7 @@ const statusRouter = () => {
       "Routes",
       "/status/name/:statusName route"
     );
-    res.send(JSON.stringify(status));
+    res.send(status);
   });
 
   return router;

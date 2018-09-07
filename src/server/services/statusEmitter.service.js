@@ -5,12 +5,12 @@ class StatusUpdate extends EventEmitter {}
 
 const statusEmitter = new StatusUpdate();
 
-statusEmitter.on("incrementCount", counterName => {
-  incrementStatusCount(counterName);
+statusEmitter.on("incrementCount", async statusName => {
+  incrementStatusCount(statusName);
 });
 
-statusEmitter.on("setStatus", (counterName, newStatus) => {
-  setStatus(counterName, newStatus);
+statusEmitter.on("setStatus", async (statusName, newStatus) => {
+  setStatus(statusName, newStatus);
 });
 
 module.exports = { statusEmitter };

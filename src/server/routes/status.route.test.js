@@ -5,7 +5,11 @@ jest.mock("express", () => ({
   }))
 }));
 jest.mock("../services/status.service");
+
 const { statusRouter } = require("./status.route");
+const { getStatus } = require("../services/status.service");
+
+const testStatusObject = { exampleStatus: "value", anotherExample: 1 };
 
 describe("status route: ", () => {
   let router, handler;
@@ -13,10 +17,11 @@ describe("status route: ", () => {
     router = statusRouter();
   });
 
-  describe("GET to /status", () => {
+  describe("GET to /status/all", () => {
     let req, res;
 
     beforeEach(() => {
+      getStatus.mockImplementation(() => testStatusObject);
       handler = router.get.mock.calls[0][1];
       req = {};
       res = {
@@ -26,7 +31,9 @@ describe("status route: ", () => {
     });
 
     it("Should call res.send with a success message", () => {
-      expect(res.send).toHaveBeenLastCalledWith("TODO JMB");
+      expect(res.send).toHaveBeenLastCalledWith(
+        JSON.stringify(testStatusObject)
+      );
     });
   });
 
@@ -51,10 +58,11 @@ describe("status route: ", () => {
     let req, res;
 
     beforeEach(() => {
+      getStatus.mockImplementation(() => testStatusObject.exampleStatus);
       handler = router.get.mock.calls[2][1];
       req = {
         params: {
-          statusName: "example"
+          statusName: "exampleStatus"
         }
       };
       res = {
@@ -64,7 +72,7 @@ describe("status route: ", () => {
     });
 
     it("Should call res.send with a success message", () => {
-      expect(res.send).toHaveBeenLastCalledWith("FRONT END healthcheck PASSED");
+      expect(res.send).toHaveBeenLastCalledWith("value");
     });
   });
 });

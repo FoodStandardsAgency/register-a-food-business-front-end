@@ -5,6 +5,7 @@ const {
 } = require("../services/path.service");
 const { validate } = require("../services/validation.service");
 const { logEmitter } = require("../services/logging.service");
+const { statusEmitter } = require("../services/statusEmitter.service");
 const {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
@@ -27,6 +28,10 @@ const continueController = (
   };
 
   try {
+    if (currentPage === "/index") {
+      statusEmitter.emit("incrementCount", "registrationsStarted");
+    }
+
     const newAnswersArray = Object.values(newAnswers);
 
     let cleanedPreviousAnswers = Object.assign({}, previousAnswers);
