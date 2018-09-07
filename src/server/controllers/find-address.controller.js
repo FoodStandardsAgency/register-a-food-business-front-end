@@ -1,6 +1,7 @@
 const { getUkAddressesByPostcode } = require("../services/address.service");
 const { validate } = require("../services/validation.service");
 const { logEmitter } = require("../services/logging.service");
+const { statusEmitter } = require("../services/statusEmitter.service");
 
 const findAddressController = async (
   currentPage,
@@ -57,9 +58,11 @@ const findAddressController = async (
     if (addressesForPostcode.length > 0) {
       controllerResponse.switches[`${currentPage}-none-found`] = false;
       controllerResponse.redirectRoute = `${currentPage}-select`;
+      statusEmitter.emit("incrementCount", "addressLookupsSucceeded");
     } else {
       controllerResponse.switches[`${currentPage}-none-found`] = true;
       controllerResponse.redirectRoute = `${currentPage}-manual`;
+      statusEmitter.emit("incrementCount", "addressLookupsReturnedZero");
     }
     logEmitter.emit(
       "functionSuccessWith",

@@ -35,9 +35,11 @@ const submitController = async (lcUrl, submissionData, addressLookups) => {
         controllerResponse.email_fbo = res.email_fbo;
         controllerResponse.lc_config = res.lc_config;
         statusEmitter.emit("incrementCount", "submissionsSucceeded");
+        statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
       } else {
         controllerResponse.redirectRoute = "back";
         statusEmitter.emit("incrementCount", "submissionsFailed");
+        statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
       }
     } else {
       throw new Error(
