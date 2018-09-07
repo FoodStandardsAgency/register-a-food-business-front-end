@@ -72,7 +72,9 @@ describe("status route: ", () => {
     });
 
     it("Should call res.send with a success message", () => {
-      expect(res.send).toHaveBeenLastCalledWith("value");
+      expect(res.send).toHaveBeenLastCalledWith(
+        JSON.stringify(testStatusObject.exampleStatus)
+      );
     });
   });
 });

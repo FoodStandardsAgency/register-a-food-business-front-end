@@ -10,7 +10,7 @@ const getStatus = statusName => {
       "functionSuccessWith",
       "status.service",
       "getStatus",
-      `Returning status of "${status[statusName]}"`
+      `Returning "${statusName}" status of "${status[statusName]}"`
     );
     return status[statusName];
   } else {
