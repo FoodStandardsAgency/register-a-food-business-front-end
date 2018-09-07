@@ -1,18 +1,9 @@
 const { logEmitter } = require("./logging.service");
-
-const getCurrentStatus = () => ({
-  registrationsStarted: 0,
-  submissionsSucceeded: 0,
-  submissionsFailed: 0,
-  addressLookups: 0,
-  mostRecentSubmitSucceeded: true,
-  mostRecentAddressLookupSucceeded: true
-});
-
-const status = getCurrentStatus();
+const { getStoredStatus } = require("../connectors/status/status.connector");
 
 const getStatus = statusName => {
   logEmitter.emit("functionCall", "status.service", "getStatus");
+  const status = getStoredStatus();
 
   if (statusName) {
     logEmitter.emit(
@@ -35,6 +26,7 @@ const getStatus = statusName => {
 
 const setStatus = (statusName, newStatus) => {
   logEmitter.emit("functionCall", "status.service", "setStatus");
+  const status = getStoredStatus();
 
   status[statusName] = newStatus;
 
@@ -49,6 +41,8 @@ const setStatus = (statusName, newStatus) => {
 
 const incrementStatusCount = statusName => {
   logEmitter.emit("functionCall", "status.service", "setStatus");
+  const status = getStoredStatus();
+
   if (Number.isInteger(status[statusName])) {
     status[statusName]++;
     logEmitter.emit(

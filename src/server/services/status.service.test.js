@@ -1,14 +1,21 @@
+jest.mock("../connectors/status/status.connector");
+
 const {
   getStatus,
   setStatus,
   incrementStatusCount
 } = require("./status.service");
 
+const { getStoredStatus } = require("../connectors/status/status.connector");
+
 describe("status.service getStatus()", () => {
   let result;
 
   describe("given a statusName is provided", () => {
     beforeEach(() => {
+      getStoredStatus.mockImplementation(() => ({
+        registrationsStarted: 0
+      }));
       result = getStatus("registrationsStarted");
     });
 
@@ -19,6 +26,9 @@ describe("status.service getStatus()", () => {
 
   describe("given a statusName is provided that does not exist", () => {
     beforeEach(() => {
+      getStoredStatus.mockImplementation(() => ({
+        exampleValid: "status value"
+      }));
       result = getStatus("notValid");
     });
 
@@ -29,17 +39,17 @@ describe("status.service getStatus()", () => {
 
   describe("given a statusName is not provided", () => {
     beforeEach(() => {
+      getStoredStatus.mockImplementation(() => ({
+        registrationsStarted: 0,
+        submissionsSucceeded: 0
+      }));
       result = getStatus();
     });
 
     it("should return the entire status object", () => {
       expect(result).toEqual({
         registrationsStarted: 0,
-        submissionsSucceeded: 0,
-        submissionsFailed: 0,
-        addressLookups: 0,
-        mostRecentSubmitSucceeded: true,
-        mostRecentAddressLookupSucceeded: true
+        submissionsSucceeded: 0
       });
     });
   });
@@ -50,16 +60,22 @@ describe("status.service setStatus()", () => {
 
   describe("given a the supplied statusName does not exist", () => {
     beforeEach(() => {
-      result = setStatus("newStatusItem", "value");
+      getStoredStatus.mockImplementation(() => ({
+        newStatusItem: "old value"
+      }));
+      result = setStatus("newStatusItem", "new value");
     });
 
     it("should return the new value of the status name", () => {
-      expect(result).toBe("value");
+      expect(result).toBe("new value");
     });
   });
 
   describe("given a the supplied statusName already exists", () => {
     beforeEach(() => {
+      getStoredStatus.mockImplementation(() => ({
+        mostRecentSubmitSucceeded: true
+      }));
       result = setStatus("mostRecentSubmitSucceeded", false);
     });
 
@@ -74,6 +90,9 @@ describe("status.service incrementStatusCount()", () => {
 
   describe("given existing status value is an integer", () => {
     beforeEach(() => {
+      getStoredStatus.mockImplementation(() => ({
+        submissionsSucceeded: 0
+      }));
       result = incrementStatusCount("submissionsSucceeded");
     });
 
@@ -84,6 +103,9 @@ describe("status.service incrementStatusCount()", () => {
 
   describe("given existing status value is not an integer", () => {
     beforeEach(() => {
+      getStoredStatus.mockImplementation(() => ({
+        mostRecentSubmitSucceeded: true
+      }));
       try {
         result = incrementStatusCount("mostRecentSubmitSucceeded");
       } catch (err) {
