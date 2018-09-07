@@ -1,6 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
+.emotion-53 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 38px;
+  height: 38px;
+  z-index: 1;
+  margin: 0;
+  zoom: 1;
+  opacity: 0;
+}
+
+.emotion-53:focus + span:before {
+  box-shadow: 0 0 0 4px #ffbf47;
+}
+
+.emotion-53:visited {
+  background: #b10e1e;
+  color: #b10e1e;
+}
+
+.emotion-57 {
+  display: block;
+  position: relative;
+  padding: 0 0 0 38px;
+  margin-bottom: 20px;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-57 {
+    margin-bottom: 30px;
+  }
+}
+
 .emotion-18 {
   background-color: #d9e8f2;
 }
@@ -654,21 +688,9 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-
-}
-
-@media only screen and (min-width:641px) {
   .emotion-78 {
     width: 66.6667%;
   }
-}
-
-@media only screen and (min-width:641px) {
-
-}
-
-@media only screen and (min-width:641px) {
-
 }
 
 .emotion-40 {
@@ -938,40 +960,6 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
   .emotion-62 {
     padding-bottom: 15px;
   }
-}
-
-.emotion-57 {
-  display: block;
-  position: relative;
-  padding: 0 0 0 38px;
-  margin-bottom: 20px;
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-57 {
-    margin-bottom: 30px;
-  }
-}
-
-.emotion-53 {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 38px;
-  height: 38px;
-  z-index: 1;
-  margin: 0;
-  zoom: 1;
-  opacity: 0;
-}
-
-.emotion-53:focus + span:before {
-  box-shadow: 0 0 0 4px #ffbf47;
-}
-
-.emotion-53:visited {
-  background: #b10e1e;
-  color: #b10e1e;
 }
 
 .emotion-55 {
@@ -1411,16 +1399,20 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
           >
             <a
               className="emotion-2 emotion-3"
+              disabled={undefined}
               href="https://www.gov.uk/help/cookies"
               id="cookieInfo"
+              onClick={undefined}
               target="_blank"
             >
               Find out more about cookies
             </a>
             <a
               className="emotion-2 emotion-3"
+              disabled={undefined}
               href="https://www.food.gov.uk/cookie-policy"
               id="cookiePolicy"
+              onClick={undefined}
               target="_blank"
             >
               Read our cookie policy
@@ -1483,6 +1475,7 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
                   className="emotion-20"
                 >
                   <svg
+                    className={undefined}
                     fill="currentColor"
                     height="32"
                     style={
@@ -1525,6 +1518,7 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
             <h3
               className="emotion-26"
               mb={0}
+              size={undefined}
             >
               Register a food business
             </h3>
@@ -1593,6 +1587,7 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
           >
             <h2
               className="emotion-42"
+              size={undefined}
             >
               There is a problem
             </h2>
@@ -1604,6 +1599,7 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
               >
                 <a
                   className="emotion-43"
+                  disabled={undefined}
                   onClick={[Function]}
                   tabIndex={-1}
                 >
@@ -1614,6 +1610,7 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
           </div>
           <h2
             className="emotion-42"
+            size={undefined}
           >
             Establishment contact details
           </h2>
@@ -1677,6 +1674,7 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
                   <input
                     autoComplete="tel"
                     className="emotion-60"
+                    defaultValue={undefined}
                     name="establishment_primary_number"
                     type="text"
                   />
@@ -1697,6 +1695,7 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
                   <input
                     autoComplete="off"
                     className="emotion-60"
+                    defaultValue={undefined}
                     name="establishment_secondary_number"
                     type="text"
                   />
@@ -1722,6 +1721,7 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
                   <input
                     autoComplete="email"
                     className="emotion-60"
+                    defaultValue={undefined}
                     name="establishment_email"
                     type="text"
                   />
@@ -1732,6 +1732,7 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
               className="emotion-77"
               disabled={false}
               id="continue-button"
+              onClick={undefined}
               type="submit"
             >
               Continue
@@ -1756,8 +1757,10 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
         >
           <a
             className="emotion-82 emotion-83"
+            disabled={undefined}
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
+            onClick={undefined}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -1765,8 +1768,10 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
           </a>
           <a
             className="emotion-82 emotion-83"
+            disabled={undefined}
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
+            onClick={undefined}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -1774,8 +1779,10 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
           </a>
           <a
             className="emotion-82 emotion-83"
+            disabled={undefined}
             href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
             id="feedbackFooter"
+            onClick={undefined}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -1808,8 +1815,10 @@ exports[`<EstablishmentContactDetails /> matches the previous snapshot 1`] = `
              
             <a
               className="emotion-92 emotion-93"
+              disabled={undefined}
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
+              onClick={undefined}
               rel="noopener noreferrer"
               target="_blank"
             >

@@ -72,6 +72,11 @@ const ApplicationComplete = props => (
         <Paragraph mb={0}>
           {props.lcConfig.hygieneAndStandards.local_council_email}
         </Paragraph>
+        {props.lcConfig.hygieneAndStandards.local_council_phone_number ? (
+          <Paragraph mb={0}>
+            {props.lcConfig.hygieneAndStandards.local_council_phone_number}
+          </Paragraph>
+        ) : null}
       </ContentItem.B_30_15>
     ) : (
       <div>
@@ -82,6 +87,11 @@ const ApplicationComplete = props => (
           <Paragraph mb={0}>
             {props.lcConfig.hygiene.local_council_email}
           </Paragraph>
+          {props.lcConfig.hygiene.local_council_phone_number ? (
+            <Paragraph mb={0}>
+              {props.lcConfig.hygiene.local_council_phone_number}
+            </Paragraph>
+          ) : null}
           <HintText>Reponsible local council for food hygiene</HintText>
         </ContentItem.B_30_15>
         <ContentItem.B_30_15 id="standardsCouncil">
@@ -91,6 +101,11 @@ const ApplicationComplete = props => (
           <Paragraph mb={0}>
             {props.lcConfig.standards.local_council_email}
           </Paragraph>
+          {props.lcConfig.standards.local_council_phone_number ? (
+            <Paragraph mb={0}>
+              {props.lcConfig.standards.local_council_phone_number}
+            </Paragraph>
+          ) : null}
           <HintText>Responsible local council for food standards</HintText>
         </ContentItem.B_30_15>
       </div>

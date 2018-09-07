@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.37.2 - 7th September 2018 (unreleased)
+
+### Added
+
+* SDB-833 Local Council Phone number to summary confirmation page
+
 ## v1.37.1 - 5th September 2018 (unreleased)
 
 ### Modified

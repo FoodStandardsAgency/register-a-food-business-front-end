@@ -72,6 +72,7 @@ exports[`<ContinueButton /> matches the previous snapshot 1`] = `
   className="emotion-0"
   disabled={false}
   id="continue-button"
+  onClick={undefined}
   type="submit"
 >
   Continue
