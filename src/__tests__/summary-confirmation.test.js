@@ -14,11 +14,32 @@ const emailFbo = { success: true, recipient: "fbo@email.com" };
 const lcConfigCombined = {
   hygieneAndStandards: {
     local_council: "Council name",
+    local_council_email: "council@example.com",
+    local_council_phone_number: "123456789"
+  }
+};
+
+const lcConfigCombinedNoNumber = {
+  hygieneAndStandards: {
+    local_council: "Council name",
     local_council_email: "council@example.com"
   }
 };
 
 const lcConfigSplit = {
+  hygiene: {
+    local_council: "Hygiene council name",
+    local_council_email: "hygiene@example.com",
+    local_council_phone_number: "123456789"
+  },
+  standards: {
+    local_council: "Standards council name",
+    local_council_email: "standards@example.com",
+    local_council_phone_number: "123456789"
+  }
+};
+
+const lcConfigSplitNoNumber = {
   hygiene: {
     local_council: "Hygiene council name",
     local_council_email: "hygiene@example.com"
@@ -86,7 +107,7 @@ describe("<ApplicationComplete />", () => {
           cumulativeAnswers={cumulativeAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
-          emailFbo={lcConfigSplit}
+          emailFbo={emailFbo}
         />
       );
       const text = wrapper.text();
@@ -94,6 +115,96 @@ describe("<ApplicationComplete />", () => {
       expect(text.includes("Standards council name")).toBe(true);
       expect(text.includes("hygiene@example.com")).toBe(true);
       expect(text.includes("standards@example.com")).toBe(true);
+    });
+  });
+
+  describe("When given a hygieneAndStandards phone number", () => {
+    it("The paragraph renders displaying it", () => {
+      const wrapper = mount(
+        <ApplicationComplete
+          cumulativeAnswers={cumulativeAnswers}
+          applicationCompletePage={true}
+          lcConfig={lcConfigCombined}
+          emailFbo={emailFbo}
+        />
+      );
+      const panel = wrapper.find("Paragraph#hygieneAndStandardsNumber");
+      expect(panel.length).toBe(1);
+    });
+  });
+
+  describe("When given a hygiene phone number", () => {
+    it("The paragraph renders displaying it", () => {
+      const wrapper = mount(
+        <ApplicationComplete
+          cumulativeAnswers={cumulativeAnswers}
+          applicationCompletePage={true}
+          lcConfig={lcConfigSplit}
+          emailFbo={emailFbo}
+        />
+      );
+      const panel = wrapper.find("Paragraph#hygieneNumber");
+      expect(panel.length).toBe(1);
+    });
+  });
+
+  describe("When given a standards phone number", () => {
+    it("The paragraph renders displaying it", () => {
+      const wrapper = mount(
+        <ApplicationComplete
+          cumulativeAnswers={cumulativeAnswers}
+          applicationCompletePage={true}
+          lcConfig={lcConfigSplit}
+          emailFbo={emailFbo}
+        />
+      );
+      const panel = wrapper.find("Paragraph#standardsNumber");
+      expect(panel.length).toBe(1);
+    });
+  });
+
+  describe("When not given a hygieneAndStandards phone number", () => {
+    it("The hygieneAndStandards phone number does not render", () => {
+      const wrapper = mount(
+        <ApplicationComplete
+          cumulativeAnswers={cumulativeAnswers}
+          applicationCompletePage={true}
+          lcConfig={lcConfigCombinedNoNumber}
+          emailFbo={emailFbo}
+        />
+      );
+      const panel = wrapper.find("Paragraph#hygieneAndStandardsNumber");
+      expect(panel.length).toBe(0);
+    });
+  });
+
+  describe("When not given a hygiene phone number", () => {
+    it("The hygiene phone number does not render", () => {
+      const wrapper = mount(
+        <ApplicationComplete
+          cumulativeAnswers={cumulativeAnswers}
+          applicationCompletePage={true}
+          lcConfig={lcConfigSplitNoNumber}
+          emailFbo={emailFbo}
+        />
+      );
+      const panel = wrapper.find("Paragraph#hygieneNumber");
+      expect(panel.length).toBe(0);
+    });
+  });
+
+  describe("When not given a standards phone number", () => {
+    it("The standards phone number does not render", () => {
+      const wrapper = mount(
+        <ApplicationComplete
+          cumulativeAnswers={cumulativeAnswers}
+          applicationCompletePage={true}
+          lcConfig={lcConfigSplitNoNumber}
+          emailFbo={emailFbo}
+        />
+      );
+      const panel = wrapper.find("Paragraph#standardsNumber");
+      expect(panel.length).toBe(0);
     });
   });
 });
