@@ -27,6 +27,7 @@ const newRouter = () => {
       if (page === "index") {
         req.session.regenerate(() => {
           req.session.council = req.params.lc;
+
           logEmitter.emit(
             "functionSuccessWith",
             "Routes",
