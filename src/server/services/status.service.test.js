@@ -6,17 +6,20 @@ const {
   incrementStatusCount
 } = require("./status.service");
 
-const { getStoredStatus } = require("../connectors/status/status.connector");
+const {
+  getStoredStatus,
+  updateStoredStatus
+} = require("../connectors/status/status.connector");
 
 describe("status.service getStatus()", () => {
   let result;
 
   describe("given a statusName is provided", () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       getStoredStatus.mockImplementation(() => ({
         registrationsStarted: 0
       }));
-      result = getStatus("registrationsStarted");
+      result = await getStatus("registrationsStarted");
     });
 
     it("should return the value of that status name", () => {
@@ -25,11 +28,11 @@ describe("status.service getStatus()", () => {
   });
 
   describe("given a statusName is provided that does not exist", () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       getStoredStatus.mockImplementation(() => ({
         exampleValid: "status value"
       }));
-      result = getStatus("notValid");
+      result = await getStatus("notValid");
     });
 
     it("should return undefined", () => {
@@ -38,12 +41,12 @@ describe("status.service getStatus()", () => {
   });
 
   describe("given a statusName is not provided", () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       getStoredStatus.mockImplementation(() => ({
         registrationsStarted: 0,
         submissionsSucceeded: 0
       }));
-      result = getStatus();
+      result = await getStatus();
     });
 
     it("should return the entire status object", () => {
@@ -59,11 +62,9 @@ describe("status.service setStatus()", () => {
   let result;
 
   describe("given a the supplied statusName does not exist", () => {
-    beforeEach(() => {
-      getStoredStatus.mockImplementation(() => ({
-        newStatusItem: "old value"
-      }));
-      result = setStatus("newStatusItem", "new value");
+    beforeEach(async () => {
+      updateStoredStatus.mockImplementation(() => "new value");
+      result = await setStatus("newStatusItem", "new value");
     });
 
     it("should return the new value of the status name", () => {
@@ -72,11 +73,9 @@ describe("status.service setStatus()", () => {
   });
 
   describe("given a the supplied statusName already exists", () => {
-    beforeEach(() => {
-      getStoredStatus.mockImplementation(() => ({
-        mostRecentSubmitSucceeded: true
-      }));
-      result = setStatus("mostRecentSubmitSucceeded", false);
+    beforeEach(async () => {
+      updateStoredStatus.mockImplementation(() => false);
+      result = await setStatus("mostRecentSubmitSucceeded", false);
     });
 
     it("should return the new value of the status name", () => {
@@ -89,11 +88,12 @@ describe("status.service incrementStatusCount()", () => {
   let result;
 
   describe("given existing status value is an integer", () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       getStoredStatus.mockImplementation(() => ({
         submissionsSucceeded: 0
       }));
-      result = incrementStatusCount("submissionsSucceeded");
+      updateStoredStatus.mockImplementation(() => 1);
+      result = await incrementStatusCount("submissionsSucceeded");
     });
 
     it("should return the updated value of the status name", () => {
@@ -102,12 +102,13 @@ describe("status.service incrementStatusCount()", () => {
   });
 
   describe("given existing status value is not an integer", () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       getStoredStatus.mockImplementation(() => ({
         mostRecentSubmitSucceeded: true
       }));
+
       try {
-        result = incrementStatusCount("mostRecentSubmitSucceeded");
+        result = await incrementStatusCount("mostRecentSubmitSucceeded");
       } catch (err) {
         result = err.message;
       }

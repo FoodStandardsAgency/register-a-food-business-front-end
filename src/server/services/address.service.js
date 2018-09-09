@@ -26,6 +26,7 @@ const getUkAddressesByPostcode = async postcode => {
     );
     return addressLookupResponse;
   } catch (err) {
+    statusEmitter.emit("incrementCount", "addressLookupsFailed");
     statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", false);
     logEmitter.emit(
       "functionFail",

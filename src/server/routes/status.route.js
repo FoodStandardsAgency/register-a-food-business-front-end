@@ -5,9 +5,9 @@ const { getStatus } = require("../services/status.service");
 const statusRouter = () => {
   const router = Router();
 
-  router.get("/all", (req, res) => {
+  router.get("/all", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/status/all route");
-    const status = getStatus();
+    const status = await getStatus();
     logEmitter.emit("functionSuccess", "Routes", "/status/all route");
     res.send(JSON.stringify(status));
   });
@@ -18,10 +18,10 @@ const statusRouter = () => {
     res.send("FRONT END healthcheck PASSED");
   });
 
-  router.get("/name/:statusName", (req, res) => {
+  router.get("/name/:statusName", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/status/name/:statusName route");
     const statusName = req.params.statusName;
-    const status = getStatus(statusName);
+    const status = await getStatus(statusName);
     logEmitter.emit(
       "functionSuccess",
       "Routes",
