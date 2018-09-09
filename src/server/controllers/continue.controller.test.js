@@ -122,12 +122,7 @@ describe("Function: continueController: ", () => {
           errors: {}
         }));
         moveAlongPath.mockImplementation(() => "/nextPage");
-        response = continueController(
-          "/some-page",
-          {},
-          exampleAnswers,
-          undefined
-        );
+        response = continueController("/index", {}, exampleAnswers, undefined);
       });
 
       it("Should return a redirect route", () => {

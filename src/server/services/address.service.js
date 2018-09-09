@@ -1,6 +1,7 @@
 const {
   getAddressesByPostcode
 } = require("../connectors/address-lookup/address-lookup-api.connector");
+const { statusEmitter } = require("../services/statusEmitter.service");
 const { logEmitter } = require("./logging.service");
 
 const getUkAddressesByPostcode = async postcode => {
@@ -17,6 +18,7 @@ const getUkAddressesByPostcode = async postcode => {
       500
     );
 
+    statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", true);
     logEmitter.emit(
       "functionSuccess",
       "address.service",
@@ -24,6 +26,8 @@ const getUkAddressesByPostcode = async postcode => {
     );
     return addressLookupResponse;
   } catch (err) {
+    statusEmitter.emit("incrementCount", "addressLookupsFailed");
+    statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", false);
     logEmitter.emit(
       "functionFail",
       "address.service",
