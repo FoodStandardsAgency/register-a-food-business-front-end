@@ -318,16 +318,20 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
       >
         <a
           className="emotion-2 emotion-3"
+          disabled={undefined}
           href="https://www.gov.uk/help/cookies"
           id="cookieInfo"
+          onClick={undefined}
           target="_blank"
         >
           Find out more about cookies
         </a>
         <a
           className="emotion-2 emotion-3"
+          disabled={undefined}
           href="https://www.food.gov.uk/cookie-policy"
           id="cookiePolicy"
+          onClick={undefined}
           target="_blank"
         >
           Read our cookie policy
