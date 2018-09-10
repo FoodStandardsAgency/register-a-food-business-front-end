@@ -38,7 +38,7 @@ const EstablishmentAddressType = props => (
         >
           <Radio
             name="establishment_type"
-            value="Place of business or commerical premises"
+            value="Place of business or commercial premises"
             id="establishment_type_business_commercial"
             defaultChecked={
               props.cumulativeAnswers.establishment_type ===

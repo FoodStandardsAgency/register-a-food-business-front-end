@@ -1420,7 +1420,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
                     id="establishment_type_business_commercial"
                     name="establishment_type"
                     type="radio"
-                    value="Place of business or commerical premises"
+                    value="Place of business or commercial premises"
                   />
                   <span
                     className="emotion-50"
