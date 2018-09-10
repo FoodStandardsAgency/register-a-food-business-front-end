@@ -654,9 +654,21 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
+
+}
+
+@media only screen and (min-width:641px) {
   .emotion-79 {
     width: 66.6667%;
   }
+}
+
+@media only screen and (min-width:641px) {
+
+}
+
+@media only screen and (min-width:641px) {
+
 }
 
 .emotion-40 {
@@ -1305,20 +1317,16 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
           >
             <a
               className="emotion-2 emotion-3"
-              disabled={undefined}
               href="https://www.gov.uk/help/cookies"
               id="cookieInfo"
-              onClick={undefined}
               target="_blank"
             >
               Find out more about cookies
             </a>
             <a
               className="emotion-2 emotion-3"
-              disabled={undefined}
               href="https://www.food.gov.uk/cookie-policy"
               id="cookiePolicy"
-              onClick={undefined}
               target="_blank"
             >
               Read our cookie policy
@@ -1381,7 +1389,6 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
                   className="emotion-20"
                 >
                   <svg
-                    className={undefined}
                     fill="currentColor"
                     height="32"
                     style={
@@ -1424,7 +1431,6 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
             <h3
               className="emotion-26"
               mb={0}
-              size={undefined}
             >
               Register a food business
             </h3>
@@ -1493,7 +1499,6 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
           >
             <h2
               className="emotion-42"
-              size={undefined}
             >
               There is a problem
             </h2>
@@ -1505,7 +1510,6 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
               >
                 <a
                   className="emotion-43"
-                  disabled={undefined}
                   onClick={[Function]}
                   tabIndex={-1}
                 >
@@ -1516,7 +1520,6 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
           </div>
           <h2
             className="emotion-42"
-            size={undefined}
           >
             What is the operator's address?
           </h2>
@@ -1575,7 +1578,6 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
                   <input
                     autoComplete="address-line1"
                     className="emotion-57"
-                    defaultValue={undefined}
                     name="operator_first_line"
                     type="text"
                   />
@@ -1596,7 +1598,6 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
                   <input
                     autoComplete="address-line2"
                     className="emotion-57"
-                    defaultValue={undefined}
                     name="operator_street"
                     type="text"
                   />
@@ -1617,7 +1618,6 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
                   <input
                     autoComplete="locality"
                     className="emotion-57"
-                    defaultValue={undefined}
                     name="operator_town"
                     type="text"
                   />
@@ -1638,7 +1638,6 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
                   <input
                     autoComplete="postal-code"
                     className="emotion-57"
-                    defaultValue={undefined}
                     name="operator_postcode"
                     type="text"
                   />
@@ -1649,7 +1648,6 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
               className="emotion-78"
               disabled={false}
               id="continue-button"
-              onClick={undefined}
               type="submit"
             >
               Continue
@@ -1674,10 +1672,8 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
         >
           <a
             className="emotion-83 emotion-84"
-            disabled={undefined}
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
-            onClick={undefined}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -1685,10 +1681,8 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
           </a>
           <a
             className="emotion-83 emotion-84"
-            disabled={undefined}
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
-            onClick={undefined}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -1696,10 +1690,8 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
           </a>
           <a
             className="emotion-83 emotion-84"
-            disabled={undefined}
             href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
             id="feedbackFooter"
-            onClick={undefined}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -1732,10 +1724,8 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
              
             <a
               className="emotion-93 emotion-94"
-              disabled={undefined}
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
-              onClick={undefined}
               rel="noopener noreferrer"
               target="_blank"
             >

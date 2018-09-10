@@ -182,10 +182,8 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
       >
         <a
           className="emotion-0 emotion-1"
-          disabled={undefined}
           href="https://www.food.gov.uk/cookie-policy"
           id="cookiePolicyFooter"
-          onClick={undefined}
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -193,10 +191,8 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
         </a>
         <a
           className="emotion-0 emotion-1"
-          disabled={undefined}
           href="https://www.food.gov.uk/privacy-policy"
           id="privacyPolicyFooter"
-          onClick={undefined}
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -204,10 +200,8 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
         </a>
         <a
           className="emotion-0 emotion-1"
-          disabled={undefined}
           href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
           id="feedbackFooter"
-          onClick={undefined}
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -240,10 +234,8 @@ exports[`<FsaFooter /> matches the previous snapshot 1`] = `
            
           <a
             className="emotion-10 emotion-11"
-            disabled={undefined}
             href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
             id="openGovernmentLicence"
-            onClick={undefined}
             rel="noopener noreferrer"
             target="_blank"
           >

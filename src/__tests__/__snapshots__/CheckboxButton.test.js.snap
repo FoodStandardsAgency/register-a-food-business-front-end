@@ -1,6 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Checkbox /> matches the previous snapshot 1`] = `
+.emotion-4 {
+  display: block;
+  position: relative;
+  padding: 0 0 0 38px;
+  margin-bottom: 20px;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-4 {
+    margin-bottom: 30px;
+  }
+}
+
 .emotion-0 {
   position: absolute;
   left: 0;
@@ -20,19 +33,6 @@ exports[`<Checkbox /> matches the previous snapshot 1`] = `
 .emotion-0:visited {
   background: #b10e1e;
   color: #b10e1e;
-}
-
-.emotion-4 {
-  display: block;
-  position: relative;
-  padding: 0 0 0 38px;
-  margin-bottom: 20px;
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-4 {
-    margin-bottom: 30px;
-  }
 }
 
 .emotion-2 {
