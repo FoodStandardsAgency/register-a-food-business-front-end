@@ -8,7 +8,7 @@ const backController = (currentPage, previousAnswers = {}) => {
   let newPath;
 
   try {
-    newPath = editPath(previousAnswers);
+    newPath = editPath(previousAnswers, currentPage);
     previousPage = moveAlongPath(newPath, currentPage, -1);
 
     logEmitter.emit(
