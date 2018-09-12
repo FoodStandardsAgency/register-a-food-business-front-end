@@ -1550,11 +1550,11 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
             className="emotion-73 emotion-74"
           >
             <svg
-              class="govuk-footer__licence-logo"
+              className="govuk-footer__licence-logo"
               focusable="false"
               height="17"
               role="presentation"
-              viewbox="0 0 483.2 195.7"
+              viewBox="0 0 483.2 195.7"
               width="41"
               xmlns="http://www.w3.org/2000/svg"
             >
