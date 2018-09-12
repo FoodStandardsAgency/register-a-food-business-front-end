@@ -1703,11 +1703,11 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
             className="emotion-91 emotion-92"
           >
             <svg
-              class="govuk-footer__licence-logo"
+              className="govuk-footer__licence-logo"
               focusable="false"
               height="17"
               role="presentation"
-              viewbox="0 0 483.2 195.7"
+              viewBox="0 0 483.2 195.7"
               width="41"
               xmlns="http://www.w3.org/2000/svg"
             >
