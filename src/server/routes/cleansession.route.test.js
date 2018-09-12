@@ -66,8 +66,8 @@ describe("Cleansession route: ", () => {
         expect(req.session.example).not.toBeDefined();
       });
 
-      it("Should call res.redirect with target of '/new/council/'", () => {
-        expect(res.redirect).toHaveBeenCalledWith("/new/council/");
+      it("Should call res.redirect with target of '/'", () => {
+        expect(res.redirect).toHaveBeenCalledWith("/");
       });
     });
   });
