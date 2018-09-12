@@ -15,9 +15,9 @@ const cleansessionRouter = () => {
           "functionSuccessWith",
           "Routes",
           "/cleansession route",
-          `Redirecting to: /new/${req.session.council}/`
+          `Redirecting to: /`
         );
-        res.redirect(`/new/${req.session.council}/`);
+        res.redirect(`/`);
       }
     });
   });
