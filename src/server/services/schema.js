@@ -303,6 +303,15 @@ const schema = {
       { required: ["no_import_export"] }
     ]
   },
+  "/business-other-details": {
+    type: "object",
+    properties: {
+      business_other_details: {
+        type: "string",
+        validation: validateOptionalString
+      }
+    }
+  },
   "/registration-summary": {
     type: "object",
     properties: {}
