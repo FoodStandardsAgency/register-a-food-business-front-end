@@ -164,8 +164,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
     className="emotion-5"
   >
     <tr
-      TITLE={true}
-      className="emotion-5"
+      className="TITLE emotion-5"
     >
       <th
         className="emotion-2"
@@ -509,7 +508,6 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
           className="emotion-50 emotion-51"
         >
           <div
-            display={true}
             id="contact_representative_name"
           >
             Jill
@@ -550,8 +548,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
       </td>
     </tr>
     <tr
-      TITLE={true}
-      className="emotion-5"
+      className="TITLE emotion-5"
     >
       <th
         className="emotion-2"
@@ -778,8 +775,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
       </td>
     </tr>
     <tr
-      TITLE={true}
-      className="emotion-5"
+      className="TITLE emotion-5"
     >
       <th
         className="emotion-2"
