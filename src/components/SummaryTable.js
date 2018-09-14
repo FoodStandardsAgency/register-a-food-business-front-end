@@ -43,7 +43,7 @@ const OperatorDetailsTable = props => (
       </Table.Row>
     ) : null}
 
-    <Table.Row TITLE>
+    <Table.Row className="TITLE">
       <Table.CellHeader>
         <Paragraph mb={0}>**Operator details**</Paragraph>
       </Table.CellHeader>
@@ -247,7 +247,7 @@ const OperatorDetailsTable = props => (
         <Table.CellHeader>Designated contact</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <StyledTableRow>
-            <div display id="contact_representative_name">
+            <div id="contact_representative_name">
               {props.contact_representative_name}
             </div>
           </StyledTableRow>
@@ -282,7 +282,7 @@ const OperatorDetailsTable = props => (
 
 const EstablishmentDetailsTable = props => (
   <React.Fragment>
-    <Table.Row TITLE>
+    <Table.Row className="TITLE">
       <Table.CellHeader>
         <Paragraph mb={0}>**Establishment details**</Paragraph>
       </Table.CellHeader>
@@ -432,7 +432,7 @@ const EstablishmentDetailsTable = props => (
 
 const FoodActivitiesTable = props => (
   <React.Fragment>
-    <Table.Row TITLE>
+    <Table.Row className="TITLE">
       <Table.CellHeader>
         <Paragraph mb={0}>**Activities**</Paragraph>
       </Table.CellHeader>
@@ -519,7 +519,7 @@ const FoodActivitiesTable = props => (
 
 const DeclarationTable = props => (
   <React.Fragment>
-    <Table.Row TITLE>
+    <Table.Row className="TITLE">
       <Table.CellHeader>
         <Paragraph mb={0}>**Declaration**</Paragraph>
       </Table.CellHeader>

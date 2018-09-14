@@ -3,9 +3,10 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  ContinueButton
+  ContinueButton,
+  SelectWithHeader
 } from "../src/components";
-import { Header, HiddenText, Paragraph, Select, asAnchor } from "govuk-react";
+import { Header, HiddenText, Paragraph, asAnchor } from "govuk-react";
 import PropTypes from "prop-types";
 
 const AnchorTag = asAnchor("a");
@@ -44,8 +45,8 @@ const EstablishmentAddressLookup = props => (
           </Header>
         </ContentItem.B_30_15>
 
-        <Header level={3}>Select an address</Header>
-        <Select
+        <SelectWithHeader
+          label="Select an address"
           input={{
             id: "establishmentAddressDropdown",
             name: "establishment_address_selected",
@@ -64,7 +65,7 @@ const EstablishmentAddressLookup = props => (
           ) : (
             <option>No addresses found</option>
           )}
-        </Select>
+        </SelectWithHeader>
 
         <AnchorTag
           id="cantFindAddressLink"
