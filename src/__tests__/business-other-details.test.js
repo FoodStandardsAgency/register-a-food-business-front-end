@@ -44,10 +44,7 @@ describe("<OtherDetails />", () => {
           switches={testSwitches}
         />
       );
-      console.log(wrapper.debug());
-      const businessOtherDetails = wrapper.find(
-        "textarea#business_other_details"
-      );
+      const businessOtherDetails = wrapper.find("TextArea");
       expect(businessOtherDetails.length).toBe(1);
     });
 
@@ -62,9 +59,7 @@ describe("<OtherDetails />", () => {
           switches={testSwitches}
         />
       );
-      const businessOtherDetails = wrapper.find(
-        "textarea#business_other_details"
-      );
+      const businessOtherDetails = wrapper.find("TextArea");
       expect(businessOtherDetails.props().meta.error).toBe("test error");
     });
 
@@ -79,9 +74,7 @@ describe("<OtherDetails />", () => {
           switches={testSwitches}
         />
       );
-      const businessOtherDetails = wrapper.find(
-        "textarea#business_other_details"
-      );
+      const businessOtherDetails = wrapper.find("TextArea");
       expect(businessOtherDetails.props().input.defaultValue).toBe("default");
     });
   });
