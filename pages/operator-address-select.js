@@ -3,16 +3,10 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  ContinueButton
+  ContinueButton,
+  SelectWithHeader
 } from "../src/components";
-import {
-  Header,
-  HiddenText,
-  Paragraph,
-  Select,
-  asAnchor,
-  HintText
-} from "govuk-react";
+import { Header, HiddenText, Paragraph, asAnchor, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 
 const AnchorTag = asAnchor("a");
@@ -55,8 +49,8 @@ const OperatorAddressLookup = props => (
           </Header>
         </ContentItem.B_30_15>
 
-        <Header level={3}>Select an address</Header>
-        <Select
+        <SelectWithHeader
+          label="Select an address"
           input={{
             id: "operatorAddressDropdown",
             name: "operator_address_selected",
@@ -74,7 +68,7 @@ const OperatorAddressLookup = props => (
           ) : (
             <option>No addresses found</option>
           )}
-        </Select>
+        </SelectWithHeader>
         <AnchorTag id="cantFindAddressLink" href="/operator-address-manual">
           I can't find my address in the list
         </AnchorTag>

@@ -46,7 +46,8 @@ const errorMessages = {
   establishment_opening_date: "Not a valid opening date",
   customer_type: "You must select an option before continuing",
   import_export_activities: "You must select an option before continuing",
-  business_type: "You must select a business type before continuing"
+  business_type: "You must select a business type before continuing",
+  business_other_details: "Not valid text"
 };
 
 const validator = new Validator();

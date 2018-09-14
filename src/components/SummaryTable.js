@@ -43,7 +43,7 @@ const OperatorDetailsTable = props => (
       </Table.Row>
     ) : null}
 
-    <Table.Row TITLE>
+    <Table.Row className="TITLE">
       <Table.CellHeader>
         <Paragraph mb={0}>**Operator details**</Paragraph>
       </Table.CellHeader>
@@ -247,7 +247,7 @@ const OperatorDetailsTable = props => (
         <Table.CellHeader>Designated contact</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <StyledTableRow>
-            <div display id="contact_representative_name">
+            <div id="contact_representative_name">
               {props.contact_representative_name}
             </div>
           </StyledTableRow>
@@ -282,7 +282,7 @@ const OperatorDetailsTable = props => (
 
 const EstablishmentDetailsTable = props => (
   <React.Fragment>
-    <Table.Row TITLE>
+    <Table.Row className="TITLE">
       <Table.CellHeader>
         <Paragraph mb={0}>**Establishment details**</Paragraph>
       </Table.CellHeader>
@@ -432,7 +432,7 @@ const EstablishmentDetailsTable = props => (
 
 const FoodActivitiesTable = props => (
   <React.Fragment>
-    <Table.Row TITLE>
+    <Table.Row className="TITLE">
       <Table.CellHeader>
         <Paragraph mb={0}>**Activities**</Paragraph>
       </Table.CellHeader>
@@ -514,12 +514,33 @@ const FoodActivitiesTable = props => (
         )}
       </Table.Row>
     ) : null}
+
+    {props.business_other_details ? (
+      <Table.Row id="businessOtherDetailsRow">
+        <Table.CellHeader>Additional details</Table.CellHeader>
+        <Table.Cell className="summaryTableDataCell">
+          <div className="bold" id="business_other_details">
+            {props.business_other_details}
+          </div>
+        </Table.Cell>
+        {props.applicationCompletePage ? null : (
+          <Table.Cell className="summaryTableChangeCell">
+            <AnchorTag
+              id="changeBusinessOtherDetailsRow"
+              href="/edit/business_other_details"
+            >
+              Change
+            </AnchorTag>
+          </Table.Cell>
+        )}
+      </Table.Row>
+    ) : null}
   </React.Fragment>
 );
 
 const DeclarationTable = props => (
   <React.Fragment>
-    <Table.Row TITLE>
+    <Table.Row className="TITLE">
       <Table.CellHeader>
         <Paragraph mb={0}>**Declaration**</Paragraph>
       </Table.CellHeader>

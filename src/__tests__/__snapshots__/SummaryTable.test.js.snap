@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<SummaryTable /> matches the previous snapshot 1`] = `
-.emotion-112 {
+.emotion-117 {
   border: 0;
   border-collapse: collapse;
   box-sizing: border-box;
@@ -15,7 +15,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-112 {
+  .emotion-117 {
     font-size: 16px;
     line-height: 1.25;
   }
@@ -155,7 +155,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
 }
 
 <table
-  className="emotion-112"
+  className="emotion-117"
 >
   <caption
     className="emotion-0"
@@ -164,8 +164,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
     className="emotion-5"
   >
     <tr
-      TITLE={true}
-      className="emotion-5"
+      className="TITLE emotion-5"
     >
       <th
         className="emotion-2"
@@ -509,7 +508,6 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
           className="emotion-50 emotion-51"
         >
           <div
-            display={true}
             id="contact_representative_name"
           >
             Jill
@@ -550,8 +548,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
       </td>
     </tr>
     <tr
-      TITLE={true}
-      className="emotion-5"
+      className="TITLE emotion-5"
     >
       <th
         className="emotion-2"
@@ -778,8 +775,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
       </td>
     </tr>
     <tr
-      TITLE={true}
-      className="emotion-5"
+      className="TITLE emotion-5"
     >
       <th
         className="emotion-2"
@@ -893,6 +889,37 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
           className="emotion-12"
           href="/edit/business-import-export"
           id="changeActivitiesBusinessImportExportRow"
+        >
+          Change
+        </a>
+      </td>
+    </tr>
+    <tr
+      className="emotion-5"
+      id="businessOtherDetailsRow"
+    >
+      <th
+        className="emotion-2"
+      >
+        Additional details
+      </th>
+      <td
+        className="summaryTableDataCell emotion-2"
+      >
+        <div
+          className="bold"
+          id="business_other_details"
+        >
+          This is the best business in the world
+        </div>
+      </td>
+      <td
+        className="summaryTableChangeCell emotion-2"
+      >
+        <a
+          className="emotion-12"
+          href="/edit/business_other_details"
+          id="changeBusinessOtherDetailsRow"
         >
           Change
         </a>

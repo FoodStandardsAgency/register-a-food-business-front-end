@@ -1314,8 +1314,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
                 className="emotion-38"
               >
                 <tr
-                  TITLE={true}
-                  className="emotion-38"
+                  className="TITLE emotion-38"
                 >
                   <th
                     className="emotion-48"
@@ -1342,8 +1341,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
                   </td>
                 </tr>
                 <tr
-                  TITLE={true}
-                  className="emotion-38"
+                  className="TITLE emotion-38"
                 >
                   <th
                     className="emotion-48"
@@ -1370,8 +1368,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
                   </td>
                 </tr>
                 <tr
-                  TITLE={true}
-                  className="emotion-38"
+                  className="TITLE emotion-38"
                 >
                   <th
                     className="emotion-48"
