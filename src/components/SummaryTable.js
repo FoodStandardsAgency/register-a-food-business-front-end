@@ -514,6 +514,27 @@ const FoodActivitiesTable = props => (
         )}
       </Table.Row>
     ) : null}
+
+    {props.business_other_details ? (
+      <Table.Row id="businessOtherDetailsRow">
+        <Table.CellHeader>Additional details</Table.CellHeader>
+        <Table.Cell className="summaryTableDataCell">
+          <div className="bold" id="business_other_details">
+            {props.business_other_details}
+          </div>
+        </Table.Cell>
+        {props.applicationCompletePage ? null : (
+          <Table.Cell className="summaryTableChangeCell">
+            <AnchorTag
+              id="changeBusinessOtherDetailsRow"
+              href="/edit/business_other_details"
+            >
+              Change
+            </AnchorTag>
+          </Table.Cell>
+        )}
+      </Table.Row>
+    ) : null}
   </React.Fragment>
 );
 
