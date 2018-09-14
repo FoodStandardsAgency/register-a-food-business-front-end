@@ -10,6 +10,7 @@ import {
 } from "govuk-react";
 import PropTypes from "prop-types";
 import styled from "react-emotion";
+import moment from "moment";
 
 const AnchorTag = asAnchor("a");
 
