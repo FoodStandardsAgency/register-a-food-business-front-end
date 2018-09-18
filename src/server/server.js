@@ -5,6 +5,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const rateLimit = require("express-rate-limit");
 const { info } = require("winston");
 const routes = require("./routes");
 const { Next } = require("./next");
@@ -36,9 +37,15 @@ module.exports = async dbUrl => {
   if (process.env.COOKIE_SECURE === "true") {
     sessionOptions.cookie.secure = true;
   }
+  const limiter = rateLimit({
+    max: 100 // limit each IP to 100 requests per minute
+  });
 
   const options = Object.assign(sessionOptions, storeOptions);
   app.set("trust proxy", 1);
+  app.enable("trust proxy");
+
+  app.use(limiter);
   app.use(session(options));
   app.use(cookieParser());
   app.use(bodyParser.json());
