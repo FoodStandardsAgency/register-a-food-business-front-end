@@ -16,7 +16,8 @@ const {
   validateEmail,
   validatePastDate,
   validateFutureDate,
-  validateBusinessType
+  validateBusinessType,
+  validateBusinessOtherDetails
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const schema = {
@@ -308,7 +309,7 @@ const schema = {
     properties: {
       business_other_details: {
         type: "string",
-        validation: validateOptionalString
+        validation: validateBusinessOtherDetails
       }
     }
   },
