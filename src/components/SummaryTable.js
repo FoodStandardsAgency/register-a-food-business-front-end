@@ -527,7 +527,7 @@ const FoodActivitiesTable = props => (
           <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeBusinessOtherDetailsRow"
-              href="/edit/business_other_details"
+              href="/edit/business-other-details"
             >
               Change
             </AnchorTag>
