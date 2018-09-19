@@ -922,7 +922,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
       >
         <a
           className="emotion-12"
-          href="/edit/business_other_details"
+          href="/edit/business-other-details"
           id="changeBusinessOtherDetailsRow"
         >
           Change
