@@ -38,7 +38,7 @@ module.exports = async dbUrl => {
     sessionOptions.cookie.secure = true;
   }
   const limiter = rateLimit({
-    max: 100 // limit each IP to 100 requests per minute
+    max: process.env.RATE_LIMIT // limit each IP to x requests per minute
   });
 
   const options = Object.assign(sessionOptions, storeOptions);
