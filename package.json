@@ -16,10 +16,8 @@
     "test:securityWizard": "snyk wizard --severity-threshold=medium",
     "test:security": "snyk auth && snyk test --severity-threshold=medium",
     "lint": "eslint ./src ./pages",
-    "format:verify":
-      "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
-    "format":
-      "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'"
+    "format:verify": "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
+    "format": "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'"
   },
   "dependencies": {
     "@babel/core": "7.0.0-rc.1",
@@ -41,6 +39,7 @@
     "emotion": "9.2.8",
     "emotion-server": "9.2.8",
     "express": "4.16.3",
+    "express-rate-limit": "3.2.0",
     "express-session": "1.15.6",
     "govuk-react": "0.2.9",
     "jsonschema": "1.2.4",
