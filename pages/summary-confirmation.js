@@ -70,11 +70,13 @@ const ApplicationComplete = props => (
           {props.lcConfig.hygieneAndStandards.local_council}
         </Header>
         <Paragraph mb={0}>
-          {props.lcConfig.hygieneAndStandards.local_council_email}
+          {`Email: ${props.lcConfig.hygieneAndStandards.local_council_email}`}
         </Paragraph>
         {props.lcConfig.hygieneAndStandards.local_council_phone_number ? (
           <Paragraph mb={0} id="hygieneAndStandardsNumber">
-            {props.lcConfig.hygieneAndStandards.local_council_phone_number}
+            {`Phone: ${
+              props.lcConfig.hygieneAndStandards.local_council_phone_number
+            }`}
           </Paragraph>
         ) : null}
       </ContentItem.B_30_15>
@@ -85,11 +87,11 @@ const ApplicationComplete = props => (
             {props.lcConfig.hygiene.local_council}
           </Header>
           <Paragraph mb={0}>
-            {props.lcConfig.hygiene.local_council_email}
+            {`Email: ${props.lcConfig.hygiene.local_council_email}`}
           </Paragraph>
           {props.lcConfig.hygiene.local_council_phone_number ? (
             <Paragraph mb={0} id="hygieneNumber">
-              {props.lcConfig.hygiene.local_council_phone_number}
+              {`Phone: ${props.lcConfig.hygiene.local_council_phone_number}`}
             </Paragraph>
           ) : null}
           <HintText>Reponsible local council for food hygiene</HintText>
@@ -99,11 +101,11 @@ const ApplicationComplete = props => (
             {props.lcConfig.standards.local_council}
           </Header>
           <Paragraph mb={0}>
-            {props.lcConfig.standards.local_council_email}
+            {`Email: ${props.lcConfig.standards.local_council_email}`}
           </Paragraph>
           {props.lcConfig.standards.local_council_phone_number ? (
             <Paragraph mb={0} id="standardsNumber">
-              {props.lcConfig.standards.local_council_phone_number}
+              {`Phone: ${props.lcConfig.standards.local_council_phone_number}`}
             </Paragraph>
           ) : null}
           <HintText>Responsible local council for food standards</HintText>
