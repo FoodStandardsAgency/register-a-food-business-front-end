@@ -90,7 +90,9 @@ const OpeningDate = props => {
         >
           <DateInput
             inputNames={{ day: "day", month: "month", year: "year" }}
-            hintText="For example, 14 09 2017"
+            hintText={`For example, ${moment()
+              .subtract(40, "d")
+              .format("DD MM YYYY")}`}
             errorText={props.validatorErrors.establishment_opening_date}
             id="establishment_opening_date"
           >

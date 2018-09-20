@@ -9,8 +9,8 @@ import {
   HintText
 } from "govuk-react";
 import PropTypes from "prop-types";
-import moment from "moment";
 import styled from "react-emotion";
+import moment from "moment";
 
 const AnchorTag = asAnchor("a");
 
