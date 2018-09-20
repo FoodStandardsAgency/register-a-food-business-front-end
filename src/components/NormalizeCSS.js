@@ -21,7 +21,7 @@ const NormalizeCSS = css`
   }
   /* End FSA-specific normalize options */
 
-  /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
+  /* normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 
   /* Document
    ========================================================================== */

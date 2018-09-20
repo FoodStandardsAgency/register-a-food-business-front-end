@@ -33,6 +33,8 @@ describe("<Declaration />", () => {
       ).get(0)
     );
 
+    wrapper.instance().refs.submitRegistration = { submit: jest.fn() };
+
     expect(wrapper.find("ContinueButton").prop("disabled")).toBe(undefined);
     wrapper.find("ContinueButton").simulate("click");
     expect(wrapper.find("ContinueButton").prop("disabled")).toBe(true);

@@ -74,7 +74,7 @@ const ImportExportActivities = props => (
       >
         <span>
           If a food business is directly importing or exporting food outside of
-          the UK, there are some extra requirements for the busines to follow.
+          the UK, there are some extra requirements for the business to follow.
           <br />
           <br />
           Find out more by visiting the{" "}

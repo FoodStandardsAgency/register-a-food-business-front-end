@@ -1513,7 +1513,7 @@ exports[`<ImportExportActivities /> matches the previous snapshot 1`] = `
                 className="emotion-60"
               >
                 <span>
-                  If a food business is directly importing or exporting food outside of the UK, there are some extra requirements for the busines to follow.
+                  If a food business is directly importing or exporting food outside of the UK, there are some extra requirements for the business to follow.
                   <br />
                   <br />
                   Find out more by visiting the
@@ -1589,11 +1589,11 @@ exports[`<ImportExportActivities /> matches the previous snapshot 1`] = `
             className="emotion-75 emotion-76"
           >
             <svg
-              class="govuk-footer__licence-logo"
+              className="govuk-footer__licence-logo"
               focusable="false"
               height="17"
               role="presentation"
-              viewbox="0 0 483.2 195.7"
+              viewBox="0 0 483.2 195.7"
               width="41"
               xmlns="http://www.w3.org/2000/svg"
             >

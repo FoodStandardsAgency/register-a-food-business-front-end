@@ -14,14 +14,18 @@ describe("<BusinessType />", () => {
 
   it("matches the previous snapshot", () => {
     const tree = renderer
-      .create(<BusinessType validatorErrors cumulativeAnswers />)
+      .create(<BusinessType validatorErrors={{}} cumulativeAnswers={{}} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it("renders a BusinessTypeLookup component and passes through the props", () => {
     const wrapper = mount(
-      <BusinessType validatorErrors cumulativeAnswers exampleProp="testing" />
+      <BusinessType
+        validatorErrors={{}}
+        cumulativeAnswers={{}}
+        exampleProp="testing"
+      />
     );
     const businessTypeLookup = wrapper.find("BusinessTypeLookup");
     expect(businessTypeLookup.length).toBe(1);

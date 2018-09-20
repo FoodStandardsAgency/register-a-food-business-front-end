@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Added
+
+* SDB-111 Added other details page
+
+## v1.37.3 - 11th September 2018 (unreleased)
+
+### Modified
+
+* Fix editPath bug where saved future answers were taken into account
+
 ## v1.37.2 - 7th September 2018 (unreleased)
 
 ### Added

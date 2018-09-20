@@ -91,7 +91,7 @@ const continueController = (
     }
 
     // get the new path based on the answers that have been given
-    const newPath = editPath(controllerResponse.cumulativeAnswers);
+    const newPath = editPath(controllerResponse.cumulativeAnswers, currentPage);
 
     // update the new path to switch off manual address input pages if the originator (currentPage) is one of the address select pages
     const updatedNewPath = switchOffManualAddressInput(newPath, currentPage);

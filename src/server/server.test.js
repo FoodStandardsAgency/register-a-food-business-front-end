@@ -1,4 +1,8 @@
-jest.mock("express", () => () => ({ use: jest.fn(), set: jest.fn() }));
+jest.mock("express", () => () => ({
+  use: jest.fn(),
+  set: jest.fn(),
+  enable: jest.fn()
+}));
 jest.mock("express-session");
 jest.mock("connect-mongo", () => {
   return () => {

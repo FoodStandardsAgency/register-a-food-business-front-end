@@ -13,10 +13,10 @@ const Index = props => (
     <ContentItem.B_30_15>
       <ContentItem.B_30_15>
         <Paragraph>
-          All food businesses which regularly produce or serve food to the
-          public need to be registered with their Local Authority. This service
-          will send your registration to the correct local authority based on
-          your trading location.
+          All food businesses that regularly produce or serve food to the public
+          need to be registered with their Local Authority. This service will
+          send your registration to the correct local authority based on your
+          trading location.
         </Paragraph>
         <Paragraph mb={0}>
           Food businesses should only register **28 days** before they begin

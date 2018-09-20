@@ -16,7 +16,8 @@ const {
   validateEmail,
   validatePastDate,
   validateFutureDate,
-  validateBusinessType
+  validateBusinessType,
+  validateBusinessOtherDetails
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const schema = {
@@ -302,6 +303,15 @@ const schema = {
       { required: ["directly_export"] },
       { required: ["no_import_export"] }
     ]
+  },
+  "/business-other-details": {
+    type: "object",
+    properties: {
+      business_other_details: {
+        type: "string",
+        validation: validateBusinessOtherDetails
+      }
+    }
   },
   "/registration-summary": {
     type: "object",

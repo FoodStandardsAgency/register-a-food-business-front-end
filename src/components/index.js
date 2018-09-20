@@ -13,6 +13,8 @@ import ProcessedErrorSummary from "./ProcessedErrorSummary";
 import BusinessTypeLookup from "./BusinessTypeLookup";
 import CookieBanner from "./CookieBanner";
 import FsaFooter from "./FsaFooter";
+import SelectWithHeader from "./SelectWithHeader";
+
 export {
   SessionWrapper,
   FsaHeader,
@@ -28,5 +30,6 @@ export {
   OnHandleErrorClick,
   BusinessTypeLookup,
   CookieBanner,
-  FsaFooter
+  FsaFooter,
+  SelectWithHeader
 };

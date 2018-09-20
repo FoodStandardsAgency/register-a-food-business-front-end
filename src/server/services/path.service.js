@@ -34,7 +34,7 @@ const moveAlongPath = (path, currentPage, movement) => {
   }
 };
 
-const editPath = cumulativeAnswers => {
+const editPath = (cumulativeAnswers, currentPage) => {
   logEmitter.emit("functionCall", "path.service", "editPath");
 
   try {
@@ -46,11 +46,17 @@ const editPath = cumulativeAnswers => {
 
     const newPath = JSON.parse(JSON.stringify(pathJSON));
 
-    let pagesToSwitch = {};
-
+    const currentIndex = Object.keys(newPath).indexOf(currentPage);
+    const pagesUpToAndIncludingCurrentPage = Object.keys(newPath).slice(
+      0,
+      currentIndex + 1
+    );
     const allSwitches = {};
+
     for (let page in newPath) {
-      Object.assign(allSwitches, newPath[page].switches);
+      if (pagesUpToAndIncludingCurrentPage.indexOf(page) !== -1) {
+        Object.assign(allSwitches, newPath[page].switches);
+      }
     }
 
     const allAnswerValues = Object.values(cumulativeAnswers);
@@ -71,6 +77,7 @@ const editPath = cumulativeAnswers => {
       );
     });
 
+    let pagesToSwitch = {};
     answerValuesAndTruthyKeys.forEach(valueOrKey => {
       if (allSwitches[valueOrKey]) {
         pagesToSwitch = Object.assign(pagesToSwitch, allSwitches[valueOrKey]);

@@ -336,7 +336,7 @@ const registrationDouble = body => {
         activitiesId: 1,
         premiseId: 1,
         metadataId: 1,
-        reg_submission_date: moment().format("YYYY MM DD"),
+        reg_submission_date: moment().format("YYYY-MM-DD"),
         "fsa-rn": "12486-sdmbf",
         tascomiResponse: {
           id: "25",
