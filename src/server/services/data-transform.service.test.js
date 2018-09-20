@@ -33,6 +33,24 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       });
     });
 
+    describe("Given that business_other_details is part of cumulative answers", () => {
+      it("should return undefined when business_other_details is an empty string", () => {
+        const businessOtherDetails = {
+          business_other_details: "                "
+        };
+        result = transformAnswersForSummary(businessOtherDetails);
+        expect(result.business_other_details).toBe(undefined);
+      });
+
+      it("should return original answer when not an empty string", () => {
+        const businessOtherDetails = {
+          business_other_details: "I make the best yum yums"
+        };
+        result = transformAnswersForSummary(businessOtherDetails);
+        expect(result.business_other_details).toBe("I make the best yum yums");
+      });
+    });
+
     describe("Given that supply_other and supply_directly are part of cumulative answers", () => {
       const supplyBoth = {
         supply_other: "True",
