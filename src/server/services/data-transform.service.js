@@ -16,6 +16,10 @@ const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
     );
     delete data.registration_role;
 
+    data.business_other_details = cleanBlankStringBusinessOtherDetails(
+      data.business_other_details
+    );
+
     data.customer_type = transformCustomerType(
       data.supply_directly,
       data.supply_other
@@ -275,6 +279,20 @@ const combineOperatorTypes = (operator_type, registration_role) => {
   }
 
   return newOperatorType;
+};
+
+const cleanBlankStringBusinessOtherDetails = business_other_details => {
+  let newBusinessOtherDetails;
+
+  if (business_other_details) {
+    if (business_other_details.trim().length === 0) {
+      console.log(business_other_details);
+      newBusinessOtherDetails = undefined;
+    } else {
+      newBusinessOtherDetails = business_other_details;
+    }
+    return newBusinessOtherDetails;
+  }
 };
 
 const combineDate = (day, month, year) => `${year}-${month}-${day}`;

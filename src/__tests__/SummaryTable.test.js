@@ -26,7 +26,8 @@ const mandatoryTableRows = [
   "establishmentEmailRow",
   "contactRepresentativeRow",
   "establishmentOpeningDateRow",
-  "businessTypeRow"
+  "businessTypeRow",
+  "businessOtherDetailsRow"
 ];
 
 const editableTableRows = [
@@ -44,7 +45,8 @@ const editableTableRows = [
   "contactRepresentativeRow",
   "activitiesBusinessImportExportRow",
   "businessTypeRow",
-  "activitiesCustomersRow"
+  "activitiesCustomersRow",
+  "businessOtherDetailsRow"
 ];
 
 // (only optional if it's optional within that page. Does not apply to pages that are optional or could be skipped.)
@@ -76,7 +78,8 @@ const testMandatoryAnswers = {
   contact_representative_name: "Jill",
   establishment_opening_date: "2018-12-06",
   establishment_type: "Mobile or moveable premise",
-  business_type: "Livestock farm"
+  business_type: "Livestock farm",
+  business_other_details: "This is the best business in the world"
 };
 
 // a supplementary set of all optional answer fields with example data
@@ -141,7 +144,7 @@ describe("<SummaryTable />", () => {
     it("the number of table rows matches the allTableRows array", () => {
       const rows = wrapperComprehensive
         .find("Row")
-        .findWhere(row => row.prop("TITLE") !== true)
+        .findWhere(row => row.prop("className") !== "TITLE")
         .find("Row");
 
       expect(rows.length).toEqual(allTableRows.length);

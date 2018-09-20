@@ -939,7 +939,16 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-57 {
+.emotion-59 span {
+  font-size: 24px;
+  line-height: 1.25em;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.emotion-56 {
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -954,19 +963,19 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-57 {
+  .emotion-56 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-57 {
+  .emotion-56 {
     margin-bottom: 0;
   }
 }
 
-.emotion-58 {
+.emotion-57 {
   box-sizing: border-box;
   font-family: "nta",Arial,sans-serif;
   font-weight: 400;
@@ -980,7 +989,7 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-58 {
+  .emotion-57 {
     width: 50%;
     height: 38px;
     font-size: 19px;
@@ -988,7 +997,7 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-58:focus {
+.emotion-57:focus {
   outline: 3px solid #ffbf47;
   outline-offset: 0;
 }
@@ -1496,19 +1505,16 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
                   </a>
                 </h4>
               </div>
-              <h3
-                className="emotion-51"
-              >
-                Select an address
-              </h3>
               <label
-                className="emotion-59"
+                className="emotion-58 emotion-59"
               >
                 <span
-                  className="emotion-57"
-                />
+                  className="emotion-56"
+                >
+                  Select an address
+                </span>
                 <select
-                  className="emotion-58"
+                  className="emotion-57"
                   defaultValue={0}
                   id="operatorAddressDropdown"
                   name="operator_address_selected"
@@ -1585,11 +1591,11 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
             className="emotion-76 emotion-77"
           >
             <svg
-              class="govuk-footer__licence-logo"
+              className="govuk-footer__licence-logo"
               focusable="false"
               height="17"
               role="presentation"
-              viewbox="0 0 483.2 195.7"
+              viewBox="0 0 483.2 195.7"
               width="41"
               xmlns="http://www.w3.org/2000/svg"
             >

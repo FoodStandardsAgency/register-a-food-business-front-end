@@ -46,7 +46,9 @@ const errorMessages = {
   establishment_opening_date: "Not a valid opening date",
   customer_type: "You must select an option before continuing",
   import_export_activities: "You must select an option before continuing",
-  business_type: "You must select a business type before continuing"
+  business_type: "You must select a business type before continuing",
+  business_other_details:
+    "Your message is too long. Please shorten it to less than 1500 characters"
 };
 
 const validator = new Validator();
