@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.38.1 - 24th September 2018 (unreleased)
+
+### Modified
+
+* Default to addressline1 when premise doesn't exist in address lookup
+
+## v1.38.0 - 19th September 2018 (unreleased)
+
 ### Added
 
 * SDB-111 Added other details page
