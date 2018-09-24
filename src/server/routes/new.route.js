@@ -6,13 +6,12 @@ const {
 } = require("../services/data-transform.service");
 
 const allowedCouncils = [
-  "cardiff",
-  "the-vale-of-glamorgan",
   "mid-and-east-antrim",
-  "bridgend",
+  "purbeck",
   "west-dorset",
   "north-dorset",
-  "weymouth-and-portland"
+  "weymouth-and-portland",
+  "wrexham"
 ];
 
 const newRouter = () => {

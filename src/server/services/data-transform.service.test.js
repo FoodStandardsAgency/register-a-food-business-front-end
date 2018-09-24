@@ -227,6 +227,123 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         ]
       };
 
+      describe("when operator premise does not exist", () => {
+        const testAddressLookupsNoPremise = {
+          operator_postcode_find: [
+            {
+              addressline1: "Allies Computing Ltd",
+              addressline2: "Manor Farm Barns",
+              addressline3: "Fox Road",
+              addressline4: "Framingham Pigot",
+              summaryline:
+                "Allies Computing Ltd, Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
+              organisation: "Allies Computing Ltd",
+              buildingname: "Manor Farm Barns",
+              street: "Fox Road",
+              dependentlocality: "Framingham Pigot",
+              posttown: "Norwich",
+              county: "Norfolk",
+              postcode: "NR14 7PZ"
+            }
+          ],
+          establishment_postcode_find: [
+            {
+              addressline1: "Example",
+              addressline2: "Example line 2",
+              addressline3: "Gibbet Hill Road",
+              summaryline:
+                "Room 36, Block 1 Arthur Vick, Gibbet Hill Road, Coventry, West Midlands, CV4 7AL",
+              subbuildingname: "Room 36",
+              buildingname: "Block 1 Arthur Vick",
+              street: "Example street",
+              posttown: "Example town",
+              county: "Norfolk",
+              postcode: "AA11 1AA"
+            }
+          ]
+        };
+
+        const correctResponse = {
+          operator_first_line: "Allies Computing Ltd",
+          operator_street: "Fox Road",
+          operator_town: "Norwich",
+          operator_postcode: "NR14 7PZ"
+        };
+
+        const cumulativeAnswersOpAddSelected = {
+          operator_address_selected: "0"
+        };
+
+        it("uses addressLine1 instead of premise as operator_first_line", () => {
+          const response = transformAnswersForSummary(
+            cumulativeAnswersOpAddSelected,
+            testAddressLookupsNoPremise
+          );
+          console.log(response);
+          expect(response.operator_first_line).toBe(
+            correctResponse.operator_first_line
+          );
+        });
+      });
+
+      describe("when establishment premise does not exist", () => {
+        const testAddressLookupsNoPremise = {
+          operator_postcode_find: [
+            {
+              addressline1: "Allies Computing Ltd",
+              addressline2: "Manor Farm Barns",
+              addressline3: "Fox Road",
+              addressline4: "Framingham Pigot",
+              summaryline:
+                "Allies Computing Ltd, Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
+              organisation: "Allies Computing Ltd",
+              buildingname: "Manor Farm Barns",
+              street: "Fox Road",
+              dependentlocality: "Framingham Pigot",
+              posttown: "Norwich",
+              county: "Norfolk",
+              postcode: "NR14 7PZ"
+            }
+          ],
+          establishment_postcode_find: [
+            {
+              addressline1: "Example",
+              addressline2: "Example line 2",
+              addressline3: "Gibbet Hill Road",
+              summaryline:
+                "Room 36, Block 1 Arthur Vick, Gibbet Hill Road, Coventry, West Midlands, CV4 7AL",
+              subbuildingname: "Room 36",
+              buildingname: "Block 1 Arthur Vick",
+              street: "Example street",
+              posttown: "Example town",
+              county: "Norfolk",
+              postcode: "AA11 1AA"
+            }
+          ]
+        };
+
+        const correctResponse = {
+          establishment_first_line: "Example",
+          establishment_street: "Fox Road",
+          establishment_town: "Norwich",
+          establishment_postcode: "NR14 7PZ"
+        };
+
+        const cumulativeAnswersEstAddSelected = {
+          establishment_address_selected: "0"
+        };
+
+        it("uses addressLine1 instead of premise as establishment_first_line", () => {
+          const response = transformAnswersForSummary(
+            cumulativeAnswersEstAddSelected,
+            testAddressLookupsNoPremise
+          );
+          expect(response.establishment_first_line).toBe(
+            correctResponse.establishment_first_line
+          );
+        });
+      });
+
       describe("given operator_address_selected is in cumulativeAnswers with a value of 1", () => {
         const cumulativeAnswersOpAddSelected = {
           operator_address_selected: "1"
