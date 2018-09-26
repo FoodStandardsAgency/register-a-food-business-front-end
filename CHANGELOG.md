@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.38.2 - 25th September 2018 (released)
+
+### Modified
+
+* Updated Gov.uk package to v0.2.12
+
 ## v1.38.1 - 24th September 2018 (released)
 
 ### Modified
