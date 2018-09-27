@@ -17,3 +17,19 @@ steps:
 
 - script: yarn
   displayName: 'Install node_modules'
+
+- script: yarn format:verify
+  displayName: 'Format'
+
+- script: yarn lint
+  displayName: 'Lint'
+
+- script: yarn test:ci
+  displayName: 'Unit tests'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+
+- task: PublishBuildArtifacts@1
