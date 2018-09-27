@@ -296,7 +296,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-31 {
+.emotion-30 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -314,13 +314,13 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-31 {
+  .emotion-30 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
-.emotion-30 {
+.emotion-29 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -335,7 +335,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-30 {
+  .emotion-29 {
     padding: calc(10px * 0.8) 0;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -414,50 +414,30 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   display: inline-block;
 }
 
-.emotion-29 {
+.emotion-28 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
   margin-top: 10px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-29 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
+  .emotion-28 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
     align-items: flex-start;
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
     width: 66.66%;
     padding-left: 15px;
     margin-top: 0;
-  }
-}
-
-.emotion-28 {
-  width: 50%;
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-28 {
-    width: auto;
   }
 }
 
@@ -470,7 +450,6 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   border-bottom: 1px solid transparent;
   font-weight: 700;
   line-height: 1;
-  display: inline-block;
 }
 
 .emotion-27:hover {
@@ -521,7 +500,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-32 {
+.emotion-31 {
   border-bottom: 10px solid #005ea5;
   max-width: 960px;
   margin: 0 auto;
@@ -529,18 +508,18 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-32 {
+  .emotion-31 {
     width: calc(100% - 60px);
   }
 }
 
-.emotion-38 {
+.emotion-37 {
   padding-top: 30px;
   text-align: center;
   padding-top: 0;
 }
 
-.emotion-36 {
+.emotion-35 {
   max-width: 960px;
   margin-left: 15px;
   margin-right: 15px;
@@ -548,19 +527,19 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-36 {
+  .emotion-35 {
     margin-left: 30px;
     margin-right: 30px;
   }
 }
 
 @media only screen and (min-width:1020px) {
-  .emotion-36 {
+  .emotion-35 {
     margin: 0 auto;
   }
 }
 
-.emotion-35 {
+.emotion-34 {
   border-bottom: 1px solid #bfc1c3;
   box-sizing: border-box;
   padding-top: 10px;
@@ -574,23 +553,23 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-35 {
+  .emotion-34 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
-.emotion-35 > a {
+.emotion-34 > a {
   color: #005ea5;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-35 {
+  .emotion-34 {
     margin-bottom: 0;
   }
 }
 
-.emotion-33 {
+.emotion-32 {
   display: inline-block;
   margin: 0 8px 0 0;
   padding: 2px 5px;
@@ -613,7 +592,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-33 {
+  .emotion-32 {
     font-size: 16px;
     line-height: 1.25;
     padding-bottom: 0;
@@ -621,17 +600,17 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-33 {
+  .emotion-32 {
     margin-bottom: 0;
   }
 }
 
-.emotion-60 {
+.emotion-59 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-58 {
+.emotion-57 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -644,7 +623,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-58 {
+  .emotion-57 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -652,47 +631,57 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-57 {
-  margin-bottom: 15px;
+.emotion-56 {
+  background: transparent;
+  margin: 0 0 15px;
+  text-indent: 0px;
   box-sizing: border-box;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-57 {
-    margin-right: 15px;
-    margin-left: 15px;
+  .emotion-56 {
+    width: 100%;
+    margin: 0 15px;
   }
 
-  .emotion-57:first-child {
+  .emotion-56:first-child {
     margin-left: 0;
   }
 
-  .emotion-57:last-child {
+  .emotion-56:last-child {
     margin-right: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-57 {
-    -webkit-box-flex: 0;
-    -webkit-flex-grow: 0;
-    -ms-flex-positive: 0;
-    flex-grow: 0;
+
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-56 {
     width: 66.6667%;
   }
 }
 
-.emotion-41 {
+@media only screen and (min-width:641px) {
+
+}
+
+@media only screen and (min-width:641px) {
+
+}
+
+.emotion-40 {
   padding-bottom: 45px;
 }
 
 @media only screen and (max-width:641px) {
-  .emotion-41 {
+  .emotion-40 {
     padding-bottom: 30px;
   }
 }
 
-.emotion-43 {
+.emotion-42 {
   font-family: "nta",Arial,sans-serif;
   font-weight: bold;
   margin: 0;
@@ -702,7 +691,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-43 {
+  .emotion-42 {
     font-size: 36px;
     line-height: 1.1111111111111112;
     margin-bottom: 20px;
@@ -710,22 +699,23 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media print {
-  .emotion-43 {
+  .emotion-42 {
     font-size: 18px;
   }
 }
 
-.emotion-48 {
+.emotion-47 {
   margin-bottom: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-48 {
+  .emotion-47 {
     margin-bottom: 30px;
   }
 }
 
-.emotion-45 {
+.emotion-44 {
+  display: inline-block;
   cursor: pointer;
   color: #005ea5;
   font-family: "nta",Arial,sans-serif;
@@ -734,23 +724,23 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   margin-bottom: 5px;
 }
 
-.emotion-45:hover {
+.emotion-44:hover {
   color: #2b8cc4;
 }
 
-.emotion-45:focus {
+.emotion-44:focus {
   outline: 4px solid #ffbf47;
   background: #ffbf47;
 }
 
-.emotion-44 {
+.emotion-43 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
 }
 
-.emotion-47 {
+.emotion-46 {
   box-sizing: border-box;
   border-left-style: solid;
   border-left-width: 5px;
@@ -760,12 +750,12 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-47 {
+  .emotion-46 {
     margin-bottom: 0;
   }
 }
 
-.emotion-46 {
+.emotion-45 {
   font-family: "nta",Arial,sans-serif;
   margin: 0;
   font-size: 16px;
@@ -773,11 +763,11 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   margin-bottom: 0;
 }
 
-.emotion-46 > p {
+.emotion-45 > p {
   margin: 0;
 }
 
-.emotion-46 > p > code {
+.emotion-45 > p > code {
   padding: 0.2em 0.4em;
   margin: 0px;
   font-size: 85%;
@@ -785,7 +775,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   border-radius: 3px;
 }
 
-.emotion-46 > pre {
+.emotion-45 > pre {
   padding: 16px;
   overflow: auto;
   font-size: 85%;
@@ -794,7 +784,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   border-radius: 3px;
 }
 
-.emotion-46 > pre > code {
+.emotion-45 > pre > code {
   display: inline;
   padding: 0px;
   margin: 0px;
@@ -805,29 +795,29 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-46 {
+  .emotion-45 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-46 {
+  .emotion-45 {
     margin-bottom: 0;
   }
 }
 
-.emotion-52 {
+.emotion-51 {
   padding-bottom: 30px;
 }
 
 @media only screen and (max-width:641px) {
-  .emotion-52 {
+  .emotion-51 {
     padding-bottom: 15px;
   }
 }
 
-.emotion-51 {
+.emotion-50 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -840,25 +830,25 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   margin-bottom: 0;
 }
 
-.emotion-51:after {
+.emotion-50:after {
   content: '';
   display: table;
   clear: both;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-51 {
+  .emotion-50 {
     margin-bottom: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-51 {
+  .emotion-50 {
     margin-bottom: 0;
   }
 }
 
-.emotion-49 {
+.emotion-48 {
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -873,19 +863,19 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-49 {
+  .emotion-48 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-49 {
+  .emotion-48 {
     margin-bottom: 0;
   }
 }
 
-.emotion-50 {
+.emotion-49 {
   box-sizing: border-box;
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -901,25 +891,25 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-50 {
+  .emotion-49 {
     font-size: 19px;
     line-height: 1.3;
     width: 50%;
   }
 }
 
-.emotion-50:focus {
+.emotion-49:focus {
   outline: 3px solid #ffbf47;
   outline-offset: 0;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-50 {
+  .emotion-49 {
     margin-bottom: 0;
   }
 }
 
-.emotion-56 {
+.emotion-55 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -954,46 +944,46 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-56:hover {
+.emotion-55:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-56:focus {
+.emotion-55:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-56:active {
+.emotion-55:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-56:visited {
+.emotion-55:visited {
   color: #00823b;
 }
 
-.emotion-56 svg {
+.emotion-55 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-56 {
+  .emotion-55 {
     margin-bottom: 20px;
   }
 }
 
-.emotion-85 {
+.emotion-84 {
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
 }
 
-.emotion-83 {
+.emotion-82 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -1008,7 +998,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-83 {
+  .emotion-82 {
     width: calc(100% - 60px);
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -1020,7 +1010,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-75 {
+.emotion-74 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1034,11 +1024,11 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   justify-content: flex-end;
 }
 
-.emotion-67 {
+.emotion-66 {
   margin-bottom: 15px;
 }
 
-.emotion-61 {
+.emotion-60 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1053,54 +1043,54 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   font-size: 14px;
 }
 
-.emotion-61:focus {
+.emotion-60:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-61:visited {
+.emotion-60:visited {
   color: #2e358b;
 }
 
 @media (min-width:641px) {
-  .emotion-61 {
+  .emotion-60 {
     display: inline-block;
     font-size: 16px;
   }
 }
 
-.emotion-61:visited {
+.emotion-60:visited {
   color: #454a4c;
 }
 
-.emotion-61:hover {
+.emotion-60:hover {
   color: #171819;
 }
 
-.emotion-69 {
+.emotion-68 {
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-69 {
+  .emotion-68 {
     margin-bottom: 0px;
   }
 }
 
-.emotion-73 {
+.emotion-72 {
   font-size: 14px;
   margin: 0;
   display: inline-block;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-73 {
+  .emotion-72 {
     font-size: 16px;
   }
 }
 
-.emotion-71 {
+.emotion-70 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1111,24 +1101,24 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   color: #454a4c;
 }
 
-.emotion-71:focus {
+.emotion-70:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-71:visited {
+.emotion-70:visited {
   color: #2e358b;
 }
 
-.emotion-71:visited {
+.emotion-70:visited {
   color: #454a4c;
 }
 
-.emotion-71:hover {
+.emotion-70:hover {
   color: #171819;
 }
 
-.emotion-81 {
+.emotion-80 {
   margin: 0px 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1148,13 +1138,13 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
   text-align: center;
 }
 
-.emotion-77 {
+.emotion-76 {
   margin-bottom: 10px;
 }
 
 <div>
   <div
-    className="emotion-39 emotion-40"
+    className="emotion-38 emotion-39"
   >
     <div
       className="emotion-18 emotion-19"
@@ -1226,11 +1216,11 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
       </div>
     </div>
     <div
-      className="emotion-31"
+      className="emotion-30"
       color="#ffffff"
     >
       <div
-        className="emotion-30"
+        className="emotion-29"
       >
         <div
           className="emotion-25"
@@ -1282,41 +1272,37 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
           </div>
         </div>
         <div
-          className="emotion-29"
+          className="emotion-28"
         >
-          <div
-            className="emotion-28"
+          <a
+            className="emotion-27"
+            href="/index"
+            target="_blank"
           >
-            <a
-              className="emotion-27"
-              href="/index"
-              target="_blank"
+            <h3
+              className="emotion-26"
+              mb={0}
             >
-              <h3
-                className="emotion-26"
-                mb={0}
-              >
-                Register a food business
-              </h3>
-            </a>
-          </div>
+              Register a food business
+            </h3>
+          </a>
         </div>
       </div>
     </div>
     <div
-      className="emotion-32"
+      className="emotion-31"
     />
     <div
-      className="emotion-37 emotion-38"
+      className="emotion-36 emotion-37"
     >
       <div
-        className="emotion-36"
+        className="emotion-35"
       >
         <div
-          className="emotion-35"
+          className="emotion-34"
         >
           <strong
-            className="emotion-33"
+            className="emotion-32"
           >
             beta
           </strong>
@@ -1337,19 +1323,19 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-60"
+    className="emotion-59"
   >
     <div
-      className="emotion-36"
+      className="emotion-35"
     >
       <div
-        className="emotion-58"
+        className="emotion-57"
       >
         <div
-          className="emotion-57"
+          className="emotion-56"
         >
           <div
-            className="emotion-41 emotion-42"
+            className="emotion-40 emotion-41"
           >
             <a
               href="/back/establishment-address"
@@ -1359,27 +1345,27 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
             </a>
           </div>
           <h2
-            className="emotion-43"
+            className="emotion-42"
           >
             Establishment address
           </h2>
           <details
-            className="emotion-48"
+            className="emotion-47"
           >
             <summary
-              className="emotion-45"
+              className="emotion-44"
             >
               <span
-                className="emotion-44"
+                className="emotion-43"
               >
                 What is an establishment?
               </span>
             </summary>
             <div
-              className="emotion-47"
+              className="emotion-46"
             >
               <div
-                className="emotion-46"
+                className="emotion-45"
               >
                 <p>
                   An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.
@@ -1392,23 +1378,23 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
             method="post"
           >
             <div
-              className="emotion-52 emotion-53"
+              className="emotion-51 emotion-52"
             >
               <div
-                className="emotion-52 emotion-53"
+                className="emotion-51 emotion-52"
               >
                 <label
-                  className="emotion-51"
+                  className="emotion-50"
                   id="establishment_postcode_find"
                 >
                   <span
-                    className="emotion-49"
+                    className="emotion-48"
                   >
                     Postcode
                   </span>
                   <input
                     autoComplete="postal-code"
-                    className="emotion-50"
+                    className="emotion-49"
                     id="establishment_postcode_find"
                     name="establishment_postcode_find"
                     type="text"
@@ -1417,7 +1403,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
               </div>
             </div>
             <button
-              className="emotion-56"
+              className="emotion-55"
               disabled={false}
               id="find-address"
               type="submit"
@@ -1430,20 +1416,20 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-85 emotion-86"
+    className="emotion-84 emotion-85"
     id="fsaFooter"
   >
     <div
-      className="emotion-83 emotion-84"
+      className="emotion-82 emotion-83"
     >
       <div
-        className="emotion-75 emotion-76"
+        className="emotion-74 emotion-75"
       >
         <div
-          className="emotion-67 emotion-68"
+          className="emotion-66 emotion-67"
         >
           <a
-            className="emotion-61 emotion-62"
+            className="emotion-60 emotion-61"
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
             rel="noopener noreferrer"
@@ -1452,7 +1438,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
             Cookies
           </a>
           <a
-            className="emotion-61 emotion-62"
+            className="emotion-60 emotion-61"
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
             rel="noopener noreferrer"
@@ -1461,7 +1447,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
             Privacy
           </a>
           <a
-            className="emotion-61 emotion-62"
+            className="emotion-60 emotion-61"
             href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
             id="feedbackFooter"
             rel="noopener noreferrer"
@@ -1472,7 +1458,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
         </div>
         <div>
           <div
-            className="emotion-69 emotion-70"
+            className="emotion-68 emotion-69"
           >
             <svg
               className="govuk-footer__licence-logo"
@@ -1490,12 +1476,12 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
             </svg>
           </div>
           <p
-            className="emotion-73 emotion-74"
+            className="emotion-72 emotion-73"
           >
             All content is available under the
              
             <a
-              className="emotion-71 emotion-72"
+              className="emotion-70 emotion-71"
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
               rel="noopener noreferrer"
@@ -1509,10 +1495,10 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
         </div>
       </div>
       <div
-        className="emotion-81 emotion-82"
+        className="emotion-80 emotion-81"
       >
         <svg
-          className="emotion-77 emotion-78"
+          className="emotion-76 emotion-77"
           height="102"
           viewBox="0 0 124 102"
           width="124"
@@ -1540,7 +1526,7 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
           </g>
         </svg>
         <p
-          className="emotion-73 emotion-74"
+          className="emotion-72 emotion-73"
         >
           © Crown copyright
         </p>

@@ -165,7 +165,7 @@ exports[`<ProcessedErrorSummary /> matches the previous snapshot 1`] = `
       <a
         className="emotion-1"
         onClick={[Function]}
-        tabIndex={1}
+        tabIndex={-1}
       >
         test error
       </a>
@@ -176,7 +176,7 @@ exports[`<ProcessedErrorSummary /> matches the previous snapshot 1`] = `
       <a
         className="emotion-1"
         onClick={[Function]}
-        tabIndex={2}
+        tabIndex={-1}
       >
         test error 2
       </a>
