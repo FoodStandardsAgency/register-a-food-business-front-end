@@ -40,7 +40,7 @@ describe("New route: ", () => {
             }
           },
           params: {
-            lc: "cardiff",
+            lc: "purbeck",
             page: "operator-type"
           }
         };
@@ -51,7 +51,7 @@ describe("New route: ", () => {
       });
 
       it("Should set req.session.council", () => {
-        expect(req.session.council).toBe("cardiff");
+        expect(req.session.council).toBe("purbeck");
       });
 
       it("Should call Next.render", () => {
@@ -66,14 +66,14 @@ describe("New route: ", () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
-            council: "cardiff",
+            council: "purbeck",
             regenerate: cb => {
               cb();
             }
           },
           params: {
             page: "new page",
-            lc: "cardiff"
+            lc: "purbeck"
           }
         };
 
@@ -94,14 +94,14 @@ describe("New route: ", () => {
           handler = router.get.mock.calls[0][1];
           req = {
             session: {
-              council: "cardiff",
+              council: "purbeck",
               save: cb => {
                 cb();
               }
             },
             params: {
               page: "registration-summary",
-              lc: "cardiff"
+              lc: "purbeck"
             }
           };
 
@@ -133,13 +133,13 @@ describe("New route: ", () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
-            council: "cardiff",
+            council: "purbeck",
             regenerate: cb => {
               cb();
             }
           },
           params: {
-            lc: "cardiff"
+            lc: "purbeck"
           }
         };
 
