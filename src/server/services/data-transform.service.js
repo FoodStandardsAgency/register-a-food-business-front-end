@@ -53,7 +53,9 @@ const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
         const operatorAddressLookupData =
           addressLookups.operator_postcode_find[data.operator_address_selected];
 
-        data.operator_first_line = operatorAddressLookupData["premise"];
+        data.operator_first_line =
+          operatorAddressLookupData["premise"] ||
+          operatorAddressLookupData["addressline1"];
 
         data.operator_street = operatorAddressLookupData["street"];
 
@@ -76,7 +78,8 @@ const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
           ];
 
         data.establishment_first_line =
-          establishmentAddressLookupData["premise"];
+          establishmentAddressLookupData["premise"] ||
+          establishmentAddressLookupData["addressline1"];
 
         data.establishment_street = establishmentAddressLookupData["street"];
 
