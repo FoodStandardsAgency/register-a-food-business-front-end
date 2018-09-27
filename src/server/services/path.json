@@ -123,7 +123,7 @@
     "switches": {}
   },
   "/business-other-details": {
-    "on": true,
+    "on": false,
     "switches": {}
   },
   "/registration-summary": {
