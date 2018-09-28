@@ -22,19 +22,6 @@ describe("<EstablishmentOpeningDateRetroactive />", () => {
     expect(wrapper.length).toBe(1);
   });
 
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <EstablishmentOpeningDateRetroactive
-          validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
   it("renders OpeningDate component with correct error props and cumulative answers", () => {
     const wrapper = mount(
       <EstablishmentOpeningDateRetroactive
