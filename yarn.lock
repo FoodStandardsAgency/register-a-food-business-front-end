@@ -1263,24 +1263,24 @@
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.1.tgz#f3a81587ad8d0ef33cdad6f3b4310774fcc1053e"
 
 "@govuk-react/back-link@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@govuk-react/back-link/-/back-link-0.2.9.tgz#ec4b1126f7f78567a25915c40e8d76f3abb6ba33"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/back-link/-/back-link-0.2.12.tgz#c5e33af392f6e07d892026b60e44403555802c32"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
 "@govuk-react/breadcrumb@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/breadcrumb/-/breadcrumb-0.2.7.tgz#755b878309f2de407b0c7149045bb5eb84d87bc4"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/breadcrumb/-/breadcrumb-0.2.12.tgz#fe9931bdd5e0dd5e6d08d09dec1ca07af926245c"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
-"@govuk-react/button@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/button/-/button-0.2.7.tgz#8a1be60c9897b0a3823b7719fc7434b3aad9de32"
+"@govuk-react/button@^0.2.12", "@govuk-react/button@^0.2.7":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/button/-/button-0.2.12.tgz#63362976221bcf7bc2f28cdc10c53d66767e1bf6"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
@@ -1288,8 +1288,8 @@
     govuk-colours "^1.0.3"
 
 "@govuk-react/checkbox@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/checkbox/-/checkbox-0.2.7.tgz#96f7380c91783e14c280fb90d97424f1e2ffb7f4"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/checkbox/-/checkbox-0.2.12.tgz#3f7ee239f72ef3760e08f1e4c33d6994271d9bbe"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
@@ -1302,96 +1302,96 @@
     govuk-colours "^1.0.3"
 
 "@govuk-react/date-input@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@govuk-react/date-input/-/date-input-0.2.9.tgz#f4acafda7aefccbb55684bc308925fa26de87227"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/date-input/-/date-input-0.2.12.tgz#c03d69566bdd084f3989a7be581c288a33b0bb0d"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
-    "@govuk-react/error-text" "^0.2.7"
-    "@govuk-react/hint-text" "^0.2.7"
+    "@govuk-react/error-text" "^0.2.12"
+    "@govuk-react/hint-text" "^0.2.12"
     "@govuk-react/hoc" "^0.2.7"
-    "@govuk-react/label" "^0.2.9"
-    "@govuk-react/label-text" "^0.2.7"
+    "@govuk-react/label" "^0.2.12"
+    "@govuk-react/label-text" "^0.2.12"
     govuk-colours "^1.0.3"
 
 "@govuk-react/document-footer-metadata@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/document-footer-metadata/-/document-footer-metadata-0.2.7.tgz#3860111c5b4f01b1ecda4c6ad91451d41e321d91"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/document-footer-metadata/-/document-footer-metadata-0.2.12.tgz#86c53b703a2a375bba7ce045ebba47bd79265957"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
-    "@govuk-react/unordered-list" "^0.2.7"
+    "@govuk-react/unordered-list" "^0.2.12"
     govuk-colours "^1.0.3"
 
 "@govuk-react/error-summary@^0.2.9":
-  version "0.2.10"
-  resolved "https://registry.yarnpkg.com/@govuk-react/error-summary/-/error-summary-0.2.10.tgz#dba697bbe390800fad5d275eedfd90bcea606b17"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/error-summary/-/error-summary-0.2.12.tgz#42e093ae2d922229033203a01fc538354208df75"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
-    "@govuk-react/header" "^0.2.7"
+    "@govuk-react/header" "^0.2.12"
     "@govuk-react/hoc" "^0.2.7"
-    "@govuk-react/input-field" "^0.2.9"
-    "@govuk-react/list-item" "^0.2.7"
-    "@govuk-react/paragraph" "^0.2.9"
-    "@govuk-react/text-area" "^0.2.9"
-    "@govuk-react/unordered-list" "^0.2.7"
+    "@govuk-react/input-field" "^0.2.12"
+    "@govuk-react/list-item" "^0.2.12"
+    "@govuk-react/paragraph" "^0.2.12"
+    "@govuk-react/text-area" "^0.2.12"
+    "@govuk-react/unordered-list" "^0.2.12"
     govuk-colours "^1.0.3"
 
-"@govuk-react/error-text@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/error-text/-/error-text-0.2.7.tgz#03106e50fcfddf4a3d93e8dc15d318b91ec748b1"
+"@govuk-react/error-text@^0.2.12", "@govuk-react/error-text@^0.2.7":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/error-text/-/error-text-0.2.12.tgz#f756555da05d050aa505165e47980a9944c82bea"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
 "@govuk-react/file-upload@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@govuk-react/file-upload/-/file-upload-0.2.9.tgz#42acc283432fe4ed04f553b48e10f734d3d046c3"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/file-upload/-/file-upload-0.2.12.tgz#3a834b8b9b7bc9f2d6e2c5c97938df3a98ac36fb"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
-    "@govuk-react/error-text" "^0.2.7"
-    "@govuk-react/hint-text" "^0.2.7"
+    "@govuk-react/error-text" "^0.2.12"
+    "@govuk-react/hint-text" "^0.2.12"
     "@govuk-react/hoc" "^0.2.7"
-    "@govuk-react/label" "^0.2.9"
-    "@govuk-react/label-text" "^0.2.7"
+    "@govuk-react/label" "^0.2.12"
+    "@govuk-react/label-text" "^0.2.12"
     govuk-colours "^1.0.3"
 
 "@govuk-react/grid-col@^0.2.7":
-  version "0.2.10"
-  resolved "https://registry.yarnpkg.com/@govuk-react/grid-col/-/grid-col-0.2.10.tgz#20e17335238d3ce848dac22f79e96b5b0bb7bcf4"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/grid-col/-/grid-col-0.2.12.tgz#efd0ab7831c3ac22e4e124b4b44df6273c1e6cda"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     govuk-colours "^1.0.3"
 
 "@govuk-react/grid-row@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@govuk-react/grid-row/-/grid-row-0.2.9.tgz#6b9de13a79472de270584768fed5539cb0bdd621"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/grid-row/-/grid-row-0.2.12.tgz#624bb535d4fcf36eea67ae986e3bad7bf3ce356e"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
-    "@govuk-react/layout" "^0.2.7"
+    "@govuk-react/layout" "^0.2.12"
     govuk-colours "^1.0.3"
 
-"@govuk-react/header@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/header/-/header-0.2.7.tgz#5b54c5abadd3b5684be1e2d9c178007487c2b697"
+"@govuk-react/header@^0.2.12", "@govuk-react/header@^0.2.7":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/header/-/header-0.2.12.tgz#5324c6153efa6c9e22dbfe49dd0b195e8816b5a7"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
 "@govuk-react/hidden-text@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@govuk-react/hidden-text/-/hidden-text-0.2.9.tgz#dea668eef2101488708e5c1e0672353d7eb17dc6"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/hidden-text/-/hidden-text-0.2.12.tgz#9a4a0b79d2626d5730e1f22c46fc6bebbdfa371a"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
-    "@govuk-react/inset-text" "^0.2.9"
-    "@govuk-react/paragraph" "^0.2.9"
+    "@govuk-react/inset-text" "^0.2.12"
+    "@govuk-react/paragraph" "^0.2.12"
     govuk-colours "^1.0.3"
 
-"@govuk-react/hint-text@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/hint-text/-/hint-text-0.2.7.tgz#32875dd65d60efeebf79956306e52a57fa13711b"
+"@govuk-react/hint-text@^0.2.12", "@govuk-react/hint-text@^0.2.7":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/hint-text/-/hint-text-0.2.12.tgz#a33a160acda30709d94e663b3e90431e8dded684"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
@@ -1416,88 +1416,88 @@
     "@govuk-react/constants" "^0.2.7"
     govuk-colours "^1.0.3"
 
-"@govuk-react/input-field@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@govuk-react/input-field/-/input-field-0.2.9.tgz#dd6ddb92f9a112b8a2de037ff324e895b54537d0"
+"@govuk-react/input-field@^0.2.12", "@govuk-react/input-field@^0.2.9":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/input-field/-/input-field-0.2.12.tgz#a6f37a90cdf2a57778820acef90ad1699add1e47"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
-    "@govuk-react/error-text" "^0.2.7"
-    "@govuk-react/hint-text" "^0.2.7"
+    "@govuk-react/error-text" "^0.2.12"
+    "@govuk-react/hint-text" "^0.2.12"
     "@govuk-react/hoc" "^0.2.7"
-    "@govuk-react/input" "^0.2.7"
-    "@govuk-react/label" "^0.2.9"
-    "@govuk-react/label-text" "^0.2.7"
+    "@govuk-react/input" "^0.2.12"
+    "@govuk-react/label" "^0.2.12"
+    "@govuk-react/label-text" "^0.2.12"
     govuk-colours "^1.0.3"
 
-"@govuk-react/input@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/input/-/input-0.2.7.tgz#d7a2e34d86578a231ab8392d8bd2f52be41865b7"
-  dependencies:
-    "@govuk-react/constants" "^0.2.7"
-    "@govuk-react/hoc" "^0.2.7"
-    govuk-colours "^1.0.3"
-
-"@govuk-react/inset-text@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@govuk-react/inset-text/-/inset-text-0.2.9.tgz#0afc2e666d4f770cf31886ccf3104fb3b695cd2d"
-  dependencies:
-    "@govuk-react/constants" "^0.2.7"
-    "@govuk-react/hoc" "^0.2.7"
-    "@govuk-react/paragraph" "^0.2.9"
-    govuk-colours "^1.0.3"
-
-"@govuk-react/label-text@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/label-text/-/label-text-0.2.7.tgz#34973ffe8f80ca199b63afeafa3c521c205bb41d"
+"@govuk-react/input@^0.2.12", "@govuk-react/input@^0.2.7":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/input/-/input-0.2.12.tgz#8a71d5f80a6542ccdcf5a8ab426885fedafb69f4"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
-"@govuk-react/label@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@govuk-react/label/-/label-0.2.9.tgz#edef7c69b6e920ccb40d754fba5e63267b42df8f"
+"@govuk-react/inset-text@^0.2.12", "@govuk-react/inset-text@^0.2.9":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/inset-text/-/inset-text-0.2.12.tgz#e260dc30b21b707476f8bbaa4b586c53877567b1"
+  dependencies:
+    "@govuk-react/constants" "^0.2.7"
+    "@govuk-react/hoc" "^0.2.7"
+    "@govuk-react/paragraph" "^0.2.12"
+    govuk-colours "^1.0.3"
+
+"@govuk-react/label-text@^0.2.12", "@govuk-react/label-text@^0.2.7":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/label-text/-/label-text-0.2.12.tgz#6ecb4c61d90a410f929347c6d0bd080d9b48cf80"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
-"@govuk-react/layout@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/layout/-/layout-0.2.7.tgz#52c6783bc53f108a3e2255e46d23c9d4693e3a73"
+"@govuk-react/label@^0.2.12", "@govuk-react/label@^0.2.9":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/label/-/label-0.2.12.tgz#e4eeb5050b6f333981aef75e73247d957c2b88eb"
+  dependencies:
+    "@govuk-react/constants" "^0.2.7"
+    "@govuk-react/hoc" "^0.2.7"
+    govuk-colours "^1.0.3"
+
+"@govuk-react/layout@^0.2.12", "@govuk-react/layout@^0.2.7":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/layout/-/layout-0.2.12.tgz#1106f7675f0ee0aa9322d79d8c21db68b5fb6d85"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     govuk-colours "^1.0.3"
 
 "@govuk-react/lead-paragraph@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/lead-paragraph/-/lead-paragraph-0.2.7.tgz#5e3f86cb23539d0bbec51e29ee66405c1a9415d5"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/lead-paragraph/-/lead-paragraph-0.2.12.tgz#bd9e8a497de59ad24936379b4af19c50ccb4f27c"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
-"@govuk-react/list-item@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/list-item/-/list-item-0.2.7.tgz#d7e67a85cf1fa0dcef82b5d74140b40b1997ac75"
+"@govuk-react/list-item@^0.2.12", "@govuk-react/list-item@^0.2.7":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/list-item/-/list-item-0.2.12.tgz#298c57382029e67424975848e34841458cb34d5c"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
 "@govuk-react/list-navigation@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/list-navigation/-/list-navigation-0.2.7.tgz#58dae2b288dbfcbb710e84c651ad7f9061b1df2b"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/list-navigation/-/list-navigation-0.2.12.tgz#964ffbb7425280d195afe578c093cb4f0b4f9722"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
-    "@govuk-react/list-item" "^0.2.7"
-    "@govuk-react/unordered-list" "^0.2.7"
+    "@govuk-react/list-item" "^0.2.12"
+    "@govuk-react/unordered-list" "^0.2.12"
     govuk-colours "^1.0.3"
 
 "@govuk-react/loading-box@^0.2.7":
-  version "0.2.11"
-  resolved "https://registry.yarnpkg.com/@govuk-react/loading-box/-/loading-box-0.2.11.tgz#1e1682e92dd70605969e71286f07a437cdfc766a"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/loading-box/-/loading-box-0.2.12.tgz#ad50c6b02195f46199cc79b3aa5ae05ff7d11c7d"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
@@ -1507,91 +1507,91 @@
     react-transition-group "^2.2.1"
 
 "@govuk-react/main@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/main/-/main-0.2.7.tgz#c7088b3405e2113bd21fc0f93e597a0f26cec953"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/main/-/main-0.2.12.tgz#d2e2b73cd4cb422c3388fc0853af74e8798a1375"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
 
 "@govuk-react/multi-choice@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/multi-choice/-/multi-choice-0.2.7.tgz#a62b99da65d2be81faf3ba338a934832ec8785e6"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/multi-choice/-/multi-choice-0.2.12.tgz#e6f1184f3c5034d8dc795aed7ffc60a17126a833"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
-    "@govuk-react/error-text" "^0.2.7"
-    "@govuk-react/hint-text" "^0.2.7"
+    "@govuk-react/error-text" "^0.2.12"
+    "@govuk-react/hint-text" "^0.2.12"
     "@govuk-react/hoc" "^0.2.7"
-    "@govuk-react/label-text" "^0.2.7"
+    "@govuk-react/label-text" "^0.2.12"
     govuk-colours "^1.0.3"
 
 "@govuk-react/ordered-list@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/ordered-list/-/ordered-list-0.2.7.tgz#a4db491c6856fe38b21ae1690c67536277f6c458"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/ordered-list/-/ordered-list-0.2.12.tgz#a50e110f7006e0e7b22745553581ec7a7a71b41d"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
 "@govuk-react/pagination@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/pagination/-/pagination-0.2.7.tgz#18b0378da1ec14e83c4b10f02b98cca86d58286d"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/pagination/-/pagination-0.2.12.tgz#1dbe6ff4a162953292ca00e8ada174a799bc21be"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
 "@govuk-react/panel@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/panel/-/panel-0.2.7.tgz#16f42b816cd35ed6604d5c1945332d9adf0b113c"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/panel/-/panel-0.2.12.tgz#07a98038da370ebacf83a30733f845920dda5c1f"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
-"@govuk-react/paragraph@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@govuk-react/paragraph/-/paragraph-0.2.9.tgz#2a9e4a3a7effb9122594280a0c1a7cef862bc0c9"
+"@govuk-react/paragraph@^0.2.12", "@govuk-react/paragraph@^0.2.9":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/paragraph/-/paragraph-0.2.12.tgz#c8ba40145c721d062cb356e590a1acaaad2a1960"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
-"@govuk-react/phase-badge@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/phase-badge/-/phase-badge-0.2.7.tgz#07e389d33eb88a7985cc919b75ed1c7d66a838cd"
+"@govuk-react/phase-badge@^0.2.12", "@govuk-react/phase-badge@^0.2.7":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/phase-badge/-/phase-badge-0.2.12.tgz#29b2c02400dacb648850d11a9ccc7392b6c61565"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
 "@govuk-react/phase-banner@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/phase-banner/-/phase-banner-0.2.7.tgz#fa15382fe3b54bfebf899fdea37ffb56f3b6dc84"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/phase-banner/-/phase-banner-0.2.12.tgz#f9d54dc676ec8a9ef0de3bf1671b5628a0f04ad9"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
-    "@govuk-react/phase-badge" "^0.2.7"
+    "@govuk-react/phase-badge" "^0.2.12"
     govuk-colours "^1.0.3"
 
 "@govuk-react/radio@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/radio/-/radio-0.2.7.tgz#a50003a77eca2d56228e286b5ae9dc03278fa8db"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/radio/-/radio-0.2.12.tgz#56af7c45ed958e6ed92061cf364d760afbcc7dd5"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
 "@govuk-react/related-items@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/related-items/-/related-items-0.2.7.tgz#38a74474023c78ee567c70d5e2c6978dff708747"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/related-items/-/related-items-0.2.12.tgz#f79c554fde381a036d14a8d0459588eaf568e26b"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
-"@govuk-react/search-box@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/search-box/-/search-box-0.2.7.tgz#e989fc31d8303271fb3f972e1b2024890ab03008"
+"@govuk-react/search-box@^0.2.12", "@govuk-react/search-box@^0.2.7":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/search-box/-/search-box-0.2.12.tgz#1a5df62f2a02c9418d37944a2d9dd5e4aa94b543"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
@@ -1599,66 +1599,66 @@
     govuk-colours "^1.0.3"
 
 "@govuk-react/select@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@govuk-react/select/-/select-0.2.9.tgz#a76bfc403305b78553542e53b2c6c7eb888b3efd"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/select/-/select-0.2.12.tgz#228b252f2f5b45ce50a595bdd1748fd2702854cb"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
-    "@govuk-react/error-text" "^0.2.7"
-    "@govuk-react/hint-text" "^0.2.7"
+    "@govuk-react/error-text" "^0.2.12"
+    "@govuk-react/hint-text" "^0.2.12"
     "@govuk-react/hoc" "^0.2.7"
-    "@govuk-react/label" "^0.2.9"
-    "@govuk-react/label-text" "^0.2.7"
+    "@govuk-react/label" "^0.2.12"
+    "@govuk-react/label-text" "^0.2.12"
     govuk-colours "^1.0.3"
 
 "@govuk-react/supporting-header@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@govuk-react/supporting-header/-/supporting-header-0.2.9.tgz#c47087b5ebdd5edec6b397442611cdb3cc30bfb8"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/supporting-header/-/supporting-header-0.2.12.tgz#d06988a2c3bc9645b89b13bf38a16bf46cd611bf"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
 "@govuk-react/table@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/table/-/table-0.2.7.tgz#fbae45eba4af0deed85f26402a34a280d57e6823"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/table/-/table-0.2.12.tgz#1148d11ddf03a08208683437c515555d7c2eb8cf"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     govuk-colours "^1.0.3"
 
-"@govuk-react/text-area@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@govuk-react/text-area/-/text-area-0.2.9.tgz#c5efc401e3c1ac330e326d2b8e20947145398130"
+"@govuk-react/text-area@^0.2.12", "@govuk-react/text-area@^0.2.9":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/text-area/-/text-area-0.2.12.tgz#15bd68df46c267cee847900e14c49d64c603e4e9"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
-    "@govuk-react/error-text" "^0.2.7"
-    "@govuk-react/hint-text" "^0.2.7"
+    "@govuk-react/error-text" "^0.2.12"
+    "@govuk-react/hint-text" "^0.2.12"
     "@govuk-react/hoc" "^0.2.7"
-    "@govuk-react/label" "^0.2.9"
-    "@govuk-react/label-text" "^0.2.7"
+    "@govuk-react/label" "^0.2.12"
+    "@govuk-react/label-text" "^0.2.12"
     govuk-colours "^1.0.3"
 
 "@govuk-react/top-nav@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/top-nav/-/top-nav-0.2.7.tgz#0b98e36551a919402acaf1f1b3ca2e99e6488cbe"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/top-nav/-/top-nav-0.2.12.tgz#54b742f73f88c44d80f88af2a70e9022910c554d"
   dependencies:
-    "@govuk-react/button" "^0.2.7"
+    "@govuk-react/button" "^0.2.12"
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     "@govuk-react/icons" "^0.2.7"
-    "@govuk-react/search-box" "^0.2.7"
+    "@govuk-react/search-box" "^0.2.12"
     govuk-colours "^1.0.3"
 
-"@govuk-react/unordered-list@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/unordered-list/-/unordered-list-0.2.7.tgz#1ceaba16de9156d51907fb3fb228176ed10aaffb"
+"@govuk-react/unordered-list@^0.2.12", "@govuk-react/unordered-list@^0.2.7":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/unordered-list/-/unordered-list-0.2.12.tgz#fd790a93db1dbe6ed09d26f7bbff4c48b599ea9b"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
     govuk-colours "^1.0.3"
 
 "@govuk-react/warning-text@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@govuk-react/warning-text/-/warning-text-0.2.7.tgz#0ae51f372dfa62cbcbef30626c0c83d26508a655"
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@govuk-react/warning-text/-/warning-text-0.2.12.tgz#6e1dd2918453b083b59fa9628a0f2d79c032cbe6"
   dependencies:
     "@govuk-react/constants" "^0.2.7"
     "@govuk-react/hoc" "^0.2.7"
@@ -5749,7 +5749,7 @@ longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1:
+loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   dependencies:
@@ -7058,11 +7058,11 @@ react-test-renderer@16.4.2, react-test-renderer@^16.0.0-0:
     react-is "^16.4.2"
 
 react-transition-group@^2.2.1:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.4.0.tgz#1d9391fabfd82e016f26fabd1eec329dbd922b5a"
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.5.0.tgz#70bca0e3546102c4dc5cf3f5f57f73447cce6874"
   dependencies:
     dom-helpers "^3.3.1"
-    loose-envify "^1.3.1"
+    loose-envify "^1.4.0"
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 

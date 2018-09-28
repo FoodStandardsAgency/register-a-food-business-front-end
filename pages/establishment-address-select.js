@@ -67,12 +67,14 @@ const EstablishmentAddressLookup = props => (
           )}
         </SelectWithHeader>
 
-        <AnchorTag
-          id="cantFindAddressLink"
-          href="/establishment-address-manual"
-        >
-          I can't find my address in the list
-        </AnchorTag>
+        <ContentItem.B_30_15>
+          <AnchorTag
+            id="cantFindAddressLink"
+            href="/establishment-address-manual"
+          >
+            I can't find my address in the list
+          </AnchorTag>
+        </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
       <ContinueButton editMode={props.switches.editMode} />
