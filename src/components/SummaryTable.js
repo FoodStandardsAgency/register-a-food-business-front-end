@@ -28,6 +28,10 @@ const StyledTableRow = styled("div")({
   color: `${COLOUR.GREY_1}`
 });
 
+const StyledTableCellChange = styled(Table.Cell)`
+  min-width: 70px;
+`;
+
 const AnchorTag = asAnchor("a");
 
 const OperatorDetailsTable = props => (
@@ -82,14 +86,14 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorCompanyNameRow"
               href="/edit/operator-company-details"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -103,14 +107,14 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorCompaniesHouseRow"
               href="/edit/operator-company-details"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -124,14 +128,14 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorCharityNameRow"
               href="/edit/operator-charity-details"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -145,14 +149,14 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorCharityNumberRow"
               href="/edit/operator-charity-details"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -167,11 +171,11 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag id="changeOperatorNameRow" href="/edit/operator-name">
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -209,14 +213,14 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorContactDetailsRow"
               href="/edit/operator-contact-details"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -230,14 +234,14 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorEmailRow"
               href="/edit/operator-contact-details"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -266,14 +270,14 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeContactRepresentativeRow"
               href="/edit/contact-representative"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -305,14 +309,14 @@ const EstablishmentDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeEstablishmentTradingNameRow"
               href="/edit/establishment-trading-name"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -353,14 +357,14 @@ const EstablishmentDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeEstablishmentAddressTypeRow"
               href="/edit/establishment-address-type"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -379,14 +383,14 @@ const EstablishmentDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeEstablishmentContactDetailsRow"
               href="/edit/establishment-contact-details"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -400,14 +404,14 @@ const EstablishmentDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeEstablishmentEmailRow"
               href="/edit/establishment-contact-details"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -455,14 +459,14 @@ const FoodActivitiesTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeActivitiesCustomersRow"
               href="/edit/customer-type"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -485,11 +489,11 @@ const FoodActivitiesTable = props => (
           ) : null} */}
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag id="changeBusinessTypeRow" href="/edit/business-type">
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -503,14 +507,14 @@ const FoodActivitiesTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeActivitiesBusinessImportExportRow"
               href="/edit/business-import-export"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
@@ -524,14 +528,14 @@ const FoodActivitiesTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell className="summaryTableChangeCell">
+          <StyledTableCellChange className="summaryTableChangeCell">
             <AnchorTag
               id="changeBusinessOtherDetailsRow"
               href="/edit/business-other-details"
             >
               Change
             </AnchorTag>
-          </Table.Cell>
+          </StyledTableCellChange>
         )}
       </Table.Row>
     ) : null}
