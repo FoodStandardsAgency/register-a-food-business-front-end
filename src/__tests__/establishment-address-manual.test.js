@@ -95,7 +95,7 @@ describe("<EstablishmentAddress />", () => {
             switches={{ "/establishment-address-none-found": true }}
           />
         );
-        const establishmentBackButton = wrapper.find("#back-link");
+        const establishmentBackButton = wrapper.find("a#back-link");
         expect(establishmentBackButton.props().href).toBe(
           "/establishment-address"
         );
@@ -111,7 +111,7 @@ describe("<EstablishmentAddress />", () => {
             switches={{ "/establishment-address-none-found": false }}
           />
         );
-        const establishmentBackButton = wrapper.find("#back-link");
+        const establishmentBackButton = wrapper.find("a#back-link");
         expect(establishmentBackButton.props().href).toBe(
           "/establishment-address-select"
         );

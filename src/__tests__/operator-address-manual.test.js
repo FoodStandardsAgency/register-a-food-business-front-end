@@ -221,7 +221,7 @@ describe("<OperatorAddress />", () => {
             switches={{ "/operator-address-none-found": true }}
           />
         );
-        const operatorBackButton = wrapper.find("#back-link");
+        const operatorBackButton = wrapper.find("a#back-link");
         expect(operatorBackButton.props().href).toBe("/operator-address");
       });
     });
@@ -235,7 +235,7 @@ describe("<OperatorAddress />", () => {
             switches={{ "/operator-address-none-found": false }}
           />
         );
-        const operatorBackButton = wrapper.find("#back-link");
+        const operatorBackButton = wrapper.find("a#back-link");
         expect(operatorBackButton.props().href).toBe(
           "/operator-address-select"
         );
