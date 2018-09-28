@@ -28,9 +28,9 @@ const StyledTableRow = styled("div")({
   color: `${COLOUR.GREY_1}`
 });
 
-const StyledTableCellChange = styled(Table.Cell)({
-  minWidth: "70px"
-});
+const StyledTableCellChange = styled(Table.Cell)`
+  min-width: 70px;
+`;
 
 const AnchorTag = asAnchor("a");
 
