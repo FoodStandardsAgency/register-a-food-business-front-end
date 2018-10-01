@@ -626,12 +626,12 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-66 {
+.emotion-67 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-64 {
+.emotion-65 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -644,7 +644,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-64 {
+  .emotion-65 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -652,28 +652,28 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-63 {
+.emotion-64 {
   margin-bottom: 15px;
   box-sizing: border-box;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-63 {
+  .emotion-64 {
     margin-right: 15px;
     margin-left: 15px;
   }
 
-  .emotion-63:first-child {
+  .emotion-64:first-child {
     margin-left: 0;
   }
 
-  .emotion-63:last-child {
+  .emotion-64:last-child {
     margin-right: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-63 {
+  .emotion-64 {
     -webkit-box-flex: 0;
     -webkit-flex-grow: 0;
     -ms-flex-positive: 0;
@@ -682,17 +682,73 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-41 {
-  padding-bottom: 45px;
+.emotion-42 {
+  padding-bottom: 30px;
 }
 
 @media only screen and (max-width:641px) {
-  .emotion-41 {
-    padding-bottom: 30px;
+  .emotion-42 {
+    padding-bottom: 15px;
   }
 }
 
-.emotion-43 {
+.emotion-41 {
+  font-family: "nta",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.1428571429;
+  display: inline-block;
+  position: relative;
+  margin-top: 15px;
+  padding-left: 14px;
+  border: 0;
+  background-color: transparent;
+  color: #0b0c0c;
+  border-bottom: 1px solid #0b0c0c;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-41 {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}
+
+.emotion-41::before {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-clip-path: polygon(0% 50%,100% 100%,100% 0%);
+  clip-path: polygon(0% 50%,100% 100%,100% 0%);
+  border-width: 5px 6px 5px 0;
+  border-right-color: #0b0c0c;
+  content: '';
+  position: absolute;
+  top: -1px;
+  bottom: 1px;
+  left: 0;
+  margin: auto;
+}
+
+.emotion-41:focus {
+  background-color: #ffbf47;
+  outline: 3px solid #ffbf47;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-41 {
+    margin-bottom: 15px;
+  }
+}
+
+.emotion-44 {
   font-family: "nta",Arial,sans-serif;
   font-weight: bold;
   margin: 0;
@@ -702,7 +758,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-43 {
+  .emotion-44 {
     font-size: 36px;
     line-height: 1.1111111111111112;
     margin-bottom: 20px;
@@ -710,22 +766,22 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
 }
 
 @media print {
-  .emotion-43 {
+  .emotion-44 {
     font-size: 18px;
   }
 }
 
-.emotion-48 {
+.emotion-49 {
   margin-bottom: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-48 {
+  .emotion-49 {
     margin-bottom: 30px;
   }
 }
 
-.emotion-45 {
+.emotion-46 {
   cursor: pointer;
   color: #005ea5;
   font-family: "nta",Arial,sans-serif;
@@ -734,23 +790,23 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   margin-bottom: 5px;
 }
 
-.emotion-45:hover {
+.emotion-46:hover {
   color: #2b8cc4;
 }
 
-.emotion-45:focus {
+.emotion-46:focus {
   outline: 4px solid #ffbf47;
   background: #ffbf47;
 }
 
-.emotion-44 {
+.emotion-45 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
 }
 
-.emotion-47 {
+.emotion-48 {
   box-sizing: border-box;
   border-left-style: solid;
   border-left-width: 5px;
@@ -760,12 +816,12 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-47 {
+  .emotion-48 {
     margin-bottom: 0;
   }
 }
 
-.emotion-46 {
+.emotion-47 {
   font-family: "nta",Arial,sans-serif;
   margin: 0;
   font-size: 16px;
@@ -773,11 +829,11 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   margin-bottom: 0;
 }
 
-.emotion-46 > p {
+.emotion-47 > p {
   margin: 0;
 }
 
-.emotion-46 > p > code {
+.emotion-47 > p > code {
   padding: 0.2em 0.4em;
   margin: 0px;
   font-size: 85%;
@@ -785,7 +841,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   border-radius: 3px;
 }
 
-.emotion-46 > pre {
+.emotion-47 > pre {
   padding: 16px;
   overflow: auto;
   font-size: 85%;
@@ -794,7 +850,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   border-radius: 3px;
 }
 
-.emotion-46 > pre > code {
+.emotion-47 > pre > code {
   display: inline;
   padding: 0px;
   margin: 0px;
@@ -805,19 +861,29 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-46 {
+  .emotion-47 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-46 {
+  .emotion-47 {
     margin-bottom: 0;
   }
 }
 
-.emotion-59 {
+.emotion-61 {
+  padding-bottom: 45px;
+}
+
+@media only screen and (max-width:641px) {
+  .emotion-61 {
+    padding-bottom: 30px;
+  }
+}
+
+.emotion-60 {
   padding: 0;
   margin: 0;
   border: 0;
@@ -826,19 +892,19 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   margin-bottom: 0;
 }
 
-.emotion-59:after {
+.emotion-60:after {
   content: '';
   display: table;
   clear: both;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-59 {
+  .emotion-60 {
     margin-bottom: 0;
   }
 }
 
-.emotion-49 {
+.emotion-50 {
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -853,19 +919,19 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-49 {
+  .emotion-50 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-49 {
+  .emotion-50 {
     margin-bottom: 0;
   }
 }
 
-.emotion-52 {
+.emotion-53 {
   display: block;
   position: relative;
   padding: 0 0 0 38px;
@@ -874,12 +940,12 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-52 {
+  .emotion-53 {
     margin-bottom: 10px;
   }
 }
 
-.emotion-50 {
+.emotion-51 {
   position: absolute;
   cursor: pointer;
   left: 0;
@@ -893,20 +959,20 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   cursor: pointer;
 }
 
-.emotion-50:checked + span::after {
+.emotion-51:checked + span::after {
   opacity: 1;
 }
 
-.emotion-50:focus + span::before {
+.emotion-51:focus + span::before {
   box-shadow: 0 0 0 4px #ffbf47;
 }
 
-.emotion-50 + span {
+.emotion-51 + span {
   opacity: 1;
   pointer-events: auto;
 }
 
-.emotion-51 {
+.emotion-52 {
   font-family: "nta",Arial,sans-serif;
   font-weight: 400;
   text-transform: none;
@@ -917,7 +983,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   display: block;
 }
 
-.emotion-51:before {
+.emotion-52:before {
   content: '';
   box-sizing: border-box;
   position: absolute;
@@ -930,7 +996,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   background: transparent;
 }
 
-.emotion-51:after {
+.emotion-52:after {
   content: '';
   position: absolute;
   top: 8px;
@@ -942,7 +1008,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   opacity: 0;
 }
 
-.emotion-62 {
+.emotion-63 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -977,46 +1043,46 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-62:hover {
+.emotion-63:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-62:focus {
+.emotion-63:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-62:active {
+.emotion-63:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-62:visited {
+.emotion-63:visited {
   color: #00823b;
 }
 
-.emotion-62 svg {
+.emotion-63 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-62 {
+  .emotion-63 {
     margin-bottom: 20px;
   }
 }
 
-.emotion-91 {
+.emotion-92 {
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
 }
 
-.emotion-89 {
+.emotion-90 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -1031,7 +1097,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-89 {
+  .emotion-90 {
     width: calc(100% - 60px);
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -1043,7 +1109,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-81 {
+.emotion-82 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1057,11 +1123,11 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   justify-content: flex-end;
 }
 
-.emotion-73 {
+.emotion-74 {
   margin-bottom: 15px;
 }
 
-.emotion-67 {
+.emotion-68 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1076,54 +1142,54 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   font-size: 14px;
 }
 
-.emotion-67:focus {
+.emotion-68:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-67:visited {
+.emotion-68:visited {
   color: #2e358b;
 }
 
 @media (min-width:641px) {
-  .emotion-67 {
+  .emotion-68 {
     display: inline-block;
     font-size: 16px;
   }
 }
 
-.emotion-67:visited {
+.emotion-68:visited {
   color: #454a4c;
 }
 
-.emotion-67:hover {
+.emotion-68:hover {
   color: #171819;
 }
 
-.emotion-75 {
+.emotion-76 {
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-75 {
+  .emotion-76 {
     margin-bottom: 0px;
   }
 }
 
-.emotion-79 {
+.emotion-80 {
   font-size: 14px;
   margin: 0;
   display: inline-block;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-79 {
+  .emotion-80 {
     font-size: 16px;
   }
 }
 
-.emotion-77 {
+.emotion-78 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1134,24 +1200,24 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   color: #454a4c;
 }
 
-.emotion-77:focus {
+.emotion-78:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-77:visited {
+.emotion-78:visited {
   color: #2e358b;
 }
 
-.emotion-77:visited {
+.emotion-78:visited {
   color: #454a4c;
 }
 
-.emotion-77:hover {
+.emotion-78:hover {
   color: #171819;
 }
 
-.emotion-87 {
+.emotion-88 {
   margin: 0px 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1171,7 +1237,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
   text-align: center;
 }
 
-.emotion-83 {
+.emotion-84 {
   margin-bottom: 10px;
 }
 
@@ -1360,21 +1426,22 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-66"
+    className="emotion-67"
   >
     <div
       className="emotion-36"
     >
       <div
-        className="emotion-64"
+        className="emotion-65"
       >
         <div
-          className="emotion-63"
+          className="emotion-64"
         >
           <div
-            className="emotion-41 emotion-42"
+            className="emotion-42 emotion-43"
           >
             <a
+              className="emotion-41"
               href="/back/establishment-address-type"
               id="back-link"
             >
@@ -1382,27 +1449,27 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
             </a>
           </div>
           <h2
-            className="emotion-43"
+            className="emotion-44"
           >
             Where is this establishment located?
           </h2>
           <details
-            className="emotion-48"
+            className="emotion-49"
           >
             <summary
-              className="emotion-45"
+              className="emotion-46"
             >
               <span
-                className="emotion-44"
+                className="emotion-45"
               >
                 What is an establishment?
               </span>
             </summary>
             <div
-              className="emotion-47"
+              className="emotion-48"
             >
               <div
-                className="emotion-46"
+                className="emotion-47"
               >
                 <p>
                   An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.
@@ -1415,21 +1482,21 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
             method="post"
           >
             <div
-              className="emotion-41 emotion-42"
+              className="emotion-61 emotion-62"
             >
               <div
-                className="emotion-59"
+                className="emotion-60"
               >
                 <span
-                  className="emotion-49"
+                  className="emotion-50"
                 >
                   
                 </span>
                 <label
-                  className="emotion-52"
+                  className="emotion-53"
                 >
                   <input
-                    className="emotion-50"
+                    className="emotion-51"
                     defaultChecked={false}
                     id="establishment_type_business_commercial"
                     name="establishment_type"
@@ -1437,16 +1504,16 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
                     value="Place of business or commercial premises"
                   />
                   <span
-                    className="emotion-51"
+                    className="emotion-52"
                   >
                     In a place of business or commercial premises
                   </span>
                 </label>
                 <label
-                  className="emotion-52"
+                  className="emotion-53"
                 >
                   <input
-                    className="emotion-50"
+                    className="emotion-51"
                     defaultChecked={false}
                     id="establishment_type_mobile_moveable"
                     name="establishment_type"
@@ -1454,16 +1521,16 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
                     value="Mobile or moveable premises"
                   />
                   <span
-                    className="emotion-51"
+                    className="emotion-52"
                   >
                     In a mobile or moveable premises
                   </span>
                 </label>
                 <label
-                  className="emotion-52"
+                  className="emotion-53"
                 >
                   <input
-                    className="emotion-50"
+                    className="emotion-51"
                     defaultChecked={false}
                     id="establishment_type_home_domestic"
                     name="establishment_type"
@@ -1471,7 +1538,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
                     value="Home or domestic premises"
                   />
                   <span
-                    className="emotion-51"
+                    className="emotion-52"
                   >
                     In a home or domestic premises
                   </span>
@@ -1479,7 +1546,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
               </div>
             </div>
             <button
-              className="emotion-62"
+              className="emotion-63"
               disabled={false}
               id="continue-button"
               type="submit"
@@ -1492,20 +1559,20 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-91 emotion-92"
+    className="emotion-92 emotion-93"
     id="fsaFooter"
   >
     <div
-      className="emotion-89 emotion-90"
+      className="emotion-90 emotion-91"
     >
       <div
-        className="emotion-81 emotion-82"
+        className="emotion-82 emotion-83"
       >
         <div
-          className="emotion-73 emotion-74"
+          className="emotion-74 emotion-75"
         >
           <a
-            className="emotion-67 emotion-68"
+            className="emotion-68 emotion-69"
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
             rel="noopener noreferrer"
@@ -1514,7 +1581,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
             Cookies
           </a>
           <a
-            className="emotion-67 emotion-68"
+            className="emotion-68 emotion-69"
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
             rel="noopener noreferrer"
@@ -1523,7 +1590,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
             Privacy
           </a>
           <a
-            className="emotion-67 emotion-68"
+            className="emotion-68 emotion-69"
             href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
             id="feedbackFooter"
             rel="noopener noreferrer"
@@ -1534,7 +1601,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
         </div>
         <div>
           <div
-            className="emotion-75 emotion-76"
+            className="emotion-76 emotion-77"
           >
             <svg
               className="govuk-footer__licence-logo"
@@ -1552,12 +1619,12 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
             </svg>
           </div>
           <p
-            className="emotion-79 emotion-80"
+            className="emotion-80 emotion-81"
           >
             All content is available under the
              
             <a
-              className="emotion-77 emotion-78"
+              className="emotion-78 emotion-79"
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
               rel="noopener noreferrer"
@@ -1571,10 +1638,10 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
         </div>
       </div>
       <div
-        className="emotion-87 emotion-88"
+        className="emotion-88 emotion-89"
       >
         <svg
-          className="emotion-83 emotion-84"
+          className="emotion-84 emotion-85"
           height="102"
           viewBox="0 0 124 102"
           width="124"
@@ -1602,7 +1669,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
           </g>
         </svg>
         <p
-          className="emotion-79 emotion-80"
+          className="emotion-80 emotion-81"
         >
           © Crown copyright
         </p>
