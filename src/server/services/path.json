@@ -69,6 +69,10 @@
     "on": true,
     "switches": {}
   },
+  "/establishment-address-type": {
+    "on": true,
+    "switches": {}
+  },
   "/establishment-address": {
     "on": true,
     "switches": {}
@@ -82,10 +86,6 @@
     "switches": {
       "establishment_first_line": { "/establishment-address-manual": true }
     }
-  },
-  "/establishment-address-type": {
-    "on": true,
-    "switches": {}
   },
   "/establishment-contact-details": {
     "on": true,
