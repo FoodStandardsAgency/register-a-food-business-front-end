@@ -28,8 +28,12 @@ const StyledTableRow = styled("div")({
   color: `${COLOUR.GREY_1}`
 });
 
-const StyledTableCellChange = styled(Table.Cell)`
-  min-width: 70px;
+const FormattedTableRow = styled(Table.Row)`
+  display: grid;
+  ${props =>
+    props.acPage
+      ? "grid-template-columns: 1fr 1fr;"
+      : "grid-template-columns: 1fr 1fr 70px;"};
 `;
 
 const AnchorTag = asAnchor("a");
@@ -37,17 +41,17 @@ const AnchorTag = asAnchor("a");
 const OperatorDetailsTable = props => (
   <React.Fragment>
     {props.applicationCompletePage ? (
-      <Table.Row>
+      <FormattedTableRow acPage={props.applicationCompletePage}>
         <Table.CellHeader>
           <div />
         </Table.CellHeader>
         <Table.Cell>
           <div />
         </Table.Cell>
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
-    <Table.Row className="TITLE">
+    <FormattedTableRow acPage={props.applicationCompletePage} className="TITLE">
       <Table.CellHeader>
         <Paragraph mb={0}>**Operator details**</Paragraph>
       </Table.CellHeader>
@@ -59,10 +63,13 @@ const OperatorDetailsTable = props => (
           <div />
         </Table.Cell>
       )}
-    </Table.Row>
+    </FormattedTableRow>
 
     {props.operator_type ? (
-      <Table.Row id="operatorTypeRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="operatorTypeRow"
+      >
         <Table.CellHeader>Operator type</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold" id="operator_type">
@@ -74,11 +81,14 @@ const OperatorDetailsTable = props => (
             <div />
           </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.operator_company_name ? (
-      <Table.Row id="operatorCompanyNameRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="operatorCompanyNameRow"
+      >
         <Table.CellHeader>Company name</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div id="operator_company_name" className="bold">
@@ -86,20 +96,23 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorCompanyNameRow"
               href="/edit/operator-company-details"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.operator_company_house_number ? (
-      <Table.Row id="operatorCompaniesHouseRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="operatorCompaniesHouseRow"
+      >
         <Table.CellHeader>Company number</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div id="operator_company_house_number" className="bold">
@@ -107,20 +120,23 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorCompaniesHouseRow"
               href="/edit/operator-company-details"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.operator_charity_name ? (
-      <Table.Row id="operatorCharityNameRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="operatorCharityNameRow"
+      >
         <Table.CellHeader>Charity name</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div id="operator_charity_name" className="bold">
@@ -128,20 +144,23 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorCharityNameRow"
               href="/edit/operator-charity-details"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.operator_charity_number ? (
-      <Table.Row id="operatorCharityNumberRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="operatorCharityNumberRow"
+      >
         <Table.CellHeader>Charity number</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div id="operator_charity_number" className="bold">
@@ -149,20 +168,23 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorCharityNumberRow"
               href="/edit/operator-charity-details"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.operator_first_name ? (
-      <Table.Row id="operatorNameRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="operatorNameRow"
+      >
         <Table.CellHeader>Name</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold">
@@ -171,17 +193,20 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag id="changeOperatorNameRow" href="/edit/operator-name">
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.operator_first_line ? (
-      <Table.Row id="operatorAddressRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="operatorAddressRow"
+      >
         <Table.CellHeader>Operator address</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold">
@@ -196,11 +221,14 @@ const OperatorDetailsTable = props => (
             <div />
           </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.operator_primary_number ? (
-      <Table.Row id="operatorContactDetailsRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="operatorContactDetailsRow"
+      >
         <Table.CellHeader>Phone number</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold">
@@ -213,20 +241,23 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorContactDetailsRow"
               href="/edit/operator-contact-details"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.operator_email ? (
-      <Table.Row id="operatorEmailRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="operatorEmailRow"
+      >
         <Table.CellHeader>Email address</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold" id="operator_email">
@@ -234,20 +265,23 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeOperatorEmailRow"
               href="/edit/operator-contact-details"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.contact_representative_email ? (
-      <Table.Row id="contactRepresentativeRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="contactRepresentativeRow"
+      >
         <Table.CellHeader>Designated contact</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <StyledTableRow>
@@ -270,23 +304,23 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeContactRepresentativeRow"
               href="/edit/contact-representative"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
   </React.Fragment>
 );
 
 const EstablishmentDetailsTable = props => (
   <React.Fragment>
-    <Table.Row className="TITLE">
+    <FormattedTableRow acPage={props.applicationCompletePage} className="TITLE">
       <Table.CellHeader>
         <Paragraph mb={0}>**Establishment details**</Paragraph>
       </Table.CellHeader>
@@ -298,10 +332,13 @@ const EstablishmentDetailsTable = props => (
           <div />
         </Table.Cell>
       )}
-    </Table.Row>
+    </FormattedTableRow>
 
     {props.establishment_trading_name ? (
-      <Table.Row id="establishmentTradingNameRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="establishmentTradingNameRow"
+      >
         <Table.CellHeader>Trading name</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold" id="establishment_trading_name">
@@ -309,20 +346,23 @@ const EstablishmentDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeEstablishmentTradingNameRow"
               href="/edit/establishment-trading-name"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.establishment_first_line ? (
-      <Table.Row id="establishmentAddressRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="establishmentAddressRow"
+      >
         <Table.CellHeader>Establishment address</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold">
@@ -345,11 +385,14 @@ const EstablishmentDetailsTable = props => (
             <div />
           </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.establishment_type ? (
-      <Table.Row id="establishmentAddressTypeRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="establishmentAddressTypeRow"
+      >
         <Table.CellHeader>Address type</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold" id="establishment_type">
@@ -357,20 +400,23 @@ const EstablishmentDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeEstablishmentAddressTypeRow"
               href="/edit/establishment-address-type"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.establishment_primary_number ? (
-      <Table.Row id="establishmentContactDetailsRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="establishmentContactDetailsRow"
+      >
         <Table.CellHeader>Phone number</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold">
@@ -383,20 +429,23 @@ const EstablishmentDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeEstablishmentContactDetailsRow"
               href="/edit/establishment-contact-details"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.establishment_email ? (
-      <Table.Row id="establishmentEmailRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="establishmentEmailRow"
+      >
         <Table.CellHeader>Email address</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold" id="establishment_email">
@@ -404,20 +453,23 @@ const EstablishmentDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeEstablishmentEmailRow"
               href="/edit/establishment-contact-details"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.establishment_opening_date ? (
-      <Table.Row id="establishmentOpeningDateRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="establishmentOpeningDateRow"
+      >
         <Table.CellHeader>Trading date</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold" id="establishment_opening_date">
@@ -429,14 +481,14 @@ const EstablishmentDetailsTable = props => (
             <div />
           </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
   </React.Fragment>
 );
 
 const FoodActivitiesTable = props => (
   <React.Fragment>
-    <Table.Row className="TITLE">
+    <FormattedTableRow acPage={props.applicationCompletePage} className="TITLE">
       <Table.CellHeader>
         <Paragraph mb={0}>**Activities**</Paragraph>
       </Table.CellHeader>
@@ -448,10 +500,13 @@ const FoodActivitiesTable = props => (
           <div />
         </Table.Cell>
       )}
-    </Table.Row>
+    </FormattedTableRow>
 
     {props.customer_type ? (
-      <Table.Row id="activitiesCustomersRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="activitiesCustomersRow"
+      >
         <Table.CellHeader>Customers</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold" id="customer_type">
@@ -459,20 +514,23 @@ const FoodActivitiesTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeActivitiesCustomersRow"
               href="/edit/customer-type"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.business_type ? (
-      <Table.Row id="businessTypeRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="businessTypeRow"
+      >
         <Table.CellHeader>Business type</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold" id="business_type">
@@ -489,17 +547,20 @@ const FoodActivitiesTable = props => (
           ) : null} */}
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag id="changeBusinessTypeRow" href="/edit/business-type">
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.import_export_activities ? (
-      <Table.Row id="activitiesBusinessImportExportRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="activitiesBusinessImportExportRow"
+      >
         <Table.CellHeader>Import and export</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold" id="import_export_activities">
@@ -507,20 +568,23 @@ const FoodActivitiesTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeActivitiesBusinessImportExportRow"
               href="/edit/business-import-export"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
 
     {props.business_other_details ? (
-      <Table.Row id="businessOtherDetailsRow">
+      <FormattedTableRow
+        acPage={props.applicationCompletePage}
+        id="businessOtherDetailsRow"
+      >
         <Table.CellHeader>Additional details</Table.CellHeader>
         <Table.Cell className="summaryTableDataCell">
           <div className="bold" id="business_other_details">
@@ -528,57 +592,66 @@ const FoodActivitiesTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <StyledTableCellChange className="summaryTableChangeCell">
+          <Table.Cell className="summaryTableChangeCell">
             <AnchorTag
               id="changeBusinessOtherDetailsRow"
               href="/edit/business-other-details"
             >
               Change
             </AnchorTag>
-          </StyledTableCellChange>
+          </Table.Cell>
         )}
-      </Table.Row>
+      </FormattedTableRow>
     ) : null}
   </React.Fragment>
 );
 
 const DeclarationTable = props => (
   <React.Fragment>
-    <Table.Row className="TITLE">
+    <FormattedTableRow acPage={props.applicationCompletePage} className="TITLE">
       <Table.CellHeader>
         <Paragraph mb={0}>**Declaration**</Paragraph>
       </Table.CellHeader>
       <Table.Cell>
         <div />
       </Table.Cell>
-    </Table.Row>
+    </FormattedTableRow>
 
-    <Table.Row id="declaration1Row">
+    <FormattedTableRow
+      acPage={props.applicationCompletePage}
+      id="declaration1Row"
+    >
       <Table.CellHeader>
         <span id="declaration1">{props.declaration1}</span>
       </Table.CellHeader>
       <Table.Cell className="summaryTableDataCell">
         <div className="bold">Accepted</div>
       </Table.Cell>
-    </Table.Row>
+    </FormattedTableRow>
 
-    <Table.Row id="declaration2Row">
+    <FormattedTableRow
+      acPage={props.applicationCompletePage}
+      id="declaration2Row"
+    >
       <Table.CellHeader>
         <span id="declaration2">{props.declaration2}</span>
       </Table.CellHeader>
       <Table.Cell className="summaryTableDataCell">
         <div className="bold">Accepted</div>
       </Table.Cell>
-    </Table.Row>
+    </FormattedTableRow>
 
-    <Table.Row id="declaration3Row">
+    <FormattedTableRow
+      acPage={props.applicationCompletePage}
+      id="declaration3Row"
+    >
       <Table.CellHeader>
         <span id="declaration3">{props.declaration3}</span>
       </Table.CellHeader>
       <Table.Cell className="summaryTableDataCell">
         <div className="bold">Accepted</div>
       </Table.Cell>
-    </Table.Row>
+    </FormattedTableRow>
   </React.Fragment>
 );
 
