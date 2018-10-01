@@ -279,7 +279,6 @@ describe("data-transform.service transformAnswersForSummary()", () => {
             cumulativeAnswersOpAddSelected,
             testAddressLookupsNoPremise
           );
-          console.log(response);
           expect(response.operator_first_line).toBe(
             correctResponse.operator_first_line
           );

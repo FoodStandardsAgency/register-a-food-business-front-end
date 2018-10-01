@@ -289,7 +289,6 @@ const cleanBlankStringBusinessOtherDetails = business_other_details => {
 
   if (business_other_details) {
     if (business_other_details.trim().length === 0) {
-      console.log(business_other_details);
       newBusinessOtherDetails = undefined;
     } else {
       newBusinessOtherDetails = business_other_details;

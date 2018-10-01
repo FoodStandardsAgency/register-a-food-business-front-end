@@ -12,5 +12,6 @@ module.exports = {
     "/address",
   ADDRESS_API_URL_QUERY: "format=json&lines=4",
   API_SECRET: process.env.API_SECRET,
-  CLIENT_NAME: process.env.CLIENT_NAME
+  CLIENT_NAME: process.env.CLIENT_NAME,
+  CONFIGDB_URL: process.env.CONFIGDB_URL
 };
