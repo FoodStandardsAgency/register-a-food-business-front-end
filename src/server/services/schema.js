@@ -276,6 +276,18 @@ const schema = {
     },
     anyOf: [{ required: ["supply_other"] }, { required: ["supply_directly"] }]
   },
+  "/opening-days-some": {
+    type: "object",
+    properties: {
+      supply_other: {
+        type: "string"
+      },
+      supply_directly: {
+        type: "string"
+      }
+    },
+    anyOf: [{ required: ["supply_other"] }, { required: ["supply_directly"] }]
+  },
   "/business-type": {
     type: "object",
     properties: {
