@@ -27,6 +27,9 @@ steps:
 - script: yarn test:ci
   displayName: 'Unit tests'
 
+- script: yarn build
+  displayName: 'Build app'
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
