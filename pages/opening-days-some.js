@@ -18,77 +18,76 @@ import PropTypes from "prop-types";
 const OpeningSomeDays = props => (
   <FsaLayout {...props}>
     <form
-      action={`/continue/opening-some-days/${props.editMode}`}
+      action={`/continue/opening-days-some/${props.editMode}`}
       method="post"
     >
-      <BackButton editMode={props.editMode} originator="opening-some-days" />
+      <BackButton editMode={props.editMode} originator="opening-days-some" />
       <Header level={2}>Opening days</Header>
       <Paragraph>
         What days will this establishment be producing or serving food?
       </Paragraph>
       <Paragraph>Select all that apply</Paragraph>
-
       <ContentItem.B_30_15>
         <MultiChoice
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.opening_some_days
+            error: props.validatorErrors.opening_days_some
           }}
         >
           <Checkbox
-            name="monday"
-            id="opening_some_days_monday"
+            name="opening_day_monday"
+            id="opening_day_monday"
             value="Monday"
-            defaultChecked={props.cumulativeAnswers.opening_some_days_monday}
+            defaultChecked={props.cumulativeAnswers.opening_day_monday}
           >
             Monday
           </Checkbox>
           <Checkbox
-            name="tuesday"
-            id="opening_some_days_tuesday"
+            name="opening_day_tuesday"
+            id="opening_day_tuesday"
             value="Tuesday"
-            defaultChecked={props.cumulativeAnswers.opening_some_days_tuesday}
+            defaultChecked={props.cumulativeAnswers.opening_day_tuesday}
           >
             Tuesday
           </Checkbox>
           <Checkbox
-            name="wednesday"
-            id="opening_some_days_wednesday"
-            value="wednesday"
-            defaultChecked={props.cumulativeAnswers.opening_some_days_wednesday}
+            name="opening_day_wednesday"
+            id="opening_day_wednesday"
+            value="Wednesday"
+            defaultChecked={props.cumulativeAnswers.opening_day_wednesday}
           >
             Wednesday
           </Checkbox>
           <Checkbox
-            name="thursday"
-            id="opening_some_days_thursday"
-            value="Thuesday"
-            defaultChecked={props.cumulativeAnswers.opening_some_days_thursday}
+            name="opening_day_thursday"
+            id="opening_day_thursday"
+            value="Thursday"
+            defaultChecked={props.cumulativeAnswers.opening_day_thursday}
           >
             Thursday
           </Checkbox>
           <Checkbox
-            name="friday"
-            id="opening_some_days_friday"
+            name="opening_day_friday"
+            id="opening_day_friday"
             value="Friday"
-            defaultChecked={props.cumulativeAnswers.opening_some_days_friday}
+            defaultChecked={props.cumulativeAnswers.opening_day_friday}
           >
             Friday
           </Checkbox>
           <Checkbox
-            name="saturday"
-            id="opening_some_days_saturday"
+            name="opening_day_saturday"
+            id="opening_day_saturday"
             value="Saturday"
-            defaultChecked={props.cumulativeAnswers.opening_some_days_saturday}
+            defaultChecked={props.cumulativeAnswers.opening_day_saturday}
           >
             Saturday
           </Checkbox>
           <Checkbox
-            name="sunday"
-            id="opening_some_days_sunday"
+            name="opening_day_sunday"
+            id="opening_day_sunday"
             value="Sunday"
-            defaultChecked={props.cumulativeAnswers.opening_some_days_sunday}
+            defaultChecked={props.cumulativeAnswers.opening_day_sunday}
           >
             Sunday
           </Checkbox>

@@ -1420,7 +1420,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
                     id="opening_days_start_everyday"
                     name="opening_days_start"
                     type="radio"
-                    value="Everyday"
+                    value="Every day"
                   />
                   <span
                     className="emotion-46"

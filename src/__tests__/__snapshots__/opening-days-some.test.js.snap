@@ -1343,14 +1343,14 @@ exports[`<OpeningSomeDays /> matches the previous snapshot 1`] = `
           className="emotion-72"
         >
           <form
-            action="/continue/opening-some-days/undefined"
+            action="/continue/opening-days-some/undefined"
             method="post"
           >
             <div
               className="emotion-41 emotion-42"
             >
               <a
-                href="/back/opening-some-days"
+                href="/back/opening-days-some"
                 id="back-link"
               >
                 Back
@@ -1391,8 +1391,8 @@ exports[`<OpeningSomeDays /> matches the previous snapshot 1`] = `
                 >
                   <input
                     className="emotion-47"
-                    id="opening_some_days_monday"
-                    name="monday"
+                    id="opening_day_monday"
+                    name="opening_day_monday"
                     type="checkbox"
                     value="Monday"
                   />
@@ -1407,8 +1407,8 @@ exports[`<OpeningSomeDays /> matches the previous snapshot 1`] = `
                 >
                   <input
                     className="emotion-47"
-                    id="opening_some_days_tuesday"
-                    name="tuesday"
+                    id="opening_day_tuesday"
+                    name="opening_day_tuesday"
                     type="checkbox"
                     value="Tuesday"
                   />
@@ -1423,10 +1423,10 @@ exports[`<OpeningSomeDays /> matches the previous snapshot 1`] = `
                 >
                   <input
                     className="emotion-47"
-                    id="opening_some_days_wednesday"
-                    name="wednesday"
+                    id="opening_day_wednesday"
+                    name="opening_day_wednesday"
                     type="checkbox"
-                    value="wednesday"
+                    value="Wednesday"
                   />
                   <span
                     className="emotion-48"
@@ -1439,10 +1439,10 @@ exports[`<OpeningSomeDays /> matches the previous snapshot 1`] = `
                 >
                   <input
                     className="emotion-47"
-                    id="opening_some_days_thursday"
-                    name="thursday"
+                    id="opening_day_thursday"
+                    name="opening_day_thursday"
                     type="checkbox"
-                    value="Thuesday"
+                    value="Thursday"
                   />
                   <span
                     className="emotion-48"
@@ -1455,8 +1455,8 @@ exports[`<OpeningSomeDays /> matches the previous snapshot 1`] = `
                 >
                   <input
                     className="emotion-47"
-                    id="opening_some_days_friday"
-                    name="friday"
+                    id="opening_day_friday"
+                    name="opening_day_friday"
                     type="checkbox"
                     value="Friday"
                   />
@@ -1471,8 +1471,8 @@ exports[`<OpeningSomeDays /> matches the previous snapshot 1`] = `
                 >
                   <input
                     className="emotion-47"
-                    id="opening_some_days_saturday"
-                    name="saturday"
+                    id="opening_day_saturday"
+                    name="opening_day_saturday"
                     type="checkbox"
                     value="Saturday"
                   />
@@ -1487,8 +1487,8 @@ exports[`<OpeningSomeDays /> matches the previous snapshot 1`] = `
                 >
                   <input
                     className="emotion-47"
-                    id="opening_some_days_sunday"
-                    name="sunday"
+                    id="opening_day_sunday"
+                    name="opening_day_sunday"
                     type="checkbox"
                     value="Sunday"
                   />

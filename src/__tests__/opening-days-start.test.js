@@ -67,7 +67,7 @@ describe("<OpeningDaysStart />", () => {
   describe("all Radio buttons", () => {
     it("can be selected by default", () => {
       const radioButtonIdsAndValues = {
-        opening_days_start_everyday: "Everyday",
+        opening_days_start_everyday: "Every day",
         opening_days_start_some_days: "Some days",
         opening_days_start_irregular_days: "Irregular days"
       };

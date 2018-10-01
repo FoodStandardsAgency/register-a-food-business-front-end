@@ -17,7 +17,8 @@ const {
   validatePastDate,
   validateFutureDate,
   validateBusinessType,
-  validateBusinessOtherDetails
+  validateBusinessOtherDetails,
+  validateOpeningDaysIrregular
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const schema = {
@@ -279,14 +280,55 @@ const schema = {
   "/opening-days-some": {
     type: "object",
     properties: {
-      supply_other: {
+      opening_day_monday: {
         type: "string"
       },
-      supply_directly: {
+      opening_day_tuesday: {
+        type: "string"
+      },
+      opening_day_wednesday: {
+        type: "string"
+      },
+      opening_day_thursday: {
+        type: "string"
+      },
+      opening_day_friday: {
+        type: "string"
+      },
+      opening_day_saturday: {
+        type: "string"
+      },
+      opening_day_sunday: {
         type: "string"
       }
     },
-    anyOf: [{ required: ["supply_other"] }, { required: ["supply_directly"] }]
+    anyOf: [
+      { required: ["opening_day_monday"] },
+      { required: ["opening_day_tuesday"] },
+      { required: ["opening_day_wednesday"] },
+      { required: ["opening_day_thursday"] },
+      { required: ["opening_day_friday"] },
+      { required: ["opening_day_saturday"] },
+      { required: ["opening_day_sunday"] }
+    ]
+  },
+  "/opening-days-start": {
+    type: "object",
+    properties: {
+      opening_days_start: {
+        type: "string",
+        validation: validateRadioButtons
+      }
+    }
+  },
+  "/opening-days-irregular": {
+    type: "object",
+    properties: {
+      opening_days_irregular: {
+        type: "string",
+        validation: validateOpeningDaysIrregular
+      }
+    }
   },
   "/business-type": {
     type: "object",

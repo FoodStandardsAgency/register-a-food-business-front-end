@@ -109,6 +109,13 @@ const validate = (page, answers) => {
         result.errors.customer_type = errorMessages.customer_type;
       }
 
+      if (
+        validatorResult.schema.properties.opening_day_monday &&
+        validatorResult.errors.length > 0
+      ) {
+        result.errors.opening_days_some = errorMessages.opening_days_some;
+      }
+
       // turn errors into key:value pairs
       validatorResult.errors.forEach(error => {
         const key = error.property.split(".")[1];

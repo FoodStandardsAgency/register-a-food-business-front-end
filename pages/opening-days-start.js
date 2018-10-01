@@ -29,10 +29,10 @@ const OpeningDaysStart = props => (
         >
           <Radio
             name="opening_days_start"
-            value="Everyday"
+            value="Every day"
             id="opening_days_start_everyday"
             defaultChecked={
-              props.cumulativeAnswers.opening_days_start === "Everyday"
+              props.cumulativeAnswers.opening_days_start === "Every day"
             }
           >
             Every day

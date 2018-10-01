@@ -121,6 +121,14 @@
       }
     }
   },
+  "/opening-days-some": {
+    "on": false,
+    "switches": {}
+  },
+  "/opening-days-irregular": {
+    "on": false,
+    "switches": {}
+  },
   "/customer-type": {
     "on": true,
     "switches": {}

@@ -1,4 +1,4 @@
-import OpeningSomeDays from "../../pages/opening-some-days";
+import OpeningSomeDays from "../../pages/opening-days-some";
 import { shallow, mount } from "enzyme";
 import renderer from "react-test-renderer";
 import * as emotion from "emotion";
@@ -49,7 +49,7 @@ describe("<OpeningSomeDays />", () => {
 
     it("Monday checkbox gets given the correct default value", () => {
       const cumulativeAnswers = {
-        opening_some_days_monday: "default"
+        opening_day_monday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
@@ -59,14 +59,14 @@ describe("<OpeningSomeDays />", () => {
         />
       );
       const OpeningSomeDaysCheckBox = wrapper.find(
-        "Checkbox#opening_some_days_monday"
+        "Checkbox#opening_day_monday"
       );
       expect(OpeningSomeDaysCheckBox.props().defaultChecked).toBe("default");
     });
 
     it("Tuesday checkbox gets given the correct default value", () => {
       const cumulativeAnswers = {
-        opening_some_days_tuesday: "default"
+        opening_day_tuesday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
@@ -76,14 +76,14 @@ describe("<OpeningSomeDays />", () => {
         />
       );
       const OpeningSomeDaysCheckBox = wrapper.find(
-        "Checkbox#opening_some_days_tuesday"
+        "Checkbox#opening_day_tuesday"
       );
       expect(OpeningSomeDaysCheckBox.props().defaultChecked).toBe("default");
     });
 
     it("Wednesday checkbox gets given the correct default value", () => {
       const cumulativeAnswers = {
-        opening_some_days_wednesday: "default"
+        opening_day_wednesday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
@@ -93,14 +93,14 @@ describe("<OpeningSomeDays />", () => {
         />
       );
       const OpeningSomeDaysCheckBox = wrapper.find(
-        "Checkbox#opening_some_days_wednesday"
+        "Checkbox#opening_day_wednesday"
       );
       expect(OpeningSomeDaysCheckBox.props().defaultChecked).toBe("default");
     });
 
     it("Thursday checkbox gets given the correct default value", () => {
       const cumulativeAnswers = {
-        opening_some_days_thursday: "default"
+        opening_day_thursday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
@@ -110,14 +110,14 @@ describe("<OpeningSomeDays />", () => {
         />
       );
       const OpeningSomeDaysCheckBox = wrapper.find(
-        "Checkbox#opening_some_days_thursday"
+        "Checkbox#opening_day_thursday"
       );
       expect(OpeningSomeDaysCheckBox.props().defaultChecked).toBe("default");
     });
 
     it("Friday checkbox gets given the correct default value", () => {
       const cumulativeAnswers = {
-        opening_some_days_friday: "default"
+        opening_day_friday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
@@ -127,14 +127,14 @@ describe("<OpeningSomeDays />", () => {
         />
       );
       const OpeningSomeDaysCheckBox = wrapper.find(
-        "Checkbox#opening_some_days_friday"
+        "Checkbox#opening_day_friday"
       );
       expect(OpeningSomeDaysCheckBox.props().defaultChecked).toBe("default");
     });
 
     it("Saturday checkbox gets given the correct default value", () => {
       const cumulativeAnswers = {
-        opening_some_days_saturday: "default"
+        opening_day_saturday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
@@ -144,13 +144,13 @@ describe("<OpeningSomeDays />", () => {
         />
       );
       const OpeningSomeDaysCheckBox = wrapper.find(
-        "Checkbox#opening_some_days_saturday"
+        "Checkbox#opening_day_saturday"
       );
       expect(OpeningSomeDaysCheckBox.props().defaultChecked).toBe("default");
     });
     it("Sunday checkbox gets given the correct default value", () => {
       const cumulativeAnswers = {
-        opening_some_days_sunday: "default"
+        opening_day_sunday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
@@ -160,7 +160,7 @@ describe("<OpeningSomeDays />", () => {
         />
       );
       const OpeningSomeDaysCheckBox = wrapper.find(
-        "Checkbox#opening_some_days_sunday"
+        "Checkbox#opening_day_sunday"
       );
       expect(OpeningSomeDaysCheckBox.props().defaultChecked).toBe("default");
     });
@@ -169,7 +169,7 @@ describe("<OpeningSomeDays />", () => {
   describe("top-level MultiChoice element", () => {
     it("renders the correct error", () => {
       const validatorErrors = {
-        opening_some_days: "test error"
+        opening_days_some: "test error"
       };
       const wrapper = mount(
         <OpeningSomeDays
