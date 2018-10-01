@@ -144,9 +144,11 @@ describe("<SummaryTable />", () => {
     it("the number of table rows matches the allTableRows array", () => {
       const rows = wrapperComprehensive
         .find("Row")
-        .findWhere(row => row.prop("className") !== "TITLE")
+        .findWhere(row => {
+          const classNameString = row.prop("className") || "";
+          return classNameString.includes("TITLE") === false;
+        })
         .find("Row");
-
       expect(rows.length).toEqual(allTableRows.length);
     });
 
