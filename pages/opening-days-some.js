@@ -5,14 +5,7 @@ import {
   BackButton,
   ContinueButton
 } from "../src/components";
-import {
-  Header,
-  Checkbox,
-  MultiChoice,
-  Paragraph,
-  HiddenText,
-  HintText
-} from "govuk-react";
+import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OpeningSomeDays = props => (

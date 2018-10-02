@@ -62,6 +62,31 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       });
     });
 
+    describe("Given that monday to sunday are selected on open-some-days, are part of cumulative answers", () => {
+      const someDays = {
+        opening_day_monday: "True",
+        opening_day_tuesday: "True",
+        opening_day_wednesday: "True",
+        opening_day_thursday: "True",
+        opening_day_friday: "True",
+        opening_day_saturday: "True",
+        opening_day_sunday: "True"
+      };
+      it("Should return a open_some_days_summary_table value of 'Every day'", () => {
+        result = transformAnswersForSummary(someDays);
+        expect(result.open_some_days_summary_table).toBe("Every day");
+      });
+    });
+    describe("Given that opening_days_start is selected on open-days-start", () => {
+      const someDays = {
+        opening_days_start: "Every day"
+      };
+      it("Should return a open_some_days_summary_table value of 'Every day'", () => {
+        result = transformAnswersForSummary(someDays);
+        expect(result.open_some_days_summary_table).toBe("Every day");
+      });
+    });
+
     describe("Given that only supply_other is part of cumulative answers", () => {
       const supplyDirectlyOnly = {
         supply_other: "True"

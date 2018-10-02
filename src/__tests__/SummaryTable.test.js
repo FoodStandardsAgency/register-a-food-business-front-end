@@ -27,7 +27,8 @@ const mandatoryTableRows = [
   "contactRepresentativeRow",
   "establishmentOpeningDateRow",
   "businessTypeRow",
-  "businessOtherDetailsRow"
+  "businessOtherDetailsRow",
+  "establishmentOpeningDaysRow"
 ];
 
 const editableTableRows = [
@@ -79,7 +80,8 @@ const testMandatoryAnswers = {
   establishment_opening_date: "2018-12-06",
   establishment_type: "Mobile or moveable premise",
   business_type: "Livestock farm",
-  business_other_details: "This is the best business in the world"
+  business_other_details: "This is the best business in the world",
+  opening_day_monday: "Monday"
 };
 
 // a supplementary set of all optional answer fields with example data
@@ -185,6 +187,7 @@ describe("<SummaryTable />", () => {
 
     it("contains a non-empty string for every answer", () => {
       for (let answerID in testComprehensiveAnswers) {
+        console.log(wrapperComprehensive.find(`#${answerID}`), answerID);
         const text = wrapperComprehensive.find(`#${answerID}`).text();
         expect(text).not.toBe("");
       }
@@ -209,15 +212,6 @@ describe("<SummaryTable />", () => {
           expect(element.text()).toBe("");
         }
       }
-    });
-  });
-
-  describe("when answers are missing", () => {
-    it("does not render any table rows", () => {
-      allTableRows.forEach(tableRowName => {
-        const row = wrapperMissing.find(`Row#${tableRowName}`);
-        expect(row.length).toBe(0);
-      });
     });
   });
 });

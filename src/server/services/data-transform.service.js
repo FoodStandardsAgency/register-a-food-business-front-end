@@ -27,6 +27,17 @@ const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
     delete data.supply_directly;
     delete data.supply_other;
 
+    data.open_some_days_summary_table = transformOpeningDaysForSummary(
+      data.opening_day_monday,
+      data.opening_day_tuesday,
+      data.opening_day_wednesday,
+      data.opening_day_thursday,
+      data.opening_day_friday,
+      data.opening_day_saturday,
+      data.opening_day_sunday,
+      data.opening_days_start
+    );
+
     data.import_export_activities = transformBusinessImportExport(
       data.directly_import,
       data.directly_export,
@@ -246,6 +257,64 @@ const transformBusinessImportExport = (
     return "Directly export";
   } else if (no_import_export) {
     return "None";
+  } else {
+    return undefined;
+  }
+};
+
+const transformOpeningDaysForSummary = (
+  opening_day_monday,
+  opening_day_tuesday,
+  opening_day_wednesday,
+  opening_day_thursday,
+  opening_day_friday,
+  opening_day_saturday,
+  opening_day_sunday,
+  opening_days_start
+) => {
+  if (
+    opening_day_monday &&
+    opening_day_tuesday &&
+    opening_day_wednesday &&
+    opening_day_thursday &&
+    opening_day_friday &&
+    opening_day_saturday &&
+    opening_day_sunday
+  ) {
+    return "Every day";
+  } else if (opening_days_start === "Every day") {
+    return "Every day";
+  } else {
+    return undefined;
+  }
+};
+const transformOpeningDaysForSubmit = (
+  opening_day_monday,
+  opening_day_tuesday,
+  opening_day_wednesday,
+  opening_day_thursday,
+  opening_day_friday,
+  opening_day_saturday,
+  opening_day_sunday,
+  opening_days_start
+) => {
+  if (opening_day_monday) {
+    {
+      opening_day_monday = true;
+    }
+    return opening_day_monday;
+  } else if (opening_day_tuesday) {
+    return true;
+  } else if (opening_day_wednesday) {
+    return true;
+  } else if (opening_day_thursday) {
+    return true;
+  } else if (opening_day_friday) {
+    return true;
+  } else if (opening_day_saturday) {
+    return true;
+  } else if (opening_day_sunday) {
+    return true;
   } else {
     return undefined;
   }
