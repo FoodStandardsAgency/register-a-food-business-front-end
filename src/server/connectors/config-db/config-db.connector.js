@@ -1,5 +1,5 @@
 const mongodb = require("mongodb");
-const { pathConfigCollectionDouble } = require("./configDb.double");
+const { pathConfigCollectionDouble } = require("./config-db.double");
 const { CONFIGDB_URL } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { statusEmitter } = require("../../services/statusEmitter.service");
@@ -14,7 +14,7 @@ const establishConnectionToMongo = async () => {
   if (process.env.DOUBLE_MODE === "true") {
     logEmitter.emit(
       "doubleMode",
-      "configDb.connector",
+      "config-db.connector",
       "establishConnectionToMongo"
     );
     pathConfigCollection = pathConfigCollectionDouble;
@@ -32,7 +32,7 @@ const establishConnectionToMongo = async () => {
 const getPathConfigByVersion = async version => {
   logEmitter.emit(
     "functionCall",
-    "configDb.connector",
+    "config-db.connector",
     "getPathConfigByVersion"
   );
 
@@ -57,7 +57,7 @@ const getPathConfigByVersion = async version => {
       );
       logEmitter.emit(
         "functionFail",
-        "configDb.connector",
+        "config-db.connector",
         "getPathConfigByVersion",
         err
       );
@@ -72,7 +72,7 @@ const getPathConfigByVersion = async version => {
 
   logEmitter.emit(
     "functionSuccess",
-    "configDb.connector",
+    "config-db.connector",
     "getPathConfigByVersion"
   );
 

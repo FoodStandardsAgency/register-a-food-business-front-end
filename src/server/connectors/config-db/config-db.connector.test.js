@@ -2,12 +2,12 @@ const mongodb = require("mongodb");
 const {
   getPathConfigByVersion,
   clearPathConfigCache
-} = require("./configDb.connector");
+} = require("./config-db.connector");
 const mockPathConfig = require("./mockPathConfig.json");
-const { pathConfigCollectionDouble } = require("./configDb.double");
+const { pathConfigCollectionDouble } = require("./config-db.double");
 
 jest.mock("mongodb");
-jest.mock("./configDb.double");
+jest.mock("./config-db.double");
 
 let result;
 
