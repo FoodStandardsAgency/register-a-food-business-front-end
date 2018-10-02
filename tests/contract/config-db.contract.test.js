@@ -2,10 +2,10 @@ const {
   getPathConfigByVersion
 } = require("../../src/server/connectors/config-db/config-db.connector");
 
-let realResponse;
-let doubleResponse;
-
 describe("config-db.connector contract: getPathConfigByVersion", () => {
+  let realResponse;
+  let doubleResponse;
+
   describe("Given a valid request", () => {
     beforeEach(async () => {
       process.env.DOUBLE_MODE = false;
@@ -34,7 +34,7 @@ describe("config-db.connector contract: getPathConfigByVersion", () => {
     });
 
     it("real and double responses should match", () => {
-      expect(realResponse).toEqual(doubleResponse);
+      expect(doubleResponse).toEqual(realResponse);
     });
   });
 });

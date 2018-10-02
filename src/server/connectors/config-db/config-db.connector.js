@@ -44,10 +44,23 @@ const getPathConfigByVersion = async version => {
         _id: version
       });
 
-      pathConfig = pathConfigRecord.path;
-
-      statusEmitter.emit("incrementCount", "getPathConfigSucceeded");
-      statusEmitter.emit("setStatus", "mostRecentGetPathConfigSucceeded", true);
+      if (pathConfigRecord === null) {
+        pathConfig = null;
+        statusEmitter.emit("incrementCount", "getPathConfigFailed");
+        statusEmitter.emit(
+          "setStatus",
+          "mostRecentGetPathConfigSucceeded",
+          false
+        );
+      } else {
+        pathConfig = pathConfigRecord.path;
+        statusEmitter.emit("incrementCount", "getPathConfigSucceeded");
+        statusEmitter.emit(
+          "setStatus",
+          "mostRecentGetPathConfigSucceeded",
+          true
+        );
+      }
     } catch (err) {
       statusEmitter.emit("incrementCount", "getPathConfigFailed");
       statusEmitter.emit(

@@ -36,6 +36,26 @@ describe("Function: getPathConfigByVersion", () => {
       });
     });
 
+    describe("given the request returns null", () => {
+      beforeEach(async () => {
+        process.env.DOUBLE_MODE = false;
+        clearPathConfigCache();
+        mongodb.MongoClient.connect.mockImplementation(() => ({
+          db: () => ({
+            collection: () => ({
+              findOne: () => null
+            })
+          })
+        }));
+
+        result = await getPathConfigByVersion("1.0.0");
+      });
+
+      it("should return null", () => {
+        expect(result).toBe(null);
+      });
+    });
+
     describe("given the request is successful", () => {
       beforeEach(() => {
         process.env.DOUBLE_MODE = false;
