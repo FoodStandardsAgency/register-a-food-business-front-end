@@ -36,7 +36,8 @@ const validBody = {
         customer_type: "End consumer",
         business_type: "Livestock farm",
         business_type_search_term: "Example",
-        import_export_activities: "None"
+        import_export_activities: "None",
+        business_other_details: "Other details"
       }
     },
     metadata: {
@@ -80,7 +81,8 @@ const invalidBody = {
         customer_type: "End consumer",
         business_type: "Livestock farm",
         business_type_search_term: "Example",
-        import_export_activities: "None"
+        import_export_activities: "None",
+        business_other_details: "Other details"
       }
     },
     metadata: {

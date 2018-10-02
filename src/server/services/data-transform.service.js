@@ -170,7 +170,8 @@ const transformAnswersForSubmit = (
     "customer_type",
     "business_type",
     "business_type_search_term",
-    "import_export_activities"
+    "import_export_activities",
+    "business_other_details"
   ];
 
   const metadata_keys = ["declaration1", "declaration2", "declaration3"];
