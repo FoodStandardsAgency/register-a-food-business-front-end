@@ -17,8 +17,16 @@ describe("config-db.connector integration: getPathConfigByVersion", () => {
     });
 
     it("should return path data", () => {
-      expect(response["/index"].on).toBeDefined();
-      expect(response["/index"].switches).toBeDefined();
+      expect(response.path["/index"].on).toBeDefined();
+      expect(response.path["/index"].switches).toBeDefined();
+    });
+
+    it("should return a version _id", () => {
+      expect(typeof response._id).toBe("string");
+    });
+
+    it("should return a notify_template_keys object", () => {
+      expect(typeof response.notify_template_keys).toBe("object");
     });
   });
 

@@ -16,11 +16,21 @@ describe("config-db.connector contract: getPathConfigByVersion", () => {
     });
 
     it("real and double responses should both return path data", () => {
-      expect(realResponse["/index"].on).toBeDefined();
-      expect(realResponse["/index"].switches).toBeDefined();
+      expect(realResponse.path["/index"].on).toBeDefined();
+      expect(realResponse.path["/index"].switches).toBeDefined();
 
-      expect(doubleResponse["/index"].on).toBeDefined();
-      expect(doubleResponse["/index"].switches).toBeDefined();
+      expect(doubleResponse.path["/index"].on).toBeDefined();
+      expect(doubleResponse.path["/index"].switches).toBeDefined();
+    });
+
+    it("real and double responses should both return a version _id", () => {
+      expect(typeof doubleResponse._id).toEqual(typeof realResponse._id);
+    });
+
+    it("real and double responses should both return a notify_template_keys object", () => {
+      expect(typeof doubleResponse.notify_template_keys).toEqual(
+        typeof realResponse.notify_template_keys
+      );
     });
   });
 
