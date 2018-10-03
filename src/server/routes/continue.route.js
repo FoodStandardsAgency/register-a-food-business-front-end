@@ -19,7 +19,8 @@ const continueRouter = () => {
       req.session.cumulativeAnswers,
       req.body,
       req.session.switches,
-      editMode
+      editMode,
+      req.session.path
     );
 
     req.session.cumulativeAnswers = response.cumulativeAnswers;

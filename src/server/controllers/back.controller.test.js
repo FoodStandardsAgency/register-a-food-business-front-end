@@ -1,5 +1,6 @@
 jest.mock("../services/path.service");
 const { moveAlongPath, editPath } = require("../services/path.service");
+const pathJSON = require("../../__mocks__/pathMock.json");
 const backController = require("./back.controller");
 
 describe("Function: backController: ", () => {
@@ -18,7 +19,7 @@ describe("Function: backController: ", () => {
         }
       }));
       moveAlongPath.mockImplementation(() => "/previous-page");
-      result = backController("/current-page", {});
+      result = backController("/current-page", {}, pathJSON);
     });
 
     it("Should return a result", () => {
@@ -29,8 +30,12 @@ describe("Function: backController: ", () => {
       expect(result).toBe("/previous-page");
     });
 
+    it("Should call editPath with the three required args", () => {
+      expect(editPath).toHaveBeenLastCalledWith({}, "/current-page", pathJSON);
+    });
+
     describe("When previousAnswers is undefined", () => {
-      result = backController("/current-page");
+      result = backController("/current-page", undefined, pathJSON);
 
       it("Should return a result", () => {
         expect(result).toBeDefined();
@@ -48,7 +53,7 @@ describe("Function: backController: ", () => {
         });
 
         try {
-          result = backController("/current-page");
+          result = backController("/current-page", {}, pathJSON);
         } catch (err) {
           result = err;
         }

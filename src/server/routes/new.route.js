@@ -4,6 +4,10 @@ const { logEmitter } = require("../services/logging.service");
 const {
   transformAnswersForSummary
 } = require("../services/data-transform.service");
+const {
+  getPathConfigByVersion
+} = require("../connectors/config-db/config-db.connector");
+const { REGISTRATION_DATA_VERSION } = require("../config");
 
 const allowedCouncils = [
   "mid-and-east-antrim",
@@ -17,15 +21,18 @@ const allowedCouncils = [
 const newRouter = () => {
   const router = Router();
 
-  router.get("/:lc/:page?", (req, res) => {
+  router.get("/:lc/:page?", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/new route");
 
     if (allowedCouncils.includes(req.params.lc)) {
       const page = req.params.page || "index";
 
       if (page === "index") {
-        req.session.regenerate(() => {
+        req.session.regenerate(async () => {
           req.session.council = req.params.lc;
+          req.session.path = await getPathConfigByVersion(
+            REGISTRATION_DATA_VERSION
+          );
 
           logEmitter.emit(
             "functionSuccessWith",
@@ -39,6 +46,11 @@ const newRouter = () => {
         // Save council to session if not yet there
         if (!req.session.council) {
           req.session.council = req.params.lc;
+        }
+        if (!req.session.path) {
+          req.session.path = await getPathConfigByVersion(
+            REGISTRATION_DATA_VERSION
+          );
         }
 
         // Transform the data into summary format on pages where it is required
