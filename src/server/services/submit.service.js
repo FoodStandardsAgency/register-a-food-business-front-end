@@ -3,11 +3,12 @@ const {
 } = require("../connectors/registration/registration.connector");
 const { logEmitter } = require("./logging.service");
 
-const submit = async submissionData => {
+const submit = async (submissionData, pathConfig) => {
   logEmitter.emit("functionCall", "submit.service", "submit");
+
   try {
     const stringSubmissionData = JSON.stringify(submissionData);
-    const response = await sendRequest(stringSubmissionData);
+    const response = await sendRequest(stringSubmissionData, pathConfig);
     logEmitter.emit("functionSuccess", "submit.service", "submit");
     return response;
   } catch (err) {

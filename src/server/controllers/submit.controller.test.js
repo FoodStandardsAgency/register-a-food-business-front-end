@@ -11,8 +11,14 @@ const submitController = require("./submit.controller");
 const testLcUrl = "example-lc";
 const testSubmissionData = { some: "data" };
 const testAddressLookups = {};
+const testPathConfig = "dummy path config";
 
-const submitArgs = [testLcUrl, testSubmissionData, testAddressLookups];
+const submitArgs = [
+  testLcUrl,
+  testSubmissionData,
+  testAddressLookups,
+  testPathConfig
+];
 
 let response;
 
@@ -26,7 +32,12 @@ describe("Function: submitController: ", () => {
   describe("When given empty submission data", () => {
     beforeEach(async () => {
       try {
-        response = await submitController(testLcUrl, {}, testAddressLookups);
+        response = await submitController(
+          testLcUrl,
+          {},
+          testAddressLookups,
+          testPathConfig
+        );
       } catch (err) {
         response = err;
       }
@@ -70,6 +81,14 @@ describe("Function: submitController: ", () => {
       response = await submitController(...submitArgs);
     });
 
+    it("Should call the submit service function with the correct args", () => {
+      expect(submit).toHaveBeenLastCalledWith(
+        {
+          transformedDataExample: "value"
+        },
+        testPathConfig
+      );
+    });
     it("Should set redirectRoute to summary-confirmation", () => {
       expect(response.redirectRoute).toBe("/summary-confirmation");
     });

@@ -5,7 +5,12 @@ const {
   transformAnswersForSubmit
 } = require("../services/data-transform.service");
 
-const submitController = async (lcUrl, submissionData, addressLookups) => {
+const submitController = async (
+  lcUrl,
+  submissionData,
+  addressLookups,
+  pathConfig
+) => {
   const controllerResponse = {
     redirectRoute: null,
     submissionDate: "",
@@ -25,7 +30,7 @@ const submitController = async (lcUrl, submissionData, addressLookups) => {
         submissionData,
         addressLookups
       );
-      const response = await submit(transformedData);
+      const response = await submit(transformedData, pathConfig);
       const res = await response.json();
 
       if (response.status === 200) {

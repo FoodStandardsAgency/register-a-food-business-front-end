@@ -8,11 +8,12 @@ const submitRouter = () => {
   router.get("", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/submit route");
     const response = await submitController(
-      // TODO JMB: stubbed LC url - unit tests need to be updated once complete.
       req.session.council,
       req.session.cumulativeAnswers,
-      req.session.addressLookups
+      req.session.addressLookups,
+      req.session.pathConfig
     );
+
     req.session.submissionDate = response.submissionDate;
     req.session.fsaRegistrationNumber = response.fsaRegistrationNumber;
     req.session.email_fbo = response.email_fbo;
