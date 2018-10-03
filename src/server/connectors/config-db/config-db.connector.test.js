@@ -25,7 +25,7 @@ describe("Function: getPathConfigByVersion", () => {
       });
 
       describe("when the error shows that the connection has failed", () => {
-        it("should return the fallback path", () => {
+        it("should return the fallback path config", () => {
           expect(result).toEqual(pathConfigMock);
         });
       });
@@ -66,7 +66,7 @@ describe("Function: getPathConfigByVersion", () => {
 
       it("should return the data from the findOne() response", async () => {
         await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-          pathConfigMock.path
+          pathConfigMock
         );
       });
     });
@@ -82,7 +82,7 @@ describe("Function: getPathConfigByVersion", () => {
 
       it("should resolve with the data from the double's findOne() response", async () => {
         await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-          pathConfigMock.path
+          pathConfigMock
         );
       });
     });
@@ -107,12 +107,12 @@ describe("Function: getPathConfigByVersion", () => {
 
       // run one request
       await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-        pathConfigMock.path
+        pathConfigMock
       );
 
       // run a second request without clearing the cache
       await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-        pathConfigMock.path
+        pathConfigMock
       );
     });
 

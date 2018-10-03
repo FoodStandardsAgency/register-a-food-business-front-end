@@ -54,7 +54,7 @@ const getPathConfigByVersion = async version => {
           false
         );
       } else {
-        pathConfig = pathConfigRecord.path;
+        pathConfig = pathConfigRecord;
         statusEmitter.emit("incrementCount", "getPathConfigSucceeded");
         statusEmitter.emit(
           "setStatus",
