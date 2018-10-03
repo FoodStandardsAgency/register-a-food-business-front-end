@@ -1,7 +1,7 @@
-import pathJSON from "./path.json";
+import pathJSON from "./pathConfig.json";
 import { Validator } from "jsonschema";
 
-jest.unmock("./path.json");
+jest.unmock("./pathConfig.json");
 
 const v = new Validator();
 
@@ -14,7 +14,7 @@ const schema = {
   required: ["on", "switches"]
 };
 
-describe("path.json", () => {
+describe("pathConfig.json", () => {
   it("is in a valid format", () => {
     for (let page in pathJSON) {
       expect(v.validate(pathJSON[page], schema).errors.length).toBe(0);

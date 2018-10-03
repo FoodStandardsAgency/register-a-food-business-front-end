@@ -33,7 +33,7 @@ describe("Continue route: ", () => {
           cumulativeAnswers: {},
           switches: {},
           council: "council",
-          path: "existing path from session",
+          pathConfig: { path: "existing path from session" },
           save: cb => {
             cb();
           }
@@ -92,7 +92,7 @@ describe("Continue route: ", () => {
             cumulativeAnswers: {},
             switches: {},
             council: "council",
-            path: "existing path from session",
+            pathConfig: { path: "existing path from session" },
             save: cb => {
               cb();
             }
@@ -152,7 +152,7 @@ describe("Continue route: ", () => {
             cumulativeAnswers: {},
             switches: {},
             council: "council",
-            path: "existing path from session",
+            pathConfig: { path: "existing path from session" },
             save: cb => {
               cb();
             }
@@ -195,7 +195,7 @@ describe("Continue route: ", () => {
             cumulativeAnswers: {},
             switches: {},
             council: "council",
-            path: "existing path from session",
+            pathConfig: { path: "existing path from session" },
             save: cb => {
               cb("session save error");
             }

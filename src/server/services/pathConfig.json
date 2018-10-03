@@ -122,10 +122,6 @@
     "on": true,
     "switches": {}
   },
-  "/business-other-details": {
-    "on": true,
-    "switches": {}
-  },
   "/registration-summary": {
     "on": true,
     "switches": {}

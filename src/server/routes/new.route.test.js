@@ -35,7 +35,7 @@ describe("New route: ", () => {
   });
 
   describe("GET to /new/:lc/page", () => {
-    describe("When req.session.council and req.session.path are both undefined and page is not index", () => {
+    describe("When req.session.council and req.session.pathConfig are both undefined and page is not index", () => {
       let req, res;
 
       beforeEach(() => {
@@ -61,8 +61,10 @@ describe("New route: ", () => {
         expect(req.session.council).toBe("purbeck");
       });
 
-      it("Should set req.session.path", () => {
-        expect(req.session.path).toBe("fetched path from either cache or DB");
+      it("Should set req.session.pathConfig", () => {
+        expect(req.session.pathConfig).toBe(
+          "fetched path from either cache or DB"
+        );
       });
 
       it("Should call Next.render", () => {
@@ -70,7 +72,7 @@ describe("New route: ", () => {
       });
     });
 
-    describe("When req.session.council and req.session.path are both defined", () => {
+    describe("When req.session.council and req.session.pathConfig are both defined", () => {
       let req, res;
 
       beforeEach(() => {
@@ -78,7 +80,7 @@ describe("New route: ", () => {
         req = {
           session: {
             council: "purbeck",
-            path: "existing path in session",
+            pathConfig: "existing path from session",
             regenerate: cb => {
               cb();
             }
@@ -99,7 +101,7 @@ describe("New route: ", () => {
       });
 
       it("Should not change the path", () => {
-        expect(req.session.path).toBe("existing path in session");
+        expect(req.session.pathConfig).toBe("existing path from session");
       });
 
       describe("When page is /index", () => {
@@ -108,7 +110,7 @@ describe("New route: ", () => {
           req = {
             session: {
               council: "purbeck",
-              path: "existing path in session",
+              pathConfig: "existing path from session",
               regenerate: cb => {
                 cb();
               }
@@ -125,7 +127,9 @@ describe("New route: ", () => {
         });
 
         it("Should fetch a new version of the path", () => {
-          expect(req.session.path).toBe("fetched path from either cache or DB");
+          expect(req.session.pathConfig).toBe(
+            "fetched path from either cache or DB"
+          );
         });
       });
 

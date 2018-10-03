@@ -30,7 +30,7 @@ const newRouter = () => {
       if (page === "index") {
         req.session.regenerate(async () => {
           req.session.council = req.params.lc;
-          req.session.path = await getPathConfigByVersion(
+          req.session.pathConfig = await getPathConfigByVersion(
             REGISTRATION_DATA_VERSION
           );
 
@@ -47,8 +47,8 @@ const newRouter = () => {
         if (!req.session.council) {
           req.session.council = req.params.lc;
         }
-        if (!req.session.path) {
-          req.session.path = await getPathConfigByVersion(
+        if (!req.session.pathConfig) {
+          req.session.pathConfig = await getPathConfigByVersion(
             REGISTRATION_DATA_VERSION
           );
         }

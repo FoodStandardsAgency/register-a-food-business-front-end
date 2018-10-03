@@ -3,7 +3,7 @@ const {
   getPathConfigByVersion,
   clearPathConfigCache
 } = require("./config-db.connector");
-const mockPathConfig = require("./mockPathConfig.json");
+const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
 const { pathConfigCollectionDouble } = require("./config-db.double");
 
 jest.mock("mongodb");
@@ -21,17 +21,12 @@ describe("Function: getPathConfigByVersion", () => {
           throw new Error("example mongo error");
         });
 
-        try {
-          await getPathConfigByVersion("1.0.0");
-        } catch (err) {
-          result = err;
-        }
+        result = await getPathConfigByVersion("1.0.0");
       });
 
       describe("when the error shows that the connection has failed", () => {
-        it("should throw mongoConnectionError error", () => {
-          expect(result.name).toBe("mongoConnectionError");
-          expect(result.message).toBe("example mongo error");
+        it("should return the fallback path", () => {
+          expect(result).toEqual(pathConfigMock);
         });
       });
     });
@@ -63,7 +58,7 @@ describe("Function: getPathConfigByVersion", () => {
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
-              findOne: () => mockPathConfig
+              findOne: () => pathConfigMock
             })
           })
         }));
@@ -71,7 +66,7 @@ describe("Function: getPathConfigByVersion", () => {
 
       it("should return the data from the findOne() response", async () => {
         await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-          mockPathConfig.path
+          pathConfigMock.path
         );
       });
     });
@@ -81,13 +76,13 @@ describe("Function: getPathConfigByVersion", () => {
         process.env.DOUBLE_MODE = true;
         clearPathConfigCache();
         pathConfigCollectionDouble.findOne.mockImplementation(
-          () => mockPathConfig
+          () => pathConfigMock
         );
       });
 
       it("should resolve with the data from the double's findOne() response", async () => {
         await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-          mockPathConfig.path
+          pathConfigMock.path
         );
       });
     });
@@ -100,7 +95,7 @@ describe("Function: getPathConfigByVersion", () => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
-            findOne: () => mockPathConfig
+            findOne: () => pathConfigMock
           })
         })
       }));
@@ -112,12 +107,12 @@ describe("Function: getPathConfigByVersion", () => {
 
       // run one request
       await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-        mockPathConfig.path
+        pathConfigMock.path
       );
 
       // run a second request without clearing the cache
       await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-        mockPathConfig.path
+        pathConfigMock.path
       );
     });
 
