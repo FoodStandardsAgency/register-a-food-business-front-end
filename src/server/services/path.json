@@ -142,7 +142,7 @@
     "switches": {}
   },
   "/business-other-details": {
-    "on": false,
+    "on": true,
     "switches": {}
   },
   "/registration-summary": {

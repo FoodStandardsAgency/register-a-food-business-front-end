@@ -187,7 +187,6 @@ describe("<SummaryTable />", () => {
 
     it("contains a non-empty string for every answer", () => {
       for (let answerID in testComprehensiveAnswers) {
-        console.log(wrapperComprehensive.find(`#${answerID}`), answerID);
         const text = wrapperComprehensive.find(`#${answerID}`).text();
         expect(text).not.toBe("");
       }

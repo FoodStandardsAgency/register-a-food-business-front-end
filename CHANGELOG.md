@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.39.0 - 3rd October 2018 (released)
+
+### Added
+
+* SDB-52 establishmentOpeningDays
+
 ## v1.38.4 - 1st October 2018 (released)
 
 ### Modified
