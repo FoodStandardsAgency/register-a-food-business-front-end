@@ -304,7 +304,6 @@ describe("data-transform.service transformAnswersForSummary()", () => {
             cumulativeAnswersOpAddSelected,
             testAddressLookupsNoPremise
           );
-          console.log(response);
           expect(response.operator_first_line).toBe(
             correctResponse.operator_first_line
           );
@@ -570,7 +569,6 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       testCumulativeAnswers,
       testAddressLookups
     );
-    console.log(result);
     expect(
       result.registration.establishment.operator.operator_first_name
     ).toBeDefined();
