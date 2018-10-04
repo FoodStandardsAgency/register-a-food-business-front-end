@@ -626,12 +626,12 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-77 {
+.emotion-82 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-75 {
+.emotion-80 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -644,7 +644,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-75 {
+  .emotion-80 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -652,28 +652,28 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-74 {
+.emotion-79 {
   margin-bottom: 15px;
   box-sizing: border-box;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-74 {
+  .emotion-79 {
     margin-right: 15px;
     margin-left: 15px;
   }
 
-  .emotion-74:first-child {
+  .emotion-79:first-child {
     margin-left: 0;
   }
 
-  .emotion-74:last-child {
+  .emotion-79:last-child {
     margin-right: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-74 {
+  .emotion-79 {
     -webkit-box-flex: 0;
     -webkit-flex-grow: 0;
     -ms-flex-positive: 0;
@@ -797,7 +797,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-68 {
+.emotion-73 {
   border: 0;
   border-collapse: collapse;
   box-sizing: border-box;
@@ -811,7 +811,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-68 {
+  .emotion-73 {
     font-size: 16px;
     line-height: 1.25;
   }
@@ -938,7 +938,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-73 {
+.emotion-78 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -973,46 +973,46 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-73:hover {
+.emotion-78:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-73:focus {
+.emotion-78:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-73:active {
+.emotion-78:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-73:visited {
+.emotion-78:visited {
   color: #00823b;
 }
 
-.emotion-73 svg {
+.emotion-78 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-73 {
+  .emotion-78 {
     margin-bottom: 20px;
   }
 }
 
-.emotion-102 {
+.emotion-107 {
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
 }
 
-.emotion-100 {
+.emotion-105 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -1027,7 +1027,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-100 {
+  .emotion-105 {
     width: calc(100% - 60px);
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -1039,7 +1039,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-92 {
+.emotion-97 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1053,11 +1053,11 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   justify-content: flex-end;
 }
 
-.emotion-84 {
+.emotion-89 {
   margin-bottom: 15px;
 }
 
-.emotion-78 {
+.emotion-83 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1072,54 +1072,54 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   font-size: 14px;
 }
 
-.emotion-78:focus {
+.emotion-83:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-78:visited {
+.emotion-83:visited {
   color: #2e358b;
 }
 
 @media (min-width:641px) {
-  .emotion-78 {
+  .emotion-83 {
     display: inline-block;
     font-size: 16px;
   }
 }
 
-.emotion-78:visited {
+.emotion-83:visited {
   color: #454a4c;
 }
 
-.emotion-78:hover {
+.emotion-83:hover {
   color: #171819;
 }
 
-.emotion-86 {
+.emotion-91 {
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-86 {
+  .emotion-91 {
     margin-bottom: 0px;
   }
 }
 
-.emotion-90 {
+.emotion-95 {
   font-size: 14px;
   margin: 0;
   display: inline-block;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-90 {
+  .emotion-95 {
     font-size: 16px;
   }
 }
 
-.emotion-88 {
+.emotion-93 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1130,24 +1130,24 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   color: #454a4c;
 }
 
-.emotion-88:focus {
+.emotion-93:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-88:visited {
+.emotion-93:visited {
   color: #2e358b;
 }
 
-.emotion-88:visited {
+.emotion-93:visited {
   color: #454a4c;
 }
 
-.emotion-88:hover {
+.emotion-93:hover {
   color: #171819;
 }
 
-.emotion-98 {
+.emotion-103 {
   margin: 0px 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1167,7 +1167,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
   text-align: center;
 }
 
-.emotion-94 {
+.emotion-99 {
   margin-bottom: 10px;
 }
 
@@ -1356,16 +1356,16 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-77"
+    className="emotion-82"
   >
     <div
       className="emotion-36"
     >
       <div
-        className="emotion-75"
+        className="emotion-80"
       >
         <div
-          className="emotion-74"
+          className="emotion-79"
         >
           <div
             className="emotion-42 emotion-43"
@@ -1399,7 +1399,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
               className="emotion-42 emotion-43"
             >
               <table
-                className="emotion-68"
+                className="emotion-73"
               >
                 <caption
                   className="emotion-48"
@@ -1462,6 +1462,56 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
                     </td>
                   </tr>
                   <tr
+                    className="emotion-53 emotion-54"
+                    id="establishmentOpeningDaysRow"
+                  >
+                    <th
+                      className="emotion-50"
+                    >
+                      Opening days
+                    </th>
+                    <td
+                      className="summaryTableDataCell emotion-51"
+                    >
+                      <div
+                        className="bold"
+                      >
+                        <div
+                          id="opening_days_irregular"
+                        >
+                          <div>
+                            <div
+                              id="opening_day_monday"
+                            />
+                            <div
+                              id="opening_day_tuesday"
+                            />
+                            <div
+                              id="opening_day_wednesday"
+                            />
+                            <div
+                              id="opening_day_thursday"
+                            />
+                            <div
+                              id="opening_day_friday"
+                            />
+                            <div
+                              id="opening_day_saturday"
+                            />
+                            <div
+                              id="opening_day_sunday"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      className="emotion-51"
+                    >
+                      <div />
+                    </td>
+                  </tr>
+                  <tr
                     className="TITLE emotion-53 emotion-54"
                   >
                     <th
@@ -1497,7 +1547,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
             method="post"
           >
             <button
-              className="emotion-73"
+              className="emotion-78"
               disabled={false}
               id="continue-button"
               type="submit"
@@ -1510,20 +1560,20 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-102 emotion-103"
+    className="emotion-107 emotion-108"
     id="fsaFooter"
   >
     <div
-      className="emotion-100 emotion-101"
+      className="emotion-105 emotion-106"
     >
       <div
-        className="emotion-92 emotion-93"
+        className="emotion-97 emotion-98"
       >
         <div
-          className="emotion-84 emotion-85"
+          className="emotion-89 emotion-90"
         >
           <a
-            className="emotion-78 emotion-79"
+            className="emotion-83 emotion-84"
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
             rel="noopener noreferrer"
@@ -1532,7 +1582,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
             Cookies
           </a>
           <a
-            className="emotion-78 emotion-79"
+            className="emotion-83 emotion-84"
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
             rel="noopener noreferrer"
@@ -1541,7 +1591,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
             Privacy
           </a>
           <a
-            className="emotion-78 emotion-79"
+            className="emotion-83 emotion-84"
             href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
             id="feedbackFooter"
             rel="noopener noreferrer"
@@ -1552,7 +1602,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
         </div>
         <div>
           <div
-            className="emotion-86 emotion-87"
+            className="emotion-91 emotion-92"
           >
             <svg
               className="govuk-footer__licence-logo"
@@ -1570,12 +1620,12 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
             </svg>
           </div>
           <p
-            className="emotion-90 emotion-91"
+            className="emotion-95 emotion-96"
           >
             All content is available under the
              
             <a
-              className="emotion-88 emotion-89"
+              className="emotion-93 emotion-94"
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
               rel="noopener noreferrer"
@@ -1589,10 +1639,10 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
         </div>
       </div>
       <div
-        className="emotion-98 emotion-99"
+        className="emotion-103 emotion-104"
       >
         <svg
-          className="emotion-94 emotion-95"
+          className="emotion-99 emotion-100"
           height="102"
           viewBox="0 0 124 102"
           width="124"
@@ -1620,7 +1670,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
           </g>
         </svg>
         <p
-          className="emotion-90 emotion-91"
+          className="emotion-95 emotion-96"
         >
           © Crown copyright
         </p>

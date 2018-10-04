@@ -27,6 +27,17 @@ const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
     delete data.supply_directly;
     delete data.supply_other;
 
+    data.open_some_days_summary_table = transformOpeningDaysForSummary(
+      data.opening_day_monday,
+      data.opening_day_tuesday,
+      data.opening_day_wednesday,
+      data.opening_day_thursday,
+      data.opening_day_friday,
+      data.opening_day_saturday,
+      data.opening_day_sunday,
+      data.opening_days_start
+    );
+
     data.import_export_activities = transformBusinessImportExport(
       data.directly_import,
       data.directly_export,
@@ -170,7 +181,15 @@ const transformAnswersForSubmit = (
     "customer_type",
     "business_type",
     "business_type_search_term",
-    "import_export_activities"
+    "import_export_activities",
+    "opening_days_irregular",
+    "opening_day_monday",
+    "opening_day_tuesday",
+    "opening_day_wednesday",
+    "opening_day_thursday",
+    "opening_day_friday",
+    "opening_day_saturday",
+    "opening_day_sunday"
   ];
 
   const metadata_keys = ["declaration1", "declaration2", "declaration3"];
@@ -187,35 +206,52 @@ const transformAnswersForSubmit = (
     local_council_url: lcUrl
   };
 
-  const data = transformAnswersForSummary(cumulativeAnswers, addressLookups);
+  const summaryData = transformAnswersForSummary(
+    cumulativeAnswers,
+    addressLookups
+  );
+
+  const openingDays = transformOpeningDaysForSubmit(
+    summaryData.opening_days_start,
+    summaryData.opening_day_monday,
+    summaryData.opening_day_tuesday,
+    summaryData.opening_day_wednesday,
+    summaryData.opening_day_thursday,
+    summaryData.opening_day_friday,
+    summaryData.opening_day_saturday,
+    summaryData.opening_day_sunday
+  );
+
+  const submitData = Object.assign({}, summaryData, openingDays);
+
   establishment_details_keys.forEach(key => {
-    if (data[key]) {
+    if (submitData[key] !== undefined) {
       submitObject.registration.establishment.establishment_details[key] =
-        data[key];
+        submitData[key];
     }
   });
 
   operator_keys.forEach(key => {
-    if (data[key]) {
-      submitObject.registration.establishment.operator[key] = data[key];
+    if (submitData[key] !== undefined) {
+      submitObject.registration.establishment.operator[key] = submitData[key];
     }
   });
 
   premise_keys.forEach(key => {
-    if (data[key]) {
-      submitObject.registration.establishment.premise[key] = data[key];
+    if (submitData[key] !== undefined) {
+      submitObject.registration.establishment.premise[key] = submitData[key];
     }
   });
 
   activities_keys.forEach(key => {
-    if (data[key]) {
-      submitObject.registration.establishment.activities[key] = data[key];
+    if (submitData[key] !== undefined) {
+      submitObject.registration.establishment.activities[key] = submitData[key];
     }
   });
 
   metadata_keys.forEach(key => {
-    if (data[key]) {
-      submitObject.registration.metadata[key] = data[key];
+    if (submitData[key] !== undefined) {
+      submitObject.registration.metadata[key] = submitData[key];
     }
   });
 
@@ -249,6 +285,82 @@ const transformBusinessImportExport = (
   } else {
     return undefined;
   }
+};
+
+const transformOpeningDaysForSummary = (
+  opening_day_monday,
+  opening_day_tuesday,
+  opening_day_wednesday,
+  opening_day_thursday,
+  opening_day_friday,
+  opening_day_saturday,
+  opening_day_sunday,
+  opening_days_start
+) => {
+  if (
+    opening_day_monday &&
+    opening_day_tuesday &&
+    opening_day_wednesday &&
+    opening_day_thursday &&
+    opening_day_friday &&
+    opening_day_saturday &&
+    opening_day_sunday
+  ) {
+    return "Every day";
+  } else if (opening_days_start === "Every day") {
+    return "Every day";
+  } else {
+    return undefined;
+  }
+};
+const transformOpeningDaysForSubmit = (
+  opening_days_start,
+  opening_day_monday,
+  opening_day_tuesday,
+  opening_day_wednesday,
+  opening_day_thursday,
+  opening_day_friday,
+  opening_day_saturday,
+  opening_day_sunday
+) => {
+  const days = {
+    opening_day_monday: false,
+    opening_day_tuesday: false,
+    opening_day_wednesday: false,
+    opening_day_thursday: false,
+    opening_day_friday: false,
+    opening_day_saturday: false,
+    opening_day_sunday: false
+  };
+
+  if (opening_days_start === "Every day") {
+    for (let day in days) {
+      days[day] = true;
+    }
+  } else {
+    opening_day_monday
+      ? (days.opening_day_monday = true)
+      : (days.opening_day_monday = false);
+    opening_day_tuesday
+      ? (days.opening_day_tuesday = true)
+      : (days.opening_day_tuesday = false);
+    opening_day_wednesday
+      ? (days.opening_day_wednesday = true)
+      : (days.opening_day_wednesday = false);
+    opening_day_thursday
+      ? (days.opening_day_thursday = true)
+      : (days.opening_day_thursday = false);
+    opening_day_friday
+      ? (days.opening_day_friday = true)
+      : (days.opening_day_friday = false);
+    opening_day_saturday
+      ? (days.opening_day_saturday = true)
+      : (days.opening_day_saturday = false);
+    opening_day_sunday
+      ? (days.opening_day_sunday = true)
+      : (days.opening_day_sunday = false);
+  }
+  return days;
 };
 
 const transformCustomerType = (supply_directly, supply_other) => {
@@ -289,7 +401,6 @@ const cleanBlankStringBusinessOtherDetails = business_other_details => {
 
   if (business_other_details) {
     if (business_other_details.trim().length === 0) {
-      console.log(business_other_details);
       newBusinessOtherDetails = undefined;
     } else {
       newBusinessOtherDetails = business_other_details;

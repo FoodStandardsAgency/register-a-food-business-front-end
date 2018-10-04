@@ -1,6 +1,6 @@
 {
   "name": "register_a_food_business_front_end",
-  "version": "1.38.4",
+  "version": "1.39.0",
   "scripts": {
     "debug": "node --inspect src/server/index.js",
     "dev": "node src/server/index.js",
@@ -27,7 +27,7 @@
     "@babel/preset-env": "7.0.0-rc.1",
     "@govuk-react/icon-crown": "0.0.5",
     "@govuk-react/icons": "0.2.7",
-    "@slice-and-dice/register-a-food-business-validation": "1.11.1",
+    "@slice-and-dice/register-a-food-business-validation": "1.13.1",
     "@storybook/addons": "3.3.0",
     "accessible-autocomplete": "1.6.1",
     "babel-core": "7.0.0-bridge.0",

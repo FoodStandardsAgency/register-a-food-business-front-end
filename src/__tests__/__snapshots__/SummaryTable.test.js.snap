@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<SummaryTable /> matches the previous snapshot 1`] = `
-.emotion-140 {
+.emotion-145 {
   border: 0;
   border-collapse: collapse;
   box-sizing: border-box;
@@ -15,7 +15,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-140 {
+  .emotion-145 {
     font-size: 16px;
     line-height: 1.25;
   }
@@ -184,13 +184,13 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
 }
 
 <table
-  className="emotion-140"
+  className="emotion-145"
 >
   <caption
     className="emotion-0"
   />
   <tbody
-    className="emotion-139"
+    className="emotion-144"
   >
     <tr
       className="TITLE emotion-5 emotion-6"
@@ -795,6 +795,58 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
           id="establishment_opening_date"
         >
           06 Dec 2018
+        </div>
+      </td>
+      <td
+        className="emotion-3"
+      >
+        <div />
+      </td>
+    </tr>
+    <tr
+      className="emotion-5 emotion-6"
+      id="establishmentOpeningDaysRow"
+    >
+      <th
+        className="emotion-2"
+      >
+        Opening days
+      </th>
+      <td
+        className="summaryTableDataCell emotion-3"
+      >
+        <div
+          className="bold"
+        >
+          <div
+            id="opening_days_irregular"
+          >
+            <div>
+              <div
+                id="opening_day_monday"
+              >
+                Monday
+              </div>
+              <div
+                id="opening_day_tuesday"
+              />
+              <div
+                id="opening_day_wednesday"
+              />
+              <div
+                id="opening_day_thursday"
+              />
+              <div
+                id="opening_day_friday"
+              />
+              <div
+                id="opening_day_saturday"
+              />
+              <div
+                id="opening_day_sunday"
+              />
+            </div>
+          </div>
         </div>
       </td>
       <td

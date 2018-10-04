@@ -110,6 +110,25 @@
     "on": false,
     "switches": {}
   },
+  "/opening-days-start": {
+    "on": true,
+    "switches": {
+      "Some days": {
+        "/opening-days-some": true
+      },
+      "Irregular days": {
+        "/opening-days-irregular": true
+      }
+    }
+  },
+  "/opening-days-some": {
+    "on": false,
+    "switches": {}
+  },
+  "/opening-days-irregular": {
+    "on": false,
+    "switches": {}
+  },
   "/customer-type": {
     "on": true,
     "switches": {}
