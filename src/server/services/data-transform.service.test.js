@@ -62,6 +62,31 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       });
     });
 
+    describe("Given that monday to sunday are selected on open-some-days, are part of cumulative answers", () => {
+      const someDays = {
+        opening_day_monday: "True",
+        opening_day_tuesday: "True",
+        opening_day_wednesday: "True",
+        opening_day_thursday: "True",
+        opening_day_friday: "True",
+        opening_day_saturday: "True",
+        opening_day_sunday: "True"
+      };
+      it("Should return a open_some_days_summary_table value of 'Every day'", () => {
+        result = transformAnswersForSummary(someDays);
+        expect(result.open_some_days_summary_table).toBe("Every day");
+      });
+    });
+    describe("Given that opening_days_start is selected on open-days-start", () => {
+      const someDays = {
+        opening_days_start: "Every day"
+      };
+      it("Should return a open_some_days_summary_table value of 'Every day'", () => {
+        result = transformAnswersForSummary(someDays);
+        expect(result.open_some_days_summary_table).toBe("Every day");
+      });
+    });
+
     describe("Given that only supply_other is part of cumulative answers", () => {
       const supplyDirectlyOnly = {
         supply_other: "True"
@@ -533,9 +558,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     establishment_postcode: "SW12 9RQ",
     supply_directly: true,
     declaration1: "Declaration",
-    business_type: "Example (test)"
+    business_type: "Example (test)",
+    opening_days_start: "Every day"
   };
-
   const testAddressLookups = {};
 
   it("turns flat data into structured data, with the Local Council URL", () => {
@@ -549,6 +574,128 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     ).toBeDefined();
 
     expect(result.local_council_url).toBe("some-council-url");
+  });
+  describe("when opening_days_start is irregular days", () => {
+    let result;
+    const testLcUrl = "some-council-url";
+
+    const testCumulativeAnswers = {
+      opening_days_start: "Irregular days"
+    };
+    const testAddressLookups = {};
+
+    it("it sets all the days to false", () => {
+      result = transformAnswersForSubmit(
+        testLcUrl,
+        testCumulativeAnswers,
+        testAddressLookups
+      );
+      expect(
+        result.registration.establishment.activities.opening_day_monday
+      ).toBe(false);
+      expect(
+        result.registration.establishment.activities.opening_day_tuesday
+      ).toBe(false);
+      expect(
+        result.registration.establishment.activities.opening_day_wednesday
+      ).toBe(false);
+      expect(
+        result.registration.establishment.activities.opening_day_thursday
+      ).toBe(false);
+      expect(
+        result.registration.establishment.activities.opening_day_friday
+      ).toBe(false);
+      expect(
+        result.registration.establishment.activities.opening_day_saturday
+      ).toBe(false);
+      expect(
+        result.registration.establishment.activities.opening_day_sunday
+      ).toBe(false);
+    });
+  });
+  describe("when opening_days_start is some days", () => {
+    let result;
+    const testLcUrl = "some-council-url";
+
+    const testCumulativeAnswers = {
+      opening_days_start: "Some days",
+      opening_day_monday: "Monday",
+      opening_day_sunday: "Sunday",
+      opening_day_tuesday: "Tuesday",
+      opening_day_wednesday: "Wednesday",
+      opening_day_thursday: "Thursday",
+      opening_day_friday: "Friday",
+      opening_day_saturday: "Saturday"
+    };
+    const testAddressLookups = {};
+
+    it("it sets all the days that exist to true", () => {
+      result = transformAnswersForSubmit(
+        testLcUrl,
+        testCumulativeAnswers,
+        testAddressLookups
+      );
+      expect(
+        result.registration.establishment.activities.opening_day_monday
+      ).toBe(true);
+      expect(
+        result.registration.establishment.activities.opening_day_tuesday
+      ).toBe(true);
+      expect(
+        result.registration.establishment.activities.opening_day_wednesday
+      ).toBe(true);
+      expect(
+        result.registration.establishment.activities.opening_day_thursday
+      ).toBe(true);
+      expect(
+        result.registration.establishment.activities.opening_day_friday
+      ).toBe(true);
+      expect(
+        result.registration.establishment.activities.opening_day_saturday
+      ).toBe(true);
+      expect(
+        result.registration.establishment.activities.opening_day_sunday
+      ).toBe(true);
+    });
+  });
+
+  describe("when opening_days_start is everyday ", () => {
+    let result;
+    const testLcUrl = "some-council-url";
+
+    const testCumulativeAnswers = {
+      opening_days_start: "Every day"
+    };
+    const testAddressLookups = {};
+
+    it("it sets all the days to true", () => {
+      result = transformAnswersForSubmit(
+        testLcUrl,
+        testCumulativeAnswers,
+        testAddressLookups
+      );
+      expect(
+        result.registration.establishment.activities.opening_day_monday
+      ).toBe(true);
+      expect(
+        result.registration.establishment.activities.opening_day_tuesday
+      ).toBe(true);
+      expect(
+        result.registration.establishment.activities.opening_day_wednesday
+      ).toBe(true);
+      expect(
+        result.registration.establishment.activities.opening_day_thursday
+      ).toBe(true);
+      expect(
+        result.registration.establishment.activities.opening_day_friday
+      ).toBe(true);
+      expect(
+        result.registration.establishment.activities.opening_day_saturday
+      ).toBe(true);
+      expect(
+        result.registration.establishment.activities.opening_day_sunday
+      ).toBe(true);
+    });
   });
 
   it("should only add the data fields it is given", () => {
