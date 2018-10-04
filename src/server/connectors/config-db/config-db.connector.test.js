@@ -21,12 +21,17 @@ describe("Function: getPathConfigByVersion", () => {
           throw new Error("example mongo error");
         });
 
-        result = await getPathConfigByVersion("1.0.0");
+        try {
+          await getPathConfigByVersion("1.0.0");
+        } catch (err) {
+          result = err;
+        }
       });
 
       describe("when the error shows that the connection has failed", () => {
-        it("should return the fallback path config", () => {
-          expect(result).toEqual(pathConfigMock);
+        it("should throw mongoConnectionError error", () => {
+          expect(result.name).toBe("mongoConnectionError");
+          expect(result.message).toBe("example mongo error");
         });
       });
     });

@@ -3,7 +3,6 @@ const { pathConfigCollectionDouble } = require("./config-db.double");
 const { CONFIGDB_URL } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { statusEmitter } = require("../../services/statusEmitter.service");
-const fallbackPathConfig = require("../../services/pathConfig.json");
 
 let client;
 let configDB;
@@ -73,10 +72,14 @@ const getPathConfigByVersion = async version => {
         "functionFail",
         "config-db.connector",
         "getPathConfigByVersion",
-        `configDb connection failed. Reverting to fallback path config.
-        Original error was: ${err}`
+        err
       );
-      pathConfig = fallbackPathConfig;
+
+      const newError = new Error();
+      newError.name = "mongoConnectionError";
+      newError.message = err.message;
+
+      throw newError;
     }
   }
 
