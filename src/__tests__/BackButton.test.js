@@ -37,13 +37,13 @@ describe("<BackButton />", () => {
     const editMode = true;
 
     const wrapper = mount(<BackButton editMode={editMode} />);
-    const backElement = wrapper.find(`#back-link`);
+    const backElement = wrapper.find(`a#back-link`);
     expect(backElement.length).toBe(0);
   });
 
   it("passes the given custom href if provided", () => {
     const wrapper = mount(<BackButton href="example" />);
-    const backElement = wrapper.find(`#back-link`);
+    const backElement = wrapper.find(`a#back-link`);
     expect(backElement.props().href).toBe("example");
   });
 });

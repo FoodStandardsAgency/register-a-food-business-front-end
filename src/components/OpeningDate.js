@@ -64,19 +64,22 @@ const OpeningDate = props => {
                 When is this establishment expected to begin trading?
               </span>
             </DateInput>
-            <HiddenText
-              id="hiddenTextTradingDate"
-              summaryText={
-                "I don't know when this establishment will begin trading"
-              }
-            >
-              <Paragraph mb={0}>
-                Food businesses are required to register at least 28 days before
-                they begin trading. If you are not sure when this business will
-                open, it may be too early to register. You can also use an
-                estimated date.
-              </Paragraph>
-            </HiddenText>
+
+            <ContentItem.B_30_15>
+              <HiddenText
+                id="hiddenTextTradingDate"
+                summaryText={
+                  "I don't know when this establishment will begin trading"
+                }
+              >
+                <Paragraph mb={0}>
+                  Food businesses are required to register at least 28 days
+                  before they begin trading. If you are not sure when this
+                  business will open, it may be too early to register. You can
+                  also use an estimated date.
+                </Paragraph>
+              </HiddenText>
+            </ContentItem.B_30_15>
           </div>
 
           <ContinueButton editMode={props.editMode} />
@@ -100,15 +103,19 @@ const OpeningDate = props => {
               What date did this establishment begin trading?
             </span>
           </DateInput>
-          <HiddenText
-            summaryText={"I don't know when this establishment began trading"}
-          >
-            <Paragraph mb={0}>
-              Trading begins the day your business started to serve or make food
-              or the day you took over the business as an operator. If you do
-              not remember the exact date, use an estimated date.
-            </Paragraph>
-          </HiddenText>
+
+          <ContentItem.B_30_15>
+            <HiddenText
+              summaryText={"I don't know when this establishment began trading"}
+            >
+              <Paragraph mb={0}>
+                Trading begins the day your business started to serve or make
+                food or the day you took over the business as an operator. If
+                you do not remember the exact date, use an estimated date.
+              </Paragraph>
+            </HiddenText>
+          </ContentItem.B_30_15>
+
           <ContinueButton editMode={props.editMode} />
         </form>
       )}
