@@ -50,7 +50,7 @@ describe("Submit route: ", () => {
             },
             council: "cardiff",
             addressLookups: ["1"],
-            pathConfig: "dummy path config",
+            pathConfig: { _id: "1.0.0" },
             save: cb => {
               cb();
             }
@@ -69,7 +69,7 @@ describe("Submit route: ", () => {
             some: "answers"
           },
           ["1"],
-          "dummy path config"
+          "1.0.0"
         );
       });
 
@@ -109,7 +109,7 @@ describe("Submit route: ", () => {
             },
             council: "cardiff",
             addressLookups: ["1"],
-            pathConfig: "dummy path config",
+            pathConfig: { _id: "1.0.0" },
             save: cb => {
               cb();
             }
@@ -147,7 +147,7 @@ describe("Submit route: ", () => {
             },
             council: "cardiff",
             addressLookups: ["1"],
-            pathConfig: "dummy path config",
+            pathConfig: { _id: "1.0.0" },
             save: cb => {
               cb("session save error");
             }

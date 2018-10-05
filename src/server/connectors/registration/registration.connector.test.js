@@ -6,7 +6,7 @@ const { sendRequest } = require("./registration.connector");
 const { registrationDouble } = require("./registration.double");
 
 const testSubmissionData = { example: "value" };
-const testPathConfig = { _id: "1.0.0", another: "value" };
+const testRegDataVersion = "1.0.0";
 
 describe("Function: sendRequest", () => {
   beforeEach(() => {
@@ -20,7 +20,7 @@ describe("Function: sendRequest", () => {
       fetch.mockImplementation(() => {
         return "response";
       });
-      result = await sendRequest(testSubmissionData, testPathConfig);
+      result = await sendRequest(testSubmissionData, testRegDataVersion);
     });
 
     it("Should return res", () => {
@@ -43,7 +43,7 @@ describe("Function: sendRequest", () => {
       fetch.mockImplementation(() => {
         throw new Error("fetch error");
       });
-      result = await sendRequest(testSubmissionData, testPathConfig);
+      result = await sendRequest(testSubmissionData, testRegDataVersion);
     });
 
     it("Should catch the error", () => {
@@ -57,7 +57,7 @@ describe("Function: sendRequest", () => {
       registrationDouble.mockImplementation(() => {
         return "double response";
       });
-      result = await sendRequest(testSubmissionData, testPathConfig);
+      result = await sendRequest(testSubmissionData, testRegDataVersion);
     });
 
     afterEach(() => {

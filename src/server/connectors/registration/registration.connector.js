@@ -3,7 +3,7 @@ const { SUBMIT_URL, API_SECRET, CLIENT_NAME } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { registrationDouble } = require("./registration.double");
 
-const sendRequest = async (submissionData, pathConfig) => {
+const sendRequest = async (submissionData, regDataVersion) => {
   const DOUBLE_MODE = process.env.DOUBLE_MODE;
   try {
     let res;
@@ -21,8 +21,9 @@ const sendRequest = async (submissionData, pathConfig) => {
         "Content-Type": "application/json",
         "api-secret": API_SECRET,
         "client-name": CLIENT_NAME,
-        "registration-data-version": pathConfig._id
+        "registration-data-version": regDataVersion
       };
+      console.log(headers);
       res = await fetch(SUBMIT_URL, {
         method: "POST",
         headers,

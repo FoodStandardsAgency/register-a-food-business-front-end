@@ -9,7 +9,7 @@ const submitController = async (
   lcUrl,
   submissionData,
   addressLookups,
-  pathConfig
+  regDataVersion
 ) => {
   const controllerResponse = {
     redirectRoute: null,
@@ -30,7 +30,7 @@ const submitController = async (
         submissionData,
         addressLookups
       );
-      const response = await submit(transformedData, pathConfig);
+      const response = await submit(transformedData, regDataVersion);
       const res = await response.json();
 
       if (response.status === 200) {

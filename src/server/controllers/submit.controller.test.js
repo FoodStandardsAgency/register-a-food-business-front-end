@@ -11,13 +11,13 @@ const submitController = require("./submit.controller");
 const testLcUrl = "example-lc";
 const testSubmissionData = { some: "data" };
 const testAddressLookups = {};
-const testPathConfig = "dummy path config";
+const testRegDataVersion = "1.0.0";
 
 const submitArgs = [
   testLcUrl,
   testSubmissionData,
   testAddressLookups,
-  testPathConfig
+  testRegDataVersion
 ];
 
 let response;
@@ -36,7 +36,7 @@ describe("Function: submitController: ", () => {
           testLcUrl,
           {},
           testAddressLookups,
-          testPathConfig
+          testRegDataVersion
         );
       } catch (err) {
         response = err;
@@ -86,7 +86,7 @@ describe("Function: submitController: ", () => {
         {
           transformedDataExample: "value"
         },
-        testPathConfig
+        testRegDataVersion
       );
     });
     it("Should set redirectRoute to summary-confirmation", () => {
