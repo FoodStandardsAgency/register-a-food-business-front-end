@@ -23,7 +23,6 @@ const sendRequest = async (submissionData, regDataVersion) => {
         "client-name": CLIENT_NAME,
         "registration-data-version": regDataVersion
       };
-      console.log(headers);
       res = await fetch(SUBMIT_URL, {
         method: "POST",
         headers,
