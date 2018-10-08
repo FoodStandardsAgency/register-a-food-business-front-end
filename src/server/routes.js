@@ -30,6 +30,11 @@ module.exports = () => {
   router.use("/setcookie", setCookieRouter());
   router.use("/status", statusRouter());
 
+  // Temporary solution for redirecting visitors who arrive at the root without a council specified
+  router.get("/", (req, res) => {
+    res.redirect("https://www.gov.uk/food-business-registration");
+  });
+
   router.get("*", (req, res) => {
     handle(req, res);
   });
