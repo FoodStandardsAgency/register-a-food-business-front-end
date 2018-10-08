@@ -1,4 +1,3 @@
-const pathJSON = require("../services/path.json");
 const { logEmitter } = require("./logging.service");
 
 const moveAlongPath = (path, currentPage, movement) => {
@@ -34,7 +33,7 @@ const moveAlongPath = (path, currentPage, movement) => {
   }
 };
 
-const editPath = (cumulativeAnswers, currentPage) => {
+const editPath = (cumulativeAnswers, currentPage, pathFromSession) => {
   logEmitter.emit("functionCall", "path.service", "editPath");
 
   try {
@@ -44,7 +43,7 @@ const editPath = (cumulativeAnswers, currentPage) => {
     `);
     }
 
-    const newPath = JSON.parse(JSON.stringify(pathJSON));
+    const newPath = JSON.parse(JSON.stringify(pathFromSession));
 
     const currentIndex = Object.keys(newPath).indexOf(currentPage);
     const pagesUpToAndIncludingCurrentPage = Object.keys(newPath).slice(
@@ -121,4 +120,8 @@ const switchOffManualAddressInput = (newPath, currentPage) => {
   return manualAddressSwitchedPath;
 };
 
-module.exports = { moveAlongPath, editPath, switchOffManualAddressInput };
+module.exports = {
+  moveAlongPath,
+  editPath,
+  switchOffManualAddressInput
+};

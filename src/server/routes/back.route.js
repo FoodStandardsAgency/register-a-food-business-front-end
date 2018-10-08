@@ -9,7 +9,8 @@ const backRouter = () => {
     logEmitter.emit("functionCall", "Routes", "/back route");
     const response = backController(
       `/${req.params.originator}`,
-      req.session.cumulativeAnswers
+      req.session.cumulativeAnswers,
+      req.session.pathConfig.path
     );
     logEmitter.emit(
       "functionSuccessWith",

@@ -50,6 +50,7 @@ describe("Submit route: ", () => {
             },
             council: "cardiff",
             addressLookups: ["1"],
+            pathConfig: { _id: "1.0.0" },
             save: cb => {
               cb();
             }
@@ -61,13 +62,14 @@ describe("Submit route: ", () => {
         handler(req, res);
       });
 
-      it("Should call submitController with cumulativeAnswers", () => {
+      it("Should call submitController with the correct args", () => {
         expect(submitController).toHaveBeenCalledWith(
           "cardiff",
           {
             some: "answers"
           },
-          ["1"]
+          ["1"],
+          "1.0.0"
         );
       });
 
@@ -107,6 +109,7 @@ describe("Submit route: ", () => {
             },
             council: "cardiff",
             addressLookups: ["1"],
+            pathConfig: { _id: "1.0.0" },
             save: cb => {
               cb();
             }
@@ -144,6 +147,7 @@ describe("Submit route: ", () => {
             },
             council: "cardiff",
             addressLookups: ["1"],
+            pathConfig: { _id: "1.0.0" },
             save: cb => {
               cb("session save error");
             }

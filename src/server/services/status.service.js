@@ -42,7 +42,7 @@ const setStatus = async (statusName, newStatus) => {
 };
 
 const incrementStatusCount = async statusName => {
-  logEmitter.emit("functionCall", "status.service", "setStatus");
+  logEmitter.emit("functionCall", "status.service", "incrementStatusCount");
   const status = await getStoredStatus();
   const currentValue = status[statusName];
 
