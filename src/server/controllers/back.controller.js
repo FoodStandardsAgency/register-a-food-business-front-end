@@ -1,14 +1,14 @@
 const { moveAlongPath, editPath } = require("../services/path.service");
 const { logEmitter } = require("../services/logging.service");
 
-const backController = (currentPage, previousAnswers = {}) => {
+const backController = (currentPage, previousAnswers = {}, pathFromSession) => {
   logEmitter.emit("functionCall", "back.controller", "backController");
 
   let previousPage;
   let newPath;
 
   try {
-    newPath = editPath(previousAnswers, currentPage);
+    newPath = editPath(previousAnswers, currentPage, pathFromSession);
     previousPage = moveAlongPath(newPath, currentPage, -1);
 
     logEmitter.emit(

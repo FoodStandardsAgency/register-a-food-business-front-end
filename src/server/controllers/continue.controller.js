@@ -17,7 +17,8 @@ const continueController = (
   previousAnswers,
   newAnswers = {},
   switches,
-  editMode
+  editMode,
+  pathFromSession
 ) => {
   logEmitter.emit("functionCall", "continue.controller", "continueController");
   const controllerResponse = {
@@ -91,7 +92,11 @@ const continueController = (
     }
 
     // get the new path based on the answers that have been given
-    const newPath = editPath(controllerResponse.cumulativeAnswers, currentPage);
+    const newPath = editPath(
+      controllerResponse.cumulativeAnswers,
+      currentPage,
+      pathFromSession
+    );
 
     // update the new path to switch off manual address input pages if the originator (currentPage) is one of the address select pages
     const updatedNewPath = switchOffManualAddressInput(newPath, currentPage);

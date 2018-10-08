@@ -6,7 +6,10 @@ const storedStatus = {
   addressLookupsSucceeded: 0,
   addressLookupsReturnedZero: 0,
   addressLookupsFailed: 0,
-  mostRecentAddressLookupSucceeded: true
+  mostRecentAddressLookupSucceeded: true,
+  getPathConfigSucceeded: 0,
+  getPathConfigFailed: 0,
+  mostRecentGetPathConfigSucceeded: true
 };
 
 const getStoredStatus = async () => storedStatus;

@@ -1,41 +1,42 @@
-import {
+const {
   moveAlongPath,
   editPath,
   switchOffManualAddressInput
-} from "./path.service";
-import pathJSON from "../../__mocks__/pathMock.json";
+} = require("./path.service");
+const pathConfigMock = require("../../__mocks__/pathConfigMock.json");
+const pathMock = pathConfigMock.path;
 
 describe("path.service moveAlongPath()", () => {
   describe("Given valid input", () => {
     it("returns a string beginning with '/'", () => {
-      const result = moveAlongPath(pathJSON, "/index");
+      const result = moveAlongPath(pathMock, "/index");
       expect(typeof result).toBe("string");
       expect(result.slice(0, 1)).toBe("/");
     });
 
     it("returns a key name from the path JSON", () => {
-      const result = moveAlongPath(pathJSON, "/index");
-      expect(Object.keys(pathJSON)).toContain(result);
+      const result = moveAlongPath(pathMock, "/index");
+      expect(Object.keys(pathMock)).toContain(result);
     });
 
     it("returns a switched-on key name for 'continue' and 'back'", () => {
-      const result1 = moveAlongPath(pathJSON, "/index", 1);
+      const result1 = moveAlongPath(pathMock, "/index", 1);
       expect(result1).toBe("/mock-page-1");
 
-      const result2 = moveAlongPath(pathJSON, "/mock-page-1", 1);
+      const result2 = moveAlongPath(pathMock, "/mock-page-1", 1);
       expect(result2).toBe("/mock-page-2");
 
-      const result3 = moveAlongPath(pathJSON, "/mock-page-1", -1);
+      const result3 = moveAlongPath(pathMock, "/mock-page-1", -1);
       expect(result3).toBe("/index");
 
-      const result4 = moveAlongPath(pathJSON, "/mock-page-2", -2);
+      const result4 = moveAlongPath(pathMock, "/mock-page-2", -2);
       expect(result4).toBe("/index");
     });
   });
   describe("Given invalid input", () => {
     it("throws an error when an attempt is made to move beyond the ends of the path", () => {
-      expect(() => moveAlongPath(pathJSON, "/mock-page-2", +2)).toThrow(Error);
-      expect(() => moveAlongPath(pathJSON, "/mock-page-1", -5)).toThrow(Error);
+      expect(() => moveAlongPath(pathMock, "/mock-page-2", +2)).toThrow(Error);
+      expect(() => moveAlongPath(pathMock, "/mock-page-1", -5)).toThrow(Error);
     });
   });
 });
@@ -43,17 +44,17 @@ describe("path.service moveAlongPath()", () => {
 describe("path.service editPath()", () => {
   describe("Given valid input", () => {
     it("does not reassign the input object", () => {
-      const result = editPath({}, "/index");
-      expect(result).not.toBe(pathJSON);
+      const result = editPath({}, "/index", pathMock);
+      expect(result).not.toBe(pathMock);
     });
 
     it("returns a valid JavaScipt object", () => {
-      const result = editPath({ example: "A1" });
+      const result = editPath({ example: "A1" }, "/index", pathMock);
       expect(typeof result).toBe("object");
     });
 
     it("does not change any of the object keys", () => {
-      const result = editPath({ example: "A1" }, "/mock-page-1");
+      const result = editPath({ example: "A1" }, "/mock-page-1", pathMock);
       const getObjectKeys = json => {
         const arrayOfKeys = Object.keys(json);
         arrayOfKeys.forEach(key => {
@@ -68,16 +69,20 @@ describe("path.service editPath()", () => {
         });
         return arrayOfKeys;
       };
-      const objectKeysOriginal = getObjectKeys(pathJSON);
+      const objectKeysOriginal = getObjectKeys(pathMock);
       const objectKeysEdited = getObjectKeys(result);
       expect(objectKeysOriginal).toEqual(objectKeysEdited);
     });
 
     it("deactivates pages based on the input from the given page", () => {
-      const result1 = editPath({ example: "A1" }, "/index");
+      const result1 = editPath({ example: "A1" }, "/index", pathMock);
       expect(result1["/mock-page-1"]["on"]).toBe(false);
 
-      const result2 = editPath({ example1: "A1", example2: "A2" }, "/index");
+      const result2 = editPath(
+        { example1: "A1", example2: "A2" },
+        "/index",
+        pathMock
+      );
       expect(result2["/mock-page-1"]["on"]).toBe(false);
       expect(result2["/mock-page-2"]["on"]).toBe(false);
 
@@ -88,7 +93,8 @@ describe("path.service editPath()", () => {
           example2: "A5",
           example3: "A6"
         },
-        "/mock-page-1"
+        "/mock-page-1",
+        pathMock
       );
       expect(result3["/mock-page-2"]["on"]).toBe(false);
       expect(result3["/mock-page-3"]["on"]).toBe(false);
@@ -97,7 +103,8 @@ describe("path.service editPath()", () => {
     it("re-activates pages based on the input from the given page", () => {
       const result1 = editPath(
         { example1: "A2", example2: "A4" },
-        "/mock-page-1"
+        "/mock-page-1",
+        pathMock
       );
       expect(result1["/mock-page-2"]["on"]).toBe(true);
     });
@@ -105,14 +112,16 @@ describe("path.service editPath()", () => {
     it("prioritises switches in the order that they appear in the JSON", () => {
       const result1 = editPath(
         { example1: "A4", example2: "A6" },
-        "/mock-page-1"
+        "/mock-page-1",
+        pathMock
       );
       expect(result1["/mock-page-2"]["on"]).toBe(true);
 
       // same test but with array order reversed
       const result2 = editPath(
         { example1: "A6", example2: "A4" },
-        "/mock-page-1"
+        "/mock-page-1",
+        pathMock
       );
       expect(result2["/mock-page-2"]["on"]).toBe(true);
     });
@@ -120,20 +129,25 @@ describe("path.service editPath()", () => {
     it("can activate the current page", () => {
       const result = editPath(
         { example: "turnOnCurrentPageTest" },
-        "/mock-page-off"
+        "/mock-page-off",
+        pathMock
       );
       expect(result["/mock-page-off"]["on"]).toBe(true);
     });
 
     it("can deactivate the current page", () => {
-      const result = editPath({ example: "A8" }, "/mock-page-2");
+      const result = editPath({ example: "A8" }, "/mock-page-2", pathMock);
       expect(result["/mock-page-2"]["on"]).toBe(false);
     });
 
     describe("given that the answer is not in the path switches", () => {
       it("does not change the path", () => {
-        const result = editPath({ example: "Not in the path" }, "/mock-page-3");
-        expect(result).toEqual(pathJSON);
+        const result = editPath(
+          { example: "Not in the path" },
+          "/mock-page-3",
+          pathMock
+        );
+        expect(result).toEqual(pathMock);
       });
     });
   });
@@ -145,7 +159,8 @@ describe("path.service editPath()", () => {
           answer_name_that_affects_path:
             "the value is truthy but not used to calculate the path"
         },
-        "/index"
+        "/index",
+        pathMock
       );
       expect(result["/mock-page-2"]["on"]).toBe(false);
     });
@@ -155,7 +170,8 @@ describe("path.service editPath()", () => {
         {
           answer_name_that_affects_path: ""
         },
-        "/index"
+        "/index",
+        pathMock
       );
       expect(result["/mock-page-2"]["on"]).toBe(true);
     });
@@ -163,14 +179,14 @@ describe("path.service editPath()", () => {
 
   describe("Given invalid input", () => {
     it("throws an error if an answer object is not provided", () => {
-      expect(() => editPath(null, "/index")).toThrow(Error);
-      expect(() => editPath(true, "/index")).toThrow(Error);
+      expect(() => editPath(null, "/index", pathMock)).toThrow(Error);
+      expect(() => editPath(true, "/index", pathMock)).toThrow(Error);
     });
   });
 
   describe("Given an answer that is from a switch further ahead than the current page in the path", () => {
     it("ignores the switch/answer", () => {
-      const result = editPath({ example: "A6" }, "/index");
+      const result = editPath({ example: "A6" }, "/index", pathMock);
       expect(result["/mock-page-2"]["on"]).toEqual(true);
     });
   });

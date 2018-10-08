@@ -33,6 +33,7 @@ describe("Continue route: ", () => {
           cumulativeAnswers: {},
           switches: {},
           council: "council",
+          pathConfig: { path: "existing path from session" },
           save: cb => {
             cb();
           }
@@ -51,13 +52,14 @@ describe("Continue route: ", () => {
       handler(req, res);
     });
 
-    it("Should call continueController with currentPage, cumulativeAnswers, body, switches, and editMode", () => {
+    it("Should call continueController with currentPage, cumulativeAnswers, body, switches, editMode, and path", () => {
       expect(continueController).toHaveBeenCalledWith(
         "/originator",
         {},
         "body",
         {},
-        false
+        false,
+        "existing path from session"
       );
     });
 
@@ -90,6 +92,7 @@ describe("Continue route: ", () => {
             cumulativeAnswers: {},
             switches: {},
             council: "council",
+            pathConfig: { path: "existing path from session" },
             save: cb => {
               cb();
             }
@@ -114,7 +117,8 @@ describe("Continue route: ", () => {
           {},
           "body",
           {},
-          true
+          true,
+          "existing path from session"
         );
       });
 
@@ -148,6 +152,7 @@ describe("Continue route: ", () => {
             cumulativeAnswers: {},
             switches: {},
             council: "council",
+            pathConfig: { path: "existing path from session" },
             save: cb => {
               cb();
             }
@@ -190,6 +195,7 @@ describe("Continue route: ", () => {
             cumulativeAnswers: {},
             switches: {},
             council: "council",
+            pathConfig: { path: "existing path from session" },
             save: cb => {
               cb("session save error");
             }

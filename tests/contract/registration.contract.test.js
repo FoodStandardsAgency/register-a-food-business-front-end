@@ -1,9 +1,7 @@
-process.env.SUBMIT_URL =
-  "http://localhost:4000/api/registration/createNewRegistration";
-
 const {
   sendRequest
 } = require("../../src/server/connectors/registration/registration.connector");
+
 const validBody = {
   registration: {
     establishment: {
