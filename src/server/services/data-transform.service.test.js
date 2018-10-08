@@ -51,6 +51,42 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       });
     });
 
+    describe("Given that operator_secondary_number is part of cumulative answers", () => {
+      it("should return undefined when operator_secondary_number is an empty string", () => {
+        const operatorSecondaryNumber = {
+          operator_secondary_number: "                "
+        };
+        result = transformAnswersForSummary(operatorSecondaryNumber);
+        expect(result.operator_secondary_number).toBe(undefined);
+      });
+
+      it("should return original answer when not an empty string", () => {
+        const operatorSecondaryNumber = {
+          operator_secondary_number: "1234567"
+        };
+        result = transformAnswersForSummary(operatorSecondaryNumber);
+        expect(result.operator_secondary_number).toBe("1234567");
+      });
+    });
+
+    describe("Given that establishment_secondary_number is part of cumulative answers", () => {
+      it("should return undefined when establishment_secondary_number is an empty string", () => {
+        const establishmentSecondaryNumber = {
+          establishment_secondary_number: "                "
+        };
+        result = transformAnswersForSummary(establishmentSecondaryNumber);
+        expect(result.business_other_details).toBe(undefined);
+      });
+
+      it("should return original answer when not an empty string", () => {
+        const establishmentSecondaryNumber = {
+          establishment_secondary_number: "987654321"
+        };
+        result = transformAnswersForSummary(establishmentSecondaryNumber);
+        expect(result.establishment_secondary_number).toBe("987654321");
+      });
+    });
+
     describe("Given that supply_other and supply_directly are part of cumulative answers", () => {
       const supplyBoth = {
         supply_other: "True",
