@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.40.1 - 8th October 2018 (released)
+
+### Modified
+
+* SDB-963: Fixed bug - Trim all blank spaces from answers
+
 ## v1.40.0 - 4th October 2018 (released)
 
 ### Added

@@ -101,6 +101,33 @@ describe("Function: continueController: ", () => {
     });
   });
 
+  describe("When newAnswers contains answers with empty spaces", () => {
+    beforeEach(() => {
+      validate.mockImplementation(() => ({
+        errors: {}
+      }));
+
+      const testNewAnswersWithSpaces = {
+        operator_secondary_number: "       ",
+        operator_first_name: "  name  "
+      };
+
+      response = continueController(
+        "/some-page",
+        exampleAnswers,
+        testNewAnswersWithSpaces,
+        exampleSwitches,
+        false,
+        pathConfigMock
+      );
+    });
+    it("Should return a response", () => {
+      console.log(response.cumulativeAnswers);
+      expect(response.cumulativeAnswers.operator_first_name).toBe("name");
+      expect(response.cumulativeAnswers.operator_secondary_number).toBe("");
+    });
+  });
+
   describe("When there are no validator errors: ", () => {
     describe("When the current page is at the end of the path", () => {
       beforeEach(() => {
