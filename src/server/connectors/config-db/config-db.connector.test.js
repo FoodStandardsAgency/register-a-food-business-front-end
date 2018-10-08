@@ -4,10 +4,8 @@ const {
   clearPathConfigCache
 } = require("./config-db.connector");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
-const { pathConfigCollectionDouble } = require("./config-db.double");
 
 jest.mock("mongodb");
-jest.mock("./config-db.double");
 
 let result;
 
@@ -70,22 +68,6 @@ describe("Function: getPathConfigByVersion", () => {
       });
 
       it("should return the data from the findOne() response", async () => {
-        await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-          pathConfigMock
-        );
-      });
-    });
-
-    describe("when running in double mode", () => {
-      beforeEach(() => {
-        process.env.DOUBLE_MODE = true;
-        clearPathConfigCache();
-        pathConfigCollectionDouble.findOne.mockImplementation(
-          () => pathConfigMock
-        );
-      });
-
-      it("should resolve with the data from the double's findOne() response", async () => {
         await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
           pathConfigMock
         );

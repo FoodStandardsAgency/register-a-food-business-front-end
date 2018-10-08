@@ -7,7 +7,7 @@ let response;
 
 describe("config-db.connector integration: getPathConfigByVersion", () => {
   beforeEach(() => {
-    process.env.DOUBLE_MODE = true;
+    process.env.DOUBLE_MODE = false;
     clearPathConfigCache();
   });
 
@@ -23,10 +23,6 @@ describe("config-db.connector integration: getPathConfigByVersion", () => {
 
     it("should return a version _id", () => {
       expect(typeof response._id).toBe("string");
-    });
-
-    it("should return a notify_template_keys object", () => {
-      expect(typeof response.notify_template_keys).toBe("object");
     });
   });
 
