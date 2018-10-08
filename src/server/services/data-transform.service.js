@@ -16,21 +16,6 @@ const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
     );
     delete data.registration_role;
 
-    data.business_other_details = cleanBlankStringBusinessOtherDetails(
-      data.business_other_details
-    );
-
-    const optionalPhoneNumber = cleanBlankStringOptionalPhoneNumber(
-      data.operator_secondary_number,
-      data.establishment_secondary_number
-    );
-
-    data.operator_secondary_number =
-      optionalPhoneNumber.newOperatorSecondaryNumber;
-
-    data.establishment_secondary_number =
-      optionalPhoneNumber.newEstablishmentSecondaryNumber;
-
     data.customer_type = transformCustomerType(
       data.supply_directly,
       data.supply_other
@@ -405,43 +390,6 @@ const combineOperatorTypes = (operator_type, registration_role) => {
   }
 
   return newOperatorType;
-};
-
-const cleanBlankStringBusinessOtherDetails = business_other_details => {
-  let newBusinessOtherDetails;
-
-  if (business_other_details) {
-    if (business_other_details.trim().length === 0) {
-      newBusinessOtherDetails = undefined;
-    } else {
-      newBusinessOtherDetails = business_other_details;
-    }
-    return newBusinessOtherDetails;
-  }
-};
-
-const cleanBlankStringOptionalPhoneNumber = (
-  operator_secondary_number,
-  establishment_secondary_number
-) => {
-  let newNumbers = {
-    newOperatorSecondaryNumber: operator_secondary_number,
-    newEstablishmentSecondaryNumber: establishment_secondary_number
-  };
-
-  if (
-    operator_secondary_number &&
-    operator_secondary_number.trim().length === 0
-  ) {
-    newNumbers.newOperatorSecondaryNumber = undefined;
-  }
-  if (
-    establishment_secondary_number &&
-    establishment_secondary_number.trim().length === 0
-  ) {
-    newNumbers.newEstablishmentSecondaryNumber = undefined;
-  }
-  return newNumbers;
 };
 
 const combineDate = (day, month, year) => `${year}-${month}-${day}`;

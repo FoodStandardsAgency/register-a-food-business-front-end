@@ -7,7 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Modified
 
-* SDB-963: Fixed bug - Optional phone number error
+* SDB-963: Fixed bug - Trim all blank spaces from answers
 
 ## v1.40.0 - 4th October 2018 (released)
 
