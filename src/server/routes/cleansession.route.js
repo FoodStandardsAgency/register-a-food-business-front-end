@@ -9,15 +9,15 @@ const cleansessionRouter = () => {
     req.session.destroy(err => {
       if (err) {
         logEmitter.emit("functionFail", "Routes", "/cleansession route", err);
-        res.redirect("back");
+        res.redirect("/new");
       } else {
         logEmitter.emit(
           "functionSuccessWith",
           "Routes",
           "/cleansession route",
-          `Redirecting to: /`
+          `Redirecting to an empty page`
         );
-        res.redirect(`/`);
+        res.redirect("/new");
       }
     });
   });
