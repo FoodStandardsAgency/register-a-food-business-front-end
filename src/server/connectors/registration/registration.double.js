@@ -271,10 +271,10 @@ const registrationDouble = body => {
     const lcConfigCombined = {
       hygieneAndStandards: {
         _id: 8015,
-        local_council: "City of Cardiff Council",
+        local_council: "Mid and East Antrim Council",
         local_council_email: "both@example.com",
         local_council_notify_emails: ["both@example.com"],
-        local_council_url: "cardiff"
+        local_council_url: "mid-and-east-antrim"
       }
     };
 
@@ -341,7 +341,7 @@ const registrationDouble = body => {
         premiseId: 1,
         metadataId: 1,
         reg_submission_date: moment().format("YYYY-MM-DD"),
-        "fsa-rn": "12486-sdmbf",
+        "fsa-rn": "12486-12345-34567",
         tascomiResponse: {
           id: "25",
           online_reference: "0000025"

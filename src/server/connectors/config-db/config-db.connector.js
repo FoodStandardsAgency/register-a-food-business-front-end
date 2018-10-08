@@ -1,5 +1,4 @@
 const mongodb = require("mongodb");
-const { pathConfigCollectionDouble } = require("./config-db.double");
 const { CONFIGDB_URL } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { statusEmitter } = require("../../services/statusEmitter.service");
@@ -11,22 +10,13 @@ let pathConfigCollection;
 let pathConfig = null;
 
 const establishConnectionToMongo = async () => {
-  if (process.env.DOUBLE_MODE === "true") {
-    logEmitter.emit(
-      "doubleMode",
-      "config-db.connector",
-      "establishConnectionToMongo"
-    );
-    pathConfigCollection = pathConfigCollectionDouble;
-  } else {
-    client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
-      useNewUrlParser: true
-    });
+  client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
+    useNewUrlParser: true
+  });
 
-    configDB = client.db("register_a_food_business_config");
+  configDB = client.db("register_a_food_business_config");
 
-    pathConfigCollection = configDB.collection("pathConfig");
-  }
+  pathConfigCollection = configDB.collection("pathConfig");
 };
 
 const getPathConfigByVersion = async version => {
