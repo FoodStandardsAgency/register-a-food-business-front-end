@@ -10,7 +10,7 @@ steps:
   - script: npm -v
     displayName: "Npm version"
 
-  - script: npm install -g yarn@1.6.0
+  - script: yarn install
     displayName: "Install yarn"
 
   - script: yarn format:verify
