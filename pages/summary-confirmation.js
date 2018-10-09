@@ -80,7 +80,7 @@ const ApplicationComplete = props => (
           </Paragraph>
         ) : null}
       </ContentItem.B_30_15>
-    ) : (
+    ) : props.lcConfig.hygiene && props.lcConfig.standards ? (
       <div>
         <ContentItem.B_30_15 id="hygieneCouncil">
           <Header level={4} mb={1}>
@@ -111,7 +111,7 @@ const ApplicationComplete = props => (
           <HintText>Responsible local council for food standards</HintText>
         </ContentItem.B_30_15>
       </div>
-    )}
+    ) : null}
 
     <ContentItem.B_30_15>
       <Paragraph className="receiveConfirmationEmail">

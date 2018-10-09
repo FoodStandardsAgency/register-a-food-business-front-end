@@ -122,7 +122,6 @@ describe("Function: continueController: ", () => {
       );
     });
     it("Should return a response", () => {
-      console.log(response.cumulativeAnswers);
       expect(response.cumulativeAnswers.operator_first_name).toBe("name");
       expect(response.cumulativeAnswers.operator_secondary_number).toBe("");
     });
