@@ -10,8 +10,8 @@ steps:
   - script: npm -v
     displayName: "Npm version"
 
-  - script: yarn install
-    displayName: "Install yarn"
+  - script: yarn
+    displayName: "Install dependencies"
 
   - script: yarn format:verify
     displayName: "Format"
