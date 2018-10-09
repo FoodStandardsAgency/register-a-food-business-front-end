@@ -7,10 +7,56 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- script: npm -v
+  displayName: 'Npm version'
+
+- script: npm install
+  displayName: 'Install'
+
+- script: npm run format:verify
+  displayName: 'Format'
+
+- script: npm run lint
+  displayName: 'Lint'
+
+- script: npm run test:ci
+  displayName: 'Unit tests'
+
+- task: PublishTestResults@2
+  inputs:
+    testRunner: JUnit
+    testResultsFile: ./reports/TEST-unit.xml
+    testRunTitle: Unit tests
+    mergeTestResults: false
+
+- task: PublishCodeCoverageResults@1
+  inputs: 
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/coverage/lcov-report'
+
+- script: npm run test:integration
+  displayName: 'Integration tests'
+
+- task: PublishTestResults@2
+  inputs:
+    testRunner: JUnit
+    testResultsFile: ./reports/TEST-integration.xml
+    testRunTitle: Integration tests
+    mergeTestResults: false
+
+- script: npm prune --production
+  displayName: Prune dev dependencies
+
+- script: rm -rf coverage reports
+  displayName: Remove reporting folders
+  
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+
+- task: PublishBuildArtifacts@1
+
+
