@@ -28,19 +28,6 @@ describe("<OpeningDate />", () => {
     expect(wrapper.length).toBe(1);
   });
 
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <OpeningDate
-          cumulativeAnswers={testCumulativeAnswers}
-          validatorErrors={testValidatorErrors}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
   describe("when given 'Establishment is not trading yet'", () => {
     it("should render BackButton with 'establishment-opening-date-proactive' as originator prop", () => {
       const proactiveCumulativeAnswers = {

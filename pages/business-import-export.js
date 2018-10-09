@@ -68,26 +68,31 @@ const ImportExportActivities = props => (
           </Checkbox>
         </MultiChoice>
       </ContentItem.B_30_15>
-      <HiddenText
-        id="hiddenTextImportExportActivities"
-        summaryText={"More information about import and export activities"}
-      >
-        <span>
-          If a food business is directly importing or exporting food outside of
-          the UK, there are some extra requirements for the business to follow.
-          <br />
-          <br />
-          Find out more by visiting the{" "}
-          <a
-            href="https://www.food.gov.uk/business-guidance/imports-exports"
-            target="_blank"
-            rel="noopener noreferrer"
-            id="link-fsa-website"
-          >
-            Food Standards Agency website
-          </a>.
-        </span>
-      </HiddenText>
+
+      <ContentItem.B_30_15>
+        <HiddenText
+          id="hiddenTextImportExportActivities"
+          summaryText={"More information about import and export activities"}
+        >
+          <span>
+            If a food business is directly importing or exporting food outside
+            of the UK, there are some extra requirements for the business to
+            follow.
+            <br />
+            <br />
+            Find out more by visiting the{" "}
+            <a
+              href="https://www.food.gov.uk/business-guidance/imports-exports"
+              target="_blank"
+              rel="noopener noreferrer"
+              id="link-fsa-website"
+            >
+              Food Standards Agency website
+            </a>.
+          </span>
+        </HiddenText>
+      </ContentItem.B_30_15>
+
       <ContinueButton editMode={props.editMode} />
     </form>
   </FsaLayout>

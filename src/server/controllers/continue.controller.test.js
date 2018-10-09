@@ -13,7 +13,7 @@ const {
   cleanEmptiedAnswers,
   cleanSwitches
 } = require("../services/session-management.service");
-
+const pathConfigMock = require("../../__mocks__/pathConfigMock.json");
 const continueController = require("./continue.controller");
 
 describe("Function: continueController: ", () => {
@@ -67,7 +67,9 @@ describe("Function: continueController: ", () => {
         "/some-page",
         exampleAnswers,
         {},
-        exampleSwitches
+        exampleSwitches,
+        false,
+        pathConfigMock
       );
     });
 
@@ -89,11 +91,39 @@ describe("Function: continueController: ", () => {
         "/some-page",
         exampleAnswers,
         undefined,
-        exampleSwitches
+        exampleSwitches,
+        false,
+        pathConfigMock
       );
     });
     it("Should return a response", () => {
       expect(response).toBeDefined();
+    });
+  });
+
+  describe("When newAnswers contains answers with empty spaces", () => {
+    beforeEach(() => {
+      validate.mockImplementation(() => ({
+        errors: {}
+      }));
+
+      const testNewAnswersWithSpaces = {
+        operator_secondary_number: "       ",
+        operator_first_name: "  name  "
+      };
+
+      response = continueController(
+        "/some-page",
+        exampleAnswers,
+        testNewAnswersWithSpaces,
+        exampleSwitches,
+        false,
+        pathConfigMock
+      );
+    });
+    it("Should return a response", () => {
+      expect(response.cumulativeAnswers.operator_first_name).toBe("name");
+      expect(response.cumulativeAnswers.operator_secondary_number).toBe("");
     });
   });
 
@@ -107,7 +137,9 @@ describe("Function: continueController: ", () => {
           "/final-page",
           {},
           exampleAnswers,
-          exampleSwitches
+          exampleSwitches,
+          false,
+          pathConfigMock
         );
       });
 
@@ -122,7 +154,14 @@ describe("Function: continueController: ", () => {
           errors: {}
         }));
         moveAlongPath.mockImplementation(() => "/nextPage");
-        response = continueController("/index", {}, exampleAnswers, undefined);
+        response = continueController(
+          "/index",
+          {},
+          exampleAnswers,
+          undefined,
+          false,
+          pathConfigMock
+        );
       });
 
       it("Should return a redirect route", () => {
@@ -140,7 +179,9 @@ describe("Function: continueController: ", () => {
           "/some-page",
           {},
           exampleAnswers,
-          exampleSwitches
+          exampleSwitches,
+          false,
+          pathConfigMock
         );
       });
 
@@ -157,7 +198,8 @@ describe("Function: continueController: ", () => {
             {},
             exampleAnswers,
             {},
-            true
+            true,
+            pathConfigMock
           );
         });
 
@@ -166,8 +208,12 @@ describe("Function: continueController: ", () => {
         });
       });
 
-      it("Should use cumulativePathAnswers to create the newPath", () => {
-        expect(editPath.mock.calls[0][0]).toEqual(exampleAnswers, "/some-page");
+      it("Should use cumulativePathAnswers and the path from session to create the newPath", () => {
+        expect(editPath).toHaveBeenLastCalledWith(
+          exampleAnswers,
+          "/some-page",
+          pathConfigMock
+        );
       });
 
       it("Should set the redirectRoute to the response of moveAlongPath", () => {
@@ -185,7 +231,9 @@ describe("Function: continueController: ", () => {
         "/mock-page-1",
         {},
         exampleAnswers,
-        exampleSwitches
+        exampleSwitches,
+        false,
+        pathConfigMock
       );
     });
 
@@ -210,7 +258,9 @@ describe("Function: continueController: ", () => {
           "/mock-page-1",
           {},
           exampleAnswers,
-          exampleSwitches
+          exampleSwitches,
+          false,
+          pathConfigMock
         );
         expect(response.switches).toEqual({ switch1: false, switch2: true });
       });
@@ -222,7 +272,8 @@ describe("Function: continueController: ", () => {
             {},
             exampleAnswers,
             {},
-            true
+            true,
+            pathConfigMock
           );
         });
 
@@ -243,7 +294,9 @@ describe("Function: continueController: ", () => {
         "/mock-page-1",
         {},
         exampleAnswers,
-        exampleEmptySwitches
+        exampleEmptySwitches,
+        false,
+        pathConfigMock
       );
 
       expect(response.switches).toEqual({});
@@ -260,7 +313,9 @@ describe("Function: continueController: ", () => {
         "/mock-page-1",
         {},
         exampleAnswers,
-        exampleSwitches
+        exampleSwitches,
+        false,
+        pathConfigMock
       );
 
       const originalSwitchesKeyArray = Object.keys(exampleSwitches);
@@ -274,7 +329,9 @@ describe("Function: continueController: ", () => {
         "/mock-page-1",
         {},
         exampleAnswers,
-        exampleSwitches
+        exampleSwitches,
+        false,
+        pathConfigMock
       );
 
       const responseSwitchesValueArray = Object.values(response.switches);
@@ -297,7 +354,9 @@ describe("Function: continueController: ", () => {
           "/mock-page-1",
           {},
           exampleAnswers,
-          exampleSwitches
+          exampleSwitches,
+          false,
+          pathConfigMock
         );
 
         expect(response.switches).toEqual({ switch1: false, switch2: true });
@@ -316,7 +375,9 @@ describe("Function: continueController: ", () => {
           "/final-page",
           {},
           exampleAnswers,
-          exampleSwitches
+          exampleSwitches,
+          false,
+          pathConfigMock
         );
       } catch (err) {
         response = err;

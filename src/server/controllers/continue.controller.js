@@ -17,7 +17,8 @@ const continueController = (
   previousAnswers,
   newAnswers = {},
   switches,
-  editMode
+  editMode,
+  pathFromSession
 ) => {
   logEmitter.emit("functionCall", "continue.controller", "continueController");
   const controllerResponse = {
@@ -32,21 +33,27 @@ const continueController = (
       statusEmitter.emit("incrementCount", "registrationsStarted");
     }
 
-    const newAnswersArray = Object.values(newAnswers);
+    const trimmedNewAnswers = JSON.parse(JSON.stringify(newAnswers));
+
+    for (let answer in trimmedNewAnswers) {
+      trimmedNewAnswers[answer] = trimmedNewAnswers[answer].trim();
+    }
+
+    const trimmedNewAnswersArray = Object.values(trimmedNewAnswers);
 
     let cleanedPreviousAnswers = Object.assign({}, previousAnswers);
 
     // remove any answers that were previously given a truthy value but have since been emptied
     cleanedPreviousAnswers = cleanEmptiedAnswers(
       previousAnswers,
-      newAnswersArray,
+      trimmedNewAnswersArray,
       currentPage
     );
 
     controllerResponse.cumulativeAnswers = Object.assign(
       {},
       cleanedPreviousAnswers,
-      newAnswers
+      trimmedNewAnswers
     );
 
     controllerResponse.switches = Object.assign(
@@ -56,7 +63,7 @@ const continueController = (
 
     controllerResponse.validatorErrors = Object.assign(
       {},
-      validate(currentPage, newAnswers).errors
+      validate(currentPage, trimmedNewAnswers).errors
     );
 
     if (Object.keys(controllerResponse.validatorErrors).length > 0) {
@@ -91,7 +98,11 @@ const continueController = (
     }
 
     // get the new path based on the answers that have been given
-    const newPath = editPath(controllerResponse.cumulativeAnswers, currentPage);
+    const newPath = editPath(
+      controllerResponse.cumulativeAnswers,
+      currentPage,
+      pathFromSession
+    );
 
     // update the new path to switch off manual address input pages if the originator (currentPage) is one of the address select pages
     const updatedNewPath = switchOffManualAddressInput(newPath, currentPage);

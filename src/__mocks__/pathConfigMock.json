@@ -1,0 +1,43 @@
+{
+  "_id": "1.0.0",
+  "notify_template_keys": {
+    "fbo_submission_complete": "1234567890",
+    "lc_new_registration": "0987654321"
+  },
+  "path": {
+    "/index": {
+      "on": true,
+      "switches": {
+        "A1": { "/mock-page-1": false },
+        "A2": { "/mock-page-1": false, "/mock-page-2": false },
+        "A3": { "/mock-page-2": true },
+        "answer_name_that_affects_path": { "/mock-page-2": false }
+      }
+    },
+    "/mock-page-off": {
+      "on": false,
+      "switches": {
+        "turnOnCurrentPageTest": { "/mock-page-off": true }
+      }
+    },
+    "/mock-page-1": {
+      "on": true,
+      "switches": {
+        "A6": { "/mock-page-2": false },
+        "A4": { "/mock-page-2": true },
+        "A5": { "/mock-page-3": false }
+      }
+    },
+    "/mock-page-2": {
+      "on": true,
+      "switches": {
+        "A7": { "/mock-page-3": false },
+        "A8": { "/mock-page-2": false }
+      }
+    },
+    "/mock-page-3": {
+      "on": true,
+      "switches": {}
+    }
+  }
+}

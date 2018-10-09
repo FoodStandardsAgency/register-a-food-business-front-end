@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.40.1 - 8th October 2018 (released)
+
+### Modified
+
+* SDB-963: Fixed bug - Trim all blank spaces from answers
+
+## v1.40.0 - 4th October 2018 (released)
+
+### Added
+
+* SDB-922: Added feature toggling and sending of data version number to back end service
+
+## v1.39.0 - 3rd October 2018 (released)
+
+### Added
+
+* SDB-52 establishmentOpeningDays
+
+## v1.38.4 - 1st October 2018 (released)
+
+### Modified
+
+* Updated Gov.uk package to v0.2.12
+
+## v1.38.3 - 28th September 2018 (released)
+
+### Modified
+
+* Swapped order of establishment type and establishment address pages
+
+## v1.38.2 - 27th September 2018 (released)
+
+### Modified
+
+* Updated summary table
+
 ## v1.38.1 - 24th September 2018 (released)
 
 ### Modified

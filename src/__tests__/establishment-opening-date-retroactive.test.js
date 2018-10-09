@@ -1,6 +1,5 @@
 import EstablishmentOpeningDateRetroactive from "../../pages/establishment-opening-date-retroactive";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
 import * as emotion from "emotion";
 import { createSerializer } from "jest-emotion";
 
@@ -20,19 +19,6 @@ describe("<EstablishmentOpeningDateRetroactive />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<EstablishmentOpeningDateRetroactive />);
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <EstablishmentOpeningDateRetroactive
-          validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   it("renders OpeningDate component with correct error props and cumulative answers", () => {

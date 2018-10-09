@@ -1,6 +1,5 @@
 import EstablishmentOpeningDateProactive from "../../pages/establishment-opening-date-proactive";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
 import * as emotion from "emotion";
 import { createSerializer } from "jest-emotion";
 
@@ -20,19 +19,6 @@ describe("<EstablishmentOpeningDateProactive />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<EstablishmentOpeningDateProactive />);
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <EstablishmentOpeningDateProactive
-          validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   it("renders OpeningDate component with correct error props and cumulative answers", () => {
