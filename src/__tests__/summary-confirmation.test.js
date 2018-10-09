@@ -207,4 +207,18 @@ describe("<ApplicationComplete />", () => {
       expect(panel.length).toBe(0);
     });
   });
+
+  describe("When given no lcConfig", () => {
+    it("The page still renders", () => {
+      const wrapper = mount(
+        <ApplicationComplete
+          cumulativeAnswers={cumulativeAnswers}
+          applicationCompletePage={true}
+          lcConfig={{}}
+          emailFbo={emailFbo}
+        />
+      );
+      expect(wrapper.length).toBe(1);
+    });
+  });
 });
