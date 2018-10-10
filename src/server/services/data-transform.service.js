@@ -179,6 +179,7 @@ const transformAnswersForSubmit = (
     "business_type_search_term",
     "import_export_activities",
     "opening_days_irregular",
+    "business_other_details",
     "opening_day_monday",
     "opening_day_tuesday",
     "opening_day_wednesday",
