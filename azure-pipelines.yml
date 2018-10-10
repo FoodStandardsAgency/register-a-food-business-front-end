@@ -45,6 +45,9 @@ steps:
       testRunTitle: Integration tests
       mergeTestResults: false
 
+  - script: yarn build
+    displayName: "Yarn build"
+
   - script: yarn --production
     displayName: Prune dev dependencies
 
