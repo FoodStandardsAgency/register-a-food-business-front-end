@@ -14,17 +14,15 @@ describe("Cleansession route: ", () => {
   });
 
   describe("GET to /cleansession", () => {
-    describe("given an error occurs on session destroy", () => {
+    describe("given an error occurs on session regenerate", () => {
       const req = {
         session: {
-          example: "value",
-          destroy: jest.fn(callback => callback("this is an error")),
-          council: "council"
+          regenerate: jest.fn(callback => callback("this is an error"))
         }
       };
 
       const res = {
-        redirect: jest.fn()
+        json: jest.fn()
       };
 
       beforeEach(() => {
@@ -32,29 +30,26 @@ describe("Cleansession route: ", () => {
         handler(req, res);
       });
 
-      it("Should not have cleared the session", () => {
-        expect(req.session.example).toEqual("value");
-      });
-
       it("Should call res.redirect with target of 'back'", () => {
-        expect(res.redirect).toHaveBeenCalledWith("back");
+        expect(res.json).toHaveBeenCalledWith({
+          error: "Session regenerate failed."
+        });
       });
     });
 
     describe("given session destroy is successful and no errors occur", () => {
       const req = {
         session: {
-          example: "value",
-          destroy: jest.fn(callback => {
-            delete req.session.example;
+          regenerate: jest.fn(callback => {
             callback();
-          }),
-          council: "council"
-        }
+          })
+        },
+        sessionID: "123456"
       };
 
       const res = {
-        redirect: jest.fn()
+        set: jest.fn(),
+        json: jest.fn()
       };
 
       beforeEach(() => {
@@ -62,12 +57,12 @@ describe("Cleansession route: ", () => {
         handler(req, res);
       });
 
-      it("Should set the session to be an empty object", () => {
-        expect(req.session.example).not.toBeDefined();
+      it("Should call res.set with 'session_id' and the actual session ID as args", () => {
+        expect(res.set).toHaveBeenCalledWith("session_id", req.sessionID);
       });
 
-      it("Should call res.redirect with target of '/'", () => {
-        expect(res.redirect).toHaveBeenCalledWith("/");
+      it("Should call res.json with an object including the session ID", () => {
+        expect(res.json).toHaveBeenCalledWith({ session_id: req.sessionID });
       });
     });
   });

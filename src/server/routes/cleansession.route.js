@@ -6,10 +6,10 @@ const cleansessionRouter = () => {
 
   router.get("", (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/cleansession route");
-    req.session.destroy(err => {
+    req.session.regenerate(async err => {
       if (err) {
         logEmitter.emit("functionFail", "Routes", "/cleansession route", err);
-        res.redirect("back");
+        res.json({ error: "Session regenerate failed." });
       } else {
         logEmitter.emit(
           "functionSuccessWith",
@@ -17,7 +17,8 @@ const cleansessionRouter = () => {
           "/cleansession route",
           `Redirecting to: /`
         );
-        res.redirect(`/`);
+        res.set("session_id", req.sessionID);
+        res.json({ session_id: req.sessionID });
       }
     });
   });
