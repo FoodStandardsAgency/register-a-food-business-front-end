@@ -51,8 +51,8 @@ steps:
   - script: yarn --production
     displayName: Prune dev dependencies
 
-  - script: rm -rf coverage reports
-    displayName: Remove reporting folders
+  - script: rm -rf coverage reports .vs .vscode docs src/__mocks__ src/__tests__
+    displayName: Remove unnecessary folders
 
   - task: ArchiveFiles@2
     inputs:
