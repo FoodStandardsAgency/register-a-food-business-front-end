@@ -17,7 +17,7 @@ const continueController = (
   previousAnswers,
   newAnswers = {},
   switches,
-  editMode,
+  editModePage,
   pathFromSession
 ) => {
   logEmitter.emit("functionCall", "continue.controller", "continueController");
@@ -70,9 +70,9 @@ const continueController = (
       // if there are errors, redirect back to the current page
       controllerResponse.redirectRoute = currentPage;
 
-      if (editMode === true) {
+      if (editModePage) {
         // if edit mode is on, persist the edit mode query when redirecting
-        controllerResponse.redirectRoute += "?edit=on";
+        controllerResponse.redirectRoute += `?edit=${editModePage}`;
       }
       logEmitter.emit(
         "functionSuccessWith",
@@ -85,24 +85,12 @@ const continueController = (
       return controllerResponse;
     }
 
-    if (editMode === true) {
-      // if edit mode is on, redirect to the summary page
-      controllerResponse.redirectRoute = "/registration-summary";
-      logEmitter.emit(
-        "functionSuccessWith",
-        "continue.controller",
-        "continueController",
-        `editMode is true. redirectRoute: ${controllerResponse.redirectRoute}`
-      );
-      return controllerResponse;
-    }
-
     // get the new path based on the answers that have been given
     const newPath = editPath(
       controllerResponse.cumulativeAnswers,
       currentPage,
       pathFromSession,
-      editMode
+      editModePage
     );
 
     // update the new path to switch off manual address input pages if the originator (currentPage) is one of the address select pages
@@ -114,18 +102,16 @@ const continueController = (
       updatedNewPath
     );
 
-
-    // create array of page names
-    const pageNames = Object.keys(updatedNewPath);
-
-    // filter array by on = true
-    const activePageNames = pageNames.filter(page => updatedNewPath[page].on === true);
+    // create an array of the active page names
+    const activePageNames = Object.keys(updatedNewPath).filter(
+      page => updatedNewPath[page].on === true
+    );
 
     // check if current page is at the end of this array
     const finalActivePage = activePageNames[activePageNames.length - 1];
-    
+
     if (currentPage === finalActivePage) {
-      if (editMode === true) {
+      if (editModePage) {
         controllerResponse.redirectRoute = "/registration-summary";
       } else {
         controllerResponse.redirectRoute = "/submit";
@@ -134,9 +120,9 @@ const continueController = (
       // else move to the next page in the path
       const nextPage = moveAlongPath(updatedNewPath, currentPage, 1);
       controllerResponse.redirectRoute = nextPage;
-      if (editMode === true) {
+      if (editModePage) {
         // if edit mode is on, persist the edit mode query when redirecting
-        controllerResponse.redirectRoute += "?edit=on";
+        controllerResponse.redirectRoute += `?edit=${editModePage}`;
       }
     }
     logEmitter.emit(

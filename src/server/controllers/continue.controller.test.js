@@ -191,7 +191,7 @@ describe("Function: continueController: ", () => {
         expect(response.cumulativeAnswers).toBeDefined();
       });
 
-      describe("When editMode is true", () => {
+      describe("When editModePage is true", () => {
         beforeEach(() => {
           response = continueController(
             "/some-page",
@@ -265,7 +265,7 @@ describe("Function: continueController: ", () => {
         expect(response.switches).toEqual({ switch1: false, switch2: true });
       });
 
-      describe("When editMode is true", () => {
+      describe("When editModePage is true", () => {
         beforeEach(() => {
           response = continueController(
             "/some-page",

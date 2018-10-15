@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 const EstablishmentAddress = props => (
   <FsaLayout {...props}>
     <BackButton
-      editMode={props.switches.editMode}
+      editModePage={props.switches.editModePage}
       originator="establishment-address"
     />
 

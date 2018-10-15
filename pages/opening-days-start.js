@@ -10,13 +10,13 @@ import PropTypes from "prop-types";
 
 const OpeningDaysStart = props => (
   <FsaLayout {...props}>
-    <BackButton editMode={props.editMode} originator="opening-days-start" />
+    <BackButton editModePage={props.editModePage} originator="opening-days-start" />
     <Header level={2}>
       What days will this establishment be open and producing or serving food?
     </Header>
 
     <form
-      action={`/continue/opening-days-start/${props.editMode}`}
+      action={`/continue/opening-days-start/${props.editModePage}`}
       method="post"
     >
       <ContentItem.B_30_15>
@@ -68,7 +68,7 @@ const OpeningDaysStart = props => (
         </Paragraph>
       </HiddenText>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton editModePage={props.editModePage} />
     </form>
   </FsaLayout>
 );

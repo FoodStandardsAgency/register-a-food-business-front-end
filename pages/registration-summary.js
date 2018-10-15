@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 
 const RegistrationSummary = props => (
   <FsaLayout {...props}>
-    <BackButton editMode={props.editMode} originator="registration-summary" />
+    <BackButton editModePage={props.editModePage} originator="registration-summary" />
 
     <ContentItem.B_30_15>
       <ContentItem.B_30_15>

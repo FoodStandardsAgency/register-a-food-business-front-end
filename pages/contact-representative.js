@@ -14,7 +14,7 @@ const ContactRepresentative = props => {
   return (
     <FsaLayout {...props}>
       <BackButton
-        editMode={props.editMode}
+        editModePage={props.editModePage}
         originator="contact-representative"
       />
       <ProcessedErrorSummary
@@ -34,7 +34,7 @@ const ContactRepresentative = props => {
         </Paragraph>
       </HiddenText>
       <form
-        action={`/continue/contact-representative/${props.editMode}`}
+        action={`/continue/contact-representative/${props.editModePage}`}
         method="post"
       >
         <ContentItem.B_30_15>
@@ -111,7 +111,7 @@ const ContactRepresentative = props => {
           </ContentItem.B_30_15>
         </ContentItem.B_30_15>
 
-        <ContinueButton editMode={props.editMode} />
+        <ContinueButton editModePage={props.editModePage} />
       </form>
     </FsaLayout>
   );

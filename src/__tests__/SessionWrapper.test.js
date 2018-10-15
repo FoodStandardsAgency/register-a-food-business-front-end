@@ -98,22 +98,22 @@ describe("<SessionWrapper />", () => {
     });
 
     describe("given a url query that includes an edit value", () => {
-      it("returns an editMode value that is true", () => {
+      it("returns an editModePage value that is true", () => {
         const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {}, query: { edit: "on" } }
         });
-        expect(initialProps.editMode).toBe(true);
+        expect(initialProps.editModePage).toBe(true);
       });
     });
 
     describe("given a url query that does not include an edit value", () => {
-      it("returns an editMode value that is false", () => {
+      it("returns an editModePage value that is false", () => {
         const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {}, query: {} }
         });
-        expect(initialProps.editMode).toBe(false);
+        expect(initialProps.editModePage).toBe(false);
       });
     });
 
@@ -156,13 +156,13 @@ describe("<SessionWrapper />", () => {
     });
 
     describe("given that req.session.switches is undefined", () => {
-      it("props.switches is object with an editMode property", () => {
+      it("props.switches is object with an editModePage property", () => {
         const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {} }
         });
         const componentProps = WrappedComponent(initialProps).props;
-        expect(componentProps.editMode).toBeDefined();
+        expect(componentProps.editModePage).toBeDefined();
       });
     });
 
@@ -316,7 +316,7 @@ describe("<SessionWrapper />", () => {
     });
 
     describe("given that req.session.switches is defined", () => {
-      it("props.switches is the same as the session.switches but with an editMode property", () => {
+      it("props.switches is the same as the session.switches but with an editModePage property", () => {
         const WrappedComponent = SessionWrapper(ExampleComponent);
         const exampleSwitches = { test: true };
         const initialProps = WrappedComponent.getInitialProps({
@@ -324,7 +324,7 @@ describe("<SessionWrapper />", () => {
         });
         const componentProps = WrappedComponent(initialProps).props;
         expect(componentProps.switches.test).toBe(true);
-        expect(componentProps.editMode).toBeDefined();
+        expect(componentProps.editModePage).toBeDefined();
       });
     });
 

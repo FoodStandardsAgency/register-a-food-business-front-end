@@ -40,12 +40,10 @@ const SessionWrapper = Page => {
       acceptAllCookies:
         req && req.cookies && req.cookies.acceptAllCookies
           ? req.cookies.acceptAllCookies
-          : undefined
+          : undefined,
+      editModePage:
+        req && req.query && req.query.edit ? req.query.edit : undefined
     };
-
-    req && req.query && req.query.edit === "on"
-      ? (initialProps.editMode = true)
-      : (initialProps.editMode = false);
 
     return initialProps;
   };

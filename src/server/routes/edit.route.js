@@ -10,7 +10,7 @@ const editRouter = () => {
     const target = req.params.target;
 
     logEmitter.emit("functionSuccess", "Routes", "/edit/:target route");
-    res.redirect(`/${target}?edit=on`);
+    res.redirect(`/new/${req.session.council}/${target}?edit=${target}`);
   });
 
   return router;

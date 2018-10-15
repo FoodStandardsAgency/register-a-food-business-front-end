@@ -477,8 +477,13 @@ const EstablishmentDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-          <Table.Cell>
-            <div />
+          <Table.Cell className="summaryTableChangeCell">
+            <AnchorTag
+              id="changeEstablishmentOpeningDateRow"
+              href="/edit/establishment-opening-status"
+            >
+              Change
+            </AnchorTag>
           </Table.Cell>
         )}
       </FormattedTableRow>

@@ -13,7 +13,7 @@ describe("Continue route: ", () => {
   beforeEach(() => {
     router = continueRouter();
   });
-  describe("POST to /continue/:originator/:editMode?", () => {
+  describe("POST to /continue/:originator/:editModePage?", () => {
     let req, res;
 
     beforeEach(() => {
@@ -41,7 +41,7 @@ describe("Continue route: ", () => {
         body: "body",
         params: {
           originator: "originator",
-          editMode: "false"
+          editModePage: "false"
         }
       };
 
@@ -52,7 +52,7 @@ describe("Continue route: ", () => {
       handler(req, res);
     });
 
-    it("Should call continueController with currentPage, cumulativeAnswers, body, switches, editMode, and path", () => {
+    it("Should call continueController with currentPage, cumulativeAnswers, body, switches, editModePage, and path", () => {
       expect(continueController).toHaveBeenCalledWith(
         "/originator",
         {},
@@ -72,7 +72,7 @@ describe("Continue route: ", () => {
       expect(res.redirect).toBeCalledWith("/new/council/newPage");
     });
 
-    describe("given that editMode is on", () => {
+    describe("given that editModePage is on", () => {
       let req, res;
 
       beforeEach(() => {
@@ -100,7 +100,7 @@ describe("Continue route: ", () => {
           body: "body",
           params: {
             originator: "originator",
-            editMode: "true"
+            editModePage: "true"
           }
         };
 
@@ -111,7 +111,7 @@ describe("Continue route: ", () => {
         handler(req, res);
       });
 
-      it("Should call continueController with editMode on", () => {
+      it("Should call continueController with editModePage on", () => {
         expect(continueController).toHaveBeenCalledWith(
           "/originator",
           {},
@@ -160,7 +160,7 @@ describe("Continue route: ", () => {
           body: "body",
           params: {
             originator: "originator",
-            editMode: "true"
+            editModePage: "true"
           }
         };
 
@@ -203,7 +203,7 @@ describe("Continue route: ", () => {
           body: "body",
           params: {
             originator: "originator",
-            editMode: "true"
+            editModePage: "true"
           }
         };
 

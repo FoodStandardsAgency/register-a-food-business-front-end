@@ -19,7 +19,7 @@ import PropTypes from "prop-types";
 const EstablishmentAddress = props => (
   <FsaLayout {...props}>
     <BackButton
-      editMode={props.editMode}
+      editModePage={props.editModePage}
       href={
         props.switches["/establishment-address-none-found"]
           ? "/establishment-address"
@@ -41,7 +41,7 @@ const EstablishmentAddress = props => (
     </HiddenText>
 
     <form
-      action={`/continue/establishment-address-manual/${props.editMode}`}
+      action={`/continue/establishment-address-manual/${props.editModePage}`}
       method="post"
     >
       <ContentItem.B_30_15>
@@ -127,7 +127,7 @@ const EstablishmentAddress = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton editModePage={props.editModePage} />
     </form>
   </FsaLayout>
 );

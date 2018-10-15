@@ -11,10 +11,10 @@ import PropTypes from "prop-types";
 const OpeningSomeDays = props => (
   <FsaLayout {...props}>
     <form
-      action={`/continue/opening-days-some/${props.editMode}`}
+      action={`/continue/opening-days-some/${props.editModePage}`}
       method="post"
     >
-      <BackButton editMode={props.editMode} originator="opening-days-some" />
+      <BackButton editModePage={props.editModePage} originator="opening-days-some" />
       <Header level={2}>Opening days</Header>
       <Paragraph>
         What days will this establishment be producing or serving food?
@@ -86,7 +86,7 @@ const OpeningSomeDays = props => (
           </Checkbox>
         </MultiChoice>
       </ContentItem.B_30_15>
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton editModePage={props.editModePage} />
     </form>
   </FsaLayout>
 );

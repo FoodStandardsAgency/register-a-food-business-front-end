@@ -18,11 +18,11 @@ import PropTypes from "prop-types";
 const ImportExportActivities = props => (
   <FsaLayout {...props}>
     <form
-      action={`/continue/business-import-export/${props.editMode}`}
+      action={`/continue/business-import-export/${props.editModePage}`}
       method="post"
     >
       <BackButton
-        editMode={props.editMode}
+        editModePage={props.editModePage}
         originator="business-import-export"
       />
       <Header level={2}>
@@ -93,7 +93,7 @@ const ImportExportActivities = props => (
         </HiddenText>
       </ContentItem.B_30_15>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton editModePage={props.editModePage} />
     </form>
   </FsaLayout>
 );

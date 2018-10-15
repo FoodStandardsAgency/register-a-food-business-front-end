@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 const EstablishmentTradingName = props => (
   <FsaLayout {...props}>
     <BackButton
-      editMode={props.editMode}
+      editModePage={props.editModePage}
       originator="establishment-trading-name"
     />
     <Header level={2}>Trading name</Header>
@@ -25,7 +25,7 @@ const EstablishmentTradingName = props => (
     </HiddenText>
 
     <form
-      action={`/continue/establishment-trading-name/${props.editMode}`}
+      action={`/continue/establishment-trading-name/${props.editModePage}`}
       method="post"
     >
       <ContentItem.B_30_15>
@@ -49,7 +49,7 @@ const EstablishmentTradingName = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton editModePage={props.editModePage} />
     </form>
   </FsaLayout>
 );
