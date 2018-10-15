@@ -3,6 +3,7 @@
   "version": "1.40.1",
   "scripts": {
     "debug": "node --inspect src/server/index.js",
+    "debug:prod": "NODE_ENV=production node --inspect src/server/index.js",
     "dev": "node src/server/index.js",
     "build": "next build",
     "version": "NODE_ENV=production node -v",
@@ -10,14 +11,17 @@
     "test": "jest ./src --coverage",
     "test:ci": "export TEST_TYPE=unit && jest ./src --coverage --maxWorkers=4",
     "test:watch": "jest ./src --watch",
-    "test:integration": "export TEST_TYPE=integration && jest tests/integration/*.js",
+    "test:integration":
+      "export TEST_TYPE=integration && jest tests/integration/*.js",
     "test:contract": "jest tests/contract/*.js",
     "test:securityallWizard": "snyk wizard",
     "test:securityWizard": "snyk wizard --severity-threshold=medium",
     "test:security": "snyk auth && snyk test --severity-threshold=medium",
     "lint": "eslint ./src ./pages",
-    "format:verify": "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
-    "format": "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'"
+    "format:verify":
+      "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
+    "format":
+      "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'"
   },
   "dependencies": {
     "@govuk-react/icon-crown": "0.0.5",

@@ -101,7 +101,8 @@ const continueController = (
     const newPath = editPath(
       controllerResponse.cumulativeAnswers,
       currentPage,
-      pathFromSession
+      pathFromSession,
+      editMode
     );
 
     // update the new path to switch off manual address input pages if the originator (currentPage) is one of the address select pages
@@ -113,17 +114,30 @@ const continueController = (
       updatedNewPath
     );
 
-    if (
-      Object.keys(updatedNewPath).indexOf(currentPage) ===
-      Object.keys(updatedNewPath).length - 1
-    ) {
-      // else if the current page is at the end of the path, redirect to the submit route
-      controllerResponse.redirectRoute = "/submit";
+
+    // create array of page names
+    const pageNames = Object.keys(updatedNewPath);
+
+    // filter array by on = true
+    const activePageNames = pageNames.filter(page => updatedNewPath[page].on === true);
+
+    // check if current page is at the end of this array
+    const finalActivePage = activePageNames[activePageNames.length - 1];
+    
+    if (currentPage === finalActivePage) {
+      if (editMode === true) {
+        controllerResponse.redirectRoute = "/registration-summary";
+      } else {
+        controllerResponse.redirectRoute = "/submit";
+      }
     } else {
       // else move to the next page in the path
       const nextPage = moveAlongPath(updatedNewPath, currentPage, 1);
-
       controllerResponse.redirectRoute = nextPage;
+      if (editMode === true) {
+        // if edit mode is on, persist the edit mode query when redirecting
+        controllerResponse.redirectRoute += "?edit=on";
+      }
     }
     logEmitter.emit(
       "functionSuccessWith",
