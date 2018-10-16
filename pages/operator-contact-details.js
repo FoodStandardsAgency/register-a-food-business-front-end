@@ -31,7 +31,7 @@ const OperatorContactDetails = props => (
     </HiddenText>
 
     <form
-      action={`/continue/operator-contact-details/${props.editModePage}`}
+      action={props.formAction}
       method="post"
     >
       <ContentItem.B_30_15>

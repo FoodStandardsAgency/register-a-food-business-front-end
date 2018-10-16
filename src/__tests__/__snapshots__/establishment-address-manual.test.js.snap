@@ -1583,7 +1583,6 @@ exports[`<EstablishmentAddress /> matches the previous snapshot 1`] = `
             </div>
           </details>
           <form
-            action="/continue/establishment-address-manual/undefined"
             method="post"
           >
             <div

@@ -17,7 +17,7 @@ const RegistrationRole = props => (
     <Header level={2}>What is your role in this food business?</Header>
 
     <form
-      action={`/continue/registration-role/${props.editModePage}`}
+      action={props.formAction}
       method="post"
     >
       <ContentItem.B_45_30>

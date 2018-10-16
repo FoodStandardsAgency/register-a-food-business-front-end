@@ -39,7 +39,7 @@ const EstablishmentOpeningStatus = props => (
     </ContentItem.B_30_15>
 
     <form
-      action={`/continue/establishment-opening-status/${props.editModePage}`}
+      action={props.formAction}
       method="post"
     >
       <ContentItem.B_45_30>

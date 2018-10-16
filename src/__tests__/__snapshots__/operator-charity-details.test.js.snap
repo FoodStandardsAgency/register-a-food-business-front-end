@@ -1584,7 +1584,6 @@ exports[`<OperatorCharityDetails /> matches the previous snapshot 1`] = `
             </div>
           </details>
           <form
-            action="/continue/operator-charity-details/undefined"
             method="post"
           >
             <div

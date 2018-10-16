@@ -14,7 +14,7 @@ const OtherDetails = props => (
     <Header level={2}>Other details</Header>
 
     <form
-      action={`/continue/business-other-details/${props.editModePage}`}
+      action={props.formAction}
       method="post"
     >
       <ContentItem.B_30_15>

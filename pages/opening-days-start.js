@@ -16,7 +16,7 @@ const OpeningDaysStart = props => (
     </Header>
 
     <form
-      action={`/continue/opening-days-start/${props.editModePage}`}
+      action={props.formAction}
       method="post"
     >
       <ContentItem.B_30_15>

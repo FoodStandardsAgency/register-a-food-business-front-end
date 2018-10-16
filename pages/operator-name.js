@@ -25,7 +25,7 @@ const OperatorName = props => (
         operates.
       </Paragraph>
     </HiddenText>
-    <form action={`/continue/operator-name/${props.editModePage}`} method="post">
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField

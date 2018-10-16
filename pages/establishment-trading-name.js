@@ -25,7 +25,7 @@ const EstablishmentTradingName = props => (
     </HiddenText>
 
     <form
-      action={`/continue/establishment-trading-name/${props.editModePage}`}
+      action={props.formAction}
       method="post"
     >
       <ContentItem.B_30_15>

@@ -2,6 +2,13 @@ const SessionWrapper = Page => {
   const wrapper = props => <Page {...props} />;
 
   wrapper.getInitialProps = ({ req }) => {
+    const editModePage =
+      req && req.query && req.query.edit ? req.query.edit : undefined;
+    const currentPage = req.url.split("/")[2];
+    const formAction = editModePage
+      ? `/edit/continue/${currentPage}`
+      : `/continue/${currentPage}`;
+
     const initialProps = {
       cumulativeAnswers:
         req && req.session && req.session.cumulativeAnswers
@@ -41,8 +48,8 @@ const SessionWrapper = Page => {
         req && req.cookies && req.cookies.acceptAllCookies
           ? req.cookies.acceptAllCookies
           : undefined,
-      editModePage:
-        req && req.query && req.query.edit ? req.query.edit : undefined
+      editModePage,
+      formAction
     };
 
     return initialProps;

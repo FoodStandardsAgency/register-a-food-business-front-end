@@ -1513,7 +1513,6 @@ exports[`<EstablishmentOpeningStatus /> matches the previous snapshot 1`] = `
             </span>
           </div>
           <form
-            action="/continue/establishment-opening-status/undefined"
             method="post"
           >
             <div

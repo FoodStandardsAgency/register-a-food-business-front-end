@@ -1668,7 +1668,6 @@ exports[`<ContactRepresentative /> matches the previous snapshot 1`] = `
             </div>
           </details>
           <form
-            action="/continue/contact-representative/undefined"
             method="post"
           >
             <div

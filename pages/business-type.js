@@ -14,7 +14,7 @@ const BusinessType = props => (
     <BackButton editModePage={props.editModePage} originator="business-type" />
     <Header level={2}>What kind of food business are you registering?</Header>
 
-    <form action={`/continue/business-type/${props.editModePage}`} method="post">
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <BusinessTypeLookup id="businessTypeLookup" {...props} />

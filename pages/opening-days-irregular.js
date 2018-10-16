@@ -14,7 +14,7 @@ const OtherDaysIrregular = props => (
     <Header level={2}>Opening days</Header>
 
     <form
-      action={`/continue/opening-days-irregular/${props.editModePage}`}
+      action={props.formAction}
       method="post"
     >
       <ContentItem.B_30_15>

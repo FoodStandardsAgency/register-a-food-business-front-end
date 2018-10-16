@@ -33,7 +33,7 @@ const OperatorCharityDetails = props => (
     </HiddenText>
 
     <form
-      action={`/continue/operator-charity-details/${props.editModePage}`}
+      action={props.formAction}
       method="post"
     >
       <ContentItem.B_30_15>

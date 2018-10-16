@@ -36,7 +36,7 @@ class Declaration extends React.Component {
     return (
       <FsaLayout {...this.props}>
         <form
-          action={`/continue/declaration/${this.props.editModePage}`}
+          action={props.formAction}
           method="post"
           ref="submitRegistration"
         >

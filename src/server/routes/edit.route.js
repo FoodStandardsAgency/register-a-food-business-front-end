@@ -4,6 +4,15 @@ const { logEmitter } = require("../services/logging.service");
 const editRouter = () => {
   const router = Router();
 
+  router.get("/continue/:originator", (req, res) => {
+  
+  });
+
+  router.get("/back/:originator", (req, res) => {
+   
+  });
+
+
   router.get("/:target", (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/edit/:target route");
 

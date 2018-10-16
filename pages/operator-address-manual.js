@@ -49,7 +49,7 @@ const OperatorAddress = props => (
     </HiddenText>
 
     <form
-      action={`/continue/operator-address-manual/${props.editModePage}`}
+      action={props.formAction}
       method="post"
     >
       <ContentItem.B_30_15>

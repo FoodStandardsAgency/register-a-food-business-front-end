@@ -41,7 +41,7 @@ const EstablishmentAddress = props => (
     </HiddenText>
 
     <form
-      action={`/continue/establishment-address-manual/${props.editModePage}`}
+      action={props.formAction}
       method="post"
     >
       <ContentItem.B_30_15>

@@ -32,7 +32,7 @@ const EstablishmentContactDetails = props => (
     </HiddenText>
 
     <form
-      action={`/continue/establishment-contact-details/${props.editModePage}`}
+      action={props.formAction}
       method="post"
     >
       <ContentItem.B_30_15>

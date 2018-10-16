@@ -1422,7 +1422,6 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
             </p>
           </div>
           <form
-            action="/continue/customer-type/undefined"
             method="post"
           >
             <div

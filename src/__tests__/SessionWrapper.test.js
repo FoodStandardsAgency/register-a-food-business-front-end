@@ -7,18 +7,19 @@ const ExampleComponent = () => (
     <p>Some paragraph text</p>
   </div>
 );
+let req;
+let initialProps;
+const WrappedComponent = SessionWrapper(ExampleComponent);
 
 describe("<SessionWrapper />", () => {
   describe("the wrapper function", () => {
     it("returns the same component that it is passed", () => {
-      const WrappedComponent = SessionWrapper(ExampleComponent);
       const treeWrapped = renderer.create(<WrappedComponent />).toJSON();
       const treeOriginal = renderer.create(<ExampleComponent />).toJSON();
       expect(JSON.stringify(treeOriginal)).toEqual(JSON.stringify(treeWrapped));
     });
 
     it("returns some initial props via getInitialProps when passed a session object", () => {
-      const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({
         req: { session: {} }
       });
@@ -26,7 +27,6 @@ describe("<SessionWrapper />", () => {
     });
 
     it("returns a 'cumulativeAnswers' object as part of the initial props", () => {
-      const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({
         req: { session: {} }
       });
@@ -34,7 +34,6 @@ describe("<SessionWrapper />", () => {
     });
 
     it("returns a 'validatorErrors' object as part of the initial props", () => {
-      const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({
         req: { session: {} }
       });
@@ -42,7 +41,6 @@ describe("<SessionWrapper />", () => {
     });
 
     it("returns a 'transformedData' object as part of the initial props", () => {
-      const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({
         req: { session: {} }
       });
@@ -50,7 +48,6 @@ describe("<SessionWrapper />", () => {
     });
 
     it("returns a 'switches' object as part of the initial props", () => {
-      const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({
         req: { session: {} }
       });
@@ -58,7 +55,6 @@ describe("<SessionWrapper />", () => {
     });
 
     it("returns an 'addressLookups object as part of the initial props", () => {
-      const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({
         req: { session: {} }
       });
@@ -66,7 +62,6 @@ describe("<SessionWrapper />", () => {
     });
 
     it("returns a 'submissionDate' object as part of the initial props", () => {
-      const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({
         req: { session: {} }
       });
@@ -74,7 +69,6 @@ describe("<SessionWrapper />", () => {
     });
 
     it("returns a 'emailFbo' object as part of the initial props", () => {
-      const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({
         req: { session: {} }
       });
@@ -82,7 +76,6 @@ describe("<SessionWrapper />", () => {
     });
 
     it("returns a 'lcConfig' object as part of the initial props", () => {
-      const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({
         req: { session: {} }
       });
@@ -90,7 +83,6 @@ describe("<SessionWrapper />", () => {
     });
 
     it("returns a 'acceptAllCookies' as undefined as part of the initial props", () => {
-      const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({
         req: { session: {} }
       });
@@ -99,7 +91,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given a url query that includes an edit value", () => {
       it("returns an editModePage value that is true", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {}, query: { edit: "on" } }
         });
@@ -109,7 +100,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given a url query that does not include an edit value", () => {
       it("returns an editModePage value that is false", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {}, query: {} }
         });
@@ -118,7 +108,6 @@ describe("<SessionWrapper />", () => {
     });
 
     it("returns session data even if req is undefined", () => {
-      const WrappedComponent = SessionWrapper(ExampleComponent);
       const initialProps = WrappedComponent.getInitialProps({});
       expect(typeof initialProps.validatorErrors).toBe("object");
       expect(typeof initialProps.cumulativeAnswers).toBe("object");
@@ -135,7 +124,6 @@ describe("<SessionWrapper />", () => {
   describe("the resulting child component", () => {
     describe("given that req.session.cumulativeAnswers is undefined", () => {
       it("props.cumulativeAnswers is an empty object", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {} }
         });
@@ -146,7 +134,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.validatorErrors is undefined", () => {
       it("props.validatorErrors is an empty object", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {} }
         });
@@ -157,7 +144,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.switches is undefined", () => {
       it("props.switches is object with an editModePage property", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {} }
         });
@@ -168,7 +154,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.lc_config is undefined", () => {
       it("props.lcConfig is defined", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {} }
         });
@@ -179,7 +164,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.email_fbo is undefined", () => {
       it("props.emailFbo is defined", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {} }
         });
@@ -190,7 +174,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.addressLookups is undefined", () => {
       it("props.addressLookups is defined", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {} }
         });
@@ -201,7 +184,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.acceptAllCookies is undefined", () => {
       it("props.acceptAllCookies is defined", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {} }
         });
@@ -212,7 +194,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.transformedData is undefined", () => {
       it("props.transformedData is defined", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: {} }
         });
@@ -223,7 +204,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.cumulativeAnswers is defined", () => {
       it("props.cumulativeAnswers is the same as the session.cumulativeAnswers", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const exampleCumulativeAnswers = { test: "value" };
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: { cumulativeAnswers: exampleCumulativeAnswers } }
@@ -235,7 +215,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.validatorErrors is defined", () => {
       it("props.validatorErrors is the same as the session.validatorErrors", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const exampleValidatorErrors = { test: "value" };
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: { validatorErrors: exampleValidatorErrors } }
@@ -247,7 +226,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.submissionDate is defined", () => {
       it("props.submissionDate is the same as the session.submissionDate", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const exampleSubmissionDate = "Date";
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: { submissionDate: exampleSubmissionDate } }
@@ -259,7 +237,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.fsaRegistrationNumber is defined", () => {
       it("props.fsaRegistrationNumber is the same as the session.fsaRegistrationNumber", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const exampleFsaRegistrationNumber = "12345678";
         const initialProps = WrappedComponent.getInitialProps({
           req: {
@@ -275,7 +252,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.email_fbo is defined", () => {
       it("props.emailFbo is the same as the session.emailFbo", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const exampleEmailFbo = { success: true, recipient: "fbo@example.com" };
         const initialProps = WrappedComponent.getInitialProps({
           req: {
@@ -289,7 +265,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.lc_config is defined", () => {
       it("props.lcConfig is the same as the session.lcConfig", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const exampleLcConfig = { example: "data" };
         const initialProps = WrappedComponent.getInitialProps({
           req: {
@@ -303,7 +278,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.transformedData is defined", () => {
       it("props.lcConfig is the same as the session.lcConfig", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const exampleTransformedData = { example: "transformed data" };
         const initialProps = WrappedComponent.getInitialProps({
           req: {
@@ -317,7 +291,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.switches is defined", () => {
       it("props.switches is the same as the session.switches but with an editModePage property", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const exampleSwitches = { test: true };
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: { switches: exampleSwitches } }
@@ -330,7 +303,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.session.addressLookups is defined", () => {
       it("props.addressLookups is the same as the session.addressLookups", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const exampleAddressLookup = { test: [] };
         const initialProps = WrappedComponent.getInitialProps({
           req: { session: { addressLookups: exampleAddressLookup } }
@@ -342,7 +314,6 @@ describe("<SessionWrapper />", () => {
 
     describe("given that req.cookies.acceptAllCookies is defined", () => {
       it("props.acceptAllCookies is the same as the cookies.acceptAllCookies", () => {
-        const WrappedComponent = SessionWrapper(ExampleComponent);
         const initialProps = WrappedComponent.getInitialProps({
           req: { cookies: { acceptAllCookies: "true" } }
         });
@@ -351,4 +322,40 @@ describe("<SessionWrapper />", () => {
       });
     });
   });
+
+  describe("the formAction value", () => {
+    describe("given req.url is /west-dorset/operator-name", () => {
+      beforeEach(() => {
+        req = {
+          url: "/west-dorset/operator-name"
+        };
+      });
+
+      describe("given that editModePage is truthy", () => {
+        beforeEach(() => {
+          req.query.edit = "some-page-name";
+          initialProps = WrappedComponent.getInitialProps({ req });
+        });
+        it("should return initialProps that contains a formAction value of /edit/continue/operator-name", () => {
+          expect(initialProps.formAction).toBe("/edit/continue/operator-name");
+        });
+      });
+      describe("given that editModePage is falsy", () => {
+        beforeEach(() => {
+          req.query.edit = undefined;
+          initialProps = WrappedComponent.getInitialProps({ req });
+        });
+        it("should return initialProps that contains a formAction value of /continue/operator-name", () => {
+          expect(initialProps.formAction).toBe("/continue/operator-name");
+        });
+      });
+    });
+  });
+  // it("returns some initial props via getInitialProps when passed a session object", () => {
+  //   const WrappedComponent = SessionWrapper(ExampleComponent);
+  //   const initialProps = WrappedComponent.getInitialProps({
+  //     req: { session: {} }
+  //   });
+  //   expect(typeof initialProps).toBe("object");
+  // });
 });

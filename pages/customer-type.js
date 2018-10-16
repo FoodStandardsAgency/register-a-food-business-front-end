@@ -14,7 +14,7 @@ const CustomerType = props => (
     <Header level={2}>Who will this establishment supply food to?</Header>
     <Paragraph>Select all that apply</Paragraph>
 
-    <form action={`/continue/customer-type/${props.editModePage}`} method="post">
+    <form action={props.formAction} method="post">
       <ContentItem.B_45_30>
         <MultiChoice
           label=""

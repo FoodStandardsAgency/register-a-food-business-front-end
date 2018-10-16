@@ -19,7 +19,7 @@ const LimitedCompanyDetails = props => (
     <Header level={2}>Company details</Header>
 
     <form
-      action={`/continue/operator-company-details/${props.editModePage}`}
+      action={props.formAction}
       method="post"
     >
       <ContentItem.B_30_15>

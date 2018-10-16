@@ -34,7 +34,7 @@ const ContactRepresentative = props => {
         </Paragraph>
       </HiddenText>
       <form
-        action={`/continue/contact-representative/${props.editModePage}`}
+        action={props.formAction}
         method="post"
       >
         <ContentItem.B_30_15>

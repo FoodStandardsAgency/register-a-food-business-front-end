@@ -1371,7 +1371,6 @@ exports[`<OpeningDaysIrregular /> matches the previous snapshot 1`] = `
             Opening days
           </h2>
           <form
-            action="/continue/opening-days-irregular/undefined"
             method="post"
           >
             <div

@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 const OpeningSomeDays = props => (
   <FsaLayout {...props}>
     <form
-      action={`/continue/opening-days-some/${props.editModePage}`}
+      action={props.formAction}
       method="post"
     >
       <BackButton editModePage={props.editModePage} originator="opening-days-some" />

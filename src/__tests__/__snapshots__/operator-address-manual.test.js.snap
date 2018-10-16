@@ -1618,7 +1618,6 @@ exports[`<OperatorAddress /> matches the previous snapshot 1`] = `
             </div>
           </details>
           <form
-            action="/continue/operator-address-manual/undefined"
             method="post"
           >
             <div

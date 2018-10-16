@@ -1389,7 +1389,6 @@ exports[`<OpeningSomeDays /> matches the previous snapshot 1`] = `
           className="emotion-73"
         >
           <form
-            action="/continue/opening-days-some/undefined"
             method="post"
           >
             <div

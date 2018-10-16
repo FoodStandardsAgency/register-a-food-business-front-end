@@ -1243,7 +1243,6 @@ exports[`<BusinessType /> matches the previous snapshot 1`] = `
             What kind of food business are you registering?
           </h2>
           <form
-            action="/continue/business-type/undefined"
             method="post"
           >
             <div
