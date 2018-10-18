@@ -1,6 +1,5 @@
 const SessionWrapper = Page => {
   const wrapper = props => <Page {...props} />;
-
   wrapper.getInitialProps = ({ req }) => {
     const editModePage =
       req && req.query && req.query.edit ? req.query.edit : undefined;
