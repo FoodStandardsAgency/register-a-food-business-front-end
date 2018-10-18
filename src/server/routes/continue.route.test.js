@@ -13,7 +13,7 @@ describe("Continue route: ", () => {
   beforeEach(() => {
     router = continueRouter();
   });
-  describe("POST to /continue/:originator/:editModePage?", () => {
+  describe("POST to /continue/:originator", () => {
     let req, res;
 
     beforeEach(() => {
@@ -40,8 +40,7 @@ describe("Continue route: ", () => {
         },
         body: "body",
         params: {
-          originator: "originator",
-          editModePage: "false"
+          originator: "originator"
         }
       };
 
@@ -52,13 +51,12 @@ describe("Continue route: ", () => {
       handler(req, res);
     });
 
-    it("Should call continueController with currentPage, cumulativeAnswers, body, switches, editModePage, and path", () => {
+    it("Should call continueController with currentPage, cumulativeAnswers, body, switches, and path", () => {
       expect(continueController).toHaveBeenCalledWith(
         "/originator",
         {},
         "body",
         {},
-        false,
         "existing path from session"
       );
     });
@@ -70,66 +68,6 @@ describe("Continue route: ", () => {
 
     it("Should redirect to next page", () => {
       expect(res.redirect).toBeCalledWith("/new/council/newPage");
-    });
-
-    describe("given that editModePage is on", () => {
-      let req, res;
-
-      beforeEach(() => {
-        continueController.mockImplementation(() => ({
-          validatorErrors: {},
-          redirectRoute: "/newPage",
-          cumulativeAnswers: {
-            new: "answers"
-          },
-          switches: { exampleSwitch: true }
-        }));
-
-        handler = router.post.mock.calls[0][1];
-
-        req = {
-          session: {
-            cumulativeAnswers: {},
-            switches: {},
-            council: "council",
-            pathConfig: { path: "existing path from session" },
-            save: cb => {
-              cb();
-            }
-          },
-          body: "body",
-          params: {
-            originator: "originator",
-            editModePage: "true"
-          }
-        };
-
-        res = {
-          redirect: jest.fn()
-        };
-
-        handler(req, res);
-      });
-
-      it("Should call continueController with editModePage on", () => {
-        expect(continueController).toHaveBeenCalledWith(
-          "/originator",
-          {},
-          "body",
-          {},
-          true,
-          "existing path from session"
-        );
-      });
-
-      it("Should update session", () => {
-        expect(req.session.cumulativeAnswers).toEqual({ new: "answers" });
-        expect(req.session.switches).toEqual({ exampleSwitch: true });
-      });
-
-      it("Should redirect to next page", () => {
-        expect(res.redirect).toBeCalledWith("/new/council/newPage");
-      });
     });
 
     describe("given that the controller response redirects to submit", () => {
@@ -159,8 +97,7 @@ describe("Continue route: ", () => {
           },
           body: "body",
           params: {
-            originator: "originator",
-            editModePage: "true"
+            originator: "originator"
           }
         };
 
@@ -202,8 +139,7 @@ describe("Continue route: ", () => {
           },
           body: "body",
           params: {
-            originator: "originator",
-            editModePage: "true"
+            originator: "originator"
           }
         };
 

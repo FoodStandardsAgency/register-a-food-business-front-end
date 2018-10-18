@@ -7,25 +7,26 @@ const submitRouter = () => {
 
   router.get("", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/submit route");
-    const response = await submitController(
+    const controllerResponse = await submitController(
       req.session.council,
       req.session.cumulativeAnswers,
       req.session.addressLookups,
       req.session.pathConfig._id
     );
 
-    req.session.submissionDate = response.submissionDate;
-    req.session.fsaRegistrationNumber = response.fsaRegistrationNumber;
-    req.session.email_fbo = response.email_fbo;
-    req.session.lc_config = response.lc_config;
+    req.session.submissionDate = controllerResponse.submissionDate;
+    req.session.fsaRegistrationNumber =
+      controllerResponse.fsaRegistrationNumber;
+    req.session.emailFbo = controllerResponse.emailFbo;
+    req.session.lcConfig = controllerResponse.lcConfig;
 
     logEmitter.emit(
       "functionSuccessWith",
       "Routes",
       "/submit route",
-      response.redirectRoute
+      controllerResponse.redirectRoute
     );
-    if (response.redirectRoute === "back") {
+    if (controllerResponse.redirectRoute === "back") {
       res.redirect("back");
     }
     req.session.save(err => {
@@ -33,7 +34,9 @@ const submitRouter = () => {
         logEmitter.emit("functionFail", "Routes", "/submit route", err);
         throw err;
       }
-      res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
+      res.redirect(
+        `/new/${req.session.council}${controllerResponse.redirectRoute}`
+      );
     });
   });
 

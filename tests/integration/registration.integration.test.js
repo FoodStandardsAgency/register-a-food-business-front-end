@@ -71,13 +71,13 @@ describe("Registration service", () => {
         expect(resultJson.tascomiResponse.id).toBeDefined();
         expect(resultJson.tascomiResponse.online_reference).toBeDefined();
         expect(resultJson.reg_submission_date).toBeDefined();
-        expect(resultJson.email_fbo.recipient).toBeDefined();
+        expect(resultJson.emailFbo.recipient).toBeDefined();
         expect(resultJson.email_lc.hygieneAndStandards.recipient).toBeDefined();
         expect(
-          resultJson.lc_config.hygieneAndStandards.local_council
+          resultJson.lcConfig.hygieneAndStandards.local_council
         ).toBeDefined();
         expect(
-          resultJson.lc_config.hygieneAndStandards.local_council_email
+          resultJson.lcConfig.hygieneAndStandards.local_council_email
         ).toBeDefined();
       });
     });
@@ -94,15 +94,13 @@ describe("Registration service", () => {
         expect(resultJson.tascomiResponse.id).toBeDefined();
         expect(resultJson.tascomiResponse.online_reference).toBeDefined();
         expect(resultJson.reg_submission_date).toBeDefined();
-        expect(resultJson.email_fbo.recipient).toBeDefined();
+        expect(resultJson.emailFbo.recipient).toBeDefined();
         expect(resultJson.email_lc.hygiene.recipient).toBeDefined();
-        expect(resultJson.lc_config.hygiene.local_council).toBeDefined();
-        expect(resultJson.lc_config.hygiene.local_council_email).toBeDefined();
+        expect(resultJson.lcConfig.hygiene.local_council).toBeDefined();
+        expect(resultJson.lcConfig.hygiene.local_council_email).toBeDefined();
         expect(resultJson.email_lc.standards.recipient).toBeDefined();
-        expect(resultJson.lc_config.standards.local_council).toBeDefined();
-        expect(
-          resultJson.lc_config.standards.local_council_email
-        ).toBeDefined();
+        expect(resultJson.lcConfig.standards.local_council).toBeDefined();
+        expect(resultJson.lcConfig.standards.local_council_email).toBeDefined();
       });
     });
   });

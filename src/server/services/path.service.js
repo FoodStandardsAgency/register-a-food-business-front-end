@@ -33,12 +33,7 @@ const moveAlongPath = (path, currentPage, movement) => {
   }
 };
 
-const editPath = (
-  cumulativeAnswers,
-  currentPage,
-  pathFromSession,
-  editModePage
-) => {
+const editPath = (cumulativeAnswers, currentPage, pathFromSession) => {
   logEmitter.emit("functionCall", "path.service", "editPath");
 
   try {
@@ -58,9 +53,6 @@ const editPath = (
     const allSwitches = {};
 
     for (let page in newPath) {
-      if (editModePage) {
-        newPath[page].on = false;
-      }
       if (pagesUpToAndIncludingCurrentPage.indexOf(page) !== -1) {
         Object.assign(allSwitches, newPath[page].switches);
       }
@@ -90,10 +82,6 @@ const editPath = (
         pagesToSwitch = Object.assign(pagesToSwitch, allSwitches[valueOrKey]);
       }
     });
-
-    if (editModePage) {
-      newPath[currentPage].on = true;
-    }
 
     for (let eachPage in pagesToSwitch) {
       newPath[eachPage].on = pagesToSwitch[eachPage];

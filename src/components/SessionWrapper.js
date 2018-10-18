@@ -3,12 +3,22 @@ const SessionWrapper = Page => {
   wrapper.getInitialProps = ({ req }) => {
     const editModePage =
       req && req.query && req.query.edit ? req.query.edit : undefined;
+
+    const acceptAllCookies =
+      req && req.cookies && req.cookies.acceptAllCookies
+        ? req.cookies.acceptAllCookies
+        : undefined;
+
     const currentPage = req.url.split("/")[2];
+
     const formAction = editModePage
       ? `/edit/continue/${currentPage}`
       : `/continue/${currentPage}`;
 
     const initialProps = {
+      acceptAllCookies,
+      editModePage,
+      formAction,
       cumulativeAnswers:
         req && req.session && req.session.cumulativeAnswers
           ? req.session.cumulativeAnswers
@@ -32,23 +42,13 @@ const SessionWrapper = Page => {
           ? req.session.submissionDate
           : "",
       emailFbo:
-        req && req.session && req.session.email_fbo
-          ? req.session.email_fbo
-          : {},
+        req && req.session && req.session.emailFbo ? req.session.emailFbo : {},
       lcConfig:
-        req && req.session && req.session.lc_config
-          ? req.session.lc_config
-          : {},
+        req && req.session && req.session.lcConfig ? req.session.lcConfig : {},
       addressLookups:
         req && req.session && req.session.addressLookups
           ? req.session.addressLookups
-          : {},
-      acceptAllCookies:
-        req && req.cookies && req.cookies.acceptAllCookies
-          ? req.cookies.acceptAllCookies
-          : undefined,
-      editModePage,
-      formAction
+          : {}
     };
 
     return initialProps;

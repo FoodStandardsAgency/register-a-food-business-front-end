@@ -68,7 +68,6 @@ describe("Function: continueController: ", () => {
         exampleAnswers,
         {},
         exampleSwitches,
-        false,
         pathConfigMock
       );
     });
@@ -92,7 +91,6 @@ describe("Function: continueController: ", () => {
         exampleAnswers,
         undefined,
         exampleSwitches,
-        false,
         pathConfigMock
       );
     });
@@ -117,7 +115,6 @@ describe("Function: continueController: ", () => {
         exampleAnswers,
         testNewAnswersWithSpaces,
         exampleSwitches,
-        false,
         pathConfigMock
       );
     });
@@ -138,7 +135,6 @@ describe("Function: continueController: ", () => {
           {},
           exampleAnswers,
           exampleSwitches,
-          false,
           pathConfigMock
         );
       });
@@ -159,7 +155,6 @@ describe("Function: continueController: ", () => {
           {},
           exampleAnswers,
           undefined,
-          false,
           pathConfigMock
         );
       });
@@ -180,7 +175,6 @@ describe("Function: continueController: ", () => {
           {},
           exampleAnswers,
           exampleSwitches,
-          false,
           pathConfigMock
         );
       });
@@ -189,23 +183,6 @@ describe("Function: continueController: ", () => {
         expect(response.validatorErrors).toBeDefined();
         expect(response.redirectRoute).toBeDefined();
         expect(response.cumulativeAnswers).toBeDefined();
-      });
-
-      describe("When editModePage is true", () => {
-        beforeEach(() => {
-          response = continueController(
-            "/some-page",
-            {},
-            exampleAnswers,
-            {},
-            true,
-            pathConfigMock
-          );
-        });
-
-        it("Should set redirect route to /registration-summary", () => {
-          expect(response.redirectRoute).toBe("/registration-summary");
-        });
       });
 
       it("Should use cumulativePathAnswers and the path from session to create the newPath", () => {
@@ -232,7 +209,6 @@ describe("Function: continueController: ", () => {
         {},
         exampleAnswers,
         exampleSwitches,
-        false,
         pathConfigMock
       );
     });
@@ -259,27 +235,9 @@ describe("Function: continueController: ", () => {
           {},
           exampleAnswers,
           exampleSwitches,
-          false,
           pathConfigMock
         );
         expect(response.switches).toEqual({ switch1: false, switch2: true });
-      });
-
-      describe("When editModePage is true", () => {
-        beforeEach(() => {
-          response = continueController(
-            "/some-page",
-            {},
-            exampleAnswers,
-            {},
-            true,
-            pathConfigMock
-          );
-        });
-
-        it("Should set redirect route to the same page but with the edit=on query", () => {
-          expect(response.redirectRoute).toBe("/some-page?edit=on");
-        });
       });
     });
   });
@@ -295,7 +253,6 @@ describe("Function: continueController: ", () => {
         {},
         exampleAnswers,
         exampleEmptySwitches,
-        false,
         pathConfigMock
       );
 
@@ -314,7 +271,6 @@ describe("Function: continueController: ", () => {
         {},
         exampleAnswers,
         exampleSwitches,
-        false,
         pathConfigMock
       );
 
@@ -330,7 +286,6 @@ describe("Function: continueController: ", () => {
         {},
         exampleAnswers,
         exampleSwitches,
-        false,
         pathConfigMock
       );
 
@@ -355,7 +310,6 @@ describe("Function: continueController: ", () => {
           {},
           exampleAnswers,
           exampleSwitches,
-          false,
           pathConfigMock
         );
 
@@ -376,7 +330,6 @@ describe("Function: continueController: ", () => {
           {},
           exampleAnswers,
           exampleSwitches,
-          false,
           pathConfigMock
         );
       } catch (err) {

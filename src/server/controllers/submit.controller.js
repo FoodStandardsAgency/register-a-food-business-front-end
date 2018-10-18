@@ -15,7 +15,7 @@ const submitController = async (
     redirectRoute: null,
     submissionDate: "",
     fsaRegistrationNumber: "",
-    email_fbo: {},
+    emailFbo: {},
     lc_details: {}
   };
   logEmitter.emit("functionCall", "submit.controller", "submitController");
@@ -37,8 +37,8 @@ const submitController = async (
         controllerResponse.redirectRoute = "/summary-confirmation";
         controllerResponse.submissionDate = res.reg_submission_date;
         controllerResponse.fsaRegistrationNumber = res["fsa-rn"];
-        controllerResponse.email_fbo = res.email_fbo;
-        controllerResponse.lc_config = res.lc_config;
+        controllerResponse.emailFbo = res.email_fbo;
+        controllerResponse.lcConfig = res.lc_config;
         statusEmitter.emit("incrementCount", "submissionsSucceeded");
         statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
       } else {
@@ -60,7 +60,7 @@ const submitController = async (
       redirectRoute: ${controllerResponse.redirectRoute}.
       submissionDate: ${controllerResponse.submissionDate}.
       fsa-rn: ${controllerResponse.fsaRegistrationNumber}.
-      lc_config: ${controllerResponse.lc_config}.
+      lcConfig: ${controllerResponse.lcConfig}.
       `
     );
     return controllerResponse;

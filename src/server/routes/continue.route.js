@@ -5,7 +5,7 @@ const continueController = require("../controllers/continue.controller");
 const continueRouter = () => {
   const router = Router();
 
-  router.post("/:originator/:editModePage?", (req, res) => {
+  router.post("/:originator", (req, res) => {
     logEmitter.emit(
       "functionCallWith",
       "Routes",
@@ -13,17 +13,11 @@ const continueRouter = () => {
       `Originator: ${req.session.council}/${req.params.originator}`
     );
 
-    const editModePage =
-      req.params.editModePage === "undefined"
-        ? undefined
-        : req.params.editModePage;
-
     const response = continueController(
       `/${req.params.originator}`,
       req.session.cumulativeAnswers,
       req.body,
       req.session.switches,
-      editModePage,
       req.session.pathConfig.path
     );
 

@@ -36,11 +36,14 @@ class Declaration extends React.Component {
     return (
       <FsaLayout {...this.props}>
         <form
-          action={props.formAction}
+          action={this.props.formAction}
           method="post"
           ref="submitRegistration"
         >
-          <BackButton editModePage={this.props.editModePage} originator="declaration" />
+          <BackButton
+            editModePage={this.props.editModePage}
+            originator="declaration"
+          />
           <Header level={2}>Declaration</Header>
 
           <Paragraph>

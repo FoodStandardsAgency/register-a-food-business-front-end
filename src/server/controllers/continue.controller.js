@@ -17,7 +17,6 @@ const continueController = (
   previousAnswers,
   newAnswers = {},
   switches,
-  editModePage,
   pathFromSession
 ) => {
   logEmitter.emit("functionCall", "continue.controller", "continueController");
@@ -70,10 +69,6 @@ const continueController = (
       // if there are errors, redirect back to the current page
       controllerResponse.redirectRoute = currentPage;
 
-      if (editModePage) {
-        // if edit mode is on, persist the edit mode query when redirecting
-        controllerResponse.redirectRoute += `?edit=${editModePage}`;
-      }
       logEmitter.emit(
         "functionSuccessWith",
         "continue.controller",
@@ -89,8 +84,7 @@ const continueController = (
     const newPath = editPath(
       controllerResponse.cumulativeAnswers,
       currentPage,
-      pathFromSession,
-      editModePage
+      pathFromSession
     );
 
     // update the new path to switch off manual address input pages if the originator (currentPage) is one of the address select pages
@@ -111,19 +105,11 @@ const continueController = (
     const finalActivePage = activePageNames[activePageNames.length - 1];
 
     if (currentPage === finalActivePage) {
-      if (editModePage) {
-        controllerResponse.redirectRoute = "/registration-summary";
-      } else {
-        controllerResponse.redirectRoute = "/submit";
-      }
+      controllerResponse.redirectRoute = "/submit";
     } else {
       // else move to the next page in the path
       const nextPage = moveAlongPath(updatedNewPath, currentPage, 1);
       controllerResponse.redirectRoute = nextPage;
-      if (editModePage) {
-        // if edit mode is on, persist the edit mode query when redirecting
-        controllerResponse.redirectRoute += `?edit=${editModePage}`;
-      }
     }
     logEmitter.emit(
       "functionSuccessWith",
