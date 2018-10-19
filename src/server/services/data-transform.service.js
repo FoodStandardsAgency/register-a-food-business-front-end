@@ -1,5 +1,14 @@
 const { logEmitter } = require("./logging.service");
 
+const trimAnswers = cumulativeAnswers => {
+  const trimmedAnswers = JSON.parse(JSON.stringify(cumulativeAnswers));
+
+  for (let answer in trimmedAnswers) {
+    trimmedAnswers[answer] = trimmedAnswers[answer].trim();
+  }
+  return trimmedAnswers;
+};
+
 const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
   logEmitter.emit(
     "functionCall",
@@ -433,5 +442,6 @@ module.exports = {
   transformAnswersForSummary,
   transformAnswersForSubmit,
   combineDate,
-  separateBracketsFromBusinessType
+  separateBracketsFromBusinessType,
+  trimAnswers
 };

@@ -2,8 +2,44 @@ import {
   transformAnswersForSubmit,
   transformAnswersForSummary,
   combineDate,
-  separateBracketsFromBusinessType
+  separateBracketsFromBusinessType,
+  trimAnswers
 } from "./data-transform.service";
+
+describe("data-transform.service trimAnswers()", () => {
+  let result;
+  describe("given answers with white space", () => {
+    beforeEach(() => {
+      const data = {
+        operator_name: "Bob ",
+        operator_company_name: "  Trading Name   ",
+        operator_email: "  testemail@tester.com"
+      };
+      result = trimAnswers(data);
+    });
+    it("should return the answers without whitespace", () => {
+      const expectedResult = {
+        operator_name: "Bob",
+        operator_company_name: "Trading Name",
+        operator_email: "testemail@tester.com"
+      };
+      expect(result).toEqual(expectedResult);
+    });
+  });
+  describe("given an answer without white space", () => {
+    const data = {
+      operator_name: "Bob",
+      operator_company_name: "Trading Name",
+      operator_email: "testemail@tester.com"
+    };
+    beforeEach(() => {
+      result = trimAnswers(data);
+    });
+    it("should return the answer unchanged", () => {
+      expect(result).toEqual(data);
+    });
+  });
+});
 
 describe("data-transform.service transformAnswersForSummary()", () => {
   let result;
