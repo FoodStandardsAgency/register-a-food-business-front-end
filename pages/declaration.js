@@ -41,7 +41,7 @@ class Declaration extends React.Component {
           ref="submitRegistration"
         >
           <BackButton
-            editModePage={this.props.editModePage}
+            editModeFirstPage={this.props.editModeFirstPage}
             originator="declaration"
           />
           <Header level={2}>Declaration</Header>

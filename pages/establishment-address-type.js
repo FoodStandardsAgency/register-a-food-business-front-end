@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 const EstablishmentAddressType = props => (
   <FsaLayout {...props}>
     <BackButton
-      editModePage={props.editModePage}
+      editModeFirstPage={props.editModeFirstPage}
       originator="establishment-address-type"
     />
     <Header level={2}>Where is this establishment located?</Header>
@@ -72,7 +72,7 @@ const EstablishmentAddressType = props => (
         </MultiChoice>
       </ContentItem.B_45_30>
 
-      <ContinueButton editModePage={props.editModePage} />
+      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
     </form>
   </FsaLayout>
 );

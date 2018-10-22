@@ -1,5 +1,42 @@
 const { logEmitter } = require("./logging.service");
 
+const editPathInEditMode = (
+  cumulativeFullAnswers,
+  cumulativeEditAnswers,
+  pathFromSession,
+  editModeFirstPage,
+  currentPage
+) => {
+  const pagesToSwitchFull = getPathPagesToSwitch(
+    cumulativeFullAnswers,
+    currentPage,
+    pathFromSession
+  );
+  const pagesToSwitchInEdit = getPathPagesToSwitch(
+    cumulativeEditAnswers,
+    currentPage,
+    pathFromSession
+  );
+
+  const newPath = JSON.parse(JSON.stringify(pathFromSession));
+  pagesToSwitchFull.forEach(page => {
+    newPath[page].on = true;
+    if (pagesToSwitchInEdit.includes(page)) {
+      newPath[page].inEditPath = true;
+    } else {
+      newPath[page].inEditPath = false;
+    }
+  });
+
+  newPath[editModeFirstPage].inEditPath = true;
+
+  return newPath;
+};
+
+// find the next page on the edit path using inEditPath true/false --- moveAlongEditPath
+// TODO JMB: Merge 'is last page in path' into moveAlongEditPath
+const moveAlongEditPath = (editModePath, currentPage, movement) => {};
+
 const moveAlongPath = (path, currentPage, movement) => {
   logEmitter.emit("functionCall", "path.service", "moveAlongPath");
 
@@ -35,26 +72,46 @@ const moveAlongPath = (path, currentPage, movement) => {
 
 const editPath = (cumulativeAnswers, currentPage, pathFromSession) => {
   logEmitter.emit("functionCall", "path.service", "editPath");
+  const pathPagesToSwitch = getPathPagesToSwitch(
+    cumulativeAnswers,
+    currentPage,
+    pathFromSession
+  );
+
+  const newPath = JSON.parse(JSON.stringify(pathFromSession));
+
+  pathPagesToSwitch.forEach(page => {
+    newPath[page].on = true;
+  });
+
+  logEmitter.emit("functionSuccess", "path.service", "editPath");
+  return newPath;
+};
+
+const getPathPagesToSwitch = (
+  cumulativeAnswers,
+  currentPage,
+  pathFromSession
+) => {
+  logEmitter.emit("functionCall", "path.service", "getPathPagesToSwitch");
 
   try {
     if (!cumulativeAnswers || typeof cumulativeAnswers !== "object") {
       throw new Error(`
-      path.service.js editPath(): the cumulativeAnswers argument is either missing or is not an object.
+      path.service.js getPathPagesToSwitch(): the cumulativeAnswers argument is either missing or is not an object.
     `);
     }
 
-    const newPath = JSON.parse(JSON.stringify(pathFromSession));
-
-    const currentIndex = Object.keys(newPath).indexOf(currentPage);
-    const pagesUpToAndIncludingCurrentPage = Object.keys(newPath).slice(
+    const currentIndex = Object.keys(pathFromSession).indexOf(currentPage);
+    const pagesUpToAndIncludingCurrentPage = Object.keys(pathFromSession).slice(
       0,
       currentIndex + 1
     );
     const allSwitches = {};
 
-    for (let page in newPath) {
+    for (let page in pathFromSession) {
       if (pagesUpToAndIncludingCurrentPage.indexOf(page) !== -1) {
-        Object.assign(allSwitches, newPath[page].switches);
+        Object.assign(allSwitches, pathFromSession[page].switches);
       }
     }
 
@@ -76,21 +133,26 @@ const editPath = (cumulativeAnswers, currentPage, pathFromSession) => {
       );
     });
 
-    let pagesToSwitch = {};
+    let pagesToSwitch = [];
+
     answerValuesAndTruthyKeys.forEach(valueOrKey => {
       if (allSwitches[valueOrKey]) {
-        pagesToSwitch = Object.assign(pagesToSwitch, allSwitches[valueOrKey]);
+        pagesToSwitch.push(...Object.keys(allSwitches[valueOrKey]));
       }
     });
 
-    for (let eachPage in pagesToSwitch) {
-      newPath[eachPage].on = pagesToSwitch[eachPage];
-    }
+    // remove duplicates
+    pagesToSwitch = [...new Set(pagesToSwitch)];
 
-    logEmitter.emit("functionSuccess", "path.service", "editPath");
-    return newPath;
+    logEmitter.emit("functionSuccess", "path.service", "getPathPagesToSwitch");
+    return pagesToSwitch;
   } catch (err) {
-    logEmitter.emit("functionFail", "path.service", "editPath", err);
+    logEmitter.emit(
+      "functionFail",
+      "path.service",
+      "getPathPagesToSwitch",
+      err
+    );
     throw err;
   }
 };
@@ -122,6 +184,9 @@ const switchOffManualAddressInput = (newPath, currentPage) => {
 
 module.exports = {
   moveAlongPath,
+  getPathPagesToSwitch,
   editPath,
-  switchOffManualAddressInput
+  switchOffManualAddressInput,
+  moveAlongEditPath,
+  editPathInEditMode
 };

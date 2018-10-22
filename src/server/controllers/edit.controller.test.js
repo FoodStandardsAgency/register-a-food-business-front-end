@@ -1,3 +1,5 @@
+const editController = require("./edit.controller");
+
 let result;
 
 const testPath = {
@@ -57,7 +59,7 @@ describe("Edit controller", () => {
     describe("regardless of whether there are validation errors", () => {
       describe("given the current page has text input fields, with valid answers plus whitespace", () => {
         beforeEach(() => {
-          const editModePage = "/operator-name";
+          const editModeFirstPage = "/operator-name";
           const currentPage = "/operator-name";
           const previousAnswers = {
             example_answer: "value"
@@ -70,7 +72,7 @@ describe("Edit controller", () => {
 
           const args = [
             testPath,
-            editModePage,
+            editModeFirstPage,
             currentPage,
             previousAnswers,
             newAnswers,
@@ -91,7 +93,7 @@ describe("Edit controller", () => {
 
       describe("given the current page has checkboxes, one of which was originally checked but now is not", () => {
         beforeEach(() => {
-          const editModePage = "/business-import-export";
+          const editModeFirstPage = "/business-import-export";
           const currentPage = "/business-import-export";
           const previousAnswers = {
             directly_import: "Directly import"
@@ -103,7 +105,7 @@ describe("Edit controller", () => {
 
           const args = [
             testPath,
-            editModePage,
+            editModeFirstPage,
             currentPage,
             previousAnswers,
             newAnswers,
@@ -123,7 +125,7 @@ describe("Edit controller", () => {
 
     describe("given that there are validation errors", () => {
       beforeEach(() => {
-        const editModePage = "/registration-role";
+        const editModeFirstPage = "/registration-role";
         const currentPage = "/registration-role";
         const previousAnswers = {};
         const newAnswers = {};
@@ -131,7 +133,7 @@ describe("Edit controller", () => {
 
         const args = [
           testPath,
-          editModePage,
+          editModeFirstPage,
           currentPage,
           previousAnswers,
           newAnswers,
@@ -152,7 +154,7 @@ describe("Edit controller", () => {
     describe("given that there are NOT validation errors", () => {
       describe("given that the current page is at the end of the edit route", () => {
         beforeEach(() => {
-          const editModePage = "/registration-role";
+          const editModeFirstPage = "/registration-role";
           const currentPage = "/operator-name";
           const previousAnswers = {
             registration_role: "Sole trader"
@@ -165,7 +167,7 @@ describe("Edit controller", () => {
 
           const args = [
             testPath,
-            editModePage,
+            editModeFirstPage,
             currentPage,
             previousAnswers,
             newAnswers,
@@ -185,7 +187,7 @@ describe("Edit controller", () => {
 
       describe("given that the current page is NOT at the end of the edit route", () => {
         beforeEach(() => {
-          const editModePage = "/registration-role";
+          const editModeFirstPage = "/registration-role";
           const currentPage = "/operator-company-details";
           const previousAnswers = {
             registration_role: "Representative",
@@ -199,7 +201,7 @@ describe("Edit controller", () => {
 
           const args = [
             testPath,
-            editModePage,
+            editModeFirstPage,
             currentPage,
             previousAnswers,
             newAnswers,
@@ -243,11 +245,3 @@ describe("Edit controller", () => {
   //   });
   // });
 });
-
-// TESTS FOR EDIT PATH FUNCTION
-// describe("given that the new answers trigger the same switches as the old answers", () => {
-//   it("should return a redirect route with the next page", () => {});
-// });
-// describe("given that the new answers trigger different switches to the old answers", () => {
-//     it("should ", () => {});
-//   });

@@ -1,8 +1,8 @@
 const SessionWrapper = Page => {
   const wrapper = props => <Page {...props} />;
   wrapper.getInitialProps = ({ req }) => {
-    const editModePage =
-      req && req.query && req.query.edit ? req.query.edit : undefined;
+    const editModeFirstPage =
+      req && req.query && req.query.edit ? `/${req.query.edit}` : undefined;
 
     const acceptAllCookies =
       req && req.cookies && req.cookies.acceptAllCookies
@@ -11,13 +11,13 @@ const SessionWrapper = Page => {
 
     const currentPage = req.url.split("/")[2];
 
-    const formAction = editModePage
+    const formAction = editModeFirstPage
       ? `/edit/continue/${currentPage}`
       : `/continue/${currentPage}`;
 
     const initialProps = {
       acceptAllCookies,
-      editModePage,
+      editModeFirstPage,
       formAction,
       cumulativeAnswers:
         req && req.session && req.session.cumulativeAnswers

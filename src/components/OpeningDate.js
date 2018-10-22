@@ -15,12 +15,12 @@ const OpeningDate = props => {
       {props.cumulativeAnswers.establishment_opening_status ===
       "Establishment is not trading yet" ? (
         <BackButton
-          editModePage={props.editModePage}
+          editModeFirstPage={props.editModeFirstPage}
           originator="establishment-opening-date-proactive"
         />
       ) : (
         <BackButton
-          editModePage={props.editModePage}
+          editModeFirstPage={props.editModeFirstPage}
           originator="establishment-opening-date-retroactive"
         />
       )}
@@ -47,7 +47,7 @@ const OpeningDate = props => {
       "Establishment is not trading yet" ? (
         <form
           action={`/continue/establishment-opening-date-proactive/${
-            props.editModePage
+            props.editModeFirstPage
           }`}
           method="post"
         >
@@ -82,12 +82,12 @@ const OpeningDate = props => {
             </ContentItem.B_30_15>
           </div>
 
-          <ContinueButton editModePage={props.editModePage} />
+          <ContinueButton editModeFirstPage={props.editModeFirstPage} />
         </form>
       ) : (
         <form
           action={`/continue/establishment-opening-date-retroactive/${
-            props.editModePage
+            props.editModeFirstPage
           }`}
           method="post"
         >
@@ -116,7 +116,7 @@ const OpeningDate = props => {
             </HiddenText>
           </ContentItem.B_30_15>
 
-          <ContinueButton editModePage={props.editModePage} />
+          <ContinueButton editModeFirstPage={props.editModeFirstPage} />
         </form>
       )}
     </FsaLayout>

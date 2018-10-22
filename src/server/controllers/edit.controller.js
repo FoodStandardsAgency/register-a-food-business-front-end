@@ -1,81 +1,88 @@
-const { pipe, ifElse } = require("ramda");
 const {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
   cleanSwitches
 } = require("../services/session-management.service");
 const { validate } = require("../services/validation.service");
+const { trimAnswers } = require("../services/data-transform.service");
 const {
-  moveAlongPath,
   editPath,
-  switchOffManualAddressInput
+  editPathInEditMode,
+  moveAlongEditPath
 } = require("../services/path.service");
-
-const combineAnswers = () => {};
 
 const checkIfValid = validatorErrors =>
   Object.keys(validatorErrors).length === 0;
 
-const checkIfEndOfEditRoute = data => {};
-
-const dataFormatting = pipe(
-  trimAnswers,
-  cleanEmptiedAnswers,
-  combineAnswers,
-  cleanSwitches,
-  validate
-);
-
-const validActions = pipe(
-  editPath,
-  switchOffManualAddressInput,
-  moveAlongPath,
-  ifElse(checkIfEndOfEditRoute, endOfEditRoute, notEndOfEditRoute)
-);
-
-const endOfEditRoute = pipe(setRedirectToRegistrationSummary);
-
-const notEndOfEditRoute = pipe(setRedirectToNextPage);
-
 const editController = (
   pathFromSession,
-  editModePage,
+  editModeFirstPage,
   currentPage,
-  previousAnswers,
+  cumulativeFullAnswers,
+  cumulativeEditAnswers,
   newAnswers,
   switches
 ) => {
-  const trimmedNewAnswers = trimAnswers(newAnswers);
+  // clean emptied previous answers for both cumulative and editPath answers (using the new answers)
+  // then combine the new answers from that page to both the cumulative answers and the editPath answers
+  // using the cumulative answers, get the new 'full' updated path on or offs ---- editPathInEditMode
+  // using the editPath answers only, set inEditPath true to the relevant pages ---- editPathInEditMode
+  // then clean inactive page answers on both the cumulative answers and the editPath answers --- cleanInactivePathAnswers x2
+  // find the next page on the edit path using inEditPath true/false --- moveAlongEditPath
+  // return the next page name, the cumulative full answers, and the cumulative edit answers
 
-  const emptiedPreviousAnswers = cleanEmptiedAnswers(
-    previousAnswers,
-    Object.values(trimmedNewAnswers),
+  const emptiedCumulativeFullAnswers = cleanEmptiedAnswers(
+    cumulativeFullAnswers,
+    Object.values(newAnswers),
     currentPage
   );
 
-  const cumulativeEditAnswers = combineAnswers(
-    emptiedPreviousAnswers,
-    trimmedNewAnswers
+  const emptiedCumulativeEditAnswers = cleanEmptiedAnswers(
+    cumulativeEditAnswers,
+    Object.values(newAnswers),
+    currentPage
   );
 
-  const cleanedSwitches = cleanSwitches(cumulativeEditAnswers, switches);
+  const trimmedNewAnswers = trimAnswers(newAnswers);
+
+  const newCumulativeFullAnswers = {
+    ...emptiedCumulativeFullAnswers,
+    ...trimmedNewAnswers
+  };
+
+  const newCumulativeEditAnswers = {
+    ...emptiedCumulativeEditAnswers,
+    ...trimmedNewAnswers
+  };
+
+  const cleanedSwitches = cleanSwitches(newCumulativeFullAnswers, switches);
 
   const validatorErrors = validate(currentPage, trimmedNewAnswers).errors;
-
   const valid = checkIfValid(validatorErrors);
 
   let redirectRoute;
+
   if (valid) {
-    const newEditPath = editPathInEditMode(
-      cumulativeEditAnswers,
-      editModePage,
-      currentPage,
-      pathFromSession
+    // TODO JMB: Merge switchOffManualAddressInput into editPathInEditMode
+    const newEditModePath = editPathInEditMode(
+      newCumulativeFullAnswers,
+      newCumulativeEditAnswers,
+      pathFromSession,
+      editModeFirstPage,
+      currentPage
     );
 
-    // TODO JMB: Merge switchOffManualAddressInput into editPathInEditMode
+    // cleanedInactiveFullAnswers = cleanInactivePathAnswers(
+    //   newCumulativeFullAnswers,
+    //   newEditModePath
+    // );
 
-    const nextPage = moveAlongEditPath(newEditPath, currentPage, 1);
+    // cleanedInactiveEditAnswers = cleanInactivePathAnswers(
+    //   newCumulativeEditAnswers,
+    //   newEditModePath
+    // );
+
+    const nextPage = moveAlongEditPath(newEditModePath, currentPage, 1);
 
     redirectRoute = nextPage;
   } else {
@@ -83,10 +90,13 @@ const editController = (
   }
 
   const controllerResponse = {
-    redirectRoute,
-    cumulativeEditAnswers,
+    cumulativeFullAnswers:
+      cleanedInactiveFullAnswers || newCumulativeFullAnswers,
+    cumulativeEditAnswers:
+      cleanedInactiveEditAnswers || newCumulativeEditAnswers,
     validatorErrors,
-    switches: cleanedSwitches
+    switches: cleanedSwitches,
+    redirectRoute
   };
   return controllerResponse;
 };

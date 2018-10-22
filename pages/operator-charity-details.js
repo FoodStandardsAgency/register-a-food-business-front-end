@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 const OperatorCharityDetails = props => (
   <FsaLayout {...props}>
     <BackButton
-      editModePage={props.editModePage}
+      editModeFirstPage={props.editModeFirstPage}
       originator="operator-charity-details"
     />
     <ProcessedErrorSummary
@@ -91,7 +91,7 @@ const OperatorCharityDetails = props => (
         </HiddenText>
       </ContentItem.B_30_15>
 
-      <ContinueButton editModePage={props.editModePage} />
+      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
     </form>
   </FsaLayout>
 );

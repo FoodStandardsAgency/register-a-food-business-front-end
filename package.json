@@ -38,7 +38,6 @@
     "mongodb": "3.1.6",
     "next": "6.1.1",
     "node-fetch": "2.1.2",
-    "ramda": "^0.25.0",
     "react-emotion": "9.2.8",
     "stemmer": "1.0.2",
     "validator": "10.3.0",

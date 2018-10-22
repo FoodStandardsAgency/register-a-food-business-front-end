@@ -25,18 +25,18 @@ describe("<BackButton />", () => {
     expect(backButton.props().originator).toBe(originator);
   });
 
-  it("gets given the correct editModePage props", () => {
-    const editModePage = true;
+  it("gets given the correct editModeFirstPage props", () => {
+    const editModeFirstPage = "/page";
 
-    const wrapper = mount(<BackButton editModePage={editModePage} />);
+    const wrapper = mount(<BackButton editModeFirstPage={editModeFirstPage} />);
     const backButton = wrapper.find("BackButton");
-    expect(backButton.props().editModePage).toBe(editModePage);
+    expect(backButton.props().editModeFirstPage).toBe(editModeFirstPage);
   });
 
-  it("It displays no content when given that editModePage is true", () => {
-    const editModePage = true;
+  it("It displays no content when given that editModeFirstPage is true", () => {
+    const editModeFirstPage = "/page";
 
-    const wrapper = mount(<BackButton editModePage={editModePage} />);
+    const wrapper = mount(<BackButton editModeFirstPage={editModeFirstPage} />);
     const backElement = wrapper.find(`a#back-link`);
     expect(backElement.length).toBe(0);
   });

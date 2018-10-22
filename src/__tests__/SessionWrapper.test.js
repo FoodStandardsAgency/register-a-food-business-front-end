@@ -95,7 +95,7 @@ describe("<SessionWrapper />", () => {
   });
 
   describe("Props that do not come from the session DB", () => {
-    describe("the editModePage value", () => {
+    describe("the editModeFirstPage value", () => {
       describe("given a url query that includes an edit value", () => {
         beforeEach(() => {
           const reqObjectWithEditQuery = {
@@ -107,8 +107,8 @@ describe("<SessionWrapper />", () => {
           });
         });
 
-        it("returns editModePage as the correct value", () => {
-          expect(initialProps.editModePage).toBe("some-page");
+        it("returns editModeFirstPage as the correct value", () => {
+          expect(initialProps.editModeFirstPage).toBe("some-page");
         });
       });
 
@@ -123,8 +123,8 @@ describe("<SessionWrapper />", () => {
           });
         });
 
-        it("returns editModePage as undefined", () => {
-          expect(initialProps.editModePage).toBe(undefined);
+        it("returns editModeFirstPage as undefined", () => {
+          expect(initialProps.editModeFirstPage).toBe(undefined);
         });
       });
     });

@@ -2,7 +2,7 @@ import { BackLink } from "govuk-react";
 import ContentItem from "./ContentItem";
 
 const BackButton = props =>
-  props.editModePage ? (
+  props.editModeFirstPage ? (
     <div />
   ) : (
     <ContentItem.B_30_15>

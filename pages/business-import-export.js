@@ -22,7 +22,7 @@ const ImportExportActivities = props => (
       method="post"
     >
       <BackButton
-        editModePage={props.editModePage}
+        editModeFirstPage={props.editModeFirstPage}
         originator="business-import-export"
       />
       <Header level={2}>
@@ -93,7 +93,7 @@ const ImportExportActivities = props => (
         </HiddenText>
       </ContentItem.B_30_15>
 
-      <ContinueButton editModePage={props.editModePage} />
+      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
     </form>
   </FsaLayout>
 );

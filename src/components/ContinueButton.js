@@ -14,7 +14,7 @@ const ContinueButton = props => (
       ? "Begin registration"
       : props.type === "submit"
         ? "Submit"
-        : props.editModePage
+        : props.editModeFirstPage
           ? "Save"
           : "Continue"}
   </Button>

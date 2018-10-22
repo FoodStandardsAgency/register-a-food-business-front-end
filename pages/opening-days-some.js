@@ -14,7 +14,7 @@ const OpeningSomeDays = props => (
       action={props.formAction}
       method="post"
     >
-      <BackButton editModePage={props.editModePage} originator="opening-days-some" />
+      <BackButton editModeFirstPage={props.editModeFirstPage} originator="opening-days-some" />
       <Header level={2}>Opening days</Header>
       <Paragraph>
         What days will this establishment be producing or serving food?
@@ -86,7 +86,7 @@ const OpeningSomeDays = props => (
           </Checkbox>
         </MultiChoice>
       </ContentItem.B_30_15>
-      <ContinueButton editModePage={props.editModePage} />
+      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
     </form>
   </FsaLayout>
 );

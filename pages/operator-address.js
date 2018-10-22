@@ -17,7 +17,7 @@ import PropTypes from "prop-types";
 const OperatorAddress = props => (
   <FsaLayout {...props}>
     <BackButton
-      editModePage={props.switches.editModePage}
+      editModeFirstPage={props.switches.editModeFirstPage}
       originator="operator-address"
     />
 

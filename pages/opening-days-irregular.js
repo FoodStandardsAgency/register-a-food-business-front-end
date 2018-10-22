@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 
 const OtherDaysIrregular = props => (
   <FsaLayout {...props}>
-    <BackButton editModePage={props.editModePage} originator="opening-days-irregular" />
+    <BackButton editModeFirstPage={props.editModeFirstPage} originator="opening-days-irregular" />
     <Header level={2}>Opening days</Header>
 
     <form
@@ -40,7 +40,7 @@ const OtherDaysIrregular = props => (
           />
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
-      <ContinueButton editModePage={props.editModePage} />
+      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
     </form>
   </FsaLayout>
 );

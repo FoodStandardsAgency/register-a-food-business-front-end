@@ -14,7 +14,7 @@ const ContactRepresentative = props => {
   return (
     <FsaLayout {...props}>
       <BackButton
-        editModePage={props.editModePage}
+        editModeFirstPage={props.editModeFirstPage}
         originator="contact-representative"
       />
       <ProcessedErrorSummary
@@ -111,7 +111,7 @@ const ContactRepresentative = props => {
           </ContentItem.B_30_15>
         </ContentItem.B_30_15>
 
-        <ContinueButton editModePage={props.editModePage} />
+        <ContinueButton editModeFirstPage={props.editModeFirstPage} />
       </form>
     </FsaLayout>
   );

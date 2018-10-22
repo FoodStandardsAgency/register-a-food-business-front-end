@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 
 const OpeningDaysStart = props => (
   <FsaLayout {...props}>
-    <BackButton editModePage={props.editModePage} originator="opening-days-start" />
+    <BackButton editModeFirstPage={props.editModeFirstPage} originator="opening-days-start" />
     <Header level={2}>
       What days will this establishment be open and producing or serving food?
     </Header>
@@ -68,7 +68,7 @@ const OpeningDaysStart = props => (
         </Paragraph>
       </HiddenText>
 
-      <ContinueButton editModePage={props.editModePage} />
+      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
     </form>
   </FsaLayout>
 );
