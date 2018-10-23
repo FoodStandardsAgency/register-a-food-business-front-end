@@ -13,7 +13,7 @@ const AnchorTag = asAnchor("a");
 
 const OperatorAddressLookup = props => (
   <FsaLayout {...props}>
-    <BackButton {...props} originator="operator-address-select" />
+    <BackButton {...props} />
     <Header level={2}>What is the operator's address?</Header>
     <ContentItem.B_30_15>
       <HintText>

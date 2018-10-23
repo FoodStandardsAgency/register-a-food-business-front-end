@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 
 const OtherDaysIrregular = props => (
   <FsaLayout {...props}>
-    <BackButton {...props} originator="opening-days-irregular" />
+    <BackButton {...props} />
     <Header level={2}>Opening days</Header>
 
     <form action={props.formAction} method="post">

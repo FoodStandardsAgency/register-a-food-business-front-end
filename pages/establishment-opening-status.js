@@ -17,7 +17,7 @@ import PropTypes from "prop-types";
 
 const EstablishmentOpeningStatus = props => (
   <FsaLayout {...props}>
-    <BackButton {...props} originator="establishment-opening-status" />
+    <BackButton {...props} />
     <Header level={2}>Is this establishment already trading?</Header>
 
     <HiddenText summaryText={"What is an establishment?"}>

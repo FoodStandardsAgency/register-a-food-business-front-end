@@ -1372,7 +1372,7 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
           >
             <a
               className="emotion-41"
-              href="/back/registration-summary"
+              href="/backundefined"
               id="back-link"
             >
               Back

@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 const OpeningSomeDays = props => (
   <FsaLayout {...props}>
     <form action={props.formAction} method="post">
-      <BackButton {...props} originator="opening-days-some" />
+      <BackButton {...props} />
       <Header level={2}>Opening days</Header>
       <Paragraph>
         What days will this establishment be producing or serving food?

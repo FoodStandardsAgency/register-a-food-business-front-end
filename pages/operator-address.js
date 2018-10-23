@@ -16,7 +16,7 @@ import PropTypes from "prop-types";
 
 const OperatorAddress = props => (
   <FsaLayout {...props}>
-    <BackButton {...props} originator="operator-address" />
+    <BackButton {...props} />
 
     <Header level={2}>What is the operator's address?</Header>
     <ContentItem.B_30_15>

@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 
 const OtherDetails = props => (
   <FsaLayout {...props}>
-    <BackButton {...props} originator="business-other-details" />
+    <BackButton {...props} />
     <Header level={2}>Other details</Header>
 
     <form action={props.formAction} method="post">

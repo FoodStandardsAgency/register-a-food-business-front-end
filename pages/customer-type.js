@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 
 const CustomerType = props => (
   <FsaLayout {...props}>
-    <BackButton {...props} originator="customer-type" />
+    <BackButton {...props} />
     <Header level={2}>Who will this establishment supply food to?</Header>
     <Paragraph>Select all that apply</Paragraph>
 

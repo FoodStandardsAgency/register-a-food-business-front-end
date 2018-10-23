@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 
 const BusinessType = props => (
   <FsaLayout {...props}>
-    <BackButton {...props} originator="business-type" />
+    <BackButton {...props} />
     <Header level={2}>What kind of food business are you registering?</Header>
 
     <form action={props.formAction} method="post">

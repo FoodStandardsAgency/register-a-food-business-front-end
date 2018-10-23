@@ -18,7 +18,7 @@ import PropTypes from "prop-types";
 const ImportExportActivities = props => (
   <FsaLayout {...props}>
     <form action={props.formAction} method="post">
-      <BackButton {...props} originator="business-import-export" />
+      <BackButton {...props} />
       <Header level={2}>
         Will this food business import or export any food from outside the UK?
       </Header>

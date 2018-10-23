@@ -12,27 +12,15 @@ import PropTypes from "prop-types";
 const OpeningDate = props => {
   return (
     <FsaLayout {...props}>
-      {props.cumulativeFullAnswers.establishment_opening_status ===
-      "Establishment is not trading yet" ? (
-        <BackButton
-          {...props}
-          originator="establishment-opening-date-proactive"
-        />
-      ) : (
-        <BackButton
-          {...props}
-          originator="establishment-opening-date-retroactive"
-        />
-      )}
-      <Header level={2}>Trading date</Header>
+      <BackButton {...props} />
 
+      <Header level={2}>Trading date</Header>
       <ContentItem.B_30_15>
         <HintText>
           Establishments begin trading when they first start serving or
           manufacturing food for customers.
         </HintText>
       </ContentItem.B_30_15>
-
       <HiddenText
         id="hiddenTextEstablishment"
         summaryText={"What is an establishment?"}

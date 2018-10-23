@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 
 const EstablishmentContactDetails = props => (
   <FsaLayout {...props}>
-    <BackButton {...props} originator="establishment-contact-details" />
+    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}

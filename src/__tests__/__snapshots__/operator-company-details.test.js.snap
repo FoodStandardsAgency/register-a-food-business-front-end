@@ -1496,7 +1496,7 @@ exports[`<OperatorCompanyDetails /> matches the previous snapshot 1`] = `
           >
             <a
               className="emotion-41"
-              href="/back/operator-company-details"
+              href="/backundefined"
               id="back-link"
             >
               Back

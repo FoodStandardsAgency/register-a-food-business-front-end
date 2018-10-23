@@ -28,41 +28,37 @@ describe("<OpeningDate />", () => {
     expect(wrapper.length).toBe(1);
   });
 
-  describe("when given 'Establishment is not trading yet'", () => {
-    it("should render BackButton with 'establishment-opening-date-proactive' as originator prop", () => {
-      const proactiveCumulativeAnswers = {
-        establishment_opening_status: "Establishment is not trading yet"
-      };
+  describe("when given 'establishment-opening-date-proactive' as the current page", () => {
+    it("should render BackButton with 'establishment-opening-date-proactive' as the currentPage prop", () => {
       const wrapper = mount(
         <OpeningDate
-          cumulativeFullAnswers={proactiveCumulativeAnswers}
+          currentPage="establishment-opening-date-proactive"
+          cumulativeFullAnswers={testCumulativeAnswers}
           validatorErrors={testValidatorErrors}
           switches={testSwitches}
         />
       );
 
       const backButton = wrapper.find("BackButton");
-      expect(backButton.props().originator).toBe(
+      expect(backButton.props().currentPage).toBe(
         "establishment-opening-date-proactive"
       );
     });
   });
 
-  describe("when given anything else", () => {
-    it("should render BackButton with 'establishment-opening-date-retroactive' as originator prop", () => {
-      const proactiveCumulativeAnswers = {
-        establishment_opening_status: "Another answer"
-      };
+  describe("when given 'establishment-opening-date-retroactive' as the current page", () => {
+    it("should render BackButton with 'establishment-opening-date-retroactive' as currentPage prop", () => {
       const wrapper = mount(
         <OpeningDate
-          cumulativeFullAnswers={proactiveCumulativeAnswers}
+          currentPage="establishment-opening-date-retroactive"
+          cumulativeFullAnswers={testCumulativeAnswers}
           validatorErrors={testValidatorErrors}
           switches={testSwitches}
         />
       );
 
       const backButton = wrapper.find("BackButton");
-      expect(backButton.props().originator).toBe(
+      expect(backButton.props().currentPage).toBe(
         "establishment-opening-date-retroactive"
       );
     });

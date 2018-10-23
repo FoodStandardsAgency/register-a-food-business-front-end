@@ -6,7 +6,7 @@ const HiddenBackButton = () => <ContentItem.B_30_15 />;
 const NormalBackButton = props => (
   <ContentItem.B_30_15>
     <BackLink
-      href={props.href ? props.href : "/back/" + props.originator}
+      href={props.href ? props.href : `/back${props.currentPage}`}
       id="back-link"
     >
       Back
@@ -20,7 +20,7 @@ const EditModeBackButton = props => (
       href={
         props.href
           ? props.href
-          : `/edit/back/${props.originator}?${props.editQuery}`
+          : `/edit/back${props.currentPage}?${props.editQuery}`
       }
       id="back-link"
     >
@@ -38,13 +38,15 @@ const BackButton = props => {
       return (
         <EditModeBackButton
           href={props.href}
-          originator={props.originator}
+          currentPage={props.currentPage}
           editQuery={editQuery}
         />
       );
     }
   } else {
-    return <NormalBackButton href={props.href} originator={props.originator} />;
+    return (
+      <NormalBackButton href={props.href} currentPage={props.currentPage} />
+    );
   }
 };
 

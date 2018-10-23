@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 
 const EstablishmentAddressType = props => (
   <FsaLayout {...props}>
-    <BackButton {...props} originator="establishment-address-type" />
+    <BackButton {...props} />
     <Header level={2}>Where is this establishment located?</Header>
 
     <HiddenText summaryText={"What is an establishment?"}>
