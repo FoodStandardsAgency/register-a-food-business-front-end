@@ -34,7 +34,7 @@ const OperatorAddressLookup = props => (
       </Paragraph>
     </HiddenText>
 
-    <form action="/continue/operator-address-select" method="post">
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Header level={3}>Postcode</Header>
