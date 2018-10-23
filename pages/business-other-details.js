@@ -10,13 +10,10 @@ import PropTypes from "prop-types";
 
 const OtherDetails = props => (
   <FsaLayout {...props}>
-    <BackButton editModeFirstPage={props.editModeFirstPage} originator="business-other-details" />
+    <BackButton {...props} originator="business-other-details" />
     <Header level={2}>Other details</Header>
 
-    <form
-      action={props.formAction}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <TextArea
@@ -35,7 +32,7 @@ const OtherDetails = props => (
           </TextArea>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
-      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );

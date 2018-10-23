@@ -10,10 +10,7 @@ import PropTypes from "prop-types";
 
 const EstablishmentAddress = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editModeFirstPage={props.editModeFirstPage}
-      originator="establishment-address"
-    />
+    <BackButton {...props} originator="establishment-address" />
 
     <Header level={2}>Establishment address</Header>
 

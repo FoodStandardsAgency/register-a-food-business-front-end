@@ -20,7 +20,7 @@ import PropTypes from "prop-types";
 const OperatorAddress = props => (
   <FsaLayout {...props}>
     <BackButton
-      editModeFirstPage={props.editModeFirstPage}
+      {...props}
       href={
         props.switches["/operator-address-none-found"]
           ? "/operator-address"
@@ -48,10 +48,7 @@ const OperatorAddress = props => (
       </Paragraph>
     </HiddenText>
 
-    <form
-      action={props.formAction}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         {props.switches["/operator-address-none-found"] ? (
           <ContentItem.B_30_15>
@@ -135,7 +132,7 @@ const OperatorAddress = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );

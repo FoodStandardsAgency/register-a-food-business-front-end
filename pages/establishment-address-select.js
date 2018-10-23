@@ -13,10 +13,7 @@ const AnchorTag = asAnchor("a");
 
 const EstablishmentAddressLookup = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editModeFirstPage={props.editModeFirstPage}
-      originator="establishment-address-select"
-    />
+    <BackButton {...props} originator="establishment-address-select" />
     <Header level={2}>What is the establishment's address?</Header>
 
     <HiddenText
@@ -79,7 +76,7 @@ const EstablishmentAddressLookup = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );

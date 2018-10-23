@@ -40,13 +40,17 @@ const editRouter = () => {
     });
   });
 
-  router.post("/back/:originator", (req, res) => {
+  router.get("/back/:originator", (req, res) => {
     const controllerResponse = editController.editBack(
       req.session.pathConfig.path,
       `/${req.query.edit}`,
       `/${req.params.originator}`,
       req.session.cumulativeFullAnswers,
       req.session.cumulativeEditAnswers
+    );
+
+    res.redirect(
+      `/new/${req.session.council}${controllerResponse}?edit=${req.query.edit}`
     );
   });
 

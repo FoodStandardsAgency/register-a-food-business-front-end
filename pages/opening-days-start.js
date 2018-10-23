@@ -10,15 +10,12 @@ import PropTypes from "prop-types";
 
 const OpeningDaysStart = props => (
   <FsaLayout {...props}>
-    <BackButton editModeFirstPage={props.editModeFirstPage} originator="opening-days-start" />
+    <BackButton {...props} originator="opening-days-start" />
     <Header level={2}>
       What days will this establishment be open and producing or serving food?
     </Header>
 
-    <form
-      action={props.formAction}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <MultiChoice
           label=""
@@ -52,7 +49,8 @@ const OpeningDaysStart = props => (
             value="Irregular days"
             id="opening_days_start_irregular_days"
             defaultChecked={
-              props.cumulativeFullAnswers.opening_days_start === "Irregular days"
+              props.cumulativeFullAnswers.opening_days_start ===
+              "Irregular days"
             }
           >
             Irregular days
@@ -68,7 +66,7 @@ const OpeningDaysStart = props => (
         </Paragraph>
       </HiddenText>
 
-      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );

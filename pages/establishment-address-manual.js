@@ -19,7 +19,7 @@ import PropTypes from "prop-types";
 const EstablishmentAddress = props => (
   <FsaLayout {...props}>
     <BackButton
-      editModeFirstPage={props.editModeFirstPage}
+      {...props}
       href={
         props.switches["/establishment-address-none-found"]
           ? "/establishment-address"
@@ -40,10 +40,7 @@ const EstablishmentAddress = props => (
       </Paragraph>
     </HiddenText>
 
-    <form
-      action={props.formAction}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         {props.switches["/establishment-address-none-found"] ? (
           <ContentItem.B_30_15>
@@ -60,7 +57,8 @@ const EstablishmentAddress = props => (
           <InputField
             input={{
               name: "establishment_first_line",
-              defaultValue: props.cumulativeFullAnswers.establishment_first_line,
+              defaultValue:
+                props.cumulativeFullAnswers.establishment_first_line,
               autoComplete: "address-line1"
             }}
             id="establishment_first_line"
@@ -127,7 +125,7 @@ const EstablishmentAddress = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );

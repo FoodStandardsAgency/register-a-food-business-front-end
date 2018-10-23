@@ -1,3 +1,4 @@
+const { logEmitter } = require("../services/logging.service");
 const {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,

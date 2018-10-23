@@ -10,10 +10,7 @@ import PropTypes from "prop-types";
 
 const RegistrationRole = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editModeFirstPage={props.editModeFirstPage}
-      originator="registration-role"
-    />
+    <BackButton {...props} originator="registration-role" />
     <Header level={2}>What is your role in this food business?</Header>
 
     <form action={props.formAction} method="post">
@@ -58,7 +55,7 @@ const RegistrationRole = props => (
         </MultiChoice>
       </ContentItem.B_45_30>
 
-      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );

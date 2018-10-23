@@ -17,10 +17,7 @@ import PropTypes from "prop-types";
 
 const EstablishmentOpeningStatus = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editModeFirstPage={props.editModeFirstPage}
-      originator="establishment-opening-status"
-    />
+    <BackButton {...props} originator="establishment-opening-status" />
     <Header level={2}>Is this establishment already trading?</Header>
 
     <HiddenText summaryText={"What is an establishment?"}>
@@ -38,10 +35,7 @@ const EstablishmentOpeningStatus = props => (
       </HintText>
     </ContentItem.B_30_15>
 
-    <form
-      action={props.formAction}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_45_30>
         <MultiChoice
           label=""
@@ -75,7 +69,7 @@ const EstablishmentOpeningStatus = props => (
         </MultiChoice>
       </ContentItem.B_45_30>
 
-      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );

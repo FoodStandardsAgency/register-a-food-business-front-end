@@ -13,10 +13,7 @@ const AnchorTag = asAnchor("a");
 
 const OperatorAddressLookup = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editModeFirstPage={props.editModeFirstPage}
-      originator="operator-address-select"
-    />
+    <BackButton {...props} originator="operator-address-select" />
     <Header level={2}>What is the operator's address?</Header>
     <ContentItem.B_30_15>
       <HintText>
@@ -78,7 +75,7 @@ const OperatorAddressLookup = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );

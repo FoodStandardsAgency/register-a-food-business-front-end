@@ -15,7 +15,7 @@ const ContinueButton = props => (
       : props.type === "submit"
         ? "Submit"
         : props.editModeFirstPage
-          ? "Save"
+          ? "Save and continue"
           : "Continue"}
   </Button>
 );

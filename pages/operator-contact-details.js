@@ -12,10 +12,7 @@ import PropTypes from "prop-types";
 
 const OperatorContactDetails = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editModeFirstPage={props.editModeFirstPage}
-      originator="operator-contact-details"
-    />
+    <BackButton {...props} originator="operator-contact-details" />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -30,10 +27,7 @@ const OperatorContactDetails = props => (
       </Paragraph>
     </HiddenText>
 
-    <form
-      action={props.formAction}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
@@ -56,7 +50,8 @@ const OperatorContactDetails = props => (
           <InputField
             input={{
               name: "operator_secondary_number",
-              defaultValue: props.cumulativeFullAnswers.operator_secondary_number,
+              defaultValue:
+                props.cumulativeFullAnswers.operator_secondary_number,
               autoComplete: "off"
             }}
             id="operator_secondary_number"
@@ -90,7 +85,7 @@ const OperatorContactDetails = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );

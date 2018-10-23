@@ -10,10 +10,7 @@ import PropTypes from "prop-types";
 
 const EstablishmentTradingName = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editModeFirstPage={props.editModeFirstPage}
-      originator="establishment-trading-name"
-    />
+    <BackButton {...props} originator="establishment-trading-name" />
     <Header level={2}>Trading name</Header>
 
     <HiddenText summaryText={"What is an establishment?"}>
@@ -24,16 +21,14 @@ const EstablishmentTradingName = props => (
       </Paragraph>
     </HiddenText>
 
-    <form
-      action={props.formAction}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
             input={{
               name: "establishment_trading_name",
-              defaultValue: props.cumulativeFullAnswers.establishment_trading_name
+              defaultValue:
+                props.cumulativeFullAnswers.establishment_trading_name
             }}
             id="establishment_trading_name"
             hint={[
@@ -49,7 +44,7 @@ const EstablishmentTradingName = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );

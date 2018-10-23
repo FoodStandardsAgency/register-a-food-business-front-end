@@ -12,10 +12,7 @@ import PropTypes from "prop-types";
 
 const OperatorCharityDetails = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editModeFirstPage={props.editModeFirstPage}
-      originator="operator-charity-details"
-    />
+    <BackButton {...props} originator="operator-charity-details" />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -32,10 +29,7 @@ const OperatorCharityDetails = props => (
       </Paragraph>
     </HiddenText>
 
-    <form
-      action={props.formAction}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
@@ -91,7 +85,7 @@ const OperatorCharityDetails = props => (
         </HiddenText>
       </ContentItem.B_30_15>
 
-      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
