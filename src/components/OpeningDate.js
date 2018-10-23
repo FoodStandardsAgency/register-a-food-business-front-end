@@ -46,9 +46,7 @@ const OpeningDate = props => {
       {props.cumulativeAnswers.establishment_opening_status ===
       "Establishment is not trading yet" ? (
         <form
-          action={`/continue/establishment-opening-date-proactive/${
-            props.editModeFirstPage
-          }`}
+          action={`/continue/establishment-opening-date-proactive`}
           method="post"
         >
           <div>
@@ -86,9 +84,7 @@ const OpeningDate = props => {
         </form>
       ) : (
         <form
-          action={`/continue/establishment-opening-date-retroactive/${
-            props.editModeFirstPage
-          }`}
+          action={`/continue/establishment-opening-date-retroactive`}
           method="post"
         >
           <DateInput

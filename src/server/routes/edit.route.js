@@ -1,24 +1,62 @@
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
+const editController = require("../controllers/edit.controller");
+
+// pathFromSession,
+// editModeFirstPage,
+// currentPage,
+// cumulativeFullAnswers,
+// cumulativeEditAnswers,
+// newAnswers,
+// switches
+
+// const response = continueController(
+//   `/${req.params.originator}`,
+//   req.session.cumulativeAnswers,
+//   req.body,
+//   req.session.switches,
+//   req.session.pathConfig.path
+// );
 
 const editRouter = () => {
   const router = Router();
 
   router.post("/continue/:originator", (req, res) => {
-    //step 1 click change
-    //step 2 user is sent to page that they want to edit with editMode on
-    //user changes details
-    //user presses save
-    // user's new data from that page is sent to the edit route, along with all previous/existing answers
-    // some functions are called to work out where to go next
     const controllerResponse = editController(
-      
+      req.session.pathConfig.path,
+      `/${req.query.edit}`,
+      `/${req.params.originator}`,
+      req.session.cumulativeAnswers,
+      req.session.cumulativeEditAnswers,
+      req.body,
+      req.session.switches
     );
 
-    
+    req.session.cumulativeAnswers = controllerResponse.cumulativeFullAnswers;
+    req.session.cumulativeEditAnswers =
+      controllerResponse.cumulativeEditAnswers;
+    req.session.validatorErrors = controllerResponse.validatorErrors;
+    req.session.switches = controllerResponse.switches;
+
+    if (controllerResponse.redirectRoute === "/registration-summary") {
+      res.redirect(`/new/${req.session.council}/registration-summary`);
+    } else {
+      res.redirect(
+        `/new/${req.session.council}/${controllerResponse.redirectRoute}?edit=${
+          req.query.edit
+        }`
+      );
+    }
+    // const controllerResponse = {
+    //   cumulativeFullAnswers: newCumulativeFullAnswers,
+    //   cumulativeEditAnswers: newCumulativeEditAnswers,
+    //   validatorErrors,
+    //   switches: cleanedSwitches,
+    //   redirectRoute
+    // };
+
     // the updated user data is added to the session
 
-    
     // user is either redirected to another page within subflow or to registration summary
     //res.redirect(`/new/${req.session.council}/continue/:originator`)
   });

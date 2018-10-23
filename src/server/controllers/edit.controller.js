@@ -80,9 +80,16 @@ const editController = (
     redirectRoute = currentPage;
   }
 
+  let cumulativeEditAnswersToReturn;
+  if (redirectRoute === "/registration-summary") {
+    cumulativeEditAnswersToReturn = {};
+  } else {
+    cumulativeEditAnswersToReturn = { ...newCumulativeEditAnswers };
+  }
+
   const controllerResponse = {
     cumulativeFullAnswers: newCumulativeFullAnswers,
-    cumulativeEditAnswers: newCumulativeEditAnswers,
+    cumulativeEditAnswers: cumulativeEditAnswersToReturn,
     validatorErrors,
     switches: cleanedSwitches,
     redirectRoute

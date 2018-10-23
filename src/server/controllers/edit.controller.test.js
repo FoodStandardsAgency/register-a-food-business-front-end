@@ -11,7 +11,8 @@ const testPath = {
     on: true,
     switches: {
       "Sole trader": {
-        "/operator-name": true
+        "/operator-name": true,
+        "/test-page2": true
       },
       Representative: {
         "/operator-type": true
@@ -50,6 +51,14 @@ const testPath = {
   },
   "/business-import-export": {
     on: true,
+    switches: {
+      "Directly export": {
+        "/test-page3": true
+      }
+    }
+  },
+  "/test-page3": {
+    on: false,
     switches: {}
   }
 };
@@ -59,12 +68,14 @@ describe("Edit controller", () => {
     describe("regardless of whether there are validation errors", () => {
       describe("given the current page has text input fields, with valid answers plus whitespace", () => {
         beforeEach(() => {
-          const editModeFirstPage = "/operator-name";
+          const editModeFirstPage = "/registration-role";
           const currentPage = "/operator-name";
           const cumulativeFullAnswers = {
+            registration_role: "Sole trader",
             example_answer: "value"
           };
           const cumulativeEditAnswers = {
+            registration_role: "Sole trader",
             example_answer: "value"
           };
           const newAnswers = {
@@ -87,6 +98,7 @@ describe("Edit controller", () => {
 
         it("should return a combination of the previous and new answers with trimmed whitespace", () => {
           const expectedAnswers = {
+            registration_role: "Sole trader",
             example_answer: "value",
             operator_first_name: "Bob Harry",
             operator_last_name: "Smith"
@@ -162,14 +174,10 @@ describe("Edit controller", () => {
     describe("given that there are NOT validation errors", () => {
       describe("given that the current page is at the end of the edit route", () => {
         beforeEach(() => {
-          const editModeFirstPage = "/registration-role";
+          const editModeFirstPage = "/operator-name";
           const currentPage = "/operator-name";
-          const cumulativeFullAnswers = {
-            registration_role: "Sole trader"
-          };
-          const cumulativeEditAnswers = {
-            registration_role: "Sole trader"
-          };
+          const cumulativeFullAnswers = {};
+          const cumulativeEditAnswers = {};
           const newAnswers = {
             operator_first_name: "John",
             operator_last_name: "McNugget"
@@ -194,6 +202,10 @@ describe("Edit controller", () => {
 
         it("should redirect to registration-summary", () => {
           expect(result.redirectRoute).toBe("/registration-summary");
+        });
+
+        it("should return an empty cumulativeEditAnswers object", () => {
+          expect(result.cumulativeEditAnswers).toEqual({});
         });
       });
 
