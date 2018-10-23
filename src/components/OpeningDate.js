@@ -45,10 +45,7 @@ const OpeningDate = props => {
       </HiddenText>
       {props.cumulativeFullAnswers.establishment_opening_status ===
       "Establishment is not trading yet" ? (
-        <form
-          action={`/continue/establishment-opening-date-proactive`}
-          method="post"
-        >
+        <form action={props.formAction} method="post">
           <div>
             <DateInput
               inputNames={{ day: "day", month: "month", year: "year" }}
@@ -83,10 +80,7 @@ const OpeningDate = props => {
           <ContinueButton editModeFirstPage={props.editModeFirstPage} />
         </form>
       ) : (
-        <form
-          action={`/continue/establishment-opening-date-retroactive`}
-          method="post"
-        >
+        <form action={props.formAction} method="post">
           <DateInput
             inputNames={{ day: "day", month: "month", year: "year" }}
             hintText={`For example, ${moment()

@@ -23,15 +23,21 @@ const editRouter = () => {
     req.session.validatorErrors = controllerResponse.validatorErrors;
     req.session.switches = controllerResponse.switches;
 
-    if (controllerResponse.redirectRoute === "/registration-summary") {
-      res.redirect(`/new/${req.session.council}/registration-summary`);
-    } else {
-      res.redirect(
-        `/new/${req.session.council}/${controllerResponse.redirectRoute}?edit=${
-          req.query.edit
-        }`
-      );
-    }
+    req.session.save(err => {
+      if (err) {
+        logEmitter.emit("functionFail", "Routes", "/continue route", err);
+        throw err;
+      }
+      if (controllerResponse.redirectRoute === "/registration-summary") {
+        res.redirect(`/new/${req.session.council}/registration-summary`);
+      } else {
+        res.redirect(
+          `/new/${req.session.council}${
+            controllerResponse.redirectRoute
+          }?edit=${req.query.edit}`
+        );
+      }
+    });
   });
 
   router.get("/:target", (req, res) => {

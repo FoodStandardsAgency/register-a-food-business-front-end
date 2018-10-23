@@ -114,7 +114,7 @@ describe("Edit controller", () => {
           const cumulativeFullAnswers = {
             directly_import: "Directly import"
           };
-          const cumulativeEditAnswers = {};
+          const cumulativeEditAnswers = undefined;
           const newAnswers = {
             directly_export: "Directly export"
           };

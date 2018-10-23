@@ -23,13 +23,13 @@ const editController = (
   switches
 ) => {
   const truthyCumulativeFullAnswers = cleanEmptiedAnswers(
-    cumulativeFullAnswers,
+    { ...cumulativeFullAnswers },
     Object.values(newAnswers),
     currentPage
   );
 
   const truthyCumulativeEditAnswers = cleanEmptiedAnswers(
-    cumulativeEditAnswers,
+    { ...cumulativeEditAnswers },
     Object.values(newAnswers),
     currentPage
   );
