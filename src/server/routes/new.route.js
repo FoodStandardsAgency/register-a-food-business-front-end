@@ -6,10 +6,13 @@ const {
 } = require("../services/data-transform.service");
 
 const allowedCouncils = [
+  "bridgend",
+  "cardiff",
   "mid-and-east-antrim",
-  "purbeck",
-  "west-dorset",
   "north-dorset",
+  "purbeck",
+  "the-vale-of-glamorgan",
+  "west-dorset",
   "weymouth-and-portland",
   "wrexham"
 ];
