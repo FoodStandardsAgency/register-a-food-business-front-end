@@ -33,12 +33,32 @@ describe("<BackButton />", () => {
     expect(backButton.props().editModeFirstPage).toBe(editModeFirstPage);
   });
 
-  it("It displays no content when given that editModeFirstPage is true", () => {
+  it("It displays no content when given that editModeFirstPage is the same as currentPage", () => {
     const editModeFirstPage = "/page";
+    const currentPage = "/page";
 
-    const wrapper = mount(<BackButton editModeFirstPage={editModeFirstPage} />);
+    const wrapper = mount(
+      <BackButton
+        currentPage={currentPage}
+        editModeFirstPage={editModeFirstPage}
+      />
+    );
     const backElement = wrapper.find(`a#back-link`);
     expect(backElement.length).toBe(0);
+  });
+
+  it("It displays when given that editModeFirstPage is NOT the same as currentPage", () => {
+    const editModeFirstPage = "/page";
+    const currentPage = "/another";
+
+    const wrapper = mount(
+      <BackButton
+        currentPage={currentPage}
+        editModeFirstPage={editModeFirstPage}
+      />
+    );
+    const backElement = wrapper.find(`a#back-link`);
+    expect(backElement.length).toBe(1);
   });
 
   it("passes the given custom href if provided", () => {

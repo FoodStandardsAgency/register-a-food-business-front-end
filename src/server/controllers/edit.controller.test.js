@@ -1,7 +1,5 @@
 const editController = require("./edit.controller");
 
-let result;
-
 const testPath = {
   "/test-page1": {
     on: true,
@@ -63,7 +61,9 @@ const testPath = {
   }
 };
 
-describe("Edit controller", () => {
+describe("Edit controller: editContinue()", () => {
+  let result;
+
   describe("given valid input", () => {
     describe("regardless of whether there are validation errors", () => {
       describe("given the current page has text input fields, with valid answers plus whitespace", () => {
@@ -93,7 +93,7 @@ describe("Edit controller", () => {
             newAnswers,
             switches
           ];
-          result = editController(...args);
+          result = editController.editContinue(...args);
         });
 
         it("should return a combination of the previous and new answers with trimmed whitespace", () => {
@@ -129,7 +129,7 @@ describe("Edit controller", () => {
             newAnswers,
             switches
           ];
-          result = editController(...args);
+          result = editController.editContinue(...args);
         });
 
         it("should not return the answers that were previously truthy and are now removed", () => {
@@ -159,7 +159,7 @@ describe("Edit controller", () => {
           newAnswers,
           switches
         ];
-        result = editController(...args);
+        result = editController.editContinue(...args);
       });
 
       it("should return the validation errors", () => {
@@ -199,7 +199,7 @@ describe("Edit controller", () => {
             newAnswers,
             switches
           ];
-          result = editController(...args);
+          result = editController.editContinue(...args);
         });
 
         it("should not return FULL answers that are associated with inactive pages on the path", () => {
@@ -239,7 +239,7 @@ describe("Edit controller", () => {
             newAnswers,
             switches
           ];
-          result = editController(...args);
+          result = editController.editContinue(...args);
         });
 
         it("should not return any validation errors", () => {
@@ -282,7 +282,7 @@ describe("Edit controller", () => {
             newAnswers,
             switches
           ];
-          result = editController(...args);
+          result = editController.editContinue(...args);
         });
 
         it("should not return any validation errors", () => {
@@ -295,28 +295,36 @@ describe("Edit controller", () => {
       });
     });
   });
+});
 
-  // describe("given invalid input", () => {
-  //   const invalidInputs = [
-  //     [undefined, {}, { "/index": false }, true, "string"], // invalid paths
-  //     [undefined, {}, "not-a-valid-page"], // invalid pages
-  //     [undefined, "string", true], // invalid previous answers
-  //     [undefined, "string", true], // invalid new answers
-  //     [undefined, "string", true] // invalid switches
-  //   ];
+describe("Edit controller: editBack()", () => {
+  let result;
 
-  //   it("should throw an error", () => {
-  //     invalidInputs.forEach(possibleInputsForArg => {
-  //       possibleInputsForArg.forEach(inputValue => {
-  //         const args = [] // TODO JMB
-  //         try {
-  //           result = editController(...args);
-  //         } catch (err) {
-  //           result = err;
-  //         }
-  //         expect(result instanceof Error).toBe(true);
-  //       });
-  //     });
-  //   });
-  // });
+  describe("given valid input", () => {
+    beforeEach(() => {
+      const editModeFirstPage = "/registration-role";
+      const currentPage = "/operator-company-details";
+      const cumulativeFullAnswers = {
+        registration_role: "Representative",
+        operator_type: "A company"
+      };
+      const cumulativeEditAnswers = {
+        registration_role: "Representative",
+        operator_type: "A company"
+      };
+      const args = [
+        testPath,
+        editModeFirstPage,
+        currentPage,
+        cumulativeFullAnswers,
+        cumulativeEditAnswers
+      ];
+
+      result = editController.editBack(...args);
+    });
+
+    it("should return the previous page", () => {
+      expect(result).toBe("/operator-type");
+    });
+  });
 });
