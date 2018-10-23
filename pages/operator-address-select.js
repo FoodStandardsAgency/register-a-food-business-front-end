@@ -14,7 +14,7 @@ const AnchorTag = asAnchor("a");
 const OperatorAddressLookup = props => (
   <FsaLayout {...props}>
     <BackButton
-      editModeFirstPage={props.switches.editModeFirstPage}
+      editModeFirstPage={props.editModeFirstPage}
       originator="operator-address-select"
     />
     <Header level={2}>What is the operator's address?</Header>
@@ -54,7 +54,8 @@ const OperatorAddressLookup = props => (
           input={{
             id: "operatorAddressDropdown",
             name: "operator_address_selected",
-            defaultValue: props.cumulativeFullAnswers.operator_address_selected || 0
+            defaultValue:
+              props.cumulativeFullAnswers.operator_address_selected || 0
           }}
         >
           {props.addressLookups.operator_postcode_find ? (
@@ -77,7 +78,7 @@ const OperatorAddressLookup = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editModeFirstPage={props.switches.editModeFirstPage} />
+      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
     </form>
   </FsaLayout>
 );

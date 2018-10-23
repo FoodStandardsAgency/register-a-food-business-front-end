@@ -9,16 +9,19 @@ const SessionWrapper = Page => {
         ? req.cookies.acceptAllCookies
         : undefined;
 
-    const currentPage = req.url.split("/")[2];
+    const currentPageWithQuery = `/${req.url.split("/")[2]}`;
 
     const formAction = editModeFirstPage
-      ? `/edit/continue/${currentPage}`
-      : `/continue/${currentPage}`;
+      ? `/edit/continue${currentPageWithQuery}`
+      : `/continue${currentPageWithQuery}`;
+
+    const currentPage = currentPageWithQuery.split("?")[0];
 
     const initialProps = {
       acceptAllCookies,
       editModeFirstPage,
       formAction,
+      currentPage,
       cumulativeFullAnswers:
         req && req.session && req.session.cumulativeFullAnswers
           ? req.session.cumulativeFullAnswers

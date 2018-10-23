@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 const EstablishmentAddress = props => (
   <FsaLayout {...props}>
     <BackButton
-      editModeFirstPage={props.switches.editModeFirstPage}
+      editModeFirstPage={props.editModeFirstPage}
       originator="establishment-address"
     />
 
@@ -32,7 +32,8 @@ const EstablishmentAddress = props => (
             input={{
               id: "establishment_postcode_find",
               name: "establishment_postcode_find",
-              defaultValue: props.cumulativeFullAnswers.establishment_postcode_find,
+              defaultValue:
+                props.cumulativeFullAnswers.establishment_postcode_find,
               autoComplete: "postal-code"
             }}
             id="establishment_postcode_find"

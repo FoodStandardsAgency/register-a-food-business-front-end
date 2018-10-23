@@ -6,7 +6,7 @@ const editRouter = () => {
   const router = Router();
 
   router.post("/continue/:originator", (req, res) => {
-    const controllerResponse = editController(
+    const controllerResponse = editController.editContinue(
       req.session.pathConfig.path,
       `/${req.query.edit}`,
       `/${req.params.originator}`,
@@ -38,6 +38,16 @@ const editRouter = () => {
         );
       }
     });
+  });
+
+  router.post("/back/:originator", (req, res) => {
+    const controllerResponse = editController.editBack(
+      req.session.pathConfig.path,
+      `/${req.query.edit}`,
+      `/${req.params.originator}`,
+      req.session.cumulativeFullAnswers,
+      req.session.cumulativeEditAnswers
+    );
   });
 
   router.get("/:target", (req, res) => {

@@ -14,7 +14,7 @@ const AnchorTag = asAnchor("a");
 const EstablishmentAddressLookup = props => (
   <FsaLayout {...props}>
     <BackButton
-      editModeFirstPage={props.switches.editModeFirstPage}
+      editModeFirstPage={props.editModeFirstPage}
       originator="establishment-address-select"
     />
     <Header level={2}>What is the establishment's address?</Header>
@@ -35,7 +35,9 @@ const EstablishmentAddressLookup = props => (
         <ContentItem.B_30_15>
           <Header level={3}>Postcode</Header>
           <Header id="establishmentPostcodeDisplay" level={4}>
-            {`${props.cumulativeFullAnswers.establishment_postcode_find} \u2007`}
+            {`${
+              props.cumulativeFullAnswers.establishment_postcode_find
+            } \u2007`}
             <AnchorTag
               id="changeEstablishmentPostcode"
               href="/establishment-address"
@@ -77,7 +79,7 @@ const EstablishmentAddressLookup = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editModeFirstPage={props.switches.editModeFirstPage} />
+      <ContinueButton editModeFirstPage={props.editModeFirstPage} />
     </form>
   </FsaLayout>
 );
