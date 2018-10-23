@@ -37,8 +37,8 @@ const submitController = async (
         controllerResponse.redirectRoute = "/summary-confirmation";
         controllerResponse.submissionDate = res.reg_submission_date;
         controllerResponse.fsaRegistrationNumber = res["fsa-rn"];
-        controllerResponse.emailFbo = res.emailFbo;
-        controllerResponse.lcConfig = res.lcConfig;
+        controllerResponse.emailFbo = res.email_fbo;
+        controllerResponse.lcConfig = res.lc_config;
         statusEmitter.emit("incrementCount", "submissionsSucceeded");
         statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
       } else {

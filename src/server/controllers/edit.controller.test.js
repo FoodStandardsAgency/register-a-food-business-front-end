@@ -172,6 +172,52 @@ describe("Edit controller", () => {
     });
 
     describe("given that there are NOT validation errors", () => {
+      describe("given that the path has changed", () => {
+        beforeEach(() => {
+          const editModeFirstPage = "/registration-role";
+          const currentPage = "/registration-role";
+          const cumulativeFullAnswers = {
+            example_answer: "value",
+            registration_role: "Representative",
+            operator_type: "A charity"
+          };
+          const cumulativeEditAnswers = {
+            registration_role: "Representative",
+            operator_type: "A charity"
+          };
+          const newAnswers = {
+            registration_role: "Sole trader"
+          };
+          const switches = {};
+
+          const args = [
+            testPath,
+            editModeFirstPage,
+            currentPage,
+            cumulativeFullAnswers,
+            cumulativeEditAnswers,
+            newAnswers,
+            switches
+          ];
+          result = editController(...args);
+        });
+
+        it("should not return FULL answers that are associated with inactive pages on the path", () => {
+          const expectedFullAnswers = {
+            example_answer: "value",
+            registration_role: "Sole trader"
+          };
+          expect(result.cumulativeFullAnswers).toEqual(expectedFullAnswers);
+        });
+
+        it("should not return EDIT answers that are associated with inactive pages on the path", () => {
+          const expectedEditAnswers = {
+            registration_role: "Sole trader"
+          };
+          expect(result.cumulativeEditAnswers).toEqual(expectedEditAnswers);
+        });
+      });
+
       describe("given that the current page is at the end of the edit route", () => {
         beforeEach(() => {
           const editModeFirstPage = "/operator-name";

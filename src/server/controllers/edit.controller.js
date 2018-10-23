@@ -52,7 +52,8 @@ const editController = (
   const valid = checkIfValid(validatorErrors);
 
   let redirectRoute;
-
+  let cleanedInactiveFullAnswers;
+  let cleanedInactiveEditAnswers;
   if (valid) {
     // TODO JMB: Merge switchOffManualAddressInput into editPathInEditMode
     const newEditModePath = editPathInEditMode(
@@ -63,15 +64,15 @@ const editController = (
       currentPage
     );
 
-    // cleanedInactiveFullAnswers = cleanInactivePathAnswers(
-    //   newCumulativeFullAnswers,
-    //   newEditModePath
-    // );
+    cleanedInactiveFullAnswers = cleanInactivePathAnswers(
+      newCumulativeFullAnswers,
+      newEditModePath
+    );
 
-    // cleanedInactiveEditAnswers = cleanInactivePathAnswers(
-    //   newCumulativeEditAnswers,
-    //   newEditModePath
-    // );
+    cleanedInactiveEditAnswers = cleanInactivePathAnswers(
+      newCumulativeEditAnswers,
+      newEditModePath
+    );
 
     const nextPage = moveAlongEditPath(newEditModePath, currentPage, 1);
 
@@ -81,14 +82,20 @@ const editController = (
   }
 
   let cumulativeEditAnswersToReturn;
+  let cumulativeFullAnswersToReturn;
+
+  cumulativeFullAnswersToReturn =
+    cleanedInactiveFullAnswers || newCumulativeFullAnswers;
+
   if (redirectRoute === "/registration-summary") {
     cumulativeEditAnswersToReturn = {};
   } else {
-    cumulativeEditAnswersToReturn = { ...newCumulativeEditAnswers };
+    cumulativeEditAnswersToReturn =
+      cleanedInactiveEditAnswers || newCumulativeEditAnswers;
   }
 
   const controllerResponse = {
-    cumulativeFullAnswers: newCumulativeFullAnswers,
+    cumulativeFullAnswers: cumulativeFullAnswersToReturn,
     cumulativeEditAnswers: cumulativeEditAnswersToReturn,
     validatorErrors,
     switches: cleanedSwitches,

@@ -71,11 +71,11 @@ describe("Function: submitController: ", () => {
         json: () => ({
           reg_submission_date: "10 Jul 2018",
           "fsa-rn": "D9YC4B-KFK5JE-PKR7VX",
-          emailFbo: {
+          email_fbo: {
             success: true,
             recipient: "fbo@example.com"
           },
-          lcConfig: { example: "data" }
+          lc_config: { example: "data" }
         })
       }));
       response = await submitController(...submitArgs);
