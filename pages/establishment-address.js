@@ -32,7 +32,7 @@ const EstablishmentAddress = props => (
             input={{
               id: "establishment_postcode_find",
               name: "establishment_postcode_find",
-              defaultValue: props.cumulativeAnswers.establishment_postcode_find,
+              defaultValue: props.cumulativeFullAnswers.establishment_postcode_find,
               autoComplete: "postal-code"
             }}
             id="establishment_postcode_find"
@@ -54,6 +54,6 @@ const EstablishmentAddress = props => (
 export default SessionWrapper(EstablishmentAddress);
 
 EstablishmentAddress.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

@@ -36,7 +36,7 @@ const OperatorType = props => (
             value="A person"
             id="operator_type_person"
             defaultChecked={
-              props.cumulativeAnswers.operator_type === "A person"
+              props.cumulativeFullAnswers.operator_type === "A person"
             }
           >
             A person
@@ -50,7 +50,7 @@ const OperatorType = props => (
             value="A company"
             id="operator_type_company"
             defaultChecked={
-              props.cumulativeAnswers.operator_type === "A company"
+              props.cumulativeFullAnswers.operator_type === "A company"
             }
           >
             A company
@@ -64,7 +64,7 @@ const OperatorType = props => (
             value="A charity"
             id="operator_type_charity"
             defaultChecked={
-              props.cumulativeAnswers.operator_type === "A charity"
+              props.cumulativeFullAnswers.operator_type === "A charity"
             }
           >
             A charity
@@ -84,6 +84,6 @@ const OperatorType = props => (
 export default SessionWrapper(OperatorType);
 
 OperatorType.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

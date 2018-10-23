@@ -11,7 +11,7 @@ const qaRouter = () => {
       req.session.council = req.params.lc;
       const target = req.params.target;
       delete req.query.QA_KEY;
-      req.session.cumulativeAnswers = req.query;
+      req.session.cumulativeFullAnswers = req.query;
       logEmitter.emit(
         "functionSuccessWith",
         "Routes",

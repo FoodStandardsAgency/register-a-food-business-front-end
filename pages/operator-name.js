@@ -31,7 +31,7 @@ const OperatorName = props => (
           <InputField
             input={{
               name: "operator_first_name",
-              defaultValue: props.cumulativeAnswers.operator_first_name,
+              defaultValue: props.cumulativeFullAnswers.operator_first_name,
               autoComplete: "given-name"
             }}
             id="operator_first_name"
@@ -48,7 +48,7 @@ const OperatorName = props => (
           <InputField
             input={{
               name: "operator_last_name",
-              defaultValue: props.cumulativeAnswers.operator_last_name,
+              defaultValue: props.cumulativeFullAnswers.operator_last_name,
               autoComplete: "family-name"
             }}
             id="operator_last_name"
@@ -69,6 +69,6 @@ const OperatorName = props => (
 export default SessionWrapper(OperatorName);
 
 OperatorName.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

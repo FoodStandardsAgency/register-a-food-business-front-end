@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 const OpeningDate = props => {
   return (
     <FsaLayout {...props}>
-      {props.cumulativeAnswers.establishment_opening_status ===
+      {props.cumulativeFullAnswers.establishment_opening_status ===
       "Establishment is not trading yet" ? (
         <BackButton
           editModeFirstPage={props.editModeFirstPage}
@@ -43,7 +43,7 @@ const OpeningDate = props => {
           use the location where it is normally stored overnight.
         </Paragraph>
       </HiddenText>
-      {props.cumulativeAnswers.establishment_opening_status ===
+      {props.cumulativeFullAnswers.establishment_opening_status ===
       "Establishment is not trading yet" ? (
         <form
           action={`/continue/establishment-opening-date-proactive`}
@@ -121,6 +121,6 @@ const OpeningDate = props => {
 export default OpeningDate;
 
 OpeningDate.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

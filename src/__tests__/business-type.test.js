@@ -14,7 +14,7 @@ describe("<BusinessType />", () => {
 
   it("matches the previous snapshot", () => {
     const tree = renderer
-      .create(<BusinessType validatorErrors={{}} cumulativeAnswers={{}} />)
+      .create(<BusinessType validatorErrors={{}} cumulativeFullAnswers={{}} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -23,7 +23,7 @@ describe("<BusinessType />", () => {
     const wrapper = mount(
       <BusinessType
         validatorErrors={{}}
-        cumulativeAnswers={{}}
+        cumulativeFullAnswers={{}}
         exampleProp="testing"
       />
     );

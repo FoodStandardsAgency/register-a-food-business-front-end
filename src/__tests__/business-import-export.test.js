@@ -27,7 +27,7 @@ describe("<ImportExportActivities />", () => {
       .create(
         <ImportExportActivities
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -39,7 +39,7 @@ describe("<ImportExportActivities />", () => {
       const wrapper = mount(
         <ImportExportActivities
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -48,13 +48,13 @@ describe("<ImportExportActivities />", () => {
     });
 
     it("directly_import checkbox gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         directly_import: "default"
       };
       const wrapper = mount(
         <ImportExportActivities
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -67,13 +67,13 @@ describe("<ImportExportActivities />", () => {
     });
 
     it("directly_export checkbox gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         directly_export: "default"
       };
       const wrapper = mount(
         <ImportExportActivities
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -85,13 +85,13 @@ describe("<ImportExportActivities />", () => {
       );
     });
     it("no_import_export checkbox gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         no_import_export: "default"
       };
       const wrapper = mount(
         <ImportExportActivities
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -112,7 +112,7 @@ describe("<ImportExportActivities />", () => {
       const wrapper = mount(
         <ImportExportActivities
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );

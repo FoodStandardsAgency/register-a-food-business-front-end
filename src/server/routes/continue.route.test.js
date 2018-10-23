@@ -20,7 +20,7 @@ describe("Continue route: ", () => {
       continueController.mockImplementation(() => ({
         validatorErrors: {},
         redirectRoute: "/newPage",
-        cumulativeAnswers: {
+        cumulativeFullAnswers: {
           new: "answers"
         },
         switches: { exampleSwitch: true }
@@ -30,7 +30,7 @@ describe("Continue route: ", () => {
 
       req = {
         session: {
-          cumulativeAnswers: {},
+          cumulativeFullAnswers: {},
           switches: {},
           council: "council",
           pathConfig: { path: "existing path from session" },
@@ -51,7 +51,7 @@ describe("Continue route: ", () => {
       handler(req, res);
     });
 
-    it("Should call continueController with currentPage, cumulativeAnswers, body, switches, and path", () => {
+    it("Should call continueController with currentPage, cumulativeFullAnswers, body, switches, and path", () => {
       expect(continueController).toHaveBeenCalledWith(
         "/originator",
         {},
@@ -62,7 +62,7 @@ describe("Continue route: ", () => {
     });
 
     it("Should update session", () => {
-      expect(req.session.cumulativeAnswers).toEqual({ new: "answers" });
+      expect(req.session.cumulativeFullAnswers).toEqual({ new: "answers" });
       expect(req.session.switches).toEqual({ exampleSwitch: true });
     });
 
@@ -77,7 +77,7 @@ describe("Continue route: ", () => {
         continueController.mockImplementation(() => ({
           validatorErrors: {},
           redirectRoute: "/submit",
-          cumulativeAnswers: {
+          cumulativeFullAnswers: {
             new: "answers"
           },
           switches: { exampleSwitch: true }
@@ -87,7 +87,7 @@ describe("Continue route: ", () => {
 
         req = {
           session: {
-            cumulativeAnswers: {},
+            cumulativeFullAnswers: {},
             switches: {},
             council: "council",
             pathConfig: { path: "existing path from session" },
@@ -119,7 +119,7 @@ describe("Continue route: ", () => {
         continueController.mockImplementation(() => ({
           validatorErrors: {},
           redirectRoute: "/submit",
-          cumulativeAnswers: {
+          cumulativeFullAnswers: {
             new: "answers"
           },
           switches: { exampleSwitch: true }
@@ -129,7 +129,7 @@ describe("Continue route: ", () => {
 
         req = {
           session: {
-            cumulativeAnswers: {},
+            cumulativeFullAnswers: {},
             switches: {},
             council: "council",
             pathConfig: { path: "existing path from session" },

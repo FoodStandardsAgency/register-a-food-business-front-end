@@ -45,7 +45,7 @@ describe("Submit route: ", () => {
 
         req = {
           session: {
-            cumulativeAnswers: {
+            cumulativeFullAnswers: {
               some: "answers"
             },
             council: "cardiff",
@@ -104,7 +104,7 @@ describe("Submit route: ", () => {
 
         req = {
           session: {
-            cumulativeAnswers: {
+            cumulativeFullAnswers: {
               some: "answers"
             },
             council: "cardiff",
@@ -142,7 +142,7 @@ describe("Submit route: ", () => {
 
         req = {
           session: {
-            cumulativeAnswers: {
+            cumulativeFullAnswers: {
               some: "answers"
             },
             council: "cardiff",

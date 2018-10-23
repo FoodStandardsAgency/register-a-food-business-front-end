@@ -14,7 +14,7 @@ const switchesController = (
   logEmitter.emit("functionCall", "switches.controller", "switchesController");
 
   const controllerResponse = {
-    cumulativeAnswers: {},
+    cumulativeFullAnswers: {},
     newSwitchState: undefined
   };
 
@@ -36,7 +36,7 @@ const switchesController = (
       );
     }
 
-    controllerResponse.cumulativeAnswers = Object.assign(
+    controllerResponse.cumulativeFullAnswers = Object.assign(
       {},
       cleanedPreviousAnswers,
       newAnswers

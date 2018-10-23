@@ -23,7 +23,7 @@ const continueController = (
   const controllerResponse = {
     validatorErrors: {},
     redirectRoute: null,
-    cumulativeAnswers: {},
+    cumulativeFullAnswers: {},
     switches: {}
   };
 
@@ -49,7 +49,7 @@ const continueController = (
       currentPage
     );
 
-    controllerResponse.cumulativeAnswers = Object.assign(
+    controllerResponse.cumulativeFullAnswers = Object.assign(
       {},
       cleanedPreviousAnswers,
       trimmedNewAnswers
@@ -57,7 +57,7 @@ const continueController = (
 
     controllerResponse.switches = Object.assign(
       {},
-      cleanSwitches(controllerResponse.cumulativeAnswers, switches)
+      cleanSwitches(controllerResponse.cumulativeFullAnswers, switches)
     );
 
     controllerResponse.validatorErrors = Object.assign(
@@ -82,7 +82,7 @@ const continueController = (
 
     // get the new path based on the answers that have been given
     const newPath = editPath(
-      controllerResponse.cumulativeAnswers,
+      controllerResponse.cumulativeFullAnswers,
       currentPage,
       pathFromSession
     );
@@ -91,8 +91,8 @@ const continueController = (
     const updatedNewPath = switchOffManualAddressInput(newPath, currentPage);
 
     // remove any answers that are associated with an inactive page on the path
-    controllerResponse.cumulativeAnswers = cleanInactivePathAnswers(
-      controllerResponse.cumulativeAnswers,
+    controllerResponse.cumulativeFullAnswers = cleanInactivePathAnswers(
+      controllerResponse.cumulativeFullAnswers,
       updatedNewPath
     );
 

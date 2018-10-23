@@ -35,7 +35,7 @@ const EstablishmentAddressLookup = props => (
         <ContentItem.B_30_15>
           <Header level={3}>Postcode</Header>
           <Header id="establishmentPostcodeDisplay" level={4}>
-            {`${props.cumulativeAnswers.establishment_postcode_find} \u2007`}
+            {`${props.cumulativeFullAnswers.establishment_postcode_find} \u2007`}
             <AnchorTag
               id="changeEstablishmentPostcode"
               href="/establishment-address"
@@ -51,7 +51,7 @@ const EstablishmentAddressLookup = props => (
             id: "establishmentAddressDropdown",
             name: "establishment_address_selected",
             defaultValue:
-              props.cumulativeAnswers.establishment_address_selected || 0
+              props.cumulativeFullAnswers.establishment_address_selected || 0
           }}
         >
           {props.addressLookups.establishment_postcode_find ? (
@@ -85,5 +85,5 @@ const EstablishmentAddressLookup = props => (
 export default SessionWrapper(EstablishmentAddressLookup);
 
 EstablishmentAddressLookup.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string)
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string)
 };

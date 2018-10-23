@@ -26,7 +26,7 @@ const LimitedCompanyDetails = props => (
         <InputField
           input={{
             name: "operator_company_name",
-            defaultValue: props.cumulativeAnswers.operator_company_name,
+            defaultValue: props.cumulativeFullAnswers.operator_company_name,
             autoComplete: "organization"
           }}
           hint={
@@ -46,7 +46,7 @@ const LimitedCompanyDetails = props => (
         <InputField
           input={{
             name: "operator_company_house_number",
-            defaultValue: props.cumulativeAnswers.operator_company_house_number,
+            defaultValue: props.cumulativeFullAnswers.operator_company_house_number,
             autoComplete: "off"
           }}
           hint={
@@ -89,6 +89,6 @@ const LimitedCompanyDetails = props => (
 export default SessionWrapper(LimitedCompanyDetails);
 
 LimitedCompanyDetails.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

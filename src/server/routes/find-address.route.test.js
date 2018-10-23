@@ -23,7 +23,7 @@ describe("findAddress route: ", () => {
     describe("When session.save works", () => {
       const req = {
         session: {
-          cumulativeAnswers: {},
+          cumulativeFullAnswers: {},
           addressLookups: { some_page: [] },
           council: "council",
           save: cb => {
@@ -42,7 +42,7 @@ describe("findAddress route: ", () => {
 
       beforeEach(() => {
         findAddressController.mockImplementation(() => ({
-          cumulativeAnswers: { example: "answer" },
+          cumulativeFullAnswers: { example: "answer" },
           validatorErrors: {},
           addressLookups: { example: [] },
           redirectRoute: "/another-page"
@@ -55,7 +55,7 @@ describe("findAddress route: ", () => {
       });
 
       it("Should update session without overwriting existing addressLookups values", () => {
-        expect(req.session.cumulativeAnswers).toEqual({ example: "answer" });
+        expect(req.session.cumulativeFullAnswers).toEqual({ example: "answer" });
         expect(req.session.validatorErrors).toEqual({});
         expect(req.session.addressLookups).toEqual({
           some_page: [],
@@ -68,7 +68,7 @@ describe("findAddress route: ", () => {
       let response;
       const req = {
         session: {
-          cumulativeAnswers: {},
+          cumulativeFullAnswers: {},
           addressLookups: { some_page: [] },
           council: "council",
           save: cb => {
@@ -87,7 +87,7 @@ describe("findAddress route: ", () => {
 
       beforeEach(async () => {
         findAddressController.mockImplementation(() => ({
-          cumulativeAnswers: { example: "answer" },
+          cumulativeFullAnswers: { example: "answer" },
           validatorErrors: {},
           addressLookups: { example: [] },
           redirectRoute: "/another-page"

@@ -51,9 +51,9 @@ const EstablishmentContactDetails = props => (
             input={{
               name: "establishment_primary_number",
               defaultValue: props.switches.reuseOperatorContactDetails
-                ? props.cumulativeAnswers.operator_primary_number ||
-                  props.cumulativeAnswers.contact_representative_number
-                : props.cumulativeAnswers.establishment_primary_number,
+                ? props.cumulativeFullAnswers.operator_primary_number ||
+                  props.cumulativeFullAnswers.contact_representative_number
+                : props.cumulativeFullAnswers.establishment_primary_number,
               autoComplete: "tel"
             }}
             id="establishment_primary_number"
@@ -71,8 +71,8 @@ const EstablishmentContactDetails = props => (
             input={{
               name: "establishment_secondary_number",
               defaultValue: props.switches.reuseOperatorContactDetails
-                ? props.cumulativeAnswers.operator_secondary_number
-                : props.cumulativeAnswers.establishment_secondary_number,
+                ? props.cumulativeFullAnswers.operator_secondary_number
+                : props.cumulativeFullAnswers.establishment_secondary_number,
               autoComplete: "off"
             }}
             id="establishment_secondary_number"
@@ -90,9 +90,9 @@ const EstablishmentContactDetails = props => (
             input={{
               name: "establishment_email",
               defaultValue: props.switches.reuseOperatorContactDetails
-                ? props.cumulativeAnswers.operator_email ||
-                  props.cumulativeAnswers.contact_representative_email
-                : props.cumulativeAnswers.establishment_email,
+                ? props.cumulativeFullAnswers.operator_email ||
+                  props.cumulativeFullAnswers.contact_representative_email
+                : props.cumulativeFullAnswers.establishment_email,
               autoComplete: "email"
             }}
             id="establishment_email"
@@ -117,7 +117,7 @@ const EstablishmentContactDetails = props => (
 export default SessionWrapper(EstablishmentContactDetails);
 
 EstablishmentContactDetails.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string),
   switches: PropTypes.objectOf(PropTypes.bool)
 };

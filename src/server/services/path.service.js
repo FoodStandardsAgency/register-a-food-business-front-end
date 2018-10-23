@@ -1,9 +1,9 @@
 const { logEmitter } = require("./logging.service");
 
-const editPath = (cumulativeAnswers, currentPage, pathFromSession) => {
+const editPath = (cumulativeFullAnswers, currentPage, pathFromSession) => {
   logEmitter.emit("functionCall", "path.service", "editPath");
   const pathPagesToSwitch = getPathPagesToSwitch(
-    cumulativeAnswers,
+    cumulativeFullAnswers,
     currentPage,
     pathFromSession
   );
@@ -131,16 +131,16 @@ const moveAlongEditPath = (editModePath, currentPage, movement) => {
 };
 
 const getPathPagesToSwitch = (
-  cumulativeAnswers,
+  cumulativeFullAnswers,
   currentPage,
   pathFromSession
 ) => {
   logEmitter.emit("functionCall", "path.service", "getPathPagesToSwitch");
 
   try {
-    if (!cumulativeAnswers || typeof cumulativeAnswers !== "object") {
+    if (!cumulativeFullAnswers || typeof cumulativeFullAnswers !== "object") {
       throw new Error(`
-      path.service.js getPathPagesToSwitch(): the cumulativeAnswers argument is either missing or is not an object.
+      path.service.js getPathPagesToSwitch(): the cumulativeFullAnswers argument is either missing or is not an object.
     `);
     }
 
@@ -157,11 +157,11 @@ const getPathPagesToSwitch = (
       }
     }
 
-    const allAnswerValues = Object.values(cumulativeAnswers);
+    const allAnswerValues = Object.values(cumulativeFullAnswers);
     const allAnswerKeys = [];
 
-    for (let key in cumulativeAnswers) {
-      if (cumulativeAnswers[key] !== "") {
+    for (let key in cumulativeFullAnswers) {
+      if (cumulativeFullAnswers[key] !== "") {
         allAnswerKeys.push(key);
       }
     }

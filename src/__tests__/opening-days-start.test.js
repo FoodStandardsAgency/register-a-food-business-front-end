@@ -27,7 +27,7 @@ describe("<OpeningDaysStart />", () => {
       .create(
         <OpeningDaysStart
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -39,7 +39,7 @@ describe("<OpeningDaysStart />", () => {
     const wrapper = mount(
       <OpeningDaysStart
         validatorErrors={testValidatorErrors}
-        cumulativeAnswers={testCumulativeAnswers}
+        cumulativeFullAnswers={testCumulativeAnswers}
         switches={testSwitches}
       />
     );
@@ -55,7 +55,7 @@ describe("<OpeningDaysStart />", () => {
       const wrapper = mount(
         <OpeningDaysStart
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -73,14 +73,14 @@ describe("<OpeningDaysStart />", () => {
       };
 
       for (let radioButtonId in radioButtonIdsAndValues) {
-        const cumulativeAnswers = {
+        const cumulativeFullAnswers = {
           opening_days_start: radioButtonIdsAndValues[radioButtonId]
         };
 
         const wrapper = mount(
           <OpeningDaysStart
             validatorErrors={testValidatorErrors}
-            cumulativeAnswers={cumulativeAnswers}
+            cumulativeFullAnswers={cumulativeFullAnswers}
             switches={testSwitches}
           />
         );

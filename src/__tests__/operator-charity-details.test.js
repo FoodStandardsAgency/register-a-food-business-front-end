@@ -27,7 +27,7 @@ describe("<OperatorCharityDetails />", () => {
       .create(
         <OperatorCharityDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -40,7 +40,7 @@ describe("<OperatorCharityDetails />", () => {
       const wrapper = mount(
         <OperatorCharityDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -57,7 +57,7 @@ describe("<OperatorCharityDetails />", () => {
       const wrapper = mount(
         <OperatorCharityDetails
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -68,13 +68,13 @@ describe("<OperatorCharityDetails />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         operator_charity_name: "default"
       };
       const wrapper = mount(
         <OperatorCharityDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -90,7 +90,7 @@ describe("<OperatorCharityDetails />", () => {
       const wrapper = mount(
         <OperatorCharityDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -107,7 +107,7 @@ describe("<OperatorCharityDetails />", () => {
       const wrapper = mount(
         <OperatorCharityDetails
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -118,13 +118,13 @@ describe("<OperatorCharityDetails />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         operator_charity_number: "default"
       };
       const wrapper = mount(
         <OperatorCharityDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );

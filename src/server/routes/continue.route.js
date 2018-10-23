@@ -15,13 +15,13 @@ const continueRouter = () => {
 
     const response = continueController(
       `/${req.params.originator}`,
-      req.session.cumulativeAnswers,
+      req.session.cumulativeFullAnswers,
       req.body,
       req.session.switches,
       req.session.pathConfig.path
     );
 
-    req.session.cumulativeAnswers = response.cumulativeAnswers;
+    req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
     req.session.validatorErrors = response.validatorErrors;
     req.session.switches = response.switches;
 

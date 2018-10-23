@@ -20,7 +20,7 @@ describe("<OpeningDate />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(
       <OpeningDate
-        cumulativeAnswers={testCumulativeAnswers}
+        cumulativeFullAnswers={testCumulativeAnswers}
         validatorErrors={testValidatorErrors}
         switches={testSwitches}
       />
@@ -35,7 +35,7 @@ describe("<OpeningDate />", () => {
       };
       const wrapper = mount(
         <OpeningDate
-          cumulativeAnswers={proactiveCumulativeAnswers}
+          cumulativeFullAnswers={proactiveCumulativeAnswers}
           validatorErrors={testValidatorErrors}
           switches={testSwitches}
         />
@@ -55,7 +55,7 @@ describe("<OpeningDate />", () => {
       };
       const wrapper = mount(
         <OpeningDate
-          cumulativeAnswers={proactiveCumulativeAnswers}
+          cumulativeFullAnswers={proactiveCumulativeAnswers}
           validatorErrors={testValidatorErrors}
           switches={testSwitches}
         />

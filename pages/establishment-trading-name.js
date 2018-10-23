@@ -33,7 +33,7 @@ const EstablishmentTradingName = props => (
           <InputField
             input={{
               name: "establishment_trading_name",
-              defaultValue: props.cumulativeAnswers.establishment_trading_name
+              defaultValue: props.cumulativeFullAnswers.establishment_trading_name
             }}
             id="establishment_trading_name"
             hint={[
@@ -57,6 +57,6 @@ const EstablishmentTradingName = props => (
 export default SessionWrapper(EstablishmentTradingName);
 
 EstablishmentTradingName.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

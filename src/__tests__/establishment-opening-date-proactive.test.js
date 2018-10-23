@@ -25,13 +25,13 @@ describe("<EstablishmentOpeningDateProactive />", () => {
     const wrapper = mount(
       <EstablishmentOpeningDateProactive
         validatorErrors={testValidatorErrors}
-        cumulativeAnswers={testCumulativeAnswers}
+        cumulativeFullAnswers={testCumulativeAnswers}
         switches={testSwitches}
       />
     );
     const openingDateProactive = wrapper.find("OpeningDate");
     expect(openingDateProactive.length).toBe(1);
-    expect(openingDateProactive.props().cumulativeAnswers.example).toBe(
+    expect(openingDateProactive.props().cumulativeFullAnswers.example).toBe(
       "test answer"
     );
     expect(openingDateProactive.props().validatorErrors.example).toBe(

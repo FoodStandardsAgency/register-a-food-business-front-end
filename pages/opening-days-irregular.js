@@ -30,7 +30,7 @@ const OtherDaysIrregular = props => (
           <TextArea
             input={{
               name: "opening_days_irregular",
-              defaultValue: props.cumulativeAnswers.opening_days_irregular,
+              defaultValue: props.cumulativeFullAnswers.opening_days_irregular,
               id: "opening_days_irregular"
             }}
             meta={{
@@ -48,6 +48,6 @@ const OtherDaysIrregular = props => (
 export default SessionWrapper(OtherDaysIrregular);
 
 OtherDaysIrregular.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

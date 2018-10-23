@@ -27,7 +27,7 @@ const CustomerType = props => (
             name="supply_other"
             id="customer_type_supply_other"
             value="It will supply food to other businesses to process, sell or serve"
-            defaultChecked={props.cumulativeAnswers.supply_other}
+            defaultChecked={props.cumulativeFullAnswers.supply_other}
           >
             It will supply food to other businesses to process, sell or serve
           </Checkbox>
@@ -36,7 +36,7 @@ const CustomerType = props => (
             name="supply_directly"
             id="customer_type_supply_directly"
             value="It will supply food directly to end consumer"
-            defaultChecked={props.cumulativeAnswers.supply_directly}
+            defaultChecked={props.cumulativeFullAnswers.supply_directly}
           >
             It will supply food directly to end consumers
           </Checkbox>
@@ -51,6 +51,6 @@ const CustomerType = props => (
 export default SessionWrapper(CustomerType);
 
 CustomerType.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

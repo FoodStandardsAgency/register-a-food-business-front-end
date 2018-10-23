@@ -7,7 +7,7 @@ const EstablishmentOpeningDate = props => <OpeningDate {...props} />;
 export default SessionWrapper(EstablishmentOpeningDate);
 
 EstablishmentOpeningDate.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string),
   switches: PropTypes.objectOf(PropTypes.bool)
 };

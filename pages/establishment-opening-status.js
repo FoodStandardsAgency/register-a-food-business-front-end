@@ -55,7 +55,7 @@ const EstablishmentOpeningStatus = props => (
             value="Establishment is already trading"
             id="establishment_opening_status_already_trading"
             defaultChecked={
-              props.cumulativeAnswers.establishment_opening_status ===
+              props.cumulativeFullAnswers.establishment_opening_status ===
               "Establishment is already trading"
             }
           >
@@ -66,7 +66,7 @@ const EstablishmentOpeningStatus = props => (
             value="Establishment is not trading yet"
             id="establishment_opening_status_not_trading"
             defaultChecked={
-              props.cumulativeAnswers.establishment_opening_status ===
+              props.cumulativeFullAnswers.establishment_opening_status ===
               "Establishment is not trading yet"
             }
           >
@@ -83,6 +83,6 @@ const EstablishmentOpeningStatus = props => (
 export default SessionWrapper(EstablishmentOpeningStatus);
 
 EstablishmentOpeningStatus.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

@@ -32,7 +32,7 @@ const OpeningSomeDays = props => (
             name="opening_day_monday"
             id="opening_day_monday"
             value="Monday"
-            defaultChecked={props.cumulativeAnswers.opening_day_monday}
+            defaultChecked={props.cumulativeFullAnswers.opening_day_monday}
           >
             Monday
           </Checkbox>
@@ -40,7 +40,7 @@ const OpeningSomeDays = props => (
             name="opening_day_tuesday"
             id="opening_day_tuesday"
             value="Tuesday"
-            defaultChecked={props.cumulativeAnswers.opening_day_tuesday}
+            defaultChecked={props.cumulativeFullAnswers.opening_day_tuesday}
           >
             Tuesday
           </Checkbox>
@@ -48,7 +48,7 @@ const OpeningSomeDays = props => (
             name="opening_day_wednesday"
             id="opening_day_wednesday"
             value="Wednesday"
-            defaultChecked={props.cumulativeAnswers.opening_day_wednesday}
+            defaultChecked={props.cumulativeFullAnswers.opening_day_wednesday}
           >
             Wednesday
           </Checkbox>
@@ -56,7 +56,7 @@ const OpeningSomeDays = props => (
             name="opening_day_thursday"
             id="opening_day_thursday"
             value="Thursday"
-            defaultChecked={props.cumulativeAnswers.opening_day_thursday}
+            defaultChecked={props.cumulativeFullAnswers.opening_day_thursday}
           >
             Thursday
           </Checkbox>
@@ -64,7 +64,7 @@ const OpeningSomeDays = props => (
             name="opening_day_friday"
             id="opening_day_friday"
             value="Friday"
-            defaultChecked={props.cumulativeAnswers.opening_day_friday}
+            defaultChecked={props.cumulativeFullAnswers.opening_day_friday}
           >
             Friday
           </Checkbox>
@@ -72,7 +72,7 @@ const OpeningSomeDays = props => (
             name="opening_day_saturday"
             id="opening_day_saturday"
             value="Saturday"
-            defaultChecked={props.cumulativeAnswers.opening_day_saturday}
+            defaultChecked={props.cumulativeFullAnswers.opening_day_saturday}
           >
             Saturday
           </Checkbox>
@@ -80,7 +80,7 @@ const OpeningSomeDays = props => (
             name="opening_day_sunday"
             id="opening_day_sunday"
             value="Sunday"
-            defaultChecked={props.cumulativeAnswers.opening_day_sunday}
+            defaultChecked={props.cumulativeFullAnswers.opening_day_sunday}
           >
             Sunday
           </Checkbox>
@@ -94,6 +94,6 @@ const OpeningSomeDays = props => (
 export default SessionWrapper(OpeningSomeDays);
 
 OpeningSomeDays.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

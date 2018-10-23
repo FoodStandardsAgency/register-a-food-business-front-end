@@ -12,7 +12,7 @@ const comprehensiveReqSessionObject = {
   query: "",
   url: "/",
   session: {
-    cumulativeAnswers: { example: "answer" },
+    cumulativeFullAnswers: { example: "answer" },
     transformedData: { transformed: "data" },
     validatorErrors: { fieldName: "error" },
     switches: { switchName: true },

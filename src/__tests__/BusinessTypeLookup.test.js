@@ -9,14 +9,14 @@ expect.addSnapshotSerializer(createSerializer(emotion));
 describe("<BusinessTypeLookup />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(
-      <BusinessTypeLookup validatorErrors cumulativeAnswers />
+      <BusinessTypeLookup validatorErrors cumulativeFullAnswers />
     );
     expect(wrapper.length).toBe(1);
   });
 
   it("matches the previous snapshot", () => {
     const tree = renderer
-      .create(<BusinessTypeLookup validatorErrors cumulativeAnswers />)
+      .create(<BusinessTypeLookup validatorErrors cumulativeFullAnswers />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -24,7 +24,7 @@ describe("<BusinessTypeLookup />", () => {
   describe("given validatorErrors.business_type", () => {
     it("renders the container div with different styling", () => {
       const wrapperNoErrors = shallow(
-        <BusinessTypeLookup validatorErrors={{}} cumulativeAnswers />
+        <BusinessTypeLookup validatorErrors={{}} cumulativeFullAnswers />
       );
       const appliedClassNameNoErrors = wrapperNoErrors
         .find("#autocompleteContainer")
@@ -32,7 +32,7 @@ describe("<BusinessTypeLookup />", () => {
       const wrapperErrors = shallow(
         <BusinessTypeLookup
           validatorErrors={{ business_type: "An error" }}
-          cumulativeAnswers
+          cumulativeFullAnswers
         />
       );
       const appliedClassNameErrors = wrapperErrors

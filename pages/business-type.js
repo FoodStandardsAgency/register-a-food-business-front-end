@@ -28,6 +28,6 @@ const BusinessType = props => (
 export default SessionWrapper(BusinessType);
 
 BusinessType.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

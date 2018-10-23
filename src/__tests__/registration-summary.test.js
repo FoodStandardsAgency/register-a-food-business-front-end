@@ -8,7 +8,7 @@ jest.mock("../server/services/data-transform.service");
 
 expect.addSnapshotSerializer(createSerializer(emotion));
 
-const cumulativeAnswers = {
+const cumulativeFullAnswers = {
   establishment_first_line: "Example first line"
 };
 
@@ -24,7 +24,7 @@ describe("<RegistrationSummary />", () => {
     const tree = renderer
       .create(
         <RegistrationSummary
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       )
@@ -35,11 +35,11 @@ describe("<RegistrationSummary />", () => {
   it("gets given props", () => {
     const wrapper = mount(
       <RegistrationSummary
-        cumulativeAnswers={cumulativeAnswers}
+        cumulativeFullAnswers={cumulativeFullAnswers}
         switches={testSwitches}
       />
     );
-    const establishmentFirstLine = wrapper.props().cumulativeAnswers
+    const establishmentFirstLine = wrapper.props().cumulativeFullAnswers
       .establishment_first_line;
     expect(establishmentFirstLine).toBe("Example first line");
   });
@@ -50,7 +50,7 @@ describe("<RegistrationSummary />", () => {
     it("renders", () => {
       const wrapper = mount(
         <RegistrationSummary
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );

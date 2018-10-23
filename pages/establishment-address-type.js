@@ -41,7 +41,7 @@ const EstablishmentAddressType = props => (
             value="Place of business or commercial premises"
             id="establishment_type_business_commercial"
             defaultChecked={
-              props.cumulativeAnswers.establishment_type ===
+              props.cumulativeFullAnswers.establishment_type ===
               "Place of business or commercial premises"
             }
           >
@@ -52,7 +52,7 @@ const EstablishmentAddressType = props => (
             value="Mobile or moveable premises"
             id="establishment_type_mobile_moveable"
             defaultChecked={
-              props.cumulativeAnswers.establishment_type ===
+              props.cumulativeFullAnswers.establishment_type ===
               "Mobile or moveable premises"
             }
           >
@@ -63,7 +63,7 @@ const EstablishmentAddressType = props => (
             value="Home or domestic premises"
             id="establishment_type_home_domestic"
             defaultChecked={
-              props.cumulativeAnswers.establishment_type ===
+              props.cumulativeFullAnswers.establishment_type ===
               "Home or domestic premises"
             }
           >
@@ -80,6 +80,6 @@ const EstablishmentAddressType = props => (
 export default SessionWrapper(EstablishmentAddressType);
 
 EstablishmentAddressType.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

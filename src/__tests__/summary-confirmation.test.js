@@ -5,7 +5,7 @@ import { createSerializer } from "jest-emotion";
 jest.mock("../server/services/data-transform.service");
 expect.addSnapshotSerializer(createSerializer(emotion));
 
-const cumulativeAnswers = {
+const cumulativeFullAnswers = {
   establishment_first_line: "Example first line"
 };
 
@@ -60,7 +60,7 @@ describe("<ApplicationComplete />", () => {
     it("renders", () => {
       const wrapper = mount(
         <ApplicationComplete
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           emailFbo={emailFbo}
@@ -75,7 +75,7 @@ describe("<ApplicationComplete />", () => {
     it("The panel renders the number when defined", () => {
       const wrapper = mount(
         <ApplicationComplete
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           fsaRegistrationNumber="12345"
           lcConfig={lcConfigCombined}
@@ -88,7 +88,7 @@ describe("<ApplicationComplete />", () => {
     it("The panel renders 'Awaiting registration number' text when not defined", () => {
       const wrapper = mount(
         <ApplicationComplete
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           fsaRegistrationNumber={undefined}
           lcConfig={lcConfigCombined}
@@ -104,7 +104,7 @@ describe("<ApplicationComplete />", () => {
     it("The panel renders two sets of LC info", () => {
       const wrapper = mount(
         <ApplicationComplete
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
           emailFbo={emailFbo}
@@ -122,7 +122,7 @@ describe("<ApplicationComplete />", () => {
     it("The paragraph renders displaying it", () => {
       const wrapper = mount(
         <ApplicationComplete
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           emailFbo={emailFbo}
@@ -137,7 +137,7 @@ describe("<ApplicationComplete />", () => {
     it("The paragraph renders displaying it", () => {
       const wrapper = mount(
         <ApplicationComplete
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
           emailFbo={emailFbo}
@@ -152,7 +152,7 @@ describe("<ApplicationComplete />", () => {
     it("The paragraph renders displaying it", () => {
       const wrapper = mount(
         <ApplicationComplete
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
           emailFbo={emailFbo}
@@ -167,7 +167,7 @@ describe("<ApplicationComplete />", () => {
     it("The hygieneAndStandards phone number does not render", () => {
       const wrapper = mount(
         <ApplicationComplete
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigCombinedNoNumber}
           emailFbo={emailFbo}
@@ -182,7 +182,7 @@ describe("<ApplicationComplete />", () => {
     it("The hygiene phone number does not render", () => {
       const wrapper = mount(
         <ApplicationComplete
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigSplitNoNumber}
           emailFbo={emailFbo}
@@ -197,7 +197,7 @@ describe("<ApplicationComplete />", () => {
     it("The standards phone number does not render", () => {
       const wrapper = mount(
         <ApplicationComplete
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigSplitNoNumber}
           emailFbo={emailFbo}
@@ -212,7 +212,7 @@ describe("<ApplicationComplete />", () => {
     it("The page still renders", () => {
       const wrapper = mount(
         <ApplicationComplete
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={{}}
           emailFbo={emailFbo}

@@ -45,7 +45,7 @@ describe("QA Route: ", () => {
       });
 
       it("Should set session to the request query", () => {
-        expect(req.session.cumulativeAnswers).toEqual(req.query);
+        expect(req.session.cumulativeFullAnswers).toEqual(req.query);
       });
 
       it("Should set session.council to the lc param", () => {

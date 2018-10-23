@@ -2,22 +2,6 @@ const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const editController = require("../controllers/edit.controller");
 
-// pathFromSession,
-// editModeFirstPage,
-// currentPage,
-// cumulativeFullAnswers,
-// cumulativeEditAnswers,
-// newAnswers,
-// switches
-
-// const response = continueController(
-//   `/${req.params.originator}`,
-//   req.session.cumulativeAnswers,
-//   req.body,
-//   req.session.switches,
-//   req.session.pathConfig.path
-// );
-
 const editRouter = () => {
   const router = Router();
 
@@ -26,13 +10,14 @@ const editRouter = () => {
       req.session.pathConfig.path,
       `/${req.query.edit}`,
       `/${req.params.originator}`,
-      req.session.cumulativeAnswers,
+      req.session.cumulativeFullAnswers,
       req.session.cumulativeEditAnswers,
       req.body,
       req.session.switches
     );
 
-    req.session.cumulativeAnswers = controllerResponse.cumulativeFullAnswers;
+    req.session.cumulativeFullAnswers =
+      controllerResponse.cumulativeFullAnswers;
     req.session.cumulativeEditAnswers =
       controllerResponse.cumulativeEditAnswers;
     req.session.validatorErrors = controllerResponse.validatorErrors;
@@ -47,18 +32,6 @@ const editRouter = () => {
         }`
       );
     }
-    // const controllerResponse = {
-    //   cumulativeFullAnswers: newCumulativeFullAnswers,
-    //   cumulativeEditAnswers: newCumulativeEditAnswers,
-    //   validatorErrors,
-    //   switches: cleanedSwitches,
-    //   redirectRoute
-    // };
-
-    // the updated user data is added to the session
-
-    // user is either redirected to another page within subflow or to registration summary
-    //res.redirect(`/new/${req.session.council}/continue/:originator`)
   });
 
   router.get("/:target", (req, res) => {

@@ -59,7 +59,7 @@ const newRouter = () => {
           page === "summary-confirmation"
         ) {
           req.session.transformedData = transformAnswersForSummary(
-            req.session.cumulativeAnswers,
+            req.session.cumulativeFullAnswers,
             req.session.addressLookups
           );
 

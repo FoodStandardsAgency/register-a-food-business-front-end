@@ -27,7 +27,7 @@ describe("<EstablishmentAddress />", () => {
       .create(
         <EstablishmentAddress
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -40,7 +40,7 @@ describe("<EstablishmentAddress />", () => {
       const wrapper = mount(
         <EstablishmentAddress
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -57,7 +57,7 @@ describe("<EstablishmentAddress />", () => {
       const wrapper = mount(
         <EstablishmentAddress
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -68,13 +68,13 @@ describe("<EstablishmentAddress />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         establishment_postcode_find: "default"
       };
       const wrapper = mount(
         <EstablishmentAddress
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );

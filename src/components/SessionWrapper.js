@@ -19,9 +19,9 @@ const SessionWrapper = Page => {
       acceptAllCookies,
       editModeFirstPage,
       formAction,
-      cumulativeAnswers:
-        req && req.session && req.session.cumulativeAnswers
-          ? req.session.cumulativeAnswers
+      cumulativeFullAnswers:
+        req && req.session && req.session.cumulativeFullAnswers
+          ? req.session.cumulativeFullAnswers
           : {},
       transformedData:
         req && req.session && req.session.transformedData

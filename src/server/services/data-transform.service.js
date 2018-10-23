@@ -1,7 +1,7 @@
 const { logEmitter } = require("./logging.service");
 
-const trimAnswers = cumulativeAnswers => {
-  const trimmedAnswers = JSON.parse(JSON.stringify(cumulativeAnswers));
+const trimAnswers = cumulativeFullAnswers => {
+  const trimmedAnswers = JSON.parse(JSON.stringify(cumulativeFullAnswers));
 
   for (let answer in trimmedAnswers) {
     trimmedAnswers[answer] = trimmedAnswers[answer].trim();
@@ -9,14 +9,14 @@ const trimAnswers = cumulativeAnswers => {
   return trimmedAnswers;
 };
 
-const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
+const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
   logEmitter.emit(
     "functionCall",
     "data-transform.service",
     "transformAnswersForSummary"
   );
 
-  const data = Object.assign({}, cumulativeAnswers);
+  const data = Object.assign({}, cumulativeFullAnswers);
 
   try {
     data.operator_type = combineOperatorTypes(
@@ -139,7 +139,7 @@ const transformAnswersForSummary = (cumulativeAnswers, addressLookups) => {
 
 const transformAnswersForSubmit = (
   lcUrl,
-  cumulativeAnswers,
+  cumulativeFullAnswers,
   addressLookups
 ) => {
   logEmitter.emit(
@@ -213,7 +213,7 @@ const transformAnswersForSubmit = (
   };
 
   const summaryData = transformAnswersForSummary(
-    cumulativeAnswers,
+    cumulativeFullAnswers,
     addressLookups
   );
 

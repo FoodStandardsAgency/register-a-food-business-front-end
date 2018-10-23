@@ -72,8 +72,8 @@ describe("Function: continueController: ", () => {
       );
     });
 
-    it("Should clean the cumulativeAnswers", () => {
-      expect(response.cumulativeAnswers).toEqual({});
+    it("Should clean the cumulativeFullAnswers", () => {
+      expect(response.cumulativeFullAnswers).toEqual({});
     });
 
     it("Should return an empty validatorErrors object", () => {
@@ -119,8 +119,8 @@ describe("Function: continueController: ", () => {
       );
     });
     it("Should return a response", () => {
-      expect(response.cumulativeAnswers.operator_first_name).toBe("name");
-      expect(response.cumulativeAnswers.operator_secondary_number).toBe("");
+      expect(response.cumulativeFullAnswers.operator_first_name).toBe("name");
+      expect(response.cumulativeFullAnswers.operator_secondary_number).toBe("");
     });
   });
 
@@ -183,7 +183,7 @@ describe("Function: continueController: ", () => {
       it("Should return a controllerResponse", () => {
         expect(response.validatorErrors).toBeDefined();
         expect(response.redirectRoute).toBeDefined();
-        expect(response.cumulativeAnswers).toBeDefined();
+        expect(response.cumulativeFullAnswers).toBeDefined();
       });
 
       it("Should use cumulativePathAnswers and the path from session to create the newPath", () => {

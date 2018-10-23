@@ -27,7 +27,7 @@ describe("<OpeningDaysIrregular />", () => {
       .create(
         <OpeningDaysIrregular
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -40,7 +40,7 @@ describe("<OpeningDaysIrregular />", () => {
       const wrapper = mount(
         <OpeningDaysIrregular
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -55,7 +55,7 @@ describe("<OpeningDaysIrregular />", () => {
       const wrapper = mount(
         <OpeningDaysIrregular
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -64,13 +64,13 @@ describe("<OpeningDaysIrregular />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         opening_days_irregular: "default"
       };
       const wrapper = mount(
         <OpeningDaysIrregular
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );

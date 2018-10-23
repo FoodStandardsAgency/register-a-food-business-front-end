@@ -28,12 +28,12 @@ describe("path.service editPath()", () => {
   describe("given valid input", () => {
     describe("given that an answer triggers a switch and is only in the full answers", () => {
       beforeEach(() => {
-        const cumulativeAnswers = {
+        const cumulativeFullAnswers = {
           registration_role: "Representative",
           another_answer: "Value"
         };
         const currentPage = "/registration-role";
-        const args = [cumulativeAnswers, currentPage, pathFromSession];
+        const args = [cumulativeFullAnswers, currentPage, pathFromSession];
         result = editPath(...args);
       });
       it("should return 'on' as true for the switched page", () => {
@@ -342,7 +342,7 @@ describe("path.service getPathPagesToSwitch()", () => {
     });
   });
 
-  describe("Given valid input where the object keys in cumulativeAnswers affect the path", () => {
+  describe("Given valid input where the object keys in cumulativeFullAnswers affect the path", () => {
     it("edits the path if the value is truthy", () => {
       const result = getPathPagesToSwitch(
         {

@@ -9,7 +9,7 @@ const submitRouter = () => {
     logEmitter.emit("functionCall", "Routes", "/submit route");
     const controllerResponse = await submitController(
       req.session.council,
-      req.session.cumulativeAnswers,
+      req.session.cumulativeFullAnswers,
       req.session.addressLookups,
       req.session.pathConfig._id
     );

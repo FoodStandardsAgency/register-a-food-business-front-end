@@ -42,7 +42,7 @@ const OperatorAddressLookup = props => (
         <ContentItem.B_30_15>
           <Header level={3}>Postcode</Header>
           <Header id="operatorPostcodeDisplay" level={4}>
-            {`${props.cumulativeAnswers.operator_postcode_find} \u2007`}
+            {`${props.cumulativeFullAnswers.operator_postcode_find} \u2007`}
             <AnchorTag id="changeOperatorPostcode" href="/operator-address">
               Change
             </AnchorTag>
@@ -54,7 +54,7 @@ const OperatorAddressLookup = props => (
           input={{
             id: "operatorAddressDropdown",
             name: "operator_address_selected",
-            defaultValue: props.cumulativeAnswers.operator_address_selected || 0
+            defaultValue: props.cumulativeFullAnswers.operator_address_selected || 0
           }}
         >
           {props.addressLookups.operator_postcode_find ? (
@@ -85,5 +85,5 @@ const OperatorAddressLookup = props => (
 export default SessionWrapper(OperatorAddressLookup);
 
 OperatorAddressLookup.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string)
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string)
 };

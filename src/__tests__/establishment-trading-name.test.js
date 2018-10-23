@@ -27,7 +27,7 @@ describe("<EstablishmentTradingName />", () => {
       .create(
         <EstablishmentTradingName
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -40,7 +40,7 @@ describe("<EstablishmentTradingName />", () => {
       const wrapper = mount(
         <EstablishmentTradingName
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -57,7 +57,7 @@ describe("<EstablishmentTradingName />", () => {
       const wrapper = mount(
         <EstablishmentTradingName
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -68,13 +68,13 @@ describe("<EstablishmentTradingName />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         establishment_trading_name: "default"
       };
       const wrapper = mount(
         <EstablishmentTradingName
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );

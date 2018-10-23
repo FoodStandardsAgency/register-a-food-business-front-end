@@ -29,7 +29,7 @@ describe("<EstablishmentContactDetails />", () => {
       .create(
         <EstablishmentContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -42,7 +42,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -59,7 +59,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -73,7 +73,7 @@ describe("<EstablishmentContactDetails />", () => {
       const testSwitches = {
         reuseOperatorContactDetails: true
       };
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         operator_primary_number: "operator primary number",
         establishment_primary_number: "establishment primary number"
       };
@@ -81,7 +81,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -97,7 +97,7 @@ describe("<EstablishmentContactDetails />", () => {
       const testSwitches = {
         reuseOperatorContactDetails: false
       };
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         establishment_primary_number: "establishment primary number",
         operator_primary_number: "operator primary number"
       };
@@ -105,7 +105,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -123,7 +123,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -140,7 +140,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -156,7 +156,7 @@ describe("<EstablishmentContactDetails />", () => {
       const testSwitches = {
         reuseOperatorContactDetails: true
       };
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         operator_secondary_number: "operator secondary number",
         establishment_secondary_number: "establishment secondary number"
       };
@@ -164,7 +164,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -180,7 +180,7 @@ describe("<EstablishmentContactDetails />", () => {
       const testSwitches = {
         reuseOperatorContactDetails: false
       };
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         establishment_secondary_number: "establishment secondary number",
         operator_secondary_number: "operator secondary number"
       };
@@ -188,7 +188,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -206,7 +206,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -221,7 +221,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -233,7 +233,7 @@ describe("<EstablishmentContactDetails />", () => {
       const testSwitches = {
         reuseOperatorContactDetails: true
       };
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         operator_email: "operator email",
         establishment_email: "establishment email"
       };
@@ -241,7 +241,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -255,7 +255,7 @@ describe("<EstablishmentContactDetails />", () => {
       const testSwitches = {
         reuseOperatorContactDetails: false
       };
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         establishment_email: "establishment email",
         operator_email: "operator email"
       };
@@ -263,7 +263,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -283,7 +283,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -299,7 +299,7 @@ describe("<EstablishmentContactDetails />", () => {
       const wrapper = mount(
         <EstablishmentContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );

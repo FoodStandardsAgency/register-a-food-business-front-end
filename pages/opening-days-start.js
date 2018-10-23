@@ -32,7 +32,7 @@ const OpeningDaysStart = props => (
             value="Every day"
             id="opening_days_start_everyday"
             defaultChecked={
-              props.cumulativeAnswers.opening_days_start === "Every day"
+              props.cumulativeFullAnswers.opening_days_start === "Every day"
             }
           >
             Every day
@@ -42,7 +42,7 @@ const OpeningDaysStart = props => (
             value="Some days"
             id="opening_days_start_some_days"
             defaultChecked={
-              props.cumulativeAnswers.opening_days_start === "Some days"
+              props.cumulativeFullAnswers.opening_days_start === "Some days"
             }
           >
             Some days a week
@@ -52,7 +52,7 @@ const OpeningDaysStart = props => (
             value="Irregular days"
             id="opening_days_start_irregular_days"
             defaultChecked={
-              props.cumulativeAnswers.opening_days_start === "Irregular days"
+              props.cumulativeFullAnswers.opening_days_start === "Irregular days"
             }
           >
             Irregular days
@@ -76,6 +76,6 @@ const OpeningDaysStart = props => (
 export default SessionWrapper(OpeningDaysStart);
 
 OpeningDaysStart.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

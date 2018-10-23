@@ -45,7 +45,7 @@ const OperatorAddress = props => (
             input={{
               id: "operator_postcode_find",
               name: "operator_postcode_find",
-              defaultValue: props.cumulativeAnswers.operator_postcode_find,
+              defaultValue: props.cumulativeFullAnswers.operator_postcode_find,
               autoComplete: "postal-code"
             }}
             id="operatorPostcodeFindComponent"
@@ -67,6 +67,6 @@ const OperatorAddress = props => (
 export default SessionWrapper(OperatorAddress);
 
 OperatorAddress.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

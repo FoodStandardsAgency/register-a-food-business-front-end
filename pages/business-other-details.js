@@ -22,7 +22,7 @@ const OtherDetails = props => (
           <TextArea
             input={{
               name: "business_other_details",
-              defaultValue: props.cumulativeAnswers.business_other_details,
+              defaultValue: props.cumulativeFullAnswers.business_other_details,
               id: "business_other_details"
             }}
             meta={{
@@ -43,6 +43,6 @@ const OtherDetails = props => (
 export default SessionWrapper(OtherDetails);
 
 OtherDetails.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };
