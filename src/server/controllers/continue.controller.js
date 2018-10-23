@@ -96,21 +96,10 @@ const continueController = (
       updatedNewPath
     );
 
-    // create an array of the active page names
-    const activePageNames = Object.keys(updatedNewPath).filter(
-      page => updatedNewPath[page].on === true
-    );
+    // else move to the next page in the path
+    const nextPage = moveAlongPath(updatedNewPath, currentPage, 1);
+    controllerResponse.redirectRoute = nextPage;
 
-    // check if current page is at the end of this array
-    const finalActivePage = activePageNames[activePageNames.length - 1];
-
-    if (currentPage === finalActivePage) {
-      controllerResponse.redirectRoute = "/submit";
-    } else {
-      // else move to the next page in the path
-      const nextPage = moveAlongPath(updatedNewPath, currentPage, 1);
-      controllerResponse.redirectRoute = nextPage;
-    }
     logEmitter.emit(
       "functionSuccessWith",
       "continue.controller",

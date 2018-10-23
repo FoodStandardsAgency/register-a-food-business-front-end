@@ -1,5 +1,23 @@
 const { logEmitter } = require("./logging.service");
 
+const editPath = (cumulativeAnswers, currentPage, pathFromSession) => {
+  logEmitter.emit("functionCall", "path.service", "editPath");
+  const pathPagesToSwitch = getPathPagesToSwitch(
+    cumulativeAnswers,
+    currentPage,
+    pathFromSession
+  );
+
+  const newPath = JSON.parse(JSON.stringify(pathFromSession));
+
+  pathPagesToSwitch.forEach(page => {
+    newPath[page].on = true;
+  });
+
+  logEmitter.emit("functionSuccess", "path.service", "editPath");
+  return newPath;
+};
+
 const editPathInEditMode = (
   cumulativeFullAnswers,
   cumulativeEditAnswers,
@@ -7,6 +25,8 @@ const editPathInEditMode = (
   editModeFirstPage,
   currentPage
 ) => {
+  logEmitter.emit("functionCall", "path.service", "editPathInEditMode");
+
   const pagesToSwitchFull = getPathPagesToSwitch(
     cumulativeFullAnswers,
     currentPage,
@@ -30,62 +50,84 @@ const editPathInEditMode = (
 
   newPath[editModeFirstPage].inEditPath = true;
 
+  logEmitter.emit("functionSuccess", "path.service", "editPathInEditMode");
   return newPath;
 };
-
-// find the next page on the edit path using inEditPath true/false --- moveAlongEditPath
-// TODO JMB: Merge 'is last page in path' into moveAlongEditPath
-const moveAlongEditPath = (editModePath, currentPage, movement) => {};
 
 const moveAlongPath = (path, currentPage, movement) => {
   logEmitter.emit("functionCall", "path.service", "moveAlongPath");
 
-  try {
-    const activePath = Object.keys(path).filter(entry => {
-      return path[entry].on === true;
-    });
+  const activePath = Object.keys(path).filter(entry => {
+    return path[entry].on === true;
+  });
 
-    const currentIndex = activePath.indexOf(currentPage);
+  const currentIndex = activePath.indexOf(currentPage);
 
-    const nextPage = activePath[currentIndex + (movement || 0)];
+  const nextPage = activePath[currentIndex + movement];
 
-    if (nextPage) {
+  if (nextPage) {
+    logEmitter.emit(
+      "functionSuccessWith",
+      "path.service",
+      "moveAlongPath",
+      `Page to move to in path: "${nextPage}"`
+    );
+    return nextPage;
+  } else {
+    if (movement > 0) {
       logEmitter.emit(
         "functionSuccessWith",
         "path.service",
         "moveAlongPath",
-        `Page to move to in path: "${nextPage}"`
+        "End of path. Moving to '/submit'."
       );
-      return nextPage;
+      return "/submit";
     } else {
-      throw new Error(`
-      path.service.js moveAlongPath(): Attempt was made to move "${movement}" pages from "${currentPage}".
+      const err = `Attempt was made to move ${movement} pages from "${currentPage}".
       This moves beyond the boundaries of the path, so the page does not exist.
-      Check the routing service, path JSON, and the form action on "${currentPage}".
-    `);
+      `;
+      logEmitter.emit("functionFail", "path.service", "moveAlongPath", err);
+      throw new Error(err);
     }
-  } catch (err) {
-    logEmitter.emit("functionFail", "path.service", "moveAlongPath", err);
-    throw err;
   }
 };
 
-const editPath = (cumulativeAnswers, currentPage, pathFromSession) => {
-  logEmitter.emit("functionCall", "path.service", "editPath");
-  const pathPagesToSwitch = getPathPagesToSwitch(
-    cumulativeAnswers,
-    currentPage,
-    pathFromSession
-  );
+const moveAlongEditPath = (editModePath, currentPage, movement) => {
+  logEmitter.emit("functionCall", "path.service", "moveAlongEditPath");
 
-  const newPath = JSON.parse(JSON.stringify(pathFromSession));
-
-  pathPagesToSwitch.forEach(page => {
-    newPath[page].on = true;
+  const activePath = Object.keys(editModePath).filter(entry => {
+    return editModePath[entry].inEditPath === true;
   });
 
-  logEmitter.emit("functionSuccess", "path.service", "editPath");
-  return newPath;
+  const currentIndex = activePath.indexOf(currentPage);
+
+  const nextPage = activePath[currentIndex + movement];
+
+  if (nextPage) {
+    logEmitter.emit(
+      "functionSuccessWith",
+      "path.service",
+      "moveAlongEditPath",
+      `Page to move to in path: "${nextPage}"`
+    );
+    return nextPage;
+  } else {
+    if (movement > 0) {
+      logEmitter.emit(
+        "functionSuccessWith",
+        "path.service",
+        "moveAlongEditPath",
+        "End of edit path. Moving to '/registration-summary'."
+      );
+      return "/registration-summary";
+    } else {
+      const err = `Attempt was made to move backwards from "${currentPage}".
+      This moves beyond the boundaries of the path, so the page does not exist.
+      `;
+      logEmitter.emit("functionFail", "path.service", "moveAlongEditPath", err);
+      throw new Error(err);
+    }
+  }
 };
 
 const getPathPagesToSwitch = (
@@ -183,10 +225,10 @@ const switchOffManualAddressInput = (newPath, currentPage) => {
 };
 
 module.exports = {
-  moveAlongPath,
-  getPathPagesToSwitch,
   editPath,
-  switchOffManualAddressInput,
+  editPathInEditMode,
+  moveAlongPath,
   moveAlongEditPath,
-  editPathInEditMode
+  getPathPagesToSwitch,
+  switchOffManualAddressInput
 };

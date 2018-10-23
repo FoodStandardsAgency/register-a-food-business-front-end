@@ -108,7 +108,7 @@ describe("<SessionWrapper />", () => {
         });
 
         it("returns editModeFirstPage as the correct value", () => {
-          expect(initialProps.editModeFirstPage).toBe("some-page");
+          expect(initialProps.editModeFirstPage).toBe("/some-page");
         });
       });
 

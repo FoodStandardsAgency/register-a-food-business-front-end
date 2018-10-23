@@ -1,15 +1,63 @@
 const {
+  editPath,
+  editPathInEditMode,
   moveAlongPath,
-  getPathPagesToSwitch,
-  switchOffManualAddressInput,
   moveAlongEditPath,
-  editPathInEditMode
+  getPathPagesToSwitch,
+  switchOffManualAddressInput
 } = require("./path.service");
 const pathConfigMock = require("../../__mocks__/pathConfigMock.json");
 const pathMock = pathConfigMock.path;
 
+describe("path.service editPath()", () => {
+  let result;
+
+  const pathFromSession = {
+    "/registration-role": {
+      on: true,
+      switches: {
+        Representative: { "/representative-details": true }
+      }
+    },
+    "/representative-details": {
+      on: false,
+      switches: {}
+    }
+  };
+
+  describe("given valid input", () => {
+    describe("given that an answer triggers a switch and is only in the full answers", () => {
+      beforeEach(() => {
+        const cumulativeAnswers = {
+          registration_role: "Representative",
+          another_answer: "Value"
+        };
+        const currentPage = "/registration-role";
+        const args = [cumulativeAnswers, currentPage, pathFromSession];
+        result = editPath(...args);
+      });
+      it("should return 'on' as true for the switched page", () => {
+        expect(result["/representative-details"].on).toBe(true);
+      });
+    });
+  });
+});
+
 describe("path.service editPathInEditMode()", () => {
   let result;
+
+  const pathFromSession = {
+    "/registration-role": {
+      on: true,
+      switches: {
+        Representative: { "/representative-details": true }
+      }
+    },
+    "/representative-details": {
+      on: false,
+      switches: {}
+    }
+  };
 
   describe("given valid input", () => {
     describe("given that an answer triggers a switch and is in both the full and edit answers", () => {
@@ -20,19 +68,6 @@ describe("path.service editPathInEditMode()", () => {
         const cumulativeEditAnswers = {
           registration_role: "Representative"
         };
-        const pathFromSession = {
-          "/registration-role": {
-            on: true,
-            switches: {
-              Representative: { "/representative-details": true }
-            }
-          },
-          "/representative-details": {
-            on: false,
-            switches: {}
-          }
-        };
-
         const editModeFirstPage = "/registration-role";
         const currentPage = "/registration-role";
         const args = [
@@ -62,18 +97,6 @@ describe("path.service editPathInEditMode()", () => {
         const cumulativeEditAnswers = {
           another_answer: "Value"
         };
-        const pathFromSession = {
-          "/registration-role": {
-            on: true,
-            switches: {
-              Representative: { "/representative-details": true }
-            }
-          },
-          "/representative-details": {
-            on: false,
-            switches: {}
-          }
-        };
         const editModeFirstPage = "/registration-role";
         const currentPage = "/registration-role";
         const args = [
@@ -96,76 +119,181 @@ describe("path.service editPathInEditMode()", () => {
   });
 });
 
-describe("path.service moveAlongEditPath()", () => {});
-
 describe("path.service moveAlongPath()", () => {
+  let result;
+  const path = {
+    "/page-not-in-path": {
+      on: false,
+      switches: {}
+    },
+    "/registration-role": {
+      on: true,
+      switches: {
+        Representative: { "/representative-details": true }
+      }
+    },
+    "/page-to-skip": {
+      on: false,
+      switches: {}
+    },
+    "/representative-details": {
+      on: true,
+      switches: {}
+    },
+    "/another-page": {
+      on: false,
+      switches: {}
+    }
+  };
+
   describe("Given valid input", () => {
-    it("returns a string beginning with '/'", () => {
-      const result = moveAlongPath(pathMock, "/index");
-      expect(typeof result).toBe("string");
-      expect(result.slice(0, 1)).toBe("/");
+    describe("given a movement of +1", () => {
+      beforeEach(() => {
+        const currentPage = "/registration-role";
+        const movement = 1;
+        const args = [path, currentPage, movement];
+        result = moveAlongPath(...args);
+      });
+      it("returns the next active page in the path", () => {
+        expect(result).toBe("/representative-details");
+      });
     });
 
-    it("returns a key name from the path JSON", () => {
-      const result = moveAlongPath(pathMock, "/index");
-      expect(Object.keys(pathMock)).toContain(result);
+    describe("given a movement of -1", () => {
+      beforeEach(() => {
+        const currentPage = "/representative-details";
+        const movement = -1;
+        const args = [path, currentPage, movement];
+        result = moveAlongPath(...args);
+      });
+      it("returns the previous active page in the path", () => {
+        expect(result).toBe("/registration-role");
+      });
     });
 
-    it("returns a switched-on key name for 'continue' and 'back'", () => {
-      const result1 = moveAlongPath(pathMock, "/index", 1);
-      expect(result1).toBe("/mock-page-1");
-
-      const result2 = moveAlongPath(pathMock, "/mock-page-1", 1);
-      expect(result2).toBe("/mock-page-2");
-
-      const result3 = moveAlongPath(pathMock, "/mock-page-1", -1);
-      expect(result3).toBe("/index");
-
-      const result4 = moveAlongPath(pathMock, "/mock-page-2", -2);
-      expect(result4).toBe("/index");
+    describe("given a movement of +1 when there are no further active pages in the path", () => {
+      beforeEach(() => {
+        const currentPage = "/representative-details";
+        const movement = 1;
+        const args = [path, currentPage, movement];
+        result = moveAlongPath(...args);
+      });
+      it("returns '/submit' as the next page", () => {
+        expect(result).toBe("/submit");
+      });
     });
   });
+
   describe("Given invalid input", () => {
-    it("throws an error when an attempt is made to move beyond the ends of the path", () => {
-      expect(() => moveAlongPath(pathMock, "/mock-page-2", +2)).toThrow(Error);
-      expect(() => moveAlongPath(pathMock, "/mock-page-1", -5)).toThrow(Error);
+    describe("given a movement of -1 when there are no previous active pages in the path", () => {
+      beforeEach(() => {
+        const currentPage = "/registration-role";
+        const movement = -1;
+        const args = [path, currentPage, movement];
+        try {
+          result = moveAlongPath(...args);
+        } catch (err) {
+          result = err;
+        }
+      });
+      it("throws an error", () => {
+        expect(result instanceof Error).toBe(true);
+      });
+    });
+  });
+});
+
+describe("path.service moveAlongEditPath()", () => {
+  let result;
+  const path = {
+    "/page-not-in-edit-path": {
+      on: true,
+      inEditPath: false,
+      switches: {}
+    },
+    "/registration-role": {
+      on: true,
+      inEditPath: true,
+      switches: {
+        Representative: { "/representative-details": true }
+      }
+    },
+    "/page-to-skip": {
+      on: true,
+      inEditPath: false,
+      switches: {}
+    },
+    "/representative-details": {
+      on: true,
+      inEditPath: true,
+      switches: {}
+    },
+    "/another-page": {
+      on: false,
+      inEditPath: false,
+      switches: {}
+    }
+  };
+
+  describe("Given valid input", () => {
+    describe("given a movement of +1", () => {
+      beforeEach(() => {
+        const currentPage = "/registration-role";
+        const movement = 1;
+        const args = [path, currentPage, movement];
+        result = moveAlongEditPath(...args);
+      });
+      it("returns the next active page in the edit path", () => {
+        expect(result).toBe("/representative-details");
+      });
+    });
+
+    describe("given a movement of -1", () => {
+      beforeEach(() => {
+        const currentPage = "/representative-details";
+        const movement = -1;
+        const args = [path, currentPage, movement];
+        result = moveAlongEditPath(...args);
+      });
+      it("returns the previous active page in the edit path", () => {
+        expect(result).toBe("/registration-role");
+      });
+    });
+
+    describe("given a movement of +1 when there are no further active pages in the edit path", () => {
+      beforeEach(() => {
+        const currentPage = "/representative-details";
+        const movement = 1;
+        const args = [path, currentPage, movement];
+        result = moveAlongEditPath(...args);
+      });
+      it("returns '/registration-summary' as the next page", () => {
+        expect(result).toBe("/registration-summary");
+      });
+    });
+  });
+
+  describe("Given invalid input", () => {
+    describe("given a movement of -1 when there are no previous active pages in the edit path", () => {
+      beforeEach(() => {
+        const currentPage = "/registration-role";
+        const movement = -1;
+        const args = [path, currentPage, movement];
+        try {
+          result = moveAlongEditPath(...args);
+        } catch (err) {
+          result = err;
+        }
+      });
+      it("throws an error", () => {
+        expect(result instanceof Error).toBe(true);
+      });
     });
   });
 });
 
 describe("path.service getPathPagesToSwitch()", () => {
   describe("Given valid input", () => {
-    // it("does not reassign the input object", () => {
-    //   const result = getPathPagesToSwitch({}, "/index", pathMock);
-    //   expect(result).not.toBe(pathMock);
-    // });
-
-    // it("returns a valid JavaScipt object", () => {
-    //   const result = getPathPagesToSwitch({ example: "A1" }, "/index", pathMock);
-    //   expect(typeof result).toBe("object");
-    // });
-
-    // it("does not change any of the object keys", () => {
-    //   const result = getPathPagesToSwitch({ example: "A1" }, "/mock-page-1", pathMock);
-    //   const getObjectKeys = json => {
-    //     const arrayOfKeys = Object.keys(json);
-    //     arrayOfKeys.forEach(key => {
-    //       if (typeof json[key] === "object") {
-    //         Object.keys(json[key]).forEach(nestedKey => {
-    //           if (typeof json[key][nestedKey] === "object") {
-    //             arrayOfKeys.push(...Object.keys(json[key][nestedKey]));
-    //           }
-    //         });
-    //         arrayOfKeys.push(...Object.keys(json[key]));
-    //       }
-    //     });
-    //     return arrayOfKeys;
-    //   };
-    //   const objectKeysOriginal = getObjectKeys(pathMock);
-    //   const objectKeysEdited = getObjectKeys(result);
-    //   expect(objectKeysOriginal).toEqual(objectKeysEdited);
-    // });
-
     it("returns pages that should be activated", () => {
       const result1 = getPathPagesToSwitch(
         { example1: "A2", example2: "A4" },

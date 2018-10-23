@@ -130,6 +130,7 @@ describe("Function: continueController: ", () => {
         validate.mockImplementation(() => ({
           errors: {}
         }));
+        moveAlongPath.mockImplementation(() => "/submit");
         response = continueController(
           "/final-page",
           {},

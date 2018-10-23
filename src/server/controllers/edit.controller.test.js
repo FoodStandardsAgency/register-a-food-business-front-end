@@ -61,7 +61,10 @@ describe("Edit controller", () => {
         beforeEach(() => {
           const editModeFirstPage = "/operator-name";
           const currentPage = "/operator-name";
-          const previousAnswers = {
+          const cumulativeFullAnswers = {
+            example_answer: "value"
+          };
+          const cumulativeEditAnswers = {
             example_answer: "value"
           };
           const newAnswers = {
@@ -74,7 +77,8 @@ describe("Edit controller", () => {
             testPath,
             editModeFirstPage,
             currentPage,
-            previousAnswers,
+            cumulativeFullAnswers,
+            cumulativeEditAnswers,
             newAnswers,
             switches
           ];
@@ -95,9 +99,10 @@ describe("Edit controller", () => {
         beforeEach(() => {
           const editModeFirstPage = "/business-import-export";
           const currentPage = "/business-import-export";
-          const previousAnswers = {
+          const cumulativeFullAnswers = {
             directly_import: "Directly import"
           };
+          const cumulativeEditAnswers = {};
           const newAnswers = {
             directly_export: "Directly export"
           };
@@ -107,7 +112,8 @@ describe("Edit controller", () => {
             testPath,
             editModeFirstPage,
             currentPage,
-            previousAnswers,
+            cumulativeFullAnswers,
+            cumulativeEditAnswers,
             newAnswers,
             switches
           ];
@@ -127,7 +133,8 @@ describe("Edit controller", () => {
       beforeEach(() => {
         const editModeFirstPage = "/registration-role";
         const currentPage = "/registration-role";
-        const previousAnswers = {};
+        const cumulativeFullAnswers = {};
+        const cumulativeEditAnswers = {};
         const newAnswers = {};
         const switches = {};
 
@@ -135,7 +142,8 @@ describe("Edit controller", () => {
           testPath,
           editModeFirstPage,
           currentPage,
-          previousAnswers,
+          cumulativeFullAnswers,
+          cumulativeEditAnswers,
           newAnswers,
           switches
         ];
@@ -156,7 +164,10 @@ describe("Edit controller", () => {
         beforeEach(() => {
           const editModeFirstPage = "/registration-role";
           const currentPage = "/operator-name";
-          const previousAnswers = {
+          const cumulativeFullAnswers = {
+            registration_role: "Sole trader"
+          };
+          const cumulativeEditAnswers = {
             registration_role: "Sole trader"
           };
           const newAnswers = {
@@ -169,7 +180,8 @@ describe("Edit controller", () => {
             testPath,
             editModeFirstPage,
             currentPage,
-            previousAnswers,
+            cumulativeFullAnswers,
+            cumulativeEditAnswers,
             newAnswers,
             switches
           ];
@@ -189,7 +201,11 @@ describe("Edit controller", () => {
         beforeEach(() => {
           const editModeFirstPage = "/registration-role";
           const currentPage = "/operator-company-details";
-          const previousAnswers = {
+          const cumulativeFullAnswers = {
+            registration_role: "Representative",
+            operator_type: "A company"
+          };
+          const cumulativeEditAnswers = {
             registration_role: "Representative",
             operator_type: "A company"
           };
@@ -203,7 +219,8 @@ describe("Edit controller", () => {
             testPath,
             editModeFirstPage,
             currentPage,
-            previousAnswers,
+            cumulativeFullAnswers,
+            cumulativeEditAnswers,
             newAnswers,
             switches
           ];

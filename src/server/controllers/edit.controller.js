@@ -6,7 +6,6 @@ const {
 const { validate } = require("../services/validation.service");
 const { trimAnswers } = require("../services/data-transform.service");
 const {
-  editPath,
   editPathInEditMode,
   moveAlongEditPath
 } = require("../services/path.service");
@@ -23,21 +22,13 @@ const editController = (
   newAnswers,
   switches
 ) => {
-  // clean emptied previous answers for both cumulative and editPath answers (using the new answers)
-  // then combine the new answers from that page to both the cumulative answers and the editPath answers
-  // using the cumulative answers, get the new 'full' updated path on or offs ---- editPathInEditMode
-  // using the editPath answers only, set inEditPath true to the relevant pages ---- editPathInEditMode
-  // then clean inactive page answers on both the cumulative answers and the editPath answers --- cleanInactivePathAnswers x2
-  // find the next page on the edit path using inEditPath true/false --- moveAlongEditPath
-  // return the next page name, the cumulative full answers, and the cumulative edit answers
-
-  const emptiedCumulativeFullAnswers = cleanEmptiedAnswers(
+  const truthyCumulativeFullAnswers = cleanEmptiedAnswers(
     cumulativeFullAnswers,
     Object.values(newAnswers),
     currentPage
   );
 
-  const emptiedCumulativeEditAnswers = cleanEmptiedAnswers(
+  const truthyCumulativeEditAnswers = cleanEmptiedAnswers(
     cumulativeEditAnswers,
     Object.values(newAnswers),
     currentPage
@@ -46,12 +37,12 @@ const editController = (
   const trimmedNewAnswers = trimAnswers(newAnswers);
 
   const newCumulativeFullAnswers = {
-    ...emptiedCumulativeFullAnswers,
+    ...truthyCumulativeFullAnswers,
     ...trimmedNewAnswers
   };
 
   const newCumulativeEditAnswers = {
-    ...emptiedCumulativeEditAnswers,
+    ...truthyCumulativeEditAnswers,
     ...trimmedNewAnswers
   };
 
@@ -90,10 +81,8 @@ const editController = (
   }
 
   const controllerResponse = {
-    cumulativeFullAnswers:
-      cleanedInactiveFullAnswers || newCumulativeFullAnswers,
-    cumulativeEditAnswers:
-      cleanedInactiveEditAnswers || newCumulativeEditAnswers,
+    cumulativeFullAnswers: newCumulativeFullAnswers,
+    cumulativeEditAnswers: newCumulativeEditAnswers,
     validatorErrors,
     switches: cleanedSwitches,
     redirectRoute
