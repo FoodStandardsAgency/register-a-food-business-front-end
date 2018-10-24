@@ -29,10 +29,13 @@ describe("<OpeningDate />", () => {
 
   describe("when given 'establishment-opening-date-proactive' as the current page", () => {
     it("should render BackButton with 'establishment-opening-date-proactive' as the currentPage prop", () => {
+      const cumulativeAnswersProactive = {
+        establishment_opening_status: "Establishment is not trading yet"
+      };
       const wrapper = mount(
         <OpeningDate
           currentPage="establishment-opening-date-proactive"
-          cumulativeFullAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={cumulativeAnswersProactive}
           validatorErrors={testValidatorErrors}
           switches={testSwitches}
         />
@@ -47,10 +50,13 @@ describe("<OpeningDate />", () => {
 
   describe("when given 'establishment-opening-date-retroactive' as the current page", () => {
     it("should render BackButton with 'establishment-opening-date-retroactive' as currentPage prop", () => {
+      const cumulativeAnswersRetroactive = {
+        establishment_opening_status: "Establishment is already trading"
+      };
       const wrapper = mount(
         <OpeningDate
           currentPage="establishment-opening-date-retroactive"
-          cumulativeFullAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={cumulativeAnswersRetroactive}
           validatorErrors={testValidatorErrors}
           switches={testSwitches}
         />

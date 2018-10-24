@@ -1503,7 +1503,6 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
             </div>
           </details>
           <form
-            action="/continue/establishment-address-select"
             method="post"
           >
             <div
