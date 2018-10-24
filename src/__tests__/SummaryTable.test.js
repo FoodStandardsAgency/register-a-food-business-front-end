@@ -104,11 +104,6 @@ const testComprehensiveAnswers = Object.assign(
   testOptionalAnswers
 );
 
-// an invalid answer field
-const testMissingAnswers = {
-  not_expected_on_page: "This should never be rendered"
-};
-
 // the summary table mounted with the complete set of non-optional answers
 const wrapperMinimum = mount(<SummaryTable {...testMandatoryAnswers} />);
 
@@ -120,9 +115,6 @@ const wrapperComprehensive = mount(
 const wrapperApplicationComplete = mount(
   <SummaryTable {...testComprehensiveAnswers} applicationCompletePage={true} />
 );
-
-// the summary table mounted without any valid answers
-const wrapperMissing = mount(<SummaryTable {...testMissingAnswers} />);
 
 describe("<SummaryTable />", () => {
   it("renders without crashing", () => {

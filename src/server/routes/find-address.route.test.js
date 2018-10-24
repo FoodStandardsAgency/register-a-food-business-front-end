@@ -55,7 +55,9 @@ describe("findAddress route: ", () => {
       });
 
       it("Should update session without overwriting existing addressLookups values", () => {
-        expect(req.session.cumulativeFullAnswers).toEqual({ example: "answer" });
+        expect(req.session.cumulativeFullAnswers).toEqual({
+          example: "answer"
+        });
         expect(req.session.validatorErrors).toEqual({});
         expect(req.session.addressLookups).toEqual({
           some_page: [],
