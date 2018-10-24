@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 
 const RegistrationSummary = props => (
   <FsaLayout {...props}>
-    <BackButton editMode={props.editMode} originator="registration-summary" />
+    <BackButton {...props} />
 
     <ContentItem.B_30_15>
       <ContentItem.B_30_15>
@@ -32,5 +32,5 @@ const RegistrationSummary = props => (
 export default SessionWrapper(RegistrationSummary);
 
 RegistrationSummary.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string)
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string)
 };

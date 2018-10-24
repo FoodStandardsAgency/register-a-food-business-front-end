@@ -1403,7 +1403,7 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
           >
             <a
               className="emotion-41"
-              href="/back/customer-type"
+              href="/backundefined"
               id="back-link"
             >
               Back
@@ -1422,7 +1422,6 @@ exports[`<CustomerType /> matches the previous snapshot 1`] = `
             </p>
           </div>
           <form
-            action="/continue/customer-type/undefined"
             method="post"
           >
             <div

@@ -16,10 +16,7 @@ import PropTypes from "prop-types";
 
 const OperatorAddress = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editMode={props.switches.editMode}
-      originator="operator-address"
-    />
+    <BackButton {...props} />
 
     <Header level={2}>What is the operator's address?</Header>
     <ContentItem.B_30_15>
@@ -45,7 +42,7 @@ const OperatorAddress = props => (
             input={{
               id: "operator_postcode_find",
               name: "operator_postcode_find",
-              defaultValue: props.cumulativeAnswers.operator_postcode_find,
+              defaultValue: props.cumulativeFullAnswers.operator_postcode_find,
               autoComplete: "postal-code"
             }}
             id="operatorPostcodeFindComponent"
@@ -67,6 +64,6 @@ const OperatorAddress = props => (
 export default SessionWrapper(OperatorAddress);
 
 OperatorAddress.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

@@ -17,14 +17,13 @@ const continueController = (
   previousAnswers,
   newAnswers = {},
   switches,
-  editMode,
   pathFromSession
 ) => {
   logEmitter.emit("functionCall", "continue.controller", "continueController");
   const controllerResponse = {
     validatorErrors: {},
     redirectRoute: null,
-    cumulativeAnswers: {},
+    cumulativeFullAnswers: {},
     switches: {}
   };
 
@@ -50,7 +49,7 @@ const continueController = (
       currentPage
     );
 
-    controllerResponse.cumulativeAnswers = Object.assign(
+    controllerResponse.cumulativeFullAnswers = Object.assign(
       {},
       cleanedPreviousAnswers,
       trimmedNewAnswers
@@ -58,7 +57,7 @@ const continueController = (
 
     controllerResponse.switches = Object.assign(
       {},
-      cleanSwitches(controllerResponse.cumulativeAnswers, switches)
+      cleanSwitches(controllerResponse.cumulativeFullAnswers, switches)
     );
 
     controllerResponse.validatorErrors = Object.assign(
@@ -70,10 +69,6 @@ const continueController = (
       // if there are errors, redirect back to the current page
       controllerResponse.redirectRoute = currentPage;
 
-      if (editMode === true) {
-        // if edit mode is on, persist the edit mode query when redirecting
-        controllerResponse.redirectRoute += "?edit=on";
-      }
       logEmitter.emit(
         "functionSuccessWith",
         "continue.controller",
@@ -85,21 +80,9 @@ const continueController = (
       return controllerResponse;
     }
 
-    if (editMode === true) {
-      // if edit mode is on, redirect to the summary page
-      controllerResponse.redirectRoute = "/registration-summary";
-      logEmitter.emit(
-        "functionSuccessWith",
-        "continue.controller",
-        "continueController",
-        `editMode is true. redirectRoute: ${controllerResponse.redirectRoute}`
-      );
-      return controllerResponse;
-    }
-
     // get the new path based on the answers that have been given
     const newPath = editPath(
-      controllerResponse.cumulativeAnswers,
+      controllerResponse.cumulativeFullAnswers,
       currentPage,
       pathFromSession
     );
@@ -108,23 +91,15 @@ const continueController = (
     const updatedNewPath = switchOffManualAddressInput(newPath, currentPage);
 
     // remove any answers that are associated with an inactive page on the path
-    controllerResponse.cumulativeAnswers = cleanInactivePathAnswers(
-      controllerResponse.cumulativeAnswers,
+    controllerResponse.cumulativeFullAnswers = cleanInactivePathAnswers(
+      controllerResponse.cumulativeFullAnswers,
       updatedNewPath
     );
 
-    if (
-      Object.keys(updatedNewPath).indexOf(currentPage) ===
-      Object.keys(updatedNewPath).length - 1
-    ) {
-      // else if the current page is at the end of the path, redirect to the submit route
-      controllerResponse.redirectRoute = "/submit";
-    } else {
-      // else move to the next page in the path
-      const nextPage = moveAlongPath(updatedNewPath, currentPage, 1);
+    // else move to the next page in the path
+    const nextPage = moveAlongPath(updatedNewPath, currentPage, 1);
+    controllerResponse.redirectRoute = nextPage;
 
-      controllerResponse.redirectRoute = nextPage;
-    }
     logEmitter.emit(
       "functionSuccessWith",
       "continue.controller",

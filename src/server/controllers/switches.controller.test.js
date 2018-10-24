@@ -46,12 +46,12 @@ describe("Function: switchController: ", () => {
         undefined,
         exampleCurrentPage
       );
-      expect(result.cumulativeAnswers).toEqual(examplePreviousAnswers);
+      expect(result.cumulativeFullAnswers).toEqual(examplePreviousAnswers);
     });
   });
 
   describe("When there are new answers on the originator page: ", () => {
-    it("Should return a new cumulativeAnswers", () => {
+    it("Should return a new cumulativeFullAnswers", () => {
       result = switchesController(
         false,
         "on",
@@ -59,7 +59,7 @@ describe("Function: switchController: ", () => {
         { newAnswer: "example" },
         exampleNewAnswers
       );
-      expect(result.cumulativeAnswers.newAnswer).toBe("example");
+      expect(result.cumulativeFullAnswers.newAnswer).toBe("example");
     });
   });
 

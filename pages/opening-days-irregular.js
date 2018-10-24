@@ -10,13 +10,10 @@ import PropTypes from "prop-types";
 
 const OtherDaysIrregular = props => (
   <FsaLayout {...props}>
-    <BackButton editMode={props.editMode} originator="opening-days-irregular" />
+    <BackButton {...props} />
     <Header level={2}>Opening days</Header>
 
-    <form
-      action={`/continue/opening-days-irregular/${props.editMode}`}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Paragraph mb={0}>
@@ -30,7 +27,7 @@ const OtherDaysIrregular = props => (
           <TextArea
             input={{
               name: "opening_days_irregular",
-              defaultValue: props.cumulativeAnswers.opening_days_irregular,
+              defaultValue: props.cumulativeFullAnswers.opening_days_irregular,
               id: "opening_days_irregular"
             }}
             meta={{
@@ -40,7 +37,7 @@ const OtherDaysIrregular = props => (
           />
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -48,6 +45,6 @@ const OtherDaysIrregular = props => (
 export default SessionWrapper(OtherDaysIrregular);
 
 OtherDaysIrregular.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

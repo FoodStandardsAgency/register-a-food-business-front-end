@@ -57,7 +57,7 @@ const BusinessTypeLookup = props => (
         displayMenu="overlay"
         confirmOnBlur={false}
         name="business_type"
-        defaultValue={props.cumulativeAnswers.business_type}
+        defaultValue={props.cumulativeFullAnswers.business_type}
       />
     </div>
   </div>

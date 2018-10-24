@@ -10,13 +10,10 @@ import PropTypes from "prop-types";
 
 const RegistrationRole = props => (
   <FsaLayout {...props}>
-    <BackButton editMode={props.editMode} originator="registration-role" />
+    <BackButton {...props} />
     <Header level={2}>What is your role in this food business?</Header>
 
-    <form
-      action={`/continue/registration-role/${props.editMode}`}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_45_30>
         <MultiChoice
           label=""
@@ -30,7 +27,7 @@ const RegistrationRole = props => (
             value="Sole trader"
             id="registration_role_sole_trader"
             defaultChecked={
-              props.cumulativeAnswers.registration_role === "Sole trader"
+              props.cumulativeFullAnswers.registration_role === "Sole trader"
             }
           >
             I operate it as a sole trader
@@ -40,7 +37,7 @@ const RegistrationRole = props => (
             value="Partnership"
             id="registration_role_partnership"
             defaultChecked={
-              props.cumulativeAnswers.registration_role === "Partnership"
+              props.cumulativeFullAnswers.registration_role === "Partnership"
             }
           >
             I operate it in a partnership
@@ -50,7 +47,7 @@ const RegistrationRole = props => (
             value="Representative"
             id="registration_role_representative"
             defaultChecked={
-              props.cumulativeAnswers.registration_role === "Representative"
+              props.cumulativeFullAnswers.registration_role === "Representative"
             }
           >
             I represent a person, charity or limited company that operates it
@@ -58,7 +55,7 @@ const RegistrationRole = props => (
         </MultiChoice>
       </ContentItem.B_45_30>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -66,6 +63,6 @@ const RegistrationRole = props => (
 export default SessionWrapper(RegistrationRole);
 
 RegistrationRole.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

@@ -1435,7 +1435,6 @@ exports[`<Declaration /> matches the previous snapshot 1`] = `
           className="emotion-63"
         >
           <form
-            action="/continue/declaration/undefined"
             method="post"
           >
             <div
@@ -1443,7 +1442,7 @@ exports[`<Declaration /> matches the previous snapshot 1`] = `
             >
               <a
                 className="emotion-41"
-                href="/back/declaration"
+                href="/backundefined"
                 id="back-link"
               >
                 Back

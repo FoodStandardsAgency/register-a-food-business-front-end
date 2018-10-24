@@ -35,7 +35,7 @@ describe("Switches route: ", () => {
 
     beforeEach(() => {
       switchesController.mockImplementation(() => ({
-        cumulativeAnswers: { example: "answer" },
+        cumulativeFullAnswers: { example: "answer" },
         newSwitchState: true
       }));
       handler = router.post.mock.calls[0][1];
@@ -47,7 +47,7 @@ describe("Switches route: ", () => {
     });
 
     it("Should update session", () => {
-      expect(req.session.cumulativeAnswers).toEqual({ example: "answer" });
+      expect(req.session.cumulativeFullAnswers).toEqual({ example: "answer" });
       expect(req.session.switches).toEqual({ exampleSwitch: true });
     });
 
@@ -83,7 +83,7 @@ describe("Switches route: ", () => {
 
       beforeEach(() => {
         switchesController.mockImplementation(() => ({
-          cumulativeAnswers: { example: "answer" },
+          cumulativeFullAnswers: { example: "answer" },
           newSwitchState: true
         }));
         handler = router.post.mock.calls[0][1];

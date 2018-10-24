@@ -27,7 +27,7 @@ describe("<CustomerType />", () => {
       .create(
         <CustomerType
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -39,7 +39,7 @@ describe("<CustomerType />", () => {
       const wrapper = mount(
         <CustomerType
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -48,13 +48,13 @@ describe("<CustomerType />", () => {
     });
 
     it("supply_directly checkbox gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         supply_directly: "default"
       };
       const wrapper = mount(
         <CustomerType
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -65,13 +65,13 @@ describe("<CustomerType />", () => {
     });
 
     it("supply_other checkbox gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         supply_other: "default"
       };
       const wrapper = mount(
         <CustomerType
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -90,7 +90,7 @@ describe("<CustomerType />", () => {
       const wrapper = mount(
         <CustomerType
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );

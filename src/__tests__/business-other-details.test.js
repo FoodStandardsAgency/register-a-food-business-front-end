@@ -27,7 +27,7 @@ describe("<OtherDetails />", () => {
       .create(
         <OtherDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -40,7 +40,7 @@ describe("<OtherDetails />", () => {
       const wrapper = mount(
         <OtherDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -55,7 +55,7 @@ describe("<OtherDetails />", () => {
       const wrapper = mount(
         <OtherDetails
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -64,13 +64,13 @@ describe("<OtherDetails />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         business_other_details: "default"
       };
       const wrapper = mount(
         <OtherDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );

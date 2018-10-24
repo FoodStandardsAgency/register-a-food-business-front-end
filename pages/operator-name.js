@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 
 const OperatorName = props => (
   <FsaLayout {...props}>
-    <BackButton editMode={props.editMode} originator="operator-name" />
+    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -25,13 +25,13 @@ const OperatorName = props => (
         operates.
       </Paragraph>
     </HiddenText>
-    <form action={`/continue/operator-name/${props.editMode}`} method="post">
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
             input={{
               name: "operator_first_name",
-              defaultValue: props.cumulativeAnswers.operator_first_name,
+              defaultValue: props.cumulativeFullAnswers.operator_first_name,
               autoComplete: "given-name"
             }}
             id="operator_first_name"
@@ -48,7 +48,7 @@ const OperatorName = props => (
           <InputField
             input={{
               name: "operator_last_name",
-              defaultValue: props.cumulativeAnswers.operator_last_name,
+              defaultValue: props.cumulativeFullAnswers.operator_last_name,
               autoComplete: "family-name"
             }}
             id="operator_last_name"
@@ -61,7 +61,7 @@ const OperatorName = props => (
           </InputField>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -69,6 +69,6 @@ const OperatorName = props => (
 export default SessionWrapper(OperatorName);
 
 OperatorName.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

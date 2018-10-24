@@ -1442,7 +1442,7 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
           >
             <a
               className="emotion-41"
-              href="/back/establishment-address-type"
+              href="/backundefined"
               id="back-link"
             >
               Back
@@ -1478,7 +1478,6 @@ exports[`<EstablishmentAddressType /> matches the previous snapshot 1`] = `
             </div>
           </details>
           <form
-            action="/continue/establishment-address-type/undefined"
             method="post"
           >
             <div

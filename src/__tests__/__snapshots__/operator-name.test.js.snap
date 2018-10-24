@@ -1522,7 +1522,7 @@ exports[`<OperatorName /> matches the previous snapshot 1`] = `
           >
             <a
               className="emotion-41"
-              href="/back/operator-name"
+              href="/backundefined"
               id="back-link"
             >
               Back
@@ -1583,7 +1583,6 @@ exports[`<OperatorName /> matches the previous snapshot 1`] = `
             </div>
           </details>
           <form
-            action="/continue/operator-name/undefined"
             method="post"
           >
             <div

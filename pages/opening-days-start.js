@@ -10,15 +10,12 @@ import PropTypes from "prop-types";
 
 const OpeningDaysStart = props => (
   <FsaLayout {...props}>
-    <BackButton editMode={props.editMode} originator="opening-days-start" />
+    <BackButton {...props} />
     <Header level={2}>
       What days will this establishment be open and producing or serving food?
     </Header>
 
-    <form
-      action={`/continue/opening-days-start/${props.editMode}`}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <MultiChoice
           label=""
@@ -32,7 +29,7 @@ const OpeningDaysStart = props => (
             value="Every day"
             id="opening_days_start_everyday"
             defaultChecked={
-              props.cumulativeAnswers.opening_days_start === "Every day"
+              props.cumulativeFullAnswers.opening_days_start === "Every day"
             }
           >
             Every day
@@ -42,7 +39,7 @@ const OpeningDaysStart = props => (
             value="Some days"
             id="opening_days_start_some_days"
             defaultChecked={
-              props.cumulativeAnswers.opening_days_start === "Some days"
+              props.cumulativeFullAnswers.opening_days_start === "Some days"
             }
           >
             Some days a week
@@ -52,7 +49,8 @@ const OpeningDaysStart = props => (
             value="Irregular days"
             id="opening_days_start_irregular_days"
             defaultChecked={
-              props.cumulativeAnswers.opening_days_start === "Irregular days"
+              props.cumulativeFullAnswers.opening_days_start ===
+              "Irregular days"
             }
           >
             Irregular days
@@ -68,7 +66,7 @@ const OpeningDaysStart = props => (
         </Paragraph>
       </HiddenText>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -76,6 +74,6 @@ const OpeningDaysStart = props => (
 export default SessionWrapper(OpeningDaysStart);
 
 OpeningDaysStart.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

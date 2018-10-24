@@ -1465,7 +1465,6 @@ exports[`<ImportExportActivities /> matches the previous snapshot 1`] = `
           className="emotion-67"
         >
           <form
-            action="/continue/business-import-export/undefined"
             method="post"
           >
             <div
@@ -1473,7 +1472,7 @@ exports[`<ImportExportActivities /> matches the previous snapshot 1`] = `
             >
               <a
                 className="emotion-41"
-                href="/back/business-import-export"
+                href="/backundefined"
                 id="back-link"
               >
                 Back

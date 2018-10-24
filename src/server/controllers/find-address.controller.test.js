@@ -51,8 +51,8 @@ describe("Function: findAddressController: ", () => {
         );
       });
 
-      it("Should return cumulativeAnswers including the previous answers and the new postcode", () => {
-        expect(response.cumulativeAnswers).toEqual({
+      it("Should return cumulativeFullAnswers including the previous answers and the new postcode", () => {
+        expect(response.cumulativeFullAnswers).toEqual({
           example: "answer",
           establishment_postcode_find: "AA11 1AA"
         });
@@ -102,8 +102,8 @@ describe("Function: findAddressController: ", () => {
         expect(response.redirectRoute).toEqual("/establishment-address-manual");
       });
 
-      it("Should return cumulativeAnswers including the previous answers and the new postcode", () => {
-        expect(response.cumulativeAnswers).toEqual({
+      it("Should return cumulativeFullAnswers including the previous answers and the new postcode", () => {
+        expect(response.cumulativeFullAnswers).toEqual({
           example: "answer",
           establishment_postcode_find: "AA11 1AA"
         });
@@ -140,8 +140,8 @@ describe("Function: findAddressController: ", () => {
       expect(response.redirectRoute).toEqual("/establishment-address");
     });
 
-    it("Should return cumulativeAnswers including the previous answers and the invalid postcode", () => {
-      expect(response.cumulativeAnswers).toEqual({
+    it("Should return cumulativeFullAnswers including the previous answers and the invalid postcode", () => {
+      expect(response.cumulativeFullAnswers).toEqual({
         example: "answer",
         establishment_postcode_find: "not a valid postcode"
       });

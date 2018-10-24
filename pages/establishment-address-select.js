@@ -13,10 +13,7 @@ const AnchorTag = asAnchor("a");
 
 const EstablishmentAddressLookup = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editMode={props.switches.editMode}
-      originator="establishment-address-select"
-    />
+    <BackButton {...props} />
     <Header level={2}>What is the establishment's address?</Header>
 
     <HiddenText
@@ -30,12 +27,14 @@ const EstablishmentAddressLookup = props => (
       </Paragraph>
     </HiddenText>
 
-    <form action="/continue/establishment-address-select" method="post">
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Header level={3}>Postcode</Header>
           <Header id="establishmentPostcodeDisplay" level={4}>
-            {`${props.cumulativeAnswers.establishment_postcode_find} \u2007`}
+            {`${
+              props.cumulativeFullAnswers.establishment_postcode_find
+            } \u2007`}
             <AnchorTag
               id="changeEstablishmentPostcode"
               href="/establishment-address"
@@ -51,7 +50,7 @@ const EstablishmentAddressLookup = props => (
             id: "establishmentAddressDropdown",
             name: "establishment_address_selected",
             defaultValue:
-              props.cumulativeAnswers.establishment_address_selected || 0
+              props.cumulativeFullAnswers.establishment_address_selected || 0
           }}
         >
           {props.addressLookups.establishment_postcode_find ? (
@@ -77,7 +76,7 @@ const EstablishmentAddressLookup = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editMode={props.switches.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -85,5 +84,5 @@ const EstablishmentAddressLookup = props => (
 export default SessionWrapper(EstablishmentAddressLookup);
 
 EstablishmentAddressLookup.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string)
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string)
 };

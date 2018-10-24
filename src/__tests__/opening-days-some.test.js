@@ -27,7 +27,7 @@ describe("<OpeningSomeDays />", () => {
       .create(
         <OpeningSomeDays
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -39,7 +39,7 @@ describe("<OpeningSomeDays />", () => {
       const wrapper = mount(
         <OpeningSomeDays
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -48,13 +48,13 @@ describe("<OpeningSomeDays />", () => {
     });
 
     it("Monday checkbox gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         opening_day_monday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -65,13 +65,13 @@ describe("<OpeningSomeDays />", () => {
     });
 
     it("Tuesday checkbox gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         opening_day_tuesday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -82,13 +82,13 @@ describe("<OpeningSomeDays />", () => {
     });
 
     it("Wednesday checkbox gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         opening_day_wednesday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -99,13 +99,13 @@ describe("<OpeningSomeDays />", () => {
     });
 
     it("Thursday checkbox gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         opening_day_thursday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -116,13 +116,13 @@ describe("<OpeningSomeDays />", () => {
     });
 
     it("Friday checkbox gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         opening_day_friday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -133,13 +133,13 @@ describe("<OpeningSomeDays />", () => {
     });
 
     it("Saturday checkbox gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         opening_day_saturday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -149,13 +149,13 @@ describe("<OpeningSomeDays />", () => {
       expect(OpeningSomeDaysCheckBox.props().defaultChecked).toBe("default");
     });
     it("Sunday checkbox gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         opening_day_sunday: "default"
       };
       const wrapper = mount(
         <OpeningSomeDays
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -174,7 +174,7 @@ describe("<OpeningSomeDays />", () => {
       const wrapper = mount(
         <OpeningSomeDays
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );

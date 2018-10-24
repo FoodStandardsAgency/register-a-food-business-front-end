@@ -23,12 +23,14 @@ describe("<ContinueButton />", () => {
     expect(continueButton.props().type).toBe("test");
   });
 
-  it("is passed the 'editMode' props", () => {
-    const editMode = true;
+  it("is passed the 'editModeFirstPage' props", () => {
+    const editModeFirstPage = "/page";
 
-    const wrapper = mount(<ContinueButton editMode={editMode} />);
+    const wrapper = mount(
+      <ContinueButton editModeFirstPage={editModeFirstPage} />
+    );
     const continueButton = wrapper.find("ContinueButton");
-    expect(continueButton.props().editMode).toBe(editMode);
+    expect(continueButton.props().editModeFirstPage).toBe(editModeFirstPage);
   });
 
   it("passes the prop 'start' as 'false' by default for the Button component", () => {
@@ -64,8 +66,10 @@ describe("<ContinueButton />", () => {
   });
 
   describe("given that edit mode is true", () => {
-    const editMode = true;
-    const wrapper = mount(<ContinueButton editMode={editMode} />);
+    const editModeFirstPage = "/page";
+    const wrapper = mount(
+      <ContinueButton editModeFirstPage={editModeFirstPage} />
+    );
 
     it("has 'Save' as the button text", () => {
       expect(wrapper.text()).toContain("Save");

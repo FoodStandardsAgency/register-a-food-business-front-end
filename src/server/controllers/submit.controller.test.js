@@ -98,11 +98,11 @@ describe("Function: submitController: ", () => {
     it("Should should return fsa_rn", () => {
       expect(response.fsaRegistrationNumber).toBe("D9YC4B-KFK5JE-PKR7VX");
     });
-    it("Should should return email_fbo", () => {
-      expect(response.email_fbo.recipient).toBe("fbo@example.com");
+    it("Should should return emailFbo", () => {
+      expect(response.emailFbo.recipient).toBe("fbo@example.com");
     });
-    it("Should should return lc_config", () => {
-      expect(response.lc_config.example).toBe("data");
+    it("Should should return lcConfig", () => {
+      expect(response.lcConfig.example).toBe("data");
     });
   });
 });

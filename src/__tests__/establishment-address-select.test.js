@@ -24,7 +24,7 @@ describe("<EstablishmentAddressLookup />", () => {
     const tree = renderer
       .create(
         <EstablishmentAddressLookup
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
           addressLookups={testAddressLookup}
         />
@@ -37,7 +37,7 @@ describe("<EstablishmentAddressLookup />", () => {
     it("renders even when the addressLookups key is not found", () => {
       const wrapper = mount(
         <EstablishmentAddressLookup
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
           addressLookups={testAddressLookup}
         />
@@ -49,13 +49,13 @@ describe("<EstablishmentAddressLookup />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         establishment_postcode_find: "default"
       };
 
       const wrapper = mount(
         <EstablishmentAddressLookup
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
           addressLookups={testAddressLookup}
         />
@@ -106,7 +106,7 @@ describe("<EstablishmentAddressLookup />", () => {
 
       const wrapper = mount(
         <EstablishmentAddressLookup
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
           addressLookups={exampleAddressLookup}
         />

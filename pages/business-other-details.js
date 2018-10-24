@@ -10,19 +10,16 @@ import PropTypes from "prop-types";
 
 const OtherDetails = props => (
   <FsaLayout {...props}>
-    <BackButton editMode={props.editMode} originator="business-other-details" />
+    <BackButton {...props} />
     <Header level={2}>Other details</Header>
 
-    <form
-      action={`/continue/business-other-details/${props.editMode}`}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <TextArea
             input={{
               name: "business_other_details",
-              defaultValue: props.cumulativeAnswers.business_other_details,
+              defaultValue: props.cumulativeFullAnswers.business_other_details,
               id: "business_other_details"
             }}
             meta={{
@@ -35,7 +32,7 @@ const OtherDetails = props => (
           </TextArea>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -43,6 +40,6 @@ const OtherDetails = props => (
 export default SessionWrapper(OtherDetails);
 
 OtherDetails.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

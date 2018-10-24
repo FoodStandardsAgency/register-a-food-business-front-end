@@ -1359,7 +1359,7 @@ exports[`<OpeningDaysIrregular /> matches the previous snapshot 1`] = `
           >
             <a
               className="emotion-41"
-              href="/back/opening-days-irregular"
+              href="/backundefined"
               id="back-link"
             >
               Back
@@ -1371,7 +1371,6 @@ exports[`<OpeningDaysIrregular /> matches the previous snapshot 1`] = `
             Opening days
           </h2>
           <form
-            action="/continue/opening-days-irregular/undefined"
             method="post"
           >
             <div

@@ -19,7 +19,7 @@ import PropTypes from "prop-types";
 const EstablishmentAddress = props => (
   <FsaLayout {...props}>
     <BackButton
-      editMode={props.editMode}
+      {...props}
       href={
         props.switches["/establishment-address-none-found"]
           ? "/establishment-address"
@@ -40,16 +40,13 @@ const EstablishmentAddress = props => (
       </Paragraph>
     </HiddenText>
 
-    <form
-      action={`/continue/establishment-address-manual/${props.editMode}`}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         {props.switches["/establishment-address-none-found"] ? (
           <ContentItem.B_30_15>
             <ErrorText id="addressNotFoundByPostcodeMessage">
               {`No addresses found for the postcode "${
-                props.cumulativeAnswers.establishment_postcode_find
+                props.cumulativeFullAnswers.establishment_postcode_find
               }". Please enter your address manually or go back to try a
               different postcode.`}
             </ErrorText>
@@ -60,7 +57,8 @@ const EstablishmentAddress = props => (
           <InputField
             input={{
               name: "establishment_first_line",
-              defaultValue: props.cumulativeAnswers.establishment_first_line,
+              defaultValue:
+                props.cumulativeFullAnswers.establishment_first_line,
               autoComplete: "address-line1"
             }}
             id="establishment_first_line"
@@ -79,7 +77,7 @@ const EstablishmentAddress = props => (
           <InputField
             input={{
               name: "establishment_street",
-              defaultValue: props.cumulativeAnswers.establishment_street,
+              defaultValue: props.cumulativeFullAnswers.establishment_street,
               autoComplete: "address-line2"
             }}
             id="establishment_street"
@@ -96,7 +94,7 @@ const EstablishmentAddress = props => (
           <InputField
             input={{
               name: "establishment_town",
-              defaultValue: props.cumulativeAnswers.establishment_town,
+              defaultValue: props.cumulativeFullAnswers.establishment_town,
               autoComplete: "locality"
             }}
             id="establishment_town"
@@ -113,7 +111,7 @@ const EstablishmentAddress = props => (
           <InputField
             input={{
               name: "establishment_postcode",
-              defaultValue: props.cumulativeAnswers.establishment_postcode,
+              defaultValue: props.cumulativeFullAnswers.establishment_postcode,
               autoComplete: "postal-code"
             }}
             id="establishment_postcode"
@@ -127,7 +125,7 @@ const EstablishmentAddress = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -135,6 +133,6 @@ const EstablishmentAddress = props => (
 export default SessionWrapper(EstablishmentAddress);
 
 EstablishmentAddress.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

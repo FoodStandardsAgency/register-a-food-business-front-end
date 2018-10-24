@@ -187,6 +187,6 @@ ApplicationComplete.propTypes = {
   fsaRegistrationNumber: PropTypes.string,
   lcConfig: PropTypes.object,
   submissionDate: PropTypes.string,
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   recipient: PropTypes.string
 };

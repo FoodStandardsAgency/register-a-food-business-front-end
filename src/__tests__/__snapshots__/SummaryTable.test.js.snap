@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<SummaryTable /> matches the previous snapshot 1`] = `
-.emotion-145 {
+.emotion-146 {
   border: 0;
   border-collapse: collapse;
   box-sizing: border-box;
@@ -15,7 +15,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-145 {
+  .emotion-146 {
     font-size: 16px;
     line-height: 1.25;
   }
@@ -184,13 +184,13 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
 }
 
 <table
-  className="emotion-145"
+  className="emotion-146"
 >
   <caption
     className="emotion-0"
   />
   <tbody
-    className="emotion-144"
+    className="emotion-145"
   >
     <tr
       className="TITLE emotion-5 emotion-6"
@@ -798,9 +798,15 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
         </div>
       </td>
       <td
-        className="emotion-3"
+        className="summaryTableChangeCell emotion-3"
       >
-        <div />
+        <a
+          className="emotion-14"
+          href="/edit/establishment-opening-status"
+          id="changeEstablishmentOpeningDateRow"
+        >
+          Change
+        </a>
       </td>
     </tr>
     <tr

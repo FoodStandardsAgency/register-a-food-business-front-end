@@ -11,22 +11,16 @@ import PropTypes from "prop-types";
 
 const LimitedCompanyDetails = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editMode={props.editMode}
-      originator="operator-company-details"
-    />
+    <BackButton {...props} />
     <ProcessedErrorSummary validatorErrors={props.validatorErrors} />
     <Header level={2}>Company details</Header>
 
-    <form
-      action={`/continue/operator-company-details/${props.editMode}`}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <InputField
           input={{
             name: "operator_company_name",
-            defaultValue: props.cumulativeAnswers.operator_company_name,
+            defaultValue: props.cumulativeFullAnswers.operator_company_name,
             autoComplete: "organization"
           }}
           hint={
@@ -46,7 +40,8 @@ const LimitedCompanyDetails = props => (
         <InputField
           input={{
             name: "operator_company_house_number",
-            defaultValue: props.cumulativeAnswers.operator_company_house_number,
+            defaultValue:
+              props.cumulativeFullAnswers.operator_company_house_number,
             autoComplete: "off"
           }}
           hint={
@@ -81,7 +76,7 @@ const LimitedCompanyDetails = props => (
         </HiddenText>
       </ContentItem.B_30_15>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -89,6 +84,6 @@ const LimitedCompanyDetails = props => (
 export default SessionWrapper(LimitedCompanyDetails);
 
 LimitedCompanyDetails.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

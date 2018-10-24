@@ -27,7 +27,7 @@ describe("<RegistrationRole />", () => {
       .create(
         <RegistrationRole
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -39,7 +39,7 @@ describe("<RegistrationRole />", () => {
     const wrapper = mount(
       <RegistrationRole
         validatorErrors={testValidatorErrors}
-        cumulativeAnswers={testCumulativeAnswers}
+        cumulativeFullAnswers={testCumulativeAnswers}
         switches={testSwitches}
       />
     );
@@ -55,7 +55,7 @@ describe("<RegistrationRole />", () => {
       const wrapper = mount(
         <RegistrationRole
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -73,14 +73,14 @@ describe("<RegistrationRole />", () => {
       };
 
       for (let radioButtonId in radioButtonIdsAndValues) {
-        const cumulativeAnswers = {
+        const cumulativeFullAnswers = {
           registration_role: radioButtonIdsAndValues[radioButtonId]
         };
 
         const wrapper = mount(
           <RegistrationRole
             validatorErrors={testValidatorErrors}
-            cumulativeAnswers={cumulativeAnswers}
+            cumulativeFullAnswers={cumulativeFullAnswers}
             switches={testSwitches}
           />
         );

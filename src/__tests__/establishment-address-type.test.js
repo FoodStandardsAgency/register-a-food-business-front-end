@@ -27,7 +27,7 @@ describe("<EstablishmentAddressType />", () => {
       .create(
         <EstablishmentAddressType
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -39,7 +39,7 @@ describe("<EstablishmentAddressType />", () => {
     const wrapper = mount(
       <EstablishmentAddressType
         validatorErrors={testValidatorErrors}
-        cumulativeAnswers={testCumulativeAnswers}
+        cumulativeFullAnswers={testCumulativeAnswers}
         switches={testSwitches}
       />
     );
@@ -55,7 +55,7 @@ describe("<EstablishmentAddressType />", () => {
       const wrapper = mount(
         <EstablishmentAddressType
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -74,14 +74,14 @@ describe("<EstablishmentAddressType />", () => {
       };
 
       for (let radioButtonId in radioButtonIdsAndValues) {
-        const cumulativeAnswers = {
+        const cumulativeFullAnswers = {
           establishment_type: radioButtonIdsAndValues[radioButtonId]
         };
 
         const wrapper = mount(
           <EstablishmentAddressType
             validatorErrors={testValidatorErrors}
-            cumulativeAnswers={cumulativeAnswers}
+            cumulativeFullAnswers={cumulativeFullAnswers}
             switches={testSwitches}
           />
         );

@@ -13,10 +13,7 @@ import PropTypes from "prop-types";
 const ContactRepresentative = props => {
   return (
     <FsaLayout {...props}>
-      <BackButton
-        editMode={props.editMode}
-        originator="contact-representative"
-      />
+      <BackButton {...props} />
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
@@ -33,17 +30,14 @@ const ContactRepresentative = props => {
           operates.
         </Paragraph>
       </HiddenText>
-      <form
-        action={`/continue/contact-representative/${props.editMode}`}
-        method="post"
-      >
+      <form action={props.formAction} method="post">
         <ContentItem.B_30_15>
           <ContentItem.B_30_15>
             <InputField
               input={{
                 name: "contact_representative_name",
                 defaultValue:
-                  props.cumulativeAnswers.contact_representative_name,
+                  props.cumulativeFullAnswers.contact_representative_name,
                 autoComplete: "off"
               }}
               id="contact_representative_name"
@@ -60,7 +54,7 @@ const ContactRepresentative = props => {
               input={{
                 name: "contact_representative_role",
                 defaultValue:
-                  props.cumulativeAnswers.contact_representative_role,
+                  props.cumulativeFullAnswers.contact_representative_role,
                 autoComplete: "off"
               }}
               id="contact_representative_role"
@@ -77,7 +71,7 @@ const ContactRepresentative = props => {
               input={{
                 name: "contact_representative_number",
                 defaultValue:
-                  props.cumulativeAnswers.contact_representative_number,
+                  props.cumulativeFullAnswers.contact_representative_number,
                 autoComplete: "tel"
               }}
               id="contact_representative_number"
@@ -94,7 +88,7 @@ const ContactRepresentative = props => {
               input={{
                 name: "contact_representative_email",
                 defaultValue:
-                  props.cumulativeAnswers.contact_representative_email,
+                  props.cumulativeFullAnswers.contact_representative_email,
                 autoComplete: "email"
               }}
               id="contact_representative_email"
@@ -111,7 +105,7 @@ const ContactRepresentative = props => {
           </ContentItem.B_30_15>
         </ContentItem.B_30_15>
 
-        <ContinueButton editMode={props.editMode} />
+        <ContinueButton {...props} />
       </form>
     </FsaLayout>
   );
@@ -120,6 +114,6 @@ const ContactRepresentative = props => {
 export default SessionWrapper(ContactRepresentative);
 
 ContactRepresentative.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

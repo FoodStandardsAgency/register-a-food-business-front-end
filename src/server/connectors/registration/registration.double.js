@@ -346,12 +346,12 @@ const registrationDouble = body => {
           id: "25",
           online_reference: "0000025"
         },
-        email_fbo: {
+        emailFbo: {
           success: true,
           recipient: "fsatestemail.valid@gmail.com"
         },
         email_lc: lcEmail,
-        lc_config: lcConfig
+        lcConfig: lcConfig
       }),
       status: 200
     };

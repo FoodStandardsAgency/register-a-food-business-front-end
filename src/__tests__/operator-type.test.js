@@ -27,7 +27,7 @@ describe("<OperatorType />", () => {
       .create(
         <OperatorType
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -39,7 +39,7 @@ describe("<OperatorType />", () => {
     const wrapper = mount(
       <OperatorType
         validatorErrors={testValidatorErrors}
-        cumulativeAnswers={testCumulativeAnswers}
+        cumulativeFullAnswers={testCumulativeAnswers}
         switches={testSwitches}
       />
     );
@@ -55,7 +55,7 @@ describe("<OperatorType />", () => {
       const wrapper = mount(
         <OperatorType
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -73,14 +73,14 @@ describe("<OperatorType />", () => {
       };
 
       for (let radioButtonId in radioButtonIdsAndValues) {
-        const cumulativeAnswers = {
+        const cumulativeFullAnswers = {
           operator_type: radioButtonIdsAndValues[radioButtonId]
         };
 
         const wrapper = mount(
           <OperatorType
             validatorErrors={testValidatorErrors}
-            cumulativeAnswers={cumulativeAnswers}
+            cumulativeFullAnswers={cumulativeFullAnswers}
             switches={testSwitches}
           />
         );

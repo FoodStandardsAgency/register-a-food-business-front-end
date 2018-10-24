@@ -11,7 +11,7 @@ const findAddressController = async (
   const controllerResponse = {
     validatorErrors: {},
     redirectRoute: null,
-    cumulativeAnswers: {},
+    cumulativeFullAnswers: {},
     addressLookups: {},
     switches: {}
   };
@@ -22,7 +22,7 @@ const findAddressController = async (
   );
 
   try {
-    controllerResponse.cumulativeAnswers = Object.assign(
+    controllerResponse.cumulativeFullAnswers = Object.assign(
       {},
       previousAnswers,
       newAnswers

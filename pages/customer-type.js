@@ -10,11 +10,11 @@ import PropTypes from "prop-types";
 
 const CustomerType = props => (
   <FsaLayout {...props}>
-    <BackButton editMode={props.editMode} originator="customer-type" />
+    <BackButton {...props} />
     <Header level={2}>Who will this establishment supply food to?</Header>
     <Paragraph>Select all that apply</Paragraph>
 
-    <form action={`/continue/customer-type/${props.editMode}`} method="post">
+    <form action={props.formAction} method="post">
       <ContentItem.B_45_30>
         <MultiChoice
           label=""
@@ -27,7 +27,7 @@ const CustomerType = props => (
             name="supply_other"
             id="customer_type_supply_other"
             value="It will supply food to other businesses to process, sell or serve"
-            defaultChecked={props.cumulativeAnswers.supply_other}
+            defaultChecked={props.cumulativeFullAnswers.supply_other}
           >
             It will supply food to other businesses to process, sell or serve
           </Checkbox>
@@ -36,14 +36,14 @@ const CustomerType = props => (
             name="supply_directly"
             id="customer_type_supply_directly"
             value="It will supply food directly to end consumer"
-            defaultChecked={props.cumulativeAnswers.supply_directly}
+            defaultChecked={props.cumulativeFullAnswers.supply_directly}
           >
             It will supply food directly to end consumers
           </Checkbox>
         </MultiChoice>
       </ContentItem.B_45_30>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -51,6 +51,6 @@ const CustomerType = props => (
 export default SessionWrapper(CustomerType);
 
 CustomerType.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

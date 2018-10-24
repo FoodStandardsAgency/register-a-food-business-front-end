@@ -17,10 +17,7 @@ import PropTypes from "prop-types";
 
 const EstablishmentOpeningStatus = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editMode={props.editMode}
-      originator="establishment-opening-status"
-    />
+    <BackButton {...props} />
     <Header level={2}>Is this establishment already trading?</Header>
 
     <HiddenText summaryText={"What is an establishment?"}>
@@ -38,10 +35,7 @@ const EstablishmentOpeningStatus = props => (
       </HintText>
     </ContentItem.B_30_15>
 
-    <form
-      action={`/continue/establishment-opening-status/${props.editMode}`}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_45_30>
         <MultiChoice
           label=""
@@ -55,7 +49,7 @@ const EstablishmentOpeningStatus = props => (
             value="Establishment is already trading"
             id="establishment_opening_status_already_trading"
             defaultChecked={
-              props.cumulativeAnswers.establishment_opening_status ===
+              props.cumulativeFullAnswers.establishment_opening_status ===
               "Establishment is already trading"
             }
           >
@@ -66,7 +60,7 @@ const EstablishmentOpeningStatus = props => (
             value="Establishment is not trading yet"
             id="establishment_opening_status_not_trading"
             defaultChecked={
-              props.cumulativeAnswers.establishment_opening_status ===
+              props.cumulativeFullAnswers.establishment_opening_status ===
               "Establishment is not trading yet"
             }
           >
@@ -75,7 +69,7 @@ const EstablishmentOpeningStatus = props => (
         </MultiChoice>
       </ContentItem.B_45_30>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -83,6 +77,6 @@ const EstablishmentOpeningStatus = props => (
 export default SessionWrapper(EstablishmentOpeningStatus);
 
 EstablishmentOpeningStatus.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

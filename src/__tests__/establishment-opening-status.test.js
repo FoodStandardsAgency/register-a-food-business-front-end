@@ -27,7 +27,7 @@ describe("<EstablishmentOpeningStatus />", () => {
       .create(
         <EstablishmentOpeningStatus
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -39,7 +39,7 @@ describe("<EstablishmentOpeningStatus />", () => {
     const wrapper = mount(
       <EstablishmentOpeningStatus
         validatorErrors={testValidatorErrors}
-        cumulativeAnswers={testCumulativeAnswers}
+        cumulativeFullAnswers={testCumulativeAnswers}
         switches={testSwitches}
       />
     );
@@ -55,7 +55,7 @@ describe("<EstablishmentOpeningStatus />", () => {
       const wrapper = mount(
         <EstablishmentOpeningStatus
           validatorErrors={actualValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -76,14 +76,14 @@ describe("<EstablishmentOpeningStatus />", () => {
       };
 
       for (let radioButtonId in radioButtonIdsAndValues) {
-        const cumulativeAnswers = {
+        const cumulativeFullAnswers = {
           establishment_opening_status: radioButtonIdsAndValues[radioButtonId]
         };
 
         const wrapper = mount(
           <EstablishmentOpeningStatus
             validatorErrors={testValidatorErrors}
-            cumulativeAnswers={cumulativeAnswers}
+            cumulativeFullAnswers={cumulativeFullAnswers}
             switches={testSwitches}
           />
         );

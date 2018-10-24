@@ -7,9 +7,17 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch via NPM",
+      "name": "Launch via NPM (develop mode)",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run-script", "debug"],
+      "port": 9229
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch via NPM (production mode)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run-script", "debug:prod"],
       "port": 9229
     }
   ]

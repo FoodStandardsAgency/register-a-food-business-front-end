@@ -1432,7 +1432,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
           >
             <a
               className="emotion-41"
-              href="/back/opening-days-start"
+              href="/backundefined"
               id="back-link"
             >
               Back
@@ -1444,7 +1444,6 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
             What days will this establishment be open and producing or serving food?
           </h2>
           <form
-            action="/continue/opening-days-start/undefined"
             method="post"
           >
             <div
