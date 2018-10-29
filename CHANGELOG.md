@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.40.2 - 29th October 2018
+
+### Modified
+
+* SDB-133: Added Change Button for Operator Type on Registration Summary
+
 ## v1.40.1 - 8th October 2018 (released)
 
 ### Modified
