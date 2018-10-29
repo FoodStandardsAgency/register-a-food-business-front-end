@@ -77,14 +77,14 @@ const OperatorDetailsTable = props => (
           </div>
         </Table.Cell>
         {props.applicationCompletePage ? null : (
-         <Table.Cell className="summaryTableChangeCell">
-         <AnchorTag
-           id="changeOperatorTypeRow"
-           href="/edit/registration-role"
-         >
-           Change
-         </AnchorTag>
-       </Table.Cell>
+          <Table.Cell className="summaryTableChangeCell">
+            <AnchorTag
+              id="changeOperatorTypeRow"
+              href="/edit/registration-role"
+            >
+              Change
+            </AnchorTag>
+          </Table.Cell>
         )}
       </FormattedTableRow>
     ) : null}
