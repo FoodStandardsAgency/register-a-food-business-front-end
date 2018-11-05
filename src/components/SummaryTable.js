@@ -501,28 +501,24 @@ const EstablishmentDetailsTable = props => (
       <Table.CellHeader>Opening days</Table.CellHeader>
       <Table.Cell className="summaryTableDataCell">
         <div className="bold">
-          <div id="opening_days_irregular">
-            {props.opening_days_irregular ||
-              props.open_some_days_summary_table || (
-                <div>
-                  <div id="opening_day_monday">{props.opening_day_monday}</div>
-                  <div id="opening_day_tuesday">
-                    {props.opening_day_tuesday}
-                  </div>
-                  <div id="opening_day_wednesday">
-                    {props.opening_day_wednesday}
-                  </div>
-                  <div id="opening_day_thursday">
-                    {props.opening_day_thursday}
-                  </div>
-                  <div id="opening_day_friday">{props.opening_day_friday}</div>
-                  <div id="opening_day_saturday">
-                    {props.opening_day_saturday}
-                  </div>
-                  <div id="opening_day_sunday">{props.opening_day_sunday}</div>
+          {props.opening_days_irregular ||
+            props.open_some_days_summary_table || (
+              <div>
+                <div id="opening_day_monday">{props.opening_day_monday}</div>
+                <div id="opening_day_tuesday">{props.opening_day_tuesday}</div>
+                <div id="opening_day_wednesday">
+                  {props.opening_day_wednesday}
                 </div>
-              )}
-          </div>
+                <div id="opening_day_thursday">
+                  {props.opening_day_thursday}
+                </div>
+                <div id="opening_day_friday">{props.opening_day_friday}</div>
+                <div id="opening_day_saturday">
+                  {props.opening_day_saturday}
+                </div>
+                <div id="opening_day_sunday">{props.opening_day_sunday}</div>
+              </div>
+            )}
         </div>
       </Table.Cell>
       {props.applicationCompletePage ? null : (

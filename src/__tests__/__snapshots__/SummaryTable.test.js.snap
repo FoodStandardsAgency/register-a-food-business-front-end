@@ -830,34 +830,30 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
         <div
           className="bold"
         >
-          <div
-            id="opening_days_irregular"
-          >
-            <div>
-              <div
-                id="opening_day_monday"
-              >
-                Monday
-              </div>
-              <div
-                id="opening_day_tuesday"
-              />
-              <div
-                id="opening_day_wednesday"
-              />
-              <div
-                id="opening_day_thursday"
-              />
-              <div
-                id="opening_day_friday"
-              />
-              <div
-                id="opening_day_saturday"
-              />
-              <div
-                id="opening_day_sunday"
-              />
+          <div>
+            <div
+              id="opening_day_monday"
+            >
+              Monday
             </div>
+            <div
+              id="opening_day_tuesday"
+            />
+            <div
+              id="opening_day_wednesday"
+            />
+            <div
+              id="opening_day_thursday"
+            />
+            <div
+              id="opening_day_friday"
+            />
+            <div
+              id="opening_day_saturday"
+            />
+            <div
+              id="opening_day_sunday"
+            />
           </div>
         </div>
       </td>

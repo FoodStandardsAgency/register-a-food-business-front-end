@@ -1495,32 +1495,28 @@ exports[`<RegistrationSummary /> matches the previous snapshot 1`] = `
                       <div
                         className="bold"
                       >
-                        <div
-                          id="opening_days_irregular"
-                        >
-                          <div>
-                            <div
-                              id="opening_day_monday"
-                            />
-                            <div
-                              id="opening_day_tuesday"
-                            />
-                            <div
-                              id="opening_day_wednesday"
-                            />
-                            <div
-                              id="opening_day_thursday"
-                            />
-                            <div
-                              id="opening_day_friday"
-                            />
-                            <div
-                              id="opening_day_saturday"
-                            />
-                            <div
-                              id="opening_day_sunday"
-                            />
-                          </div>
+                        <div>
+                          <div
+                            id="opening_day_monday"
+                          />
+                          <div
+                            id="opening_day_tuesday"
+                          />
+                          <div
+                            id="opening_day_wednesday"
+                          />
+                          <div
+                            id="opening_day_thursday"
+                          />
+                          <div
+                            id="opening_day_friday"
+                          />
+                          <div
+                            id="opening_day_saturday"
+                          />
+                          <div
+                            id="opening_day_sunday"
+                          />
                         </div>
                       </div>
                     </td>
