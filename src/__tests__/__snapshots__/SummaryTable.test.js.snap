@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<SummaryTable /> matches the previous snapshot 1`] = `
-.emotion-147 {
+.emotion-148 {
   border: 0;
   border-collapse: collapse;
   box-sizing: border-box;
@@ -15,7 +15,7 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-147 {
+  .emotion-148 {
     font-size: 16px;
     line-height: 1.25;
   }
@@ -184,13 +184,13 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
 }
 
 <table
-  className="emotion-147"
+  className="emotion-148"
 >
   <caption
     className="emotion-0"
   />
   <tbody
-    className="emotion-146"
+    className="emotion-147"
   >
     <tr
       className="TITLE emotion-5 emotion-6"
@@ -830,41 +830,43 @@ exports[`<SummaryTable /> matches the previous snapshot 1`] = `
         <div
           className="bold"
         >
-          <div
-            id="opening_days_irregular"
-          >
-            <div>
-              <div
-                id="opening_day_monday"
-              >
-                Monday
-              </div>
-              <div
-                id="opening_day_tuesday"
-              />
-              <div
-                id="opening_day_wednesday"
-              />
-              <div
-                id="opening_day_thursday"
-              />
-              <div
-                id="opening_day_friday"
-              />
-              <div
-                id="opening_day_saturday"
-              />
-              <div
-                id="opening_day_sunday"
-              />
+          <div>
+            <div
+              id="opening_day_monday"
+            >
+              Monday
             </div>
+            <div
+              id="opening_day_tuesday"
+            />
+            <div
+              id="opening_day_wednesday"
+            />
+            <div
+              id="opening_day_thursday"
+            />
+            <div
+              id="opening_day_friday"
+            />
+            <div
+              id="opening_day_saturday"
+            />
+            <div
+              id="opening_day_sunday"
+            />
           </div>
         </div>
       </td>
       <td
-        className="emotion-3"
+        className="summaryTableChangeCell emotion-3"
       >
-        <div />
+        <a
+          className="emotion-9"
+          href="/edit/opening-days-start"
+          id="changeEstablishmentOpeningDaysRow"
+        >
+          Change
+        </a>
       </td>
     </tr>
     <tr
