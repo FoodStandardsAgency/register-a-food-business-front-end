@@ -9,7 +9,7 @@ const cumulativeFullAnswers = {
   establishment_first_line: "Example first line"
 };
 
-const emailFbo = { success: true, recipient: "fbo@email.com" };
+const transformedData = { operator_email: "email@email.com" };
 
 const lcConfigCombined = {
   hygieneAndStandards: {
@@ -63,7 +63,7 @@ describe("<ApplicationComplete />", () => {
           cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
-          emailFbo={emailFbo}
+          transformedData={transformedData}
         />
       );
       const summaryTable = wrapper.find("SummaryTable");
@@ -79,7 +79,7 @@ describe("<ApplicationComplete />", () => {
           applicationCompletePage={true}
           fsaRegistrationNumber="12345"
           lcConfig={lcConfigCombined}
-          emailFbo={emailFbo}
+          transformedData={transformedData}
         />
       );
       const panel = wrapper.find("Panel#panelWithNumber");
@@ -92,7 +92,7 @@ describe("<ApplicationComplete />", () => {
           applicationCompletePage={true}
           fsaRegistrationNumber={undefined}
           lcConfig={lcConfigCombined}
-          emailFbo={emailFbo}
+          transformedData={transformedData}
         />
       );
       const panel = wrapper.find("Panel#panelWithText");
@@ -107,7 +107,7 @@ describe("<ApplicationComplete />", () => {
           cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
-          emailFbo={emailFbo}
+          transformedData={transformedData}
         />
       );
       const text = wrapper.text();
@@ -125,7 +125,7 @@ describe("<ApplicationComplete />", () => {
           cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
-          emailFbo={emailFbo}
+          transformedData={transformedData}
         />
       );
       const panel = wrapper.find("Paragraph#hygieneAndStandardsNumber");
@@ -140,7 +140,7 @@ describe("<ApplicationComplete />", () => {
           cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
-          emailFbo={emailFbo}
+          transformedData={transformedData}
         />
       );
       const panel = wrapper.find("Paragraph#hygieneNumber");
@@ -155,11 +155,27 @@ describe("<ApplicationComplete />", () => {
           cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
-          emailFbo={emailFbo}
+          transformedData={transformedData}
         />
       );
       const panel = wrapper.find("Paragraph#standardsNumber");
       expect(panel.length).toBe(1);
+    });
+  });
+
+  describe("When given a contact representative email", () => {
+    it("The paragraph renders displaying it", () => {
+      const transformedDataRepresentative = {contact_representative_email: "rep@email.com"}
+      const wrapper = mount(
+        <ApplicationComplete
+          cumulativeFullAnswers={cumulativeFullAnswers}
+          applicationCompletePage={true}
+          lcConfig={lcConfigSplit}
+          transformedData={transformedDataRepresentative}
+        />
+      );
+      const panel = wrapper.find("Paragraph.receiveConfirmationEmail");
+      expect(panel.text().includes("rep@email.com")).toBe(true);
     });
   });
 
@@ -170,7 +186,7 @@ describe("<ApplicationComplete />", () => {
           cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigCombinedNoNumber}
-          emailFbo={emailFbo}
+          transformedData={transformedData}
         />
       );
       const panel = wrapper.find("Paragraph#hygieneAndStandardsNumber");
@@ -185,7 +201,7 @@ describe("<ApplicationComplete />", () => {
           cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigSplitNoNumber}
-          emailFbo={emailFbo}
+          transformedData={transformedData}
         />
       );
       const panel = wrapper.find("Paragraph#hygieneNumber");
@@ -200,7 +216,7 @@ describe("<ApplicationComplete />", () => {
           cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={lcConfigSplitNoNumber}
-          emailFbo={emailFbo}
+          transformedData={transformedData}
         />
       );
       const panel = wrapper.find("Paragraph#standardsNumber");
@@ -215,7 +231,7 @@ describe("<ApplicationComplete />", () => {
           cumulativeFullAnswers={cumulativeFullAnswers}
           applicationCompletePage={true}
           lcConfig={{}}
-          emailFbo={emailFbo}
+          transformedData={transformedData}
         />
       );
       expect(wrapper.length).toBe(1);
