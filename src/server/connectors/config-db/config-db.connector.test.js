@@ -4,7 +4,7 @@ const {
   clearPathConfigCache
 } = require("./config-db.connector");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
-const { pathConfigCollectionDouble } = require("./config-db.double");
+const { configVersionCollectionDouble } = require("./config-db.double");
 
 jest.mock("mongodb");
 jest.mock("./config-db.double");
@@ -80,7 +80,7 @@ describe("Function: getPathConfigByVersion", () => {
       beforeEach(() => {
         process.env.DOUBLE_MODE = true;
         clearPathConfigCache();
-        pathConfigCollectionDouble.findOne.mockImplementation(
+        configVersionCollectionDouble.findOne.mockImplementation(
           () => pathConfigMock
         );
       });
