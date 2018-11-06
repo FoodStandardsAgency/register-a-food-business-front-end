@@ -4,31 +4,38 @@ const { logEmitter } = require("../services/logging.service");
 const {
   transformAnswersForSummary
 } = require("../services/data-transform.service");
+const {
+  getPathConfigByVersion
+} = require("../connectors/config-db/config-db.connector");
+const { REGISTRATION_DATA_VERSION } = require("../config");
 
 const allowedCouncils = [
   "bridgend",
   "cardiff",
   "mid-and-east-antrim",
-  "north-dorset",
   "purbeck",
-  "the-vale-of-glamorgan",
   "west-dorset",
+  "north-dorset",
   "weymouth-and-portland",
-  "wrexham"
+  "wrexham",
+  "the-vale-of-glamorgan"
 ];
 
 const newRouter = () => {
   const router = Router();
 
-  router.get("/:lc/:page?", (req, res) => {
+  router.get("/:lc/:page?", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/new route");
 
     if (allowedCouncils.includes(req.params.lc)) {
       const page = req.params.page || "index";
 
       if (page === "index") {
-        req.session.regenerate(() => {
+        req.session.regenerate(async () => {
           req.session.council = req.params.lc;
+          req.session.pathConfig = await getPathConfigByVersion(
+            REGISTRATION_DATA_VERSION
+          );
 
           logEmitter.emit(
             "functionSuccessWith",
@@ -43,6 +50,11 @@ const newRouter = () => {
         if (!req.session.council) {
           req.session.council = req.params.lc;
         }
+        if (!req.session.pathConfig) {
+          req.session.pathConfig = await getPathConfigByVersion(
+            REGISTRATION_DATA_VERSION
+          );
+        }
 
         // Transform the data into summary format on pages where it is required
         if (
@@ -50,7 +62,7 @@ const newRouter = () => {
           page === "summary-confirmation"
         ) {
           req.session.transformedData = transformAnswersForSummary(
-            req.session.cumulativeAnswers,
+            req.session.cumulativeFullAnswers,
             req.session.addressLookups
           );
 

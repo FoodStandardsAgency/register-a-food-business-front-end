@@ -1,69 +1,160 @@
-const pathJSON = require("../services/path.json");
 const { logEmitter } = require("./logging.service");
+
+const editPath = (cumulativeFullAnswers, currentPage, pathFromSession) => {
+  logEmitter.emit("functionCall", "path.service", "editPath");
+  const pathPagesToSwitch = getPathPagesToSwitch(
+    cumulativeFullAnswers,
+    currentPage,
+    pathFromSession
+  );
+
+  const newPath = JSON.parse(JSON.stringify(pathFromSession));
+
+  pathPagesToSwitch.forEach(page => {
+    newPath[page].on = true;
+  });
+
+  logEmitter.emit("functionSuccess", "path.service", "editPath");
+  return newPath;
+};
+
+const editPathInEditMode = (
+  cumulativeFullAnswers,
+  cumulativeEditAnswers,
+  pathFromSession,
+  editModeFirstPage,
+  currentPage
+) => {
+  logEmitter.emit("functionCall", "path.service", "editPathInEditMode");
+
+  const pagesToSwitchFull = getPathPagesToSwitch(
+    cumulativeFullAnswers,
+    currentPage,
+    pathFromSession
+  );
+  const pagesToSwitchInEdit = getPathPagesToSwitch(
+    cumulativeEditAnswers,
+    currentPage,
+    pathFromSession
+  );
+
+  const newPath = JSON.parse(JSON.stringify(pathFromSession));
+  pagesToSwitchFull.forEach(page => {
+    newPath[page].on = true;
+    if (pagesToSwitchInEdit.includes(page)) {
+      newPath[page].inEditPath = true;
+    } else {
+      newPath[page].inEditPath = false;
+    }
+  });
+
+  newPath[editModeFirstPage].inEditPath = true;
+
+  logEmitter.emit("functionSuccess", "path.service", "editPathInEditMode");
+  return newPath;
+};
 
 const moveAlongPath = (path, currentPage, movement) => {
   logEmitter.emit("functionCall", "path.service", "moveAlongPath");
 
-  try {
-    const activePath = Object.keys(path).filter(
-      entry => path[entry].on === true
+  const activePath = Object.keys(path).filter(entry => {
+    return path[entry].on === true;
+  });
+
+  const currentIndex = activePath.indexOf(currentPage);
+
+  const nextPage = activePath[currentIndex + movement];
+
+  if (nextPage) {
+    logEmitter.emit(
+      "functionSuccessWith",
+      "path.service",
+      "moveAlongPath",
+      `Page to move to in path: "${nextPage}"`
     );
-
-    const currentIndex = activePath.indexOf(currentPage);
-
-    const nextPage = activePath[currentIndex + (movement || 0)];
-
-    if (nextPage) {
+    return nextPage;
+  } else {
+    if (movement > 0) {
       logEmitter.emit(
         "functionSuccessWith",
         "path.service",
         "moveAlongPath",
-        `Page to move to in path: "${nextPage}"`
+        "End of path. Moving to '/submit'."
       );
-      return nextPage;
+      return "/submit";
     } else {
-      throw new Error(`
-      path.service.js moveAlongPath(): Attempt was made to move "${movement}" pages from "${currentPage}".
+      const err = `Attempt was made to move ${movement} pages from "${currentPage}".
       This moves beyond the boundaries of the path, so the page does not exist.
-      Check the routing service, path JSON, and the form action on "${currentPage}".
-    `);
+      `;
+      logEmitter.emit("functionFail", "path.service", "moveAlongPath", err);
+      throw new Error(err);
     }
-  } catch (err) {
-    logEmitter.emit("functionFail", "path.service", "moveAlongPath", err);
-    throw err;
   }
 };
 
-const editPath = (cumulativeAnswers, currentPage) => {
-  logEmitter.emit("functionCall", "path.service", "editPath");
+const moveAlongEditPath = (editModePath, currentPage, movement) => {
+  logEmitter.emit("functionCall", "path.service", "moveAlongEditPath");
+
+  const activePath = Object.keys(editModePath).filter(entry => {
+    return editModePath[entry].inEditPath === true;
+  });
+
+  const currentIndex = activePath.indexOf(currentPage);
+
+  const nextPage = activePath[currentIndex + movement];
+
+  if (nextPage) {
+    logEmitter.emit(
+      "functionSuccessWith",
+      "path.service",
+      "moveAlongEditPath",
+      `Page to move to in path: "${nextPage}"`
+    );
+    return nextPage;
+  } else {
+    if (movement > 0) {
+      logEmitter.emit(
+        "functionSuccessWith",
+        "path.service",
+        "moveAlongEditPath",
+        "End of edit path. Moving to '/registration-summary'."
+      );
+      return "/registration-summary";
+    } else {
+      const err = `Attempt was made to move backwards from "${currentPage}".
+      This moves beyond the boundaries of the path, so the page does not exist.
+      `;
+      logEmitter.emit("functionFail", "path.service", "moveAlongEditPath", err);
+      throw new Error(err);
+    }
+  }
+};
+
+const getPathPagesToSwitch = (
+  cumulativeFullAnswers,
+  currentPage,
+  pathFromSession
+) => {
+  logEmitter.emit("functionCall", "path.service", "getPathPagesToSwitch");
 
   try {
-    if (!cumulativeAnswers || typeof cumulativeAnswers !== "object") {
+    if (!cumulativeFullAnswers || typeof cumulativeFullAnswers !== "object") {
       throw new Error(`
-      path.service.js editPath(): the cumulativeAnswers argument is either missing or is not an object.
+      path.service.js getPathPagesToSwitch(): the cumulativeFullAnswers argument is either missing or is not an object.
     `);
     }
 
-    const newPath = JSON.parse(JSON.stringify(pathJSON));
-
-    const currentIndex = Object.keys(newPath).indexOf(currentPage);
-    const pagesUpToAndIncludingCurrentPage = Object.keys(newPath).slice(
-      0,
-      currentIndex + 1
-    );
     const allSwitches = {};
 
-    for (let page in newPath) {
-      if (pagesUpToAndIncludingCurrentPage.indexOf(page) !== -1) {
-        Object.assign(allSwitches, newPath[page].switches);
-      }
+    for (let page in pathFromSession) {
+      Object.assign(allSwitches, pathFromSession[page].switches);
     }
 
-    const allAnswerValues = Object.values(cumulativeAnswers);
+    const allAnswerValues = Object.values(cumulativeFullAnswers);
     const allAnswerKeys = [];
 
-    for (let key in cumulativeAnswers) {
-      if (cumulativeAnswers[key] !== "") {
+    for (let key in cumulativeFullAnswers) {
+      if (cumulativeFullAnswers[key] !== "") {
         allAnswerKeys.push(key);
       }
     }
@@ -77,21 +168,26 @@ const editPath = (cumulativeAnswers, currentPage) => {
       );
     });
 
-    let pagesToSwitch = {};
+    let pagesToSwitch = [];
+
     answerValuesAndTruthyKeys.forEach(valueOrKey => {
       if (allSwitches[valueOrKey]) {
-        pagesToSwitch = Object.assign(pagesToSwitch, allSwitches[valueOrKey]);
+        pagesToSwitch.push(...Object.keys(allSwitches[valueOrKey]));
       }
     });
 
-    for (let eachPage in pagesToSwitch) {
-      newPath[eachPage].on = pagesToSwitch[eachPage];
-    }
+    // remove duplicates
+    pagesToSwitch = [...new Set(pagesToSwitch)];
 
-    logEmitter.emit("functionSuccess", "path.service", "editPath");
-    return newPath;
+    logEmitter.emit("functionSuccess", "path.service", "getPathPagesToSwitch");
+    return pagesToSwitch;
   } catch (err) {
-    logEmitter.emit("functionFail", "path.service", "editPath", err);
+    logEmitter.emit(
+      "functionFail",
+      "path.service",
+      "getPathPagesToSwitch",
+      err
+    );
     throw err;
   }
 };
@@ -121,4 +217,11 @@ const switchOffManualAddressInput = (newPath, currentPage) => {
   return manualAddressSwitchedPath;
 };
 
-module.exports = { moveAlongPath, editPath, switchOffManualAddressInput };
+module.exports = {
+  editPath,
+  editPathInEditMode,
+  moveAlongPath,
+  moveAlongEditPath,
+  getPathPagesToSwitch,
+  switchOffManualAddressInput
+};

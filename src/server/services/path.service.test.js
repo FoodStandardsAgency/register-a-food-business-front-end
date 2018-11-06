@@ -1,177 +1,380 @@
-import {
-  moveAlongPath,
+const {
   editPath,
+  editPathInEditMode,
+  moveAlongPath,
+  moveAlongEditPath,
+  getPathPagesToSwitch,
   switchOffManualAddressInput
-} from "./path.service";
-import pathJSON from "../../__mocks__/pathMock.json";
+} = require("./path.service");
+const pathConfigMock = require("../../__mocks__/pathConfigMock.json");
+const pathMock = pathConfigMock.path;
 
-describe("path.service moveAlongPath()", () => {
-  describe("Given valid input", () => {
-    it("returns a string beginning with '/'", () => {
-      const result = moveAlongPath(pathJSON, "/index");
-      expect(typeof result).toBe("string");
-      expect(result.slice(0, 1)).toBe("/");
-    });
+describe("path.service editPath()", () => {
+  let result;
 
-    it("returns a key name from the path JSON", () => {
-      const result = moveAlongPath(pathJSON, "/index");
-      expect(Object.keys(pathJSON)).toContain(result);
-    });
+  const pathFromSession = {
+    "/registration-role": {
+      on: true,
+      switches: {
+        Representative: { "/representative-details": true }
+      }
+    },
+    "/representative-details": {
+      on: false,
+      switches: {}
+    }
+  };
 
-    it("returns a switched-on key name for 'continue' and 'back'", () => {
-      const result1 = moveAlongPath(pathJSON, "/index", 1);
-      expect(result1).toBe("/mock-page-1");
-
-      const result2 = moveAlongPath(pathJSON, "/mock-page-1", 1);
-      expect(result2).toBe("/mock-page-2");
-
-      const result3 = moveAlongPath(pathJSON, "/mock-page-1", -1);
-      expect(result3).toBe("/index");
-
-      const result4 = moveAlongPath(pathJSON, "/mock-page-2", -2);
-      expect(result4).toBe("/index");
-    });
-  });
-  describe("Given invalid input", () => {
-    it("throws an error when an attempt is made to move beyond the ends of the path", () => {
-      expect(() => moveAlongPath(pathJSON, "/mock-page-2", +2)).toThrow(Error);
-      expect(() => moveAlongPath(pathJSON, "/mock-page-1", -5)).toThrow(Error);
+  describe("given valid input", () => {
+    describe("given that an answer triggers a switch and is only in the full answers", () => {
+      beforeEach(() => {
+        const cumulativeFullAnswers = {
+          registration_role: "Representative",
+          another_answer: "Value"
+        };
+        const currentPage = "/registration-role";
+        const args = [cumulativeFullAnswers, currentPage, pathFromSession];
+        result = editPath(...args);
+      });
+      it("should return 'on' as true for the switched page", () => {
+        expect(result["/representative-details"].on).toBe(true);
+      });
     });
   });
 });
 
-describe("path.service editPath()", () => {
+describe("path.service editPathInEditMode()", () => {
+  let result;
+
+  const pathFromSession = {
+    "/registration-role": {
+      on: true,
+      switches: {
+        Representative: { "/representative-details": true }
+      }
+    },
+    "/representative-details": {
+      on: false,
+      switches: {}
+    }
+  };
+
+  describe("given valid input", () => {
+    describe("given that an answer triggers a switch and is in both the full and edit answers", () => {
+      beforeEach(() => {
+        const cumulativeFullAnswers = {
+          registration_role: "Representative"
+        };
+        const cumulativeEditAnswers = {
+          registration_role: "Representative"
+        };
+        const editModeFirstPage = "/registration-role";
+        const currentPage = "/registration-role";
+        const args = [
+          cumulativeFullAnswers,
+          cumulativeEditAnswers,
+          pathFromSession,
+          editModeFirstPage,
+          currentPage
+        ];
+        result = editPathInEditMode(...args);
+      });
+      it("should return both 'on' and 'inEditPath' as true for the switched page", () => {
+        expect(result["/representative-details"].on).toBe(true);
+        expect(result["/representative-details"].inEditPath).toBe(true);
+      });
+      it("should return 'inEditPath' as true for the first page in the edit path", () => {
+        expect(result["/registration-role"].inEditPath).toBe(true);
+      });
+    });
+
+    describe("given that an answer triggers a switch and is only in the full answers", () => {
+      beforeEach(() => {
+        const cumulativeFullAnswers = {
+          registration_role: "Representative",
+          another_answer: "Value"
+        };
+        const cumulativeEditAnswers = {
+          another_answer: "Value"
+        };
+        const editModeFirstPage = "/registration-role";
+        const currentPage = "/registration-role";
+        const args = [
+          cumulativeFullAnswers,
+          cumulativeEditAnswers,
+          pathFromSession,
+          editModeFirstPage,
+          currentPage
+        ];
+        result = editPathInEditMode(...args);
+      });
+      it("should return 'on' as true and 'inEditPath' as false for the switched page", () => {
+        expect(result["/representative-details"].on).toBe(true);
+        expect(result["/representative-details"].inEditPath).toBe(false);
+      });
+      it("should return 'inEditPath' as true for the first page in the edit path", () => {
+        expect(result["/registration-role"].inEditPath).toBe(true);
+      });
+    });
+  });
+});
+
+describe("path.service moveAlongPath()", () => {
+  let result;
+  const path = {
+    "/page-not-in-path": {
+      on: false,
+      switches: {}
+    },
+    "/registration-role": {
+      on: true,
+      switches: {
+        Representative: { "/representative-details": true }
+      }
+    },
+    "/page-to-skip": {
+      on: false,
+      switches: {}
+    },
+    "/representative-details": {
+      on: true,
+      switches: {}
+    },
+    "/another-page": {
+      on: false,
+      switches: {}
+    }
+  };
+
   describe("Given valid input", () => {
-    it("does not reassign the input object", () => {
-      const result = editPath({}, "/index");
-      expect(result).not.toBe(pathJSON);
+    describe("given a movement of +1", () => {
+      beforeEach(() => {
+        const currentPage = "/registration-role";
+        const movement = 1;
+        const args = [path, currentPage, movement];
+        result = moveAlongPath(...args);
+      });
+      it("returns the next active page in the path", () => {
+        expect(result).toBe("/representative-details");
+      });
     });
 
-    it("returns a valid JavaScipt object", () => {
-      const result = editPath({ example: "A1" });
-      expect(typeof result).toBe("object");
+    describe("given a movement of -1", () => {
+      beforeEach(() => {
+        const currentPage = "/representative-details";
+        const movement = -1;
+        const args = [path, currentPage, movement];
+        result = moveAlongPath(...args);
+      });
+      it("returns the previous active page in the path", () => {
+        expect(result).toBe("/registration-role");
+      });
     });
 
-    it("does not change any of the object keys", () => {
-      const result = editPath({ example: "A1" }, "/mock-page-1");
-      const getObjectKeys = json => {
-        const arrayOfKeys = Object.keys(json);
-        arrayOfKeys.forEach(key => {
-          if (typeof json[key] === "object") {
-            Object.keys(json[key]).forEach(nestedKey => {
-              if (typeof json[key][nestedKey] === "object") {
-                arrayOfKeys.push(...Object.keys(json[key][nestedKey]));
-              }
-            });
-            arrayOfKeys.push(...Object.keys(json[key]));
-          }
-        });
-        return arrayOfKeys;
-      };
-      const objectKeysOriginal = getObjectKeys(pathJSON);
-      const objectKeysEdited = getObjectKeys(result);
-      expect(objectKeysOriginal).toEqual(objectKeysEdited);
-    });
-
-    it("deactivates pages based on the input from the given page", () => {
-      const result1 = editPath({ example: "A1" }, "/index");
-      expect(result1["/mock-page-1"]["on"]).toBe(false);
-
-      const result2 = editPath({ example1: "A1", example2: "A2" }, "/index");
-      expect(result2["/mock-page-1"]["on"]).toBe(false);
-      expect(result2["/mock-page-2"]["on"]).toBe(false);
-
-      // activate mock-page-2 with A3 then deactivate it with A5
-      const result3 = editPath(
-        {
-          example1: "A3",
-          example2: "A5",
-          example3: "A6"
-        },
-        "/mock-page-1"
-      );
-      expect(result3["/mock-page-2"]["on"]).toBe(false);
-      expect(result3["/mock-page-3"]["on"]).toBe(false);
-    });
-
-    it("re-activates pages based on the input from the given page", () => {
-      const result1 = editPath(
-        { example1: "A2", example2: "A4" },
-        "/mock-page-1"
-      );
-      expect(result1["/mock-page-2"]["on"]).toBe(true);
-    });
-
-    it("prioritises switches in the order that they appear in the JSON", () => {
-      const result1 = editPath(
-        { example1: "A4", example2: "A6" },
-        "/mock-page-1"
-      );
-      expect(result1["/mock-page-2"]["on"]).toBe(true);
-
-      // same test but with array order reversed
-      const result2 = editPath(
-        { example1: "A6", example2: "A4" },
-        "/mock-page-1"
-      );
-      expect(result2["/mock-page-2"]["on"]).toBe(true);
-    });
-
-    it("can activate the current page", () => {
-      const result = editPath(
-        { example: "turnOnCurrentPageTest" },
-        "/mock-page-off"
-      );
-      expect(result["/mock-page-off"]["on"]).toBe(true);
-    });
-
-    it("can deactivate the current page", () => {
-      const result = editPath({ example: "A8" }, "/mock-page-2");
-      expect(result["/mock-page-2"]["on"]).toBe(false);
-    });
-
-    describe("given that the answer is not in the path switches", () => {
-      it("does not change the path", () => {
-        const result = editPath({ example: "Not in the path" }, "/mock-page-3");
-        expect(result).toEqual(pathJSON);
+    describe("given a movement of +1 when there are no further active pages in the path", () => {
+      beforeEach(() => {
+        const currentPage = "/representative-details";
+        const movement = 1;
+        const args = [path, currentPage, movement];
+        result = moveAlongPath(...args);
+      });
+      it("returns '/submit' as the next page", () => {
+        expect(result).toBe("/submit");
       });
     });
   });
 
-  describe("Given valid input where the object keys in cumulativeAnswers affect the path", () => {
+  describe("Given invalid input", () => {
+    describe("given a movement of -1 when there are no previous active pages in the path", () => {
+      beforeEach(() => {
+        const currentPage = "/registration-role";
+        const movement = -1;
+        const args = [path, currentPage, movement];
+        try {
+          result = moveAlongPath(...args);
+        } catch (err) {
+          result = err;
+        }
+      });
+      it("throws an error", () => {
+        expect(result instanceof Error).toBe(true);
+      });
+    });
+  });
+});
+
+describe("path.service moveAlongEditPath()", () => {
+  let result;
+  const path = {
+    "/page-not-in-edit-path": {
+      on: true,
+      inEditPath: false,
+      switches: {}
+    },
+    "/registration-role": {
+      on: true,
+      inEditPath: true,
+      switches: {
+        Representative: { "/representative-details": true }
+      }
+    },
+    "/page-to-skip": {
+      on: true,
+      inEditPath: false,
+      switches: {}
+    },
+    "/representative-details": {
+      on: true,
+      inEditPath: true,
+      switches: {}
+    },
+    "/another-page": {
+      on: false,
+      inEditPath: false,
+      switches: {}
+    }
+  };
+
+  describe("Given valid input", () => {
+    describe("given a movement of +1", () => {
+      beforeEach(() => {
+        const currentPage = "/registration-role";
+        const movement = 1;
+        const args = [path, currentPage, movement];
+        result = moveAlongEditPath(...args);
+      });
+      it("returns the next active page in the edit path", () => {
+        expect(result).toBe("/representative-details");
+      });
+    });
+
+    describe("given a movement of -1", () => {
+      beforeEach(() => {
+        const currentPage = "/representative-details";
+        const movement = -1;
+        const args = [path, currentPage, movement];
+        result = moveAlongEditPath(...args);
+      });
+      it("returns the previous active page in the edit path", () => {
+        expect(result).toBe("/registration-role");
+      });
+    });
+
+    describe("given a movement of +1 when there are no further active pages in the edit path", () => {
+      beforeEach(() => {
+        const currentPage = "/representative-details";
+        const movement = 1;
+        const args = [path, currentPage, movement];
+        result = moveAlongEditPath(...args);
+      });
+      it("returns '/registration-summary' as the next page", () => {
+        expect(result).toBe("/registration-summary");
+      });
+    });
+  });
+
+  describe("Given invalid input", () => {
+    describe("given a movement of -1 when there are no previous active pages in the edit path", () => {
+      beforeEach(() => {
+        const currentPage = "/registration-role";
+        const movement = -1;
+        const args = [path, currentPage, movement];
+        try {
+          result = moveAlongEditPath(...args);
+        } catch (err) {
+          result = err;
+        }
+      });
+      it("throws an error", () => {
+        expect(result instanceof Error).toBe(true);
+      });
+    });
+  });
+});
+
+describe("path.service getPathPagesToSwitch()", () => {
+  describe("Given valid input", () => {
+    it("returns pages that should be activated", () => {
+      const result1 = getPathPagesToSwitch(
+        { example1: "A2", example2: "A4" },
+        "/mock-page-1",
+        pathMock
+      );
+      expect(result1).toContain("/mock-page-1");
+      expect(result1).toContain("/mock-page-2");
+    });
+
+    it("prioritises switches in the order that they appear in the JSON", () => {
+      const result1 = getPathPagesToSwitch(
+        { example1: "A4", example2: "A6" },
+        "/mock-page-1",
+        pathMock
+      );
+      expect(result1).toContain("/mock-page-2");
+
+      // same test but with array order reversed
+      const result2 = getPathPagesToSwitch(
+        { example1: "A6", example2: "A4" },
+        "/mock-page-1",
+        pathMock
+      );
+      expect(result2).toContain("/mock-page-2");
+    });
+
+    it("can activate the current page", () => {
+      const result = getPathPagesToSwitch(
+        { example: "turnOnCurrentPageTest" },
+        "/mock-page-off",
+        pathMock
+      );
+      expect(result).toContain("/mock-page-off");
+    });
+
+    describe("given that the answer is not in the path switches", () => {
+      it("does not change the path", () => {
+        const result = getPathPagesToSwitch(
+          { example: "Not in the path" },
+          "/mock-page-3",
+          pathMock
+        );
+        expect(result.length).toBe(0);
+      });
+    });
+  });
+
+  describe("Given valid input where the object keys in cumulativeFullAnswers affect the path", () => {
     it("edits the path if the value is truthy", () => {
-      const result = editPath(
+      const result = getPathPagesToSwitch(
         {
           answer_name_that_affects_path:
             "the value is truthy but not used to calculate the path"
         },
-        "/index"
+        "/index",
+        pathMock
       );
-      expect(result["/mock-page-2"]["on"]).toBe(false);
+      expect(result).toContain("/mock-page-2");
     });
 
     it("does not edit the path if the string is empty", () => {
-      const result = editPath(
+      const result = getPathPagesToSwitch(
         {
           answer_name_that_affects_path: ""
         },
-        "/index"
+        "/index",
+        pathMock
       );
-      expect(result["/mock-page-2"]["on"]).toBe(true);
+      expect(result).not.toContain("/mock-page-2");
     });
   });
 
   describe("Given invalid input", () => {
     it("throws an error if an answer object is not provided", () => {
-      expect(() => editPath(null, "/index")).toThrow(Error);
-      expect(() => editPath(true, "/index")).toThrow(Error);
-    });
-  });
-
-  describe("Given an answer that is from a switch further ahead than the current page in the path", () => {
-    it("ignores the switch/answer", () => {
-      const result = editPath({ example: "A6" }, "/index");
-      expect(result["/mock-page-2"]["on"]).toEqual(true);
+      expect(() => getPathPagesToSwitch(null, "/index", pathMock)).toThrow(
+        Error
+      );
+      expect(() => getPathPagesToSwitch(true, "/index", pathMock)).toThrow(
+        Error
+      );
     });
   });
 });

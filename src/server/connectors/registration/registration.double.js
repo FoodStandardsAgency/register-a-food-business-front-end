@@ -314,7 +314,11 @@ const registrationDouble = body => {
     let lcConfig;
     let lcEmail;
 
-    if (objectBody.local_council_url === "cardiff") {
+    if (
+      objectBody.local_council_url === "cardiff" ||
+      objectBody.local_council_url === "mid-and-east-antrim" ||
+      objectBody.local_council_url === "purbeck"
+    ) {
       lcConfig = lcConfigCombined;
       lcEmail = lcEmailCombined;
     } else if (objectBody.local_council_url === "west-dorset") {
@@ -342,12 +346,12 @@ const registrationDouble = body => {
           id: "25",
           online_reference: "0000025"
         },
-        email_fbo: {
+        emailFbo: {
           success: true,
           recipient: "fsatestemail.valid@gmail.com"
         },
         email_lc: lcEmail,
-        lc_config: lcConfig
+        lcConfig: lcConfig
       }),
       status: 200
     };

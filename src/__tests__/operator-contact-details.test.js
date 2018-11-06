@@ -26,7 +26,7 @@ describe("<OperatorContactDetails />", () => {
       .create(
         <OperatorContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -39,7 +39,7 @@ describe("<OperatorContactDetails />", () => {
       const wrapper = mount(
         <OperatorContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -56,7 +56,7 @@ describe("<OperatorContactDetails />", () => {
       const wrapper = mount(
         <OperatorContactDetails
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -67,13 +67,13 @@ describe("<OperatorContactDetails />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         operator_primary_number: "default"
       };
       const wrapper = mount(
         <OperatorContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -89,7 +89,7 @@ describe("<OperatorContactDetails />", () => {
       const wrapper = mount(
         <OperatorContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -106,7 +106,7 @@ describe("<OperatorContactDetails />", () => {
       const wrapper = mount(
         <OperatorContactDetails
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -117,13 +117,13 @@ describe("<OperatorContactDetails />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         operator_secondary_number: "default"
       };
       const wrapper = mount(
         <OperatorContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -141,7 +141,7 @@ describe("<OperatorContactDetails />", () => {
       const wrapper = mount(
         <OperatorContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -156,7 +156,7 @@ describe("<OperatorContactDetails />", () => {
       const wrapper = mount(
         <OperatorContactDetails
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -165,13 +165,13 @@ describe("<OperatorContactDetails />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         operator_email: "default"
       };
       const wrapper = mount(
         <OperatorContactDetails
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );

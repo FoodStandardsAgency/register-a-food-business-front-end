@@ -1,21 +1,78 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<BackButton /> matches the previous snapshot 1`] = `
-.emotion-0 {
-  padding-bottom: 45px;
+.emotion-1 {
+  padding-bottom: 30px;
 }
 
 @media only screen and (max-width:641px) {
+  .emotion-1 {
+    padding-bottom: 15px;
+  }
+}
+
+.emotion-0 {
+  font-family: "nta",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.1428571429;
+  display: inline-block;
+  position: relative;
+  margin-top: 15px;
+  padding-left: 14px;
+  border: 0;
+  background-color: transparent;
+  color: #0b0c0c;
+  border-bottom: 1px solid #0b0c0c;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+@media only screen and (min-width:641px) {
   .emotion-0 {
-    padding-bottom: 30px;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}
+
+.emotion-0::before {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-clip-path: polygon(0% 50%,100% 100%,100% 0%);
+  clip-path: polygon(0% 50%,100% 100%,100% 0%);
+  border-width: 5px 6px 5px 0;
+  border-right-color: #0b0c0c;
+  content: '';
+  position: absolute;
+  top: -1px;
+  bottom: 1px;
+  left: 0;
+  margin: auto;
+}
+
+.emotion-0:focus {
+  background-color: #ffbf47;
+  outline: 3px solid #ffbf47;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-0 {
+    margin-bottom: 15px;
   }
 }
 
 <div
-  className="emotion-0 emotion-1"
+  className="emotion-1 emotion-2"
 >
   <a
-    href="/back/undefined"
+    className="emotion-0"
+    href="/backundefined"
     id="back-link"
   >
     Back

@@ -10,11 +10,11 @@ const findAddressRouter = () => {
 
     const response = await findAddressController(
       `/${req.params.originator}`,
-      req.session.cumulativeAnswers,
+      req.session.cumulativeFullAnswers,
       req.body
     );
 
-    req.session.cumulativeAnswers = response.cumulativeAnswers;
+    req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
     req.session.validatorErrors = response.validatorErrors;
 
     req.session.addressLookups = Object.assign(

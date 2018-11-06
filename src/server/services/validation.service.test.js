@@ -81,6 +81,25 @@ describe("validator.service validate()", () => {
       );
     });
   });
+
+  describe("When given on the opening day some page with invalid data", () => {
+    it("should return the opening day some error", () => {
+      const result = validate("/opening-days-some", {
+        opening_day_monday: undefined,
+        opening_day_tuesday: undefined,
+        opening_day_wednesday: undefined,
+        opening_day_thursday: undefined,
+        opening_day_friday: undefined,
+        opening_day_saturday: undefined,
+        opening_day_sunday: undefined
+      });
+
+      expect(result.errors.opening_days_some).toBe(
+        "Please select which days this establishment is open"
+      );
+    });
+  });
+
   describe("When given the business-import-export page with invalid data", () => {
     it("should return the business-import-export error", () => {
       const result = validate("/business-import-export", {

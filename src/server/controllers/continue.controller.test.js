@@ -13,7 +13,7 @@ const {
   cleanEmptiedAnswers,
   cleanSwitches
 } = require("../services/session-management.service");
-
+const pathConfigMock = require("../../__mocks__/pathConfigMock.json");
 const continueController = require("./continue.controller");
 
 describe("Function: continueController: ", () => {
@@ -67,12 +67,13 @@ describe("Function: continueController: ", () => {
         "/some-page",
         exampleAnswers,
         {},
-        exampleSwitches
+        exampleSwitches,
+        pathConfigMock
       );
     });
 
-    it("Should clean the cumulativeAnswers", () => {
-      expect(response.cumulativeAnswers).toEqual({});
+    it("Should clean the cumulativeFullAnswers", () => {
+      expect(response.cumulativeFullAnswers).toEqual({});
     });
 
     it("Should return an empty validatorErrors object", () => {
@@ -89,11 +90,37 @@ describe("Function: continueController: ", () => {
         "/some-page",
         exampleAnswers,
         undefined,
-        exampleSwitches
+        exampleSwitches,
+        pathConfigMock
       );
     });
     it("Should return a response", () => {
       expect(response).toBeDefined();
+    });
+  });
+
+  describe("When newAnswers contains answers with empty spaces", () => {
+    beforeEach(() => {
+      validate.mockImplementation(() => ({
+        errors: {}
+      }));
+
+      const testNewAnswersWithSpaces = {
+        operator_secondary_number: "       ",
+        operator_first_name: "  name  "
+      };
+
+      response = continueController(
+        "/some-page",
+        exampleAnswers,
+        testNewAnswersWithSpaces,
+        exampleSwitches,
+        pathConfigMock
+      );
+    });
+    it("Should return a response", () => {
+      expect(response.cumulativeFullAnswers.operator_first_name).toBe("name");
+      expect(response.cumulativeFullAnswers.operator_secondary_number).toBe("");
     });
   });
 
@@ -103,11 +130,13 @@ describe("Function: continueController: ", () => {
         validate.mockImplementation(() => ({
           errors: {}
         }));
+        moveAlongPath.mockImplementation(() => "/submit");
         response = continueController(
           "/final-page",
           {},
           exampleAnswers,
-          exampleSwitches
+          exampleSwitches,
+          pathConfigMock
         );
       });
 
@@ -122,7 +151,13 @@ describe("Function: continueController: ", () => {
           errors: {}
         }));
         moveAlongPath.mockImplementation(() => "/nextPage");
-        response = continueController("/index", {}, exampleAnswers, undefined);
+        response = continueController(
+          "/index",
+          {},
+          exampleAnswers,
+          undefined,
+          pathConfigMock
+        );
       });
 
       it("Should return a redirect route", () => {
@@ -140,34 +175,23 @@ describe("Function: continueController: ", () => {
           "/some-page",
           {},
           exampleAnswers,
-          exampleSwitches
+          exampleSwitches,
+          pathConfigMock
         );
       });
 
       it("Should return a controllerResponse", () => {
         expect(response.validatorErrors).toBeDefined();
         expect(response.redirectRoute).toBeDefined();
-        expect(response.cumulativeAnswers).toBeDefined();
+        expect(response.cumulativeFullAnswers).toBeDefined();
       });
 
-      describe("When editMode is true", () => {
-        beforeEach(() => {
-          response = continueController(
-            "/some-page",
-            {},
-            exampleAnswers,
-            {},
-            true
-          );
-        });
-
-        it("Should set redirect route to /registration-summary", () => {
-          expect(response.redirectRoute).toBe("/registration-summary");
-        });
-      });
-
-      it("Should use cumulativePathAnswers to create the newPath", () => {
-        expect(editPath.mock.calls[0][0]).toEqual(exampleAnswers, "/some-page");
+      it("Should use cumulativePathAnswers and the path from session to create the newPath", () => {
+        expect(editPath).toHaveBeenLastCalledWith(
+          exampleAnswers,
+          "/some-page",
+          pathConfigMock
+        );
       });
 
       it("Should set the redirectRoute to the response of moveAlongPath", () => {
@@ -185,7 +209,8 @@ describe("Function: continueController: ", () => {
         "/mock-page-1",
         {},
         exampleAnswers,
-        exampleSwitches
+        exampleSwitches,
+        pathConfigMock
       );
     });
 
@@ -210,25 +235,10 @@ describe("Function: continueController: ", () => {
           "/mock-page-1",
           {},
           exampleAnswers,
-          exampleSwitches
+          exampleSwitches,
+          pathConfigMock
         );
         expect(response.switches).toEqual({ switch1: false, switch2: true });
-      });
-
-      describe("When editMode is true", () => {
-        beforeEach(() => {
-          response = continueController(
-            "/some-page",
-            {},
-            exampleAnswers,
-            {},
-            true
-          );
-        });
-
-        it("Should set redirect route to the same page but with the edit=on query", () => {
-          expect(response.redirectRoute).toBe("/some-page?edit=on");
-        });
       });
     });
   });
@@ -243,7 +253,8 @@ describe("Function: continueController: ", () => {
         "/mock-page-1",
         {},
         exampleAnswers,
-        exampleEmptySwitches
+        exampleEmptySwitches,
+        pathConfigMock
       );
 
       expect(response.switches).toEqual({});
@@ -260,7 +271,8 @@ describe("Function: continueController: ", () => {
         "/mock-page-1",
         {},
         exampleAnswers,
-        exampleSwitches
+        exampleSwitches,
+        pathConfigMock
       );
 
       const originalSwitchesKeyArray = Object.keys(exampleSwitches);
@@ -274,7 +286,8 @@ describe("Function: continueController: ", () => {
         "/mock-page-1",
         {},
         exampleAnswers,
-        exampleSwitches
+        exampleSwitches,
+        pathConfigMock
       );
 
       const responseSwitchesValueArray = Object.values(response.switches);
@@ -297,7 +310,8 @@ describe("Function: continueController: ", () => {
           "/mock-page-1",
           {},
           exampleAnswers,
-          exampleSwitches
+          exampleSwitches,
+          pathConfigMock
         );
 
         expect(response.switches).toEqual({ switch1: false, switch2: true });
@@ -316,7 +330,8 @@ describe("Function: continueController: ", () => {
           "/final-page",
           {},
           exampleAnswers,
-          exampleSwitches
+          exampleSwitches,
+          pathConfigMock
         );
       } catch (err) {
         response = err;

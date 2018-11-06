@@ -27,7 +27,7 @@ describe("<Declaration />", () => {
       shallow(
         <Declaration
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       ).get(0)
@@ -45,7 +45,7 @@ describe("<Declaration />", () => {
       .create(
         <Declaration
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )

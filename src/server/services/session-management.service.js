@@ -1,16 +1,17 @@
 const schema = require("./schema");
 const { logEmitter } = require("./logging.service");
 
-const cleanInactivePathAnswers = (cumulativeAnswers, path) => {
+const cleanInactivePathAnswers = (cumulativeFullAnswers, path) => {
   logEmitter.emit(
     "functionCall",
     "session-management.service",
     "cleanInactivePathAnswers"
   );
 
-  const cleanedAnswers = Object.assign({}, cumulativeAnswers);
+  const cleanedAnswers = Object.assign({}, cumulativeFullAnswers);
 
   for (let answer in cleanedAnswers) {
+    // find the page that this answer is from
     let pageOfAnswer;
 
     for (let page in schema) {
@@ -19,6 +20,7 @@ const cleanInactivePathAnswers = (cumulativeAnswers, path) => {
       }
     }
 
+    // if that page is off in the given path, delete the answer
     if (path[pageOfAnswer] && path[pageOfAnswer].on === false) {
       delete cleanedAnswers[answer];
     }
@@ -33,7 +35,7 @@ const cleanInactivePathAnswers = (cumulativeAnswers, path) => {
 };
 
 const cleanEmptiedAnswers = (
-  cumulativeAnswers,
+  cumulativeFullAnswers,
   newAnswersArray,
   currentPage
 ) => {
@@ -42,7 +44,7 @@ const cleanEmptiedAnswers = (
     "session-management.service",
     "cleanEmptiedAnswers"
   );
-  const cleanedAnswers = Object.assign({}, cumulativeAnswers);
+  const cleanedAnswers = Object.assign({}, cumulativeFullAnswers);
 
   for (let schemaDefinedAnswer in schema[currentPage].properties) {
     if (
@@ -61,7 +63,7 @@ const cleanEmptiedAnswers = (
   return cleanedAnswers;
 };
 
-const cleanSwitches = (cumulativeAnswers, switches) => {
+const cleanSwitches = (cumulativeFullAnswers, switches) => {
   logEmitter.emit(
     "functionCall",
     "session-management.service",
@@ -73,15 +75,15 @@ const cleanSwitches = (cumulativeAnswers, switches) => {
   if (switches) {
     if (cleanedSwitches.reuseOperatorContactDetails !== undefined) {
       const operatorContactDetails = [
-        cumulativeAnswers.operator_primary_number,
-        cumulativeAnswers.operator_secondary_number,
-        cumulativeAnswers.operator_email
+        cumulativeFullAnswers.operator_primary_number,
+        cumulativeFullAnswers.operator_secondary_number,
+        cumulativeFullAnswers.operator_email
       ];
 
       const establishmentContactDetails = [
-        cumulativeAnswers.establishment_primary_number,
-        cumulativeAnswers.establishment_secondary_number,
-        cumulativeAnswers.establishment_email
+        cumulativeFullAnswers.establishment_primary_number,
+        cumulativeFullAnswers.establishment_secondary_number,
+        cumulativeFullAnswers.establishment_email
       ];
 
       const operatorEstablishmentDetailsAreDifferent =

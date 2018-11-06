@@ -9,7 +9,7 @@ const submitController = require("../controllers/submit.controller");
 const { submitRouter } = require("./submit.route");
 
 describe("Submit route: ", () => {
-  const lc_config = {
+  const lcConfig = {
     hygiene: {
       code: 4221,
       local_council: "District Council",
@@ -37,19 +37,20 @@ describe("Submit route: ", () => {
           redirectRoute: "/summary-confirmation",
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
-          email_fbo: { recipient: "fbo@example.com", success: true },
-          lc_config: lc_config
+          emailFbo: { recipient: "fbo@example.com", success: true },
+          lcConfig: lcConfig
         }));
 
         handler = router.get.mock.calls[0][1];
 
         req = {
           session: {
-            cumulativeAnswers: {
+            cumulativeFullAnswers: {
               some: "answers"
             },
             council: "cardiff",
             addressLookups: ["1"],
+            pathConfig: { _id: "1.0.0" },
             save: cb => {
               cb();
             }
@@ -61,22 +62,23 @@ describe("Submit route: ", () => {
         handler(req, res);
       });
 
-      it("Should call submitController with cumulativeAnswers", () => {
+      it("Should call submitController with the correct args", () => {
         expect(submitController).toHaveBeenCalledWith(
           "cardiff",
           {
             some: "answers"
           },
-          ["1"]
+          ["1"],
+          "1.0.0"
         );
       });
 
       it("Should update session", () => {
         expect(req.session.submissionDate).toEqual("date");
         expect(req.session.fsaRegistrationNumber).toEqual("12345678");
-        expect(req.session.email_fbo.recipient).toEqual("fbo@example.com");
-        expect(req.session.email_fbo.success).toEqual(true);
-        expect(req.session.lc_config).toEqual(lc_config);
+        expect(req.session.emailFbo.recipient).toEqual("fbo@example.com");
+        expect(req.session.emailFbo.success).toEqual(true);
+        expect(req.session.lcConfig).toEqual(lcConfig);
       });
 
       it("Should set redirect to response", () => {
@@ -94,19 +96,20 @@ describe("Submit route: ", () => {
           redirectRoute: "back",
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
-          email_fbo: { recipient: "fbo@example.com", success: true },
-          lc_config: lc_config
+          emailFbo: { recipient: "fbo@example.com", success: true },
+          lcConfig: lcConfig
         }));
 
         handler = router.get.mock.calls[0][1];
 
         req = {
           session: {
-            cumulativeAnswers: {
+            cumulativeFullAnswers: {
               some: "answers"
             },
             council: "cardiff",
             addressLookups: ["1"],
+            pathConfig: { _id: "1.0.0" },
             save: cb => {
               cb();
             }
@@ -131,19 +134,20 @@ describe("Submit route: ", () => {
           redirectRoute: "back",
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
-          email_fbo: { recipient: "fbo@example.com", success: true },
-          lc_config: lc_config
+          emailFbo: { recipient: "fbo@example.com", success: true },
+          lcConfig: lcConfig
         }));
 
         handler = router.get.mock.calls[0][1];
 
         req = {
           session: {
-            cumulativeAnswers: {
+            cumulativeFullAnswers: {
               some: "answers"
             },
             council: "cardiff",
             addressLookups: ["1"],
+            pathConfig: { _id: "1.0.0" },
             save: cb => {
               cb("session save error");
             }

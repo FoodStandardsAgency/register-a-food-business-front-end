@@ -11,22 +11,16 @@ import PropTypes from "prop-types";
 
 const LimitedCompanyDetails = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editMode={props.editMode}
-      originator="operator-company-details"
-    />
+    <BackButton {...props} />
     <ProcessedErrorSummary validatorErrors={props.validatorErrors} />
     <Header level={2}>Company details</Header>
 
-    <form
-      action={`/continue/operator-company-details/${props.editMode}`}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <InputField
           input={{
             name: "operator_company_name",
-            defaultValue: props.cumulativeAnswers.operator_company_name,
+            defaultValue: props.cumulativeFullAnswers.operator_company_name,
             autoComplete: "organization"
           }}
           hint={
@@ -46,7 +40,8 @@ const LimitedCompanyDetails = props => (
         <InputField
           input={{
             name: "operator_company_house_number",
-            defaultValue: props.cumulativeAnswers.operator_company_house_number,
+            defaultValue:
+              props.cumulativeFullAnswers.operator_company_house_number,
             autoComplete: "off"
           }}
           hint={
@@ -62,24 +57,26 @@ const LimitedCompanyDetails = props => (
         </InputField>
       </ContentItem.B_30_15>
 
-      <HiddenText summaryText={"I don't know my Companies House number"}>
-        {/* TODO JMB: replace the span with a paragraph once it's possible to pass an array or similar to Paragraph for the link */}
-        <span>
-          Every limited company has to be registered with Companies House, and
-          will have a company reference number. You can find your company
-          reference number by visiting the{" "}
-          <a
-            href="https://beta.companieshouse.gov.uk/"
-            target="_blank"
-            rel="noopener noreferrer"
-            id="link-companies-house"
-          >
-            Companies House website
-          </a>.
-        </span>
-      </HiddenText>
+      <ContentItem.B_30_15>
+        <HiddenText summaryText={"I don't know my Companies House number"}>
+          {/* TODO JMB: replace the span with a paragraph once it's possible to pass an array or similar to Paragraph for the link */}
+          <span>
+            Every limited company has to be registered with Companies House, and
+            will have a company reference number. You can find your company
+            reference number by visiting the{" "}
+            <a
+              href="https://beta.companieshouse.gov.uk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              id="link-companies-house"
+            >
+              Companies House website
+            </a>.
+          </span>
+        </HiddenText>
+      </ContentItem.B_30_15>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -87,6 +84,6 @@ const LimitedCompanyDetails = props => (
 export default SessionWrapper(LimitedCompanyDetails);
 
 LimitedCompanyDetails.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

@@ -20,7 +20,7 @@ import PropTypes from "prop-types";
 const OperatorAddress = props => (
   <FsaLayout {...props}>
     <BackButton
-      editMode={props.editMode}
+      {...props}
       href={
         props.switches["/operator-address-none-found"]
           ? "/operator-address"
@@ -48,16 +48,13 @@ const OperatorAddress = props => (
       </Paragraph>
     </HiddenText>
 
-    <form
-      action={`/continue/operator-address-manual/${props.editMode}`}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         {props.switches["/operator-address-none-found"] ? (
           <ContentItem.B_30_15>
             <ErrorText id="addressNotFoundByPostcodeMessage">
               {`No addresses found for the postcode "${
-                props.cumulativeAnswers.operator_postcode_find
+                props.cumulativeFullAnswers.operator_postcode_find
               }". Please enter your address manually or go back to try a
               different postcode.`}
             </ErrorText>
@@ -68,7 +65,7 @@ const OperatorAddress = props => (
           <InputField
             input={{
               name: "operator_first_line",
-              defaultValue: props.cumulativeAnswers.operator_first_line,
+              defaultValue: props.cumulativeFullAnswers.operator_first_line,
               autoComplete: "address-line1"
             }}
             id="operator_first_line"
@@ -87,7 +84,7 @@ const OperatorAddress = props => (
           <InputField
             input={{
               name: "operator_street",
-              defaultValue: props.cumulativeAnswers.operator_street,
+              defaultValue: props.cumulativeFullAnswers.operator_street,
               autoComplete: "address-line2"
             }}
             id="operator_street"
@@ -104,7 +101,7 @@ const OperatorAddress = props => (
           <InputField
             input={{
               name: "operator_town",
-              defaultValue: props.cumulativeAnswers.operator_town,
+              defaultValue: props.cumulativeFullAnswers.operator_town,
               autoComplete: "locality"
             }}
             id="operator_town"
@@ -121,7 +118,7 @@ const OperatorAddress = props => (
           <InputField
             input={{
               name: "operator_postcode",
-              defaultValue: props.cumulativeAnswers.operator_postcode,
+              defaultValue: props.cumulativeFullAnswers.operator_postcode,
               autoComplete: "postal-code"
             }}
             id="operator_postcode"
@@ -135,7 +132,7 @@ const OperatorAddress = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -143,6 +140,6 @@ const OperatorAddress = props => (
 export default SessionWrapper(OperatorAddress);
 
 OperatorAddress.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

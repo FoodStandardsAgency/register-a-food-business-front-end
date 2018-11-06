@@ -27,12 +27,14 @@ const mandatoryTableRows = [
   "contactRepresentativeRow",
   "establishmentOpeningDateRow",
   "businessTypeRow",
-  "businessOtherDetailsRow"
+  "businessOtherDetailsRow",
+  "establishmentOpeningDaysRow"
 ];
 
 const editableTableRows = [
   "establishmentAddressTypeRow",
   "establishmentTradingNameRow",
+  "operatorTypeRow",
   "operatorNameRow",
   "operatorCompanyNameRow",
   "operatorCompaniesHouseRow",
@@ -46,7 +48,8 @@ const editableTableRows = [
   "activitiesBusinessImportExportRow",
   "businessTypeRow",
   "activitiesCustomersRow",
-  "businessOtherDetailsRow"
+  "businessOtherDetailsRow",
+  "establishmentOpeningDaysRow"
 ];
 
 // (only optional if it's optional within that page. Does not apply to pages that are optional or could be skipped.)
@@ -79,7 +82,8 @@ const testMandatoryAnswers = {
   establishment_opening_date: "2018-12-06",
   establishment_type: "Mobile or moveable premise",
   business_type: "Livestock farm",
-  business_other_details: "This is the best business in the world"
+  business_other_details: "This is the best business in the world",
+  opening_day_monday: "Monday"
 };
 
 // a supplementary set of all optional answer fields with example data
@@ -102,11 +106,6 @@ const testComprehensiveAnswers = Object.assign(
   testOptionalAnswers
 );
 
-// an invalid answer field
-const testMissingAnswers = {
-  not_expected_on_page: "This should never be rendered"
-};
-
 // the summary table mounted with the complete set of non-optional answers
 const wrapperMinimum = mount(<SummaryTable {...testMandatoryAnswers} />);
 
@@ -118,9 +117,6 @@ const wrapperComprehensive = mount(
 const wrapperApplicationComplete = mount(
   <SummaryTable {...testComprehensiveAnswers} applicationCompletePage={true} />
 );
-
-// the summary table mounted without any valid answers
-const wrapperMissing = mount(<SummaryTable {...testMissingAnswers} />);
 
 describe("<SummaryTable />", () => {
   it("renders without crashing", () => {
@@ -144,9 +140,11 @@ describe("<SummaryTable />", () => {
     it("the number of table rows matches the allTableRows array", () => {
       const rows = wrapperComprehensive
         .find("Row")
-        .findWhere(row => row.prop("className") !== "TITLE")
+        .findWhere(row => {
+          const classNameString = row.prop("className") || "";
+          return classNameString.includes("TITLE") === false;
+        })
         .find("Row");
-
       expect(rows.length).toEqual(allTableRows.length);
     });
 
@@ -207,15 +205,6 @@ describe("<SummaryTable />", () => {
           expect(element.text()).toBe("");
         }
       }
-    });
-  });
-
-  describe("when answers are missing", () => {
-    it("does not render any table rows", () => {
-      allTableRows.forEach(tableRowName => {
-        const row = wrapperMissing.find(`Row#${tableRowName}`);
-        expect(row.length).toBe(0);
-      });
     });
   });
 });

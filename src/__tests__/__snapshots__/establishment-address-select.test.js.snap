@@ -296,7 +296,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-30 {
+.emotion-31 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -314,13 +314,13 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-30 {
+  .emotion-31 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
-.emotion-29 {
+.emotion-30 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -335,7 +335,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-29 {
+  .emotion-30 {
     padding: calc(10px * 0.8) 0;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -414,30 +414,50 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   display: inline-block;
 }
 
-.emotion-28 {
+.emotion-29 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   margin-top: 10px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-28 {
+  .emotion-29 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
     align-items: flex-start;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
     width: 66.66%;
     padding-left: 15px;
     margin-top: 0;
+  }
+}
+
+.emotion-28 {
+  width: 50%;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-28 {
+    width: auto;
   }
 }
 
@@ -450,6 +470,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   border-bottom: 1px solid transparent;
   font-weight: 700;
   line-height: 1;
+  display: inline-block;
 }
 
 .emotion-27:hover {
@@ -500,7 +521,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-31 {
+.emotion-32 {
   border-bottom: 10px solid #005ea5;
   max-width: 960px;
   margin: 0 auto;
@@ -508,18 +529,18 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-31 {
+  .emotion-32 {
     width: calc(100% - 60px);
   }
 }
 
-.emotion-37 {
+.emotion-38 {
   padding-top: 30px;
   text-align: center;
   padding-top: 0;
 }
 
-.emotion-35 {
+.emotion-36 {
   max-width: 960px;
   margin-left: 15px;
   margin-right: 15px;
@@ -527,19 +548,19 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-35 {
+  .emotion-36 {
     margin-left: 30px;
     margin-right: 30px;
   }
 }
 
 @media only screen and (min-width:1020px) {
-  .emotion-35 {
+  .emotion-36 {
     margin: 0 auto;
   }
 }
 
-.emotion-34 {
+.emotion-35 {
   border-bottom: 1px solid #bfc1c3;
   box-sizing: border-box;
   padding-top: 10px;
@@ -553,23 +574,23 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-34 {
+  .emotion-35 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
-.emotion-34 > a {
+.emotion-35 > a {
   color: #005ea5;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-34 {
+  .emotion-35 {
     margin-bottom: 0;
   }
 }
 
-.emotion-32 {
+.emotion-33 {
   display: inline-block;
   margin: 0 8px 0 0;
   padding: 2px 5px;
@@ -592,7 +613,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-32 {
+  .emotion-33 {
     font-size: 16px;
     line-height: 1.25;
     padding-bottom: 0;
@@ -600,17 +621,17 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-32 {
+  .emotion-33 {
     margin-bottom: 0;
   }
 }
 
-.emotion-64 {
+.emotion-68 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-62 {
+.emotion-66 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -623,7 +644,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-62 {
+  .emotion-66 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -631,57 +652,103 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-61 {
-  background: transparent;
-  margin: 0 0 15px;
-  text-indent: 0px;
+.emotion-65 {
+  margin-bottom: 15px;
   box-sizing: border-box;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-61 {
-    width: 100%;
-    margin: 0 15px;
+  .emotion-65 {
+    margin-right: 15px;
+    margin-left: 15px;
   }
 
-  .emotion-61:first-child {
+  .emotion-65:first-child {
     margin-left: 0;
   }
 
-  .emotion-61:last-child {
+  .emotion-65:last-child {
     margin-right: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-61 {
+  .emotion-65 {
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
     width: 66.6667%;
   }
 }
 
-@media only screen and (min-width:641px) {
-
-}
-
-@media only screen and (min-width:641px) {
-
-}
-
-.emotion-40 {
-  padding-bottom: 45px;
+.emotion-42 {
+  padding-bottom: 30px;
 }
 
 @media only screen and (max-width:641px) {
-  .emotion-40 {
-    padding-bottom: 30px;
+  .emotion-42 {
+    padding-bottom: 15px;
   }
 }
 
-.emotion-42 {
+.emotion-41 {
+  font-family: "nta",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.1428571429;
+  display: inline-block;
+  position: relative;
+  margin-top: 15px;
+  padding-left: 14px;
+  border: 0;
+  background-color: transparent;
+  color: #0b0c0c;
+  border-bottom: 1px solid #0b0c0c;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-41 {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}
+
+.emotion-41::before {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-clip-path: polygon(0% 50%,100% 100%,100% 0%);
+  clip-path: polygon(0% 50%,100% 100%,100% 0%);
+  border-width: 5px 6px 5px 0;
+  border-right-color: #0b0c0c;
+  content: '';
+  position: absolute;
+  top: -1px;
+  bottom: 1px;
+  left: 0;
+  margin: auto;
+}
+
+.emotion-41:focus {
+  background-color: #ffbf47;
+  outline: 3px solid #ffbf47;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-41 {
+    margin-bottom: 15px;
+  }
+}
+
+.emotion-44 {
   font-family: "nta",Arial,sans-serif;
   font-weight: bold;
   margin: 0;
@@ -691,7 +758,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-42 {
+  .emotion-44 {
     font-size: 36px;
     line-height: 1.1111111111111112;
     margin-bottom: 20px;
@@ -699,23 +766,22 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media print {
-  .emotion-42 {
+  .emotion-44 {
     font-size: 18px;
   }
 }
 
-.emotion-47 {
+.emotion-49 {
   margin-bottom: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-47 {
+  .emotion-49 {
     margin-bottom: 30px;
   }
 }
 
-.emotion-44 {
-  display: inline-block;
+.emotion-46 {
   cursor: pointer;
   color: #005ea5;
   font-family: "nta",Arial,sans-serif;
@@ -724,23 +790,23 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   margin-bottom: 5px;
 }
 
-.emotion-44:hover {
+.emotion-46:hover {
   color: #2b8cc4;
 }
 
-.emotion-44:focus {
+.emotion-46:focus {
   outline: 4px solid #ffbf47;
   background: #ffbf47;
 }
 
-.emotion-43 {
+.emotion-45 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
 }
 
-.emotion-46 {
+.emotion-48 {
   box-sizing: border-box;
   border-left-style: solid;
   border-left-width: 5px;
@@ -750,12 +816,12 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-46 {
+  .emotion-48 {
     margin-bottom: 0;
   }
 }
 
-.emotion-45 {
+.emotion-47 {
   font-family: "nta",Arial,sans-serif;
   margin: 0;
   font-size: 16px;
@@ -763,11 +829,11 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   margin-bottom: 0;
 }
 
-.emotion-45 > p {
+.emotion-47 > p {
   margin: 0;
 }
 
-.emotion-45 > p > code {
+.emotion-47 > p > code {
   padding: 0.2em 0.4em;
   margin: 0px;
   font-size: 85%;
@@ -775,7 +841,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   border-radius: 3px;
 }
 
-.emotion-45 > pre {
+.emotion-47 > pre {
   padding: 16px;
   overflow: auto;
   font-size: 85%;
@@ -784,7 +850,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   border-radius: 3px;
 }
 
-.emotion-45 > pre > code {
+.emotion-47 > pre > code {
   display: inline;
   padding: 0px;
   margin: 0px;
@@ -795,29 +861,19 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-45 {
+  .emotion-47 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-45 {
+  .emotion-47 {
     margin-bottom: 0;
   }
 }
 
-.emotion-51 {
-  padding-bottom: 30px;
-}
-
-@media only screen and (max-width:641px) {
-  .emotion-51 {
-    padding-bottom: 15px;
-  }
-}
-
-.emotion-48 {
+.emotion-50 {
   font-family: "nta",Arial,sans-serif;
   font-weight: bold;
   margin: 0;
@@ -827,7 +883,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-48 {
+  .emotion-50 {
     font-size: 24px;
     line-height: 1.25;
     margin-bottom: 20px;
@@ -835,12 +891,12 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media print {
-  .emotion-48 {
+  .emotion-50 {
     font-size: 16px;
   }
 }
 
-.emotion-50 {
+.emotion-52 {
   font-family: "nta",Arial,sans-serif;
   font-weight: bold;
   margin: 0;
@@ -850,7 +906,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-50 {
+  .emotion-52 {
     font-size: 19px;
     line-height: 1.3157894736842106;
     margin-bottom: 20px;
@@ -858,12 +914,12 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media print {
-  .emotion-50 {
+  .emotion-52 {
     font-size: 14px;
   }
 }
 
-.emotion-49 {
+.emotion-51 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -873,16 +929,16 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   text-decoration: underline;
 }
 
-.emotion-49:focus {
+.emotion-51:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-49:visited {
+.emotion-51:visited {
   color: #2e358b;
 }
 
-.emotion-56 {
+.emotion-58 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -895,25 +951,25 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   margin-bottom: 20px;
 }
 
-.emotion-56:after {
+.emotion-58:after {
   content: '';
   display: table;
   clear: both;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-56 {
+  .emotion-58 {
     margin-bottom: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-56 {
+  .emotion-58 {
     margin-bottom: 30px;
   }
 }
 
-.emotion-56 span {
+.emotion-58 span {
   font-size: 24px;
   line-height: 1.25em;
   padding: 0;
@@ -922,7 +978,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   font-weight: bold;
 }
 
-.emotion-53 {
+.emotion-55 {
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -937,19 +993,19 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-53 {
+  .emotion-55 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-53 {
+  .emotion-55 {
     margin-bottom: 0;
   }
 }
 
-.emotion-54 {
+.emotion-56 {
   box-sizing: border-box;
   font-family: "nta",Arial,sans-serif;
   font-weight: 400;
@@ -963,7 +1019,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-54 {
+  .emotion-56 {
     width: 50%;
     height: 38px;
     font-size: 19px;
@@ -971,12 +1027,12 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-54:focus {
+.emotion-56:focus {
   outline: 3px solid #ffbf47;
   outline-offset: 0;
 }
 
-.emotion-60 {
+.emotion-64 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -1011,46 +1067,46 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-60:hover {
+.emotion-64:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-60:focus {
+.emotion-64:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-60:active {
+.emotion-64:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-60:visited {
+.emotion-64:visited {
   color: #00823b;
 }
 
-.emotion-60 svg {
+.emotion-64 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-60 {
+  .emotion-64 {
     margin-bottom: 20px;
   }
 }
 
-.emotion-89 {
+.emotion-93 {
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
 }
 
-.emotion-87 {
+.emotion-91 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -1065,7 +1121,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-87 {
+  .emotion-91 {
     width: calc(100% - 60px);
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -1077,7 +1133,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-79 {
+.emotion-83 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1091,11 +1147,11 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   justify-content: flex-end;
 }
 
-.emotion-71 {
+.emotion-75 {
   margin-bottom: 15px;
 }
 
-.emotion-65 {
+.emotion-69 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1110,54 +1166,54 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   font-size: 14px;
 }
 
-.emotion-65:focus {
+.emotion-69:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-65:visited {
+.emotion-69:visited {
   color: #2e358b;
 }
 
 @media (min-width:641px) {
-  .emotion-65 {
+  .emotion-69 {
     display: inline-block;
     font-size: 16px;
   }
 }
 
-.emotion-65:visited {
+.emotion-69:visited {
   color: #454a4c;
 }
 
-.emotion-65:hover {
+.emotion-69:hover {
   color: #171819;
 }
 
-.emotion-73 {
+.emotion-77 {
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-73 {
+  .emotion-77 {
     margin-bottom: 0px;
   }
 }
 
-.emotion-77 {
+.emotion-81 {
   font-size: 14px;
   margin: 0;
   display: inline-block;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-77 {
+  .emotion-81 {
     font-size: 16px;
   }
 }
 
-.emotion-75 {
+.emotion-79 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1168,24 +1224,24 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   color: #454a4c;
 }
 
-.emotion-75:focus {
+.emotion-79:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-75:visited {
+.emotion-79:visited {
   color: #2e358b;
 }
 
-.emotion-75:visited {
+.emotion-79:visited {
   color: #454a4c;
 }
 
-.emotion-75:hover {
+.emotion-79:hover {
   color: #171819;
 }
 
-.emotion-85 {
+.emotion-89 {
   margin: 0px 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1205,13 +1261,13 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
   text-align: center;
 }
 
-.emotion-81 {
+.emotion-85 {
   margin-bottom: 10px;
 }
 
 <div>
   <div
-    className="emotion-38 emotion-39"
+    className="emotion-39 emotion-40"
   >
     <div
       className="emotion-18 emotion-19"
@@ -1283,11 +1339,11 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
       </div>
     </div>
     <div
-      className="emotion-30"
+      className="emotion-31"
       color="#ffffff"
     >
       <div
-        className="emotion-29"
+        className="emotion-30"
       >
         <div
           className="emotion-25"
@@ -1339,37 +1395,41 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
           </div>
         </div>
         <div
-          className="emotion-28"
+          className="emotion-29"
         >
-          <a
-            className="emotion-27"
-            href="/index"
-            target="_blank"
+          <div
+            className="emotion-28"
           >
-            <h3
-              className="emotion-26"
-              mb={0}
+            <a
+              className="emotion-27"
+              href="/index"
+              target="_blank"
             >
-              Register a food business
-            </h3>
-          </a>
+              <h3
+                className="emotion-26"
+                mb={0}
+              >
+                Register a food business
+              </h3>
+            </a>
+          </div>
         </div>
       </div>
     </div>
     <div
-      className="emotion-31"
+      className="emotion-32"
     />
     <div
-      className="emotion-36 emotion-37"
+      className="emotion-37 emotion-38"
     >
       <div
-        className="emotion-35"
+        className="emotion-36"
       >
         <div
-          className="emotion-34"
+          className="emotion-35"
         >
           <strong
-            className="emotion-32"
+            className="emotion-33"
           >
             beta
           </strong>
@@ -1390,50 +1450,51 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-64"
+    className="emotion-68"
   >
     <div
-      className="emotion-35"
+      className="emotion-36"
     >
       <div
-        className="emotion-62"
+        className="emotion-66"
       >
         <div
-          className="emotion-61"
+          className="emotion-65"
         >
           <div
-            className="emotion-40 emotion-41"
+            className="emotion-42 emotion-43"
           >
             <a
-              href="/back/establishment-address-select"
+              className="emotion-41"
+              href="/backundefined"
               id="back-link"
             >
               Back
             </a>
           </div>
           <h2
-            className="emotion-42"
+            className="emotion-44"
           >
             What is the establishment's address?
           </h2>
           <details
-            className="emotion-47"
+            className="emotion-49"
             id="hiddenTextEstablishment"
           >
             <summary
-              className="emotion-44"
+              className="emotion-46"
             >
               <span
-                className="emotion-43"
+                className="emotion-45"
               >
                 What is an establishment?
               </span>
             </summary>
             <div
-              className="emotion-46"
+              className="emotion-48"
             >
               <div
-                className="emotion-45"
+                className="emotion-47"
               >
                 <p>
                   An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.
@@ -1442,27 +1503,26 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
             </div>
           </details>
           <form
-            action="/continue/establishment-address-select"
             method="post"
           >
             <div
-              className="emotion-51 emotion-52"
+              className="emotion-42 emotion-43"
             >
               <div
-                className="emotion-51 emotion-52"
+                className="emotion-42 emotion-43"
               >
                 <h3
-                  className="emotion-48"
+                  className="emotion-50"
                 >
                   Postcode
                 </h3>
                 <h4
-                  className="emotion-50"
+                  className="emotion-52"
                   id="establishmentPostcodeDisplay"
                 >
                   undefined  
                   <a
-                    className="emotion-49"
+                    className="emotion-51"
                     href="/establishment-address"
                     id="changeEstablishmentPostcode"
                   >
@@ -1471,15 +1531,15 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
                 </h4>
               </div>
               <label
-                className="emotion-55 emotion-56"
+                className="emotion-57 emotion-58"
               >
                 <span
-                  className="emotion-53"
+                  className="emotion-55"
                 >
                   Select an address
                 </span>
                 <select
-                  className="emotion-54"
+                  className="emotion-56"
                   defaultValue={0}
                   id="establishmentAddressDropdown"
                   name="establishment_address_selected"
@@ -1489,16 +1549,20 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
                   </option>
                 </select>
               </label>
-              <a
-                className="emotion-49"
-                href="/establishment-address-manual"
-                id="cantFindAddressLink"
+              <div
+                className="emotion-42 emotion-43"
               >
-                I can't find my address in the list
-              </a>
+                <a
+                  className="emotion-51"
+                  href="/establishment-address-manual"
+                  id="cantFindAddressLink"
+                >
+                  I can't find my address in the list
+                </a>
+              </div>
             </div>
             <button
-              className="emotion-60"
+              className="emotion-64"
               disabled={false}
               id="continue-button"
               type="submit"
@@ -1511,20 +1575,20 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-89 emotion-90"
+    className="emotion-93 emotion-94"
     id="fsaFooter"
   >
     <div
-      className="emotion-87 emotion-88"
+      className="emotion-91 emotion-92"
     >
       <div
-        className="emotion-79 emotion-80"
+        className="emotion-83 emotion-84"
       >
         <div
-          className="emotion-71 emotion-72"
+          className="emotion-75 emotion-76"
         >
           <a
-            className="emotion-65 emotion-66"
+            className="emotion-69 emotion-70"
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
             rel="noopener noreferrer"
@@ -1533,7 +1597,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
             Cookies
           </a>
           <a
-            className="emotion-65 emotion-66"
+            className="emotion-69 emotion-70"
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
             rel="noopener noreferrer"
@@ -1542,7 +1606,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
             Privacy
           </a>
           <a
-            className="emotion-65 emotion-66"
+            className="emotion-69 emotion-70"
             href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
             id="feedbackFooter"
             rel="noopener noreferrer"
@@ -1553,7 +1617,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
         </div>
         <div>
           <div
-            className="emotion-73 emotion-74"
+            className="emotion-77 emotion-78"
           >
             <svg
               className="govuk-footer__licence-logo"
@@ -1571,12 +1635,12 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
             </svg>
           </div>
           <p
-            className="emotion-77 emotion-78"
+            className="emotion-81 emotion-82"
           >
             All content is available under the
              
             <a
-              className="emotion-75 emotion-76"
+              className="emotion-79 emotion-80"
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
               rel="noopener noreferrer"
@@ -1590,10 +1654,10 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
         </div>
       </div>
       <div
-        className="emotion-85 emotion-86"
+        className="emotion-89 emotion-90"
       >
         <svg
-          className="emotion-81 emotion-82"
+          className="emotion-85 emotion-86"
           height="102"
           viewBox="0 0 124 102"
           width="124"
@@ -1621,7 +1685,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
           </g>
         </svg>
         <p
-          className="emotion-77 emotion-78"
+          className="emotion-81 emotion-82"
         >
           © Crown copyright
         </p>

@@ -23,8 +23,9 @@ describe("Back route: ", () => {
 
       req = {
         session: {
-          cumulativeAnswers: {},
-          council: "council"
+          cumulativeFullAnswers: {},
+          council: "council",
+          pathConfig: { path: "existing path from session" }
         },
         params: {
           originator: "originator"
@@ -38,8 +39,12 @@ describe("Back route: ", () => {
       handler(req, res);
     });
 
-    it("Should call backController with currentPage, cumulativeAnswers", () => {
-      expect(backController).toHaveBeenCalledWith("/originator", {});
+    it("Should call backController with currentPage, cumulativeFullAnswers, and the path", () => {
+      expect(backController).toHaveBeenCalledWith(
+        "/originator",
+        {},
+        "existing path from session"
+      );
     });
 
     it("Should redirect to previous page", () => {

@@ -10,10 +10,7 @@ import PropTypes from "prop-types";
 
 const EstablishmentTradingName = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editMode={props.editMode}
-      originator="establishment-trading-name"
-    />
+    <BackButton {...props} />
     <Header level={2}>Trading name</Header>
 
     <HiddenText summaryText={"What is an establishment?"}>
@@ -24,16 +21,14 @@ const EstablishmentTradingName = props => (
       </Paragraph>
     </HiddenText>
 
-    <form
-      action={`/continue/establishment-trading-name/${props.editMode}`}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
             input={{
               name: "establishment_trading_name",
-              defaultValue: props.cumulativeAnswers.establishment_trading_name
+              defaultValue:
+                props.cumulativeFullAnswers.establishment_trading_name
             }}
             id="establishment_trading_name"
             hint={[
@@ -49,7 +44,7 @@ const EstablishmentTradingName = props => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -57,6 +52,6 @@ const EstablishmentTradingName = props => (
 export default SessionWrapper(EstablishmentTradingName);
 
 EstablishmentTradingName.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

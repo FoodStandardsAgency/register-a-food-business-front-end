@@ -5,24 +5,23 @@ const continueController = require("../controllers/continue.controller");
 const continueRouter = () => {
   const router = Router();
 
-  router.post("/:originator/:editMode?", (req, res) => {
+  router.post("/:originator", (req, res) => {
     logEmitter.emit(
       "functionCallWith",
       "Routes",
       "/continue route",
       `Originator: ${req.session.council}/${req.params.originator}`
     );
-    const editMode = req.params.editMode === "true" ? true : false;
 
     const response = continueController(
       `/${req.params.originator}`,
-      req.session.cumulativeAnswers,
+      req.session.cumulativeFullAnswers,
       req.body,
       req.session.switches,
-      editMode
+      req.session.pathConfig.path
     );
 
-    req.session.cumulativeAnswers = response.cumulativeAnswers;
+    req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
     req.session.validatorErrors = response.validatorErrors;
     req.session.switches = response.switches;
 

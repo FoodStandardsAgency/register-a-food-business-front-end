@@ -27,7 +27,7 @@ describe("<OperatorAddress />", () => {
       .create(
         <OperatorAddress
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -40,7 +40,7 @@ describe("<OperatorAddress />", () => {
       const wrapper = mount(
         <OperatorAddress
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -57,7 +57,7 @@ describe("<OperatorAddress />", () => {
       const wrapper = mount(
         <OperatorAddress
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -68,13 +68,13 @@ describe("<OperatorAddress />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         operator_postcode_find: "default"
       };
       const wrapper = mount(
         <OperatorAddress
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );

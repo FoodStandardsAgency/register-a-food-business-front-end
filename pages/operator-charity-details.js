@@ -12,10 +12,7 @@ import PropTypes from "prop-types";
 
 const OperatorCharityDetails = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editMode={props.editMode}
-      originator="operator-charity-details"
-    />
+    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -32,16 +29,13 @@ const OperatorCharityDetails = props => (
       </Paragraph>
     </HiddenText>
 
-    <form
-      action={`/continue/operator-charity-details/${props.editMode}`}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
             input={{
               name: "operator_charity_name",
-              defaultValue: props.cumulativeAnswers.operator_charity_name,
+              defaultValue: props.cumulativeFullAnswers.operator_charity_name,
               autoComplete: "off"
             }}
             id="operator_charity_name"
@@ -58,7 +52,7 @@ const OperatorCharityDetails = props => (
           <InputField
             input={{
               name: "operator_charity_number",
-              defaultValue: props.cumulativeAnswers.operator_charity_number,
+              defaultValue: props.cumulativeFullAnswers.operator_charity_number,
               autoComplete: "off"
             }}
             id="operator_charity_number"
@@ -91,7 +85,7 @@ const OperatorCharityDetails = props => (
         </HiddenText>
       </ContentItem.B_30_15>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -99,6 +93,6 @@ const OperatorCharityDetails = props => (
 export default SessionWrapper(OperatorCharityDetails);
 
 OperatorCharityDetails.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

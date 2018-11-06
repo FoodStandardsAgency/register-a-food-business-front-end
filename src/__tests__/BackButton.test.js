@@ -17,33 +17,90 @@ describe("<BackButton />", () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it("gets given the correct originator props", () => {
-    const originator = "previous-page";
+  it("gets given the correct currentPage props", () => {
+    const currentPage = "/previous-page";
 
-    const wrapper = mount(<BackButton originator={originator} />);
+    const wrapper = mount(<BackButton currentPage={currentPage} />);
     const backButton = wrapper.find("BackButton");
-    expect(backButton.props().originator).toBe(originator);
+    expect(backButton.props().currentPage).toBe(currentPage);
   });
 
-  it("gets given the correct editMode props", () => {
-    const editMode = true;
+  describe("given that editModeFirstPage IS truthy", () => {
+    it("gets given the correct editModeFirstPage props", () => {
+      const editModeFirstPage = "/page";
 
-    const wrapper = mount(<BackButton editMode={editMode} />);
-    const backButton = wrapper.find("BackButton");
-    expect(backButton.props().editMode).toBe(editMode);
+      const wrapper = mount(
+        <BackButton editModeFirstPage={editModeFirstPage} />
+      );
+      const backButton = wrapper.find("BackButton");
+      expect(backButton.props().editModeFirstPage).toBe(editModeFirstPage);
+    });
+
+    describe("given that editModeFirstPage IS the same as currentPage", () => {
+      it("should display no content", () => {
+        const editModeFirstPage = "/page";
+        const currentPage = "/page";
+
+        const wrapper = mount(
+          <BackButton
+            currentPage={currentPage}
+            editModeFirstPage={editModeFirstPage}
+          />
+        );
+        const backElement = wrapper.find(`a#back-link`);
+        expect(backElement.length).toBe(0);
+      });
+    });
+
+    describe("given that editModeFirstPage is NOT the same as currentPage", () => {
+      describe("given that props.href IS truthy", () => {
+        it("should display the back button with the passed href URL", () => {
+          const editModeFirstPage = "/page";
+          const currentPage = "/another";
+
+          const wrapper = mount(
+            <BackButton
+              currentPage={currentPage}
+              editModeFirstPage={editModeFirstPage}
+              href="example"
+            />
+          );
+          const backElement = wrapper.find(`a#back-link`);
+          expect(backElement.props().href).toBe("example");
+        });
+      });
+      describe("given that props.href is NOT truthy", () => {
+        it("should display the back button with the full edit route URL", () => {
+          const editModeFirstPage = "/page";
+          const currentPage = "/another";
+
+          const wrapper = mount(
+            <BackButton
+              currentPage={currentPage}
+              editModeFirstPage={editModeFirstPage}
+            />
+          );
+          const backElement = wrapper.find(`a#back-link`);
+          expect(backElement.props().href).toBe("/edit/back/another?edit=page");
+        });
+      });
+    });
   });
 
-  it("It displays no content when given that editMode is true", () => {
-    const editMode = true;
-
-    const wrapper = mount(<BackButton editMode={editMode} />);
-    const backElement = wrapper.find(`#back-link`);
-    expect(backElement.length).toBe(0);
-  });
-
-  it("passes the given custom href if provided", () => {
-    const wrapper = mount(<BackButton href="example" />);
-    const backElement = wrapper.find(`#back-link`);
-    expect(backElement.props().href).toBe("example");
+  describe("given that editModeFirstPage is NOT truthy", () => {
+    describe("given that props.href IS truthy", () => {
+      it("should display the back button with the passed href URL", () => {
+        const wrapper = mount(<BackButton href="example" />);
+        const backElement = wrapper.find(`a#back-link`);
+        expect(backElement.props().href).toBe("example");
+      });
+    });
+    describe("given that props.href is NOT truthy", () => {
+      it("should display the back button with the full back route URL", () => {
+        const wrapper = mount(<BackButton currentPage="/example" />);
+        const backElement = wrapper.find(`a#back-link`);
+        expect(backElement.props().href).toBe("/back/example");
+      });
+    });
   });
 });

@@ -11,8 +11,14 @@ const submitController = require("./submit.controller");
 const testLcUrl = "example-lc";
 const testSubmissionData = { some: "data" };
 const testAddressLookups = {};
+const testRegDataVersion = "1.0.0";
 
-const submitArgs = [testLcUrl, testSubmissionData, testAddressLookups];
+const submitArgs = [
+  testLcUrl,
+  testSubmissionData,
+  testAddressLookups,
+  testRegDataVersion
+];
 
 let response;
 
@@ -26,7 +32,12 @@ describe("Function: submitController: ", () => {
   describe("When given empty submission data", () => {
     beforeEach(async () => {
       try {
-        response = await submitController(testLcUrl, {}, testAddressLookups);
+        response = await submitController(
+          testLcUrl,
+          {},
+          testAddressLookups,
+          testRegDataVersion
+        );
       } catch (err) {
         response = err;
       }
@@ -70,6 +81,14 @@ describe("Function: submitController: ", () => {
       response = await submitController(...submitArgs);
     });
 
+    it("Should call the submit service function with the correct args", () => {
+      expect(submit).toHaveBeenLastCalledWith(
+        {
+          transformedDataExample: "value"
+        },
+        testRegDataVersion
+      );
+    });
     it("Should set redirectRoute to summary-confirmation", () => {
       expect(response.redirectRoute).toBe("/summary-confirmation");
     });
@@ -79,11 +98,11 @@ describe("Function: submitController: ", () => {
     it("Should should return fsa_rn", () => {
       expect(response.fsaRegistrationNumber).toBe("D9YC4B-KFK5JE-PKR7VX");
     });
-    it("Should should return email_fbo", () => {
-      expect(response.email_fbo.recipient).toBe("fbo@example.com");
+    it("Should should return emailFbo", () => {
+      expect(response.emailFbo.recipient).toBe("fbo@example.com");
     });
-    it("Should should return lc_config", () => {
-      expect(response.lc_config.example).toBe("data");
+    it("Should should return lcConfig", () => {
+      expect(response.lcConfig.example).toBe("data");
     });
   });
 });

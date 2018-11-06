@@ -296,7 +296,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-30 {
+.emotion-31 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -314,13 +314,13 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-30 {
+  .emotion-31 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
-.emotion-29 {
+.emotion-30 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -335,7 +335,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-29 {
+  .emotion-30 {
     padding: calc(10px * 0.8) 0;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -414,30 +414,50 @@ exports[`<Index /> matches the previous snapshot 1`] = `
   display: inline-block;
 }
 
-.emotion-28 {
+.emotion-29 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   margin-top: 10px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-28 {
+  .emotion-29 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
     align-items: flex-start;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
     width: 66.66%;
     padding-left: 15px;
     margin-top: 0;
+  }
+}
+
+.emotion-28 {
+  width: 50%;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-28 {
+    width: auto;
   }
 }
 
@@ -450,6 +470,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
   border-bottom: 1px solid transparent;
   font-weight: 700;
   line-height: 1;
+  display: inline-block;
 }
 
 .emotion-27:hover {
@@ -500,7 +521,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-31 {
+.emotion-32 {
   border-bottom: 10px solid #005ea5;
   max-width: 960px;
   margin: 0 auto;
@@ -508,18 +529,18 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-31 {
+  .emotion-32 {
     width: calc(100% - 60px);
   }
 }
 
-.emotion-37 {
+.emotion-38 {
   padding-top: 30px;
   text-align: center;
   padding-top: 0;
 }
 
-.emotion-35 {
+.emotion-36 {
   max-width: 960px;
   margin-left: 15px;
   margin-right: 15px;
@@ -527,19 +548,19 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-35 {
+  .emotion-36 {
     margin-left: 30px;
     margin-right: 30px;
   }
 }
 
 @media only screen and (min-width:1020px) {
-  .emotion-35 {
+  .emotion-36 {
     margin: 0 auto;
   }
 }
 
-.emotion-34 {
+.emotion-35 {
   border-bottom: 1px solid #bfc1c3;
   box-sizing: border-box;
   padding-top: 10px;
@@ -553,23 +574,23 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-34 {
+  .emotion-35 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
-.emotion-34 > a {
+.emotion-35 > a {
   color: #005ea5;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-34 {
+  .emotion-35 {
     margin-bottom: 0;
   }
 }
 
-.emotion-32 {
+.emotion-33 {
   display: inline-block;
   margin: 0 8px 0 0;
   padding: 2px 5px;
@@ -592,7 +613,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-32 {
+  .emotion-33 {
     font-size: 16px;
     line-height: 1.25;
     padding-bottom: 0;
@@ -600,17 +621,17 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-32 {
+  .emotion-33 {
     margin-bottom: 0;
   }
 }
 
-.emotion-61 {
+.emotion-62 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-59 {
+.emotion-60 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -623,7 +644,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-59 {
+  .emotion-60 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -631,47 +652,37 @@ exports[`<Index /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-58 {
-  background: transparent;
-  margin: 0 0 15px;
-  text-indent: 0px;
+.emotion-59 {
+  margin-bottom: 15px;
   box-sizing: border-box;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-58 {
-    width: 100%;
-    margin: 0 15px;
+  .emotion-59 {
+    margin-right: 15px;
+    margin-left: 15px;
   }
 
-  .emotion-58:first-child {
+  .emotion-59:first-child {
     margin-left: 0;
   }
 
-  .emotion-58:last-child {
+  .emotion-59:last-child {
     margin-right: 0;
   }
 }
 
 @media only screen and (min-width:641px) {
-
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-58 {
+  .emotion-59 {
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
     width: 66.6667%;
   }
 }
 
-@media only screen and (min-width:641px) {
-
-}
-
-@media only screen and (min-width:641px) {
-
-}
-
-.emotion-40 {
+.emotion-41 {
   font-family: "nta",Arial,sans-serif;
   font-weight: bold;
   margin: 0;
@@ -681,7 +692,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-40 {
+  .emotion-41 {
     font-size: 48px;
     line-height: 1.0416666666666667;
     margin-bottom: 30px;
@@ -689,70 +700,18 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media print {
-  .emotion-40 {
+  .emotion-41 {
     font-size: 18px;
   }
 }
 
-.emotion-43 {
+.emotion-44 {
   padding-bottom: 30px;
 }
 
 @media only screen and (max-width:641px) {
-  .emotion-43 {
+  .emotion-44 {
     padding-bottom: 15px;
-  }
-}
-
-.emotion-41 {
-  font-family: "nta",Arial,sans-serif;
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.25;
-  margin-bottom: 15px;
-}
-
-.emotion-41 > p {
-  margin: 0;
-}
-
-.emotion-41 > p > code {
-  padding: 0.2em 0.4em;
-  margin: 0px;
-  font-size: 85%;
-  background-color: rgba(27,31,35,0.05);
-  border-radius: 3px;
-}
-
-.emotion-41 > pre {
-  padding: 16px;
-  overflow: auto;
-  font-size: 85%;
-  line-height: 1.45;
-  background-color: #f6f8fa;
-  border-radius: 3px;
-}
-
-.emotion-41 > pre > code {
-  display: inline;
-  padding: 0px;
-  margin: 0px;
-  border: 0px;
-  overflow: visible;
-  line-height: inherit;
-  word-wrap: normal;
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-41 {
-    font-size: 19px;
-    line-height: 1.3;
-  }
-}
-
-@media only screen and (min-width:641px) {
-  .emotion-41 {
-    margin-bottom: 20px;
   }
 }
 
@@ -761,7 +720,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
   margin: 0;
   font-size: 16px;
   line-height: 1.25;
-  margin-bottom: 0;
+  margin-bottom: 15px;
 }
 
 .emotion-42 > p {
@@ -804,11 +763,63 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 
 @media only screen and (min-width:641px) {
   .emotion-42 {
+    margin-bottom: 20px;
+  }
+}
+
+.emotion-43 {
+  font-family: "nta",Arial,sans-serif;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.25;
+  margin-bottom: 0;
+}
+
+.emotion-43 > p {
+  margin: 0;
+}
+
+.emotion-43 > p > code {
+  padding: 0.2em 0.4em;
+  margin: 0px;
+  font-size: 85%;
+  background-color: rgba(27,31,35,0.05);
+  border-radius: 3px;
+}
+
+.emotion-43 > pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+}
+
+.emotion-43 > pre > code {
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-43 {
+    font-size: 19px;
+    line-height: 1.3;
+  }
+}
+
+@media only screen and (min-width:641px) {
+  .emotion-43 {
     margin-bottom: 0;
   }
 }
 
-.emotion-46 {
+.emotion-47 {
   box-sizing: border-box;
   border-left-style: solid;
   border-left-width: 10px;
@@ -818,12 +829,12 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-46 {
+  .emotion-47 {
     margin-bottom: 30px;
   }
 }
 
-.emotion-47 {
+.emotion-48 {
   font-family: "nta",Arial,sans-serif;
   font-weight: bold;
   margin: 0;
@@ -834,7 +845,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-47 {
+  .emotion-48 {
     font-size: 24px;
     line-height: 1.25;
     margin-bottom: 20px;
@@ -842,18 +853,18 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media print {
-  .emotion-47 {
+  .emotion-48 {
     font-size: 16px;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-47 {
+  .emotion-48 {
     margin-bottom: 5px;
   }
 }
 
-.emotion-57 {
+.emotion-58 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -892,46 +903,46 @@ exports[`<Index /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-57:hover {
+.emotion-58:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-57:focus {
+.emotion-58:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-57:active {
+.emotion-58:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-57:visited {
+.emotion-58:visited {
   color: #00823b;
 }
 
-.emotion-57 svg {
+.emotion-58 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-57 {
+  .emotion-58 {
     margin-bottom: 20px;
   }
 }
 
-.emotion-86 {
+.emotion-87 {
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
 }
 
-.emotion-84 {
+.emotion-85 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -946,7 +957,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-84 {
+  .emotion-85 {
     width: calc(100% - 60px);
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -958,7 +969,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-76 {
+.emotion-77 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -972,11 +983,11 @@ exports[`<Index /> matches the previous snapshot 1`] = `
   justify-content: flex-end;
 }
 
-.emotion-68 {
+.emotion-69 {
   margin-bottom: 15px;
 }
 
-.emotion-62 {
+.emotion-63 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -991,54 +1002,54 @@ exports[`<Index /> matches the previous snapshot 1`] = `
   font-size: 14px;
 }
 
-.emotion-62:focus {
+.emotion-63:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-62:visited {
+.emotion-63:visited {
   color: #2e358b;
 }
 
 @media (min-width:641px) {
-  .emotion-62 {
+  .emotion-63 {
     display: inline-block;
     font-size: 16px;
   }
 }
 
-.emotion-62:visited {
+.emotion-63:visited {
   color: #454a4c;
 }
 
-.emotion-62:hover {
+.emotion-63:hover {
   color: #171819;
 }
 
-.emotion-70 {
+.emotion-71 {
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-70 {
+  .emotion-71 {
     margin-bottom: 0px;
   }
 }
 
-.emotion-74 {
+.emotion-75 {
   font-size: 14px;
   margin: 0;
   display: inline-block;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-74 {
+  .emotion-75 {
     font-size: 16px;
   }
 }
 
-.emotion-72 {
+.emotion-73 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1049,24 +1060,24 @@ exports[`<Index /> matches the previous snapshot 1`] = `
   color: #454a4c;
 }
 
-.emotion-72:focus {
+.emotion-73:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-72:visited {
+.emotion-73:visited {
   color: #2e358b;
 }
 
-.emotion-72:visited {
+.emotion-73:visited {
   color: #454a4c;
 }
 
-.emotion-72:hover {
+.emotion-73:hover {
   color: #171819;
 }
 
-.emotion-82 {
+.emotion-83 {
   margin: 0px 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1086,13 +1097,13 @@ exports[`<Index /> matches the previous snapshot 1`] = `
   text-align: center;
 }
 
-.emotion-78 {
+.emotion-79 {
   margin-bottom: 10px;
 }
 
 <div>
   <div
-    className="emotion-38 emotion-39"
+    className="emotion-39 emotion-40"
   >
     <div
       className="emotion-18 emotion-19"
@@ -1164,11 +1175,11 @@ exports[`<Index /> matches the previous snapshot 1`] = `
       </div>
     </div>
     <div
-      className="emotion-30"
+      className="emotion-31"
       color="#ffffff"
     >
       <div
-        className="emotion-29"
+        className="emotion-30"
       >
         <div
           className="emotion-25"
@@ -1220,37 +1231,41 @@ exports[`<Index /> matches the previous snapshot 1`] = `
           </div>
         </div>
         <div
-          className="emotion-28"
+          className="emotion-29"
         >
-          <a
-            className="emotion-27"
-            href="/index"
-            target="_blank"
+          <div
+            className="emotion-28"
           >
-            <h3
-              className="emotion-26"
-              mb={0}
+            <a
+              className="emotion-27"
+              href="/index"
+              target="_blank"
             >
-              Register a food business
-            </h3>
-          </a>
+              <h3
+                className="emotion-26"
+                mb={0}
+              >
+                Register a food business
+              </h3>
+            </a>
+          </div>
         </div>
       </div>
     </div>
     <div
-      className="emotion-31"
+      className="emotion-32"
     />
     <div
-      className="emotion-36 emotion-37"
+      className="emotion-37 emotion-38"
     >
       <div
-        className="emotion-35"
+        className="emotion-36"
       >
         <div
-          className="emotion-34"
+          className="emotion-35"
         >
           <strong
-            className="emotion-32"
+            className="emotion-33"
           >
             beta
           </strong>
@@ -1271,37 +1286,37 @@ exports[`<Index /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-61"
+    className="emotion-62"
   >
     <div
-      className="emotion-35"
+      className="emotion-36"
     >
       <div
-        className="emotion-59"
+        className="emotion-60"
       >
         <div
-          className="emotion-58"
+          className="emotion-59"
         >
           <h1
-            className="emotion-40"
+            className="emotion-41"
           >
             Register a food business
           </h1>
           <div
-            className="emotion-43 emotion-44"
+            className="emotion-44 emotion-45"
           >
             <div
-              className="emotion-43 emotion-44"
+              className="emotion-44 emotion-45"
             >
               <div
-                className="emotion-41"
+                className="emotion-42"
               >
                 <p>
                   All food businesses that regularly produce or serve food to the public need to be registered with their Local Authority. This service will send your registration to the correct local authority based on your trading location.
                 </p>
               </div>
               <div
-                className="emotion-42"
+                className="emotion-43"
               >
                 <p>
                   Food businesses should only register 
@@ -1313,10 +1328,10 @@ exports[`<Index /> matches the previous snapshot 1`] = `
               </div>
             </div>
             <div
-              className="bold emotion-46"
+              className="bold emotion-47"
             >
               <div
-                className="emotion-42"
+                className="emotion-43"
               >
                 <p>
                   During this registration, you may come across a few specialist terms, which we have described below:
@@ -1324,16 +1339,16 @@ exports[`<Index /> matches the previous snapshot 1`] = `
               </div>
             </div>
             <div
-              className="emotion-43 emotion-44"
+              className="emotion-44 emotion-45"
             >
               <h3
-                className="emotion-47"
+                className="emotion-48"
                 mb={1}
               >
                 Food business operator
               </h3>
               <div
-                className="emotion-42"
+                className="emotion-43"
               >
                 <p>
                   The operator is the person, charity or company who makes the decisions about the food business, what it serves and how it operates.
@@ -1341,16 +1356,16 @@ exports[`<Index /> matches the previous snapshot 1`] = `
               </div>
             </div>
             <div
-              className="emotion-43 emotion-44"
+              className="emotion-44 emotion-45"
             >
               <h3
-                className="emotion-47"
+                className="emotion-48"
                 mb={1}
               >
                 Establishment
               </h3>
               <div
-                className="emotion-42"
+                className="emotion-43"
               >
                 <p>
                   The establishment is the location or site of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.
@@ -1363,7 +1378,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
             method="post"
           >
             <button
-              className="emotion-57"
+              className="emotion-58"
               disabled={false}
               id="continue-button"
               type="submit"
@@ -1401,20 +1416,20 @@ exports[`<Index /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-86 emotion-87"
+    className="emotion-87 emotion-88"
     id="fsaFooter"
   >
     <div
-      className="emotion-84 emotion-85"
+      className="emotion-85 emotion-86"
     >
       <div
-        className="emotion-76 emotion-77"
+        className="emotion-77 emotion-78"
       >
         <div
-          className="emotion-68 emotion-69"
+          className="emotion-69 emotion-70"
         >
           <a
-            className="emotion-62 emotion-63"
+            className="emotion-63 emotion-64"
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
             rel="noopener noreferrer"
@@ -1423,7 +1438,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
             Cookies
           </a>
           <a
-            className="emotion-62 emotion-63"
+            className="emotion-63 emotion-64"
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
             rel="noopener noreferrer"
@@ -1432,7 +1447,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
             Privacy
           </a>
           <a
-            className="emotion-62 emotion-63"
+            className="emotion-63 emotion-64"
             href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
             id="feedbackFooter"
             rel="noopener noreferrer"
@@ -1443,7 +1458,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
         </div>
         <div>
           <div
-            className="emotion-70 emotion-71"
+            className="emotion-71 emotion-72"
           >
             <svg
               className="govuk-footer__licence-logo"
@@ -1461,12 +1476,12 @@ exports[`<Index /> matches the previous snapshot 1`] = `
             </svg>
           </div>
           <p
-            className="emotion-74 emotion-75"
+            className="emotion-75 emotion-76"
           >
             All content is available under the
              
             <a
-              className="emotion-72 emotion-73"
+              className="emotion-73 emotion-74"
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
               rel="noopener noreferrer"
@@ -1480,10 +1495,10 @@ exports[`<Index /> matches the previous snapshot 1`] = `
         </div>
       </div>
       <div
-        className="emotion-82 emotion-83"
+        className="emotion-83 emotion-84"
       >
         <svg
-          className="emotion-78 emotion-79"
+          className="emotion-79 emotion-80"
           height="102"
           viewBox="0 0 124 102"
           width="124"
@@ -1511,7 +1526,7 @@ exports[`<Index /> matches the previous snapshot 1`] = `
           </g>
         </svg>
         <p
-          className="emotion-74 emotion-75"
+          className="emotion-75 emotion-76"
         >
           © Crown copyright
         </p>

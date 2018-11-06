@@ -10,10 +10,7 @@ import PropTypes from "prop-types";
 
 const EstablishmentAddressType = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editMode={props.editMode}
-      originator="establishment-address-type"
-    />
+    <BackButton {...props} />
     <Header level={2}>Where is this establishment located?</Header>
 
     <HiddenText summaryText={"What is an establishment?"}>
@@ -24,10 +21,7 @@ const EstablishmentAddressType = props => (
       </Paragraph>
     </HiddenText>
 
-    <form
-      action={`/continue/establishment-address-type/${props.editMode}`}
-      method="post"
-    >
+    <form action={props.formAction} method="post">
       <ContentItem.B_45_30>
         <MultiChoice
           label=""
@@ -41,7 +35,7 @@ const EstablishmentAddressType = props => (
             value="Place of business or commercial premises"
             id="establishment_type_business_commercial"
             defaultChecked={
-              props.cumulativeAnswers.establishment_type ===
+              props.cumulativeFullAnswers.establishment_type ===
               "Place of business or commercial premises"
             }
           >
@@ -52,7 +46,7 @@ const EstablishmentAddressType = props => (
             value="Mobile or moveable premises"
             id="establishment_type_mobile_moveable"
             defaultChecked={
-              props.cumulativeAnswers.establishment_type ===
+              props.cumulativeFullAnswers.establishment_type ===
               "Mobile or moveable premises"
             }
           >
@@ -63,7 +57,7 @@ const EstablishmentAddressType = props => (
             value="Home or domestic premises"
             id="establishment_type_home_domestic"
             defaultChecked={
-              props.cumulativeAnswers.establishment_type ===
+              props.cumulativeFullAnswers.establishment_type ===
               "Home or domestic premises"
             }
           >
@@ -72,7 +66,7 @@ const EstablishmentAddressType = props => (
         </MultiChoice>
       </ContentItem.B_45_30>
 
-      <ContinueButton editMode={props.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -80,6 +74,6 @@ const EstablishmentAddressType = props => (
 export default SessionWrapper(EstablishmentAddressType);
 
 EstablishmentAddressType.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

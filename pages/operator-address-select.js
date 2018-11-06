@@ -13,10 +13,7 @@ const AnchorTag = asAnchor("a");
 
 const OperatorAddressLookup = props => (
   <FsaLayout {...props}>
-    <BackButton
-      editMode={props.switches.editMode}
-      originator="operator-address-select"
-    />
+    <BackButton {...props} />
     <Header level={2}>What is the operator's address?</Header>
     <ContentItem.B_30_15>
       <HintText>
@@ -37,12 +34,12 @@ const OperatorAddressLookup = props => (
       </Paragraph>
     </HiddenText>
 
-    <form action="/continue/operator-address-select" method="post">
+    <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Header level={3}>Postcode</Header>
           <Header id="operatorPostcodeDisplay" level={4}>
-            {`${props.cumulativeAnswers.operator_postcode_find} \u2007`}
+            {`${props.cumulativeFullAnswers.operator_postcode_find} \u2007`}
             <AnchorTag id="changeOperatorPostcode" href="/operator-address">
               Change
             </AnchorTag>
@@ -54,7 +51,8 @@ const OperatorAddressLookup = props => (
           input={{
             id: "operatorAddressDropdown",
             name: "operator_address_selected",
-            defaultValue: props.cumulativeAnswers.operator_address_selected || 0
+            defaultValue:
+              props.cumulativeFullAnswers.operator_address_selected || 0
           }}
         >
           {props.addressLookups.operator_postcode_find ? (
@@ -69,12 +67,15 @@ const OperatorAddressLookup = props => (
             <option>No addresses found</option>
           )}
         </SelectWithHeader>
-        <AnchorTag id="cantFindAddressLink" href="/operator-address-manual">
-          I can't find my address in the list
-        </AnchorTag>
+
+        <ContentItem.B_30_15>
+          <AnchorTag id="cantFindAddressLink" href="/operator-address-manual">
+            I can't find my address in the list
+          </AnchorTag>
+        </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton editMode={props.switches.editMode} />
+      <ContinueButton {...props} />
     </form>
   </FsaLayout>
 );
@@ -82,5 +83,5 @@ const OperatorAddressLookup = props => (
 export default SessionWrapper(OperatorAddressLookup);
 
 OperatorAddressLookup.propTypes = {
-  cumulativeAnswers: PropTypes.objectOf(PropTypes.string)
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string)
 };

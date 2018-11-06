@@ -1,9 +1,13 @@
 module.exports = {
   setupFiles: ["<rootDir>/jest.setup.js"],
+  reporters: [
+    "default",
+    ["jest-junit", { output: `./reports/TEST-${process.env.TEST_TYPE}.xml` }]
+  ],
+  coverageReporters: ["cobertura", "lcov", "json", "text"],
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
   moduleNameMapper: {
     "\\.(css)$": "<rootDir>/src/__mocks__/styleMock.js",
-    "path.json": "<rootDir>/src/__mocks__/pathMock.json",
     "schema.js": "<rootDir>/src/__mocks__/schemaMock.js",
     "logging.service": "<rootDir>/src/__mocks__/logging.service.js",
     "statusEmitter.service": "<rootDir>/src/__mocks__/statusEmitter.service.js"
@@ -26,7 +30,8 @@ module.exports = {
     "!src/components/NormalizeCSS.js",
     "!src/components/AccessibleAutocompleteCSS.js",
     "!src/**/*.double.js",
-    "!tests/**/*.js"
+    "!tests/**/*.js",
+    "!src/server/routes/*.route.js"
   ],
   coverageThreshold: {
     global: {

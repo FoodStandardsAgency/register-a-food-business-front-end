@@ -22,14 +22,14 @@ const switchesRouter = () => {
     const response = switchesController(
       currentSwitchState,
       action,
-      req.session.cumulativeAnswers,
+      req.session.cumulativeFullAnswers,
       req.body,
       `/${req.params.originator}`
     );
 
     req.session.switches[switchName] = response.newSwitchState;
 
-    req.session.cumulativeAnswers = response.cumulativeAnswers;
+    req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
 
     logEmitter.emit(
       "functionSuccess",

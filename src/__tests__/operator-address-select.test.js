@@ -24,7 +24,7 @@ describe("<OperatorAddressLookup />", () => {
     const tree = renderer
       .create(
         <OperatorAddressLookup
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
           addressLookups={testAddressLookup}
         />
@@ -37,7 +37,7 @@ describe("<OperatorAddressLookup />", () => {
     it("renders even when the addressLookups key is not found", () => {
       const wrapper = mount(
         <OperatorAddressLookup
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
           addressLookups={testAddressLookup}
         />
@@ -47,12 +47,12 @@ describe("<OperatorAddressLookup />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         operator_postcode_find: "default"
       };
       const wrapper = mount(
         <OperatorAddressLookup
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
           addressLookups={testAddressLookup}
         />
@@ -100,7 +100,7 @@ describe("<OperatorAddressLookup />", () => {
 
       const wrapper = mount(
         <OperatorAddressLookup
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
           addressLookups={exampleAddressLookup}
         />

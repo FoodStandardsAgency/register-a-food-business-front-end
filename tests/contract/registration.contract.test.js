@@ -1,9 +1,7 @@
-process.env.SUBMIT_URL =
-  "http://localhost:4000/api/registration/createNewRegistration";
-
 const {
   sendRequest
 } = require("../../src/server/connectors/registration/registration.connector");
+
 const validBody = {
   registration: {
     establishment: {
@@ -129,8 +127,8 @@ describe("Registration contract", () => {
         expect(realJsonResponse.reg_submission_date).toEqual(
           doubleJsonResponse.reg_submission_date
         );
-        expect(typeof realJsonResponse.email_fbo.recipient).toEqual(
-          typeof doubleJsonResponse.email_fbo.recipient
+        expect(typeof realJsonResponse.emailFbo.recipient).toEqual(
+          typeof doubleJsonResponse.emailFbo.recipient
         );
         expect(
           typeof realJsonResponse.email_lc.hygieneAndStandards.recipient
@@ -138,15 +136,15 @@ describe("Registration contract", () => {
           typeof doubleJsonResponse.email_lc.hygieneAndStandards.recipient
         );
         expect(
-          typeof realJsonResponse.lc_config.hygieneAndStandards.local_council
+          typeof realJsonResponse.lcConfig.hygieneAndStandards.local_council
         ).toEqual(
-          typeof doubleJsonResponse.lc_config.hygieneAndStandards.local_council
+          typeof doubleJsonResponse.lcConfig.hygieneAndStandards.local_council
         );
         expect(
-          typeof realJsonResponse.lc_config.hygieneAndStandards
+          typeof realJsonResponse.lcConfig.hygieneAndStandards
             .local_council_email
         ).toEqual(
-          typeof doubleJsonResponse.lc_config.hygieneAndStandards
+          typeof doubleJsonResponse.lcConfig.hygieneAndStandards
             .local_council_email
         );
       });
@@ -168,24 +166,24 @@ describe("Registration contract", () => {
         expect(typeof realJsonResponse.email_lc.hygiene.recipient).toEqual(
           typeof doubleJsonResponse.email_lc.hygiene.recipient
         );
-        expect(typeof realJsonResponse.lc_config.hygiene.local_council).toEqual(
-          typeof doubleJsonResponse.lc_config.hygiene.local_council
+        expect(typeof realJsonResponse.lcConfig.hygiene.local_council).toEqual(
+          typeof doubleJsonResponse.lcConfig.hygiene.local_council
         );
         expect(
-          typeof realJsonResponse.lc_config.hygiene.local_council_email
+          typeof realJsonResponse.lcConfig.hygiene.local_council_email
         ).toEqual(
-          typeof doubleJsonResponse.lc_config.hygiene.local_council_email
+          typeof doubleJsonResponse.lcConfig.hygiene.local_council_email
         );
         expect(typeof realJsonResponse.email_lc.standards.recipient).toEqual(
           typeof doubleJsonResponse.email_lc.standards.recipient
         );
         expect(
-          typeof realJsonResponse.lc_config.standards.local_council
-        ).toEqual(typeof doubleJsonResponse.lc_config.standards.local_council);
+          typeof realJsonResponse.lcConfig.standards.local_council
+        ).toEqual(typeof doubleJsonResponse.lcConfig.standards.local_council);
         expect(
-          typeof realJsonResponse.lc_config.standards.local_council_email
+          typeof realJsonResponse.lcConfig.standards.local_council_email
         ).toEqual(
-          typeof doubleJsonResponse.lc_config.standards.local_council_email
+          typeof doubleJsonResponse.lcConfig.standards.local_council_email
         );
       });
     });

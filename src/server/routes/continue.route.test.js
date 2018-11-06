@@ -13,14 +13,14 @@ describe("Continue route: ", () => {
   beforeEach(() => {
     router = continueRouter();
   });
-  describe("POST to /continue/:originator/:editMode?", () => {
+  describe("POST to /continue/:originator", () => {
     let req, res;
 
     beforeEach(() => {
       continueController.mockImplementation(() => ({
         validatorErrors: {},
         redirectRoute: "/newPage",
-        cumulativeAnswers: {
+        cumulativeFullAnswers: {
           new: "answers"
         },
         switches: { exampleSwitch: true }
@@ -30,17 +30,17 @@ describe("Continue route: ", () => {
 
       req = {
         session: {
-          cumulativeAnswers: {},
+          cumulativeFullAnswers: {},
           switches: {},
           council: "council",
+          pathConfig: { path: "existing path from session" },
           save: cb => {
             cb();
           }
         },
         body: "body",
         params: {
-          originator: "originator",
-          editMode: "false"
+          originator: "originator"
         }
       };
 
@@ -51,81 +51,23 @@ describe("Continue route: ", () => {
       handler(req, res);
     });
 
-    it("Should call continueController with currentPage, cumulativeAnswers, body, switches, and editMode", () => {
+    it("Should call continueController with currentPage, cumulativeFullAnswers, body, switches, and path", () => {
       expect(continueController).toHaveBeenCalledWith(
         "/originator",
         {},
         "body",
         {},
-        false
+        "existing path from session"
       );
     });
 
     it("Should update session", () => {
-      expect(req.session.cumulativeAnswers).toEqual({ new: "answers" });
+      expect(req.session.cumulativeFullAnswers).toEqual({ new: "answers" });
       expect(req.session.switches).toEqual({ exampleSwitch: true });
     });
 
     it("Should redirect to next page", () => {
       expect(res.redirect).toBeCalledWith("/new/council/newPage");
-    });
-
-    describe("given that editMode is on", () => {
-      let req, res;
-
-      beforeEach(() => {
-        continueController.mockImplementation(() => ({
-          validatorErrors: {},
-          redirectRoute: "/newPage",
-          cumulativeAnswers: {
-            new: "answers"
-          },
-          switches: { exampleSwitch: true }
-        }));
-
-        handler = router.post.mock.calls[0][1];
-
-        req = {
-          session: {
-            cumulativeAnswers: {},
-            switches: {},
-            council: "council",
-            save: cb => {
-              cb();
-            }
-          },
-          body: "body",
-          params: {
-            originator: "originator",
-            editMode: "true"
-          }
-        };
-
-        res = {
-          redirect: jest.fn()
-        };
-
-        handler(req, res);
-      });
-
-      it("Should call continueController with editMode on", () => {
-        expect(continueController).toHaveBeenCalledWith(
-          "/originator",
-          {},
-          "body",
-          {},
-          true
-        );
-      });
-
-      it("Should update session", () => {
-        expect(req.session.cumulativeAnswers).toEqual({ new: "answers" });
-        expect(req.session.switches).toEqual({ exampleSwitch: true });
-      });
-
-      it("Should redirect to next page", () => {
-        expect(res.redirect).toBeCalledWith("/new/council/newPage");
-      });
     });
 
     describe("given that the controller response redirects to submit", () => {
@@ -135,7 +77,7 @@ describe("Continue route: ", () => {
         continueController.mockImplementation(() => ({
           validatorErrors: {},
           redirectRoute: "/submit",
-          cumulativeAnswers: {
+          cumulativeFullAnswers: {
             new: "answers"
           },
           switches: { exampleSwitch: true }
@@ -145,17 +87,17 @@ describe("Continue route: ", () => {
 
         req = {
           session: {
-            cumulativeAnswers: {},
+            cumulativeFullAnswers: {},
             switches: {},
             council: "council",
+            pathConfig: { path: "existing path from session" },
             save: cb => {
               cb();
             }
           },
           body: "body",
           params: {
-            originator: "originator",
-            editMode: "true"
+            originator: "originator"
           }
         };
 
@@ -177,7 +119,7 @@ describe("Continue route: ", () => {
         continueController.mockImplementation(() => ({
           validatorErrors: {},
           redirectRoute: "/submit",
-          cumulativeAnswers: {
+          cumulativeFullAnswers: {
             new: "answers"
           },
           switches: { exampleSwitch: true }
@@ -187,17 +129,17 @@ describe("Continue route: ", () => {
 
         req = {
           session: {
-            cumulativeAnswers: {},
+            cumulativeFullAnswers: {},
             switches: {},
             council: "council",
+            pathConfig: { path: "existing path from session" },
             save: cb => {
               cb("session save error");
             }
           },
           body: "body",
           params: {
-            originator: "originator",
-            editMode: "true"
+            originator: "originator"
           }
         };
 

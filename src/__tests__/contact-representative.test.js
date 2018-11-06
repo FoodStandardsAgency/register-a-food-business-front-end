@@ -27,7 +27,7 @@ describe("<ContactRepresentative />", () => {
       .create(
         <ContactRepresentative
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       )
@@ -40,7 +40,7 @@ describe("<ContactRepresentative />", () => {
       const wrapper = mount(
         <ContactRepresentative
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -57,7 +57,7 @@ describe("<ContactRepresentative />", () => {
       const wrapper = mount(
         <ContactRepresentative
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -68,13 +68,13 @@ describe("<ContactRepresentative />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         contact_representative_name: "default"
       };
       const wrapper = mount(
         <ContactRepresentative
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -92,7 +92,7 @@ describe("<ContactRepresentative />", () => {
       const wrapper = mount(
         <ContactRepresentative
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -109,7 +109,7 @@ describe("<ContactRepresentative />", () => {
       const wrapper = mount(
         <ContactRepresentative
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -120,13 +120,13 @@ describe("<ContactRepresentative />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         contact_representative_role: "default"
       };
       const wrapper = mount(
         <ContactRepresentative
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -144,7 +144,7 @@ describe("<ContactRepresentative />", () => {
       const wrapper = mount(
         <ContactRepresentative
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -161,7 +161,7 @@ describe("<ContactRepresentative />", () => {
       const wrapper = mount(
         <ContactRepresentative
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -172,13 +172,13 @@ describe("<ContactRepresentative />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         contact_representative_email: "default"
       };
       const wrapper = mount(
         <ContactRepresentative
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
@@ -196,7 +196,7 @@ describe("<ContactRepresentative />", () => {
       const wrapper = mount(
         <ContactRepresentative
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -213,7 +213,7 @@ describe("<ContactRepresentative />", () => {
       const wrapper = mount(
         <ContactRepresentative
           validatorErrors={validatorErrors}
-          cumulativeAnswers={testCumulativeAnswers}
+          cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
@@ -224,13 +224,13 @@ describe("<ContactRepresentative />", () => {
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeAnswers = {
+      const cumulativeFullAnswers = {
         contact_representative_number: "default"
       };
       const wrapper = mount(
         <ContactRepresentative
           validatorErrors={testValidatorErrors}
-          cumulativeAnswers={cumulativeAnswers}
+          cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
