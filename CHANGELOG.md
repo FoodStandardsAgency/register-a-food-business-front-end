@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.40.4 - 6th November 2018
+
+### Modified
+
+* Stopped path editing functions from only using switches from pages up to and including current page. Now uses switches from all pages.
+
 ## v1.40.3 - 5th November 2018
 
 ### Modified
