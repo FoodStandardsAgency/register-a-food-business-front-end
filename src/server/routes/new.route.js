@@ -10,12 +10,15 @@ const {
 const { REGISTRATION_DATA_VERSION } = require("../config");
 
 const allowedCouncils = [
+  "bridgend",
+  "cardiff",
   "mid-and-east-antrim",
   "purbeck",
   "west-dorset",
   "north-dorset",
   "weymouth-and-portland",
-  "wrexham"
+  "wrexham",
+  "the-vale-of-glamorgan"
 ];
 
 const newRouter = () => {
