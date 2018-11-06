@@ -24,10 +24,6 @@ describe("config-db.connector integration: getPathConfigByVersion", () => {
     it("should return a version _id", () => {
       expect(typeof response._id).toBe("string");
     });
-
-    it("should return a notify_template_keys object", () => {
-      expect(typeof response.notify_template_keys).toBe("object");
-    });
   });
 
   describe("Given a valid request that does not match a known version", () => {

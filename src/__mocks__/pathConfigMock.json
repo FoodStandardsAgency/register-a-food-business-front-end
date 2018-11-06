@@ -1,9 +1,5 @@
 {
   "_id": "1.0.0",
-  "notify_template_keys": {
-    "fbo_submission_complete": "1234567890",
-    "lc_new_registration": "0987654321"
-  },
   "path": {
     "/index": {
       "on": true,

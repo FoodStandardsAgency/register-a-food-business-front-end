@@ -11,6 +11,7 @@ const cleanInactivePathAnswers = (cumulativeFullAnswers, path) => {
   const cleanedAnswers = Object.assign({}, cumulativeFullAnswers);
 
   for (let answer in cleanedAnswers) {
+    // find the page that this answer is from
     let pageOfAnswer;
 
     for (let page in schema) {
@@ -19,6 +20,7 @@ const cleanInactivePathAnswers = (cumulativeFullAnswers, path) => {
       }
     }
 
+    // if that page is off in the given path, delete the answer
     if (path[pageOfAnswer] && path[pageOfAnswer].on === false) {
       delete cleanedAnswers[answer];
     }

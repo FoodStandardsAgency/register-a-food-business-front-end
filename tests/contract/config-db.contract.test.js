@@ -26,12 +26,6 @@ describe("config-db.connector contract: getPathConfigByVersion", () => {
     it("real and double responses should both return a version _id", () => {
       expect(typeof doubleResponse._id).toEqual(typeof realResponse._id);
     });
-
-    it("real and double responses should both return a notify_template_keys object", () => {
-      expect(typeof doubleResponse.notify_template_keys).toEqual(
-        typeof realResponse.notify_template_keys
-      );
-    });
   });
 
   describe("Given a valid request that does not match a known version", () => {

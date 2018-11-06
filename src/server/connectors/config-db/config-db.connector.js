@@ -1,12 +1,12 @@
 const mongodb = require("mongodb");
-const { pathConfigCollectionDouble } = require("./config-db.double");
+const { configVersionCollectionDouble } = require("./config-db.double");
 const { CONFIGDB_URL } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { statusEmitter } = require("../../services/statusEmitter.service");
 
 let client;
 let configDB;
-let pathConfigCollection;
+let configVersionCollection;
 
 let pathConfig = null;
 
@@ -17,7 +17,7 @@ const establishConnectionToMongo = async () => {
       "config-db.connector",
       "establishConnectionToMongo"
     );
-    pathConfigCollection = pathConfigCollectionDouble;
+    configVersionCollection = configVersionCollectionDouble;
   } else {
     client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
       useNewUrlParser: true
@@ -25,7 +25,7 @@ const establishConnectionToMongo = async () => {
 
     configDB = client.db("register_a_food_business_config");
 
-    pathConfigCollection = configDB.collection("pathConfig");
+    configVersionCollection = configDB.collection("configVersion");
   }
 };
 
@@ -40,11 +40,11 @@ const getPathConfigByVersion = async version => {
     try {
       await establishConnectionToMongo();
 
-      const pathConfigRecord = await pathConfigCollection.findOne({
+      const configVersionRecord = await configVersionCollection.findOne({
         _id: version
       });
 
-      if (pathConfigRecord === null) {
+      if (configVersionRecord === null) {
         pathConfig = null;
         statusEmitter.emit("incrementCount", "getPathConfigFailed");
         statusEmitter.emit(
@@ -53,7 +53,10 @@ const getPathConfigByVersion = async version => {
           false
         );
       } else {
-        pathConfig = pathConfigRecord;
+        pathConfig = {
+          _id: configVersionRecord._id,
+          path: configVersionRecord.path
+        };
         statusEmitter.emit("incrementCount", "getPathConfigSucceeded");
         statusEmitter.emit(
           "setStatus",

@@ -144,17 +144,10 @@ const getPathPagesToSwitch = (
     `);
     }
 
-    const currentIndex = Object.keys(pathFromSession).indexOf(currentPage);
-    const pagesUpToAndIncludingCurrentPage = Object.keys(pathFromSession).slice(
-      0,
-      currentIndex + 1
-    );
     const allSwitches = {};
 
     for (let page in pathFromSession) {
-      if (pagesUpToAndIncludingCurrentPage.indexOf(page) !== -1) {
-        Object.assign(allSwitches, pathFromSession[page].switches);
-      }
+      Object.assign(allSwitches, pathFromSession[page].switches);
     }
 
     const allAnswerValues = Object.values(cumulativeFullAnswers);

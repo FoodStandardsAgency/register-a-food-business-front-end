@@ -1,6 +1,6 @@
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
 
-const pathConfigCollectionDouble = {
+const configVersionCollectionDouble = {
   findOne: query => {
     if (query._id === "1.0.0") {
       return pathConfigMock;
@@ -10,4 +10,4 @@ const pathConfigCollectionDouble = {
   }
 };
 
-module.exports = { pathConfigCollectionDouble };
+module.exports = { configVersionCollectionDouble };

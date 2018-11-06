@@ -377,17 +377,6 @@ describe("path.service getPathPagesToSwitch()", () => {
       );
     });
   });
-
-  describe("Given an answer that is from a switch further ahead than the current page in the path", () => {
-    it("ignores the switch/answer", () => {
-      const result = getPathPagesToSwitch(
-        { example: "A6" },
-        "/index",
-        pathMock
-      );
-      expect(result).not.toContain("/mock-page-2");
-    });
-  });
 });
 
 describe("path.service switchOffManualAddressInput()", () => {

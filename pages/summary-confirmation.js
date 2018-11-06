@@ -115,9 +115,9 @@ const ApplicationComplete = props => (
 
     <ContentItem.B_30_15>
       <Paragraph className="receiveConfirmationEmail">
-        {`A copy of this registration has been sent to **${
-          props.emailFbo.recipient
-        }.**`}
+        {`A copy of this registration has been sent to **${props.transformedData
+          .operator_email ||
+          props.transformedData.contact_representative_email}.**`}
       </Paragraph>
     </ContentItem.B_30_15>
 
