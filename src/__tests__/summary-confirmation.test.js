@@ -165,7 +165,9 @@ describe("<ApplicationComplete />", () => {
 
   describe("When given a contact representative email", () => {
     it("The paragraph renders displaying it", () => {
-      const transformedDataRepresentative = {contact_representative_email: "rep@email.com"}
+      const transformedDataRepresentative = {
+        contact_representative_email: "rep@email.com"
+      };
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
