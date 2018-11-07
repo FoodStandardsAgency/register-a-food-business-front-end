@@ -20,6 +20,7 @@ const comprehensiveReqSessionObject = {
     submissionDate: "01 Jan 2018",
     emailFbo: { success: true, recipient: "fbo@example.com" },
     lcConfig: { example: "data" },
+    council: "cardiff",
     addressLookups: { test: [] }
   }
 };

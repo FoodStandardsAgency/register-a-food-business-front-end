@@ -1554,7 +1554,7 @@ exports[`<EstablishmentAddressLookup /> matches the previous snapshot 1`] = `
               >
                 <a
                   className="emotion-51"
-                  href="/establishment-address-manual"
+                  href="/new/undefined/establishment-address-manual"
                   id="cantFindAddressLink"
                 >
                   I can't find my address in the list

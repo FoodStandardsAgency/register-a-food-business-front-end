@@ -213,31 +213,35 @@ describe("<OperatorAddress />", () => {
 
   describe("back button", () => {
     describe("given a truthy switch of '/operator-address-none-found'", () => {
-      it("has href of '/operator-address'", () => {
+      it("passes council info to href and has href of '/operator-address'", () => {
         const wrapper = mount(
           <OperatorAddress
             validatorErrors={testValidatorErrors}
             cumulativeFullAnswers={testCumulativeAnswers}
+            council="cardiff"
             switches={{ "/operator-address-none-found": true }}
           />
         );
         const operatorBackButton = wrapper.find("a#back-link");
-        expect(operatorBackButton.props().href).toBe("/operator-address");
+        expect(operatorBackButton.props().href).toBe(
+          "/new/cardiff/operator-address"
+        );
       });
     });
 
     describe("given a falsy switch of '/operator-address-none-found'", () => {
-      it("has href of '/operator-address-select'", () => {
+      it("passes council info to href and has href of '/operator-address-select'", () => {
         const wrapper = mount(
           <OperatorAddress
             validatorErrors={testValidatorErrors}
             cumulativeFullAnswers={testCumulativeAnswers}
+            council="cardiff"
             switches={{ "/operator-address-none-found": false }}
           />
         );
         const operatorBackButton = wrapper.find("a#back-link");
         expect(operatorBackButton.props().href).toBe(
-          "/operator-address-select"
+          "/new/cardiff/operator-address-select"
         );
       });
     });
