@@ -1589,7 +1589,7 @@ exports[`<OperatorAddressLookup /> matches the previous snapshot 1`] = `
               >
                 <a
                   className="emotion-54"
-                  href="/operator-address-manual"
+                  href="/new/undefined/operator-address-manual"
                   id="cantFindAddressLink"
                 >
                   I can't find my address in the list

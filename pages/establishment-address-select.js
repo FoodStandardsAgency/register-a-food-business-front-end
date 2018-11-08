@@ -69,7 +69,7 @@ const EstablishmentAddressLookup = props => (
         <ContentItem.B_30_15>
           <AnchorTag
             id="cantFindAddressLink"
-            href="/establishment-address-manual"
+            href={`/new/${props.council}/establishment-address-manual`}
           >
             I can't find my address in the list
           </AnchorTag>

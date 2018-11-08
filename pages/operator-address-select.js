@@ -69,7 +69,10 @@ const OperatorAddressLookup = props => (
         </SelectWithHeader>
 
         <ContentItem.B_30_15>
-          <AnchorTag id="cantFindAddressLink" href="/operator-address-manual">
+          <AnchorTag
+            id="cantFindAddressLink"
+            href={`/new/${props.council}/operator-address-manual`}
+          >
             I can't find my address in the list
           </AnchorTag>
         </ContentItem.B_30_15>
