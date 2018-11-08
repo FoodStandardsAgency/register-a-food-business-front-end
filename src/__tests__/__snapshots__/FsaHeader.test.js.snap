@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FsaHeader /> matches the previous snapshot 1`] = `
-.emotion-18 {
+.emotion-20 {
   background-color: #d9e8f2;
 }
 
-.emotion-16 {
+.emotion-18 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -13,7 +13,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-16 {
+  .emotion-18 {
     width: calc(100% - 60px);
   }
 }
@@ -77,7 +77,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-14 {
+.emotion-16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -96,7 +96,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-14 {
+  .emotion-16 {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
@@ -111,7 +111,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-6 {
+.emotion-7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -125,7 +125,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
   margin-right: 20px;
 }
 
-.emotion-2 {
+.emotion-3 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -137,22 +137,22 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
   font-size: 16px;
 }
 
-.emotion-2:focus {
+.emotion-3:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-2:visited {
+.emotion-3:visited {
   color: #2e358b;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-2 {
+  .emotion-3 {
     font-size: 16px;
   }
 }
 
-.emotion-12 {
+.emotion-14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -170,7 +170,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-12 {
+  .emotion-14 {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -186,7 +186,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-8 {
+.emotion-9 {
   margin-right: 20px;
   font-size: 16px;
   color: #0b0c0c;
@@ -199,15 +199,15 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
   text-align: left;
 }
 
-.emotion-8:hover {
+.emotion-9:hover {
   color: #4a4a4a;
 }
 
-.emotion-8:visited {
+.emotion-9:visited {
   color: #2f2f2f;
 }
 
-.emotion-11 {
+.emotion-12 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -247,56 +247,56 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
   font-size: 16px;
 }
 
-.emotion-11:hover {
+.emotion-12:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-11:focus {
+.emotion-12:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-11:active {
+.emotion-12:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-11:visited {
+.emotion-12:visited {
   color: #00823b;
 }
 
-.emotion-11 svg {
+.emotion-12 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-11 {
+  .emotion-12 {
     margin-bottom: 20px;
   }
 }
 
-.emotion-11:hover {
+.emotion-12:hover {
   background-color: #f2f2f2;
   color: #0b0c0c;
 }
 
-.emotion-11:focus {
+.emotion-12:focus {
   background-color: #f2f2f2;
   color: #0b0c0c;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-11 {
+  .emotion-12 {
     font-size: 16px;
     margin-bottom: 0px;
   }
 }
 
-.emotion-31 {
+.emotion-45 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -314,13 +314,13 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-31 {
+  .emotion-45 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
-.emotion-30 {
+.emotion-43 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -335,7 +335,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-30 {
+  .emotion-43 {
     padding: calc(10px * 0.8) 0;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -344,7 +344,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-25 {
+.emotion-32 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -356,14 +356,14 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-25 {
+  .emotion-32 {
     display: block;
     padding-right: 15px;
     width: 33.33%;
   }
 }
 
-.emotion-24 {
+.emotion-30 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -380,7 +380,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
   font-size: 30px;
 }
 
-.emotion-23 {
+.emotion-28 {
   color: #ffffff;
   -webkit-text-decoration: none;
   text-decoration: none;
@@ -391,30 +391,30 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
   line-height: 1;
 }
 
-.emotion-23:hover {
+.emotion-28:hover {
   border-bottom-color: #ffffff;
 }
 
-.emotion-23:focus {
+.emotion-28:focus {
   outline: 3px solid #ffbf47;
 }
 
-.emotion-22 {
+.emotion-26 {
   vertical-align: baseline;
 }
 
-.emotion-20 {
+.emotion-22 {
   width: 36px;
   max-height: 27px;
   display: inline-block;
   margin-right: 7px;
 }
 
-.emotion-21 {
+.emotion-24 {
   display: inline-block;
 }
 
-.emotion-29 {
+.emotion-41 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -433,7 +433,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-29 {
+  .emotion-41 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -451,17 +451,17 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-28 {
+.emotion-39 {
   width: 50%;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-28 {
+  .emotion-39 {
     width: auto;
   }
 }
 
-.emotion-27 {
+.emotion-37 {
   color: #ffffff;
   -webkit-text-decoration: none;
   text-decoration: none;
@@ -473,25 +473,25 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
   display: inline-block;
 }
 
-.emotion-27:hover {
+.emotion-37:hover {
   border-bottom-color: #ffffff;
 }
 
-.emotion-27:focus {
+.emotion-37:focus {
   outline: 3px solid #ffbf47;
 }
 
-.emotion-27:focus {
+.emotion-37:focus {
   color: #0b0c0c;
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-27:focus:hover {
+.emotion-37:focus:hover {
   border-bottom-color: #0b0c0c;
 }
 
-.emotion-26 {
+.emotion-35 {
   font-family: "nta",Arial,sans-serif;
   font-weight: bold;
   margin: 0;
@@ -502,7 +502,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-26 {
+  .emotion-35 {
     font-size: 24px;
     line-height: 1.25;
     margin-bottom: 20px;
@@ -510,18 +510,18 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media print {
-  .emotion-26 {
+  .emotion-35 {
     font-size: 16px;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-26 {
+  .emotion-35 {
     margin-bottom: 0;
   }
 }
 
-.emotion-32 {
+.emotion-47 {
   border-bottom: 10px solid #005ea5;
   max-width: 960px;
   margin: 0 auto;
@@ -529,18 +529,18 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-32 {
+  .emotion-47 {
     width: calc(100% - 60px);
   }
 }
 
-.emotion-38 {
+.emotion-60 {
   padding-top: 30px;
   text-align: center;
   padding-top: 0;
 }
 
-.emotion-36 {
+.emotion-57 {
   max-width: 960px;
   margin-left: 15px;
   margin-right: 15px;
@@ -548,19 +548,19 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-36 {
+  .emotion-57 {
     margin-left: 30px;
     margin-right: 30px;
   }
 }
 
 @media only screen and (min-width:1020px) {
-  .emotion-36 {
+  .emotion-57 {
     margin: 0 auto;
   }
 }
 
-.emotion-35 {
+.emotion-55 {
   border-bottom: 1px solid #bfc1c3;
   box-sizing: border-box;
   padding-top: 10px;
@@ -574,23 +574,23 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-35 {
+  .emotion-55 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
-.emotion-35 > a {
+.emotion-55 > a {
   color: #005ea5;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-35 {
+  .emotion-55 {
     margin-bottom: 0;
   }
 }
 
-.emotion-33 {
+.emotion-50 {
   display: inline-block;
   margin: 0 8px 0 0;
   padding: 2px 5px;
@@ -613,7 +613,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-33 {
+  .emotion-50 {
     font-size: 16px;
     line-height: 1.25;
     padding-bottom: 0;
@@ -621,36 +621,36 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-33 {
+  .emotion-50 {
     margin-bottom: 0;
   }
 }
 
 <div
-  className="emotion-39 emotion-40"
+  className="emotion-62 emotion-63"
 >
   <div
-    className="emotion-18 emotion-19"
+    className="emotion-20 emotion-21"
     id="cookieBanner"
   >
     <div
-      className="emotion-16 emotion-17"
+      className="emotion-18 emotion-19"
     >
       <div
-        className="emotion-0 emotion-1"
+        className="emotion-0 emotion-1 emotion-2"
       >
         <p>
           Register a food business uses a cookie to create the registration. We also use optional cookies to analyse how the service is performing. We do not share any information with advertisers or social media platforms. We do not store any information about you in the cookie.
         </p>
       </div>
       <div
-        className="emotion-14 emotion-15"
+        className="emotion-16 emotion-17"
       >
         <div
-          className="emotion-6 emotion-7"
+          className="emotion-7 emotion-8"
         >
           <a
-            className="emotion-2 emotion-3"
+            className="emotion-3 emotion-4"
             href="https://www.gov.uk/help/cookies"
             id="cookieInfo"
             target="_blank"
@@ -658,7 +658,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
             Find out more about cookies
           </a>
           <a
-            className="emotion-2 emotion-3"
+            className="emotion-3 emotion-4"
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicy"
             target="_blank"
@@ -667,14 +667,14 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
           </a>
         </div>
         <div
-          className="emotion-12 emotion-13"
+          className="emotion-14 emotion-15"
         >
           <form
             action="/setcookie/acceptAllCookies/false"
             method="get"
           >
             <button
-              className="emotion-8 emotion-9"
+              className="emotion-9 emotion-10"
               id="cookieReject"
               type="submit"
             >
@@ -686,7 +686,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
             method="get"
           >
             <button
-              className="emotion-10 emotion-11"
+              className="emotion-11 emotion-12 emotion-2"
               disabled={false}
               id="cookieAccept"
               type="submit"
@@ -699,28 +699,28 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-31"
+    className="emotion-45 emotion-46"
     color="#ffffff"
   >
     <div
-      className="emotion-30"
+      className="emotion-43 emotion-44"
     >
       <div
-        className="emotion-25"
+        className="emotion-32 emotion-33"
       >
         <div
-          className="emotion-24"
+          className="emotion-30 emotion-31"
         >
           <a
-            className="emotion-23"
+            className="emotion-28 emotion-29"
             href="/index"
             target="_blank"
           >
             <div
-              className="emotion-22"
+              className="emotion-26 emotion-27"
             >
               <span
-                className="emotion-20"
+                className="emotion-22 emotion-23"
               >
                 <svg
                   fill="currentColor"
@@ -746,7 +746,7 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
                 </svg>
               </span>
               <span
-                className="emotion-21"
+                className="emotion-24 emotion-25"
               >
                 GOV.UK
               </span>
@@ -755,18 +755,18 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
         </div>
       </div>
       <div
-        className="emotion-29"
+        className="emotion-41 emotion-42"
       >
         <div
-          className="emotion-28"
+          className="emotion-39 emotion-2"
         >
           <a
-            className="emotion-27"
+            className="emotion-37 emotion-38"
             href="/index"
             target="_blank"
           >
             <h3
-              className="emotion-26"
+              className="emotion-34 emotion-35 emotion-2"
               mb={0}
             >
               Register a food business
@@ -777,26 +777,26 @@ exports[`<FsaHeader /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-32"
+    className="emotion-47 emotion-48"
   />
   <div
-    className="emotion-37 emotion-38"
+    className="emotion-59 emotion-60 emotion-2"
   >
     <div
-      className="emotion-36"
+      className="emotion-57 emotion-58"
     >
       <div
-        className="emotion-35"
+        className="emotion-34 emotion-55 emotion-2"
       >
         <strong
-          className="emotion-33"
+          className="emotion-34 emotion-50 emotion-2"
         >
           beta
         </strong>
         This is a new service -
          
         <a
-          className="emotion-23"
+          className="emotion-28 emotion-29"
           href="https://goo.gl/forms/WB5adxvWQdDIfVvs2"
           id="feedbackLink"
           target="_blank"

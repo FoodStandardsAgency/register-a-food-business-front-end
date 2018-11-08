@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CookieBanner /> matches the previous snapshot 1`] = `
-.emotion-18 {
+.emotion-20 {
   background-color: #d9e8f2;
 }
 
-.emotion-16 {
+.emotion-18 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -13,7 +13,7 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-16 {
+  .emotion-18 {
     width: calc(100% - 60px);
   }
 }
@@ -77,7 +77,7 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-14 {
+.emotion-16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -96,7 +96,7 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-14 {
+  .emotion-16 {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
@@ -111,7 +111,7 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-6 {
+.emotion-7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -125,7 +125,7 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
   margin-right: 20px;
 }
 
-.emotion-2 {
+.emotion-3 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -137,22 +137,22 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
   font-size: 16px;
 }
 
-.emotion-2:focus {
+.emotion-3:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-2:visited {
+.emotion-3:visited {
   color: #2e358b;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-2 {
+  .emotion-3 {
     font-size: 16px;
   }
 }
 
-.emotion-12 {
+.emotion-14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -170,7 +170,7 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-12 {
+  .emotion-14 {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -186,7 +186,7 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-8 {
+.emotion-9 {
   margin-right: 20px;
   font-size: 16px;
   color: #0b0c0c;
@@ -199,15 +199,15 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
   text-align: left;
 }
 
-.emotion-8:hover {
+.emotion-9:hover {
   color: #4a4a4a;
 }
 
-.emotion-8:visited {
+.emotion-9:visited {
   color: #2f2f2f;
 }
 
-.emotion-11 {
+.emotion-12 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -247,77 +247,77 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
   font-size: 16px;
 }
 
-.emotion-11:hover {
+.emotion-12:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-11:focus {
+.emotion-12:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-11:active {
+.emotion-12:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-11:visited {
+.emotion-12:visited {
   color: #00823b;
 }
 
-.emotion-11 svg {
+.emotion-12 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-11 {
+  .emotion-12 {
     margin-bottom: 20px;
   }
 }
 
-.emotion-11:hover {
+.emotion-12:hover {
   background-color: #f2f2f2;
   color: #0b0c0c;
 }
 
-.emotion-11:focus {
+.emotion-12:focus {
   background-color: #f2f2f2;
   color: #0b0c0c;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-11 {
+  .emotion-12 {
     font-size: 16px;
     margin-bottom: 0px;
   }
 }
 
 <div
-  className="emotion-18 emotion-19"
+  className="emotion-20 emotion-21"
   id="cookieBanner"
 >
   <div
-    className="emotion-16 emotion-17"
+    className="emotion-18 emotion-19"
   >
     <div
-      className="emotion-0 emotion-1"
+      className="emotion-0 emotion-1 emotion-2"
     >
       <p>
         Register a food business uses a cookie to create the registration. We also use optional cookies to analyse how the service is performing. We do not share any information with advertisers or social media platforms. We do not store any information about you in the cookie.
       </p>
     </div>
     <div
-      className="emotion-14 emotion-15"
+      className="emotion-16 emotion-17"
     >
       <div
-        className="emotion-6 emotion-7"
+        className="emotion-7 emotion-8"
       >
         <a
-          className="emotion-2 emotion-3"
+          className="emotion-3 emotion-4"
           href="https://www.gov.uk/help/cookies"
           id="cookieInfo"
           target="_blank"
@@ -325,7 +325,7 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
           Find out more about cookies
         </a>
         <a
-          className="emotion-2 emotion-3"
+          className="emotion-3 emotion-4"
           href="https://www.food.gov.uk/cookie-policy"
           id="cookiePolicy"
           target="_blank"
@@ -334,14 +334,14 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
         </a>
       </div>
       <div
-        className="emotion-12 emotion-13"
+        className="emotion-14 emotion-15"
       >
         <form
           action="/setcookie/acceptAllCookies/false"
           method="get"
         >
           <button
-            className="emotion-8 emotion-9"
+            className="emotion-9 emotion-10"
             id="cookieReject"
             type="submit"
           >
@@ -353,7 +353,7 @@ exports[`<CookieBanner /> matches the previous snapshot 1`] = `
           method="get"
         >
           <button
-            className="emotion-10 emotion-11"
+            className="emotion-11 emotion-12 emotion-2"
             disabled={false}
             id="cookieAccept"
             type="submit"

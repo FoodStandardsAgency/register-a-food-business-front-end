@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ContinueButton /> matches the previous snapshot 1`] = `
-.emotion-0 {
+.emotion-1 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -36,40 +36,40 @@ exports[`<ContinueButton /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-0:hover {
+.emotion-1:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-0:focus {
+.emotion-1:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-0:active {
+.emotion-1:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-0:visited {
+.emotion-1:visited {
   color: #00823b;
 }
 
-.emotion-0 svg {
+.emotion-1 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-0 {
+  .emotion-1 {
     margin-bottom: 20px;
   }
 }
 
 <button
-  className="emotion-0"
+  className="emotion-0 emotion-1 emotion-2"
   disabled={false}
   id="continue-button"
   type="submit"

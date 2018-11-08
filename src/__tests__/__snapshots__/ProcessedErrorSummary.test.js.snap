@@ -1,32 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ProcessedErrorSummary /> matches the previous snapshot 1`] = `
-.emotion-6 {
+.emotion-17 {
   color: #0b0c0c;
   padding: 15px;
   border: 4px solid #b10e1e;
   margin-bottom: 20px;
 }
 
-.emotion-6:focus {
+.emotion-17:focus {
   outline: 3px solid #ffbf47;
   outline-offset: 0px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-6 {
+  .emotion-17 {
     padding: 20px;
     border: 5px solid #b10e1e;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-6 {
+  .emotion-17 {
     margin-bottom: 30px;
   }
 }
 
-.emotion-0 {
+.emotion-1 {
   font-family: "nta",Arial,sans-serif;
   font-weight: bold;
   margin: 0;
@@ -36,7 +36,7 @@ exports[`<ProcessedErrorSummary /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-0 {
+  .emotion-1 {
     font-size: 36px;
     line-height: 1.1111111111111112;
     margin-bottom: 20px;
@@ -44,12 +44,12 @@ exports[`<ProcessedErrorSummary /> matches the previous snapshot 1`] = `
 }
 
 @media print {
-  .emotion-0 {
+  .emotion-1 {
     font-size: 18px;
   }
 }
 
-.emotion-5 {
+.emotion-14 {
   margin: 0;
   padding: 0;
   padding-left: 20px;
@@ -65,19 +65,19 @@ exports[`<ProcessedErrorSummary /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-5 {
+  .emotion-14 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-5 {
+  .emotion-14 {
     margin-bottom: 0;
   }
 }
 
-.emotion-2 {
+.emotion-6 {
   font-family: "nta",Arial,sans-serif;
   font-weight: 400;
   text-transform: none;
@@ -88,7 +88,7 @@ exports[`<ProcessedErrorSummary /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-2 {
+  .emotion-6 {
     font-size: 16px;
     line-height: 1.25;
     margin-bottom: 5px;
@@ -96,12 +96,12 @@ exports[`<ProcessedErrorSummary /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-2 {
+  .emotion-6 {
     margin-bottom: 0;
   }
 }
 
-.emotion-1 {
+.emotion-3 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -127,43 +127,43 @@ exports[`<ProcessedErrorSummary /> matches the previous snapshot 1`] = `
   padding-bottom: 2px;
 }
 
-.emotion-1:focus {
+.emotion-3:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-1:visited {
+.emotion-3:visited {
   color: #2e358b;
 }
 
-.emotion-1:visited {
+.emotion-3:visited {
   color: #b10e1e;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-1 {
+  .emotion-3 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 <div
-  className="emotion-6"
+  className="emotion-0 emotion-17 emotion-18"
   tabIndex={-1}
 >
   <h2
-    className="emotion-0"
+    className="emotion-0 emotion-1 emotion-2"
   >
     There is a problem
   </h2>
   <ul
-    className="emotion-5"
+    className="emotion-0 emotion-14 emotion-2"
   >
     <li
-      className="emotion-2"
+      className="emotion-0 emotion-6 emotion-2"
     >
       <a
-        className="emotion-1"
+        className="emotion-3 emotion-2"
         onClick={[Function]}
         tabIndex={1}
       >
@@ -171,10 +171,10 @@ exports[`<ProcessedErrorSummary /> matches the previous snapshot 1`] = `
       </a>
     </li>
     <li
-      className="emotion-2"
+      className="emotion-0 emotion-6 emotion-2"
     >
       <a
-        className="emotion-1"
+        className="emotion-3 emotion-2"
         onClick={[Function]}
         tabIndex={2}
       >

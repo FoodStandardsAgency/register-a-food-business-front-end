@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
-.emotion-18 {
+.emotion-20 {
   background-color: #d9e8f2;
 }
 
-.emotion-16 {
+.emotion-18 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -13,7 +13,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-16 {
+  .emotion-18 {
     width: calc(100% - 60px);
   }
 }
@@ -77,7 +77,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-14 {
+.emotion-16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -96,7 +96,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-14 {
+  .emotion-16 {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
@@ -111,7 +111,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-6 {
+.emotion-7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -125,7 +125,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   margin-right: 20px;
 }
 
-.emotion-2 {
+.emotion-3 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -137,22 +137,22 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   font-size: 16px;
 }
 
-.emotion-2:focus {
+.emotion-3:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-2:visited {
+.emotion-3:visited {
   color: #2e358b;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-2 {
+  .emotion-3 {
     font-size: 16px;
   }
 }
 
-.emotion-12 {
+.emotion-14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -170,7 +170,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-12 {
+  .emotion-14 {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -186,7 +186,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-8 {
+.emotion-9 {
   margin-right: 20px;
   font-size: 16px;
   color: #0b0c0c;
@@ -199,15 +199,15 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   text-align: left;
 }
 
-.emotion-8:hover {
+.emotion-9:hover {
   color: #4a4a4a;
 }
 
-.emotion-8:visited {
+.emotion-9:visited {
   color: #2f2f2f;
 }
 
-.emotion-11 {
+.emotion-12 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -247,56 +247,56 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   font-size: 16px;
 }
 
-.emotion-11:hover {
+.emotion-12:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-11:focus {
+.emotion-12:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-11:active {
+.emotion-12:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-11:visited {
+.emotion-12:visited {
   color: #00823b;
 }
 
-.emotion-11 svg {
+.emotion-12 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-11 {
+  .emotion-12 {
     margin-bottom: 20px;
   }
 }
 
-.emotion-11:hover {
+.emotion-12:hover {
   background-color: #f2f2f2;
   color: #0b0c0c;
 }
 
-.emotion-11:focus {
+.emotion-12:focus {
   background-color: #f2f2f2;
   color: #0b0c0c;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-11 {
+  .emotion-12 {
     font-size: 16px;
     margin-bottom: 0px;
   }
 }
 
-.emotion-31 {
+.emotion-45 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -314,13 +314,13 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-31 {
+  .emotion-45 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
-.emotion-30 {
+.emotion-43 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -335,7 +335,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-30 {
+  .emotion-43 {
     padding: calc(10px * 0.8) 0;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -344,7 +344,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-25 {
+.emotion-32 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -356,14 +356,14 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-25 {
+  .emotion-32 {
     display: block;
     padding-right: 15px;
     width: 33.33%;
   }
 }
 
-.emotion-24 {
+.emotion-30 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -380,7 +380,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   font-size: 30px;
 }
 
-.emotion-23 {
+.emotion-28 {
   color: #ffffff;
   -webkit-text-decoration: none;
   text-decoration: none;
@@ -391,30 +391,30 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   line-height: 1;
 }
 
-.emotion-23:hover {
+.emotion-28:hover {
   border-bottom-color: #ffffff;
 }
 
-.emotion-23:focus {
+.emotion-28:focus {
   outline: 3px solid #ffbf47;
 }
 
-.emotion-22 {
+.emotion-26 {
   vertical-align: baseline;
 }
 
-.emotion-20 {
+.emotion-22 {
   width: 36px;
   max-height: 27px;
   display: inline-block;
   margin-right: 7px;
 }
 
-.emotion-21 {
+.emotion-24 {
   display: inline-block;
 }
 
-.emotion-29 {
+.emotion-41 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -433,7 +433,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-29 {
+  .emotion-41 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -451,17 +451,17 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-28 {
+.emotion-39 {
   width: 50%;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-28 {
+  .emotion-39 {
     width: auto;
   }
 }
 
-.emotion-27 {
+.emotion-37 {
   color: #ffffff;
   -webkit-text-decoration: none;
   text-decoration: none;
@@ -473,25 +473,25 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   display: inline-block;
 }
 
-.emotion-27:hover {
+.emotion-37:hover {
   border-bottom-color: #ffffff;
 }
 
-.emotion-27:focus {
+.emotion-37:focus {
   outline: 3px solid #ffbf47;
 }
 
-.emotion-27:focus {
+.emotion-37:focus {
   color: #0b0c0c;
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-27:focus:hover {
+.emotion-37:focus:hover {
   border-bottom-color: #0b0c0c;
 }
 
-.emotion-26 {
+.emotion-35 {
   font-family: "nta",Arial,sans-serif;
   font-weight: bold;
   margin: 0;
@@ -502,7 +502,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-26 {
+  .emotion-35 {
     font-size: 24px;
     line-height: 1.25;
     margin-bottom: 20px;
@@ -510,18 +510,18 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media print {
-  .emotion-26 {
+  .emotion-35 {
     font-size: 16px;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-26 {
+  .emotion-35 {
     margin-bottom: 0;
   }
 }
 
-.emotion-32 {
+.emotion-47 {
   border-bottom: 10px solid #005ea5;
   max-width: 960px;
   margin: 0 auto;
@@ -529,18 +529,18 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-32 {
+  .emotion-47 {
     width: calc(100% - 60px);
   }
 }
 
-.emotion-38 {
+.emotion-60 {
   padding-top: 30px;
   text-align: center;
   padding-top: 0;
 }
 
-.emotion-36 {
+.emotion-57 {
   max-width: 960px;
   margin-left: 15px;
   margin-right: 15px;
@@ -548,19 +548,19 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-36 {
+  .emotion-57 {
     margin-left: 30px;
     margin-right: 30px;
   }
 }
 
 @media only screen and (min-width:1020px) {
-  .emotion-36 {
+  .emotion-57 {
     margin: 0 auto;
   }
 }
 
-.emotion-35 {
+.emotion-55 {
   border-bottom: 1px solid #bfc1c3;
   box-sizing: border-box;
   padding-top: 10px;
@@ -574,23 +574,23 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-35 {
+  .emotion-55 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
-.emotion-35 > a {
+.emotion-55 > a {
   color: #005ea5;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-35 {
+  .emotion-55 {
     margin-bottom: 0;
   }
 }
 
-.emotion-33 {
+.emotion-50 {
   display: inline-block;
   margin: 0 8px 0 0;
   padding: 2px 5px;
@@ -613,7 +613,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-33 {
+  .emotion-50 {
     font-size: 16px;
     line-height: 1.25;
     padding-bottom: 0;
@@ -621,17 +621,17 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-33 {
+  .emotion-50 {
     margin-bottom: 0;
   }
 }
 
-.emotion-67 {
+.emotion-122 {
   padding-top: 30px;
   text-align: center;
 }
 
-.emotion-65 {
+.emotion-118 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -639,12 +639,11 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  width: 100%;
-  margin: 0 0 15px;
+  margin: 0 -15px 15px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-65 {
+  .emotion-118 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -652,47 +651,42 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-64 {
+.emotion-116 {
   margin-bottom: 15px;
   box-sizing: border-box;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-64 {
-    margin-right: 15px;
-    margin-left: 15px;
-  }
-
-  .emotion-64:first-child {
-    margin-left: 0;
-  }
-
-  .emotion-64:last-child {
-    margin-right: 0;
+  .emotion-116 {
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-64 {
+  .emotion-116 {
     -webkit-box-flex: 0;
     -webkit-flex-grow: 0;
     -ms-flex-positive: 0;
     flex-grow: 0;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
     width: 66.6667%;
   }
 }
 
-.emotion-42 {
+.emotion-67 {
   padding-bottom: 30px;
 }
 
 @media only screen and (max-width:641px) {
-  .emotion-42 {
+  .emotion-67 {
     padding-bottom: 15px;
   }
 }
 
-.emotion-41 {
+.emotion-65 {
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -713,13 +707,13 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-41 {
+  .emotion-65 {
     font-size: 16px;
     line-height: 1.25;
   }
 }
 
-.emotion-41::before {
+.emotion-65::before {
   display: block;
   width: 0;
   height: 0;
@@ -737,18 +731,18 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   margin: auto;
 }
 
-.emotion-41:focus {
+.emotion-65:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-41 {
+  .emotion-65 {
     margin-bottom: 15px;
   }
 }
 
-.emotion-44 {
+.emotion-70 {
   font-family: "nta",Arial,sans-serif;
   font-weight: bold;
   margin: 0;
@@ -758,7 +752,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-44 {
+  .emotion-70 {
     font-size: 36px;
     line-height: 1.1111111111111112;
     margin-bottom: 20px;
@@ -766,12 +760,12 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media print {
-  .emotion-44 {
+  .emotion-70 {
     font-size: 18px;
   }
 }
 
-.emotion-55 {
+.emotion-97 {
   padding: 0;
   margin: 0;
   border: 0;
@@ -780,19 +774,19 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   margin-bottom: 0;
 }
 
-.emotion-55:after {
+.emotion-97:after {
   content: '';
   display: table;
   clear: both;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-55 {
+  .emotion-97 {
     margin-bottom: 0;
   }
 }
 
-.emotion-45 {
+.emotion-73 {
   font-family: "nta",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -807,19 +801,19 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-45 {
+  .emotion-73 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-45 {
+  .emotion-73 {
     margin-bottom: 0;
   }
 }
 
-.emotion-48 {
+.emotion-80 {
   display: block;
   position: relative;
   padding: 0 0 0 38px;
@@ -828,12 +822,12 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-48 {
+  .emotion-80 {
     margin-bottom: 10px;
   }
 }
 
-.emotion-46 {
+.emotion-75 {
   position: absolute;
   cursor: pointer;
   left: 0;
@@ -847,20 +841,20 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   cursor: pointer;
 }
 
-.emotion-46:checked + span::after {
+.emotion-75:checked + span::after {
   opacity: 1;
 }
 
-.emotion-46:focus + span::before {
+.emotion-75:focus + span::before {
   box-shadow: 0 0 0 4px #ffbf47;
 }
 
-.emotion-46 + span {
+.emotion-75 + span {
   opacity: 1;
   pointer-events: auto;
 }
 
-.emotion-47 {
+.emotion-77 {
   font-family: "nta",Arial,sans-serif;
   font-weight: 400;
   text-transform: none;
@@ -871,7 +865,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   display: block;
 }
 
-.emotion-47:before {
+.emotion-77:before {
   content: '';
   box-sizing: border-box;
   position: absolute;
@@ -884,7 +878,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   background: transparent;
 }
 
-.emotion-47:after {
+.emotion-77:after {
   content: '';
   position: absolute;
   top: 8px;
@@ -896,17 +890,17 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   opacity: 0;
 }
 
-.emotion-62 {
+.emotion-111 {
   margin-bottom: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-62 {
+  .emotion-111 {
     margin-bottom: 30px;
   }
 }
 
-.emotion-59 {
+.emotion-103 {
   cursor: pointer;
   color: #005ea5;
   font-family: "nta",Arial,sans-serif;
@@ -915,23 +909,23 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   margin-bottom: 5px;
 }
 
-.emotion-59:hover {
+.emotion-103:hover {
   color: #2b8cc4;
 }
 
-.emotion-59:focus {
+.emotion-103:focus {
   outline: 4px solid #ffbf47;
   background: #ffbf47;
 }
 
-.emotion-58 {
+.emotion-101 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
 }
 
-.emotion-61 {
+.emotion-109 {
   box-sizing: border-box;
   border-left-style: solid;
   border-left-width: 5px;
@@ -941,12 +935,12 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-61 {
+  .emotion-109 {
     margin-bottom: 0;
   }
 }
 
-.emotion-60 {
+.emotion-106 {
   font-family: "nta",Arial,sans-serif;
   margin: 0;
   font-size: 16px;
@@ -954,11 +948,11 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   margin-bottom: 0;
 }
 
-.emotion-60 > p {
+.emotion-106 > p {
   margin: 0;
 }
 
-.emotion-60 > p > code {
+.emotion-106 > p > code {
   padding: 0.2em 0.4em;
   margin: 0px;
   font-size: 85%;
@@ -966,7 +960,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   border-radius: 3px;
 }
 
-.emotion-60 > pre {
+.emotion-106 > pre {
   padding: 16px;
   overflow: auto;
   font-size: 85%;
@@ -975,7 +969,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   border-radius: 3px;
 }
 
-.emotion-60 > pre > code {
+.emotion-106 > pre > code {
   display: inline;
   padding: 0px;
   margin: 0px;
@@ -986,19 +980,19 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-60 {
+  .emotion-106 {
     font-size: 19px;
     line-height: 1.3;
   }
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-60 {
+  .emotion-106 {
     margin-bottom: 0;
   }
 }
 
-.emotion-63 {
+.emotion-114 {
   background-color: #00823b;
   border: none;
   box-shadow: 0 2px 0 #003618;
@@ -1033,46 +1027,46 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-63:hover {
+.emotion-114:hover {
   background-color: #00692f;
   color: #ffffff;
 }
 
-.emotion-63:focus {
+.emotion-114:focus {
   color: #ffffff;
   background-color: #00692f;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-63:active {
+.emotion-114:active {
   position: relative;
   top: 2px;
   box-shadow: 0 0 0 #003618;
 }
 
-.emotion-63:visited {
+.emotion-114:visited {
   color: #00823b;
 }
 
-.emotion-63 svg {
+.emotion-114 svg {
   max-width: 15px;
   margin-left: 20px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-63 {
+  .emotion-114 {
     margin-bottom: 20px;
   }
 }
 
-.emotion-92 {
+.emotion-148 {
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
 }
 
-.emotion-90 {
+.emotion-146 {
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -1087,7 +1081,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
 }
 
 @media (min-width:641px) {
-  .emotion-90 {
+  .emotion-146 {
     width: calc(100% - 60px);
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -1099,7 +1093,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   }
 }
 
-.emotion-82 {
+.emotion-138 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1113,11 +1107,11 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   justify-content: flex-end;
 }
 
-.emotion-74 {
+.emotion-130 {
   margin-bottom: 15px;
 }
 
-.emotion-68 {
+.emotion-124 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1132,54 +1126,54 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   font-size: 14px;
 }
 
-.emotion-68:focus {
+.emotion-124:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-68:visited {
+.emotion-124:visited {
   color: #2e358b;
 }
 
 @media (min-width:641px) {
-  .emotion-68 {
+  .emotion-124 {
     display: inline-block;
     font-size: 16px;
   }
 }
 
-.emotion-68:visited {
+.emotion-124:visited {
   color: #454a4c;
 }
 
-.emotion-68:hover {
+.emotion-124:hover {
   color: #171819;
 }
 
-.emotion-76 {
+.emotion-132 {
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-76 {
+  .emotion-132 {
     margin-bottom: 0px;
   }
 }
 
-.emotion-80 {
+.emotion-136 {
   font-size: 14px;
   margin: 0;
   display: inline-block;
 }
 
 @media only screen and (min-width:641px) {
-  .emotion-80 {
+  .emotion-136 {
     font-size: 16px;
   }
 }
 
-.emotion-78 {
+.emotion-134 {
   color: #005ea5;
   padding: 3px;
   margin: -3px;
@@ -1190,24 +1184,24 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   color: #454a4c;
 }
 
-.emotion-78:focus {
+.emotion-134:focus {
   background-color: #ffbf47;
   outline: 3px solid #ffbf47;
 }
 
-.emotion-78:visited {
+.emotion-134:visited {
   color: #2e358b;
 }
 
-.emotion-78:visited {
+.emotion-134:visited {
   color: #454a4c;
 }
 
-.emotion-78:hover {
+.emotion-134:hover {
   color: #171819;
 }
 
-.emotion-88 {
+.emotion-144 {
   margin: 0px 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1227,36 +1221,36 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
   text-align: center;
 }
 
-.emotion-84 {
+.emotion-140 {
   margin-bottom: 10px;
 }
 
 <div>
   <div
-    className="emotion-39 emotion-40"
+    className="emotion-62 emotion-63"
   >
     <div
-      className="emotion-18 emotion-19"
+      className="emotion-20 emotion-21"
       id="cookieBanner"
     >
       <div
-        className="emotion-16 emotion-17"
+        className="emotion-18 emotion-19"
       >
         <div
-          className="emotion-0 emotion-1"
+          className="emotion-0 emotion-1 emotion-2"
         >
           <p>
             Register a food business uses a cookie to create the registration. We also use optional cookies to analyse how the service is performing. We do not share any information with advertisers or social media platforms. We do not store any information about you in the cookie.
           </p>
         </div>
         <div
-          className="emotion-14 emotion-15"
+          className="emotion-16 emotion-17"
         >
           <div
-            className="emotion-6 emotion-7"
+            className="emotion-7 emotion-8"
           >
             <a
-              className="emotion-2 emotion-3"
+              className="emotion-3 emotion-4"
               href="https://www.gov.uk/help/cookies"
               id="cookieInfo"
               target="_blank"
@@ -1264,7 +1258,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
               Find out more about cookies
             </a>
             <a
-              className="emotion-2 emotion-3"
+              className="emotion-3 emotion-4"
               href="https://www.food.gov.uk/cookie-policy"
               id="cookiePolicy"
               target="_blank"
@@ -1273,14 +1267,14 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
             </a>
           </div>
           <div
-            className="emotion-12 emotion-13"
+            className="emotion-14 emotion-15"
           >
             <form
               action="/setcookie/acceptAllCookies/false"
               method="get"
             >
               <button
-                className="emotion-8 emotion-9"
+                className="emotion-9 emotion-10"
                 id="cookieReject"
                 type="submit"
               >
@@ -1292,7 +1286,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
               method="get"
             >
               <button
-                className="emotion-10 emotion-11"
+                className="emotion-11 emotion-12 emotion-2"
                 disabled={false}
                 id="cookieAccept"
                 type="submit"
@@ -1305,28 +1299,28 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
       </div>
     </div>
     <div
-      className="emotion-31"
+      className="emotion-45 emotion-46"
       color="#ffffff"
     >
       <div
-        className="emotion-30"
+        className="emotion-43 emotion-44"
       >
         <div
-          className="emotion-25"
+          className="emotion-32 emotion-33"
         >
           <div
-            className="emotion-24"
+            className="emotion-30 emotion-31"
           >
             <a
-              className="emotion-23"
+              className="emotion-28 emotion-29"
               href="/index"
               target="_blank"
             >
               <div
-                className="emotion-22"
+                className="emotion-26 emotion-27"
               >
                 <span
-                  className="emotion-20"
+                  className="emotion-22 emotion-23"
                 >
                   <svg
                     fill="currentColor"
@@ -1352,7 +1346,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
                   </svg>
                 </span>
                 <span
-                  className="emotion-21"
+                  className="emotion-24 emotion-25"
                 >
                   GOV.UK
                 </span>
@@ -1361,18 +1355,18 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
           </div>
         </div>
         <div
-          className="emotion-29"
+          className="emotion-41 emotion-42"
         >
           <div
-            className="emotion-28"
+            className="emotion-39 emotion-2"
           >
             <a
-              className="emotion-27"
+              className="emotion-37 emotion-38"
               href="/index"
               target="_blank"
             >
               <h3
-                className="emotion-26"
+                className="emotion-34 emotion-35 emotion-2"
                 mb={0}
               >
                 Register a food business
@@ -1383,26 +1377,26 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
       </div>
     </div>
     <div
-      className="emotion-32"
+      className="emotion-47 emotion-48"
     />
     <div
-      className="emotion-37 emotion-38"
+      className="emotion-59 emotion-60 emotion-2"
     >
       <div
-        className="emotion-36"
+        className="emotion-57 emotion-58"
       >
         <div
-          className="emotion-35"
+          className="emotion-34 emotion-55 emotion-2"
         >
           <strong
-            className="emotion-33"
+            className="emotion-34 emotion-50 emotion-2"
           >
             beta
           </strong>
           This is a new service -
            
           <a
-            className="emotion-23"
+            className="emotion-28 emotion-29"
             href="https://goo.gl/forms/WB5adxvWQdDIfVvs2"
             id="feedbackLink"
             target="_blank"
@@ -1416,22 +1410,22 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-67"
+    className="emotion-122 emotion-2"
   >
     <div
-      className="emotion-36"
+      className="emotion-57 emotion-58"
     >
       <div
-        className="emotion-65"
+        className="emotion-118 emotion-2"
       >
         <div
-          className="emotion-64"
+          className="emotion-116 emotion-2"
         >
           <div
-            className="emotion-42 emotion-43"
+            className="emotion-67 emotion-68"
           >
             <a
-              className="emotion-41"
+              className="emotion-34 emotion-65 emotion-2"
               href="/backundefined"
               id="back-link"
             >
@@ -1439,7 +1433,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
             </a>
           </div>
           <h2
-            className="emotion-44"
+            className="emotion-34 emotion-70 emotion-2"
           >
             What days will this establishment be open and producing or serving food?
           </h2>
@@ -1447,21 +1441,21 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
             method="post"
           >
             <div
-              className="emotion-42 emotion-43"
+              className="emotion-67 emotion-68"
             >
               <div
-                className="emotion-55"
+                className="emotion-34 emotion-97 emotion-2"
               >
                 <span
-                  className="emotion-45"
+                  className="emotion-34 emotion-73 emotion-2"
                 >
                   
                 </span>
                 <label
-                  className="emotion-48"
+                  className="emotion-34 emotion-80 emotion-2"
                 >
                   <input
-                    className="emotion-46"
+                    className="emotion-75 emotion-58"
                     defaultChecked={false}
                     id="opening_days_start_everyday"
                     name="opening_days_start"
@@ -1469,16 +1463,16 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
                     value="Every day"
                   />
                   <span
-                    className="emotion-47"
+                    className="emotion-77 emotion-78"
                   >
                     Every day
                   </span>
                 </label>
                 <label
-                  className="emotion-48"
+                  className="emotion-34 emotion-80 emotion-2"
                 >
                   <input
-                    className="emotion-46"
+                    className="emotion-75 emotion-58"
                     defaultChecked={false}
                     id="opening_days_start_some_days"
                     name="opening_days_start"
@@ -1486,16 +1480,16 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
                     value="Some days"
                   />
                   <span
-                    className="emotion-47"
+                    className="emotion-77 emotion-78"
                   >
                     Some days a week
                   </span>
                 </label>
                 <label
-                  className="emotion-48"
+                  className="emotion-34 emotion-80 emotion-2"
                 >
                   <input
-                    className="emotion-46"
+                    className="emotion-75 emotion-58"
                     defaultChecked={false}
                     id="opening_days_start_irregular_days"
                     name="opening_days_start"
@@ -1503,7 +1497,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
                     value="Irregular days"
                   />
                   <span
-                    className="emotion-47"
+                    className="emotion-77 emotion-78"
                   >
                     Irregular days
                   </span>
@@ -1511,22 +1505,22 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
               </div>
             </div>
             <details
-              className="emotion-62"
+              className="emotion-111 emotion-34"
             >
               <summary
-                className="emotion-59"
+                className="emotion-103 emotion-58"
               >
                 <span
-                  className="emotion-58"
+                  className="emotion-101 emotion-2"
                 >
                   I don't know what days to select
                 </span>
               </summary>
               <div
-                className="emotion-61"
+                className="emotion-34 emotion-109 emotion-2"
               >
                 <div
-                  className="emotion-60"
+                  className="emotion-34 emotion-106 emotion-2"
                 >
                   <p>
                     If the food business isn't open the same days every week, then the establishment will likely have irregular opening days. This could include seasonal establishments such as summer ice-cream vendors, or establishments which only open for events such as football matches.
@@ -1535,7 +1529,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
               </div>
             </details>
             <button
-              className="emotion-63"
+              className="emotion-34 emotion-114 emotion-2"
               disabled={false}
               id="continue-button"
               type="submit"
@@ -1548,20 +1542,20 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
     </div>
   </div>
   <div
-    className="emotion-92 emotion-93"
+    className="emotion-148 emotion-149"
     id="fsaFooter"
   >
     <div
-      className="emotion-90 emotion-91"
+      className="emotion-146 emotion-147"
     >
       <div
-        className="emotion-82 emotion-83"
+        className="emotion-138 emotion-139"
       >
         <div
-          className="emotion-74 emotion-75"
+          className="emotion-130 emotion-131"
         >
           <a
-            className="emotion-68 emotion-69"
+            className="emotion-124 emotion-125"
             href="https://www.food.gov.uk/cookie-policy"
             id="cookiePolicyFooter"
             rel="noopener noreferrer"
@@ -1570,7 +1564,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
             Cookies
           </a>
           <a
-            className="emotion-68 emotion-69"
+            className="emotion-124 emotion-125"
             href="https://www.food.gov.uk/privacy-policy"
             id="privacyPolicyFooter"
             rel="noopener noreferrer"
@@ -1579,7 +1573,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
             Privacy
           </a>
           <a
-            className="emotion-68 emotion-69"
+            className="emotion-124 emotion-125"
             href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
             id="feedbackFooter"
             rel="noopener noreferrer"
@@ -1590,7 +1584,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
         </div>
         <div>
           <div
-            className="emotion-76 emotion-77"
+            className="emotion-132 emotion-133"
           >
             <svg
               className="govuk-footer__licence-logo"
@@ -1608,12 +1602,12 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
             </svg>
           </div>
           <p
-            className="emotion-80 emotion-81"
+            className="emotion-136 emotion-137"
           >
             All content is available under the
              
             <a
-              className="emotion-78 emotion-79"
+              className="emotion-134 emotion-135"
               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
               id="openGovernmentLicence"
               rel="noopener noreferrer"
@@ -1627,10 +1621,10 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
         </div>
       </div>
       <div
-        className="emotion-88 emotion-89"
+        className="emotion-144 emotion-145"
       >
         <svg
-          className="emotion-84 emotion-85"
+          className="emotion-140 emotion-141"
           height="102"
           viewBox="0 0 124 102"
           width="124"
@@ -1658,7 +1652,7 @@ exports[`<OpeningDaysStart /> matches the previous snapshot 1`] = `
           </g>
         </svg>
         <p
-          className="emotion-80 emotion-81"
+          className="emotion-136 emotion-137"
         >
           © Crown copyright
         </p>
