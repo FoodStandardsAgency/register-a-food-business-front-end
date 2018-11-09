@@ -1,9 +1,6 @@
 import ApplicationComplete from "../../pages/summary-confirmation";
 import { shallow, mount } from "enzyme";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
 jest.mock("../server/services/data-transform.service");
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const cumulativeFullAnswers = {
   establishment_first_line: "Example first line"

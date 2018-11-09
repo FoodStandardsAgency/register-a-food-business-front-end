@@ -1,10 +1,5 @@
 import OperatorAddress from "../../pages/operator-address";
 import { mount, shallow } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const testValidatorErrors = {
   example: "test error"
@@ -20,19 +15,6 @@ describe("<OperatorAddress />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<OperatorAddress />);
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <OperatorAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   describe("Operator postcode input field", () => {

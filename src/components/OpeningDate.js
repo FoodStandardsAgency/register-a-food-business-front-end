@@ -3,7 +3,7 @@ import {
   Header,
   HiddenText,
   Paragraph,
-  DateInput,
+  DateField,
   HintText
 } from "govuk-react";
 import moment from "moment";
@@ -35,7 +35,12 @@ const OpeningDate = props => {
       "Establishment is not trading yet" ? (
         <form action={props.formAction} method="post">
           <div>
-            <DateInput
+            <DateField
+              defaultValues={{
+                day: props.cumulativeFullAnswers.day,
+                month: props.cumulativeFullAnswers.month,
+                year: props.cumulativeFullAnswers.year
+              }}
               inputNames={{ day: "day", month: "month", year: "year" }}
               hintText={`For example, ${moment()
                 .add(40, "d")
@@ -46,7 +51,7 @@ const OpeningDate = props => {
               <span className="bold">
                 When is this establishment expected to begin trading?
               </span>
-            </DateInput>
+            </DateField>
 
             <ContentItem.B_30_15>
               <HiddenText
@@ -69,7 +74,12 @@ const OpeningDate = props => {
         </form>
       ) : (
         <form action={props.formAction} method="post">
-          <DateInput
+          <DateField
+            defaultValues={{
+              day: props.cumulativeFullAnswers.day,
+              month: props.cumulativeFullAnswers.month,
+              year: props.cumulativeFullAnswers.year
+            }}
             inputNames={{ day: "day", month: "month", year: "year" }}
             hintText={`For example, ${moment()
               .subtract(40, "d")
@@ -80,7 +90,7 @@ const OpeningDate = props => {
             <span className="bold">
               What date did this establishment begin trading?
             </span>
-          </DateInput>
+          </DateField>
 
           <ContentItem.B_30_15>
             <HiddenText

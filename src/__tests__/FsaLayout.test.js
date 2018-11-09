@@ -1,10 +1,5 @@
 import FsaLayout from "../components/FsaLayout";
 import { shallow } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 describe("<FsaLayout />", () => {
   it("renders without crashing", () => {
@@ -19,10 +14,5 @@ describe("<FsaLayout />", () => {
       </FsaLayout>
     );
     expect(wrapper.contains(<div>A child element</div>)).toBe(true);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer.create(<FsaLayout />).toJSON();
-    expect(tree).toMatchSnapshot();
   });
 });

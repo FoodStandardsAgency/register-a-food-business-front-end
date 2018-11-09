@@ -1,10 +1,5 @@
 import RegistrationRole from "../../pages/registration-role";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const testValidatorErrors = {
   example: "test error"
@@ -20,19 +15,6 @@ describe("<RegistrationRole />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<RegistrationRole />);
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <RegistrationRole
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   it("renders 3 radio buttons with correct error props and default values", () => {

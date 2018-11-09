@@ -1,10 +1,6 @@
 import OtherDetails from "../../pages/business-other-details";
 import { shallow, mount } from "enzyme";
 import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const testValidatorErrors = {
   example: "test error"
@@ -20,19 +16,6 @@ describe("<OtherDetails />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<OtherDetails />);
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <OtherDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   describe("other details input field", () => {
