@@ -1,10 +1,5 @@
 import OperatorCompanyDetails from "../../pages/operator-company-details";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const testValidatorErrors = {
   example: "test error"
@@ -19,19 +14,6 @@ describe("<OperatorCompanyDetails />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<OperatorCompanyDetails />);
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <OperatorCompanyDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   describe("company name input field", () => {

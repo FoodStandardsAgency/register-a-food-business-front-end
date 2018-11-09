@@ -1,10 +1,5 @@
 import ProcessedErrorSummary from "../components/ProcessedErrorSummary";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const testValidatorErrorsExists = {
   example: "test error",
@@ -19,15 +14,6 @@ describe("<ProcessedErrorSummary />", () => {
       <ProcessedErrorSummary validatorErrors={testValidatorErrorsExists} />
     );
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <ProcessedErrorSummary validatorErrors={testValidatorErrorsExists} />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   it("returns null when validator errors is empty", () => {

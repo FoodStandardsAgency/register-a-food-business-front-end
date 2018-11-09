@@ -1,20 +1,10 @@
 import ContinueButton from "../components/ContinueButton";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 describe("<ContinueButton />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<ContinueButton />);
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer.create(<ContinueButton />).toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   it("is passed the 'type' prop", () => {

@@ -1,10 +1,5 @@
 import ContactRepresentative from "../../pages/contact-representative";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const testValidatorErrors = {
   example: "test error"
@@ -20,19 +15,6 @@ describe("<ContactRepresentative />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<ContactRepresentative />);
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <ContactRepresentative
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   describe("Contact representative name input field", () => {

@@ -1,10 +1,5 @@
 import EstablishmentAddress from "../../pages/establishment-address-manual";
 import { mount, shallow } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const testValidatorErrors = {
   example: "test error"
@@ -20,19 +15,6 @@ describe("<EstablishmentAddress />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<EstablishmentAddress />);
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <EstablishmentAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   describe("establishment first line input field", () => {

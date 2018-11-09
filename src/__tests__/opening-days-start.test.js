@@ -1,10 +1,5 @@
 import OpeningDaysStart from "../../pages/opening-days-start";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const testValidatorErrors = {
   example: "test error"
@@ -20,19 +15,6 @@ describe("<OpeningDaysStart />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<OpeningDaysStart />);
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <OpeningDaysStart
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   it("renders 3 radio buttons with correct error props and default values", () => {

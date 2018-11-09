@@ -1,10 +1,5 @@
 import OperatorContactDetails from "../../pages/operator-contact-details";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const testValidatorErrors = {
   example: "test error"
@@ -19,19 +14,6 @@ describe("<OperatorContactDetails />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<OperatorContactDetails />);
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <OperatorContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   describe("operator primary phone number input field", () => {
