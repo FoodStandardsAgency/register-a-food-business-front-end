@@ -1,10 +1,5 @@
 import SummaryTable from "../components/SummaryTable";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 // a complete list of the summary table row IDs
 
@@ -122,13 +117,6 @@ describe("<SummaryTable />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<SummaryTable />);
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(<SummaryTable {...testComprehensiveAnswers} />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   it("gets given all answers as props", () => {

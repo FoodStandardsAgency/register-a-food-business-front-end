@@ -1,9 +1,5 @@
 import EstablishmentOpeningDateRetroactive from "../../pages/establishment-opening-date-retroactive";
 import { shallow, mount } from "enzyme";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const testValidatorErrors = {
   example: "test error"

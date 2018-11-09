@@ -1,12 +1,7 @@
 import RegistrationSummary from "../../pages/registration-summary";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
 import { transformAnswersForSummary } from "../server/services/data-transform.service";
 jest.mock("../server/services/data-transform.service");
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const cumulativeFullAnswers = {
   establishment_first_line: "Example first line"
@@ -18,18 +13,6 @@ describe("<RegistrationSummary />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<RegistrationSummary />);
     expect(wrapper.length).toBe(1);
-  });
-
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <RegistrationSummary
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 
   it("gets given props", () => {

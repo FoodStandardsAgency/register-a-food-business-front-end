@@ -1,10 +1,6 @@
 import ImportExportActivities from "../../pages/business-import-export";
 import { shallow, mount } from "enzyme";
 import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const testValidatorErrors = {
   example: "test error"
@@ -22,18 +18,6 @@ describe("<ImportExportActivities />", () => {
     expect(wrapper.length).toBe(1);
   });
 
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <ImportExportActivities
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
   describe("renders 3 checkboxes with correct error props and default values", () => {
     it("renders 3 checkboxes", () => {
       const wrapper = mount(
