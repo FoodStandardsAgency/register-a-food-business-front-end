@@ -3,11 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## v1.40.5 - 8th November 2018
+## v1.40.6 - 9th November 2018
 
 ### Modified
 
 * Made trading date fields persist data
+
+## v1.40.5 - 7th November 2018
+
+### Modified
+
+* Fixed manual address input pages not correctly using council information in URL
 
 ## v1.40.4 - 6th November 2018
 

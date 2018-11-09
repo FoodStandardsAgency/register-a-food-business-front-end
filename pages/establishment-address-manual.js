@@ -22,8 +22,8 @@ const EstablishmentAddress = props => (
       {...props}
       href={
         props.switches["/establishment-address-none-found"]
-          ? "/establishment-address"
-          : "/establishment-address-select"
+          ? `/new/${props.council}/establishment-address`
+          : `/new/${props.council}/establishment-address-select`
       }
     />
     <ProcessedErrorSummary

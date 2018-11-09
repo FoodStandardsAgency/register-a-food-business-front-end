@@ -69,33 +69,35 @@ describe("<EstablishmentAddress />", () => {
 
   describe("back button", () => {
     describe("given a truthy switch of '/establishment-address-none-found'", () => {
-      it("has href of '/establishment-address'", () => {
+      it("passes council info to href and has href of '/establishment-address'", () => {
         const wrapper = mount(
           <EstablishmentAddress
             validatorErrors={testValidatorErrors}
             cumulativeFullAnswers={testCumulativeAnswers}
+            council="cardiff"
             switches={{ "/establishment-address-none-found": true }}
           />
         );
         const establishmentBackButton = wrapper.find("a#back-link");
         expect(establishmentBackButton.props().href).toBe(
-          "/establishment-address"
+          "/new/cardiff/establishment-address"
         );
       });
     });
 
     describe("given a falsy switch of '/establishment-address-none-found'", () => {
-      it("has href of '/establishment-address-select'", () => {
+      it("passes council info to href and has href of '/establishment-address-select'", () => {
         const wrapper = mount(
           <EstablishmentAddress
             validatorErrors={testValidatorErrors}
             cumulativeFullAnswers={testCumulativeAnswers}
+            council="cardiff"
             switches={{ "/establishment-address-none-found": false }}
           />
         );
         const establishmentBackButton = wrapper.find("a#back-link");
         expect(establishmentBackButton.props().href).toBe(
-          "/establishment-address-select"
+          "/new/cardiff/establishment-address-select"
         );
       });
     });

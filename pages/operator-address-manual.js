@@ -23,8 +23,8 @@ const OperatorAddress = props => (
       {...props}
       href={
         props.switches["/operator-address-none-found"]
-          ? "/operator-address"
-          : "/operator-address-select"
+          ? `/new/${props.council}/operator-address`
+          : `/new/${props.council}/operator-address-select`
       }
     />
     <ProcessedErrorSummary

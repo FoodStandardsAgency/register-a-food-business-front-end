@@ -51,7 +51,9 @@ const SessionWrapper = Page => {
       addressLookups:
         req && req.session && req.session.addressLookups
           ? req.session.addressLookups
-          : {}
+          : {},
+      council:
+        req && req.session && req.session.council ? req.session.council : ""
     };
 
     return initialProps;
