@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.41.0 - 14th November 2018
+
+### Added
+
+* Added HTML 'regions'/'landmarks' for banner, main, and footer (accessibility)
+
 ## v1.40.6 - 9th November 2018
 
 ### Modified

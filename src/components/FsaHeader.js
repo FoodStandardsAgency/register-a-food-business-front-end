@@ -44,10 +44,12 @@ const HeaderMain = styled(Main)({
 });
 
 const FsaHeader = props => (
-  <StyledHeader>
+  <StyledHeader role="banner">
     {props.acceptAllCookies === "true" ||
     props.acceptAllCookies === "false" ? null : (
-      <CookieBanner />
+      <section aria-label="cookie banner">
+        <CookieBanner />
+      </section>
     )}
     <FsaTopNav company={Company} serviceTitle={ServiceTitle(props)} />
     <HeaderMain>

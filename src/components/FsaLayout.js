@@ -5,7 +5,7 @@ import FsaFooter from "./FsaFooter";
 const FsaLayout = props => (
   <div>
     <FsaHeader {...props} />
-    <Main>
+    <Main role="main">
       <GridRow>
         <GridCol columnTwoThirds>{props.children}</GridCol>
       </GridRow>
