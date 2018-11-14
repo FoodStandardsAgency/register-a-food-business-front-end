@@ -24,7 +24,9 @@ describe("<OperatorAddressLookup />", () => {
           addressLookups={testAddressLookup}
         />
       );
-      const operatorPostcode = wrapper.find("Header#operatorPostcodeDisplay");
+      const operatorPostcode = wrapper.find(
+        "Paragraph.operatorPostcodeDisplay"
+      );
       expect(operatorPostcode.length).toBe(1);
     });
 
@@ -39,7 +41,9 @@ describe("<OperatorAddressLookup />", () => {
           addressLookups={testAddressLookup}
         />
       );
-      const operatorPostcode = wrapper.find("Header#operatorPostcodeDisplay");
+      const operatorPostcode = wrapper.find(
+        "Paragraph.operatorPostcodeDisplay"
+      );
 
       expect(operatorPostcode.text().includes("default")).toBe(true);
     });
