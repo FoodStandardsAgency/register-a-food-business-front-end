@@ -96,7 +96,7 @@ const FooterCrown = styled(Crown)`
 `;
 
 const FsaFooter = () => (
-  <Footer id="fsaFooter">
+  <Footer id="fsaFooter" role="contentinfo">
     <FooterBody>
       <FooterContent>
         <FooterLinkContainer>

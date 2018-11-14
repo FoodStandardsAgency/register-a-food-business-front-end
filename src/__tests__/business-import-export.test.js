@@ -1,6 +1,5 @@
 import ImportExportActivities from "../../pages/business-import-export";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
 
 const testValidatorErrors = {
   example: "test error"
