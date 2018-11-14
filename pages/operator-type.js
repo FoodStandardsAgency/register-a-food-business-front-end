@@ -12,7 +12,9 @@ import PropTypes from "prop-types";
 const OperatorType = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>Who operates this business?</Header>
+    <Header level={1} size="LARGE">
+      Who operates this business?
+    </Header>
 
     <HiddenText summaryText={"What is a food business operator?"}>
       <Paragraph mb={0}>

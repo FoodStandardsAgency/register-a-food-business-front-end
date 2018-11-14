@@ -11,7 +11,9 @@ import PropTypes from "prop-types";
 const OtherDetails = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>Other details</Header>
+    <Header level={1} size="LARGE">
+      Other details
+    </Header>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>

@@ -14,7 +14,9 @@ const AnchorTag = asAnchor("a");
 const OperatorAddressLookup = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>What is the operator's address?</Header>
+    <Header level={1} size="LARGE">
+      What is the operator's address?
+    </Header>
     <ContentItem.B_30_15>
       <HintText>
         Operator address is the contact address for the operator. For example

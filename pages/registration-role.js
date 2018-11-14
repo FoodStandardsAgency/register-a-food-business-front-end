@@ -11,7 +11,9 @@ import PropTypes from "prop-types";
 const RegistrationRole = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>What is your role in this food business?</Header>
+    <Header level={1} size="LARGE">
+      What is your role in this food business?
+    </Header>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_45_30>

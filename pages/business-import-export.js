@@ -19,7 +19,7 @@ const ImportExportActivities = props => (
   <FsaLayout {...props}>
     <form action={props.formAction} method="post">
       <BackButton {...props} />
-      <Header level={2}>
+      <Header level={1} size="LARGE">
         Will this food business import or export any food from outside the UK?
       </Header>
       <HintText mb={1}>

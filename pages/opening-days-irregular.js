@@ -11,7 +11,9 @@ import PropTypes from "prop-types";
 const OtherDaysIrregular = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>Opening days</Header>
+    <Header level={1} size="LARGE">
+      Opening days
+    </Header>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>

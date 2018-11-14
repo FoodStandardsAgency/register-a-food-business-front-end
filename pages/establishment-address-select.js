@@ -14,7 +14,9 @@ const AnchorTag = asAnchor("a");
 const EstablishmentAddressLookup = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>What is the establishment's address?</Header>
+    <Header level={1} size="LARGE">
+      What is the establishment's address?
+    </Header>
 
     <HiddenText
       id="hiddenTextEstablishment"

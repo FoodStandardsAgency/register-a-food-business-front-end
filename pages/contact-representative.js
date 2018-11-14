@@ -18,7 +18,9 @@ const ContactRepresentative = props => {
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
       />
-      <Header level={2}> Operator contact details </Header>
+      <Header level={1} size="LARGE">
+        Operator contact details
+      </Header>
       <Paragraph>
         Please give us the details of the person at this company or charity we
         should speak to about food hygiene and safety.
