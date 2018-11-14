@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.41.1 - 14th November 2018
+
+### Modified
+
+* Changed items to be lists
+* changed postcode to be paragraph instead of Heading
+
 ## v1.41.0 - 14th November 2018
 
 ### Added
