@@ -104,7 +104,7 @@ const FooterUnorderedList = styled(UnorderedList)`
 `;
 
 const FsaFooter = () => (
-  <Footer id="fsaFooter">
+  <Footer id="fsaFooter" role="contentinfo">
     <FooterBody>
       <FooterContent>
         <FooterLinkContainer>

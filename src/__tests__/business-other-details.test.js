@@ -1,6 +1,5 @@
 import OtherDetails from "../../pages/business-other-details";
 import { shallow, mount } from "enzyme";
-import renderer from "react-test-renderer";
 
 const testValidatorErrors = {
   example: "test error"
