@@ -1,17 +1,30 @@
 import CrownIcon from "@govuk-react/icon-crown";
-import { Header } from "govuk-react";
+import { Paragraph } from "govuk-react";
 import TopNav, { asNavLinkAnchor, asTopNavAnchor } from "@govuk-react/top-nav";
 import Main from "@govuk-react/main";
 import PhaseBanner from "@govuk-react/phase-banner";
 import styled from "react-emotion";
 import CookieBanner from "./CookieBanner";
+import { BREAKPOINTS } from "@govuk-react/constants";
+
+const MediaQueryLarge = `@media only screen and (min-width: ${
+  BREAKPOINTS.LARGESCREEN
+})`;
 
 const AnchorTag = asTopNavAnchor("a");
-const link = "/index";
 const feedbackLink = "https://goo.gl/forms/WB5adxvWQdDIfVvs2";
 
+// center the service title text vertically when in desktop size windows
+const FsaTopNav = styled(TopNav)`
+  ${MediaQueryLarge} {
+    div:nth-child(2) {
+      justify-content: center;
+    }
+  }
+`;
+
 const Company = (
-  <AnchorTag href={link} target="_blank">
+  <AnchorTag href="https://www.gov.uk" target="_blank">
     <TopNav.IconTitle icon={<CrownIcon width="36" height="32" />}>
       GOV.UK
     </TopNav.IconTitle>
@@ -19,11 +32,9 @@ const Company = (
 );
 
 const NavAnchor = asNavLinkAnchor("a");
-const ServiceTitle = (
-  <NavAnchor href={link} target="_blank">
-    <Header mb={0} level={3}>
-      Register a food business
-    </Header>
+const ServiceTitle = props => (
+  <NavAnchor href={`/new/${props.council}`}>
+    <Paragraph mb={0}>Register a food business</Paragraph>
   </NavAnchor>
 );
 const StyledHeader = styled("div")({});
@@ -38,7 +49,7 @@ const FsaHeader = props => (
     props.acceptAllCookies === "false" ? null : (
       <CookieBanner />
     )}
-    <TopNav company={Company} serviceTitle={ServiceTitle} />
+    <FsaTopNav company={Company} serviceTitle={ServiceTitle(props)} />
     <HeaderMain>
       <PhaseBanner level="beta">
         This is a new service -{" "}

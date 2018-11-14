@@ -32,7 +32,9 @@ const EstablishmentAddressLookup = props => (
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
-          <Header level={3}>Postcode</Header>
+          <Header level={2} size="MEDIUM">
+            Postcode
+          </Header>
           <Header id="establishmentPostcodeDisplay" level={4}>
             {`${
               props.cumulativeFullAnswers.establishment_postcode_find
