@@ -38,16 +38,18 @@ const OperatorAddressLookup = props => (
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Header level={3}>Postcode</Header>
-          <Header id="operatorPostcodeDisplay" level={4}>
-            {`${props.cumulativeFullAnswers.operator_postcode_find} \u2007`}
-            <AnchorTag id="changeOperatorPostcode" href="/operator-address">
-              Change
-            </AnchorTag>
-          </Header>
+          <Paragraph className="operatorPostcodeDisplay" mb={0}>
+            {props.cumulativeFullAnswers.operator_postcode_find}
+          </Paragraph>
+          <AnchorTag id="changeOperatorPostcode" href="/operator-address">
+            Change postcode
+          </AnchorTag>
         </ContentItem.B_30_15>
 
         <SelectWithHeader
-          label="Select an address"
+          label={`Select an address for ${
+            props.cumulativeFullAnswers.operator_postcode_find
+          }`}
           input={{
             id: "operatorAddressDropdown",
             name: "operator_address_selected",
