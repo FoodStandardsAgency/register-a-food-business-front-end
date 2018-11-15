@@ -81,7 +81,7 @@ const OperatorCharityDetails = props => (
               rel="noopener noreferrer"
               id="link-charity-commission"
             >
-              Charity Commission website
+              Charity Commission website (opens in new window)
             </a>.
           </span>
         </HiddenText>
