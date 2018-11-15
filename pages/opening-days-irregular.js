@@ -30,7 +30,7 @@ const OtherDaysIrregular = props => (
             For example
             <UnorderedList>
               <ListItemConsistentSize>
-                only serving food during December at Christmas marketshey
+                only serving food during December at Christmas markets
               </ListItemConsistentSize>
               <ListItemConsistentSize>
                 open at weekends from June and August

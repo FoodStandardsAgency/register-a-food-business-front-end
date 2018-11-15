@@ -38,9 +38,9 @@ const BusinessTypeLookup = props => (
       <HintText>
         For example
         <UnorderedList>
-          <ListItemConsistentSize> cafe </ListItemConsistentSize>
+          <ListItemConsistentSize>cafe</ListItemConsistentSize>
           <ListItemConsistentSize>food delivery service</ListItemConsistentSize>
-          <ListItemConsistentSize> commercial bakery </ListItemConsistentSize>
+          <ListItemConsistentSize>commercial bakery</ListItemConsistentSize>
           <ListItemConsistentSize>
             meat product manufacturer
           </ListItemConsistentSize>
