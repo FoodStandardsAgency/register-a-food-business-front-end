@@ -26,7 +26,7 @@ const OperatorCharityDetails = props => (
       summaryText={"What is a food business operator?"}
     >
       <Paragraph mb={0}>
-        A food business operator is the person, charity or company who makes the
+        The operator is the person or persons, charity or company who makes the
         decisions about the food business, what it serves and how it operates.
       </Paragraph>
     </HiddenText>

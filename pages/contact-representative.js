@@ -27,7 +27,7 @@ const ContactRepresentative = props => {
       </Paragraph>
       <HiddenText summaryText={"What is a food business operator?"}>
         <Paragraph mb={0}>
-          The food business operator is the person, charity or company who makes
+          The operator is the person or persons, charity or company who makes
           the decisions about the food business, what it serves and how it
           operates.
         </Paragraph>
