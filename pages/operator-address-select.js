@@ -4,9 +4,10 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
-  SelectWithHeader
+  SelectWithHeader,
+  HiddenTextAccessible
 } from "../src/components";
-import { Header, HiddenText, Paragraph, asAnchor, HintText } from "govuk-react";
+import { Header, Paragraph, asAnchor, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 
 const AnchorTag = asAnchor("a");
@@ -25,7 +26,7 @@ const OperatorAddressLookup = props => (
       </HintText>
     </ContentItem.B_30_15>
 
-    <HiddenText
+    <HiddenTextAccessible
       id="hiddenTextFBO"
       summaryText={"What is a food business operator?"}
     >
@@ -34,7 +35,7 @@ const OperatorAddressLookup = props => (
         the decisions about the food business, what it serves and how it
         operates.
       </Paragraph>
-    </HiddenText>
+    </HiddenTextAccessible>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
