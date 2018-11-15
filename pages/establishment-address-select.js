@@ -35,21 +35,21 @@ const EstablishmentAddressLookup = props => (
           <Header level={2} size="MEDIUM">
             Postcode
           </Header>
-          <Header id="establishmentPostcodeDisplay" level={4}>
-            {`${
-              props.cumulativeFullAnswers.establishment_postcode_find
-            } \u2007`}
-            <AnchorTag
-              id="changeEstablishmentPostcode"
-              href="/establishment-address"
-            >
-              Change
-            </AnchorTag>
-          </Header>
+          <Paragraph className="establishmentPostcodeDisplay" mb={0}>
+            {props.cumulativeFullAnswers.establishment_postcode_find}
+          </Paragraph>
+          <AnchorTag
+            id="changeEstablishmentPostcode"
+            href="/establishment-address"
+          >
+            Change postcode
+          </AnchorTag>
         </ContentItem.B_30_15>
 
         <SelectWithHeader
-          label="Select an address"
+          label={`Select an address for ${
+            props.cumulativeFullAnswers.establishment_postcode_find
+          }`}
           input={{
             id: "establishmentAddressDropdown",
             name: "establishment_address_selected",

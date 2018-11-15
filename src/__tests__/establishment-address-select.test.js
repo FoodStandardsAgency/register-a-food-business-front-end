@@ -25,7 +25,7 @@ describe("<EstablishmentAddressLookup />", () => {
         />
       );
       const establishmentPostcode = wrapper.find(
-        "Header#establishmentPostcodeDisplay"
+        "Paragraph.establishmentPostcodeDisplay"
       );
       expect(establishmentPostcode.length).toBe(1);
     });
@@ -44,7 +44,7 @@ describe("<EstablishmentAddressLookup />", () => {
       );
 
       const establishmentPostcode = wrapper.find(
-        "Header#establishmentPostcodeDisplay"
+        "Paragraph.establishmentPostcodeDisplay"
       );
 
       expect(establishmentPostcode.text().includes("default")).toBe(true);

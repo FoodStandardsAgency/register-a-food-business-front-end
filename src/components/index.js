@@ -14,6 +14,7 @@ import BusinessTypeLookup from "./BusinessTypeLookup";
 import CookieBanner from "./CookieBanner";
 import FsaFooter from "./FsaFooter";
 import SelectWithHeader from "./SelectWithHeader";
+import ListItemConsistentSize from "./ListItemConsistentSize";
 
 export {
   SessionWrapper,
@@ -31,5 +32,6 @@ export {
   BusinessTypeLookup,
   CookieBanner,
   FsaFooter,
-  SelectWithHeader
+  SelectWithHeader,
+  ListItemConsistentSize
 };
