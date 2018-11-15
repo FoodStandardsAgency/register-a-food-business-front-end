@@ -11,7 +11,9 @@ import PropTypes from "prop-types";
 const EstablishmentAddressType = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>Where is this establishment located?</Header>
+    <Header level={1} size="LARGE">
+      Where is this establishment located?
+    </Header>
 
     <HiddenText summaryText={"What is an establishment?"}>
       <Paragraph mb={0}>

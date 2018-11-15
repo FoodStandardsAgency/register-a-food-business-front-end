@@ -22,7 +22,9 @@ const FsaPanel = styled(Panel)`
 
 const ApplicationComplete = props => (
   <FsaLayout {...props}>
-    <Header level={2}>Submission complete</Header>
+    <Header level={1} size="LARGE">
+      Submission complete
+    </Header>
     <Paragraph>
       Thank you for submitting your food business registration.
     </Paragraph>
@@ -121,7 +123,9 @@ const ApplicationComplete = props => (
       </Paragraph>
     </ContentItem.B_30_15>
 
-    <Header level={2}>What's next?</Header>
+    <Header level={1} size="LARGE">
+      What's next?
+    </Header>
     <InsetText>
       <Paragraph mb={0}>
         **You may receive an unannounced food inspection from your local council
@@ -136,7 +140,9 @@ const ApplicationComplete = props => (
       </Paragraph>
     </ContentItem.B_30_15>
 
-    <Header level={2}>Find out here what you can do to prepare:</Header>
+    <Header level={1} size="LARGE">
+      Find out here what you can do to prepare:
+    </Header>
     <ContentItem.B_20_20>
       <AnchorTag
         id="foodSafetyLink"

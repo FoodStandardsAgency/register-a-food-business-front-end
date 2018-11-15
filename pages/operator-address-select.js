@@ -14,7 +14,9 @@ const AnchorTag = asAnchor("a");
 const OperatorAddressLookup = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>What is the operator's address?</Header>
+    <Header level={1} size="LARGE">
+      What is the operator's address?
+    </Header>
     <ContentItem.B_30_15>
       <HintText>
         Operator address is the contact address for the operator. For example
@@ -37,7 +39,9 @@ const OperatorAddressLookup = props => (
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
-          <Header level={3}>Postcode</Header>
+          <Header level={2} size="MEDIUM">
+            Postcode
+          </Header>
           <Paragraph className="operatorPostcodeDisplay" mb={0}>
             {props.cumulativeFullAnswers.operator_postcode_find}
           </Paragraph>

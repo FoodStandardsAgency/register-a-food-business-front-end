@@ -14,7 +14,9 @@ const AnchorTag = asAnchor("a");
 const EstablishmentAddressLookup = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>What is the establishment's address?</Header>
+    <Header level={1} size="LARGE">
+      What is the establishment's address?
+    </Header>
 
     <HiddenText
       id="hiddenTextEstablishment"
@@ -30,7 +32,9 @@ const EstablishmentAddressLookup = props => (
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
-          <Header level={3}>Postcode</Header>
+          <Header level={2} size="MEDIUM">
+            Postcode
+          </Header>
           <Paragraph className="establishmentPostcodeDisplay" mb={0}>
             {props.cumulativeFullAnswers.establishment_postcode_find}
           </Paragraph>

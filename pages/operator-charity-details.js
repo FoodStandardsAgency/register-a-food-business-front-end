@@ -17,7 +17,9 @@ const OperatorCharityDetails = props => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={2}>Details of the operating charity</Header>
+    <Header level={1} size="LARGE">
+      Details of the operating charity
+    </Header>
 
     <HiddenText
       id="hiddenTextFBO"

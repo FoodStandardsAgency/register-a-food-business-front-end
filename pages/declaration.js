@@ -41,7 +41,9 @@ class Declaration extends React.Component {
           ref="submitRegistration"
         >
           <BackButton {...this.props} />
-          <Header level={2}>Declaration</Header>
+          <Header level={1} size="LARGE">
+            Declaration
+          </Header>
 
           <Paragraph>
             Review these statements and tick all three boxes to agree.

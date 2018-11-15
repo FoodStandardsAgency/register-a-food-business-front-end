@@ -11,7 +11,9 @@ import PropTypes from "prop-types";
 const EstablishmentTradingName = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>Trading name</Header>
+    <Header level={1} size="LARGE">
+      Trading name
+    </Header>
 
     <HiddenText summaryText={"What is an establishment?"}>
       <Paragraph mb={0}>

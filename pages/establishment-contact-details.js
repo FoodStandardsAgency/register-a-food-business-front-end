@@ -18,7 +18,9 @@ const EstablishmentContactDetails = props => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={2}>Establishment contact details</Header>
+    <Header level={1} size="LARGE">
+      Establishment contact details
+    </Header>
 
     <HiddenText summaryText={"What is an establishment?"}>
       <Paragraph mb={0}>

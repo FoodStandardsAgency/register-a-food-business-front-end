@@ -14,7 +14,9 @@ const OpeningDate = props => {
     <FsaLayout {...props}>
       <BackButton {...props} />
 
-      <Header level={2}>Trading date</Header>
+      <Header level={1} size="LARGE">
+        Trading date
+      </Header>
       <ContentItem.B_30_15>
         <HintText>
           Establishments begin trading when they first start serving or

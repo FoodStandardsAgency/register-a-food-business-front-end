@@ -17,7 +17,9 @@ const OperatorName = props => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={2}>What is the operator's name?</Header>
+    <Header level={1} size="LARGE">
+      What is the operator's name?
+    </Header>
     <HiddenText summaryText={"What is a food business operator?"}>
       <Paragraph mb={0}>
         The food business operator is the person, charity or company who makes

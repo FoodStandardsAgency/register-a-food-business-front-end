@@ -15,7 +15,9 @@ const RegistrationSummary = props => (
 
     <ContentItem.B_30_15>
       <ContentItem.B_30_15>
-        <Header level={2}>Check your answers</Header>
+        <Header level={1} size="LARGE">
+          Check your answers
+        </Header>
         <HintText>You must check your answers before you continue</HintText>
       </ContentItem.B_30_15>
       <ContentItem.B_30_15>

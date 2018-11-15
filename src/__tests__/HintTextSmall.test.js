@@ -1,9 +1,5 @@
 import HintTextSmall from "../components/HintTextSmall";
 import { shallow } from "enzyme";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 describe("<HintTextSmall  />", () => {
   it("renders without crashing", () => {

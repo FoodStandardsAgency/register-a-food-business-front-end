@@ -33,7 +33,7 @@ const Index = props => (
       </InsetText>
 
       <ContentItem.B_30_15>
-        <Header level={3} mb={1}>
+        <Header level={2} size="MEDIUM" mb={1}>
           Food business operator
         </Header>
         <Paragraph mb={0}>
@@ -43,7 +43,7 @@ const Index = props => (
       </ContentItem.B_30_15>
 
       <ContentItem.B_30_15>
-        <Header level={3} mb={1}>
+        <Header level={2} size="MEDIUM" mb={1}>
           Establishment
         </Header>
         <Paragraph mb={0}>

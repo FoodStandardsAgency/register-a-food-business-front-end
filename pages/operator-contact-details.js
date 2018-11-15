@@ -17,7 +17,9 @@ const OperatorContactDetails = props => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={2}>Operator contact details</Header>
+    <Header level={1} size="LARGE">
+      Operator contact details
+    </Header>
 
     <HiddenText summaryText={"What is a food business operator?"}>
       <Paragraph mb={0}>

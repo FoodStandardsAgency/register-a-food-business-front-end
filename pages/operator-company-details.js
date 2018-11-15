@@ -13,7 +13,9 @@ const LimitedCompanyDetails = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary validatorErrors={props.validatorErrors} />
-    <Header level={2}>Company details</Header>
+    <Header level={1} size="LARGE">
+      Company details
+    </Header>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>

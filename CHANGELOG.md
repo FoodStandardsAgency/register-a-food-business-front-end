@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.41.2 - 14th November 2018
+
+### Modified
+
+* Improved hierarchy of H1, H2, H3 etc. (accessibility)
+
 ## v1.41.1 - 14th November 2018
 
 ### Modified

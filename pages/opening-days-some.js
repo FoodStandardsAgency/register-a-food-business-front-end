@@ -12,7 +12,9 @@ const OpeningSomeDays = props => (
   <FsaLayout {...props}>
     <form action={props.formAction} method="post">
       <BackButton {...props} />
-      <Header level={2}>Opening days</Header>
+      <Header level={1} size="LARGE">
+        Opening days
+      </Header>
       <Paragraph>
         What days will this establishment be producing or serving food?
       </Paragraph>
