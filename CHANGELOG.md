@@ -7,7 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Modified
 
-* Improved hierachy of H1, H2, H3 etc. (accessibility)
+* Improved hierarchy of H1, H2, H3 etc. (accessibility)
 
 ## v1.41.1 - 14th November 2018
 
