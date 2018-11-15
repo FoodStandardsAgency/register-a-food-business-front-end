@@ -1,11 +1,11 @@
-import { FsaLayout, ContentItem, BackButton, ContinueButton } from "./";
 import {
-  Header,
-  HiddenText,
-  Paragraph,
-  DateField,
-  HintText
-} from "govuk-react";
+  FsaLayout,
+  ContentItem,
+  BackButton,
+  ContinueButton,
+  HiddenTextAccessible
+} from "./";
+import { Header, Paragraph, DateField, HintText } from "govuk-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 
@@ -23,7 +23,8 @@ const OpeningDate = props => {
           manufacturing food for customers.
         </HintText>
       </ContentItem.B_30_15>
-      <HiddenText
+      <HiddenTextAccessible
+        hiddentextindex={1}
         id="hiddenTextEstablishment"
         summaryText={"What is an establishment?"}
       >
@@ -32,7 +33,7 @@ const OpeningDate = props => {
           activities taking place there. If it is a mobile food business, please
           use the location where it is normally stored overnight.
         </Paragraph>
-      </HiddenText>
+      </HiddenTextAccessible>
       {props.cumulativeFullAnswers.establishment_opening_status ===
       "Establishment is not trading yet" ? (
         <form action={props.formAction} method="post">
@@ -56,7 +57,8 @@ const OpeningDate = props => {
             </DateField>
 
             <ContentItem.B_30_15>
-              <HiddenText
+              <HiddenTextAccessible
+                hiddentextindex={2}
                 id="hiddenTextTradingDate"
                 summaryText={
                   "I don't know when this establishment will begin trading"
@@ -68,7 +70,7 @@ const OpeningDate = props => {
                   business will open, it may be too early to register. You can
                   also use an estimated date.
                 </Paragraph>
-              </HiddenText>
+              </HiddenTextAccessible>
             </ContentItem.B_30_15>
           </div>
 
@@ -95,7 +97,8 @@ const OpeningDate = props => {
           </DateField>
 
           <ContentItem.B_30_15>
-            <HiddenText
+            <HiddenTextAccessible
+              hiddentextindex={3}
               summaryText={"I don't know when this establishment began trading"}
             >
               <Paragraph mb={0}>
@@ -103,7 +106,7 @@ const OpeningDate = props => {
                 food or the day you took over the business as an operator. If
                 you do not remember the exact date, use an estimated date.
               </Paragraph>
-            </HiddenText>
+            </HiddenTextAccessible>
           </ContentItem.B_30_15>
 
           <ContinueButton {...props} />

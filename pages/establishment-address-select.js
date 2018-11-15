@@ -4,9 +4,10 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
-  SelectWithHeader
+  SelectWithHeader,
+  HiddenTextAccessible
 } from "../src/components";
-import { Header, HiddenText, Paragraph, asAnchor } from "govuk-react";
+import { Header, Paragraph, asAnchor } from "govuk-react";
 import PropTypes from "prop-types";
 
 const AnchorTag = asAnchor("a");
@@ -18,7 +19,7 @@ const EstablishmentAddressLookup = props => (
       What is the establishment's address?
     </Header>
 
-    <HiddenText
+    <HiddenTextAccessible
       id="hiddenTextEstablishment"
       summaryText={"What is an establishment?"}
     >
@@ -27,7 +28,7 @@ const EstablishmentAddressLookup = props => (
         mobile food business, please use the location where it is normally
         stored overnight.
       </Paragraph>
-    </HiddenText>
+    </HiddenTextAccessible>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>

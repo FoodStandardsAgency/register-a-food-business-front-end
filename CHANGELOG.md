@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.41.3 - 15th November 2018
+
+### Modified
+
+* Improved accessibility of summary/details drop-down elements with skip-links
+
 ## v1.41.2 - 14th November 2018
 
 ### Modified

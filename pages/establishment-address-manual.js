@@ -5,15 +5,10 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  HiddenTextAccessible
 } from "../src/components";
-import {
-  Header,
-  InputField,
-  HiddenText,
-  Paragraph,
-  ErrorText
-} from "govuk-react";
+import { Header, InputField, Paragraph, ErrorText } from "govuk-react";
 import PropTypes from "prop-types";
 
 const EstablishmentAddress = props => (
@@ -34,13 +29,13 @@ const EstablishmentAddress = props => (
       Establishment address
     </Header>
 
-    <HiddenText summaryText={"What is an establishment?"}>
+    <HiddenTextAccessible summaryText={"What is an establishment?"}>
       <Paragraph mb={0}>
         An establishment is the location of your food business, and the food
         activities taking place there. If it is a mobile food business, please
         use the location where it is normally stored overnight.
       </Paragraph>
-    </HiddenText>
+    </HiddenTextAccessible>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>

@@ -3,9 +3,10 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  ContinueButton
+  ContinueButton,
+  HiddenTextAccessible
 } from "../src/components";
-import { Header, Radio, MultiChoice, HiddenText, Paragraph } from "govuk-react";
+import { Header, Radio, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OpeningDaysStart = props => (
@@ -57,14 +58,14 @@ const OpeningDaysStart = props => (
           </Radio>
         </MultiChoice>
       </ContentItem.B_30_15>
-      <HiddenText summaryText={"I don't know what days to select"}>
+      <HiddenTextAccessible summaryText={"I don't know what days to select"}>
         <Paragraph mb={0}>
           If the food business isn't open the same days every week, then the
           establishment will likely have irregular opening days. This could
           include seasonal establishments such as summer ice-cream vendors, or
           establishments which only open for events such as football matches.
         </Paragraph>
-      </HiddenText>
+      </HiddenTextAccessible>
 
       <ContinueButton {...props} />
     </form>
