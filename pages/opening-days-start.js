@@ -53,7 +53,7 @@ const OpeningDaysStart = props => (
               "Irregular days"
             }
           >
-            Irregular days
+            Irregular days or seasonal
           </Radio>
         </MultiChoice>
       </ContentItem.B_30_15>
