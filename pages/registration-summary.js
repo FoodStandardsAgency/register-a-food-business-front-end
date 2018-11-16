@@ -14,16 +14,13 @@ const RegistrationSummary = props => (
     <BackButton {...props} />
 
     <ContentItem.B_30_15>
-      <ContentItem.B_30_15>
-        <Header level={1} size="LARGE">
-          Check your answers
-        </Header>
-        <HintText>You must check your answers before you continue</HintText>
-      </ContentItem.B_30_15>
-      <ContentItem.B_30_15>
-        <SummaryTable {...props.transformedData} />
-      </ContentItem.B_30_15>
+      <Header level={1} size="LARGE">
+        Check your answers
+      </Header>
+      <HintText>You must check your answers before you continue</HintText>
     </ContentItem.B_30_15>
+
+    <SummaryTable {...props.transformedData} />
 
     <form action="/continue/registration-summary" method="post">
       <ContinueButton />
