@@ -12,6 +12,7 @@ const ProcessedErrorSummary = props => {
   if (Object.keys(props.validatorErrors).length > 0) {
     return (
       <ErrorSummary
+        id="errorSummary"
         heading="There is a problem"
         onHandleErrorClick={props.onHandleErrorClick}
         errors={errors}
