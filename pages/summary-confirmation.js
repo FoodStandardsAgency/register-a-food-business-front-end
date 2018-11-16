@@ -144,6 +144,7 @@ const ApplicationComplete = props => (
       <Header level={2} size="LARGE">
         Find out here what you can do to prepare:
       </Header>
+      <HintText mb={3}>All links open in a new window</HintText>
       <ContentItem.B_20_20>
         <AnchorTag
           id="foodSafetyLink"
@@ -152,7 +153,7 @@ const ApplicationComplete = props => (
           rel="noopener noreferrer"
         >
           Food safety and how to run a food business (including Northern
-          Ireland) (opens in a new window)
+          Ireland)
         </AnchorTag>
       </ContentItem.B_20_20>
       <ContentItem.B_20_20>
@@ -162,7 +163,7 @@ const ApplicationComplete = props => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          Standards guidance for England and Wales (opens in a new window)
+          Standards guidance for England and Wales
         </AnchorTag>
       </ContentItem.B_20_20>
       <ContentItem.B_20_20>
@@ -172,8 +173,7 @@ const ApplicationComplete = props => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          How to achieve a high FHRS score and how to appeal (opens in a new
-          window)
+          How to achieve a high FHRS score and how to appeal
         </AnchorTag>
       </ContentItem.B_20_20>
       <ContentItem.B_20_20>
@@ -184,7 +184,6 @@ const ApplicationComplete = props => (
           rel="noopener noreferrer"
         >
           Do you qualify for primary authority partnership and how to get one
-          (opens in a new window)
         </AnchorTag>
       </ContentItem.B_20_20>
     </ContentItem.B_30_15>
