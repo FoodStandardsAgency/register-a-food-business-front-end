@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.41.5 - 16th November 2018
+
+### Modified
+
+* Added error summary box to all pages with validator errors
+
 ## v1.41.4 - 16th November 2018
 
 ### Modified
