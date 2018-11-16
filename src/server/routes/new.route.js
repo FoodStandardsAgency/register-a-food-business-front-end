@@ -10,6 +10,7 @@ const {
 const { REGISTRATION_DATA_VERSION } = require("../config");
 
 const allowedCouncils = [
+  "antrim-and-newtownabbey",
   "bridgend",
   "cardiff",
   "mid-and-east-antrim",
