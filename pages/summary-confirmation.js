@@ -63,57 +63,61 @@ const ApplicationComplete = props => (
       </Paragraph>
     </ContentItem.B_30_15>
 
-    <Header level={2} size="MEDIUM" mb={2}>
-      Your registration has been sent to:
-    </Header>
-    {props.lcConfig.hygieneAndStandards ? (
-      <ContentItem.B_30_15 id="hygieneAndStandardsCouncil">
-        <Header level={4} mb={1}>
-          {props.lcConfig.hygieneAndStandards.local_council}
-        </Header>
-        <Paragraph mb={0}>
-          {`Email: ${props.lcConfig.hygieneAndStandards.local_council_email}`}
-        </Paragraph>
-        {props.lcConfig.hygieneAndStandards.local_council_phone_number ? (
-          <Paragraph mb={0} id="hygieneAndStandardsNumber">
-            {`Phone: ${
-              props.lcConfig.hygieneAndStandards.local_council_phone_number
-            }`}
-          </Paragraph>
-        ) : null}
-      </ContentItem.B_30_15>
-    ) : props.lcConfig.hygiene && props.lcConfig.standards ? (
-      <div>
-        <ContentItem.B_30_15 id="hygieneCouncil">
+    <div id="sentToCouncilsSection">
+      <Header level={2} size="MEDIUM" mb={2}>
+        Your registration has been sent to:
+      </Header>
+      {props.lcConfig.hygieneAndStandards ? (
+        <ContentItem.B_30_15 id="hygieneAndStandardsCouncil">
           <Header level={4} mb={1}>
-            {props.lcConfig.hygiene.local_council}
+            {props.lcConfig.hygieneAndStandards.local_council}
           </Header>
           <Paragraph mb={0}>
-            {`Email: ${props.lcConfig.hygiene.local_council_email}`}
+            {`Email: ${props.lcConfig.hygieneAndStandards.local_council_email}`}
           </Paragraph>
-          {props.lcConfig.hygiene.local_council_phone_number ? (
-            <Paragraph mb={0} id="hygieneNumber">
-              {`Phone: ${props.lcConfig.hygiene.local_council_phone_number}`}
+          {props.lcConfig.hygieneAndStandards.local_council_phone_number ? (
+            <Paragraph mb={0} id="hygieneAndStandardsNumber">
+              {`Phone: ${
+                props.lcConfig.hygieneAndStandards.local_council_phone_number
+              }`}
             </Paragraph>
           ) : null}
-          <HintText>Reponsible local council for food hygiene</HintText>
         </ContentItem.B_30_15>
-        <ContentItem.B_30_15 id="standardsCouncil">
-          <Header level={4} mb={1}>
-            {props.lcConfig.standards.local_council}
-          </Header>
-          <Paragraph mb={0}>
-            {`Email: ${props.lcConfig.standards.local_council_email}`}
-          </Paragraph>
-          {props.lcConfig.standards.local_council_phone_number ? (
-            <Paragraph mb={0} id="standardsNumber">
-              {`Phone: ${props.lcConfig.standards.local_council_phone_number}`}
+      ) : props.lcConfig.hygiene && props.lcConfig.standards ? (
+        <div>
+          <ContentItem.B_30_15 id="hygieneCouncil">
+            <Header level={4} mb={1}>
+              {props.lcConfig.hygiene.local_council}
+            </Header>
+            <Paragraph mb={0}>
+              {`Email: ${props.lcConfig.hygiene.local_council_email}`}
             </Paragraph>
-          ) : null}
-          <HintText>Responsible local council for food standards</HintText>
-        </ContentItem.B_30_15>
-      </div>
-    ) : null}
+            {props.lcConfig.hygiene.local_council_phone_number ? (
+              <Paragraph mb={0} id="hygieneNumber">
+                {`Phone: ${props.lcConfig.hygiene.local_council_phone_number}`}
+              </Paragraph>
+            ) : null}
+            <HintText>Reponsible local council for food hygiene</HintText>
+          </ContentItem.B_30_15>
+          <ContentItem.B_30_15 id="standardsCouncil">
+            <Header level={4} mb={1}>
+              {props.lcConfig.standards.local_council}
+            </Header>
+            <Paragraph mb={0}>
+              {`Email: ${props.lcConfig.standards.local_council_email}`}
+            </Paragraph>
+            {props.lcConfig.standards.local_council_phone_number ? (
+              <Paragraph mb={0} id="standardsNumber">
+                {`Phone: ${
+                  props.lcConfig.standards.local_council_phone_number
+                }`}
+              </Paragraph>
+            ) : null}
+            <HintText>Responsible local council for food standards</HintText>
+          </ContentItem.B_30_15>
+        </div>
+      ) : null}
+    </div>
 
     <ContentItem.B_30_15>
       <Paragraph className="receiveConfirmationEmail">
