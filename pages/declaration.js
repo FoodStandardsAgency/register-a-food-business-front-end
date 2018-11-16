@@ -8,13 +8,7 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick
 } from "../src/components";
-import {
-  Header,
-  Checkbox,
-  MultiChoice,
-  Paragraph,
-  HintText
-} from "govuk-react";
+import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 class Declaration extends React.Component {
@@ -104,10 +98,6 @@ class Declaration extends React.Component {
               </Checkbox>
             </MultiChoice>
           </ContentItem.B_45_30>
-
-          <ContentItem.B_20_20>
-            <HintText>It may take a moment to submit.</HintText>
-          </ContentItem.B_20_20>
 
           {this.state.submitClicked === true ? (
             <ContinueButton disabled type="submit" />

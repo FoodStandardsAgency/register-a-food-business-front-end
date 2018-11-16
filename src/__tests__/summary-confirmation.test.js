@@ -107,7 +107,7 @@ describe("<ApplicationComplete />", () => {
           transformedData={transformedData}
         />
       );
-      const text = wrapper.text();
+      const text = wrapper.find("#sentToCouncilsSection").text();
       expect(text.includes("Hygiene council name")).toBe(true);
       expect(text.includes("Standards council name")).toBe(true);
       expect(text.includes("hygiene@example.com")).toBe(true);
