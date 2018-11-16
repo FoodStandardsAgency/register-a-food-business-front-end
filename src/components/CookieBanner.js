@@ -119,6 +119,7 @@ const CookieBanner = () => (
             id="cookieInfo"
             href="https://www.gov.uk/help/cookies"
             target="_blank"
+            aria-label="find out more about cookies (opens in new window)"
           >
             Find out more about cookies
           </AnchorTag>
@@ -126,6 +127,7 @@ const CookieBanner = () => (
             id="cookiePolicy"
             href="https://www.food.gov.uk/cookie-policy"
             target="_blank"
+            aria-label="read our cookie policy (opens in new window)"
           >
             Read our cookie policy
           </AnchorTag>

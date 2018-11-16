@@ -75,7 +75,7 @@ const LimitedCompanyDetails = props => (
               rel="noopener noreferrer"
               id="link-companies-house"
             >
-              Companies House website
+              Companies House website (opens in new window)
             </a>.
           </span>
         </HiddenTextAccessible>

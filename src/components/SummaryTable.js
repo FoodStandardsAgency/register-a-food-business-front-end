@@ -121,6 +121,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorTypeRow"
               href="/edit/registration-role"
+              aria-label="Change operator type"
             >
               Change
             </AnchorTag>
@@ -143,6 +144,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorCompanyNameRow"
               href="/edit/operator-company-details"
+              aria-label="Change operator company name"
             >
               Change
             </AnchorTag>
@@ -165,6 +167,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorCompaniesHouseRow"
               href="/edit/operator-company-details"
+              aria-label="Change operator companies house"
             >
               Change
             </AnchorTag>
@@ -187,6 +190,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorCharityNameRow"
               href="/edit/operator-charity-details"
+              aria-label="Change operator charity name"
             >
               Change
             </AnchorTag>
@@ -209,6 +213,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorCharityNumberRow"
               href="/edit/operator-charity-details"
+              aria-label="Change operator charity number"
             >
               Change
             </AnchorTag>
@@ -229,7 +234,11 @@ const OperatorDetailsTable = props => (
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag id="changeOperatorNameRow" href="/edit/operator-name">
+            <AnchorTag
+              id="changeOperatorNameRow"
+              href="/edit/operator-name"
+              aria-label="Change operator name"
+            >
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -276,6 +285,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorContactDetailsRow"
               href="/edit/operator-contact-details"
+              aria-label="Change operator contact details"
             >
               Change
             </AnchorTag>
@@ -298,6 +308,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorEmailRow"
               href="/edit/operator-contact-details"
+              aria-label="Change operator email"
             >
               Change
             </AnchorTag>
@@ -337,6 +348,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeContactRepresentativeRow"
               href="/edit/contact-representative"
+              aria-label="Change contact representative"
             >
               Change
             </AnchorTag>
@@ -364,6 +376,7 @@ const EstablishmentDetailsTable = props => (
             <AnchorTag
               id="changeEstablishmentTradingNameRow"
               href="/edit/establishment-trading-name"
+              aria-label="Change establishment trading name"
             >
               Change
             </AnchorTag>
@@ -410,6 +423,7 @@ const EstablishmentDetailsTable = props => (
             <AnchorTag
               id="changeEstablishmentAddressTypeRow"
               href="/edit/establishment-address-type"
+              aria-label="Change establishment address type"
             >
               Change
             </AnchorTag>
@@ -437,6 +451,7 @@ const EstablishmentDetailsTable = props => (
             <AnchorTag
               id="changeEstablishmentContactDetailsRow"
               href="/edit/establishment-contact-details"
+              aria-label="Change establishment contact details"
             >
               Change
             </AnchorTag>
@@ -459,6 +474,7 @@ const EstablishmentDetailsTable = props => (
             <AnchorTag
               id="changeEstablishmentEmailRow"
               href="/edit/establishment-contact-details"
+              aria-label="Change establishment email"
             >
               Change
             </AnchorTag>
@@ -481,6 +497,7 @@ const EstablishmentDetailsTable = props => (
             <AnchorTag
               id="changeEstablishmentOpeningDateRow"
               href="/edit/establishment-opening-status"
+              aria-label="Change establishment opening date"
             >
               Change
             </AnchorTag>
@@ -515,6 +532,7 @@ const EstablishmentDetailsTable = props => (
           <AnchorTag
             id="changeEstablishmentOpeningDaysRow"
             href="/edit/opening-days-start"
+            aria-label="Change establishment opening days"
           >
             Change
           </AnchorTag>
@@ -541,6 +559,7 @@ const FoodActivitiesTable = props => (
             <AnchorTag
               id="changeActivitiesCustomersRow"
               href="/edit/customer-type"
+              aria-label="Change activities customer type"
             >
               Change
             </AnchorTag>
@@ -560,7 +579,11 @@ const FoodActivitiesTable = props => (
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag id="changeBusinessTypeRow" href="/edit/business-type">
+            <AnchorTag
+              id="changeBusinessTypeRow"
+              href="/edit/business-type"
+              aria-label="Change business type"
+            >
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -582,6 +605,7 @@ const FoodActivitiesTable = props => (
             <AnchorTag
               id="changeActivitiesBusinessImportExportRow"
               href="/edit/business-import-export"
+              aria-label="Change business activities import export"
             >
               Change
             </AnchorTag>
@@ -604,6 +628,7 @@ const FoodActivitiesTable = props => (
             <AnchorTag
               id="changeBusinessOtherDetailsRow"
               href="/edit/business-other-details"
+              aria-label="Change business other details"
             >
               Change
             </AnchorTag>
