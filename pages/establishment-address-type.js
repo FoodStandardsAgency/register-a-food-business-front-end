@@ -4,6 +4,8 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
+  ProcessedErrorSummary,
+  OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
 import { Header, Radio, MultiChoice, Paragraph } from "govuk-react";
@@ -12,6 +14,10 @@ import PropTypes from "prop-types";
 const EstablishmentAddressType = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
     <Header level={1} size="LARGE">
       Where is this establishment located?
     </Header>

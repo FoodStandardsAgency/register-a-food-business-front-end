@@ -3,6 +3,8 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
+  ProcessedErrorSummary,
+  OnHandleErrorClick,
   HiddenTextAccessible
 } from "./";
 import { Header, Paragraph, DateField, HintText } from "govuk-react";
@@ -13,7 +15,10 @@ const OpeningDate = props => {
   return (
     <FsaLayout {...props}>
       <BackButton {...props} />
-
+      <ProcessedErrorSummary
+        validatorErrors={props.validatorErrors}
+        onHandleErrorClick={OnHandleErrorClick}
+      />
       <Header level={1} size="LARGE">
         Trading date
       </Header>

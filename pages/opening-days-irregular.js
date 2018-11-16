@@ -3,7 +3,9 @@ import {
   SessionWrapper,
   BackButton,
   ContinueButton,
-  ContentItem
+  ContentItem,
+  ProcessedErrorSummary,
+  OnHandleErrorClick
 } from "../src/components";
 import ListItemConsistentSize from "../src/components/ListItemConsistentSize";
 import {
@@ -18,6 +20,10 @@ import PropTypes from "prop-types";
 const OtherDaysIrregular = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
     <Header level={1} size="LARGE">
       Opening days
     </Header>
