@@ -126,13 +126,8 @@ describe("<SummaryTable />", () => {
 
   describe("when given a comprehensive set of answers", () => {
     it("the number of table rows matches the allTableRows array", () => {
-      const rows = wrapperComprehensive
-        .find("Row")
-        .findWhere(row => {
-          const classNameString = row.prop("className") || "";
-          return classNameString.includes("TITLE") === false;
-        })
-        .find("Row");
+      const rows = wrapperComprehensive.find("AccessibleRowHeader");
+
       expect(rows.length).toEqual(allTableRows.length);
     });
 
@@ -166,23 +161,13 @@ describe("<SummaryTable />", () => {
         expect(row.length).toBe(1);
       });
     });
-
-    it("contains a non-empty string for every answer", () => {
-      for (let answerID in testComprehensiveAnswers) {
-        const text = wrapperComprehensive.find(`#${answerID}`).text();
-        expect(text).not.toBe("");
-      }
-    });
   });
 
   describe("when given a minimum set of answers", () => {
-    it("renders all mandatory table rows with at least one piece of data", () => {
+    it("renders all mandatory table rows", () => {
       mandatoryTableRows.forEach(tableRowName => {
         const row = wrapperMinimum.find(`Row#${tableRowName}`);
         expect(row.length).toBe(1);
-
-        const answerCells = row.find("td.summaryTableDataCell");
-        expect(answerCells.text()).not.toBe("");
       });
     });
 
