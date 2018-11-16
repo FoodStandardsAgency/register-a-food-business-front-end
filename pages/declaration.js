@@ -4,7 +4,9 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  ContinueButton
+  ContinueButton,
+  ProcessedErrorSummary,
+  OnHandleErrorClick
 } from "../src/components";
 import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
@@ -35,6 +37,10 @@ class Declaration extends React.Component {
           ref="submitRegistration"
         >
           <BackButton {...this.props} />
+          <ProcessedErrorSummary
+            validatorErrors={this.props.validatorErrors}
+            onHandleErrorClick={OnHandleErrorClick}
+          />
           <Header level={1} size="LARGE">
             Declaration
           </Header>

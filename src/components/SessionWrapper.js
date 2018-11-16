@@ -17,6 +17,13 @@ const SessionWrapper = Page => {
 
     const currentPage = currentPageWithQuery.split("?")[0];
 
+    const validatorErrorsCleaned =
+      req && req.session && req.session.validatorErrors
+        ? { ...req.session.validatorErrors }
+        : {};
+
+    delete validatorErrorsCleaned["undefined"];
+
     const initialProps = {
       acceptAllCookies,
       editModeFirstPage,
@@ -30,10 +37,7 @@ const SessionWrapper = Page => {
         req && req.session && req.session.transformedData
           ? req.session.transformedData
           : {},
-      validatorErrors:
-        req && req.session && req.session.validatorErrors
-          ? req.session.validatorErrors
-          : {},
+      validatorErrors: validatorErrorsCleaned,
       switches:
         req && req.session && req.session.switches ? req.session.switches : {},
       fsaRegistrationNumber:

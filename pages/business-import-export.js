@@ -4,6 +4,8 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
+  ProcessedErrorSummary,
+  OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
 import {
@@ -19,6 +21,10 @@ const ImportExportActivities = props => (
   <FsaLayout {...props}>
     <form action={props.formAction} method="post">
       <BackButton {...props} />
+      <ProcessedErrorSummary
+        validatorErrors={props.validatorErrors}
+        onHandleErrorClick={OnHandleErrorClick}
+      />
       <Header level={1} size="LARGE">
         Will this food business import or export any food from outside the UK?
       </Header>

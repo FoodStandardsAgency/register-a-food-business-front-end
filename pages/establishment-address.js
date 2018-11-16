@@ -4,6 +4,8 @@ import {
   ContentItem,
   BackButton,
   FindAddressButton,
+  ProcessedErrorSummary,
+  OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
 import { Header, InputField, Paragraph } from "govuk-react";
@@ -12,6 +14,10 @@ import PropTypes from "prop-types";
 const EstablishmentAddress = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
     <Header level={1} size="LARGE">
       Establishment address
     </Header>

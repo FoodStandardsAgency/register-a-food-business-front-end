@@ -9,6 +9,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * Made Summary Table accessible for both pages it appears on. Added invisible column headers, Voiceover accessibility, captions for split table sections.
 
+## v1.41.5 - 16th November 2018
+
+### Modified
+
+* Added error summary box to all pages with validator errors
+
 ## v1.41.4 - 16th November 2018
 
 ### Modified
