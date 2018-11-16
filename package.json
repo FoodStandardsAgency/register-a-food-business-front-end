@@ -1,6 +1,6 @@
 {
   "name": "register_a_food_business_front_end",
-  "version": "1.41.3",
+  "version": "1.41.4",
   "scripts": {
     "debug": "node --inspect src/server/index.js",
     "debug:prod": "NODE_ENV=production node --inspect src/server/index.js",

@@ -81,7 +81,7 @@ const ImportExportActivities = props => (
               rel="noopener noreferrer"
               id="link-fsa-website"
             >
-              Food Standards Agency website
+              Food Standards Agency website (opens in new window)
             </a>.
           </span>
         </HiddenTextAccessible>

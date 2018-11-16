@@ -24,7 +24,11 @@ const FsaTopNav = styled(TopNav)`
 `;
 
 const Company = (
-  <AnchorTag href="https://www.gov.uk" target="_blank">
+  <AnchorTag
+    href="https://www.gov.uk"
+    target="_blank"
+    aria-label="gov.uk website (opens in new window)"
+  >
     <TopNav.IconTitle icon={<CrownIcon width="36" height="32" />}>
       GOV.UK
     </TopNav.IconTitle>
@@ -33,7 +37,10 @@ const Company = (
 
 const NavAnchor = asNavLinkAnchor("a");
 const ServiceTitle = props => (
-  <NavAnchor href={`/new/${props.council}`}>
+  <NavAnchor
+    href={`/new/${props.council}`}
+    aria-label="start a new food business registration"
+  >
     <Paragraph mb={0}>Register a food business</Paragraph>
   </NavAnchor>
 );
@@ -55,7 +62,12 @@ const FsaHeader = props => (
     <HeaderMain>
       <PhaseBanner level="beta">
         This is a new service -{" "}
-        <AnchorTag id="feedbackLink" href={feedbackLink} target="_blank">
+        <AnchorTag
+          id="feedbackLink"
+          href={feedbackLink}
+          target="_blank"
+          aria-label="your feedback (opens in new window)"
+        >
           your feedback
         </AnchorTag>{" "}
         will help us improve it

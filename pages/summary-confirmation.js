@@ -55,7 +55,7 @@ const ApplicationComplete = props => (
     </InsetText>
 
     <ContentItem.B_30_15>
-      <Header level={3} mb={1}>
+      <Header level={2} size="MEDIUM" mb={1}>
         Submitted on
       </Header>
       <Paragraph mb={0}>
@@ -63,7 +63,7 @@ const ApplicationComplete = props => (
       </Paragraph>
     </ContentItem.B_30_15>
 
-    <Header level={3} mb={2}>
+    <Header level={2} size="MEDIUM" mb={2}>
       Your registration has been sent to:
     </Header>
     {props.lcConfig.hygieneAndStandards ? (
@@ -123,7 +123,7 @@ const ApplicationComplete = props => (
       </Paragraph>
     </ContentItem.B_30_15>
 
-    <Header level={1} size="LARGE">
+    <Header level={2} size="LARGE">
       What's next?
     </Header>
     <InsetText>
@@ -140,49 +140,57 @@ const ApplicationComplete = props => (
       </Paragraph>
     </ContentItem.B_30_15>
 
-    <Header level={1} size="LARGE">
-      Find out here what you can do to prepare:
+    <ContentItem.B_30_15>
+      <Header level={2} size="LARGE">
+        Find out here what you can do to prepare:
+      </Header>
+      <HintText mb={3}>All links open in a new window</HintText>
+      <ContentItem.B_20_20>
+        <AnchorTag
+          id="foodSafetyLink"
+          href="https://www.food.gov.uk/business-guidance"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Food safety and how to run a food business (including Northern
+          Ireland)
+        </AnchorTag>
+      </ContentItem.B_20_20>
+      <ContentItem.B_20_20>
+        <AnchorTag
+          id="standardGuidanceLink"
+          href="https://www.businesscompanion.info/en/in-depth-guides"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Standards guidance for England and Wales
+        </AnchorTag>
+      </ContentItem.B_20_20>
+      <ContentItem.B_20_20>
+        <AnchorTag
+          id="fhrsScoreLink"
+          href="https://www.food.gov.uk/business-guidance/food-hygiene-ratings-for-businesses"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          How to achieve a high FHRS score and how to appeal
+        </AnchorTag>
+      </ContentItem.B_20_20>
+      <ContentItem.B_20_20>
+        <AnchorTag
+          id="primaryAuthorityLink"
+          href="https://www.gov.uk/guidance/local-regulation-primary-authority"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Do you qualify for primary authority partnership and how to get one
+        </AnchorTag>
+      </ContentItem.B_20_20>
+    </ContentItem.B_30_15>
+
+    <Header level={2} mb={0} size="LARGE">
+      Your registration details:
     </Header>
-    <ContentItem.B_20_20>
-      <AnchorTag
-        id="foodSafetyLink"
-        href="https://www.food.gov.uk/business-guidance"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Food safety and how to run a food business (including Northern Ireland)
-      </AnchorTag>
-    </ContentItem.B_20_20>
-    <ContentItem.B_20_20>
-      <AnchorTag
-        id="standardGuidanceLink"
-        href="https://www.businesscompanion.info/en/in-depth-guides"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Standards guidance for England and Wales
-      </AnchorTag>
-    </ContentItem.B_20_20>
-    <ContentItem.B_20_20>
-      <AnchorTag
-        id="fhrsScoreLink"
-        href="https://www.food.gov.uk/business-guidance/food-hygiene-ratings-for-businesses"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        How to achieve a high FHRS score and how to appeal
-      </AnchorTag>
-    </ContentItem.B_20_20>
-    <ContentItem.B_20_20>
-      <AnchorTag
-        id="primaryAuthorityLink"
-        href="https://www.gov.uk/guidance/local-regulation-primary-authority"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Do you qualify for primary authority partnership and how to get one
-      </AnchorTag>
-    </ContentItem.B_20_20>
     <SummaryTable {...props.transformedData} applicationCompletePage={true} />
   </FsaLayout>
 );

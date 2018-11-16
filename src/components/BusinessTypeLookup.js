@@ -58,15 +58,17 @@ const BusinessTypeLookup = props => (
           {props.validatorErrors.business_type}
         </ErrorText>
       ) : null}
-      <Autocomplete
-        source={findMatches}
-        templates={templates}
-        autoselect={true}
-        displayMenu="overlay"
-        confirmOnBlur={false}
-        name="business_type"
-        defaultValue={props.cumulativeFullAnswers.business_type}
-      />
+      <div aria-label="business type autocomplete, type and then choose from results">
+        <Autocomplete
+          source={findMatches}
+          templates={templates}
+          autoselect={false}
+          displayMenu="inline"
+          confirmOnBlur={false}
+          name="business_type"
+          defaultValue={props.cumulativeFullAnswers.business_type}
+        />
+      </div>
     </div>
   </div>
 );
