@@ -188,7 +188,7 @@ const ApplicationComplete = props => (
       </ContentItem.B_20_20>
     </ContentItem.B_30_15>
 
-    <Header level={2} mb={0} size="LARGE">
+    <Header level={2} mb={5} size="LARGE">
       Your registration details:
     </Header>
     <SummaryTable {...props.transformedData} applicationCompletePage={true} />
