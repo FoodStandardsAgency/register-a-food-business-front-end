@@ -15,6 +15,8 @@ import CookieBanner from "./CookieBanner";
 import FsaFooter from "./FsaFooter";
 import SelectWithHeader from "./SelectWithHeader";
 import ListItemConsistentSize from "./ListItemConsistentSize";
+import InvisibleLink from "./InvisibleLink";
+import HiddenTextAccessible from "./HiddenTextAccessible";
 
 export {
   SessionWrapper,
@@ -33,5 +35,7 @@ export {
   CookieBanner,
   FsaFooter,
   SelectWithHeader,
-  ListItemConsistentSize
+  ListItemConsistentSize,
+  InvisibleLink,
+  HiddenTextAccessible
 };

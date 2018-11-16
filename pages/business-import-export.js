@@ -3,14 +3,14 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  ContinueButton
+  ContinueButton,
+  HiddenTextAccessible
 } from "../src/components";
 import {
   Header,
   Checkbox,
   MultiChoice,
   Paragraph,
-  HiddenText,
   HintText
 } from "govuk-react";
 import PropTypes from "prop-types";
@@ -64,7 +64,7 @@ const ImportExportActivities = props => (
       </ContentItem.B_30_15>
 
       <ContentItem.B_30_15>
-        <HiddenText
+        <HiddenTextAccessible
           id="hiddenTextImportExportActivities"
           summaryText={"More information about import and export activities"}
         >
@@ -84,7 +84,7 @@ const ImportExportActivities = props => (
               Food Standards Agency website (opens in new window)
             </a>.
           </span>
-        </HiddenText>
+        </HiddenTextAccessible>
       </ContentItem.B_30_15>
 
       <ContinueButton {...props} />

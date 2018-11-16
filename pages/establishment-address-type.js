@@ -3,9 +3,10 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  ContinueButton
+  ContinueButton,
+  HiddenTextAccessible
 } from "../src/components";
-import { Header, Radio, MultiChoice, HiddenText, Paragraph } from "govuk-react";
+import { Header, Radio, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const EstablishmentAddressType = props => (
@@ -15,13 +16,13 @@ const EstablishmentAddressType = props => (
       Where is this establishment located?
     </Header>
 
-    <HiddenText summaryText={"What is an establishment?"}>
+    <HiddenTextAccessible summaryText={"What is an establishment?"}>
       <Paragraph mb={0}>
         An establishment is the location of your food business. If it is a
         mobile food business, please use the location where it is normally
         stored overnight.
       </Paragraph>
-    </HiddenText>
+    </HiddenTextAccessible>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_45_30>

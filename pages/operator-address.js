@@ -3,15 +3,10 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  FindAddressButton
+  FindAddressButton,
+  HiddenTextAccessible
 } from "../src/components";
-import {
-  Header,
-  InputField,
-  HiddenText,
-  Paragraph,
-  HintText
-} from "govuk-react";
+import { Header, InputField, Paragraph, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OperatorAddress = props => (
@@ -29,13 +24,13 @@ const OperatorAddress = props => (
       </HintText>
     </ContentItem.B_30_15>
 
-    <HiddenText summaryText={"What is a food business operator?"}>
+    <HiddenTextAccessible summaryText={"What is a food business operator?"}>
       <Paragraph mb={0}>
         The food business operator is the person, charity or company who makes
         the decisions about the food business, what it serves and how it
         operates.
       </Paragraph>
-    </HiddenText>
+    </HiddenTextAccessible>
 
     <form action="/findaddress/operator-address" method="post">
       <ContentItem.B_30_15>

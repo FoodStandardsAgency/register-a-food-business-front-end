@@ -3,26 +3,26 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  FindAddressButton
+  FindAddressButton,
+  HiddenTextAccessible
 } from "../src/components";
-import { Header, InputField, HiddenText, Paragraph } from "govuk-react";
+import { Header, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const EstablishmentAddress = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-
     <Header level={1} size="LARGE">
       Establishment address
     </Header>
 
-    <HiddenText summaryText={"What is an establishment?"}>
+    <HiddenTextAccessible summaryText={"What is an establishment?"}>
       <Paragraph mb={0}>
         An establishment is the location of your food business, and the food
         activities taking place there. If it is a mobile food business, please
         use the location where it is normally stored overnight.
       </Paragraph>
-    </HiddenText>
+    </HiddenTextAccessible>
 
     <form action="/findaddress/establishment-address" method="post">
       <ContentItem.B_30_15>

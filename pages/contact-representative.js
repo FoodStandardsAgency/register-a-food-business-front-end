@@ -5,9 +5,10 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  HiddenTextAccessible
 } from "../src/components";
-import { Header, InputField, Paragraph, HiddenText } from "govuk-react";
+import { Header, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const ContactRepresentative = props => {
@@ -25,13 +26,13 @@ const ContactRepresentative = props => {
         Please give us the details of the person at this company or charity we
         should speak to about food hygiene and safety.
       </Paragraph>
-      <HiddenText summaryText={"What is a food business operator?"}>
+      <HiddenTextAccessible summaryText={"What is a food business operator?"}>
         <Paragraph mb={0}>
           The food business operator is the person, charity or company who makes
           the decisions about the food business, what it serves and how it
           operates.
         </Paragraph>
-      </HiddenText>
+      </HiddenTextAccessible>
       <form action={props.formAction} method="post">
         <ContentItem.B_30_15>
           <ContentItem.B_30_15>
