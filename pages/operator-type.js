@@ -5,6 +5,8 @@ import {
   BackButton,
   ContinueButton,
   HintTextSmall,
+  ProcessedErrorSummary,
+  OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
 import { Header, Radio, MultiChoice, Paragraph } from "govuk-react";
@@ -13,6 +15,10 @@ import PropTypes from "prop-types";
 const OperatorType = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
     <Header level={1} size="LARGE">
       Who operates this business?
     </Header>
