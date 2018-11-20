@@ -26,7 +26,7 @@ const EstablishmentAddress = props => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Header level={1} size="LARGE">
-      Establishment address
+      What is the establishment's address?
     </Header>
 
     <HiddenTextAccessible summaryText={"What is an establishment?"}>
