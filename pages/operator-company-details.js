@@ -4,16 +4,19 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
-  ProcessedErrorSummary
+  ProcessedErrorSummary,
+  HiddenTextAccessible
 } from "../src/components";
-import { Header, InputField, HiddenText } from "govuk-react";
+import { Header, InputField } from "govuk-react";
 import PropTypes from "prop-types";
 
 const LimitedCompanyDetails = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary validatorErrors={props.validatorErrors} />
-    <Header level={2}>Company details</Header>
+    <Header level={1} size="LARGE">
+      Company details
+    </Header>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
@@ -58,7 +61,9 @@ const LimitedCompanyDetails = props => (
       </ContentItem.B_30_15>
 
       <ContentItem.B_30_15>
-        <HiddenText summaryText={"I don't know my Companies House number"}>
+        <HiddenTextAccessible
+          summaryText={"I don't know my Companies House number"}
+        >
           {/* TODO JMB: replace the span with a paragraph once it's possible to pass an array or similar to Paragraph for the link */}
           <span>
             Every limited company has to be registered with Companies House, and
@@ -70,10 +75,10 @@ const LimitedCompanyDetails = props => (
               rel="noopener noreferrer"
               id="link-companies-house"
             >
-              Companies House website
+              Companies House website (opens in new window)
             </a>.
           </span>
-        </HiddenText>
+        </HiddenTextAccessible>
       </ContentItem.B_30_15>
 
       <ContinueButton {...props} />

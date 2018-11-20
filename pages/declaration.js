@@ -4,15 +4,11 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  ContinueButton
+  ContinueButton,
+  ProcessedErrorSummary,
+  OnHandleErrorClick
 } from "../src/components";
-import {
-  Header,
-  Checkbox,
-  MultiChoice,
-  Paragraph,
-  HintText
-} from "govuk-react";
+import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 class Declaration extends React.Component {
@@ -41,7 +37,13 @@ class Declaration extends React.Component {
           ref="submitRegistration"
         >
           <BackButton {...this.props} />
-          <Header level={2}>Declaration</Header>
+          <ProcessedErrorSummary
+            validatorErrors={this.props.validatorErrors}
+            onHandleErrorClick={OnHandleErrorClick}
+          />
+          <Header level={1} size="LARGE">
+            Declaration
+          </Header>
 
           <Paragraph>
             Review these statements and tick all three boxes to agree.
@@ -96,10 +98,6 @@ class Declaration extends React.Component {
               </Checkbox>
             </MultiChoice>
           </ContentItem.B_45_30>
-
-          <ContentItem.B_20_20>
-            <HintText>It may take a moment to submit.</HintText>
-          </ContentItem.B_20_20>
 
           {this.state.submitClicked === true ? (
             <ContinueButton disabled type="submit" />

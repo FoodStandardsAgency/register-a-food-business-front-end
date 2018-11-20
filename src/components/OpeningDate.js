@@ -1,11 +1,13 @@
-import { FsaLayout, ContentItem, BackButton, ContinueButton } from "./";
 import {
-  Header,
-  HiddenText,
-  Paragraph,
-  DateInput,
-  HintText
-} from "govuk-react";
+  FsaLayout,
+  ContentItem,
+  BackButton,
+  ContinueButton,
+  ProcessedErrorSummary,
+  OnHandleErrorClick,
+  HiddenTextAccessible
+} from "./";
+import { Header, Paragraph, DateField, HintText } from "govuk-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 
@@ -13,15 +15,21 @@ const OpeningDate = props => {
   return (
     <FsaLayout {...props}>
       <BackButton {...props} />
-
-      <Header level={2}>Trading date</Header>
+      <ProcessedErrorSummary
+        validatorErrors={props.validatorErrors}
+        onHandleErrorClick={OnHandleErrorClick}
+      />
+      <Header level={1} size="LARGE">
+        Trading date
+      </Header>
       <ContentItem.B_30_15>
         <HintText>
           Establishments begin trading when they first start serving or
           manufacturing food for customers.
         </HintText>
       </ContentItem.B_30_15>
-      <HiddenText
+      <HiddenTextAccessible
+        hiddentextindex={1}
         id="hiddenTextEstablishment"
         summaryText={"What is an establishment?"}
       >
@@ -30,12 +38,17 @@ const OpeningDate = props => {
           activities taking place there. If it is a mobile food business, please
           use the location where it is normally stored overnight.
         </Paragraph>
-      </HiddenText>
+      </HiddenTextAccessible>
       {props.cumulativeFullAnswers.establishment_opening_status ===
       "Establishment is not trading yet" ? (
         <form action={props.formAction} method="post">
           <div>
-            <DateInput
+            <DateField
+              defaultValues={{
+                day: props.cumulativeFullAnswers.day,
+                month: props.cumulativeFullAnswers.month,
+                year: props.cumulativeFullAnswers.year
+              }}
               inputNames={{ day: "day", month: "month", year: "year" }}
               hintText={`For example, ${moment()
                 .add(40, "d")
@@ -46,10 +59,11 @@ const OpeningDate = props => {
               <span className="bold">
                 When is this establishment expected to begin trading?
               </span>
-            </DateInput>
+            </DateField>
 
             <ContentItem.B_30_15>
-              <HiddenText
+              <HiddenTextAccessible
+                hiddentextindex={2}
                 id="hiddenTextTradingDate"
                 summaryText={
                   "I don't know when this establishment will begin trading"
@@ -61,7 +75,7 @@ const OpeningDate = props => {
                   business will open, it may be too early to register. You can
                   also use an estimated date.
                 </Paragraph>
-              </HiddenText>
+              </HiddenTextAccessible>
             </ContentItem.B_30_15>
           </div>
 
@@ -69,7 +83,12 @@ const OpeningDate = props => {
         </form>
       ) : (
         <form action={props.formAction} method="post">
-          <DateInput
+          <DateField
+            defaultValues={{
+              day: props.cumulativeFullAnswers.day,
+              month: props.cumulativeFullAnswers.month,
+              year: props.cumulativeFullAnswers.year
+            }}
             inputNames={{ day: "day", month: "month", year: "year" }}
             hintText={`For example, ${moment()
               .subtract(40, "d")
@@ -80,10 +99,11 @@ const OpeningDate = props => {
             <span className="bold">
               What date did this establishment begin trading?
             </span>
-          </DateInput>
+          </DateField>
 
           <ContentItem.B_30_15>
-            <HiddenText
+            <HiddenTextAccessible
+              hiddentextindex={3}
               summaryText={"I don't know when this establishment began trading"}
             >
               <Paragraph mb={0}>
@@ -91,7 +111,7 @@ const OpeningDate = props => {
                 food or the day you took over the business as an operator. If
                 you do not remember the exact date, use an estimated date.
               </Paragraph>
-            </HiddenText>
+            </HiddenTextAccessible>
           </ContentItem.B_30_15>
 
           <ContinueButton {...props} />

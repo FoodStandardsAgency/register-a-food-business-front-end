@@ -3,14 +3,16 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  ContinueButton
+  ContinueButton,
+  ProcessedErrorSummary,
+  OnHandleErrorClick,
+  HiddenTextAccessible
 } from "../src/components";
 import {
   Header,
   Checkbox,
   MultiChoice,
   Paragraph,
-  HiddenText,
   HintText
 } from "govuk-react";
 import PropTypes from "prop-types";
@@ -19,7 +21,11 @@ const ImportExportActivities = props => (
   <FsaLayout {...props}>
     <form action={props.formAction} method="post">
       <BackButton {...props} />
-      <Header level={2}>
+      <ProcessedErrorSummary
+        validatorErrors={props.validatorErrors}
+        onHandleErrorClick={OnHandleErrorClick}
+      />
+      <Header level={1} size="LARGE">
         Will this food business import or export any food from outside the UK?
       </Header>
       <HintText mb={1}>
@@ -64,7 +70,7 @@ const ImportExportActivities = props => (
       </ContentItem.B_30_15>
 
       <ContentItem.B_30_15>
-        <HiddenText
+        <HiddenTextAccessible
           id="hiddenTextImportExportActivities"
           summaryText={"More information about import and export activities"}
         >
@@ -81,10 +87,10 @@ const ImportExportActivities = props => (
               rel="noopener noreferrer"
               id="link-fsa-website"
             >
-              Food Standards Agency website
+              Food Standards Agency website (opens in new window)
             </a>.
           </span>
-        </HiddenText>
+        </HiddenTextAccessible>
       </ContentItem.B_30_15>
 
       <ContinueButton {...props} />

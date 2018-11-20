@@ -1,10 +1,5 @@
 import EstablishmentAddressLookup from "../../pages/establishment-address-select";
 import { mount, shallow } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const testCumulativeAnswers = {
   example: "test answer"
@@ -20,19 +15,6 @@ describe("<EstablishmentAddressLookup />", () => {
     expect(wrapper.length).toBe(1);
   });
 
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <EstablishmentAddressLookup
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
   describe("Establishment postcode display", () => {
     it("renders even when the addressLookups key is not found", () => {
       const wrapper = mount(
@@ -43,7 +25,7 @@ describe("<EstablishmentAddressLookup />", () => {
         />
       );
       const establishmentPostcode = wrapper.find(
-        "Header#establishmentPostcodeDisplay"
+        "Paragraph.establishmentPostcodeDisplay"
       );
       expect(establishmentPostcode.length).toBe(1);
     });
@@ -62,7 +44,7 @@ describe("<EstablishmentAddressLookup />", () => {
       );
 
       const establishmentPostcode = wrapper.find(
-        "Header#establishmentPostcodeDisplay"
+        "Paragraph.establishmentPostcodeDisplay"
       );
 
       expect(establishmentPostcode.text().includes("default")).toBe(true);

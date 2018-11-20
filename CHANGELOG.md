@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.41.6 - 16th November 2018
+
+### Modified
+
+* Made Summary Table accessible for both pages it appears on. Added invisible column headers, Voiceover accessibility, captions for split table sections.
+
+## v1.41.5 - 16th November 2018
+
+### Modified
+
+* Added error summary box to all pages with validator errors
+
+## v1.41.4 - 16th November 2018
+
+### Modified
+
+* Added hint text for external links and registration details title on summary confirmation page (accessibility)
+* Added aria label, got rid of preselection and changed autocomplete to inline on business-type page (accessibility)
+* Added aria labels for change buttons on registration-summary (accessibility)
+
+## v1.41.3 - 15th November 2018
+
+### Modified
+
+* Improved accessibility of summary/details drop-down elements with skip-links
+
+## v1.41.2 - 14th November 2018
+
+### Modified
+
+* Improved hierarchy of H1, H2, H3 etc. (accessibility)
+
+## v1.41.1 - 14th November 2018
+
+### Modified
+
+* Changed items to be lists
+* changed postcode to be paragraph instead of Heading
+
+## v1.41.0 - 14th November 2018
+
+### Added
+
+* Added HTML 'regions'/'landmarks' for banner, main, and footer (accessibility)
+
+## v1.40.6 - 9th November 2018
+
+### Modified
+
+* Made trading date fields persist data
+
 ## v1.40.5 - 7th November 2018
 
 ### Modified

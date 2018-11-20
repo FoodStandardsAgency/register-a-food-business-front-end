@@ -1,5 +1,5 @@
 import styled from "react-emotion";
-import { asAnchor } from "govuk-react";
+import { asAnchor, ListItem, UnorderedList } from "govuk-react";
 import Crown from "./crown.svg";
 
 const fontSizeNormal = "16px";
@@ -95,35 +95,54 @@ const FooterCrown = styled(Crown)`
   margin-bottom: 10px;
 `;
 
+const FooterListItem = styled(ListItem)`
+  display: inline;
+`;
+
+const FooterUnorderedList = styled(UnorderedList)`
+  padding-left: 0px;
+`;
+
 const FsaFooter = () => (
-  <Footer id="fsaFooter">
+  <Footer id="fsaFooter" role="contentinfo">
     <FooterBody>
       <FooterContent>
         <FooterLinkContainer>
-          <FooterLink
-            id="cookiePolicyFooter"
-            href="https://www.food.gov.uk/cookie-policy"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Cookies
-          </FooterLink>
-          <FooterLink
-            id="privacyPolicyFooter"
-            href="https://www.food.gov.uk/privacy-policy"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Privacy
-          </FooterLink>
-          <FooterLink
-            id="feedbackFooter"
-            href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Feedback
-          </FooterLink>
+          <FooterUnorderedList>
+            <FooterListItem>
+              <FooterLink
+                id="cookiePolicyFooter"
+                href="https://www.food.gov.uk/cookie-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="cookie policy (opens in a new window)"
+              >
+                Cookies
+              </FooterLink>
+            </FooterListItem>
+            <FooterListItem>
+              <FooterLink
+                id="privacyPolicyFooter"
+                href="https://www.food.gov.uk/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="privacy policy (opens in a new window)"
+              >
+                Privacy
+              </FooterLink>
+            </FooterListItem>
+            <FooterListItem>
+              <FooterLink
+                id="feedbackFooter"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="give us feedback on the service (opens in a new window)"
+              >
+                Feedback
+              </FooterLink>
+            </FooterListItem>
+          </FooterUnorderedList>
         </FooterLinkContainer>
         <div>
           <OGLLogo>
@@ -149,6 +168,7 @@ const FsaFooter = () => (
               target="_blank"
               rel="noopener noreferrer"
               id="openGovernmentLicence"
+              aria-label="open government licence (opens in a new window)"
             >
               Open Government Licence v3.0,
             </FooterInlineLink>{" "}

@@ -4,23 +4,31 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
-  HintTextSmall
+  HintTextSmall,
+  ProcessedErrorSummary,
+  OnHandleErrorClick,
+  HiddenTextAccessible
 } from "../src/components";
-import { Header, Radio, MultiChoice, HiddenText, Paragraph } from "govuk-react";
+import { Header, Radio, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OperatorType = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>Who operates this business?</Header>
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
+    <Header level={1} size="LARGE">
+      Who operates this business?
+    </Header>
 
-    <HiddenText summaryText={"What is a food business operator?"}>
+    <HiddenTextAccessible summaryText={"What is a food business operator?"}>
       <Paragraph mb={0}>
-        The food business operator is the person, charity or company who makes
-        the decisions about the food business, what it serves and how it
-        operates.
+        The operator is the person or persons, charity or company who makes the
+        decisions about the food business, what it serves and how it operates.
       </Paragraph>
-    </HiddenText>
+    </HiddenTextAccessible>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_45_30>

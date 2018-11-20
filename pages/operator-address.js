@@ -3,22 +3,24 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  FindAddressButton
+  FindAddressButton,
+  ProcessedErrorSummary,
+  OnHandleErrorClick,
+  HiddenTextAccessible
 } from "../src/components";
-import {
-  Header,
-  InputField,
-  HiddenText,
-  Paragraph,
-  HintText
-} from "govuk-react";
+import { Header, InputField, Paragraph, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OperatorAddress = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-
-    <Header level={2}>What is the operator's address?</Header>
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
+    <Header level={1} size="LARGE">
+      What is the operator's address?
+    </Header>
     <ContentItem.B_30_15>
       <HintText>
         Operator address is the contact address for the operator. For example
@@ -27,13 +29,12 @@ const OperatorAddress = props => (
       </HintText>
     </ContentItem.B_30_15>
 
-    <HiddenText summaryText={"What is a food business operator?"}>
+    <HiddenTextAccessible summaryText={"What is a food business operator?"}>
       <Paragraph mb={0}>
-        The food business operator is the person, charity or company who makes
-        the decisions about the food business, what it serves and how it
-        operates.
+        The operator is the person or persons, charity or company who makes the
+        decisions about the food business, what it serves and how it operates.
       </Paragraph>
-    </HiddenText>
+    </HiddenTextAccessible>
 
     <form action="/findaddress/operator-address" method="post">
       <ContentItem.B_30_15>

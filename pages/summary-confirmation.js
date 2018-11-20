@@ -22,7 +22,9 @@ const FsaPanel = styled(Panel)`
 
 const ApplicationComplete = props => (
   <FsaLayout {...props}>
-    <Header level={2}>Submission complete</Header>
+    <Header level={1} size="LARGE">
+      Submission complete
+    </Header>
     <Paragraph>
       Thank you for submitting your food business registration.
     </Paragraph>
@@ -53,7 +55,7 @@ const ApplicationComplete = props => (
     </InsetText>
 
     <ContentItem.B_30_15>
-      <Header level={3} mb={1}>
+      <Header level={2} size="MEDIUM" mb={1}>
         Submitted on
       </Header>
       <Paragraph mb={0}>
@@ -61,57 +63,61 @@ const ApplicationComplete = props => (
       </Paragraph>
     </ContentItem.B_30_15>
 
-    <Header level={3} mb={2}>
-      Your registration has been sent to:
-    </Header>
-    {props.lcConfig.hygieneAndStandards ? (
-      <ContentItem.B_30_15 id="hygieneAndStandardsCouncil">
-        <Header level={4} mb={1}>
-          {props.lcConfig.hygieneAndStandards.local_council}
-        </Header>
-        <Paragraph mb={0}>
-          {`Email: ${props.lcConfig.hygieneAndStandards.local_council_email}`}
-        </Paragraph>
-        {props.lcConfig.hygieneAndStandards.local_council_phone_number ? (
-          <Paragraph mb={0} id="hygieneAndStandardsNumber">
-            {`Phone: ${
-              props.lcConfig.hygieneAndStandards.local_council_phone_number
-            }`}
-          </Paragraph>
-        ) : null}
-      </ContentItem.B_30_15>
-    ) : props.lcConfig.hygiene && props.lcConfig.standards ? (
-      <div>
-        <ContentItem.B_30_15 id="hygieneCouncil">
+    <div id="sentToCouncilsSection">
+      <Header level={2} size="MEDIUM" mb={2}>
+        Your registration has been sent to:
+      </Header>
+      {props.lcConfig.hygieneAndStandards ? (
+        <ContentItem.B_30_15 id="hygieneAndStandardsCouncil">
           <Header level={4} mb={1}>
-            {props.lcConfig.hygiene.local_council}
+            {props.lcConfig.hygieneAndStandards.local_council}
           </Header>
           <Paragraph mb={0}>
-            {`Email: ${props.lcConfig.hygiene.local_council_email}`}
+            {`Email: ${props.lcConfig.hygieneAndStandards.local_council_email}`}
           </Paragraph>
-          {props.lcConfig.hygiene.local_council_phone_number ? (
-            <Paragraph mb={0} id="hygieneNumber">
-              {`Phone: ${props.lcConfig.hygiene.local_council_phone_number}`}
+          {props.lcConfig.hygieneAndStandards.local_council_phone_number ? (
+            <Paragraph mb={0} id="hygieneAndStandardsNumber">
+              {`Phone: ${
+                props.lcConfig.hygieneAndStandards.local_council_phone_number
+              }`}
             </Paragraph>
           ) : null}
-          <HintText>Reponsible local council for food hygiene</HintText>
         </ContentItem.B_30_15>
-        <ContentItem.B_30_15 id="standardsCouncil">
-          <Header level={4} mb={1}>
-            {props.lcConfig.standards.local_council}
-          </Header>
-          <Paragraph mb={0}>
-            {`Email: ${props.lcConfig.standards.local_council_email}`}
-          </Paragraph>
-          {props.lcConfig.standards.local_council_phone_number ? (
-            <Paragraph mb={0} id="standardsNumber">
-              {`Phone: ${props.lcConfig.standards.local_council_phone_number}`}
+      ) : props.lcConfig.hygiene && props.lcConfig.standards ? (
+        <div>
+          <ContentItem.B_30_15 id="hygieneCouncil">
+            <Header level={4} mb={1}>
+              {props.lcConfig.hygiene.local_council}
+            </Header>
+            <Paragraph mb={0}>
+              {`Email: ${props.lcConfig.hygiene.local_council_email}`}
             </Paragraph>
-          ) : null}
-          <HintText>Responsible local council for food standards</HintText>
-        </ContentItem.B_30_15>
-      </div>
-    ) : null}
+            {props.lcConfig.hygiene.local_council_phone_number ? (
+              <Paragraph mb={0} id="hygieneNumber">
+                {`Phone: ${props.lcConfig.hygiene.local_council_phone_number}`}
+              </Paragraph>
+            ) : null}
+            <HintText>Reponsible local council for food hygiene</HintText>
+          </ContentItem.B_30_15>
+          <ContentItem.B_30_15 id="standardsCouncil">
+            <Header level={4} mb={1}>
+              {props.lcConfig.standards.local_council}
+            </Header>
+            <Paragraph mb={0}>
+              {`Email: ${props.lcConfig.standards.local_council_email}`}
+            </Paragraph>
+            {props.lcConfig.standards.local_council_phone_number ? (
+              <Paragraph mb={0} id="standardsNumber">
+                {`Phone: ${
+                  props.lcConfig.standards.local_council_phone_number
+                }`}
+              </Paragraph>
+            ) : null}
+            <HintText>Responsible local council for food standards</HintText>
+          </ContentItem.B_30_15>
+        </div>
+      ) : null}
+    </div>
 
     <ContentItem.B_30_15>
       <Paragraph className="receiveConfirmationEmail">
@@ -121,7 +127,9 @@ const ApplicationComplete = props => (
       </Paragraph>
     </ContentItem.B_30_15>
 
-    <Header level={2}>What's next?</Header>
+    <Header level={2} size="LARGE">
+      What's next?
+    </Header>
     <InsetText>
       <Paragraph mb={0}>
         **You may receive an unannounced food inspection from your local council
@@ -136,47 +144,57 @@ const ApplicationComplete = props => (
       </Paragraph>
     </ContentItem.B_30_15>
 
-    <Header level={2}>Find out here what you can do to prepare:</Header>
-    <ContentItem.B_20_20>
-      <AnchorTag
-        id="foodSafetyLink"
-        href="https://www.food.gov.uk/business-guidance"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Food safety and how to run a food business (including Northern Ireland)
-      </AnchorTag>
-    </ContentItem.B_20_20>
-    <ContentItem.B_20_20>
-      <AnchorTag
-        id="standardGuidanceLink"
-        href="https://www.businesscompanion.info/en/in-depth-guides"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Standards guidance for England and Wales
-      </AnchorTag>
-    </ContentItem.B_20_20>
-    <ContentItem.B_20_20>
-      <AnchorTag
-        id="fhrsScoreLink"
-        href="https://www.food.gov.uk/business-guidance/food-hygiene-ratings-for-businesses"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        How to achieve a high FHRS score and how to appeal
-      </AnchorTag>
-    </ContentItem.B_20_20>
-    <ContentItem.B_20_20>
-      <AnchorTag
-        id="primaryAuthorityLink"
-        href="https://www.gov.uk/guidance/local-regulation-primary-authority"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Do you qualify for primary authority partnership and how to get one
-      </AnchorTag>
-    </ContentItem.B_20_20>
+    <ContentItem.B_30_15>
+      <Header level={2} size="LARGE">
+        Find out here what you can do to prepare:
+      </Header>
+      <HintText mb={3}>All links open in a new window</HintText>
+      <ContentItem.B_20_20>
+        <AnchorTag
+          id="foodSafetyLink"
+          href="https://www.food.gov.uk/business-guidance"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Food safety and how to run a food business (including Northern
+          Ireland)
+        </AnchorTag>
+      </ContentItem.B_20_20>
+      <ContentItem.B_20_20>
+        <AnchorTag
+          id="standardGuidanceLink"
+          href="https://www.businesscompanion.info/en/in-depth-guides"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Standards guidance for England and Wales
+        </AnchorTag>
+      </ContentItem.B_20_20>
+      <ContentItem.B_20_20>
+        <AnchorTag
+          id="fhrsScoreLink"
+          href="https://www.food.gov.uk/business-guidance/food-hygiene-ratings-for-businesses"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          How to achieve a high FHRS score and how to appeal
+        </AnchorTag>
+      </ContentItem.B_20_20>
+      <ContentItem.B_20_20>
+        <AnchorTag
+          id="primaryAuthorityLink"
+          href="https://www.gov.uk/guidance/local-regulation-primary-authority"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Do you qualify for primary authority partnership and how to get one
+        </AnchorTag>
+      </ContentItem.B_20_20>
+    </ContentItem.B_30_15>
+
+    <Header level={2} mb={5} size="LARGE">
+      Your registration details:
+    </Header>
     <SummaryTable {...props.transformedData} applicationCompletePage={true} />
   </FsaLayout>
 );

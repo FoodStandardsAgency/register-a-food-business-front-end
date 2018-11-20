@@ -5,9 +5,10 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  HiddenTextAccessible
 } from "../src/components";
-import { Header, InputField, Paragraph, HiddenText } from "govuk-react";
+import { Header, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OperatorContactDetails = props => (
@@ -17,15 +18,16 @@ const OperatorContactDetails = props => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={2}>Operator contact details</Header>
+    <Header level={1} size="LARGE">
+      Operator contact details
+    </Header>
 
-    <HiddenText summaryText={"What is a food business operator?"}>
+    <HiddenTextAccessible summaryText={"What is a food business operator?"}>
       <Paragraph mb={0}>
-        The food business operator is the person, charity or company who makes
-        the decisions about the food business, what it serves and how it
-        operates.
+        The operator is the person or persons, charity or company who makes the
+        decisions about the food business, what it serves and how it operates.
       </Paragraph>
-    </HiddenText>
+    </HiddenTextAccessible>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>

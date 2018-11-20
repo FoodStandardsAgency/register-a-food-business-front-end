@@ -13,15 +13,13 @@ const Index = props => (
     <ContentItem.B_30_15>
       <ContentItem.B_30_15>
         <Paragraph>
-          All food businesses that regularly produce or serve food to the public
-          need to be registered with their Local Authority. This service will
-          send your registration to the correct local authority based on your
-          trading location.
+          When you start a new food business or take over an existing business,
+          you must register with your local authority. You should do this at
+          least **28 days** before trading or before food operations start.
         </Paragraph>
         <Paragraph mb={0}>
-          Food businesses should only register **28 days** before they begin
-          trading. If you are not sure when this food business will open, it may
-          be too early to be registering this business.
+          Your registration will be sent to the correct local authority based on
+          your trading location.
         </Paragraph>
       </ContentItem.B_30_15>
 
@@ -33,7 +31,7 @@ const Index = props => (
       </InsetText>
 
       <ContentItem.B_30_15>
-        <Header level={3} mb={1}>
+        <Header level={2} size="MEDIUM" mb={1}>
           Food business operator
         </Header>
         <Paragraph mb={0}>
@@ -43,7 +41,7 @@ const Index = props => (
       </ContentItem.B_30_15>
 
       <ContentItem.B_30_15>
-        <Header level={3} mb={1}>
+        <Header level={2} size="MEDIUM" mb={1}>
           Establishment
         </Header>
         <Paragraph mb={0}>

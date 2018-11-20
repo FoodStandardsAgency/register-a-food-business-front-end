@@ -4,7 +4,9 @@ import {
   BackButton,
   ContinueButton,
   BusinessTypeLookup,
-  ContentItem
+  ContentItem,
+  ProcessedErrorSummary,
+  OnHandleErrorClick
 } from "../src/components";
 import { Header } from "govuk-react";
 import PropTypes from "prop-types";
@@ -12,7 +14,13 @@ import PropTypes from "prop-types";
 const BusinessType = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>What kind of food business are you registering?</Header>
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
+    <Header level={1} size="LARGE">
+      What kind of food business are you registering?
+    </Header>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>

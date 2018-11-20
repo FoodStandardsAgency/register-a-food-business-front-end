@@ -5,9 +5,10 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  HiddenTextAccessible
 } from "../src/components";
-import { Header, InputField, HiddenText, Paragraph } from "govuk-react";
+import { Header, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OperatorCharityDetails = props => (
@@ -17,17 +18,20 @@ const OperatorCharityDetails = props => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={2}>Details of the operating charity</Header>
+    <Header level={1} size="LARGE">
+      Details of the operating charity
+    </Header>
 
-    <HiddenText
+    <HiddenTextAccessible
+      hiddentextindex={1}
       id="hiddenTextFBO"
       summaryText={"What is a food business operator?"}
     >
       <Paragraph mb={0}>
-        A food business operator is the person, charity or company who makes the
+        The operator is the person or persons, charity or company who makes the
         decisions about the food business, what it serves and how it operates.
       </Paragraph>
-    </HiddenText>
+    </HiddenTextAccessible>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
@@ -65,7 +69,8 @@ const OperatorCharityDetails = props => (
           </InputField>
         </ContentItem.B_30_15>
 
-        <HiddenText
+        <HiddenTextAccessible
+          hiddentextindex={2}
           id="hiddenTextCharityNumbers"
           summaryText={"Questions about charity reference numbers"}
         >
@@ -79,10 +84,10 @@ const OperatorCharityDetails = props => (
               rel="noopener noreferrer"
               id="link-charity-commission"
             >
-              Charity Commission website
+              Charity Commission website (opens in new window)
             </a>.
           </span>
-        </HiddenText>
+        </HiddenTextAccessible>
       </ContentItem.B_30_15>
 
       <ContinueButton {...props} />

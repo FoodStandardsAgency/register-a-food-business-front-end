@@ -3,7 +3,9 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  ContinueButton
+  ContinueButton,
+  ProcessedErrorSummary,
+  OnHandleErrorClick
 } from "../src/components";
 import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
@@ -12,7 +14,13 @@ const OpeningSomeDays = props => (
   <FsaLayout {...props}>
     <form action={props.formAction} method="post">
       <BackButton {...props} />
-      <Header level={2}>Opening days</Header>
+      <ProcessedErrorSummary
+        validatorErrors={props.validatorErrors}
+        onHandleErrorClick={OnHandleErrorClick}
+      />
+      <Header level={1} size="LARGE">
+        Opening days
+      </Header>
       <Paragraph>
         What days will this establishment be producing or serving food?
       </Paragraph>

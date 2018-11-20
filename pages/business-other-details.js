@@ -3,7 +3,9 @@ import {
   SessionWrapper,
   BackButton,
   ContinueButton,
-  ContentItem
+  ContentItem,
+  ProcessedErrorSummary,
+  OnHandleErrorClick
 } from "../src/components";
 import { Header, TextArea } from "govuk-react";
 import PropTypes from "prop-types";
@@ -11,7 +13,13 @@ import PropTypes from "prop-types";
 const OtherDetails = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>Other details</Header>
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
+    <Header level={1} size="LARGE">
+      Other details
+    </Header>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>

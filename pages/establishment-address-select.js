@@ -4,9 +4,10 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
-  SelectWithHeader
+  SelectWithHeader,
+  HiddenTextAccessible
 } from "../src/components";
-import { Header, HiddenText, Paragraph, asAnchor } from "govuk-react";
+import { Header, Paragraph, asAnchor } from "govuk-react";
 import PropTypes from "prop-types";
 
 const AnchorTag = asAnchor("a");
@@ -14,9 +15,11 @@ const AnchorTag = asAnchor("a");
 const EstablishmentAddressLookup = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>What is the establishment's address?</Header>
+    <Header level={1} size="LARGE">
+      What is the establishment's address?
+    </Header>
 
-    <HiddenText
+    <HiddenTextAccessible
       id="hiddenTextEstablishment"
       summaryText={"What is an establishment?"}
     >
@@ -25,27 +28,29 @@ const EstablishmentAddressLookup = props => (
         mobile food business, please use the location where it is normally
         stored overnight.
       </Paragraph>
-    </HiddenText>
+    </HiddenTextAccessible>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
-          <Header level={3}>Postcode</Header>
-          <Header id="establishmentPostcodeDisplay" level={4}>
-            {`${
-              props.cumulativeFullAnswers.establishment_postcode_find
-            } \u2007`}
-            <AnchorTag
-              id="changeEstablishmentPostcode"
-              href="/establishment-address"
-            >
-              Change
-            </AnchorTag>
+          <Header level={2} size="MEDIUM">
+            Postcode
           </Header>
+          <Paragraph className="establishmentPostcodeDisplay" mb={0}>
+            {props.cumulativeFullAnswers.establishment_postcode_find}
+          </Paragraph>
+          <AnchorTag
+            id="changeEstablishmentPostcode"
+            href="/establishment-address"
+          >
+            Change postcode
+          </AnchorTag>
         </ContentItem.B_30_15>
 
         <SelectWithHeader
-          label="Select an address"
+          label={`Select an address for ${
+            props.cumulativeFullAnswers.establishment_postcode_find
+          }`}
           input={{
             id: "establishmentAddressDropdown",
             name: "establishment_address_selected",

@@ -1,9 +1,6 @@
 import ApplicationComplete from "../../pages/summary-confirmation";
 import { shallow, mount } from "enzyme";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
 jest.mock("../server/services/data-transform.service");
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const cumulativeFullAnswers = {
   establishment_first_line: "Example first line"
@@ -110,7 +107,7 @@ describe("<ApplicationComplete />", () => {
           transformedData={transformedData}
         />
       );
-      const text = wrapper.text();
+      const text = wrapper.find("#sentToCouncilsSection").text();
       expect(text.includes("Hygiene council name")).toBe(true);
       expect(text.includes("Standards council name")).toBe(true);
       expect(text.includes("hygiene@example.com")).toBe(true);

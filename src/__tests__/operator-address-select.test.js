@@ -1,10 +1,5 @@
 import OperatorAddressLookup from "../../pages/operator-address-select";
 import { mount, shallow } from "enzyme";
-import renderer from "react-test-renderer";
-import * as emotion from "emotion";
-import { createSerializer } from "jest-emotion";
-
-expect.addSnapshotSerializer(createSerializer(emotion));
 
 const testCumulativeAnswers = {
   example: "test answer"
@@ -20,19 +15,6 @@ describe("<OperatorAddressLookup />", () => {
     expect(wrapper.length).toBe(1);
   });
 
-  it("matches the previous snapshot", () => {
-    const tree = renderer
-      .create(
-        <OperatorAddressLookup
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
   describe("Operator postcode display", () => {
     it("renders even when the addressLookups key is not found", () => {
       const wrapper = mount(
@@ -42,7 +24,9 @@ describe("<OperatorAddressLookup />", () => {
           addressLookups={testAddressLookup}
         />
       );
-      const operatorPostcode = wrapper.find("Header#operatorPostcodeDisplay");
+      const operatorPostcode = wrapper.find(
+        "Paragraph.operatorPostcodeDisplay"
+      );
       expect(operatorPostcode.length).toBe(1);
     });
 
@@ -57,7 +41,9 @@ describe("<OperatorAddressLookup />", () => {
           addressLookups={testAddressLookup}
         />
       );
-      const operatorPostcode = wrapper.find("Header#operatorPostcodeDisplay");
+      const operatorPostcode = wrapper.find(
+        "Paragraph.operatorPostcodeDisplay"
+      );
 
       expect(operatorPostcode.text().includes("default")).toBe(true);
     });

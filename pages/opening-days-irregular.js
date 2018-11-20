@@ -3,26 +3,47 @@ import {
   SessionWrapper,
   BackButton,
   ContinueButton,
-  ContentItem
+  ContentItem,
+  ProcessedErrorSummary,
+  OnHandleErrorClick
 } from "../src/components";
-import { Header, TextArea, HintText, Paragraph } from "govuk-react";
+import ListItemConsistentSize from "../src/components/ListItemConsistentSize";
+import {
+  Header,
+  TextArea,
+  HintText,
+  Paragraph,
+  UnorderedList
+} from "govuk-react";
 import PropTypes from "prop-types";
 
 const OtherDaysIrregular = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={2}>Opening days</Header>
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
+    <Header level={1} size="LARGE">
+      Opening days
+    </Header>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
-          <Paragraph mb={0}>
+          <Paragraph mb={3}>
             When will this establishment be open and serving or preparing food?
           </Paragraph>
-          <HintText mb={3}>For example:</HintText>
           <HintText mb={3}>
-            "Only serving food during December at Christmas markets." <br />
-            "Open at weekends from June and August"
+            For example
+            <UnorderedList>
+              <ListItemConsistentSize>
+                only serving food during December at Christmas markets
+              </ListItemConsistentSize>
+              <ListItemConsistentSize>
+                open at weekends from June and August
+              </ListItemConsistentSize>
+            </UnorderedList>
           </HintText>
           <TextArea
             input={{

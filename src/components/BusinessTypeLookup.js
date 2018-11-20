@@ -6,7 +6,8 @@ import {
   inputValueFunction,
   suggestionFunction
 } from "./BusinessTypeLookupFunctions";
-import { ErrorText, HintText } from "govuk-react";
+import { ErrorText, HintText, UnorderedList } from "govuk-react";
+import ListItemConsistentSize from "./ListItemConsistentSize";
 
 // dynamic import used because Autocomplete component from AlphaGov uses the document object on import.
 // Therefore it must be imported on the client side not on the server side.
@@ -35,8 +36,15 @@ const BusinessTypeLookup = props => (
   <div>
     <ContentItem.B_30_15>
       <HintText>
-        For example: <br /> Cafe <br /> Food delivery service <br /> Commercial
-        bakery <br /> Beef jerky manufacturer
+        For example
+        <UnorderedList>
+          <ListItemConsistentSize>cafe</ListItemConsistentSize>
+          <ListItemConsistentSize>food delivery service</ListItemConsistentSize>
+          <ListItemConsistentSize>commercial bakery</ListItemConsistentSize>
+          <ListItemConsistentSize>
+            meat product manufacturer
+          </ListItemConsistentSize>
+        </UnorderedList>
       </HintText>
     </ContentItem.B_30_15>
     <div
@@ -50,15 +58,17 @@ const BusinessTypeLookup = props => (
           {props.validatorErrors.business_type}
         </ErrorText>
       ) : null}
-      <Autocomplete
-        source={findMatches}
-        templates={templates}
-        autoselect={true}
-        displayMenu="overlay"
-        confirmOnBlur={false}
-        name="business_type"
-        defaultValue={props.cumulativeFullAnswers.business_type}
-      />
+      <div aria-label="business type autocomplete, type and then choose from results">
+        <Autocomplete
+          source={findMatches}
+          templates={templates}
+          autoselect={false}
+          displayMenu="inline"
+          confirmOnBlur={false}
+          name="business_type"
+          defaultValue={props.cumulativeFullAnswers.business_type}
+        />
+      </div>
     </div>
   </div>
 );
