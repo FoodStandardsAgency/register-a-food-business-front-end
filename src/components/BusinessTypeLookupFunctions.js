@@ -67,7 +67,7 @@ const suggestionFunction = suggestionToBeDisplayed => {
   return (
     suggestionToBeDisplayed.displayName +
     (suggestionToBeDisplayed.searchTerm
-      ? ` <span style="color: #6f777b">(${
+      ? ` <span class="searchTermResult">(${
           suggestionToBeDisplayed.searchTerm
         })</span>`
       : "")
