@@ -678,18 +678,21 @@ const SummaryTable = props => (
   <React.Fragment>
     <ContentItem.B_45_30>
       <AccessibleTable
+        id="operatorDetailsTable"
         caption="Operator details"
         body={<OperatorDetailsTable {...props} />}
       />
     </ContentItem.B_45_30>
     <ContentItem.B_45_30>
       <AccessibleTable
+        id="establishmentDetailsTable"
         caption="Establishment details"
         body={<EstablishmentDetailsTable {...props} />}
       />
     </ContentItem.B_45_30>
     <ContentItem.B_45_30>
       <AccessibleTable
+        id="foodActivitiesTable"
         caption="Activities"
         body={<FoodActivitiesTable {...props} />}
       />
@@ -697,6 +700,7 @@ const SummaryTable = props => (
     {props.applicationCompletePage ? (
       <ContentItem.B_45_30>
         <AccessibleTable
+          id="declarationTable"
           caption="Declaration"
           body={<DeclarationTable {...props} />}
         />
