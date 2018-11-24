@@ -79,7 +79,7 @@ const OperatorCharityDetails = props => (
             have a charity reference number. You can find your charity reference
             number by visiting the{" "}
             <a
-              href="https://beta.charitycommission.gov.uk/"
+              href="http://apps.charitycommission.gov.uk/Showcharity/RegisterOfCharities/registerhomepage.aspx"
               target="_blank"
               rel="noopener noreferrer"
               id="link-charity-commission"

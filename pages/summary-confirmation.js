@@ -140,7 +140,7 @@ const ApplicationComplete = props => (
       <Paragraph>
         The council may contact you before the inspection to discuss how your
         business operates or to offer advice. Meanwhile, there are some things
-        you can do to help prepare for the opening of your business opening.
+        you can do to help prepare for the opening of your business.
       </Paragraph>
     </ContentItem.B_30_15>
 
@@ -156,18 +156,7 @@ const ApplicationComplete = props => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          Food safety and how to run a food business (including Northern
-          Ireland)
-        </AnchorTag>
-      </ContentItem.B_20_20>
-      <ContentItem.B_20_20>
-        <AnchorTag
-          id="standardGuidanceLink"
-          href="https://www.businesscompanion.info/en/in-depth-guides"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Standards guidance for England and Wales
+          Guidance on food hygiene and how to run a safe food business
         </AnchorTag>
       </ContentItem.B_20_20>
       <ContentItem.B_20_20>
@@ -177,17 +166,39 @@ const ApplicationComplete = props => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          How to achieve a high FHRS score and how to appeal
+          How to achieve a high food hygiene rating (FHRS score)
         </AnchorTag>
       </ContentItem.B_20_20>
       <ContentItem.B_20_20>
         <AnchorTag
-          id="primaryAuthorityLink"
-          href="https://www.gov.uk/guidance/local-regulation-primary-authority"
+          id="safetyManagementLink"
+          href="https://www.food.gov.uk/business-guidance/safer-food-better-business"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Do you qualify for primary authority partnership and how to get one
+          Information on the food safety management system safer food, better
+          business
+        </AnchorTag>
+      </ContentItem.B_20_20>
+      <ContentItem.B_20_20>
+        <AnchorTag
+          id="foodLabellingLink"
+          href="https://www.food.gov.uk/business-guidance/industry-specific-advice/labelling-and-allergens"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Food labelling and allergens guidance
+        </AnchorTag>
+      </ContentItem.B_20_20>
+      <ContentItem.B_20_20>
+        <AnchorTag
+          id="businessGuidanceLink"
+          href="https://www.gov.uk/business-support-helpline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          General guidance on business growth and finance, including phone
+          numbers for the Business Support Helpline
         </AnchorTag>
       </ContentItem.B_20_20>
     </ContentItem.B_30_15>
