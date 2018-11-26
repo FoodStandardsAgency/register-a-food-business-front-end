@@ -18,9 +18,9 @@ The following contribution guides are available:
 * [Creating a new page]()
 * [Adding a new data field]()
 * [Finding and fixing bugs]()
-* [Adding a new functional/Express feature]()
+* [Adding a new functional feature]()
 * [CSS and styling]()
-* [Creating a new custom visual element]()
+* [Creating a new visual element]()
 
 ### Further information and detailed tasks
 
@@ -31,4 +31,4 @@ The following contribution guides are available:
 * [Changing the form order]()
 * [Transforming user data for the summary page]()
 * [Transforming user data for submission]()
-* [Writing integration and contract tests with service doubles]()
+* [Writing integration and contract tests]()
