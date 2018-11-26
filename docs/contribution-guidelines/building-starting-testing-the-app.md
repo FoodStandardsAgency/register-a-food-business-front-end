@@ -14,6 +14,8 @@
 4.  Run `yarn`
 5.  Populate the `.env` file. The contents of this file must be handed over from existing developers.
 
+To submit an application to the back end service locally, you must have completed setup of your development environment. For more information, see [Setting up your development environment](./setting-up-development-environment).
+
 ## Starting the application in `DEVELOPMENT` mode
 
 `DEVELOPMENT` mode has the following characteristics:
@@ -60,7 +62,7 @@ The `/package.json` file contains a number of scripts that are used in the Azure
 
 * `yarn test`
 
-  Runs all of the unit tests and provides a coverage report
+  Runs all of the unit tests and provides a coverage report.
 
 * `yarn test:watch`
 
