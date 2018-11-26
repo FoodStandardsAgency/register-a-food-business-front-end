@@ -13,19 +13,19 @@ The following contribution guides are available:
 ### High-level tasks
 
 * [Building, starting, and testing the application](./docs/contribution-guidelines/building-starting-testing-the-app.md)
-* [The repository structure](./docs/contribution-guidelines/the-repository-structure.md)
-* [The tech stack](./docs/contribution-guidelines/the-tech-stack.md)
 * [Creating a new page](./docs/contribution-guidelines/creating-a-new-page.md)
 * [Adding a new data field](./docs/contribution-guidelines/adding-a-new-data-field.md)
 * [Finding and fixing bugs](./docs/contribution-guidelines/finding-and-fixing-bugs.md)
 * [Adding a new functional feature](./docs/contribution-guidelines/adding-a-new-functional-feature.md)
-* [CSS and styling](./docs/contribution-guidelines/css-and-styling.md)
 * [Creating a new visual element](./docs/contribution-guidelines/creating-a-new-visual-element.md)
 
 ### Further information and detailed tasks
 
 * [Setting up your development environment](./docs/contribution-guidelines/setting-up-development-environment.md)
+* [The repository structure](./docs/contribution-guidelines/the-repository-structure.md)
+* [The tech stack](./docs/contribution-guidelines/the-tech-stack.md)
 * [Best practices and code standards](./docs/contribution-guidelines/best-practices-code-standards.md)
+* [CSS and styling](./docs/contribution-guidelines/css-and-styling.md)
 * [Writing UI and E2E tests](./docs/contribution-guidelines/writing-ui-e2e-tests.md)
 * [Writing unit tests](./docs/contribution-guidelines/writing-unit-tests.md)
 * [Changing the form order](./docs/contribution-guidelines/changing-the-form-order.md)

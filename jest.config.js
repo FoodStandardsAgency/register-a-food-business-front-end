@@ -23,7 +23,6 @@ module.exports = {
     "!**/pages/_document.js",
     "!**/services/schema.js",
     "!**/.next/**/*.{js}",
-    "!**/vars.js",
     "!src/server/index.js",
     "!src/server/config.js",
     "!src/components/index.js",
