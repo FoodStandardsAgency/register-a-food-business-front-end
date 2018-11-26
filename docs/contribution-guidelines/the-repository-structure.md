@@ -108,7 +108,7 @@ The `/pages` directory contains all website pages that can be rendered by Next.j
 
   * `next.js`
 
-    Setup of the Next.js framework `getRequestHandler()` function. If an environment variable of `NODE_ENV` is set to `production`, the request handler will look for a production build of any requested website pages in the root `/.next` directory. If `NODE_ENV` is set to anything else, the `getRequestHandler()` function will default to `dev` mode, which builds and hot-reloads pages on demand.
+    Setup of the Next.js framework `getRequestHandler()` and `render()` functions. If an environment variable of `NODE_ENV` is set to `production`, the request handler will look for a production build of any requested website pages in the root `/.next` directory. If `NODE_ENV` is set to anything else, the `getRequestHandler()` and `render()` functions will default to `dev` mode, which builds and hot-reloads pages on demand.
 
   * `config.js`
 
