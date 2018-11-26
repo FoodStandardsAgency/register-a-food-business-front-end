@@ -24,6 +24,7 @@ The following contribution guides are available:
 * [Setting up your development environment](./docs/contribution-guidelines/setting-up-development-environment.md)
 * [The repository structure](./docs/contribution-guidelines/the-repository-structure.md)
 * [The tech stack](./docs/contribution-guidelines/the-tech-stack.md)
+* [Data flow](./docs/contribution-guidelines/data-flow.md)
 * [Best practices and code standards](./docs/contribution-guidelines/best-practices-code-standards.md)
 * [CSS and styling](./docs/contribution-guidelines/css-and-styling.md)
 * [Writing UI and E2E tests](./docs/contribution-guidelines/writing-ui-e2e-tests.md)
