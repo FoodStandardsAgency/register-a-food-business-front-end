@@ -5,6 +5,7 @@
 ### Prerequisites
 
 * [Docker](https://www.docker.com/)
+* Node.js
 
 ### Steps
 
@@ -14,7 +15,7 @@
 4.  Run `yarn`
 5.  Populate the `.env` file. The contents of this file must be handed over from existing developers.
 
-To submit an application to the back end service locally, you must have completed setup of your development environment. For more information, see [Setting up your development environment](./setting-up-development-environment).
+To submit an application to the back end service locally, you must have completed setup of your development environment with the Register a food business Docker image.
 
 ## Starting the application in `DEVELOPMENT` mode
 
