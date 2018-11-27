@@ -1,4 +1,4 @@
-import ImportExportActivities from "../../pages/business-import-export";
+import ImportExportActivities from "./business-import-export";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {

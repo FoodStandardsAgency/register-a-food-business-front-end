@@ -1,4 +1,4 @@
-import EstablishmentTradingName from "../../pages/establishment-trading-name";
+import OtherDetails from "./business-other-details";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {
@@ -11,61 +11,53 @@ const testCumulativeAnswers = {
 
 const testSwitches = {};
 
-describe("<EstablishmentTradingName />", () => {
+describe("<OtherDetails />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<EstablishmentTradingName />);
+    const wrapper = shallow(<OtherDetails />);
     expect(wrapper.length).toBe(1);
   });
 
-  describe("establishment trading name input field", () => {
+  describe("other details input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <EstablishmentTradingName
+        <OtherDetails
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const establishmentTradingName = wrapper.find(
-        "InputField#establishment_trading_name"
-      );
-      expect(establishmentTradingName.length).toBe(1);
+      const businessOtherDetails = wrapper.find("TextArea");
+      expect(businessOtherDetails.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
       const validatorErrors = {
-        establishment_trading_name: "test error"
+        business_other_details: "test error"
       };
       const wrapper = mount(
-        <EstablishmentTradingName
+        <OtherDetails
           validatorErrors={validatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const establishmentTradingName = wrapper.find(
-        "InputField#establishment_trading_name"
-      );
-      expect(establishmentTradingName.props().meta.error).toBe("test error");
+      const businessOtherDetails = wrapper.find("TextArea");
+      expect(businessOtherDetails.props().meta.error).toBe("test error");
     });
 
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        establishment_trading_name: "default"
+        business_other_details: "default"
       };
       const wrapper = mount(
-        <EstablishmentTradingName
+        <OtherDetails
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
-      const establishmentTradingName = wrapper.find(
-        "InputField#establishment_trading_name"
-      );
-      expect(establishmentTradingName.props().input.defaultValue).toBe(
-        "default"
-      );
+      const businessOtherDetails = wrapper.find("TextArea");
+      expect(businessOtherDetails.props().input.defaultValue).toBe("default");
     });
   });
 });

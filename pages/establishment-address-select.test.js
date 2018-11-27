@@ -1,4 +1,4 @@
-import OperatorAddressLookup from "../../pages/operator-address-select";
+import EstablishmentAddressLookup from "./establishment-address-select";
 import { mount, shallow } from "enzyme";
 
 const testCumulativeAnswers = {
@@ -9,48 +9,50 @@ const testSwitches = {};
 
 const testAddressLookup = {};
 
-describe("<OperatorAddressLookup />", () => {
+describe("<EstablishmentAddressLookup />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<OperatorAddressLookup />);
+    const wrapper = shallow(<EstablishmentAddressLookup />);
     expect(wrapper.length).toBe(1);
   });
 
-  describe("Operator postcode display", () => {
+  describe("Establishment postcode display", () => {
     it("renders even when the addressLookups key is not found", () => {
       const wrapper = mount(
-        <OperatorAddressLookup
+        <EstablishmentAddressLookup
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
           addressLookups={testAddressLookup}
         />
       );
-      const operatorPostcode = wrapper.find(
-        "Paragraph.operatorPostcodeDisplay"
+      const establishmentPostcode = wrapper.find(
+        "Paragraph.establishmentPostcodeDisplay"
       );
-      expect(operatorPostcode.length).toBe(1);
+      expect(establishmentPostcode.length).toBe(1);
     });
 
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        operator_postcode_find: "default"
+        establishment_postcode_find: "default"
       };
+
       const wrapper = mount(
-        <OperatorAddressLookup
+        <EstablishmentAddressLookup
           cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
           addressLookups={testAddressLookup}
         />
       );
-      const operatorPostcode = wrapper.find(
-        "Paragraph.operatorPostcodeDisplay"
+
+      const establishmentPostcode = wrapper.find(
+        "Paragraph.establishmentPostcodeDisplay"
       );
 
-      expect(operatorPostcode.text().includes("default")).toBe(true);
+      expect(establishmentPostcode.text().includes("default")).toBe(true);
     });
 
     it("renders the dropdown according to the addressLookups object", () => {
       const exampleAddressLookup = {
-        operator_postcode_find: [
+        establishment_postcode_find: [
           {
             addressline1: "Allies Computing Ltd",
             addressline2: "Manor Farm Barns",
@@ -85,28 +87,28 @@ describe("<OperatorAddressLookup />", () => {
       };
 
       const wrapper = mount(
-        <OperatorAddressLookup
+        <EstablishmentAddressLookup
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
           addressLookups={exampleAddressLookup}
         />
       );
 
-      const operatorAddressSelect = wrapper.find(
-        "select#operatorAddressDropdown"
+      const establishmentAddressSelect = wrapper.find(
+        "select#establishmentAddressDropdown"
       );
 
-      const addressResults = operatorAddressSelect.find("option");
+      const addressResults = establishmentAddressSelect.find("option");
 
       expect(addressResults.length).toBe(
-        exampleAddressLookup.operator_postcode_find.length
+        exampleAddressLookup.establishment_postcode_find.length
       );
 
       expect(
         addressResults
           .get(0)
           .props.children.includes(
-            exampleAddressLookup.operator_postcode_find[0].summaryline
+            exampleAddressLookup.establishment_postcode_find[0].summaryline
           )
       ).toBe(true);
     });

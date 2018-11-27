@@ -1,4 +1,4 @@
-import EstablishmentAddressType from "../../pages/establishment-address-type";
+import OperatorType from "./operator-type";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {
@@ -11,67 +11,64 @@ const testCumulativeAnswers = {
 
 const testSwitches = {};
 
-describe("<EstablishmentAddressType />", () => {
+describe("<OperatorType />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<EstablishmentAddressType />);
+    const wrapper = shallow(<OperatorType />);
     expect(wrapper.length).toBe(1);
   });
 
   it("renders 3 radio buttons with correct error props and default values", () => {
     const wrapper = mount(
-      <EstablishmentAddressType
+      <OperatorType
         validatorErrors={testValidatorErrors}
         cumulativeFullAnswers={testCumulativeAnswers}
         switches={testSwitches}
       />
     );
-    const establishmentAddressTypeRadio = wrapper.find("Radio");
-    expect(establishmentAddressTypeRadio.length).toBe(3);
+    const operatorTypeRadio = wrapper.find("Radio");
+    expect(operatorTypeRadio.length).toBe(3);
   });
 
   describe("top-level MultiChoice element", () => {
     it("renders the correct error", () => {
       const validatorErrors = {
-        establishment_type: "test error"
+        operator_type: "test error"
       };
       const wrapper = mount(
-        <EstablishmentAddressType
+        <OperatorType
           validatorErrors={validatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const establishmentAddressType = wrapper.find("MultiChoice");
-      expect(establishmentAddressType.props().meta.error).toBe("test error");
+      const operatorType = wrapper.find("MultiChoice");
+      expect(operatorType.props().meta.error).toBe("test error");
     });
   });
 
   describe("all Radio buttons", () => {
     it("can be selected by default", () => {
       const radioButtonIdsAndValues = {
-        establishment_type_business_commercial:
-          "Place of business or commercial premises",
-        establishment_type_mobile_moveable: "Mobile or moveable premises",
-        establishment_type_home_domestic: "Home or domestic premises"
+        operator_type_person: "A person",
+        operator_type_company: "A company",
+        operator_type_charity: "A charity"
       };
 
       for (let radioButtonId in radioButtonIdsAndValues) {
         const cumulativeFullAnswers = {
-          establishment_type: radioButtonIdsAndValues[radioButtonId]
+          operator_type: radioButtonIdsAndValues[radioButtonId]
         };
 
         const wrapper = mount(
-          <EstablishmentAddressType
+          <OperatorType
             validatorErrors={testValidatorErrors}
             cumulativeFullAnswers={cumulativeFullAnswers}
             switches={testSwitches}
           />
         );
 
-        const establishmentAddressTypeRadio = wrapper.find(
-          `Radio#${radioButtonId}`
-        );
-        expect(establishmentAddressTypeRadio.props().defaultChecked).toBe(true);
+        const operatorTypeRadio = wrapper.find(`Radio#${radioButtonId}`);
+        expect(operatorTypeRadio.props().defaultChecked).toBe(true);
       }
     });
   });

@@ -1,4 +1,4 @@
-import OperatorAddress from "../../pages/operator-address-manual";
+import OperatorAddress from "./operator-address-manual";
 import { mount, shallow } from "enzyme";
 
 const testValidatorErrors = {

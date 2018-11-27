@@ -1,4 +1,4 @@
-import EstablishmentOpeningStatus from "../../pages/establishment-opening-status";
+import EstablishmentOpeningStatus from "./establishment-opening-status";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {

@@ -1,4 +1,4 @@
-import EstablishmentAddress from "../../pages/establishment-address";
+import OperatorAddress from "./operator-address";
 import { mount, shallow } from "enzyme";
 
 const testValidatorErrors = {
@@ -11,59 +11,59 @@ const testCumulativeAnswers = {
 
 const testSwitches = {};
 
-describe("<EstablishmentAddress />", () => {
+describe("<OperatorAddress />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<EstablishmentAddress />);
+    const wrapper = shallow(<OperatorAddress />);
     expect(wrapper.length).toBe(1);
   });
 
-  describe("Establishment postcode field", () => {
+  describe("Operator postcode input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <EstablishmentAddress
+        <OperatorAddress
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const establishmentPostcode = wrapper.find(
-        "InputField#establishment_postcode_find"
+      const operatorPostcode = wrapper.find(
+        "InputField#operatorPostcodeFindComponent"
       );
-      expect(establishmentPostcode.length).toBe(1);
+      expect(operatorPostcode.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
       const validatorErrors = {
-        establishment_postcode_find: "test error"
+        operator_postcode_find: "test error"
       };
       const wrapper = mount(
-        <EstablishmentAddress
+        <OperatorAddress
           validatorErrors={validatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const establishmentPostcode = wrapper.find(
-        "InputField#establishment_postcode_find"
+      const operatorPostcode = wrapper.find(
+        "InputField#operatorPostcodeFindComponent"
       );
-      expect(establishmentPostcode.props().meta.error).toBe("test error");
+      expect(operatorPostcode.props().meta.error).toBe("test error");
     });
 
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        establishment_postcode_find: "default"
+        operator_postcode_find: "default"
       };
       const wrapper = mount(
-        <EstablishmentAddress
+        <OperatorAddress
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
-      const establishmentPostcode = wrapper.find(
-        "InputField#establishment_postcode_find"
+      const operatorPostcode = wrapper.find(
+        "InputField#operatorPostcodeFindComponent"
       );
-      expect(establishmentPostcode.props().input.defaultValue).toBe("default");
+      expect(operatorPostcode.props().input.defaultValue).toBe("default");
     });
   });
 });

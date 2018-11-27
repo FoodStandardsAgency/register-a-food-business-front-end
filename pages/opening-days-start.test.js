@@ -1,4 +1,4 @@
-import OperatorType from "../../pages/operator-type";
+import OpeningDaysStart from "./opening-days-start";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {
@@ -11,64 +11,64 @@ const testCumulativeAnswers = {
 
 const testSwitches = {};
 
-describe("<OperatorType />", () => {
+describe("<OpeningDaysStart />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<OperatorType />);
+    const wrapper = shallow(<OpeningDaysStart />);
     expect(wrapper.length).toBe(1);
   });
 
   it("renders 3 radio buttons with correct error props and default values", () => {
     const wrapper = mount(
-      <OperatorType
+      <OpeningDaysStart
         validatorErrors={testValidatorErrors}
         cumulativeFullAnswers={testCumulativeAnswers}
         switches={testSwitches}
       />
     );
-    const operatorTypeRadio = wrapper.find("Radio");
-    expect(operatorTypeRadio.length).toBe(3);
+    const openingDaysStartRadio = wrapper.find("Radio");
+    expect(openingDaysStartRadio.length).toBe(3);
   });
 
   describe("top-level MultiChoice element", () => {
     it("renders the correct error", () => {
       const validatorErrors = {
-        operator_type: "test error"
+        opening_days_start: "test error"
       };
       const wrapper = mount(
-        <OperatorType
+        <OpeningDaysStart
           validatorErrors={validatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const operatorType = wrapper.find("MultiChoice");
-      expect(operatorType.props().meta.error).toBe("test error");
+      const openingDaysStart = wrapper.find("MultiChoice");
+      expect(openingDaysStart.props().meta.error).toBe("test error");
     });
   });
 
   describe("all Radio buttons", () => {
     it("can be selected by default", () => {
       const radioButtonIdsAndValues = {
-        operator_type_person: "A person",
-        operator_type_company: "A company",
-        operator_type_charity: "A charity"
+        opening_days_start_everyday: "Every day",
+        opening_days_start_some_days: "Some days",
+        opening_days_start_irregular_days: "Irregular days"
       };
 
       for (let radioButtonId in radioButtonIdsAndValues) {
         const cumulativeFullAnswers = {
-          operator_type: radioButtonIdsAndValues[radioButtonId]
+          opening_days_start: radioButtonIdsAndValues[radioButtonId]
         };
 
         const wrapper = mount(
-          <OperatorType
+          <OpeningDaysStart
             validatorErrors={testValidatorErrors}
             cumulativeFullAnswers={cumulativeFullAnswers}
             switches={testSwitches}
           />
         );
 
-        const operatorTypeRadio = wrapper.find(`Radio#${radioButtonId}`);
-        expect(operatorTypeRadio.props().defaultChecked).toBe(true);
+        const openingDaysStartRadio = wrapper.find(`Radio#${radioButtonId}`);
+        expect(openingDaysStartRadio.props().defaultChecked).toBe(true);
       }
     });
   });

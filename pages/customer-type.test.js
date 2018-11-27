@@ -1,4 +1,4 @@
-import CustomerType from "../../pages/customer-type";
+import CustomerType from "./customer-type";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {

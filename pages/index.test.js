@@ -1,4 +1,4 @@
-import Index from "../../pages/index";
+import Index from "./index";
 import { mount } from "enzyme";
 
 describe("<Index />", () => {

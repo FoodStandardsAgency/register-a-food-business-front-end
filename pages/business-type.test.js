@@ -1,4 +1,4 @@
-import BusinessType from "../../pages/business-type";
+import BusinessType from "./business-type";
 import { shallow, mount } from "enzyme";
 
 describe("<BusinessType />", () => {

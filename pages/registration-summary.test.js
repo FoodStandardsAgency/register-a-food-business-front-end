@@ -1,7 +1,7 @@
-import RegistrationSummary from "../../pages/registration-summary";
+import RegistrationSummary from "./registration-summary";
 import { shallow, mount } from "enzyme";
-import { transformAnswersForSummary } from "../server/services/data-transform.service";
-jest.mock("../server/services/data-transform.service");
+import { transformAnswersForSummary } from "../src/server/services/data-transform.service";
+jest.mock("../src/server/services/data-transform.service");
 
 const cumulativeFullAnswers = {
   establishment_first_line: "Example first line"

@@ -1,4 +1,4 @@
-import ContactRepresentative from "../../pages/contact-representative";
+import ContactRepresentative from "./contact-representative";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {

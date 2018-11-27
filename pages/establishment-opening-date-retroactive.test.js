@@ -1,4 +1,4 @@
-import EstablishmentOpeningDateProactive from "../../pages/establishment-opening-date-proactive";
+import EstablishmentOpeningDateRetroactive from "./establishment-opening-date-retroactive";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {
@@ -11,15 +11,15 @@ const testCumulativeAnswers = {
 
 const testSwitches = {};
 
-describe("<EstablishmentOpeningDateProactive />", () => {
+describe("<EstablishmentOpeningDateRetroactive />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<EstablishmentOpeningDateProactive />);
+    const wrapper = shallow(<EstablishmentOpeningDateRetroactive />);
     expect(wrapper.length).toBe(1);
   });
 
   it("renders OpeningDate component with correct error props and cumulative answers", () => {
     const wrapper = mount(
-      <EstablishmentOpeningDateProactive
+      <EstablishmentOpeningDateRetroactive
         validatorErrors={testValidatorErrors}
         cumulativeFullAnswers={testCumulativeAnswers}
         switches={testSwitches}

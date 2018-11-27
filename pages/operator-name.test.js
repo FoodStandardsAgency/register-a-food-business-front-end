@@ -1,4 +1,4 @@
-import OperatorCompanyDetails from "../../pages/operator-company-details";
+import OperatorName from "./operator-name";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {
@@ -8,115 +8,100 @@ const testValidatorErrors = {
 const testCumulativeAnswers = {
   example: "test answer"
 };
+
 const testSwitches = {};
 
-describe("<OperatorCompanyDetails />", () => {
+describe("<OperatorName />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<OperatorCompanyDetails />);
+    const wrapper = shallow(<OperatorName />);
     expect(wrapper.length).toBe(1);
   });
 
-  describe("company name input field", () => {
+  describe("operator first name input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <OperatorCompanyDetails
+        <OperatorName
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const operatorCompanyName = wrapper.find(
-        "InputField#operator_company_name"
-      );
-      expect(operatorCompanyName.length).toBe(1);
+      const operatorFirstName = wrapper.find("InputField#operator_first_name");
+      expect(operatorFirstName.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
       const validatorErrors = {
-        operator_company_name: "test error"
+        operator_first_name: "test error"
       };
       const wrapper = mount(
-        <OperatorCompanyDetails
+        <OperatorName
           validatorErrors={validatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const operatorCompanyName = wrapper.find(
-        "InputField#operator_company_name"
-      );
-      expect(operatorCompanyName.props().meta.error).toBe("test error");
+      const operatorFirstName = wrapper.find("InputField#operator_first_name");
+      expect(operatorFirstName.props().meta.error).toBe("test error");
     });
 
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        operator_company_name: "default"
+        operator_first_name: "default"
       };
       const wrapper = mount(
-        <OperatorCompanyDetails
+        <OperatorName
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
-      const operatorCompanyName = wrapper.find(
-        "InputField#operator_company_name"
-      );
-      expect(operatorCompanyName.props().input.defaultValue).toBe("default");
+      const operatorFirstName = wrapper.find("InputField#operator_first_name");
+      expect(operatorFirstName.props().input.defaultValue).toBe("default");
     });
   });
 
-  describe("Companies House reference number input field", () => {
+  describe("operator last name input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <OperatorCompanyDetails
+        <OperatorName
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const operatorCompaniesHouseNumber = wrapper.find(
-        "InputField#operator_company_house_number"
-      );
-      expect(operatorCompaniesHouseNumber.length).toBe(1);
+      const operatorLastName = wrapper.find("InputField#operator_last_name");
+      expect(operatorLastName.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
       const validatorErrors = {
-        operator_company_house_number: "test error"
+        operator_last_name: "test error"
       };
       const wrapper = mount(
-        <OperatorCompanyDetails
+        <OperatorName
           validatorErrors={validatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const operatorCompaniesHouseNumber = wrapper.find(
-        "InputField#operator_company_house_number"
-      );
-      expect(operatorCompaniesHouseNumber.props().meta.error).toBe(
-        "test error"
-      );
+      const operatorLastName = wrapper.find("InputField#operator_last_name");
+      expect(operatorLastName.props().meta.error).toBe("test error");
     });
 
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        operator_company_house_number: "default"
+        operator_last_name: "default"
       };
       const wrapper = mount(
-        <OperatorCompanyDetails
+        <OperatorName
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
-      const operatorCompaniesHouseNumber = wrapper.find(
-        "InputField#operator_company_house_number"
-      );
-      expect(operatorCompaniesHouseNumber.props().input.defaultValue).toBe(
-        "default"
-      );
+      const operatorLastName = wrapper.find("InputField#operator_last_name");
+      expect(operatorLastName.props().input.defaultValue).toBe("default");
     });
   });
 });

@@ -1,6 +1,6 @@
-import ApplicationComplete from "../../pages/summary-confirmation";
+import ApplicationComplete from "./summary-confirmation";
 import { shallow, mount } from "enzyme";
-jest.mock("../server/services/data-transform.service");
+jest.mock("../src/server/services/data-transform.service");
 
 const cumulativeFullAnswers = {
   establishment_first_line: "Example first line"

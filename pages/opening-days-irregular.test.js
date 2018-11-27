@@ -1,4 +1,4 @@
-import OpeningDaysIrregular from "../../pages/opening-days-irregular";
+import OpeningDaysIrregular from "./opening-days-irregular";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {

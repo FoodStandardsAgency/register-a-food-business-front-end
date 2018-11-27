@@ -1,4 +1,4 @@
-import RegistrationRole from "../../pages/registration-role";
+import RegistrationRole from "./registration-role";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {
