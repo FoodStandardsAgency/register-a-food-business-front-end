@@ -1,19 +1,16 @@
 # Transforming user data for the summary page
 
-To transform a data field to display on the summary table, you must create a function that does the data transformation. You must then call this function in the data-transform service. The output from this function can either over write the existing data field to be transformed, or be used to set a new field.
+To transform a data field to display on the summary table, you must update the `transformAnswersForSummary()` function. Data transformations can either overwrite the original data field or add a new data field.
 
 ## Steps:
 
-1.  Create a transformation function that takes in the data fields that need to be transformed as it's arguments.
-2.  Set the return of the function to be value of the transformed data field.
+1.  If a **new** data field needs to be created for submission, add the newly created data fields to the `data` object. If necessary, delete the original data field.
+2.  If the data field value needs to be **transformed** for submission, update the relevant data field in the `data` object.
+3.  If any data transformation steps are more than a few lines long, consider moving them out of the main function and into their own transformation function, which should then be called by `transformAnswersForSummary()`:
 
 ```javascript
-const transformationFunction = (dataToBeTransformed) => {
-transformation code
-return transformedData
-}
+const transformFunctionExample = dataToBeTransformed => {
+  // transformation code
+  return transformedData;
+};
 ```
-
-3.  Call the transformation function, with the correct arguments, in the `try` of the `transformAnswersForSummary` in the `data-transform.service.js`.
-4.  Over write the original data field or set a new data field to be the output of the transformation function.
-5.  If needed, delete the original data field. Any fields deleted, will no longer be avaialble in the `transformDataForSubmit function`.

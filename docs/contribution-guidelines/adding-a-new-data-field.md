@@ -1,13 +1,16 @@
 # Adding a new data field
 
-To create a new data field you need create custom validation, update the UI, E2E and unit tests and then ensure it is displayed and submitted in the correct format.
+To add a new data field you must update the UI, E2E, and unit tests, create custom validation, and ensure that it is displayed and submitted in the correct format.
 
 ## Steps:
 
-1.  If needed, create a custom validation function for the data field. For more infomation, see [validation](./validation.md)
-2.  Write or update UI and E2E tests for the new page. For more information, see [Writing UI and E2E tests](./writing-ui-e2e-tests.md).
-3.  If needed, update the unit tests for the page that the field is being added to. For more information, see [Writing unit tests](./writing-unit-tests.md).
+1.  Write or update UI and E2E tests for the new data field. For more information, see [Writing UI and E2E tests](./writing-ui-e2e-tests.md).
+2.  If the new data field requires a new type of validation, see the [Validation](./validation.md) guide.
+3.  If there is new in-page logic for the new data field, update the unit tests for the relevant page. For more information, see [Writing unit tests](./writing-unit-tests.md).
 4.  Add the data field to the [schema](../../src/server/services/schema.js).
-5.  If needed, add the data field to the [summary table](../../src/components/SummaryTable.js) to display it back to the user upon form completion.
-6.  Use the `data-transform.service.js` to do any data manipulation to the field for summary. For more information, see [transforming data for summary page](./transforming-data-summary-page)
-7.  Use the `data-transform.service.js` to do any data manipulation to the field for submission. For more information, see [transforming data for submission](./transforming-data-submission)
+5.  If the new data field should be displayed on the summary table:
+
+    1.  If the data needs to be manipulated before it is displayed on the summary table, see [Transforming user data for the summary page](./transforming-data-summary-page.md).
+    2.  Add the data field to the [SummaryTable component](../../src/components/SummaryTable.js) and add row and data field entries to the [test arrays and objects](../../src/components/SummaryTable.test.js) where necessary.
+
+6.  Add the new data field to the submission data transformation function. For more information, see [Transforming user data for submission](./transforming-data-submission.md).

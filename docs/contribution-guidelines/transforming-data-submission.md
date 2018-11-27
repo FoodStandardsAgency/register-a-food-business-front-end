@@ -1,19 +1,18 @@
 # Transforming user data for submission
 
-All data fields need to be transformed into the desired format for submission. This can be done by directly adding it to the correct section in the `transformAnswersForSubmit function`. Alternatively, you can create a new function that does a data transformation. You must then call this function in the data-transform service. The output from this function can either over write the original data field, or be used to set a new field.
+All data fields must be transformed into the correct format for submission, even if the data itself does not need to change. Data transformations can either overwrite the original data field or add a new data field.
 
 ## Steps:
 
-1.  Create a transformation function that takes in the data fields that need to be transformed as it's arguments.
-2.  Set the return of the function to be value of the transformed data field.
+1.  In the `transformAnswersForSubmit()` function in `data-transform.service`, add all necessary data fields to the correct array, such as the `operator_keys` or `activities_keys` array.
+2.  If the data field needs to be transformed in the same way for both the summary page and submission, see the [Transforming user data for the summary page](./transforming-data-summary-page.md) guide. All subsequent steps in this guide can be skipped because the `transformAnswersForSubmit()` function re-uses the `transformAnswersForSummary()` function.
+3.  If a **new** data field needs to be created for submission, add the newly created data fields to the `submitData` object. If necessary, delete the original data field.
+4.  If the data field value needs to be **transformed** for submission, update the relevant data field in the `submitData` object.
+5.  If any data transformation steps are more than a few lines long, consider moving them out of the main function and into their own transformation function, which should then be called by `transformAnswersForSubmit()`:
 
 ```javascript
-const transformationFunction = (dataToBeTransformed) => {
-transformation code
-return transformedData
-}
+const transformFunctionExample = dataToBeTransformed => {
+  // transformation code
+  return transformedData;
+};
 ```
-
-3.  Over write the original data field or set a new data field to be the output of the transformation function.
-4.  If needed, delete the original data field.
-5.  Add the over-written oiginal data or the new data field to the correct section (establishment/operator/premise/activities/metadata) in the `transformAnswersForSummary` in the `data-transform.service.js`.
