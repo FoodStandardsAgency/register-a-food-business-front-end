@@ -1,4 +1,4 @@
-import OperatorCompanyDetails from "./operator-company-details";
+import OperatorCompanyDetails from "../pages/operator-company-details";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {

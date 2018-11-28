@@ -1,4 +1,4 @@
-import OperatorType from "./operator-type";
+import RegistrationRole from "../pages/registration-role";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {
@@ -11,64 +11,64 @@ const testCumulativeAnswers = {
 
 const testSwitches = {};
 
-describe("<OperatorType />", () => {
+describe("<RegistrationRole />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<OperatorType />);
+    const wrapper = shallow(<RegistrationRole />);
     expect(wrapper.length).toBe(1);
   });
 
   it("renders 3 radio buttons with correct error props and default values", () => {
     const wrapper = mount(
-      <OperatorType
+      <RegistrationRole
         validatorErrors={testValidatorErrors}
         cumulativeFullAnswers={testCumulativeAnswers}
         switches={testSwitches}
       />
     );
-    const operatorTypeRadio = wrapper.find("Radio");
-    expect(operatorTypeRadio.length).toBe(3);
+    const registrationRoleRadio = wrapper.find("Radio");
+    expect(registrationRoleRadio.length).toBe(3);
   });
 
   describe("top-level MultiChoice element", () => {
     it("renders the correct error", () => {
       const validatorErrors = {
-        operator_type: "test error"
+        registration_role: "test error"
       };
       const wrapper = mount(
-        <OperatorType
+        <RegistrationRole
           validatorErrors={validatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const operatorType = wrapper.find("MultiChoice");
-      expect(operatorType.props().meta.error).toBe("test error");
+      const registrationRole = wrapper.find("MultiChoice");
+      expect(registrationRole.props().meta.error).toBe("test error");
     });
   });
 
   describe("all Radio buttons", () => {
     it("can be selected by default", () => {
       const radioButtonIdsAndValues = {
-        operator_type_person: "A person",
-        operator_type_company: "A company",
-        operator_type_charity: "A charity"
+        registration_role_sole_trader: "Sole trader",
+        registration_role_partnership: "Partnership",
+        registration_role_representative: "Representative"
       };
 
       for (let radioButtonId in radioButtonIdsAndValues) {
         const cumulativeFullAnswers = {
-          operator_type: radioButtonIdsAndValues[radioButtonId]
+          registration_role: radioButtonIdsAndValues[radioButtonId]
         };
 
         const wrapper = mount(
-          <OperatorType
+          <RegistrationRole
             validatorErrors={testValidatorErrors}
             cumulativeFullAnswers={cumulativeFullAnswers}
             switches={testSwitches}
           />
         );
 
-        const operatorTypeRadio = wrapper.find(`Radio#${radioButtonId}`);
-        expect(operatorTypeRadio.props().defaultChecked).toBe(true);
+        const registrationRoleRadio = wrapper.find(`Radio#${radioButtonId}`);
+        expect(registrationRoleRadio.props().defaultChecked).toBe(true);
       }
     });
   });

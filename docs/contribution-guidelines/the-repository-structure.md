@@ -82,6 +82,10 @@
 
 The `/pages` directory contains all website pages that can be rendered by Next.js and viewed by users. Next.js looks for this root `/pages` directory automatically, a behaviour that cannot be changed. Next.js also automatically makes each page available at a route, with an identical name to the file. For example, the file `/pages/business-type.js` is available at the URL `/new/council-name/business-type`. For more information about the relationship between Next.js and Express and how URL routes are defined, see [The tech stack](./the-tech-stack.md).
 
+## `/pages_unit_tests`
+
+The `/pages_unit_tests` directory contains the unit tests for the `/pages` files. This is the only example where the unit tests are in a different directory to the corresponding files. Next.js uses all files in the `/pages` directory for the build process, something that cannot be changed, so the unit tests must be stored separately.
+
 ## `/src`
 
 * `src/components`

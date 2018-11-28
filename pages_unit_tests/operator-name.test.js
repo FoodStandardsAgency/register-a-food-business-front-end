@@ -1,4 +1,4 @@
-import OperatorName from "./operator-name";
+import OperatorName from "../pages/operator-name";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {

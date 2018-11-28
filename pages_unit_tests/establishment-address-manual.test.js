@@ -1,4 +1,4 @@
-import EstablishmentAddress from "./establishment-address-manual";
+import EstablishmentAddress from "../pages/establishment-address-manual";
 import { mount, shallow } from "enzyme";
 
 const testValidatorErrors = {

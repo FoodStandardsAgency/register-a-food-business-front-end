@@ -5,7 +5,8 @@
 ### Prerequisites
 
 * [Docker](https://www.docker.com/)
-* Node.js
+* [Node.js](https://nodejs.org)
+* [Yarn](https://yarnpkg.com)
 
 ### Steps
 

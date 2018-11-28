@@ -1,4 +1,4 @@
-import Document from "./_document";
+import Document from "../pages/_document";
 import { shallow } from "enzyme";
 
 // This test is very minimal to just ensure that the custom _document file renders correctly.

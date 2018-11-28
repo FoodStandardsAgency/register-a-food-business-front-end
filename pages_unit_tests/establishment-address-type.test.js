@@ -1,4 +1,4 @@
-import RegistrationRole from "./registration-role";
+import EstablishmentAddressType from "../pages/establishment-address-type";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {
@@ -11,64 +11,67 @@ const testCumulativeAnswers = {
 
 const testSwitches = {};
 
-describe("<RegistrationRole />", () => {
+describe("<EstablishmentAddressType />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<RegistrationRole />);
+    const wrapper = shallow(<EstablishmentAddressType />);
     expect(wrapper.length).toBe(1);
   });
 
   it("renders 3 radio buttons with correct error props and default values", () => {
     const wrapper = mount(
-      <RegistrationRole
+      <EstablishmentAddressType
         validatorErrors={testValidatorErrors}
         cumulativeFullAnswers={testCumulativeAnswers}
         switches={testSwitches}
       />
     );
-    const registrationRoleRadio = wrapper.find("Radio");
-    expect(registrationRoleRadio.length).toBe(3);
+    const establishmentAddressTypeRadio = wrapper.find("Radio");
+    expect(establishmentAddressTypeRadio.length).toBe(3);
   });
 
   describe("top-level MultiChoice element", () => {
     it("renders the correct error", () => {
       const validatorErrors = {
-        registration_role: "test error"
+        establishment_type: "test error"
       };
       const wrapper = mount(
-        <RegistrationRole
+        <EstablishmentAddressType
           validatorErrors={validatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const registrationRole = wrapper.find("MultiChoice");
-      expect(registrationRole.props().meta.error).toBe("test error");
+      const establishmentAddressType = wrapper.find("MultiChoice");
+      expect(establishmentAddressType.props().meta.error).toBe("test error");
     });
   });
 
   describe("all Radio buttons", () => {
     it("can be selected by default", () => {
       const radioButtonIdsAndValues = {
-        registration_role_sole_trader: "Sole trader",
-        registration_role_partnership: "Partnership",
-        registration_role_representative: "Representative"
+        establishment_type_business_commercial:
+          "Place of business or commercial premises",
+        establishment_type_mobile_moveable: "Mobile or moveable premises",
+        establishment_type_home_domestic: "Home or domestic premises"
       };
 
       for (let radioButtonId in radioButtonIdsAndValues) {
         const cumulativeFullAnswers = {
-          registration_role: radioButtonIdsAndValues[radioButtonId]
+          establishment_type: radioButtonIdsAndValues[radioButtonId]
         };
 
         const wrapper = mount(
-          <RegistrationRole
+          <EstablishmentAddressType
             validatorErrors={testValidatorErrors}
             cumulativeFullAnswers={cumulativeFullAnswers}
             switches={testSwitches}
           />
         );
 
-        const registrationRoleRadio = wrapper.find(`Radio#${radioButtonId}`);
-        expect(registrationRoleRadio.props().defaultChecked).toBe(true);
+        const establishmentAddressTypeRadio = wrapper.find(
+          `Radio#${radioButtonId}`
+        );
+        expect(establishmentAddressTypeRadio.props().defaultChecked).toBe(true);
       }
     });
   });

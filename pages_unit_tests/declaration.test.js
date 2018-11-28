@@ -1,4 +1,4 @@
-import Declaration from "./declaration";
+import Declaration from "../pages/declaration";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {

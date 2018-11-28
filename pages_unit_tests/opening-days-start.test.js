@@ -1,4 +1,4 @@
-import EstablishmentAddressType from "./establishment-address-type";
+import OpeningDaysStart from "../pages/opening-days-start";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {
@@ -11,67 +11,64 @@ const testCumulativeAnswers = {
 
 const testSwitches = {};
 
-describe("<EstablishmentAddressType />", () => {
+describe("<OpeningDaysStart />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<EstablishmentAddressType />);
+    const wrapper = shallow(<OpeningDaysStart />);
     expect(wrapper.length).toBe(1);
   });
 
   it("renders 3 radio buttons with correct error props and default values", () => {
     const wrapper = mount(
-      <EstablishmentAddressType
+      <OpeningDaysStart
         validatorErrors={testValidatorErrors}
         cumulativeFullAnswers={testCumulativeAnswers}
         switches={testSwitches}
       />
     );
-    const establishmentAddressTypeRadio = wrapper.find("Radio");
-    expect(establishmentAddressTypeRadio.length).toBe(3);
+    const openingDaysStartRadio = wrapper.find("Radio");
+    expect(openingDaysStartRadio.length).toBe(3);
   });
 
   describe("top-level MultiChoice element", () => {
     it("renders the correct error", () => {
       const validatorErrors = {
-        establishment_type: "test error"
+        opening_days_start: "test error"
       };
       const wrapper = mount(
-        <EstablishmentAddressType
+        <OpeningDaysStart
           validatorErrors={validatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const establishmentAddressType = wrapper.find("MultiChoice");
-      expect(establishmentAddressType.props().meta.error).toBe("test error");
+      const openingDaysStart = wrapper.find("MultiChoice");
+      expect(openingDaysStart.props().meta.error).toBe("test error");
     });
   });
 
   describe("all Radio buttons", () => {
     it("can be selected by default", () => {
       const radioButtonIdsAndValues = {
-        establishment_type_business_commercial:
-          "Place of business or commercial premises",
-        establishment_type_mobile_moveable: "Mobile or moveable premises",
-        establishment_type_home_domestic: "Home or domestic premises"
+        opening_days_start_everyday: "Every day",
+        opening_days_start_some_days: "Some days",
+        opening_days_start_irregular_days: "Irregular days"
       };
 
       for (let radioButtonId in radioButtonIdsAndValues) {
         const cumulativeFullAnswers = {
-          establishment_type: radioButtonIdsAndValues[radioButtonId]
+          opening_days_start: radioButtonIdsAndValues[radioButtonId]
         };
 
         const wrapper = mount(
-          <EstablishmentAddressType
+          <OpeningDaysStart
             validatorErrors={testValidatorErrors}
             cumulativeFullAnswers={cumulativeFullAnswers}
             switches={testSwitches}
           />
         );
 
-        const establishmentAddressTypeRadio = wrapper.find(
-          `Radio#${radioButtonId}`
-        );
-        expect(establishmentAddressTypeRadio.props().defaultChecked).toBe(true);
+        const openingDaysStartRadio = wrapper.find(`Radio#${radioButtonId}`);
+        expect(openingDaysStartRadio.props().defaultChecked).toBe(true);
       }
     });
   });

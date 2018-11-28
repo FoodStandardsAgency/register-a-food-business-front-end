@@ -1,4 +1,4 @@
-import RegistrationSummary from "./registration-summary";
+import RegistrationSummary from "../pages/registration-summary";
 import { shallow, mount } from "enzyme";
 import { transformAnswersForSummary } from "../src/server/services/data-transform.service";
 jest.mock("../src/server/services/data-transform.service");

@@ -1,4 +1,4 @@
-import ApplicationComplete from "./summary-confirmation";
+import ApplicationComplete from "../pages/summary-confirmation";
 import { shallow, mount } from "enzyme";
 jest.mock("../src/server/services/data-transform.service");
 

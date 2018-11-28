@@ -1,4 +1,4 @@
-import EstablishmentContactDetails from "./establishment-contact-details";
+import EstablishmentContactDetails from "../pages/establishment-contact-details";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {

@@ -1,4 +1,4 @@
-import OtherDetails from "./business-other-details";
+import OpeningDaysIrregular from "../pages/opening-days-irregular";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {
@@ -11,53 +11,53 @@ const testCumulativeAnswers = {
 
 const testSwitches = {};
 
-describe("<OtherDetails />", () => {
+describe("<OpeningDaysIrregular />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<OtherDetails />);
+    const wrapper = shallow(<OpeningDaysIrregular />);
     expect(wrapper.length).toBe(1);
   });
 
-  describe("other details input field", () => {
+  describe("Opening Days Irregular input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <OtherDetails
+        <OpeningDaysIrregular
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const businessOtherDetails = wrapper.find("TextArea");
-      expect(businessOtherDetails.length).toBe(1);
+      const openingDaysIrregular = wrapper.find("TextArea");
+      expect(openingDaysIrregular.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
       const validatorErrors = {
-        business_other_details: "test error"
+        opening_days_irregular: "test error"
       };
       const wrapper = mount(
-        <OtherDetails
+        <OpeningDaysIrregular
           validatorErrors={validatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const businessOtherDetails = wrapper.find("TextArea");
-      expect(businessOtherDetails.props().meta.error).toBe("test error");
+      const openingDaysIrregular = wrapper.find("TextArea");
+      expect(openingDaysIrregular.props().meta.error).toBe("test error");
     });
 
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        business_other_details: "default"
+        opening_days_irregular: "default"
       };
       const wrapper = mount(
-        <OtherDetails
+        <OpeningDaysIrregular
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
-      const businessOtherDetails = wrapper.find("TextArea");
-      expect(businessOtherDetails.props().input.defaultValue).toBe("default");
+      const openingDaysIrregular = wrapper.find("TextArea");
+      expect(openingDaysIrregular.props().input.defaultValue).toBe("default");
     });
   });
 });

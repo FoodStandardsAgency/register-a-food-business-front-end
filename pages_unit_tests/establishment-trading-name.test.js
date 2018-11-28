@@ -1,5 +1,5 @@
-import EstablishmentAddress from "./establishment-address";
-import { mount, shallow } from "enzyme";
+import EstablishmentTradingName from "../pages/establishment-trading-name";
+import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {
   example: "test error"
@@ -11,59 +11,61 @@ const testCumulativeAnswers = {
 
 const testSwitches = {};
 
-describe("<EstablishmentAddress />", () => {
+describe("<EstablishmentTradingName />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<EstablishmentAddress />);
+    const wrapper = shallow(<EstablishmentTradingName />);
     expect(wrapper.length).toBe(1);
   });
 
-  describe("Establishment postcode field", () => {
+  describe("establishment trading name input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <EstablishmentAddress
+        <EstablishmentTradingName
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const establishmentPostcode = wrapper.find(
-        "InputField#establishment_postcode_find"
+      const establishmentTradingName = wrapper.find(
+        "InputField#establishment_trading_name"
       );
-      expect(establishmentPostcode.length).toBe(1);
+      expect(establishmentTradingName.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
       const validatorErrors = {
-        establishment_postcode_find: "test error"
+        establishment_trading_name: "test error"
       };
       const wrapper = mount(
-        <EstablishmentAddress
+        <EstablishmentTradingName
           validatorErrors={validatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
         />
       );
-      const establishmentPostcode = wrapper.find(
-        "InputField#establishment_postcode_find"
+      const establishmentTradingName = wrapper.find(
+        "InputField#establishment_trading_name"
       );
-      expect(establishmentPostcode.props().meta.error).toBe("test error");
+      expect(establishmentTradingName.props().meta.error).toBe("test error");
     });
 
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        establishment_postcode_find: "default"
+        establishment_trading_name: "default"
       };
       const wrapper = mount(
-        <EstablishmentAddress
+        <EstablishmentTradingName
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={cumulativeFullAnswers}
           switches={testSwitches}
         />
       );
-      const establishmentPostcode = wrapper.find(
-        "InputField#establishment_postcode_find"
+      const establishmentTradingName = wrapper.find(
+        "InputField#establishment_trading_name"
       );
-      expect(establishmentPostcode.props().input.defaultValue).toBe("default");
+      expect(establishmentTradingName.props().input.defaultValue).toBe(
+        "default"
+      );
     });
   });
 });
