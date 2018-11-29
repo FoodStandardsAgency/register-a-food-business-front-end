@@ -5,9 +5,10 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
+  FsaDateField
 } from "./";
-import { Header, Paragraph, DateField, HintText } from "govuk-react";
+import { Header, Paragraph, HintText } from "govuk-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 
@@ -43,7 +44,7 @@ const OpeningDate = props => {
       "Establishment is not trading yet" ? (
         <form action={props.formAction} method="post">
           <div>
-            <DateField
+            <FsaDateField
               defaultValues={{
                 day: props.cumulativeFullAnswers.day,
                 month: props.cumulativeFullAnswers.month,
@@ -59,7 +60,7 @@ const OpeningDate = props => {
               <span className="bold">
                 When is this establishment expected to begin trading?
               </span>
-            </DateField>
+            </FsaDateField>
 
             <ContentItem.B_30_15>
               <HiddenTextAccessible
@@ -83,7 +84,7 @@ const OpeningDate = props => {
         </form>
       ) : (
         <form action={props.formAction} method="post">
-          <DateField
+          <FsaDateField
             defaultValues={{
               day: props.cumulativeFullAnswers.day,
               month: props.cumulativeFullAnswers.month,
@@ -99,7 +100,7 @@ const OpeningDate = props => {
             <span className="bold">
               What date did this establishment begin trading?
             </span>
-          </DateField>
+          </FsaDateField>
 
           <ContentItem.B_30_15>
             <HiddenTextAccessible
