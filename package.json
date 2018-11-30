@@ -22,7 +22,8 @@
     "format:verify":
       "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
     "format":
-      "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'"
+      "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
+    "jsdoc": "jsdoc ./src/**/**/*.js -d ./docs/jsdoc"
   },
   "dependencies": {
     "@govuk-react/icon-crown": "0.0.5",
@@ -72,6 +73,7 @@
     "jest": "23.5.0",
     "jest-emotion": "9.2.7",
     "jest-junit": "5.2.0",
+    "jsdoc": "3.5.5",
     "prettier": "1.12.1",
     "prop-types": "15.6.1",
     "react": "16.4.2",
