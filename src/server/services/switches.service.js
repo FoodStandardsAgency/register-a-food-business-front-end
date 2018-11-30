@@ -1,5 +1,18 @@
+/**
+ * Calculates the new value for global switches
+ * @module services/switches
+ */
+
 const { logEmitter } = require("./logging.service");
 
+/**
+ * Deletes all answers that come from a page that is now inactive on the path
+
+ * @param {string} action The change to be made to the switch - "on", "off", or "toggle"
+ * @param {boolean} currentSwitchState The current value of the given switch
+ *
+ * @returns {boolean} The new value of the given switch
+ */
 const changeSwitch = (action, currentSwitchState) => {
   logEmitter.emit("functionCall", "switches.service", "changeSwitch");
 

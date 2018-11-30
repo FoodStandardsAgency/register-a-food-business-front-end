@@ -1,6 +1,6 @@
 /**
  * EventEmitters for different status purposes
- * @module services/status
+ * @module services/statusEmitter
  */
 
 const { setStatus, incrementStatusCount } = require("./status.service");
