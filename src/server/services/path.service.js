@@ -1,6 +1,6 @@
 /**
  * Functions for editing and moving along the path
- * @module pathService
+ * @module services/path
  */
 
 const { logEmitter } = require("./logging.service");
