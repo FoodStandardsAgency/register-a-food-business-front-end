@@ -1,3 +1,8 @@
+/**
+ * EventEmitters for different status purposes
+ * @module services/status
+ */
+
 const { setStatus, incrementStatusCount } = require("./status.service");
 const EventEmitter = require("events");
 

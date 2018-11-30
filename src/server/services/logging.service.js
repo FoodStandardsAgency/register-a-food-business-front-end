@@ -1,5 +1,5 @@
 /**
- * Modifications to the logEmitter for different logging purposes
+ * EventEmitters for different logging purposes
  * @module services/logging
  */
 
