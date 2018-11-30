@@ -1,3 +1,8 @@
+/**
+ * Modifications to the logEmitter for different logging purposes
+ * @module services/logging
+ */
+
 const EventEmitter = require("events");
 const { info, error } = require("winston");
 

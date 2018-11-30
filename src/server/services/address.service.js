@@ -1,9 +1,21 @@
+/**
+ * Functions for fetching addresses in a specific country
+ * @module services/address
+ */
+
 const {
   getAddressesByPostcode
 } = require("../connectors/address-lookup/address-lookup-api.connector");
 const { statusEmitter } = require("../services/statusEmitter.service");
 const { logEmitter } = require("./logging.service");
 
+/**
+ * Fetches addresses for UK postcodes
+ *
+ * @param {string} postcode The postcode to search by
+ *
+ * @returns {array} A list of addresses
+ */
 const getUkAddressesByPostcode = async postcode => {
   logEmitter.emit(
     "functionCall",
