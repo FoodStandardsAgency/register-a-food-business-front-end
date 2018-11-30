@@ -23,7 +23,7 @@
       "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
     "format":
       "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
-    "jsdoc": "jsdoc ./src/**/**/*.js -d ./docs/jsdoc"
+    "jsdoc": "rm -rf ./docs/jsdoc && jsdoc -r ./src -d ./docs/jsdoc"
   },
   "dependencies": {
     "@govuk-react/icon-crown": "0.0.5",
