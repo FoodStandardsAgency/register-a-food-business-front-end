@@ -1,3 +1,9 @@
+/**
+ * The back router redirects users to the previous page in the path, regardless of the browser history.
+ * Routes: /back/:originator
+ * @module routers/back
+ */
+
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const backController = require("../controllers/back.controller");

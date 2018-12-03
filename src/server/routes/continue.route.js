@@ -1,3 +1,9 @@
+/**
+ * The continue router redirects the user to the next page in the path, based on their cumulative answers
+ * Routes: /continue/:originator
+ * @module routers/continue
+ */
+
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const continueController = require("../controllers/continue.controller");

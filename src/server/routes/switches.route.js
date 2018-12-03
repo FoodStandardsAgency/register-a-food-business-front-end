@@ -1,3 +1,9 @@
+/**
+ * The switches router updates the value of a specified global switch in the user's session and redirects back to the same page.
+ * Routes: /switches/:switchName/:action/:originator
+ * @module routers/switches
+ */
+
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const switchesController = require("../controllers/switches.controller");
