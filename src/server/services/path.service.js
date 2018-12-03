@@ -1,5 +1,19 @@
+/**
+ * Functions for editing and moving along the path
+ * @module services/path
+ */
+
 const { logEmitter } = require("./logging.service");
 
+/**
+ * Creates a version of the path object with the correct pages enabled, based on the user's cumulative answers.
+ *
+ * @param {object} cumulativeFullAnswers An object containing every answer that has been given by the user
+ * @param {string} currentPage The 'originator' page that the user has come from
+ * @param {object} pathFromSession The un-edited path, stored in the user's session
+ *
+ * @returns {object} The edited path object
+ */
 const editPath = (cumulativeFullAnswers, currentPage, pathFromSession) => {
   logEmitter.emit("functionCall", "path.service", "editPath");
   const pathPagesToSwitch = getPathPagesToSwitch(
@@ -18,6 +32,19 @@ const editPath = (cumulativeFullAnswers, currentPage, pathFromSession) => {
   return newPath;
 };
 
+/**
+ * Creates a version of the path object during 'edit mode', which is enabled after the user has
+ * clicked one of the 'Change' buttons on the summary page.
+ * Enables pages for the 'edit mode' sub-path, based on the user's cumulative edit mode answers.
+ *
+ * @param {object} cumulativeFullAnswers An object containing every answer that has been given by the user
+ * @param {object} cumulativeEditAnswers An object containing every answer that has been given by the user during the 'edit mode' sub-path
+ * @param {object} pathFromSession The un-edited path, stored in the user's session
+ * @param {string} editModeFirstPage The first page in the 'edit mode' sub-path, pulled from the URL query
+ * @param {string} currentPage The 'originator' page that the user has come from
+ *
+ * @returns {object} The edited path object
+ */
 const editPathInEditMode = (
   cumulativeFullAnswers,
   cumulativeEditAnswers,
@@ -54,6 +81,15 @@ const editPathInEditMode = (
   return newPath;
 };
 
+/**
+ * Calculates the the next or previous page in the path, based on the active path (enabled pages), the current page, and the given 'movement'.
+ *
+ * @param {object} path The edited path object with the correct enabled and disabled pages
+ * @param {string} currentPage The 'originator' page that the user has come from
+ * @param {number} movement The requested movement, in number of pages, from the current page. For example 1 or -1
+ *
+ * @returns {string} The page that the user should see next
+ */
 const moveAlongPath = (path, currentPage, movement) => {
   logEmitter.emit("functionCall", "path.service", "moveAlongPath");
 
@@ -92,6 +128,15 @@ const moveAlongPath = (path, currentPage, movement) => {
   }
 };
 
+/**
+ * Calculates the the next or previous page in the 'edit mode' sub-path, based on the active path (enabled pages), the current page, and the given 'movement'.
+ *
+ * @param {object} path The edited path object with the correct enabled and disabled 'edit mode' sub-path pages
+ * @param {string} currentPage The 'originator' page that the user has come from
+ * @param {number} movement The requested movement, in number of pages, from the current page. For example 1 or -1
+ *
+ * @returns {string} The page that the user should see next
+ */
 const moveAlongEditPath = (editModePath, currentPage, movement) => {
   logEmitter.emit("functionCall", "path.service", "moveAlongEditPath");
 
@@ -130,6 +175,15 @@ const moveAlongEditPath = (editModePath, currentPage, movement) => {
   }
 };
 
+/**
+ * Calculates an array of pages in the given path that should be enabled, based on the user's cumulative answers.
+ *
+ * @param {object} cumulativeFullAnswers An object containing every answer that has been given by the user
+ * @param {string} currentPage CURRENTLY OBSOLETE
+ * @param {object} pathFromSession The un-edited path, stored in the user's session
+ *
+ * @returns {array} The pages that should be enabled
+ */
 const getPathPagesToSwitch = (
   cumulativeFullAnswers,
   currentPage,
@@ -192,6 +246,14 @@ const getPathPagesToSwitch = (
   }
 };
 
+/**
+ * A workaround function to disable manual address input pages if the user has successfully found an address from the lookup.
+ *
+ * @param {object} newPath The path object, already edited to enable pages
+ * @param {string} currentPage The 'originator' page that the user has come from
+ *
+ * @returns {object} The edited path
+ */
 const switchOffManualAddressInput = (newPath, currentPage) => {
   logEmitter.emit(
     "functionCall",

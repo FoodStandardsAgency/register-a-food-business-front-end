@@ -1,9 +1,24 @@
+/**
+ * @module controllers/switches
+ */
+
 const {
   cleanEmptiedAnswers
 } = require("../services/session-management.service");
 const { changeSwitch } = require("../services/switches.service");
 const { logEmitter } = require("../services/logging.service");
 
+/**
+ * Returns an object containing the new cumulativeFullAnswers value and the new switch status.
+ *
+ * @param {boolean} currentSwitchState The current value of the given switch
+ * @param {string} action "on", "off", or "toggle"
+ * @param {object} previousAnswers An object containing every past answer that has been given by the user
+ * @param {object} newAnswers An object containing new answers from the current page
+ * @param {string} currentPage The 'originator' page that the user has come from
+ *
+ * @returns {object} The new cumulativeFullAnswers value and the new switch status.
+ */
 const switchesController = (
   currentSwitchState,
   action,

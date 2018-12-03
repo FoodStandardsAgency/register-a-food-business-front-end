@@ -1,3 +1,8 @@
+/**
+ * Sends requests to a connector
+ * @module services/submit
+ */
+
 const {
   sendRequest
 } = require("../connectors/registration/registration.connector");

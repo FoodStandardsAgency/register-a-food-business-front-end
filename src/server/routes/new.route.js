@@ -1,3 +1,9 @@
+/**
+ * The new router stores the local council string in the session and renders the requested page using Next.js.
+ * Routes: /new/:lc, /new/:lc/:page
+ * @module routers/new
+ */
+
 const { Router } = require("express");
 const { Next } = require("../next");
 const { logEmitter } = require("../services/logging.service");

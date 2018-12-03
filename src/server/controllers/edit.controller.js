@@ -1,3 +1,7 @@
+/**
+ * @module controllers/edit
+ */
+
 const { logEmitter } = require("../services/logging.service");
 const {
   cleanInactivePathAnswers,
@@ -11,6 +15,17 @@ const {
   moveAlongEditPath
 } = require("../services/path.service");
 
+/**
+ * Returns the previous page in the edit-mode path
+ *
+ * @param {object} pathFromSession The un-edited path, stored in the user's session
+ * @param {string} editModeFirstPage The first page in the edit-mode path
+ * @param {string} currentPage The 'originator' page that the user has come from
+ * @param {object} cumulativeFullAnswers An object containing every answer that has been given by the user
+ * @param {object} cumulativeEditAnswers An object containing every answer that has been given in this edit-mode path by the user
+ *
+ * @returns {string} The previous page in the edit-mode path
+ */
 const editBack = (
   pathFromSession,
   editModeFirstPage,
@@ -42,6 +57,20 @@ const editBack = (
 const checkIfValid = validatorErrors =>
   Object.keys(validatorErrors).length === 0;
 
+/**
+ * Returns an object containing validator errors (if present), the redirect route (e.g. the next page in the edit-mode path),
+ * the new value of the cumulative answers object, and the new value of the switches object.
+ *
+ * @param {object} pathFromSession The un-edited path, stored in the user's session
+ * @param {string} editModeFirstPage The first page in the edit-mode path
+ * @param {string} currentPage The 'originator' page that the user has come from
+ * @param {object} cumulativeFullAnswers An object containing every past answer that has been given by the user
+ * @param {object} cumulativeEditAnswers An object containing every past answer that has been given in this edit-mode path by the user
+ * @param {object} newAnswers An object containing new answers from the current page
+ * @param {object} switches The global switches object
+ *
+ * @returns {object} Values for the router to store/update in the session and the page to redirect to.
+ */
 const editContinue = (
   pathFromSession,
   editModeFirstPage,

@@ -1,3 +1,9 @@
+/**
+ * The submit router sends registration data and metadata to the back-end service and redirects to the final page if successful.
+ * Routes: /submit
+ * @module routers/submit
+ */
+
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const submitController = require("../controllers/submit.controller");

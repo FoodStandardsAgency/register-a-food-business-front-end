@@ -1,8 +1,21 @@
+/**
+ * @module connectors/address-lookup-api
+ */
+
 const fetch = require("node-fetch");
 const { ADDRESS_API_URL_BASE, ADDRESS_API_URL_QUERY } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { addressLookupDouble } = require("./address-lookup-api.double");
 
+/**
+ * Fetches addresses from the address lookup API for the given country and postcode
+ *
+ * @param {string} country The country corresponding to the given postcode
+ * @param {string} postcode The postcode to search by
+ * @param {number} addressCountLimit CURRENTLY OBSOLETE
+ *
+ * @returns {array} A list of addresses
+ */
 const getAddressesByPostcode = async (
   country,
   postcode,

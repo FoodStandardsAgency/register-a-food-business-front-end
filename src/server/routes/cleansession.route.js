@@ -1,3 +1,10 @@
+/**
+ * The cleansession router regenerates the user's session and sends the new session ID to the browser.
+ * Primarily used for UI, E2E and performance testing.
+ * Routes: /cleansession
+ * @module routers/cleansession
+ */
+
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 

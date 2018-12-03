@@ -1,3 +1,8 @@
+/**
+ * Functions for running validation on the new answers from each page, and the corresponding error messages
+ * @module services/validation
+ */
+
 const { Validator } = require("jsonschema");
 const { logEmitter } = require("./logging.service");
 const schema = require("./schema");
@@ -63,6 +68,14 @@ validator.attributes.validation = (instance, schema, options, ctx) => {
   }
 };
 
+/**
+ * Runs the jsonschema validator package, with custom rules, against the new answers on the given page
+ *
+ * @param {string} page The 'originator' page that the user has come from
+ * @param {object} answers An object containing only the answers given on the most recent page
+ *
+ * @returns {object} An errors object containing one entry per validation error
+ */
 const validate = (page, answers) => {
   logEmitter.emit("functionCall", "validation.service", "validate");
 

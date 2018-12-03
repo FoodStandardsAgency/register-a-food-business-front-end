@@ -1,3 +1,9 @@
+/**
+ * The qa router adds POST body data to the user's session and redirects to a specified page.
+ * Routes: /qa/:lc/:target
+ * @module routers/qa
+ */
+
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const { QA_KEY } = require("../config");

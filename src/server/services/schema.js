@@ -1,3 +1,8 @@
+/**
+ * Schema specifying the fields on each page and their validation functions
+ * @module services/schema
+ */
+
 const {
   validateDeclaration,
   validatePostCode,
