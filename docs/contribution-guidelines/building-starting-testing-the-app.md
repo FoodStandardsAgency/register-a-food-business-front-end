@@ -10,13 +10,10 @@
 
 ### Steps
 
-1.  Start Docker
-2.  Run `docker run foodstandardsagency/register-a-food-business`
-3.  Run `cd register-a-food-business`
+1.  Follow the steps for 'Getting started' on the [`register-a-food-business-environment` repository](https://github.com/FoodStandardsAgency/register-a-food-business-environment).
+3.  Change directory to this repository (`register-a-food-business`)
 4.  Run `yarn`
-5.  Populate the `.env` file. The contents of this file must be handed over from existing developers.
-
-To submit an application to the back end service locally, you must have completed setup of your development environment with the Register a food business Docker image.
+5.  Populate a `.env` file. The contents of this file must be handed over from existing developers.
 
 ## Starting the application in `DEVELOPMENT` mode
 
