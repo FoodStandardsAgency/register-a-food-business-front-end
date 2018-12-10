@@ -4,12 +4,12 @@ The front end application is built using the Next.js framework, which is based o
 
 ## Steps:
 
-1.  Write or update UI and E2E tests for the new page. For more information, see [Writing UI and E2E tests](./writing-ui-e2e-tests.md).
-2.  Write unit tests for the new page. For more information, see [Writing unit tests](./writing-unit-tests.md).
+1.  Write or update UI and E2E tests for the new page.
+2.  Write unit tests for the new page.
 3.  Create a new `.js` file in the `/pages` directory.
 4.  Write React code in the new `.js` file. See below for more information.
 5.  If a data field is required on the new page, see [Adding a new data field](./adding-a-new-data-field.md).
-6.  Add the page to the form path. For more information, see [Changing the form order](./changing-the-form-order.md)
+6.  Add the page to the form path. For more information, see [The dynamic form path](./the-dynamic-form-path.md)
 
 ## Related information
 
