@@ -1,6 +1,17 @@
 const SessionWrapper = Page => {
+  // Set 'wrapper' to be a function that:
+  // - Takes 'props' as an argument
+  // - Passes those props to 'Page', the React component taken by SessionWrapper as an argument
+  // - Returns the 'Page' component with the new props
   const wrapper = props => <Page {...props} />;
+
+  // Set the Next.js 'getInitialProps' lifecycle function:
+  // https://nextjs.org/learn/basics/fetching-data-for-pages
+  // The { req } (HTTP request) object from Express is automatically provided to the getInitialProps function when it is called
   wrapper.getInitialProps = ({ req }) => {
+    /************************************************************************************
+    Declaration of variables that require more extensive configuration or logic
+    ************************************************************************************/
     const editModeFirstPage =
       req && req.query && req.query.edit ? `/${req.query.edit}` : undefined;
 
@@ -24,6 +35,13 @@ const SessionWrapper = Page => {
 
     delete validatorErrorsCleaned["undefined"];
 
+    /************************************************************************************
+    Declaration of initialProps object, containing the above variables, plus others.
+    This object will ultimately be passed to the Page component.
+    Therefore, any data in the initialProps object is available within a page wrapped
+    with this SessionWrapper.
+    E.g. inside the 'business-type.js' page, you can access 'props.cumulativeFullAnswers'.
+    ************************************************************************************/
     const initialProps = {
       acceptAllCookies,
       editModeFirstPage,
@@ -60,9 +78,11 @@ const SessionWrapper = Page => {
         req && req.session && req.session.council ? req.session.council : ""
     };
 
+    // The getInitialProps function (a method of the 'wrapper' function) returns the initialProps object
     return initialProps;
   };
 
+  // The SessionWrapper function returns the 'wrapper' function
   return wrapper;
 };
 
