@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 
 const updateBusinessTypesForAutocomplete = async () => {
   const businessTypesData = await fetch(
-    "https://raw.githubusercontent.com/Nathan-Philippo/risk-engine-rules/master/business-types.json"
+    "https://raw.githubusercontent.com/FoodStandardsAgency/Future-Risk-Engine-Development/master/business-types.json"
   );
 
   const businessTypesJSON = await businessTypesData.json();
