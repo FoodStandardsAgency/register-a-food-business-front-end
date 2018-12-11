@@ -1,6 +1,6 @@
 # Data flow
 
-Data is made available to pages via the `props` object, which is supplied in most cases via the `SessionWrapper` component. Data is passed back to the server via HTTP `POST` requests, triggered by form submissions on each page. Users' session data is stored in a temporary cache database on Azure, accessed via a browser cookie, which makes it possible to switch browser tabs and retain all user data.
+Data is made available to pages via the `props` object, which is supplied in most cases via the `SessionWrapper` component. Data is passed back to the server via HTTP `POST` requests, triggered by form submissions on each page. Users' session data is stored in a temporary cache database on Azure, accessed via a record ID that is stored in a browser cookie, which makes it possible to switch browser tabs and retain all user data.
 
 ## Data touch-points
 
