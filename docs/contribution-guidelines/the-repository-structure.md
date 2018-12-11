@@ -76,7 +76,7 @@
 
 * `.prettierignore`
 
-  Prettier is a tool that checks and corrects the formatting of code, such as line indentations and semicolons. This file defines the files that are ignored by Prettier. For more information about Prettier and code formatting, see the [Best practices and code standards](./best-practices-code-standards.md) guidelines.
+  Prettier is a tool that checks and corrects the formatting of code, such as line indentations and semicolons. This file defines the files that are ignored by Prettier.
 
 ## `/pages`
 
@@ -100,7 +100,7 @@ The `/pages_unit_tests` directory contains the unit tests for the `/pages` files
 
   The `src/server` directory contains all of the Express.js code to run the server-side parts of the application.
 
-  The `./routes`, `./controllers`, `./services`, and `./connectors` directories contain URL routing configuration, business logic, data transformation functions, and external service connections. For more information about the relationships between routes, controllers, services, and connectors, see [Best practices and code standards](./best-practices-code-standards.md).
+  The `./routes`, `./controllers`, `./services`, and `./connectors` directories contain URL routing configuration, business logic, data transformation functions, and external service connections respectively.
 
   * `index.js`
 
@@ -120,7 +120,7 @@ The `/pages_unit_tests` directory contains the unit tests for the `/pages` files
 
 ## `/tests`
 
-The `/tests` directory contains all non-unit tests. This currently includes contract and integration tests. For more information, see [Writing integration and contract tests](./writing-integration-contract-tests.md).
+The `/tests` directory contains all non-unit tests. This currently includes contract and integration tests.
 
 ## `/docs`
 

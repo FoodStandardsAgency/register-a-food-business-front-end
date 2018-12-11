@@ -4,9 +4,9 @@ To add a new data field you must update the UI, E2E, and unit tests, create cust
 
 ## Steps:
 
-1.  Write or update UI and E2E tests for the new data field. For more information, see [Writing UI and E2E tests](./writing-ui-e2e-tests.md).
+1.  Write or update UI and E2E tests for the new data field.
 2.  If the new data field requires a new type of validation, see the [Validation](./validation.md) guide.
-3.  If there is new in-page logic for the new data field, update the unit tests for the relevant page. For more information, see [Writing unit tests](./writing-unit-tests.md).
+3.  If there is new in-page logic for the new data field, update the unit tests for the relevant page.
 4.  Add the data field to the [schema](../../src/server/services/schema.js).
 5.  If the new data field should be displayed on the summary table:
 
