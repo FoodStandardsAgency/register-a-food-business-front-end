@@ -109,8 +109,9 @@ const OpeningDate = props => {
             >
               <Paragraph mb={0}>
                 Trading begins the day your business started to serve or make
-                food or the day you took over the business as an operator. If
-                you do not remember the exact date, use an estimated date.
+                food. Alternatively, it can be the day you took over the
+                business as an operator. If you do not remember the exact date,
+                use an estimated date.
               </Paragraph>
             </HiddenTextAccessible>
           </ContentItem.B_30_15>
