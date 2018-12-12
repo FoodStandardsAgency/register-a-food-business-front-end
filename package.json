@@ -23,7 +23,9 @@
       "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
     "format":
       "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
-    "jsdoc": "rm -rf ./docs/jsdoc && jsdoc -r ./src -d ./docs/jsdoc"
+    "jsdoc": "rm -rf ./docs/jsdoc && jsdoc -r ./src -d ./docs/jsdoc",
+    "updateBusinessTypes":
+      "node ./src/components/update-business-types.js && npm run format"
   },
   "dependencies": {
     "@govuk-react/icon-crown": "0.0.5",
