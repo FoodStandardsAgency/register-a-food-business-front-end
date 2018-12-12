@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## v1.41.7 - 12th December 2018 (unreleased)
+
+### Modified
+
+* Fix issue where business types with whitespace failed validation
+
 ## v1.41.6 - 16th November 2018
 
 ### Modified
