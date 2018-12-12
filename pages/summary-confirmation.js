@@ -97,7 +97,7 @@ const ApplicationComplete = props => (
                 {`Phone: ${props.lcConfig.hygiene.local_council_phone_number}`}
               </Paragraph>
             ) : null}
-            <HintText>Reponsible local council for food hygiene</HintText>
+            <HintText>Responsible local council for food hygiene</HintText>
           </ContentItem.B_30_15>
           <ContentItem.B_30_15 id="standardsCouncil">
             <Header level={4} mb={1}>

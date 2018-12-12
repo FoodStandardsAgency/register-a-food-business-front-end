@@ -40,7 +40,7 @@ const EstablishmentContactDetails = props => (
             props.switches.reuseOperatorContactDetails ? "checked" : null
           }
         >
-          Re-use operator contact details
+          Copy contact details from operator section
         </CheckboxButton>
 
         <ContentItem.B_30_15>
