@@ -17,6 +17,7 @@ import SelectWithHeader from "./SelectWithHeader";
 import ListItemConsistentSize from "./ListItemConsistentSize";
 import InvisibleLink from "./InvisibleLink";
 import HiddenTextAccessible from "./HiddenTextAccessible";
+import FsaDateField from "./FsaDateField";
 
 export {
   SessionWrapper,
@@ -37,5 +38,6 @@ export {
   SelectWithHeader,
   ListItemConsistentSize,
   InvisibleLink,
-  HiddenTextAccessible
+  HiddenTextAccessible,
+  FsaDateField
 };

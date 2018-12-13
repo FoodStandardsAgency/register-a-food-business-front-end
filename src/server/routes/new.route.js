@@ -1,3 +1,9 @@
+/**
+ * The new router stores the local council string in the session and renders the requested page using Next.js.
+ * Routes: /new/:lc, /new/:lc/:page
+ * @module routers/new
+ */
+
 const { Router } = require("express");
 const { Next } = require("../next");
 const { logEmitter } = require("../services/logging.service");
@@ -28,9 +34,12 @@ const newRouter = () => {
   router.get("/:lc/:page?", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/new route");
 
+    // Check that the council is supported
     if (allowedCouncils.includes(req.params.lc)) {
       const page = req.params.page || "index";
 
+      // If the requested page is the homepage, regenerate the session before rendering.
+      // (This wipes the user's data, allowing for a clean slate in the new registration)
       if (page === "index") {
         req.session.regenerate(async () => {
           req.session.council = req.params.lc;
@@ -51,13 +60,13 @@ const newRouter = () => {
         if (!req.session.council) {
           req.session.council = req.params.lc;
         }
+        // Save the path config to the session if not yet there
         if (!req.session.pathConfig) {
           req.session.pathConfig = await getPathConfigByVersion(
             REGISTRATION_DATA_VERSION
           );
         }
-
-        // Transform the data into summary format on pages where it is required
+        // Transform the data into summary format on pages where it is required and save to session
         if (
           page === "registration-summary" ||
           page === "summary-confirmation"
@@ -77,6 +86,7 @@ const newRouter = () => {
 
             Next.render(req, res, `/${page}`);
           });
+          // For all other scenarios, render the requested page.
         } else {
           logEmitter.emit(
             "functionSuccessWith",

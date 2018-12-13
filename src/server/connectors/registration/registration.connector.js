@@ -1,8 +1,20 @@
+/**
+ * @module connectors/registration
+ */
+
 const fetch = require("node-fetch");
 const { SUBMIT_URL, API_SECRET, CLIENT_NAME } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { registrationDouble } = require("./registration.double");
 
+/**
+ * Sends a new registration to the back-end service
+ *
+ * @param {object} submissionData The object containing all registration data and metadata
+ * @param {string} regDataVersion The data version of this registration, corresponding to an entry in the config database
+ *
+ * @returns {object} The back-end service response
+ */
 const sendRequest = async (submissionData, regDataVersion) => {
   const DOUBLE_MODE = process.env.DOUBLE_MODE;
   try {

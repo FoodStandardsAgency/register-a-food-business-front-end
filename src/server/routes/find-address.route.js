@@ -1,3 +1,9 @@
+/**
+ * The find-address router stores address lookup results in the user's session and redirects the user to the next page in the path.
+ * Routes: /find-address/:originator
+ * @module routers/find-address
+ */
+
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const findAddressController = require("../controllers/find-address.controller");

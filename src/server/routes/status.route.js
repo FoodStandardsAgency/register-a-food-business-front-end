@@ -1,3 +1,9 @@
+/**
+ * The status router returns status data - all statuses, a specified status name, or a simple healthcheck (alive/not alive).
+ * Routes: /status/all, /status/healthcheck, /status/name/:statusName
+ * @module routers/status
+ */
+
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const { getStatus } = require("../services/status.service");

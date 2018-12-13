@@ -1,6 +1,16 @@
 import { css } from "emotion";
 
 const AccessibleAutocompleteCSS = css`
+  .autocomplete__option {
+    span.searchTermResult {
+      color: #6f777b;
+    }
+    &:hover {
+      span.searchTermResult {
+        color: #ffffff;
+      }
+    }
+  }
   .autocomplete__wrapper {
     position: relative;
   }

@@ -1,3 +1,7 @@
+/**
+ * @module controllers/continue
+ */
+
 const {
   moveAlongPath,
   editPath,
@@ -12,6 +16,18 @@ const {
   cleanSwitches
 } = require("../services/session-management.service");
 
+/**
+ * Returns an object containing validator errors (if present), the redirect route (e.g. the next page),
+ * the new value of the cumulative answers object, and the new value of the switches object.
+ *
+ * @param {string} currentPage The 'originator' page that the user has come from
+ * @param {object} previousAnswers An object containing every past answer that has been given by the user
+ * @param {object} newAnswers An object containing new answers from the current page
+ * @param {object} switches The global switches object
+ * @param {object} pathFromSession The un-edited path, stored in the user's session
+ *
+ * @returns {object} Values for the router to store/update in the session and the page to redirect to.
+ */
 const continueController = (
   currentPage,
   previousAnswers,

@@ -23,12 +23,12 @@ module.exports = {
     "!**/pages/_document.js",
     "!**/services/schema.js",
     "!**/.next/**/*.{js}",
-    "!**/vars.js",
     "!src/server/index.js",
     "!src/server/config.js",
     "!src/components/index.js",
     "!src/components/NormalizeCSS.js",
     "!src/components/AccessibleAutocompleteCSS.js",
+    "!src/components/update-business-types.js",
     "!src/**/*.double.js",
     "!tests/**/*.js",
     "!src/server/routes/*.route.js"

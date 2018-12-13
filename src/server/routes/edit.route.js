@@ -1,3 +1,9 @@
+/**
+ * The edit router redirects the user to the next or previous page in the edit-mode 'sub-path', based on their cumulative edit-mode answers.
+ * Routes: /edit/continue/:originator, /edit/back/:originator
+ * @module routers/edit
+ */
+
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const editController = require("../controllers/edit.controller");

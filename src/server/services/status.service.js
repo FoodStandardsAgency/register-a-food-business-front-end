@@ -1,9 +1,21 @@
+/**
+ * Functions for getting and setting status values
+ * @module services/status
+ */
+
 const { logEmitter } = require("./logging.service");
 const {
   getStoredStatus,
   updateStoredStatus
 } = require("../connectors/status/status.connector");
 
+/**
+ * Gets the value of a specified status variable
+ *
+ * @param {string} statusName The name of the status variable to get
+ *
+ * @returns {any} The value of the status variable
+ */
 const getStatus = async statusName => {
   logEmitter.emit("functionCall", "status.service", "getStatus");
   const status = await getStoredStatus();
@@ -27,6 +39,14 @@ const getStatus = async statusName => {
   }
 };
 
+/**
+ * Sets a specified status variable to a new value
+ *
+ * @param {string} statusName The name of the status variable to set
+ * @param {string} newStatus The new value
+ *
+ * @returns {any} The new value of the status variable
+ */
 const setStatus = async (statusName, newStatus) => {
   logEmitter.emit("functionCall", "status.service", "setStatus");
 
@@ -41,6 +61,13 @@ const setStatus = async (statusName, newStatus) => {
   return updatedStatusValue;
 };
 
+/**
+ * Adds 1 to the existing value of a specified integer status
+ *
+ * @param {string} statusName The name of the status variable to increment
+ *
+ * @returns {number} The new value of the status variable
+ */
 const incrementStatusCount = async statusName => {
   logEmitter.emit("functionCall", "status.service", "incrementStatusCount");
   const status = await getStoredStatus();

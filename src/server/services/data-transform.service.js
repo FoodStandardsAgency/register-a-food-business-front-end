@@ -1,3 +1,8 @@
+/**
+ * Functions for running transformations on the answers to get them in the correct format for submit and summary
+ * @module services/data-transform
+ */
+
 const { logEmitter } = require("./logging.service");
 
 const trimAnswers = cumulativeFullAnswers => {
@@ -9,6 +14,14 @@ const trimAnswers = cumulativeFullAnswers => {
   return trimmedAnswers;
 };
 
+/**
+ * Runs custom validation functions, on specific parts of cumulative answers, to get them in the correct format for the summary table,
+ *
+ * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the sesion with duplicates removed
+ * @param {object} addressLookups The object returned by the address look-up service based on the postcode the user inputs
+ *
+ * @returns {object} An object containing the set of data in the correct format for the summary page with unnecessary fields deleted
+ */
 const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
   logEmitter.emit(
     "functionCall",
@@ -137,6 +150,15 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
   }
 };
 
+/**
+ * Runs custom validation functions, on specific parts of cumulative answers, to get them in the correct format for the submission
+ *
+ * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the sesion with duplicates removed
+ * @param {object} addressLookups The object returned by the address look-up service based on the postcode the user inputs
+ * @param {string} lcUrl The local councils URL
+ *
+ * @returns {object} An object containing the set of data in the correct format for the submittion with unnecessary fields deleted
+ */
 const transformAnswersForSubmit = (
   lcUrl,
   cumulativeFullAnswers,
@@ -269,6 +291,15 @@ const transformAnswersForSubmit = (
   return submitObject;
 };
 
+/**
+ * Combines the answers submitted for the import/export activities to ignore the "no import or export" option when it is selected with one of the other options
+ *
+ * @param {string} directly_import String submitted to cumulative answers when user selects directly imports
+ * @param {string} directly_export String submitted to cumulative answers when user selects directly exports
+ * @param {string} no_import_export String submitted to cumulative answers when user selects no imports or exports
+ *
+ * @returns {string} A string displaying the correct answer for import/export activities for the summary page
+ */
 const transformBusinessImportExport = (
   directly_import,
   directly_export,
@@ -292,6 +323,21 @@ const transformBusinessImportExport = (
     return undefined;
   }
 };
+
+/**
+ * Sets the opening days when the user selects monday - sunday on the "open some days" path
+ *
+ * @param {string} opening_day_monday String submitted to cumulative answers when user selects open monday
+ * @param {string} opening_day_tuesday String submitted to cumulative answers when user selects open tuesday
+ * @param {string} opening_day_wednesday String submitted to cumulative answers when user selects open wednesday
+ * @param {string} opening_day_thursday String submitted to cumulative answers when user selects open thursday
+ * @param {string} opening_day_friday String submitted to cumulative answers when user selects open friday
+ * @param {string} opening_day_saturday String submitted to cumulative answers when user selects open saturday
+ * @param {string} opening_day_sunnday String submitted to cumulative answers when user selects open sunday
+ * @param {string} opening_days_start String submitted to cumulative answers when user selects the radio button can either be everyday/some-days/irregular-days
+ *
+ * @returns {string} A string returning "Every day" or "undefined"
+ */
 
 const transformOpeningDaysForSummary = (
   opening_day_monday,
@@ -319,6 +365,21 @@ const transformOpeningDaysForSummary = (
     return undefined;
   }
 };
+
+/**
+ * Sets the opening days to true or false depending on whetehr they are selcted or not. Also sets mobday-sunday to true, if opening_days_start is "Every day".
+ *
+ * @param {string} opening_day_monday String submitted to cumulative answers when user selects open monday
+ * @param {string} opening_day_tuesday String submitted to cumulative answers when user selects open tuesday
+ * @param {string} opening_day_wednesday String submitted to cumulative answers when user selects open wednesday
+ * @param {string} opening_day_thursday String submitted to cumulative answers when user selects open thursday
+ * @param {string} opening_day_friday String submitted to cumulative answers when user selects open friday
+ * @param {string} opening_day_saturday String submitted to cumulative answers when user selects open saturday
+ * @param {string} opening_day_sunnday String submitted to cumulative answers when user selects open sunday
+ * @param {string} opening_days_start String submitted to cumulative answers when user selects the radio button can either be everyday/some-days/irregular-days
+ *
+ * @returns {object} A object containing all monday - sunday set to either true or false
+ */
 const transformOpeningDaysForSubmit = (
   opening_days_start,
   opening_day_monday,
@@ -369,6 +430,15 @@ const transformOpeningDaysForSubmit = (
   return days;
 };
 
+/**
+ * Sets the display text on the summary table for when the user selects whether they supply_directly or supply_other or both
+ * @param {string} supply_directly String submitted to cumulative answers when user selects supply directly
+ * @param {string} supply_other String submitted to cumulative answers when user selects supply other
+ *
+ *
+ * @returns {string} A string with the text to be displayed on the summary table
+ */
+
 const transformCustomerType = (supply_directly, supply_other) => {
   if (supply_directly && supply_other) {
     return "End consumer and other businesses";
@@ -380,6 +450,15 @@ const transformCustomerType = (supply_directly, supply_other) => {
     return undefined;
   }
 };
+
+/**
+ * Sets the display text on the summary table in the correct format for when the business is registered by a representative
+ * @param {string} operator_type String submitted to cumulative answers when user selects operator can be either person/company/charity
+ * @param {string} registration_role String submitted to cumulative answers when user selects registration role can be either sole_trader/representative/partnership
+ *
+ *
+ * @returns {string} A string with the text to be displayed on the summary table
+ */
 
 const combineOperatorTypes = (operator_type, registration_role) => {
   let newOperatorType;
@@ -402,8 +481,10 @@ const combineOperatorTypes = (operator_type, registration_role) => {
   return newOperatorType;
 };
 
+//Combines the date to be in the correct format to display on summary table
 const combineDate = (day, month, year) => `${year}-${month}-${day}`;
 
+//Formats result of business type look up to display it correctly in the summary table
 const separateBracketsFromBusinessType = text => {
   let strippedBusinessType = text.trim();
   let strippedSearchTerm = undefined;

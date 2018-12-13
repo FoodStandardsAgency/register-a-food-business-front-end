@@ -1,3 +1,9 @@
+/**
+ * The set-cookie router sets the specified browser cookie to a specified new value.
+ * Routes: /set-cookie/:cookieName/:newValue
+ * @module routers/set-cookie
+ */
+
 require("dotenv").config();
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");

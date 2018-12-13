@@ -1,3 +1,7 @@
+/**
+ * @module connectors/config-db
+ */
+
 const mongodb = require("mongodb");
 const { configVersionCollectionDouble } = require("./config-db.double");
 const { CONFIGDB_URL } = require("../../config");
@@ -10,6 +14,10 @@ let configVersionCollection;
 
 let pathConfig = null;
 
+/**
+ * Sets up a connection to the configVersion collection in the config database.
+ * The client, configDB and configVersionCollection variables are accessible to other functions in this connector.
+ */
 const establishConnectionToMongo = async () => {
   if (process.env.DOUBLE_MODE === "true") {
     logEmitter.emit(
@@ -29,6 +37,13 @@ const establishConnectionToMongo = async () => {
   }
 };
 
+/**
+ * Fetches the path configuration (including pages, switches etc) from the config database
+ *
+ * @param {string} version The data version of this registration, corresponding to an entry in the config database
+ *
+ * @returns {object} An object containing the _id and path fields of the config database data for the given config version
+ */
 const getPathConfigByVersion = async version => {
   logEmitter.emit(
     "functionCall",
@@ -95,6 +110,11 @@ const getPathConfigByVersion = async version => {
   return pathConfig;
 };
 
+/**
+ * Resets the in-memory path config. Primarily for testing purposes.
+ *
+ * @returns {any} The cleared in-memory path config
+ */
 const clearPathConfigCache = () => {
   pathConfig = null;
   return pathConfig;

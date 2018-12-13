@@ -1,35 +1,28 @@
-[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=L0FqMkJ3dTVOSjdyeVR2NE5XbkZaeHZQdFVvakJYSDMzbVdMRGFqNVozTT0tLUdEd0FHTERndWtTM2xreGdnT3FjRWc9PQ==--c7d859a4a41958612c7534cf49152ff156f374a5)](https://www.browserstack.com/automate/public-build/<badge_key>)
-[![Build Status](https://travis-ci.org/slice-and-dice/register-a-food-business-front-end.svg?branch=master)](https://travis-ci.org/slice-and-dice/register-a-food-business-front-end)
 # Register a food business front end
 
-## Setup and common commands
+## Setting up your development environment
 
-### Install dependencies
+To run this application, you must use the [register-a-food-business-environment](https://github.com/FoodStandardsAgency/register-a-food-business-environment) repository to set up your development environment.
 
-```
-yarn
-```
+It is recommended that you install the Prettier code-formatting extension for your IDE.
 
-### Start the hot-reloading server with linting
+## Contributing to this repository
 
-```
-yarn run dev
-```
+The following contribution guides are available:
 
-### Start the hot-reloading unit tests
+#### High-level tasks
 
-```
-yarn test
-```
+* [Building, starting, and testing the application](./docs/contribution-guidelines/building-starting-testing-the-app.md)
+* [Creating a new page](./docs/contribution-guidelines/creating-a-new-page.md)
+* [Adding a new data field](./docs/contribution-guidelines/adding-a-new-data-field.md)
+* [Changing the form order](./docs/contribution-guidelines/changing-the-form-order.md)
 
-### Build a production-ready version
+#### Further information and detailed tasks
 
-```
-yarn run build
-```
-
-### Start the production build
-
-```
-yarn start
-```
+* [The repository structure](./docs/contribution-guidelines/the-repository-structure.md)
+* [The tech stack](./docs/contribution-guidelines/the-tech-stack.md)
+* [The dynamic form path](./docs/contribution-guidelines/the-dynamic-form-path.md)
+* [Data flow](./docs/contribution-guidelines/data-flow.md)
+* [Edit mode](./docs/contribution-guidelines/edit-mode.md)
+* [Transforming user data for the summary page](./docs/contribution-guidelines/transforming-data-summary-page.md)
+* [Transforming user data for submission](./docs/contribution-guidelines/transforming-data-submission.md)
