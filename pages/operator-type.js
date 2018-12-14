@@ -4,7 +4,6 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
-  HintTextSmall,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   HiddenTextAccessible
@@ -48,11 +47,7 @@ const OperatorType = props => (
               props.cumulativeFullAnswers.operator_type === "A person"
             }
           >
-            A person
-            <HintTextSmall>
-              The food business is owned or operated by an individual person,
-              rather than any legal entity such as a business or charity.
-            </HintTextSmall>
+            The food business is owned or operated by a person
           </Radio>
           <Radio
             name="operator_type"
@@ -62,11 +57,7 @@ const OperatorType = props => (
               props.cumulativeFullAnswers.operator_type === "A company"
             }
           >
-            A company
-            <HintTextSmall>
-              The food business is owned or operated by a limited company rather
-              than a single person or partnership of people.
-            </HintTextSmall>
+            The food business is owned or operated by a limited company
           </Radio>
           <Radio
             name="operator_type"
@@ -76,11 +67,7 @@ const OperatorType = props => (
               props.cumulativeFullAnswers.operator_type === "A charity"
             }
           >
-            A charity
-            <HintTextSmall>
-              The food business is owned or operated by a charity rather than a
-              company, person or partnership of people.
-            </HintTextSmall>
+            The food business is owned or operated by a charity
           </Radio>
         </MultiChoice>
       </ContentItem.B_45_30>
