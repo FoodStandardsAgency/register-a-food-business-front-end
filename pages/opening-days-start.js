@@ -66,10 +66,10 @@ const OpeningDaysStart = props => (
       </ContentItem.B_30_15>
       <HiddenTextAccessible summaryText={"I don't know what days to select"}>
         <Paragraph mb={0}>
-          If the food business isn't open the same days every week, then the
-          establishment will likely have irregular opening days. This could
-          include seasonal establishments such as summer ice-cream vendors, or
-          establishments which only open for events such as football matches.
+          The food business will have irregular opening days if it isn't open
+          the same days every week. This could include seasonal establishments
+          such as summer ice-cream vendors. It can also include establishments
+          which only open for events such as football matches.
         </Paragraph>
       </HiddenTextAccessible>
 
