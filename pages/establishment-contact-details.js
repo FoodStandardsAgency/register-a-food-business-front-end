@@ -94,7 +94,7 @@ const EstablishmentContactDetails = props => (
             }}
             id="establishment_email"
             hint={[
-              "Your email address will be used to update you regarding policy or legal changes that could affect your food business."
+              "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
             ]}
             meta={{
               touched: true,
