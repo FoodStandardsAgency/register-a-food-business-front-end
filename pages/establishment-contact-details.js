@@ -4,12 +4,11 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
-  CheckboxButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
-import { Header, InputField, Paragraph } from "govuk-react";
+import { Header, InputField, Paragraph, Button } from "govuk-react";
 import PropTypes from "prop-types";
 
 const EstablishmentContactDetails = props => (
@@ -33,15 +32,12 @@ const EstablishmentContactDetails = props => (
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
-        <CheckboxButton
+        <Button
           type="submit"
           formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
-          className={
-            props.switches.reuseOperatorContactDetails ? "checked" : null
-          }
         >
-          Copy contact details from operator section
-        </CheckboxButton>
+          Re-use operator contact details
+        </Button>
 
         <ContentItem.B_30_15>
           <InputField
