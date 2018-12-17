@@ -18,6 +18,10 @@ const {
 module.exports = () => {
   const router = Router();
 
+  router.get("/", (req, res) => {
+    res.redirect("https://www.gov.uk/food-business-registration");
+  });
+
   router.use("/back", backRouter());
   router.use("/cleansession", cleansessionRouter());
   router.use("/continue", continueRouter());
