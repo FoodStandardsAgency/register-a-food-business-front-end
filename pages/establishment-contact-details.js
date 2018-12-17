@@ -35,6 +35,7 @@ const EstablishmentContactDetails = props => (
         <Button
           type="submit"
           formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
+          id="reuseButton"
         >
           Re-use operator contact details
         </Button>
