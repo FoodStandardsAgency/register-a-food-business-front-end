@@ -255,38 +255,4 @@ describe("<EstablishmentContactDetails />", () => {
       );
     });
   });
-
-  describe("The classname of CheckboxButton gets passed the switch props", () => {
-    it("its classname is 'checked' when reuseOperatorContactDetails switch is true", () => {
-      const testSwitches = {
-        reuseOperatorContactDetails: true
-      };
-
-      const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const checkboxButton = wrapper.find("CheckboxButton");
-      expect(checkboxButton.props().className).toContain("checked");
-    });
-
-    it("its classname is null when reuseOperatorContactDetails switch is false", () => {
-      const testSwitches = {
-        reuseOperatorContactDetails: false
-      };
-
-      const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const checkboxButton = wrapper.find("CheckboxButton");
-      expect(checkboxButton.props().className).toContain("");
-    });
-  });
 });
