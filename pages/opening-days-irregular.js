@@ -41,7 +41,7 @@ const OtherDaysIrregular = props => (
                 only serving food during December at Christmas markets
               </ListItemConsistentSize>
               <ListItemConsistentSize>
-                open at weekends from June and August
+                open at weekends in June and August between 10:00 and 19:00
               </ListItemConsistentSize>
             </UnorderedList>
           </HintText>

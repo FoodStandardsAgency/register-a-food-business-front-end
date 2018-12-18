@@ -7,7 +7,6 @@ import ContinueButton from "./ContinueButton";
 import FindAddressButton from "./FindAddressButton";
 import HintTextSmall from "./HintTextSmall";
 import SummaryTable from "./SummaryTable";
-import CheckboxButton from "./CheckboxButton";
 import OnHandleErrorClick from "./OnHandleErrorClick";
 import ProcessedErrorSummary from "./ProcessedErrorSummary";
 import BusinessTypeLookup from "./BusinessTypeLookup";
@@ -29,7 +28,6 @@ export {
   FindAddressButton,
   HintTextSmall,
   SummaryTable,
-  CheckboxButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   BusinessTypeLookup,

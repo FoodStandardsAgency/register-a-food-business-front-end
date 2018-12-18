@@ -32,8 +32,8 @@ const EstablishmentOpeningStatus = props => (
 
     <ContentItem.B_30_15>
       <HintText>
-        It has been trading if it has been producing or serving food since it
-        opened or since the new operator took control.
+        It is trading if it is already producing or serving food, or if the new
+        operator has already taken control
       </HintText>
     </ContentItem.B_30_15>
 

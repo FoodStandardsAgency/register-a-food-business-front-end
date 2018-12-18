@@ -28,9 +28,9 @@ const ContactRepresentative = props => {
       </Paragraph>
       <HiddenTextAccessible summaryText={"What is a food business operator?"}>
         <Paragraph mb={0}>
-          The operator is the person or persons, charity or company who makes
-          the decisions about the food business, what it serves and how it
-          operates.
+          The operator is the person or people, charity or company who makes the
+          decisions about the food business. They decide what it serves and how
+          it operates.
         </Paragraph>
       </HiddenTextAccessible>
       <form action={props.formAction} method="post">
@@ -96,7 +96,7 @@ const ContactRepresentative = props => {
               }}
               id="contact_representative_email"
               hint={[
-                "Your email address will be used to update you regarding policy or legal changes that could affect your food business."
+                "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
               ]}
               meta={{
                 touched: true,
