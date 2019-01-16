@@ -11,28 +11,20 @@ const {
   transformAnswersForSummary
 } = require("../services/data-transform.service");
 const {
-  getPathConfigByVersion
+  getPathConfigByVersion,
+  getLocalCouncils
 } = require("../connectors/config-db/config-db.connector");
 const { REGISTRATION_DATA_VERSION } = require("../config");
 
-const allowedCouncils = [
-  "antrim-and-newtownabbey",
-  "bridgend",
-  "cardiff",
-  "mid-and-east-antrim",
-  "purbeck",
-  "west-dorset",
-  "north-dorset",
-  "weymouth-and-portland",
-  "wrexham",
-  "the-vale-of-glamorgan"
-];
+let allowedCouncils = null;
 
 const newRouter = () => {
   const router = Router();
 
   router.get("/:lc/:page?", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/new route");
+
+    allowedCouncils = await getLocalCouncils();
 
     // Check that the council is supported
     if (allowedCouncils.includes(req.params.lc)) {
