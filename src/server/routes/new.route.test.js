@@ -18,7 +18,8 @@ const {
   transformAnswersForSummary
 } = require("../services/data-transform.service");
 const {
-  getPathConfigByVersion
+  getPathConfigByVersion,
+  getLocalCouncils
 } = require("../connectors/config-db/config-db.connector");
 
 describe("New route: ", () => {
@@ -28,6 +29,7 @@ describe("New route: ", () => {
     getPathConfigByVersion.mockImplementation(
       () => "fetched path from either cache or DB"
     );
+    getLocalCouncils.mockImplementation(() => Promise.resolve(["purbeck"]));
   });
 
   afterEach(() => {
