@@ -14,7 +14,6 @@ let configVersionCollection;
 let lcConfigCollection;
 
 let pathConfig = null;
-let localCouncilUrls = null;
 
 /**
  * Sets up a connection to the configVersion collection in the config database.
@@ -119,50 +118,50 @@ const getPathConfigByVersion = async version => {
  * @returns {Array} An array containing shortened local council names
  */
 const getLocalCouncils = async () => {
+  let localCouncilUrls;
   logEmitter.emit("functionCall", "config-db.connector", "getLocalCouncils");
 
-  if (localCouncilUrls === null) {
-    try {
-      await establishConnectionToMongo();
+  try {
+    await establishConnectionToMongo();
 
-      localCouncilUrls = await lcConfigCollection.distinct("local_council_url");
+    localCouncilUrls = await lcConfigCollection.distinct("local_council_url");
 
-      if (localCouncilUrls === null) {
-        statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
-        statusEmitter.emit(
-          "setStatus",
-          "mostRecentGetLocalCouncilsSucceeded",
-          false
-        );
-      } else {
-        statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
-        statusEmitter.emit(
-          "setStatus",
-          "mostRecentGetLocalCouncilsSucceeded",
-          true
-        );
-      }
-    } catch (err) {
+    if (localCouncilUrls === null) {
       statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
       statusEmitter.emit(
         "setStatus",
         "mostRecentGetLocalCouncilsSucceeded",
         false
       );
-      logEmitter.emit(
-        "functionFail",
-        "config-db.connector",
-        "getLocalCouncils",
-        err
+    } else {
+      statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
+      statusEmitter.emit(
+        "setStatus",
+        "mostRecentGetLocalCouncilsSucceeded",
+        true
       );
-
-      const newError = new Error();
-      newError.name = "mongoConnectionError";
-      newError.message = err.message;
-
-      throw newError;
     }
+  } catch (err) {
+    statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
+    statusEmitter.emit(
+      "setStatus",
+      "mostRecentGetLocalCouncilsSucceeded",
+      false
+    );
+    logEmitter.emit(
+      "functionFail",
+      "config-db.connector",
+      "getLocalCouncils",
+      err
+    );
+
+    const newError = new Error();
+    newError.name = "mongoConnectionError";
+    newError.message = err.message;
+
+    throw newError;
   }
+
   return localCouncilUrls;
 };
 
