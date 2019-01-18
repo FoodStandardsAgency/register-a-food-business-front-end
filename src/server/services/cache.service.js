@@ -49,7 +49,7 @@ class Cache {
       return Promise.resolve(value);
     }
 
-    return getValue().then(result => {
+    return this.getValue().then(result => {
       this.cache.set(key, result);
       return result;
     });

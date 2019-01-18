@@ -18,11 +18,13 @@ const {
 const { REGISTRATION_DATA_VERSION } = require("../config");
 const { Cache } = require("../services/cache.service");
 
-let allowedCouncilsCache = new Cache(
-  (stdTTL = LC_CACHE_TIME_TO_LIVE),
-  (deleteOnExpire = false),
-  (autoRetrieveOnExpiry = true),
-  (getValue = getLocalCouncils)
+let allowedCouncils = null;
+
+const allowedCouncilsCache = new Cache(
+  LC_CACHE_TIME_TO_LIVE,
+  false,
+  true,
+  getLocalCouncils
 );
 
 const newRouter = () => {
