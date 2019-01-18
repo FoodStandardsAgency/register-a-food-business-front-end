@@ -1,3 +1,8 @@
+/**
+ * Provides a class for temporary data storage (caching)
+ * @module services/validation
+ */
+
 const NodeCache = require("node-cache");
 const { logEmitter } = require("./logging.service");
 
