@@ -1,6 +1,6 @@
 /**
  * Provides a class for temporary data storage (caching)
- * @module services/validation
+ * @module services/cache
  */
 
 const NodeCache = require("node-cache");
@@ -12,10 +12,10 @@ const key = "x";
 class Cache {
   /**
    * Class constructor
-   * @param {int} stdTTL Standard TimeToLive in seconds (0 = unlimited)
-   * @param {boolean} [deleteOnExpire=true] Whether cache variables are to be deleted upon expiry
-   * @param {boolean} [autoRetrieveOnExpiry=false] Whether to obtain and cache value upon expiry
-   * @param {function} [getValue={return null}] Function to use to obtain value if not in cache
+   * @param {Number} stdTTL Standard TimeToLive in seconds (0 = unlimited)
+   * @param {boolean} deleteOnExpire Whether cache variables are to be deleted upon expiry
+   * @param {boolean} autoRetrieveOnExpiry Whether to obtain and cache value upon expiry
+   * @param {function} getValue Function to use to obtain value if not in cache
    */
   constructor(
     stdTTL,
