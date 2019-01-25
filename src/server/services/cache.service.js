@@ -17,18 +17,10 @@ class Cache {
    * @param {boolean} autoRetrieveOnExpiry Whether to obtain and cache value upon expiry
    * @param {function} getValue Function to use to obtain value if not in cache
    */
-  constructor(
-    stdTTL,
-    deleteOnExpire = true,
-    autoRetrieveOnExpiry = false,
-    getValue = () => {
-      return null;
-    }
-  ) {
+  constructor(stdTTL, deleteOnExpire, autoRetrieveOnExpiry, getValue) {
     this.getValue = getValue;
     this.cache = new NodeCache({
       stdTTL,
-      checkperiod: stdTTL * 0.2,
       deleteOnExpire
     });
 
