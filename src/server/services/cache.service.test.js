@@ -40,15 +40,15 @@ describe("cache.service get()", () => {
     const ttl = 0.6;
     const deleteOnExpire = true;
     const waitTimeForCacheToExpire = 700;
+    const delay = t => new Promise(resolve => setTimeout(resolve, t));
     describe("given autoRetrieveOnExpiry is enabled", () => {
-      const waitTimeForValueToAutoRetrieve = 400;
       const autoRetrieveOnExpiry = true;
+      const waitTimeForValueToAutoRetrieve = 400;
       let mockResult = obj1;
       const cache = new Cache(ttl, deleteOnExpire, autoRetrieveOnExpiry, () => {
         return Promise.resolve(mockResult);
       });
 
-      const delay = t => new Promise(resolve => setTimeout(resolve, t));
       let result;
       beforeEach(() => {
         return cache.get().then(() => {
@@ -70,6 +70,28 @@ describe("cache.service get()", () => {
       });
       it("should return new mockResult value as cache expired", () => {
         return result.then(r => expect(r).toEqual(obj2));
+      });
+    });
+    describe("given autoRetrieveOnExpiry is disabled", () => {
+      const autoRetrieveOnExpiry = false;
+      let mockResult = obj1;
+      const cache = new Cache(ttl, deleteOnExpire, autoRetrieveOnExpiry, () => {
+        return Promise.resolve(mockResult);
+      });
+
+      let result;
+      beforeEach(() => {
+        return cache.get().then(() => {
+          mockResult = obj2;
+          return delay(waitTimeForCacheToExpire).then(() => {
+            return cache.cache.get("x", (err, value) => {
+              result = Promise.resolve(value);
+            });
+          });
+        });
+      });
+      it("should return undefined as cache expired", () => {
+        return result.then(r => expect(r).toEqual(undefined));
       });
     });
   });
