@@ -1,5 +1,4 @@
 const { Cache } = require("./cache.service");
-jest.unmock("./cache.service");
 
 describe("cache.service get()", () => {
   const obj1 = { a: 123, 123: "a" };
