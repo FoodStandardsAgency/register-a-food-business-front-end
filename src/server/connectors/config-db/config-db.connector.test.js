@@ -140,7 +140,6 @@ describe("Function: getPathConfigByVersion", () => {
 describe("Function: getLocalCouncils", () => {
   describe("given the request throws an error", () => {
     beforeEach(async () => {
-      //process.env.DOUBLE_MODE = false;
       mongodb.MongoClient.connect.mockImplementation(() => {
         throw new Error("example mongo error");
       });
