@@ -4,12 +4,11 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
-  CheckboxButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
-import { Header, InputField, Paragraph } from "govuk-react";
+import { Header, InputField, Paragraph, Button } from "govuk-react";
 import PropTypes from "prop-types";
 
 const EstablishmentContactDetails = props => (
@@ -33,15 +32,13 @@ const EstablishmentContactDetails = props => (
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
-        <CheckboxButton
+        <Button
           type="submit"
           formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
-          className={
-            props.switches.reuseOperatorContactDetails ? "checked" : null
-          }
+          id="reuseButton"
         >
           Re-use operator contact details
-        </CheckboxButton>
+        </Button>
 
         <ContentItem.B_30_15>
           <InputField
@@ -94,7 +91,7 @@ const EstablishmentContactDetails = props => (
             }}
             id="establishment_email"
             hint={[
-              "Your email address will be used to update you regarding policy or legal changes that could affect your food business."
+              "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
             ]}
             meta={{
               touched: true,

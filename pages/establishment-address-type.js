@@ -41,17 +41,6 @@ const EstablishmentAddressType = props => (
         >
           <Radio
             name="establishment_type"
-            value="Place of business or commercial premises"
-            id="establishment_type_business_commercial"
-            defaultChecked={
-              props.cumulativeFullAnswers.establishment_type ===
-              "Place of business or commercial premises"
-            }
-          >
-            In a place of business or commercial premises
-          </Radio>
-          <Radio
-            name="establishment_type"
             value="Mobile or moveable premises"
             id="establishment_type_mobile_moveable"
             defaultChecked={
@@ -71,6 +60,17 @@ const EstablishmentAddressType = props => (
             }
           >
             In a home or domestic premises
+          </Radio>
+          <Radio
+            name="establishment_type"
+            value="Place of business or commercial premises"
+            id="establishment_type_business_commercial"
+            defaultChecked={
+              props.cumulativeFullAnswers.establishment_type ===
+              "Place of business or commercial premises"
+            }
+          >
+            In a commercial or public premises
           </Radio>
         </MultiChoice>
       </ContentItem.B_45_30>

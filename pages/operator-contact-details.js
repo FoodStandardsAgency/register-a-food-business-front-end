@@ -25,7 +25,8 @@ const OperatorContactDetails = props => (
     <HiddenTextAccessible summaryText={"What is a food business operator?"}>
       <Paragraph mb={0}>
         The operator is the person or persons, charity or company who makes the
-        decisions about the food business, what it serves and how it operates.
+        decisions about the food business. They decide what it serves and how it
+        operates.
       </Paragraph>
     </HiddenTextAccessible>
 
@@ -75,7 +76,7 @@ const OperatorContactDetails = props => (
             }}
             id="operator_email"
             hint={[
-              "Your email address will be used to update you regarding policy or legal changes that could affect your food business."
+              "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
             ]}
             meta={{
               touched: true,

@@ -48,10 +48,18 @@ describe("Function: routes", () => {
     expect(switchesRouter).toBeCalled();
   });
 
+  it("should redirect with /", () => {
+    const req = "req";
+    const res = { redirect: jest.fn() };
+    handler = result.get.mock.calls[0][1];
+    handler(req, res);
+    expect(res.redirect).toBeCalled();
+  });
+
   it("should call next handle with *", () => {
     const req = "req";
     const res = "res";
-    handler = result.get.mock.calls[0][1];
+    handler = result.get.mock.calls[1][1];
     handler(req, res);
     expect(handle).toBeCalledWith(req, res);
   });

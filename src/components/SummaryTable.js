@@ -80,6 +80,7 @@ const AccessibleChangeCell = props => (
 
 const InvisibleRow = styled(Table.Row)`
   color: #ffffff00;
+  color: transparent;
   z-index: -1000;
   td,
   th {
