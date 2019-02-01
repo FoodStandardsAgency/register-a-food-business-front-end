@@ -89,7 +89,7 @@ const InvisibleRow = styled(Table.Row)`
   }
 `;
 
-const ColumnHeaders = () => (
+const ColumnHeaders = props => (
   <InvisibleRow>
     <Table.CellHeader scope="col" role="columnheader">
       The question
@@ -97,9 +97,11 @@ const ColumnHeaders = () => (
     <Table.CellHeader scope="col" role="columnheader">
       Your answer
     </Table.CellHeader>
-    <Table.CellHeader scope="col" role="columnheader">
-      Change your answer
-    </Table.CellHeader>
+    {props.applicationCompletePage ? null : (
+      <Table.CellHeader scope="col" role="columnheader">
+        Change your answer
+      </Table.CellHeader>
+    )}
   </InvisibleRow>
 );
 
@@ -107,7 +109,7 @@ const AnchorTag = asAnchor("a");
 
 const OperatorDetailsTable = props => (
   <React.Fragment>
-    <ColumnHeaders />
+    <ColumnHeaders {...props} />
     {props.operator_type ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
@@ -362,7 +364,7 @@ const OperatorDetailsTable = props => (
 
 const EstablishmentDetailsTable = props => (
   <React.Fragment>
-    <ColumnHeaders />
+    <ColumnHeaders {...props} />
     {props.establishment_trading_name ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
@@ -545,7 +547,7 @@ const EstablishmentDetailsTable = props => (
 
 const FoodActivitiesTable = props => (
   <React.Fragment>
-    <ColumnHeaders />
+    <ColumnHeaders {...props} />
     {props.customer_type ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
@@ -642,7 +644,7 @@ const FoodActivitiesTable = props => (
 
 const DeclarationTable = props => (
   <React.Fragment>
-    <ColumnHeaders />
+    <ColumnHeaders {...props} />
     <AccessibleTableRow
       acPage={props.applicationCompletePage}
       id="declaration1Row"
