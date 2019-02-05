@@ -1,17 +1,23 @@
 import FsaHeader from "./FsaHeader";
+import MEDIA_QUERIES from "./media-queries";
 import { GridRow, GridCol, Page } from "govuk-react";
 import FsaFooter from "./FsaFooter";
 import styled from "react-emotion";
 import React from "react";
-import { MEDIA_QUERIES } from "@govuk-react/constants";
 
 const GridRowZeroMargin = styled(GridRow)`
   margin: 0px;
 `;
-const GridColZeroPadding = styled(GridCol)`
-  ${MEDIA_QUERIES.LARGESCREEN} {
+
+const GridColMedia = styled(GridCol)`
+  ${MEDIA_QUERIES.LARGE} {
     padding-right: 0px;
     padding-left: 0px;
+  }
+  ${MEDIA_QUERIES.EXTRA_LARGE} {
+    width: 66.6%;
+    flex-shrink: 0;
+    flex-grow: 0;
   }
 `;
 
@@ -19,9 +25,7 @@ const FsaLayout = props => (
   <React.Fragment>
     <Page header={<FsaHeader {...props} />}>
       <GridRowZeroMargin>
-        <GridColZeroPadding columnTwoThirds>
-          {props.children}
-        </GridColZeroPadding>
+        <GridColMedia>{props.children}</GridColMedia>
       </GridRowZeroMargin>
     </Page>
     <FsaFooter />
