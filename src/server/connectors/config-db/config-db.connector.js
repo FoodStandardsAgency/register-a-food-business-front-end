@@ -134,6 +134,9 @@ const getLocalCouncils = async () => {
         false
       );
     } else {
+      localCouncilUrls = localCouncilUrls.filter(
+        value => value !== null && value !== ""
+      );
       statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
       statusEmitter.emit(
         "setStatus",

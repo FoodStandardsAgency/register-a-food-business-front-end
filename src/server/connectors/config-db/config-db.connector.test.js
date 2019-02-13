@@ -193,4 +193,23 @@ describe("Function: getLocalCouncils", () => {
       await expect(getLocalCouncils()).resolves.toEqual(localCouncilsMock);
     });
   });
+
+  describe("given the request is successful and some council URLs are NULL or empty", () => {
+    const localCouncilsMock = ["", "cardiff", null, "the-vale-of-glamorgan"];
+    beforeEach(() => {
+      mongodb.MongoClient.connect.mockImplementation(() => ({
+        db: () => ({
+          collection: () => ({
+            distinct: () => localCouncilsMock
+          })
+        })
+      }));
+    });
+
+    it("should return the list of councils from distinct() response and not contain any NULL or empty values", async () => {
+      await expect(getLocalCouncils()).resolves.toEqual(
+        expect.not.arrayContaining([null, ""])
+      );
+    });
+  });
 });
