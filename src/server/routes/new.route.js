@@ -20,7 +20,7 @@ const { Cache } = require("../services/cache.service");
 
 let allowedCouncils = null;
 
-const allowedCouncilsCache = new Cache(
+const allowedCouncilsCache = Cache(
   LC_CACHE_TIME_TO_LIVE,
   false,
   true,

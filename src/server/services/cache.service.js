@@ -6,51 +6,48 @@
 const NodeCache = require("node-cache");
 const { logEmitter } = require("./logging.service");
 
-// Enforce one variable per Cache object
-const key = "x";
+/**
+ *
+ * @param {Number} stdTTL Standard TimeToLive in seconds (0 = unlimited)
+ * @param {boolean} deleteOnExpire Whether cache variables are to be deleted upon expiry
+ * @param {boolean} autoRetrieveOnExpire Whether to obtain and cache value upon expiry
+ * @param {Function} getValue Function to use to obtain value if not in cache
+ */
+const Cache = (stdTTL, deleteOnExpire, autoRetrieveOnExpire, getValue) => {
+  const cache = new NodeCache({ stdTTL, deleteOnExpire });
 
-class Cache {
-  /**
-   * Class constructor
-   * @param {Number} stdTTL Standard TimeToLive in seconds (0 = unlimited)
-   * @param {boolean} deleteOnExpire Whether cache variables are to be deleted upon expiry
-   * @param {boolean} autoRetrieveOnExpiry Whether to obtain and cache value upon expiry
-   * @param {function} getValue Function to use to obtain value if not in cache
-   */
-  constructor(stdTTL, deleteOnExpire, autoRetrieveOnExpiry, getValue) {
-    this.getValue = getValue;
-    this.cache = new NodeCache({
-      stdTTL,
-      deleteOnExpire
-    });
+  // Enforce one variable per Cache object
+  const key = "x";
 
-    if (autoRetrieveOnExpiry) {
-      this.cache.on("expired", () => {
-        return getValue().then(result => {
-          this.cache.set(key, result);
-        });
-      });
-    }
-  }
+  const get = async () => {
+    const value = cache.get(key);
 
-  /**
-   * Retrieves value of the Cache object
-   * If no value is found in cache, object's getValue function is executed and result automatically saved to cache
-   * @returns {any} Cache object's value
-   */
-  get() {
-    logEmitter.emit("functionCall", "cache.service", "get");
-
-    const value = this.cache.get(key);
     if (value) {
+      logEmitter.emit("functionCall", "cache.service", "get (from cache)");
       return Promise.resolve(value);
     }
 
-    return this.getValue().then(result => {
-      this.cache.set(key, result);
+    return getValue().then(result => {
+      logEmitter.emit("functionCall", "cache.service", "get (from db)");
+      cache.set(key, result);
       return result;
     });
-  }
-}
+  };
+
+  cache.on("expired", (k, v) => {
+    logEmitter.emit("functionCallWith", "cache.service", "on", "expired", v);
+    if (autoRetrieveOnExpire) {
+      return getValue().then(result => {
+        cache.set(key, result);
+      });
+    }
+  });
+
+  const isEmpty = () => {
+    return cache.get("x") === undefined;
+  };
+
+  return Object.freeze({ get, isEmpty });
+};
 
 module.exports = { Cache };

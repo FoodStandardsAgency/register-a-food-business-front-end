@@ -1,4 +1,7 @@
 const { Cache } = require("./cache.service");
+const { logEmitter } = require("./logging.service");
+
+jest.mock("./logging.service");
 
 describe("cache.service get()", () => {
   const obj1 = { a: 123, 123: "a" };
@@ -6,32 +9,36 @@ describe("cache.service get()", () => {
   describe("given value is not cached", () => {
     let result;
     let mockResult = obj1;
-    const cache = new Cache(1000, true, true, () => {
+    const cache = Cache(1000, true, true, () => {
       return Promise.resolve(mockResult);
     });
-    mockResult = obj2;
-    cache.get().then(getResult => {
-      result = getResult;
+    beforeEach(() => {
+      mockResult = obj2;
+      return cache.get().then(value => {
+        result = value;
+      });
     });
 
-    it("should return obj2", () => {
+    it("should return the new object", () => {
       expect(result).toEqual(obj2);
     });
   });
   describe("given value is already cached", () => {
     let result;
     let mockResult = obj1;
-    const cache = new Cache(1000, true, true, () => {
+    const cache = Cache(1000, true, true, () => {
       return Promise.resolve(mockResult);
     });
-    cache.get().then(getResult => {
-      mockResult = obj2;
-      cache.get().then(getResult => {
-        result = getResult;
+    beforeEach(() => {
+      return cache.get().then(() => {
+        mockResult = obj2;
+        return cache.get().then(value => {
+          result = value;
+        });
       });
     });
 
-    it("should return obj1", () => {
+    it("should return the old object", () => {
       expect(result).toEqual(obj1);
     });
   });
@@ -39,12 +46,15 @@ describe("cache.service get()", () => {
     const ttl = 0.6;
     const deleteOnExpire = true;
     const waitTimeForCacheToExpire = 700;
+    const waitTimeForValueToAutoRetrieve = 400;
     const delay = t => new Promise(resolve => setTimeout(resolve, t));
-    describe("given autoRetrieveOnExpiry is enabled", () => {
-      const autoRetrieveOnExpiry = true;
-      const waitTimeForValueToAutoRetrieve = 400;
+    beforeEach(() => {
+      logEmitter.emit.mockClear();
+    });
+    describe("given autoRetrieveOnExpire is enabled", () => {
+      const autoRetrieveOnExpire = true;
       let mockResult = obj1;
-      const cache = new Cache(ttl, deleteOnExpire, autoRetrieveOnExpiry, () => {
+      const cache = Cache(ttl, deleteOnExpire, autoRetrieveOnExpire, () => {
         return Promise.resolve(mockResult);
       });
 
@@ -53,44 +63,95 @@ describe("cache.service get()", () => {
         return cache.get().then(() => {
           mockResult = obj2;
           return delay(waitTimeForCacheToExpire).then(() => {
-            if (cache.cache.get("x") === undefined) {
+            if (cache.isEmpty()) {
               return delay(waitTimeForValueToAutoRetrieve).then(() => {
-                return cache.cache.get("x", (err, value) => {
+                return cache.get().then(value => {
                   result = Promise.resolve(value);
                 });
               });
             } else {
-              return cache.cache.get("x", (err, value) => {
+              return cache.get().then(value => {
                 result = Promise.resolve(value);
               });
             }
           });
         });
       });
-      it("should return new mockResult value as cache expired", () => {
-        return result.then(r => expect(r).toEqual(obj2));
+      it("should return new auto-retrieved object from cache", () => {
+        return result.then(r => {
+          expect(r).toEqual(obj2);
+          expect(logEmitter.emit).toHaveBeenNthCalledWith(
+            1,
+            "functionCall",
+            "cache.service",
+            "get (from db)"
+          );
+          expect(logEmitter.emit).toHaveBeenNthCalledWith(
+            2,
+            "functionCallWith",
+            "cache.service",
+            "on",
+            "expired",
+            obj1
+          );
+          expect(logEmitter.emit).toHaveBeenNthCalledWith(
+            3,
+            "functionCall",
+            "cache.service",
+            "get (from cache)"
+          );
+        });
       });
     });
     describe("given autoRetrieveOnExpiry is disabled", () => {
       const autoRetrieveOnExpiry = false;
       let mockResult = obj1;
-      const cache = new Cache(ttl, deleteOnExpire, autoRetrieveOnExpiry, () => {
+      const cache = Cache(ttl, deleteOnExpire, autoRetrieveOnExpiry, () => {
         return Promise.resolve(mockResult);
       });
 
       let result;
       beforeEach(() => {
         return cache.get().then(() => {
-          mockResult = obj2;
           return delay(waitTimeForCacheToExpire).then(() => {
-            return cache.cache.get("x", (err, value) => {
-              result = Promise.resolve(value);
-            });
+            if (cache.isEmpty()) {
+              return delay(waitTimeForValueToAutoRetrieve).then(() => {
+                return cache.get().then(value => {
+                  result = Promise.resolve(value);
+                });
+              });
+            } else {
+              return cache.get().then(value => {
+                result = Promise.resolve(value);
+              });
+            }
           });
         });
       });
-      it("should return undefined as cache expired", () => {
-        return result.then(r => expect(r).toEqual(undefined));
+      it("should return old object from db", () => {
+        return result.then(r => {
+          expect(r).toEqual(obj1);
+          expect(logEmitter.emit).toHaveBeenNthCalledWith(
+            1,
+            "functionCall",
+            "cache.service",
+            "get (from db)"
+          );
+          expect(logEmitter.emit).toHaveBeenNthCalledWith(
+            2,
+            "functionCallWith",
+            "cache.service",
+            "on",
+            "expired",
+            obj1
+          );
+          expect(logEmitter.emit).toHaveBeenNthCalledWith(
+            3,
+            "functionCall",
+            "cache.service",
+            "get (from db)"
+          );
+        });
       });
     });
   });
