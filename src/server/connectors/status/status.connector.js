@@ -14,7 +14,10 @@ const storedStatus = {
   mostRecentAddressLookupSucceeded: true,
   getPathConfigSucceeded: 0,
   getPathConfigFailed: 0,
-  mostRecentGetPathConfigSucceeded: true
+  mostRecentGetPathConfigSucceeded: true,
+  getLocalCouncilsSucceeded: 0,
+  getLocalCouncilsFailed: 0,
+  mostRecentGetLocalCouncilsSucceeded: true
 };
 
 /**

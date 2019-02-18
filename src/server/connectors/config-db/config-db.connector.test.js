@@ -1,6 +1,7 @@
 const mongodb = require("mongodb");
 const {
   getPathConfigByVersion,
+  getLocalCouncils,
   clearPathConfigCache
 } = require("./config-db.connector");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
@@ -132,6 +133,86 @@ describe("Function: getPathConfigByVersion", () => {
       // run a second request without clearing the cache
       await getPathConfigByVersion("1.0.0");
       expect(mongodb.MongoClient.connect).toHaveBeenCalledTimes(1);
+    });
+  });
+});
+
+describe("Function: getLocalCouncils", () => {
+  describe("given the request throws an error", () => {
+    beforeEach(async () => {
+      mongodb.MongoClient.connect.mockImplementation(() => {
+        throw new Error("example mongo error");
+      });
+
+      try {
+        await getLocalCouncils();
+      } catch (err) {
+        result = err;
+      }
+    });
+
+    describe("when the error shows that the connection has failed", () => {
+      it("should throw mongoConnectionError error", () => {
+        expect(result.name).toBe("mongoConnectionError");
+        expect(result.message).toBe("example mongo error");
+      });
+    });
+  });
+
+  describe("given the request returns null", () => {
+    beforeEach(async () => {
+      mongodb.MongoClient.connect.mockImplementation(() => ({
+        db: () => ({
+          collection: () => ({
+            distinct: () => null
+          })
+        })
+      }));
+
+      result = await getLocalCouncils();
+    });
+
+    it("should return null", () => {
+      expect(result).toBe(null);
+    });
+  });
+
+  describe("given the request is successful", () => {
+    const localCouncilsMock = ["cardiff", "the-vale-of-glamorgan"];
+    beforeEach(() => {
+      mongodb.MongoClient.connect.mockImplementation(() => ({
+        db: () => ({
+          collection: () => ({
+            distinct: () => localCouncilsMock
+          })
+        })
+      }));
+    });
+
+    it("should return the list of councils from distinct() response", async () => {
+      await expect(getLocalCouncils()).resolves.toEqual(localCouncilsMock);
+    });
+  });
+
+  describe("given the request is successful and some council URLs are NULL or empty", () => {
+    const localCouncilsMock = ["", "cardiff", null, "the-vale-of-glamorgan"];
+    beforeEach(() => {
+      mongodb.MongoClient.connect.mockImplementation(() => ({
+        db: () => ({
+          collection: () => ({
+            distinct: () => localCouncilsMock
+          })
+        })
+      }));
+    });
+
+    it("should return the list of councils from distinct() response and not contain any NULL or empty values", async () => {
+      await expect(getLocalCouncils()).resolves.toEqual(
+        expect.not.arrayContaining([null, ""]) && [
+          "cardiff",
+          "the-vale-of-glamorgan"
+        ]
+      );
     });
   });
 });

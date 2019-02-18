@@ -11,6 +11,7 @@ const { statusEmitter } = require("../../services/statusEmitter.service");
 let client;
 let configDB;
 let configVersionCollection;
+let lcConfigCollection;
 
 let pathConfig = null;
 
@@ -34,6 +35,7 @@ const establishConnectionToMongo = async () => {
     configDB = client.db("register_a_food_business_config");
 
     configVersionCollection = configDB.collection("configVersion");
+    lcConfigCollection = configDB.collection("lcConfig");
   }
 };
 
@@ -111,6 +113,62 @@ const getPathConfigByVersion = async version => {
 };
 
 /**
+ * Fetches the list of allowed local councils from the config database
+ *
+ * @returns {Array} An array containing shortened local council names
+ */
+const getLocalCouncils = async () => {
+  let localCouncilUrls;
+  logEmitter.emit("functionCall", "config-db.connector", "getLocalCouncils");
+
+  try {
+    await establishConnectionToMongo();
+
+    localCouncilUrls = await lcConfigCollection.distinct("local_council_url");
+
+    if (localCouncilUrls === null) {
+      statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
+      statusEmitter.emit(
+        "setStatus",
+        "mostRecentGetLocalCouncilsSucceeded",
+        false
+      );
+    } else {
+      localCouncilUrls = localCouncilUrls.filter(
+        value => value !== null && value !== ""
+      );
+      statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
+      statusEmitter.emit(
+        "setStatus",
+        "mostRecentGetLocalCouncilsSucceeded",
+        true
+      );
+    }
+  } catch (err) {
+    statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
+    statusEmitter.emit(
+      "setStatus",
+      "mostRecentGetLocalCouncilsSucceeded",
+      false
+    );
+    logEmitter.emit(
+      "functionFail",
+      "config-db.connector",
+      "getLocalCouncils",
+      err
+    );
+
+    const newError = new Error();
+    newError.name = "mongoConnectionError";
+    newError.message = err.message;
+
+    throw newError;
+  }
+
+  return localCouncilUrls;
+};
+
+/**
  * Resets the in-memory path config. Primarily for testing purposes.
  *
  * @returns {any} The cleared in-memory path config
@@ -120,4 +178,8 @@ const clearPathConfigCache = () => {
   return pathConfig;
 };
 
-module.exports = { getPathConfigByVersion, clearPathConfigCache };
+module.exports = {
+  getPathConfigByVersion,
+  clearPathConfigCache,
+  getLocalCouncils
+};
