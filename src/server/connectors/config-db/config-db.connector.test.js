@@ -208,7 +208,10 @@ describe("Function: getLocalCouncils", () => {
 
     it("should return the list of councils from distinct() response and not contain any NULL or empty values", async () => {
       await expect(getLocalCouncils()).resolves.toEqual(
-        expect.not.arrayContaining([null, ""])
+        expect.not.arrayContaining([null, ""]) && [
+          "cardiff",
+          "the-vale-of-glamorgan"
+        ]
       );
     });
   });
