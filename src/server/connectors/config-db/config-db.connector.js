@@ -118,13 +118,21 @@ const getPathConfigByVersion = async version => {
  * @returns {Array} An array containing shortened local council names
  */
 const getLocalCouncils = async () => {
-  let localCouncilUrls;
+  let localCouncilUrls = null;
   logEmitter.emit("functionCall", "config-db.connector", "getLocalCouncils");
 
   try {
     await establishConnectionToMongo();
 
-    localCouncilUrls = await lcConfigCollection.distinct("local_council_url");
+    localCouncilUrls = await lcConfigCollection
+      .find({
+        $and: [
+          { local_council_url: { $ne: "" } },
+          { local_council_url: { $ne: null } }
+        ]
+      })
+      .project({ local_council_url: 1, _id: 0 })
+      .toArray();
 
     if (localCouncilUrls === null) {
       statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
@@ -134,9 +142,7 @@ const getLocalCouncils = async () => {
         false
       );
     } else {
-      localCouncilUrls = localCouncilUrls.filter(
-        value => value !== null && value !== ""
-      );
+      localCouncilUrls = localCouncilUrls.map(res => res.local_council_url);
       statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
       statusEmitter.emit(
         "setStatus",
