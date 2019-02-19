@@ -161,14 +161,22 @@ describe("Function: getLocalCouncils", () => {
 
   describe("given the request returns null", () => {
     beforeEach(async () => {
+      const mongoCursor = {
+        project: () => {
+          return {
+            toArray: () => {
+              return null;
+            }
+          };
+        }
+      };
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
-            distinct: () => null
+            find: () => mongoCursor
           })
         })
       }));
-
       result = await getLocalCouncils();
     });
 
@@ -178,41 +186,35 @@ describe("Function: getLocalCouncils", () => {
   });
 
   describe("given the request is successful", () => {
+    const localCouncilsObjs = [
+      { local_council_url: "cardiff" },
+      { local_council_url: "the-vale-of-glamorgan" }
+    ];
+
     const localCouncilsMock = ["cardiff", "the-vale-of-glamorgan"];
+
+    const mongoCursor = {
+      project: () => {
+        return {
+          toArray: () => {
+            return localCouncilsObjs;
+          }
+        };
+      }
+    };
+
     beforeEach(() => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
-            distinct: () => localCouncilsMock
+            find: () => mongoCursor
           })
         })
       }));
     });
 
-    it("should return the list of councils from distinct() response", async () => {
+    it("should return the array of councils", async () => {
       await expect(getLocalCouncils()).resolves.toEqual(localCouncilsMock);
-    });
-  });
-
-  describe("given the request is successful and some council URLs are NULL or empty", () => {
-    const localCouncilsMock = ["", "cardiff", null, "the-vale-of-glamorgan"];
-    beforeEach(() => {
-      mongodb.MongoClient.connect.mockImplementation(() => ({
-        db: () => ({
-          collection: () => ({
-            distinct: () => localCouncilsMock
-          })
-        })
-      }));
-    });
-
-    it("should return the list of councils from distinct() response and not contain any NULL or empty values", async () => {
-      await expect(getLocalCouncils()).resolves.toEqual(
-        expect.not.arrayContaining([null, ""]) && [
-          "cardiff",
-          "the-vale-of-glamorgan"
-        ]
-      );
     });
   });
 });
