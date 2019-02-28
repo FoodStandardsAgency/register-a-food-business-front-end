@@ -1,4 +1,4 @@
-const { getStoredStatus, updateStoredStatus } = require("./status.connector");
+const { getStoredStatus, updateStoredStatus } = require("./status-db.connector");
 
 describe("Function: getStoredStatus", () => {
   let result;
