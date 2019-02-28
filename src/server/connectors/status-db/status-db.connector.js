@@ -40,12 +40,29 @@ const establishConnectionToMongo = async () => {
  * @returns {object} All status values
  */
 const getStoredStatus = async () => {
-  await establishConnectionToMongo();
-  const storedStatus = await statusCollection.findOne({
-    _id: "frontEndStatus"
-  });
+  logEmitter.emit("functionCall", "status-db.connector", "getStoredStatus");
+  try {
+    await establishConnectionToMongo();
+    const storedStatus = await statusCollection.findOne({
+      _id: "frontEndStatus"
+    });
+    logEmitter.emit(
+      "functionsuccess",
+      "status-db.connector",
+      "getStoredStatus"
+    );
+    console.log(storedStatus);
 
-  return storedStatus;
+    return storedStatus;
+  } catch (err) {
+    logEmitter.emit(
+      "functionFail",
+      "status-db.connector",
+      "getStoredStatus",
+      err
+    );
+    throw err;
+  }
 };
 
 /**
@@ -57,12 +74,29 @@ const getStoredStatus = async () => {
  * @returns {any} The new status value
  */
 const updateStoredStatus = async (statusName, newStatus) => {
-  const response = await statusCollection.updateOne(
-    { _id: "frontEndStatus" },
-    { $set: { [statusName]: newStatus } }
-  );
-  console.log(response);
-  return newStatus;
+  logEmitter.emit("functionCall", "status-db.connector", "updateStoredStatus");
+  try {
+    await establishConnectionToMongo();
+    const response = await statusCollection.updateOne(
+      { _id: "frontEndStatus" },
+      { $set: { [statusName]: newStatus } }
+    );
+    logEmitter.emit(
+      "functionsuccess",
+      "status-db.connector",
+      "updateStoredStatus"
+    );
+    console.log(response);
+    return newStatus;
+  } catch (err) {
+    logEmitter.emit(
+      "functionFail",
+      "status-db.connector",
+      "updateStoredStatus",
+      err
+    );
+    throw err;
+  }
 };
 
 module.exports = { getStoredStatus, updateStoredStatus };
