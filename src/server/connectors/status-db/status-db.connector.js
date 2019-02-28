@@ -3,7 +3,7 @@
  * @module connectors/status
  */
 const mongodb = require("mongodb");
-const { statusCollectionDouble } = require("./config-db.double");
+const { statusCollectionDouble } = require("./status-db.double");
 const { STATUSDB_URL } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 
