@@ -51,7 +51,6 @@ const getStoredStatus = async () => {
       "status-db.connector",
       "getStoredStatus"
     );
-    console.log(storedStatus);
 
     return storedStatus;
   } catch (err) {
@@ -61,7 +60,11 @@ const getStoredStatus = async () => {
       "getStoredStatus",
       err
     );
-    throw err;
+    const newError = new Error();
+    newError.name = "mongoConnectionError";
+    newError.message = err.message;
+
+    throw newError;
   }
 };
 
@@ -86,7 +89,6 @@ const updateStoredStatus = async (statusName, newStatus) => {
       "status-db.connector",
       "updateStoredStatus"
     );
-    console.log(response);
     return newStatus;
   } catch (err) {
     logEmitter.emit(
@@ -95,7 +97,11 @@ const updateStoredStatus = async (statusName, newStatus) => {
       "updateStoredStatus",
       err
     );
-    throw err;
+    const newError = new Error();
+    newError.name = "mongoConnectionError";
+    newError.message = err.message;
+
+    throw newError;
   }
 };
 
