@@ -1,6 +1,7 @@
 const mongodb = require("mongodb");
 const {
   getPathConfigByVersion,
+  getLocalCouncils,
   clearPathConfigCache
 } = require("./config-db.connector");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
@@ -132,6 +133,88 @@ describe("Function: getPathConfigByVersion", () => {
       // run a second request without clearing the cache
       await getPathConfigByVersion("1.0.0");
       expect(mongodb.MongoClient.connect).toHaveBeenCalledTimes(1);
+    });
+  });
+});
+
+describe("Function: getLocalCouncils", () => {
+  describe("given the request throws an error", () => {
+    beforeEach(async () => {
+      mongodb.MongoClient.connect.mockImplementation(() => {
+        throw new Error("example mongo error");
+      });
+
+      try {
+        await getLocalCouncils();
+      } catch (err) {
+        result = err;
+      }
+    });
+
+    describe("when the error shows that the connection has failed", () => {
+      it("should throw mongoConnectionError error", () => {
+        expect(result.name).toBe("mongoConnectionError");
+        expect(result.message).toBe("example mongo error");
+      });
+    });
+  });
+
+  describe("given the request returns null", () => {
+    beforeEach(async () => {
+      const mongoCursor = {
+        project: () => {
+          return {
+            toArray: () => {
+              return null;
+            }
+          };
+        }
+      };
+      mongodb.MongoClient.connect.mockImplementation(() => ({
+        db: () => ({
+          collection: () => ({
+            find: () => mongoCursor
+          })
+        })
+      }));
+      result = await getLocalCouncils();
+    });
+
+    it("should return null", () => {
+      expect(result).toBe(null);
+    });
+  });
+
+  describe("given the request is successful", () => {
+    const localCouncilsObjs = [
+      { local_council_url: "cardiff" },
+      { local_council_url: "the-vale-of-glamorgan" }
+    ];
+
+    const localCouncilsMock = ["cardiff", "the-vale-of-glamorgan"];
+
+    const mongoCursor = {
+      project: () => {
+        return {
+          toArray: () => {
+            return localCouncilsObjs;
+          }
+        };
+      }
+    };
+
+    beforeEach(() => {
+      mongodb.MongoClient.connect.mockImplementation(() => ({
+        db: () => ({
+          collection: () => ({
+            find: () => mongoCursor
+          })
+        })
+      }));
+    });
+
+    it("should return the array of councils", async () => {
+      await expect(getLocalCouncils()).resolves.toEqual(localCouncilsMock);
     });
   });
 });
