@@ -102,11 +102,13 @@ const getPathConfigByVersion = async version => {
       throw newError;
     }
   }
+  const data = pathConfig ? `${Object.keys(pathConfig).length} paths found.` : "null";
 
   logEmitter.emit(
-    "functionSuccess",
+    "functionSuccessWith",
     "config-db.connector",
-    "getPathConfigByVersion"
+    "getPathConfigByVersion",
+    data
   );
 
   return pathConfig;
@@ -170,6 +172,14 @@ const getLocalCouncils = async () => {
 
     throw newError;
   }
+  const data = localCouncilUrls ? `${localCouncilUrls.length} LA configurations found.` : "null";
+
+  logEmitter.emit(
+    "functionSuccessWith",
+    "config-db.connector",
+    "getLocalCouncils",
+    data
+  );
 
   return localCouncilUrls;
 };
