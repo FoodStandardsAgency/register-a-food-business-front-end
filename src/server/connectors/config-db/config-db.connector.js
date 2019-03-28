@@ -102,13 +102,11 @@ const getPathConfigByVersion = async version => {
       throw newError;
     }
   }
-  const data = pathConfig ? `${Object.keys(pathConfig).length} paths found.` : "null";
 
   logEmitter.emit(
-    "functionSuccessWith",
+    "functionSuccess",
     "config-db.connector",
     "getPathConfigByVersion",
-    data
   );
 
   return pathConfig;
@@ -136,7 +134,7 @@ const getLocalCouncils = async () => {
       .project({ local_council_url: 1, _id: 0 })
       .toArray();
 
-    if (localCouncilUrls === null) {
+    if (localCouncilUrls.length < 1) {
       statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
       statusEmitter.emit(
         "setStatus",
@@ -172,13 +170,11 @@ const getLocalCouncils = async () => {
 
     throw newError;
   }
-  const data = localCouncilUrls ? `${localCouncilUrls.length} LA configurations found.` : "null";
 
   logEmitter.emit(
-    "functionSuccessWith",
+    "functionSuccess",
     "config-db.connector",
-    "getLocalCouncils",
-    data
+    "getLocalCouncils"
   );
 
   return localCouncilUrls;
