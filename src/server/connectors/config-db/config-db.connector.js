@@ -106,7 +106,7 @@ const getPathConfigByVersion = async version => {
   logEmitter.emit(
     "functionSuccess",
     "config-db.connector",
-    "getPathConfigByVersion",
+    "getPathConfigByVersion"
   );
 
   return pathConfig;
