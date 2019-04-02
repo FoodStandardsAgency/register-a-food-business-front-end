@@ -11,7 +11,7 @@ const submitController = require("../controllers/submit.controller");
 const submitRouter = () => {
   const router = Router();
 
-  router.get("", async (req, res) => {
+  router.post("", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/submit route");
     const controllerResponse = await submitController(
       req.session.council,
