@@ -28,7 +28,7 @@ describe("Submit route: ", () => {
     router = submitRouter();
   });
 
-  describe("GET to /submit", () => {
+  describe("POST to /submit", () => {
     describe("When redirect route is not back", () => {
       let res, req;
 
@@ -41,9 +41,10 @@ describe("Submit route: ", () => {
           lcConfig: lcConfig
         }));
 
-        handler = router.get.mock.calls[0][1];
+        handler = router.post.mock.calls[0][1];
 
         req = {
+          method: "post",
           session: {
             cumulativeFullAnswers: {
               some: "answers"
@@ -100,9 +101,10 @@ describe("Submit route: ", () => {
           lcConfig: lcConfig
         }));
 
-        handler = router.get.mock.calls[0][1];
+        handler = router.post.mock.calls[0][1];
 
         req = {
+          method: "post",
           session: {
             cumulativeFullAnswers: {
               some: "answers"
@@ -138,9 +140,10 @@ describe("Submit route: ", () => {
           lcConfig: lcConfig
         }));
 
-        handler = router.get.mock.calls[0][1];
+        handler = router.post.mock.calls[0][1];
 
         req = {
+          method: "post",
           session: {
             cumulativeFullAnswers: {
               some: "answers"
