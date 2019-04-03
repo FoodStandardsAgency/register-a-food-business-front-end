@@ -171,11 +171,7 @@ const getLocalCouncils = async () => {
     throw newError;
   }
 
-  logEmitter.emit(
-    "functionSuccess",
-    "config-db.connector",
-    "getLocalCouncils"
-  );
+  logEmitter.emit("functionSuccess", "config-db.connector", "getLocalCouncils");
 
   return localCouncilUrls;
 };
