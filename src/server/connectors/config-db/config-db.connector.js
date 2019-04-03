@@ -134,7 +134,7 @@ const getLocalCouncils = async () => {
       .project({ local_council_url: 1, _id: 0 })
       .toArray();
 
-    if (localCouncilUrls === null) {
+    if (localCouncilUrls.length < 1) {
       statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
       statusEmitter.emit(
         "setStatus",
@@ -170,6 +170,8 @@ const getLocalCouncils = async () => {
 
     throw newError;
   }
+
+  logEmitter.emit("functionSuccess", "config-db.connector", "getLocalCouncils");
 
   return localCouncilUrls;
 };
