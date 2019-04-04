@@ -177,11 +177,16 @@ describe("Function: getLocalCouncils", () => {
           })
         })
       }));
-      result = await getLocalCouncils();
+      try {
+        await getLocalCouncils();
+      } catch (err) {
+        result = err;
+      }
     });
 
-    it("should return null", () => {
-      expect(result).toBe(null);
+    it("should throw mongoConnectionError error", () => {
+      expect(result.name).toBe("mongoConnectionError");
+      expect(result.message).toBe("Cannot read property 'length' of null");
     });
   });
 
@@ -214,6 +219,35 @@ describe("Function: getLocalCouncils", () => {
     });
 
     it("should return the array of councils", async () => {
+      await expect(getLocalCouncils()).resolves.toEqual(localCouncilsMock);
+    });
+  });
+
+  describe("given there are no lc configuration records", () => {
+    const localCouncilsObjs = [];
+    const localCouncilsMock = [];
+
+    const mongoCursor = {
+      project: () => {
+        return {
+          toArray: () => {
+            return localCouncilsObjs;
+          }
+        };
+      }
+    };
+
+    beforeEach(() => {
+      mongodb.MongoClient.connect.mockImplementation(() => ({
+        db: () => ({
+          collection: () => ({
+            find: () => mongoCursor
+          })
+        })
+      }));
+    });
+
+    it("should return an empty array and not throw an exception", async () => {
       await expect(getLocalCouncils()).resolves.toEqual(localCouncilsMock);
     });
   });
