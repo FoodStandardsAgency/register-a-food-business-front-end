@@ -56,7 +56,8 @@ const errorMessages = {
     "Your message is too long. Please shorten it to less than 1500 characters",
   opening_days_start: "Please select which days this establishment is open",
   opening_days_irregular: "Please describe when this establishment is open",
-  opening_days_some: "Please select which days this establishment is open"
+  opening_days_some: "Please select which days this establishment is open",
+  partner_name: "Not a valid name"
 };
 
 const validator = new Validator();
