@@ -134,6 +134,17 @@ const partnerDetailsRouter = () => {
     });
   });
 
+  router.get("/back", (req, res) => {
+    logEmitter.emit("functionCall", "Routes", "partnership/back route");
+    logEmitter.emit(
+      "functionSuccessWith",
+      "Routes",
+      "partnership/back route",
+      `Redirecting to: /new/${req.session.council}/partner-name`
+    );
+    res.redirect(`/new/${req.session.council}/partner-name`);
+  });
+
   return router;
 };
 
