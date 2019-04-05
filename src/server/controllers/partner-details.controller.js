@@ -5,6 +5,7 @@
 const { validate } = require("../services/validation.service");
 const { logEmitter } = require("../services/logging.service");
 const { statusEmitter } = require("../services/statusEmitter.service");
+const { MAX_PARTNERS } = require("../config");
 
 /**
  * Returns an object containing address lookup results, validator errors (if present), the redirect route (e.g. the next page),
@@ -67,33 +68,28 @@ const partnerDetailsController = async (
       }
 
       const partners = controllerResponse.cumulativeFullAnswers.partners;
+      const partnerName = newAnswers["partner_name"];
+      const partnerIndex = newAnswers["index"];
 
-      if (action === allowedActions.save) {
-        const partnerName = newAnswers["partner_name"];
-        const partnerIndex = newAnswers["index"];
-        if (partnerIndex) {
-          // update partner
+      switch (action) {
+        case allowedActions.save:
           if (partners[partnerIndex]) {
             partners[partnerIndex] = partnerName;
           } else {
-            // TODO
+            if (partners.length < MAX_PARTNERS) {
+              partners.push(partnerName);
+            }
           }
-        } else {
-          // add new partner
-          if (partners.length < 5) {
-            partners.push(partnerName);
-          } else {
-            // TODO
+          break;
+        case allowedActions.delete:
+          if (partners[partnerIndex]) {
+            partners.splice(partnerIndex, 1);
           }
-        }
-      } else if (action === allowedActions.delete) {
-        const index = parseInt(newAnswers.index);
-        if (!isNaN(index)) {
-          if (partners[index]) {
-            partners.splice(index, 1);
-          }
-        }
+          break;
+        default:
+          throw new Error("Unsupported action");
       }
+
       controllerResponse.cumulativeFullAnswers.partners = partners;
       controllerResponse.cumulativeFullAnswers.targetPartner = null;
       controllerResponse.redirectRoute = `/new/${council}/partner-name`;
