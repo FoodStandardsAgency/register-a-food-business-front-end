@@ -10,19 +10,19 @@ import {
 import { Header, Radio, MultiChoice } from "govuk-react";
 import PropTypes from "prop-types";
 
-const RadioArray = props => {
+const getPartnersList = props => {
   let output = [];
   const partners = props.cumulativeFullAnswers.partners;
 
   for (let id in partners) {
     output.push(
       <Radio
-        name="partner"
+        name="main_partnership_contact"
         value={partners[id]}
         id={partners[id]}
         key={id}
         defaultChecked={
-          props.cumulativeFullAnswers.primary_partner === partners[id]
+          props.cumulativeFullAnswers.main_partnership_contact === partners[id]
         }
       >
         {partners[id]}
@@ -49,10 +49,10 @@ const PrimaryPartner = props => (
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.partner_primary
+            error: props.validatorErrors.partner_is_primary
           }}
         >
-          {RadioArray(props)}
+          {getPartnersList(props)}
         </MultiChoice>
       </ContentItem.B_45_30>
 
@@ -64,6 +64,6 @@ const PrimaryPartner = props => (
 export default SessionWrapper(PrimaryPartner);
 
 PrimaryPartner.propTypes = {
-  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.array),
+  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string, PropTypes.array),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };
