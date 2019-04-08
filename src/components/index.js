@@ -17,6 +17,7 @@ import ListItemConsistentSize from "./ListItemConsistentSize";
 import InvisibleLink from "./InvisibleLink";
 import HiddenTextAccessible from "./HiddenTextAccessible";
 import FsaDateField from "./FsaDateField";
+import PartnersTable from "./PartnersTable";
 
 export {
   SessionWrapper,
@@ -37,5 +38,6 @@ export {
   ListItemConsistentSize,
   InvisibleLink,
   HiddenTextAccessible,
-  FsaDateField
+  FsaDateField,
+  PartnersTable
 };
