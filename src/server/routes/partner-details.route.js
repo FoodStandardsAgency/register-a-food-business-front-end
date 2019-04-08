@@ -59,11 +59,11 @@ const partnerDetailsRouter = () => {
     });
   });
 
-  router.get("/partner-details", async (req, res) => {
+  router.get("/partner-details", (req, res) => {
     logEmitter.emit(
       "functionCall",
       "Routes",
-      "/partnership/partnerdetails route"
+      "/partnership/partner-details route"
     );
 
     if (req.session.cumulativeFullAnswers.partners === undefined) {
@@ -118,7 +118,7 @@ const partnerDetailsRouter = () => {
     logEmitter.emit(
       "functionSuccess",
       "Routes",
-      "/partnerdetails/delete route"
+      "/partner-details/delete route"
     );
     req.session.save(err => {
       if (err) {
@@ -126,6 +126,45 @@ const partnerDetailsRouter = () => {
           "functionFail",
           "Routes",
           "/partner-details route",
+          err
+        );
+        throw err;
+      }
+      res.redirect(response.redirectRoute);
+    });
+  });
+
+  router.post("/continue", async (req, res) => {
+    logEmitter.emit("functionCall", "Routes", "/partnership/continue route");
+
+    const originator = getOriginator(req.get("Referrer"));
+
+    if (req.session.cumulativeFullAnswers.partners === undefined) {
+      req.session.cumulativeFullAnswers.partners = [];
+    }
+
+    const response = await partnerDetailsController(
+      originator,
+      req.session.cumulativeFullAnswers,
+      {},
+      req.session.council,
+      "continue"
+    );
+
+    req.session.validatorErrors = response.validatorErrors;
+    req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
+
+    logEmitter.emit(
+      "functionSuccess",
+      "Routes",
+      "/partner-details/continue route"
+    );
+    req.session.save(err => {
+      if (err) {
+        logEmitter.emit(
+          "functionFail",
+          "Routes",
+          "/partner-details/continue route",
           err
         );
         throw err;
