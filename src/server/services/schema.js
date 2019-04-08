@@ -24,8 +24,7 @@ const {
   validateBusinessType,
   validateBusinessOtherDetails,
   validateOpeningDaysIrregular,
-  validatePartners,
-  validatePartnerPrimaryContact
+  validatePartners
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const schema = {
@@ -86,7 +85,7 @@ const schema = {
     type: "object",
     properties: {
       partners: {
-        type: "object",
+        type: "array",
         validation: validatePartners
       }
     }
@@ -94,9 +93,9 @@ const schema = {
   "/main-partnership-contact": {
     type: "object",
     properties: {
-      partner_is_primary_contact: {
-        type: "boolean",
-        validation: validatePartnerPrimaryContact
+      main_partnership_contact: {
+        type: "string",
+        validation: validateRadioButtons
       }
     }
   },

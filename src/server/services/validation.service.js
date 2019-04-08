@@ -10,6 +10,7 @@ const {
   combineDate,
   separateBracketsFromBusinessType
 } = require("./data-transform.service");
+const { MAX_PARTNERS } = require("../config");
 
 const errorMessages = {
   declaration1: "You must tick all the declarations before continuing",
@@ -57,7 +58,10 @@ const errorMessages = {
   opening_days_start: "Please select which days this establishment is open",
   opening_days_irregular: "Please describe when this establishment is open",
   opening_days_some: "Please select which days this establishment is open",
-  partner_name: "Not a valid name"
+  partner_name: "Not a valid name",
+  partners: `Please define between 2-${MAX_PARTNERS} partners`,
+  main_partnership_contact:
+    "You must select the main partnership contact before continuing"
 };
 
 const validator = new Validator();
