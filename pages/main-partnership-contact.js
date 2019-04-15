@@ -64,6 +64,6 @@ const PrimaryPartner = props => (
 export default SessionWrapper(PrimaryPartner);
 
 PrimaryPartner.propTypes = {
-  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string, PropTypes.array),
+  cumulativeFullAnswers: PropTypes.shape({main_partnership_contact: PropTypes.string, partners: PropTypes.array}),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

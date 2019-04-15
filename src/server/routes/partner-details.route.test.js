@@ -80,7 +80,7 @@ describe("Partner Details Route: ", () => {
       beforeEach(() => {
         partnerDetailsController.mockImplementation(() => ({
           validationErrors: {},
-          redirectRoute: "/page",
+          redirectRoute: "/new/council/page",
           cumulativeFullAnswers: {
             new: "answers"
           },
@@ -103,7 +103,6 @@ describe("Partner Details Route: ", () => {
           header: {
             Referrer: "www.test.com/new/thepage?display=true"
           },
-          body: "body"
         };
 
         res = {
@@ -116,8 +115,8 @@ describe("Partner Details Route: ", () => {
       it("Should return the correct response", () => {
         expect(partnerDetailsController).toHaveBeenCalledWith(
           "/thepage",
-          { targetParner: null, partners: [] },
-          { body: "body", index: "Brian May" },
+          { targetPartner: "Brian May", partners: [] },
+          { index: "Brian May" },
           "council",
           "save"
         );
@@ -128,46 +127,87 @@ describe("Partner Details Route: ", () => {
       });
     });
     describe("Partner details throws error", () => {
-      let response;
+    /*  let response;
+      const req = {
+        session: {
+          switches: {},
+          save: cb => {
+            cb("session save error");
+          }
+        },
+        params: {
+          switchName: "exampleSwitch",
+          action: "on",
+          originator: "/mock-page-1"
+        }
+      };
+      const res = {
+        redirect: jest.fn()
+      };
+
       beforeEach(() => {
         partnerDetailsController.mockImplementation(() => ({
-          validationErrors: {},
-          redirectRoute: "/page",
-          cumulativeFullAnswers: {
-            new: "answers"
-          },
-          switches: { exampleSwitch: true }
+          cumulativeFullAnswers: { example: "answer" },
+          newSwitchState: true
         }));
-
-        handler = router.post.mock.calls[0][1];
-
-        req = {
-          session: {
-            cumulativeFullAnswers: { targetPartner: null },
-            switches: {},
-            council: "council",
-            pathConfig: { path: "existing path from session" },
-            save: cb => {
-              cb("save error");
-            }
-          },
-          get: value => "www.test.com/new/thepage?display=true",
-          header: {
-            Referrer: "www.test.com/new/thepage?display=true"
-          },
-          body: "body"
-        };
-
-        res = {
-          redirect: jest.fn()
-        };
-
+        handler = router.post.mock.calls[0][0];
         try {
           handler(req, res);
         } catch (err) {
           response = err;
         }
       });
+
+      it("should throw a session save error", () => {
+        expect(response).toBe("session save error");
+      });
+    });*/
+     let response;   
+
+      const req = {
+        session: {
+          cumulativeFullAnswers: { targetPartner: null },
+          targetPartner: {},
+          council: "council",
+          pathConfig: { path: "existing path from session" },
+          save: cb => {
+            cb("save error");
+          }
+        },
+        body: "body",
+        params: {
+          targetPartner: "exampleTargetPartner",
+          action: "on",
+          originator: "/mock-page-1"
+        },
+        get: value => "www.test.com/new/thepage?display=true",
+        header: {
+          Referrer: "www.test.com/new/thepage?display=true"
+        }
+      };
+
+      beforeEach(async () => {
+        partnerDetailsController.mockImplementation(() => ({
+          validationErrors: {},
+          redirectRoute: "/page",
+          cumulativeFullAnswers: {
+            new: "answers"
+          },
+          targetPartner: { }
+        }));
+
+        handler = router.post.mock.calls[0][1];
+
+        const res = {
+          redirect: jest.fn()
+        };
+        try {
+          await handler(req, res);
+        } catch (err) {
+          response = err;
+        }
+      });
+
       it("Shold throw an error", () => {
         expect(response).toBe("save error");
       });
@@ -217,7 +257,7 @@ describe("Partner Details Route: ", () => {
             targetPartner: null,
             partners: []
           },
-          { body: "body", index: null },
+          "body",
           "council",
           "save"
         );
@@ -438,7 +478,7 @@ describe("Partner Details Route: ", () => {
 
     describe("When an error is thrown", () => {
       let response;
-      beforeEach(() => {
+      beforeEach(async () => {
         partnerDetailsController.mockImplementation(() => ({
           validationErrors: {},
           redirectRoute: "/page",
@@ -473,7 +513,7 @@ describe("Partner Details Route: ", () => {
           redirect: jest.fn()
         };
         try {
-          handler(req, res);
+          await handler(req, res);
         } catch (err) {
           response = err;
         }

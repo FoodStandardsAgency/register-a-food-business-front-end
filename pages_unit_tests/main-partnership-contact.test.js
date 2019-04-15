@@ -1,4 +1,4 @@
-import PrimaryPartner from "../pages/partner-primary-contact";
+import PrimaryPartner from "../pages/main-partnership-contact";
 import { shallow, mount } from "enzyme";
 
 const testValidatorErrors = {
@@ -25,7 +25,7 @@ describe("<PrimaryPartner />", () => {
     const wrapper = mount(
       <PrimaryPartner
         validatorErrors={testValidatorErrors}
-        cumulativeFullAnswers={threeRadioOptions}
+        cumulativeFullAnswers={{partners: threeRadioOptions.partners}}
         switches={testSwitches}
       />
     );
@@ -37,7 +37,7 @@ describe("<PrimaryPartner />", () => {
     const wrapper = mount(
       <PrimaryPartner
         validatorErrors={testValidatorErrors}
-        cumulativeFullAnswers={fourRadioOptions}
+        cumulativeFullAnswers={{partners: fourRadioOptions.partners}}
         switches={testSwitches}
       />
     );
@@ -53,7 +53,7 @@ describe("all Radio buttons", () => {
         <PrimaryPartner
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={{
-            primary_partner: fourRadioOptions.partners[id],
+            main_partnership_contact: fourRadioOptions.partners[id],
             partners: fourRadioOptions.partners
           }}
           switches={testSwitches}
