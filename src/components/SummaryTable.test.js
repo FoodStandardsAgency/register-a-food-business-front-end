@@ -44,11 +44,11 @@ const editableTableRows = [
   "businessTypeRow",
   "activitiesCustomersRow",
   "businessOtherDetailsRow",
-  "establishmentOpeningDaysRow"
+  "establishmentOpeningDaysRow",
+  "operatorPartnersRow"
 ];
-
 // (only optional if it's optional within that page. Does not apply to pages that are optional or could be skipped.)
-const optionalTableRows = ["operatorCharityNumberRow"];
+const optionalTableRows = ["operatorCharityNumberRow", "operatorPartnersRow"];
 
 const allTableRows = mandatoryTableRows.concat(optionalTableRows);
 
@@ -91,7 +91,9 @@ const testOptionalAnswers = {
   contact_representative_role: "Coder",
   operator_charity_number: "123456",
   establishment_secondary_number: "7654321",
-  operator_secondary_number: "7654321"
+  operator_secondary_number: "7654321",
+  partners: ["John", "Doe"],
+  main_partnership_contact: "John"
 };
 
 // the complete set of possible answer fields with example data
