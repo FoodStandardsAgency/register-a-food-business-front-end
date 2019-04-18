@@ -32,7 +32,9 @@ const OperatorAddress = props => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Header level={1} size="LARGE">
-      What is the operator's address?
+      {props.cumulativeFullAnswers.registration_role === "Partnership"
+        ? "What is the partners's address?"
+        : "What is the operator's address?"}
     </Header>
     <ContentItem.B_30_15>
       <HintText>
