@@ -110,7 +110,7 @@ const PartnerRows = props => {
 
   for (let i = 0; i < partners.length; i++) {
     children.push(
-      <AccessibleTableRow id="partnerRow">
+      <AccessibleTableRow key={`partnerRow${i}`} id="partnerRow">
         <AccessibleCell id={`partner${i}`}>{partners[i]}</AccessibleCell>
         <AccessibleChangeCell>
           <AnchorTag
