@@ -95,5 +95,7 @@ const OperatorAddressLookup = props => (
 export default SessionWrapper(OperatorAddressLookup);
 
 OperatorAddressLookup.propTypes = {
-  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string)
+  cumulativeFullAnswers: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+  )
 };

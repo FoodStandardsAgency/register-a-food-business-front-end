@@ -89,5 +89,7 @@ const EstablishmentAddressLookup = props => (
 export default SessionWrapper(EstablishmentAddressLookup);
 
 EstablishmentAddressLookup.propTypes = {
-  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string)
+  cumulativeFullAnswers: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+  )
 };

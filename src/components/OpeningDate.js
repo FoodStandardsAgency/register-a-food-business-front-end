@@ -125,6 +125,8 @@ const OpeningDate = props => {
 export default OpeningDate;
 
 OpeningDate.propTypes = {
-  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+  ),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };
