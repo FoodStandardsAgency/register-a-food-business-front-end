@@ -73,9 +73,9 @@ const partnerDetailsController = async (
       } else {
         // if there are errors, redirect back to the current page
         controllerResponse.redirectRoute = `${redirectPrefix}${currentPage}`;
-        if (controllerResponse.cumulativeFullAnswers.targetPartner) {
+        if (newAnswers.index !== undefined) {
           controllerResponse.redirectRoute = controllerResponse.redirectRoute.concat(
-            `?id=${controllerResponse.cumulativeFullAnswers.targetPartner}`
+            `?id=${newAnswers.index}`
           );
         }
         logEmitter.emit(
