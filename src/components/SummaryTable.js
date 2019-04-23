@@ -333,12 +333,12 @@ const OperatorDetailsTable = props => (
             <div id="main_partnership_contact">
               {props.main_partnership_contact} (Main Contact)
             </div>
-            {props.partners.map(function(partner, index) {
-              if (partner !== props.main_partnership_contact) {
-                const partnerId = `partner_` + `${index}`;
+            {props.partners
+              .filter(partner => partner !== props.main_partnership_contact)
+              .map(function(partner, index) {
+                const partnerId = "partner_" + index;
                 return <div key={partnerId}>{partner}</div>;
-              }
-            })}
+              })}
           </div>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
