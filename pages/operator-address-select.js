@@ -4,41 +4,22 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
-  SelectWithHeader,
-  HiddenTextAccessible
+  SelectWithHeader
 } from "../src/components";
-import { Header, Paragraph, asAnchor, HintText } from "govuk-react";
+import { Header, Paragraph, asAnchor } from "govuk-react";
 import PropTypes from "prop-types";
+import RoleAddress from "./common/operator-address-common";
 
 const AnchorTag = asAnchor("a");
 
 const OperatorAddressLookup = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={1} size="LARGE">
-      {props.cumulativeFullAnswers.registration_role === "Partnership"
-        ? "What is the partners's address?"
-        : "What is the operator's address?"}
-    </Header>
+    {RoleAddress.header(props.cumulativeFullAnswers.registration_role)}
     <ContentItem.B_30_15>
-      <HintText>
-        Operator address is the contact address for the operator. For example
-        home address for a sole trader or headquarters address for a limited
-        company.
-      </HintText>
+      {RoleAddress.hintText(props.cumulativeFullAnswers.registration_role)}
     </ContentItem.B_30_15>
-
-    <HiddenTextAccessible
-      id="hiddenTextFBO"
-      summaryText={"What is a food business operator?"}
-    >
-      <Paragraph mb={0}>
-        The operator is the person or people, charity or company who makes the
-        decisions about the food business. They decide what it serves and how it
-        operates.
-      </Paragraph>
-    </HiddenTextAccessible>
-
+    {RoleAddress.extraInfo(props.cumulativeFullAnswers.registration_role)}
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
