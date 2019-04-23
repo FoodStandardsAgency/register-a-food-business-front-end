@@ -252,7 +252,11 @@ const OperatorDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="operatorAddressRow"
       >
-        <AccessibleRowHeader>Operator address</AccessibleRowHeader>
+        <AccessibleRowHeader>
+          {props.operator_type === "Partnership"
+            ? "Partnership contact address"
+            : "Operator address"}
+        </AccessibleRowHeader>
         <AccessibleCell>
           <div id="operator_first_line">{props.operator_first_line}</div>
           <div id="operator_street">{props.operator_street || null}</div>
@@ -310,6 +314,39 @@ const OperatorDetailsTable = props => (
               id="changeOperatorEmailRow"
               href="/edit/operator-contact-details"
               aria-label="Change operator email"
+            >
+              Change
+            </AnchorTag>
+          </AccessibleChangeCell>
+        )}
+      </AccessibleTableRow>
+    ) : null}
+
+    {props.partners ? (
+      <AccessibleTableRow
+        acPage={props.applicationCompletePage}
+        id="operatorPartnersRow"
+      >
+        <AccessibleRowHeader>Partner Names</AccessibleRowHeader>
+        <AccessibleCell>
+          <div>
+            <div id="main_partnership_contact">
+              {props.main_partnership_contact} (Main Contact)
+            </div>
+            {props.partners
+              .filter(partner => partner !== props.main_partnership_contact)
+              .map(function(partner, index) {
+                const partnerId = "partner_" + index;
+                return <div key={partnerId}>{partner}</div>;
+              })}
+          </div>
+        </AccessibleCell>
+        {props.applicationCompletePage ? null : (
+          <AccessibleChangeCell>
+            <AnchorTag
+              id="changeOperatorPartnersRow"
+              href="/edit/partner-name"
+              aria-label="Change partner details"
             >
               Change
             </AnchorTag>
