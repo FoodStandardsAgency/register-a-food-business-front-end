@@ -1,32 +1,8 @@
 import React from "react";
 import { Table, asAnchor, Button } from "govuk-react";
 import PropTypes from "prop-types";
-import * as COLOUR from "govuk-colours";
 import styled from "react-emotion";
 import ContentItem from "./ContentItem";
-
-import {
-  FONT_SIZE,
-  LINE_HEIGHT,
-  MEDIA_QUERIES,
-  NTA_LIGHT
-} from "@govuk-react/constants";
-
-const StyledTableRow = styled("div")({
-  fontFamily: NTA_LIGHT,
-  WebkitFontSmoothing: "antialiased",
-  MozOsxFontSmoothing: "grayscale",
-  fontWeight: 400,
-  display: "inline-flex",
-  textTransform: "none",
-  fontSize: FONT_SIZE.SIZE_16,
-  lineHeight: LINE_HEIGHT.SIZE_16,
-  [MEDIA_QUERIES.LARGESCREEN]: {
-    fontSize: FONT_SIZE.SIZE_19,
-    lineHeight: LINE_HEIGHT.SIZE_19
-  },
-  color: `${COLOUR.GREY_1}`
-});
 
 const AccessibleChangeCell = props => (
   <Table.Cell role="cell" className="partnersTableChangeCell" {...props}>
@@ -63,12 +39,6 @@ const AccessibleTableRow = props => (
   <GridRow role="row" {...props}>
     {props.children}
   </GridRow>
-);
-
-const AccessibleRowHeader = props => (
-  <Table.CellHeader scope="row" role="rowheader" {...props}>
-    {props.children}
-  </Table.CellHeader>
 );
 
 const AccessibleCell = props => (
