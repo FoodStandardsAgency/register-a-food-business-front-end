@@ -10,6 +10,7 @@ import {
 } from "../src/components";
 import { Header, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
+import roles from "./helpers/registration-roles";
 
 const OperatorContactDetails = props => (
   <FsaLayout {...props}>
@@ -19,9 +20,9 @@ const OperatorContactDetails = props => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Header level={1} size="LARGE">
-      Operator contact details
+      {roles.role(props.cumulativeFullAnswers.registration_role)[0]} contact
+      details
     </Header>
-
     <HiddenTextAccessible summaryText={"What is a food business operator?"}>
       <Paragraph mb={0}>
         The operator is the person or persons, charity or company who makes the
@@ -96,6 +97,8 @@ const OperatorContactDetails = props => (
 export default SessionWrapper(OperatorContactDetails);
 
 OperatorContactDetails.propTypes = {
-  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+  ),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

@@ -22,7 +22,6 @@ const EstablishmentContactDetails = props => (
     <Header level={1} size="LARGE">
       Establishment contact details
     </Header>
-
     <HiddenTextAccessible summaryText={"What is an establishment?"}>
       <Paragraph mb={0}>
         An establishment is the location of your food business, and the food
@@ -30,7 +29,6 @@ const EstablishmentContactDetails = props => (
         use the location where it is normally stored overnight.
       </Paragraph>
     </HiddenTextAccessible>
-
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <Button
