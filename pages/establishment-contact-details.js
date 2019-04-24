@@ -10,6 +10,7 @@ import {
 } from "../src/components";
 import { Header, InputField, Paragraph, Button } from "govuk-react";
 import PropTypes from "prop-types";
+import roles from "./helpers/registration-roles";
 
 const EstablishmentContactDetails = props => (
   <FsaLayout {...props}>
@@ -37,7 +38,11 @@ const EstablishmentContactDetails = props => (
           formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
           id="reuseButton"
         >
-          Re-use operator contact details
+          Re-use{" "}
+          {roles
+            .role(props.cumulativeFullAnswers.registration_role)[0]
+            .toLowerCase()}{" "}
+          contact details
         </Button>
 
         <ContentItem.B_30_15>

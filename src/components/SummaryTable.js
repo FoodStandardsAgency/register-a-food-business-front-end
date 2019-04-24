@@ -5,6 +5,7 @@ import * as COLOUR from "govuk-colours";
 import moment from "moment";
 import styled from "react-emotion";
 import ContentItem from "./ContentItem";
+import roles from "../../pages/helpers/registration-roles";
 
 import {
   FONT_SIZE,
@@ -253,9 +254,7 @@ const OperatorDetailsTable = props => (
         id="operatorAddressRow"
       >
         <AccessibleRowHeader>
-          {props.operator_type === "Partnership"
-            ? "Partnership contact address"
-            : "Operator address"}
+          {roles.role(props.operator_type)[2]} address
         </AccessibleRowHeader>
         <AccessibleCell>
           <div id="operator_first_line">{props.operator_first_line}</div>

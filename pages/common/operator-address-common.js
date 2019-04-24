@@ -4,20 +4,21 @@
  */
 import { HiddenTextAccessible } from "../../src/components";
 import { Header, HintText, Paragraph } from "govuk-react";
+import roles from "../helpers/registration-roles";
 
 const header = role => {
   return (
     <Header level={1} size="LARGE">
-      What is the {roles(role)[0].toLowerCase()}'s address?
+      What is the {roles.role(role)[0].toLowerCase()}'s address?
     </Header>
   );
 };
 const hintText = role => {
   return (
     <HintText>
-      {roles(role)[0]} address is the contact address for the {roles(role)[1]}.
-      For example home address for a sole trader or headquarters address for a
-      limited company.
+      {roles.role(role)[0]} address is the contact address for the{" "}
+      {roles.role(role)[1]}. For example home address for a sole trader or
+      headquarters address for a limited company.
     </HintText>
   );
 };
@@ -34,11 +35,4 @@ const extraInfo = role => {
   );
 };
 
-function roles(role) {
-  if (role === "Partnership") {
-    return ["Partner", "main partner"];
-  } else {
-    return ["Operator", "operator"];
-  }
-}
 module.exports = { header, hintText, extraInfo };
