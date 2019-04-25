@@ -12,10 +12,7 @@ const AccessibleChangeCell = props => (
 
 const GridRow = styled(Table.Row)`
   display: grid;
-  ${props =>
-    props.acPage
-      ? "grid-template-columns: 1fr 1fr;"
-      : "grid-template-columns: 1fr 1fr 70px;"};
+  grid-template-columns: 1fr 1fr 70px;
 `;
 
 const FsaStyledTable = styled(Table)`
@@ -80,11 +77,11 @@ const PartnerRows = props => {
 
   for (let i = 0; i < partners.length; i++) {
     children.push(
-      <AccessibleTableRow key={`partnerRow${i}`} id="partnerRow">
+      <AccessibleTableRow key={`partnerRow${i}`} id={`partnerRow${i}`}>
         <AccessibleCell id={`partner${i}`}>{partners[i]}</AccessibleCell>
         <AccessibleChangeCell>
           <AnchorTag
-            id={`partner${i}Row`}
+            id={`partner${i}RowChange`}
             href={`/partnership/partner-details?id=${i}`}
             aria-label="Change partner name"
           >
@@ -92,7 +89,12 @@ const PartnerRows = props => {
           </AnchorTag>
         </AccessibleChangeCell>
         <AccessibleChangeCell>
-          <Button type="submit" name="index" value={i} id="deletePartnerButton">
+          <Button
+            type="submit"
+            name="index"
+            value={i}
+            id={`deletePartnerButton${i}`}
+          >
             Delete partner
           </Button>
         </AccessibleChangeCell>

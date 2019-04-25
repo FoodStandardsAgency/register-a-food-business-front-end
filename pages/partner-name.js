@@ -9,7 +9,7 @@ import {
   HiddenTextAccessible,
   PartnersTable
 } from "../src/components";
-import { Header, Paragraph, Button } from "govuk-react";
+import { Header, Paragraph, Button, GridRow, GridCol } from "govuk-react";
 import PropTypes from "prop-types";
 
 const PartnerName = props => (
@@ -30,27 +30,33 @@ const PartnerName = props => (
         <PartnersTable {...props} />
       ) : null}
     </form>
-    <form action="" method="get">
-      {!props.cumulativeFullAnswers.partners ||
-      props.cumulativeFullAnswers.partners.length < 5 ? (
-        <ContentItem.B_30_15>
-          <Button
-            type="submit"
-            formAction="/partnership/partner-details"
-            id="addPartnerButton"
-          >
-            Add partner
-          </Button>
-        </ContentItem.B_30_15>
-      ) : null}
-    </form>
-    <form action="/partnership/continue" method="post">
-      {props.cumulativeFullAnswers.partners ? (
-        props.cumulativeFullAnswers.partners.length >= 2 ? (
-          <ContinueButton {...props} />
-        ) : null
-      ) : null}
-    </form>
+    <GridRow>
+      <GridCol>
+        <form action="" method="get">
+          {!props.cumulativeFullAnswers.partners ||
+          props.cumulativeFullAnswers.partners.length < 5 ? (
+            <ContentItem.B_30_15>
+              <Button
+                type="submit"
+                formAction="/partnership/partner-details"
+                id="addPartnerButton"
+              >
+                Add partner
+              </Button>
+            </ContentItem.B_30_15>
+          ) : null}
+        </form>
+      </GridCol>
+      <GridCol>
+        <form action="/partnership/continue" method="post">
+          {props.cumulativeFullAnswers.partners ? (
+            props.cumulativeFullAnswers.partners.length >= 2 ? (
+              <ContinueButton {...props} />
+            ) : null
+          ) : null}
+        </form>
+      </GridCol>
+    </GridRow>
   </FsaLayout>
 );
 

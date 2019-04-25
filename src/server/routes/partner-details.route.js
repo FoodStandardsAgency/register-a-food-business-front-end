@@ -69,7 +69,7 @@ const partnerDetailsRouter = () => {
     if (req.session.cumulativeFullAnswers.partners === undefined) {
       req.session.cumulativeFullAnswers.partners = [];
     }
-    const targetPartner = req.query.id ? parseInt(req.query.id) : null;
+    const targetPartner = req.query.id ? parseInt(req.query.id, 10) : null;
     req.session.cumulativeFullAnswers.targetPartner = targetPartner;
 
     logEmitter.emit(

@@ -102,7 +102,7 @@ describe("Partner Details Route: ", () => {
           get: value => "www.test.com/new/thepage?display=true",
           header: {
             Referrer: "www.test.com/new/thepage?display=true"
-          },
+          }
         };
 
         res = {
@@ -127,7 +127,7 @@ describe("Partner Details Route: ", () => {
       });
     });
     describe("Partner details throws error", () => {
-    /*  let response;
+      /*  let response;
       const req = {
         session: {
           switches: {},
@@ -162,7 +162,7 @@ describe("Partner Details Route: ", () => {
         expect(response).toBe("session save error");
       });
     });*/
-     let response;   
+      let response;
 
       const req = {
         session: {
@@ -193,7 +193,7 @@ describe("Partner Details Route: ", () => {
           cumulativeFullAnswers: {
             new: "answers"
           },
-          targetPartner: { }
+          targetPartner: {}
         }));
 
         handler = router.post.mock.calls[0][1];
