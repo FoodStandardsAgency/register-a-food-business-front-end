@@ -329,15 +329,18 @@ const OperatorDetailsTable = props => (
         <AccessibleRowHeader>Partner Names</AccessibleRowHeader>
         <AccessibleCell>
           <div>
-            <div id="main_partnership_contact">
-              {props.main_partnership_contact} (Main Contact)
-            </div>
-            {props.partners
-              .filter(partner => partner !== props.main_partnership_contact)
-              .map(function(partner, index) {
-                const partnerId = "partner_" + index;
-                return <div key={partnerId}>{partner}</div>;
-              })}
+            {props.partners.map((partner, index) => {
+              return (
+                <div key={`partner_${index}`}>
+                  {partner}
+                  {props.partners.findIndex(primary => {
+                    return primary === props.main_partnership_contact;
+                  }) === index
+                    ? " (main contact)"
+                    : null}
+                </div>
+              );
+            })}
           </div>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
