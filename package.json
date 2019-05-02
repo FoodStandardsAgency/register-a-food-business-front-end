@@ -30,7 +30,7 @@
   "dependencies": {
     "@govuk-react/icon-crown": "0.0.5",
     "@govuk-react/icons": "0.2.7",
-    "@slice-and-dice/register-a-food-business-validation": "1.14.1",
+    "@slice-and-dice/register-a-food-business-validation": "1.14.2",
     "accessible-autocomplete": "1.6.1",
     "body-parser": "1.18.3",
     "connect-mongo": "2.0.1",
