@@ -25,30 +25,29 @@ const PartnerName = props => (
     <HiddenTextAccessible summaryText={"What is a food business partner?"}>
       <Paragraph mb={0}>The partner is the person or people... TODO</Paragraph>
     </HiddenTextAccessible>
-    <form action="/partnership/delete-partner" method="post">
+    <form action={props.partnerDetailsDeleteFormAction} method="post">
       {props.cumulativeFullAnswers.partners ? (
         <PartnersTable {...props} />
       ) : null}
     </form>
     <GridRow>
       <GridCol>
-        <form action="" method="get">
-          {!props.cumulativeFullAnswers.partners ||
-          props.cumulativeFullAnswers.partners.length < 5 ? (
-            <ContentItem.B_30_15>
-              <Button
-                type="submit"
-                formAction="/partnership/partner-details"
-                id="addPartnerButton"
-              >
+        {!props.cumulativeFullAnswers.partners ||
+        props.cumulativeFullAnswers.partners.length < 5 ? (
+          <ContentItem.B_30_15>
+            <a
+              href={props.partnerDetailsUrl}
+              style={{ textDecoration: "none" }}
+            >
+              <Button type="submit" id="addPartnerButton">
                 Add partner
               </Button>
-            </ContentItem.B_30_15>
-          ) : null}
-        </form>
+            </a>
+          </ContentItem.B_30_15>
+        ) : null}
       </GridCol>
       <GridCol>
-        <form action="/partnership/continue" method="post">
+        <form action={props.partnerDetailsContinueFormAction} method="post">
           {props.cumulativeFullAnswers.partners ? (
             props.cumulativeFullAnswers.partners.length >= 2 ? (
               <ContinueButton {...props} />

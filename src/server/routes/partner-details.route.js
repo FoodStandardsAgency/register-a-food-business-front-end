@@ -14,6 +14,10 @@ const getOriginator = referrerUrl => {
   return referrerUrl.substr(referrerUrl.lastIndexOf("/")).split("?")[0];
 };
 
+const isEditMode = reqQuery => {
+  return reqQuery.edit === "partner-name";
+};
+
 const partnerDetailsRouter = () => {
   const router = Router();
 
@@ -33,12 +37,13 @@ const partnerDetailsRouter = () => {
       req.session.cumulativeFullAnswers.partners = [];
     }
 
-    const response = await partnerDetailsController(
+    const response = partnerDetailsController(
       originator,
       req.session.cumulativeFullAnswers,
       data,
       req.session.council,
-      "save"
+      "save",
+      isEditMode(req.query)
     );
 
     req.session.validatorErrors = response.validatorErrors;
@@ -87,7 +92,7 @@ const partnerDetailsRouter = () => {
         );
         throw err;
       }
-      Next.render(req, res, "/partner-details");
+      Next.render(req, res, `/partner-details`);
     });
   });
 
@@ -104,12 +109,13 @@ const partnerDetailsRouter = () => {
       req.session.cumulativeFullAnswers.partners = [];
     }
 
-    const response = await partnerDetailsController(
+    const response = partnerDetailsController(
       originator,
       req.session.cumulativeFullAnswers,
       req.body,
       req.session.council,
-      "delete"
+      "delete",
+      isEditMode(req.query)
     );
 
     req.session.validatorErrors = response.validatorErrors;
@@ -143,12 +149,13 @@ const partnerDetailsRouter = () => {
       req.session.cumulativeFullAnswers.partners = [];
     }
 
-    const response = await partnerDetailsController(
+    const response = partnerDetailsController(
       originator,
       req.session.cumulativeFullAnswers,
       {},
       req.session.council,
-      "continue"
+      "continue",
+      isEditMode(req.query)
     );
 
     req.session.validatorErrors = response.validatorErrors;
@@ -175,13 +182,16 @@ const partnerDetailsRouter = () => {
 
   router.get("/back", (req, res) => {
     logEmitter.emit("functionCall", "Routes", "partnership/back route");
+    const redirectUrl = isEditMode
+      ? `/new/${req.session.council}/partner-name?edit=partner-name`
+      : "/new/${req.session.council}/partner-name?";
     logEmitter.emit(
       "functionSuccessWith",
       "Routes",
       "partnership/back route",
-      `Redirecting to: /new/${req.session.council}/partner-name`
+      `Redirecting to: ${redirectUrl}`
     );
-    res.redirect(`/new/${req.session.council}/partner-name`);
+    res.redirect(redirectUrl);
   });
 
   return router;

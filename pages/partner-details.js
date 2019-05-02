@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 
 const PartnerDetails = props => (
   <FsaLayout {...props}>
-    <BackButton href="/partnership/back" {...props} />
+    <BackButton href={props.partnerDetailsBackUrl} {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -20,7 +20,7 @@ const PartnerDetails = props => (
     <Header level={1} size="LARGE">
       What is the partner's name?
     </Header>
-    <form action="/partnership/save" method="post">
+    <form action={props.partnerDetailsSaveFormAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
