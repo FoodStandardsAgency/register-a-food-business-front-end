@@ -8,7 +8,11 @@
 const { Router } = require("express");
 const { Next } = require("../next");
 const { logEmitter } = require("../services/logging.service");
-const partnerDetailsController = require("../controllers/partner-details.controller");
+const {
+  partnerDetailsContinue,
+  partnerDetailsSave,
+  partnerDetailsDelete
+} = require("../controllers/partner-details.controller");
 
 const getOriginator = referrerUrl => {
   return referrerUrl.substr(referrerUrl.lastIndexOf("/")).split("?")[0];
@@ -37,12 +41,11 @@ const partnerDetailsRouter = () => {
       req.session.cumulativeFullAnswers.partners = [];
     }
 
-    const response = partnerDetailsController(
+    const response = partnerDetailsSave(
       originator,
       req.session.cumulativeFullAnswers,
       data,
       req.session.council,
-      "save",
       isEditMode(req.query)
     );
 
@@ -109,12 +112,11 @@ const partnerDetailsRouter = () => {
       req.session.cumulativeFullAnswers.partners = [];
     }
 
-    const response = partnerDetailsController(
+    const response = partnerDetailsDelete(
       originator,
       req.session.cumulativeFullAnswers,
       req.body,
       req.session.council,
-      "delete",
       isEditMode(req.query)
     );
 
@@ -149,12 +151,11 @@ const partnerDetailsRouter = () => {
       req.session.cumulativeFullAnswers.partners = [];
     }
 
-    const response = partnerDetailsController(
+    const response = partnerDetailsContinue(
       originator,
       req.session.cumulativeFullAnswers,
       {},
       req.session.council,
-      "continue",
       isEditMode(req.query)
     );
 
