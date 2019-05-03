@@ -74,7 +74,9 @@ const AnchorTag = asAnchor("a");
 const PartnerRows = props => {
   let children = [];
   const partners = props.cumulativeFullAnswers.partners;
-  const hasGETParams = props.partnerDetailsUrl.indexOf("?") >= 0;
+  const hasGETParams = props.partnerDetailsUrl
+    ? props.partnerDetailsUrl.indexOf("?") >= 0
+    : false;
 
   for (let i = 0; i < partners.length; i++) {
     children.push(
