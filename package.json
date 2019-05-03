@@ -1,6 +1,6 @@
 {
   "name": "register_a_food_business_front_end",
-  "version": "4.1.0",
+  "version": "6.0.0",
   "scripts": {
     "debug": "node --inspect src/server/index.js",
     "debug:prod": "NODE_ENV=production node --inspect src/server/index.js",
@@ -45,6 +45,7 @@
     "jsonschema": "1.2.4",
     "mongodb": "3.1.6",
     "next": "6.1.1",
+    "node-cache": "4.2.0",
     "node-fetch": "2.1.2",
     "react-emotion": "9.2.8",
     "stemmer": "1.0.2",
