@@ -8,9 +8,10 @@ import PartnershipCommon from "./partnership-common";
 import OperatorCommon from "./operator-common";
 
 const hintText = role => {
+  const key = "partnership-hint-text";
   if (role === "Partnership") {
     return (
-      <ContentItem.B_30_15>
+      <ContentItem.B_30_15 key={key}>
         <HintText>
           Contact details for the main point of contact for this business
         </HintText>

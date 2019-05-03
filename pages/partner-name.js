@@ -8,14 +8,7 @@ import {
   OnHandleErrorClick,
   PartnersTable
 } from "../src/components";
-import {
-  Header,
-  Button,
-  GridRow,
-  GridCol,
-  Paragraph,
-  HintText
-} from "govuk-react";
+import { Header, Button, GridRow, GridCol, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 import PartnershipCommon from "./common/partnership-common";
 
