@@ -3,11 +3,10 @@ import {
   SessionWrapper,
   ContentItem,
   BackButton,
-  ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick
 } from "../src/components";
-import { Header, InputField } from "govuk-react";
+import { Button, Header, InputField, GridRow, GridCol } from "govuk-react";
 import PropTypes from "prop-types";
 
 const PartnerDetails = props => (
@@ -18,7 +17,12 @@ const PartnerDetails = props => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Header level={1} size="LARGE">
-      What is the partner's name?
+      {props.cumulativeFullAnswers.partners[
+        props.cumulativeFullAnswers.targetPartner
+      ]
+        ? "Edit"
+        : "Add"}{" "}
+      partners name
     </Header>
     <form action={props.partnerDetailsSaveFormAction} method="post">
       <ContentItem.B_30_15>
@@ -42,7 +46,35 @@ const PartnerDetails = props => (
           </InputField>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
-      <ContinueButton {...props} />
+      <GridRow>
+        <GridCol>
+          <Button
+            onClick={props.onClick}
+            disabled={props.disabled}
+            id="continue-button"
+            type="submit"
+          >
+            {props.cumulativeFullAnswers.partners[
+              props.cumulativeFullAnswers.targetPartner
+            ]
+              ? "Save"
+              : "Add"}{" "}
+            partner
+          </Button>
+        </GridCol>
+        <GridCol>
+          <ContentItem.B_30_15>
+            <a
+              href={props.partnerDetailsBackUrl}
+              style={{ textDecoration: "none" }}
+            >
+              <Button type="button" id="cancelButton">
+                Cancel
+              </Button>
+            </a>
+          </ContentItem.B_30_15>
+        </GridCol>
+      </GridRow>
     </form>
   </FsaLayout>
 );
