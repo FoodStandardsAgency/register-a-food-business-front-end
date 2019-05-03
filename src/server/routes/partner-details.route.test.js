@@ -52,7 +52,7 @@ describe("Partner Details Route: ", () => {
               cb();
             }
           },
-          get: () => "www.test.com/new/thepage?display=true",
+          get: value => "www.test.com/new/thepage?display=true",
           body: "body",
           query: {}
         };
@@ -133,43 +133,7 @@ describe("Partner Details Route: ", () => {
       });
     });
     describe("Partner details throws error", () => {
-      /*  let response;
-      const req = {
-        session: {
-          switches: {},
-          save: cb => {
-            cb("session save error");
-          }
-        },
-        params: {
-          switchName: "exampleSwitch",
-          action: "on",
-          originator: "/mock-page-1"
-        }
-      };
-      const res = {
-        redirect: jest.fn()
-      };
-
-      beforeEach(() => {
-        partnerDetailsController.mockImplementation(() => ({
-          cumulativeFullAnswers: { example: "answer" },
-          newSwitchState: true
-        }));
-        handler = router.post.mock.calls[0][0];
-        try {
-          handler(req, res);
-        } catch (err) {
-          response = err;
-        }
-      });
-
-      it("should throw a session save error", () => {
-        expect(response).toBe("session save error");
-      });
-    });*/
       let response;
-
       const req = {
         session: {
           cumulativeFullAnswers: { targetPartner: null },
@@ -509,6 +473,158 @@ describe("Partner Details Route: ", () => {
             }
           },
           get: value => "www.test.com/new/thepage?display=true",
+          body: {
+            example: "property"
+          },
+          header: {
+            Referrer: "www.address.com/new/council/thispage?blah=hello"
+          },
+          query: {}
+        };
+
+        res = {
+          redirect: jest.fn()
+        };
+        try {
+          await handler(req, res);
+        } catch (err) {
+          response = err;
+        }
+      });
+
+      it("Should throw an error", () => {
+        expect(response).toBe("Error saving session");
+      });
+    });
+  });
+
+  describe("POST to /continue", () => {
+    let res, req;
+    describe("When partners provided", () => {
+      beforeEach(() => {
+        partnerDetailsContinue.mockImplementation(() => ({
+          validationErrors: {},
+          redirectRoute: "/page",
+          cumulativeFullAnswers: {
+            partners: ["One First", "Second Two"]
+          },
+          switches: {}
+        }));
+
+        handler = router.post.mock.calls[2][1];
+
+        req = {
+          session: {
+            council: "council",
+            cumulativeFullAnswers: {
+              partners: ["One First", "Two Second"]
+            },
+            save: cb => {
+              cb();
+            }
+          },
+          get: value => "www.test.com/new/thepage?display=true",
+          body: {
+            example: "property to ignore"
+          },
+          header: {
+            Referrer: "www.address.com/new/council/thispage?blah=hello"
+          },
+          query: {}
+        };
+        res = {
+          redirect: jest.fn()
+        };
+
+        handler(req, res);
+      });
+      it("Should call the partnerDetailsContinue correctly", () => {
+        expect(partnerDetailsContinue).toHaveBeenCalledWith(
+          "/thepage",
+          { partners: ["One First", "Two Second"] },
+          {},
+          "council",
+          false
+        );
+      });
+      it("Should redirect to next page", () => {
+        expect(res.redirect).toHaveBeenCalledWith("/page");
+      });
+    });
+    describe("When partners are invalid", () => {
+      beforeEach(() => {
+        partnerDetailsContinue.mockImplementation(() => ({
+          validationErrors: { partners: "Invalid partners" },
+          redirectRoute: "/page",
+          cumulativeFullAnswers: { partners: [] },
+          switches: {}
+        }));
+
+        handler = router.post.mock.calls[2][1];
+
+        req = {
+          session: {
+            council: "council",
+            cumulativeFullAnswers: { partners: [] },
+            save: cb => {
+              cb();
+            }
+          },
+          get: value => "www.test.com/new/thepage?display=true",
+          body: {
+            example: "property"
+          },
+          header: {
+            Referrer: "www.address.com/new/council/thispage?blah=hello"
+          },
+          query: {}
+        };
+
+        res = {
+          redirect: jest.fn()
+        };
+
+        handler(req, res);
+      });
+      it("Should call the partnerDetailsContinue correctly", () => {
+        expect(partnerDetailsContinue).toHaveBeenCalledWith(
+          "/thepage",
+          { partners: [] },
+          {},
+          "council",
+          false
+        );
+      });
+      it("Should redirect to next page", () => {
+        expect(res.redirect).toHaveBeenCalledWith("/page");
+      });
+    });
+
+    describe("When an error is thrown", () => {
+      let response;
+      beforeEach(async () => {
+        partnerDetailsContinue.mockImplementation(() => ({
+          validationErrors: {},
+          redirectRoute: "/page",
+          cumulativeFullAnswers: {
+            partners: ["One First", "Second Two"]
+          },
+          switches: { exampleSwitch: true }
+        }));
+
+        handler = router.post.mock.calls[2][1];
+
+        req = {
+          session: {
+            council: "council",
+            cumulativeFullAnswers: {
+              partners: ["One First", "Two Second"]
+            },
+            save: cb => {
+              cb("Error saving session");
+            }
+          },
+          get: () => "www.test.com/new/thepage?display=true",
           body: {
             example: "property"
           },
