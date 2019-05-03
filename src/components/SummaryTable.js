@@ -352,16 +352,7 @@ const OperatorDetailsTable = props => (
           <AccessibleCell>
             <div>
               {props.partners.map((partner, index) => {
-                return (
-                  <div key={`partner_${index}`}>
-                    {partner}
-                    {props.partners.findIndex(primary => {
-                      return primary === props.main_partnership_contact;
-                    }) === index
-                      ? " (main contact)"
-                      : null}
-                  </div>
-                );
+                return <div key={`partner_${index}`}>{partner}</div>;
               })}
             </div>
           </AccessibleCell>
