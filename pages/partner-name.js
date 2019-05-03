@@ -6,11 +6,11 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible,
   PartnersTable
 } from "../src/components";
-import { Header, Paragraph, Button, GridRow, GridCol } from "govuk-react";
+import { Header, Button, GridRow, GridCol, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
+import PartnershipCommon from "./common/partnership-common";
 
 const PartnerName = props => (
   <FsaLayout {...props}>
@@ -20,11 +20,14 @@ const PartnerName = props => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Header level={1} size="LARGE">
-      What is the partner's name?
+      What are the partners' names?
     </Header>
-    <HiddenTextAccessible summaryText={"What is a food business partner?"}>
-      <Paragraph mb={0}>The partner is the person or people... TODO</Paragraph>
-    </HiddenTextAccessible>
+    {PartnershipCommon.whatIsAPartnership()}
+    <Paragraph mb={0}>
+      Please advise your local authority directly if more than 5 partners are
+      responsible for this food business
+    </Paragraph>
+    <br />
     <form action={props.partnerDetailsDeleteFormAction} method="post">
       {props.cumulativeFullAnswers.partners ? (
         <PartnersTable {...props} />
