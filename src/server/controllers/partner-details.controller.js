@@ -214,7 +214,6 @@ const partnerDetailsSave = (
  * Returns an object containing validator errors (if present), the redirect route (e.g. the next page),
  * the new value of the cumulative answers object, and the new value of the switches object.
  *
- * @param {string} currentPage The 'originator' page that the user has come from
  * @param {object} previousAnswers An object containing every past answer that has been given by the user
  * @param {object} newAnswers An object containing new answers from the current page
  * @param {string} council local_council_url allowing to put the user back on the path by redirecting to /new/council
@@ -222,13 +221,7 @@ const partnerDetailsSave = (
  *
  * @returns {object} Values for the router to store/update in the session and the page to redirect to.
  */
-const partnerDetailsDelete = (
-  currentPage,
-  previousAnswers,
-  newAnswers,
-  council,
-  edit
-) => {
+const partnerDetailsDelete = (previousAnswers, newAnswers, council, edit) => {
   const controllerResponse = {
     validatorErrors: {},
     redirectRoute: null,

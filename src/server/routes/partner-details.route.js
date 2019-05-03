@@ -106,14 +106,11 @@ const partnerDetailsRouter = () => {
       "/partnership/delete-partner route"
     );
 
-    const originator = getOriginator(req.get("Referrer"));
-
     if (req.session.cumulativeFullAnswers.partners === undefined) {
       req.session.cumulativeFullAnswers.partners = [];
     }
 
     const response = partnerDetailsDelete(
-      originator,
       req.session.cumulativeFullAnswers,
       req.body,
       req.session.council,
