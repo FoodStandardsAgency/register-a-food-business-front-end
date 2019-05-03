@@ -74,6 +74,7 @@ const AnchorTag = asAnchor("a");
 const PartnerRows = props => {
   let children = [];
   const partners = props.cumulativeFullAnswers.partners;
+  const hasGETParams = props.partnerDetailsUrl.indexOf("?") >= 0;
 
   for (let i = 0; i < partners.length; i++) {
     children.push(
@@ -82,7 +83,9 @@ const PartnerRows = props => {
         <AccessibleChangeCell>
           <AnchorTag
             id={`partner${i}RowChange`}
-            href={`/partnership/partner-details?id=${i}`}
+            href={`${props.partnerDetailsUrl}${
+              hasGETParams ? "&" : "?"
+            }id=${i}`}
             aria-label="Change partner name"
           >
             Change

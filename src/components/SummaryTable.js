@@ -322,36 +322,62 @@ const OperatorDetailsTable = props => (
     ) : null}
 
     {props.partners ? (
-      <AccessibleTableRow
-        acPage={props.applicationCompletePage}
-        id="operatorPartnersRow"
-      >
-        <AccessibleRowHeader>Partner Names</AccessibleRowHeader>
-        <AccessibleCell>
-          <div>
-            <div id="main_partnership_contact">
-              {props.main_partnership_contact} (Main Contact)
+      <React.Fragment>
+        <AccessibleTableRow
+          acPage={props.applicationCompletePage}
+          id="operatorPartnersRow"
+        >
+          <AccessibleRowHeader>Main partnership contact</AccessibleRowHeader>
+          <AccessibleCell>
+            <div>
+              <div id="main_partnership_contact">
+                {props.main_partnership_contact}
+              </div>
             </div>
-            {props.partners
-              .filter(partner => partner !== props.main_partnership_contact)
-              .map(function(partner, index) {
-                const partnerId = "partner_" + index;
-                return <div key={partnerId}>{partner}</div>;
+          </AccessibleCell>
+          {props.applicationCompletePage ? null : (
+            <AccessibleChangeCell>
+              <AnchorTag
+                id="changeMainPartnershipContact"
+                href="/edit/main-partnership-contact"
+                aria-label="Change main partnership contact"
+              >
+                Change
+              </AnchorTag>
+            </AccessibleChangeCell>
+          )}
+        </AccessibleTableRow>
+        <AccessibleTableRow>
+          <AccessibleRowHeader>Partner Names</AccessibleRowHeader>
+          <AccessibleCell>
+            <div>
+              {props.partners.map((partner, index) => {
+                return (
+                  <div key={`partner_${index}`}>
+                    {partner}
+                    {props.partners.findIndex(primary => {
+                      return primary === props.main_partnership_contact;
+                    }) === index
+                      ? " (main contact)"
+                      : null}
+                  </div>
+                );
               })}
-          </div>
-        </AccessibleCell>
-        {props.applicationCompletePage ? null : (
-          <AccessibleChangeCell>
-            <AnchorTag
-              id="changeOperatorPartnersRow"
-              href="/edit/partner-name"
-              aria-label="Change partner details"
-            >
-              Change
-            </AnchorTag>
-          </AccessibleChangeCell>
-        )}
-      </AccessibleTableRow>
+            </div>
+          </AccessibleCell>
+          {props.applicationCompletePage ? null : (
+            <AccessibleChangeCell>
+              <AnchorTag
+                id="changeOperatorPartnersRow"
+                href="/edit/partner-name"
+                aria-label="Change partner details"
+              >
+                Change
+              </AnchorTag>
+            </AccessibleChangeCell>
+          )}
+        </AccessibleTableRow>
+      </React.Fragment>
     ) : null}
 
     {props.contact_representative_email ? (

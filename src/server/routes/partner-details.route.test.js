@@ -10,7 +10,11 @@ jest.mock("../next", () => ({
     render: jest.fn()
   }
 }));
-const partnerDetailsController = require("../controllers/partner-details.controller");
+const {
+  partnerDetailsContinue,
+  partnerDetailsSave,
+  partnerDetailsDelete
+} = require("../controllers/partner-details.controller");
 const { partnerDetailsRouter } = require("./partner-details.route");
 const { Next } = require("../next");
 
@@ -24,7 +28,7 @@ describe("Partner Details Route: ", () => {
     let req, res;
     describe("Add new partner", () => {
       beforeEach(() => {
-        partnerDetailsController.mockImplementation(() => ({
+        partnerDetailsSave.mockImplementation(() => ({
           validationErrors: {},
           redirectRoute: "/page",
           cumulativeFullAnswers: {
@@ -49,7 +53,8 @@ describe("Partner Details Route: ", () => {
             }
           },
           get: () => "www.test.com/new/thepage?display=true",
-          body: "body"
+          body: "body",
+          query: {}
         };
 
         res = {
@@ -60,7 +65,7 @@ describe("Partner Details Route: ", () => {
       });
 
       it("Should return the correct response", () => {
-        expect(partnerDetailsController).toHaveBeenCalledWith(
+        expect(partnerDetailsSave).toHaveBeenCalledWith(
           "/thepage",
           {
             partners: ["One First", "Second Two"],
@@ -68,7 +73,7 @@ describe("Partner Details Route: ", () => {
           },
           "body",
           "council",
-          "save"
+          false
         );
       });
 
@@ -78,7 +83,7 @@ describe("Partner Details Route: ", () => {
     });
     describe("Update partner", () => {
       beforeEach(() => {
-        partnerDetailsController.mockImplementation(() => ({
+        partnerDetailsSave.mockImplementation(() => ({
           validationErrors: {},
           redirectRoute: "/new/council/page",
           cumulativeFullAnswers: {
@@ -102,7 +107,8 @@ describe("Partner Details Route: ", () => {
           get: value => "www.test.com/new/thepage?display=true",
           header: {
             Referrer: "www.test.com/new/thepage?display=true"
-          }
+          },
+          query: {}
         };
 
         res = {
@@ -113,12 +119,12 @@ describe("Partner Details Route: ", () => {
       });
 
       it("Should return the correct response", () => {
-        expect(partnerDetailsController).toHaveBeenCalledWith(
+        expect(partnerDetailsSave).toHaveBeenCalledWith(
           "/thepage",
           { targetPartner: "Brian May", partners: [] },
           { index: "Brian May" },
           "council",
-          "save"
+          false
         );
       });
 
@@ -183,11 +189,12 @@ describe("Partner Details Route: ", () => {
         get: value => "www.test.com/new/thepage?display=true",
         header: {
           Referrer: "www.test.com/new/thepage?display=true"
-        }
+        },
+        query: {}
       };
 
       beforeEach(async () => {
-        partnerDetailsController.mockImplementation(() => ({
+        partnerDetailsSave.mockImplementation(() => ({
           validationErrors: {},
           redirectRoute: "/page",
           cumulativeFullAnswers: {
@@ -215,7 +222,7 @@ describe("Partner Details Route: ", () => {
 
     describe("When partners is not defined", () => {
       beforeEach(() => {
-        partnerDetailsController.mockImplementation(() => ({
+        partnerDetailsSave.mockImplementation(() => ({
           validationErrors: {},
           redirectRoute: "/page",
           cumulativeFullAnswers: {
@@ -240,7 +247,8 @@ describe("Partner Details Route: ", () => {
           header: {
             Referrer: "www.test.com/new/thepage?display=true"
           },
-          body: "body"
+          body: "body",
+          query: {}
         };
 
         res = {
@@ -251,7 +259,7 @@ describe("Partner Details Route: ", () => {
       });
 
       it("Should have response contain partners set as empty array", () => {
-        expect(partnerDetailsController).toBeCalledWith(
+        expect(partnerDetailsSave).toBeCalledWith(
           "/thepage",
           {
             targetPartner: null,
@@ -259,7 +267,7 @@ describe("Partner Details Route: ", () => {
           },
           "body",
           "council",
-          "save"
+          false
         );
       });
     });
@@ -379,7 +387,7 @@ describe("Partner Details Route: ", () => {
     let res, req;
     describe("When partners provided", () => {
       beforeEach(() => {
-        partnerDetailsController.mockImplementation(() => ({
+        partnerDetailsDelete.mockImplementation(() => ({
           validationErrors: {},
           redirectRoute: "/page",
           cumulativeFullAnswers: {
@@ -406,7 +414,8 @@ describe("Partner Details Route: ", () => {
           },
           header: {
             Referrer: "www.address.com/new/council/thispage?blah=hello"
-          }
+          },
+          query: {}
         };
 
         res = {
@@ -416,12 +425,12 @@ describe("Partner Details Route: ", () => {
         handler(req, res);
       });
       it("Should call the partner details controller correctly", () => {
-        expect(partnerDetailsController).toHaveBeenCalledWith(
+        expect(partnerDetailsDelete).toHaveBeenCalledWith(
           "/thepage",
           { partners: ["One First", "Two Second"] },
           { example: "property" },
           "council",
-          "delete"
+          false
         );
       });
       it("Should redirect to next page", () => {
@@ -430,7 +439,7 @@ describe("Partner Details Route: ", () => {
     });
     describe("When partners are not provided", () => {
       beforeEach(() => {
-        partnerDetailsController.mockImplementation(() => ({
+        partnerDetailsDelete.mockImplementation(() => ({
           validationErrors: {},
           redirectRoute: "/page",
           cumulativeFullAnswers: {},
@@ -453,7 +462,8 @@ describe("Partner Details Route: ", () => {
           },
           header: {
             Referrer: "www.address.com/new/council/thispage?blah=hello"
-          }
+          },
+          query: {}
         };
 
         res = {
@@ -463,12 +473,12 @@ describe("Partner Details Route: ", () => {
         handler(req, res);
       });
       it("Should call the partner details controller correctly", () => {
-        expect(partnerDetailsController).toHaveBeenCalledWith(
+        expect(partnerDetailsDelete).toHaveBeenCalledWith(
           "/thepage",
           { partners: [] },
           { example: "property" },
           "council",
-          "delete"
+          false
         );
       });
       it("Should redirect to next page", () => {
@@ -479,7 +489,7 @@ describe("Partner Details Route: ", () => {
     describe("When an error is thrown", () => {
       let response;
       beforeEach(async () => {
-        partnerDetailsController.mockImplementation(() => ({
+        partnerDetailsDelete.mockImplementation(() => ({
           validationErrors: {},
           redirectRoute: "/page",
           cumulativeFullAnswers: {
@@ -506,7 +516,8 @@ describe("Partner Details Route: ", () => {
           },
           header: {
             Referrer: "www.address.com/new/council/thispage?blah=hello"
-          }
+          },
+          query: {}
         };
 
         res = {
