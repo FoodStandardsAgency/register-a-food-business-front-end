@@ -11,7 +11,7 @@ const {
 
 const currentPage = "/current";
 const council = "cardiff";
-let editMode = false;
+let editMode;
 
 describe("Partner-details controller: partnerDetailsSave()", () => {
   describe("Without edit mode", () => {
@@ -170,6 +170,40 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
         });
       });
     });
+    describe("When given invalid submission data on update", () => {
+      let response;
+      beforeEach(async () => {
+        validate.mockImplementation(() => ({
+          errors: { example: "error" }
+        }));
+
+        try {
+          response = await partnerDetailsSave(
+            currentPage,
+            { partners: ["partner one"] },
+            { partner_name: "", index: 0 },
+            council,
+            editMode
+          );
+        } catch (err) {
+          response = err;
+        }
+      });
+
+      it("Should set redirectRoute back to the same page", () => {
+        expect(response.redirectRoute).toBe("/partnership/current?id=0");
+      });
+
+      it("Should return non empty validatorErrors", () => {
+        expect(response.validatorErrors).toEqual({ example: "error" });
+      });
+
+      it("Should return cumulativeFullAnswers", () => {
+        expect(response.cumulativeFullAnswers).toEqual({
+          partners: ["partner one"]
+        });
+      });
+    });
 
     describe("Given a service thrown an error", () => {
       let response;
@@ -193,6 +227,38 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
 
       it("Should throw the error", () => {
         expect(response.message).toBe("Some error");
+      });
+    });
+    describe("When given valid submission data but partners length is less than 2", () => {
+      let response;
+      beforeEach(async () => {
+        validate.mockImplementation(() => ({
+          errors: { partners: "error" }
+        }));
+        try {
+          response = await partnerDetailsSave(
+            currentPage,
+            { partners: ["partner one"] },
+            { partner_name: "partner two" },
+            council,
+            editMode
+          );
+        } catch (err) {
+          response = err;
+        }
+      });
+      it("Should set redirectRoute back to partner-name", () => {
+        expect(response.redirectRoute).toBe("/new/cardiff/partner-name");
+      });
+      it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
+        expect(response.cumulativeFullAnswers).toEqual({
+          partners: ["partner one", "partner two"],
+          targetPartner: null
+        });
+      });
+
+      it("Should return empty validatorErrors", () => {
+        expect(response.validatorErrors).toEqual({});
       });
     });
   });
@@ -363,6 +429,43 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
     });
 
+    describe("When given invalid submission data on update", () => {
+      let response;
+      beforeEach(async () => {
+        validate.mockImplementation(() => ({
+          errors: { example: "error" }
+        }));
+
+        try {
+          response = await partnerDetailsSave(
+            currentPage,
+            { partners: ["partner one"] },
+            { partner_name: "", index: 0 },
+            council,
+            editMode
+          );
+        } catch (err) {
+          response = err;
+        }
+      });
+
+      it("Should set redirectRoute back to the same page", () => {
+        expect(response.redirectRoute).toBe(
+          "/partnership/current?id=0&edit=partner-name"
+        );
+      });
+
+      it("Should return non empty validatorErrors", () => {
+        expect(response.validatorErrors).toEqual({ example: "error" });
+      });
+
+      it("Should return cumulativeFullAnswers", () => {
+        expect(response.cumulativeFullAnswers).toEqual({
+          partners: ["partner one"]
+        });
+      });
+    });
+
     describe("Given a service thrown an error", () => {
       let response;
       beforeEach(async () => {
@@ -405,7 +508,6 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
 
         try {
           response = await partnerDetailsDelete(
-            currentPage,
             { partners: ["partner one", "partner two", "partner three"] },
             { index: 1 },
             council,
@@ -436,7 +538,6 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
 
         try {
           response = await partnerDetailsDelete(
-            currentPage,
             { partners: ["partner one", "partner two", "partner three"] },
             { index: -1 },
             council,
@@ -465,13 +566,8 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
     describe("When given invalid array data on delete", () => {
       let response;
       beforeEach(async () => {
-        validate.mockImplementation(() => ({
-          errors: {}
-        }));
-
         try {
           response = await partnerDetailsDelete(
-            currentPage,
             { partners: [] },
             { index: 0 },
             council,
@@ -496,6 +592,21 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
         expect(response.validatorErrors).toEqual({});
       });
     });
+
+    describe("When partners array is not defined", () => {
+      let errorThrown = false;
+      beforeEach(async () => {
+        try {
+          await partnerDetailsDelete({}, { index: 0 }, council, editMode);
+        } catch (err) {
+          errorThrown = true;
+        }
+      });
+
+      it("Should throw error", () => {
+        expect(errorThrown).toBe(true);
+      });
+    });
   });
   describe("In edit mode", () => {
     beforeEach(() => {
@@ -510,7 +621,6 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
 
         try {
           response = await partnerDetailsDelete(
-            currentPage,
             { partners: ["partner one", "partner two", "partner three"] },
             { index: 1 },
             council,
@@ -543,7 +653,6 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
 
         try {
           response = await partnerDetailsDelete(
-            currentPage,
             { partners: ["partner one", "partner two", "partner three"] },
             { index: -1 },
             council,
@@ -580,7 +689,6 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
 
         try {
           response = await partnerDetailsDelete(
-            currentPage,
             { partners: [] },
             { index: 0 },
             council,
@@ -672,6 +780,30 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
         expect(response.validatorErrors).toEqual({
           partners: "Invalid partners"
         });
+      });
+    });
+    describe("Given a service thrown an error", () => {
+      let response;
+      beforeEach(async () => {
+        validate.mockImplementation(() => {
+          throw new Error("Some error");
+        });
+
+        try {
+          response = await partnerDetailsContinue(
+            currentPage,
+            { partners: ["partner one"] },
+            {},
+            council,
+            editMode
+          );
+        } catch (err) {
+          response = err;
+        }
+      });
+
+      it("Should throw the error", () => {
+        expect(response.message).toBe("Some error");
       });
     });
   });
