@@ -32,17 +32,22 @@ describe("<PartnersTable />", () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = mount(<PartnersTable cumulativeFullAnswers={partners} />);
+      wrapper = mount(
+        <PartnersTable
+          partnerDetailsUrl="/partnership/partner-details"
+          cumulativeFullAnswers={partners}
+        />
+      );
     });
 
-    it("should render chagne link with id 0", () => {
+    it("should render change link with id 0", () => {
       const changeLink = wrapper.find("#partner0RowChange");
       expect(changeLink.first().props().href).toBe(
         "/partnership/partner-details?id=0"
       );
     });
 
-    it("should render chagne link with id 1", () => {
+    it("should render change link with id 1", () => {
       const changeLink = wrapper.find("#partner1RowChange");
       expect(changeLink.first().props().href).toBe(
         "/partnership/partner-details?id=1"

@@ -325,7 +325,7 @@ const OperatorDetailsTable = props => (
       <React.Fragment>
         <AccessibleTableRow
           acPage={props.applicationCompletePage}
-          id="operatorPartnersRow"
+          id="operatorMainPartnerRow"
         >
           <AccessibleRowHeader>Main partnership contact</AccessibleRowHeader>
           <AccessibleCell>
@@ -338,7 +338,7 @@ const OperatorDetailsTable = props => (
           {props.applicationCompletePage ? null : (
             <AccessibleChangeCell>
               <AnchorTag
-                id="changeMainPartnershipContact"
+                id="changeOperatorMainPartnerRow"
                 href="/edit/main-partnership-contact"
                 aria-label="Change main partnership contact"
               >
@@ -347,7 +347,10 @@ const OperatorDetailsTable = props => (
             </AccessibleChangeCell>
           )}
         </AccessibleTableRow>
-        <AccessibleTableRow>
+        <AccessibleTableRow
+          acPage={props.applicationCompletePage}
+          id="operatorPartnersRow"
+        >
           <AccessibleRowHeader>Partners</AccessibleRowHeader>
           <AccessibleCell>
             <div>

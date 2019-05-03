@@ -45,10 +45,15 @@ const editableTableRows = [
   "activitiesCustomersRow",
   "businessOtherDetailsRow",
   "establishmentOpeningDaysRow",
-  "operatorPartnersRow"
+  "operatorPartnersRow",
+  "operatorMainPartnerRow"
 ];
 // (only optional if it's optional within that page. Does not apply to pages that are optional or could be skipped.)
-const optionalTableRows = ["operatorCharityNumberRow", "operatorPartnersRow"];
+const optionalTableRows = [
+  "operatorCharityNumberRow",
+  "operatorPartnersRow",
+  "operatorMainPartnerRow"
+];
 
 const allTableRows = mandatoryTableRows.concat(optionalTableRows);
 
@@ -152,7 +157,6 @@ describe("<SummaryTable />", () => {
         const buttonId = `change${tableRowName.charAt(0).toUpperCase() +
           tableRowName.substr(1)}`;
         const button = row.find(`Anchor#${buttonId}`);
-
         expect(button.length).toBe(1);
       });
     });

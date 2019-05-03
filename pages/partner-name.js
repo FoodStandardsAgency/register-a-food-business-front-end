@@ -40,6 +40,7 @@ const PartnerName = props => (
         props.cumulativeFullAnswers.partners.length < 5 ? (
           <ContentItem.B_30_15>
             <a
+              id="addPartnerLink"
               href={props.partnerDetailsUrl}
               style={{ textDecoration: "none" }}
             >
