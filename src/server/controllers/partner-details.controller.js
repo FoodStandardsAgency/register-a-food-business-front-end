@@ -172,6 +172,7 @@ const partnerDetailsSave = (
     }
 
     const partners = controllerResponse.cumulativeFullAnswers.partners;
+
     const partnerName = newAnswers["partner_name"];
     const partnerIndex = newAnswers["index"];
     controllerResponse.redirectRoute = `/new/${council}/partner-name`;

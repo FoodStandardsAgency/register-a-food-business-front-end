@@ -8,7 +8,7 @@ import roles from "../helpers/registration-roles";
 
 const header = role => {
   return (
-    <Header level={1} size="LARGE">
+    <Header level={1} size="LARGE" id="operator-address-header">
       What is the {roles.role(role)[0].toLowerCase()}'s address?
     </Header>
   );
