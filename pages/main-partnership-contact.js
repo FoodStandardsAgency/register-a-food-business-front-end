@@ -7,8 +7,9 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick
 } from "../src/components";
-import { Header, Radio, MultiChoice } from "govuk-react";
+import { Header, Radio, MultiChoice, HintText } from "govuk-react";
 import PropTypes from "prop-types";
+import PartnershipCommon from "./common/partnership-common";
 
 const getPartnersList = props => {
   let output = [];
@@ -40,9 +41,15 @@ const PrimaryPartner = props => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Header level={1} size="LARGE">
-      Who is the primary partner?
+      Who is the main point of contact?
     </Header>
-
+    <ContentItem.B_30_15>
+      <HintText>
+        Please select the partner who will be the main point of contact for this
+        business
+      </HintText>
+    </ContentItem.B_30_15>
+    {PartnershipCommon.whatIsAPartnership()}
     <form action={props.formAction} method="post">
       <ContentItem.B_45_30>
         <MultiChoice

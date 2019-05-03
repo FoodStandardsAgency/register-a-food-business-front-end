@@ -5,9 +5,9 @@
 
 var role = role => {
   if (role === "Partnership") {
-    return ["Partner", "main partner", "Partnership contact"];
+    return ["Partnership", "Partnership contact"];
   } else {
-    return ["Operator", "operator", "Operator"];
+    return ["Operator", "Operator"];
   }
 };
 module.exports = { role };

@@ -9,7 +9,7 @@ import {
 } from "../src/components";
 import { InputField, ErrorText } from "govuk-react";
 import PropTypes from "prop-types";
-import RoleAddress from "./common/operator-address-common";
+import RoleAddress from "./common/address-common";
 
 const OperatorAddress = props => (
   <FsaLayout {...props}>
@@ -25,11 +25,7 @@ const OperatorAddress = props => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    {RoleAddress.header(props.cumulativeFullAnswers.registration_role)}
-    <ContentItem.B_30_15>
-      {RoleAddress.hintText(props.cumulativeFullAnswers.registration_role)}
-    </ContentItem.B_30_15>
-    {RoleAddress.extraInfo(props.cumulativeFullAnswers.registration_role)}
+    {RoleAddress.addressCommon(props.cumulativeFullAnswers.registration_role)}
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         {props.switches["/operator-address-none-found"] ? (

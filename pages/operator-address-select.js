@@ -8,18 +8,14 @@ import {
 } from "../src/components";
 import { Header, Paragraph, asAnchor } from "govuk-react";
 import PropTypes from "prop-types";
-import RoleAddress from "./common/operator-address-common";
+import RoleAddress from "./common/address-common";
 
 const AnchorTag = asAnchor("a");
 
 const OperatorAddressLookup = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    {RoleAddress.header(props.cumulativeFullAnswers.registration_role)}
-    <ContentItem.B_30_15>
-      {RoleAddress.hintText(props.cumulativeFullAnswers.registration_role)}
-    </ContentItem.B_30_15>
-    {RoleAddress.extraInfo(props.cumulativeFullAnswers.registration_role)}
+    {RoleAddress.addressCommon(props.cumulativeFullAnswers.registration_role)}
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
