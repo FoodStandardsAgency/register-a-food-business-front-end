@@ -247,7 +247,7 @@ const partnerDetailsDelete = (
     const partners = controllerResponse.cumulativeFullAnswers.partners;
     const partnerIndex = newAnswers["index"];
 
-    controllerResponse.redirectRoute = `/new/${council}${currentPage}`;
+    controllerResponse.redirectRoute = `/new/${council}/partner-name`;
     if (partners[partnerIndex]) {
       partners.splice(partnerIndex, 1);
     }
