@@ -426,7 +426,6 @@ describe("Partner Details Route: ", () => {
       });
       it("Should call the partner details controller correctly", () => {
         expect(partnerDetailsDelete).toHaveBeenCalledWith(
-          "/thepage",
           { partners: ["One First", "Two Second"] },
           { example: "property" },
           "council",
@@ -474,7 +473,6 @@ describe("Partner Details Route: ", () => {
       });
       it("Should call the partner details controller correctly", () => {
         expect(partnerDetailsDelete).toHaveBeenCalledWith(
-          "/thepage",
           { partners: [] },
           { example: "property" },
           "council",
