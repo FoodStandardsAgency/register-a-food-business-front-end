@@ -1,5 +1,5 @@
 /**
- * Functions that return correct components for address pages dependent on the registration role (Partnership or Operator)
+ * Functions that return correct components for partnership pages
  * @module common/partnership-common
  */
 import { HiddenTextAccessible } from "../../src/components";
