@@ -16,6 +16,23 @@ describe("<OperatorContactDetails />", () => {
     expect(wrapper.length).toBe(1);
   });
 
+  describe("renders correct hint text", () => {
+    it("for Partnership", () => {
+      const cumulativeAnswers = { registration_role: "Partnership" };
+      const wrapper = mount(
+        <OperatorContactDetails
+          validatorErrors={testValidatorErrors}
+          cumulativeFullAnswers={cumulativeAnswers}
+          switches={testSwitches}
+        />
+      );
+      const hintText = wrapper.find("#partnership-hint-text");
+      expect(hintText.first().props().children).toBe(
+        "Contact details for the main point of contact for this business"
+      );
+    });
+  });
+
   describe("operator primary phone number input field", () => {
     it("renders", () => {
       const wrapper = mount(

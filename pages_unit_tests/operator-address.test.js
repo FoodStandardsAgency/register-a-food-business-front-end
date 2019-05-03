@@ -17,6 +17,40 @@ describe("<OperatorAddress />", () => {
     expect(wrapper.length).toBe(1);
   });
 
+  describe("for Partnership renders correct", () => {
+    let wrapper;
+    beforeEach(() => {
+      const cumulativeAnswers = { registration_role: "Partnership" };
+      wrapper = mount(
+        <OperatorAddress
+          validatorErrors={testValidatorErrors}
+          cumulativeFullAnswers={cumulativeAnswers}
+          switches={testSwitches}
+        />
+      );
+    });
+
+    it("header", () => {
+      const header = wrapper.find("#partnership-address-header");
+      expect(header.first().props().children).toBe(
+        "What is the partnership contact's address?"
+      );
+    });
+
+    it("hintText", () => {
+      const hintText = wrapper.find("#partnership-hint-text");
+      expect(hintText.first().props().children).toBe(
+        "Partnership address is the contact address for the partner who is the main point of contact."
+      );
+    });
+
+    it("hiddenText", () => {
+      const hiddenText = wrapper.find("#partnership-hidden-text");
+      expect(hiddenText.first().props().children).toBe(
+        "In a partnership, you and your partner (or partners) personally share responsibility for your food business"
+      );
+    });
+  });
   describe("Operator postcode input field", () => {
     it("renders", () => {
       const wrapper = mount(

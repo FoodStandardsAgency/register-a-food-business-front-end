@@ -12,7 +12,7 @@ const hintText = role => {
   if (role === "Partnership") {
     return (
       <ContentItem.B_30_15 key={key}>
-        <HintText>
+        <HintText id={key}>
           Contact details for the main point of contact for this business
         </HintText>
       </ContentItem.B_30_15>

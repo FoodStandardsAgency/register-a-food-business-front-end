@@ -29,7 +29,7 @@ const hintText = role => {
     const key = "partnership-hint-text";
     return (
       <ContentItem.B_30_15 key={key}>
-        <HintText>
+        <HintText id={key}>
           Partnership address is the contact address for the partner who is the
           main point of contact.
         </HintText>

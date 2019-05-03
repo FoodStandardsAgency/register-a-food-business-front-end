@@ -54,6 +54,19 @@ describe("<PartnersTable />", () => {
       );
     });
 
+    it("should render change link with id 0 with get param", () => {
+      wrapper = mount(
+        <PartnersTable
+          partnerDetailsUrl="/partnership/partner-details?getparam"
+          cumulativeFullAnswers={partners}
+        />
+      );
+      const changeLink = wrapper.find("#partner0RowChange");
+      expect(changeLink.first().props().href).toBe(
+        "/partnership/partner-details?getparam&id=0"
+      );
+    });
+
     it("should render deleteButton with the correct index", () => {
       const deleteButton = wrapper.find("#deletePartnerButton0");
       expect(deleteButton.first().props().value).toBe(0);
