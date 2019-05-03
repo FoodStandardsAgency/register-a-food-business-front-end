@@ -91,6 +91,7 @@ const partnerDetailsController = async (
     }
 
     const partners = controllerResponse.cumulativeFullAnswers.partners;
+
     const partnerName = newAnswers["partner_name"];
     const partnerIndex = newAnswers["index"];
 

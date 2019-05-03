@@ -19,7 +19,7 @@ const getPartnersList = props => {
       <Radio
         name="main_partnership_contact"
         value={partners[id]}
-        id={partners[id]}
+        id={`partner-${id}`}
         key={id}
         defaultChecked={
           props.cumulativeFullAnswers.main_partnership_contact === partners[id]

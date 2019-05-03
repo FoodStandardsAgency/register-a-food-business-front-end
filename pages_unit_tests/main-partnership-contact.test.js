@@ -48,6 +48,7 @@ describe("<PrimaryPartner />", () => {
 
 describe("all Radio buttons", () => {
   it("can be selected by default", () => {
+    let i =0;
     for (let id in fourRadioOptions.partners) {
       const wrapper = mount(
         <PrimaryPartner
@@ -60,9 +61,10 @@ describe("all Radio buttons", () => {
         />
       );
       const registrationRoleRadio = wrapper.find(
-        `Radio#${fourRadioOptions.partners[id]}`
+        `Radio#partner-${i}`
       );
       expect(registrationRoleRadio.props().defaultChecked).toBe(true);
+      i++;
     }
   });
 });
