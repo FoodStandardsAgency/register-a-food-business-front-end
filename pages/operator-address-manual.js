@@ -9,7 +9,7 @@ import {
 } from "../src/components";
 import { InputField, ErrorText } from "govuk-react";
 import PropTypes from "prop-types";
-import RoleAddress from "./common/operator-address-common";
+import RoleAddress from "./common/address-common";
 
 const OperatorAddress = props => (
   <FsaLayout {...props}>

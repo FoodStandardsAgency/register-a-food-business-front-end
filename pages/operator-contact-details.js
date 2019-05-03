@@ -5,10 +5,9 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick,
-  HiddenTextAccessible
+  OnHandleErrorClick
 } from "../src/components";
-import { Header, InputField, Paragraph, HintText } from "govuk-react";
+import { Header, InputField } from "govuk-react";
 import PropTypes from "prop-types";
 import roles from "./helpers/registration-roles";
 import ContactCommon from "./common/contact-common";

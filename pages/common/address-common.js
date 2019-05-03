@@ -2,8 +2,8 @@
  * Functions that return correct components for address pages dependent on the registration role (Partnership or Operator)
  * @module common/address-common
  */
-import { ContentItem, HiddenTextAccessible } from "../../src/components";
-import { Header, HintText, Paragraph } from "govuk-react";
+import { ContentItem } from "../../src/components";
+import { Header, HintText } from "govuk-react";
 import PartnershipCommon from "./partnership-common";
 import OperatorCommon from "./operator-common";
 

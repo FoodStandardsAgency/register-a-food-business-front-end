@@ -7,7 +7,7 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick
 } from "../src/components";
-import { Header, Paragraph, Radio, MultiChoice, HintText } from "govuk-react";
+import { Header, Radio, MultiChoice, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 import PartnershipCommon from "./common/partnership-common";
 
