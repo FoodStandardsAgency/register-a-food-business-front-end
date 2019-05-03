@@ -15,11 +15,7 @@ const AnchorTag = asAnchor("a");
 const OperatorAddressLookup = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    {RoleAddress.header(props.cumulativeFullAnswers.registration_role)}
-    <ContentItem.B_30_15>
-      {RoleAddress.hintText(props.cumulativeFullAnswers.registration_role)}
-    </ContentItem.B_30_15>
-    {RoleAddress.extraInfo(props.cumulativeFullAnswers.registration_role)}
+    {RoleAddress.addressCommon(props.cumulativeFullAnswers.registration_role)}
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>

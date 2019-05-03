@@ -8,7 +8,14 @@ import {
   OnHandleErrorClick,
   PartnersTable
 } from "../src/components";
-import { Header, Button, GridRow, GridCol, Paragraph } from "govuk-react";
+import {
+  Header,
+  Button,
+  GridRow,
+  GridCol,
+  Paragraph,
+  HintText
+} from "govuk-react";
 import PropTypes from "prop-types";
 import PartnershipCommon from "./common/partnership-common";
 
@@ -22,12 +29,13 @@ const PartnerName = props => (
     <Header level={1} size="LARGE">
       What are the partners' names?
     </Header>
+    <ContentItem.B_30_15>
+      <HintText>
+        Please advise your local authority directly if more than 5 partners are
+        responsible for this food business
+      </HintText>
+    </ContentItem.B_30_15>
     {PartnershipCommon.whatIsAPartnership()}
-    <Paragraph mb={0}>
-      Please advise your local authority directly if more than 5 partners are
-      responsible for this food business
-    </Paragraph>
-    <br />
     <form action={props.partnerDetailsDeleteFormAction} method="post">
       {props.cumulativeFullAnswers.partners ? (
         <PartnersTable {...props} />

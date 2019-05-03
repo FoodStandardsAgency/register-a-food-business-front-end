@@ -8,9 +8,10 @@ import {
   OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
-import { Header, InputField, Paragraph } from "govuk-react";
+import { Header, InputField, Paragraph, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 import roles from "./helpers/registration-roles";
+import ContactCommon from "./common/contact-common";
 
 const OperatorContactDetails = props => (
   <FsaLayout {...props}>
@@ -23,14 +24,7 @@ const OperatorContactDetails = props => (
       {roles.role(props.cumulativeFullAnswers.registration_role)[0]} contact
       details
     </Header>
-    <HiddenTextAccessible summaryText={"What is a food business operator?"}>
-      <Paragraph mb={0}>
-        The operator is the person or persons, charity or company who makes the
-        decisions about the food business. They decide what it serves and how it
-        operates.
-      </Paragraph>
-    </HiddenTextAccessible>
-
+    {ContactCommon.contactCommon(props.cumulativeFullAnswers.registration_role)}
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>

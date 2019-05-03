@@ -254,7 +254,7 @@ const OperatorDetailsTable = props => (
         id="operatorAddressRow"
       >
         <AccessibleRowHeader>
-          {roles.role(props.operator_type)[2]} address
+          {roles.role(props.operator_type)[1]} address
         </AccessibleRowHeader>
         <AccessibleCell>
           <div id="operator_first_line">{props.operator_first_line}</div>
@@ -348,7 +348,7 @@ const OperatorDetailsTable = props => (
           )}
         </AccessibleTableRow>
         <AccessibleTableRow>
-          <AccessibleRowHeader>Partner Names</AccessibleRowHeader>
+          <AccessibleRowHeader>Partners</AccessibleRowHeader>
           <AccessibleCell>
             <div>
               {props.partners.map((partner, index) => {
