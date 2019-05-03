@@ -1,7 +1,7 @@
 import registrationRole from "../../pages/helpers/registration-roles";
 
-const partnershipArr = ["Partner", "main partner", "Partnership contact"];
-const operatorArr = ["Operator", "operator", "Operator"];
+const partnershipArr = ["Partnership", "Partnership contact"];
+const operatorArr = ["Operator", "Operator"];
 const partnershipRole = "Partnership";
 const operatorRole = "Operator";
 
