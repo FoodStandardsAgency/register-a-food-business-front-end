@@ -16,7 +16,10 @@ const SessionWrapper = Page => {
       req && req.query && req.query.edit ? `/${req.query.edit}` : undefined;
 
     const editModePartnerDetails =
-      req && req.query && req.query.edit && req.query.edit === "partner-name";
+      req &&
+      req.query &&
+      req.query.edit &&
+      (req.query.edit === "partner-name" || "registration-role");
 
     const acceptAllCookies =
       req && req.cookies && req.cookies.acceptAllCookies
