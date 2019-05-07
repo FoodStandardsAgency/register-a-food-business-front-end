@@ -39,11 +39,15 @@ const partnerDetailsContinue = (
   );
   try {
     controllerResponse.cumulativeFullAnswers = previousAnswers;
-    newAnswers.partners = controllerResponse.cumulativeFullAnswers.partners;
-
     controllerResponse.validatorErrors = Object.assign(
       {},
-      validate(currentPage, newAnswers).errors
+      validate(
+        currentPage,
+        Object.assign(
+          {},
+          { partners: controllerResponse.cumulativeFullAnswers.partners }
+        )
+      ).errors
     );
 
     const validationErrorsKeys = Object.keys(
