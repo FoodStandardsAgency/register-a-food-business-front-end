@@ -736,7 +736,6 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
           response = await partnerDetailsContinue(
             currentPage,
             { partners: partnerArray },
-            {},
             council,
             editMode
           );
@@ -766,7 +765,6 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
         response = await partnerDetailsContinue(
           currentPage,
           { partners: partnerArray },
-          { partners: ["array should", "be lost"] },
           council,
           editMode
         );
@@ -793,7 +791,6 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
           response = await partnerDetailsContinue(
             currentPage,
             { partners: ["partner one"] },
-            {},
             council,
             editMode
           );
@@ -824,7 +821,7 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
           response = await partnerDetailsContinue(
             currentPage,
             { partners: partnerArray, main_partnership_contact: "partner one" },
-            {},
+
             council,
             editMode
           );
@@ -854,7 +851,7 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
             partners: partnerArray,
             main_partnership_contact: "deleted partner"
           },
-          {},
+
           council,
           editMode
         );

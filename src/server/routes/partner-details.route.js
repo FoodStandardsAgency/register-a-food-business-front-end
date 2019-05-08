@@ -151,13 +151,11 @@ const partnerDetailsRouter = () => {
     const response = partnerDetailsContinue(
       originator,
       req.session.cumulativeFullAnswers,
-      {},
       req.session.council,
       isEditMode(req.query)
     );
 
     req.session.validatorErrors = response.validatorErrors;
-    req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
 
     logEmitter.emit(
       "functionSuccess",

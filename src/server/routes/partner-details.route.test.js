@@ -542,7 +542,7 @@ describe("Partner Details Route: ", () => {
         expect(partnerDetailsContinue).toHaveBeenCalledWith(
           "/thepage",
           { partners: ["One First", "Two Second"] },
-          {},
+
           "council",
           false
         );
@@ -590,7 +590,7 @@ describe("Partner Details Route: ", () => {
         expect(partnerDetailsContinue).toHaveBeenCalledWith(
           "/thepage",
           { partners: [] },
-          {},
+
           "council",
           false
         );

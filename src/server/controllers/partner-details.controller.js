@@ -12,7 +12,6 @@ const { MAX_PARTNERS } = require("../config");
  *
  * @param {string} currentPage The 'originator' page that the user has come from
  * @param {object} previousAnswers An object containing every past answer that has been given by the user
- * @param {object} newAnswers An object containing new answers from the current page
  * @param {string} council local_council_url allowing to put the user back on the path by redirecting to /new/council
  * @param {boolean} edit Flag indicating if request was submitted in edit mode
  *
@@ -21,14 +20,12 @@ const { MAX_PARTNERS } = require("../config");
 const partnerDetailsContinue = (
   currentPage,
   previousAnswers,
-  newAnswers,
   council,
   edit
 ) => {
   const controllerResponse = {
     validatorErrors: {},
     redirectRoute: null,
-    cumulativeFullAnswers: {},
     addressLookups: {},
     switches: {}
   };
@@ -38,15 +35,11 @@ const partnerDetailsContinue = (
     "partnerDetailsContinue"
   );
   try {
-    controllerResponse.cumulativeFullAnswers = previousAnswers;
     controllerResponse.validatorErrors = Object.assign(
       {},
       validate(
         currentPage,
-        Object.assign(
-          {},
-          { partners: controllerResponse.cumulativeFullAnswers.partners }
-        )
+        Object.assign({}, { partners: previousAnswers.partners })
       ).errors
     );
 
@@ -70,11 +63,8 @@ const partnerDetailsContinue = (
 
     if (edit) {
       if (
-        controllerResponse.cumulativeFullAnswers.partners.find(partnerName => {
-          return (
-            partnerName ===
-            controllerResponse.cumulativeFullAnswers.main_partnership_contact
-          );
+        previousAnswers.partners.find(partnerName => {
+          return partnerName === previousAnswers.main_partnership_contact;
         }) !== undefined
       ) {
         controllerResponse.redirectRoute = `/new/${council}/registration-summary`;
