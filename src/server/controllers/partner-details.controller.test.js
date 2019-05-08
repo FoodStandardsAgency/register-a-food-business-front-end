@@ -43,8 +43,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner two"],
-          targetPartner: null
+          partners: ["partner one", "partner two"]
         });
       });
 
@@ -77,8 +76,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner new name", "partner two"],
-          targetPartner: null
+          partners: ["partner new name", "partner two"]
         });
       });
 
@@ -126,8 +124,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
             "partner 3",
             "partner 4",
             "partner 5"
-          ],
-          targetPartner: null
+          ]
         });
       });
 
@@ -252,8 +249,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner two"],
-          targetPartner: null
+          partners: ["partner one", "partner two"]
         });
       });
 
@@ -295,8 +291,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner two"],
-          targetPartner: null
+          partners: ["partner one", "partner two"]
         });
       });
 
@@ -331,8 +326,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner new name", "partner two"],
-          targetPartner: null
+          partners: ["partner new name", "partner two"]
         });
       });
 
@@ -382,8 +376,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
             "partner 3",
             "partner 4",
             "partner 5"
-          ],
-          targetPartner: null
+          ]
         });
       });
 
@@ -523,8 +516,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers without the deleted partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner three"],
-          targetPartner: null
+          partners: ["partner one", "partner three"]
         });
       });
     });
@@ -553,8 +545,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers wwith no changes", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner two", "partner three"],
-          targetPartner: null
+          partners: ["partner one", "partner two", "partner three"]
         });
       });
 
@@ -583,8 +574,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
       it("Should return cumulativeFullAnswers still with the empty array", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: [],
-          targetPartner: null
+          partners: []
         });
       });
 
@@ -638,8 +628,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers without the deleted partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner three"],
-          targetPartner: null
+          partners: ["partner one", "partner three"]
         });
       });
     });
@@ -668,10 +657,9 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
           "/new/cardiff/partner-name?edit=partner-name"
         );
       });
-      it("Should return cumulativeFullAnswers including the previous answers wwith no changes", () => {
+      it("Should return cumulativeFullAnswers including the previous answers with no changes", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner two", "partner three"],
-          targetPartner: null
+          partners: ["partner one", "partner two", "partner three"]
         });
       });
 
@@ -706,8 +694,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
       it("Should return cumulativeFullAnswers still with the empty array", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: [],
-          targetPartner: null
+          partners: []
         });
       });
 

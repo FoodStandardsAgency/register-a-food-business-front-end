@@ -185,7 +185,7 @@ const partnerDetailsSave = (
       );
     }
     controllerResponse.cumulativeFullAnswers.partners = partners;
-    controllerResponse.cumulativeFullAnswers.targetPartner = null;
+    delete controllerResponse.cumulativeFullAnswers.targetPartner;
 
     logEmitter.emit(
       "functionSuccess",
@@ -245,7 +245,7 @@ const partnerDetailsDelete = (previousAnswers, newAnswers, council, edit) => {
       );
     }
     controllerResponse.cumulativeFullAnswers.partners = partners;
-    controllerResponse.cumulativeFullAnswers.targetPartner = null;
+    delete controllerResponse.cumulativeFullAnswers.targetPartner;
 
     logEmitter.emit(
       "functionSuccess",

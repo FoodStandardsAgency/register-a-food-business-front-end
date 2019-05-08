@@ -42,8 +42,7 @@ describe("Partner Details Route: ", () => {
         req = {
           session: {
             cumulativeFullAnswers: {
-              partners: ["One First", "Second Two"],
-              targetPartner: null
+              partners: ["One First", "Second Two"]
             },
             switches: {},
             council: "council",
@@ -68,8 +67,7 @@ describe("Partner Details Route: ", () => {
         expect(partnerDetailsSave).toHaveBeenCalledWith(
           "/thepage",
           {
-            partners: ["One First", "Second Two"],
-            targetPartner: null
+            partners: ["One First", "Second Two"]
           },
           "body",
           "council",
@@ -136,8 +134,7 @@ describe("Partner Details Route: ", () => {
       let response;
       const req = {
         session: {
-          cumulativeFullAnswers: { targetPartner: null },
-          targetPartner: {},
+          cumulativeFullAnswers: {},
           council: "council",
           pathConfig: { path: "existing path from session" },
           save: cb => {
@@ -163,8 +160,7 @@ describe("Partner Details Route: ", () => {
           redirectRoute: "/page",
           cumulativeFullAnswers: {
             new: "answers"
-          },
-          targetPartner: {}
+          }
         }));
 
         handler = router.post.mock.calls[0][1];
@@ -199,7 +195,7 @@ describe("Partner Details Route: ", () => {
 
         req = {
           session: {
-            cumulativeFullAnswers: { targetPartner: null },
+            cumulativeFullAnswers: {},
             switches: {},
             council: "council",
             pathConfig: { path: "existing path from session" },
@@ -226,7 +222,6 @@ describe("Partner Details Route: ", () => {
         expect(partnerDetailsSave).toBeCalledWith(
           "/thepage",
           {
-            targetPartner: null,
             partners: []
           },
           "body",
@@ -300,8 +295,10 @@ describe("Partner Details Route: ", () => {
         handler(req, res);
       });
 
-      it("Should set target partner as null", () => {
-        expect(req.session.cumulativeFullAnswers.targetPartner).toEqual(null);
+      it("Should delete target partner", () => {
+        expect(req.session.cumulativeFullAnswers.targetPartner).toEqual(
+          undefined
+        );
       });
       it("Should have Partners as an empty array", () => {
         expect(req.session.cumulativeFullAnswers.partners).toEqual([]);

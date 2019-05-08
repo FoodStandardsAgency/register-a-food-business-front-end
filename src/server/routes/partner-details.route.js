@@ -31,7 +31,7 @@ const partnerDetailsRouter = () => {
     const originator = getOriginator(req.get("Referrer"));
 
     const data =
-      req.session.cumulativeFullAnswers.targetPartner !== null
+      req.session.cumulativeFullAnswers.targetPartner !== undefined
         ? Object.assign({}, req.body, {
             index: req.session.cumulativeFullAnswers.targetPartner
           })
@@ -77,8 +77,11 @@ const partnerDetailsRouter = () => {
     if (req.session.cumulativeFullAnswers.partners === undefined) {
       req.session.cumulativeFullAnswers.partners = [];
     }
-    const targetPartner = req.query.id ? parseInt(req.query.id, 10) : null;
-    req.session.cumulativeFullAnswers.targetPartner = targetPartner;
+    const targetPartner = parseInt(req.query.id, 10);
+
+    if (!isNaN(targetPartner)) {
+      req.session.cumulativeFullAnswers.targetPartner = targetPartner;
+    }
 
     logEmitter.emit(
       "functionSuccess",

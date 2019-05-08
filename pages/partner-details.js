@@ -83,7 +83,11 @@ export default SessionWrapper(PartnerDetails);
 
 PartnerDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+      PropTypes.number
+    ])
   ),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };
