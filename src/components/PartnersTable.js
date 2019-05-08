@@ -12,7 +12,7 @@ const AccessibleChangeCell = props => (
 
 const GridRow = styled(Table.Row)`
   display: grid;
-  grid-template-columns: 1fr 1fr 70px;
+  grid-template-columns: 1fr 1fr 120px;
 `;
 
 const FsaStyledTable = styled(Table)`
