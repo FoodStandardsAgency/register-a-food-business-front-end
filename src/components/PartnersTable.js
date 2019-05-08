@@ -93,14 +93,16 @@ const PartnerRows = props => {
           </AnchorTag>
         </AccessibleChangeCell>
         <AccessibleChangeCell>
-          <Button
-            type="submit"
-            name="index"
-            value={i}
-            id={`deletePartnerButton${i}`}
-          >
-            Delete partner
-          </Button>
+          <ContentItem.B_30_15>
+            <Button
+              type="submit"
+              name="index"
+              value={i}
+              id={`deletePartnerButton${i}`}
+            >
+              Delete partner
+            </Button>
+          </ContentItem.B_30_15>
         </AccessibleChangeCell>
       </AccessibleTableRow>
     );

@@ -8,54 +8,39 @@ import {
   OnHandleErrorClick,
   PartnersTable
 } from "../src/components";
-import { Header, Button, GridRow, GridCol, HintText } from "govuk-react";
+import { Header, Button, HintText } from "govuk-react";
 import styled from "react-emotion";
 import PropTypes from "prop-types";
 import PartnershipCommon from "./common/partnership-common";
 
-const EvenColumnsRow = styled(GridRow)`
-  display: grid;
-  grid-template-columns: auto auto;
-`;
-
-const StyledCol = styled(GridCol)`
-  padding-left: 15px;
-  padding-right: 15px;
-`;
-
-const RowContainer = styled.div`
-  display: table;
-  margin: 0 auto;
+const StyledRow = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const ButtonsRow = props => (
-  <EvenColumnsRow role="row">
-    <StyledCol>
-      {!props.cumulativeFullAnswers.partners ||
-      props.cumulativeFullAnswers.partners.length < 5 ? (
-        <ContentItem.B_30_15>
-          <a
-            id="addPartnerLink"
-            href={props.partnerDetailsUrl}
-            style={{ textDecoration: "none" }}
-          >
-            <Button type="submit" id="addPartnerButton">
-              Add partner
-            </Button>
-          </a>
-        </ContentItem.B_30_15>
-      ) : null}
-    </StyledCol>
-    <StyledCol>
+  <StyledRow>
+    {!props.cumulativeFullAnswers.partners ||
+    props.cumulativeFullAnswers.partners.length < 5 ? (
+      <ContentItem.B_30_15>
+        <a
+          id="addPartnerLink"
+          href={props.partnerDetailsUrl}
+          style={{ textDecoration: "none" }}
+        >
+          <Button type="submit" id="addPartnerButton">
+            Add partner
+          </Button>
+        </a>
+      </ContentItem.B_30_15>
+    ) : null}
+    {props.cumulativeFullAnswers.partners &&
+    props.cumulativeFullAnswers.partners.length >= 2 ? (
       <form action={props.partnerDetailsContinueFormAction} method="post">
-        {props.cumulativeFullAnswers.partners ? (
-          props.cumulativeFullAnswers.partners.length >= 2 ? (
-            <ContinueButton {...props} />
-          ) : null
-        ) : null}
+        <ContinueButton {...props} />
       </form>
-    </StyledCol>
-  </EvenColumnsRow>
+    ) : null}
+  </StyledRow>
 );
 
 const PartnerName = props => (
@@ -80,9 +65,7 @@ const PartnerName = props => (
         <PartnersTable {...props} />
       ) : null}
     </form>
-    <RowContainer>
-      <ButtonsRow {...props} />
-    </RowContainer>
+    <ButtonsRow {...props} />
   </FsaLayout>
 );
 

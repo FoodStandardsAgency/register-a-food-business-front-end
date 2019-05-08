@@ -6,8 +6,14 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick
 } from "../src/components";
-import { Button, Header, InputField, GridRow, GridCol } from "govuk-react";
+import { Button, Header, InputField } from "govuk-react";
+import styled from "react-emotion";
 import PropTypes from "prop-types";
+
+const StyledRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const PartnerDetails = props => (
   <FsaLayout {...props}>
@@ -46,8 +52,8 @@ const PartnerDetails = props => (
           </InputField>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
-      <GridRow>
-        <GridCol>
+      <StyledRow>
+        <ContentItem.B_30_15>
           <Button
             onClick={props.onClick}
             disabled={props.disabled}
@@ -61,20 +67,18 @@ const PartnerDetails = props => (
               : "Add"}{" "}
             partner
           </Button>
-        </GridCol>
-        <GridCol>
-          <ContentItem.B_30_15>
-            <a
-              href={props.partnerDetailsBackUrl}
-              style={{ textDecoration: "none" }}
-            >
-              <Button type="button" id="cancelButton">
-                Cancel
-              </Button>
-            </a>
-          </ContentItem.B_30_15>
-        </GridCol>
-      </GridRow>
+        </ContentItem.B_30_15>
+        <ContentItem.B_30_15>
+          <a
+            href={props.partnerDetailsBackUrl}
+            style={{ textDecoration: "none" }}
+          >
+            <Button type="button" id="cancelButton">
+              Cancel
+            </Button>
+          </a>
+        </ContentItem.B_30_15>
+      </StyledRow>
     </form>
   </FsaLayout>
 );
