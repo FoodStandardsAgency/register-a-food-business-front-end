@@ -6,12 +6,12 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  PartnersTable
+  PartnersTable,
+  PartnershipDescription
 } from "../src/components";
 import { Header, Button, HintText } from "govuk-react";
 import styled from "react-emotion";
 import PropTypes from "prop-types";
-import PartnershipCommon from "./common/partnership-common";
 
 const StyledRow = styled.div`
   display: flex;
@@ -59,7 +59,7 @@ const PartnerName = props => (
         responsible for this food business
       </HintText>
     </ContentItem.B_30_15>
-    {PartnershipCommon.whatIsAPartnership()}
+    <PartnershipDescription />
     <form action={props.partnerDetailsDeleteFormAction} method="post">
       {props.cumulativeFullAnswers.partners ? (
         <PartnersTable {...props} />

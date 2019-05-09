@@ -18,6 +18,10 @@ import InvisibleLink from "./InvisibleLink";
 import HiddenTextAccessible from "./HiddenTextAccessible";
 import FsaDateField from "./FsaDateField";
 import PartnersTable from "./PartnersTable";
+import PartnershipDescription from "./PartnershipDescription";
+import OperatorDescription from "./OperatorDescription";
+import ContactDetailsHelp from "./ContactDetailsHelp";
+import AddressHelp from "./AddressHelp";
 
 export {
   SessionWrapper,
@@ -39,5 +43,9 @@ export {
   InvisibleLink,
   HiddenTextAccessible,
   FsaDateField,
-  PartnersTable
+  PartnersTable,
+  PartnershipDescription,
+  OperatorDescription,
+  ContactDetailsHelp,
+  AddressHelp
 };

@@ -5,12 +5,11 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  ContactDetailsHelp
 } from "../src/components";
 import { Header, InputField } from "govuk-react";
 import PropTypes from "prop-types";
-import roles from "./helpers/registration-roles";
-import ContactCommon from "./common/contact-common";
 
 const OperatorContactDetails = props => (
   <FsaLayout {...props}>
@@ -20,10 +19,9 @@ const OperatorContactDetails = props => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Header level={1} size="LARGE">
-      {roles.role(props.cumulativeFullAnswers.registration_role)[0]} contact
-      details
+      {`${props.cumulativeFullAnswers.registration_role} contact details`}
     </Header>
-    {ContactCommon.contactCommon(props.cumulativeFullAnswers.registration_role)}
+    <ContactDetailsHelp role={props.cumulativeFullAnswers.registration_role} />
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>

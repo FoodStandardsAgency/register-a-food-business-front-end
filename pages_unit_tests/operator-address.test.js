@@ -1,5 +1,7 @@
 import OperatorAddress from "../pages/operator-address";
 import { mount, shallow } from "enzyme";
+import { HintText, Header } from "govuk-react";
+import { Paragraph } from "govuk-react";
 
 const testValidatorErrors = {
   example: "test error"
@@ -17,7 +19,7 @@ describe("<OperatorAddress />", () => {
     expect(wrapper.length).toBe(1);
   });
 
-  describe("for Partnership renders correct", () => {
+  describe("when registration role is partnership", () => {
     let wrapper;
     beforeEach(() => {
       const cumulativeAnswers = { registration_role: "Partnership" };
@@ -30,23 +32,23 @@ describe("<OperatorAddress />", () => {
       );
     });
 
-    it("header", () => {
-      const header = wrapper.find("#partnership-address-header");
-      expect(header.first().props().children).toBe(
+    it("renders correct header", () => {
+      const header = wrapper.find(Header);
+      expect(header.at(1).props().children).toBe(
         "What is the partnership contact's address?"
       );
     });
 
-    it("hintText", () => {
-      const hintText = wrapper.find("#partnership-hint-text");
+    it("renders correct hint text", () => {
+      const hintText = wrapper.find(HintText);
       expect(hintText.first().props().children).toBe(
         "Partnership address is the contact address for the partner who is the main point of contact."
       );
     });
 
-    it("hiddenText", () => {
-      const hiddenText = wrapper.find("#partnership-hidden-text");
-      expect(hiddenText.first().props().children).toBe(
+    it("renders correct hidden text", () => {
+      const hiddenText = wrapper.find(Paragraph);
+      expect(hiddenText.at(1).props().children).toBe(
         "In a partnership, you and your partner (or partners) personally share responsibility for your food business"
       );
     });

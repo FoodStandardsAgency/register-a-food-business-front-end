@@ -5,11 +5,11 @@ import {
   BackButton,
   FindAddressButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  AddressHelp
 } from "../src/components";
 import { InputField } from "govuk-react";
 import PropTypes from "prop-types";
-import RoleAddress from "./common/address-common";
 
 const OperatorAddress = props => (
   <FsaLayout {...props}>
@@ -18,7 +18,7 @@ const OperatorAddress = props => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    {RoleAddress.addressCommon(props.cumulativeFullAnswers.registration_role)}
+    <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
     <form action="/findaddress/operator-address" method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>

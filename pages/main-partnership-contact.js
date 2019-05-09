@@ -5,11 +5,11 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  PartnershipDescription
 } from "../src/components";
 import { Header, Radio, MultiChoice, HintText } from "govuk-react";
 import PropTypes from "prop-types";
-import PartnershipCommon from "./common/partnership-common";
 
 const getPartnersList = props => {
   let output = [];
@@ -49,7 +49,7 @@ const PrimaryPartner = props => (
         business
       </HintText>
     </ContentItem.B_30_15>
-    {PartnershipCommon.whatIsAPartnership()}
+    <PartnershipDescription />
     <form action={props.formAction} method="post">
       <ContentItem.B_45_30>
         <MultiChoice

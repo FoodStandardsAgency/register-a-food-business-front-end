@@ -4,18 +4,18 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
-  SelectWithHeader
+  SelectWithHeader,
+  AddressHelp
 } from "../src/components";
 import { Header, Paragraph, asAnchor } from "govuk-react";
 import PropTypes from "prop-types";
-import RoleAddress from "./common/address-common";
 
 const AnchorTag = asAnchor("a");
 
 const OperatorAddressLookup = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    {RoleAddress.addressCommon(props.cumulativeFullAnswers.registration_role)}
+    <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
