@@ -11,12 +11,12 @@ import {
 import { Header, Radio, MultiChoice, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 
-const getPartnersList = props => {
-  let output = [];
+const PartnersList = props => {
+  let list = [];
   const partners = props.cumulativeFullAnswers.partners;
 
   for (let id in partners) {
-    output.push(
+    list.push(
       <Radio
         name="main_partnership_contact"
         value={partners[id]}
@@ -30,7 +30,7 @@ const getPartnersList = props => {
       </Radio>
     );
   }
-  return output;
+  return list;
 };
 
 const PrimaryPartner = props => (
@@ -59,7 +59,7 @@ const PrimaryPartner = props => (
             error: props.validatorErrors.partner_is_primary
           }}
         >
-          {getPartnersList(props)}
+          <PartnersList {...props} />
         </MultiChoice>
       </ContentItem.B_45_30>
 
