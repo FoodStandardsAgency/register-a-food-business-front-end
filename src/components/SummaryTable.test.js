@@ -138,24 +138,26 @@ const testComprehensiveAnswers = Object.assign(
 
 const testComprehensiveAnswersForPartnership = Object.assign(
   {},
-  testMandatoryAnswers,
+  testMandatoryAnswersForPartnership,
   testOptionalAnswers
 );
 
 // the summary table mounted with the complete set of non-optional answers
 const wrapperMinimum = mount(<SummaryTable {...testMandatoryAnswers} />);
+const wrapperMinimumForPartnership = mount(
+  <SummaryTable {...testMandatoryAnswersForPartnership} />
+);
 
 // the summary table mounted with the complete set of possible answers
 const wrapperComprehensive = mount(
   <SummaryTable {...testComprehensiveAnswers} />
 );
+const wrapperComprehensiveForPartnership = mount(
+  <SummaryTable {...testComprehensiveAnswersForPartnership} />
+);
 
 const wrapperApplicationComplete = mount(
   <SummaryTable {...testComprehensiveAnswers} applicationCompletePage={true} />
-);
-
-const wrapperComprehensiveForPartnership = mount(
-  <SummaryTable {...testComprehensiveAnswersForPartnership} />
 );
 
 const wrapperApplicationCompleteForPartnership = mount(
@@ -282,14 +284,14 @@ describe("<SummaryTable />", () => {
     describe("when given a minimum set of answers", () => {
       it("renders all mandatory table rows", () => {
         mandatoryTableRows.forEach(tableRowName => {
-          const row = wrapperMinimum.find(`Row#${tableRowName}`);
+          const row = wrapperMinimumForPartnership.find(`Row#${tableRowName}`);
           expect(row.length).toBe(1);
         });
       });
 
       it("contains empty strings or does not find the element for every optional answer", () => {
         for (let answerID in testOptionalAnswers) {
-          const element = wrapperMinimum.find(`#${answerID}`);
+          const element = wrapperMinimumForPartnership.find(`#${answerID}`);
           if (element.length !== 0) {
             expect(element.text()).toBe("");
           }
