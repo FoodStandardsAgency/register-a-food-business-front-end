@@ -61,7 +61,8 @@ const PartnerName = props => (
     </ContentItem.B_30_15>
     <PartnershipDescription />
     <form action={props.partnerDetailsDeleteFormAction} method="post">
-      {props.cumulativeFullAnswers.partners ? (
+      {props.cumulativeFullAnswers.partners &&
+      props.cumulativeFullAnswers.partners.length > 0 ? (
         <PartnersTable {...props} />
       ) : null}
     </form>

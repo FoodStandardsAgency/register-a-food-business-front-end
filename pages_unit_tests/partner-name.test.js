@@ -44,7 +44,7 @@ describe("<PartnerName />", () => {
         />
       );
       const partnersTable = wrapper.find("PartnersTable");
-      expect(partnersTable.length).toBe(1);
+      expect(partnersTable.length).toBe(0);
 
       const partnerRows = wrapper.find("AccessibleTableRow");
       expect(partnerRows.length).toBe(0);
