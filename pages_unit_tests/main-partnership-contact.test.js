@@ -25,7 +25,7 @@ describe("<PrimaryPartner />", () => {
     const wrapper = mount(
       <PrimaryPartner
         validatorErrors={testValidatorErrors}
-        cumulativeFullAnswers={{partners: threeRadioOptions.partners}}
+        cumulativeFullAnswers={{ partners: threeRadioOptions.partners }}
         switches={testSwitches}
       />
     );
@@ -37,7 +37,7 @@ describe("<PrimaryPartner />", () => {
     const wrapper = mount(
       <PrimaryPartner
         validatorErrors={testValidatorErrors}
-        cumulativeFullAnswers={{partners: fourRadioOptions.partners}}
+        cumulativeFullAnswers={{ partners: fourRadioOptions.partners }}
         switches={testSwitches}
       />
     );
@@ -46,9 +46,9 @@ describe("<PrimaryPartner />", () => {
   });
 });
 
-describe("all Radio buttons", () => {
+describe("when all radio buttons are rendered", () => {
   it("can be selected by default", () => {
-    let i =0;
+    let i = 0;
     for (let id in fourRadioOptions.partners) {
       const wrapper = mount(
         <PrimaryPartner
@@ -60,9 +60,7 @@ describe("all Radio buttons", () => {
           switches={testSwitches}
         />
       );
-      const registrationRoleRadio = wrapper.find(
-        `Radio#partner-${i}`
-      );
+      const registrationRoleRadio = wrapper.find(`Radio#partner-${i}`);
       expect(registrationRoleRadio.props().defaultChecked).toBe(true);
       i++;
     }

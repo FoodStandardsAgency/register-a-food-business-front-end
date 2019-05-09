@@ -9,8 +9,8 @@ describe("<PartnerName />", () => {
     expect(wrapper.length).toBe(1);
   });
 
-  describe("no partners PartnersTable table", () => {
-    it("renders", () => {
+  describe("when partners array is not defined", () => {
+    it("does not render PartnersTable", () => {
       const wrapper = mount(
         <PartnerName
           partnerDetailsUrl="/partnership/partner-details"
@@ -33,8 +33,8 @@ describe("<PartnerName />", () => {
     });
   });
 
-  describe("Empty PartnersTable table", () => {
-    it("renders", () => {
+  describe("when partners array is defined and has no items", () => {
+    it("does not render PartnersTable", () => {
       const wrapper = mount(
         <PartnerName
           partnerDetailsUrl="/partnership/partner-details"
@@ -57,8 +57,8 @@ describe("<PartnerName />", () => {
     });
   });
 
-  describe("1 partner PartnersTable table", () => {
-    it("renders", () => {
+  describe("when partners array has one item", () => {
+    it("renders PartnersTable with that item", () => {
       const wrapper = mount(
         <PartnerName
           partnerDetailsUrl="/partnership/partner-details"
@@ -81,8 +81,8 @@ describe("<PartnerName />", () => {
     });
   });
 
-  describe("2 partners PartnersTable table", () => {
-    it("renders", () => {
+  describe("when partners array has two items", () => {
+    it("renders PartnersTable with those items", () => {
       const wrapper = mount(
         <PartnerName
           partnerDetailsUrl="/partnership/partner-details"
@@ -105,8 +105,8 @@ describe("<PartnerName />", () => {
     });
   });
 
-  describe("6 partners PartnersTable table", () => {
-    it("renders", () => {
+  describe("when partners array has five items", () => {
+    it("renders PartnersTable with those items", () => {
       const wrapper = mount(
         <PartnerName
           validatorErrors={{ error: "" }}
