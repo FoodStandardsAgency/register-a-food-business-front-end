@@ -1,5 +1,6 @@
 import OperatorContactDetails from "../pages/operator-contact-details";
 import { shallow, mount } from "enzyme";
+import { HintText } from "govuk-react";
 
 const testValidatorErrors = {
   example: "test error"
@@ -14,6 +15,23 @@ describe("<OperatorContactDetails />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<OperatorContactDetails />);
     expect(wrapper.length).toBe(1);
+  });
+
+  describe("when registration role is partnership", () => {
+    it("renders with correct hint text", () => {
+      const cumulativeAnswers = { registration_role: "Partnership" };
+      const wrapper = mount(
+        <OperatorContactDetails
+          validatorErrors={testValidatorErrors}
+          cumulativeFullAnswers={cumulativeAnswers}
+          switches={testSwitches}
+        />
+      );
+      const hintText = wrapper.find(HintText);
+      expect(hintText.first().props().children).toBe(
+        "Contact details for the main point of contact for this business"
+      );
+    });
   });
 
   describe("operator primary phone number input field", () => {

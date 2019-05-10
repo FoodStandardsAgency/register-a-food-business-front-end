@@ -21,7 +21,6 @@ const EstablishmentContactDetails = props => (
     <Header level={1} size="LARGE">
       Establishment contact details
     </Header>
-
     <HiddenTextAccessible summaryText={"What is an establishment?"}>
       <Paragraph mb={0}>
         An establishment is the location of your food business, and the food
@@ -29,7 +28,6 @@ const EstablishmentContactDetails = props => (
         use the location where it is normally stored overnight.
       </Paragraph>
     </HiddenTextAccessible>
-
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <Button
@@ -37,7 +35,11 @@ const EstablishmentContactDetails = props => (
           formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
           id="reuseButton"
         >
-          Re-use operator contact details
+          {`Re-use ${
+            props.cumulativeFullAnswers.registration_role === "Partnership"
+              ? "partnership"
+              : "operator"
+          } contact details`}
         </Button>
 
         <ContentItem.B_30_15>
@@ -111,7 +113,9 @@ const EstablishmentContactDetails = props => (
 export default SessionWrapper(EstablishmentContactDetails);
 
 EstablishmentContactDetails.propTypes = {
-  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+  ),
   validatorErrors: PropTypes.objectOf(PropTypes.string),
   switches: PropTypes.objectOf(PropTypes.bool)
 };
