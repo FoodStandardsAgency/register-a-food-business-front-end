@@ -125,44 +125,36 @@ const partnerDetailsSave = (
     controllerResponse.cumulativeFullAnswers = previousAnswers;
     controllerResponse.validatorErrors = Object.assign(
       {},
-      validate(currentPage, newAnswers).errors
+      validate(currentPage, { partner_name: newAnswers.partner_name }).errors
     );
 
     const validationErrorsKeys = Object.keys(
       controllerResponse.validatorErrors
     );
     if (validationErrorsKeys.length > 0) {
-      // ignore if it's only the partners array
-      if (
-        validationErrorsKeys[0] === "partners" &&
-        validationErrorsKeys.length === 1
-      ) {
-        controllerResponse.validatorErrors = {};
-      } else {
-        // if there are errors, redirect back to the current page
-        controllerResponse.redirectRoute = `/partnership${currentPage}`;
-        if (newAnswers.index !== undefined) {
-          controllerResponse.redirectRoute = controllerResponse.redirectRoute.concat(
-            `?id=${newAnswers.index}`
-          );
-        }
-        if (edit) {
-          const separator =
-            controllerResponse.redirectRoute.indexOf("?") > 0 ? "&" : "?";
-          controllerResponse.redirectRoute = controllerResponse.redirectRoute.concat(
-            `${separator}edit=partner-name`
-          );
-        }
-        logEmitter.emit(
-          "functionSuccessWith",
-          "partner-details.controller",
-          "partnerDetailsSave",
-          `validatorErrors: ${JSON.stringify(
-            controllerResponse.validatorErrors
-          )}. redirectRoute: ${controllerResponse.redirectRoute}`
+      // if there are errors, redirect back to the current page
+      controllerResponse.redirectRoute = `/partnership${currentPage}`;
+      if (newAnswers.index !== undefined) {
+        controllerResponse.redirectRoute = controllerResponse.redirectRoute.concat(
+          `?id=${newAnswers.index}`
         );
-        return controllerResponse;
       }
+      if (edit) {
+        const separator =
+          controllerResponse.redirectRoute.indexOf("?") > 0 ? "&" : "?";
+        controllerResponse.redirectRoute = controllerResponse.redirectRoute.concat(
+          `${separator}edit=partner-name`
+        );
+      }
+      logEmitter.emit(
+        "functionSuccessWith",
+        "partner-details.controller",
+        "partnerDetailsSave",
+        `validatorErrors: ${JSON.stringify(
+          controllerResponse.validatorErrors
+        )}. redirectRoute: ${controllerResponse.redirectRoute}`
+      );
+      return controllerResponse;
     }
 
     const partners = controllerResponse.cumulativeFullAnswers.partners;

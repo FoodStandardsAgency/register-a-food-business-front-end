@@ -226,37 +226,6 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
         expect(response.message).toBe("Some error");
       });
     });
-    describe("When given valid submission data but partners length is less than 2", () => {
-      let response;
-      beforeEach(async () => {
-        validate.mockImplementation(() => ({
-          errors: { partners: "error" }
-        }));
-        try {
-          response = await partnerDetailsSave(
-            currentPage,
-            { partners: ["partner one"] },
-            { partner_name: "partner two" },
-            council,
-            editMode
-          );
-        } catch (err) {
-          response = err;
-        }
-      });
-      it("Should set redirectRoute back to partner-name", () => {
-        expect(response.redirectRoute).toBe("/new/cardiff/partner-name");
-      });
-      it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
-        expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner two"]
-        });
-      });
-
-      it("Should return empty validatorErrors", () => {
-        expect(response.validatorErrors).toEqual({});
-      });
-    });
   });
 
   describe("In edit mode", () => {
