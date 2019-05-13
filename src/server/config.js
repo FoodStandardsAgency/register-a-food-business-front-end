@@ -10,11 +10,12 @@ module.exports = {
     "http://ws.postcoder.com/pcw/" +
     (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
     "/address",
-  ADDRESS_API_URL_QUERY: "format=json&lines=4",
+  ADDRESS_API_URL_QUERY: "format=json&lines=4&addtags=udprn",
   API_SECRET: process.env.API_SECRET,
   CLIENT_NAME: process.env.CLIENT_NAME,
   CONFIGDB_URL: process.env.CONFIGDB_URL,
   STATUSDB_URL: process.env.STATUSDB_URL,
   REGISTRATION_DATA_VERSION: process.env.REGISTRATION_DATA_VERSION,
-  LC_CACHE_TIME_TO_LIVE: 120
+  LC_CACHE_TIME_TO_LIVE: 120,
+  MAX_PARTNERS: process.env.MAX_PARTNERS || 5
 };

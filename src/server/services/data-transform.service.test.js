@@ -577,7 +577,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     supply_directly: true,
     declaration1: "Declaration",
     business_type: "Example (test)",
-    opening_days_start: "Every day"
+    opening_days_start: "Every day",
+    partners: ["John", "Doe"],
+    main_partnership_contact: "John"
   };
   const testAddressLookups = {};
 
@@ -747,6 +749,31 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       result.registration.establishment.establishment_details
         .establishment_opening_date
     ).toBe("2018-03-28");
+  });
+
+  it("should set primary contact for partners", () => {
+    result = transformAnswersForSubmit(
+      testLcUrl,
+      testCumulativeAnswers,
+      testAddressLookups
+    );
+    expect(result.registration.establishment.operator.partners).toHaveLength(2);
+    expect(result.registration.establishment.operator.partners).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          partner_name: "John",
+          partner_is_primary_contact: true
+        })
+      ])
+    );
+    expect(result.registration.establishment.operator.partners).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          partner_name: "Doe",
+          partner_is_primary_contact: false
+        })
+      ])
+    );
   });
 });
 

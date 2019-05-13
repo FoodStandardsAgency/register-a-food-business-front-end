@@ -92,6 +92,9 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
 
         data.operator_postcode = operatorAddressLookupData["postcode"];
 
+        data.operator_uprn =
+          operatorAddressLookupData["uniquedeliverypointreferencenumber"];
+
         delete data.operator_postcode_find;
         delete data.operator_address_selected;
       }
@@ -117,6 +120,9 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
         data.establishment_postcode =
           establishmentAddressLookupData["postcode"];
 
+        data.establishment_uprn =
+          establishmentAddressLookupData["uniquedeliverypointreferencenumber"];
+
         delete data.establishment_postcode_find;
         delete data.establishment_address_selected;
       }
@@ -132,7 +138,6 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
       data.business_type_search_term =
         separatedBusinessTypeSearchTerm.business_type_search_term;
     }
-
     logEmitter.emit(
       "functionSuccess",
       "data-transform.service",
@@ -195,14 +200,16 @@ const transformAnswersForSubmit = (
     "operator_company_name",
     "operator_company_house_number",
     "operator_charity_name",
-    "operator_charity_number"
+    "operator_charity_number",
+    "operator_uprn"
   ];
   const premise_keys = [
     "establishment_postcode",
     "establishment_first_line",
     "establishment_street",
     "establishment_town",
-    "establishment_type"
+    "establishment_type",
+    "establishment_uprn"
   ];
   const activities_keys = [
     "customer_type",
@@ -219,13 +226,15 @@ const transformAnswersForSubmit = (
     "opening_day_saturday",
     "opening_day_sunday"
   ];
-
   const metadata_keys = ["declaration1", "declaration2", "declaration3"];
+
   const submitObject = {
     registration: {
       establishment: {
         establishment_details: {},
-        operator: {},
+        operator: {
+          partners: []
+        },
         premise: {},
         activities: {}
       },
@@ -282,6 +291,15 @@ const transformAnswersForSubmit = (
       submitObject.registration.metadata[key] = submitData[key];
     }
   });
+
+  if (submitData.partners) {
+    submitData.partners.forEach(key => {
+      submitObject.registration.establishment.operator.partners.push({
+        partner_name: key,
+        partner_is_primary_contact: key === submitData.main_partnership_contact
+      });
+    });
+  }
 
   logEmitter.emit(
     "functionSuccess",

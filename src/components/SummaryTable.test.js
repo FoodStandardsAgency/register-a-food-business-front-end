@@ -44,17 +44,50 @@ const editableTableRows = [
   "businessTypeRow",
   "activitiesCustomersRow",
   "businessOtherDetailsRow",
-  "establishmentOpeningDaysRow"
+  "establishmentOpeningDaysRow",
+  "operatorPartnersRow",
+  "operatorMainPartnerRow"
 ];
-
 // (only optional if it's optional within that page. Does not apply to pages that are optional or could be skipped.)
-const optionalTableRows = ["operatorCharityNumberRow"];
+const optionalTableRows = [
+  "operatorCharityNumberRow",
+  "operatorPartnersRow",
+  "operatorMainPartnerRow"
+];
 
 const allTableRows = mandatoryTableRows.concat(optionalTableRows);
 
 // the complete set of possible mandatory answer fields with example data
 const testMandatoryAnswers = {
   operator_type: "Sole trader",
+  establishment_first_line: "Example first line",
+  establishment_postcode: "AA11 1AA",
+  operator_first_line: "Example first line",
+  operator_postcode: "AA11 1AA",
+  establishment_trading_name: "Example trading name",
+  operator_first_name: "John",
+  operator_last_name: "Appleseed",
+  operator_company_name: "Company name",
+  operator_company_house_number: "AA123456",
+  operator_charity_name: "Charity name",
+  customer_type: "End consumer and Other buisnesses",
+  import_export_activities: "None",
+  operator_primary_number: "1234567",
+  operator_email: "operator@email.com",
+  establishment_primary_number: "12345678",
+  establishment_email: "establishment@email.com",
+  contact_representative_email: "representative@email.com",
+  contact_representative_number: "123456789",
+  contact_representative_name: "Jill",
+  establishment_opening_date: "2018-12-06",
+  establishment_type: "Mobile or moveable premise",
+  business_type: "Livestock farm",
+  business_other_details: "This is the best business in the world",
+  opening_day_monday: "Monday"
+};
+
+const testMandatoryAnswersForPartnership = {
+  operator_type: "Partnership",
   establishment_first_line: "Example first line",
   establishment_postcode: "AA11 1AA",
   operator_first_line: "Example first line",
@@ -91,7 +124,9 @@ const testOptionalAnswers = {
   contact_representative_role: "Coder",
   operator_charity_number: "123456",
   establishment_secondary_number: "7654321",
-  operator_secondary_number: "7654321"
+  operator_secondary_number: "7654321",
+  partners: ["John", "Doe"],
+  main_partnership_contact: "John"
 };
 
 // the complete set of possible answer fields with example data
@@ -101,16 +136,35 @@ const testComprehensiveAnswers = Object.assign(
   testOptionalAnswers
 );
 
+const testComprehensiveAnswersForPartnership = Object.assign(
+  {},
+  testMandatoryAnswersForPartnership,
+  testOptionalAnswers
+);
+
 // the summary table mounted with the complete set of non-optional answers
 const wrapperMinimum = mount(<SummaryTable {...testMandatoryAnswers} />);
+const wrapperMinimumForPartnership = mount(
+  <SummaryTable {...testMandatoryAnswersForPartnership} />
+);
 
 // the summary table mounted with the complete set of possible answers
 const wrapperComprehensive = mount(
   <SummaryTable {...testComprehensiveAnswers} />
 );
+const wrapperComprehensiveForPartnership = mount(
+  <SummaryTable {...testComprehensiveAnswersForPartnership} />
+);
 
 const wrapperApplicationComplete = mount(
   <SummaryTable {...testComprehensiveAnswers} applicationCompletePage={true} />
+);
+
+const wrapperApplicationCompleteForPartnership = mount(
+  <SummaryTable
+    {...testComprehensiveAnswersForPartnership}
+    applicationCompletePage={true}
+  />
 );
 
 describe("<SummaryTable />", () => {
@@ -123,61 +177,126 @@ describe("<SummaryTable />", () => {
     const props = wrapperComprehensive.props();
     expect(props).toEqual(testComprehensiveAnswers);
   });
+  describe("when registation role is sole trader", () => {
+    describe("when given a comprehensive set of answers", () => {
+      it("the number of table rows matches the allTableRows array", () => {
+        const rows = wrapperComprehensive.find("AccessibleRowHeader");
 
-  describe("when given a comprehensive set of answers", () => {
-    it("the number of table rows matches the allTableRows array", () => {
-      const rows = wrapperComprehensive.find("AccessibleRowHeader");
+        expect(rows.length).toEqual(allTableRows.length);
+      });
 
-      expect(rows.length).toEqual(allTableRows.length);
-    });
+      describe("when given a props of applicationCompletePage = true", () => {
+        it("It doesn't render a change button in all editable rows", () => {
+          editableTableRows.forEach(tableRowName => {
+            const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);
+            const buttonId = `change${tableRowName.charAt(0).toUpperCase() +
+              tableRowName.substr(1)}`;
+            const button = row.find(`Anchor#${buttonId}`);
 
-    describe("when given a props of applicationCompletePage = true", () => {
-      it("It doesn't render a change button in all editable rows", () => {
+            expect(button.length).toBe(0);
+          });
+        });
+      });
+
+      it("renders a change button in all editable rows", () => {
         editableTableRows.forEach(tableRowName => {
-          const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);
+          const row = wrapperComprehensive.find(`Row#${tableRowName}`);
           const buttonId = `change${tableRowName.charAt(0).toUpperCase() +
             tableRowName.substr(1)}`;
           const button = row.find(`Anchor#${buttonId}`);
+          expect(button.length).toBe(1);
+        });
+      });
 
-          expect(button.length).toBe(0);
+      it("renders all table rows", () => {
+        allTableRows.forEach(tableRowName => {
+          const row = wrapperComprehensive.find(`Row#${tableRowName}`);
+          expect(row.length).toBe(1);
         });
       });
     });
+  });
+  describe("when registation role is partnership", () => {
+    describe("when given a comprehensive set of answers", () => {
+      it("the number of table rows matches the allTableRows array", () => {
+        const rows = wrapperComprehensiveForPartnership.find(
+          "AccessibleRowHeader"
+        );
 
-    it("renders a change button in all editable rows", () => {
-      editableTableRows.forEach(tableRowName => {
-        const row = wrapperComprehensive.find(`Row#${tableRowName}`);
-        const buttonId = `change${tableRowName.charAt(0).toUpperCase() +
-          tableRowName.substr(1)}`;
-        const button = row.find(`Anchor#${buttonId}`);
-
-        expect(button.length).toBe(1);
+        expect(rows.length).toEqual(allTableRows.length);
       });
-    });
 
-    it("renders all table rows", () => {
-      allTableRows.forEach(tableRowName => {
-        const row = wrapperComprehensive.find(`Row#${tableRowName}`);
-        expect(row.length).toBe(1);
+      describe("when given a props of applicationCompletePage = true", () => {
+        it("It doesn't render a change button in all editable rows", () => {
+          editableTableRows.forEach(tableRowName => {
+            const row = wrapperApplicationCompleteForPartnership.find(
+              `Row#${tableRowName}`
+            );
+            const buttonId = `change${tableRowName.charAt(0).toUpperCase() +
+              tableRowName.substr(1)}`;
+            const button = row.find(`Anchor#${buttonId}`);
+
+            expect(button.length).toBe(0);
+          });
+        });
+      });
+
+      it("renders a change button in all editable rows", () => {
+        editableTableRows.forEach(tableRowName => {
+          const row = wrapperComprehensiveForPartnership.find(
+            `Row#${tableRowName}`
+          );
+          const buttonId = `change${tableRowName.charAt(0).toUpperCase() +
+            tableRowName.substr(1)}`;
+          const button = row.find(`Anchor#${buttonId}`);
+          expect(button.length).toBe(1);
+        });
+      });
+
+      it("renders all table rows", () => {
+        allTableRows.forEach(tableRowName => {
+          const row = wrapperComprehensive.find(`Row#${tableRowName}`);
+          expect(row.length).toBe(1);
+        });
       });
     });
   });
+  describe("when registration role is sole trader", () => {
+    describe("when given a minimum set of answers", () => {
+      it("renders all mandatory table rows", () => {
+        mandatoryTableRows.forEach(tableRowName => {
+          const row = wrapperMinimum.find(`Row#${tableRowName}`);
+          expect(row.length).toBe(1);
+        });
+      });
 
-  describe("when given a minimum set of answers", () => {
-    it("renders all mandatory table rows", () => {
-      mandatoryTableRows.forEach(tableRowName => {
-        const row = wrapperMinimum.find(`Row#${tableRowName}`);
-        expect(row.length).toBe(1);
+      it("contains empty strings or does not find the element for every optional answer", () => {
+        for (let answerID in testOptionalAnswers) {
+          const element = wrapperMinimum.find(`#${answerID}`);
+          if (element.length !== 0) {
+            expect(element.text()).toBe("");
+          }
+        }
       });
     });
+  });
+  describe("when the registration role is partnership", () => {
+    describe("when given a minimum set of answers", () => {
+      it("renders all mandatory table rows", () => {
+        mandatoryTableRows.forEach(tableRowName => {
+          const row = wrapperMinimumForPartnership.find(`Row#${tableRowName}`);
+          expect(row.length).toBe(1);
+        });
+      });
 
-    it("contains empty strings or does not find the element for every optional answer", () => {
-      for (let answerID in testOptionalAnswers) {
-        const element = wrapperMinimum.find(`#${answerID}`);
-        if (element.length !== 0) {
-          expect(element.text()).toBe("");
+      it("contains empty strings or does not find the element for every optional answer", () => {
+        for (let answerID in testOptionalAnswers) {
+          const element = wrapperMinimumForPartnership.find(`#${answerID}`);
+          if (element.length !== 0) {
+            expect(element.text()).toBe("");
+          }
         }
-      }
+      });
     });
   });
 });
