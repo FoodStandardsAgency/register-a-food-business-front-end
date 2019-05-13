@@ -22,6 +22,10 @@ const isEditMode = reqQuery => {
   return reqQuery.edit === "partner-name";
 };
 
+const initializePartners = session => {
+  return session.cumulativeFullAnswers.partners || [];
+};
+
 const partnerDetailsRouter = () => {
   const router = Router();
 
@@ -37,9 +41,9 @@ const partnerDetailsRouter = () => {
           })
         : req.body;
 
-    if (req.session.cumulativeFullAnswers.partners === undefined) {
-      req.session.cumulativeFullAnswers.partners = [];
-    }
+    req.session.cumulativeFullAnswers.partners = initializePartners(
+      req.session
+    );
 
     const response = partnerDetailsSave(
       originator,
@@ -74,11 +78,11 @@ const partnerDetailsRouter = () => {
       "/partnership/partner-details route"
     );
 
-    if (req.session.cumulativeFullAnswers.partners === undefined) {
-      req.session.cumulativeFullAnswers.partners = [];
-    }
-    const targetPartner = parseInt(req.query.id, 10);
+    req.session.cumulativeFullAnswers.partners = initializePartners(
+      req.session
+    );
 
+    const targetPartner = parseInt(req.query.id, 10);
     if (!isNaN(targetPartner)) {
       req.session.cumulativeFullAnswers.targetPartner = targetPartner;
     }
@@ -109,9 +113,9 @@ const partnerDetailsRouter = () => {
       "/partnership/delete-partner route"
     );
 
-    if (req.session.cumulativeFullAnswers.partners === undefined) {
-      req.session.cumulativeFullAnswers.partners = [];
-    }
+    req.session.cumulativeFullAnswers.partners = initializePartners(
+      req.session
+    );
 
     const response = partnerDetailsDelete(
       req.session.cumulativeFullAnswers,
@@ -147,9 +151,9 @@ const partnerDetailsRouter = () => {
 
     const originator = getOriginator(req.get("Referrer"));
 
-    if (req.session.cumulativeFullAnswers.partners === undefined) {
-      req.session.cumulativeFullAnswers.partners = [];
-    }
+    req.session.cumulativeFullAnswers.partners = initializePartners(
+      req.session
+    );
 
     const response = partnerDetailsContinue(
       originator,
