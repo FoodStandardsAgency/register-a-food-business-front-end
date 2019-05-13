@@ -23,8 +23,7 @@ const isEditMode = reqQuery => {
 };
 
 const initializePartners = session => {
-  session.cumulativeFullAnswers.partners =
-    session.cumulativeFullAnswers.partners || [];
+  return session.cumulativeFullAnswers.partners || [];
 };
 
 const partnerDetailsRouter = () => {
@@ -42,7 +41,9 @@ const partnerDetailsRouter = () => {
           })
         : req.body;
 
-    initializePartners(req.session);
+    req.session.cumulativeFullAnswers.partners = initializePartners(
+      req.session
+    );
 
     const response = partnerDetailsSave(
       originator,
@@ -77,7 +78,9 @@ const partnerDetailsRouter = () => {
       "/partnership/partner-details route"
     );
 
-    initializePartners(req.session);
+    req.session.cumulativeFullAnswers.partners = initializePartners(
+      req.session
+    );
 
     const targetPartner = parseInt(req.query.id, 10);
     if (!isNaN(targetPartner)) {
@@ -110,7 +113,9 @@ const partnerDetailsRouter = () => {
       "/partnership/delete-partner route"
     );
 
-    initializePartners(req.session);
+    req.session.cumulativeFullAnswers.partners = initializePartners(
+      req.session
+    );
 
     const response = partnerDetailsDelete(
       req.session.cumulativeFullAnswers,
@@ -146,7 +151,9 @@ const partnerDetailsRouter = () => {
 
     const originator = getOriginator(req.get("Referrer"));
 
-    initializePartners(req.session);
+    req.session.cumulativeFullAnswers.partners = initializePartners(
+      req.session
+    );
 
     const response = partnerDetailsContinue(
       originator,
