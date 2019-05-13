@@ -46,8 +46,8 @@ describe("<PrimaryPartner />", () => {
   });
 });
 
-describe("when all radio buttons are rendered", () => {
-  it("can be selected by default", () => {
+describe("when main partnership contact is set", () => {
+  it("is selected by default", () => {
     let i = 0;
     for (let id in fourRadioOptions.partners) {
       const wrapper = mount(
