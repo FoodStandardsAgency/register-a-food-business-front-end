@@ -26,9 +26,9 @@ const PartnerDetails = props => (
       {props.cumulativeFullAnswers.partners[
         props.cumulativeFullAnswers.targetPartner
       ]
-        ? "Edit"
-        : "Add"}{" "}
-      partners name
+        ? "Edit "
+        : "Add "}
+      partner's name
     </Header>
     <form action={props.partnerDetailsSaveFormAction} method="post">
       <ContentItem.B_30_15>
