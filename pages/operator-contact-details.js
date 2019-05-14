@@ -19,7 +19,11 @@ const OperatorContactDetails = props => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Header level={1} size="LARGE">
-      {`${props.cumulativeFullAnswers.registration_role} contact details`}
+      {`${
+        props.cumulativeFullAnswers.registration_role === "Partnership"
+          ? "Partnership"
+          : "Operator"
+      } contact details`}
     </Header>
     <ContactDetailsHelp role={props.cumulativeFullAnswers.registration_role} />
     <form action={props.formAction} method="post">
