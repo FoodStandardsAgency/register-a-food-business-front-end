@@ -232,9 +232,7 @@ const transformAnswersForSubmit = (
     registration: {
       establishment: {
         establishment_details: {},
-        operator: {
-          partners: []
-        },
+        operator: {},
         premise: {},
         activities: {}
       },
@@ -293,6 +291,7 @@ const transformAnswersForSubmit = (
   });
 
   if (submitData.partners) {
+    submitObject.registration.establishment.operator.partners = [];
     submitData.partners.forEach(key => {
       submitObject.registration.establishment.operator.partners.push({
         partner_name: key,
