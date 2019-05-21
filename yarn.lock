@@ -1688,9 +1688,10 @@
     "@govuk-react/icons" "^0.3.1"
     govuk-colours "^1.0.3"
 
-"@slice-and-dice/register-a-food-business-validation@1.13.2":
-  version "1.13.2"
-  resolved "https://registry.yarnpkg.com/@slice-and-dice/register-a-food-business-validation/-/register-a-food-business-validation-1.13.2.tgz#ae5dc94d100af573708a8502fed4f4513f2e3903"
+"@slice-and-dice/register-a-food-business-validation@1.14.3":
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/@slice-and-dice/register-a-food-business-validation/-/register-a-food-business-validation-1.14.3.tgz#c91c09d6591eea23f8e926df0c82ba57a21c3dd5"
+  integrity sha512-LxhbBTc4Bv/X1aF+Ya60MbN4T+nU2hUxMGULb39lmECURAVlrvwbQSzRhELKCWlTKOjYmQn1GPWpZT9OML6MCw==
   dependencies:
     moment "^2.22.2"
     validator "^10.4.0"
@@ -6409,7 +6410,7 @@ next@6.1.1:
     webpack-sources "1.1.0"
     write-file-webpack-plugin "4.2.0"
 
-node-cache@^4.2.0:
+node-cache@4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/node-cache/-/node-cache-4.2.0.tgz#48ac796a874e762582692004a376d26dfa875811"
   integrity sha512-obRu6/f7S024ysheAjoYFEEBqqDWv4LOMNJEuO8vMeEw2AT4z+NCzO4hlc2lhI4vATzbCQv6kke9FVdx0RbCOw==

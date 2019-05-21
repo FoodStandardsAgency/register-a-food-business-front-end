@@ -113,6 +113,8 @@ class Declaration extends React.Component {
 export default SessionWrapper(Declaration);
 
 Declaration.propTypes = {
-  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+  ),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

@@ -252,7 +252,11 @@ const OperatorDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="operatorAddressRow"
       >
-        <AccessibleRowHeader>Operator address</AccessibleRowHeader>
+        <AccessibleRowHeader>
+          {props.operator_type === "Partnership"
+            ? "Partnership contact address"
+            : "Operator address"}
+        </AccessibleRowHeader>
         <AccessibleCell>
           <div id="operator_first_line">{props.operator_first_line}</div>
           <div id="operator_street">{props.operator_street || null}</div>
@@ -316,6 +320,59 @@ const OperatorDetailsTable = props => (
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
+    ) : null}
+
+    {props.partners ? (
+      <React.Fragment>
+        <AccessibleTableRow
+          acPage={props.applicationCompletePage}
+          id="operatorMainPartnerRow"
+        >
+          <AccessibleRowHeader>Main partnership contact</AccessibleRowHeader>
+          <AccessibleCell>
+            <div>
+              <div id="main_partnership_contact">
+                {props.main_partnership_contact}
+              </div>
+            </div>
+          </AccessibleCell>
+          {props.applicationCompletePage ? null : (
+            <AccessibleChangeCell>
+              <AnchorTag
+                id="changeOperatorMainPartnerRow"
+                href="/edit/main-partnership-contact"
+                aria-label="Change main partnership contact"
+              >
+                Change
+              </AnchorTag>
+            </AccessibleChangeCell>
+          )}
+        </AccessibleTableRow>
+        <AccessibleTableRow
+          acPage={props.applicationCompletePage}
+          id="operatorPartnersRow"
+        >
+          <AccessibleRowHeader>Partners</AccessibleRowHeader>
+          <AccessibleCell>
+            <div>
+              {props.partners.map((partner, index) => {
+                return <div key={`partner_${index}`}>{partner}</div>;
+              })}
+            </div>
+          </AccessibleCell>
+          {props.applicationCompletePage ? null : (
+            <AccessibleChangeCell>
+              <AnchorTag
+                id="changeOperatorPartnersRow"
+                href="/edit/partner-name"
+                aria-label="Change partner details"
+              >
+                Change
+              </AnchorTag>
+            </AccessibleChangeCell>
+          )}
+        </AccessibleTableRow>
+      </React.Fragment>
     ) : null}
 
     {props.contact_representative_email ? (

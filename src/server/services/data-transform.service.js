@@ -138,7 +138,6 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
       data.business_type_search_term =
         separatedBusinessTypeSearchTerm.business_type_search_term;
     }
-
     logEmitter.emit(
       "functionSuccess",
       "data-transform.service",
@@ -227,8 +226,8 @@ const transformAnswersForSubmit = (
     "opening_day_saturday",
     "opening_day_sunday"
   ];
-
   const metadata_keys = ["declaration1", "declaration2", "declaration3"];
+
   const submitObject = {
     registration: {
       establishment: {
@@ -290,6 +289,16 @@ const transformAnswersForSubmit = (
       submitObject.registration.metadata[key] = submitData[key];
     }
   });
+
+  if (submitData.partners) {
+    submitObject.registration.establishment.operator.partners = [];
+    submitData.partners.forEach(key => {
+      submitObject.registration.establishment.operator.partners.push({
+        partner_name: key,
+        partner_is_primary_contact: key === submitData.main_partnership_contact
+      });
+    });
+  }
 
   logEmitter.emit(
     "functionSuccess",
