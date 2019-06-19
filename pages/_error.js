@@ -3,9 +3,11 @@ import { FsaLayout } from "../src/components";
 import { Header, Paragraph, BackLink, Button } from "govuk-react";
 
 class Error extends React.Component {
-  static getInitialProps({ res, err }) {
+  static getInitialProps({ req, res, err }) {
     const statusCode = res ? res.statusCode : err ? err.statusCode : null;
-    return { statusCode };
+    const council = req.session.council;
+    const referrer = req.header("Referer") || "/";
+    return { statusCode, council, referrer };
   }
 
   render() {
@@ -13,18 +15,25 @@ class Error extends React.Component {
       case 404:
         return (
           <FsaLayout {...this.props}>
-            <BackLink href="/">Back to start</BackLink>
+            <BackLink href={`/new/${this.props.council}`}>
+              Back to start
+            </BackLink>
             <Header level={1}>Page Not Found</Header>
             <Paragraph>
               Please contact your Local Council if you need to speak to someone
               about your food business registration urgently.
             </Paragraph>
+            <form action={this.props.referrer}>
+              <Button type="submit">Return to previous page</Button>
+            </form>
           </FsaLayout>
         );
       case 500:
         return (
           <FsaLayout {...this.props}>
-            <BackLink href="/">Back to start</BackLink>
+            <BackLink href={`/new/${this.props.council}`}>
+              Back to start
+            </BackLink>
             <Header level={1}>This service is currently unavailable</Header>
             <Paragraph>
               Sorry about that, we seem to be experiencing some difficulties.
@@ -38,7 +47,9 @@ class Error extends React.Component {
       default:
         return (
           <FsaLayout {...this.props}>
-            <BackLink href="/">Back to start</BackLink>
+            <BackLink href={`/new/${this.props.council}`}>
+              Back to start
+            </BackLink>
             <Header level={1}>Oops</Header>
             <Paragraph>
               We seem to be experiencing some difficulties. Try refreshing this
