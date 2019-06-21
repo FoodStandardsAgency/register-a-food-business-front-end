@@ -6,18 +6,18 @@ class Error extends React.Component {
   static getInitialProps({ req, res, err }) {
     const statusCode = res ? res.statusCode : err ? err.statusCode : null;
     const council = req.session.council;
-    const referrer = req.header("Referer") || "/";
+    const referrer = req.header("Referrer") || "/";
     return { statusCode, council, referrer };
   }
 
   render() {
-    switch (this.props.statusCode) {
+    const backToStartLink =
+      this.props.council === undefined ? `/` : `/new/${this.props.council}`;
+    switch (parseInt(this.props.statusCode, 10)) {
       case 404:
         return (
           <FsaLayout {...this.props}>
-            <BackLink href={`/new/${this.props.council}`}>
-              Back to start
-            </BackLink>
+            <BackLink href={backToStartLink}>Back to start</BackLink>
             <Header level={1}>Page Not Found</Header>
             <Paragraph>
               Please contact your Local Council if you need to speak to someone
@@ -31,9 +31,7 @@ class Error extends React.Component {
       case 500:
         return (
           <FsaLayout {...this.props}>
-            <BackLink href={`/new/${this.props.council}`}>
-              Back to start
-            </BackLink>
+            <BackLink href={backToStartLink}>Back to start</BackLink>
             <Header level={1}>This service is currently unavailable</Header>
             <Paragraph>
               Sorry about that, we seem to be experiencing some difficulties.
@@ -47,9 +45,7 @@ class Error extends React.Component {
       default:
         return (
           <FsaLayout {...this.props}>
-            <BackLink href={`/new/${this.props.council}`}>
-              Back to start
-            </BackLink>
+            <BackLink href={backToStartLink}>Back to start</BackLink>
             <Header level={1}>Oops</Header>
             <Paragraph>
               We seem to be experiencing some difficulties. Try refreshing this
