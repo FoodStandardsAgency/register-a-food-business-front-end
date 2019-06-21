@@ -4,7 +4,14 @@ import { Header, Paragraph, BackLink, Button } from "govuk-react";
 
 class Error extends React.Component {
   static getInitialProps({ req, res, err }) {
-    const statusCode = res ? res.statusCode : err ? err.statusCode : null;
+    let statusCode;
+    if (res) {
+      statusCode = res.statusCode;
+    } else if (err) {
+      statusCode = err.statusCode;
+    } else {
+      statusCode = null;
+    }
     const council = req.session.council;
     const referrer = req.header("Referrer") || "/";
     return { statusCode, council, referrer };
@@ -23,7 +30,7 @@ class Error extends React.Component {
               Please contact your Local Council if you need to speak to someone
               about your food business registration urgently.
             </Paragraph>
-            <form action={this.props.referrer}>
+            <form id="unknown-error-form" action={this.props.referrer}>
               <Button type="submit">Return to previous page</Button>
             </form>
           </FsaLayout>
@@ -37,7 +44,10 @@ class Error extends React.Component {
               Sorry about that, we seem to be experiencing some difficulties.
             </Paragraph>
             <Paragraph>Please try again later.</Paragraph>
-            <form action="https://www.food.gov.uk/business-guidance/register-a-food-business">
+            <form
+              id="server-error-form"
+              action="https://www.food.gov.uk/business-guidance/register-a-food-business"
+            >
               <Button type="submit">Return to food.gov.uk</Button>
             </form>
           </FsaLayout>
@@ -56,7 +66,7 @@ class Error extends React.Component {
               below.
             </Paragraph>
             {/* TODO - Add in appropriate link */}
-            <form action="about:blank">
+            <form id="other-error-form" action="about:blank">
               <Button type="submit">Report a problem</Button>
             </form>
           </FsaLayout>
