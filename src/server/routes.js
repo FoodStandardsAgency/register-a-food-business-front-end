@@ -12,7 +12,8 @@ const {
   submitRouter,
   switchesRouter,
   setCookieRouter,
-  statusRouter
+  statusRouter,
+  errorsRouter
 } = require("./routes/index");
 
 module.exports = () => {
@@ -33,6 +34,7 @@ module.exports = () => {
   router.use("/switches", switchesRouter());
   router.use("/setcookie", setCookieRouter());
   router.use("/status", statusRouter());
+  router.use("/errors", errorsRouter());
 
   router.get("*", (req, res) => {
     handle(req, res);
