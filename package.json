@@ -41,6 +41,7 @@
     "express": "4.16.3",
     "express-rate-limit": "3.2.0",
     "express-session": "1.15.6",
+    "express-useragent": "1.0.12",
     "govuk-react": "0.3.1",
     "jsonschema": "1.2.4",
     "mongodb": "3.1.6",

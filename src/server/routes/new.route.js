@@ -17,6 +17,7 @@ const {
 } = require("../connectors/config-db/config-db.connector");
 const { REGISTRATION_DATA_VERSION } = require("../config");
 const { Cache } = require("../services/cache.service");
+const { checkBrowserSupported } = require("../services/browserSupport.service");
 
 let allowedCouncils = null;
 
@@ -46,6 +47,7 @@ const newRouter = () => {
           req.session.pathConfig = await getPathConfigByVersion(
             REGISTRATION_DATA_VERSION
           );
+          req.session.supportedBrowser = checkBrowserSupported(req);
 
           logEmitter.emit(
             "functionSuccessWith",
@@ -53,6 +55,7 @@ const newRouter = () => {
             "/new route",
             "Session regenerated. Rendering page: /index"
           );
+
           Next.render(req, res, `/index`);
         });
       } else {
@@ -65,6 +68,10 @@ const newRouter = () => {
           req.session.pathConfig = await getPathConfigByVersion(
             REGISTRATION_DATA_VERSION
           );
+        }
+        // Save the browser support to the session if not there yet
+        if (!req.session.supportedBrowser) {
+          req.session.supportedBrowser = checkBrowserSupported(req);
         }
         // Transform the data into summary format on pages where it is required and save to session
         if (

@@ -17,11 +17,15 @@ import ListItemConsistentSize from "./ListItemConsistentSize";
 import InvisibleLink from "./InvisibleLink";
 import HiddenTextAccessible from "./HiddenTextAccessible";
 import FsaDateField from "./FsaDateField";
+<<<<<<< HEAD
 import PartnersTable from "./PartnersTable";
 import PartnershipDescription from "./PartnershipDescription";
 import OperatorDescription from "./OperatorDescription";
 import ContactDetailsHelp from "./ContactDetailsHelp";
 import AddressHelp from "./AddressHelp";
+=======
+import BrowserUnsupportedBanner from "./BrowserUnsupportedBanner";
+>>>>>>> 4b9ea15... [RS-9][SDP-639] Add unsupported browser warning text
 
 export {
   SessionWrapper,
@@ -47,5 +51,6 @@ export {
   PartnershipDescription,
   OperatorDescription,
   ContactDetailsHelp,
-  AddressHelp
+  AddressHelp,
+  BrowserUnsupportedBanner
 };

@@ -2,12 +2,14 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  ContinueButton
+  ContinueButton,
+  BrowserUnsupportedBanner
 } from "../src/components";
 import { Header, Paragraph, InsetText } from "govuk-react";
 
 const Index = props => (
   <FsaLayout {...props}>
+    <BrowserUnsupportedBanner supportedBrowser={props.supportedBrowser} />
     <Header level={1}>Register a food business</Header>
 
     <ContentItem.B_30_15>

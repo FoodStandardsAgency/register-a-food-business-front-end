@@ -11,6 +11,7 @@ jest.mock("../next", () => ({
   }
 }));
 jest.mock("../connectors/config-db/config-db.connector");
+jest.mock("../services/browserSupport.service");
 
 const { Next } = require("../next");
 const { newRouter } = require("./new.route");
@@ -21,6 +22,7 @@ const {
   getPathConfigByVersion,
   getLocalCouncils
 } = require("../connectors/config-db/config-db.connector");
+const { checkBrowserSupported } = require("../services/browserSupport.service");
 
 describe("New route: ", () => {
   let router, handler;
@@ -30,6 +32,7 @@ describe("New route: ", () => {
       () => "fetched path from either cache or DB"
     );
     getLocalCouncils.mockImplementation(() => Promise.resolve(["purbeck"]));
+    checkBrowserSupported.mockImplementation(req => true);
   });
 
   afterEach(() => {
