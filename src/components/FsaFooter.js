@@ -1,6 +1,5 @@
 import styled from "react-emotion";
 import { asAnchor, ListItem, UnorderedList } from "govuk-react";
-import Crown from "./crown.svg";
 
 const fontSizeNormal = "16px";
 const fontSizeSmall = "14px";
@@ -55,46 +54,6 @@ const FooterLink = styled(asAnchor("a"))`
   }
 `;
 
-const FooterInlineLink = styled(asAnchor("a"))`
-  color: #454a4c;
-  &:visited {
-    color: #454a4c;
-  }
-  &:hover {
-    color: #171819;
-  }
-`;
-
-const OGLLogo = styled("div")`
-  margin-right: 10px;
-  margin-bottom: 15px;
-  @media only screen and (min-width: 641px) {
-    margin-bottom: 0px;
-  }
-`;
-
-const FooterText = styled("p")`
-  font-size: ${fontSizeSmall};
-  margin: 0;
-  display: inline-block;
-  @media only screen and (min-width: 641px) {
-    font-size: ${fontSizeNormal};
-  }
-`;
-
-const FooterCopyrightContainer = styled("div")`
-  margin: 0px 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-`;
-
-const FooterCrown = styled(Crown)`
-  margin-bottom: 10px;
-`;
-
 const FooterListItem = styled(ListItem)`
   display: inline;
 `;
@@ -144,7 +103,7 @@ const FsaFooter = () => (
             </FooterListItem>
           </FooterUnorderedList>
         </FooterLinkContainer>
-       </FooterContent>
+      </FooterContent>
     </FooterBody>
   </Footer>
 );

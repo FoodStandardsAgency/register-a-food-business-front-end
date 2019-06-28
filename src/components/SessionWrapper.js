@@ -35,7 +35,7 @@ const SessionWrapper = Page => {
     const currentPage = currentPageWithQuery.split("?")[0];
 	
 	const currentLA_int = `/${req.url.split("/")[1]}`;
-	const currentLA = currentLA_int.replace(/\//g, '')
+    const currentLA = currentLA_int.replace(/\//g, "");
 
     const partnerDetailsUrl = editModePartnerDetails
       ? "/partnership/partner-details?edit=partner-name"
