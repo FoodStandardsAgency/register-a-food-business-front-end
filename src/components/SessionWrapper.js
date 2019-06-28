@@ -33,6 +33,9 @@ const SessionWrapper = Page => {
       : `/continue${currentPageWithQuery}`;
 
     const currentPage = currentPageWithQuery.split("?")[0];
+	
+	const currentLA_int = `/${req.url.split("/")[1]}`;
+	const currentLA = currentLA_int.replace(/\//g, '')
 
     const partnerDetailsUrl = editModePartnerDetails
       ? "/partnership/partner-details?edit=partner-name"
@@ -78,6 +81,7 @@ const SessionWrapper = Page => {
       partnerDetailsSaveFormAction,
       partnerDetailsBackUrl,
       currentPage,
+	  currentLA,
       cumulativeFullAnswers:
         req && req.session && req.session.cumulativeFullAnswers
           ? req.session.cumulativeFullAnswers
