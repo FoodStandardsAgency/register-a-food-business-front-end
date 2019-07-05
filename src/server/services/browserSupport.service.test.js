@@ -1,6 +1,6 @@
 jest.mock("express-useragent");
 const useragent = require("express-useragent");
-const { checkBrowserSupported } = require("./browserSupport.service");
+const { checkBrowserSupported } = require("./browser-support.service");
 
 const req = {
   headers: {

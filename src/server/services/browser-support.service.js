@@ -1,3 +1,8 @@
+/**
+ * Provides function for verifying browser support
+ * @module services/browser-support
+ */
+
 const useragent = require("express-useragent");
 
 const earliestVersion = {
@@ -10,9 +15,11 @@ const earliestVersion = {
 };
 
 /**
- * Returns true if a supported browser
+ * Compares user's browser version with the earliest supported
  *
- * @param {*} req - The request object
+ * @param {object} req - The request object
+ *
+ * @returns {boolean} True if supported, false if not
  */
 const checkBrowserSupported = req => {
   const source = req.headers["user-agent"];

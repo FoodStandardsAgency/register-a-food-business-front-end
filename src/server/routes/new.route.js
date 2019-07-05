@@ -17,7 +17,9 @@ const {
 } = require("../connectors/config-db/config-db.connector");
 const { REGISTRATION_DATA_VERSION } = require("../config");
 const { Cache } = require("../services/cache.service");
-const { checkBrowserSupported } = require("../services/browserSupport.service");
+const {
+  checkBrowserSupported
+} = require("../services/browser-support.service");
 
 let allowedCouncils = null;
 

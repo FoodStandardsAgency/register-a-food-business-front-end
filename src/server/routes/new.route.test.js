@@ -11,7 +11,7 @@ jest.mock("../next", () => ({
   }
 }));
 jest.mock("../connectors/config-db/config-db.connector");
-jest.mock("../services/browserSupport.service");
+jest.mock("../services/browser-support.service");
 
 const { Next } = require("../next");
 const { newRouter } = require("./new.route");
@@ -22,7 +22,9 @@ const {
   getPathConfigByVersion,
   getLocalCouncils
 } = require("../connectors/config-db/config-db.connector");
-const { checkBrowserSupported } = require("../services/browserSupport.service");
+const {
+  checkBrowserSupported
+} = require("../services/browser-support.service");
 
 describe("New route: ", () => {
   let router, handler;

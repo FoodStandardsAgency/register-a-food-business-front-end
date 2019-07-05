@@ -22,7 +22,7 @@ const comprehensiveReqSessionObject = {
     lcConfig: { example: "data" },
     council: "cardiff",
     addressLookups: { test: [] },
-    supportedBrowser: false
+    supportedBrowser: true
   }
 };
 
