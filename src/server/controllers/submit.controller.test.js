@@ -1,5 +1,6 @@
 jest.mock("../services/data-transform.service");
 jest.mock("../services/submit.service");
+jest.mock("../services/statusEmitter.service");
 
 const {
   transformAnswersForSubmit

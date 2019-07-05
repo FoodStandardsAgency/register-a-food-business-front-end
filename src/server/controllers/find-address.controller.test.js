@@ -1,6 +1,7 @@
 jest.mock("../services/validation.service");
 jest.mock("../services/session-management.service");
 jest.mock("../services/address.service");
+jest.mock("../services/statusEmitter.service");
 
 const { getUkAddressesByPostcode } = require("../services/address.service");
 const { validate } = require("../services/validation.service");

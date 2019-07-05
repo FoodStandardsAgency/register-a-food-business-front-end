@@ -9,8 +9,8 @@ module.exports = {
   moduleNameMapper: {
     "\\.(css)$": "<rootDir>/src/__mocks__/styleMock.js",
     "schema.js": "<rootDir>/src/__mocks__/schemaMock.js",
-    "logging.service": "<rootDir>/src/__mocks__/logging.service.js",
-    "statusEmitter.service": "<rootDir>/src/__mocks__/statusEmitter.service.js"
+    winston: "<rootDir>/src/__mocks__/winston.js",
+    events: "<rootDir>/src/__mocks__/events.js"
   },
   collectCoverageFrom: [
     "src/**/*.{js}",
