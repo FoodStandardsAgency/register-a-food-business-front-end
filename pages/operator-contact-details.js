@@ -6,9 +6,9 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  ContactDetailsHelp
 } from "../src/components";
-import { Header, InputField, Paragraph } from "govuk-react";
+import { Header, InputField } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OperatorContactDetails = props => (
@@ -19,17 +19,13 @@ const OperatorContactDetails = props => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Header level={1} size="LARGE">
-      Operator contact details
+      {`${
+        props.cumulativeFullAnswers.registration_role === "Partnership"
+          ? "Partnership"
+          : "Operator"
+      } contact details`}
     </Header>
-
-    <HiddenTextAccessible summaryText={"What is a food business operator?"}>
-      <Paragraph mb={0}>
-        The operator is the person or persons, charity or company who makes the
-        decisions about the food business. They decide what it serves and how it
-        operates.
-      </Paragraph>
-    </HiddenTextAccessible>
-
+    <ContactDetailsHelp role={props.cumulativeFullAnswers.registration_role} />
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
@@ -96,6 +92,8 @@ const OperatorContactDetails = props => (
 export default SessionWrapper(OperatorContactDetails);
 
 OperatorContactDetails.propTypes = {
-  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+  ),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };

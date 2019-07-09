@@ -6,7 +6,8 @@ const testValidatorErrors = {
 };
 
 const testCumulativeAnswers = {
-  example: "test answer"
+  example: "test answer",
+  registration_role: "Operator"
 };
 
 const testSwitches = {
@@ -57,7 +58,8 @@ describe("<EstablishmentContactDetails />", () => {
       };
       const cumulativeFullAnswers = {
         operator_primary_number: "operator primary number",
-        establishment_primary_number: "establishment primary number"
+        establishment_primary_number: "establishment primary number",
+        registration_role: "Partnership"
       };
 
       const wrapper = mount(
@@ -81,7 +83,8 @@ describe("<EstablishmentContactDetails />", () => {
       };
       const cumulativeFullAnswers = {
         establishment_primary_number: "establishment primary number",
-        operator_primary_number: "operator primary number"
+        operator_primary_number: "operator primary number",
+        registration_role: "Partnership"
       };
 
       const wrapper = mount(
@@ -140,7 +143,8 @@ describe("<EstablishmentContactDetails />", () => {
       };
       const cumulativeFullAnswers = {
         operator_secondary_number: "operator secondary number",
-        establishment_secondary_number: "establishment secondary number"
+        establishment_secondary_number: "establishment secondary number",
+        registration_role: "Partnership"
       };
 
       const wrapper = mount(
@@ -164,7 +168,8 @@ describe("<EstablishmentContactDetails />", () => {
       };
       const cumulativeFullAnswers = {
         establishment_secondary_number: "establishment secondary number",
-        operator_secondary_number: "operator secondary number"
+        operator_secondary_number: "operator secondary number",
+        registration_role: "Partnership"
       };
 
       const wrapper = mount(
@@ -217,7 +222,8 @@ describe("<EstablishmentContactDetails />", () => {
       };
       const cumulativeFullAnswers = {
         operator_email: "operator email",
-        establishment_email: "establishment email"
+        establishment_email: "establishment email",
+        registration_role: "Partnership"
       };
 
       const wrapper = mount(
@@ -239,7 +245,8 @@ describe("<EstablishmentContactDetails />", () => {
       };
       const cumulativeFullAnswers = {
         establishment_email: "establishment email",
-        operator_email: "operator email"
+        operator_email: "operator email",
+        registration_role: "Partnership"
       };
 
       const wrapper = mount(

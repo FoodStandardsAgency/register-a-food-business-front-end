@@ -7,32 +7,32 @@
 const { Router } = require("express");
 const { Next } = require("../next");
 const { logEmitter } = require("../services/logging.service");
+const { LC_CACHE_TIME_TO_LIVE } = require("../config");
 const {
   transformAnswersForSummary
 } = require("../services/data-transform.service");
 const {
-  getPathConfigByVersion
+  getPathConfigByVersion,
+  getLocalCouncils
 } = require("../connectors/config-db/config-db.connector");
 const { REGISTRATION_DATA_VERSION } = require("../config");
+const { Cache } = require("../services/cache.service");
 
-const allowedCouncils = [
-  "antrim-and-newtownabbey",
-  "bridgend",
-  "cardiff",
-  "mid-and-east-antrim",
-  "purbeck",
-  "west-dorset",
-  "north-dorset",
-  "weymouth-and-portland",
-  "wrexham",
-  "the-vale-of-glamorgan"
-];
+let allowedCouncils = null;
+
+const allowedCouncilsCache = Cache(
+  LC_CACHE_TIME_TO_LIVE,
+  false,
+  true,
+  getLocalCouncils
+);
 
 const newRouter = () => {
   const router = Router();
 
   router.get("/:lc/:page?", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/new route");
+    allowedCouncils = await allowedCouncilsCache.get();
 
     // Check that the council is supported
     if (allowedCouncils.includes(req.params.lc)) {

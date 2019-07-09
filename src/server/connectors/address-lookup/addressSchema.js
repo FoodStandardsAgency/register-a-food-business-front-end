@@ -15,7 +15,8 @@ const addressSchema = {
       dependentlocality: { type: "string" },
       posttown: { type: "string" },
       county: { type: "string" },
-      postcode: { type: "string" }
+      postcode: { type: "string" },
+      uniquedeliverypointreferencenumber: { type: "string" }
     }
   }
 };

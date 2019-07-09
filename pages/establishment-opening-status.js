@@ -21,7 +21,12 @@ const EstablishmentOpeningStatus = props => (
     <Header level={1} size="LARGE">
       Is this establishment already trading?
     </Header>
-
+    <ContentItem.B_30_15>
+      <HintText>
+        It is trading if it is already producing or serving food, or if the new
+        operator has already taken control
+      </HintText>
+    </ContentItem.B_30_15>
     <HiddenTextAccessible summaryText={"What is an establishment?"}>
       <Paragraph mb={0}>
         An establishment is the location of your food business, and the food
@@ -29,14 +34,6 @@ const EstablishmentOpeningStatus = props => (
         use the location where it is normally stored overnight.
       </Paragraph>
     </HiddenTextAccessible>
-
-    <ContentItem.B_30_15>
-      <HintText>
-        It is trading if it is already producing or serving food, or if the new
-        operator has already taken control
-      </HintText>
-    </ContentItem.B_30_15>
-
     <form action={props.formAction} method="post">
       <ContentItem.B_45_30>
         <MultiChoice
@@ -79,6 +76,8 @@ const EstablishmentOpeningStatus = props => (
 export default SessionWrapper(EstablishmentOpeningStatus);
 
 EstablishmentOpeningStatus.propTypes = {
-  cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
+  cumulativeFullAnswers: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+  ),
   validatorErrors: PropTypes.objectOf(PropTypes.string)
 };
