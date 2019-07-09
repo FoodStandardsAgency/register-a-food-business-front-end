@@ -18,18 +18,18 @@ const earliestVersion = {
 /**
  * Compares user's browser version with the earliest supported
  *
- * @param {object} req - The request object
+ * @param {string} userAgentHeader - user-agent request header
  *
  * @returns {boolean} True if supported, false if not
  */
-const checkBrowserSupported = req => {
+const checkBrowserSupported = userAgentHeader => {
   logEmitter.emit(
-    "functionCall",
+    "functionCallWith",
     "browser-support.service",
-    "checkBrowserSupported"
+    "checkBrowserSupported",
+    userAgentHeader
   );
-  const source = req.headers["user-agent"];
-  const ua = useragent.parse(source);
+  const ua = useragent.parse(userAgentHeader);
   const version = parseFloat(ua.version);
   if (ua.isChrome) {
     return version >= earliestVersion.chrome;

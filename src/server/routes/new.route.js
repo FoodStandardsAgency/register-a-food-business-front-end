@@ -49,7 +49,9 @@ const newRouter = () => {
           req.session.pathConfig = await getPathConfigByVersion(
             REGISTRATION_DATA_VERSION
           );
-          req.session.supportedBrowser = checkBrowserSupported(req);
+          req.session.supportedBrowser = checkBrowserSupported(
+            req.headers["user-agent"]
+          );
 
           logEmitter.emit(
             "functionSuccessWith",
@@ -73,7 +75,9 @@ const newRouter = () => {
         }
         // Save the browser support to the session if not there yet
         if (!req.session.supportedBrowser) {
-          req.session.supportedBrowser = checkBrowserSupported(req);
+          req.session.supportedBrowser = checkBrowserSupported(
+            req.headers["user-agent"]
+          );
         }
         // Transform the data into summary format on pages where it is required and save to session
         if (
