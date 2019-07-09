@@ -4,6 +4,7 @@
  */
 
 const useragent = require("express-useragent");
+const { logEmitter } = require("./logging.service");
 
 const earliestVersion = {
   chrome: 67,
@@ -22,6 +23,11 @@ const earliestVersion = {
  * @returns {boolean} True if supported, false if not
  */
 const checkBrowserSupported = req => {
+  logEmitter.emit(
+    "functionCall",
+    "browser-support.service",
+    "checkBrowserSupported"
+  );
   const source = req.headers["user-agent"];
   const ua = useragent.parse(source);
   const version = parseFloat(ua.version);
