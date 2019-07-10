@@ -21,7 +21,7 @@ const {
  *
  * @returns {boolean} True if supported, false if not
  */
-const checkBrowserInfo = userAgentHeader => {
+const getBrowserInfo = userAgentHeader => {
   logEmitter.emit(
     "functionCallWith",
     "browser-support.service",
@@ -56,10 +56,10 @@ const checkBrowserInfo = userAgentHeader => {
   logEmitter.emit(
     "functionSuccessWith",
     "browser-support.service",
-    "checkBrowserInfo",
-    response
+    "getBrowserInfo",
+    JSON.stringify(response)
   );
   return response;
 };
 
-module.exports = { checkBrowserInfo };
+module.exports = { getBrowserInfo };
