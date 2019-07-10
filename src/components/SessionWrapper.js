@@ -15,12 +15,6 @@ const SessionWrapper = Page => {
     const editModeFirstPage =
       req && req.query && req.query.edit ? `/${req.query.edit}` : undefined;
 
-    const editModePartnerDetails =
-      req &&
-      req.query &&
-      req.query.edit &&
-      (req.query.edit === "partner-name" || "registration-role");
-
     const acceptAllCookies =
       req && req.cookies && req.cookies.acceptAllCookies
         ? req.cookies.acceptAllCookies
@@ -33,29 +27,6 @@ const SessionWrapper = Page => {
       : `/continue${currentPageWithQuery}`;
 
     const currentPage = currentPageWithQuery.split("?")[0];
-
-    const currentLA_int = `/${req.url.split("/")[1]}`;
-    const currentLA = currentLA_int.replace(/\//g, "");
-
-    const partnerDetailsUrl = editModePartnerDetails
-      ? "/partnership/partner-details?edit=partner-name"
-      : "/partnership/partner-details";
-
-    const partnerDetailsDeleteFormAction = editModePartnerDetails
-      ? "/partnership/delete-partner?edit=partner-name"
-      : "/partnership/delete-partner";
-
-    const partnerDetailsContinueFormAction = editModePartnerDetails
-      ? "/partnership/continue?edit=partner-name"
-      : "/partnership/continue";
-
-    const partnerDetailsSaveFormAction = editModePartnerDetails
-      ? "/partnership/save?edit=partner-name"
-      : "/partnership/save";
-
-    const partnerDetailsBackUrl = editModePartnerDetails
-      ? "/partnership/back?edit=partner-name"
-      : "/partnership/back";
 
     const validatorErrorsCleaned =
       req && req.session && req.session.validatorErrors
@@ -75,13 +46,7 @@ const SessionWrapper = Page => {
       acceptAllCookies,
       editModeFirstPage,
       formAction,
-      partnerDetailsUrl,
-      partnerDetailsDeleteFormAction,
-      partnerDetailsContinueFormAction,
-      partnerDetailsSaveFormAction,
-      partnerDetailsBackUrl,
       currentPage,
-      currentLA,
       cumulativeFullAnswers:
         req && req.session && req.session.cumulativeFullAnswers
           ? req.session.cumulativeFullAnswers
