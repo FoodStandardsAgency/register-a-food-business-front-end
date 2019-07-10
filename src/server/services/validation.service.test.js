@@ -101,7 +101,7 @@ describe("validator.service validate()", () => {
   });
 
   describe("When given the business-import-export page with invalid data", () => {
-    it("should return the business-import-export error", () => {
+    it("should return the business-import-export error when no option is selected", () => {
       const result = validate("/business-import-export", {
         directly_import: undefined,
         directly_export: undefined,
@@ -109,8 +109,56 @@ describe("validator.service validate()", () => {
       });
 
       expect(result.errors.import_export_activities).toBe(
-        "You must select an option before continuing"
+        "You must select valid option(s) before continuing"
       );
+    });
+    it("should return the business-import-export error when contradicting options are selected", () => {
+      const result = validate("/business-import-export", {
+        directly_import: "Truthy value",
+        directly_export: undefined,
+        no_import_export: "Truthy value"
+      });
+
+      expect(result.errors.import_export_activities).toBe(
+        "You must select valid option(s) before continuing"
+      );
+    });
+    it("should not return an error if only 'no_import/export' option is selected", () => {
+      const result = validate("/business-import-export", {
+        directly_import: undefined,
+        directly_export: undefined,
+        no_import_export: "Truthy value"
+      });
+
+      expect(result.errors.import_export_activities).toBe(undefined);
+    });
+    it("should not return an error if one of 'directly import' or 'directly export' is selected", () => {
+      const result_import_selected = validate("/business-import-export", {
+        directly_import: "Truthy value",
+        directly_export: undefined,
+        no_import_export: undefined
+      });
+      const result_export_selected = validate("/business-import-export", {
+        directly_import: undefined,
+        directly_export: "Truthy value",
+        no_import_export: undefined
+      });
+
+      expect(result_import_selected.errors.import_export_activities).toBe(
+        undefined
+      );
+      expect(result_export_selected.errors.import_export_activities).toBe(
+        undefined
+      );
+    });
+    it("should not return an error if both 'directly import' and 'directly export' are selected", () => {
+      const result = validate("/business-import-export", {
+        directly_import: "Truthy value",
+        directly_export: "Truthy value",
+        no_import_export: undefined
+      });
+
+      expect(result.errors.import_export_activities).toBe(undefined);
     });
   });
 
