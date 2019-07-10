@@ -5,15 +5,14 @@
 
 const useragent = require("express-useragent");
 const { logEmitter } = require("./logging.service");
-
-const earliestVersion = {
-  chrome: 67,
-  firefox: 60,
-  edge: 16,
-  ie: 11,
-  macSafari: 9,
-  iOSSafari: 9.2
-};
+const {
+  CHROME_SUPPORTED_SINCE,
+  FIREFOX_SUPPORTED_SINCE,
+  EDGE_SUPPORTED_SINCE,
+  IE_SUPPORTED_SINCE,
+  IOS_SAFARI_SUPPORTED_SINCE,
+  MAC_SAFARI_SUPPORTED_SINCE
+} = require("../config");
 
 /**
  * Compares user's browser version with the earliest supported
@@ -32,18 +31,18 @@ const checkBrowserSupported = userAgentHeader => {
   const ua = useragent.parse(userAgentHeader);
   const version = parseFloat(ua.version);
   if (ua.isChrome) {
-    return version >= earliestVersion.chrome;
+    return version >= CHROME_SUPPORTED_SINCE;
   } else if (ua.isFirefox) {
-    return version >= earliestVersion.firefox;
+    return version >= FIREFOX_SUPPORTED_SINCE;
   } else if (ua.isEdge) {
-    return version >= earliestVersion.edge;
+    return version >= EDGE_SUPPORTED_SINCE;
   } else if (ua.isIE) {
-    return version >= earliestVersion.ie;
+    return version >= IE_SUPPORTED_SINCE;
   } else if (ua.isSafari) {
     if (ua.isMobile) {
-      return version >= earliestVersion.iOSSafari;
+      return version >= IOS_SAFARI_SUPPORTED_SINCE;
     } else {
-      return version >= earliestVersion.macSafari;
+      return version >= MAC_SAFARI_SUPPORTED_SINCE;
     }
   } else {
     return false;
