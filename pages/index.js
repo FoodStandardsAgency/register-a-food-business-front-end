@@ -9,7 +9,12 @@ import { Header, Paragraph, InsetText } from "govuk-react";
 
 const Index = props => (
   <FsaLayout {...props}>
-    {!props.supportedBrowser ? <BrowserUnsupportedBanner /> : null}
+    {!props.isBrowserSupported ? (
+      <BrowserUnsupportedBanner
+        browser={props.browser}
+        version={props.browserVersion}
+      />
+    ) : null}
     <Header level={1}>Register a food business</Header>
 
     <ContentItem.B_30_15>

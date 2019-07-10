@@ -22,9 +22,7 @@ const {
   getPathConfigByVersion,
   getLocalCouncils
 } = require("../connectors/config-db/config-db.connector");
-const {
-  checkBrowserSupported
-} = require("../services/browser-support.service");
+const { checkBrowserInfo } = require("../services/browser-support.service");
 
 describe("New route: ", () => {
   let router, handler;
@@ -34,7 +32,13 @@ describe("New route: ", () => {
       () => "fetched path from either cache or DB"
     );
     getLocalCouncils.mockImplementation(() => Promise.resolve(["purbeck"]));
-    checkBrowserSupported.mockImplementation(req => true);
+    checkBrowserInfo.mockImplementation(req => () => {
+      return {
+        browser: "chrome",
+        browserVersion: "70.0.12",
+        isSupported: true
+      };
+    });
   });
 
   afterEach(() => {

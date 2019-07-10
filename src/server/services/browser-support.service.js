@@ -21,32 +21,45 @@ const {
  *
  * @returns {boolean} True if supported, false if not
  */
-const checkBrowserSupported = userAgentHeader => {
+const checkBrowserInfo = userAgentHeader => {
   logEmitter.emit(
     "functionCallWith",
     "browser-support.service",
     "checkBrowserSupported",
     userAgentHeader
   );
+  const response = {
+    browser: "",
+    browserVersion: "",
+    isBrowserSupported: false
+  };
   const ua = useragent.parse(userAgentHeader);
+  response.browser = ua.browser;
+  response.browserVersion = ua.version;
   const version = parseFloat(ua.version);
+
   if (ua.isChrome) {
-    return version >= CHROME_SUPPORTED_SINCE;
+    response.isBrowserSupported = version >= CHROME_SUPPORTED_SINCE;
   } else if (ua.isFirefox) {
-    return version >= FIREFOX_SUPPORTED_SINCE;
+    response.isBrowserSupported = version >= FIREFOX_SUPPORTED_SINCE;
   } else if (ua.isEdge) {
-    return version >= EDGE_SUPPORTED_SINCE;
+    response.isBrowserSupported = version >= EDGE_SUPPORTED_SINCE;
   } else if (ua.isIE) {
-    return version >= IE_SUPPORTED_SINCE;
+    response.isBrowserSupported = version >= IE_SUPPORTED_SINCE;
   } else if (ua.isSafari) {
     if (ua.isMobile) {
-      return version >= IOS_SAFARI_SUPPORTED_SINCE;
+      response.isBrowserSupported = version >= IOS_SAFARI_SUPPORTED_SINCE;
     } else {
-      return version >= MAC_SAFARI_SUPPORTED_SINCE;
+      response.isBrowserSupported = version >= MAC_SAFARI_SUPPORTED_SINCE;
     }
-  } else {
-    return false;
   }
+  logEmitter.emit(
+    "functionSuccessWith",
+    "browser-support.service",
+    "checkBrowserInfo",
+    response
+  );
+  return response;
 };
 
-module.exports = { checkBrowserSupported };
+module.exports = { checkBrowserInfo };

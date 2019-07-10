@@ -1,6 +1,6 @@
 jest.mock("express-useragent");
 const useragent = require("express-useragent");
-const { checkBrowserSupported } = require("./browser-support.service");
+const { checkBrowserInfo } = require("./browser-support.service");
 
 const req = {
   headers: {
@@ -14,19 +14,29 @@ describe("browserSupportService", () => {
       it("before v67 fails", () => {
         const ua = {
           isChrome: true,
-          version: 66
+          version: 66,
+          browser: "Chrome"
         };
         useragent.parse.mockImplementation(input => ua);
-        expect(checkBrowserSupported(req)).toBeFalsy();
+        expect(checkBrowserInfo(req.headers["user-agent"])).toEqual({
+          browser: "Chrome",
+          browserVersion: 66,
+          isBrowserSupported: false
+        });
       });
 
       it("after v67 succeeds", () => {
         const ua = {
           isChrome: true,
-          version: 67
+          version: 67,
+          browser: "Chrome"
         };
         useragent.parse.mockImplementation(input => ua);
-        expect(checkBrowserSupported(req)).toBeTruthy();
+        expect(checkBrowserInfo(req.headers["user-agent"])).toEqual({
+          browser: "Chrome",
+          browserVersion: 67,
+          isBrowserSupported: true
+        });
       });
     });
 
@@ -35,20 +45,30 @@ describe("browserSupportService", () => {
         const ua = {
           isChrome: false,
           isFirefox: true,
-          version: 59
+          version: 59,
+          browser: "Firefox"
         };
         useragent.parse.mockImplementation(input => ua);
-        expect(checkBrowserSupported(req)).toBeFalsy();
+        expect(checkBrowserInfo(req.headers["user-agent"])).toEqual({
+          browser: "Firefox",
+          browserVersion: 59,
+          isBrowserSupported: false
+        });
       });
 
       it("after v60 succeeds", () => {
         const ua = {
           isChrome: false,
           isFirefox: true,
-          version: 60
+          version: 60,
+          browser: "Firefox"
         };
         useragent.parse.mockImplementation(input => ua);
-        expect(checkBrowserSupported(req)).toBeTruthy();
+        expect(checkBrowserInfo(req.headers["user-agent"])).toEqual({
+          browser: "Firefox",
+          browserVersion: 60,
+          isBrowserSupported: true
+        });
       });
     });
 
@@ -58,10 +78,15 @@ describe("browserSupportService", () => {
           isChrome: false,
           isFirefox: false,
           isEdge: true,
-          version: 15
+          version: 15,
+          browser: "Edge"
         };
         useragent.parse.mockImplementation(input => ua);
-        expect(checkBrowserSupported(req)).toBeFalsy();
+        expect(checkBrowserInfo(req.headers["user-agent"])).toEqual({
+          browser: "Edge",
+          browserVersion: 15,
+          isBrowserSupported: false
+        });
       });
 
       it("after v16 succeeds", () => {
@@ -69,10 +94,15 @@ describe("browserSupportService", () => {
           isChrome: false,
           isFirefox: false,
           isEdge: true,
-          version: 16
+          version: 16,
+          browser: "Edge"
         };
         useragent.parse.mockImplementation(input => ua);
-        expect(checkBrowserSupported(req)).toBeTruthy();
+        expect(checkBrowserInfo(req.headers["user-agent"])).toEqual({
+          browser: "Edge",
+          browserVersion: 16,
+          isBrowserSupported: true
+        });
       });
     });
 
@@ -83,10 +113,15 @@ describe("browserSupportService", () => {
           isFirefox: false,
           isEdge: false,
           isIE: true,
-          version: 10
+          version: 10,
+          browser: "IE"
         };
         useragent.parse.mockImplementation(input => ua);
-        expect(checkBrowserSupported(req)).toBeFalsy();
+        expect(checkBrowserInfo(req.headers["user-agent"])).toEqual({
+          browser: "IE",
+          browserVersion: 10,
+          isBrowserSupported: false
+        });
       });
 
       it("after v11 succeeds", () => {
@@ -95,10 +130,15 @@ describe("browserSupportService", () => {
           isFirefox: false,
           isEdge: false,
           isIE: true,
-          version: 11
+          version: 11,
+          browser: "IE"
         };
         useragent.parse.mockImplementation(input => ua);
-        expect(checkBrowserSupported(req)).toBeTruthy();
+        expect(checkBrowserInfo(req.headers["user-agent"])).toEqual({
+          browser: "IE",
+          browserVersion: 11,
+          isBrowserSupported: true
+        });
       });
     });
 
@@ -112,10 +152,15 @@ describe("browserSupportService", () => {
             isIE: false,
             isSafari: true,
             isMobile: true,
-            version: 9.1
+            version: 9.1,
+            browser: "Safari"
           };
           useragent.parse.mockImplementation(input => ua);
-          expect(checkBrowserSupported(req)).toBeFalsy();
+          expect(checkBrowserInfo(req.headers["user-agent"])).toEqual({
+            browser: "Safari",
+            browserVersion: 9.1,
+            isBrowserSupported: false
+          });
         });
 
         it("after v9.2 succeeds", () => {
@@ -126,10 +171,15 @@ describe("browserSupportService", () => {
             isIE: false,
             isSafari: true,
             isMobile: true,
-            version: 9.2
+            version: 9.2,
+            browser: "Safari"
           };
           useragent.parse.mockImplementation(input => ua);
-          expect(checkBrowserSupported(req)).toBeTruthy();
+          expect(checkBrowserInfo(req.headers["user-agent"])).toEqual({
+            browser: "Safari",
+            browserVersion: 9.2,
+            isBrowserSupported: true
+          });
         });
       });
 
@@ -142,10 +192,15 @@ describe("browserSupportService", () => {
             isIE: false,
             isSafari: true,
             isMobile: false,
-            version: 8.9
+            version: 8.9,
+            browser: "Safari"
           };
           useragent.parse.mockImplementation(input => ua);
-          expect(checkBrowserSupported(req)).toBeFalsy();
+          expect(checkBrowserInfo(req.headers["user-agent"])).toEqual({
+            browser: "Safari",
+            browserVersion: 8.9,
+            isBrowserSupported: false
+          });
         });
 
         it("after v9 succeeds", () => {
@@ -156,10 +211,15 @@ describe("browserSupportService", () => {
             isIE: false,
             isSafari: true,
             isMobile: false,
-            version: 9
+            version: 9,
+            browser: "Safari"
           };
           useragent.parse.mockImplementation(input => ua);
-          expect(checkBrowserSupported(req)).toBeTruthy();
+          expect(checkBrowserInfo(req.headers["user-agent"])).toEqual({
+            browser: "Safari",
+            browserVersion: 9,
+            isBrowserSupported: true
+          });
         });
       });
     });
@@ -171,10 +231,15 @@ describe("browserSupportService", () => {
         isEdge: false,
         isIE: false,
         isSafari: false,
-        version: 10
+        version: 10,
+        browser: ""
       };
       useragent.parse.mockImplementation(input => ua);
-      expect(checkBrowserSupported(req)).toBeFalsy();
+      expect(checkBrowserInfo(req.headers["user-agent"])).toEqual({
+        browser: "",
+        browserVersion: 10,
+        isBrowserSupported: false
+      });
     });
   });
 });
