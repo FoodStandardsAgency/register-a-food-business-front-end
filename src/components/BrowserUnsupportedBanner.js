@@ -1,13 +1,20 @@
 import { WarningText } from "govuk-react";
+import styled from "react-emotion";
+
+const StyledWarning = styled(WarningText)`
+  border: 3px solid black;
+  background-color: #dee0e2;
+  padding: 10px 10px;
+`;
 
 const BrowserUnsupportedBanner = props => (
-  <WarningText>
+  <StyledWarning>
     {`Your web browser ${props.browser} v${
       props.version
     } is out of date. You may not be able to
     complete the registration. Update your browser for more security, speed and
     the best experience on this site.`}
-  </WarningText>
+  </StyledWarning>
 );
 
 export default BrowserUnsupportedBanner;
