@@ -386,9 +386,13 @@ const schema = {
         type: "string"
       }
     },
-    anyOf: [
-      { required: ["directly_import"] },
-      { required: ["directly_export"] },
+    oneOf: [
+      {
+        anyOf: [
+          { required: ["directly_import"] },
+          { required: ["directly_export"] }
+        ]
+      },
       { required: ["no_import_export"] }
     ]
   },
