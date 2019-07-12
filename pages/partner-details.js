@@ -23,9 +23,7 @@ const PartnerDetails = props => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Header level={1} size="LARGE">
-      {props.cumulativeFullAnswers.partners[
-        props.cumulativeFullAnswers.targetPartner
-      ]
+      {props.cumulativeFullAnswers.targetPartner.name
         ? "Edit "
         : "Add "}
       partner's name
@@ -38,9 +36,7 @@ const PartnerDetails = props => (
               name: "partner_name",
               autoComplete: "name",
               defaultValue:
-                props.cumulativeFullAnswers.partners[
-                  props.cumulativeFullAnswers.targetPartner
-                ]
+                props.cumulativeFullAnswers.targetPartner.name
             }}
             id="partner_name"
             meta={{
@@ -60,9 +56,7 @@ const PartnerDetails = props => (
             id="continue-button"
             type="submit"
           >
-            {props.cumulativeFullAnswers.partners[
-              props.cumulativeFullAnswers.targetPartner
-            ]
+            {props.cumulativeFullAnswers.targetPartner.name
               ? "Save"
               : "Add"}{" "}
             partner
@@ -90,7 +84,8 @@ PartnerDetails.propTypes = {
     PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
-      PropTypes.number
+      PropTypes.number,
+      PropTypes.object
     ])
   ),
   validatorErrors: PropTypes.objectOf(PropTypes.string)

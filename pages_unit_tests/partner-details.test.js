@@ -49,7 +49,7 @@ describe("<PartnerDetails />", () => {
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {
         partners: ["one"],
-        targetPartner: "0"
+        targetPartner: { id: "0", name: "one" }
       };
       const wrapper = mount(
         <PartnerDetails

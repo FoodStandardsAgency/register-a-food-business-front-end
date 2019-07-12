@@ -32,7 +32,7 @@ describe("Partner Details Route: ", () => {
           validationErrors: {},
           redirectRoute: "/page",
           cumulativeFullAnswers: {
-            partners: ["One First", "Second Two"]
+            partners: [ ]
           },
           switches: { exampleSwitch: true }
         }));
@@ -42,7 +42,8 @@ describe("Partner Details Route: ", () => {
         req = {
           session: {
             cumulativeFullAnswers: {
-              partners: ["One First", "Second Two"]
+              partners: [ ],
+              targetPartner: { id: null }
             },
             switches: {},
             council: "council",
@@ -52,7 +53,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           get: value => "www.test.com/new/thepage?display=true",
-          body: "body",
+          body: { partner_name: "Brian May" },
           query: {}
         };
 
@@ -67,9 +68,10 @@ describe("Partner Details Route: ", () => {
         expect(partnerDetailsSave).toHaveBeenCalledWith(
           "/thepage",
           {
-            partners: ["One First", "Second Two"]
+            partners: [ ],
+            targetPartner: { id: null}
           },
-          "body",
+          { partner_name: "Brian May" },
           "council",
           false
         );
@@ -85,7 +87,7 @@ describe("Partner Details Route: ", () => {
           validationErrors: {},
           redirectRoute: "/new/council/page",
           cumulativeFullAnswers: {
-            new: "answers"
+            partners: [ "Brian May" ]
           },
           switches: { exampleSwitch: true }
         }));
@@ -94,7 +96,10 @@ describe("Partner Details Route: ", () => {
 
         req = {
           session: {
-            cumulativeFullAnswers: { targetPartner: "Brian May" },
+            cumulativeFullAnswers: { 
+              partners: [ "Brian May" ],
+              targetPartner: { id: 0, name: "Brian May" } 
+            },
             switches: {},
             council: "council",
             pathConfig: { path: "existing path from session" },
@@ -106,6 +111,7 @@ describe("Partner Details Route: ", () => {
           header: {
             Referrer: "www.test.com/new/thepage?display=true"
           },
+          body: { index: 0, partner_name: "Brian April" },
           query: {}
         };
 
@@ -119,8 +125,8 @@ describe("Partner Details Route: ", () => {
       it("Should return the correct response", () => {
         expect(partnerDetailsSave).toHaveBeenCalledWith(
           "/thepage",
-          { targetPartner: "Brian May", partners: [] },
-          { index: "Brian May" },
+          { targetPartner: { id: 0, name: "Brian May" }, partners: [ "Brian May" ] },
+          { index: 0, partner_name: "Brian April" },
           "council",
           false
         );
@@ -130,11 +136,15 @@ describe("Partner Details Route: ", () => {
         expect(res.redirect).toHaveBeenCalledWith("/new/council/page");
       });
     });
+
     describe("Partner details throws error", () => {
       let response;
       const req = {
         session: {
-          cumulativeFullAnswers: {},
+          cumulativeFullAnswers: {
+            partners: [],
+            targetPartner: { id: null }
+          },
           council: "council",
           pathConfig: { path: "existing path from session" },
           save: cb => {
@@ -207,7 +217,7 @@ describe("Partner Details Route: ", () => {
           header: {
             Referrer: "www.test.com/new/thepage?display=true"
           },
-          body: "body",
+          body: { index: 0, partner_name: "Brian April" },
           query: {}
         };
 
@@ -222,16 +232,16 @@ describe("Partner Details Route: ", () => {
         expect(partnerDetailsSave).toBeCalledWith(
           "/thepage",
           {
-            partners: []
+            partners: [ ],
+            targetPartner: { id: null }
           },
-          "body",
+          { partner_name: "Brian May" },
           "council",
           false
         );
       });
     });
   });
-
   describe("GET from /partner-details", () => {
     describe("When it has partners and query", () => {
       let res, req;
@@ -260,7 +270,9 @@ describe("Partner Details Route: ", () => {
       });
 
       it("Should set target partner to have a value", () => {
-        expect(req.session.cumulativeFullAnswers.targetPartner).toBe(1);
+        expect(req.session.cumulativeFullAnswers.targetPartner).toEqual(
+          { id: 1, name: "Second Two" }
+        );
       });
       it("Should have partners", () => {
         expect(req.session.cumulativeFullAnswers.partners).toEqual([
@@ -297,7 +309,7 @@ describe("Partner Details Route: ", () => {
 
       it("Should delete target partner", () => {
         expect(req.session.cumulativeFullAnswers.targetPartner).toEqual(
-          undefined
+          { id: NaN, name: undefined }
         );
       });
       it("Should have Partners as an empty array", () => {
@@ -463,7 +475,8 @@ describe("Partner Details Route: ", () => {
           session: {
             council: "council",
             cumulativeFullAnswers: {
-              partners: ["One First", "Two Second"]
+              partners: ["One First", "Two Second"],
+              targetPartner: { id: 0, name: "One First" }
             },
             save: cb => {
               cb("Error saving session");
