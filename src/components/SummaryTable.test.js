@@ -23,7 +23,8 @@ const mandatoryTableRows = [
   "establishmentOpeningDateRow",
   "businessTypeRow",
   "businessOtherDetailsRow",
-  "establishmentOpeningDaysRow"
+  "establishmentOpeningDaysRow",
+  "waterSupplyRow"
 ];
 
 const editableTableRows = [
@@ -46,7 +47,8 @@ const editableTableRows = [
   "businessOtherDetailsRow",
   "establishmentOpeningDaysRow",
   "operatorPartnersRow",
-  "operatorMainPartnerRow"
+  "operatorMainPartnerRow",
+  "waterSupplyRow"
 ];
 // (only optional if it's optional within that page. Does not apply to pages that are optional or could be skipped.)
 const optionalTableRows = [
@@ -83,7 +85,8 @@ const testMandatoryAnswers = {
   establishment_type: "Mobile or moveable premise",
   business_type: "Livestock farm",
   business_other_details: "This is the best business in the world",
-  opening_day_monday: "Monday"
+  opening_day_monday: "Monday",
+  water_supply: "Private"
 };
 
 const testMandatoryAnswersForPartnership = {
@@ -111,7 +114,8 @@ const testMandatoryAnswersForPartnership = {
   establishment_type: "Mobile or moveable premise",
   business_type: "Livestock farm",
   business_other_details: "This is the best business in the world",
-  opening_day_monday: "Monday"
+  opening_day_monday: "Monday",
+  water_supply: "Private"
 };
 
 // a supplementary set of all optional answer fields with example data
