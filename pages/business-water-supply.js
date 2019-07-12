@@ -67,7 +67,7 @@ const WaterSupply = props => (
           <Radio
             name="water_supply"
             value="Public and private"
-            id="water_supply_public"
+            id="water_supply_public_and_private"
             defaultChecked={
               props.cumulativeFullAnswers.water_supply === "Public and private"
             }
