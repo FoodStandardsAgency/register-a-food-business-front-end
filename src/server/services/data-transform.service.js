@@ -217,6 +217,7 @@ const transformAnswersForSubmit = (
     "business_type_search_term",
     "import_export_activities",
     "opening_days_irregular",
+    "water_supply",
     "business_other_details",
     "opening_day_monday",
     "opening_day_tuesday",

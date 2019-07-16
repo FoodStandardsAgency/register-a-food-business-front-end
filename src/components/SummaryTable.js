@@ -655,6 +655,26 @@ const EstablishmentDetailsTable = props => (
         )}
       </AccessibleTableRow>
     ) : null}
+    {props.water_supply ? (
+      <AccessibleTableRow
+        acPage={props.applicationCompletePage}
+        id="waterSupplyRow"
+      >
+        <AccessibleRowHeader>Water supply</AccessibleRowHeader>
+        <AccessibleCell id="water_supply">{props.water_supply}</AccessibleCell>
+        {props.applicationCompletePage ? null : (
+          <AccessibleChangeCell>
+            <AnchorTag
+              id="changeWaterSupplyRow"
+              href="/edit/business-water-supply"
+              aria-label="Change water supply"
+            >
+              Change
+            </AnchorTag>
+          </AccessibleChangeCell>
+        )}
+      </AccessibleTableRow>
+    ) : null}
   </React.Fragment>
 );
 
