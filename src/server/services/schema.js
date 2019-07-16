@@ -299,6 +299,15 @@ const schema = {
       }
     }
   },
+  "/business-water-supply": {
+    type: "object",
+    properties: {
+      water_supply: {
+        type: "string",
+        validation: validateRadioButtons
+      }
+    }
+  },
   "/customer-type": {
     type: "object",
     properties: {
