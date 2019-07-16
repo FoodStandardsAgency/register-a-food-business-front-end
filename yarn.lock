@@ -1883,10 +1883,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^12.0.9"
 
-"@slice-and-dice/register-a-food-business-validation@1.14.3":
-  version "1.14.3"
-  resolved "https://registry.yarnpkg.com/@slice-and-dice/register-a-food-business-validation/-/register-a-food-business-validation-1.14.3.tgz#c91c09d6591eea23f8e926df0c82ba57a21c3dd5"
-  integrity sha512-LxhbBTc4Bv/X1aF+Ya60MbN4T+nU2hUxMGULb39lmECURAVlrvwbQSzRhELKCWlTKOjYmQn1GPWpZT9OML6MCw==
+"@slice-and-dice/register-a-food-business-validation@1.16.0":
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/@slice-and-dice/register-a-food-business-validation/-/register-a-food-business-validation-1.16.0.tgz#722c007f8756beefd4e982c3d379173e938bff81"
+  integrity sha512-qGFcCSX6/GBUAQkODu55JTJ+FGUr7j4hyvuyW3A0KVH3RWNvzUUyJBsnk0nzBe89eMRjw2ADBXN/xQA+wul/Vw==
   dependencies:
     moment "^2.22.2"
     validator "^10.4.0"
