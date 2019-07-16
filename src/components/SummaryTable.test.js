@@ -48,13 +48,15 @@ const editableTableRows = [
   "establishmentOpeningDaysRow",
   "operatorPartnersRow",
   "operatorMainPartnerRow",
-  "waterSupplyRow"
+  "waterSupplyRow",
+  "establishmentOpeningHoursRow"
 ];
 // (only optional if it's optional within that page. Does not apply to pages that are optional or could be skipped.)
 const optionalTableRows = [
   "operatorCharityNumberRow",
   "operatorPartnersRow",
-  "operatorMainPartnerRow"
+  "operatorMainPartnerRow",
+  "establishmentOpeningHoursRow"
 ];
 
 const allTableRows = mandatoryTableRows.concat(optionalTableRows);
@@ -130,7 +132,14 @@ const testOptionalAnswers = {
   establishment_secondary_number: "7654321",
   operator_secondary_number: "7654321",
   partners: ["John", "Doe"],
-  main_partnership_contact: "John"
+  main_partnership_contact: "John",
+  opening_hours_monday: "9:30 - 19:00",
+  opening_hours_tuesday: "09:30 - 19:00",
+  opening_hours_wednesday: "9:30am - 7pm",
+  opening_hours_thursday: "0930 - 1900",
+  opening_hours_friday: "9:30 to 19:00",
+  opening_hours_saturday: "09:30 to 19:00",
+  opening_hours_sunday: "From 9:30 to 19:00"
 };
 
 // the complete set of possible answer fields with example data
