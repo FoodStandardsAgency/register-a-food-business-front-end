@@ -61,7 +61,14 @@ const errorMessages = {
   partner_name: "Not a valid name",
   partners: `Please define between 2-${MAX_PARTNERS} partners`,
   main_partnership_contact:
-    "You must select the main partnership contact before continuing"
+    "You must select the main partnership contact before continuing",
+  opening_hours_monday: "Not valid opening hours on Monday",
+  opening_hours_tuesday: "Not valid opening hours on Tuesday",
+  opening_hours_wednesday: "Not valid opening hours on Wednesday",
+  opening_hours_thursday: "Not valid opening hours on Thursday",
+  opening_hours_friday: "Not valid opening hours on Friday",
+  opening_hours_saturday: "Not valid opening hours on Saturday",
+  opening_hours_sunday: "Not valid opening hours on Sunday"
 };
 
 const validator = new Validator();
@@ -113,6 +120,14 @@ const validate = (page, answers) => {
         answersToValidate,
         schema[page]
       );
+
+      if (validatorResult.errors.length > 0 && page === "/opening-hours") {
+        // ignore errors for fields not requiring validation
+        validatorResult.errors = validatorResult.errors.filter(error =>
+          Object.keys(answersToValidate).includes(error.property.split(".")[1])
+        );
+      }
+
       if (
         validatorResult.schema.properties.directly_import &&
         validatorResult.errors.length > 0

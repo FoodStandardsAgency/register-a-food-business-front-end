@@ -25,7 +25,8 @@ const {
   validateBusinessOtherDetails,
   validateOpeningDaysIrregular,
   validatePartners,
-  validatePartnerName
+  validatePartnerName,
+  validateOpeningHours
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const schema = {
@@ -361,6 +362,39 @@ const schema = {
       opening_days_irregular: {
         type: "string",
         validation: validateOpeningDaysIrregular
+      }
+    }
+  },
+  "/opening-hours": {
+    type: "object",
+    properties: {
+      opening_hours_monday: {
+        type: "string",
+        validation: validateOpeningHours
+      },
+      opening_hours_tuesday: {
+        type: "string",
+        validation: validateOpeningHours
+      },
+      opening_hours_wednesday: {
+        type: "string",
+        validation: validateOpeningHours
+      },
+      opening_hours_thursday: {
+        type: "string",
+        validation: validateOpeningHours
+      },
+      opening_hours_friday: {
+        type: "string",
+        validation: validateOpeningHours
+      },
+      opening_hours_saturday: {
+        type: "string",
+        validation: validateOpeningHours
+      },
+      opening_hours_sunday: {
+        type: "string",
+        validation: validateOpeningHours
       }
     }
   },

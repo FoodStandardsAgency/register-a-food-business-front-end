@@ -224,7 +224,14 @@ const transformAnswersForSubmit = (
     "opening_day_thursday",
     "opening_day_friday",
     "opening_day_saturday",
-    "opening_day_sunday"
+    "opening_day_sunday",
+    "opening_hours_monday",
+    "opening_hours_tuesday",
+    "opening_hours_wednesday",
+    "opening_hours_thursday",
+    "opening_hours_friday",
+    "opening_hours_saturday",
+    "opening_hours_sunday"
   ];
   const metadata_keys = ["declaration1", "declaration2", "declaration3"];
 
