@@ -3,9 +3,10 @@ import { FsaLayout } from "../src/components";
 import { Header, Paragraph, BackLink, Button } from "govuk-react";
 
 class InternalServerError extends React.Component {
-  static getInitialProps({ res, err }) {
+  static getInitialProps({ req, res, err }) {
     const statusCode = res ? res.statusCode : err ? err.statusCode : null;
-    return { statusCode };
+    const council = req.session.council;
+    return { statusCode, council };
   }
 
   render() {
