@@ -9,6 +9,7 @@ const rateLimit = require("express-rate-limit");
 const { info } = require("winston");
 const routes = require("./routes");
 const { Next } = require("./next");
+const { errorHandler } = require("./middleware/errorHandler");
 
 module.exports = async dbUrl => {
   const app = express();
@@ -54,6 +55,7 @@ module.exports = async dbUrl => {
   await Next.prepare();
 
   app.use(routes());
+  app.use(errorHandler);
 
   return app;
 };
