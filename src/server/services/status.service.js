@@ -7,7 +7,7 @@ const { logEmitter } = require("./logging.service");
 const {
   getStoredStatus,
   updateStoredStatus
-} = require("../connectors/status/status.connector");
+} = require("../connectors/status-db/status-db.connector");
 
 /**
  * Gets the value of a specified status variable

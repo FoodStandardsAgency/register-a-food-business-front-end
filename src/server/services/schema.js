@@ -299,6 +299,15 @@ const schema = {
       }
     }
   },
+  "/business-water-supply": {
+    type: "object",
+    properties: {
+      water_supply: {
+        type: "string",
+        validation: validateRadioButtons
+      }
+    }
+  },
   "/customer-type": {
     type: "object",
     properties: {
@@ -386,9 +395,13 @@ const schema = {
         type: "string"
       }
     },
-    anyOf: [
-      { required: ["directly_import"] },
-      { required: ["directly_export"] },
+    oneOf: [
+      {
+        anyOf: [
+          { required: ["directly_import"] },
+          { required: ["directly_export"] }
+        ]
+      },
       { required: ["no_import_export"] }
     ]
   },
