@@ -24,7 +24,7 @@ describe("<Error />", () => {
       req.header = jest.fn(headerName => undefined);
       const props = Error.getInitialProps({ req, res, err });
       expect(props.council).toEqual("council");
-      expect(props.referrer).toEqual("/");
+      expect(props.referrer).toBeFalsy();
       expect(props.statusCode).toEqual(100);
     });
 
@@ -32,7 +32,7 @@ describe("<Error />", () => {
       req.header = jest.fn(headerName => undefined);
       const props = Error.getInitialProps({ req, res });
       expect(props.council).toEqual("council");
-      expect(props.referrer).toEqual("/");
+      expect(props.referrer).toBeFalsy();
       expect(props.statusCode).toEqual(100);
     });
 
@@ -70,87 +70,25 @@ describe("<Error />", () => {
     });
 
     it("has a back to start button with correct link when council not set", () => {
-      const wrapper = mount(
-        <Error statusCode="404" council={undefined} referrer="referrer" />
-      );
+      const wrapper = mount(<Error statusCode="404" referrer="referrer" />);
       const backLink = wrapper.find("BackLink");
       expect(backLink.props().href).toBe("/");
     });
-
-    it("has a back button with correct link", () => {
-      const wrapper = mount(
-        <Error statusCode="404" council="council" referrer="referrer" />
-      );
-      const form = wrapper.find("form#unknown-error-form");
-      expect(form.props().action).toBe("referrer");
+    describe("when referrer is known", () => {
+      it("has a back button with correct link", () => {
+        const wrapper = mount(
+          <Error statusCode="404" council="council" referrer="referrer" />
+        );
+        const form = wrapper.find("form#unknown-error-form");
+        expect(form.props().action).toBe("referrer");
+      });
     });
-  });
-
-  describe("showing 500 error", () => {
-    it("renders without crashing", () => {
-      const wrapper = shallow(
-        <Error statusCode="500" council="council" referrer="referrer" />
-      );
-      expect(wrapper.length).toBe(1);
-    });
-
-    it("has a back to start button with correct link when council set", () => {
-      const wrapper = mount(
-        <Error statusCode="500" council="council" referrer="referrer" />
-      );
-      const backLink = wrapper.find("BackLink");
-      expect(backLink.props().href).toBe("/new/council");
-    });
-
-    it("has a back to start button with correct link when council not set", () => {
-      const wrapper = mount(
-        <Error statusCode="500" council={undefined} referrer="referrer" />
-      );
-      const backLink = wrapper.find("BackLink");
-      expect(backLink.props().href).toBe("/");
-    });
-
-    it("has a to food.gov.uk button with correct link", () => {
-      const wrapper = mount(
-        <Error statusCode="500" council="council" referrer="referrer" />
-      );
-      const form = wrapper.find("form#server-error-form");
-      expect(form.props().action).toBe(
-        "https://www.food.gov.uk/business-guidance/register-a-food-business"
-      );
-    });
-  });
-
-  describe("showing generic error", () => {
-    it("renders without crashing", () => {
-      const wrapper = shallow(
-        <Error statusCode="501" council="council" referrer="referrer" />
-      );
-      expect(wrapper.length).toBe(1);
-    });
-
-    it("has a back to start button with correct link when council set", () => {
-      const wrapper = mount(
-        <Error statusCode="501" council="council" referrer="referrer" />
-      );
-      const backLink = wrapper.find("BackLink");
-      expect(backLink.props().href).toBe("/new/council");
-    });
-
-    it("has a back to start button with correct link when council not set", () => {
-      const wrapper = mount(
-        <Error statusCode="501" council={undefined} referrer="referrer" />
-      );
-      const backLink = wrapper.find("BackLink");
-      expect(backLink.props().href).toBe("/");
-    });
-
-    it("has a report issue button with correct link", () => {
-      const wrapper = mount(
-        <Error statusCode="501" council="council" referrer="referrer" />
-      );
-      const form = wrapper.find("form#other-error-form");
-      expect(form.props().action).toBe("about:blank");
+    describe("when referrer is not known", () => {
+      it("has a back button with correct link", () => {
+        const wrapper = mount(<Error statusCode="404" council="council" />);
+        const form = wrapper.find("form#unknown-error-form");
+        expect(form.length).toBe(0);
+      });
     });
   });
 });
