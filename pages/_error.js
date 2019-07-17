@@ -4,74 +4,31 @@ import { Header, Paragraph, BackLink, Button } from "govuk-react";
 
 class Error extends React.Component {
   static getInitialProps({ req, res, err }) {
-    let statusCode;
-    if (res) {
-      statusCode = res.statusCode;
-    } else if (err) {
-      statusCode = err.statusCode;
-    } else {
-      statusCode = null;
-    }
+    const statusCode = res ? res.statusCode : err ? err.statusCode : null;
     const council = req.session.council;
-    const referrer = req.header("Referrer") || "/";
+    const referrer = req.header("Referrer");
     return { statusCode, council, referrer };
   }
 
   render() {
-    const backToStartLink =
-      this.props.council === undefined ? `/` : `/new/${this.props.council}`;
-    switch (parseInt(this.props.statusCode, 10)) {
-      case 404:
-        return (
-          <FsaLayout {...this.props}>
-            <BackLink href={backToStartLink}>Back to start</BackLink>
-            <Header level={1}>Page Not Found</Header>
-            <Paragraph>
-              Please contact your Local Council if you need to speak to someone
-              about your food business registration urgently.
-            </Paragraph>
-            <form id="unknown-error-form" action={this.props.referrer}>
-              <Button type="submit">Return to previous page</Button>
-            </form>
-          </FsaLayout>
-        );
-      case 500:
-        return (
-          <FsaLayout {...this.props}>
-            <BackLink href={backToStartLink}>Back to start</BackLink>
-            <Header level={1}>This service is currently unavailable</Header>
-            <Paragraph>
-              Sorry about that, we seem to be experiencing some difficulties.
-            </Paragraph>
-            <Paragraph>Please try again later.</Paragraph>
-            <form
-              id="server-error-form"
-              action="https://www.food.gov.uk/business-guidance/register-a-food-business"
-            >
-              <Button type="submit">Return to food.gov.uk</Button>
-            </form>
-          </FsaLayout>
-        );
-      default:
-        return (
-          <FsaLayout {...this.props}>
-            <BackLink href={backToStartLink}>Back to start</BackLink>
-            <Header level={1}>Oops</Header>
-            <Paragraph>
-              We seem to be experiencing some difficulties. Try refreshing this
-              this page to fix the problem.
-            </Paragraph>
-            <Paragraph>
-              If you have seen this message several times, please report it
-              below.
-            </Paragraph>
-            {/* TODO - Add in appropriate link */}
-            <form id="other-error-form" action="about:blank">
-              <Button type="submit">Report a problem</Button>
-            </form>
-          </FsaLayout>
-        );
-    }
+    const backToStartLink = this.props.council
+      ? `/new/${this.props.council}`
+      : "/";
+    return (
+      <FsaLayout {...this.props}>
+        <BackLink href={backToStartLink}>Back to start</BackLink>
+        <Header level={1}>Page Not Found</Header>
+        <Paragraph>
+          Please contact your Local Council if you need to speak to someone
+          about your food business registration urgently.
+        </Paragraph>
+        {this.props.referrer ? (
+          <form id="unknown-error-form" action={this.props.referrer}>
+            <Button type="submit">Return to previous page</Button>
+          </form>
+        ) : null}
+      </FsaLayout>
+    );
   }
 }
 
