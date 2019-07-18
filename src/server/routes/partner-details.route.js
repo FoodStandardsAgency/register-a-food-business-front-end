@@ -85,6 +85,8 @@ const partnerDetailsRouter = () => {
     const targetPartner = parseInt(req.query.id, 10);
     if (!isNaN(targetPartner)) {
       req.session.cumulativeFullAnswers.targetPartner = targetPartner;
+    } else {
+      delete req.session.cumulativeFullAnswers.targetPartner;
     }
 
     logEmitter.emit(
