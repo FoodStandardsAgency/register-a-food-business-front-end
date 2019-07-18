@@ -83,7 +83,10 @@ const partnerDetailsRouter = () => {
     );
 
     const targetPartnerId = parseInt(req.query.id, 10);
-    req.session.cumulativeFullAnswers.targetPartner = { id: targetPartnerId, name: req.session.cumulativeFullAnswers.partners[targetPartnerId] };
+    req.session.cumulativeFullAnswers.targetPartner = {
+      id: targetPartnerId,
+      name: req.session.cumulativeFullAnswers.partners[targetPartnerId]
+    };
 
     logEmitter.emit(
       "functionSuccess",

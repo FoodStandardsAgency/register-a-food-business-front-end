@@ -23,9 +23,7 @@ const PartnerDetails = props => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Header level={1} size="LARGE">
-      {props.cumulativeFullAnswers.targetPartner.name
-        ? "Edit "
-        : "Add "}
+      {props.cumulativeFullAnswers.targetPartner.name ? "Edit " : "Add "}
       partner's name
     </Header>
     <form action={props.partnerDetailsSaveFormAction} method="post">
@@ -35,8 +33,7 @@ const PartnerDetails = props => (
             input={{
               name: "partner_name",
               autoComplete: "name",
-              defaultValue:
-                props.cumulativeFullAnswers.targetPartner.name
+              defaultValue: props.cumulativeFullAnswers.targetPartner.name
             }}
             id="partner_name"
             meta={{
@@ -56,9 +53,7 @@ const PartnerDetails = props => (
             id="continue-button"
             type="submit"
           >
-            {props.cumulativeFullAnswers.targetPartner.name
-              ? "Save"
-              : "Add"}{" "}
+            {props.cumulativeFullAnswers.targetPartner.name ? "Save" : "Add"}{" "}
             partner
           </Button>
         </ContentItem.B_30_15>

@@ -32,7 +32,7 @@ describe("Partner Details Route: ", () => {
           validationErrors: {},
           redirectRoute: "/page",
           cumulativeFullAnswers: {
-            partners: [ ]
+            partners: []
           },
           switches: { exampleSwitch: true }
         }));
@@ -42,7 +42,7 @@ describe("Partner Details Route: ", () => {
         req = {
           session: {
             cumulativeFullAnswers: {
-              partners: [ ],
+              partners: [],
               targetPartner: { id: null }
             },
             switches: {},
@@ -68,8 +68,8 @@ describe("Partner Details Route: ", () => {
         expect(partnerDetailsSave).toHaveBeenCalledWith(
           "/thepage",
           {
-            partners: [ ],
-            targetPartner: { id: null}
+            partners: [],
+            targetPartner: { id: null }
           },
           { partner_name: "Brian May" },
           "council",
@@ -87,7 +87,7 @@ describe("Partner Details Route: ", () => {
           validationErrors: {},
           redirectRoute: "/new/council/page",
           cumulativeFullAnswers: {
-            partners: [ "Brian May" ]
+            partners: ["Brian May"]
           },
           switches: { exampleSwitch: true }
         }));
@@ -96,9 +96,9 @@ describe("Partner Details Route: ", () => {
 
         req = {
           session: {
-            cumulativeFullAnswers: { 
-              partners: [ "Brian May" ],
-              targetPartner: { id: 0, name: "Brian May" } 
+            cumulativeFullAnswers: {
+              partners: ["Brian May"],
+              targetPartner: { id: 0, name: "Brian May" }
             },
             switches: {},
             council: "council",
@@ -125,7 +125,10 @@ describe("Partner Details Route: ", () => {
       it("Should return the correct response", () => {
         expect(partnerDetailsSave).toHaveBeenCalledWith(
           "/thepage",
-          { targetPartner: { id: 0, name: "Brian May" }, partners: [ "Brian May" ] },
+          {
+            targetPartner: { id: 0, name: "Brian May" },
+            partners: ["Brian May"]
+          },
           { index: 0, partner_name: "Brian April" },
           "council",
           false
@@ -232,7 +235,7 @@ describe("Partner Details Route: ", () => {
         expect(partnerDetailsSave).toBeCalledWith(
           "/thepage",
           {
-            partners: [ ],
+            partners: [],
             targetPartner: { id: null }
           },
           { partner_name: "Brian May" },
@@ -270,9 +273,10 @@ describe("Partner Details Route: ", () => {
       });
 
       it("Should set target partner to have a value", () => {
-        expect(req.session.cumulativeFullAnswers.targetPartner).toEqual(
-          { id: 1, name: "Second Two" }
-        );
+        expect(req.session.cumulativeFullAnswers.targetPartner).toEqual({
+          id: 1,
+          name: "Second Two"
+        });
       });
       it("Should have partners", () => {
         expect(req.session.cumulativeFullAnswers.partners).toEqual([
@@ -308,9 +312,10 @@ describe("Partner Details Route: ", () => {
       });
 
       it("Should delete target partner", () => {
-        expect(req.session.cumulativeFullAnswers.targetPartner).toEqual(
-          { id: NaN, name: undefined }
-        );
+        expect(req.session.cumulativeFullAnswers.targetPartner).toEqual({
+          id: NaN,
+          name: undefined
+        });
       });
       it("Should have Partners as an empty array", () => {
         expect(req.session.cumulativeFullAnswers.partners).toEqual([]);
