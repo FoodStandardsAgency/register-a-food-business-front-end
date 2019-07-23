@@ -33,6 +33,17 @@ describe("<OpeningHours />", () => {
       expect(inputFields.length).toBe(0);
     });
 
+    it("renders all input fields if open every day", () => {
+      const wrapper = mount(
+        <OpeningHours
+          validatorErrors={testValidatorErrors}
+          cumulativeFullAnswers={{ opening_days_start: "Every day" }}
+        />
+      );
+      const inputFields = wrapper.find("InputField");
+      expect(inputFields.length).toBe(7);
+    });
+
     it("renders Monday input field when open", () => {
       const wrapper = mount(
         <OpeningHours
@@ -233,6 +244,32 @@ describe("<OpeningHours />", () => {
       const OpeningHoursField = wrapper.find("InputField#opening_hours_sunday");
       expect(OpeningHoursField.props().input.defaultValue).toBe("default");
     });
+    it("two different input fields get given correct default values", () => {
+      const cumulativeFullAnswers = {
+        opening_day_sunday: "Sunday",
+        opening_hours_sunday: "8 to 15",
+        opening_day_monday: "Monday",
+        opening_hours_monday: "9:00 to 20:00"
+      };
+      const wrapper = mount(
+        <OpeningHours
+          validatorErrors={testValidatorErrors}
+          cumulativeFullAnswers={cumulativeFullAnswers}
+        />
+      );
+      const OpeningHoursFieldSunday = wrapper.find(
+        "InputField#opening_hours_sunday"
+      );
+      const OpeningHoursFieldMonday = wrapper.find(
+        "InputField#opening_hours_monday"
+      );
+      expect(OpeningHoursFieldSunday.props().input.defaultValue).toBe(
+        "8 to 15"
+      );
+      expect(OpeningHoursFieldMonday.props().input.defaultValue).toBe(
+        "9:00 to 20:00"
+      );
+    });
     it("renders correct error message for Monday field", () => {
       const cumulativeFullAnswers = {
         opening_day_monday: "Monday"
@@ -358,6 +395,33 @@ describe("<OpeningHours />", () => {
       const OpeningHoursField = wrapper.find("InputField#opening_hours_sunday");
       expect(OpeningHoursField.props().meta.error).toBe(
         "invalid opening hours on sunday"
+      );
+    });
+    it("renders correct error message for two different fields", () => {
+      const cumulativeFullAnswers = {
+        opening_day_sunday: "Sunday",
+        opening_day_monday: "Monday"
+      };
+      const wrapper = mount(
+        <OpeningHours
+          validatorErrors={{
+            opening_hours_sunday: "invalid opening hours on sunday",
+            opening_hours_monday: "invalid opening hours on monday"
+          }}
+          cumulativeFullAnswers={cumulativeFullAnswers}
+        />
+      );
+      const OpeningHoursFieldSunday = wrapper.find(
+        "InputField#opening_hours_sunday"
+      );
+      const OpeningHoursFieldMonday = wrapper.find(
+        "InputField#opening_hours_monday"
+      );
+      expect(OpeningHoursFieldSunday.props().meta.error).toBe(
+        "invalid opening hours on sunday"
+      );
+      expect(OpeningHoursFieldMonday.props().meta.error).toBe(
+        "invalid opening hours on monday"
       );
     });
   });
