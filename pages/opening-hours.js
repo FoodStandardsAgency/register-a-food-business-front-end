@@ -24,7 +24,7 @@ const OpeningHours = props => (
       <ContentItem.B_30_15>
         <HintText>
           Fill in the expected opening times for this establishment using 24
-          hour clocks. For example 06:00 or 23:15.
+          hour clocks. For example, 09:30 to 19:00.
         </HintText>
       </ContentItem.B_30_15>
       {props.cumulativeFullAnswers.opening_days_start === "Every day" ||
@@ -44,7 +44,6 @@ const OpeningHours = props => (
             <Header level={4} mb={1}>
               Monday
             </Header>
-            <HintText>For example, 09:30 to 19:00</HintText>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -65,7 +64,6 @@ const OpeningHours = props => (
             <Header level={4} mb={1}>
               Tuesday
             </Header>
-            <HintText>For example, 09:30 to 19:00</HintText>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -86,7 +84,6 @@ const OpeningHours = props => (
             <Header level={4} mb={1}>
               Wednesday
             </Header>
-            <HintText>For example, 09:30 to 19:00</HintText>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -107,7 +104,6 @@ const OpeningHours = props => (
             <Header level={4} mb={1}>
               Thursday
             </Header>
-            <HintText>For example, 09:30 to 19:00</HintText>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -128,7 +124,6 @@ const OpeningHours = props => (
             <Header level={4} mb={1}>
               Friday
             </Header>
-            <HintText>For example, 09:30 to 19:00</HintText>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -149,7 +144,6 @@ const OpeningHours = props => (
             <Header level={4} mb={1}>
               Saturday
             </Header>
-            <HintText>For example, 09:30 to 19:00</HintText>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -170,7 +164,6 @@ const OpeningHours = props => (
             <Header level={4} mb={1}>
               Sunday
             </Header>
-            <HintText>For example, 09:30 to 19:00</HintText>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
