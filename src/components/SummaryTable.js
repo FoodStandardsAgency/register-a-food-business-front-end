@@ -597,6 +597,64 @@ const EstablishmentDetailsTable = props => (
         </AccessibleChangeCell>
       )}
     </AccessibleTableRow>
+    {!props.opening_days_irregular ? (
+      <AccessibleTableRow
+        acPage={props.applicationCompletePage}
+        id="establishmentOpeningHoursRow"
+      >
+        <AccessibleRowHeader>Opening hours</AccessibleRowHeader>
+        <AccessibleCell>
+          <div>
+            {props.opening_hours_monday ? (
+              <div id="opening_hours_monday">
+                Monday: {props.opening_hours_monday}
+              </div>
+            ) : null}
+            {props.opening_hours_tuesday ? (
+              <div id="opening_hours_tuesday">
+                Tuesday: {props.opening_hours_tuesday}
+              </div>
+            ) : null}
+            {props.opening_hours_wednesday ? (
+              <div id="opening_hours_wednesday">
+                Wednesday: {props.opening_hours_wednesday}
+              </div>
+            ) : null}
+            {props.opening_hours_thursday ? (
+              <div id="opening_hours_thursday">
+                Thursday: {props.opening_hours_thursday}
+              </div>
+            ) : null}
+            {props.opening_hours_friday ? (
+              <div id="opening_hours_friday">
+                Friday: {props.opening_hours_friday}
+              </div>
+            ) : null}
+            {props.opening_hours_saturday ? (
+              <div id="opening_hours_saturday">
+                Saturday: {props.opening_hours_saturday}
+              </div>
+            ) : null}
+            {props.opening_hours_sunday ? (
+              <div id="opening_hours_sunday">
+                Sunday: {props.opening_hours_sunday}
+              </div>
+            ) : null}
+          </div>
+        </AccessibleCell>
+        {props.applicationCompletePage ? null : (
+          <AccessibleChangeCell>
+            <AnchorTag
+              id="changeEstablishmentOpeningHoursRow"
+              href="/edit/opening-hours"
+              aria-label="Change establishment opening hours"
+            >
+              Change
+            </AnchorTag>
+          </AccessibleChangeCell>
+        )}
+      </AccessibleTableRow>
+    ) : null}
     {props.water_supply ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
