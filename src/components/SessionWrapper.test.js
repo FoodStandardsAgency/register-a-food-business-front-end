@@ -21,7 +21,10 @@ const comprehensiveReqSessionObject = {
     emailFbo: { success: true, recipient: "fbo@example.com" },
     lcConfig: { example: "data" },
     council: "cardiff",
-    addressLookups: { test: [] }
+    addressLookups: { test: [] },
+    isBrowserSupported: true,
+    browser: "Chrome",
+    browserVersion: "70.1.12"
   }
 };
 
