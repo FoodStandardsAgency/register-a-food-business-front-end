@@ -22,6 +22,7 @@ import PartnershipDescription from "./PartnershipDescription";
 import OperatorDescription from "./OperatorDescription";
 import ContactDetailsHelp from "./ContactDetailsHelp";
 import AddressHelp from "./AddressHelp";
+import BrowserUnsupportedBanner from "./BrowserUnsupportedBanner";
 
 export {
   SessionWrapper,
@@ -47,5 +48,6 @@ export {
   PartnershipDescription,
   OperatorDescription,
   ContactDetailsHelp,
-  AddressHelp
+  AddressHelp,
+  BrowserUnsupportedBanner
 };

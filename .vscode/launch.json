@@ -32,10 +32,8 @@
       "request": "launch",
       "name": "Node run",
       "program": "${workspaceRoot}/src/server/index.js",
-      "runtimeArgs": [
-        "--inspect"
-      ],
-      "port": 9229,
+      "runtimeArgs": ["--inspect"],
+      "port": 9229
     },
     {
       "type": "node",

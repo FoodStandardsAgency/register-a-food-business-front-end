@@ -4,6 +4,7 @@ import FsaFooter from "./FsaFooter";
 import styled from "react-emotion";
 import React from "react";
 import { MEDIA_QUERIES } from "@govuk-react/constants";
+import BrowserUnsupportedBanner from "./BrowserUnsupportedBanner";
 
 const GridRowZeroMargin = styled(GridRow)`
   margin: 0px;
@@ -20,6 +21,12 @@ const FsaLayout = props => (
     <Page header={<FsaHeader {...props} />}>
       <GridRowZeroMargin>
         <GridColZeroPadding columnTwoThirds>
+          {!props.isBrowserSupported ? (
+            <BrowserUnsupportedBanner
+              browser={props.browser}
+              version={props.browserVersion}
+            />
+          ) : null}
           {props.children}
         </GridColZeroPadding>
       </GridRowZeroMargin>

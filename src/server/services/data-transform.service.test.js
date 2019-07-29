@@ -679,6 +679,96 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     });
   });
 
+  describe("when opening hours are empty strings", () => {
+    let result;
+    const testLcUrl = "some-council-url";
+
+    const testCumulativeAnswers = {
+      opening_hours_monday: "",
+      opening_hours_tuesday: "",
+      opening_hours_wednesday: "",
+      opening_hours_thursday: "",
+      opening_hours_friday: "",
+      opening_hours_saturday: "",
+      opening_hours_sunday: ""
+    };
+    const testAddressLookups = {};
+
+    it("it sets them to undefined", () => {
+      result = transformAnswersForSubmit(
+        testLcUrl,
+        testCumulativeAnswers,
+        testAddressLookups
+      );
+      expect(
+        result.registration.establishment.activities.opening_hours_monday
+      ).toBe(undefined);
+      expect(
+        result.registration.establishment.activities.opening_hours_tuesday
+      ).toBe(undefined);
+      expect(
+        result.registration.establishment.activities.opening_hours_wednesday
+      ).toBe(undefined);
+      expect(
+        result.registration.establishment.activities.opening_hours_thursday
+      ).toBe(undefined);
+      expect(
+        result.registration.establishment.activities.opening_hours_friday
+      ).toBe(undefined);
+      expect(
+        result.registration.establishment.activities.opening_hours_saturday
+      ).toBe(undefined);
+      expect(
+        result.registration.establishment.activities.opening_hours_sunday
+      ).toBe(undefined);
+    });
+  });
+
+  describe("when opening hours have truthy strings", () => {
+    let result;
+    const testLcUrl = "some-council-url";
+
+    const testCumulativeAnswers = {
+      opening_hours_monday: "monday",
+      opening_hours_tuesday: "tuesday",
+      opening_hours_wednesday: "wednesday",
+      opening_hours_thursday: "thursday",
+      opening_hours_friday: "friday",
+      opening_hours_saturday: "saturday",
+      opening_hours_sunday: "sunday"
+    };
+    const testAddressLookups = {};
+
+    it("it keeps the original values", () => {
+      result = transformAnswersForSubmit(
+        testLcUrl,
+        testCumulativeAnswers,
+        testAddressLookups
+      );
+      expect(
+        result.registration.establishment.activities.opening_hours_monday
+      ).toEqual("monday");
+      expect(
+        result.registration.establishment.activities.opening_hours_tuesday
+      ).toEqual("tuesday");
+      expect(
+        result.registration.establishment.activities.opening_hours_wednesday
+      ).toEqual("wednesday");
+      expect(
+        result.registration.establishment.activities.opening_hours_thursday
+      ).toEqual("thursday");
+      expect(
+        result.registration.establishment.activities.opening_hours_friday
+      ).toEqual("friday");
+      expect(
+        result.registration.establishment.activities.opening_hours_saturday
+      ).toEqual("saturday");
+      expect(
+        result.registration.establishment.activities.opening_hours_sunday
+      ).toEqual("sunday");
+    });
+  });
+
   describe("when opening_days_start is everyday ", () => {
     let result;
     const testLcUrl = "some-council-url";

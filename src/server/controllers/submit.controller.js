@@ -31,7 +31,8 @@ const submitController = async (
     submissionDate: "",
     fsaRegistrationNumber: "",
     emailFbo: {},
-    lc_details: {}
+    lc_details: {},
+    submissionSucceeded: null
   };
   logEmitter.emit("functionCall", "submit.controller", "submitController");
 
@@ -54,10 +55,12 @@ const submitController = async (
         controllerResponse.fsaRegistrationNumber = res["fsa-rn"];
         controllerResponse.emailFbo = res.email_fbo;
         controllerResponse.lcConfig = res.lc_config;
+        controllerResponse.submissionSucceeded = true;
         statusEmitter.emit("incrementCount", "submissionsSucceeded");
         statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
       } else {
         controllerResponse.redirectRoute = "back";
+        controllerResponse.submissionSucceeded = false;
         statusEmitter.emit("incrementCount", "submissionsFailed");
         statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
       }
@@ -76,6 +79,7 @@ const submitController = async (
       submissionDate: ${controllerResponse.submissionDate}.
       fsa-rn: ${controllerResponse.fsaRegistrationNumber}.
       lcConfig: ${controllerResponse.lcConfig}.
+      submissionSucceeded: ${controllerResponse.submissionSucceeded}.
       `
     );
     return controllerResponse;
