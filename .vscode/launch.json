@@ -32,10 +32,8 @@
       "request": "launch",
       "name": "Node run",
       "program": "${workspaceRoot}/src/server/index.js",
-      "runtimeArgs": [
-        "--inspect"
-      ],
-      "port": 9229,
+      "runtimeArgs": ["--inspect"],
+      "port": 9229
     },
     {
       "type": "node",
@@ -43,19 +41,6 @@
       "name": "Debug unit tests",
       "program": "${workspaceFolder}/node_modules/jest/bin/jest",
       "args": ["--runInBand", "./src", "./pages"],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "disableOptimisticBPs": true,
-      "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
-      }
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug specific unit tests",
-      "program": "${workspaceFolder}/node_modules/jest/bin/jest",
-      "args": ["--runInBand", "./src/server/services/browserSupport.service.test.js"], // Amend this one to specific file or folder
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "disableOptimisticBPs": true,
