@@ -22,7 +22,6 @@ const comprehensiveReqSessionObject = {
     lcConfig: { example: "data" },
     council: "cardiff",
     addressLookups: { test: [] },
-    isBrowserSupported: true,
     browser: "Chrome",
     browserVersion: "70.1.12"
   }
