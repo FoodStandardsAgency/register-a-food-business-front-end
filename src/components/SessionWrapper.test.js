@@ -23,7 +23,9 @@ const comprehensiveReqSessionObject = {
     council: "cardiff",
     addressLookups: { test: [] },
     browser: "Chrome",
-    browserVersion: "70.1.12"
+    browserVersion: "70.1.12",
+    isBrowserSupported: true,
+    isBrowserVersionVerified: true
   }
 };
 

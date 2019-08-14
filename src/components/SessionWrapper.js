@@ -110,13 +110,17 @@ const SessionWrapper = Page => {
       isBrowserSupported:
         req && req.session && req.session.isBrowserSupported
           ? req.session.isBrowserSupported
-          : undefined,
+          : false,
       browser:
         req && req.session && req.session.browser ? req.session.browser : "",
       browserVersion:
         req && req.session && req.session.browserVersion
           ? req.session.browserVersion
-          : ""
+          : "",
+      isBrowserVersionVerified:
+        req && req.session && req.session.isBrowserVersionVerified
+          ? req.session.isBrowserVersionVerified
+          : false
     };
 
     // The getInitialProps function (a method of the 'wrapper' function) returns the initialProps object

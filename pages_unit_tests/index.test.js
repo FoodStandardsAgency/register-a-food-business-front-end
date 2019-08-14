@@ -8,7 +8,9 @@ describe("<Index />", () => {
   });
 
   it("renders a BrowserUnsupportedBanner component if the browser is not supported", () => {
-    const wrapper = mount(<Index isBrowserSupported={false} />);
+    const wrapper = mount(
+      <Index isBrowserSupported={false} isBrowserVersionVerified={true} />
+    );
     const BrowserUnsupportedBanner = wrapper.find("BrowserUnsupportedBanner");
     expect(BrowserUnsupportedBanner.length).toBe(1);
   });
