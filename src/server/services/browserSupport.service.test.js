@@ -21,7 +21,8 @@ describe("browserSupportService", () => {
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "Chrome",
           browserVersion: 66,
-          isBrowserSupported: false
+          isBrowserSupported: false,
+          isBrowserVersionVerified: true
         });
       });
 
@@ -35,7 +36,8 @@ describe("browserSupportService", () => {
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "Chrome",
           browserVersion: 67,
-          isBrowserSupported: true
+          isBrowserSupported: true,
+          isBrowserVersionVerified: true
         });
       });
     });
@@ -52,7 +54,8 @@ describe("browserSupportService", () => {
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "Firefox",
           browserVersion: 59,
-          isBrowserSupported: false
+          isBrowserSupported: false,
+          isBrowserVersionVerified: true
         });
       });
 
@@ -61,13 +64,15 @@ describe("browserSupportService", () => {
           isChrome: false,
           isFirefox: true,
           version: 60,
-          browser: "Firefox"
+          browser: "Firefox",
+          isBrowserVersionVerified: true
         };
         useragent.parse.mockImplementation(input => ua);
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "Firefox",
           browserVersion: 60,
-          isBrowserSupported: true
+          isBrowserSupported: true,
+          isBrowserVersionVerified: true
         });
       });
     });
@@ -85,7 +90,8 @@ describe("browserSupportService", () => {
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "Edge",
           browserVersion: 15,
-          isBrowserSupported: false
+          isBrowserSupported: false,
+          isBrowserVersionVerified: true
         });
       });
 
@@ -101,7 +107,8 @@ describe("browserSupportService", () => {
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "Edge",
           browserVersion: 16,
-          isBrowserSupported: true
+          isBrowserSupported: true,
+          isBrowserVersionVerified: true
         });
       });
     });
@@ -120,7 +127,8 @@ describe("browserSupportService", () => {
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "IE",
           browserVersion: 10,
-          isBrowserSupported: false
+          isBrowserSupported: false,
+          isBrowserVersionVerified: true
         });
       });
 
@@ -137,7 +145,8 @@ describe("browserSupportService", () => {
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "IE",
           browserVersion: 11,
-          isBrowserSupported: true
+          isBrowserSupported: true,
+          isBrowserVersionVerified: true
         });
       });
     });
@@ -159,7 +168,8 @@ describe("browserSupportService", () => {
           expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
             browser: "Safari",
             browserVersion: 9.1,
-            isBrowserSupported: false
+            isBrowserSupported: false,
+            isBrowserVersionVerified: true
           });
         });
 
@@ -178,7 +188,8 @@ describe("browserSupportService", () => {
           expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
             browser: "Safari",
             browserVersion: 9.2,
-            isBrowserSupported: true
+            isBrowserSupported: true,
+            isBrowserVersionVerified: true
           });
         });
       });
@@ -199,7 +210,8 @@ describe("browserSupportService", () => {
           expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
             browser: "Safari",
             browserVersion: 8.9,
-            isBrowserSupported: false
+            isBrowserSupported: false,
+            isBrowserVersionVerified: true
           });
         });
 
@@ -218,7 +230,8 @@ describe("browserSupportService", () => {
           expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
             browser: "Safari",
             browserVersion: 9,
-            isBrowserSupported: true
+            isBrowserSupported: true,
+            isBrowserVersionVerified: true
           });
         });
       });
@@ -238,7 +251,8 @@ describe("browserSupportService", () => {
       expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
         browser: "",
         browserVersion: 10,
-        isBrowserSupported: false
+        isBrowserSupported: false,
+        isBrowserVersionVerified: true
       });
     });
   });

@@ -21,7 +21,7 @@ const FsaLayout = props => (
     <Page header={<FsaHeader {...props} />}>
       <GridRowZeroMargin>
         <GridColZeroPadding columnTwoThirds>
-          {props.isBrowserSupported === false ? (
+          {!props.isBrowserSupported && props.isBrowserVersionVerified ? (
             <BrowserUnsupportedBanner
               browser={props.browser}
               version={props.browserVersion}

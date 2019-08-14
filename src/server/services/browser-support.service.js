@@ -31,7 +31,8 @@ const getBrowserInfo = userAgentHeader => {
   const response = {
     browser: "",
     browserVersion: "",
-    isBrowserSupported: false
+    isBrowserSupported: false,
+    isBrowserVersionVerified: true
   };
   const ua = useragent.parse(userAgentHeader);
   response.browser = ua.browser;
