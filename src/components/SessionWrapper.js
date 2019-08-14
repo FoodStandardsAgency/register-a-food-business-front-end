@@ -110,7 +110,7 @@ const SessionWrapper = Page => {
       isBrowserSupported:
         req && req.session && req.session.isBrowserSupported
           ? req.session.isBrowserSupported
-          : false,
+          : undefined,
       browser:
         req && req.session && req.session.browser ? req.session.browser : "",
       browserVersion:
