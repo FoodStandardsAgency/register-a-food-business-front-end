@@ -217,6 +217,7 @@ const transformAnswersForSubmit = (
     "business_type_search_term",
     "import_export_activities",
     "opening_days_irregular",
+    "water_supply",
     "business_other_details",
     "opening_day_monday",
     "opening_day_tuesday",
@@ -224,7 +225,14 @@ const transformAnswersForSubmit = (
     "opening_day_thursday",
     "opening_day_friday",
     "opening_day_saturday",
-    "opening_day_sunday"
+    "opening_day_sunday",
+    "opening_hours_monday",
+    "opening_hours_tuesday",
+    "opening_hours_wednesday",
+    "opening_hours_thursday",
+    "opening_hours_friday",
+    "opening_hours_saturday",
+    "opening_hours_sunday"
   ];
   const metadata_keys = ["declaration1", "declaration2", "declaration3"];
 
@@ -257,7 +265,17 @@ const transformAnswersForSubmit = (
     summaryData.opening_day_sunday
   );
 
-  const submitData = Object.assign({}, summaryData, openingDays);
+  const openingHours = transformOpeningHoursForSubmit(
+    summaryData.opening_hours_monday,
+    summaryData.opening_hours_tuesday,
+    summaryData.opening_hours_wednesday,
+    summaryData.opening_hours_thursday,
+    summaryData.opening_hours_friday,
+    summaryData.opening_hours_saturday,
+    summaryData.opening_hours_sunday
+  );
+
+  const submitData = Object.assign({}, summaryData, openingDays, openingHours);
 
   establishment_details_keys.forEach(key => {
     if (submitData[key] !== undefined) {
@@ -445,6 +463,51 @@ const transformOpeningDaysForSubmit = (
       : (days.opening_day_sunday = false);
   }
   return days;
+};
+/** Transforms opening hours to undefined so empty fields are not submitted
+ *
+ * @param {string} opening_hours_monday
+ * @param {string} opening_hours_tuesday
+ * @param {string} opening_hours_wednesday
+ * @param {string} opening_hours_thursday
+ * @param {string} opening_hours_friday
+ * @param {string} opening_hours_saturday
+ * @param {string} opening_hours_sunday
+ *
+ * @returns {object} An object containing all monday - sunday opening hours set to either original value or undefined
+ */
+const transformOpeningHoursForSubmit = (
+  opening_hours_monday,
+  opening_hours_tuesday,
+  opening_hours_wednesday,
+  opening_hours_thursday,
+  opening_hours_friday,
+  opening_hours_saturday,
+  opening_hours_sunday
+) => {
+  return {
+    opening_hours_monday: opening_hours_monday
+      ? opening_hours_monday
+      : undefined,
+    opening_hours_tuesday: opening_hours_tuesday
+      ? opening_hours_tuesday
+      : undefined,
+    opening_hours_wednesday: opening_hours_wednesday
+      ? opening_hours_wednesday
+      : undefined,
+    opening_hours_thursday: opening_hours_thursday
+      ? opening_hours_thursday
+      : undefined,
+    opening_hours_friday: opening_hours_friday
+      ? opening_hours_friday
+      : undefined,
+    opening_hours_saturday: opening_hours_saturday
+      ? opening_hours_saturday
+      : undefined,
+    opening_hours_sunday: opening_hours_sunday
+      ? opening_hours_sunday
+      : undefined
+  };
 };
 
 /**

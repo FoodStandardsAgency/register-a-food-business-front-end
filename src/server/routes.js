@@ -39,6 +39,5 @@ module.exports = () => {
   router.get("*", (req, res) => {
     handle(req, res);
   });
-
   return router;
 };

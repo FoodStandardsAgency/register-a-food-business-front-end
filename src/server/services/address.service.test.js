@@ -5,6 +5,7 @@ import smallAddressResponseJSON from "../connectors/address-lookup/smallAddressR
 import addressSchema from "../connectors/address-lookup/addressSchema.js";
 
 jest.mock("../connectors/address-lookup/address-lookup-api.connector");
+jest.mock("../services/statusEmitter.service");
 
 const v = new Validator();
 
