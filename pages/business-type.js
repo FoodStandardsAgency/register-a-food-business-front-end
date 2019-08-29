@@ -8,7 +8,7 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick
 } from "../src/components";
-import { Header, Paragraph } from "govuk-react";
+import { Header } from "govuk-react";
 import PropTypes from "prop-types";
 
 const BusinessType = props => (
@@ -21,10 +21,6 @@ const BusinessType = props => (
     <Header level={1} size="LARGE">
       What kind of food business are you registering?
     </Header>
-    <Paragraph>
-      Search with your own keywords and then select the most fitting business
-      type from the suggestions
-    </Paragraph>
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
