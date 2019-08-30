@@ -2,7 +2,8 @@ const mongodb = require("mongodb");
 const {
   getPathConfigByVersion,
   getLocalCouncils,
-  clearPathConfigCache
+  clearPathConfigCache,
+  getCountryOfCouncil
 } = require("./config-db.connector");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
 const { configVersionCollectionDouble } = require("./config-db.double");
@@ -250,6 +251,69 @@ describe("Function: getLocalCouncils", () => {
 
     it("should return an empty array and not throw an exception", async () => {
       await expect(getLocalCouncils()).resolves.toEqual(localCouncilsMock);
+    });
+  });
+});
+
+describe("Function: getCountryOfCouncil", () => {
+  describe("given the request throws an error", () => {
+    beforeEach(async () => {
+      mongodb.MongoClient.connect.mockImplementation(() => {
+        throw new Error("example mongo error");
+      });
+
+      try {
+        await getCountryOfCouncil("cardiff");
+      } catch (err) {
+        result = err;
+      }
+    });
+
+    it("should throw mongoConnectionError error", () => {
+      expect(result.name).toBe("mongoConnectionError");
+      expect(result.message).toBe("example mongo error");
+    });
+  });
+  describe("given the request returns null", () => {
+    beforeEach(async () => {
+      mongodb.MongoClient.connect.mockImplementation(() => ({
+        db: () => ({
+          collection: () => ({
+            findOne: () => null
+          })
+        })
+      }));
+
+      try {
+        await getCountryOfCouncil("cardiff");
+      } catch (err) {
+        result = err;
+      }
+    });
+
+    it("should throw mongoConnectionError error with custom message", () => {
+      expect(result.name).toBe("mongoConnectionError");
+      expect(result.message).toBe("getCountryOfCouncil retrieved null");
+    });
+  });
+  describe("given the request is successful", () => {
+    beforeEach(() => {
+      const exampleResult = {
+        local_council_url: "cardiff",
+        country: "wales"
+      };
+      mongodb.MongoClient.connect.mockClear();
+      mongodb.MongoClient.connect.mockImplementation(() => ({
+        db: () => ({
+          collection: () => ({
+            findOne: () => exampleResult
+          })
+        })
+      }));
+    });
+
+    it("returns the correct value", async () => {
+      await expect(getCountryOfCouncil("cardiff")).resolves.toEqual("wales");
     });
   });
 });
