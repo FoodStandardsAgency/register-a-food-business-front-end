@@ -201,6 +201,10 @@ const getCountryOfCouncil = async council => {
         "mostRecentGetCountryOfCouncilSucceeded",
         false
       );
+      const newError = new Error();
+      newError.name = "mongoConnectionError";
+      newError.message = "getCountryOfCouncil retrieved null";
+      throw newError;
     } else {
       statusEmitter.emit("incrementCount", "getCountryOfCouncilSucceeded");
       statusEmitter.emit(
