@@ -186,7 +186,7 @@ const ApplicationComplete = props => (
       </Header>
       <HintText mb={3}>All links open in a new window</HintText>
 
-      {wales.includes(props.currentLA) && (
+      {wales.includes(props.council) && (
         <Header level={3} mb={2} size="SMALL">
           English
         </Header>
@@ -213,7 +213,7 @@ const ApplicationComplete = props => (
         </AnchorTag>
       </ContentItem.B_20_20>
 
-      {ni.includes(props.currentLA) && (
+      {ni.includes(props.council) && (
         <ContentItem.B_20_20>
           <AnchorTag
             id="safeCateringLink"
@@ -238,7 +238,7 @@ const ApplicationComplete = props => (
         </AnchorTag>
       </ContentItem.B_20_20>
 
-      {ni.includes(props.currentLA) ? (
+      {ni.includes(props.council) ? (
         <ContentItem.B_20_20>
           <AnchorTag
             id="foodLabellingLinkNI"
@@ -262,10 +262,10 @@ const ApplicationComplete = props => (
         </ContentItem.B_20_20>
       )}
 
-      {ni.includes(props.currentLA) ? (
+      {ni.includes(props.council) ? (
         <ContentItem.B_20_20>
           <AnchorTag
-            id="businessGuidanceLink"
+            id="businessGuidanceLinkNI"
             href="https://www.nibusinessinfo.co.uk/"
             target="_blank"
             rel="noopener noreferrer"
@@ -273,10 +273,10 @@ const ApplicationComplete = props => (
             General business advice
           </AnchorTag>
         </ContentItem.B_20_20>
-      ) : wales.includes(props.currentLA) ? (
+      ) : wales.includes(props.council) ? (
         <ContentItem.B_20_20>
           <AnchorTag
-            id="businessGuidanceLinkWAL"
+            id="businessGuidanceLinkWelsh"
             href="https://www.businesswales.gov.wales/starting-up"
             target="_blank"
             rel="noopener noreferrer"
@@ -288,7 +288,7 @@ const ApplicationComplete = props => (
         <ContentItem.B_30_15>
           <ContentItem.B_20_20>
             <AnchorTag
-              id="businessGuidanceLinkENG"
+              id="businessSupportHelplineEnglish"
               href="https://www.gov.uk/business-support-helpline"
               target="_blank"
               rel="noopener noreferrer"
@@ -303,14 +303,14 @@ const ApplicationComplete = props => (
         </ContentItem.B_30_15>
       )}
 
-      {wales.includes(props.currentLA) && (
+      {wales.includes(props.council) && (
         <ContentItem.B_30_15>
           <Header level={3} mb={2} size="SMALL">
             Cymru
           </Header>
           <ContentItem.B_20_20>
             <AnchorTag
-              id="welsh1"
+              id="businessGuidanceWelsh"
               href="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau"
               target="_blank"
               rel="noopener noreferrer"
@@ -322,7 +322,7 @@ const ApplicationComplete = props => (
 
           <ContentItem.B_20_20>
             <AnchorTag
-              id="welsh2"
+              id="foodHygieneRatingsWelsh"
               href="https://www.food.gov.uk/cy/business-guidance/sgoriau-hylendid-bwyd-ar-gyfer-busnesau"
               target="_blank"
               rel="noopener noreferrer"
@@ -334,7 +334,7 @@ const ApplicationComplete = props => (
 
           <ContentItem.B_20_20>
             <AnchorTag
-              id="welsh3"
+              id="saferFoodBetterBusinessWelsh"
               href="https://www.food.gov.uk/cy/business-guidance/bwyd-mwy-diogel-busnes-gwell"
               target="_blank"
               rel="noopener noreferrer"
@@ -346,7 +346,7 @@ const ApplicationComplete = props => (
 
           <ContentItem.B_20_20>
             <AnchorTag
-              id="welsh4"
+              id="labellingAndAllergensWelsh"
               href="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau/cyngor-penodol-ar-gyfer-y-diwydiant/labelu-ac-alergenau"
               target="_blank"
               rel="noopener noreferrer"
@@ -357,7 +357,7 @@ const ApplicationComplete = props => (
 
           <ContentItem.B_20_20>
             <AnchorTag
-              id="welsh5"
+              id="businessStartUpGuidanceWelsh"
               href="https://businesswales.gov.wales/starting-up/cy"
               target="_blank"
               rel="noopener noreferrer"
