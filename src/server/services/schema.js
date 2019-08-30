@@ -25,7 +25,8 @@ const {
   validateBusinessOtherDetails,
   validateOpeningDaysIrregular,
   validatePartners,
-  validatePartnerName
+  validatePartnerName,
+  validateOpeningHours
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const schema = {
@@ -299,6 +300,15 @@ const schema = {
       }
     }
   },
+  "/business-water-supply": {
+    type: "object",
+    properties: {
+      water_supply: {
+        type: "string",
+        validation: validateRadioButtons
+      }
+    }
+  },
   "/customer-type": {
     type: "object",
     properties: {
@@ -364,6 +374,39 @@ const schema = {
       }
     }
   },
+  "/opening-hours": {
+    type: "object",
+    properties: {
+      opening_hours_monday: {
+        type: "string",
+        validation: validateOpeningHours
+      },
+      opening_hours_tuesday: {
+        type: "string",
+        validation: validateOpeningHours
+      },
+      opening_hours_wednesday: {
+        type: "string",
+        validation: validateOpeningHours
+      },
+      opening_hours_thursday: {
+        type: "string",
+        validation: validateOpeningHours
+      },
+      opening_hours_friday: {
+        type: "string",
+        validation: validateOpeningHours
+      },
+      opening_hours_saturday: {
+        type: "string",
+        validation: validateOpeningHours
+      },
+      opening_hours_sunday: {
+        type: "string",
+        validation: validateOpeningHours
+      }
+    }
+  },
   "/business-type": {
     type: "object",
     properties: {
@@ -386,9 +429,13 @@ const schema = {
         type: "string"
       }
     },
-    anyOf: [
-      { required: ["directly_import"] },
-      { required: ["directly_export"] },
+    oneOf: [
+      {
+        anyOf: [
+          { required: ["directly_import"] },
+          { required: ["directly_export"] }
+        ]
+      },
       { required: ["no_import_export"] }
     ]
   },

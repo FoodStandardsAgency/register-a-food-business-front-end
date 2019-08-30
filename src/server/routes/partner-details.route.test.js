@@ -296,12 +296,42 @@ describe("Partner Details Route: ", () => {
       });
 
       it("Should delete target partner", () => {
-        expect(req.session.cumulativeFullAnswers.targetPartner).toEqual(
-          undefined
-        );
+        expect(req.session.cumulativeFullAnswers.targetPartner).toBe(undefined);
       });
       it("Should have Partners as an empty array", () => {
         expect(req.session.cumulativeFullAnswers.partners).toEqual([]);
+      });
+      it("Should call Next.render", () => {
+        expect(Next.render).toBeCalled();
+      });
+    });
+
+    describe("When targetPartner is set in session but req param is missing", () => {
+      let res, req;
+      beforeEach(() => {
+        handler = router.get.mock.calls[0][1];
+
+        req = {
+          session: {
+            cumulativeFullAnswers: {
+              targetPartner: "Brian",
+              partners: ["Brian"]
+            },
+            save: cb => {
+              cb();
+            }
+          },
+          query: {}
+        };
+
+        res = {
+          redirect: jest.fn()
+        };
+
+        handler(req, res);
+      });
+      it("Should delete target partner", () => {
+        expect(req.session.cumulativeFullAnswers.targetPartner).toBe(undefined);
       });
       it("Should call Next.render", () => {
         expect(Next.render).toBeCalled();

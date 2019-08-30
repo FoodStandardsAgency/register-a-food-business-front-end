@@ -51,8 +51,9 @@ const errorMessages = {
     "You must select a trading status before continuing",
   establishment_opening_date: "Not a valid opening date",
   customer_type: "You must select an option before continuing",
-  import_export_activities: "You must select an option before continuing",
+  import_export_activities: "You must select valid option(s) before continuing",
   business_type: "You must select a business type before continuing",
+  water_supply: "You must select an option before continuing",
   business_other_details:
     "Your message is too long. Please shorten it to less than 1500 characters",
   opening_days_start: "Please select which days this establishment is open",
@@ -61,7 +62,14 @@ const errorMessages = {
   partner_name: "Not a valid name",
   partners: `Please define between 2-${MAX_PARTNERS} partners`,
   main_partnership_contact:
-    "You must select the main partnership contact before continuing"
+    "You must select the main partnership contact before continuing",
+  opening_hours_monday: "Invalid opening hours on Monday",
+  opening_hours_tuesday: "Invalid opening hours on Tuesday",
+  opening_hours_wednesday: "Invalid opening hours on Wednesday",
+  opening_hours_thursday: "Invalid opening hours on Thursday",
+  opening_hours_friday: "Invalid opening hours on Friday",
+  opening_hours_saturday: "Invalid opening hours on Saturday",
+  opening_hours_sunday: "Invalid opening hours on Sunday"
 };
 
 const validator = new Validator();
@@ -113,6 +121,14 @@ const validate = (page, answers) => {
         answersToValidate,
         schema[page]
       );
+
+      if (validatorResult.errors.length > 0 && page === "/opening-hours") {
+        // ignore errors for fields not requiring validation
+        validatorResult.errors = validatorResult.errors.filter(error =>
+          Object.keys(answersToValidate).includes(error.property.split(".")[1])
+        );
+      }
+
       if (
         validatorResult.schema.properties.directly_import &&
         validatorResult.errors.length > 0

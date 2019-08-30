@@ -9,6 +9,7 @@ const { configVersionCollectionDouble } = require("./config-db.double");
 
 jest.mock("mongodb");
 jest.mock("./config-db.double");
+jest.mock("../../services/statusEmitter.service");
 
 let result;
 
