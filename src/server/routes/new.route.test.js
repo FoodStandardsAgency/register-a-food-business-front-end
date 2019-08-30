@@ -28,6 +28,7 @@ const { getBrowserInfo } = require("../services/browser-support.service");
 describe("New route: ", () => {
   let router, handler;
   beforeEach(() => {
+    jest.clearAllMocks();
     router = newRouter();
     getPathConfigByVersion.mockImplementation(
       () => "fetched path from either cache or DB"
@@ -82,6 +83,10 @@ describe("New route: ", () => {
         expect(req.session.pathConfig).toBe(
           "fetched path from either cache or DB"
         );
+      });
+
+      it("Should set req.session.country", () => {
+        expect(req.session.country).toBe("northern-ireland");
       });
 
       it("Should call Next.render", () => {
