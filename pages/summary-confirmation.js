@@ -12,42 +12,6 @@ import PropTypes from "prop-types";
 import styled from "react-emotion";
 import moment from "moment";
 
-const wales = [
-  "cardiff",
-  "the-vale-of-glamorgan",
-  "bridgend",
-  "wrexham",
-  "torfaen",
-  "blaenau-gwent",
-  "caerphilly",
-  "ceredigion",
-  "swansea",
-  "conwy",
-  "flintshire",
-  "gwynedd",
-  "isle-of-anglesey",
-  "merthyr-tydfil",
-  "monmouthshire",
-  "neath-port-talbot",
-  "newport",
-  "pembrokeshire",
-  "powys",
-  "rhondda-cynon-taf"
-];
-const ni = [
-  "mid-and-east-antrim",
-  "antrim-and-newtownabbey",
-  "ards-and-north-down",
-  "armagh-city-banbridge-and-craigavon",
-  "belfast",
-  "causeway-coast-and-glens",
-  "derry-city-and-strabane",
-  "fermanagh-and-omagh",
-  "lisburn-and-castlereagh",
-  "newry-mourne-and-down",
-  "mid-ulster"
-];
-
 const AnchorTag = asAnchor("a");
 
 const FsaPanel = styled(Panel)`
@@ -186,11 +150,11 @@ const ApplicationComplete = props => (
       </Header>
       <HintText mb={3}>All links open in a new window</HintText>
 
-      {wales.includes(props.council) && (
+      {props.country === "wales" ? (
         <Header level={3} mb={2} size="SMALL">
           English
         </Header>
-      )}
+      ) : null}
 
       <ContentItem.B_20_20>
         <AnchorTag
@@ -213,7 +177,7 @@ const ApplicationComplete = props => (
         </AnchorTag>
       </ContentItem.B_20_20>
 
-      {ni.includes(props.council) && (
+      {props.country === "northern-ireland" ? (
         <ContentItem.B_20_20>
           <AnchorTag
             id="safeCateringLink"
@@ -224,7 +188,7 @@ const ApplicationComplete = props => (
             Safe catering
           </AnchorTag>
         </ContentItem.B_20_20>
-      )}
+      ) : null}
 
       <ContentItem.B_20_20>
         <AnchorTag
@@ -238,46 +202,30 @@ const ApplicationComplete = props => (
         </AnchorTag>
       </ContentItem.B_20_20>
 
-      {ni.includes(props.council) ? (
-        <ContentItem.B_20_20>
-          <AnchorTag
-            id="foodLabellingLinkNI"
-            href="https://nibusinessinfo.co.uk/content/labelling-food-products"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Food labelling and allergens guidance
-          </AnchorTag>
-        </ContentItem.B_20_20>
-      ) : (
-        <ContentItem.B_20_20>
-          <AnchorTag
-            id="foodLabellingLink"
-            href="https://www.food.gov.uk/business-guidance/industry-specific-advice/labelling-and-allergens"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Food labelling and allergens guidance
-          </AnchorTag>
-        </ContentItem.B_20_20>
-      )}
+      <ContentItem.B_20_20>
+        <AnchorTag
+          id="foodLabellingLink"
+          href={
+            props.country === "northern-ireland"
+              ? "https://nibusinessinfo.co.uk/content/labelling-food-products"
+              : "https://www.food.gov.uk/business-guidance/industry-specific-advice/labelling-and-allergens"
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Food labelling and allergens guidance
+        </AnchorTag>
+      </ContentItem.B_20_20>
 
-      {ni.includes(props.council) ? (
+      {props.country === "wales" || props.country === "northern-ireland" ? (
         <ContentItem.B_20_20>
           <AnchorTag
-            id="businessGuidanceLinkNI"
-            href="https://www.nibusinessinfo.co.uk/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            General business advice
-          </AnchorTag>
-        </ContentItem.B_20_20>
-      ) : wales.includes(props.council) ? (
-        <ContentItem.B_20_20>
-          <AnchorTag
-            id="businessGuidanceLinkWelsh"
-            href="https://www.businesswales.gov.wales/starting-up"
+            id="businessGuidanceNILink"
+            href={
+              props.country === "northern-ireland"
+                ? "https://www.nibusinessinfo.co.uk/"
+                : "https://www.businesswales.gov.wales/starting-up"
+            }
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -288,7 +236,7 @@ const ApplicationComplete = props => (
         <ContentItem.B_30_15>
           <ContentItem.B_20_20>
             <AnchorTag
-              id="businessSupportHelplineEnglish"
+              id="businessSupportHelplineEnglishLink"
               href="https://www.gov.uk/business-support-helpline"
               target="_blank"
               rel="noopener noreferrer"
@@ -303,14 +251,14 @@ const ApplicationComplete = props => (
         </ContentItem.B_30_15>
       )}
 
-      {wales.includes(props.council) && (
+      {props.country === "wales" ? (
         <ContentItem.B_30_15>
           <Header level={3} mb={2} size="SMALL">
             Cymru
           </Header>
           <ContentItem.B_20_20>
             <AnchorTag
-              id="businessGuidanceWelsh"
+              id="businessGuidanceWelshLink"
               href="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau"
               target="_blank"
               rel="noopener noreferrer"
@@ -322,7 +270,7 @@ const ApplicationComplete = props => (
 
           <ContentItem.B_20_20>
             <AnchorTag
-              id="foodHygieneRatingsWelsh"
+              id="foodHygieneRatingsWelshLink"
               href="https://www.food.gov.uk/cy/business-guidance/sgoriau-hylendid-bwyd-ar-gyfer-busnesau"
               target="_blank"
               rel="noopener noreferrer"
@@ -334,7 +282,7 @@ const ApplicationComplete = props => (
 
           <ContentItem.B_20_20>
             <AnchorTag
-              id="saferFoodBetterBusinessWelsh"
+              id="saferFoodBetterBusinessWelshLink"
               href="https://www.food.gov.uk/cy/business-guidance/bwyd-mwy-diogel-busnes-gwell"
               target="_blank"
               rel="noopener noreferrer"
@@ -346,7 +294,7 @@ const ApplicationComplete = props => (
 
           <ContentItem.B_20_20>
             <AnchorTag
-              id="labellingAndAllergensWelsh"
+              id="labellingAndAllergensWelshLink"
               href="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau/cyngor-penodol-ar-gyfer-y-diwydiant/labelu-ac-alergenau"
               target="_blank"
               rel="noopener noreferrer"
@@ -357,7 +305,7 @@ const ApplicationComplete = props => (
 
           <ContentItem.B_20_20>
             <AnchorTag
-              id="businessStartUpGuidanceWelsh"
+              id="businessStartUpGuidanceWelshLink"
               href="https://businesswales.gov.wales/starting-up/cy"
               target="_blank"
               rel="noopener noreferrer"
@@ -366,7 +314,7 @@ const ApplicationComplete = props => (
             </AnchorTag>
           </ContentItem.B_20_20>
         </ContentItem.B_30_15>
-      )}
+      ) : null}
     </ContentItem.B_30_15>
 
     <Header level={2} mb={5} size="LARGE">
