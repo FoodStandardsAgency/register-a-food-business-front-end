@@ -20,7 +20,8 @@ const {
 } = require("../services/data-transform.service");
 const {
   getPathConfigByVersion,
-  getLocalCouncils
+  getLocalCouncils,
+  getCountryOfCouncil
 } = require("../connectors/config-db/config-db.connector");
 const { getBrowserInfo } = require("../services/browser-support.service");
 
@@ -39,6 +40,7 @@ describe("New route: ", () => {
         isSupported: true
       };
     });
+    getCountryOfCouncil.mockImplementation(() => "northern-ireland");
   });
 
   afterEach(() => {
