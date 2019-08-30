@@ -13,7 +13,8 @@ const {
 } = require("../services/data-transform.service");
 const {
   getPathConfigByVersion,
-  getLocalCouncils
+  getLocalCouncils,
+  getCountryOfCouncil
 } = require("../connectors/config-db/config-db.connector");
 const { REGISTRATION_DATA_VERSION } = require("../config");
 const { Cache } = require("../services/cache.service");
@@ -50,6 +51,8 @@ const newRouter = () => {
           const browserInfo = getBrowserInfo(req.headers["user-agent"]);
           Object.assign(req.session, req.session, { ...browserInfo });
 
+          req.session.country = await getCountryOfCouncil(req.params.lc);
+
           logEmitter.emit(
             "functionSuccessWith",
             "Routes",
@@ -75,6 +78,8 @@ const newRouter = () => {
           const browserInfo = getBrowserInfo(req.headers["user-agent"]);
           Object.assign(req.session, req.session, { ...browserInfo });
         }
+        // Save the country to session if not yet there
+        req.session.country = await getCountryOfCouncil(req.params.lc);
         // Transform the data into summary format on pages where it is required and save to session
         if (
           page === "registration-summary" ||
