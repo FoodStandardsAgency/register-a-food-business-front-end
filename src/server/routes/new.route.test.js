@@ -41,7 +41,9 @@ describe("New route: ", () => {
         isSupported: true
       };
     });
-    getCountryOfCouncil.mockImplementation(() => "northern-ireland");
+    getCountryOfCouncil.mockImplementation(() =>
+      Promise.resolve("northern-ireland")
+    );
   });
 
   afterEach(() => {
