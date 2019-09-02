@@ -79,7 +79,9 @@ const newRouter = () => {
           Object.assign(req.session, req.session, { ...browserInfo });
         }
         // Save the country to session if not yet there
-        req.session.country = await getCountryOfCouncil(req.params.lc);
+        if (!req.session.country) {
+          req.session.country = await getCountryOfCouncil(req.params.lc);
+        }
         // Transform the data into summary format on pages where it is required and save to session
         if (
           page === "registration-summary" ||
