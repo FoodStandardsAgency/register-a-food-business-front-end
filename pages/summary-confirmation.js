@@ -205,11 +205,7 @@ const ApplicationComplete = props => (
       <ContentItem.B_20_20>
         <AnchorTag
           id="foodLabellingLink"
-          href={
-            props.country === "northern-ireland"
-              ? "https://nibusinessinfo.co.uk/content/labelling-food-products"
-              : "https://www.food.gov.uk/business-guidance/industry-specific-advice/labelling-and-allergens"
-          }
+          href="https://www.food.gov.uk/business-guidance/industry-specific-advice/labelling-and-allergens"
           target="_blank"
           rel="noopener noreferrer"
         >
