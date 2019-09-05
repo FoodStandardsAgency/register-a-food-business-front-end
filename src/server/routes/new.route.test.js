@@ -44,10 +44,6 @@ describe("New route: ", () => {
     getCountryOfCouncil.mockImplementation(() => "northern-ireland");
   });
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
   describe("GET to /new/:lc/page", () => {
     describe("When req.session.council and req.session.pathConfig are both undefined and page is not index", () => {
       let req, res;
@@ -235,6 +231,10 @@ describe("New route: ", () => {
 
       it("Should call Next.render with index", () => {
         expect(Next.render).toBeCalledWith(req, res, "/index");
+      });
+
+      it("Should set req.session.country", () => {
+        expect(req.session.country).toBe("northern-ireland");
       });
     });
 
