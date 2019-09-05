@@ -184,9 +184,9 @@ const getLocalCouncils = async () => {
  * @returns {string} Name of the country
  */
 const getCountryOfCouncil = async council => {
-  let councilRecord = null;
   logEmitter.emit("functionCall", "config-db.connector", "getCountryOfCouncil");
 
+  let councilRecord = null;
   try {
     await establishConnectionToMongo();
 
