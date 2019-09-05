@@ -100,9 +100,7 @@ const SelectListSection = props => (
 class BusinessTypeLookup extends React.Component {
   constructor(props) {
     super(props);
-    if (this.state) {
-      this.state.renderAutoCompleteSection = false;
-    }
+    this.state = { renderAutoCompleteSection: false };
   }
 
   componentDidMount() {
