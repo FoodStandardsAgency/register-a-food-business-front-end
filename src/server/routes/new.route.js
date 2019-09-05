@@ -52,11 +52,11 @@ const newRouter = () => {
           Object.assign(req.session, req.session, { ...browserInfo });
 
           try {
-            req.session.country = await getCountryOfCouncil(req.params.lc);
+            req.session.country = await getCountryOfCouncil(
+              req.session.council
+            );
           } catch (err) {
             console.log("getCountryOfCouncil failed");
-            console.log(err);
-            throw err;
           }
 
           logEmitter.emit(
