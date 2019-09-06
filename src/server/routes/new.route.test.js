@@ -206,7 +206,7 @@ describe("New route: ", () => {
       });
     });
 
-    describe("When req.params.page is not defined", () => {
+    describe("When req.params.page is not defined", async () => {
       let req, res;
       let getCountryOfCouncilResult;
       beforeEach(() => {
@@ -229,7 +229,7 @@ describe("New route: ", () => {
 
         res = "res";
 
-        handler(req, res);
+        await handler(req, res);
         getCountryOfCouncilResult = getCountryOfCouncil();
       });
 
@@ -243,7 +243,7 @@ describe("New route: ", () => {
       });
 
       it("Should set req.session.country", () => {
-        expect(req.session.country).toBe("northern-ireland");
+        expect(req.session.country).toEqual("northern-ireland");
       });
     });
 
