@@ -50,7 +50,8 @@ const newRouter = () => {
           );
           const browserInfo = getBrowserInfo(req.headers["user-agent"]);
           Object.assign(req.session, req.session, { ...browserInfo });
-
+          console.log("Before calling getCountryOfCouncil");
+          console.log(getCountryOfCouncil.toString());
           try {
             req.session.country = await getCountryOfCouncil(
               req.session.council
@@ -58,6 +59,7 @@ const newRouter = () => {
           } catch (err) {
             console.log("getCountryOfCouncil failed");
           }
+          console.log("After calling getCountryOfCouncil");
 
           logEmitter.emit(
             "functionSuccessWith",

@@ -41,7 +41,10 @@ describe("New route: ", () => {
         isSupported: true
       };
     });
-    getCountryOfCouncil.mockImplementation(() => "northern-ireland");
+    getCountryOfCouncil.mockImplementation(() => {
+      console.log("getCountryOfCouncil mock called");
+      return "northern-ireland";
+    });
   });
 
   describe("GET to /new/:lc/page", () => {
@@ -205,7 +208,7 @@ describe("New route: ", () => {
 
     describe("When req.params.page is not defined", () => {
       let req, res;
-
+      let getCountryOfCouncilResult;
       beforeEach(() => {
         handler = router.get.mock.calls[0][1];
         req = {
@@ -227,6 +230,12 @@ describe("New route: ", () => {
         res = "res";
 
         handler(req, res);
+        getCountryOfCouncilResult = getCountryOfCouncil();
+      });
+
+      it("getCountryOfCouncilResult should be northern-ireland", () => {
+        expect(getCountryOfCouncilResult).toEqual("northern-ireland");
+        console.log(getCountryOfCouncil.toString());
       });
 
       it("Should call Next.render with index", () => {
