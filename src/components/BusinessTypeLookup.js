@@ -104,6 +104,8 @@ class BusinessTypeLookup extends React.Component {
   }
 
   componentDidMount() {
+    // called in client-side
+    // used to detect if JavaScript is enabled
     this.setState({ renderAutoCompleteSection: true });
   }
 
