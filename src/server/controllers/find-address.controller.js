@@ -34,7 +34,7 @@ const findAddressController = async (
     "find-address.controller",
     "findAddressController"
   );
-
+  let searchPostcodeFieldName = "";
   try {
     controllerResponse.cumulativeFullAnswers = Object.assign(
       {},
@@ -61,7 +61,7 @@ const findAddressController = async (
       return controllerResponse;
     }
 
-    const searchPostcodeFieldName = Object.keys(newAnswers)[0];
+    searchPostcodeFieldName = Object.keys(newAnswers)[0];
     const searchPostcode = newAnswers[searchPostcodeFieldName];
     const addressesForPostcode = await getUkAddressesByPostcode(searchPostcode);
 
@@ -84,7 +84,6 @@ const findAddressController = async (
       "findAddressController",
       `${addressesForPostcode.length} addresses`
     );
-    return controllerResponse;
   } catch (err) {
     logEmitter.emit(
       "functionFail",
@@ -92,8 +91,11 @@ const findAddressController = async (
       "findAddressController",
       err
     );
-    throw err;
+    controllerResponse.addressLookups[searchPostcodeFieldName] = [];
+    controllerResponse.switches[`${currentPage}-none-found`] = true;
+    controllerResponse.redirectRoute = `${currentPage}-manual`;
   }
+  return controllerResponse;
 };
 
 module.exports = findAddressController;
