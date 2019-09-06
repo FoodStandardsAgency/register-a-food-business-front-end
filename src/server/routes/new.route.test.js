@@ -206,10 +206,10 @@ describe("New route: ", () => {
       });
     });
 
-    describe("When req.params.page is not defined", async () => {
+    describe("When req.params.page is not defined", () => {
       let req, res;
       let getCountryOfCouncilResult;
-      beforeEach(() => {
+      beforeEach(async () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
