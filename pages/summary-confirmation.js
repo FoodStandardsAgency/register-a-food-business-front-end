@@ -149,6 +149,13 @@ const ApplicationComplete = props => (
         Find out here what you can do to prepare:
       </Header>
       <HintText mb={3}>All links open in a new window</HintText>
+
+      {props.country === "wales" ? (
+        <Header level={3} mb={2} size="SMALL">
+          English
+        </Header>
+      ) : null}
+
       <ContentItem.B_20_20>
         <AnchorTag
           id="foodSafetyLink"
@@ -169,6 +176,20 @@ const ApplicationComplete = props => (
           How to achieve a high food hygiene rating (FHRS score)
         </AnchorTag>
       </ContentItem.B_20_20>
+
+      {props.country === "northern-ireland" ? (
+        <ContentItem.B_20_20>
+          <AnchorTag
+            id="safeCateringLink"
+            href="https://www.food.gov.uk/business-guidance/safe-catering"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Safe catering
+          </AnchorTag>
+        </ContentItem.B_20_20>
+      ) : null}
+
       <ContentItem.B_20_20>
         <AnchorTag
           id="safetyManagementLink"
@@ -180,6 +201,7 @@ const ApplicationComplete = props => (
           business
         </AnchorTag>
       </ContentItem.B_20_20>
+
       <ContentItem.B_20_20>
         <AnchorTag
           id="foodLabellingLink"
@@ -190,17 +212,105 @@ const ApplicationComplete = props => (
           Food labelling and allergens guidance
         </AnchorTag>
       </ContentItem.B_20_20>
-      <ContentItem.B_20_20>
-        <AnchorTag
-          id="businessGuidanceLink"
-          href="https://www.gov.uk/business-support-helpline"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          General guidance on business growth and finance, including phone
-          numbers for the Business Support Helpline
-        </AnchorTag>
-      </ContentItem.B_20_20>
+
+      {props.country === "wales" || props.country === "northern-ireland" ? (
+        <ContentItem.B_20_20>
+          <AnchorTag
+            id="businessGuidanceNILink"
+            href={
+              props.country === "northern-ireland"
+                ? "https://www.nibusinessinfo.co.uk/"
+                : "https://www.businesswales.gov.wales/starting-up"
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            General business advice
+          </AnchorTag>
+        </ContentItem.B_20_20>
+      ) : (
+        <ContentItem.B_30_15>
+          <ContentItem.B_20_20>
+            <AnchorTag
+              id="businessSupportHelplineEnglishLink"
+              href="https://www.gov.uk/business-support-helpline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              General guidance on business growth and finance
+            </AnchorTag>
+          </ContentItem.B_20_20>
+
+          <ContentItem.B_20_20>
+            or contact the Business Support Helpline on 0300 456 3565
+          </ContentItem.B_20_20>
+        </ContentItem.B_30_15>
+      )}
+
+      {props.country === "wales" ? (
+        <ContentItem.B_30_15>
+          <Header level={3} mb={2} size="SMALL">
+            Cymru
+          </Header>
+          <ContentItem.B_20_20>
+            <AnchorTag
+              id="businessGuidanceWelshLink"
+              href="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              I gael cyngor cyffredinol ar hylendid bwyd a sut i redeg busnes
+              bwyd diogel
+            </AnchorTag>
+          </ContentItem.B_20_20>
+
+          <ContentItem.B_20_20>
+            <AnchorTag
+              id="foodHygieneRatingsWelshLink"
+              href="https://www.food.gov.uk/cy/business-guidance/sgoriau-hylendid-bwyd-ar-gyfer-busnesau"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              I gael gwybodaeth am sut i gael sgôr uchel o dan y Cynllun Sgorio
+              Hylendid Bwyd
+            </AnchorTag>
+          </ContentItem.B_20_20>
+
+          <ContentItem.B_20_20>
+            <AnchorTag
+              id="saferFoodBetterBusinessWelshLink"
+              href="https://www.food.gov.uk/cy/business-guidance/bwyd-mwy-diogel-busnes-gwell"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              I gael gwybodaeth am y system rheoli diogelwch bwyd, Bwyd mwy
+              Diogel, Busnes Gwell
+            </AnchorTag>
+          </ContentItem.B_20_20>
+
+          <ContentItem.B_20_20>
+            <AnchorTag
+              id="labellingAndAllergensWelshLink"
+              href="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau/cyngor-penodol-ar-gyfer-y-diwydiant/labelu-ac-alergenau"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              I gael canllawiau ar labelu bwyd ac alergenau
+            </AnchorTag>
+          </ContentItem.B_20_20>
+
+          <ContentItem.B_20_20>
+            <AnchorTag
+              id="businessStartUpGuidanceWelshLink"
+              href="https://businesswales.gov.wales/starting-up/cy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              I gael cyngor busnes cyffredinol
+            </AnchorTag>
+          </ContentItem.B_20_20>
+        </ContentItem.B_30_15>
+      ) : null}
     </ContentItem.B_30_15>
 
     <Header level={2} mb={5} size="LARGE">

@@ -25,7 +25,8 @@ const comprehensiveReqSessionObject = {
     browser: "Chrome",
     browserVersion: "70.1.12",
     isBrowserSupported: true,
-    isBrowserVersionVerified: true
+    isBrowserVersionVerified: true,
+    country: "wales"
   }
 };
 

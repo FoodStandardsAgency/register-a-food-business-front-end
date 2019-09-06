@@ -177,6 +177,73 @@ const getLocalCouncils = async () => {
 };
 
 /**
+ * Retrieves name of the country where council is located
+ *
+ * @param {string} council Name of the council
+ *
+ * @returns {string} Name of the country
+ */
+const getCountryOfCouncil = async council => {
+  logEmitter.emit("functionCall", "config-db.connector", "getCountryOfCouncil");
+
+  let councilRecord = null;
+  try {
+    await establishConnectionToMongo();
+
+    councilRecord = await lcConfigCollection.findOne({
+      local_council_url: council
+    });
+
+    if (councilRecord === null) {
+      statusEmitter.emit("incrementCount", "getCountryOfCouncilFailed");
+      statusEmitter.emit(
+        "setStatus",
+        "mostRecentGetCountryOfCouncilSucceeded",
+        false
+      );
+      const newError = new Error();
+      newError.name = "mongoConnectionError";
+      newError.message = "getCountryOfCouncil retrieved null";
+      throw newError;
+    } else {
+      statusEmitter.emit("incrementCount", "getCountryOfCouncilSucceeded");
+      statusEmitter.emit(
+        "setStatus",
+        "mostRecentGetCountryOfCouncilSucceeded",
+        true
+      );
+    }
+  } catch (err) {
+    statusEmitter.emit("incrementCount", "getCountryOfCouncilFailed");
+    statusEmitter.emit(
+      "setStatus",
+      "mostRecentGetCountryOfCouncilSucceeded",
+      false
+    );
+    logEmitter.emit(
+      "functionFail",
+      "config-db.connector",
+      "getCountryOfCouncil",
+      err
+    );
+
+    const newError = new Error();
+    newError.name = "mongoConnectionError";
+    newError.message = err.message;
+
+    throw newError;
+  }
+
+  logEmitter.emit(
+    "functionSuccess",
+    "config-db.connector",
+    "getCountryOfCouncilFailed"
+  );
+
+  return councilRecord.country;
+};
+
+/**
  * Resets the in-memory path config. Primarily for testing purposes.
  *
  * @returns {any} The cleared in-memory path config
@@ -189,5 +256,6 @@ const clearPathConfigCache = () => {
 module.exports = {
   getPathConfigByVersion,
   clearPathConfigCache,
-  getLocalCouncils
+  getLocalCouncils,
+  getCountryOfCouncil
 };

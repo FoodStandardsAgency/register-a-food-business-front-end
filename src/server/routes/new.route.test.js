@@ -20,13 +20,15 @@ const {
 } = require("../services/data-transform.service");
 const {
   getPathConfigByVersion,
-  getLocalCouncils
+  getLocalCouncils,
+  getCountryOfCouncil
 } = require("../connectors/config-db/config-db.connector");
 const { getBrowserInfo } = require("../services/browser-support.service");
 
 describe("New route: ", () => {
   let router, handler;
   beforeEach(() => {
+    jest.clearAllMocks();
     router = newRouter();
     getPathConfigByVersion.mockImplementation(
       () => "fetched path from either cache or DB"
@@ -39,17 +41,14 @@ describe("New route: ", () => {
         isSupported: true
       };
     });
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
+    getCountryOfCouncil.mockImplementation(() => "northern-ireland");
   });
 
   describe("GET to /new/:lc/page", () => {
     describe("When req.session.council and req.session.pathConfig are both undefined and page is not index", () => {
       let req, res;
 
-      beforeEach(() => {
+      beforeEach(async () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
@@ -69,17 +68,21 @@ describe("New route: ", () => {
 
         res = "res";
 
-        handler(req, res);
+        await handler(req, res);
       });
 
       it("Should set req.session.council", () => {
-        expect(req.session.council).toBe("purbeck");
+        expect(req.session.council).toEqual("purbeck");
       });
 
       it("Should set req.session.pathConfig", () => {
         expect(req.session.pathConfig).toBe(
           "fetched path from either cache or DB"
         );
+      });
+
+      it("Should set req.session.country", () => {
+        expect(req.session.country).toEqual("northern-ireland");
       });
 
       it("Should call Next.render", () => {
@@ -157,7 +160,7 @@ describe("New route: ", () => {
       });
 
       describe("When page is registration-summary", () => {
-        beforeEach(() => {
+        beforeEach(async () => {
           transformAnswersForSummary.mockImplementation(() => ({
             example: "data"
           }));
@@ -181,7 +184,7 @@ describe("New route: ", () => {
 
           res = "res";
 
-          handler(req, res);
+          await handler(req, res);
         });
 
         it("Should call Next.render with page", () => {
@@ -202,8 +205,7 @@ describe("New route: ", () => {
 
     describe("When req.params.page is not defined", () => {
       let req, res;
-
-      beforeEach(() => {
+      beforeEach(async () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
@@ -223,11 +225,15 @@ describe("New route: ", () => {
 
         res = "res";
 
-        handler(req, res);
+        await handler(req, res);
       });
 
       it("Should call Next.render with index", () => {
         expect(Next.render).toBeCalledWith(req, res, "/index");
+      });
+
+      it("Should set req.session.country", () => {
+        expect(req.session.country).toEqual("northern-ireland");
       });
     });
 
