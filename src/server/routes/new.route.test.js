@@ -160,7 +160,7 @@ describe("New route: ", () => {
       });
 
       describe("When page is registration-summary", () => {
-        beforeEach(() => {
+        beforeEach(async () => {
           transformAnswersForSummary.mockImplementation(() => ({
             example: "data"
           }));
@@ -184,7 +184,7 @@ describe("New route: ", () => {
 
           res = "res";
 
-          handler(req, res);
+          await handler(req, res);
         });
 
         it("Should call Next.render with page", () => {
