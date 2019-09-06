@@ -50,16 +50,7 @@ const newRouter = () => {
           );
           const browserInfo = getBrowserInfo(req.headers["user-agent"]);
           Object.assign(req.session, req.session, { ...browserInfo });
-          console.log("Before calling getCountryOfCouncil");
-          console.log(getCountryOfCouncil.toString());
-          try {
-            req.session.country = await getCountryOfCouncil(
-              req.session.council
-            );
-          } catch (err) {
-            console.log("getCountryOfCouncil failed");
-          }
-          console.log("After calling getCountryOfCouncil");
+          req.session.country = await getCountryOfCouncil(req.params.lc);
 
           logEmitter.emit(
             "functionSuccessWith",
@@ -88,8 +79,7 @@ const newRouter = () => {
         }
         // Save the country to session if not yet there
         if (!req.session.country) {
-          req.session.country = "northern-ireland";
-          //await getCountryOfCouncil(req.params.lc);
+          req.session.country = await getCountryOfCouncil(req.params.lc);
         }
         // Transform the data into summary format on pages where it is required and save to session
         if (

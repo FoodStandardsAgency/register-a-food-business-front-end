@@ -41,17 +41,14 @@ describe("New route: ", () => {
         isSupported: true
       };
     });
-    getCountryOfCouncil.mockImplementation(() => {
-      console.log("getCountryOfCouncil mock called");
-      return "northern-ireland";
-    });
+    getCountryOfCouncil.mockImplementation(() => "northern-ireland");
   });
 
   describe("GET to /new/:lc/page", () => {
     describe("When req.session.council and req.session.pathConfig are both undefined and page is not index", () => {
       let req, res;
 
-      beforeEach(() => {
+      beforeEach(async () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
@@ -71,11 +68,11 @@ describe("New route: ", () => {
 
         res = "res";
 
-        handler(req, res);
+        await handler(req, res);
       });
 
       it("Should set req.session.council", () => {
-        expect(req.session.council).toBe("purbeck");
+        expect(req.session.council).toEqual("purbeck");
       });
 
       it("Should set req.session.pathConfig", () => {
@@ -85,7 +82,7 @@ describe("New route: ", () => {
       });
 
       it("Should set req.session.country", () => {
-        expect(req.session.country).toBe("northern-ireland");
+        expect(req.session.country).toEqual("northern-ireland");
       });
 
       it("Should call Next.render", () => {
@@ -208,7 +205,6 @@ describe("New route: ", () => {
 
     describe("When req.params.page is not defined", () => {
       let req, res;
-      let getCountryOfCouncilResult;
       beforeEach(async () => {
         handler = router.get.mock.calls[0][1];
         req = {
@@ -230,12 +226,6 @@ describe("New route: ", () => {
         res = "res";
 
         await handler(req, res);
-        getCountryOfCouncilResult = getCountryOfCouncil();
-      });
-
-      it("getCountryOfCouncilResult should be northern-ireland", () => {
-        expect(getCountryOfCouncilResult).toEqual("northern-ireland");
-        console.log(getCountryOfCouncil.toString());
       });
 
       it("Should call Next.render with index", () => {
