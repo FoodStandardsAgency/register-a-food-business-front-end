@@ -216,7 +216,7 @@ const ApplicationComplete = props => (
       {props.country === "wales" || props.country === "northern-ireland" ? (
         <ContentItem.B_20_20>
           <AnchorTag
-            id="businessGuidanceNILink"
+            id="businessGuidanceLink"
             href={
               props.country === "northern-ireland"
                 ? "https://www.nibusinessinfo.co.uk/"
