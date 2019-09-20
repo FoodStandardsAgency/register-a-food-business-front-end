@@ -48,7 +48,7 @@ describe("<OperatorAddress />", () => {
 
     it("renders correct hidden text", () => {
       const hiddenText = wrapper.find(Paragraph);
-      expect(hiddenText.at(1).props().children).toBe(
+      expect(hiddenText.at(0).props().children).toBe(
         "In a partnership, you and your partner (or partners) personally share responsibility for your food business"
       );
     });

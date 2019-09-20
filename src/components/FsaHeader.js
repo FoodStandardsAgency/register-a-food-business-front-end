@@ -1,53 +1,35 @@
-import CrownIcon from "@govuk-react/icon-crown";
-import { Paragraph } from "govuk-react";
-import TopNav, { asNavLinkAnchor, asTopNavAnchor } from "@govuk-react/top-nav";
+import TopNav, { asTopNavAnchor } from "@govuk-react/top-nav";
 import Main from "@govuk-react/main";
 import PhaseBanner from "@govuk-react/phase-banner";
 import styled from "react-emotion";
 import CookieBanner from "./CookieBanner";
-import { BREAKPOINTS } from "@govuk-react/constants";
-
-const MediaQueryLarge = `@media only screen and (min-width: ${
-  BREAKPOINTS.LARGESCREEN
-})`;
 
 const AnchorTag = asTopNavAnchor("a");
 const feedbackLink = "https://goo.gl/forms/WB5adxvWQdDIfVvs2";
 
-// center the service title text vertically when in desktop size windows
 const FsaTopNav = styled(TopNav)`
-  ${MediaQueryLarge} {
-    div:nth-child(2) {
-      justify-content: center;
-    }
+  div:nth-child(1) {
+    width: 95%;
+  }
+
+  div:nth-child(2) {
+    width: 1%;
   }
 `;
 
 const Company = (
   <AnchorTag
-    href="https://www.gov.uk"
+    href="https://www.food.gov.uk"
     target="_blank"
-    aria-label="gov.uk website (opens in new window)"
+    aria-label="food.gov.uk website (opens in new window)"
   >
-    <TopNav.IconTitle icon={<CrownIcon width="36" height="32" />}>
-      GOV.UK
-    </TopNav.IconTitle>
+    Register a Food Business
   </AnchorTag>
 );
 
-const NavAnchor = asNavLinkAnchor("a");
-const ServiceTitle = props => (
-  <NavAnchor
-    href={`/new/${props.council}`}
-    aria-label="start a new food business registration"
-  >
-    <Paragraph mb={0}>Register a food business</Paragraph>
-  </NavAnchor>
-);
 const StyledHeader = styled("div")({});
-
 const HeaderMain = styled(Main)({
-  paddingTop: 0
+  paddingTop: 3
 });
 
 const FsaHeader = props => (
@@ -58,7 +40,7 @@ const FsaHeader = props => (
         <CookieBanner />
       </section>
     )}
-    <FsaTopNav company={Company} serviceTitle={ServiceTitle(props)} />
+    <FsaTopNav company={Company} />
     <HeaderMain>
       <PhaseBanner level="beta">
         This is a new service -{" "}

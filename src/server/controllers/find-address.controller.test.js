@@ -69,20 +69,32 @@ describe("Function: findAddressController: ", () => {
         getUkAddressesByPostcode.mockImplementation(() => {
           throw new Error("Some error");
         });
-
-        try {
-          response = await findAddressController(
-            "/establishment-address",
-            testPreviousAnswers,
-            {}
-          );
-        } catch (err) {
-          response = err;
-        }
+        response = await findAddressController(
+          "/establishment-address",
+          testPreviousAnswers,
+          testNewAnswerPostcode
+        );
       });
 
-      it("Should throw the error", () => {
-        expect(response.message).toBe("Some error");
+      it("Should return a redirectRoute of the manual entry page", () => {
+        expect(response.redirectRoute).toEqual("/establishment-address-manual");
+      });
+
+      it("Should return cumulativeFullAnswers including the previous answers and the new postcode", () => {
+        expect(response.cumulativeFullAnswers).toEqual({
+          example: "answer",
+          establishment_postcode_find: "AA11 1AA"
+        });
+      });
+
+      it("Should return addressLookups containing the empty array under the correct key", () => {
+        expect(response.addressLookups.establishment_postcode_find).toEqual(
+          testEmptyAddressArray
+        );
+      });
+
+      it("Should return empty validatorErrors", () => {
+        expect(response.validatorErrors).toEqual({});
       });
     });
 
