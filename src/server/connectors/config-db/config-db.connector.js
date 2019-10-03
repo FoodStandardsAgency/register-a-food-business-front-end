@@ -237,7 +237,7 @@ const getCountryOfCouncil = async council => {
   logEmitter.emit(
     "functionSuccess",
     "config-db.connector",
-    "getCountryOfCouncilFailed"
+    "getCountryOfCouncil"
   );
 
   return councilRecord.country;
