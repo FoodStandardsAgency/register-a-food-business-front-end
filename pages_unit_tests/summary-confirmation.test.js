@@ -236,4 +236,55 @@ describe("<ApplicationComplete />", () => {
       expect(wrapper.length).toBe(1);
     });
   });
+  describe("When council is Welsh", () => {
+    it("should have Wales-specific content", () => {
+      const wrapper = mount(
+        <ApplicationComplete
+          cumulativeFullAnswers={cumulativeFullAnswers}
+          applicationCompletePage={true}
+          lcConfig={lcConfigCombined}
+          transformedData={transformedData}
+          country="wales"
+        />
+      );
+      const businessGuidanceLink = wrapper.find("a#businessGuidanceLink");
+      expect(businessGuidanceLink.text()).toBe("Business support - Wales");
+    });
+  });
+  describe("When council is Northern Irish", () => {
+    it("should have Northern Ireland-specific content", () => {
+      const wrapper = mount(
+        <ApplicationComplete
+          cumulativeFullAnswers={cumulativeFullAnswers}
+          applicationCompletePage={true}
+          lcConfig={lcConfigCombined}
+          transformedData={transformedData}
+          country="northern-ireland"
+        />
+      );
+      const businessGuidanceLink = wrapper.find("a#businessGuidanceLink");
+      const safeCateringLink = wrapper.find("a#safeCateringLink");
+      expect(businessGuidanceLink.text()).toBe(
+        "Business support - Northern Ireland"
+      );
+      expect(safeCateringLink.text()).toBe("Safe catering");
+    });
+  });
+  describe("When council is English", () => {
+    it("should have England-specific content", () => {
+      const wrapper = mount(
+        <ApplicationComplete
+          cumulativeFullAnswers={cumulativeFullAnswers}
+          applicationCompletePage={true}
+          lcConfig={lcConfigCombined}
+          transformedData={transformedData}
+          country="england"
+        />
+      );
+      const businessSupportLink = wrapper.find(
+        "a#businessSupportHelplineEnglishLink"
+      );
+      expect(businessSupportLink.text()).toBe("Business support & helpline");
+    });
+  });
 });
