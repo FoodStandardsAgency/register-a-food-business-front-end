@@ -54,52 +54,116 @@ describe("cache.service get()", () => {
     describe("given autoRetrieveOnExpire is enabled", () => {
       const autoRetrieveOnExpire = true;
       let mockResult = obj1;
-      const cache = Cache(ttl, deleteOnExpire, autoRetrieveOnExpire, () => {
-        return Promise.resolve(mockResult);
-      });
-
-      let result;
-      beforeEach(() => {
-        return cache.get().then(() => {
-          mockResult = obj2;
-          return delay(waitTimeForCacheToExpire).then(() => {
-            if (cache.isEmpty()) {
-              return delay(waitTimeForValueToAutoRetrieve).then(() => {
+      describe("when getValue is successful", () => {
+        const cache = Cache(ttl, deleteOnExpire, autoRetrieveOnExpire, () => {
+          return Promise.resolve(mockResult);
+        });
+        let result;
+        beforeEach(() => {
+          return cache.get().then(() => {
+            mockResult = obj2;
+            return delay(waitTimeForCacheToExpire).then(() => {
+              if (cache.isEmpty()) {
+                return delay(waitTimeForValueToAutoRetrieve).then(() => {
+                  return cache.get().then(value => {
+                    result = Promise.resolve(value);
+                  });
+                });
+              } else {
                 return cache.get().then(value => {
                   result = Promise.resolve(value);
                 });
-              });
-            } else {
-              return cache.get().then(value => {
-                result = Promise.resolve(value);
-              });
-            }
+              }
+            });
+          });
+        });
+        it("should return new auto-retrieved object from cache", () => {
+          return result.then(r => {
+            expect(r).toEqual(obj2);
+            expect(logEmitter.emit).toHaveBeenNthCalledWith(
+              1,
+              "functionCall",
+              "cache.service",
+              "get (from db)"
+            );
+            expect(logEmitter.emit).toHaveBeenNthCalledWith(
+              2,
+              "functionCallWith",
+              "cache.service",
+              "on",
+              "expired",
+              obj1
+            );
+            expect(logEmitter.emit).toHaveBeenNthCalledWith(
+              3,
+              "functionCall",
+              "cache.service",
+              "get (from cache)"
+            );
           });
         });
       });
-      it("should return new auto-retrieved object from cache", () => {
-        return result.then(r => {
-          expect(r).toEqual(obj2);
-          expect(logEmitter.emit).toHaveBeenNthCalledWith(
-            1,
-            "functionCall",
-            "cache.service",
-            "get (from db)"
-          );
-          expect(logEmitter.emit).toHaveBeenNthCalledWith(
-            2,
-            "functionCallWith",
-            "cache.service",
-            "on",
-            "expired",
-            obj1
-          );
-          expect(logEmitter.emit).toHaveBeenNthCalledWith(
-            3,
-            "functionCall",
-            "cache.service",
-            "get (from cache)"
-          );
+      describe("when getValue fails", () => {
+        let cacheInitialised = false;
+        let mockResult = obj1;
+        const cache = Cache(ttl, deleteOnExpire, autoRetrieveOnExpire, () => {
+          if (cacheInitialised) {
+            throw new Error("example error");
+          } else {
+            return Promise.resolve(mockResult);
+          }
+        });
+        let result;
+        beforeEach(() => {
+          return cache.get().then(() => {
+            mockResult = obj2;
+            cacheInitialised = true;
+            return delay(waitTimeForCacheToExpire).then(() => {
+              if (cache.isEmpty()) {
+                return delay(waitTimeForValueToAutoRetrieve).then(() => {
+                  return cache.get().then(value => {
+                    result = Promise.resolve(value);
+                  });
+                });
+              } else {
+                return cache.get().then(value => {
+                  result = Promise.resolve(value);
+                });
+              }
+            });
+          });
+        });
+        it("should return the old value", () => {
+          return result.then(r => {
+            expect(r).toEqual(obj1);
+            expect(logEmitter.emit).toHaveBeenNthCalledWith(
+              1,
+              "functionCall",
+              "cache.service",
+              "get (from db)"
+            );
+            expect(logEmitter.emit).toHaveBeenNthCalledWith(
+              2,
+              "functionCallWith",
+              "cache.service",
+              "on",
+              "expired",
+              obj1
+            );
+            expect(logEmitter.emit).toHaveBeenNthCalledWith(
+              3,
+              "functionFail",
+              "cache.service",
+              "cache.on(expired)",
+              Error("example error")
+            );
+            expect(logEmitter.emit).toHaveBeenNthCalledWith(
+              4,
+              "functionCall",
+              "cache.service",
+              "get (from cache)"
+            );
+          });
         });
       });
     });

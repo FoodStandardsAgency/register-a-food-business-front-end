@@ -120,4 +120,32 @@ describe("status.service incrementStatusCount()", () => {
       );
     });
   });
+  describe("given getStoredStatus throws an error", () => {
+    beforeEach(async () => {
+      getStoredStatus.mockImplementation(() => {
+        throw new Error("getStoredStatus error");
+      });
+
+      result = await incrementStatusCount("mostRecentSubmitSucceeded");
+    });
+
+    it("should catch the error", () => {
+      expect(result).toBe(undefined);
+    });
+  });
+  describe("given updateStoredStatus throws an error", () => {
+    beforeEach(async () => {
+      getStoredStatus.mockImplementation(() => ({
+        submissionsSucceeded: 0
+      }));
+      updateStoredStatus.mockImplementation(() => {
+        throw new Error("updateStoredStatus error");
+      });
+      result = await incrementStatusCount("submissionsSucceeded");
+    });
+
+    it("should catch the error", () => {
+      expect(result).toBe(undefined);
+    });
+  });
 });

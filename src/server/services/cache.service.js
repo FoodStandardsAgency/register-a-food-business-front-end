@@ -24,22 +24,36 @@ const Cache = (stdTTL, deleteOnExpire, autoRetrieveOnExpire, getValue) => {
 
     if (value) {
       logEmitter.emit("functionCall", "cache.service", "get (from cache)");
-      return Promise.resolve(value);
+      return value;
     }
 
-    return getValue().then(result => {
-      logEmitter.emit("functionCall", "cache.service", "get (from db)");
-      cache.set(key, result);
-      return result;
-    });
+    logEmitter.emit("functionCall", "cache.service", "get (from db)");
+    const result = await getValue();
+    cache.set(key, result);
+    return result;
   };
 
-  cache.on("expired", (k, v) => {
-    logEmitter.emit("functionCallWith", "cache.service", "on", "expired", v);
+  cache.on("expired", async (key, oldValue) => {
+    logEmitter.emit(
+      "functionCallWith",
+      "cache.service",
+      "on",
+      "expired",
+      oldValue
+    );
     if (autoRetrieveOnExpire) {
-      return getValue().then(result => {
+      try {
+        const result = await getValue();
         cache.set(key, result);
-      });
+      } catch (err) {
+        logEmitter.emit(
+          "functionFail",
+          "cache.service",
+          "cache.on(expired)",
+          err
+        );
+        cache.set(key, oldValue);
+      }
     }
   });
 
