@@ -40,6 +40,22 @@ const establishConnectionToMongo = async () => {
 };
 
 /**
+* Closes the connection to the config database.
+*/
+const closeConnectionToMongo = async () => {
+  if (process.env.DOUBLE_MODE !== "true") { 
+    client.close(err => {
+      logEmitter.emit(
+        "functionFail",
+        "config-db.connector",
+        "closeConnectionToMongo",
+        err
+      );
+    });
+  }
+};
+
+/**
  * Fetches the path configuration (including pages, switches etc) from the config database
  *
  * @param {string} version The data version of this registration, corresponding to an entry in the config database
@@ -100,6 +116,8 @@ const getPathConfigByVersion = async version => {
       newError.message = err.message;
 
       throw newError;
+    } finally {
+      closeConnectionToMongo();
     }
   }
 
@@ -169,6 +187,8 @@ const getLocalCouncils = async () => {
     newError.message = err.message;
 
     throw newError;
+  } finally {
+    closeConnectionToMongo();
   }
 
   logEmitter.emit("functionSuccess", "config-db.connector", "getLocalCouncils");
@@ -232,6 +252,8 @@ const getCountryOfCouncil = async council => {
     newError.message = err.message;
 
     throw newError;
+  } finally {
+    closeConnectionToMongo();
   }
 
   logEmitter.emit(
