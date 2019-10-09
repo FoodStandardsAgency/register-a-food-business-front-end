@@ -28,30 +28,35 @@ const establishConnectionToMongo = async () => {
     );
     configVersionCollection = configVersionCollectionDouble;
   } else {
-    client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
-      useNewUrlParser: true
-    });
+    logEmitter.emit(
+      "functionCall",
+      "config-db.connector",
+      "establishConnectionToMongo"
+    );
+
+    // If no connection or connection is not valid after downtime
+    if (!client || !client.topology || !client.topology.isConnected()) {
+      client && client.close();
+      client = await mongodb.MongoClient.connect(CONFIGDB_URL, { useNewUrlParser: true })
+        .catch(err => { 
+          logEmitter.emit(
+            "functionFail",
+            "config-db.connector",
+            "establishConnectionToMongo",
+            err
+          );
+          throw err;
+        });
+    }
 
     configDB = client.db("register_a_food_business_config");
-
     configVersionCollection = configDB.collection("configVersion");
     lcConfigCollection = configDB.collection("lcConfig");
-  }
-};
-
-/**
-* Closes the connection to the config database.
-*/
-const closeConnectionToMongo = async () => {
-  if (process.env.DOUBLE_MODE !== "true") { 
-    client.close(err => {
-      logEmitter.emit(
-        "functionFail",
-        "config-db.connector",
-        "closeConnectionToMongo",
-        err
-      );
-    });
+    logEmitter.emit(
+      "functionSuccess",
+      "config-db.connector",
+      "establishConnectionToMongo"
+    );
   }
 };
 
@@ -116,8 +121,6 @@ const getPathConfigByVersion = async version => {
       newError.message = err.message;
 
       throw newError;
-    } finally {
-      closeConnectionToMongo();
     }
   }
 
@@ -187,8 +190,6 @@ const getLocalCouncils = async () => {
     newError.message = err.message;
 
     throw newError;
-  } finally {
-    closeConnectionToMongo();
   }
 
   logEmitter.emit("functionSuccess", "config-db.connector", "getLocalCouncils");
@@ -252,8 +253,6 @@ const getCountryOfCouncil = async council => {
     newError.message = err.message;
 
     throw newError;
-  } finally {
-    closeConnectionToMongo();
   }
 
   logEmitter.emit(
