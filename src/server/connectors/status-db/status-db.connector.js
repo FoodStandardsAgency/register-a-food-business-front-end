@@ -30,15 +30,17 @@ const establishConnectionToMongo = async () => {
       "status-db.connector",
       "establishConnectionToMongo"
     );
-    
+
     // If no connection or connection is not valid after downtime
     if (!client || !client.topology || !client.topology.isConnected()) {
       try {
         if (client && client.topology !== undefined) {
           client.close();
-        } 
-        client = await mongodb.MongoClient.connect(CONFIGDB_URL, { useNewUrlParser: true })
-      } catch (err) { 
+        }
+        client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
+          useNewUrlParser: true
+        });
+      } catch (err) {
         logEmitter.emit(
           "functionFail",
           "status-db.connector",
@@ -51,7 +53,7 @@ const establishConnectionToMongo = async () => {
 
     statusDB = client.db("register_a_food_business_status");
     statusCollection = statusDB.collection("status");
-    
+
     logEmitter.emit(
       "functionSuccess",
       "status-db.connector",

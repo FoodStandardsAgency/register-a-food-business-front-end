@@ -39,9 +39,11 @@ const establishConnectionToMongo = async () => {
       try {
         if (client && client.topology !== undefined) {
           client.close();
-        } 
-        client = await mongodb.MongoClient.connect(CONFIGDB_URL, { useNewUrlParser: true })
-      } catch (err) { 
+        }
+        client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
+          useNewUrlParser: true
+        });
+      } catch (err) {
         logEmitter.emit(
           "functionFail",
           "config-db.connector",
