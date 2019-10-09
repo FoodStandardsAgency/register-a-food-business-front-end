@@ -36,17 +36,20 @@ const establishConnectionToMongo = async () => {
 
     // If no connection or connection is not valid after downtime
     if (!client || !client.topology || !client.topology.isConnected()) {
-      client && client.close();
-      client = await mongodb.MongoClient.connect(CONFIGDB_URL, { useNewUrlParser: true })
-        .catch(err => { 
-          logEmitter.emit(
-            "functionFail",
-            "config-db.connector",
-            "establishConnectionToMongo",
-            err
-          );
-          throw err;
-        });
+      try {
+        if (client && client.topology !== undefined) {
+          client.close();
+        } 
+        client = await mongodb.MongoClient.connect(CONFIGDB_URL, { useNewUrlParser: true })
+      } catch (err) { 
+        logEmitter.emit(
+          "functionFail",
+          "config-db.connector",
+          "establishConnectionToMongo",
+          err
+        );
+        throw err;
+      }
     }
 
     configDB = client.db("register_a_food_business_config");
