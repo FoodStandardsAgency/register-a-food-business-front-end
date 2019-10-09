@@ -28,14 +28,40 @@ const establishConnectionToMongo = async () => {
     );
     configVersionCollection = configVersionCollectionDouble;
   } else {
-    client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
-      useNewUrlParser: true
-    });
+    logEmitter.emit(
+      "functionCall",
+      "config-db.connector",
+      "establishConnectionToMongo"
+    );
+
+    // If no connection or connection is not valid after downtime
+    if (!client || !client.topology || !client.topology.isConnected()) {
+      try {
+        if (client && client.topology !== undefined) {
+          client.close();
+        }
+        client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
+          useNewUrlParser: true
+        });
+      } catch (err) {
+        logEmitter.emit(
+          "functionFail",
+          "config-db.connector",
+          "establishConnectionToMongo",
+          err
+        );
+        throw err;
+      }
+    }
 
     configDB = client.db("register_a_food_business_config");
-
     configVersionCollection = configDB.collection("configVersion");
     lcConfigCollection = configDB.collection("lcConfig");
+    logEmitter.emit(
+      "functionSuccess",
+      "config-db.connector",
+      "establishConnectionToMongo"
+    );
   }
 };
 
