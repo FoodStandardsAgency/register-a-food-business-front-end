@@ -18,7 +18,14 @@ const {
  */
 const getStatus = async statusName => {
   logEmitter.emit("functionCall", "status.service", "getStatus");
-  const status = await getStoredStatus();
+
+  let status;
+  try {
+    status = await getStoredStatus();
+  } catch (err) {
+    logEmitter.emit("functionFail", "status.service", "getStatus", err);
+    return {};
+  }
 
   if (statusName) {
     logEmitter.emit(
@@ -50,15 +57,18 @@ const getStatus = async statusName => {
 const setStatus = async (statusName, newStatus) => {
   logEmitter.emit("functionCall", "status.service", "setStatus");
 
-  const updatedStatusValue = await updateStoredStatus(statusName, newStatus);
-
-  logEmitter.emit(
-    "functionSuccessWith",
-    "status.service",
-    "setStatus",
-    `Status "${statusName}" set to: ${updatedStatusValue}`
-  );
-  return updatedStatusValue;
+  try {
+    const updatedStatusValue = await updateStoredStatus(statusName, newStatus);
+    logEmitter.emit(
+      "functionSuccessWith",
+      "status.service",
+      "setStatus",
+      `Status "${statusName}" set to: ${updatedStatusValue}`
+    );
+    return updatedStatusValue;
+  } catch (err) {
+    logEmitter.emit("functionFail", "status.service", "setStatus", err);
+  }
 };
 
 /**
@@ -70,21 +80,41 @@ const setStatus = async (statusName, newStatus) => {
  */
 const incrementStatusCount = async statusName => {
   logEmitter.emit("functionCall", "status.service", "incrementStatusCount");
-  const status = await getStoredStatus();
+  let status;
+  try {
+    status = await getStoredStatus();
+  } catch (err) {
+    logEmitter.emit(
+      "functionFail",
+      "status.service",
+      "incrementStatusCount",
+      err
+    );
+    return;
+  }
   const currentValue = status[statusName];
 
   if (Number.isInteger(currentValue)) {
     const newValue = currentValue + 1;
 
-    const updatedStatusValue = await updateStoredStatus(statusName, newValue);
-
-    logEmitter.emit(
-      "functionSuccessWith",
-      "status.service",
-      "incrementStatusCount",
-      `Status "${statusName}" incremented. New value is: ${updatedStatusValue}`
-    );
-    return updatedStatusValue;
+    let updatedStatusValue;
+    try {
+      updatedStatusValue = await updateStoredStatus(statusName, newValue);
+      logEmitter.emit(
+        "functionSuccessWith",
+        "status.service",
+        "incrementStatusCount",
+        `Status "${statusName}" incremented. New value is: ${updatedStatusValue}`
+      );
+      return updatedStatusValue;
+    } catch (err) {
+      logEmitter.emit(
+        "functionFail",
+        "status.service",
+        "incrementStatusCount",
+        err
+      );
+    }
   } else {
     const message = `Status name "${statusName}" is not an integer. Unable to increment.`;
 

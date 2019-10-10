@@ -225,7 +225,8 @@ const ApplicationComplete = props => (
             target="_blank"
             rel="noopener noreferrer"
           >
-            General business advice
+            Business support -
+            {props.country === "wales" ? ` Wales` : " Northern Ireland"}
           </AnchorTag>
         </ContentItem.B_20_20>
       ) : (
@@ -237,7 +238,7 @@ const ApplicationComplete = props => (
               target="_blank"
               rel="noopener noreferrer"
             >
-              General guidance on business growth and finance
+              Business support & helpline
             </AnchorTag>
           </ContentItem.B_20_20>
 
