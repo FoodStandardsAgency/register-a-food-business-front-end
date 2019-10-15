@@ -12,7 +12,7 @@ const pdfsRouter = () => {
 
   router.get("/feedback", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/pdfs/feedback");
-    var file = path.join(
+    let file = path.join(
       __dirname,
       "..",
       "/static/pdfs/feedback-declaration.pdf"
