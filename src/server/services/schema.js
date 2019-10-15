@@ -457,7 +457,8 @@ const schema = {
     properties: {
       declaration1: { type: "string", validation: validateDeclaration },
       declaration2: { type: "string", validation: validateDeclaration },
-      declaration3: { type: "string", validation: validateDeclaration }
+      declaration3: { type: "string", validation: validateDeclaration },
+      feedback1: { type: "string", validation: validateDeclaration }
     }
   }
 };
