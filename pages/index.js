@@ -48,10 +48,13 @@ const Index = props => (
         </Paragraph>
       </ContentItem.B_30_15>
       <ContentItem.B_30_15>
+        <Header level={2} size="MEDIUM" mb={1}>
+          Registering Local Authority
+        </Header>
         <Paragraph>
-          {`${
+          {`**${
             props.lcName
-          } is the local authority your registration will be sent to.
+          }** is the local authority your registration will be sent to.
           Is this the correct local authority for your business? If unsure,
           please use this [Food Business Registration](https://www.gov.uk/food-business-registration)
           link to check using the location or site of your food business.`}
