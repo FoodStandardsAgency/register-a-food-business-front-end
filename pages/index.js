@@ -17,10 +17,6 @@ const Index = props => (
           you must register with your local authority. You should do this at
           least **28 days** before trading or before food operations start.
         </Paragraph>
-        <Paragraph mb={0}>
-          Your registration will be sent to the correct local authority based on
-          your trading location.
-        </Paragraph>
       </ContentItem.B_30_15>
 
       <InsetText className="bold">
@@ -49,6 +45,16 @@ const Index = props => (
           The establishment is the location or site of your food business. If it
           is a mobile food business, please use the location where it is
           normally stored overnight.
+        </Paragraph>
+      </ContentItem.B_30_15>
+      <ContentItem.B_30_15>
+        <Paragraph>
+          {`${
+            props.lcName
+          } is the local authority your registration will be sent to.
+          Is this the correct local authority for your business? If unsure,
+          please use this [Food Business Registration](https://www.gov.uk/food-business-registration)
+          link to check using the location or site of your food business.`}
         </Paragraph>
       </ContentItem.B_30_15>
     </ContentItem.B_30_15>
