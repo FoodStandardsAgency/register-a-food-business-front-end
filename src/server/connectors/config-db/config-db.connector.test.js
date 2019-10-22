@@ -3,7 +3,7 @@ const {
   getPathConfigByVersion,
   getLocalCouncils,
   clearPathConfigCache,
-  getCountryOfCouncil
+  getCouncilData
 } = require("./config-db.connector");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
 const { configVersionCollectionDouble } = require("./config-db.double");
@@ -255,7 +255,7 @@ describe("Function: getLocalCouncils", () => {
   });
 });
 
-describe("Function: getCountryOfCouncil", () => {
+describe("Function: getCouncilData", () => {
   describe("given the request throws an error", () => {
     beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => {
@@ -263,7 +263,7 @@ describe("Function: getCountryOfCouncil", () => {
       });
 
       try {
-        await getCountryOfCouncil("cardiff");
+        await getCouncilData("cardiff");
       } catch (err) {
         result = err;
       }
@@ -285,7 +285,7 @@ describe("Function: getCountryOfCouncil", () => {
       }));
 
       try {
-        await getCountryOfCouncil("cardiff");
+        await getCouncilData("cardiff");
       } catch (err) {
         result = err;
       }
@@ -293,15 +293,16 @@ describe("Function: getCountryOfCouncil", () => {
 
     it("should throw mongoConnectionError error with custom message", () => {
       expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe("getCountryOfCouncil retrieved null");
+      expect(result.message).toBe("getCouncilData retrieved null");
     });
   });
   describe("given the request is successful", () => {
+    const exampleResult = {
+      local_council_url: "cardiff",
+      country: "wales",
+      local_council: "Cardiff Council"
+    };
     beforeEach(() => {
-      const exampleResult = {
-        local_council_url: "cardiff",
-        country: "wales"
-      };
       mongodb.MongoClient.connect.mockClear();
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
@@ -313,7 +314,7 @@ describe("Function: getCountryOfCouncil", () => {
     });
 
     it("returns the correct value", async () => {
-      await expect(getCountryOfCouncil("cardiff")).resolves.toEqual("wales");
+      await expect(getCouncilData("cardiff")).resolves.toEqual(exampleResult);
     });
   });
 });
