@@ -111,8 +111,8 @@ class Declaration extends React.Component {
           </Header>
 
           <Paragraph>
-            Congratulations, you've almost finished. Before you go, we need to
-            ask one final question.
+            Congratulations, you've almost finished. We want to provide you with
+            the best experience possible and value your feedback.
           </Paragraph>
 
           <ContentItem.B_45_30>
@@ -121,8 +121,8 @@ class Declaration extends React.Component {
               value="I agree to be contacted to provide feedback to help develop this service"
               defaultChecked={this.props.cumulativeFullAnswers.feedback1}
             >
-              Will you help us develop this service? If you agree to be
-              contacted, please tick the box. (optional)
+              I agree to be contacted to provide feedback to help develop this
+              service (optional)
             </Checkbox>
             <Paragraph linkRenderer={NewTabLinkRenderer}>
               See [here](/pdfs/feedback) for details on how we will use your
