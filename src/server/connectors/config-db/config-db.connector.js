@@ -203,14 +203,14 @@ const getLocalCouncils = async () => {
 };
 
 /**
- * Retrieves name of the country where council is located
+ * Retrieves council-specific details
  *
  * @param {string} council Name of the council
  *
- * @returns {string} Name of the country
+ * @returns {Object} Object with council data
  */
-const getCountryOfCouncil = async council => {
-  logEmitter.emit("functionCall", "config-db.connector", "getCountryOfCouncil");
+const getCouncilData = async council => {
+  logEmitter.emit("functionCall", "config-db.connector", "getCouncilData");
 
   let councilRecord = null;
   try {
@@ -221,35 +221,31 @@ const getCountryOfCouncil = async council => {
     });
 
     if (councilRecord === null) {
-      statusEmitter.emit("incrementCount", "getCountryOfCouncilFailed");
+      statusEmitter.emit("incrementCount", "getCouncilDataFailed");
       statusEmitter.emit(
         "setStatus",
-        "mostRecentGetCountryOfCouncilSucceeded",
+        "mostRecentGetCouncilDataSucceeded",
         false
       );
       const newError = new Error();
       newError.name = "mongoConnectionError";
-      newError.message = "getCountryOfCouncil retrieved null";
+      newError.message = "getCouncilData retrieved null";
       throw newError;
     } else {
-      statusEmitter.emit("incrementCount", "getCountryOfCouncilSucceeded");
+      statusEmitter.emit("incrementCount", "getCouncilDataSucceeded");
       statusEmitter.emit(
         "setStatus",
-        "mostRecentGetCountryOfCouncilSucceeded",
+        "mostRecentGetCouncilDataSucceeded",
         true
       );
     }
   } catch (err) {
-    statusEmitter.emit("incrementCount", "getCountryOfCouncilFailed");
-    statusEmitter.emit(
-      "setStatus",
-      "mostRecentGetCountryOfCouncilSucceeded",
-      false
-    );
+    statusEmitter.emit("incrementCount", "getCouncilDataFailed");
+    statusEmitter.emit("setStatus", "mostRecentGetCouncilDataSucceeded", false);
     logEmitter.emit(
       "functionFail",
       "config-db.connector",
-      "getCountryOfCouncil",
+      "getCouncilData",
       err
     );
 
@@ -260,13 +256,9 @@ const getCountryOfCouncil = async council => {
     throw newError;
   }
 
-  logEmitter.emit(
-    "functionSuccess",
-    "config-db.connector",
-    "getCountryOfCouncil"
-  );
+  logEmitter.emit("functionSuccess", "config-db.connector", "getCouncilData");
 
-  return councilRecord.country;
+  return councilRecord;
 };
 
 /**
@@ -283,5 +275,5 @@ module.exports = {
   getPathConfigByVersion,
   clearPathConfigCache,
   getLocalCouncils,
-  getCountryOfCouncil
+  getCouncilData
 };
