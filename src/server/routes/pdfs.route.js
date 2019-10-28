@@ -6,7 +6,6 @@
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const path = require("path");
-const next = require("next");
 
 const pdfsRouter = () => {
   const router = Router();
@@ -18,19 +17,8 @@ const pdfsRouter = () => {
       "..",
       "/static/pdfs/feedback-declaration.pdf"
     );
-    res.sendFile(file, function(err) {
-      if (!err) {
-        logEmitter.emit("functionFail", "Routes", "/pdfs/feedback", err);
-        throw err;
-      } else {
-        logEmitter.emit(
-          "functionSuccessWith",
-          "Routes",
-          "/pdfs/feedback",
-          file
-        );
-      }
-    });
+    logEmitter.emit("functionSuccessWith", "Routes", "/pdfs/feedback", file);
+    res.sendFile(file);
   });
 
   return router;
