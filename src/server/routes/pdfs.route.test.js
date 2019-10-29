@@ -14,7 +14,7 @@ describe("PDF Route: ", () => {
   });
 
   describe("GET to /feedback", () => {
-    describe("with success", () => {
+    describe("When the file exists", () => {
       let res, req;
       beforeEach(() => {
         handler = router.get.mock.calls[0][1];
@@ -26,13 +26,13 @@ describe("PDF Route: ", () => {
         handler(req, res);
       });
 
-      it("Should send file", () => {
+      it("Should return file", () => {
         let file = path.join(
           __dirname,
           "..",
           "/static/pdfs/feedback-declaration.pdf"
         );
-        expect(res.sendFile).toBeCalledWith(file);
+        expect(res.sendFile).toHaveBeenCalledWith(file);
       });
     });
   });
