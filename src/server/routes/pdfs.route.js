@@ -17,8 +17,8 @@ const pdfsRouter = () => {
       "..",
       "/static/pdfs/feedback-declaration.pdf"
     );
-    logEmitter.emit("functionSuccessWith", "Routes", "/pdfs/feedback", file);
     res.sendFile(file);
+    logEmitter.emit("functionSuccessWith", "Routes", "/pdfs/feedback", file);
   });
 
   return router;
