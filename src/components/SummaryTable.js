@@ -807,6 +807,17 @@ const DeclarationTable = props => (
       </AccessibleRowHeader>
       <AccessibleCell>Accepted</AccessibleCell>
     </AccessibleTableRow>
+    {props.feedback1 ? (
+      <AccessibleTableRow
+        acPage={props.applicationCompletePage}
+        id="feedback1Row"
+      >
+        <AccessibleRowHeader>
+          <span id="feedback1">{props.feedback1}</span>
+        </AccessibleRowHeader>
+        <AccessibleCell>Accepted</AccessibleCell>
+      </AccessibleTableRow>
+    ) : null}
   </React.Fragment>
 );
 

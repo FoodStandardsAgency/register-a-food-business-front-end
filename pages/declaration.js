@@ -9,7 +9,14 @@ import {
   OnHandleErrorClick
 } from "../src/components";
 import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
+
 import PropTypes from "prop-types";
+
+const NewTabLinkRenderer = ({ href, children }) => (
+  <a href={href} target="_blank">
+    {children}
+  </a>
+);
 
 class Declaration extends React.Component {
   constructor(props) {
@@ -97,6 +104,30 @@ class Declaration extends React.Component {
                 this establishment.
               </Checkbox>
             </MultiChoice>
+          </ContentItem.B_45_30>
+
+          <Header level={1} size="LARGE">
+            Feedback
+          </Header>
+
+          <Paragraph>
+            Congratulations, you've almost finished. We want to provide you with
+            the best experience possible and value your feedback.
+          </Paragraph>
+
+          <ContentItem.B_45_30>
+            <Checkbox
+              name="feedback1"
+              value="I agree to be contacted to provide feedback to help develop this service"
+              defaultChecked={this.props.cumulativeFullAnswers.feedback1}
+            >
+              I agree to be contacted to provide feedback to help develop this
+              service (optional)
+            </Checkbox>
+            <Paragraph linkRenderer={NewTabLinkRenderer}>
+              See [here](/pdfs/feedback) for details on how we will use your
+              data.
+            </Paragraph>
           </ContentItem.B_45_30>
 
           {this.state.submitClicked === true ? (

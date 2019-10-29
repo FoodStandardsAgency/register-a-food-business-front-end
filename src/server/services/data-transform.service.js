@@ -234,7 +234,12 @@ const transformAnswersForSubmit = (
     "opening_hours_saturday",
     "opening_hours_sunday"
   ];
-  const metadata_keys = ["declaration1", "declaration2", "declaration3"];
+  const metadata_keys = [
+    "declaration1",
+    "declaration2",
+    "declaration3",
+    "feedback1"
+  ];
 
   const submitObject = {
     registration: {

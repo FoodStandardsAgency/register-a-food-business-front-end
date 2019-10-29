@@ -59,6 +59,13 @@ const optionalTableRows = [
   "establishmentOpeningHoursRow"
 ];
 
+const declarationRows = [
+  "declaration1Row",
+  "declaration2Row",
+  "declaration3Row"
+];
+const feedbackRows = ["feedback1Row"];
+
 const allTableRows = mandatoryTableRows.concat(optionalTableRows);
 
 // the complete set of possible mandatory answer fields with example data
@@ -142,11 +149,34 @@ const testOptionalAnswers = {
   opening_hours_sunday: "From 9:30 to 19:00"
 };
 
+const testDeclarationAnswers = {
+  declaration1: "declaration",
+  declaration2: "declaration",
+  declaration3: "declaration"
+};
+
+const testFeedbackAnswers = {
+  feedback1: "feedback"
+};
+
 // the complete set of possible answer fields with example data
 const testComprehensiveAnswers = Object.assign(
   {},
   testMandatoryAnswers,
   testOptionalAnswers
+);
+
+const testComprehensiveAnswersDeclaration = Object.assign(
+  {},
+  testMandatoryAnswers,
+  testDeclarationAnswers
+);
+
+const testComprehensiveAnswersDeclarationFeedback = Object.assign(
+  {},
+  testMandatoryAnswers,
+  testDeclarationAnswers,
+  testFeedbackAnswers
 );
 
 const testComprehensiveAnswersForPartnership = Object.assign(
@@ -170,7 +200,17 @@ const wrapperComprehensiveForPartnership = mount(
 );
 
 const wrapperApplicationComplete = mount(
-  <SummaryTable {...testComprehensiveAnswers} applicationCompletePage={true} />
+  <SummaryTable
+    {...testComprehensiveAnswersDeclaration}
+    applicationCompletePage={true}
+  />
+);
+
+const wrapperApplicationCompleteWithFeedback = mount(
+  <SummaryTable
+    {...testComprehensiveAnswersDeclarationFeedback}
+    applicationCompletePage={true}
+  />
 );
 
 const wrapperApplicationCompleteForPartnership = mount(
@@ -271,6 +311,28 @@ describe("<SummaryTable />", () => {
           const row = wrapperComprehensive.find(`Row#${tableRowName}`);
           expect(row.length).toBe(1);
         });
+      });
+    });
+  });
+  describe("when applicationCompletePage equals true", () => {
+    it("renders the declaration table rows", () => {
+      declarationRows.forEach(tableRowName => {
+        const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);
+        expect(row.length).toBe(1);
+      });
+    });
+    it("doesn't render the feedback table row", () => {
+      feedbackRows.forEach(tableRowName => {
+        const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);
+        expect(row.length).toBe(0);
+      });
+    });
+    it("does render the feedback table row when specified", () => {
+      feedbackRows.forEach(tableRowName => {
+        const row = wrapperApplicationCompleteWithFeedback.find(
+          `Row#${tableRowName}`
+        );
+        expect(row.length).toBe(1);
       });
     });
   });
