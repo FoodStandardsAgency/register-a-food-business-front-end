@@ -68,6 +68,7 @@ const checkIfValid = validatorErrors =>
  * @param {object} cumulativeEditAnswers An object containing every past answer that has been given in this edit-mode path by the user
  * @param {object} newAnswers An object containing new answers from the current page
  * @param {object} switches The global switches object
+ * @param {object} allValidationErrors An object containing validation errors collected from all active pages
  *
  * @returns {object} Values for the router to store/update in the session and the page to redirect to.
  */
@@ -78,7 +79,8 @@ const editContinue = (
   cumulativeFullAnswers,
   cumulativeEditAnswers,
   newAnswers,
-  switches
+  switches,
+  allValidationErrors
 ) => {
   logEmitter.emit("functionCall", "edit.controller", "editContinue");
 
@@ -115,6 +117,9 @@ const editContinue = (
   let cleanedInactiveFullAnswers;
   let cleanedInactiveEditAnswers;
   if (valid) {
+    Object.keys(newAnswers).forEach(
+      validAnswerKey => delete allValidationErrors[validAnswerKey]
+    );
     // TODO JMB: Merge switchOffManualAddressInput into editPathInEditMode
     const newEditModePath = editPathInEditMode(
       newCumulativeFullAnswers,
@@ -153,11 +158,11 @@ const editContinue = (
     cumulativeEditAnswersToReturn =
       cleanedInactiveEditAnswers || newCumulativeEditAnswers;
   }
-
   const controllerResponse = {
     cumulativeFullAnswers: cumulativeFullAnswersToReturn,
     cumulativeEditAnswers: cumulativeEditAnswersToReturn,
     validatorErrors,
+    allValidationErrors,
     switches: cleanedSwitches,
     redirectRoute
   };
