@@ -11,6 +11,9 @@ const {
   separateBracketsFromBusinessType
 } = require("./data-transform.service");
 const { MAX_PARTNERS } = require("../config");
+const {
+  validatePartners
+} = require("@slice-and-dice/register-a-food-business-validation");
 
 const errorMessages = {
   declaration1: "You must tick all the declarations before continuing",
@@ -63,6 +66,8 @@ const errorMessages = {
   partners: `Please define between 2-${MAX_PARTNERS} partners`,
   main_partnership_contact:
     "You must select the main partnership contact before continuing",
+  main_partnership_contact_deleted:
+    "Main partnership contact is not in the list of partners",
   opening_hours_monday: "Invalid opening hours on Monday",
   opening_hours_tuesday: "Invalid opening hours on Tuesday",
   opening_hours_wednesday: "Invalid opening hours on Wednesday",
@@ -112,9 +117,13 @@ const validate = (page, answers) => {
       }
 
       if (page === "/business-type") {
-        answersToValidate.business_type = separateBracketsFromBusinessType(
-          answers.business_type
-        ).business_type;
+        if (answers.business_type) {
+          answersToValidate.business_type = separateBracketsFromBusinessType(
+            answers.business_type
+          ).business_type;
+        } else {
+          answersToValidate.business_type = "";
+        }
       }
 
       const validatorResult = validator.validate(
@@ -171,4 +180,51 @@ const validate = (page, answers) => {
   }
 };
 
-module.exports = { validate };
+/**
+ * Runs the jsonschema validator package against answers from active pages
+ *
+ * @param {Array<string>} pages Pages on active path
+ * @param {object} cumulativeFullAnswers All answers provided by the user as part of registration process
+ *
+ * @returns {object} An errors object containing one entry per validation error
+ */
+const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
+  logEmitter.emit("functionCall", "validation.service", "revalidateAllAnswers");
+
+  const result = {
+    errors: {}
+  };
+
+  pages.forEach(page => {
+    if (page === "/partner-name") {
+      if (!validatePartners(cumulativeFullAnswers.partners)) {
+        Object.assign(result.errors, {
+          partners: errorMessages.partners
+        });
+      }
+      if (
+        !cumulativeFullAnswers.partners.includes(
+          cumulativeFullAnswers["main_partnership_contact"]
+        )
+      ) {
+        Object.assign(result.errors, {
+          main_partnership_contact:
+            errorMessages.main_partnership_contact_deleted
+        });
+      }
+    } else {
+      Object.assign(
+        result.errors,
+        validate(page, cumulativeFullAnswers).errors
+      );
+    }
+  });
+  logEmitter.emit(
+    "functionSuccess",
+    "validation.service",
+    "revalidateAllAnswers"
+  );
+  return result;
+};
+
+module.exports = { validate, revalidateAllAnswers };
