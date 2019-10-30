@@ -7,7 +7,10 @@ const {
   editPath,
   switchOffManualAddressInput
 } = require("../services/path.service");
-const { validate } = require("../services/validation.service");
+const {
+  validate,
+  revalidateAllAnswers
+} = require("../services/validation.service");
 const { logEmitter } = require("../services/logging.service");
 const { statusEmitter } = require("../services/statusEmitter.service");
 const {
@@ -38,6 +41,7 @@ const continueController = (
   logEmitter.emit("functionCall", "continue.controller", "continueController");
   const controllerResponse = {
     validatorErrors: {},
+    allValidationErrors: {},
     redirectRoute: null,
     cumulativeFullAnswers: {},
     switches: {}
@@ -103,6 +107,21 @@ const continueController = (
       pathFromSession
     );
 
+    const activePath = Object.keys(newPath).filter(entry => {
+      return newPath[entry].on === true && entry !== "/declaration";
+    });
+
+    if (currentPage === "/registration-summary") {
+      Object.assign(
+        controllerResponse.allValidationErrors,
+        revalidateAllAnswers(activePath, previousAnswers).errors
+      );
+
+      if (Object.keys(controllerResponse.allValidationErrors).length > 0) {
+        controllerResponse.redirectRoute = currentPage;
+        return controllerResponse;
+      }
+    }
     // update the new path to switch off manual address input pages if the originator (currentPage) is one of the address select pages
     const updatedNewPath = switchOffManualAddressInput(newPath, currentPage);
 
@@ -115,6 +134,13 @@ const continueController = (
     // else move to the next page in the path
     const nextPage = moveAlongPath(updatedNewPath, currentPage, 1);
     controllerResponse.redirectRoute = nextPage;
+
+    if (nextPage === "/registration-summary") {
+      Object.assign(
+        controllerResponse.allValidationErrors,
+        revalidateAllAnswers(activePath, previousAnswers).errors
+      );
+    }
 
     logEmitter.emit(
       "functionSuccessWith",
