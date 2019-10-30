@@ -61,6 +61,12 @@ const SessionWrapper = Page => {
 
     delete validatorErrorsCleaned["undefined"];
 
+    const allValidationErrorsCleaned =
+      req && req.session && req.session.allValidationErrors
+        ? { ...req.session.allValidationErrors }
+        : {};
+    delete allValidationErrorsCleaned["undefined"];
+
     /************************************************************************************
     Declaration of initialProps object, containing the above variables, plus others.
     This object will ultimately be passed to the Page component.
@@ -87,6 +93,7 @@ const SessionWrapper = Page => {
           ? req.session.transformedData
           : {},
       validatorErrors: validatorErrorsCleaned,
+      allValidationErrors: allValidationErrorsCleaned,
       switches:
         req && req.session && req.session.switches ? req.session.switches : {},
       fsaRegistrationNumber:
