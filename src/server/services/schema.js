@@ -183,7 +183,7 @@ const schema = {
   "/operator-company-details": {
     type: "object",
     properties: {
-      operator_company_house_number: {
+      operator_companies_house_number: {
         type: "string",
         validation: validateCompaniesHouseNumber
       },

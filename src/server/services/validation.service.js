@@ -34,7 +34,8 @@ const errorMessages = {
   contact_representative_number: "Not a valid phone number",
   contact_representative_email: "Not a valid email address",
   operator_company_name: "Not a valid company name",
-  operator_company_house_number: "Not a valid Companies House reference number",
+  operator_companies_house_number:
+    "Not a valid Companies House reference number",
   operator_charity_name: "Not a valid charity name",
   operator_charity_number: "Not a valid charity number",
   establishment_primary_number: "Not a valid phone number",

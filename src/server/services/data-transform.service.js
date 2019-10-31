@@ -198,7 +198,7 @@ const transformAnswersForSubmit = (
     "contact_representative_email",
     "operator_type",
     "operator_company_name",
-    "operator_company_house_number",
+    "operator_companies_house_number",
     "operator_charity_name",
     "operator_charity_number",
     "operator_uprn"
