@@ -94,8 +94,7 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
 
         data.operator_postcode = operatorAddressLookupData["postcode"];
 
-        data.operator_uprn =
-          operatorAddressLookupData["uniquedeliverypointreferencenumber"];
+        data.operator_uprn = operatorAddressLookupData["uprn"];
 
         delete data.operator_postcode_find;
         delete data.operator_address_selected;
@@ -124,8 +123,7 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
         data.establishment_postcode =
           establishmentAddressLookupData["postcode"];
 
-        data.establishment_uprn =
-          establishmentAddressLookupData["uniquedeliverypointreferencenumber"];
+        data.establishment_uprn = establishmentAddressLookupData["uprn"];
 
         delete data.establishment_postcode_find;
         delete data.establishment_address_selected;
