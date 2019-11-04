@@ -87,6 +87,8 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
           operatorAddressLookupData["addressline1"];
 
         data.operator_street = operatorAddressLookupData["street"];
+        data.operator_dependent_locality =
+          operatorAddressLookupData["dependentlocality"];
 
         data.operator_town = operatorAddressLookupData["posttown"];
 
@@ -114,6 +116,8 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
           establishmentAddressLookupData["addressline1"];
 
         data.establishment_street = establishmentAddressLookupData["street"];
+        data.establishment_dependent_locality =
+          establishmentAddressLookupData["dependentlocality"];
 
         data.establishment_town = establishmentAddressLookupData["posttown"];
 
