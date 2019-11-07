@@ -260,7 +260,9 @@ const OperatorDetailsTable = props => (
         <AccessibleCell>
           <div id="operator_first_line">{props.operator_first_line}</div>
           <div id="operator_street">{props.operator_street || null}</div>
-          <div id="operator_locality">{props.operator_dependent_locality}</div>
+          <div id="operator_dependent_locality">
+            {props.operator_dependent_locality || null}
+          </div>
           <div id="operator_town">{props.operator_town || null}</div>
           <div id="operator_postcode">{props.operator_postcode}</div>
         </AccessibleCell>
@@ -457,8 +459,8 @@ const EstablishmentDetailsTable = props => (
           <div id="establishment_street">
             {props.establishment_street || null}
           </div>
-          <div id="establishment_locality">
-            {props.establishment_dependent_locality}
+          <div id="establishment_dependent_locality">
+            {props.establishment_dependent_locality || null}
           </div>
           <div id="establishment_town">{props.establishment_town || null}</div>
           <div id="establishment_postcode">{props.establishment_postcode}</div>
