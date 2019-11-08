@@ -87,13 +87,14 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
           operatorAddressLookupData["addressline1"];
 
         data.operator_street = operatorAddressLookupData["street"];
+        data.operator_dependent_locality =
+          operatorAddressLookupData["dependentlocality"];
 
         data.operator_town = operatorAddressLookupData["posttown"];
 
         data.operator_postcode = operatorAddressLookupData["postcode"];
 
-        data.operator_uprn =
-          operatorAddressLookupData["uniquedeliverypointreferencenumber"];
+        data.operator_uprn = operatorAddressLookupData["uprn"];
 
         delete data.operator_postcode_find;
         delete data.operator_address_selected;
@@ -114,14 +115,15 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
           establishmentAddressLookupData["addressline1"];
 
         data.establishment_street = establishmentAddressLookupData["street"];
+        data.establishment_dependent_locality =
+          establishmentAddressLookupData["dependentlocality"];
 
         data.establishment_town = establishmentAddressLookupData["posttown"];
 
         data.establishment_postcode =
           establishmentAddressLookupData["postcode"];
 
-        data.establishment_uprn =
-          establishmentAddressLookupData["uniquedeliverypointreferencenumber"];
+        data.establishment_uprn = establishmentAddressLookupData["uprn"];
 
         delete data.establishment_postcode_find;
         delete data.establishment_address_selected;

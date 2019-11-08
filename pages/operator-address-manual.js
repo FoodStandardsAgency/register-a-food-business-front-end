@@ -78,6 +78,24 @@ const OperatorAddress = props => (
         <ContentItem.B_30_15>
           <InputField
             input={{
+              name: "operator_dependent_locality",
+              defaultValue:
+                props.cumulativeFullAnswers.operator_dependent_locality,
+              autoComplete: "dependent"
+            }}
+            id="operator_dependent_locality"
+            meta={{
+              touched: true,
+              error: props.validatorErrors.operator_dependent_locality
+            }}
+          >
+            Locality for example village, suburb, parish (optional)
+          </InputField>
+        </ContentItem.B_30_15>
+
+        <ContentItem.B_30_15>
+          <InputField
+            input={{
               name: "operator_town",
               defaultValue: props.cumulativeFullAnswers.operator_town,
               autoComplete: "locality"
