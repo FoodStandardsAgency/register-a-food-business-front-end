@@ -234,7 +234,7 @@ const transformAnswersForSubmit = (
     "opening_hours_saturday",
     "opening_hours_sunday"
   ];
-  const metadata_keys = ["declaration1", "declaration2", "declaration3"];
+  const declaration_keys = ["declaration1", "declaration2", "declaration3"];
 
   const submitObject = {
     registration: {
@@ -244,7 +244,7 @@ const transformAnswersForSubmit = (
         premise: {},
         activities: {}
       },
-      metadata: {}
+      declaration: {}
     },
     local_council_url: lcUrl
   };
@@ -302,9 +302,9 @@ const transformAnswersForSubmit = (
     }
   });
 
-  metadata_keys.forEach(key => {
+  declaration_keys.forEach(key => {
     if (submitData[key] !== undefined) {
-      submitObject.registration.metadata[key] = submitData[key];
+      submitObject.registration.declaration[key] = submitData[key];
     }
   });
 

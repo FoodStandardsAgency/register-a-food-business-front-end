@@ -10,7 +10,7 @@ const { registrationDouble } = require("./registration.double");
 /**
  * Sends a new registration to the back-end service
  *
- * @param {object} submissionData The object containing all registration data and metadata
+ * @param {object} submissionData The object containing all registration data and declaration
  * @param {string} regDataVersion The data version of this registration, corresponding to an entry in the config database
  *
  * @returns {object} The back-end service response

@@ -230,7 +230,7 @@ const schema = {
         },
         required: ["establishment_details", "operator", "premise", "activities"]
       },
-      metadata: {
+      declaration: {
         type: "object",
         properties: {
           declaration1: { type: "string", validation: validateDeclaration },
@@ -240,7 +240,7 @@ const schema = {
         required: ["declaration1", "declaration2", "declaration3"]
       }
     },
-    required: ["establishment", "metadata"]
+    required: ["establishment", "declaration"]
   },
   local_council_url: { type: "string" }
 };
@@ -339,7 +339,7 @@ const registrationDouble = body => {
         operatorId: 1,
         activitiesId: 1,
         premiseId: 1,
-        metadataId: 1,
+        declarationId: 1,
         reg_submission_date: moment().format("YYYY-MM-DD"),
         "fsa-rn": "12486-sdmbf",
         tascomiResponse: {
