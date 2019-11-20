@@ -59,6 +59,13 @@ const optionalTableRows = [
   "establishmentOpeningHoursRow"
 ];
 
+const declarationRows = [
+  "declaration1Row",
+  "declaration2Row",
+  "declaration3Row"
+];
+const feedbackRows = ["feedback1Row"];
+
 const allTableRows = mandatoryTableRows.concat(optionalTableRows);
 
 // the complete set of possible mandatory answer fields with example data
@@ -122,11 +129,7 @@ const testMandatoryAnswersForPartnership = {
 
 // a supplementary set of all optional answer fields with example data
 // (only optional if it's optional within that page. Does not apply to pages that are optional or could be skipped.)
-const testOptionalAnswers = {
-  establishment_street: "Street name",
-  establishment_town: "Town",
-  operator_street: "Street name",
-  operator_town: "Town",
+const testOptionalMiscAnswers = {
   contact_representative_role: "Coder",
   operator_charity_number: "123456",
   establishment_secondary_number: "7654321",
@@ -142,11 +145,49 @@ const testOptionalAnswers = {
   opening_hours_sunday: "From 9:30 to 19:00"
 };
 
+const testOptionalAddressAnswers = {
+  establishment_street: "Street name",
+  establishment_dependent_locality: "Dependent Locality",
+  establishment_town: "Town",
+  operator_street: "Street name",
+  operator_dependent_locality: "Dependent Locality",
+  operator_town: "Town"
+};
+
+const testOptionalAnswers = Object.assign(
+  {},
+  testOptionalMiscAnswers,
+  testOptionalAddressAnswers
+);
+
+const testDeclarationAnswers = {
+  declaration1: "declaration",
+  declaration2: "declaration",
+  declaration3: "declaration"
+};
+
+const testFeedbackAnswers = {
+  feedback1: "feedback"
+};
+
 // the complete set of possible answer fields with example data
 const testComprehensiveAnswers = Object.assign(
   {},
   testMandatoryAnswers,
   testOptionalAnswers
+);
+
+const testComprehensiveAnswersDeclaration = Object.assign(
+  {},
+  testMandatoryAnswers,
+  testDeclarationAnswers
+);
+
+const testComprehensiveAnswersDeclarationFeedback = Object.assign(
+  {},
+  testMandatoryAnswers,
+  testDeclarationAnswers,
+  testFeedbackAnswers
 );
 
 const testComprehensiveAnswersForPartnership = Object.assign(
@@ -170,7 +211,17 @@ const wrapperComprehensiveForPartnership = mount(
 );
 
 const wrapperApplicationComplete = mount(
-  <SummaryTable {...testComprehensiveAnswers} applicationCompletePage={true} />
+  <SummaryTable
+    {...testComprehensiveAnswersDeclaration}
+    applicationCompletePage={true}
+  />
+);
+
+const wrapperApplicationCompleteWithFeedback = mount(
+  <SummaryTable
+    {...testComprehensiveAnswersDeclarationFeedback}
+    applicationCompletePage={true}
+  />
 );
 
 const wrapperApplicationCompleteForPartnership = mount(
@@ -196,6 +247,13 @@ describe("<SummaryTable />", () => {
         const rows = wrapperComprehensive.find("AccessibleRowHeader");
 
         expect(rows.length).toEqual(allTableRows.length);
+      });
+
+      it("contains populated values for every optional address answer", () => {
+        for (let answerID in testOptionalAddressAnswers) {
+          const element = wrapperComprehensive.find(`#${answerID}`);
+          expect(element.text()).toBe(testOptionalAddressAnswers[answerID]);
+        }
       });
 
       describe("when given a props of applicationCompletePage = true", () => {
@@ -271,6 +329,28 @@ describe("<SummaryTable />", () => {
           const row = wrapperComprehensive.find(`Row#${tableRowName}`);
           expect(row.length).toBe(1);
         });
+      });
+    });
+  });
+  describe("when applicationCompletePage equals true", () => {
+    it("renders the declaration table rows", () => {
+      declarationRows.forEach(tableRowName => {
+        const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);
+        expect(row.length).toBe(1);
+      });
+    });
+    it("doesn't render the feedback table row", () => {
+      feedbackRows.forEach(tableRowName => {
+        const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);
+        expect(row.length).toBe(0);
+      });
+    });
+    it("does render the feedback table row when specified", () => {
+      feedbackRows.forEach(tableRowName => {
+        const row = wrapperApplicationCompleteWithFeedback.find(
+          `Row#${tableRowName}`
+        );
+        expect(row.length).toBe(1);
       });
     });
   });

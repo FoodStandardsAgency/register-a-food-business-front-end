@@ -23,6 +23,7 @@ const errorMessages = {
   operator_first_line: "Not a valid first line of address",
   operator_street: "Not a valid street name",
   operator_town: "Not a valid town name",
+  operator_dependent_locality: "Not a valid locality",
   operator_postcode: "Not a valid postcode",
   operator_postcode_find: "Not a valid postcode",
   establishment_trading_name: "Not a valid establishment trading name",
@@ -46,6 +47,7 @@ const errorMessages = {
   establishment_first_line: "Not a valid first line of address",
   establishment_street: "Not a valid street name",
   establishment_town: "Not a valid town name",
+  establishment_dependent_locality: "Not a valid locality",
   establishment_postcode: "Not a valid postcode",
   establishment_postcode_find: "Not a valid postcode",
   establishment_opening_status:

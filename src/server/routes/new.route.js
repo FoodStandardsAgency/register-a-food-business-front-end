@@ -14,7 +14,7 @@ const {
 const {
   getPathConfigByVersion,
   getLocalCouncils,
-  getCountryOfCouncil
+  getCouncilData
 } = require("../connectors/config-db/config-db.connector");
 const { REGISTRATION_DATA_VERSION } = require("../config");
 const { Cache } = require("../services/cache.service");
@@ -50,7 +50,10 @@ const newRouter = () => {
           );
           const browserInfo = getBrowserInfo(req.headers["user-agent"]);
           Object.assign(req.session, req.session, { ...browserInfo });
-          req.session.country = await getCountryOfCouncil(req.params.lc);
+          const { country, local_council } = await getCouncilData(
+            req.params.lc
+          );
+          Object.assign(req.session, { country }, { lcName: local_council });
 
           logEmitter.emit(
             "functionSuccessWith",
@@ -77,9 +80,12 @@ const newRouter = () => {
           const browserInfo = getBrowserInfo(req.headers["user-agent"]);
           Object.assign(req.session, req.session, { ...browserInfo });
         }
-        // Save the country to session if not yet there
+        // Save the country and council name to session if not yet there
         if (!req.session.country) {
-          req.session.country = await getCountryOfCouncil(req.params.lc);
+          const { country, local_council } = await getCouncilData(
+            req.params.lc
+          );
+          Object.assign(req.session, { country }, { lcName: local_council });
         }
         // Transform the data into summary format on pages where it is required and save to session
         if (

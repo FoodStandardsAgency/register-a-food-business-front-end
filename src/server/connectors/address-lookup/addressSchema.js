@@ -16,7 +16,7 @@ const addressSchema = {
       posttown: { type: "string" },
       county: { type: "string" },
       postcode: { type: "string" },
-      uniquedeliverypointreferencenumber: { type: "string" }
+      uprn: { type: "string" }
     }
   }
 };
