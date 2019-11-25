@@ -89,6 +89,14 @@ const InvisibleRow = styled(Table.Row)`
   }
 `;
 
+const applyRowHeaderStyling = (validatorErrors, fieldName) => {
+  return validatorErrors[[fieldName]]
+    ? {
+        style: { color: "#b10e1e" }
+      }
+    : null;
+};
+
 const ColumnHeaders = () => (
   <InvisibleRow>
     <Table.CellHeader scope="col" role="columnheader">
@@ -322,19 +330,22 @@ const OperatorDetailsTable = props => (
       </AccessibleTableRow>
     ) : null}
 
-    {props.partners ? (
+    {props.partners || props.validatorErrors["partners"] ? (
       <React.Fragment>
         <AccessibleTableRow
           acPage={props.applicationCompletePage}
-          id="operatorMainPartnerRow"
+          id="mainPartnershipContactRow"
         >
-          <AccessibleRowHeader>Main partnership contact</AccessibleRowHeader>
-          <AccessibleCell>
-            <div>
-              <div id="main_partnership_contact">
-                {props.main_partnership_contact}
-              </div>
-            </div>
+          <AccessibleRowHeader
+            {...applyRowHeaderStyling(
+              props.validatorErrors,
+              "main_partnership_contact"
+            )}
+          >
+            Main partnership contact
+          </AccessibleRowHeader>
+          <AccessibleCell id="main_partnership_contact">
+            {props.main_partnership_contact}
           </AccessibleCell>
           {props.applicationCompletePage ? null : (
             <AccessibleChangeCell>
@@ -352,13 +363,15 @@ const OperatorDetailsTable = props => (
           acPage={props.applicationCompletePage}
           id="operatorPartnersRow"
         >
-          <AccessibleRowHeader>Partners</AccessibleRowHeader>
-          <AccessibleCell>
-            <div>
-              {props.partners.map((partner, index) => {
-                return <div key={`partner_${index}`}>{partner}</div>;
-              })}
-            </div>
+          <AccessibleRowHeader
+            {...applyRowHeaderStyling(props.validatorErrors, "partners")}
+          >
+            Partners
+          </AccessibleRowHeader>
+          <AccessibleCell id="partners">
+            {props.partners.map((partner, index) => {
+              return <div key={`partner_${index}`}>{partner}</div>;
+            })}
           </AccessibleCell>
           {props.applicationCompletePage ? null : (
             <AccessibleChangeCell>
@@ -704,12 +717,16 @@ const FoodActivitiesTable = props => (
       </AccessibleTableRow>
     ) : null}
 
-    {props.business_type ? (
+    {props.business_type || props.validatorErrors["business_type"] ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="businessTypeRow"
       >
-        <AccessibleRowHeader>Business type</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(props.validatorErrors, "business_type")}
+        >
+          Business type
+        </AccessibleRowHeader>
         <AccessibleCell id="business_type">
           {props.business_type}
         </AccessibleCell>
@@ -720,7 +737,7 @@ const FoodActivitiesTable = props => (
               href="/edit/business-type"
               aria-label="Change business type"
             >
-              Change
+              {props.business_type ? "Change" : "Enter answer"}
             </AnchorTag>
           </AccessibleChangeCell>
         )}

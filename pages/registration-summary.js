@@ -4,7 +4,9 @@ import {
   ContentItem,
   BackButton,
   ContinueButton,
-  SummaryTable
+  SummaryTable,
+  ProcessedErrorSummary,
+  OnHandleErrorClick
 } from "../src/components";
 import { Header, HintText } from "govuk-react";
 import PropTypes from "prop-types";
@@ -12,7 +14,10 @@ import PropTypes from "prop-types";
 const RegistrationSummary = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-
+    <ProcessedErrorSummary
+      validatorErrors={props.allValidationErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
     <ContentItem.B_30_15>
       <Header level={1} size="LARGE">
         Check your answers
@@ -20,7 +25,10 @@ const RegistrationSummary = props => (
       <HintText>You must check your answers before you continue</HintText>
     </ContentItem.B_30_15>
 
-    <SummaryTable {...props.transformedData} />
+    <SummaryTable
+      {...props.transformedData}
+      validatorErrors={props.allValidationErrors}
+    />
 
     <form action="/continue/registration-summary" method="post">
       <ContinueButton />
