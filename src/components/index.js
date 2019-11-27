@@ -23,6 +23,7 @@ import OperatorDescription from "./OperatorDescription";
 import ContactDetailsHelp from "./ContactDetailsHelp";
 import AddressHelp from "./AddressHelp";
 import BrowserUnsupportedBanner from "./BrowserUnsupportedBanner";
+import SubmissionErrorSummary from "./SubmissionErrorSummary";
 
 export {
   SessionWrapper,
@@ -49,5 +50,6 @@ export {
   OperatorDescription,
   ContactDetailsHelp,
   AddressHelp,
-  BrowserUnsupportedBanner
+  BrowserUnsupportedBanner,
+  SubmissionErrorSummary
 };
