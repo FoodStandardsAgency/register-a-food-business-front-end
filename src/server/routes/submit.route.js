@@ -55,6 +55,7 @@ const submitRouter = () => {
           controllerResponse.redirectRoute
         );
         if (controllerResponse.redirectRoute === "back") {
+          req.session.submissionError = controllerResponse.submissionError;
           res.redirect("back");
         }
         req.session.save(err => {

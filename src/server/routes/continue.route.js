@@ -31,6 +31,7 @@ const continueRouter = () => {
     req.session.validatorErrors = response.validatorErrors;
     req.session.allValidationErrors = response.allValidationErrors;
     req.session.switches = response.switches;
+    req.session.submissionError = [];
 
     logEmitter.emit(
       "functionSuccessWith",

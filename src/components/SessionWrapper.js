@@ -104,6 +104,10 @@ const SessionWrapper = Page => {
         req && req.session && req.session.submissionDate
           ? req.session.submissionDate
           : "",
+      submissionError:
+        req && req.session && req.session.submissionError
+          ? req.session.submissionError
+          : [],
       emailFbo:
         req && req.session && req.session.emailFbo ? req.session.emailFbo : {},
       lcConfig:
