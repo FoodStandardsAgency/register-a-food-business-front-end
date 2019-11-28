@@ -132,6 +132,10 @@ const schema = {
         type: "string",
         validation: validateOptionalString
       },
+      operator_dependent_locality: {
+        type: "string",
+        validation: validateOptionalString
+      },
       operator_town: {
         type: "string",
         validation: validateTown
@@ -264,6 +268,10 @@ const schema = {
         validation: validateFirstLine
       },
       establishment_street: {
+        type: "string",
+        validation: validateOptionalString
+      },
+      establishment_dependent_locality: {
         type: "string",
         validation: validateOptionalString
       },

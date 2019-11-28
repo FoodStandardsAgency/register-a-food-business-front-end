@@ -129,11 +129,7 @@ const testMandatoryAnswersForPartnership = {
 
 // a supplementary set of all optional answer fields with example data
 // (only optional if it's optional within that page. Does not apply to pages that are optional or could be skipped.)
-const testOptionalAnswers = {
-  establishment_street: "Street name",
-  establishment_town: "Town",
-  operator_street: "Street name",
-  operator_town: "Town",
+const testOptionalMiscAnswers = {
   contact_representative_role: "Coder",
   operator_charity_number: "123456",
   establishment_secondary_number: "7654321",
@@ -148,6 +144,21 @@ const testOptionalAnswers = {
   opening_hours_saturday: "09:30 to 19:00",
   opening_hours_sunday: "From 9:30 to 19:00"
 };
+
+const testOptionalAddressAnswers = {
+  establishment_street: "Street name",
+  establishment_dependent_locality: "Dependent Locality",
+  establishment_town: "Town",
+  operator_street: "Street name",
+  operator_dependent_locality: "Dependent Locality",
+  operator_town: "Town"
+};
+
+const testOptionalAnswers = Object.assign(
+  {},
+  testOptionalMiscAnswers,
+  testOptionalAddressAnswers
+);
 
 const testDeclarationAnswers = {
   declaration1: "declaration",
@@ -236,6 +247,13 @@ describe("<SummaryTable />", () => {
         const rows = wrapperComprehensive.find("AccessibleRowHeader");
 
         expect(rows.length).toEqual(allTableRows.length);
+      });
+
+      it("contains populated values for every optional address answer", () => {
+        for (let answerID in testOptionalAddressAnswers) {
+          const element = wrapperComprehensive.find(`#${answerID}`);
+          expect(element.text()).toBe(testOptionalAddressAnswers[answerID]);
+        }
       });
 
       describe("when given a props of applicationCompletePage = true", () => {
