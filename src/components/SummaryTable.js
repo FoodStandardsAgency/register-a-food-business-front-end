@@ -66,8 +66,8 @@ const AccessibleRowHeader = props => (
   </Table.CellHeader>
 );
 
-const applyRowHeaderStyling = (validatorErrors, fieldName) => {
-  return validatorErrors[[fieldName]]
+const applyRowHeaderStyling = error => {
+  return error
     ? {
         style: { color: "#b10e1e" }
       }
@@ -120,14 +120,16 @@ const determineLinkText = property => {
 const OperatorDetailsTable = props => (
   <React.Fragment>
     <ColumnHeaders />
-    {props.operator_type ||
-    props.validatorErrors["registration_role"] ||
-    props.validatorErrors["operator_type"] ? (
+    {props.operator_type || props.validatorErrors["operator_type"] ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorTypeRow"
       >
-        <AccessibleRowHeader>Operator type</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(props.validatorErrors["operator_type"])}
+        >
+          Operator type
+        </AccessibleRowHeader>
         <AccessibleCell id="operator_type">
           {props.operator_type}
         </AccessibleCell>
@@ -151,7 +153,13 @@ const OperatorDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="operatorCompanyNameRow"
       >
-        <AccessibleRowHeader>Company name</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["operator_company_name"]
+          )}
+        >
+          Company name
+        </AccessibleRowHeader>
         <AccessibleCell id="operator_company_name">
           {props.operator_company_name}
         </AccessibleCell>
@@ -175,7 +183,13 @@ const OperatorDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="operatorCompaniesHouseRow"
       >
-        <AccessibleRowHeader>Company number</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["operator_company_house_number"]
+          )}
+        >
+          Company number
+        </AccessibleRowHeader>
         <AccessibleCell id="operator_company_house_number">
           {props.operator_company_house_number}
         </AccessibleCell>
@@ -199,7 +213,13 @@ const OperatorDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="operatorCharityNameRow"
       >
-        <AccessibleRowHeader>Charity name</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["operator_charity_name"]
+          )}
+        >
+          Charity name
+        </AccessibleRowHeader>
         <AccessibleCell id="operator_charity_name">
           {props.operator_charity_name}
         </AccessibleCell>
@@ -223,7 +243,13 @@ const OperatorDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="operatorCharityNumberRow"
       >
-        <AccessibleRowHeader>Charity number</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["operator_charity_number"]
+          )}
+        >
+          Charity number
+        </AccessibleRowHeader>
         <AccessibleCell id="operator_charity_number">
           {props.operator_charity_number}
         </AccessibleCell>
@@ -249,7 +275,14 @@ const OperatorDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="operatorNameRow"
       >
-        <AccessibleRowHeader>Name</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["operator_first_name"] ||
+              props.validatorErrors["operator_last_name"]
+          )}
+        >
+          Name
+        </AccessibleRowHeader>
         <AccessibleCell>
           <span id="operator_first_name">{props.operator_first_name}</span>{" "}
           <span id="operator_last_name">{props.operator_last_name}</span>
@@ -270,13 +303,19 @@ const OperatorDetailsTable = props => (
       </AccessibleTableRow>
     ) : null}
 
-    {props.operator_first_line ||
-    props.validatorErrors["operator_postcode_find"] ? (
+    {props.operator_first_line || props.validatorErrors["operator_postcode"] ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorAddressRow"
       >
-        <AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["operator_first_line"] ||
+              props.validatorErrors["operator_street"] ||
+              props.validatorErrors["operator_town"] ||
+              props.validatorErrors["operator_postcode"]
+          )}
+        >
           {props.operator_type === "Partnership"
             ? "Partnership contact address"
             : "Operator address"}
@@ -302,7 +341,14 @@ const OperatorDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="operatorContactDetailsRow"
       >
-        <AccessibleRowHeader>Phone number</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["operator_primary_number"] ||
+              props.validatorErrors["operator_secondary_number"]
+          )}
+        >
+          Phone number
+        </AccessibleRowHeader>
         <AccessibleCell>
           <div id="operator_primary_number">
             {props.operator_primary_number}
@@ -330,7 +376,11 @@ const OperatorDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="operatorEmailRow"
       >
-        <AccessibleRowHeader>Email address</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(props.validatorErrors["operator_email"])}
+        >
+          Email address
+        </AccessibleRowHeader>
         <AccessibleCell id="operator_email">
           {props.operator_email}
         </AccessibleCell>
@@ -356,8 +406,7 @@ const OperatorDetailsTable = props => (
         >
           <AccessibleRowHeader
             {...applyRowHeaderStyling(
-              props.validatorErrors,
-              "main_partnership_contact"
+              props.validatorErrors["main_partnership_contact"]
             )}
           >
             Main partnership contact
@@ -382,7 +431,7 @@ const OperatorDetailsTable = props => (
           id="operatorPartnersRow"
         >
           <AccessibleRowHeader
-            {...applyRowHeaderStyling(props.validatorErrors, "partners")}
+            {...applyRowHeaderStyling(props.validatorErrors["partners"])}
           >
             Partners
           </AccessibleRowHeader>
@@ -411,14 +460,23 @@ const OperatorDetailsTable = props => (
     props.contact_representative_number ||
     props.contact_representative_email ||
     props.validatorErrors["contact_representative_name"] ||
-    props.validatorErrors["contact_representative_name"] ||
-    props.validatorErrors["contact_representative_name"] ||
-    props.validatorErrors["contact_representative_name"] ? (
+    props.validatorErrors["contact_representative_role"] ||
+    props.validatorErrors["contact_representative_number"] ||
+    props.validatorErrors["contact_representative_email"] ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="contactRepresentativeRow"
       >
-        <AccessibleRowHeader>Designated contact</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["contact_representative_name"] ||
+              props.validatorErrors["contact_representative_role"] ||
+              props.validatorErrors["contact_representative_number"] ||
+              props.validatorErrors["contact_representative_email"]
+          )}
+        >
+          Designated contact
+        </AccessibleRowHeader>
         <AccessibleCell>
           <StyledTableRow>
             <div id="contact_representative_name">
@@ -464,7 +522,13 @@ const EstablishmentDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="establishmentTradingNameRow"
       >
-        <AccessibleRowHeader>Trading name</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["establishment_trading_name"]
+          )}
+        >
+          Trading name
+        </AccessibleRowHeader>
         <AccessibleCell id="establishment_trading_name">
           {props.establishment_trading_name}
         </AccessibleCell>
@@ -485,12 +549,22 @@ const EstablishmentDetailsTable = props => (
     {props.establishment_first_line ||
     props.establishment_postcode ||
     props.validatorErrors["establishment_first_line"] ||
+    props.validatorErrors["establishment_postcode"] ||
     props.validatorErrors["establishment_postcode_find"] ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="establishmentAddressRow"
       >
-        <AccessibleRowHeader>Establishment address</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["establishment_first_line"] ||
+              props.validatorErrors["establishment_street"] ||
+              props.validatorErrors["establishment_town"] ||
+              props.validatorErrors["establishment_postcode"]
+          )}
+        >
+          Establishment address
+        </AccessibleRowHeader>
         <AccessibleCell>
           <div id="establishment_first_line">
             {props.establishment_first_line}
@@ -514,7 +588,13 @@ const EstablishmentDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="establishmentAddressTypeRow"
       >
-        <AccessibleRowHeader>Address type</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["establishment_type"]
+          )}
+        >
+          Address type
+        </AccessibleRowHeader>
         <AccessibleCell id="establishment_type">
           {props.establishment_type}
         </AccessibleCell>
@@ -539,7 +619,14 @@ const EstablishmentDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="establishmentContactDetailsRow"
       >
-        <AccessibleRowHeader>Phone number</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["establishment_primary_number"] ||
+              props.validatorErrors["establishment_secondary_number"]
+          )}
+        >
+          Phone number
+        </AccessibleRowHeader>
         <AccessibleCell>
           <div id="establishment_primary_number">
             {props.establishment_primary_number}
@@ -568,7 +655,13 @@ const EstablishmentDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="establishmentEmailRow"
       >
-        <AccessibleRowHeader>Email address</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["establishment_email"]
+          )}
+        >
+          Email address
+        </AccessibleRowHeader>
         <AccessibleCell id="establishment_email">
           {props.establishment_email}
         </AccessibleCell>
@@ -592,7 +685,13 @@ const EstablishmentDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="establishmentOpeningDateRow"
       >
-        <AccessibleRowHeader>Trading date</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["establishment_opening_status"]
+          )}
+        >
+          Trading date
+        </AccessibleRowHeader>
         <AccessibleCell id="establishment_opening_date">
           {moment(props.establishment_opening_date).format("DD MMM YYYY")}
         </AccessibleCell>
@@ -618,7 +717,15 @@ const EstablishmentDetailsTable = props => (
       acPage={props.applicationCompletePage}
       id="establishmentOpeningDaysRow"
     >
-      <AccessibleRowHeader>Opening days</AccessibleRowHeader>
+      <AccessibleRowHeader
+        {...applyRowHeaderStyling(
+          props.validatorErrors["opening_days_start"] ||
+            props.validatorErrors["opening_days_irregular"] ||
+            props.validatorErrors["opening_days_some"]
+        )}
+      >
+        Opening days
+      </AccessibleRowHeader>
       <AccessibleCell>
         {props.opening_days_irregular ||
           props.open_some_days_summary_table || (
@@ -643,19 +750,22 @@ const EstablishmentDetailsTable = props => (
             aria-label="Change establishment opening days"
           >
             {determineLinkText(
-              props.opening_day_monday &&
-                props.opening_day_tuesday &&
-                props.opening_day_wednesday &&
-                props.opening_day_thursday &&
-                props.opening_day_friday &&
-                props.opening_day_saturday &&
+              props.opening_days_irregular ||
+                props.open_some_days_summary_table ||
+                props.opening_day_monday ||
+                props.opening_day_tuesday ||
+                props.opening_day_wednesday ||
+                props.opening_day_thursday ||
+                props.opening_day_friday ||
+                props.opening_day_saturday ||
                 props.opening_day_sunday
             )}
           </AnchorTag>
         </AccessibleChangeCell>
       )}
     </AccessibleTableRow>
-    {!props.opening_days_irregular ||
+    {props.opening_days_start ||
+    props.opening_days_some ||
     (props.validatorErrors["opening_hours_monday"] ||
       props.validatorErrors["opening_hours_tuesday"] ||
       props.validatorErrors["opening_hours_wednesday"] ||
@@ -667,7 +777,19 @@ const EstablishmentDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="establishmentOpeningHoursRow"
       >
-        <AccessibleRowHeader>Opening hours</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["opening_hours_monday"] ||
+              props.validatorErrors["opening_hours_tuesday"] ||
+              props.validatorErrors["opening_hours_wednesday"] ||
+              props.validatorErrors["opening_hours_thursday"] ||
+              props.validatorErrors["opening_hours_friday"] ||
+              props.validatorErrors["opening_hours_saturday"] ||
+              props.validatorErrors["opening_hours_sunday"]
+          )}
+        >
+          Opening hours
+        </AccessibleRowHeader>
         <AccessibleCell>
           <div>
             {props.opening_hours_monday ? (
@@ -715,12 +837,12 @@ const EstablishmentDetailsTable = props => (
               aria-label="Change establishment opening hours"
             >
               {determineLinkText(
-                props.opening_hours_monday &&
-                  props.opening_hours_tuesday &&
-                  props.opening_hours_wednesday &&
-                  props.opening_hours_thursday &&
-                  props.opening_hours_friday &&
-                  props.opening_hours_saturday &&
+                props.opening_hours_monday ||
+                  props.opening_hours_tuesday ||
+                  props.opening_hours_wednesday ||
+                  props.opening_hours_thursday ||
+                  props.opening_hours_friday ||
+                  props.opening_hours_saturday ||
                   props.opening_hours_sunday
               )}
             </AnchorTag>
@@ -733,7 +855,11 @@ const EstablishmentDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="waterSupplyRow"
       >
-        <AccessibleRowHeader>Water supply</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(props.validatorErrors["water_supply"])}
+        >
+          Water supply
+        </AccessibleRowHeader>
         <AccessibleCell id="water_supply">{props.water_supply}</AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
@@ -759,7 +885,11 @@ const FoodActivitiesTable = props => (
         acPage={props.applicationCompletePage}
         id="activitiesCustomersRow"
       >
-        <AccessibleRowHeader>Customers</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(props.validatorErrors["customer_type"])}
+        >
+          Customers
+        </AccessibleRowHeader>
         <AccessibleCell id="customer_type">
           {props.customer_type}
         </AccessibleCell>
@@ -783,7 +913,7 @@ const FoodActivitiesTable = props => (
         id="businessTypeRow"
       >
         <AccessibleRowHeader
-          {...applyRowHeaderStyling(props.validatorErrors, "business_type")}
+          {...applyRowHeaderStyling(props.validatorErrors["business_type"])}
         >
           Business type
         </AccessibleRowHeader>
@@ -810,7 +940,13 @@ const FoodActivitiesTable = props => (
         acPage={props.applicationCompletePage}
         id="activitiesBusinessImportExportRow"
       >
-        <AccessibleRowHeader>Import and export</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["import_export_activities"]
+          )}
+        >
+          Import and export
+        </AccessibleRowHeader>
         <AccessibleCell id="import_export_activities">
           {props.import_export_activities}
         </AccessibleCell>
@@ -834,7 +970,13 @@ const FoodActivitiesTable = props => (
         acPage={props.applicationCompletePage}
         id="businessOtherDetailsRow"
       >
-        <AccessibleRowHeader>Additional details</AccessibleRowHeader>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["business_other_details"]
+          )}
+        >
+          Additional details
+        </AccessibleRowHeader>
         <AccessibleCell id="business_other_details">
           {props.business_other_details}
         </AccessibleCell>
