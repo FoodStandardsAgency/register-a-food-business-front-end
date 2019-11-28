@@ -327,9 +327,15 @@ const OperatorDetailsTable = props => (
           <div id="operator_postcode">{props.operator_postcode}</div>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
-          <AccessibleCell>
-            <div />
-          </AccessibleCell>
+          <AccessibleChangeCell>
+            <AnchorTag
+              id="changeOperatorAddressRow"
+              href="/edit/operator-address-select"
+              aria-label="Change operator address"
+            >
+              {determineLinkText(props.operator_postcode)}
+            </AnchorTag>
+          </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
@@ -576,9 +582,15 @@ const EstablishmentDetailsTable = props => (
           <div id="establishment_postcode">{props.establishment_postcode}</div>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
-          <AccessibleCell>
-            <div />
-          </AccessibleCell>
+          <AccessibleChangeCell>
+            <AnchorTag
+              id="changeEstablishmentAddressRow"
+              href="/edit/establishment-address-select"
+              aria-label="Change establishment address"
+            >
+              {determineLinkText(props.establishment_postcode)}
+            </AnchorTag>
+          </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}

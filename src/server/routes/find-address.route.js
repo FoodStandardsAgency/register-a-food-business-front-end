@@ -45,7 +45,15 @@ const findAddressRouter = () => {
         logEmitter.emit("functionFail", "Routes", "/find-address route", err);
         throw err;
       }
-      res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
+
+      let query;
+      if (req.headers.referer.includes("edit")) {
+        query = `?edit=${response.redirectRoute.substring(1)}`;
+      }
+
+      res.redirect(
+        `/new/${req.session.council}${response.redirectRoute}${query}`
+      );
     });
   });
 
