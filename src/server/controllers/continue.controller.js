@@ -138,7 +138,10 @@ const continueController = (
     if (nextPage === "/registration-summary") {
       Object.assign(
         controllerResponse.allValidationErrors,
-        revalidateAllAnswers(activePath, previousAnswers).errors
+        revalidateAllAnswers(
+          activePath,
+          controllerResponse.cumulativeFullAnswers
+        ).errors
       );
     }
 
