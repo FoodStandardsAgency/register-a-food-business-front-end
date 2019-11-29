@@ -95,7 +95,8 @@ const testMandatoryAnswers = {
   business_type: "Livestock farm",
   business_other_details: "This is the best business in the world",
   opening_day_monday: "Monday",
-  water_supply: "Private"
+  water_supply: "Private",
+  validatorErrors: {}
 };
 
 const testMandatoryAnswersForPartnership = {
@@ -124,7 +125,8 @@ const testMandatoryAnswersForPartnership = {
   business_type: "Livestock farm",
   business_other_details: "This is the best business in the world",
   opening_day_monday: "Monday",
-  water_supply: "Private"
+  water_supply: "Private",
+  validatorErrors: {}
 };
 
 // a supplementary set of all optional answer fields with example data

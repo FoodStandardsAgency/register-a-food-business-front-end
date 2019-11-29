@@ -3,7 +3,7 @@ import { shallow, mount } from "enzyme";
 
 const testSubmissionErrorsExists = ["test error", "test error 2"];
 
-const emptySubmissionErrors = {};
+const emptySubmissionErrors = [];
 
 describe("<SubmissionErrorSummary />", () => {
   it("renders without crashing", () => {

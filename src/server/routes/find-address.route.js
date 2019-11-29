@@ -46,10 +46,9 @@ const findAddressRouter = () => {
         throw err;
       }
 
-      let query;
-      if (req.headers.referer.includes("edit")) {
-        query = `?edit=${response.redirectRoute.substring(1)}`;
-      }
+      const query = req.headers.referer.includes("edit")
+        ? `?edit=${response.redirectRoute.substring(1)}`
+        : "";
 
       res.redirect(
         `/new/${req.session.council}${response.redirectRoute}${query}`

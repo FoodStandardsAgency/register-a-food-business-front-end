@@ -54,7 +54,7 @@ describe("Function: submitController: ", () => {
   describe("When submit returns an error", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({
-        status: "500",
+        status: 500,
         json: () => ({ reg_submission_date: "10 Jul 2018" })
       }));
       response = await submitController(...submitArgs);
@@ -69,7 +69,7 @@ describe("Function: submitController: ", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({
         status: 400,
-        json: () => ({ userMessages: { message: "Error 123" } })
+        json: () => ({ userMessages: [{ message: "Error 123" }] })
       }));
       response = await submitController(...submitArgs);
     });

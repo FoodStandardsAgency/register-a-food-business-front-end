@@ -33,6 +33,9 @@ describe("findAddress route: ", () => {
         body: "body",
         params: {
           originator: "/some-page"
+        },
+        headers: {
+          referer: ""
         }
       };
 
