@@ -9,7 +9,7 @@ describe("Address lookup API service", () => {
 
   describe("When given a valid request", () => {
     beforeEach(async () => {
-      response = await getAddressesByPostcode("uk", "BS249ST", 100);
+      response = await getAddressesByPostcode("BS249ST", 100);
     });
 
     describe("an entry in json function array", () => {
@@ -24,7 +24,7 @@ describe("Address lookup API service", () => {
 
   describe("When given a valid request that returns no addresses", () => {
     beforeEach(async () => {
-      response = await getAddressesByPostcode("uk", "AA111AA", 100);
+      response = await getAddressesByPostcode("AA111AA", 100);
     });
 
     it("should return an empty array", () => {
@@ -36,7 +36,7 @@ describe("Address lookup API service", () => {
     it("should throw an error", async () => {
       let result;
       try {
-        await getAddressesByPostcode("uk", "Not a handled postcode", 100);
+        await getAddressesByPostcode("Not a handled postcode", 100);
       } catch (err) {
         result = err;
       }

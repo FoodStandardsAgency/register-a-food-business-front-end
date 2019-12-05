@@ -22,69 +22,54 @@ describe("Connector: lookupAPI: ", () => {
   describe("Given a valid UK postcode:", () => {
     beforeEach(async () => {
       fetch.mockImplementation(url => ({
-        json: jest.fn(
-          () =>
-            url.includes("uk")
-              ? smallAddressResponseJSON
-              : "URL did not include a valid country code"
-        ),
+        json: jest.fn(() => smallAddressResponseJSON),
         status: 200
       }));
 
-      responseJSON = await getAddressesByPostcode("uk", "NR14 7PZ");
+      responseJSON = await getAddressesByPostcode("NR14 7PZ");
     });
 
     it("is in a valid format", () => {
       expect(v.validate(responseJSON, addressSchema).errors.length).toBe(0);
     });
 
-    describe("Given an uppercase country code (incorrect, should be lowercase but still handled) and a valid UK postcode:", () => {
+    describe("When DOUBLE_MODE is set", () => {
       beforeEach(async () => {
-        responseJSON = await getAddressesByPostcode("UK", "NR14 7PZ");
+        process.env.DOUBLE_MODE = "true";
+        addressLookupDouble.mockImplementation(() => ({
+          json: () => regularIntegrationResponse,
+          status: 200
+        }));
+
+        responseJSON = await getAddressesByPostcode("BS249ST");
       });
 
-      it("is in a valid format", () => {
-        expect(v.validate(responseJSON, addressSchema).errors.length).toBe(0);
+      afterEach(() => {
+        process.env.DOUBLE_MODE = "false";
       });
 
-      describe("When DOUBLE_MODE is set", () => {
-        beforeEach(async () => {
-          process.env.DOUBLE_MODE = "true";
-          addressLookupDouble.mockImplementation(() => ({
-            json: () => regularIntegrationResponse,
-            status: 200
-          }));
+      it("should return the regular integration response", () => {
+        expect(responseJSON).toEqual(regularIntegrationResponse);
+      });
+    });
 
-          responseJSON = await getAddressesByPostcode("uk", "BS249ST");
-        });
-
-        afterEach(() => {
-          process.env.DOUBLE_MODE = "false";
-        });
-
-        it("should return the regular integration response", () => {
-          expect(responseJSON).toEqual(regularIntegrationResponse);
-        });
+    describe("When given a non-200 response from the API", () => {
+      beforeEach(async () => {
+        fetch.mockImplementation(() => ({
+          status: 500
+        }));
       });
 
-      describe("When given a non-200 response from the API", () => {
-        beforeEach(async () => {
-          fetch.mockImplementation(() => ({
-            status: 500
-          }));
-        });
-
-        it("should throw an error", async () => {
-          let result;
-          try {
-            await getAddressesByPostcode("uk", "BS249ST", 100);
-          } catch (err) {
-            result = err;
-          }
-          expect(result.message).toBe(
-            "Address lookup API responded with non-200 status: 500"
-          );
-        });
+      it("should throw an error", async () => {
+        let result;
+        try {
+          await getAddressesByPostcode("BS249ST", 100);
+        } catch (err) {
+          result = err;
+        }
+        expect(result.message).toBe(
+          "Address lookup API responded with non-200 status: 500"
+        );
       });
     });
 
@@ -195,7 +180,7 @@ describe("Connector: lookupAPI: ", () => {
         status: 200
       }));
 
-      responseJSON = await getAddressesByPostcode("uk", "invalid postcode");
+      responseJSON = await getAddressesByPostcode("invalid postcode");
     });
 
     it("should return an empty array", () => {
@@ -210,7 +195,7 @@ describe("Connector: lookupAPI: ", () => {
           status: 200
         }));
 
-        responseJSON = await getAddressesByPostcode("uk", "invalid postcode");
+        responseJSON = await getAddressesByPostcode("invalid postcode");
       });
 
       afterEach(() => {

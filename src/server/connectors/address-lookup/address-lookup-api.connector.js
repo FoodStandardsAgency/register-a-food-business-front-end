@@ -16,11 +16,7 @@ const { addressLookupDouble } = require("./address-lookup-api.double");
  *
  * @returns {array} A list of addresses
  */
-const getAddressesByPostcode = async (
-  country,
-  postcode,
-  addressCountLimit = 100
-) => {
+const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
   logEmitter.emit(
     "functionCallWith",
     "address-lookup-api.connector",
@@ -30,19 +26,13 @@ const getAddressesByPostcode = async (
 
   const DOUBLE_MODE = process.env.DOUBLE_MODE;
 
-  const lowercaseCountryCode = country.toLowerCase();
-
   let firstRes;
   let firstJson;
   if (DOUBLE_MODE === "true") {
-    firstRes = addressLookupDouble(
-      lowercaseCountryCode,
-      postcode,
-      ADDRESS_API_URL_QUERY
-    );
+    firstRes = addressLookupDouble(postcode, ADDRESS_API_URL_QUERY);
   } else {
     firstRes = await fetch(
-      `${ADDRESS_API_URL_BASE}/${lowercaseCountryCode}/${postcode}?${ADDRESS_API_URL_QUERY}`,
+      `${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`,
       {
         method: "GET"
       }

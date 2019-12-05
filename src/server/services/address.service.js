@@ -24,11 +24,7 @@ const getUkAddressesByPostcode = async postcode => {
   );
 
   try {
-    const addressLookupResponse = await getAddressesByPostcode(
-      "uk",
-      postcode,
-      500
-    );
+    const addressLookupResponse = await getAddressesByPostcode(postcode, 500);
 
     statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", true);
     logEmitter.emit(
