@@ -21,7 +21,7 @@ const {
 const {
   getPathConfigByVersion,
   getLocalCouncils,
-  getCountryOfCouncil
+  getCouncilData
 } = require("../connectors/config-db/config-db.connector");
 const { getBrowserInfo } = require("../services/browser-support.service");
 
@@ -41,7 +41,10 @@ describe("New route: ", () => {
         isSupported: true
       };
     });
-    getCountryOfCouncil.mockImplementation(() => "northern-ireland");
+    getCouncilData.mockImplementation(() => ({
+      country: "northern-ireland",
+      local_council: "Belfast Council"
+    }));
   });
 
   describe("GET to /new/:lc/page", () => {
@@ -83,6 +86,10 @@ describe("New route: ", () => {
 
       it("Should set req.session.country", () => {
         expect(req.session.country).toEqual("northern-ireland");
+      });
+
+      it("Should set req.session.lcName", () => {
+        expect(req.session.lcName).toEqual("Belfast Council");
       });
 
       it("Should call Next.render", () => {
@@ -234,6 +241,10 @@ describe("New route: ", () => {
 
       it("Should set req.session.country", () => {
         expect(req.session.country).toEqual("northern-ireland");
+      });
+
+      it("Should set req.session.lcName", () => {
+        expect(req.session.lcName).toEqual("Belfast Council");
       });
     });
 
