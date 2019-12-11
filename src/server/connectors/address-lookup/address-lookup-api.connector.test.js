@@ -72,6 +72,29 @@ describe("Connector: lookupAPI: ", () => {
         );
       });
     });
+    describe("When given a non-200 response from the API on second attempt", () => {
+      beforeEach(async () => {
+        fetch.mockImplementation(() => ({
+          status: 500
+        }));
+        fetch.mockImplementationOnce(() => ({
+          status: 200,
+          json: jest.fn(() => [])
+        }));
+      });
+
+      it("should throw an error", async () => {
+        let result;
+        try {
+          await getAddressesByPostcode("BS249ST", 100);
+        } catch (err) {
+          result = err;
+        }
+        expect(result.message).toBe(
+          "Address lookup API responded with non-200 status: 500"
+        );
+      });
+    });
 
     // TODO JMB: debug multi-call code
 
