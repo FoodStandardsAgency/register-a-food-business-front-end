@@ -72,6 +72,23 @@ describe("Connector: lookupAPI: ", () => {
         );
       });
     });
+    describe("When premium service returns no addresses but standard service returns some addresses", () => {
+      beforeEach(async () => {
+        fetch.mockImplementation(() => ({
+          status: 200,
+          json: jest.fn(() => regularIntegrationResponse)
+        }));
+        fetch.mockImplementationOnce(() => ({
+          status: 200,
+          json: jest.fn(() => [])
+        }));
+        responseJSON = await getAddressesByPostcode("BS249ST");
+      });
+
+      it("should return the regular integration response", () => {
+        expect(responseJSON).toEqual(regularIntegrationResponse);
+      });
+    });
     describe("When given a non-200 response from the API on second attempt", () => {
       beforeEach(async () => {
         fetch.mockImplementation(() => ({
