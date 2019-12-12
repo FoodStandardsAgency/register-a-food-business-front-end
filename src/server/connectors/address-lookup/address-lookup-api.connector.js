@@ -32,7 +32,20 @@ const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
 
   let firstJson;
   if (DOUBLE_MODE === "true") {
-    firstJson = addressLookupDouble(postcode, ADDRESS_API_URL_QUERY).json();
+    const firstRes = addressLookupDouble(postcode, ADDRESS_API_URL_QUERY);
+    if (firstRes.status === 200) {
+      firstJson = firstRes.json();
+    } else {
+      logEmitter.emit(
+        "functionFail",
+        "address-lookup-api.connector",
+        "getAddressesByPostcode",
+        `Address lookup API responded with non-200 status: ${firstRes.status}`
+      );
+      throw new Error(
+        `Address lookup API responded with non-200 status: ${firstRes.status}`
+      );
+    }
   } else {
     firstJson = await fetchUsingPostcoderPremium(postcode);
     if (firstJson.length === 0) {
