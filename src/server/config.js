@@ -9,8 +9,13 @@ module.exports = {
   ADDRESS_API_URL_BASE:
     "http://ws.postcoder.com/pcw/" +
     (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
-    "/addressbase/dpa/",
+    "/addressbase/dpa",
   ADDRESS_API_URL_QUERY: "format=json&lines=4&addtags=uprn",
+  ADDRESS_API_URL_BASE_STANDARD:
+    "http://ws.postcoder.com/pcw/" +
+    (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
+    "/address",
+  ADDRESS_API_URL_QUERY_STANDARD: "format=json&lines=4",
   API_SECRET: process.env.API_SECRET,
   CLIENT_NAME: process.env.CLIENT_NAME,
   CONFIGDB_URL: process.env.CONFIGDB_URL,
