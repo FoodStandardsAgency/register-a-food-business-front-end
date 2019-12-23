@@ -303,7 +303,9 @@ const OperatorDetailsTable = props => (
       </AccessibleTableRow>
     ) : null}
 
-    {props.operator_first_line || props.validatorErrors["operator_postcode"] ? (
+    {props.operator_first_line ||
+    props.validatorErrors["operator_postcode"] ||
+    props.validatorErrors["operator_postcode_find"] ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorAddressRow"
@@ -313,7 +315,8 @@ const OperatorDetailsTable = props => (
             props.validatorErrors["operator_first_line"] ||
               props.validatorErrors["operator_street"] ||
               props.validatorErrors["operator_town"] ||
-              props.validatorErrors["operator_postcode"]
+              props.validatorErrors["operator_postcode"] ||
+              props.validatorErrors["operator_postcode_find"]
           )}
         >
           {props.operator_type === "Partnership"
@@ -330,15 +333,9 @@ const OperatorDetailsTable = props => (
           <div id="operator_postcode">{props.operator_postcode}</div>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
-          <AccessibleChangeCell>
-            <AnchorTag
-              id="changeOperatorAddressRow"
-              href="/edit/operator-address-select"
-              aria-label="Change operator address"
-            >
-              {determineLinkText(props.operator_postcode)}
-            </AnchorTag>
-          </AccessibleChangeCell>
+          <AccessibleCell>
+            <div />
+          </AccessibleCell>
         )}
       </AccessibleTableRow>
     ) : null}
@@ -569,7 +566,8 @@ const EstablishmentDetailsTable = props => (
             props.validatorErrors["establishment_first_line"] ||
               props.validatorErrors["establishment_street"] ||
               props.validatorErrors["establishment_town"] ||
-              props.validatorErrors["establishment_postcode"]
+              props.validatorErrors["establishment_postcode"] ||
+              props.validatorErrors["establishment_postcode_find"]
           )}
         >
           Establishment address
@@ -588,15 +586,9 @@ const EstablishmentDetailsTable = props => (
           <div id="establishment_postcode">{props.establishment_postcode}</div>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
-          <AccessibleChangeCell>
-            <AnchorTag
-              id="changeEstablishmentAddressRow"
-              href="/edit/establishment-address-select"
-              aria-label="Change establishment address"
-            >
-              {determineLinkText(props.establishment_postcode)}
-            </AnchorTag>
-          </AccessibleChangeCell>
+          <AccessibleCell>
+            <div />
+          </AccessibleCell>
         )}
       </AccessibleTableRow>
     ) : null}
