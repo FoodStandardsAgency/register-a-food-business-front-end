@@ -197,7 +197,6 @@ const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
   const result = {
     errors: {}
   };
-
   pages.forEach(page => {
     if (page === "/partner-name") {
       if (!validatePartners(cumulativeFullAnswers.partners)) {
@@ -215,6 +214,29 @@ const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
             errorMessages.main_partnership_contact_deleted
         });
       }
+    } else if (page === "/opening-hours") {
+      const answersToValidate = cumulativeFullAnswers;
+      const days = [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ];
+      days.forEach(day => {
+        if (
+          cumulativeFullAnswers["opening_days_start"] === "Every day" ||
+          cumulativeFullAnswers[`opening_day_${day}`]
+        ) {
+          Object.assign(answersToValidate, {
+            [`opening_hours_${day}`]:
+              cumulativeFullAnswers[`opening_hours_${day}`] || ""
+          });
+        }
+      });
+      Object.assign(result.errors, validate(page, answersToValidate).errors);
     } else {
       Object.assign(
         result.errors,
