@@ -690,14 +690,16 @@ const EstablishmentDetailsTable = props => (
     ) : null}
 
     {props.establishment_opening_date ||
-    props.validatorErrors["establishment_opening_status"] ? (
+    props.validatorErrors["establishment_opening_status"] ||
+    props.validatorErrors["establishment_opening_date"] ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="establishmentOpeningDateRow"
       >
         <AccessibleRowHeader
           {...applyRowHeaderStyling(
-            props.validatorErrors["establishment_opening_status"]
+            props.validatorErrors["establishment_opening_status"] ||
+              props.validatorErrors["establishment_opening_date"]
           )}
         >
           Trading date
@@ -736,7 +738,15 @@ const EstablishmentDetailsTable = props => (
       >
         Opening days
       </AccessibleRowHeader>
-      <AccessibleCell>
+      <AccessibleCell
+        id={`${
+          props.validatorErrors["opening_days_start"]
+            ? "opening_days_start"
+            : props.validatorErrors["opening_days_irregular"]
+              ? "opening_days_irregular"
+              : "opening_days_some"
+        }`}
+      >
         {props.opening_days_irregular ||
           props.open_some_days_summary_table || (
             <div>
