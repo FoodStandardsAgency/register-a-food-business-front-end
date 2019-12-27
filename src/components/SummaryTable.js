@@ -812,41 +812,34 @@ const EstablishmentDetailsTable = props => (
         </AccessibleRowHeader>
         <AccessibleCell>
           <div>
-            {props.opening_hours_monday ? (
-              <div id="opening_hours_monday">
-                Monday: {props.opening_hours_monday}
-              </div>
-            ) : null}
-            {props.opening_hours_tuesday ? (
-              <div id="opening_hours_tuesday">
-                Tuesday: {props.opening_hours_tuesday}
-              </div>
-            ) : null}
-            {props.opening_hours_wednesday ? (
-              <div id="opening_hours_wednesday">
-                Wednesday: {props.opening_hours_wednesday}
-              </div>
-            ) : null}
-            {props.opening_hours_thursday ? (
-              <div id="opening_hours_thursday">
-                Thursday: {props.opening_hours_thursday}
-              </div>
-            ) : null}
-            {props.opening_hours_friday ? (
-              <div id="opening_hours_friday">
-                Friday: {props.opening_hours_friday}
-              </div>
-            ) : null}
-            {props.opening_hours_saturday ? (
-              <div id="opening_hours_saturday">
-                Saturday: {props.opening_hours_saturday}
-              </div>
-            ) : null}
-            {props.opening_hours_sunday ? (
-              <div id="opening_hours_sunday">
-                Sunday: {props.opening_hours_sunday}
-              </div>
-            ) : null}
+            <div id="opening_hours_monday">
+              {props.opening_hours_monday &&
+                `Monday: ${props.opening_hours_monday}`}
+            </div>
+            <div id="opening_hours_tuesday">
+              {props.opening_hours_tuesday &&
+                `Tuesday: ${props.opening_hours_tuesday}`}
+            </div>
+            <div id="opening_hours_wednesday">
+              {props.opening_hours_wednesday &&
+                `Wednesday: ${props.opening_hours_wednesday}`}
+            </div>
+            <div id="opening_hours_thursday">
+              {props.opening_hours_thursday &&
+                `Thursday: ${props.opening_hours_thursday}`}
+            </div>
+            <div id="opening_hours_friday">
+              {props.opening_hours_friday &&
+                `Friday: ${props.opening_hours_friday}`}
+            </div>
+            <div id="opening_hours_saturday">
+              {props.opening_hours_saturday &&
+                `Saturday: ${props.opening_hours_saturday}`}
+            </div>
+            <div id="opening_hours_sunday">
+              {props.opening_hours_sunday &&
+                `Sunday: ${props.opening_hours_sunday}`}
+            </div>
           </div>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
