@@ -212,6 +212,9 @@ const transformAnswersForSubmit = (
     "operator_street",
     "operator_town",
     "operator_dependent_locality",
+    "operator_address_line_1",
+    "operator_address_line_2",
+    "operator_address_line_3",
     "operator_primary_number",
     "operator_secondary_number",
     "operator_email",
@@ -233,7 +236,10 @@ const transformAnswersForSubmit = (
     "establishment_town",
     "establishment_type",
     "establishment_uprn",
-    "establishment_dependent_locality"
+    "establishment_dependent_locality",
+    "establishment_address_line_1",
+    "establishment_address_line_2",
+    "establishment_address_line_3"
   ];
   const activities_keys = [
     "customer_type",
