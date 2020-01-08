@@ -87,8 +87,18 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
           operatorAddressLookupData["addressline1"];
 
         data.operator_street = operatorAddressLookupData["street"];
+
         data.operator_dependent_locality =
           operatorAddressLookupData["dependentlocality"];
+
+        data.operator_address_line_1 =
+          operatorAddressLookupData["addressline1"];
+
+        data.operator_address_line_2 =
+          operatorAddressLookupData["addressline2"];
+
+        data.operator_address_line_3 =
+          operatorAddressLookupData["addressline3"];
 
         data.operator_town = operatorAddressLookupData["posttown"];
 
@@ -115,8 +125,18 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
           establishmentAddressLookupData["addressline1"];
 
         data.establishment_street = establishmentAddressLookupData["street"];
+
         data.establishment_dependent_locality =
           establishmentAddressLookupData["dependentlocality"];
+
+        data.establishment_address_line_1 =
+          establishmentAddressLookupData["addressline1"];
+
+        data.establishment_address_line_2 =
+          establishmentAddressLookupData["addressline2"];
+
+        data.establishment_address_line_3 =
+          establishmentAddressLookupData["addressline3"];
 
         data.establishment_town = establishmentAddressLookupData["posttown"];
 

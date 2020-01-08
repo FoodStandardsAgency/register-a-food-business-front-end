@@ -108,6 +108,60 @@ const EstablishmentAddress = props => (
         <ContentItem.B_30_15>
           <InputField
             input={{
+              name: "establishment_address_line_1",
+              defaultValue:
+                props.cumulativeFullAnswers.establishment_address_line_1,
+              autoComplete: "address-line1"
+            }}
+            id="establishment_address_line_1"
+            meta={{
+              touched: true,
+              error: props.validatorErrors.establishment_address_line_1
+            }}
+          >
+            Address line 1
+          </InputField>
+        </ContentItem.B_30_15>
+
+        <ContentItem.B_30_15>
+          <InputField
+            input={{
+              name: "establishment_address_line_2",
+              defaultValue:
+                props.cumulativeFullAnswers.establishment_address_line_2,
+              autoComplete: "address-line2"
+            }}
+            id="establishment_address_line_2"
+            meta={{
+              touched: true,
+              error: props.validatorErrors.establishment_address_line_2
+            }}
+          >
+            Address line 2
+          </InputField>
+        </ContentItem.B_30_15>
+
+        <ContentItem.B_30_15>
+          <InputField
+            input={{
+              name: "establishment_address_line_3",
+              defaultValue:
+                props.cumulativeFullAnswers.establishment_address_line_3,
+              autoComplete: "address-line3"
+            }}
+            id="establishment_address_line_3"
+            meta={{
+              touched: true,
+              error: props.validatorErrors.establishment_address_line_3
+            }}
+          >
+            Address line 3
+          </InputField>
+        </ContentItem.B_30_15>
+
+        <ContentItem.B_30_15>
+          <InputField
+            input={{
               name: "establishment_town",
               defaultValue: props.cumulativeFullAnswers.establishment_town,
               autoComplete: "locality"
