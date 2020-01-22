@@ -133,4 +133,8 @@ const updateStoredStatus = async (statusName, newStatus) => {
   }
 };
 
-module.exports = { getStoredStatus, updateStoredStatus };
+const clearMongoConnection = () => {
+  client = undefined;
+};
+
+module.exports = { getStoredStatus, updateStoredStatus, clearMongoConnection };
