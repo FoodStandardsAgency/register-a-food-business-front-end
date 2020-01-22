@@ -19,6 +19,7 @@ describe("<RegistrationSummary />", () => {
     const wrapper = mount(
       <RegistrationSummary
         cumulativeFullAnswers={cumulativeFullAnswers}
+        allValidationErrors={{}}
         switches={testSwitches}
       />
     );
@@ -34,6 +35,7 @@ describe("<RegistrationSummary />", () => {
       const wrapper = mount(
         <RegistrationSummary
           cumulativeFullAnswers={cumulativeFullAnswers}
+          allValidationErrors={{}}
           switches={testSwitches}
         />
       );
