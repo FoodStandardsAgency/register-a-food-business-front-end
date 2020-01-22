@@ -56,10 +56,11 @@ const errorMessages = {
   establishment_opening_status:
     "You must select a trading status before continuing",
   establishment_opening_date: "Not a valid opening date",
-  customer_type: "You must select an option before continuing",
-  import_export_activities: "You must select valid option(s) before continuing",
+  customer_type: "You must select a customer type before continuing",
+  import_export_activities:
+    "You must select a valid import or export option(s) before continuing",
   business_type: "You must select a business type before continuing",
-  water_supply: "You must select an option before continuing",
+  water_supply: "You must select a water supply type before continuing",
   business_other_details:
     "Your message is too long. Please shorten it to less than 1500 characters",
   opening_days_start: "Please select which days this establishment is open",
