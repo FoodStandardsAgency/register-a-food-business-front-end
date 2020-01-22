@@ -423,7 +423,7 @@ const OperatorDetailsTable = props => (
           {props.applicationCompletePage ? null : (
             <AccessibleChangeCell>
               <AnchorTag
-                id="changeOperatorMainPartnerRow"
+                id="changeMainPartnershipContactRow"
                 href="/edit/main-partnership-contact"
                 aria-label="Change main partnership contact"
               >
