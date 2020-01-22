@@ -6,7 +6,10 @@ const cumulativeFullAnswers = {
   establishment_first_line: "Example first line"
 };
 
-const transformedData = { operator_email: "email@email.com" };
+const transformedData = {
+  operator_email: "email@email.com",
+  validatorErrors: {}
+};
 
 const lcConfigCombined = {
   hygieneAndStandards: {
@@ -163,7 +166,8 @@ describe("<ApplicationComplete />", () => {
   describe("When given a contact representative email", () => {
     it("The paragraph renders displaying it", () => {
       const transformedDataRepresentative = {
-        contact_representative_email: "rep@email.com"
+        contact_representative_email: "rep@email.com",
+        validatorErrors: {}
       };
       const wrapper = mount(
         <ApplicationComplete
