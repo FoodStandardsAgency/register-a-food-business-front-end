@@ -258,11 +258,6 @@ const OperatorDetailsTable = props => (
             : "Operator address"}
         </AccessibleRowHeader>
         <AccessibleCell>
-          <div id="operator_first_line">{props.operator_first_line}</div>
-          <div id="operator_street">{props.operator_street || null}</div>
-          <div id="operator_dependent_locality">
-            {props.operator_dependent_locality || null}
-          </div>
           <div id="operator_address_line_1">
             {props.operator_address_line_1}
           </div>

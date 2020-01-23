@@ -82,15 +82,6 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
         const operatorAddressLookupData =
           addressLookups.operator_postcode_find[data.operator_address_selected];
 
-        data.operator_first_line =
-          operatorAddressLookupData["premise"] ||
-          operatorAddressLookupData["addressline1"];
-
-        data.operator_street = operatorAddressLookupData["street"];
-
-        data.operator_dependent_locality =
-          operatorAddressLookupData["dependentlocality"];
-
         data.operator_address_line_1 =
           operatorAddressLookupData["addressline1"];
 
@@ -119,15 +110,6 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
           addressLookups.establishment_postcode_find[
             data.establishment_address_selected
           ];
-
-        data.establishment_first_line =
-          establishmentAddressLookupData["premise"] ||
-          establishmentAddressLookupData["addressline1"];
-
-        data.establishment_street = establishmentAddressLookupData["street"];
-
-        data.establishment_dependent_locality =
-          establishmentAddressLookupData["dependentlocality"];
 
         data.establishment_address_line_1 =
           establishmentAddressLookupData["addressline1"];
@@ -208,10 +190,7 @@ const transformAnswersForSubmit = (
     "operator_first_name",
     "operator_last_name",
     "operator_postcode",
-    "operator_first_line",
-    "operator_street",
     "operator_town",
-    "operator_dependent_locality",
     "operator_address_line_1",
     "operator_address_line_2",
     "operator_address_line_3",
@@ -231,12 +210,10 @@ const transformAnswersForSubmit = (
   ];
   const premise_keys = [
     "establishment_postcode",
-    "establishment_first_line",
-    "establishment_street",
     "establishment_town",
     "establishment_type",
     "establishment_uprn",
-    "establishment_dependent_locality",
+    
     "establishment_address_line_1",
     "establishment_address_line_2",
     "establishment_address_line_3"

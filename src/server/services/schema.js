@@ -124,18 +124,6 @@ const schema = {
   "/operator-address-manual": {
     type: "object",
     properties: {
-      operator_first_line: {
-        type: "string",
-        validation: validateFirstLine
-      },
-      operator_street: {
-        type: "string",
-        validation: validateOptionalString
-      },
-      operator_dependent_locality: {
-        type: "string",
-        validation: validateOptionalString
-      },
       operator_address_line_1: {
         type: "string",
         validation: validateOptionalString
@@ -274,18 +262,6 @@ const schema = {
       establishment_postcode: {
         type: "string",
         validation: validatePostCode
-      },
-      establishment_first_line: {
-        type: "string",
-        validation: validateFirstLine
-      },
-      establishment_street: {
-        type: "string",
-        validation: validateOptionalString
-      },
-      establishment_dependent_locality: {
-        type: "string",
-        validation: validateOptionalString
       },
       establishment_address_line_1: {
         type: "string",

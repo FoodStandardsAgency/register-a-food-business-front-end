@@ -146,14 +146,10 @@ const testOptionalMiscAnswers = {
 };
 
 const testOptionalAddressAnswers = {
-  establishment_street: "Street name",
-  establishment_dependent_locality: "Dependent Locality",
   establishment_address_line_1: "Address line 1",
   establishment_address_line_2: "Address line 2",
   establishment_address_line_3: "Address line 3",
   establishment_town: "Town",
-  operator_street: "Street name",
-  operator_dependent_locality: "Dependent Locality",
   operator_address_line_1: "Address line 1",
   operator_address_line_2: "Address line 2",
   operator_address_line_3: "Address line 3",
