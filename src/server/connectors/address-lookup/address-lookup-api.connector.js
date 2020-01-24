@@ -48,7 +48,7 @@ const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
     }
   } else {
     firstJson = await fetchUsingPostcoderPremium(postcode);
-    if (firstJson.length === 0) {
+    if (!firstJson || firstJson.length === 0) {
       firstJson = await fetchUsingPostcoderStandard(postcode);
     }
   }
@@ -152,6 +152,7 @@ const fetchUsingPostcoderPremium = async postcode => {
     "fetchUsingPostcoderPremium",
     postcode
   );
+  console.log(`${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`);
   const response = await fetch(
     `${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`,
     {
@@ -165,9 +166,6 @@ const fetchUsingPostcoderPremium = async postcode => {
       "functionFail",
       "address-lookup-api.connector",
       "fetchUsingPostcoderPremium",
-      `Address lookup API responded with non-200 status: ${response.status}`
-    );
-    throw new Error(
       `Address lookup API responded with non-200 status: ${response.status}`
     );
   }
