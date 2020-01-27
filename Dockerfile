@@ -5,6 +5,6 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY . /usr/src/app
 
-RUN npm install
+RUN yarn config set registry https://registry.npmjs.org/ && yarn install --maxsockets 10 --verbose
 
 EXPOSE 3000
