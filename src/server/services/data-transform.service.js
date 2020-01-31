@@ -76,7 +76,7 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
     delete data.establishment_opening_status;
 
     if (data.operator_address_selected) {
-      if (data.operator_first_line) {
+      if (data.operator_address_line_1) {
         delete data.operator_address_selected;
       } else {
         const operatorAddressLookupData =
@@ -103,7 +103,7 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
     }
 
     if (data.establishment_address_selected) {
-      if (data.establishment_first_line) {
+      if (data.establishment_address_line_1) {
         delete data.establishment_address_selected;
       } else {
         const establishmentAddressLookupData =
@@ -213,7 +213,6 @@ const transformAnswersForSubmit = (
     "establishment_town",
     "establishment_type",
     "establishment_uprn",
-    
     "establishment_address_line_1",
     "establishment_address_line_2",
     "establishment_address_line_3"

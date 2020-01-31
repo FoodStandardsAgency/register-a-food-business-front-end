@@ -53,61 +53,6 @@ const EstablishmentAddress = props => (
         <ContentItem.B_30_15>
           <InputField
             input={{
-              name: "establishment_first_line",
-              defaultValue:
-                props.cumulativeFullAnswers.establishment_first_line,
-              autoComplete: "address-line1"
-            }}
-            id="establishment_first_line"
-            // TODO APM: Decide on and implement validation for first line of address
-            // Work out why validator errors fails in test
-            meta={{
-              touched: true,
-              error: props.validatorErrors.establishment_first_line
-            }}
-          >
-            First line of address
-          </InputField>
-        </ContentItem.B_30_15>
-
-        <ContentItem.B_30_15>
-          <InputField
-            input={{
-              name: "establishment_street",
-              defaultValue: props.cumulativeFullAnswers.establishment_street,
-              autoComplete: "address-line2"
-            }}
-            id="establishment_street"
-            meta={{
-              touched: true,
-              error: props.validatorErrors.establishment_street
-            }}
-          >
-            Street (optional)
-          </InputField>
-        </ContentItem.B_30_15>
-
-        <ContentItem.B_30_15>
-          <InputField
-            input={{
-              name: "establishment_dependent_locality",
-              defaultValue:
-                props.cumulativeFullAnswers.establishment_dependent_locality,
-              autoComplete: "dependent"
-            }}
-            id="establishment_dependent_locality"
-            meta={{
-              touched: true,
-              error: props.validatorErrors.establishment_dependent_locality
-            }}
-          >
-            Locality for example village, suburb, parish (optional)
-          </InputField>
-        </ContentItem.B_30_15>
-
-        <ContentItem.B_30_15>
-          <InputField
-            input={{
               name: "establishment_address_line_1",
               defaultValue:
                 props.cumulativeFullAnswers.establishment_address_line_1,
@@ -172,7 +117,7 @@ const EstablishmentAddress = props => (
               error: props.validatorErrors.establishment_town
             }}
           >
-            Town or city (optional)
+            Town or city
           </InputField>
         </ContentItem.B_30_15>
 

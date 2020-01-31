@@ -103,7 +103,7 @@ const OperatorAddress = props => (
               error: props.validatorErrors.operator_town
             }}
           >
-            Town or city (optional)
+            Town or city
           </InputField>
         </ContentItem.B_30_15>
 
