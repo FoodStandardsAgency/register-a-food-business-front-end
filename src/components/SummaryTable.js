@@ -465,7 +465,9 @@ const EstablishmentDetailsTable = props => (
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleCell>
+            <AnchorTag>
             <div />
+            </AnchorTag>
           </AccessibleCell>
         )}
       </AccessibleTableRow>

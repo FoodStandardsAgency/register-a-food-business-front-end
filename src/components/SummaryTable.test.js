@@ -71,9 +71,11 @@ const allTableRows = mandatoryTableRows.concat(optionalTableRows);
 // the complete set of possible mandatory answer fields with example data
 const testMandatoryAnswers = {
   operator_type: "Sole trader",
-  establishment_first_line: "Example first line",
+  establishment_address_line_1: "Address line 1",
+  establishment_town: "Town",
   establishment_postcode: "AA11 1AA",
-  operator_first_line: "Example first line",
+  operator_address_line_1: "Address line 1",
+  operator_town: "Town",
   operator_postcode: "AA11 1AA",
   establishment_trading_name: "Example trading name",
   operator_first_name: "John",
@@ -146,14 +148,11 @@ const testOptionalMiscAnswers = {
 };
 
 const testOptionalAddressAnswers = {
-  establishment_address_line_1: "Address line 1",
   establishment_address_line_2: "Address line 2",
   establishment_address_line_3: "Address line 3",
-  establishment_town: "Town",
-  operator_address_line_1: "Address line 1",
+
   operator_address_line_2: "Address line 2",
-  operator_address_line_3: "Address line 3",
-  operator_town: "Town"
+  operator_address_line_3: "Address line 3"
 };
 
 const testOptionalAnswers = Object.assign(
