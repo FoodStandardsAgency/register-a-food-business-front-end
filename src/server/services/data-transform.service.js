@@ -213,7 +213,6 @@ const transformAnswersForSubmit = (
     "establishment_town",
     "establishment_type",
     "establishment_uprn",
-
     "establishment_address_line_1",
     "establishment_address_line_2",
     "establishment_address_line_3"

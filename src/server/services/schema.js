@@ -126,7 +126,7 @@ const schema = {
     properties: {
       operator_address_line_1: {
         type: "string",
-        validation: validateOptionalString
+        validation: validateMandatoryString
       },
       operator_address_line_2: {
         type: "string",
@@ -138,7 +138,7 @@ const schema = {
       },
       operator_town: {
         type: "string",
-        validation: validateTown
+        validation: validateMandatoryString
       },
       operator_postcode: {
         type: "string",
@@ -259,13 +259,9 @@ const schema = {
   "/establishment-address-manual": {
     type: "object",
     properties: {
-      establishment_postcode: {
-        type: "string",
-        validation: validatePostCode
-      },
       establishment_address_line_1: {
         type: "string",
-        validation: validateOptionalString
+        validation: validateMandatoryString
       },
       establishment_address_line_2: {
         type: "string",
@@ -277,7 +273,11 @@ const schema = {
       },
       establishment_town: {
         type: "string",
-        validation: validateTown
+        validation: validateMandatoryString
+      },
+      establishment_postcode: {
+        type: "string",
+        validation: validateMandatoryString
       }
     }
   },
