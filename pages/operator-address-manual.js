@@ -69,7 +69,7 @@ const OperatorAddress = props => (
               error: props.validatorErrors.operator_address_line_2
             }}
           >
-            Address line 2
+            Address line 2 (optional)
           </InputField>
         </ContentItem.B_30_15>
 
@@ -86,7 +86,7 @@ const OperatorAddress = props => (
               error: props.validatorErrors.operator_address_line_3
             }}
           >
-            Address line 3
+            Address line 3 (optional)
           </InputField>
         </ContentItem.B_30_15>
 
