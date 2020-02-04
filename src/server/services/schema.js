@@ -26,7 +26,8 @@ const {
   validateOpeningDaysIrregular,
   validatePartners,
   validatePartnerName,
-  validateOpeningHours
+  validateOpeningHours,
+  validateMandatoryString
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const schema = {
