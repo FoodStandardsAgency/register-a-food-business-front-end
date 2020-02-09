@@ -294,7 +294,7 @@ const OperatorDetailsTable = props => (
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-          <div />
+            <div />
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
@@ -466,7 +466,7 @@ const EstablishmentDetailsTable = props => (
         {props.applicationCompletePage ? null : (
           <AccessibleCell>
             <AnchorTag>
-            <div />
+              <div />
             </AnchorTag>
           </AccessibleCell>
         )}
