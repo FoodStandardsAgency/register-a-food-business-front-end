@@ -3,6 +3,7 @@
  */
 
 const fetch = require("node-fetch");
+const HttpsProxyAgent = require("https-proxy-agent");
 const {
   ADDRESS_API_URL_BASE,
   ADDRESS_API_URL_QUERY,
@@ -152,13 +153,16 @@ const fetchUsingPostcoderPremium = async postcode => {
     "fetchUsingPostcoderPremium",
     postcode
   );
-  console.log(`${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`);
+
+  const options = { method: "GET" };
+  if (process.env.HTTP_PROXY) {
+    options.agent = new HttpsProxyAgent(process.env.HTTP_PROXY);
+  }
   const response = await fetch(
     `${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`,
-    {
-      method: "GET"
-    }
+    options
   );
+
   if (response.status === 200) {
     return response.json();
   } else {
@@ -185,11 +189,13 @@ const fetchUsingPostcoderStandard = async postcode => {
     "fetchUsingPostcoderStandard",
     postcode
   );
+  const options = { method: "GET" };
+  if (process.env.HTTP_PROXY) {
+    options.agent = new HttpsProxyAgent(process.env.HTTP_PROXY);
+  }
   const response = await fetch(
     `${ADDRESS_API_URL_BASE_STANDARD}/uk/${postcode}?${ADDRESS_API_URL_QUERY_STANDARD}`,
-    {
-      method: "GET"
-    }
+    options
   );
   if (response.status === 200) {
     return response.json();
