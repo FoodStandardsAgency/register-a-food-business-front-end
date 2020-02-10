@@ -102,9 +102,9 @@ const testMandatoryAnswers = {
 
 const testMandatoryAnswersForPartnership = {
   operator_type: "Partnership",
-  establishment_first_line: "Example first line",
+  establishment_address_line_1: "Example address line 1",
   establishment_postcode: "AA11 1AA",
-  operator_first_line: "Example first line",
+  operator_address_line_1: "Example address line 1",
   operator_postcode: "AA11 1AA",
   establishment_trading_name: "Example trading name",
   operator_first_name: "John",

@@ -4,7 +4,7 @@ import { transformAnswersForSummary } from "../src/server/services/data-transfor
 jest.mock("../src/server/services/data-transform.service");
 
 const cumulativeFullAnswers = {
-  establishment_first_line: "Example first line"
+  establishment_address_line_1: "Example address line 1"
 };
 
 const testSwitches = {};
@@ -23,8 +23,8 @@ describe("<RegistrationSummary />", () => {
       />
     );
     const establishmentFirstLine = wrapper.props().cumulativeFullAnswers
-      .establishment_first_line;
-    expect(establishmentFirstLine).toBe("Example first line");
+      .establishment_address_line_1;
+    expect(establishmentFirstLine).toBe("Example address line 1");
   });
 
   describe("SummaryTable component", () => {

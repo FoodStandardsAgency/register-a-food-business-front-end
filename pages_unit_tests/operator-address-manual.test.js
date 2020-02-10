@@ -26,13 +26,15 @@ describe("<OperatorAddress />", () => {
           switches={testSwitches}
         />
       );
-      const operatorFirstLine = wrapper.find("InputField#operator_first_line");
+      const operatorFirstLine = wrapper.find(
+        "InputField#operator_address_line_1"
+      );
       expect(operatorFirstLine.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
       const validatorErrors = {
-        operator_first_line: "test error"
+        operator_address_line_1: "test error"
       };
       const wrapper = mount(
         <OperatorAddress
@@ -41,13 +43,15 @@ describe("<OperatorAddress />", () => {
           switches={testSwitches}
         />
       );
-      const operatorFirstLine = wrapper.find("InputField#operator_first_line");
+      const operatorFirstLine = wrapper.find(
+        "InputField#operator_address_line_1"
+      );
       expect(operatorFirstLine.props().meta.error).toBe("test error");
     });
 
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        operator_first_line: "default"
+        operator_address_line_1: "default"
       };
       const wrapper = mount(
         <OperatorAddress
@@ -56,7 +60,9 @@ describe("<OperatorAddress />", () => {
           switches={testSwitches}
         />
       );
-      const operatorFirstLine = wrapper.find("InputField#operator_first_line");
+      const operatorFirstLine = wrapper.find(
+        "InputField#operator_address_line_1"
+      );
       expect(operatorFirstLine.props().input.defaultValue).toBe("default");
     });
   });

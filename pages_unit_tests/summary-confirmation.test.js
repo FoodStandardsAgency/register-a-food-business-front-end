@@ -3,7 +3,7 @@ import { shallow, mount } from "enzyme";
 jest.mock("../src/server/services/data-transform.service");
 
 const cumulativeFullAnswers = {
-  establishment_first_line: "Example first line"
+  establishment_address_line_1: "Example address line 1"
 };
 
 const transformedData = { operator_email: "email@email.com" };
