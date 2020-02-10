@@ -127,7 +127,11 @@ const updateStoredStatus = async (statusName, newStatus) => {
       err
     );
 
-    throw err;
+    const newError = new Error();
+    newError.name = "mongoConnectionError";
+    newError.message = err.message;
+
+    throw newError;
   }
 };
 
