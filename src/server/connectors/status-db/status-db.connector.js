@@ -108,17 +108,11 @@ const updateStoredStatus = async (statusName, newStatus) => {
   logEmitter.emit("functionCall", "status-db.connector", "updateStoredStatus");
   try {
     await establishConnectionToMongo();
-    const response = await statusCollection.updateOne(
+    await statusCollection.updateOne(
       { _id: "frontEndStatus" },
       { $set: { [statusName]: newStatus } }
     );
-    if (response.status !== 200) {
-      throw new Error(
-        `Status collection server responded with non-200 status: ${
-          response.status
-        }`
-      );
-    }
+  
     logEmitter.emit(
       "functionsuccess",
       "status-db.connector",
