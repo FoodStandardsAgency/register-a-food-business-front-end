@@ -112,6 +112,13 @@ const updateStoredStatus = async (statusName, newStatus) => {
       { _id: "frontEndStatus" },
       { $set: { [statusName]: newStatus } }
     );
+    if (response.status !== 200) {
+      throw new Error(
+        `Status collection server responded with non-200 status: ${
+          response.status
+        }`
+      );
+    }
     logEmitter.emit(
       "functionsuccess",
       "status-db.connector",
@@ -125,11 +132,8 @@ const updateStoredStatus = async (statusName, newStatus) => {
       "updateStoredStatus",
       err
     );
-    const newError = new Error();
-    newError.name = "mongoConnectionError";
-    newError.message = err.message;
 
-    throw newError;
+    throw err;
   }
 };
 

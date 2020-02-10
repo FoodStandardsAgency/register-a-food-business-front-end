@@ -6,11 +6,9 @@
 const {
   validateDeclaration,
   validatePostCode,
-  validateFirstLine,
   validateOptionalString,
   validateName,
   validateRadioButtons,
-  validateTown,
   validateEstablishmentTradingName,
   validateCharityNumber,
   validateCharityName,

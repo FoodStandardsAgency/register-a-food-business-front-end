@@ -1,7 +1,6 @@
 const {
   validateDeclaration,
   validatePostCode,
-  validateFirstLine,
   validateoptionalString,
   validateName,
   validateTown,
