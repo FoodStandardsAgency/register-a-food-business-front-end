@@ -17,7 +17,8 @@ const {
   validateCustomerType,
   validateBusinessType,
   validateDate,
-  validateImportExportActivities
+  validateImportExportActivities,
+  validateMandatoryString
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const { Validator } = require("jsonschema");
@@ -85,9 +86,9 @@ const schema = {
                 type: "string",
                 validation: validatePostCode
               },
-              operator_first_line: {
+              operator_address_line_1: {
                 type: "string",
-                validation: validateFirstLine
+                validation: validateMandatoryString
               },
               operator_street: {
                 type: "string",
@@ -141,7 +142,7 @@ const schema = {
             required: [
               "operator_type",
               "operator_postcode",
-              "operator_first_line"
+              "operator_address_line_1"
             ],
             allOf: [
               {
@@ -178,9 +179,9 @@ const schema = {
                 type: "string",
                 validation: validatePostCode
               },
-              establishment_first_line: {
+              establishment_address_line_1: {
                 type: "string",
-                validation: validateFirstLine
+                validation: validateMandatoryString
               },
               establishment_street: {
                 type: "string",
@@ -197,7 +198,7 @@ const schema = {
             },
             required: [
               "establishment_postcode",
-              "establishment_first_line",
+              "establishment_address_line_1",
               "establishment_type"
             ]
           },

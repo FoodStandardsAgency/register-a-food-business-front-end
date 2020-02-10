@@ -294,7 +294,13 @@ const OperatorDetailsTable = props => (
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <div />
+            <AnchorTag
+              id="changeOperatorContactDetailsRow"
+              href="/edit/operator-contact-details"
+              aria-label="Change operator contact details"
+            >
+              Change
+            </AnchorTag>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
