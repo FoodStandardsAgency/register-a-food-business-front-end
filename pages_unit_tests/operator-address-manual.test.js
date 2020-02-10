@@ -26,10 +26,10 @@ describe("<OperatorAddress />", () => {
           switches={testSwitches}
         />
       );
-      const operatorFirstLine = wrapper.find(
+      const operator_address_line_1 = wrapper.find(
         "InputField#operator_address_line_1"
       );
-      expect(operatorFirstLine.length).toBe(1);
+      expect(operator_address_line_1.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
@@ -67,7 +67,7 @@ describe("<OperatorAddress />", () => {
     });
   });
 
-  describe("Operator street input field", () => {
+  describe("Operator address line 2 input field", () => {
     it("renders", () => {
       const wrapper = mount(
         <OperatorAddress
@@ -76,13 +76,15 @@ describe("<OperatorAddress />", () => {
           switches={testSwitches}
         />
       );
-      const operatorStreet = wrapper.find("InputField#operator_street");
-      expect(operatorStreet.length).toBe(1);
+      const operator_address_line_2 = wrapper.find(
+        "InputField#operator_address_line_2"
+      );
+      expect(operator_address_line_2.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
       const validatorErrors = {
-        operator_street: "test error"
+        operator_address_line_2: "test error"
       };
       const wrapper = mount(
         <OperatorAddress
@@ -91,13 +93,15 @@ describe("<OperatorAddress />", () => {
           switches={testSwitches}
         />
       );
-      const operatorStreet = wrapper.find("InputField#operator_street");
-      expect(operatorStreet.props().meta.error).toBe("test error");
+      const operator_address_line_2 = wrapper.find(
+        "InputField#operator_address_line_2"
+      );
+      expect(operator_address_line_2.props().meta.error).toBe("test error");
     });
 
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        operator_street: "default"
+        operator_address_line_2: "default"
       };
       const wrapper = mount(
         <OperatorAddress
@@ -106,8 +110,12 @@ describe("<OperatorAddress />", () => {
           switches={testSwitches}
         />
       );
-      const operatorStreet = wrapper.find("InputField#operator_street");
-      expect(operatorStreet.props().input.defaultValue).toBe("default");
+      const operator_address_line_2 = wrapper.find(
+        "InputField#operator_address_line_2"
+      );
+      expect(operator_address_line_2.props().input.defaultValue).toBe(
+        "default"
+      );
     });
   });
 

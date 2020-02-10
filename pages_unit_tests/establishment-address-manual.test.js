@@ -29,7 +29,7 @@ describe("<EstablishmentAddress />", () => {
       const establishment_address_line_1 = wrapper.find(
         "InputField#establishment_address_line_1"
       );
-      expect(establishmentFirstLine.length).toBe(1);
+      expect(establishment_address_line_1.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
