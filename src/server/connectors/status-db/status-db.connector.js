@@ -112,7 +112,7 @@ const updateStoredStatus = async (statusName, newStatus) => {
       { _id: "frontEndStatus" },
       { $set: { [statusName]: newStatus } }
     );
-  
+
     logEmitter.emit(
       "functionsuccess",
       "status-db.connector",
