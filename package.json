@@ -15,7 +15,7 @@
     "start": "NODE_ENV=production node src/server/index.js",
     "start:local":
       "(export $(grep -v '^#' .env | xargs -d '\n')) && NODE_ENV=production node src/server/index.js",
-    "test": "jest ./pages --coverage",
+    "test": "jest ./src ./pages --coverage",
     "test:ci":
       "export TEST_TYPE=unit && jest ./src ./pages --coverage --maxWorkers=4",
     "test:watch": "jest ./src --watch",
