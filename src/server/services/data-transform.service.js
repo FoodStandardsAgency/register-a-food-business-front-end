@@ -189,11 +189,12 @@ const transformAnswersForSubmit = (
   const operator_keys = [
     "operator_first_name",
     "operator_last_name",
-    "operator_postcode",
-    "operator_town",
     "operator_address_line_1",
     "operator_address_line_2",
     "operator_address_line_3",
+    "operator_town",
+    "operator_postcode",
+    "operator_uprn",
     "operator_primary_number",
     "operator_secondary_number",
     "operator_email",
@@ -205,17 +206,16 @@ const transformAnswersForSubmit = (
     "operator_company_name",
     "operator_company_house_number",
     "operator_charity_name",
-    "operator_charity_number",
-    "operator_uprn"
+    "operator_charity_number"
   ];
   const premise_keys = [
-    "establishment_postcode",
-    "establishment_town",
     "establishment_type",
-    "establishment_uprn",
     "establishment_address_line_1",
     "establishment_address_line_2",
-    "establishment_address_line_3"
+    "establishment_address_line_3",
+    "establishment_town",
+    "establishment_postcode",
+    "establishment_uprn"
   ];
   const activities_keys = [
     "customer_type",
