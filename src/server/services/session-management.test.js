@@ -54,8 +54,8 @@ const testSessionAnswers_Correct = {
 };
 
 const answersBelongingToInactivePage = {
-  establishment_first_line: "1 John House",
-  establishment_street: "Apple Street",
+  establishment_address_line_1: "1 John House",
+  establishment_address_line_2: "Apple Street",
   establishment_town: "London",
   establishment_postcode: "AA11 1AA"
 };

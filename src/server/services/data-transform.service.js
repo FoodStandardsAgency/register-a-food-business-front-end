@@ -76,19 +76,20 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
     delete data.establishment_opening_status;
 
     if (data.operator_address_selected) {
-      if (data.operator_first_line) {
+      if (data.operator_address_line_1) {
         delete data.operator_address_selected;
       } else {
         const operatorAddressLookupData =
           addressLookups.operator_postcode_find[data.operator_address_selected];
 
-        data.operator_first_line =
-          operatorAddressLookupData["premise"] ||
+        data.operator_address_line_1 =
           operatorAddressLookupData["addressline1"];
 
-        data.operator_street = operatorAddressLookupData["street"];
-        data.operator_dependent_locality =
-          operatorAddressLookupData["dependentlocality"];
+        data.operator_address_line_2 =
+          operatorAddressLookupData["addressline2"];
+
+        data.operator_address_line_3 =
+          operatorAddressLookupData["addressline3"];
 
         data.operator_town = operatorAddressLookupData["posttown"];
 
@@ -102,7 +103,7 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
     }
 
     if (data.establishment_address_selected) {
-      if (data.establishment_first_line) {
+      if (data.establishment_address_line_1) {
         delete data.establishment_address_selected;
       } else {
         const establishmentAddressLookupData =
@@ -110,13 +111,14 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
             data.establishment_address_selected
           ];
 
-        data.establishment_first_line =
-          establishmentAddressLookupData["premise"] ||
+        data.establishment_address_line_1 =
           establishmentAddressLookupData["addressline1"];
 
-        data.establishment_street = establishmentAddressLookupData["street"];
-        data.establishment_dependent_locality =
-          establishmentAddressLookupData["dependentlocality"];
+        data.establishment_address_line_2 =
+          establishmentAddressLookupData["addressline2"];
+
+        data.establishment_address_line_3 =
+          establishmentAddressLookupData["addressline3"];
 
         data.establishment_town = establishmentAddressLookupData["posttown"];
 
@@ -188,10 +190,10 @@ const transformAnswersForSubmit = (
     "operator_first_name",
     "operator_last_name",
     "operator_postcode",
-    "operator_first_line",
-    "operator_street",
     "operator_town",
-    "operator_dependent_locality",
+    "operator_address_line_1",
+    "operator_address_line_2",
+    "operator_address_line_3",
     "operator_primary_number",
     "operator_secondary_number",
     "operator_email",
@@ -208,12 +210,12 @@ const transformAnswersForSubmit = (
   ];
   const premise_keys = [
     "establishment_postcode",
-    "establishment_first_line",
-    "establishment_street",
     "establishment_town",
     "establishment_type",
     "establishment_uprn",
-    "establishment_dependent_locality"
+    "establishment_address_line_1",
+    "establishment_address_line_2",
+    "establishment_address_line_3"
   ];
   const activities_keys = [
     "customer_type",

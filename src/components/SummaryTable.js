@@ -247,7 +247,7 @@ const OperatorDetailsTable = props => (
       </AccessibleTableRow>
     ) : null}
 
-    {props.operator_first_line ? (
+    {props.operator_address_line_1 ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorAddressRow"
@@ -258,12 +258,16 @@ const OperatorDetailsTable = props => (
             : "Operator address"}
         </AccessibleRowHeader>
         <AccessibleCell>
-          <div id="operator_first_line">{props.operator_first_line}</div>
-          <div id="operator_street">{props.operator_street || null}</div>
-          <div id="operator_dependent_locality">
-            {props.operator_dependent_locality || null}
+          <div id="operator_address_line_1">
+            {props.operator_address_line_1}
           </div>
-          <div id="operator_town">{props.operator_town || null}</div>
+          <div id="operator_address_line_2">
+            {props.operator_address_line_2 || null}
+          </div>
+          <div id="operator_address_line_3">
+            {props.operator_address_line_3 || null}
+          </div>
+          <div id="operator_town">{props.operator_town}</div>
           <div id="operator_postcode">{props.operator_postcode}</div>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
@@ -446,28 +450,30 @@ const EstablishmentDetailsTable = props => (
       </AccessibleTableRow>
     ) : null}
 
-    {props.establishment_first_line ? (
+    {props.establishment_address_line_1 ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="establishmentAddressRow"
       >
         <AccessibleRowHeader>Establishment address</AccessibleRowHeader>
         <AccessibleCell>
-          <div id="establishment_first_line">
-            {props.establishment_first_line}
+          <div id="establishment_address_line_1">
+            {props.establishment_address_line_1}
           </div>
-          <div id="establishment_street">
-            {props.establishment_street || null}
+          <div id="establishment_address_line_2">
+            {props.establishment_address_line_2 || null}
           </div>
-          <div id="establishment_dependent_locality">
-            {props.establishment_dependent_locality || null}
+          <div id="establishment_address_line_3">
+            {props.establishment_address_line_3 || null}
           </div>
-          <div id="establishment_town">{props.establishment_town || null}</div>
+          <div id="establishment_town">{props.establishment_town}</div>
           <div id="establishment_postcode">{props.establishment_postcode}</div>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleCell>
-            <div />
+            <AnchorTag>
+              <div />
+            </AnchorTag>
           </AccessibleCell>
         )}
       </AccessibleTableRow>
@@ -869,16 +875,18 @@ SummaryTable.propTypes = {
   operator_company_house_number: PropTypes.string,
   operator_charity_name: PropTypes.string,
   operator_charity_number: PropTypes.string,
-  operator_first_line: PropTypes.string,
-  operator_street: PropTypes.string,
+  operator_address_line_1: PropTypes.string,
+  operator_address_line_2: PropTypes.string,
+  operator_address_line_3: PropTypes.string,
   operator_town: PropTypes.string,
   operator_postcode: PropTypes.string,
   operator_first_name: PropTypes.string,
   operator_last_name: PropTypes.string,
   registration_role: PropTypes.string,
   establishment_trading_name: PropTypes.string,
-  establishment_first_line: PropTypes.string,
-  establishment_street: PropTypes.string,
+  establishment_address_line_1: PropTypes.string,
+  establishment_address_line_2: PropTypes.string,
+  establishment_address_line_3: PropTypes.string,
   establishment_town: PropTypes.string,
   establishment_postcode: PropTypes.string,
   customer_type: PropTypes.string,

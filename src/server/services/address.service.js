@@ -42,7 +42,7 @@ const getUkAddressesByPostcode = async postcode => {
       "getUkAddressesByPostcode",
       err
     );
-    throw err;
+    return [];
   }
 };
 

@@ -7,10 +7,16 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch via NPM (develop mode)",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run-script", "debug"],
-      "port": 9229
+      "name": "Launch via Yarn (develop mode)",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": ["debug:prod:local"],
+      "port": 9229,
+      "skipFiles": [
+        "${workspaceFolder}/node_modules/**/*.js",
+        "${workspaceFolder}/lib/**/*.js",
+        "<node_internals>/**/*.js",
+        "**/async_hooks.js"
+      ]
     },
     {
       "type": "node",

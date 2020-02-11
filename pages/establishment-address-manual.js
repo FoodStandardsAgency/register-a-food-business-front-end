@@ -53,55 +53,54 @@ const EstablishmentAddress = props => (
         <ContentItem.B_30_15>
           <InputField
             input={{
-              name: "establishment_first_line",
+              name: "establishment_address_line_1",
               defaultValue:
-                props.cumulativeFullAnswers.establishment_first_line,
+                props.cumulativeFullAnswers.establishment_address_line_1,
               autoComplete: "address-line1"
             }}
-            id="establishment_first_line"
-            // TODO APM: Decide on and implement validation for first line of address
-            // Work out why validator errors fails in test
+            id="establishment_address_line_1"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_first_line
+              error: props.validatorErrors.establishment_address_line_1
             }}
           >
-            First line of address
+            Address line 1
           </InputField>
         </ContentItem.B_30_15>
 
         <ContentItem.B_30_15>
           <InputField
             input={{
-              name: "establishment_street",
-              defaultValue: props.cumulativeFullAnswers.establishment_street,
+              name: "establishment_address_line_2",
+              defaultValue:
+                props.cumulativeFullAnswers.establishment_address_line_2,
               autoComplete: "address-line2"
             }}
-            id="establishment_street"
+            id="establishment_address_line_2"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_street
+              error: props.validatorErrors.establishment_address_line_2
             }}
           >
-            Street (optional)
+            Address line 2 (optional)
           </InputField>
         </ContentItem.B_30_15>
 
         <ContentItem.B_30_15>
           <InputField
             input={{
-              name: "establishment_dependent_locality",
+              name: "establishment_address_line_3",
               defaultValue:
-                props.cumulativeFullAnswers.establishment_dependent_locality,
-              autoComplete: "dependent"
+                props.cumulativeFullAnswers.establishment_address_line_3,
+              autoComplete: "address-line3"
             }}
-            id="establishment_dependent_locality"
+            id="establishment_address_line_3"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_dependent_locality
+              error: props.validatorErrors.establishment_address_line_3
             }}
           >
-            Locality for example village, suburb, parish (optional)
+            Address line 3 (optional)
           </InputField>
         </ContentItem.B_30_15>
 
@@ -118,7 +117,7 @@ const EstablishmentAddress = props => (
               error: props.validatorErrors.establishment_town
             }}
           >
-            Town or city (optional)
+            Town or city
           </InputField>
         </ContentItem.B_30_15>
 

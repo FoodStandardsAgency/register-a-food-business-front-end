@@ -7,15 +7,15 @@ module.exports = {
     "http://localhost:4000/api/registration/createNewRegistration",
   MONGODB_URL: process.env.MONGODB_URL,
   ADDRESS_API_URL_BASE:
-    "http://ws.postcoder.com/pcw/" +
+    "https://ws.postcoder.com/pcw/" +
     (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
-    "/addressbase/dpa",
-  ADDRESS_API_URL_QUERY: "format=json&lines=4&addtags=uprn",
+    "/pafaddressbase",
+  ADDRESS_API_URL_QUERY: "format=json&lines=3&addtags=uprn",
   ADDRESS_API_URL_BASE_STANDARD:
-    "http://ws.postcoder.com/pcw/" +
+    "https://ws.postcoder.com/pcw/" +
     (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
     "/address",
-  ADDRESS_API_URL_QUERY_STANDARD: "format=json&lines=4",
+  ADDRESS_API_URL_QUERY_STANDARD: "format=json&lines=3",
   API_SECRET: process.env.API_SECRET,
   CLIENT_NAME: process.env.CLIENT_NAME,
   CONFIGDB_URL: process.env.CONFIGDB_URL,
