@@ -160,6 +160,23 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
 };
 
 /**
+ * Trims the UPRN field of any non-numeric characters (and any characters to the right of them)
+ * This is to account for postcoder API returning values such as 0123456789-1
+ *
+ * @param {string} uprn The raw UPRN returned from postcode lookup
+ *
+ * @returns {string} The trimmed UPRN or an empty string if invalid, empty or not defined
+ */
+const trimUprn = uprn => {
+  if (typeof uprn === "string" || uprn instanceof String) {
+    const regEx = /^(\d+).*/;
+    const match = uprn.match(regEx);
+    return (match && match[1]) || "";
+  }
+  return "";
+};
+
+/**
  * Runs custom validation functions, on specific parts of cumulative answers, to get them in the correct format for the submission
  *
  * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the sesion with duplicates removed
@@ -615,5 +632,6 @@ module.exports = {
   transformAnswersForSubmit,
   combineDate,
   separateBracketsFromBusinessType,
+  trimUprn,
   trimAnswers
 };

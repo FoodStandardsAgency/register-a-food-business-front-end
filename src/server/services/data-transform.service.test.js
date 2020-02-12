@@ -3,6 +3,7 @@ import {
   transformAnswersForSummary,
   combineDate,
   separateBracketsFromBusinessType,
+  trimUprn,
   trimAnswers
 } from "./data-transform.service";
 
@@ -560,6 +561,46 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         result = transformAnswersForSummary(cumulativeFullAnswers);
         expect(result.import_export_activities).toBe(undefined);
       });
+    });
+  });
+});
+
+describe("data-transform.service trimUprn()", () => {
+  let result;
+
+  it("Should return empty string when UPRN is not a string or is empty string", () => {
+    const badText = [[], {}, null, undefined, ""];
+
+    badText.forEach(text => {
+      const result = trimUprn(text);
+      expect(result).toBe("");
+    });
+  });
+
+  it("Should return empty string when UPRN is completely invalid", () => {
+    const badText = ["asdasd333333", "dsdfsdfs344", "%f", "--4"];
+
+    badText.forEach(text => {
+      const result = trimUprn(text);
+      expect(result).toBe("");
+    });
+  });
+
+  it("Should return UPRN trimmed of trailing non-numeric characters when present", () => {
+    let result = trimUprn("12334sdfsd");
+    expect(result).toBe("12334");
+    result = trimUprn("1233456789-1");
+    expect(result).toBe("1233456789");
+    result = trimUprn("9999999%%%dd3");
+    expect(result).toBe("9999999");
+  });
+
+  describe("Should return unaltered UPRN if already valid", () => {
+    const valid = ["213456", "789456123", "9998887776"];
+
+    valid.forEach(text => {
+      const result = trimUprn(text);
+      expect(result).toBe(text);
     });
   });
 });
