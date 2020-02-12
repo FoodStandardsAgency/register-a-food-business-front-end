@@ -586,8 +586,6 @@ describe("data-transform.service trimUprn()", () => {
   });
 
   it("Should return UPRN trimmed of trailing non-numeric characters when present", () => {
-    const uprn = ['12334sdfsd', '1233456789-1', '9999999%%%dd3'];
-    
     let result = trimUprn('12334sdfsd');
     expect(result).toBe('12334');
     result = trimUprn('1233456789-1');
