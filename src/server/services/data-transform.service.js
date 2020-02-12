@@ -165,16 +165,14 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
  *
  * @returns {string} The trimmed UPRN or an empty string if invalid, empty or not defined
  */
-const trimUprn = (
-  uprn
-) => {
-  if (typeof uprn === 'string' || uprn instanceof String) {
+const trimUprn = uprn => {
+  if (typeof uprn === "string" || uprn instanceof String) {
     const regEx = /^(\d+).*/;
     const match = uprn.match(regEx);
-    return (match && match[1]) || '';
+    return (match && match[1]) || "";
   }
-  return '';
-}
+  return "";
+};
 
 /**
  * Runs custom validation functions, on specific parts of cumulative answers, to get them in the correct format for the submission
