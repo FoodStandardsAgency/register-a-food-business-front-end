@@ -137,7 +137,9 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
         data.establishment_postcode =
           establishmentAddressLookupData["postcode"];
 
-        data.establishment_uprn = trimUprn(establishmentAddressLookupData["uprn"]);
+        data.establishment_uprn = trimUprn(
+          establishmentAddressLookupData["uprn"]
+        );
 
         delete data.establishment_postcode_find;
         delete data.establishment_address_selected;
