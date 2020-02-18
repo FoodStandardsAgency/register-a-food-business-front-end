@@ -238,6 +238,13 @@ const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
         }
       });
       Object.assign(result.errors, validate(page, answersToValidate).errors);
+    } else if (page === "/business-other-details") {
+      if (cumulativeFullAnswers["business_other_details"] != null) {
+        Object.assign(
+          result.errors,
+          validate(page, cumulativeFullAnswers).errors
+        );
+      }
     } else {
       Object.assign(
         result.errors,
