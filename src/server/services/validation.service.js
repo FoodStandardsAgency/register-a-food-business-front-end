@@ -215,6 +215,22 @@ const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
             errorMessages.main_partnership_contact_deleted
         });
       }
+    } else if (page === "/operator-contact-details") {
+      const answersToValidate = cumulativeFullAnswers;
+      if (answersToValidate["operator_secondary_number"] == null) {
+        Object.assign(result.errors, validate(page, answersToValidate).errors);
+        delete result.errors.operator_secondary_number;
+      } else {
+        Object.assign(result.errors, validate(page, answersToValidate).errors);
+      }
+    } else if (page === "/establishment-contact-details") {
+      const answersToValidate = cumulativeFullAnswers;
+      if (answersToValidate["establishment_secondary_number"] == null) {
+        Object.assign(result.errors, validate(page, answersToValidate).errors);
+        delete result.errors.establishment_secondary_number;
+      } else {
+        Object.assign(result.errors, validate(page, answersToValidate).errors);
+      }
     } else if (page === "/opening-hours") {
       const answersToValidate = cumulativeFullAnswers;
       const days = [
