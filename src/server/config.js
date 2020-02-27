@@ -10,7 +10,8 @@ module.exports = {
     "https://ws.postcoder.com/pcw/" +
     (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
     "/pafaddressbase",
-  ADDRESS_API_URL_QUERY: "format=json&lines=3&addtags=uprn",
+  ADDRESS_API_URL_QUERY:
+    "format=json&lines=3&addtags=uprn&exclude=organisation",
   ADDRESS_API_URL_BASE_STANDARD:
     "https://ws.postcoder.com/pcw/" +
     (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +

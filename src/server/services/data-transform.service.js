@@ -91,11 +91,17 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
         data.operator_address_line_3 =
           operatorAddressLookupData["addressline3"];
 
+        data.operator_first_line =
+          operatorAddressLookupData["premise"] ||
+          operatorAddressLookupData["addressline1"];
+
+        data.operator_street = operatorAddressLookupData["street"];
+
         data.operator_town = operatorAddressLookupData["posttown"];
 
         data.operator_postcode = operatorAddressLookupData["postcode"];
 
-        data.operator_uprn = operatorAddressLookupData["uprn"];
+        data.operator_uprn = trimUprn(operatorAddressLookupData["uprn"]);
 
         delete data.operator_postcode_find;
         delete data.operator_address_selected;
@@ -120,12 +126,20 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
         data.establishment_address_line_3 =
           establishmentAddressLookupData["addressline3"];
 
+        data.establishment_first_line =
+          establishmentAddressLookupData["premise"] ||
+          establishmentAddressLookupData["addressline1"];
+
+        data.establishment_street = establishmentAddressLookupData["street"];
+
         data.establishment_town = establishmentAddressLookupData["posttown"];
 
         data.establishment_postcode =
           establishmentAddressLookupData["postcode"];
 
-        data.establishment_uprn = establishmentAddressLookupData["uprn"];
+        data.establishment_uprn = trimUprn(
+          establishmentAddressLookupData["uprn"]
+        );
 
         delete data.establishment_postcode_find;
         delete data.establishment_address_selected;
@@ -209,6 +223,8 @@ const transformAnswersForSubmit = (
     "operator_address_line_1",
     "operator_address_line_2",
     "operator_address_line_3",
+    "operator_first_line",
+    "operator_street",
     "operator_town",
     "operator_postcode",
     "operator_uprn",
@@ -230,6 +246,8 @@ const transformAnswersForSubmit = (
     "establishment_address_line_1",
     "establishment_address_line_2",
     "establishment_address_line_3",
+    "establishment_first_line",
+    "establishment_street",
     "establishment_town",
     "establishment_postcode",
     "establishment_uprn"
