@@ -5,7 +5,8 @@
 const {
   moveAlongPath,
   editPath,
-  switchOffManualAddressInput
+  switchOffManualAddressInput,
+  switchOffCompanyAndCharityDetails
 } = require("../services/path.service");
 const { validate } = require("../services/validation.service");
 const { logEmitter } = require("../services/logging.service");
@@ -103,8 +104,27 @@ const continueController = (
       pathFromSession
     );
 
-    // update the new path to switch off manual address input pages if the originator (currentPage) is one of the address select pages
-    const updatedNewPath = switchOffManualAddressInput(newPath, currentPage);
+    const activePath = Object.keys(newPath).filter(entry => {
+      return newPath[entry].on === true && entry !== "/declaration";
+    });
+
+    if (currentPage === "/registration-summary") {
+      Object.assign(
+        controllerResponse.allValidationErrors,
+        revalidateAllAnswers(activePath, previousAnswers).errors
+      );
+
+      if (Object.keys(controllerResponse.allValidationErrors).length > 0) {
+        controllerResponse.redirectRoute = currentPage;
+        return controllerResponse;
+      }
+    }
+    // update the new path to switch off manual address input pages if the originator (currentPage) is one of the address select pagees
+    // and switch off representative registration role path when changed to Sole trader
+    const updatedNewPath = switchOffCompanyAndCharityDetails(
+      trimmedNewAnswers,
+      switchOffManualAddressInput(newPath, currentPage)
+    );
 
     // remove any answers that are associated with an inactive page on the path
     controllerResponse.cumulativeFullAnswers = cleanInactivePathAnswers(
