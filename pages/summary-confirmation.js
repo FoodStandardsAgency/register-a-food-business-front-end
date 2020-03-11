@@ -50,7 +50,8 @@ const ApplicationComplete = props => (
     )}
     <InsetText>
       <Paragraph mb={0}>
-        Please keep note of this registration application reference for your records.
+        Please keep note of this registration application reference for your
+        records.
       </Paragraph>
     </InsetText>
 
