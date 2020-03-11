@@ -82,7 +82,7 @@ describe("<ApplicationComplete />", () => {
       const panel = wrapper.find("Panel#panelWithNumber");
       expect(panel.length).toBe(1);
     });
-    it("The panel renders 'Awaiting registration number' text when not defined", () => {
+    it("The panel renders 'Awaiting registration application reference' text when not defined", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
