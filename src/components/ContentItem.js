@@ -1,31 +1,31 @@
-import { BREAKPOINTS } from "@govuk-react/constants";
-import styled from "react-emotion";
+import { BREAKPOINTS } from '@govuk-react/constants'
+import styled from 'react-emotion'
 
-const ContentItem = {};
+const ContentItem = {}
 
 const MediaQueryLarge = `@media only screen and (max-width: ${
   BREAKPOINTS.LARGESCREEN
-})`;
+})`
 
-ContentItem.B_30_15 = styled("div")({
-  paddingBottom: "30px",
+ContentItem.B_30_15 = styled('div')({
+  paddingBottom: '30px',
   [MediaQueryLarge]: {
-    paddingBottom: "15px"
+    paddingBottom: '15px'
   }
-});
+})
 
-ContentItem.B_45_30 = styled("div")({
-  paddingBottom: "45px",
+ContentItem.B_45_30 = styled('div')({
+  paddingBottom: '45px',
   [MediaQueryLarge]: {
-    paddingBottom: "30px"
+    paddingBottom: '30px'
   }
-});
+})
 
-ContentItem.B_20_20 = styled("div")({
-  paddingBottom: "20px",
+ContentItem.B_20_20 = styled('div')({
+  paddingBottom: '20px',
   [MediaQueryLarge]: {
-    paddingBottom: "20px"
+    paddingBottom: '20px'
   }
-});
+})
 
-export default ContentItem;
+export default ContentItem

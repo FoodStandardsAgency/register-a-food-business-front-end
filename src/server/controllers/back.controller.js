@@ -2,8 +2,8 @@
  * @module controllers/back
  */
 
-const { moveAlongPath, editPath } = require("../services/path.service");
-const { logEmitter } = require("../services/logging.service");
+const { moveAlongPath, editPath } = require('../services/path.service')
+const { logEmitter } = require('../services/logging.service')
 
 /**
  * Returns the previous page in the path
@@ -15,26 +15,26 @@ const { logEmitter } = require("../services/logging.service");
  * @returns {string} The previous page in the path
  */
 const backController = (currentPage, previousAnswers = {}, pathFromSession) => {
-  logEmitter.emit("functionCall", "back.controller", "backController");
+  logEmitter.emit('functionCall', 'back.controller', 'backController')
 
-  let previousPage;
-  let newPath;
+  let previousPage
+  let newPath
 
   try {
-    newPath = editPath(previousAnswers, currentPage, pathFromSession);
-    previousPage = moveAlongPath(newPath, currentPage, -1);
+    newPath = editPath(previousAnswers, currentPage, pathFromSession)
+    previousPage = moveAlongPath(newPath, currentPage, -1)
 
     logEmitter.emit(
-      "functionSuccessWith",
-      "back.controller",
-      "backController",
+      'functionSuccessWith',
+      'back.controller',
+      'backController',
       `Previous page is ${previousPage}`
-    );
-    return previousPage;
+    )
+    return previousPage
   } catch (err) {
-    logEmitter.emit("functionFail", "back.controller", "backController", err);
-    throw err;
+    logEmitter.emit('functionFail', 'back.controller', 'backController', err)
+    throw err
   }
-};
+}
 
-module.exports = backController;
+module.exports = backController

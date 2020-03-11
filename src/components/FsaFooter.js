@@ -1,17 +1,17 @@
-import styled from "react-emotion";
-import { asAnchor, ListItem, UnorderedList } from "govuk-react";
+import styled from 'react-emotion'
+import { asAnchor, ListItem, UnorderedList } from 'govuk-react'
 
-const fontSizeNormal = "16px";
-const fontSizeSmall = "14px";
+const fontSizeNormal = '16px'
+const fontSizeSmall = '14px'
 
-const Footer = styled("div")`
+const Footer = styled('div')`
   background-color: #dee0e2;
   bottom: 0px;
   color: #454a4c;
   border-top: 1px solid #a1acb2;
-`;
+`
 
-const FooterBody = styled("div")`
+const FooterBody = styled('div')`
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -24,19 +24,19 @@ const FooterBody = styled("div")`
     flex-direction: row;
     justify-content: space-between;
   }
-`;
+`
 
-const FooterContent = styled("div")`
+const FooterContent = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-`;
+`
 
-const FooterLinkContainer = styled("div")`
+const FooterLinkContainer = styled('div')`
   margin-bottom: 15px;
-`;
+`
 
-const FooterLink = styled(asAnchor("a"))`
+const FooterLink = styled(asAnchor('a'))`
   color: #454a4c;
   margin-right: 15px;
   margin-bottom: 5px;
@@ -52,15 +52,15 @@ const FooterLink = styled(asAnchor("a"))`
   &:hover {
     color: #171819;
   }
-`;
+`
 
 const FooterListItem = styled(ListItem)`
   display: inline;
-`;
+`
 
 const FooterUnorderedList = styled(UnorderedList)`
   padding-left: 0px;
-`;
+`
 
 const FsaFooter = () => (
   <Footer id="fsaFooter" role="contentinfo">
@@ -74,8 +74,7 @@ const FsaFooter = () => (
                 href="https://www.food.gov.uk/cookie-policy"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="cookie policy (opens in a new window)"
-              >
+                aria-label="cookie policy (opens in a new window)">
                 Cookies
               </FooterLink>
             </FooterListItem>
@@ -85,8 +84,7 @@ const FsaFooter = () => (
                 href="https://www.food.gov.uk/privacy-policy"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="privacy policy (opens in a new window)"
-              >
+                aria-label="privacy policy (opens in a new window)">
                 Privacy
               </FooterLink>
             </FooterListItem>
@@ -96,8 +94,7 @@ const FsaFooter = () => (
                 href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="give us feedback on the service (opens in a new window)"
-              >
+                aria-label="give us feedback on the service (opens in a new window)">
                 Feedback
               </FooterLink>
             </FooterListItem>
@@ -106,6 +103,6 @@ const FsaFooter = () => (
       </FooterContent>
     </FooterBody>
   </Footer>
-);
+)
 
-export default FsaFooter;
+export default FsaFooter

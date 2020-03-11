@@ -1,20 +1,20 @@
-const storedStatus = require("../../../__mocks__/storedStatusMock.json");
+const storedStatus = require('../../../__mocks__/storedStatusMock.json')
 
 const statusCollectionDouble = {
   findOne: query => {
-    if (query._id === "frontEndStatus") {
-      return storedStatus;
+    if (query._id === 'frontEndStatus') {
+      return storedStatus
     } else {
-      return null;
+      return null
     }
   },
   updateOne: (query, update) => {
-    if (query._id === "frontEndStatus") {
-      return update;
+    if (query._id === 'frontEndStatus') {
+      return update
     } else {
-      return null;
+      return null
     }
   }
-};
+}
 
-module.exports = { statusCollectionDouble };
+module.exports = { statusCollectionDouble }

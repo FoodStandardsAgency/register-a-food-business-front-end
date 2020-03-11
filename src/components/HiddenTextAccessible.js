@@ -1,6 +1,6 @@
-import { HiddenText } from "govuk-react";
-import PropTypes from "prop-types";
-import { ContentItem } from "./";
+import { HiddenText } from 'govuk-react'
+import PropTypes from 'prop-types'
+import { ContentItem } from './'
 // import InvisibleLink from "./InvisibleLink";
 
 // IMPORTANT / TODO JMB: The InvisibleLink elements are for accessibility purposes to allow screen reader users
@@ -21,14 +21,14 @@ const HiddenTextAccessible = props => (
   /> */}
     </HiddenText>
   </ContentItem.B_30_15>
-);
+)
 
 HiddenTextAccessible.defaultProps = {
   hiddentextindex: 0
-};
+}
 
 HiddenTextAccessible.propTypes = {
   hiddentextindex: PropTypes.number
-};
+}
 
-export default HiddenTextAccessible;
+export default HiddenTextAccessible

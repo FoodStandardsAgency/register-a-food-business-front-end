@@ -1,17 +1,14 @@
-const {
-  getStoredStatus,
-  updateStoredStatus
-} = require("./status-db.connector");
-const storedStatusMock = require("../../../__mocks__/storedStatusMock.json");
-const mongodb = require("mongodb");
-const { statusCollectionDouble } = require("./status-db.double");
-jest.mock("./status-db.double");
+const { getStoredStatus, updateStoredStatus } = require('./status-db.connector')
+const storedStatusMock = require('../../../__mocks__/storedStatusMock.json')
+const mongodb = require('mongodb')
+const { statusCollectionDouble } = require('./status-db.double')
+jest.mock('./status-db.double')
 
-jest.mock("mongodb");
+jest.mock('mongodb')
 
-describe("Function: getStoredStatus", () => {
-  let result;
-  describe("When: connection to mongo is successful", () => {
+describe('Function: getStoredStatus', () => {
+  let result
+  describe('When: connection to mongo is successful', () => {
     beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
@@ -19,49 +16,49 @@ describe("Function: getStoredStatus", () => {
             findOne: () => storedStatusMock
           })
         })
-      }));
-      result = await getStoredStatus();
-    });
+      }))
+      result = await getStoredStatus()
+    })
 
-    it("Should return an object", () => {
-      expect(typeof result).toBe("object");
-    });
-  });
+    it('Should return an object', () => {
+      expect(typeof result).toBe('object')
+    })
+  })
 
-  describe("Given: the request throws an error", () => {
+  describe('Given: the request throws an error', () => {
     beforeEach(async () => {
-      process.env.DOUBLE_MODE = false;
+      process.env.DOUBLE_MODE = false
       mongodb.MongoClient.connect.mockImplementation(() => {
-        throw new Error("example mongo error");
-      });
+        throw new Error('example mongo error')
+      })
 
       try {
-        await getStoredStatus();
+        await getStoredStatus()
       } catch (err) {
-        result = err;
+        result = err
       }
-    });
+    })
 
-    it("should throw mongoConnectionError error", () => {
-      expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe("example mongo error");
-    });
-  });
+    it('should throw mongoConnectionError error', () => {
+      expect(result.name).toBe('mongoConnectionError')
+      expect(result.message).toBe('example mongo error')
+    })
+  })
 
-  describe("when running in double mode", () => {
+  describe('when running in double mode', () => {
     beforeEach(() => {
-      process.env.DOUBLE_MODE = true;
-      statusCollectionDouble.findOne.mockImplementation(() => storedStatusMock);
-    });
+      process.env.DOUBLE_MODE = true
+      statusCollectionDouble.findOne.mockImplementation(() => storedStatusMock)
+    })
 
     it("should resolve with the data from the double's findOne() response", async () => {
-      await expect(getStoredStatus()).resolves.toEqual(storedStatusMock);
-    });
-  });
-});
+      await expect(getStoredStatus()).resolves.toEqual(storedStatusMock)
+    })
+  })
+})
 
-describe("Function: updateStoredStatus", () => {
-  let result;
+describe('Function: updateStoredStatus', () => {
+  let result
 
   beforeEach(async () => {
     mongodb.MongoClient.connect.mockImplementation(() => ({
@@ -71,31 +68,31 @@ describe("Function: updateStoredStatus", () => {
           updateOne: (id, set) => set.$set.submissionsSucceeded
         })
       })
-    }));
-    result = await updateStoredStatus("submissionsSucceeded", 3);
-  });
+    }))
+    result = await updateStoredStatus('submissionsSucceeded', 3)
+  })
 
-  it("Should return the updated value", () => {
-    expect(result).toBe(3);
-  });
+  it('Should return the updated value', () => {
+    expect(result).toBe(3)
+  })
 
-  describe("Given: the request throws an error", () => {
+  describe('Given: the request throws an error', () => {
     beforeEach(async () => {
-      process.env.DOUBLE_MODE = false;
+      process.env.DOUBLE_MODE = false
       mongodb.MongoClient.connect.mockImplementation(() => {
-        throw new Error("example mongo error");
-      });
+        throw new Error('example mongo error')
+      })
 
       try {
-        await updateStoredStatus();
+        await updateStoredStatus()
       } catch (err) {
-        result = err;
+        result = err
       }
-    });
+    })
 
-    it("should throw mongoConnectionError error", () => {
-      expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe("example mongo error");
-    });
-  });
-});
+    it('should throw mongoConnectionError error', () => {
+      expect(result.name).toBe('mongoConnectionError')
+      expect(result.message).toBe('example mongo error')
+    })
+  })
+})

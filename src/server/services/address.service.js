@@ -5,9 +5,9 @@
 
 const {
   getAddressesByPostcode
-} = require("../connectors/address-lookup/address-lookup-api.connector");
-const { statusEmitter } = require("../services/statusEmitter.service");
-const { logEmitter } = require("./logging.service");
+} = require('../connectors/address-lookup/address-lookup-api.connector')
+const { statusEmitter } = require('../services/statusEmitter.service')
+const { logEmitter } = require('./logging.service')
 
 /**
  * Fetches addresses for UK postcodes
@@ -17,33 +17,29 @@ const { logEmitter } = require("./logging.service");
  * @returns {array} A list of addresses
  */
 const getUkAddressesByPostcode = async postcode => {
-  logEmitter.emit(
-    "functionCall",
-    "address.service",
-    "getUkAddressesByPostcode"
-  );
+  logEmitter.emit('functionCall', 'address.service', 'getUkAddressesByPostcode')
 
   try {
-    const addressLookupResponse = await getAddressesByPostcode(postcode, 500);
+    const addressLookupResponse = await getAddressesByPostcode(postcode, 500)
 
-    statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", true);
+    statusEmitter.emit('setStatus', 'mostRecentAddressLookupSucceeded', true)
     logEmitter.emit(
-      "functionSuccess",
-      "address.service",
-      "getUkAddressesByPostcode"
-    );
-    return addressLookupResponse;
+      'functionSuccess',
+      'address.service',
+      'getUkAddressesByPostcode'
+    )
+    return addressLookupResponse
   } catch (err) {
-    statusEmitter.emit("incrementCount", "addressLookupsFailed");
-    statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", false);
+    statusEmitter.emit('incrementCount', 'addressLookupsFailed')
+    statusEmitter.emit('setStatus', 'mostRecentAddressLookupSucceeded', false)
     logEmitter.emit(
-      "functionFail",
-      "address.service",
-      "getUkAddressesByPostcode",
+      'functionFail',
+      'address.service',
+      'getUkAddressesByPostcode',
       err
-    );
-    return [];
+    )
+    return []
   }
-};
+}
 
-module.exports = { getUkAddressesByPostcode };
+module.exports = { getUkAddressesByPostcode }

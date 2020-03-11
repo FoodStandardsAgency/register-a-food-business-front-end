@@ -2,9 +2,9 @@
  * @module controllers/partner-details
  */
 
-const { validate } = require("../services/validation.service");
-const { logEmitter } = require("../services/logging.service");
-const { MAX_PARTNERS } = require("../config");
+const { validate } = require('../services/validation.service')
+const { logEmitter } = require('../services/logging.service')
+const { MAX_PARTNERS } = require('../config')
 
 /**
  * Returns an object containing validator errors (if present), the redirect route (e.g. the next page),
@@ -28,12 +28,12 @@ const partnerDetailsContinue = (
     redirectRoute: null,
     addressLookups: {},
     switches: {}
-  };
+  }
   logEmitter.emit(
-    "functionCall",
-    "partner-details.controller",
-    "partnerDetailsContinue"
-  );
+    'functionCall',
+    'partner-details.controller',
+    'partnerDetailsContinue'
+  )
   try {
     controllerResponse.validatorErrors = Object.assign(
       {},
@@ -41,54 +41,52 @@ const partnerDetailsContinue = (
         currentPage,
         Object.assign({}, { partners: previousAnswers.partners })
       ).errors
-    );
+    )
 
-    const validationErrorsKeys = Object.keys(
-      controllerResponse.validatorErrors
-    );
+    const validationErrorsKeys = Object.keys(controllerResponse.validatorErrors)
     if (validationErrorsKeys.length > 0) {
       // if there are errors, redirect back to the current page
-      controllerResponse.redirectRoute = `/new/${council}${currentPage}`;
+      controllerResponse.redirectRoute = `/new/${council}${currentPage}`
       logEmitter.emit(
-        "functionSuccessWith",
-        "partner-details.controller",
-        "partnerDetailsContinue",
+        'functionSuccessWith',
+        'partner-details.controller',
+        'partnerDetailsContinue',
         `validatorErrors: ${JSON.stringify(
           controllerResponse.validatorErrors
         )}. redirectRoute: ${controllerResponse.redirectRoute}`
-      );
-      return controllerResponse;
+      )
+      return controllerResponse
     }
-    controllerResponse.redirectRoute = `/new/${council}/main-partnership-contact`;
+    controllerResponse.redirectRoute = `/new/${council}/main-partnership-contact`
 
     if (edit) {
       if (
         previousAnswers.partners.find(partnerName => {
-          return partnerName === previousAnswers.main_partnership_contact;
+          return partnerName === previousAnswers.main_partnership_contact
         }) !== undefined
       ) {
-        controllerResponse.redirectRoute = `/new/${council}/registration-summary`;
+        controllerResponse.redirectRoute = `/new/${council}/registration-summary`
       } else {
-        controllerResponse.redirectRoute = `/new/${council}/main-partnership-contact?edit=main-partnership-contact`;
+        controllerResponse.redirectRoute = `/new/${council}/main-partnership-contact?edit=main-partnership-contact`
       }
     }
 
     logEmitter.emit(
-      "functionSuccess",
-      "partner-details.controller",
-      "partnerDetailsContinue"
-    );
-    return controllerResponse;
+      'functionSuccess',
+      'partner-details.controller',
+      'partnerDetailsContinue'
+    )
+    return controllerResponse
   } catch (err) {
     logEmitter.emit(
-      "functionFail",
-      "partner-details.controller",
-      "partnerDetailsContinue",
+      'functionFail',
+      'partner-details.controller',
+      'partnerDetailsContinue',
       err
-    );
-    throw err;
+    )
+    throw err
   }
-};
+}
 
 /**
  * Returns an object containing validator errors (if present), the redirect route (e.g. the next page),
@@ -115,86 +113,84 @@ const partnerDetailsSave = (
     cumulativeFullAnswers: {},
     addressLookups: {},
     switches: {}
-  };
+  }
   logEmitter.emit(
-    "functionCall",
-    "partner-details.controller",
-    "partnerDetailsSave"
-  );
+    'functionCall',
+    'partner-details.controller',
+    'partnerDetailsSave'
+  )
   try {
-    controllerResponse.cumulativeFullAnswers = previousAnswers;
+    controllerResponse.cumulativeFullAnswers = previousAnswers
     controllerResponse.validatorErrors = Object.assign(
       {},
       validate(currentPage, { partner_name: newAnswers.partner_name }).errors
-    );
+    )
 
-    const validationErrorsKeys = Object.keys(
-      controllerResponse.validatorErrors
-    );
+    const validationErrorsKeys = Object.keys(controllerResponse.validatorErrors)
     if (validationErrorsKeys.length > 0) {
       // if there are errors, redirect back to the current page
-      controllerResponse.redirectRoute = `/partnership${currentPage}`;
+      controllerResponse.redirectRoute = `/partnership${currentPage}`
       if (newAnswers.index !== undefined) {
         controllerResponse.redirectRoute = controllerResponse.redirectRoute.concat(
           `?id=${newAnswers.index}`
-        );
+        )
       }
       if (edit) {
         const separator =
-          controllerResponse.redirectRoute.indexOf("?") > 0 ? "&" : "?";
+          controllerResponse.redirectRoute.indexOf('?') > 0 ? '&' : '?'
         controllerResponse.redirectRoute = controllerResponse.redirectRoute.concat(
           `${separator}edit=partner-name`
-        );
+        )
       }
       logEmitter.emit(
-        "functionSuccessWith",
-        "partner-details.controller",
-        "partnerDetailsSave",
+        'functionSuccessWith',
+        'partner-details.controller',
+        'partnerDetailsSave',
         `validatorErrors: ${JSON.stringify(
           controllerResponse.validatorErrors
         )}. redirectRoute: ${controllerResponse.redirectRoute}`
-      );
-      return controllerResponse;
+      )
+      return controllerResponse
     }
 
-    const partners = controllerResponse.cumulativeFullAnswers.partners;
+    const partners = controllerResponse.cumulativeFullAnswers.partners
 
-    const partnerName = newAnswers["partner_name"];
-    const partnerIndex = newAnswers["index"];
-    controllerResponse.redirectRoute = `/new/${council}/partner-name`;
+    const partnerName = newAnswers['partner_name']
+    const partnerIndex = newAnswers['index']
+    controllerResponse.redirectRoute = `/new/${council}/partner-name`
 
     if (partners[partnerIndex]) {
-      partners[partnerIndex] = partnerName;
+      partners[partnerIndex] = partnerName
     } else {
       if (partners.length < MAX_PARTNERS) {
-        partners.push(partnerName);
+        partners.push(partnerName)
       }
     }
 
     if (edit) {
       controllerResponse.redirectRoute = controllerResponse.redirectRoute.concat(
-        "?edit=partner-name"
-      );
+        '?edit=partner-name'
+      )
     }
-    controllerResponse.cumulativeFullAnswers.partners = partners;
-    delete controllerResponse.cumulativeFullAnswers.targetPartner;
+    controllerResponse.cumulativeFullAnswers.partners = partners
+    delete controllerResponse.cumulativeFullAnswers.targetPartner
 
     logEmitter.emit(
-      "functionSuccess",
-      "partner-details.controller",
-      "partnerDetailsSave"
-    );
-    return controllerResponse;
+      'functionSuccess',
+      'partner-details.controller',
+      'partnerDetailsSave'
+    )
+    return controllerResponse
   } catch (err) {
     logEmitter.emit(
-      "functionFail",
-      "partner-details.controller",
-      "partnerDetailsSave",
+      'functionFail',
+      'partner-details.controller',
+      'partnerDetailsSave',
       err
-    );
-    throw err;
+    )
+    throw err
   }
-};
+}
 
 /**
  * Returns an object containing validator errors (if present), the redirect route (e.g. the next page),
@@ -214,50 +210,50 @@ const partnerDetailsDelete = (previousAnswers, newAnswers, council, edit) => {
     cumulativeFullAnswers: {},
     addressLookups: {},
     switches: {}
-  };
+  }
   logEmitter.emit(
-    "functionCall",
-    "partner-details.controller",
-    "partnerDetailsDelete"
-  );
+    'functionCall',
+    'partner-details.controller',
+    'partnerDetailsDelete'
+  )
 
   try {
-    controllerResponse.cumulativeFullAnswers = previousAnswers;
-    const partners = controllerResponse.cumulativeFullAnswers.partners;
-    const partnerIndex = newAnswers["index"];
+    controllerResponse.cumulativeFullAnswers = previousAnswers
+    const partners = controllerResponse.cumulativeFullAnswers.partners
+    const partnerIndex = newAnswers['index']
 
-    controllerResponse.redirectRoute = `/new/${council}/partner-name`;
+    controllerResponse.redirectRoute = `/new/${council}/partner-name`
     if (partners[partnerIndex]) {
-      partners.splice(partnerIndex, 1);
+      partners.splice(partnerIndex, 1)
     }
 
     if (edit) {
       controllerResponse.redirectRoute = controllerResponse.redirectRoute.concat(
-        "?edit=partner-name"
-      );
+        '?edit=partner-name'
+      )
     }
-    controllerResponse.cumulativeFullAnswers.partners = partners;
-    delete controllerResponse.cumulativeFullAnswers.targetPartner;
+    controllerResponse.cumulativeFullAnswers.partners = partners
+    delete controllerResponse.cumulativeFullAnswers.targetPartner
 
     logEmitter.emit(
-      "functionSuccess",
-      "partner-details.controller",
-      "partnerDetailsDelete"
-    );
-    return controllerResponse;
+      'functionSuccess',
+      'partner-details.controller',
+      'partnerDetailsDelete'
+    )
+    return controllerResponse
   } catch (err) {
     logEmitter.emit(
-      "functionFail",
-      "partner-details.controller",
-      "partnerDetailsDelete",
+      'functionFail',
+      'partner-details.controller',
+      'partnerDetailsDelete',
       err
-    );
-    throw err;
+    )
+    throw err
   }
-};
+}
 
 module.exports = {
   partnerDetailsContinue,
   partnerDetailsSave,
   partnerDetailsDelete
-};
+}

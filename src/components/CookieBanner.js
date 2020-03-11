@@ -1,13 +1,13 @@
-import styled from "react-emotion";
-import { Paragraph, Button, asAnchor } from "govuk-react";
+import styled from 'react-emotion'
+import { Paragraph, Button, asAnchor } from 'govuk-react'
 
-const fontSize = "16px";
+const fontSize = '16px'
 
-const Banner = styled("div")`
+const Banner = styled('div')`
   background-color: #d9e8f2;
-`;
+`
 
-const BannerBody = styled("div")`
+const BannerBody = styled('div')`
   width: calc(100% - 30px);
   max-width: 960px;
   margin: auto;
@@ -16,16 +16,16 @@ const BannerBody = styled("div")`
   @media (min-width: 641px) {
     width: calc(100% - 60px);
   }
-`;
+`
 
 const BannerParagraph = styled(Paragraph)`
   font-size: ${fontSize};
   @media only screen and (min-width: 641px) {
     font-size: ${fontSize};
   }
-`;
+`
 
-const BannerRow = styled("div")`
+const BannerRow = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -35,9 +35,9 @@ const BannerRow = styled("div")`
     flex-direction: row;
     align-items: flex-end;
   }
-`;
+`
 
-const BannerActionContainer = styled("div")`
+const BannerActionContainer = styled('div')`
   display: flex;
   align-items: flex-start;
   margin-top: 10px;
@@ -49,14 +49,14 @@ const BannerActionContainer = styled("div")`
     margin-top: 0px;
     align-items: flex-end;
   }
-`;
+`
 
-const BannerLinkContainer = styled("div")`
+const BannerLinkContainer = styled('div')`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   margin-right: 20px;
-`;
+`
 
 const CookieButton = styled(Button)`
   margin-bottom: 0px;
@@ -76,9 +76,9 @@ const CookieButton = styled(Button)`
     font-size: ${fontSize};
     margin-bottom: 0px;
   }
-`;
+`
 
-const RejectCookiesButton = styled("button")`
+const RejectCookiesButton = styled('button')`
   margin-right: 20px;
   font-size: ${fontSize};
   color: #0b0c0c;
@@ -94,15 +94,15 @@ const RejectCookiesButton = styled("button")`
   &:visited {
     color: #2f2f2f;
   }
-`;
+`
 
-const AnchorTag = styled(asAnchor("a"))`
+const AnchorTag = styled(asAnchor('a'))`
   padding: 5px;
   font-size: ${fontSize};
   @media only screen and (min-width: 641px) {
     font-size: ${fontSize};
   }
-`;
+`
 
 const CookieBanner = () => (
   <Banner id="cookieBanner">
@@ -119,16 +119,14 @@ const CookieBanner = () => (
             id="cookieInfo"
             href="https://www.gov.uk/help/cookies"
             target="_blank"
-            aria-label="find out more about cookies (opens in new window)"
-          >
+            aria-label="find out more about cookies (opens in new window)">
             Find out more about cookies
           </AnchorTag>
           <AnchorTag
             id="cookiePolicy"
             href="https://www.food.gov.uk/cookie-policy"
             target="_blank"
-            aria-label="read our cookie policy (opens in new window)"
-          >
+            aria-label="read our cookie policy (opens in new window)">
             Read our cookie policy
           </AnchorTag>
         </BannerLinkContainer>
@@ -148,6 +146,6 @@ const CookieBanner = () => (
       </BannerRow>
     </BannerBody>
   </Banner>
-);
+)
 
-export default CookieBanner;
+export default CookieBanner

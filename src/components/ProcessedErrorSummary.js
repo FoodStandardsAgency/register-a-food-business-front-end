@@ -1,13 +1,13 @@
-import { ErrorSummary } from "govuk-react";
-import PropTypes from "prop-types";
+import { ErrorSummary } from 'govuk-react'
+import PropTypes from 'prop-types'
 
 const ProcessedErrorSummary = props => {
-  const errors = [];
+  const errors = []
   for (let error in props.validatorErrors) {
     errors.push({
       targetName: error,
       text: props.validatorErrors[error]
-    });
+    })
   }
   if (Object.keys(props.validatorErrors).length > 0) {
     return (
@@ -17,13 +17,13 @@ const ProcessedErrorSummary = props => {
         onHandleErrorClick={props.onHandleErrorClick}
         errors={errors}
       />
-    );
+    )
   } else {
-    return null;
+    return null
   }
-};
-export default ProcessedErrorSummary;
+}
+export default ProcessedErrorSummary
 
 ProcessedErrorSummary.propTypes = {
   validatorErrors: PropTypes.objectOf(PropTypes.string)
-};
+}

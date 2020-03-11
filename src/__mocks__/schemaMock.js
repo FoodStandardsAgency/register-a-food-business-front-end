@@ -9,86 +9,86 @@ const {
   validatePhoneNumberOptional,
   validateEmail,
   validateMandatoryString
-} = require("@slice-and-dice/register-a-food-business-validation");
+} = require('@slice-and-dice/register-a-food-business-validation')
 
 const schema = {
-  "/example-page-not-in-path": {
-    type: "object",
+  '/example-page-not-in-path': {
+    type: 'object',
     properties: {
       example_exists_in_schema_but_not_in_path: {
-        type: "string",
+        type: 'string',
         validation: validateName
       }
     }
   },
-  "/operator-name": {
-    type: "object",
+  '/operator-name': {
+    type: 'object',
     properties: {
       operator_first_name: {
-        type: "string",
+        type: 'string',
         validation: validateName
       },
       operator_last_name: {
-        type: "string",
+        type: 'string',
         validation: validateName
       }
     }
   },
-  "/operator-contact-details": {
-    type: "object",
+  '/operator-contact-details': {
+    type: 'object',
     properties: {
       operator_primary_number: {
-        type: "string",
+        type: 'string',
         validation: validatePhoneNumber
       },
       operator_secondary_number: {
-        type: "string",
+        type: 'string',
         validation: validatePhoneNumberOptional
       },
       operator_email: {
-        type: "string",
+        type: 'string',
         validation: validateEmail
       }
     }
   },
-  "/establishment-trading-name": {
-    type: "object",
+  '/establishment-trading-name': {
+    type: 'object',
     properties: {
       establishment_trading_name: {
-        type: "string",
+        type: 'string',
         validation: validateEstablishmentTradingName
       }
     }
   },
-  "/establishment-address": {
-    type: "object",
+  '/establishment-address': {
+    type: 'object',
     properties: {
       establishment_postcode: {
-        type: "string",
+        type: 'string',
         validation: validatePostCode
       },
       establishment_address_line_1: {
-        type: "string",
+        type: 'string',
         validation: validateMandatoryString
       },
       establishment_address_line_2: {
-        type: "string",
+        type: 'string',
         validation: validateoptionalString
       },
       establishment_town: {
-        type: "string",
+        type: 'string',
         validation: validateTown
       }
     }
   },
-  "/declaration": {
-    type: "object",
+  '/declaration': {
+    type: 'object',
     properties: {
-      declaration1: { type: "string", validation: validateDeclaration },
-      declaration2: { type: "string", validation: validateDeclaration },
-      declaration3: { type: "string", validation: validateDeclaration }
+      declaration1: { type: 'string', validation: validateDeclaration },
+      declaration2: { type: 'string', validation: validateDeclaration },
+      declaration3: { type: 'string', validation: validateDeclaration }
     }
   }
-};
+}
 
-module.exports = schema;
+module.exports = schema

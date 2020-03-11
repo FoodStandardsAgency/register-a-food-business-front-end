@@ -1,346 +1,346 @@
-jest.mock("../services/path.service");
-jest.mock("../services/validation.service");
-jest.mock("../services/session-management.service");
-jest.mock("../services/statusEmitter.service");
+jest.mock('../services/path.service')
+jest.mock('../services/validation.service')
+jest.mock('../services/session-management.service')
+jest.mock('../services/statusEmitter.service')
 
 const {
   moveAlongPath,
   editPath,
   switchOffManualAddressInput
-} = require("../services/path.service");
-const { validate } = require("../services/validation.service");
+} = require('../services/path.service')
+const { validate } = require('../services/validation.service')
 const {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
   cleanSwitches
-} = require("../services/session-management.service");
-const pathConfigMock = require("../../__mocks__/pathConfigMock.json");
-const continueController = require("./continue.controller");
+} = require('../services/session-management.service')
+const pathConfigMock = require('../../__mocks__/pathConfigMock.json')
+const continueController = require('./continue.controller')
 
-describe("Function: continueController: ", () => {
+describe('Function: continueController: ', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    cleanInactivePathAnswers.mockImplementation(input => input);
+    jest.clearAllMocks()
+    cleanInactivePathAnswers.mockImplementation(input => input)
     cleanEmptiedAnswers.mockImplementation(
       (previousAnswers, newAnswersArray) =>
         newAnswersArray.length > 0 ? previousAnswers : null
-    );
-    cleanSwitches.mockImplementation(() => ({}));
+    )
+    cleanSwitches.mockImplementation(() => ({}))
     editPath.mockImplementation(() => ({
-      "/some-page": {
+      '/some-page': {
         on: true,
         switches: {}
       },
-      "/final-page": {
+      '/final-page': {
         on: true,
         switches: {}
       }
-    }));
+    }))
     switchOffManualAddressInput.mockImplementation(() => ({
-      "/some-page": {
+      '/some-page': {
         on: true,
         switches: {}
       },
-      "/final-page": {
+      '/final-page': {
         on: true,
         switches: {}
       }
-    }));
+    }))
     validate.mockImplementation(() => ({
       errors: {}
-    }));
-  });
+    }))
+  })
 
-  let response;
+  let response
 
-  const exampleSwitches = { switch1: true, switch2: false };
+  const exampleSwitches = { switch1: true, switch2: false }
 
   const exampleAnswers = {
-    answer: "answer-pathAnswer"
-  };
+    answer: 'answer-pathAnswer'
+  }
 
-  describe("When there are no new answers on the originator page: ", () => {
+  describe('When there are no new answers on the originator page: ', () => {
     beforeEach(() => {
       validate.mockImplementation(() => ({
         errors: {}
-      }));
+      }))
       response = continueController(
-        "/some-page",
+        '/some-page',
         exampleAnswers,
         {},
         exampleSwitches,
         pathConfigMock
-      );
-    });
+      )
+    })
 
-    it("Should clean the cumulativeFullAnswers", () => {
-      expect(response.cumulativeFullAnswers).toEqual({});
-    });
+    it('Should clean the cumulativeFullAnswers', () => {
+      expect(response.cumulativeFullAnswers).toEqual({})
+    })
 
-    it("Should return an empty validatorErrors object", () => {
-      expect(response.validatorErrors).toEqual({});
-    });
-  });
+    it('Should return an empty validatorErrors object', () => {
+      expect(response.validatorErrors).toEqual({})
+    })
+  })
 
-  describe("When newAnswers is undefined", () => {
+  describe('When newAnswers is undefined', () => {
     beforeEach(() => {
       validate.mockImplementation(() => ({
         errors: {}
-      }));
+      }))
       response = continueController(
-        "/some-page",
+        '/some-page',
         exampleAnswers,
         undefined,
         exampleSwitches,
         pathConfigMock
-      );
-    });
-    it("Should return a response", () => {
-      expect(response).toBeDefined();
-    });
-  });
+      )
+    })
+    it('Should return a response', () => {
+      expect(response).toBeDefined()
+    })
+  })
 
-  describe("When newAnswers contains answers with empty spaces", () => {
+  describe('When newAnswers contains answers with empty spaces', () => {
     beforeEach(() => {
       validate.mockImplementation(() => ({
         errors: {}
-      }));
+      }))
 
       const testNewAnswersWithSpaces = {
-        operator_secondary_number: "       ",
-        operator_first_name: "  name  "
-      };
+        operator_secondary_number: '       ',
+        operator_first_name: '  name  '
+      }
 
       response = continueController(
-        "/some-page",
+        '/some-page',
         exampleAnswers,
         testNewAnswersWithSpaces,
         exampleSwitches,
         pathConfigMock
-      );
-    });
-    it("Should return a response", () => {
-      expect(response.cumulativeFullAnswers.operator_first_name).toBe("name");
-      expect(response.cumulativeFullAnswers.operator_secondary_number).toBe("");
-    });
-  });
+      )
+    })
+    it('Should return a response', () => {
+      expect(response.cumulativeFullAnswers.operator_first_name).toBe('name')
+      expect(response.cumulativeFullAnswers.operator_secondary_number).toBe('')
+    })
+  })
 
-  describe("When there are no validator errors: ", () => {
-    describe("When the current page is at the end of the path", () => {
+  describe('When there are no validator errors: ', () => {
+    describe('When the current page is at the end of the path', () => {
       beforeEach(() => {
         validate.mockImplementation(() => ({
           errors: {}
-        }));
-        moveAlongPath.mockImplementation(() => "/submit");
+        }))
+        moveAlongPath.mockImplementation(() => '/submit')
         response = continueController(
-          "/final-page",
+          '/final-page',
           {},
           exampleAnswers,
           exampleSwitches,
           pathConfigMock
-        );
-      });
+        )
+      })
 
-      it("Should set redirect route to /submit", () => {
-        expect(response.redirectRoute).toBe("/submit");
-      });
-    });
+      it('Should set redirect route to /submit', () => {
+        expect(response.redirectRoute).toBe('/submit')
+      })
+    })
 
-    describe("When the switches are undefined", () => {
+    describe('When the switches are undefined', () => {
       beforeEach(() => {
         validate.mockImplementation(() => ({
           errors: {}
-        }));
-        moveAlongPath.mockImplementation(() => "/nextPage");
+        }))
+        moveAlongPath.mockImplementation(() => '/nextPage')
         response = continueController(
-          "/index",
+          '/index',
           {},
           exampleAnswers,
           undefined,
           pathConfigMock
-        );
-      });
+        )
+      })
 
-      it("Should return a redirect route", () => {
-        expect(response.redirectRoute).toBeDefined();
-      });
-    });
+      it('Should return a redirect route', () => {
+        expect(response.redirectRoute).toBeDefined()
+      })
+    })
 
-    describe("When the current page is NOT at the end of the path", () => {
+    describe('When the current page is NOT at the end of the path', () => {
       beforeEach(() => {
         validate.mockImplementation(() => ({
           errors: {}
-        }));
-        moveAlongPath.mockImplementation(() => "/nextPage");
+        }))
+        moveAlongPath.mockImplementation(() => '/nextPage')
         response = continueController(
-          "/some-page",
+          '/some-page',
           {},
           exampleAnswers,
           exampleSwitches,
           pathConfigMock
-        );
-      });
+        )
+      })
 
-      it("Should return a controllerResponse", () => {
-        expect(response.validatorErrors).toBeDefined();
-        expect(response.redirectRoute).toBeDefined();
-        expect(response.cumulativeFullAnswers).toBeDefined();
-      });
+      it('Should return a controllerResponse', () => {
+        expect(response.validatorErrors).toBeDefined()
+        expect(response.redirectRoute).toBeDefined()
+        expect(response.cumulativeFullAnswers).toBeDefined()
+      })
 
-      it("Should use cumulativePathAnswers and the path from session to create the newPath", () => {
+      it('Should use cumulativePathAnswers and the path from session to create the newPath', () => {
         expect(editPath).toHaveBeenLastCalledWith(
           exampleAnswers,
-          "/some-page",
+          '/some-page',
           pathConfigMock
-        );
-      });
+        )
+      })
 
-      it("Should set the redirectRoute to the response of moveAlongPath", () => {
-        expect(response.redirectRoute).toBe("/nextPage");
-      });
-    });
-  });
+      it('Should set the redirectRoute to the response of moveAlongPath', () => {
+        expect(response.redirectRoute).toBe('/nextPage')
+      })
+    })
+  })
 
-  describe("When there are validator errors: ", () => {
+  describe('When there are validator errors: ', () => {
     beforeEach(() => {
       validate.mockImplementation(() => ({
-        errors: { some: "error" }
-      }));
+        errors: { some: 'error' }
+      }))
       response = continueController(
-        "/mock-page-1",
+        '/mock-page-1',
         {},
         exampleAnswers,
         exampleSwitches,
         pathConfigMock
-      );
-    });
+      )
+    })
 
-    it("should set redirectRoute to the currentPage", () => {
-      expect(response.validatorErrors).toEqual({ some: "error" });
-    });
+    it('should set redirectRoute to the currentPage', () => {
+      expect(response.validatorErrors).toEqual({ some: 'error' })
+    })
 
-    it("should set redirectRoute to the currentPage", () => {
-      expect(response.redirectRoute).toBe("/mock-page-1");
-    });
+    it('should set redirectRoute to the currentPage', () => {
+      expect(response.redirectRoute).toBe('/mock-page-1')
+    })
 
-    describe("when there are switches and validator errors", () => {
+    describe('when there are switches and validator errors', () => {
       beforeEach(() => {
         cleanSwitches.mockImplementation(() => ({
           switch1: false,
           switch2: true
-        }));
-      });
+        }))
+      })
 
-      it("should clean the switches as usual", () => {
+      it('should clean the switches as usual', () => {
         response = continueController(
-          "/mock-page-1",
+          '/mock-page-1',
           {},
           exampleAnswers,
           exampleSwitches,
           pathConfigMock
-        );
-        expect(response.switches).toEqual({ switch1: false, switch2: true });
-      });
-    });
-  });
+        )
+        expect(response.switches).toEqual({ switch1: false, switch2: true })
+      })
+    })
+  })
 
-  describe("When there are no switches: ", () => {
-    cleanSwitches.mockImplementation(() => {});
+  describe('When there are no switches: ', () => {
+    cleanSwitches.mockImplementation(() => {})
 
-    it("should return an empty switches object", () => {
-      const exampleEmptySwitches = [{}, undefined, null];
+    it('should return an empty switches object', () => {
+      const exampleEmptySwitches = [{}, undefined, null]
 
       response = continueController(
-        "/mock-page-1",
+        '/mock-page-1',
         {},
         exampleAnswers,
         exampleEmptySwitches,
         pathConfigMock
-      );
+      )
 
-      expect(response.switches).toEqual({});
-    });
-  });
+      expect(response.switches).toEqual({})
+    })
+  })
 
-  describe("When switches are passed in: ", () => {
+  describe('When switches are passed in: ', () => {
     beforeEach(() => {
-      cleanSwitches.mockImplementation(() => exampleSwitches);
-    });
+      cleanSwitches.mockImplementation(() => exampleSwitches)
+    })
 
-    it("should return the same object keys", () => {
+    it('should return the same object keys', () => {
       response = continueController(
-        "/mock-page-1",
+        '/mock-page-1',
         {},
         exampleAnswers,
         exampleSwitches,
         pathConfigMock
-      );
+      )
 
-      const originalSwitchesKeyArray = Object.keys(exampleSwitches);
-      const responseSwitchesKeyArray = Object.keys(response.switches);
+      const originalSwitchesKeyArray = Object.keys(exampleSwitches)
+      const responseSwitchesKeyArray = Object.keys(response.switches)
 
-      expect(originalSwitchesKeyArray).toEqual(responseSwitchesKeyArray);
-    });
+      expect(originalSwitchesKeyArray).toEqual(responseSwitchesKeyArray)
+    })
 
-    it("should return boolean values", () => {
+    it('should return boolean values', () => {
       response = continueController(
-        "/mock-page-1",
+        '/mock-page-1',
         {},
         exampleAnswers,
         exampleSwitches,
         pathConfigMock
-      );
+      )
 
-      const responseSwitchesValueArray = Object.values(response.switches);
+      const responseSwitchesValueArray = Object.values(response.switches)
 
       responseSwitchesValueArray.forEach(value => {
-        expect(typeof value).toBe("boolean");
-      });
-    });
+        expect(typeof value).toBe('boolean')
+      })
+    })
 
-    describe("when cleanSwitches changes the switches that were passed in", () => {
+    describe('when cleanSwitches changes the switches that were passed in', () => {
       beforeEach(() => {
         cleanSwitches.mockImplementation(() => ({
           switch1: false,
           switch2: true
-        }));
-      });
+        }))
+      })
 
-      it("should return the result of cleanSwitches, not the original values", () => {
+      it('should return the result of cleanSwitches, not the original values', () => {
         response = continueController(
-          "/mock-page-1",
+          '/mock-page-1',
           {},
           exampleAnswers,
           exampleSwitches,
           pathConfigMock
-        );
+        )
 
-        expect(response.switches).toEqual({ switch1: false, switch2: true });
-      });
-    });
-  });
+        expect(response.switches).toEqual({ switch1: false, switch2: true })
+      })
+    })
+  })
 
-  describe("When one of the services throws an error", () => {
+  describe('When one of the services throws an error', () => {
     beforeEach(() => {
       cleanEmptiedAnswers.mockImplementation(() => {
-        throw new Error("Some error");
-      });
+        throw new Error('Some error')
+      })
 
       try {
         response = continueController(
-          "/final-page",
+          '/final-page',
           {},
           exampleAnswers,
           exampleSwitches,
           pathConfigMock
-        );
+        )
       } catch (err) {
-        response = err;
+        response = err
       }
-    });
+    })
 
-    it("should throw an error", () => {
-      expect(response.message).toBe("Some error");
-    });
-  });
-});
+    it('should throw an error', () => {
+      expect(response.message).toBe('Some error')
+    })
+  })
+})

@@ -1,10 +1,10 @@
-const regularIntegrationResponse = require("./regularIntegrationResponse.json");
+const regularIntegrationResponse = require('./regularIntegrationResponse.json')
 
 const addressLookupDouble = (postcode, query) => {
-  if (postcode === "BS249ST") {
-    return { json: () => regularIntegrationResponse, status: 200 };
-  } else if (postcode === "AA111AA") {
-    return { json: () => [], status: 200 };
+  if (postcode === 'BS249ST') {
+    return { json: () => regularIntegrationResponse, status: 200 }
+  } else if (postcode === 'AA111AA') {
+    return { json: () => [], status: 200 }
     // TODO JMB - double for long responses. Requires testing.
     // } else if(postcode === "ADD > 100 ADDRESS POSTCODE HERE") {
     //   if(query === "?format=json&lines=4") {
@@ -14,7 +14,7 @@ const addressLookupDouble = (postcode, query) => {
     //     return "ADD PAGE 2 OF FULL LENGTH RESPONSE HERE"
     //   }
     //   else return {status: 500};
-  } else return { status: 500 };
-};
+  } else return { status: 500 }
+}
 
-module.exports = { addressLookupDouble };
+module.exports = { addressLookupDouble }

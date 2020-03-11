@@ -1,25 +1,25 @@
-import React from "react";
-import { Table, asAnchor } from "govuk-react";
-import PropTypes from "prop-types";
-import * as COLOUR from "govuk-colours";
-import moment from "moment";
-import styled from "react-emotion";
-import ContentItem from "./ContentItem";
+import React from 'react'
+import { Table, asAnchor } from 'govuk-react'
+import PropTypes from 'prop-types'
+import * as COLOUR from 'govuk-colours'
+import moment from 'moment'
+import styled from 'react-emotion'
+import ContentItem from './ContentItem'
 
 import {
   FONT_SIZE,
   LINE_HEIGHT,
   MEDIA_QUERIES,
   NTA_LIGHT
-} from "@govuk-react/constants";
+} from '@govuk-react/constants'
 
-const StyledTableRow = styled("div")({
+const StyledTableRow = styled('div')({
   fontFamily: NTA_LIGHT,
-  WebkitFontSmoothing: "antialiased",
-  MozOsxFontSmoothing: "grayscale",
+  WebkitFontSmoothing: 'antialiased',
+  MozOsxFontSmoothing: 'grayscale',
   fontWeight: 400,
-  display: "inline-flex",
-  textTransform: "none",
+  display: 'inline-flex',
+  textTransform: 'none',
   fontSize: FONT_SIZE.SIZE_16,
   lineHeight: LINE_HEIGHT.SIZE_16,
   [MEDIA_QUERIES.LARGESCREEN]: {
@@ -27,56 +27,56 @@ const StyledTableRow = styled("div")({
     lineHeight: LINE_HEIGHT.SIZE_19
   },
   color: `${COLOUR.GREY_1}`
-});
+})
 
 const GridRow = styled(Table.Row)`
   display: grid;
   ${props =>
     props.acPage
-      ? "grid-template-columns: 1fr 1fr;"
-      : "grid-template-columns: 1fr 1fr 70px;"};
-`;
+      ? 'grid-template-columns: 1fr 1fr;'
+      : 'grid-template-columns: 1fr 1fr 70px;'};
+`
 
 const FsaStyledTable = styled(Table)`
   tr:nth-child(2) {
     border-top: 1px solid #bfc1c3;
     margin-top: 12px;
   }
-`;
+`
 
 const TableCellBold = styled(Table.Cell)`
   font-weight: bold;
-`;
+`
 
 const AccessibleTable = props => (
   <FsaStyledTable role="table" {...props}>
     {props.children}
   </FsaStyledTable>
-);
+)
 
 const AccessibleTableRow = props => (
   <GridRow role="row" {...props}>
     {props.children}
   </GridRow>
-);
+)
 
 const AccessibleRowHeader = props => (
   <Table.CellHeader scope="row" role="rowheader" {...props}>
     {props.children}
   </Table.CellHeader>
-);
+)
 
 const AccessibleCell = props => (
   <TableCellBold role="cell" className="summaryTableDataCell" {...props}>
     {props.children}
   </TableCellBold>
-);
+)
 
 const AccessibleChangeCell = props => (
   <Table.Cell role="cell" className="summaryTableChangeCell" {...props}>
     {props.children}
   </Table.Cell>
-);
+)
 
 const InvisibleRow = styled(Table.Row)`
   color: #ffffff00;
@@ -87,7 +87,7 @@ const InvisibleRow = styled(Table.Row)`
     border: none;
     position: absolute;
   }
-`;
+`
 
 const ColumnHeaders = () => (
   <InvisibleRow>
@@ -101,9 +101,9 @@ const ColumnHeaders = () => (
       Change your answer
     </Table.CellHeader>
   </InvisibleRow>
-);
+)
 
-const AnchorTag = asAnchor("a");
+const AnchorTag = asAnchor('a')
 
 const OperatorDetailsTable = props => (
   <React.Fragment>
@@ -111,8 +111,7 @@ const OperatorDetailsTable = props => (
     {props.operator_type ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="operatorTypeRow"
-      >
+        id="operatorTypeRow">
         <AccessibleRowHeader>Operator type</AccessibleRowHeader>
         <AccessibleCell id="operator_type">
           {props.operator_type}
@@ -122,8 +121,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorTypeRow"
               href="/edit/registration-role"
-              aria-label="Change operator type"
-            >
+              aria-label="Change operator type">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -134,8 +132,7 @@ const OperatorDetailsTable = props => (
     {props.operator_company_name ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="operatorCompanyNameRow"
-      >
+        id="operatorCompanyNameRow">
         <AccessibleRowHeader>Company name</AccessibleRowHeader>
         <AccessibleCell id="operator_company_name">
           {props.operator_company_name}
@@ -145,8 +142,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorCompanyNameRow"
               href="/edit/operator-company-details"
-              aria-label="Change operator company name"
-            >
+              aria-label="Change operator company name">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -157,8 +153,7 @@ const OperatorDetailsTable = props => (
     {props.operator_company_house_number ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="operatorCompaniesHouseRow"
-      >
+        id="operatorCompaniesHouseRow">
         <AccessibleRowHeader>Company number</AccessibleRowHeader>
         <AccessibleCell id="operator_company_house_number">
           {props.operator_company_house_number}
@@ -168,8 +163,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorCompaniesHouseRow"
               href="/edit/operator-company-details"
-              aria-label="Change operator companies house"
-            >
+              aria-label="Change operator companies house">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -180,8 +174,7 @@ const OperatorDetailsTable = props => (
     {props.operator_charity_name ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="operatorCharityNameRow"
-      >
+        id="operatorCharityNameRow">
         <AccessibleRowHeader>Charity name</AccessibleRowHeader>
         <AccessibleCell id="operator_charity_name">
           {props.operator_charity_name}
@@ -191,8 +184,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorCharityNameRow"
               href="/edit/operator-charity-details"
-              aria-label="Change operator charity name"
-            >
+              aria-label="Change operator charity name">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -203,8 +195,7 @@ const OperatorDetailsTable = props => (
     {props.operator_charity_number ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="operatorCharityNumberRow"
-      >
+        id="operatorCharityNumberRow">
         <AccessibleRowHeader>Charity number</AccessibleRowHeader>
         <AccessibleCell id="operator_charity_number">
           {props.operator_charity_number}
@@ -214,8 +205,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorCharityNumberRow"
               href="/edit/operator-charity-details"
-              aria-label="Change operator charity number"
-            >
+              aria-label="Change operator charity number">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -226,11 +216,10 @@ const OperatorDetailsTable = props => (
     {props.operator_first_name ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="operatorNameRow"
-      >
+        id="operatorNameRow">
         <AccessibleRowHeader>Name</AccessibleRowHeader>
         <AccessibleCell>
-          <span id="operator_first_name">{props.operator_first_name}</span>{" "}
+          <span id="operator_first_name">{props.operator_first_name}</span>{' '}
           <span id="operator_last_name">{props.operator_last_name}</span>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
@@ -238,8 +227,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorNameRow"
               href="/edit/operator-name"
-              aria-label="Change operator name"
-            >
+              aria-label="Change operator name">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -250,12 +238,11 @@ const OperatorDetailsTable = props => (
     {props.operator_address_line_1 ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="operatorAddressRow"
-      >
+        id="operatorAddressRow">
         <AccessibleRowHeader>
-          {props.operator_type === "Partnership"
-            ? "Partnership contact address"
-            : "Operator address"}
+          {props.operator_type === 'Partnership'
+            ? 'Partnership contact address'
+            : 'Operator address'}
         </AccessibleRowHeader>
         <AccessibleCell>
           <div id="operator_address_line_1">
@@ -281,8 +268,7 @@ const OperatorDetailsTable = props => (
     {props.operator_primary_number ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="operatorContactDetailsRow"
-      >
+        id="operatorContactDetailsRow">
         <AccessibleRowHeader>Phone number</AccessibleRowHeader>
         <AccessibleCell>
           <div id="operator_primary_number">
@@ -297,8 +283,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorContactDetailsRow"
               href="/edit/operator-contact-details"
-              aria-label="Change operator contact details"
-            >
+              aria-label="Change operator contact details">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -309,8 +294,7 @@ const OperatorDetailsTable = props => (
     {props.operator_email ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="operatorEmailRow"
-      >
+        id="operatorEmailRow">
         <AccessibleRowHeader>Email address</AccessibleRowHeader>
         <AccessibleCell id="operator_email">
           {props.operator_email}
@@ -320,8 +304,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeOperatorEmailRow"
               href="/edit/operator-contact-details"
-              aria-label="Change operator email"
-            >
+              aria-label="Change operator email">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -333,8 +316,7 @@ const OperatorDetailsTable = props => (
       <React.Fragment>
         <AccessibleTableRow
           acPage={props.applicationCompletePage}
-          id="operatorMainPartnerRow"
-        >
+          id="operatorMainPartnerRow">
           <AccessibleRowHeader>Main partnership contact</AccessibleRowHeader>
           <AccessibleCell>
             <div>
@@ -348,8 +330,7 @@ const OperatorDetailsTable = props => (
               <AnchorTag
                 id="changeOperatorMainPartnerRow"
                 href="/edit/main-partnership-contact"
-                aria-label="Change main partnership contact"
-              >
+                aria-label="Change main partnership contact">
                 Change
               </AnchorTag>
             </AccessibleChangeCell>
@@ -357,13 +338,12 @@ const OperatorDetailsTable = props => (
         </AccessibleTableRow>
         <AccessibleTableRow
           acPage={props.applicationCompletePage}
-          id="operatorPartnersRow"
-        >
+          id="operatorPartnersRow">
           <AccessibleRowHeader>Partners</AccessibleRowHeader>
           <AccessibleCell>
             <div>
               {props.partners.map((partner, index) => {
-                return <div key={`partner_${index}`}>{partner}</div>;
+                return <div key={`partner_${index}`}>{partner}</div>
               })}
             </div>
           </AccessibleCell>
@@ -372,8 +352,7 @@ const OperatorDetailsTable = props => (
               <AnchorTag
                 id="changeOperatorPartnersRow"
                 href="/edit/partner-name"
-                aria-label="Change partner details"
-              >
+                aria-label="Change partner details">
                 Change
               </AnchorTag>
             </AccessibleChangeCell>
@@ -385,8 +364,7 @@ const OperatorDetailsTable = props => (
     {props.contact_representative_email ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="contactRepresentativeRow"
-      >
+        id="contactRepresentativeRow">
         <AccessibleRowHeader>Designated contact</AccessibleRowHeader>
         <AccessibleCell>
           <StyledTableRow>
@@ -413,8 +391,7 @@ const OperatorDetailsTable = props => (
             <AnchorTag
               id="changeContactRepresentativeRow"
               href="/edit/contact-representative"
-              aria-label="Change contact representative"
-            >
+              aria-label="Change contact representative">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -422,7 +399,7 @@ const OperatorDetailsTable = props => (
       </AccessibleTableRow>
     ) : null}
   </React.Fragment>
-);
+)
 
 const EstablishmentDetailsTable = props => (
   <React.Fragment>
@@ -430,8 +407,7 @@ const EstablishmentDetailsTable = props => (
     {props.establishment_trading_name ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="establishmentTradingNameRow"
-      >
+        id="establishmentTradingNameRow">
         <AccessibleRowHeader>Trading name</AccessibleRowHeader>
         <AccessibleCell id="establishment_trading_name">
           {props.establishment_trading_name}
@@ -441,8 +417,7 @@ const EstablishmentDetailsTable = props => (
             <AnchorTag
               id="changeEstablishmentTradingNameRow"
               href="/edit/establishment-trading-name"
-              aria-label="Change establishment trading name"
-            >
+              aria-label="Change establishment trading name">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -453,8 +428,7 @@ const EstablishmentDetailsTable = props => (
     {props.establishment_address_line_1 ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="establishmentAddressRow"
-      >
+        id="establishmentAddressRow">
         <AccessibleRowHeader>Establishment address</AccessibleRowHeader>
         <AccessibleCell>
           <div id="establishment_address_line_1">
@@ -482,8 +456,7 @@ const EstablishmentDetailsTable = props => (
     {props.establishment_type ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="establishmentAddressTypeRow"
-      >
+        id="establishmentAddressTypeRow">
         <AccessibleRowHeader>Address type</AccessibleRowHeader>
         <AccessibleCell id="establishment_type">
           {props.establishment_type}
@@ -493,8 +466,7 @@ const EstablishmentDetailsTable = props => (
             <AnchorTag
               id="changeEstablishmentAddressTypeRow"
               href="/edit/establishment-address-type"
-              aria-label="Change establishment address type"
-            >
+              aria-label="Change establishment address type">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -505,8 +477,7 @@ const EstablishmentDetailsTable = props => (
     {props.establishment_primary_number ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="establishmentContactDetailsRow"
-      >
+        id="establishmentContactDetailsRow">
         <AccessibleRowHeader>Phone number</AccessibleRowHeader>
         <AccessibleCell>
           <div id="establishment_primary_number">
@@ -521,8 +492,7 @@ const EstablishmentDetailsTable = props => (
             <AnchorTag
               id="changeEstablishmentContactDetailsRow"
               href="/edit/establishment-contact-details"
-              aria-label="Change establishment contact details"
-            >
+              aria-label="Change establishment contact details">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -533,8 +503,7 @@ const EstablishmentDetailsTable = props => (
     {props.establishment_email ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="establishmentEmailRow"
-      >
+        id="establishmentEmailRow">
         <AccessibleRowHeader>Email address</AccessibleRowHeader>
         <AccessibleCell id="establishment_email">
           {props.establishment_email}
@@ -544,8 +513,7 @@ const EstablishmentDetailsTable = props => (
             <AnchorTag
               id="changeEstablishmentEmailRow"
               href="/edit/establishment-contact-details"
-              aria-label="Change establishment email"
-            >
+              aria-label="Change establishment email">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -556,19 +524,17 @@ const EstablishmentDetailsTable = props => (
     {props.establishment_opening_date ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="establishmentOpeningDateRow"
-      >
+        id="establishmentOpeningDateRow">
         <AccessibleRowHeader>Trading date</AccessibleRowHeader>
         <AccessibleCell id="establishment_opening_date">
-          {moment(props.establishment_opening_date).format("DD MMM YYYY")}
+          {moment(props.establishment_opening_date).format('DD MMM YYYY')}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
             <AnchorTag
               id="changeEstablishmentOpeningDateRow"
               href="/edit/establishment-opening-status"
-              aria-label="Change establishment opening date"
-            >
+              aria-label="Change establishment opening date">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -578,8 +544,7 @@ const EstablishmentDetailsTable = props => (
 
     <AccessibleTableRow
       acPage={props.applicationCompletePage}
-      id="establishmentOpeningDaysRow"
-    >
+      id="establishmentOpeningDaysRow">
       <AccessibleRowHeader>Opening days</AccessibleRowHeader>
       <AccessibleCell>
         {props.opening_days_irregular ||
@@ -602,8 +567,7 @@ const EstablishmentDetailsTable = props => (
           <AnchorTag
             id="changeEstablishmentOpeningDaysRow"
             href="/edit/opening-days-start"
-            aria-label="Change establishment opening days"
-          >
+            aria-label="Change establishment opening days">
             Change
           </AnchorTag>
         </AccessibleChangeCell>
@@ -612,8 +576,7 @@ const EstablishmentDetailsTable = props => (
     {!props.opening_days_irregular ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="establishmentOpeningHoursRow"
-      >
+        id="establishmentOpeningHoursRow">
         <AccessibleRowHeader>Opening hours</AccessibleRowHeader>
         <AccessibleCell>
           <div>
@@ -659,8 +622,7 @@ const EstablishmentDetailsTable = props => (
             <AnchorTag
               id="changeEstablishmentOpeningHoursRow"
               href="/edit/opening-hours"
-              aria-label="Change establishment opening hours"
-            >
+              aria-label="Change establishment opening hours">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -670,8 +632,7 @@ const EstablishmentDetailsTable = props => (
     {props.water_supply ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="waterSupplyRow"
-      >
+        id="waterSupplyRow">
         <AccessibleRowHeader>Water supply</AccessibleRowHeader>
         <AccessibleCell id="water_supply">{props.water_supply}</AccessibleCell>
         {props.applicationCompletePage ? null : (
@@ -679,8 +640,7 @@ const EstablishmentDetailsTable = props => (
             <AnchorTag
               id="changeWaterSupplyRow"
               href="/edit/business-water-supply"
-              aria-label="Change water supply"
-            >
+              aria-label="Change water supply">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -688,7 +648,7 @@ const EstablishmentDetailsTable = props => (
       </AccessibleTableRow>
     ) : null}
   </React.Fragment>
-);
+)
 
 const FoodActivitiesTable = props => (
   <React.Fragment>
@@ -696,8 +656,7 @@ const FoodActivitiesTable = props => (
     {props.customer_type ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="activitiesCustomersRow"
-      >
+        id="activitiesCustomersRow">
         <AccessibleRowHeader>Customers</AccessibleRowHeader>
         <AccessibleCell id="customer_type">
           {props.customer_type}
@@ -707,8 +666,7 @@ const FoodActivitiesTable = props => (
             <AnchorTag
               id="changeActivitiesCustomersRow"
               href="/edit/customer-type"
-              aria-label="Change activities customer type"
-            >
+              aria-label="Change activities customer type">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -719,8 +677,7 @@ const FoodActivitiesTable = props => (
     {props.business_type ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="businessTypeRow"
-      >
+        id="businessTypeRow">
         <AccessibleRowHeader>Business type</AccessibleRowHeader>
         <AccessibleCell id="business_type">
           {props.business_type}
@@ -730,8 +687,7 @@ const FoodActivitiesTable = props => (
             <AnchorTag
               id="changeBusinessTypeRow"
               href="/edit/business-type"
-              aria-label="Change business type"
-            >
+              aria-label="Change business type">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -742,8 +698,7 @@ const FoodActivitiesTable = props => (
     {props.import_export_activities ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="activitiesBusinessImportExportRow"
-      >
+        id="activitiesBusinessImportExportRow">
         <AccessibleRowHeader>Import and export</AccessibleRowHeader>
         <AccessibleCell id="import_export_activities">
           {props.import_export_activities}
@@ -753,8 +708,7 @@ const FoodActivitiesTable = props => (
             <AnchorTag
               id="changeActivitiesBusinessImportExportRow"
               href="/edit/business-import-export"
-              aria-label="Change business activities import export"
-            >
+              aria-label="Change business activities import export">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -765,8 +719,7 @@ const FoodActivitiesTable = props => (
     {props.business_other_details ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="businessOtherDetailsRow"
-      >
+        id="businessOtherDetailsRow">
         <AccessibleRowHeader>Additional details</AccessibleRowHeader>
         <AccessibleCell id="business_other_details">
           {props.business_other_details}
@@ -776,8 +729,7 @@ const FoodActivitiesTable = props => (
             <AnchorTag
               id="changeBusinessOtherDetailsRow"
               href="/edit/business-other-details"
-              aria-label="Change business other details"
-            >
+              aria-label="Change business other details">
               Change
             </AnchorTag>
           </AccessibleChangeCell>
@@ -785,15 +737,14 @@ const FoodActivitiesTable = props => (
       </AccessibleTableRow>
     ) : null}
   </React.Fragment>
-);
+)
 
 const DeclarationTable = props => (
   <React.Fragment>
     <ColumnHeaders />
     <AccessibleTableRow
       acPage={props.applicationCompletePage}
-      id="declaration1Row"
-    >
+      id="declaration1Row">
       <AccessibleRowHeader>
         <span id="declaration1">{props.declaration1}</span>
       </AccessibleRowHeader>
@@ -802,8 +753,7 @@ const DeclarationTable = props => (
 
     <AccessibleTableRow
       acPage={props.applicationCompletePage}
-      id="declaration2Row"
-    >
+      id="declaration2Row">
       <AccessibleRowHeader>
         <span id="declaration2">{props.declaration2}</span>
       </AccessibleRowHeader>
@@ -812,8 +762,7 @@ const DeclarationTable = props => (
 
     <AccessibleTableRow
       acPage={props.applicationCompletePage}
-      id="declaration3Row"
-    >
+      id="declaration3Row">
       <AccessibleRowHeader>
         <span id="declaration3">{props.declaration3}</span>
       </AccessibleRowHeader>
@@ -822,8 +771,7 @@ const DeclarationTable = props => (
     {props.feedback1 ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
-        id="feedback1Row"
-      >
+        id="feedback1Row">
         <AccessibleRowHeader>
           <span id="feedback1">{props.feedback1}</span>
         </AccessibleRowHeader>
@@ -831,7 +779,7 @@ const DeclarationTable = props => (
       </AccessibleTableRow>
     ) : null}
   </React.Fragment>
-);
+)
 
 const SummaryTable = props => (
   <React.Fragment>
@@ -866,9 +814,9 @@ const SummaryTable = props => (
       </ContentItem.B_45_30>
     ) : null}
   </React.Fragment>
-);
+)
 
-export default SummaryTable;
+export default SummaryTable
 
 SummaryTable.propTypes = {
   operator_company_name: PropTypes.string,
@@ -891,4 +839,4 @@ SummaryTable.propTypes = {
   establishment_postcode: PropTypes.string,
   customer_type: PropTypes.string,
   import_export_activities: PropTypes.string
-};
+}

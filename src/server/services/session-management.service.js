@@ -3,8 +3,8 @@
  * @module services/session-management
  */
 
-const schema = require("./schema");
-const { logEmitter } = require("./logging.service");
+const schema = require('./schema')
+const { logEmitter } = require('./logging.service')
 
 /**
  * Deletes all answers that come from a page that is now inactive on the path
@@ -16,36 +16,36 @@ const { logEmitter } = require("./logging.service");
  */
 const cleanInactivePathAnswers = (cumulativeFullAnswers, path) => {
   logEmitter.emit(
-    "functionCall",
-    "session-management.service",
-    "cleanInactivePathAnswers"
-  );
+    'functionCall',
+    'session-management.service',
+    'cleanInactivePathAnswers'
+  )
 
-  const cleanedAnswers = Object.assign({}, cumulativeFullAnswers);
+  const cleanedAnswers = Object.assign({}, cumulativeFullAnswers)
 
   for (let answer in cleanedAnswers) {
     // find the page that this answer is from
-    let pageOfAnswer;
+    let pageOfAnswer
 
     for (let page in schema) {
       if (schema[page].properties[answer]) {
-        pageOfAnswer = page;
+        pageOfAnswer = page
       }
     }
 
     // if that page is off in the given path, delete the answer
     if (path[pageOfAnswer] && path[pageOfAnswer].on === false) {
-      delete cleanedAnswers[answer];
+      delete cleanedAnswers[answer]
     }
   }
 
   logEmitter.emit(
-    "functionSuccess",
-    "session-management.service",
-    "cleanInactivePathAnswers"
-  );
-  return cleanedAnswers;
-};
+    'functionSuccess',
+    'session-management.service',
+    'cleanInactivePathAnswers'
+  )
+  return cleanedAnswers
+}
 
 /**
  * Deletes all answers that were previously given for the current page but are now falsy on a second submission
@@ -62,28 +62,28 @@ const cleanEmptiedAnswers = (
   currentPage
 ) => {
   logEmitter.emit(
-    "functionCall",
-    "session-management.service",
-    "cleanEmptiedAnswers"
-  );
-  const cleanedAnswers = Object.assign({}, cumulativeFullAnswers);
+    'functionCall',
+    'session-management.service',
+    'cleanEmptiedAnswers'
+  )
+  const cleanedAnswers = Object.assign({}, cumulativeFullAnswers)
 
   for (let schemaDefinedAnswer in schema[currentPage].properties) {
     if (
       cleanedAnswers[schemaDefinedAnswer] &&
       newAnswersArray.indexOf(schemaDefinedAnswer) === -1
     ) {
-      delete cleanedAnswers[schemaDefinedAnswer];
+      delete cleanedAnswers[schemaDefinedAnswer]
     }
   }
 
   logEmitter.emit(
-    "functionSuccess",
-    "session-management.service",
-    "cleanEmptiedAnswers"
-  );
-  return cleanedAnswers;
-};
+    'functionSuccess',
+    'session-management.service',
+    'cleanEmptiedAnswers'
+  )
+  return cleanedAnswers
+}
 
 /**
  * Sets switches under specific conditions
@@ -94,13 +94,9 @@ const cleanEmptiedAnswers = (
  * @returns {object} The edited switches object
  */
 const cleanSwitches = (cumulativeFullAnswers, switches) => {
-  logEmitter.emit(
-    "functionCall",
-    "session-management.service",
-    "cleanSwitches"
-  );
+  logEmitter.emit('functionCall', 'session-management.service', 'cleanSwitches')
 
-  const cleanedSwitches = Object.assign({}, switches);
+  const cleanedSwitches = Object.assign({}, switches)
 
   if (switches) {
     if (cleanedSwitches.reuseOperatorContactDetails !== undefined) {
@@ -108,34 +104,34 @@ const cleanSwitches = (cumulativeFullAnswers, switches) => {
         cumulativeFullAnswers.operator_primary_number,
         cumulativeFullAnswers.operator_secondary_number,
         cumulativeFullAnswers.operator_email
-      ];
+      ]
 
       const establishmentContactDetails = [
         cumulativeFullAnswers.establishment_primary_number,
         cumulativeFullAnswers.establishment_secondary_number,
         cumulativeFullAnswers.establishment_email
-      ];
+      ]
 
       const operatorEstablishmentDetailsAreDifferent =
         JSON.stringify(operatorContactDetails) !==
-        JSON.stringify(establishmentContactDetails);
+        JSON.stringify(establishmentContactDetails)
 
       if (operatorEstablishmentDetailsAreDifferent) {
-        cleanedSwitches.reuseOperatorContactDetails = false;
+        cleanedSwitches.reuseOperatorContactDetails = false
       }
     }
   }
 
   logEmitter.emit(
-    "functionSuccess",
-    "session-management.service",
-    "cleanSwitches"
-  );
-  return cleanedSwitches;
-};
+    'functionSuccess',
+    'session-management.service',
+    'cleanSwitches'
+  )
+  return cleanedSwitches
+}
 
 module.exports = {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
   cleanSwitches
-};
+}

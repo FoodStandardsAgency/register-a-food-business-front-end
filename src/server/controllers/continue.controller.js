@@ -6,15 +6,15 @@ const {
   moveAlongPath,
   editPath,
   switchOffManualAddressInput
-} = require("../services/path.service");
-const { validate } = require("../services/validation.service");
-const { logEmitter } = require("../services/logging.service");
-const { statusEmitter } = require("../services/statusEmitter.service");
+} = require('../services/path.service')
+const { validate } = require('../services/validation.service')
+const { logEmitter } = require('../services/logging.service')
+const { statusEmitter } = require('../services/statusEmitter.service')
 const {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
   cleanSwitches
-} = require("../services/session-management.service");
+} = require('../services/session-management.service')
 
 /**
  * Returns an object containing validator errors (if present), the redirect route (e.g. the next page),
@@ -35,65 +35,65 @@ const continueController = (
   switches,
   pathFromSession
 ) => {
-  logEmitter.emit("functionCall", "continue.controller", "continueController");
+  logEmitter.emit('functionCall', 'continue.controller', 'continueController')
   const controllerResponse = {
     validatorErrors: {},
     redirectRoute: null,
     cumulativeFullAnswers: {},
     switches: {}
-  };
+  }
 
   try {
-    if (currentPage === "/index") {
-      statusEmitter.emit("incrementCount", "registrationsStarted");
+    if (currentPage === '/index') {
+      statusEmitter.emit('incrementCount', 'registrationsStarted')
     }
 
-    const trimmedNewAnswers = JSON.parse(JSON.stringify(newAnswers));
+    const trimmedNewAnswers = JSON.parse(JSON.stringify(newAnswers))
 
     for (let answer in trimmedNewAnswers) {
-      trimmedNewAnswers[answer] = trimmedNewAnswers[answer].trim();
+      trimmedNewAnswers[answer] = trimmedNewAnswers[answer].trim()
     }
 
-    const trimmedNewAnswersArray = Object.values(trimmedNewAnswers);
+    const trimmedNewAnswersArray = Object.values(trimmedNewAnswers)
 
-    let cleanedPreviousAnswers = Object.assign({}, previousAnswers);
+    let cleanedPreviousAnswers = Object.assign({}, previousAnswers)
 
     // remove any answers that were previously given a truthy value but have since been emptied
     cleanedPreviousAnswers = cleanEmptiedAnswers(
       previousAnswers,
       trimmedNewAnswersArray,
       currentPage
-    );
+    )
 
     controllerResponse.cumulativeFullAnswers = Object.assign(
       {},
       cleanedPreviousAnswers,
       trimmedNewAnswers
-    );
+    )
 
     controllerResponse.switches = Object.assign(
       {},
       cleanSwitches(controllerResponse.cumulativeFullAnswers, switches)
-    );
+    )
 
     controllerResponse.validatorErrors = Object.assign(
       {},
       validate(currentPage, trimmedNewAnswers).errors
-    );
+    )
 
     if (Object.keys(controllerResponse.validatorErrors).length > 0) {
       // if there are errors, redirect back to the current page
-      controllerResponse.redirectRoute = currentPage;
+      controllerResponse.redirectRoute = currentPage
 
       logEmitter.emit(
-        "functionSuccessWith",
-        "continue.controller",
-        "continueController",
+        'functionSuccessWith',
+        'continue.controller',
+        'continueController',
         `validatorErrors: ${JSON.stringify(
           controllerResponse.validatorErrors
         )}. redirectRoute: ${controllerResponse.redirectRoute}`
-      );
-      return controllerResponse;
+      )
+      return controllerResponse
     }
 
     // get the new path based on the answers that have been given
@@ -101,37 +101,37 @@ const continueController = (
       controllerResponse.cumulativeFullAnswers,
       currentPage,
       pathFromSession
-    );
+    )
 
     // update the new path to switch off manual address input pages if the originator (currentPage) is one of the address select pages
-    const updatedNewPath = switchOffManualAddressInput(newPath, currentPage);
+    const updatedNewPath = switchOffManualAddressInput(newPath, currentPage)
 
     // remove any answers that are associated with an inactive page on the path
     controllerResponse.cumulativeFullAnswers = cleanInactivePathAnswers(
       controllerResponse.cumulativeFullAnswers,
       updatedNewPath
-    );
+    )
 
     // else move to the next page in the path
-    const nextPage = moveAlongPath(updatedNewPath, currentPage, 1);
-    controllerResponse.redirectRoute = nextPage;
+    const nextPage = moveAlongPath(updatedNewPath, currentPage, 1)
+    controllerResponse.redirectRoute = nextPage
 
     logEmitter.emit(
-      "functionSuccessWith",
-      "continue.controller",
-      "continueController",
+      'functionSuccessWith',
+      'continue.controller',
+      'continueController',
       `redirectRoute: ${controllerResponse.redirectRoute}`
-    );
-    return controllerResponse;
+    )
+    return controllerResponse
   } catch (err) {
     logEmitter.emit(
-      "functionFail",
-      "continue.controller",
-      "continueController",
+      'functionFail',
+      'continue.controller',
+      'continueController',
       err
-    );
-    throw err;
+    )
+    throw err
   }
-};
+}
 
-module.exports = continueController;
+module.exports = continueController

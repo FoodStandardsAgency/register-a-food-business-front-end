@@ -1,169 +1,167 @@
-jest.mock("../services/validation.service");
-jest.mock("../services/session-management.service");
-jest.mock("../services/address.service");
-jest.mock("../services/statusEmitter.service");
+jest.mock('../services/validation.service')
+jest.mock('../services/session-management.service')
+jest.mock('../services/address.service')
+jest.mock('../services/statusEmitter.service')
 
-const { getUkAddressesByPostcode } = require("../services/address.service");
-const { validate } = require("../services/validation.service");
-const smallAddressResponseJSON = require("../connectors/address-lookup/smallAddressResponseMock.json");
+const { getUkAddressesByPostcode } = require('../services/address.service')
+const { validate } = require('../services/validation.service')
+const smallAddressResponseJSON = require('../connectors/address-lookup/smallAddressResponseMock.json')
 
-const findAddressController = require("./find-address.controller");
+const findAddressController = require('./find-address.controller')
 
-const testEmptyAddressArray = [];
+const testEmptyAddressArray = []
 
 const testPreviousAnswers = {
-  example: "answer"
-};
+  example: 'answer'
+}
 
 const testNewAnswerPostcode = {
-  establishment_postcode_find: "AA11 1AA"
-};
+  establishment_postcode_find: 'AA11 1AA'
+}
 
-let response;
+let response
 
-describe("Function: findAddressController: ", () => {
-  describe("given previous answers and a valid postcode", () => {
+describe('Function: findAddressController: ', () => {
+  describe('given previous answers and a valid postcode', () => {
     beforeEach(() => {
       validate.mockImplementation(() => ({
         errors: {}
-      }));
-    });
+      }))
+    })
 
-    describe("given that at least one address is returned", () => {
+    describe('given that at least one address is returned', () => {
       beforeEach(async () => {
         getUkAddressesByPostcode.mockImplementation(
           () => smallAddressResponseJSON
-        );
+        )
 
         response = await findAddressController(
-          "/establishment-address",
+          '/establishment-address',
           testPreviousAnswers,
           testNewAnswerPostcode
-        );
-      });
+        )
+      })
 
-      it("Should return a redirectRoute of the address select page", () => {
-        expect(response.redirectRoute).toEqual("/establishment-address-select");
-      });
+      it('Should return a redirectRoute of the address select page', () => {
+        expect(response.redirectRoute).toEqual('/establishment-address-select')
+      })
 
-      it("Should return addressLookups containing the correct addresses under the correct key", () => {
+      it('Should return addressLookups containing the correct addresses under the correct key', () => {
         expect(response.addressLookups.establishment_postcode_find).toEqual(
           smallAddressResponseJSON
-        );
-      });
+        )
+      })
 
-      it("Should return cumulativeFullAnswers including the previous answers and the new postcode", () => {
+      it('Should return cumulativeFullAnswers including the previous answers and the new postcode', () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          example: "answer",
-          establishment_postcode_find: "AA11 1AA"
-        });
-      });
+          example: 'answer',
+          establishment_postcode_find: 'AA11 1AA'
+        })
+      })
 
-      it("Should return empty validatorErrors", () => {
-        expect(response.validatorErrors).toEqual({});
-      });
-    });
+      it('Should return empty validatorErrors', () => {
+        expect(response.validatorErrors).toEqual({})
+      })
+    })
 
-    describe("given one of the services throws an error", () => {
+    describe('given one of the services throws an error', () => {
       beforeEach(async () => {
         getUkAddressesByPostcode.mockImplementation(() => {
-          throw new Error("Some error");
-        });
+          throw new Error('Some error')
+        })
         response = await findAddressController(
-          "/establishment-address",
+          '/establishment-address',
           testPreviousAnswers,
           testNewAnswerPostcode
-        );
-      });
+        )
+      })
 
-      it("Should return a redirectRoute of the manual entry page", () => {
-        expect(response.redirectRoute).toEqual("/establishment-address-manual");
-      });
+      it('Should return a redirectRoute of the manual entry page', () => {
+        expect(response.redirectRoute).toEqual('/establishment-address-manual')
+      })
 
-      it("Should return cumulativeFullAnswers including the previous answers and the new postcode", () => {
+      it('Should return cumulativeFullAnswers including the previous answers and the new postcode', () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          example: "answer",
-          establishment_postcode_find: "AA11 1AA"
-        });
-      });
+          example: 'answer',
+          establishment_postcode_find: 'AA11 1AA'
+        })
+      })
 
-      it("Should return addressLookups containing the empty array under the correct key", () => {
+      it('Should return addressLookups containing the empty array under the correct key', () => {
         expect(response.addressLookups.establishment_postcode_find).toEqual(
           testEmptyAddressArray
-        );
-      });
+        )
+      })
 
-      it("Should return empty validatorErrors", () => {
-        expect(response.validatorErrors).toEqual({});
-      });
-    });
+      it('Should return empty validatorErrors', () => {
+        expect(response.validatorErrors).toEqual({})
+      })
+    })
 
-    describe("given that no addresses are returned", () => {
+    describe('given that no addresses are returned', () => {
       beforeEach(async () => {
-        getUkAddressesByPostcode.mockImplementation(
-          () => testEmptyAddressArray
-        );
+        getUkAddressesByPostcode.mockImplementation(() => testEmptyAddressArray)
 
         response = await findAddressController(
-          "/establishment-address",
+          '/establishment-address',
           testPreviousAnswers,
           testNewAnswerPostcode
-        );
-      });
+        )
+      })
 
-      it("Should return a redirectRoute of the manual entry page", () => {
-        expect(response.redirectRoute).toEqual("/establishment-address-manual");
-      });
+      it('Should return a redirectRoute of the manual entry page', () => {
+        expect(response.redirectRoute).toEqual('/establishment-address-manual')
+      })
 
-      it("Should return cumulativeFullAnswers including the previous answers and the new postcode", () => {
+      it('Should return cumulativeFullAnswers including the previous answers and the new postcode', () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          example: "answer",
-          establishment_postcode_find: "AA11 1AA"
-        });
-      });
+          example: 'answer',
+          establishment_postcode_find: 'AA11 1AA'
+        })
+      })
 
-      it("Should return addressLookups containing the empty array under the correct key", () => {
+      it('Should return addressLookups containing the empty array under the correct key', () => {
         expect(response.addressLookups.establishment_postcode_find).toEqual(
           testEmptyAddressArray
-        );
-      });
+        )
+      })
 
-      it("Should return empty validatorErrors", () => {
-        expect(response.validatorErrors).toEqual({});
-      });
-    });
-  });
+      it('Should return empty validatorErrors', () => {
+        expect(response.validatorErrors).toEqual({})
+      })
+    })
+  })
 
-  describe("given previous answers and an invalid postcode", () => {
+  describe('given previous answers and an invalid postcode', () => {
     beforeEach(async () => {
       validate.mockImplementation(() => ({
-        errors: { example: "error" }
-      }));
+        errors: { example: 'error' }
+      }))
 
       response = await findAddressController(
-        "/establishment-address",
+        '/establishment-address',
         testPreviousAnswers,
         {
-          establishment_postcode_find: "not a valid postcode"
+          establishment_postcode_find: 'not a valid postcode'
         }
-      );
-    });
+      )
+    })
 
-    it("Should return a redirectRoute of the current page", () => {
-      expect(response.redirectRoute).toEqual("/establishment-address");
-    });
+    it('Should return a redirectRoute of the current page', () => {
+      expect(response.redirectRoute).toEqual('/establishment-address')
+    })
 
-    it("Should return cumulativeFullAnswers including the previous answers and the invalid postcode", () => {
+    it('Should return cumulativeFullAnswers including the previous answers and the invalid postcode', () => {
       expect(response.cumulativeFullAnswers).toEqual({
-        example: "answer",
-        establishment_postcode_find: "not a valid postcode"
-      });
-    });
+        example: 'answer',
+        establishment_postcode_find: 'not a valid postcode'
+      })
+    })
 
-    it("Should return the correct validatorErrors", () => {
+    it('Should return the correct validatorErrors', () => {
       expect(response.validatorErrors).toEqual({
-        example: "error"
-      });
-    });
-  });
-});
+        example: 'error'
+      })
+    })
+  })
+})

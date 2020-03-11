@@ -1,5 +1,5 @@
-import styled from "react-emotion";
-import { Select } from "govuk-react";
+import styled from 'react-emotion'
+import { Select } from 'govuk-react'
 
 const SelectWithHeader = styled(Select)`
   span {
@@ -10,6 +10,6 @@ const SelectWithHeader = styled(Select)`
     margin-bottom: 20px;
     font-weight: bold;
   }
-`;
+`
 
-module.exports = SelectWithHeader;
+module.exports = SelectWithHeader

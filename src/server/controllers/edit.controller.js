@@ -2,18 +2,18 @@
  * @module controllers/edit
  */
 
-const { logEmitter } = require("../services/logging.service");
+const { logEmitter } = require('../services/logging.service')
 const {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
   cleanSwitches
-} = require("../services/session-management.service");
-const { validate } = require("../services/validation.service");
-const { trimAnswers } = require("../services/data-transform.service");
+} = require('../services/session-management.service')
+const { validate } = require('../services/validation.service')
+const { trimAnswers } = require('../services/data-transform.service')
 const {
   editPathInEditMode,
   moveAlongEditPath
-} = require("../services/path.service");
+} = require('../services/path.service')
 
 /**
  * Returns the previous page in the edit-mode path
@@ -33,7 +33,7 @@ const editBack = (
   cumulativeFullAnswers,
   cumulativeEditAnswers
 ) => {
-  logEmitter.emit("functionCall", "edit.controller", "editBack");
+  logEmitter.emit('functionCall', 'edit.controller', 'editBack')
 
   const newEditModePath = editPathInEditMode(
     cumulativeFullAnswers,
@@ -41,21 +41,21 @@ const editBack = (
     pathFromSession,
     editModeFirstPage,
     currentPage
-  );
+  )
 
-  const previousPage = moveAlongEditPath(newEditModePath, currentPage, -1);
+  const previousPage = moveAlongEditPath(newEditModePath, currentPage, -1)
 
   logEmitter.emit(
-    "functionSuccessWith",
-    "edit.controller",
-    "editBack",
+    'functionSuccessWith',
+    'edit.controller',
+    'editBack',
     `Previous page is ${previousPage}`
-  );
-  return previousPage;
-};
+  )
+  return previousPage
+}
 
 const checkIfValid = validatorErrors =>
-  Object.keys(validatorErrors).length === 0;
+  Object.keys(validatorErrors).length === 0
 
 /**
  * Returns an object containing validator errors (if present), the redirect route (e.g. the next page in the edit-mode path),
@@ -80,40 +80,40 @@ const editContinue = (
   newAnswers,
   switches
 ) => {
-  logEmitter.emit("functionCall", "edit.controller", "editContinue");
+  logEmitter.emit('functionCall', 'edit.controller', 'editContinue')
 
   const truthyCumulativeFullAnswers = cleanEmptiedAnswers(
     { ...cumulativeFullAnswers },
     Object.values(newAnswers),
     currentPage
-  );
+  )
 
   const truthyCumulativeEditAnswers = cleanEmptiedAnswers(
     { ...cumulativeEditAnswers },
     Object.values(newAnswers),
     currentPage
-  );
+  )
 
-  const trimmedNewAnswers = trimAnswers(newAnswers);
+  const trimmedNewAnswers = trimAnswers(newAnswers)
 
   const newCumulativeFullAnswers = {
     ...truthyCumulativeFullAnswers,
     ...trimmedNewAnswers
-  };
+  }
 
   const newCumulativeEditAnswers = {
     ...truthyCumulativeEditAnswers,
     ...trimmedNewAnswers
-  };
+  }
 
-  const cleanedSwitches = cleanSwitches(newCumulativeFullAnswers, switches);
+  const cleanedSwitches = cleanSwitches(newCumulativeFullAnswers, switches)
 
-  const validatorErrors = validate(currentPage, trimmedNewAnswers).errors;
-  const valid = checkIfValid(validatorErrors);
+  const validatorErrors = validate(currentPage, trimmedNewAnswers).errors
+  const valid = checkIfValid(validatorErrors)
 
-  let redirectRoute;
-  let cleanedInactiveFullAnswers;
-  let cleanedInactiveEditAnswers;
+  let redirectRoute
+  let cleanedInactiveFullAnswers
+  let cleanedInactiveEditAnswers
   if (valid) {
     // TODO JMB: Merge switchOffManualAddressInput into editPathInEditMode
     const newEditModePath = editPathInEditMode(
@@ -122,36 +122,36 @@ const editContinue = (
       pathFromSession,
       editModeFirstPage,
       currentPage
-    );
+    )
 
     cleanedInactiveFullAnswers = cleanInactivePathAnswers(
       newCumulativeFullAnswers,
       newEditModePath
-    );
+    )
 
     cleanedInactiveEditAnswers = cleanInactivePathAnswers(
       newCumulativeEditAnswers,
       newEditModePath
-    );
+    )
 
-    const nextPage = moveAlongEditPath(newEditModePath, currentPage, 1);
+    const nextPage = moveAlongEditPath(newEditModePath, currentPage, 1)
 
-    redirectRoute = nextPage;
+    redirectRoute = nextPage
   } else {
-    redirectRoute = currentPage;
+    redirectRoute = currentPage
   }
 
-  let cumulativeEditAnswersToReturn;
-  let cumulativeFullAnswersToReturn;
+  let cumulativeEditAnswersToReturn
+  let cumulativeFullAnswersToReturn
 
   cumulativeFullAnswersToReturn =
-    cleanedInactiveFullAnswers || newCumulativeFullAnswers;
+    cleanedInactiveFullAnswers || newCumulativeFullAnswers
 
-  if (redirectRoute === "/registration-summary") {
-    cumulativeEditAnswersToReturn = {};
+  if (redirectRoute === '/registration-summary') {
+    cumulativeEditAnswersToReturn = {}
   } else {
     cumulativeEditAnswersToReturn =
-      cleanedInactiveEditAnswers || newCumulativeEditAnswers;
+      cleanedInactiveEditAnswers || newCumulativeEditAnswers
   }
 
   const controllerResponse = {
@@ -160,15 +160,15 @@ const editContinue = (
     validatorErrors,
     switches: cleanedSwitches,
     redirectRoute
-  };
+  }
 
   logEmitter.emit(
-    "functionSuccessWith",
-    "edit.controller",
-    "editContinue",
+    'functionSuccessWith',
+    'edit.controller',
+    'editContinue',
     `Next page is ${redirectRoute}`
-  );
-  return controllerResponse;
-};
+  )
+  return controllerResponse
+}
 
-module.exports = { editContinue, editBack };
+module.exports = { editContinue, editBack }

@@ -1,35 +1,35 @@
-import businessTypesJSON from "./business-type-transformed.json";
-import stemmer from "stemmer";
+import businessTypesJSON from './business-type-transformed.json'
+import stemmer from 'stemmer'
 
 const findMatches = (query, returnResultsArray) => {
   const businessTypesArray = Object.values(
     JSON.parse(JSON.stringify(businessTypesJSON))
-  );
+  )
 
   const checkForQueryMatch = (searchableText, query) => {
     const wordArray = searchableText
       .toLowerCase()
-      .split(" ")
-      .filter(word => word !== "");
+      .split(' ')
+      .filter(word => word !== '')
 
     const queryArray = query
       .toLowerCase()
-      .split(" ")
-      .filter(word => word !== "");
+      .split(' ')
+      .filter(word => word !== '')
 
     const matching = queryArray.some(
       word =>
         wordArray.findIndex(entry => {
-          return entry.startsWith(word) || entry.startsWith(stemmer(word));
+          return entry.startsWith(word) || entry.startsWith(stemmer(word))
         }) !== -1
-    );
+    )
 
-    return matching;
-  };
+    return matching
+  }
 
-  let displayNameMatchArray;
-  let searchTermMatchArray;
-  let resultsArray;
+  let displayNameMatchArray
+  let searchTermMatchArray
+  let resultsArray
 
   if (query) {
     displayNameMatchArray = businessTypesArray
@@ -37,31 +37,31 @@ const findMatches = (query, returnResultsArray) => {
       .filter(
         (obj, pos, arr) =>
           arr
-            .map(mapObj => mapObj["displayName"])
-            .indexOf(obj["displayName"]) === pos
+            .map(mapObj => mapObj['displayName'])
+            .indexOf(obj['displayName']) === pos
       )
       // check for matching words and beginnings of words
       .filter(entry => checkForQueryMatch(entry.displayName, query))
       // remove the searchTerm field of each result
       .map(entry => {
-        return { displayName: entry.displayName, searchTerm: undefined };
-      });
+        return { displayName: entry.displayName, searchTerm: undefined }
+      })
 
     searchTermMatchArray = businessTypesArray.filter(entry =>
       // check for matching words and beginnings of words (including the displayName)
       checkForQueryMatch(entry.searchTerm, query)
-    );
+    )
 
-    resultsArray = displayNameMatchArray.concat(searchTermMatchArray);
+    resultsArray = displayNameMatchArray.concat(searchTermMatchArray)
 
     // sort the results alphabetically by displayName
-    resultsArray.sort((a, b) => (a.displayName < b.displayName ? -1 : 1));
+    resultsArray.sort((a, b) => (a.displayName < b.displayName ? -1 : 1))
   } else {
-    resultsArray = [];
+    resultsArray = []
   }
 
-  returnResultsArray(resultsArray);
-};
+  returnResultsArray(resultsArray)
+}
 
 const suggestionFunction = suggestionToBeDisplayed => {
   return (
@@ -70,16 +70,16 @@ const suggestionFunction = suggestionToBeDisplayed => {
       ? ` <span class="searchTermResult">(${
           suggestionToBeDisplayed.searchTerm
         })</span>`
-      : "")
-  );
-};
+      : '')
+  )
+}
 
 const inputValueFunction = selectedSuggestion =>
   selectedSuggestion
     ? selectedSuggestion.displayName +
       (selectedSuggestion.searchTerm
-        ? " (" + selectedSuggestion.searchTerm + ")"
-        : "")
-    : undefined;
+        ? ' (' + selectedSuggestion.searchTerm + ')'
+        : '')
+    : undefined
 
-module.exports = { findMatches, inputValueFunction, suggestionFunction };
+module.exports = { findMatches, inputValueFunction, suggestionFunction }

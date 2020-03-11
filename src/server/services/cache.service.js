@@ -3,8 +3,8 @@
  * @module services/cache
  */
 
-const NodeCache = require("node-cache");
-const { logEmitter } = require("./logging.service");
+const NodeCache = require('node-cache')
+const { logEmitter } = require('./logging.service')
 
 /**
  *
@@ -14,54 +14,54 @@ const { logEmitter } = require("./logging.service");
  * @param {Function} getValue Function to use to obtain value if not in cache
  */
 const Cache = (stdTTL, deleteOnExpire, autoRetrieveOnExpire, getValue) => {
-  const cache = new NodeCache({ stdTTL, deleteOnExpire });
+  const cache = new NodeCache({ stdTTL, deleteOnExpire })
 
   // Enforce one variable per Cache object
-  const key = "x";
+  const key = 'x'
 
   const get = async () => {
-    const value = cache.get(key);
+    const value = cache.get(key)
 
     if (value) {
-      logEmitter.emit("functionCall", "cache.service", "get (from cache)");
-      return value;
+      logEmitter.emit('functionCall', 'cache.service', 'get (from cache)')
+      return value
     }
 
-    logEmitter.emit("functionCall", "cache.service", "get (from db)");
-    const result = await getValue();
-    cache.set(key, result);
-    return result;
-  };
+    logEmitter.emit('functionCall', 'cache.service', 'get (from db)')
+    const result = await getValue()
+    cache.set(key, result)
+    return result
+  }
 
-  cache.on("expired", async (key, oldValue) => {
+  cache.on('expired', async (key, oldValue) => {
     logEmitter.emit(
-      "functionCallWith",
-      "cache.service",
-      "on",
-      "expired",
+      'functionCallWith',
+      'cache.service',
+      'on',
+      'expired',
       oldValue
-    );
+    )
     if (autoRetrieveOnExpire) {
       try {
-        const result = await getValue();
-        cache.set(key, result);
+        const result = await getValue()
+        cache.set(key, result)
       } catch (err) {
         logEmitter.emit(
-          "functionFail",
-          "cache.service",
-          "cache.on(expired)",
+          'functionFail',
+          'cache.service',
+          'cache.on(expired)',
           err
-        );
-        cache.set(key, oldValue);
+        )
+        cache.set(key, oldValue)
       }
     }
-  });
+  })
 
   const isEmpty = () => {
-    return cache.get("x") === undefined;
-  };
+    return cache.get('x') === undefined
+  }
 
-  return Object.freeze({ get, isEmpty });
-};
+  return Object.freeze({ get, isEmpty })
+}
 
-module.exports = { Cache };
+module.exports = { Cache }

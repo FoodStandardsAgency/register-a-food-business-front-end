@@ -1,22 +1,22 @@
-require("dotenv").config();
+require('dotenv').config()
 
 module.exports = {
   QA_KEY: process.env.QA_KEY,
   SUBMIT_URL:
     process.env.SUBMIT_URL ||
-    "http://localhost:4000/api/registration/createNewRegistration",
+    'http://localhost:4000/api/registration/createNewRegistration',
   MONGODB_URL: process.env.MONGODB_URL,
   ADDRESS_API_URL_BASE:
-    "https://ws.postcoder.com/pcw/" +
-    (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
-    "/pafaddressbase",
+    'https://ws.postcoder.com/pcw/' +
+    (process.env.ADDRESS_API_KEY || 'PCW45-12345-12345-1234X') +
+    '/pafaddressbase',
   ADDRESS_API_URL_QUERY:
-    "format=json&lines=3&addtags=uprn&exclude=organisation",
+    'format=json&lines=3&addtags=uprn&exclude=organisation',
   ADDRESS_API_URL_BASE_STANDARD:
-    "https://ws.postcoder.com/pcw/" +
-    (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
-    "/address",
-  ADDRESS_API_URL_QUERY_STANDARD: "format=json&lines=3",
+    'https://ws.postcoder.com/pcw/' +
+    (process.env.ADDRESS_API_KEY || 'PCW45-12345-12345-1234X') +
+    '/address',
+  ADDRESS_API_URL_QUERY_STANDARD: 'format=json&lines=3',
   API_SECRET: process.env.API_SECRET,
   CLIENT_NAME: process.env.CLIENT_NAME,
   CONFIGDB_URL: process.env.CONFIGDB_URL,
@@ -29,4 +29,4 @@ module.exports = {
   IE_SUPPORTED_SINCE: process.env.IE_SUPPORTED_SINCE || 11,
   MAC_SAFARI_SUPPORTED_SINCE: process.env.MACSAFARI_SUPPORTED_SINCE || 9,
   IOS_SAFARI_SUPPORTED_SINCE: process.env.IOSSAFARI_SUPPORTED_SINCE || 9.2
-};
+}

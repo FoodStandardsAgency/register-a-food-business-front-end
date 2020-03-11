@@ -3,16 +3,16 @@
  * @module services/data-transform
  */
 
-const { logEmitter } = require("./logging.service");
+const { logEmitter } = require('./logging.service')
 
 const trimAnswers = cumulativeFullAnswers => {
-  const trimmedAnswers = JSON.parse(JSON.stringify(cumulativeFullAnswers));
+  const trimmedAnswers = JSON.parse(JSON.stringify(cumulativeFullAnswers))
 
   for (let answer in trimmedAnswers) {
-    trimmedAnswers[answer] = trimmedAnswers[answer].trim();
+    trimmedAnswers[answer] = trimmedAnswers[answer].trim()
   }
-  return trimmedAnswers;
-};
+  return trimmedAnswers
+}
 
 /**
  * Runs custom validation functions, on specific parts of cumulative answers, to get them in the correct format for the summary table,
@@ -24,26 +24,26 @@ const trimAnswers = cumulativeFullAnswers => {
  */
 const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
   logEmitter.emit(
-    "functionCall",
-    "data-transform.service",
-    "transformAnswersForSummary"
-  );
+    'functionCall',
+    'data-transform.service',
+    'transformAnswersForSummary'
+  )
 
-  const data = Object.assign({}, cumulativeFullAnswers);
+  const data = Object.assign({}, cumulativeFullAnswers)
 
   try {
     data.operator_type = combineOperatorTypes(
       data.operator_type,
       data.registration_role
-    );
-    delete data.registration_role;
+    )
+    delete data.registration_role
 
     data.customer_type = transformCustomerType(
       data.supply_directly,
       data.supply_other
-    );
-    delete data.supply_directly;
-    delete data.supply_other;
+    )
+    delete data.supply_directly
+    delete data.supply_other
 
     data.open_some_days_summary_table = transformOpeningDaysForSummary(
       data.opening_day_monday,
@@ -54,124 +54,120 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
       data.opening_day_saturday,
       data.opening_day_sunday,
       data.opening_days_start
-    );
+    )
 
     data.import_export_activities = transformBusinessImportExport(
       data.directly_import,
       data.directly_export,
       data.no_import_export
-    );
-    delete data.directly_import;
-    delete data.directly_export;
-    delete data.no_import_export;
+    )
+    delete data.directly_import
+    delete data.directly_export
+    delete data.no_import_export
 
     data.establishment_opening_date = combineDate(
       data.day,
       data.month,
       data.year
-    );
-    delete data.day;
-    delete data.month;
-    delete data.year;
-    delete data.establishment_opening_status;
+    )
+    delete data.day
+    delete data.month
+    delete data.year
+    delete data.establishment_opening_status
 
     if (data.operator_address_selected) {
       if (data.operator_address_line_1) {
-        delete data.operator_address_selected;
+        delete data.operator_address_selected
       } else {
         const operatorAddressLookupData =
-          addressLookups.operator_postcode_find[data.operator_address_selected];
+          addressLookups.operator_postcode_find[data.operator_address_selected]
 
-        data.operator_address_line_1 =
-          operatorAddressLookupData["addressline1"];
+        data.operator_address_line_1 = operatorAddressLookupData['addressline1']
 
-        data.operator_address_line_2 =
-          operatorAddressLookupData["addressline2"];
+        data.operator_address_line_2 = operatorAddressLookupData['addressline2']
 
-        data.operator_address_line_3 =
-          operatorAddressLookupData["addressline3"];
+        data.operator_address_line_3 = operatorAddressLookupData['addressline3']
 
         data.operator_first_line =
-          operatorAddressLookupData["premise"] ||
-          operatorAddressLookupData["addressline1"];
+          operatorAddressLookupData['premise'] ||
+          operatorAddressLookupData['addressline1']
 
-        data.operator_street = operatorAddressLookupData["street"];
+        data.operator_street = operatorAddressLookupData['street']
 
-        data.operator_town = operatorAddressLookupData["posttown"];
+        data.operator_town = operatorAddressLookupData['posttown']
 
-        data.operator_postcode = operatorAddressLookupData["postcode"];
+        data.operator_postcode = operatorAddressLookupData['postcode']
 
-        data.operator_uprn = trimUprn(operatorAddressLookupData["uprn"]);
+        data.operator_uprn = trimUprn(operatorAddressLookupData['uprn'])
 
-        delete data.operator_postcode_find;
-        delete data.operator_address_selected;
+        delete data.operator_postcode_find
+        delete data.operator_address_selected
       }
     }
 
     if (data.establishment_address_selected) {
       if (data.establishment_address_line_1) {
-        delete data.establishment_address_selected;
+        delete data.establishment_address_selected
       } else {
         const establishmentAddressLookupData =
           addressLookups.establishment_postcode_find[
             data.establishment_address_selected
-          ];
+          ]
 
         data.establishment_address_line_1 =
-          establishmentAddressLookupData["addressline1"];
+          establishmentAddressLookupData['addressline1']
 
         data.establishment_address_line_2 =
-          establishmentAddressLookupData["addressline2"];
+          establishmentAddressLookupData['addressline2']
 
         data.establishment_address_line_3 =
-          establishmentAddressLookupData["addressline3"];
+          establishmentAddressLookupData['addressline3']
 
         data.establishment_first_line =
-          establishmentAddressLookupData["premise"] ||
-          establishmentAddressLookupData["addressline1"];
+          establishmentAddressLookupData['premise'] ||
+          establishmentAddressLookupData['addressline1']
 
-        data.establishment_street = establishmentAddressLookupData["street"];
+        data.establishment_street = establishmentAddressLookupData['street']
 
-        data.establishment_town = establishmentAddressLookupData["posttown"];
+        data.establishment_town = establishmentAddressLookupData['posttown']
 
-        data.establishment_postcode =
-          establishmentAddressLookupData["postcode"];
+        data.establishment_postcode = establishmentAddressLookupData['postcode']
 
         data.establishment_uprn = trimUprn(
-          establishmentAddressLookupData["uprn"]
-        );
+          establishmentAddressLookupData['uprn']
+        )
 
-        delete data.establishment_postcode_find;
-        delete data.establishment_address_selected;
+        delete data.establishment_postcode_find
+        delete data.establishment_address_selected
       }
     }
 
     if (data.business_type) {
       const separatedBusinessTypeSearchTerm = separateBracketsFromBusinessType(
         data.business_type
-      );
+      )
 
-      data.business_type = separatedBusinessTypeSearchTerm.business_type;
+      data.business_type = separatedBusinessTypeSearchTerm.business_type
 
       data.business_type_search_term =
-        separatedBusinessTypeSearchTerm.business_type_search_term;
+        separatedBusinessTypeSearchTerm.business_type_search_term
     }
     logEmitter.emit(
-      "functionSuccess",
-      "data-transform.service",
-      "transformAnswersForSummary"
-    );
-    return data;
+      'functionSuccess',
+      'data-transform.service',
+      'transformAnswersForSummary'
+    )
+    return data
   } catch (err) {
     logEmitter.emit(
-      "functionFail",
-      "data-transform-service",
-      "transformAnswersForSummary",
+      'functionFail',
+      'data-transform-service',
+      'transformAnswersForSummary',
       err
-    );
-    throw err;
+    )
+    throw err
   }
-};
+}
 
 /**
  * Trims the UPRN field of any non-numeric characters (and any characters to the right of them)
@@ -182,13 +178,13 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
  * @returns {string} The trimmed UPRN or an empty string if invalid, empty or not defined
  */
 const trimUprn = uprn => {
-  if (typeof uprn === "string" || uprn instanceof String) {
-    const regEx = /^(\d+).*/;
-    const match = uprn.match(regEx);
-    return (match && match[1]) || "";
+  if (typeof uprn === 'string' || uprn instanceof String) {
+    const regEx = /^(\d+).*/
+    const match = uprn.match(regEx)
+    return (match && match[1]) || ''
   }
-  return "";
-};
+  return ''
+}
 
 /**
  * Runs custom validation functions, on specific parts of cumulative answers, to get them in the correct format for the submission
@@ -205,82 +201,82 @@ const transformAnswersForSubmit = (
   addressLookups
 ) => {
   logEmitter.emit(
-    "functionCall",
-    "data-transform.service",
-    "transformAnswersForSubmit"
-  );
+    'functionCall',
+    'data-transform.service',
+    'transformAnswersForSubmit'
+  )
 
   const establishment_details_keys = [
-    "establishment_trading_name",
-    "establishment_primary_number",
-    "establishment_secondary_number",
-    "establishment_email",
-    "establishment_opening_date"
-  ];
+    'establishment_trading_name',
+    'establishment_primary_number',
+    'establishment_secondary_number',
+    'establishment_email',
+    'establishment_opening_date'
+  ]
   const operator_keys = [
-    "operator_first_name",
-    "operator_last_name",
-    "operator_address_line_1",
-    "operator_address_line_2",
-    "operator_address_line_3",
-    "operator_first_line",
-    "operator_street",
-    "operator_town",
-    "operator_postcode",
-    "operator_uprn",
-    "operator_primary_number",
-    "operator_secondary_number",
-    "operator_email",
-    "contact_representative_name",
-    "contact_representative_role",
-    "contact_representative_number",
-    "contact_representative_email",
-    "operator_type",
-    "operator_company_name",
-    "operator_company_house_number",
-    "operator_charity_name",
-    "operator_charity_number"
-  ];
+    'operator_first_name',
+    'operator_last_name',
+    'operator_address_line_1',
+    'operator_address_line_2',
+    'operator_address_line_3',
+    'operator_first_line',
+    'operator_street',
+    'operator_town',
+    'operator_postcode',
+    'operator_uprn',
+    'operator_primary_number',
+    'operator_secondary_number',
+    'operator_email',
+    'contact_representative_name',
+    'contact_representative_role',
+    'contact_representative_number',
+    'contact_representative_email',
+    'operator_type',
+    'operator_company_name',
+    'operator_company_house_number',
+    'operator_charity_name',
+    'operator_charity_number'
+  ]
   const premise_keys = [
-    "establishment_type",
-    "establishment_address_line_1",
-    "establishment_address_line_2",
-    "establishment_address_line_3",
-    "establishment_first_line",
-    "establishment_street",
-    "establishment_town",
-    "establishment_postcode",
-    "establishment_uprn"
-  ];
+    'establishment_type',
+    'establishment_address_line_1',
+    'establishment_address_line_2',
+    'establishment_address_line_3',
+    'establishment_first_line',
+    'establishment_street',
+    'establishment_town',
+    'establishment_postcode',
+    'establishment_uprn'
+  ]
   const activities_keys = [
-    "customer_type",
-    "business_type",
-    "business_type_search_term",
-    "import_export_activities",
-    "opening_days_irregular",
-    "water_supply",
-    "business_other_details",
-    "opening_day_monday",
-    "opening_day_tuesday",
-    "opening_day_wednesday",
-    "opening_day_thursday",
-    "opening_day_friday",
-    "opening_day_saturday",
-    "opening_day_sunday",
-    "opening_hours_monday",
-    "opening_hours_tuesday",
-    "opening_hours_wednesday",
-    "opening_hours_thursday",
-    "opening_hours_friday",
-    "opening_hours_saturday",
-    "opening_hours_sunday"
-  ];
+    'customer_type',
+    'business_type',
+    'business_type_search_term',
+    'import_export_activities',
+    'opening_days_irregular',
+    'water_supply',
+    'business_other_details',
+    'opening_day_monday',
+    'opening_day_tuesday',
+    'opening_day_wednesday',
+    'opening_day_thursday',
+    'opening_day_friday',
+    'opening_day_saturday',
+    'opening_day_sunday',
+    'opening_hours_monday',
+    'opening_hours_tuesday',
+    'opening_hours_wednesday',
+    'opening_hours_thursday',
+    'opening_hours_friday',
+    'opening_hours_saturday',
+    'opening_hours_sunday'
+  ]
   const metadata_keys = [
-    "declaration1",
-    "declaration2",
-    "declaration3",
-    "feedback1"
-  ];
+    'declaration1',
+    'declaration2',
+    'declaration3',
+    'feedback1'
+  ]
 
   const submitObject = {
     registration: {
@@ -293,12 +289,12 @@ const transformAnswersForSubmit = (
       metadata: {}
     },
     local_council_url: lcUrl
-  };
+  }
 
   const summaryData = transformAnswersForSummary(
     cumulativeFullAnswers,
     addressLookups
-  );
+  )
 
   const openingDays = transformOpeningDaysForSubmit(
     summaryData.opening_days_start,
@@ -309,7 +305,7 @@ const transformAnswersForSubmit = (
     summaryData.opening_day_friday,
     summaryData.opening_day_saturday,
     summaryData.opening_day_sunday
-  );
+  )
 
   const openingHours = transformOpeningHoursForSubmit(
     summaryData.opening_hours_monday,
@@ -319,58 +315,58 @@ const transformAnswersForSubmit = (
     summaryData.opening_hours_friday,
     summaryData.opening_hours_saturday,
     summaryData.opening_hours_sunday
-  );
+  )
 
-  const submitData = Object.assign({}, summaryData, openingDays, openingHours);
+  const submitData = Object.assign({}, summaryData, openingDays, openingHours)
 
   establishment_details_keys.forEach(key => {
     if (submitData[key] !== undefined) {
       submitObject.registration.establishment.establishment_details[key] =
-        submitData[key];
+        submitData[key]
     }
-  });
+  })
 
   operator_keys.forEach(key => {
     if (submitData[key] !== undefined) {
-      submitObject.registration.establishment.operator[key] = submitData[key];
+      submitObject.registration.establishment.operator[key] = submitData[key]
     }
-  });
+  })
 
   premise_keys.forEach(key => {
     if (submitData[key] !== undefined) {
-      submitObject.registration.establishment.premise[key] = submitData[key];
+      submitObject.registration.establishment.premise[key] = submitData[key]
     }
-  });
+  })
 
   activities_keys.forEach(key => {
     if (submitData[key] !== undefined) {
-      submitObject.registration.establishment.activities[key] = submitData[key];
+      submitObject.registration.establishment.activities[key] = submitData[key]
     }
-  });
+  })
 
   metadata_keys.forEach(key => {
     if (submitData[key] !== undefined) {
-      submitObject.registration.metadata[key] = submitData[key];
+      submitObject.registration.metadata[key] = submitData[key]
     }
-  });
+  })
 
   if (submitData.partners) {
-    submitObject.registration.establishment.operator.partners = [];
+    submitObject.registration.establishment.operator.partners = []
     submitData.partners.forEach(key => {
       submitObject.registration.establishment.operator.partners.push({
         partner_name: key,
         partner_is_primary_contact: key === submitData.main_partnership_contact
-      });
-    });
+      })
+    })
   }
 
   logEmitter.emit(
-    "functionSuccess",
-    "data-transform.service",
-    "transformAnswersForSubmit"
-  );
-  return submitObject;
-};
+    'functionSuccess',
+    'data-transform.service',
+    'transformAnswersForSubmit'
+  )
+  return submitObject
+}
 
 /**
  * Combines the answers submitted for the import/export activities to ignore the "no import or export" option when it is selected with one of the other options
@@ -387,23 +383,23 @@ const transformBusinessImportExport = (
   no_import_export
 ) => {
   if (directly_import && directly_export && no_import_export) {
-    return "Directly import and export";
+    return 'Directly import and export'
   } else if (directly_import && no_import_export) {
-    return "Directly import";
+    return 'Directly import'
   } else if (directly_export && no_import_export) {
-    return "Directly export";
+    return 'Directly export'
   } else if (directly_import && directly_export) {
-    return "Directly import and export";
+    return 'Directly import and export'
   } else if (directly_import) {
-    return "Directly import";
+    return 'Directly import'
   } else if (directly_export) {
-    return "Directly export";
+    return 'Directly export'
   } else if (no_import_export) {
-    return "None";
+    return 'None'
   } else {
-    return undefined;
+    return undefined
   }
-};
+}
 
 /**
  * Sets the opening days when the user selects monday - sunday on the "open some days" path
@@ -439,13 +435,13 @@ const transformOpeningDaysForSummary = (
     opening_day_saturday &&
     opening_day_sunday
   ) {
-    return "Every day";
-  } else if (opening_days_start === "Every day") {
-    return "Every day";
+    return 'Every day'
+  } else if (opening_days_start === 'Every day') {
+    return 'Every day'
   } else {
-    return undefined;
+    return undefined
   }
-};
+}
 
 /**
  * Sets the opening days to true or false depending on whetehr they are selcted or not. Also sets mobday-sunday to true, if opening_days_start is "Every day".
@@ -479,37 +475,37 @@ const transformOpeningDaysForSubmit = (
     opening_day_friday: false,
     opening_day_saturday: false,
     opening_day_sunday: false
-  };
+  }
 
-  if (opening_days_start === "Every day") {
+  if (opening_days_start === 'Every day') {
     for (let day in days) {
-      days[day] = true;
+      days[day] = true
     }
   } else {
     opening_day_monday
       ? (days.opening_day_monday = true)
-      : (days.opening_day_monday = false);
+      : (days.opening_day_monday = false)
     opening_day_tuesday
       ? (days.opening_day_tuesday = true)
-      : (days.opening_day_tuesday = false);
+      : (days.opening_day_tuesday = false)
     opening_day_wednesday
       ? (days.opening_day_wednesday = true)
-      : (days.opening_day_wednesday = false);
+      : (days.opening_day_wednesday = false)
     opening_day_thursday
       ? (days.opening_day_thursday = true)
-      : (days.opening_day_thursday = false);
+      : (days.opening_day_thursday = false)
     opening_day_friday
       ? (days.opening_day_friday = true)
-      : (days.opening_day_friday = false);
+      : (days.opening_day_friday = false)
     opening_day_saturday
       ? (days.opening_day_saturday = true)
-      : (days.opening_day_saturday = false);
+      : (days.opening_day_saturday = false)
     opening_day_sunday
       ? (days.opening_day_sunday = true)
-      : (days.opening_day_sunday = false);
+      : (days.opening_day_sunday = false)
   }
-  return days;
-};
+  return days
+}
 /** Transforms opening hours to undefined so empty fields are not submitted
  *
  * @param {string} opening_hours_monday
@@ -553,8 +549,8 @@ const transformOpeningHoursForSubmit = (
     opening_hours_sunday: opening_hours_sunday
       ? opening_hours_sunday
       : undefined
-  };
-};
+  }
+}
 
 /**
  * Sets the display text on the summary table for when the user selects whether they supply_directly or supply_other or both
@@ -567,15 +563,15 @@ const transformOpeningHoursForSubmit = (
 
 const transformCustomerType = (supply_directly, supply_other) => {
   if (supply_directly && supply_other) {
-    return "End consumer and other businesses";
+    return 'End consumer and other businesses'
   } else if (supply_directly) {
-    return "End consumer";
+    return 'End consumer'
   } else if (supply_other) {
-    return "Other businesses";
+    return 'Other businesses'
   } else {
-    return undefined;
+    return undefined
   }
-};
+}
 
 /**
  * Sets the display text on the summary table in the correct format for when the business is registered by a representative
@@ -587,36 +583,36 @@ const transformCustomerType = (supply_directly, supply_other) => {
  */
 
 const combineOperatorTypes = (operator_type, registration_role) => {
-  let newOperatorType;
+  let newOperatorType
 
   if (registration_role) {
-    if (registration_role === "Representative" && operator_type) {
-      newOperatorType = `${operator_type} (registered by a representative)`;
-    } else if (registration_role !== "Representative") {
-      newOperatorType = registration_role;
+    if (registration_role === 'Representative' && operator_type) {
+      newOperatorType = `${operator_type} (registered by a representative)`
+    } else if (registration_role !== 'Representative') {
+      newOperatorType = registration_role
     } else {
       throw new Error(`
       data-transform.service operatorTypeTransform():
       The registration_role value was ${registration_role}.
       The operator_type value was ${operator_type}.
       This combination of values is not valid.
-      `);
+      `)
     }
   }
 
-  return newOperatorType;
-};
+  return newOperatorType
+}
 
 //Combines the date to be in the correct format to display on summary table
-const combineDate = (day, month, year) => `${year}-${month}-${day}`;
+const combineDate = (day, month, year) => `${year}-${month}-${day}`
 
 //Formats result of business type look up to display it correctly in the summary table
 const separateBracketsFromBusinessType = text => {
-  let strippedBusinessType = text.trim();
-  let strippedSearchTerm = undefined;
+  let strippedBusinessType = text.trim()
+  let strippedSearchTerm = undefined
 
-  const indexOfOpeningBracket = text.lastIndexOf("(");
-  const indexOfClosingBracket = text.lastIndexOf(")");
+  const indexOfOpeningBracket = text.lastIndexOf('(')
+  const indexOfClosingBracket = text.lastIndexOf(')')
 
   if (
     // if brackets both exist
@@ -625,25 +621,25 @@ const separateBracketsFromBusinessType = text => {
     // if brackets are in the correct order
     indexOfOpeningBracket < indexOfClosingBracket &&
     // if there is no text after the final bracket
-    text.substring(indexOfClosingBracket + 1).trim() === ""
+    text.substring(indexOfClosingBracket + 1).trim() === ''
   ) {
     const textInBrackets = text.slice(
       indexOfOpeningBracket,
       indexOfClosingBracket + 1
-    );
+    )
 
-    strippedBusinessType = text.replace(textInBrackets, "").trim();
+    strippedBusinessType = text.replace(textInBrackets, '').trim()
     strippedSearchTerm = textInBrackets
       .slice(1, -1)
       .replace(/^\w/, firstLetter => firstLetter.toUpperCase())
-      .trim();
+      .trim()
   }
 
   return {
     business_type: strippedBusinessType,
     business_type_search_term: strippedSearchTerm
-  };
-};
+  }
+}
 
 module.exports = {
   transformAnswersForSummary,
@@ -652,4 +648,4 @@ module.exports = {
   separateBracketsFromBusinessType,
   trimUprn,
   trimAnswers
-};
+}

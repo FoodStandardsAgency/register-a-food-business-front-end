@@ -2,12 +2,12 @@
  * @module controllers/submit
  */
 
-const { submit } = require("../services/submit.service");
-const { logEmitter } = require("../services/logging.service");
-const { statusEmitter } = require("../services/statusEmitter.service");
+const { submit } = require('../services/submit.service')
+const { logEmitter } = require('../services/logging.service')
+const { statusEmitter } = require('../services/statusEmitter.service')
 const {
   transformAnswersForSubmit
-} = require("../services/data-transform.service");
+} = require('../services/data-transform.service')
 
 /**
  * Returns an object containing the redirect route (e.g. the final page), the submission date,
@@ -28,13 +28,13 @@ const submitController = async (
 ) => {
   const controllerResponse = {
     redirectRoute: null,
-    submissionDate: "",
-    fsaRegistrationNumber: "",
+    submissionDate: '',
+    fsaRegistrationNumber: '',
     emailFbo: {},
     lc_details: {},
     submissionSucceeded: null
-  };
-  logEmitter.emit("functionCall", "submit.controller", "submitController");
+  }
+  logEmitter.emit('functionCall', 'submit.controller', 'submitController')
 
   try {
     if (
@@ -45,35 +45,35 @@ const submitController = async (
         lcUrl,
         submissionData,
         addressLookups
-      );
-      const response = await submit(transformedData, regDataVersion);
-      const res = await response.json();
+      )
+      const response = await submit(transformedData, regDataVersion)
+      const res = await response.json()
 
       if (response.status === 200) {
-        controllerResponse.redirectRoute = "/summary-confirmation";
-        controllerResponse.submissionDate = res.reg_submission_date;
-        controllerResponse.fsaRegistrationNumber = res["fsa-rn"];
-        controllerResponse.emailFbo = res.email_fbo;
-        controllerResponse.lcConfig = res.lc_config;
-        controllerResponse.submissionSucceeded = true;
-        statusEmitter.emit("incrementCount", "submissionsSucceeded");
-        statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
+        controllerResponse.redirectRoute = '/summary-confirmation'
+        controllerResponse.submissionDate = res.reg_submission_date
+        controllerResponse.fsaRegistrationNumber = res['fsa-rn']
+        controllerResponse.emailFbo = res.email_fbo
+        controllerResponse.lcConfig = res.lc_config
+        controllerResponse.submissionSucceeded = true
+        statusEmitter.emit('incrementCount', 'submissionsSucceeded')
+        statusEmitter.emit('setStatus', 'mostRecentSubmitSucceeded', true)
       } else {
-        controllerResponse.redirectRoute = "back";
-        controllerResponse.submissionSucceeded = false;
-        statusEmitter.emit("incrementCount", "submissionsFailed");
-        statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
+        controllerResponse.redirectRoute = 'back'
+        controllerResponse.submissionSucceeded = false
+        statusEmitter.emit('incrementCount', 'submissionsFailed')
+        statusEmitter.emit('setStatus', 'mostRecentSubmitSucceeded', false)
       }
     } else {
       throw new Error(
-        "/submit route was called with an empty submission data object"
-      );
+        '/submit route was called with an empty submission data object'
+      )
     }
 
     logEmitter.emit(
-      "functionSuccessWith",
-      "submit.controller",
-      "submitController",
+      'functionSuccessWith',
+      'submit.controller',
+      'submitController',
       `
       redirectRoute: ${controllerResponse.redirectRoute}.
       submissionDate: ${controllerResponse.submissionDate}.
@@ -81,17 +81,17 @@ const submitController = async (
       lcConfig: ${controllerResponse.lcConfig}.
       submissionSucceeded: ${controllerResponse.submissionSucceeded}.
       `
-    );
-    return controllerResponse;
+    )
+    return controllerResponse
   } catch (err) {
     logEmitter.emit(
-      "functionFail",
-      "submit.controller",
-      "submitController",
+      'functionFail',
+      'submit.controller',
+      'submitController',
       err
-    );
-    throw err;
+    )
+    throw err
   }
-};
+}
 
-module.exports = submitController;
+module.exports = submitController

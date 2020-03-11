@@ -1,27 +1,27 @@
-import React from "react";
-import dynamic from "next/dynamic";
-import ContentItem from "./ContentItem";
-import { css } from "emotion";
+import React from 'react'
+import dynamic from 'next/dynamic'
+import ContentItem from './ContentItem'
+import { css } from 'emotion'
 import {
   findMatches,
   inputValueFunction,
   suggestionFunction
-} from "./BusinessTypeLookupFunctions";
+} from './BusinessTypeLookupFunctions'
 import {
   ErrorText,
   HintText,
   UnorderedList,
   Input,
   Paragraph
-} from "govuk-react";
-import { SelectInput } from "@govuk-react/select";
-import ListItemConsistentSize from "./ListItemConsistentSize";
-import distinctBusinessTypes from "./distinct-business-types.json";
+} from 'govuk-react'
+import { SelectInput } from '@govuk-react/select'
+import ListItemConsistentSize from './ListItemConsistentSize'
+import distinctBusinessTypes from './distinct-business-types.json'
 
 // dynamic import used because Autocomplete component from AlphaGov uses the document object on import.
 // Therefore it must be imported on the client side not on the server side.
 // TODO JMB: contribute back to the AlphaGov repository to avoid or delay reliance on the document object.
-const Autocomplete = dynamic(import("accessible-autocomplete/react"));
+const Autocomplete = dynamic(import('accessible-autocomplete/react'))
 
 const autocompleteErrorStyling = css`
   border-left: 4px solid #b10e1e;
@@ -29,33 +29,33 @@ const autocompleteErrorStyling = css`
   .autocomplete__input {
     border: 3px solid #b10e1e;
   }
-`;
+`
 
 const templates = {
   inputValue: inputValueFunction,
   suggestion: suggestionFunction
-};
+}
 
 const lineHeight = {
-  lineHeight: "1.6em",
+  lineHeight: '1.6em',
   padding: 0
-};
+}
 
 const fullWidth = {
-  width: "100%"
-};
+  width: '100%'
+}
 
 const BusinessTypeOptions = () => {
-  let options = [];
+  let options = []
   distinctBusinessTypes.forEach(type => {
     options.push(
       <option key={type} value={type}>
         {type}
       </option>
-    );
-  });
-  return options;
-};
+    )
+  })
+  return options
+}
 
 const DataListSection = props => (
   <div id="dataListSection">
@@ -76,7 +76,7 @@ const DataListSection = props => (
       </datalist>
     </div>
   </div>
-);
+)
 
 const SelectListSection = props => (
   <div id="selectListSection">
@@ -89,29 +89,28 @@ const SelectListSection = props => (
         style={fullWidth}
         className={
           props.validatorErrors.business_type ? autocompleteErrorStyling : null
-        }
-      >
+        }>
         <BusinessTypeOptions />
       </SelectInput>
     </div>
   </div>
-);
+)
 
 // 12/02/2020 - comment needed due to cloudflare caching next.js files
 class BusinessTypeLookup extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { renderAutoCompleteSection: false };
+    super(props)
+    this.state = { renderAutoCompleteSection: false }
   }
 
   componentDidMount() {
     // called in client-side
     // used to detect if JavaScript is enabled
-    this.setState({ renderAutoCompleteSection: true });
+    this.setState({ renderAutoCompleteSection: true })
   }
 
   render() {
-    const props = this.props;
+    const props = this.props
     return (
       <div>
         {this.state && this.state.renderAutoCompleteSection ? (
@@ -143,8 +142,7 @@ class BusinessTypeLookup extends React.Component {
                 props.validatorErrors.business_type
                   ? autocompleteErrorStyling
                   : null
-              }
-            >
+              }>
               {props.validatorErrors.business_type ? (
                 <ErrorText style={lineHeight}>
                   {props.validatorErrors.business_type}
@@ -165,7 +163,7 @@ class BusinessTypeLookup extends React.Component {
           </div>
         ) : (
           <noscript id="jsDisabledSection">
-            {props.browser === "Safari" ? (
+            {props.browser === 'Safari' ? (
               <SelectListSection {...props} />
             ) : (
               <DataListSection {...props} />
@@ -173,8 +171,8 @@ class BusinessTypeLookup extends React.Component {
           </noscript>
         )}
       </div>
-    );
+    )
   }
 }
 
-export default BusinessTypeLookup;
+export default BusinessTypeLookup

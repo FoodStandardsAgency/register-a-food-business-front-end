@@ -5,32 +5,32 @@
  * @module routers/cleansession
  */
 
-const { Router } = require("express");
-const { logEmitter } = require("../services/logging.service");
+const { Router } = require('express')
+const { logEmitter } = require('../services/logging.service')
 
 const cleansessionRouter = () => {
-  const router = Router();
+  const router = Router()
 
-  router.get("", (req, res) => {
-    logEmitter.emit("functionCall", "Routes", "/cleansession route");
+  router.get('', (req, res) => {
+    logEmitter.emit('functionCall', 'Routes', '/cleansession route')
     req.session.regenerate(async err => {
       if (err) {
-        logEmitter.emit("functionFail", "Routes", "/cleansession route", err);
-        res.json({ error: "Session regenerate failed." });
+        logEmitter.emit('functionFail', 'Routes', '/cleansession route', err)
+        res.json({ error: 'Session regenerate failed.' })
       } else {
         logEmitter.emit(
-          "functionSuccessWith",
-          "Routes",
-          "/cleansession route",
+          'functionSuccessWith',
+          'Routes',
+          '/cleansession route',
           `Redirecting to: /`
-        );
-        res.set("session_id", req.sessionID);
-        res.json({ session_id: req.sessionID });
+        )
+        res.set('session_id', req.sessionID)
+        res.json({ session_id: req.sessionID })
       }
-    });
-  });
+    })
+  })
 
-  return router;
-};
+  return router
+}
 
-module.exports = { cleansessionRouter };
+module.exports = { cleansessionRouter }

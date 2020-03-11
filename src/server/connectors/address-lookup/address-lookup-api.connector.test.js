@@ -1,117 +1,117 @@
-import { Validator } from "jsonschema";
-import { getAddressesByPostcode } from "./address-lookup-api.connector";
-import fetch from "node-fetch";
+import { Validator } from 'jsonschema'
+import { getAddressesByPostcode } from './address-lookup-api.connector'
+import fetch from 'node-fetch'
 // import largeAddressResponseJSON from "./largeAddressResponseMock.json";
-import smallAddressResponseJSON from "./smallAddressResponseMock.json";
-import regularIntegrationResponse from "./regularIntegrationResponse.json";
-import addressSchema from "./addressSchema";
-import { addressLookupDouble } from "./address-lookup-api.double";
+import smallAddressResponseJSON from './smallAddressResponseMock.json'
+import regularIntegrationResponse from './regularIntegrationResponse.json'
+import addressSchema from './addressSchema'
+import { addressLookupDouble } from './address-lookup-api.double'
 
-jest.mock("node-fetch");
-jest.mock("./address-lookup-api.double");
+jest.mock('node-fetch')
+jest.mock('./address-lookup-api.double')
 
-const v = new Validator();
+const v = new Validator()
 
-let responseJSON;
+let responseJSON
 
-describe("Connector: lookupAPI: ", () => {
+describe('Connector: lookupAPI: ', () => {
   beforeEach(() => {
-    process.env.DOUBLE_MODE = "false";
-  });
+    process.env.DOUBLE_MODE = 'false'
+  })
 
-  describe("Given a valid UK postcode:", () => {
+  describe('Given a valid UK postcode:', () => {
     beforeEach(async () => {
       fetch.mockImplementation(url => ({
         json: jest.fn(() => smallAddressResponseJSON),
         status: 200
-      }));
+      }))
 
-      responseJSON = await getAddressesByPostcode("NR14 7PZ");
-    });
+      responseJSON = await getAddressesByPostcode('NR14 7PZ')
+    })
 
-    it("is in a valid format", () => {
-      expect(v.validate(responseJSON, addressSchema).errors.length).toBe(0);
-    });
+    it('is in a valid format', () => {
+      expect(v.validate(responseJSON, addressSchema).errors.length).toBe(0)
+    })
 
-    describe("When DOUBLE_MODE is set", () => {
+    describe('When DOUBLE_MODE is set', () => {
       beforeEach(async () => {
-        process.env.DOUBLE_MODE = "true";
+        process.env.DOUBLE_MODE = 'true'
         addressLookupDouble.mockImplementation(() => ({
           json: () => regularIntegrationResponse,
           status: 200
-        }));
+        }))
 
-        responseJSON = await getAddressesByPostcode("BS249ST");
-      });
+        responseJSON = await getAddressesByPostcode('BS249ST')
+      })
 
       afterEach(() => {
-        process.env.DOUBLE_MODE = "false";
-      });
+        process.env.DOUBLE_MODE = 'false'
+      })
 
-      it("should return the regular integration response", () => {
-        expect(responseJSON).toEqual(regularIntegrationResponse);
-      });
-    });
+      it('should return the regular integration response', () => {
+        expect(responseJSON).toEqual(regularIntegrationResponse)
+      })
+    })
 
-    describe("When given a non-200 response from the API", () => {
+    describe('When given a non-200 response from the API', () => {
       beforeEach(async () => {
         fetch.mockImplementation(() => ({
           status: 500
-        }));
-      });
+        }))
+      })
 
-      it("should throw an error", async () => {
-        let result;
+      it('should throw an error', async () => {
+        let result
         try {
-          await getAddressesByPostcode("BS249ST", 100);
+          await getAddressesByPostcode('BS249ST', 100)
         } catch (err) {
-          result = err;
+          result = err
         }
         expect(result.message).toBe(
-          "Address lookup API responded with non-200 status: 500"
-        );
-      });
-    });
-    describe("When premium service returns no addresses but standard service returns some addresses", () => {
+          'Address lookup API responded with non-200 status: 500'
+        )
+      })
+    })
+    describe('When premium service returns no addresses but standard service returns some addresses', () => {
       beforeEach(async () => {
         fetch.mockImplementation(() => ({
           status: 200,
           json: jest.fn(() => regularIntegrationResponse)
-        }));
+        }))
         fetch.mockImplementationOnce(() => ({
           status: 200,
           json: jest.fn(() => [])
-        }));
-        responseJSON = await getAddressesByPostcode("BS249ST");
-      });
+        }))
+        responseJSON = await getAddressesByPostcode('BS249ST')
+      })
 
-      it("should return the regular integration response", () => {
-        expect(responseJSON).toEqual(regularIntegrationResponse);
-      });
-    });
-    describe("When given a non-200 response from the API on second attempt", () => {
+      it('should return the regular integration response', () => {
+        expect(responseJSON).toEqual(regularIntegrationResponse)
+      })
+    })
+    describe('When given a non-200 response from the API on second attempt', () => {
       beforeEach(async () => {
         fetch.mockImplementation(() => ({
           status: 500
-        }));
+        }))
         fetch.mockImplementationOnce(() => ({
           status: 200,
           json: jest.fn(() => [])
-        }));
-      });
+        }))
+      })
 
-      it("should throw an error", async () => {
-        let result;
+      it('should throw an error', async () => {
+        let result
         try {
-          await getAddressesByPostcode("BS249ST", 100);
+          await getAddressesByPostcode('BS249ST', 100)
         } catch (err) {
-          result = err;
+          result = err
         }
         expect(result.message).toBe(
-          "Address lookup API responded with non-200 status: 500"
-        );
-      });
-    });
+          'Address lookup API responded with non-200 status: 500'
+        )
+      })
+    })
 
     // TODO JMB: debug multi-call code
 
@@ -211,40 +211,40 @@ describe("Connector: lookupAPI: ", () => {
     //     });
     //   });
     // });
-  });
+  })
 
-  describe("Given an invalid UK postcode:", () => {
+  describe('Given an invalid UK postcode:', () => {
     beforeEach(async () => {
       fetch.mockImplementation(() => ({
         json: jest.fn(() => []),
         status: 200
-      }));
+      }))
 
-      responseJSON = await getAddressesByPostcode("invalid postcode");
-    });
+      responseJSON = await getAddressesByPostcode('invalid postcode')
+    })
 
-    it("should return an empty array", () => {
-      expect(responseJSON).toEqual([]);
-    });
+    it('should return an empty array', () => {
+      expect(responseJSON).toEqual([])
+    })
 
-    describe("When DOUBLE_MODE is set", () => {
+    describe('When DOUBLE_MODE is set', () => {
       beforeEach(async () => {
-        process.env.DOUBLE_MODE = "true";
+        process.env.DOUBLE_MODE = 'true'
         addressLookupDouble.mockImplementation(() => ({
           json: () => [],
           status: 200
-        }));
+        }))
 
-        responseJSON = await getAddressesByPostcode("invalid postcode");
-      });
+        responseJSON = await getAddressesByPostcode('invalid postcode')
+      })
 
       afterEach(() => {
-        process.env.DOUBLE_MODE = "false";
-      });
+        process.env.DOUBLE_MODE = 'false'
+      })
 
-      it("should return an empty array", () => {
-        expect(responseJSON).toEqual([]);
-      });
-    });
-  });
-});
+      it('should return an empty array', () => {
+        expect(responseJSON).toEqual([])
+      })
+    })
+  })
+})

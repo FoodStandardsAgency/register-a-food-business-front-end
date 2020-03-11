@@ -3,7 +3,7 @@ const SessionWrapper = Page => {
   // - Takes 'props' as an argument
   // - Passes those props to 'Page', the React component taken by SessionWrapper as an argument
   // - Returns the 'Page' component with the new props
-  const wrapper = props => <Page {...props} />;
+  const wrapper = props => <Page {...props} />
 
   // Set the Next.js 'getInitialProps' lifecycle function:
   // https://nextjs.org/learn/basics/fetching-data-for-pages
@@ -13,53 +13,53 @@ const SessionWrapper = Page => {
     Declaration of variables that require more extensive configuration or logic
     ************************************************************************************/
     const editModeFirstPage =
-      req && req.query && req.query.edit ? `/${req.query.edit}` : undefined;
+      req && req.query && req.query.edit ? `/${req.query.edit}` : undefined
 
     const editModePartnerDetails =
       req &&
       req.query &&
       req.query.edit &&
-      (req.query.edit === "partner-name" || "registration-role");
+      (req.query.edit === 'partner-name' || 'registration-role')
 
     const acceptAllCookies =
       req && req.cookies && req.cookies.acceptAllCookies
         ? req.cookies.acceptAllCookies
-        : undefined;
+        : undefined
 
-    const currentPageWithQuery = `/${req.url.split("/")[2]}`;
+    const currentPageWithQuery = `/${req.url.split('/')[2]}`
 
     const formAction = editModeFirstPage
       ? `/edit/continue${currentPageWithQuery}`
-      : `/continue${currentPageWithQuery}`;
+      : `/continue${currentPageWithQuery}`
 
-    const currentPage = currentPageWithQuery.split("?")[0];
+    const currentPage = currentPageWithQuery.split('?')[0]
 
     const partnerDetailsUrl = editModePartnerDetails
-      ? "/partnership/partner-details?edit=partner-name"
-      : "/partnership/partner-details";
+      ? '/partnership/partner-details?edit=partner-name'
+      : '/partnership/partner-details'
 
     const partnerDetailsDeleteFormAction = editModePartnerDetails
-      ? "/partnership/delete-partner?edit=partner-name"
-      : "/partnership/delete-partner";
+      ? '/partnership/delete-partner?edit=partner-name'
+      : '/partnership/delete-partner'
 
     const partnerDetailsContinueFormAction = editModePartnerDetails
-      ? "/partnership/continue?edit=partner-name"
-      : "/partnership/continue";
+      ? '/partnership/continue?edit=partner-name'
+      : '/partnership/continue'
 
     const partnerDetailsSaveFormAction = editModePartnerDetails
-      ? "/partnership/save?edit=partner-name"
-      : "/partnership/save";
+      ? '/partnership/save?edit=partner-name'
+      : '/partnership/save'
 
     const partnerDetailsBackUrl = editModePartnerDetails
-      ? "/partnership/back?edit=partner-name"
-      : "/partnership/back";
+      ? '/partnership/back?edit=partner-name'
+      : '/partnership/back'
 
     const validatorErrorsCleaned =
       req && req.session && req.session.validatorErrors
         ? { ...req.session.validatorErrors }
-        : {};
+        : {}
 
-    delete validatorErrorsCleaned["undefined"];
+    delete validatorErrorsCleaned['undefined']
 
     /************************************************************************************
     Declaration of initialProps object, containing the above variables, plus others.
@@ -92,11 +92,11 @@ const SessionWrapper = Page => {
       fsaRegistrationNumber:
         req && req.session && req.session.fsaRegistrationNumber
           ? req.session.fsaRegistrationNumber
-          : "",
+          : '',
       submissionDate:
         req && req.session && req.session.submissionDate
           ? req.session.submissionDate
-          : "",
+          : '',
       emailFbo:
         req && req.session && req.session.emailFbo ? req.session.emailFbo : {},
       lcConfig:
@@ -106,32 +106,32 @@ const SessionWrapper = Page => {
           ? req.session.addressLookups
           : {},
       council:
-        req && req.session && req.session.council ? req.session.council : "",
+        req && req.session && req.session.council ? req.session.council : '',
       isBrowserSupported:
         req && req.session && req.session.isBrowserSupported
           ? req.session.isBrowserSupported
           : false,
       browser:
-        req && req.session && req.session.browser ? req.session.browser : "",
+        req && req.session && req.session.browser ? req.session.browser : '',
       browserVersion:
         req && req.session && req.session.browserVersion
           ? req.session.browserVersion
-          : "",
+          : '',
       isBrowserVersionVerified:
         req && req.session && req.session.isBrowserVersionVerified
           ? req.session.isBrowserVersionVerified
           : false,
       country:
-        req && req.session && req.session.country ? req.session.country : "",
-      lcName: req && req.session && req.session.lcName ? req.session.lcName : ""
-    };
+        req && req.session && req.session.country ? req.session.country : '',
+      lcName: req && req.session && req.session.lcName ? req.session.lcName : ''
+    }
 
     // The getInitialProps function (a method of the 'wrapper' function) returns the initialProps object
-    return initialProps;
-  };
+    return initialProps
+  }
 
   // The SessionWrapper function returns the 'wrapper' function
-  return wrapper;
-};
+  return wrapper
+}
 
-export default SessionWrapper;
+export default SessionWrapper

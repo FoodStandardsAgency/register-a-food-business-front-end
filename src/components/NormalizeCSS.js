@@ -1,4 +1,4 @@
-import { css } from "emotion";
+import { css } from 'emotion'
 
 const NormalizeCSS = css`
   /* Start FSA-specific normalize options */
@@ -205,9 +205,9 @@ const NormalizeCSS = css`
  */
 
   button,
-  [type="button"],
-  [type="reset"],
-  [type="submit"] {
+  [type='button'],
+  [type='reset'],
+  [type='submit'] {
     -webkit-appearance: button;
   }
 
@@ -216,9 +216,9 @@ const NormalizeCSS = css`
  */
 
   button::-moz-focus-inner,
-  [type="button"]::-moz-focus-inner,
-  [type="reset"]::-moz-focus-inner,
-  [type="submit"]::-moz-focus-inner {
+  [type='button']::-moz-focus-inner,
+  [type='reset']::-moz-focus-inner,
+  [type='submit']::-moz-focus-inner {
     border-style: none;
     padding: 0;
   }
@@ -228,9 +228,9 @@ const NormalizeCSS = css`
  */
 
   button:-moz-focusring,
-  [type="button"]:-moz-focusring,
-  [type="reset"]:-moz-focusring,
-  [type="submit"]:-moz-focusring {
+  [type='button']:-moz-focusring,
+  [type='reset']:-moz-focusring,
+  [type='submit']:-moz-focusring {
     outline: 1px dotted ButtonText;
   }
 
@@ -279,8 +279,8 @@ const NormalizeCSS = css`
  * 2. Remove the padding in IE 10.
  */
 
-  [type="checkbox"],
-  [type="radio"] {
+  [type='checkbox'],
+  [type='radio'] {
     box-sizing: border-box; /* 1 */
     padding: 0; /* 2 */
   }
@@ -289,8 +289,8 @@ const NormalizeCSS = css`
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
 
-  [type="number"]::-webkit-inner-spin-button,
-  [type="number"]::-webkit-outer-spin-button {
+  [type='number']::-webkit-inner-spin-button,
+  [type='number']::-webkit-outer-spin-button {
     height: auto;
   }
 
@@ -299,7 +299,7 @@ const NormalizeCSS = css`
  * 2. Correct the outline style in Safari.
  */
 
-  [type="search"] {
+  [type='search'] {
     -webkit-appearance: textfield; /* 1 */
     outline-offset: -2px; /* 2 */
   }
@@ -308,7 +308,7 @@ const NormalizeCSS = css`
  * Remove the inner padding in Chrome and Safari on macOS.
  */
 
-  [type="search"]::-webkit-search-decoration {
+  [type='search']::-webkit-search-decoration {
     -webkit-appearance: none;
   }
 
@@ -359,6 +359,6 @@ const NormalizeCSS = css`
   [hidden] {
     display: none;
   }
-`;
+`
 
-export default NormalizeCSS;
+export default NormalizeCSS

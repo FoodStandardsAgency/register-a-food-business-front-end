@@ -1,214 +1,214 @@
-const mongodb = require("mongodb");
+const mongodb = require('mongodb')
 const {
   getPathConfigByVersion,
   getLocalCouncils,
   clearPathConfigCache,
   getCouncilData
-} = require("./config-db.connector");
-const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
-const { configVersionCollectionDouble } = require("./config-db.double");
+} = require('./config-db.connector')
+const pathConfigMock = require('../../../__mocks__/pathConfigMock.json')
+const { configVersionCollectionDouble } = require('./config-db.double')
 
-jest.mock("mongodb");
-jest.mock("./config-db.double");
-jest.mock("../../services/statusEmitter.service");
+jest.mock('mongodb')
+jest.mock('./config-db.double')
+jest.mock('../../services/statusEmitter.service')
 
-let result;
+let result
 
-describe("Function: getPathConfigByVersion", () => {
-  describe("given the request has not yet been run during this process (empty cache)", () => {
-    describe("given the request throws an error", () => {
+describe('Function: getPathConfigByVersion', () => {
+  describe('given the request has not yet been run during this process (empty cache)', () => {
+    describe('given the request throws an error', () => {
       beforeEach(async () => {
-        process.env.DOUBLE_MODE = false;
-        clearPathConfigCache();
+        process.env.DOUBLE_MODE = false
+        clearPathConfigCache()
         mongodb.MongoClient.connect.mockImplementation(() => {
-          throw new Error("example mongo error");
-        });
+          throw new Error('example mongo error')
+        })
 
         try {
-          await getPathConfigByVersion("1.0.0");
+          await getPathConfigByVersion('1.0.0')
         } catch (err) {
-          result = err;
+          result = err
         }
-      });
+      })
 
-      describe("when the error shows that the connection has failed", () => {
-        it("should throw mongoConnectionError error", () => {
-          expect(result.name).toBe("mongoConnectionError");
-          expect(result.message).toBe("example mongo error");
-        });
-      });
-    });
+      describe('when the error shows that the connection has failed', () => {
+        it('should throw mongoConnectionError error', () => {
+          expect(result.name).toBe('mongoConnectionError')
+          expect(result.message).toBe('example mongo error')
+        })
+      })
+    })
 
-    describe("given the request returns null", () => {
+    describe('given the request returns null', () => {
       beforeEach(async () => {
-        process.env.DOUBLE_MODE = false;
-        clearPathConfigCache();
+        process.env.DOUBLE_MODE = false
+        clearPathConfigCache()
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
               findOne: () => null
             })
           })
-        }));
+        }))
 
-        result = await getPathConfigByVersion("1.0.0");
-      });
+        result = await getPathConfigByVersion('1.0.0')
+      })
 
-      it("should return null", () => {
-        expect(result).toBe(null);
-      });
-    });
+      it('should return null', () => {
+        expect(result).toBe(null)
+      })
+    })
 
-    describe("given the request is successful", () => {
+    describe('given the request is successful', () => {
       beforeEach(() => {
-        process.env.DOUBLE_MODE = false;
-        clearPathConfigCache();
+        process.env.DOUBLE_MODE = false
+        clearPathConfigCache()
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
               findOne: () => pathConfigMock
             })
           })
-        }));
-      });
+        }))
+      })
 
-      it("should return the data from the findOne() response", async () => {
-        await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
+      it('should return the data from the findOne() response', async () => {
+        await expect(getPathConfigByVersion('1.0.0')).resolves.toEqual(
           pathConfigMock
-        );
-      });
-    });
+        )
+      })
+    })
 
-    describe("when running in double mode", () => {
+    describe('when running in double mode', () => {
       beforeEach(() => {
-        process.env.DOUBLE_MODE = true;
-        clearPathConfigCache();
+        process.env.DOUBLE_MODE = true
+        clearPathConfigCache()
         configVersionCollectionDouble.findOne.mockImplementation(
           () => pathConfigMock
-        );
-      });
+        )
+      })
 
       it("should resolve with the data from the double's findOne() response", async () => {
-        await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
+        await expect(getPathConfigByVersion('1.0.0')).resolves.toEqual(
           pathConfigMock
-        );
-      });
-    });
-  });
+        )
+      })
+    })
+  })
 
-  describe("given the request is run more than once during this process (populated cache)", () => {
+  describe('given the request is run more than once during this process (populated cache)', () => {
     beforeEach(() => {
-      process.env.DOUBLE_MODE = false;
-      mongodb.MongoClient.connect.mockClear();
+      process.env.DOUBLE_MODE = false
+      mongodb.MongoClient.connect.mockClear()
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
             findOne: () => pathConfigMock
           })
         })
-      }));
-    });
+      }))
+    })
 
-    it("returns the correct value", async () => {
+    it('returns the correct value', async () => {
       // clear the cache
-      clearPathConfigCache();
+      clearPathConfigCache()
 
       // run one request
-      await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
+      await expect(getPathConfigByVersion('1.0.0')).resolves.toEqual(
         pathConfigMock
-      );
+      )
 
       // run a second request without clearing the cache
-      await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
+      await expect(getPathConfigByVersion('1.0.0')).resolves.toEqual(
         pathConfigMock
-      );
-    });
+      )
+    })
 
-    it("does not call the mongo connection function on the second function call", async () => {
+    it('does not call the mongo connection function on the second function call', async () => {
       // clear the cache
-      clearPathConfigCache();
+      clearPathConfigCache()
 
       // run one request
-      await getPathConfigByVersion("1.0.0");
-      expect(mongodb.MongoClient.connect).toHaveBeenCalledTimes(1);
+      await getPathConfigByVersion('1.0.0')
+      expect(mongodb.MongoClient.connect).toHaveBeenCalledTimes(1)
 
       // run a second request without clearing the cache
-      await getPathConfigByVersion("1.0.0");
-      expect(mongodb.MongoClient.connect).toHaveBeenCalledTimes(1);
-    });
-  });
-});
+      await getPathConfigByVersion('1.0.0')
+      expect(mongodb.MongoClient.connect).toHaveBeenCalledTimes(1)
+    })
+  })
+})
 
-describe("Function: getLocalCouncils", () => {
-  describe("given the request throws an error", () => {
+describe('Function: getLocalCouncils', () => {
+  describe('given the request throws an error', () => {
     beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => {
-        throw new Error("example mongo error");
-      });
+        throw new Error('example mongo error')
+      })
 
       try {
-        await getLocalCouncils();
+        await getLocalCouncils()
       } catch (err) {
-        result = err;
+        result = err
       }
-    });
+    })
 
-    describe("when the error shows that the connection has failed", () => {
-      it("should throw mongoConnectionError error", () => {
-        expect(result.name).toBe("mongoConnectionError");
-        expect(result.message).toBe("example mongo error");
-      });
-    });
-  });
+    describe('when the error shows that the connection has failed', () => {
+      it('should throw mongoConnectionError error', () => {
+        expect(result.name).toBe('mongoConnectionError')
+        expect(result.message).toBe('example mongo error')
+      })
+    })
+  })
 
-  describe("given the request returns null", () => {
+  describe('given the request returns null', () => {
     beforeEach(async () => {
       const mongoCursor = {
         project: () => {
           return {
             toArray: () => {
-              return null;
+              return null
             }
-          };
+          }
         }
-      };
+      }
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
             find: () => mongoCursor
           })
         })
-      }));
+      }))
       try {
-        await getLocalCouncils();
+        await getLocalCouncils()
       } catch (err) {
-        result = err;
+        result = err
       }
-    });
+    })
 
-    it("should throw mongoConnectionError error", () => {
-      expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe("Cannot read property 'length' of null");
-    });
-  });
+    it('should throw mongoConnectionError error', () => {
+      expect(result.name).toBe('mongoConnectionError')
+      expect(result.message).toBe("Cannot read property 'length' of null")
+    })
+  })
 
-  describe("given the request is successful", () => {
+  describe('given the request is successful', () => {
     const localCouncilsObjs = [
-      { local_council_url: "cardiff" },
-      { local_council_url: "the-vale-of-glamorgan" }
-    ];
+      { local_council_url: 'cardiff' },
+      { local_council_url: 'the-vale-of-glamorgan' }
+    ]
 
-    const localCouncilsMock = ["cardiff", "the-vale-of-glamorgan"];
+    const localCouncilsMock = ['cardiff', 'the-vale-of-glamorgan']
 
     const mongoCursor = {
       project: () => {
         return {
           toArray: () => {
-            return localCouncilsObjs;
+            return localCouncilsObjs
           }
-        };
+        }
       }
-    };
+    }
 
     beforeEach(() => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
@@ -217,27 +217,27 @@ describe("Function: getLocalCouncils", () => {
             find: () => mongoCursor
           })
         })
-      }));
-    });
+      }))
+    })
 
-    it("should return the array of councils", async () => {
-      await expect(getLocalCouncils()).resolves.toEqual(localCouncilsMock);
-    });
-  });
+    it('should return the array of councils', async () => {
+      await expect(getLocalCouncils()).resolves.toEqual(localCouncilsMock)
+    })
+  })
 
-  describe("given there are no lc configuration records", () => {
-    const localCouncilsObjs = [];
-    const localCouncilsMock = [];
+  describe('given there are no lc configuration records', () => {
+    const localCouncilsObjs = []
+    const localCouncilsMock = []
 
     const mongoCursor = {
       project: () => {
         return {
           toArray: () => {
-            return localCouncilsObjs;
+            return localCouncilsObjs
           }
-        };
+        }
       }
-    };
+    }
 
     beforeEach(() => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
@@ -246,35 +246,35 @@ describe("Function: getLocalCouncils", () => {
             find: () => mongoCursor
           })
         })
-      }));
-    });
+      }))
+    })
 
-    it("should return an empty array and not throw an exception", async () => {
-      await expect(getLocalCouncils()).resolves.toEqual(localCouncilsMock);
-    });
-  });
-});
+    it('should return an empty array and not throw an exception', async () => {
+      await expect(getLocalCouncils()).resolves.toEqual(localCouncilsMock)
+    })
+  })
+})
 
-describe("Function: getCouncilData", () => {
-  describe("given the request throws an error", () => {
+describe('Function: getCouncilData', () => {
+  describe('given the request throws an error', () => {
     beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => {
-        throw new Error("example mongo error");
-      });
+        throw new Error('example mongo error')
+      })
 
       try {
-        await getCouncilData("cardiff");
+        await getCouncilData('cardiff')
       } catch (err) {
-        result = err;
+        result = err
       }
-    });
+    })
 
-    it("should throw mongoConnectionError error", () => {
-      expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe("example mongo error");
-    });
-  });
-  describe("given the request returns null", () => {
+    it('should throw mongoConnectionError error', () => {
+      expect(result.name).toBe('mongoConnectionError')
+      expect(result.message).toBe('example mongo error')
+    })
+  })
+  describe('given the request returns null', () => {
     beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
@@ -282,39 +282,39 @@ describe("Function: getCouncilData", () => {
             findOne: () => null
           })
         })
-      }));
+      }))
 
       try {
-        await getCouncilData("cardiff");
+        await getCouncilData('cardiff')
       } catch (err) {
-        result = err;
+        result = err
       }
-    });
+    })
 
-    it("should throw mongoConnectionError error with custom message", () => {
-      expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe("getCouncilData retrieved null");
-    });
-  });
-  describe("given the request is successful", () => {
+    it('should throw mongoConnectionError error with custom message', () => {
+      expect(result.name).toBe('mongoConnectionError')
+      expect(result.message).toBe('getCouncilData retrieved null')
+    })
+  })
+  describe('given the request is successful', () => {
     const exampleResult = {
-      local_council_url: "cardiff",
-      country: "wales",
-      local_council: "Cardiff Council"
-    };
+      local_council_url: 'cardiff',
+      country: 'wales',
+      local_council: 'Cardiff Council'
+    }
     beforeEach(() => {
-      mongodb.MongoClient.connect.mockClear();
+      mongodb.MongoClient.connect.mockClear()
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
             findOne: () => exampleResult
           })
         })
-      }));
-    });
+      }))
+    })
 
-    it("returns the correct value", async () => {
-      await expect(getCouncilData("cardiff")).resolves.toEqual(exampleResult);
-    });
-  });
-});
+    it('returns the correct value', async () => {
+      await expect(getCouncilData('cardiff')).resolves.toEqual(exampleResult)
+    })
+  })
+})

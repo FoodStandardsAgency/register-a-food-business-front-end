@@ -1,15 +1,15 @@
-import { WarningText } from "govuk-react";
-import styled from "react-emotion";
+import { WarningText } from 'govuk-react'
+import styled from 'react-emotion'
 
 const StyledWarning = styled(WarningText)`
   border: 3px solid black;
   background-color: #dee0e2;
   padding: 10px 10px;
-`;
+`
 
-const WarningWrapper = styled("div")`
+const WarningWrapper = styled('div')`
   padding-bottom: 20px;
-`;
+`
 
 const BrowserUnsupportedBanner = props => (
   <WarningWrapper id="warningWrapper">
@@ -21,6 +21,6 @@ const BrowserUnsupportedBanner = props => (
     the best experience on this site.`}
     </StyledWarning>
   </WarningWrapper>
-);
+)
 
-export default BrowserUnsupportedBanner;
+export default BrowserUnsupportedBanner

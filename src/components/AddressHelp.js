@@ -1,10 +1,10 @@
-import React from "react";
-import { ContentItem } from "../../src/components";
-import { Header, HintText } from "govuk-react";
-import { PartnershipDescription, OperatorDescription } from "./";
+import React from 'react'
+import { ContentItem } from '../../src/components'
+import { Header, HintText } from 'govuk-react'
+import { PartnershipDescription, OperatorDescription } from './'
 
 const AddressHelp = props => {
-  return props.role === "Partnership" ? (
+  return props.role === 'Partnership' ? (
     <React.Fragment>
       <Header level={1} size="LARGE">
         What is the partnership contact's address?
@@ -31,7 +31,7 @@ const AddressHelp = props => {
       </ContentItem.B_30_15>
       <OperatorDescription />
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default AddressHelp;
+export default AddressHelp

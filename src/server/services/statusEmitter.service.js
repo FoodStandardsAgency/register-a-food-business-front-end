@@ -3,19 +3,19 @@
  * @module services/statusEmitter
  */
 
-const { setStatus, incrementStatusCount } = require("./status.service");
-const EventEmitter = require("events");
+const { setStatus, incrementStatusCount } = require('./status.service')
+const EventEmitter = require('events')
 
 class StatusUpdate extends EventEmitter {}
 
-const statusEmitter = new StatusUpdate();
+const statusEmitter = new StatusUpdate()
 
-statusEmitter.on("incrementCount", async statusName => {
-  incrementStatusCount(statusName);
-});
+statusEmitter.on('incrementCount', async statusName => {
+  incrementStatusCount(statusName)
+})
 
-statusEmitter.on("setStatus", async (statusName, newStatus) => {
-  setStatus(statusName, newStatus);
-});
+statusEmitter.on('setStatus', async (statusName, newStatus) => {
+  setStatus(statusName, newStatus)
+})
 
-module.exports = { statusEmitter };
+module.exports = { statusEmitter }

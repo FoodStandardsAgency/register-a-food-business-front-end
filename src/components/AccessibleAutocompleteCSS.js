@@ -1,4 +1,4 @@
-import { css } from "emotion";
+import { css } from 'emotion'
 
 const AccessibleAutocompleteCSS = css`
   .autocomplete__option {
@@ -130,6 +130,6 @@ const AccessibleAutocompleteCSS = css`
       line-height: 1.31579;
     }
   }
-`;
+`
 
-export default AccessibleAutocompleteCSS;
+export default AccessibleAutocompleteCSS

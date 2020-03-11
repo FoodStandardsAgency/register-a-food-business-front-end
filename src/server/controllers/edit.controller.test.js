@@ -1,88 +1,88 @@
-const editController = require("./edit.controller");
+const editController = require('./edit.controller')
 
 const testPath = {
-  "/test-page1": {
+  '/test-page1': {
     on: true,
     switches: {}
   },
-  "/registration-role": {
+  '/registration-role': {
     on: true,
     switches: {
-      "Sole trader": {
-        "/operator-name": true,
-        "/test-page2": true
+      'Sole trader': {
+        '/operator-name': true,
+        '/test-page2': true
       },
       Representative: {
-        "/operator-type": true
+        '/operator-type': true
       }
     }
   },
-  "/operator-name": {
+  '/operator-name': {
     on: false,
     switches: {}
   },
-  "/operator-type": {
+  '/operator-type': {
     on: false,
     switches: {
-      "A charity": { "/operator-charity-details": true },
-      "A company": {
-        "/operator-company-details": true,
-        "/contact-representative": true
+      'A charity': { '/operator-charity-details': true },
+      'A company': {
+        '/operator-company-details': true,
+        '/contact-representative': true
       }
     }
   },
-  "/test-page2": {
+  '/test-page2': {
     on: true,
     switches: {}
   },
-  "/operator-charity-details": {
+  '/operator-charity-details': {
     on: false,
     switches: {}
   },
-  "/operator-company-details": {
+  '/operator-company-details': {
     on: false,
     switches: {}
   },
-  "/contact-representative": {
+  '/contact-representative': {
     on: false,
     switches: {}
   },
-  "/business-import-export": {
+  '/business-import-export': {
     on: true,
     switches: {
-      "Directly export": {
-        "/test-page3": true
+      'Directly export': {
+        '/test-page3': true
       }
     }
   },
-  "/test-page3": {
+  '/test-page3': {
     on: false,
     switches: {}
   }
-};
+}
 
-describe("Edit controller: editContinue()", () => {
-  let result;
+describe('Edit controller: editContinue()', () => {
+  let result
 
-  describe("given valid input", () => {
-    describe("regardless of whether there are validation errors", () => {
-      describe("given the current page has text input fields, with valid answers plus whitespace", () => {
+  describe('given valid input', () => {
+    describe('regardless of whether there are validation errors', () => {
+      describe('given the current page has text input fields, with valid answers plus whitespace', () => {
         beforeEach(() => {
-          const editModeFirstPage = "/registration-role";
-          const currentPage = "/operator-name";
+          const editModeFirstPage = '/registration-role'
+          const currentPage = '/operator-name'
           const cumulativeFullAnswers = {
-            registration_role: "Sole trader",
-            example_answer: "value"
-          };
+            registration_role: 'Sole trader',
+            example_answer: 'value'
+          }
           const cumulativeEditAnswers = {
-            registration_role: "Sole trader",
-            example_answer: "value"
-          };
+            registration_role: 'Sole trader',
+            example_answer: 'value'
+          }
           const newAnswers = {
-            operator_first_name: "Bob Harry ",
-            operator_last_name: "  Smith "
-          };
-          const switches = {};
+            operator_first_name: 'Bob Harry ',
+            operator_last_name: '  Smith '
+          }
+          const switches = {}
 
           const args = [
             testPath,
@@ -92,33 +92,33 @@ describe("Edit controller: editContinue()", () => {
             cumulativeEditAnswers,
             newAnswers,
             switches
-          ];
-          result = editController.editContinue(...args);
-        });
+          ]
+          result = editController.editContinue(...args)
+        })
 
-        it("should return a combination of the previous and new answers with trimmed whitespace", () => {
+        it('should return a combination of the previous and new answers with trimmed whitespace', () => {
           const expectedAnswers = {
-            registration_role: "Sole trader",
-            example_answer: "value",
-            operator_first_name: "Bob Harry",
-            operator_last_name: "Smith"
-          };
-          expect(result.cumulativeEditAnswers).toEqual(expectedAnswers);
-        });
-      });
+            registration_role: 'Sole trader',
+            example_answer: 'value',
+            operator_first_name: 'Bob Harry',
+            operator_last_name: 'Smith'
+          }
+          expect(result.cumulativeEditAnswers).toEqual(expectedAnswers)
+        })
+      })
 
-      describe("given the current page has checkboxes, one of which was originally checked but now is not", () => {
+      describe('given the current page has checkboxes, one of which was originally checked but now is not', () => {
         beforeEach(() => {
-          const editModeFirstPage = "/business-import-export";
-          const currentPage = "/business-import-export";
+          const editModeFirstPage = '/business-import-export'
+          const currentPage = '/business-import-export'
           const cumulativeFullAnswers = {
-            directly_import: "Directly import"
-          };
-          const cumulativeEditAnswers = undefined;
+            directly_import: 'Directly import'
+          }
+          const cumulativeEditAnswers = undefined
           const newAnswers = {
-            directly_export: "Directly export"
-          };
-          const switches = {};
+            directly_export: 'Directly export'
+          }
+          const switches = {}
 
           const args = [
             testPath,
@@ -128,27 +128,27 @@ describe("Edit controller: editContinue()", () => {
             cumulativeEditAnswers,
             newAnswers,
             switches
-          ];
-          result = editController.editContinue(...args);
-        });
+          ]
+          result = editController.editContinue(...args)
+        })
 
-        it("should not return the answers that were previously truthy and are now removed", () => {
+        it('should not return the answers that were previously truthy and are now removed', () => {
           const expectedAnswers = {
-            directly_export: "Directly export"
-          };
-          expect(result.cumulativeEditAnswers).toEqual(expectedAnswers);
-        });
-      });
-    });
+            directly_export: 'Directly export'
+          }
+          expect(result.cumulativeEditAnswers).toEqual(expectedAnswers)
+        })
+      })
+    })
 
-    describe("given that there are validation errors", () => {
+    describe('given that there are validation errors', () => {
       beforeEach(() => {
-        const editModeFirstPage = "/registration-role";
-        const currentPage = "/registration-role";
-        const cumulativeFullAnswers = {};
-        const cumulativeEditAnswers = {};
-        const newAnswers = {};
-        const switches = {};
+        const editModeFirstPage = '/registration-role'
+        const currentPage = '/registration-role'
+        const cumulativeFullAnswers = {}
+        const cumulativeEditAnswers = {}
+        const newAnswers = {}
+        const switches = {}
 
         const args = [
           testPath,
@@ -158,37 +158,37 @@ describe("Edit controller: editContinue()", () => {
           cumulativeEditAnswers,
           newAnswers,
           switches
-        ];
-        result = editController.editContinue(...args);
-      });
+        ]
+        result = editController.editContinue(...args)
+      })
 
-      it("should return the validation errors", () => {
-        expect(Object.keys(result.validatorErrors).length > 0).toBe(true);
-      });
+      it('should return the validation errors', () => {
+        expect(Object.keys(result.validatorErrors).length > 0).toBe(true)
+      })
 
-      it("should return the redirect route as the current page", () => {
-        expect(result.redirectRoute).toBe("/registration-role");
-      });
-    });
+      it('should return the redirect route as the current page', () => {
+        expect(result.redirectRoute).toBe('/registration-role')
+      })
+    })
 
-    describe("given that there are NOT validation errors", () => {
-      describe("given that the path has changed", () => {
+    describe('given that there are NOT validation errors', () => {
+      describe('given that the path has changed', () => {
         beforeEach(() => {
-          const editModeFirstPage = "/registration-role";
-          const currentPage = "/registration-role";
+          const editModeFirstPage = '/registration-role'
+          const currentPage = '/registration-role'
           const cumulativeFullAnswers = {
-            example_answer: "value",
-            registration_role: "Representative",
-            operator_type: "A charity"
-          };
+            example_answer: 'value',
+            registration_role: 'Representative',
+            operator_type: 'A charity'
+          }
           const cumulativeEditAnswers = {
-            registration_role: "Representative",
-            operator_type: "A charity"
-          };
+            registration_role: 'Representative',
+            operator_type: 'A charity'
+          }
           const newAnswers = {
-            registration_role: "Sole trader"
-          };
-          const switches = {};
+            registration_role: 'Sole trader'
+          }
+          const switches = {}
 
           const args = [
             testPath,
@@ -198,37 +198,37 @@ describe("Edit controller: editContinue()", () => {
             cumulativeEditAnswers,
             newAnswers,
             switches
-          ];
-          result = editController.editContinue(...args);
-        });
+          ]
+          result = editController.editContinue(...args)
+        })
 
-        it("should not return FULL answers that are associated with inactive pages on the path", () => {
+        it('should not return FULL answers that are associated with inactive pages on the path', () => {
           const expectedFullAnswers = {
-            example_answer: "value",
-            registration_role: "Sole trader"
-          };
-          expect(result.cumulativeFullAnswers).toEqual(expectedFullAnswers);
-        });
+            example_answer: 'value',
+            registration_role: 'Sole trader'
+          }
+          expect(result.cumulativeFullAnswers).toEqual(expectedFullAnswers)
+        })
 
-        it("should not return EDIT answers that are associated with inactive pages on the path", () => {
+        it('should not return EDIT answers that are associated with inactive pages on the path', () => {
           const expectedEditAnswers = {
-            registration_role: "Sole trader"
-          };
-          expect(result.cumulativeEditAnswers).toEqual(expectedEditAnswers);
-        });
-      });
+            registration_role: 'Sole trader'
+          }
+          expect(result.cumulativeEditAnswers).toEqual(expectedEditAnswers)
+        })
+      })
 
-      describe("given that the current page is at the end of the edit route", () => {
+      describe('given that the current page is at the end of the edit route', () => {
         beforeEach(() => {
-          const editModeFirstPage = "/operator-name";
-          const currentPage = "/operator-name";
-          const cumulativeFullAnswers = {};
-          const cumulativeEditAnswers = {};
+          const editModeFirstPage = '/operator-name'
+          const currentPage = '/operator-name'
+          const cumulativeFullAnswers = {}
+          const cumulativeEditAnswers = {}
           const newAnswers = {
-            operator_first_name: "John",
-            operator_last_name: "McNugget"
-          };
-          const switches = {};
+            operator_first_name: 'John',
+            operator_last_name: 'McNugget'
+          }
+          const switches = {}
 
           const args = [
             testPath,
@@ -238,40 +238,40 @@ describe("Edit controller: editContinue()", () => {
             cumulativeEditAnswers,
             newAnswers,
             switches
-          ];
-          result = editController.editContinue(...args);
-        });
+          ]
+          result = editController.editContinue(...args)
+        })
 
-        it("should not return any validation errors", () => {
-          expect(Object.keys(result.validatorErrors).length).toBe(0);
-        });
+        it('should not return any validation errors', () => {
+          expect(Object.keys(result.validatorErrors).length).toBe(0)
+        })
 
-        it("should redirect to registration-summary", () => {
-          expect(result.redirectRoute).toBe("/registration-summary");
-        });
+        it('should redirect to registration-summary', () => {
+          expect(result.redirectRoute).toBe('/registration-summary')
+        })
 
-        it("should return an empty cumulativeEditAnswers object", () => {
-          expect(result.cumulativeEditAnswers).toEqual({});
-        });
-      });
+        it('should return an empty cumulativeEditAnswers object', () => {
+          expect(result.cumulativeEditAnswers).toEqual({})
+        })
+      })
 
-      describe("given that the current page is NOT at the end of the edit route", () => {
+      describe('given that the current page is NOT at the end of the edit route', () => {
         beforeEach(() => {
-          const editModeFirstPage = "/registration-role";
-          const currentPage = "/operator-company-details";
+          const editModeFirstPage = '/registration-role'
+          const currentPage = '/operator-company-details'
           const cumulativeFullAnswers = {
-            registration_role: "Representative",
-            operator_type: "A company"
-          };
+            registration_role: 'Representative',
+            operator_type: 'A company'
+          }
           const cumulativeEditAnswers = {
-            registration_role: "Representative",
-            operator_type: "A company"
-          };
+            registration_role: 'Representative',
+            operator_type: 'A company'
+          }
           const newAnswers = {
-            operator_company_name: "Nugget Co",
-            operator_company_house_number: "AA123456"
-          };
-          const switches = {};
+            operator_company_name: 'Nugget Co',
+            operator_company_house_number: 'AA123456'
+          }
+          const switches = {}
 
           const args = [
             testPath,
@@ -281,50 +281,50 @@ describe("Edit controller: editContinue()", () => {
             cumulativeEditAnswers,
             newAnswers,
             switches
-          ];
-          result = editController.editContinue(...args);
-        });
+          ]
+          result = editController.editContinue(...args)
+        })
 
-        it("should not return any validation errors", () => {
-          expect(Object.keys(result.validatorErrors).length).toBe(0);
-        });
+        it('should not return any validation errors', () => {
+          expect(Object.keys(result.validatorErrors).length).toBe(0)
+        })
 
-        it("should redirect to the next page in the edit route", () => {
-          expect(result.redirectRoute).toBe("/contact-representative");
-        });
-      });
-    });
-  });
-});
+        it('should redirect to the next page in the edit route', () => {
+          expect(result.redirectRoute).toBe('/contact-representative')
+        })
+      })
+    })
+  })
+})
 
-describe("Edit controller: editBack()", () => {
-  let result;
+describe('Edit controller: editBack()', () => {
+  let result
 
-  describe("given valid input", () => {
+  describe('given valid input', () => {
     beforeEach(() => {
-      const editModeFirstPage = "/registration-role";
-      const currentPage = "/operator-company-details";
+      const editModeFirstPage = '/registration-role'
+      const currentPage = '/operator-company-details'
       const cumulativeFullAnswers = {
-        registration_role: "Representative",
-        operator_type: "A company"
-      };
+        registration_role: 'Representative',
+        operator_type: 'A company'
+      }
       const cumulativeEditAnswers = {
-        registration_role: "Representative",
-        operator_type: "A company"
-      };
+        registration_role: 'Representative',
+        operator_type: 'A company'
+      }
       const args = [
         testPath,
         editModeFirstPage,
         currentPage,
         cumulativeFullAnswers,
         cumulativeEditAnswers
-      ];
+      ]
 
-      result = editController.editBack(...args);
-    });
+      result = editController.editBack(...args)
+    })
 
-    it("should return the previous page", () => {
-      expect(result).toBe("/operator-type");
-    });
-  });
-});
+    it('should return the previous page', () => {
+      expect(result).toBe('/operator-type')
+    })
+  })
+})

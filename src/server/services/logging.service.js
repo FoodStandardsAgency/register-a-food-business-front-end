@@ -3,35 +3,35 @@
  * @module services/logging
  */
 
-const EventEmitter = require("events");
-const { info, error } = require("winston");
+const EventEmitter = require('events')
+const { info, error } = require('winston')
 
 class LogEmitter extends EventEmitter {}
 
-const logEmitter = new LogEmitter();
+const logEmitter = new LogEmitter()
 
-logEmitter.on("functionCall", (module, functionName) => {
-  info(`${module}: ${functionName} called`);
-});
+logEmitter.on('functionCall', (module, functionName) => {
+  info(`${module}: ${functionName} called`)
+})
 
-logEmitter.on("functionCallWith", (module, functionName, data) => {
-  info(`${module}: ${functionName} called with: ${data}`);
-});
+logEmitter.on('functionCallWith', (module, functionName, data) => {
+  info(`${module}: ${functionName} called with: ${data}`)
+})
 
-logEmitter.on("functionSuccess", (module, functionName) => {
-  info(`${module}: ${functionName} successful`);
-});
+logEmitter.on('functionSuccess', (module, functionName) => {
+  info(`${module}: ${functionName} successful`)
+})
 
-logEmitter.on("functionSuccessWith", (module, functionName, data) => {
-  info(`${module}: ${functionName} successful with: ${data}`);
-});
+logEmitter.on('functionSuccessWith', (module, functionName, data) => {
+  info(`${module}: ${functionName} successful with: ${data}`)
+})
 
-logEmitter.on("functionFail", (module, functionName, err) => {
-  error(`${module}: ${functionName} failed with: ${err}`);
-});
+logEmitter.on('functionFail', (module, functionName, err) => {
+  error(`${module}: ${functionName} failed with: ${err}`)
+})
 
-logEmitter.on("doubleMode", (module, functionName) => {
-  info(`${module}: ${functionName}: running in double mode`);
-});
+logEmitter.on('doubleMode', (module, functionName) => {
+  info(`${module}: ${functionName}: running in double mode`)
+})
 
-module.exports = { logEmitter };
+module.exports = { logEmitter }
