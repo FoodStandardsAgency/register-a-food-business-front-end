@@ -566,8 +566,6 @@ describe('data-transform.service transformAnswersForSummary()', () => {
 })
 
 describe('data-transform.service trimUprn()', () => {
-  let result
-
   it('Should return empty string when UPRN is not a string or is empty string', () => {
     const badText = [[], {}, null, undefined, '']
 
