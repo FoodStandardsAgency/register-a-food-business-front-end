@@ -7,16 +7,16 @@ import {
   ProcessedErrorSummary,
   HiddenTextAccessible
 } from "../src/components";
-import { Header, InputField } from "govuk-react";
+import { Heading, InputField } from "govuk-react";
 import PropTypes from "prop-types";
 
 const LimitedCompanyDetails = props => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary validatorErrors={props.validatorErrors} />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       Company details
-    </Header>
+    </Heading>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
@@ -62,7 +62,7 @@ const LimitedCompanyDetails = props => (
 
       <ContentItem.B_30_15>
         <HiddenTextAccessible
-          summaryText={"I don't know my Companies House number"}
+          summary={"I don't know my Companies House number"}
         >
           {/* TODO JMB: replace the span with a paragraph once it's possible to pass an array or similar to Paragraph for the link */}
           <span>

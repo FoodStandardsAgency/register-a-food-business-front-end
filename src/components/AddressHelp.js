@@ -1,14 +1,14 @@
 import React from "react";
 import { ContentItem } from "../../src/components";
-import { Header, HintText } from "govuk-react";
+import { Heading, HintText } from "govuk-react";
 import { PartnershipDescription, OperatorDescription } from "./";
 
 const AddressHelp = props => {
   return props.role === "Partnership" ? (
     <React.Fragment>
-      <Header level={1} size="LARGE">
+      <Heading as="h1" size="LARGE">
         What is the partnership contact's address?
-      </Header>
+      </Heading>
       <ContentItem.B_30_15>
         <HintText>
           Partnership address is the contact address for the partner who is the
@@ -19,9 +19,9 @@ const AddressHelp = props => {
     </React.Fragment>
   ) : (
     <React.Fragment>
-      <Header level={1} size="LARGE">
+      <Heading as="h1" size="LARGE">
         What is the operator's address?
-      </Header>
+      </Heading>
       <ContentItem.B_30_15>
         <HintText>
           Operator address is the contact address for the operator. For example

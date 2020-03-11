@@ -4,11 +4,11 @@ import {
   ContentItem,
   ContinueButton
 } from "../src/components";
-import { Header, Paragraph, InsetText } from "govuk-react";
+import { Heading, Paragraph, InsetText } from "govuk-react";
 
 const Index = props => (
   <FsaLayout {...props}>
-    <Header level={1}>Register a food business</Header>
+    <Heading as="h1">Register a food business</Heading>
 
     <ContentItem.B_30_15>
       <ContentItem.B_30_15>
@@ -27,9 +27,9 @@ const Index = props => (
       </InsetText>
 
       <ContentItem.B_30_15>
-        <Header level={2} size="MEDIUM" mb={1}>
+        <Heading as="h2" size="MEDIUM" mb={1}>
           Food business operator
-        </Header>
+        </Heading>
         <Paragraph mb={0}>
           The operator is the person, charity or company who makes the decisions
           about the food business. They decide what it serves and how it
@@ -38,9 +38,9 @@ const Index = props => (
       </ContentItem.B_30_15>
 
       <ContentItem.B_30_15>
-        <Header level={2} size="MEDIUM" mb={1}>
+        <Heading as="h2" size="MEDIUM" mb={1}>
           Establishment
-        </Header>
+        </Heading>
         <Paragraph mb={0}>
           The establishment is the location or site of your food business. If it
           is a mobile food business, please use the location where it is
@@ -48,9 +48,9 @@ const Index = props => (
         </Paragraph>
       </ContentItem.B_30_15>
       <ContentItem.B_30_15>
-        <Header level={2} size="MEDIUM" mb={1}>
+        <Heading as="h2" size="MEDIUM" mb={1}>
           Registering Local Authority
-        </Header>
+        </Heading>
         <Paragraph>
           {`**${
             props.lcName

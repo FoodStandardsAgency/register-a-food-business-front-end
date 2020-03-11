@@ -8,7 +8,7 @@ import {
   OnHandleErrorClick,
   ContactDetailsHelp
 } from "../src/components";
-import { Header, InputField } from "govuk-react";
+import { Heading, InputField } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OperatorContactDetails = props => (
@@ -18,13 +18,13 @@ const OperatorContactDetails = props => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       {`${
         props.cumulativeFullAnswers.registration_role === "Partnership"
           ? "Partnership"
           : "Operator"
       } contact details`}
-    </Header>
+    </Heading>
     <ContactDetailsHelp role={props.cumulativeFullAnswers.registration_role} />
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>

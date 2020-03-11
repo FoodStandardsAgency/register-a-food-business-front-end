@@ -1,6 +1,6 @@
-import { css } from "emotion";
+// import { css } from "@emotion/core";
 
-const AccessibleAutocompleteCSS = css`
+const AccessibleAutocompleteCSS = `
   .autocomplete__option {
     span.searchTermResult {
       color: #6f777b;

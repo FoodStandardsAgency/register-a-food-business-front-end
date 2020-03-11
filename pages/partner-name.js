@@ -9,8 +9,8 @@ import {
   PartnersTable,
   PartnershipDescription
 } from "../src/components";
-import { Header, Button, HintText } from "govuk-react";
-import styled from "react-emotion";
+import { Heading, Button, HintText } from "govuk-react";
+import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 
 const StyledRow = styled.div`
@@ -50,9 +50,9 @@ const PartnerName = props => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       What are the partners' names?
-    </Header>
+    </Heading>
     <ContentItem.B_30_15>
       <HintText>
         Please advise your local authority directly if more than 5 partners are

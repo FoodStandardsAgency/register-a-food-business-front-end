@@ -1,30 +1,30 @@
 import TopNav, { asTopNavAnchor } from "@govuk-react/top-nav";
 import Main from "@govuk-react/main";
 import PhaseBanner from "@govuk-react/phase-banner";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import CookieBanner from "./CookieBanner";
 
-const AnchorTag = asTopNavAnchor("a");
+const Link = asTopNavAnchor("a");
 const feedbackLink = "https://goo.gl/forms/WB5adxvWQdDIfVvs2";
 
 const FsaTopNav = styled(TopNav)`
-  div:nth-child(1) {
+  div:nth-of-type(1) {
     width: 95%;
   }
 
-  div:nth-child(2) {
+  div:nth-of-type(2) {
     width: 1%;
   }
 `;
 
 const Company = (
-  <AnchorTag
+  <Link
     href="https://www.food.gov.uk"
     target="_blank"
     aria-label="food.gov.uk website (opens in new window)"
   >
     Register a Food Business
-  </AnchorTag>
+  </Link>
 );
 
 const StyledHeader = styled("div")({});
@@ -44,14 +44,14 @@ const FsaHeader = props => (
     <HeaderMain>
       <PhaseBanner level="beta">
         This is a new service -{" "}
-        <AnchorTag
+        <Link
           id="feedbackLink"
           href={feedbackLink}
           target="_blank"
           aria-label="your feedback (opens in new window)"
         >
           your feedback
-        </AnchorTag>{" "}
+        </Link>{" "}
         will help us improve it
       </PhaseBanner>
     </HeaderMain>

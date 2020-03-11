@@ -1,7 +1,8 @@
+/** @jsx jsx */
 import React from "react";
 import dynamic from "next/dynamic";
 import ContentItem from "./ContentItem";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import {
   findMatches,
   inputValueFunction,

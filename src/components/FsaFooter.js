@@ -1,5 +1,5 @@
-import styled from "react-emotion";
-import { asAnchor, ListItem, UnorderedList } from "govuk-react";
+import styled from "@emotion/styled";
+import { Link, ListItem, UnorderedList } from "govuk-react";
 
 const fontSizeNormal = "16px";
 const fontSizeSmall = "14px";
@@ -36,7 +36,7 @@ const FooterLinkContainer = styled("div")`
   margin-bottom: 15px;
 `;
 
-const FooterLink = styled(asAnchor("a"))`
+const FooterLink = styled(Link)`
   color: #454a4c;
   margin-right: 15px;
   margin-bottom: 5px;

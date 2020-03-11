@@ -8,7 +8,7 @@ import {
   OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
-import { Header, Radio, MultiChoice, Paragraph } from "govuk-react";
+import { Heading, Radio, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OperatorType = props => (
@@ -18,11 +18,11 @@ const OperatorType = props => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       Who operates this business?
-    </Header>
+    </Heading>
 
-    <HiddenTextAccessible summaryText={"What is a food business operator?"}>
+    <HiddenTextAccessible summary={"What is a food business operator?"}>
       <Paragraph mb={0}>
         The operator is the person or people, charity or company who makes the
         decisions about the food business. They decide what it serves and how it

@@ -1,5 +1,5 @@
 import { DateField } from "govuk-react";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 
 const FsaDateField = styled(DateField)`
   input[type="number"]::-webkit-outer-spin-button,

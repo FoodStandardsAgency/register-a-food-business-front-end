@@ -1,6 +1,6 @@
 import React from "react";
 import { FsaLayout } from "../src/components";
-import { Header, Paragraph, BackLink, Button } from "govuk-react";
+import { Heading, Paragraph, BackLink, Button } from "govuk-react";
 
 class Error extends React.Component {
   static getInitialProps({ req, res, err }) {
@@ -17,7 +17,7 @@ class Error extends React.Component {
     return (
       <FsaLayout {...this.props}>
         <BackLink href={backToStartLink}>Back to start</BackLink>
-        <Header level={1}>Page Not Found</Header>
+        <Heading as="h1">Page Not Found</Heading>
         <Paragraph>
           Please contact your Local Council if you need to speak to someone
           about your food business registration urgently.

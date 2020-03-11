@@ -7,10 +7,8 @@ import {
   SelectWithHeader,
   AddressHelp
 } from "../src/components";
-import { Header, Paragraph, asAnchor } from "govuk-react";
+import { Heading, Paragraph, Link } from "govuk-react";
 import PropTypes from "prop-types";
-
-const AnchorTag = asAnchor("a");
 
 const OperatorAddressLookup = props => (
   <FsaLayout {...props}>
@@ -19,15 +17,15 @@ const OperatorAddressLookup = props => (
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
-          <Header level={2} size="MEDIUM">
+          <Heading as="h2" size="MEDIUM">
             Postcode
-          </Header>
+          </Heading>
           <Paragraph className="operatorPostcodeDisplay" mb={0}>
             {props.cumulativeFullAnswers.operator_postcode_find}
           </Paragraph>
-          <AnchorTag id="changeOperatorPostcode" href="/operator-address">
+          <Link id="changeOperatorPostcode" href="/operator-address">
             Change postcode
-          </AnchorTag>
+          </Link>
         </ContentItem.B_30_15>
 
         <SelectWithHeader
@@ -55,12 +53,12 @@ const OperatorAddressLookup = props => (
         </SelectWithHeader>
 
         <ContentItem.B_30_15>
-          <AnchorTag
+          <Link
             id="cantFindAddressLink"
             href={`/new/${props.council}/operator-address-manual`}
           >
             I can't find my address in the list
-          </AnchorTag>
+          </Link>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
