@@ -16,26 +16,23 @@ const GridColZeroPadding = styled(GridCol)`
   }
 `;
 
-const FsaLayout = props => {
-  console.log("balls", props);
-  return (
-    <React.Fragment>
-      <Page header={<FsaHeader {...props} />}>
-        <GridRowZeroMargin>
-          <GridColZeroPadding setWidth="two-thirds">
-            {!props.isBrowserSupported && props.isBrowserVersionVerified ? (
-              <BrowserUnsupportedBanner
-                browser={props.browser}
-                version={props.browserVersion}
-              />
-            ) : null}
-            {props.children}
-          </GridColZeroPadding>
-        </GridRowZeroMargin>
-      </Page>
-      <FsaFooter />
-    </React.Fragment>
-  );
-};
+const FsaLayout = props => (
+  <React.Fragment>
+    <Page header={<FsaHeader {...props} />}>
+      <GridRowZeroMargin>
+        <GridColZeroPadding setWidth="two-thirds">
+          {!props.isBrowserSupported && props.isBrowserVersionVerified ? (
+            <BrowserUnsupportedBanner
+              browser={props.browser}
+              version={props.browserVersion}
+            />
+          ) : null}
+          {props.children}
+        </GridColZeroPadding>
+      </GridRowZeroMargin>
+    </Page>
+    <FsaFooter />
+  </React.Fragment>
+);
 
 export default FsaLayout;
