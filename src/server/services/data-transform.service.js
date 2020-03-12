@@ -17,7 +17,7 @@ const trimAnswers = cumulativeFullAnswers => {
 /**
  * Runs custom validation functions, on specific parts of cumulative answers, to get them in the correct format for the summary table,
  *
- * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the sesion with duplicates removed
+ * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the session with duplicates removed
  * @param {object} addressLookups The object returned by the address look-up service based on the postcode the user inputs
  *
  * @returns {object} An object containing the set of data in the correct format for the summary page with unnecessary fields deleted
@@ -78,6 +78,7 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
     if (data.operator_address_selected) {
       if (data.operator_address_line_1) {
         delete data.operator_address_selected;
+        data.operator_first_line = data.operator_address_line_1;
       } else {
         const operatorAddressLookupData =
           addressLookups.operator_postcode_find[data.operator_address_selected];
@@ -106,11 +107,14 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
         delete data.operator_postcode_find;
         delete data.operator_address_selected;
       }
+    } else {
+      data.operator_first_line = data.operator_address_line_1;
     }
 
     if (data.establishment_address_selected) {
       if (data.establishment_address_line_1) {
         delete data.establishment_address_selected;
+        data.establishment_first_line = data.establishment_address_line_1;
       } else {
         const establishmentAddressLookupData =
           addressLookups.establishment_postcode_find[
@@ -145,6 +149,9 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
         delete data.establishment_address_selected;
       }
     }
+      else {
+        data.establishment_first_line = data.establishment_address_line_1;
+      }
 
     if (data.business_type) {
       const separatedBusinessTypeSearchTerm = separateBracketsFromBusinessType(
