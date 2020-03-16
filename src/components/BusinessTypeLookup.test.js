@@ -1,4 +1,6 @@
 import BusinessTypeLookup from "../components/BusinessTypeLookup";
+import DataListSection from "../components/DataListSection";
+import SelectListSection from "../components/SelectListSection";
 import { Paragraph } from "govuk-react";
 import { SelectInput } from "@govuk-react/select";
 import { shallow, mount } from "enzyme";
@@ -47,10 +49,8 @@ describe("<BusinessTypeLookup />", () => {
   });
   describe("given JavaScript is disabled", () => {
     describe("when browser is not Safari", () => {
-      let wrapper;
-
-      beforeEach(() => {
-        wrapper = mount(
+      it("renders DataListSection", () => {
+        const wrapper = mount(
           <BusinessTypeLookup
             validatorErrors
             cumulativeFullAnswers
@@ -59,21 +59,33 @@ describe("<BusinessTypeLookup />", () => {
         );
         wrapper.setState({ renderAutoCompleteSection: false });
         wrapper.update();
+        expect(wrapper.find(DataListSection)).toHaveLength(1);
       });
-      it("should render Paragraph with appropriate text", () => {
-        expect(wrapper.find(Paragraph).text()).toEqual(
-          "Search and select the most fitting business type from the suggestions"
-        );
-      });
-      it("should render Datalist component", () => {
-        expect(wrapper.exists("datalist#business-types")).toBe(true);
+      describe("when DataListSection renders", () => {
+        let wrapper;
+
+        beforeEach(() => {
+          wrapper = mount(
+            <DataListSection
+              validatorErrors
+              cumulativeFullAnswers
+              browser="Chrome"
+            />
+          );
+        });
+        it("should render Paragraph with appropriate text", () => {
+          expect(wrapper.find(Paragraph).text()).toEqual(
+            "Search and select the most fitting business type from the suggestions"
+          );
+        });
+        it("should render DataList component", () => {
+          expect(wrapper.exists("datalist#business-types")).toBe(true);
+        });
       });
     });
     describe("when browser is Safari", () => {
-      let wrapper;
-
-      beforeEach(() => {
-        wrapper = mount(
+      it("renders SelectListSection", () => {
+        const wrapper = mount(
           <BusinessTypeLookup
             validatorErrors
             cumulativeFullAnswers
@@ -82,14 +94,28 @@ describe("<BusinessTypeLookup />", () => {
         );
         wrapper.setState({ renderAutoCompleteSection: false });
         wrapper.update();
+        expect(wrapper.find(SelectListSection)).toHaveLength(1);
       });
-      it("should render Paragraph with appropriate text", () => {
-        expect(wrapper.find(Paragraph).text()).toEqual(
-          "Select the most fitting business type from the suggestions"
-        );
-      });
-      it("should render SelectInput component", () => {
-        expect(wrapper.find(SelectInput).prop("name")).toBe("business_type");
+      describe("when SelectList component renders", () => {
+        let wrapper;
+
+        beforeEach(() => {
+          wrapper = mount(
+            <SelectListSection
+              validatorErrors
+              cumulativeFullAnswers
+              browser="Safari"
+            />
+          );
+        });
+        it("should render Paragraph with appropriate text", () => {
+          expect(wrapper.find(Paragraph).text()).toEqual(
+            "Select the most fitting business type from the suggestions"
+          );
+        });
+        it("should render SelectInput component", () => {
+          expect(wrapper.find(SelectInput).prop("name")).toBe("business_type");
+        });
       });
     });
   });
