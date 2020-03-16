@@ -2,22 +2,16 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import ContentItem from "./ContentItem";
+import DataListSection from "./DataListSection";
+import SelectListSection from "./SelectListSection";
 import { css, jsx } from "@emotion/core";
 import {
   findMatches,
   inputValueFunction,
   suggestionFunction
 } from "./BusinessTypeLookupFunctions";
-import {
-  ErrorText,
-  HintText,
-  UnorderedList,
-  Input,
-  Paragraph
-} from "govuk-react";
-import { SelectInput } from "@govuk-react/select";
+import { ErrorText, HintText, UnorderedList, Paragraph } from "govuk-react";
 import ListItemConsistentSize from "./ListItemConsistentSize";
-import distinctBusinessTypes from "./distinct-business-types.json";
 
 // dynamic import used because Autocomplete component from AlphaGov uses the document object on import.
 // Therefore it must be imported on the client side not on the server side.
@@ -41,62 +35,6 @@ const lineHeight = {
   lineHeight: "1.6em",
   padding: 0
 };
-
-const fullWidth = {
-  width: "100%"
-};
-
-const BusinessTypeOptions = () => {
-  let options = [];
-  distinctBusinessTypes.forEach(type => {
-    options.push(
-      <option key={type} value={type}>
-        {type}
-      </option>
-    );
-  });
-  return options;
-};
-
-const DataListSection = props => (
-  <div id="dataListSection">
-    <Paragraph>
-      Search and select the most fitting business type from the suggestions
-    </Paragraph>
-    <div aria-label="business type autocomplete, type and then choose from results">
-      <Input
-        name="business_type"
-        className={
-          props.validatorErrors.business_type ? autocompleteErrorStyling : null
-        }
-        style={fullWidth}
-        list="business-types"
-      />
-      <datalist id="business-types">
-        <BusinessTypeOptions />
-      </datalist>
-    </div>
-  </div>
-);
-
-const SelectListSection = props => (
-  <div id="selectListSection">
-    <Paragraph>
-      Select the most fitting business type from the suggestions
-    </Paragraph>
-    <div aria-label="business type select, click and choose from dropdown">
-      <SelectInput
-        name="business_type"
-        style={fullWidth}
-        className={
-          props.validatorErrors.business_type ? autocompleteErrorStyling : null
-        }
-      >
-        <BusinessTypeOptions />
-      </SelectInput>
-    </div>
-  </div>
-);
 
 // 12/02/2020 - comment needed due to cloudflare caching next.js files
 class BusinessTypeLookup extends React.Component {
