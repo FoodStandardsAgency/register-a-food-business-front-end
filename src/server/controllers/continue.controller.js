@@ -105,10 +105,15 @@ const continueController = (
     );
 
     // update the new path to switch off manual address input pages if the originator (currentPage) is one of the address select pagees
-    // and switch off representative registration role path when changed to Sole trader
+    const updatedNewPathManual = switchOffManualAddressInput(
+      newPath,
+      currentPage
+    );
+
+    // update the new path to switch off representative registration role path when changed to Sole trader
     const updatedNewPath = switchOffCompanyAndCharityDetails(
       trimmedNewAnswers,
-      switchOffManualAddressInput(newPath, currentPage)
+      updatedNewPathManual
     );
 
     // remove any answers that are associated with an inactive page on the path
