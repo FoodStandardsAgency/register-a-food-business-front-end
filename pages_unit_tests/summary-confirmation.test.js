@@ -3,7 +3,7 @@ import { shallow, mount } from "enzyme";
 jest.mock("../src/server/services/data-transform.service");
 
 const cumulativeFullAnswers = {
-  establishment_first_line: "Example first line"
+  establishment_address_line_1: "Example address line 1"
 };
 
 const transformedData = {
@@ -85,7 +85,7 @@ describe("<ApplicationComplete />", () => {
       const panel = wrapper.find("Panel#panelWithNumber");
       expect(panel.length).toBe(1);
     });
-    it("The panel renders 'Awaiting registration number' text when not defined", () => {
+    it("The panel renders 'Awaiting registration application reference' text when not defined", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}

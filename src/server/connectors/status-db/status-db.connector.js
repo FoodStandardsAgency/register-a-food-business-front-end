@@ -108,10 +108,11 @@ const updateStoredStatus = async (statusName, newStatus) => {
   logEmitter.emit("functionCall", "status-db.connector", "updateStoredStatus");
   try {
     await establishConnectionToMongo();
-    const response = await statusCollection.updateOne(
+    await statusCollection.updateOne(
       { _id: "frontEndStatus" },
       { $set: { [statusName]: newStatus } }
     );
+
     logEmitter.emit(
       "functionsuccess",
       "status-db.connector",
@@ -125,6 +126,7 @@ const updateStoredStatus = async (statusName, newStatus) => {
       "updateStoredStatus",
       err
     );
+
     const newError = new Error();
     newError.name = "mongoConnectionError";
     newError.message = err.message;

@@ -53,3 +53,9 @@ The `moveAlongPath()` function takes three arguments:
 Firstly, the path is filtered by `on: true` to become a list of just the enabled pages. The index of the current page on this 'active path' is then used as a basis to add or subtract the `movement`, returning the name of the next or previous page in the active path.
 
 For example, if the current page is `registration-role` and the next enabled page is `company-details`, any pages between those two are skipped,and the return of the function is `company-details`.
+
+## 'partner-details' page
+
+The 'partner-details' page is not on the path at all. Should the user choose partnership as the registration role, this page can be accessed by using the "Add partner" button wrapped in a "href" link on the 'partner-name' page. This is because the 'partner-details' page must be accessible freely; the user may enter and exit this page as many times as they need. 
+
+The 'Continue' button on the 'partner-name' page does not actually use the continue route. Navigation on the 'partner-name' and 'partner-details' pages is handled by the custom 'partner-details.router'. Once the user is on the 'main-partnership-contact' page, they are effectively back on the standard path.

@@ -32,11 +32,7 @@ describe("address.service getUkAddressesByPostcode()", () => {
     });
 
     it("calls getAddressesByPostcode with 'uk', a postcode, and a address limit of 500", () => {
-      expect(getAddressesByPostcode).toHaveBeenCalledWith(
-        "uk",
-        "NR14 7PZ",
-        500
-      );
+      expect(getAddressesByPostcode).toHaveBeenCalledWith("NR14 7PZ", 500);
     });
   });
 
@@ -53,8 +49,8 @@ describe("address.service getUkAddressesByPostcode()", () => {
       }
     });
 
-    it("Should throw the error", () => {
-      expect(response.message).toBe("Some error");
+    it("Should return an empty array", () => {
+      expect(response).toEqual([]);
     });
   });
 });

@@ -16,8 +16,8 @@ const validBody = {
         operator_first_name: "Fred",
         operator_last_name: "Bloggs",
         operator_postcode: "SW12 9RQ",
-        operator_first_line: "335",
-        operator_street: "Some St.",
+        operator_address_line_1: "335",
+        operator_adress_line_2: "Some St.",
         operator_town: "London",
         operator_primary_number: "9827235",
         operator_email: "fsatestemail.valid@gmail.com",
@@ -25,8 +25,8 @@ const validBody = {
       },
       premise: {
         establishment_postcode: "SW12 9RQ",
-        establishment_first_line: "123",
-        establishment_street: "Street",
+        establishment_address_line_1: "123",
+        establishment_adress_line_2: "Street",
         establishment_town: "London",
         establishment_type: "Somewhere"
       },
@@ -60,8 +60,8 @@ const invalidBody = {
         operator_first_name: "Fred",
         operator_last_name: "Bloggs",
         operator_postcode: "SW12 9RQ",
-        operator_first_line: "335",
-        operator_street: "Some St.",
+        operator_address_line_1: "335",
+        operator_adress_line_2: "Some St.",
         operator_town: "London",
         operator_primary_number: "9827235",
         operator_email: "fsatestemail.valid@gmail.com",
@@ -69,8 +69,8 @@ const invalidBody = {
       },
       premise: {
         establishment_postcode: "SW12 9RQ",
-        establishment_first_line: "123",
-        establishment_street: "Street",
+        establishment_address_line_1: "123",
+        establishment_adress_line_2: "Street",
         establishment_town: "London",
         establishment_type: "Somewhere"
       },

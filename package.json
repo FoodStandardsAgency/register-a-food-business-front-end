@@ -1,39 +1,36 @@
 {
   "name": "register_a_food_business_front_end",
-  "version": "8.2.0",
+  "version": "8.4.0",
   "engines": {
     "npm": "5.6.0"
   },
   "scripts": {
     "debug": "node --inspect src/server/index.js",
     "debug:prod": "NODE_ENV=production node --inspect src/server/index.js",
+    "debug:prod:local": "(export $(grep -v '^#' .env | xargs -d '\n')) && NODE_ENV=production node --inspect src/server/index.js",
     "dev": "node src/server/index.js",
     "build": "next build",
     "version": "NODE_ENV=production node -v",
     "start": "NODE_ENV=production node src/server/index.js",
+    "start:local": "(export $(grep -v '^#' .env | xargs -d '\n')) && NODE_ENV=production node src/server/index.js",
     "test": "jest ./src ./pages --coverage",
-    "test:ci":
-      "export TEST_TYPE=unit && jest ./src ./pages --coverage --maxWorkers=4",
+    "test:ci": "export TEST_TYPE=unit && jest ./src ./pages --coverage --maxWorkers=4",
     "test:watch": "jest ./src --watch",
-    "test:integration":
-      "export TEST_TYPE=integration && jest tests/integration/*.js",
+    "test:integration": "export TEST_TYPE=integration && jest tests/integration/*.js",
     "test:contract": "jest tests/contract/*.js",
     "test:securityallWizard": "snyk wizard",
     "test:securityWizard": "snyk wizard --severity-threshold=medium",
     "test:security": "snyk auth && snyk test --severity-threshold=medium",
     "lint": "eslint ./src ./pages",
-    "format:verify":
-      "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
-    "format":
-      "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*'",
+    "format:verify": "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*' '!./**/*.pdf'",
+    "format": "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./**/*.pdf' '!./src/__tests__/__snapshots__/**/*'",
     "jsdoc": "rm -rf ./docs/jsdoc && jsdoc -r ./src -d ./docs/jsdoc",
-    "updateBusinessTypes":
-      "node ./src/components/update-business-types.js && npm run format"
+    "updateBusinessTypes": "node ./src/components/update-business-types.js && npm run format"
   },
   "dependencies": {
     "@govuk-react/icon-crown": "0.0.5",
     "@govuk-react/icons": "0.2.7",
-    "@slice-and-dice/register-a-food-business-validation": "1.16.0",
+    "@slice-and-dice/register-a-food-business-validation": "1.17.0",
     "accessible-autocomplete": "1.6.1",
     "body-parser": "1.18.3",
     "connect-mongo": "2.0.1",
@@ -46,6 +43,7 @@
     "express-session": "1.15.6",
     "express-useragent": "1.0.12",
     "govuk-react": "0.3.1",
+    "https-proxy-agent": "^5.0.0",
     "jsonschema": "1.2.4",
     "mongodb": "3.1.6",
     "next": "6.1.1",

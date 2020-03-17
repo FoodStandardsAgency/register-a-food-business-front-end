@@ -81,9 +81,11 @@ const allTableRowsForIrregularDays = mandatoryTableRows.concat(
 // the complete set of possible mandatory answer fields with example data
 const testMandatoryAnswers = {
   operator_type: "Sole trader",
-  establishment_first_line: "Example first line",
+  establishment_address_line_1: "Address line 1",
+  establishment_town: "Town",
   establishment_postcode: "AA11 1AA",
-  operator_first_line: "Example first line",
+  operator_address_line_1: "Address line 1",
+  operator_town: "Town",
   operator_postcode: "AA11 1AA",
   establishment_trading_name: "Example trading name",
   operator_first_name: "John",
@@ -112,9 +114,9 @@ const testMandatoryAnswers = {
 
 const testMandatoryAnswersForPartnership = {
   operator_type: "Partnership",
-  establishment_first_line: "Example first line",
+  establishment_address_line_1: "Example address line 1",
   establishment_postcode: "AA11 1AA",
-  operator_first_line: "Example first line",
+  operator_address_line_1: "Example address line 1",
   operator_postcode: "AA11 1AA",
   establishment_trading_name: "Example trading name",
   operator_first_name: "John",
@@ -190,12 +192,11 @@ const testOptionalMiscAnswers = {
 };
 
 const testOptionalAddressAnswers = {
-  establishment_street: "Street name",
-  establishment_dependent_locality: "Dependent Locality",
-  establishment_town: "Town",
-  operator_street: "Street name",
-  operator_dependent_locality: "Dependent Locality",
-  operator_town: "Town"
+  establishment_address_line_2: "Address line 2",
+  establishment_address_line_3: "Address line 3",
+
+  operator_address_line_2: "Address line 2",
+  operator_address_line_3: "Address line 3"
 };
 
 const testOptionalAnswers = Object.assign(

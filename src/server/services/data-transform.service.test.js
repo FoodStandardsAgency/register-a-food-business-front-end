@@ -3,6 +3,7 @@ import {
   transformAnswersForSummary,
   combineDate,
   separateBracketsFromBusinessType,
+  trimUprn,
   trimAnswers
 } from "./data-transform.service";
 
@@ -207,9 +208,8 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         operator_postcode_find: [
           {
             addressline1: "Allies Computing Ltd",
-            addressline2: "Manor Farm Barns",
-            addressline3: "Fox Road",
-            addressline4: "Framingham Pigot",
+            addressline2: "Manor Farm Barns, Fox Road",
+            addressline3: "Framingham Pigot",
             summaryline:
               "Allies Computing Ltd, Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
             organisation: "Allies Computing Ltd",
@@ -230,10 +230,9 @@ describe("data-transform.service transformAnswersForSummary()", () => {
             subbuildingname: "Room 36",
             buildingname: "Block 1 Arthur Vick",
             premise: "Room 36, Block 1 Arthur Vick",
-            street: "Gibbet Hill Road",
-            posttown: "Norwich",
-            county: "Norfolk",
-            postcode: "NR14 7PZ"
+            posttown: "Coventry",
+            county: "West Midlands",
+            postcode: "CV4 7AL"
           }
         ],
         establishment_postcode_find: [
@@ -307,8 +306,9 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
 
         const correctResponse = {
-          operator_first_line: "Allies Computing Ltd",
-          operator_street: "Fox Road",
+          operator_address_line_1: "Allies Computing Ltd",
+          operator_address_line_2: "Fox Road",
+          operator_address_line_3: "Framingham Pigot",
           operator_town: "Norwich",
           operator_postcode: "NR14 7PZ"
         };
@@ -317,13 +317,13 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           operator_address_selected: "0"
         };
 
-        it("uses addressLine1 instead of premise as operator_first_line", () => {
+        it("uses addressLine1 instead of premise as operator_address_line_1", () => {
           const response = transformAnswersForSummary(
             cumulativeAnswersOpAddSelected,
             testAddressLookupsNoPremise
           );
-          expect(response.operator_first_line).toBe(
-            correctResponse.operator_first_line
+          expect(response.operator_address_line_1).toBe(
+            correctResponse.operator_address_line_1
           );
         });
       });
@@ -365,8 +365,8 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
 
         const correctResponse = {
-          establishment_first_line: "Example",
-          establishment_street: "Fox Road",
+          establishment_address_line_1: "Example",
+          establishment_address_line_2: "Fox Road",
           establishment_town: "Norwich",
           establishment_postcode: "NR14 7PZ"
         };
@@ -375,13 +375,13 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           establishment_address_selected: "0"
         };
 
-        it("uses addressLine1 instead of premise as establishment_first_line", () => {
+        it("uses addressLine1 instead of premise as establishment_address_line_1", () => {
           const response = transformAnswersForSummary(
             cumulativeAnswersEstAddSelected,
             testAddressLookupsNoPremise
           );
-          expect(response.establishment_first_line).toBe(
-            correctResponse.establishment_first_line
+          expect(response.establishment_address_line_1).toBe(
+            correctResponse.establishment_address_line_1
           );
         });
       });
@@ -392,10 +392,11 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
 
         const correctResponse = {
-          operator_first_line: "Room 36, Block 1 Arthur Vick",
-          operator_street: "Gibbet Hill Road",
-          operator_town: "Norwich",
-          operator_postcode: "NR14 7PZ"
+          operator_address_line_1: "Room 36",
+          operator_address_line_2: "Block 1 Arthur Vick",
+          operator_address_line_3: "Gibbet Hill Road",
+          operator_town: "Coventry",
+          operator_postcode: "CV4 7AL"
         };
 
         it("returns correctly formatted operator address fields that match the second entry in the address lookup results", () => {
@@ -407,15 +408,15 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           ).toMatchObject(correctResponse);
         });
 
-        describe("given that operator_first_line already exists (showing that the manual address page has been filled out)", () => {
+        describe("given that operator_address_line_1 already exists (showing that the manual address page has been filled out)", () => {
           const cumulativeAnswersOpAddSelectedWithManual = {
             operator_address_selected: "1",
-            operator_first_line: "Room 36, Block 1 Arthur Vick",
+            operator_address_line_1: "Room 36, Block 1 Arthur Vick",
             operator_postcode: "NR14 7PZ"
           };
 
           const manualAddressDataOnly = {
-            operator_first_line: "Room 36, Block 1 Arthur Vick",
+            operator_address_line_1: "Room 36, Block 1 Arthur Vick",
             operator_postcode: "NR14 7PZ"
           };
 
@@ -436,8 +437,9 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
 
         const correctResponse = {
-          establishment_first_line: "Example premise line",
-          establishment_street: "Example street",
+          establishment_address_line_1: "Example",
+          establishment_address_line_2: "Example line 2",
+          establishment_address_line_3: "Gibbet Hill Road",
           establishment_town: "Example town",
           establishment_postcode: "AA11 1AA"
         };
@@ -451,15 +453,15 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           ).toMatchObject(correctResponse);
         });
 
-        describe("given that establishment_first_line already exists (showing that the manual address page has been filled out)", () => {
+        describe("given that establishment_address_line_1 already exists (showing that the manual address page has been filled out)", () => {
           const cumulativeAnswersEstAddSelectedWithManual = {
             establishment_address_selected: "0",
-            establishment_first_line: "Example premise line",
+            establishment_address_line_1: "Example premise line",
             establishment_postcode: "AA11 1AA"
           };
 
           const manualAddressDataOnly = {
-            establishment_first_line: "Example premise line",
+            establishment_address_line_1: "Example premise line",
             establishment_postcode: "AA11 1AA"
           };
 
@@ -559,6 +561,44 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         result = transformAnswersForSummary(cumulativeFullAnswers);
         expect(result.import_export_activities).toBe(undefined);
       });
+    });
+  });
+});
+
+describe("data-transform.service trimUprn()", () => {
+  it("Should return empty string when UPRN is not a string or is empty string", () => {
+    const badText = [[], {}, null, undefined, ""];
+
+    badText.forEach(text => {
+      const result = trimUprn(text);
+      expect(result).toBe("");
+    });
+  });
+
+  it("Should return empty string when UPRN is completely invalid", () => {
+    const badText = ["asdasd333333", "dsdfsdfs344", "%f", "--4"];
+
+    badText.forEach(text => {
+      const result = trimUprn(text);
+      expect(result).toBe("");
+    });
+  });
+
+  it("Should return UPRN trimmed of trailing non-numeric characters when present", () => {
+    let result = trimUprn("12334sdfsd");
+    expect(result).toBe("12334");
+    result = trimUprn("1233456789-1");
+    expect(result).toBe("1233456789");
+    result = trimUprn("9999999%%%dd3");
+    expect(result).toBe("9999999");
+  });
+
+  describe("Should return unaltered UPRN if already valid", () => {
+    const valid = ["213456", "789456123", "9998887776"];
+
+    valid.forEach(text => {
+      const result = trimUprn(text);
+      expect(result).toBe(text);
     });
   });
 });
