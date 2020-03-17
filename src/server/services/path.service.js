@@ -288,7 +288,7 @@ const switchOffManualAddressInput = (newPath, currentPage) => {
  *
  * @returns {object} The edited path
  */
-const switchOffCompanyAndCharityDetails = (newAnswers, newPath) => {
+const switchOffCompanyAndCharityDetails = (newAnswers, path) => {
   logEmitter.emit(
     "functionCall",
     "path.service",
@@ -299,8 +299,8 @@ const switchOffCompanyAndCharityDetails = (newAnswers, newPath) => {
     newAnswers.registration_role &&
     newAnswers.registration_role !== "Representative"
   ) {
-    newPath["/operator-charity-details"].on = false;
-    newPath["/operator-company-details"].on = false;
+    path["/operator-charity-details"].on = false;
+    path["/operator-company-details"].on = false;
   }
   return newPath;
 };
