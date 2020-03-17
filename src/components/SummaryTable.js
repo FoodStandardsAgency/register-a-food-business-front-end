@@ -159,7 +159,7 @@ const OperatorDetailsTable = props => (
         acPage={props.applicationCompletePage}
         id="operatorCompaniesHouseRow"
       >
-        <AccessibleRowHeader>Company number</AccessibleRowHeader>
+        <AccessibleRowHeader>Companies House number</AccessibleRowHeader>
         <AccessibleCell id="operator_companies_house_number">
           {props.operator_companies_house_number}
         </AccessibleCell>
