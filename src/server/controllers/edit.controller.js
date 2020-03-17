@@ -116,10 +116,12 @@ const editContinue = (
   let redirectRoute;
   let cleanedInactiveFullAnswers;
   let cleanedInactiveEditAnswers;
+  let newAllValidationErrors;
   if (valid) {
-    Object.keys(newAnswers).forEach(
-      validAnswerKey => delete allValidationErrors[validAnswerKey]
-    );
+    newAllValidationErrors = Object.assign({}, allValidationErrors);
+    Object.keys(newAnswers).forEach(validAnswerKey => {
+      delete newAllValidationErrors[validAnswerKey];
+    });
     // TODO JMB: Merge switchOffManualAddressInput into editPathInEditMode
     const newEditModePath = editPathInEditMode(
       newCumulativeFullAnswers,
@@ -162,7 +164,7 @@ const editContinue = (
     cumulativeFullAnswers: cumulativeFullAnswersToReturn,
     cumulativeEditAnswers: cumulativeEditAnswersToReturn,
     validatorErrors,
-    allValidationErrors,
+    newAllValidationErrors,
     switches: cleanedSwitches,
     redirectRoute
   };

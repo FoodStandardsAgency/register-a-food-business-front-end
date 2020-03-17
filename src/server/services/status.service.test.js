@@ -107,7 +107,7 @@ describe("status.service setStatus()", () => {
     });
 
     it("should throw an error", () => {
-      expect(result).toBeUndefined;
+      expect(result).toBeUndefined();
     });
   });
 });

@@ -213,8 +213,7 @@ describe("Function: getPathConfigByVersion", () => {
         }),
         topology: {
           isConnected: () => true
-        },
-        close: () => closeConnection()
+        }
       }));
     });
 
