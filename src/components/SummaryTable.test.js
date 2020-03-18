@@ -145,9 +145,9 @@ const testMandatoryAnswersForPartnership = {
 
 const testMandatoryAnswersForIrregularDays = {
   operator_type: "Sole trader",
-  establishment_first_line: "Example first line",
+  establishment_address_line_1: "Address line 1",
   establishment_postcode: "AA11 1AA",
-  operator_first_line: "Example first line",
+  operator_address_line_1: "Address line 1",
   operator_postcode: "AA11 1AA",
   establishment_trading_name: "Example trading name",
   operator_first_name: "John",
@@ -206,9 +206,9 @@ const testOptionalAnswers = Object.assign(
 );
 
 const testOptionalAnswersForIrregularDays = {
-  establishment_street: "Street name",
+  establishment_address_line_2: "Street name",
   establishment_town: "Town",
-  operator_street: "Street name",
+  operator_address_line_2: "Street name",
   operator_town: "Town",
   contact_representative_role: "Coder",
   operator_charity_number: "123456",
