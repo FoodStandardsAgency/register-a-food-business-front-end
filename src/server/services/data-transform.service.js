@@ -148,10 +148,9 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
         delete data.establishment_postcode_find;
         delete data.establishment_address_selected;
       }
+    } else {
+      data.establishment_first_line = data.establishment_address_line_1;
     }
-      else {
-        data.establishment_first_line = data.establishment_address_line_1;
-      }
 
     if (data.business_type) {
       const separatedBusinessTypeSearchTerm = separateBracketsFromBusinessType(
