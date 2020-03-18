@@ -66,18 +66,18 @@ const OperatorCharityDetails = props => (
               error: props.validatorErrors["operator_charity_number"]
             }}
           >
-            Charity reference number (optional)
+            Charity registration application reference (optional)
           </InputField>
         </ContentItem.B_30_15>
 
         <HiddenTextAccessible
           hiddentextindex={2}
           id="hiddenTextCharityNumbers"
-          summaryText={"Questions about charity reference numbers"}
+          summaryText={"Questions about charity registration application reference"}
         >
           <span>
             Charities that are registered with the Charities Commission will
-            have a charity reference number. You can find your charity reference
+            have a charity registration application reference. You can find your charity reference
             number by visiting the{" "}
             <a
               href="http://apps.charitycommission.gov.uk/Showcharity/RegisterOfCharities/registerhomepage.aspx"

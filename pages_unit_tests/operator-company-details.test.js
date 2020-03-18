@@ -66,7 +66,7 @@ describe("<OperatorCompanyDetails />", () => {
     });
   });
 
-  describe("Companies House reference number input field", () => {
+  describe("Companies House registration application reference input field", () => {
     it("renders", () => {
       const wrapper = mount(
         <OperatorCompanyDetails

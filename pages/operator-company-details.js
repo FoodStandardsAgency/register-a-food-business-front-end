@@ -48,7 +48,7 @@ const LimitedCompanyDetails = props => (
             autoComplete: "off"
           }}
           hint={
-            "Every registered company will have a Companies House reference number."
+            "Every registered company will have a Companies House registration application reference."
           }
           id="operator_company_house_number"
           meta={{
@@ -67,8 +67,8 @@ const LimitedCompanyDetails = props => (
           {/* TODO JMB: replace the span with a paragraph once it's possible to pass an array or similar to Paragraph for the link */}
           <span>
             Every limited company has to be registered with Companies House, and
-            will have a company reference number. You can find your company
-            reference number by visiting the{" "}
+            will have a company registration application reference. You can find your company
+            registration application reference by visiting the{" "}
             <a
               href="https://beta.companieshouse.gov.uk/"
               target="_blank"

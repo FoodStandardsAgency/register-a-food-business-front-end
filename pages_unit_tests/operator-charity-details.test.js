@@ -67,7 +67,7 @@ describe("<OperatorCharityDetails />", () => {
     });
   });
 
-  describe("charity reference number input field", () => {
+  describe("charity registration application reference input field", () => {
     it("renders", () => {
       const wrapper = mount(
         <OperatorCharityDetails
