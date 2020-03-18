@@ -154,14 +154,14 @@ const OperatorDetailsTable = props => (
       </AccessibleTableRow>
     ) : null}
 
-    {props.operator_company_house_number ? (
+    {props.operator_companies_house_number ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorCompaniesHouseRow"
       >
-        <AccessibleRowHeader>Company number</AccessibleRowHeader>
-        <AccessibleCell id="operator_company_house_number">
-          {props.operator_company_house_number}
+        <AccessibleRowHeader>Companies House number</AccessibleRowHeader>
+        <AccessibleCell id="operator_companies_house_number">
+          {props.operator_companies_house_number}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
@@ -872,7 +872,7 @@ export default SummaryTable;
 
 SummaryTable.propTypes = {
   operator_company_name: PropTypes.string,
-  operator_company_house_number: PropTypes.string,
+  operator_companies_house_number: PropTypes.string,
   operator_charity_name: PropTypes.string,
   operator_charity_number: PropTypes.string,
   operator_address_line_1: PropTypes.string,
