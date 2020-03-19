@@ -260,10 +260,10 @@ describe("<SummaryTable />", () => {
       describe("when given a props of applicationCompletePage = true", () => {
         it("It doesn't render a change button in all editable rows", () => {
           editableTableRows.forEach(tableRowName => {
-            const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);
+            const row = wrapperApplicationComplete.find(`tr#${tableRowName}`);
             const buttonId = `change${tableRowName.charAt(0).toUpperCase() +
               tableRowName.substr(1)}`;
-            const button = row.find(`Anchor#${buttonId}`);
+            const button = row.find(`a#${buttonId}`);
 
             expect(button.length).toBe(0);
           });
@@ -272,17 +272,17 @@ describe("<SummaryTable />", () => {
 
       it("renders a change button in all editable rows", () => {
         editableTableRows.forEach(tableRowName => {
-          const row = wrapperComprehensive.find(`Row#${tableRowName}`);
+          const row = wrapperComprehensive.find(`tr#${tableRowName}`);
           const buttonId = `change${tableRowName.charAt(0).toUpperCase() +
             tableRowName.substr(1)}`;
-          const button = row.find(`Anchor#${buttonId}`);
+          const button = row.find(`a#${buttonId}`);
           expect(button.length).toBe(1);
         });
       });
 
       it("renders all table rows", () => {
         allTableRows.forEach(tableRowName => {
-          const row = wrapperComprehensive.find(`Row#${tableRowName}`);
+          const row = wrapperComprehensive.find(`tr#${tableRowName}`);
           expect(row.length).toBe(1);
         });
       });
@@ -302,11 +302,11 @@ describe("<SummaryTable />", () => {
         it("It doesn't render a change button in all editable rows", () => {
           editableTableRows.forEach(tableRowName => {
             const row = wrapperApplicationCompleteForPartnership.find(
-              `Row#${tableRowName}`
+              `tr#${tableRowName}`
             );
             const buttonId = `change${tableRowName.charAt(0).toUpperCase() +
               tableRowName.substr(1)}`;
-            const button = row.find(`Anchor#${buttonId}`);
+            const button = row.find(`a#${buttonId}`);
 
             expect(button.length).toBe(0);
           });
@@ -316,18 +316,18 @@ describe("<SummaryTable />", () => {
       it("renders a change button in all editable rows", () => {
         editableTableRows.forEach(tableRowName => {
           const row = wrapperComprehensiveForPartnership.find(
-            `Row#${tableRowName}`
+            `tr#${tableRowName}`
           );
           const buttonId = `change${tableRowName.charAt(0).toUpperCase() +
             tableRowName.substr(1)}`;
-          const button = row.find(`Anchor#${buttonId}`);
+          const button = row.find(`a#${buttonId}`);
           expect(button.length).toBe(1);
         });
       });
 
       it("renders all table rows", () => {
         allTableRows.forEach(tableRowName => {
-          const row = wrapperComprehensive.find(`Row#${tableRowName}`);
+          const row = wrapperComprehensive.find(`tr#${tableRowName}`);
           expect(row.length).toBe(1);
         });
       });
@@ -336,20 +336,20 @@ describe("<SummaryTable />", () => {
   describe("when applicationCompletePage equals true", () => {
     it("renders the declaration table rows", () => {
       declarationRows.forEach(tableRowName => {
-        const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);
+        const row = wrapperApplicationComplete.find(`tr#${tableRowName}`);
         expect(row.length).toBe(1);
       });
     });
     it("doesn't render the feedback table row", () => {
       feedbackRows.forEach(tableRowName => {
-        const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);
+        const row = wrapperApplicationComplete.find(`tr#${tableRowName}`);
         expect(row.length).toBe(0);
       });
     });
     it("does render the feedback table row when specified", () => {
       feedbackRows.forEach(tableRowName => {
         const row = wrapperApplicationCompleteWithFeedback.find(
-          `Row#${tableRowName}`
+          `tr#${tableRowName}`
         );
         expect(row.length).toBe(1);
       });
@@ -359,7 +359,7 @@ describe("<SummaryTable />", () => {
     describe("when given a minimum set of answers", () => {
       it("renders all mandatory table rows", () => {
         mandatoryTableRows.forEach(tableRowName => {
-          const row = wrapperMinimum.find(`Row#${tableRowName}`);
+          const row = wrapperMinimum.find(`tr#${tableRowName}`);
           expect(row.length).toBe(1);
         });
       });
@@ -378,7 +378,7 @@ describe("<SummaryTable />", () => {
     describe("when given a minimum set of answers", () => {
       it("renders all mandatory table rows", () => {
         mandatoryTableRows.forEach(tableRowName => {
-          const row = wrapperMinimumForPartnership.find(`Row#${tableRowName}`);
+          const row = wrapperMinimumForPartnership.find(`tr#${tableRowName}`);
           expect(row.length).toBe(1);
         });
       });
