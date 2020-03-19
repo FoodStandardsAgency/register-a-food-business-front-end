@@ -28,7 +28,7 @@ const editRouter = () => {
     req.session.cumulativeEditAnswers =
       controllerResponse.cumulativeEditAnswers;
     req.session.validatorErrors = controllerResponse.validatorErrors;
-    req.session.allValidationErrors = controllerResponse.allValidationErrors;
+    req.session.allValidationErrors = controllerResponse.newAllValidationErrors;
     req.session.switches = controllerResponse.switches;
 
     req.session.save(err => {

@@ -116,9 +116,8 @@ const editContinue = (
   let redirectRoute;
   let cleanedInactiveFullAnswers;
   let cleanedInactiveEditAnswers;
-  let newAllValidationErrors;
+  let newAllValidationErrors = Object.assign({}, allValidationErrors);
   if (valid) {
-    newAllValidationErrors = Object.assign({}, allValidationErrors);
     Object.keys(newAnswers).forEach(validAnswerKey => {
       delete newAllValidationErrors[validAnswerKey];
     });
