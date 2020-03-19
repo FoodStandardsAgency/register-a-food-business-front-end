@@ -454,4 +454,13 @@ describe("path.service switchOffCompanyAndCharityDetails()", () => {
       expect(result["/operator-charity-details"].on).toBe(false);
     });
   });
+
+  describe("given a path and Representative", () => {
+    it("returns the original path with '/operator-company-details' and '/operator-charity-details' left switched on", () => {
+      const answers = { registration_role: "Representative" };
+      const result = switchOffCompanyAndCharityDetails(answers, examplePath);
+      expect(result["/operator-company-details"].on).toBe(true);
+      expect(result["/operator-charity-details"].on).toBe(true);
+    });
+  });
 });
