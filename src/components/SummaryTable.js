@@ -200,7 +200,7 @@ const OperatorDetailsTable = props => (
               href="/edit/operator-company-details"
               aria-label="Change operator companies house"
             >
-              {determineLinkText(props.operator_company_house_number)}
+              {determineLinkText(props.operator_companies_house_number)}
             </AnchorTag>
           </AccessibleChangeCell>
         )}

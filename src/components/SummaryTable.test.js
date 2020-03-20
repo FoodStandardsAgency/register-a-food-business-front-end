@@ -153,7 +153,7 @@ const testMandatoryAnswersForIrregularDays = {
   operator_first_name: "John",
   operator_last_name: "Appleseed",
   operator_company_name: "Company name",
-  operator_company_house_number: "AA123456",
+  operator_companies_house_number: "AA123456",
   operator_charity_name: "Charity name",
   customer_type: "End consumer and Other buisnesses",
   import_export_activities: "None",
