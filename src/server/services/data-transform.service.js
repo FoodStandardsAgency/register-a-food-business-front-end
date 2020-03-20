@@ -17,7 +17,7 @@ const trimAnswers = cumulativeFullAnswers => {
 /**
  * Runs custom validation functions, on specific parts of cumulative answers, to get them in the correct format for the summary table,
  *
- * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the sesion with duplicates removed
+ * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the session with duplicates removed
  * @param {object} addressLookups The object returned by the address look-up service based on the postcode the user inputs
  *
  * @returns {object} An object containing the set of data in the correct format for the summary page with unnecessary fields deleted
@@ -106,6 +106,9 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
         delete data.operator_postcode_find;
         delete data.operator_address_selected;
       }
+    } else {
+      data.operator_first_line = data.operator_address_line_1;
+      data.operator_street = data.operator_address_line_2;
     }
 
     if (data.establishment_address_selected) {
@@ -144,6 +147,9 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
         delete data.establishment_postcode_find;
         delete data.establishment_address_selected;
       }
+    } else {
+      data.establishment_first_line = data.establishment_address_line_1;
+      data.establishment_street = data.establishment_address_line_2;
     }
 
     if (data.business_type) {
@@ -193,7 +199,7 @@ const trimUprn = uprn => {
 /**
  * Runs custom validation functions, on specific parts of cumulative answers, to get them in the correct format for the submission
  *
- * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the sesion with duplicates removed
+ * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the session with duplicates removed
  * @param {object} addressLookups The object returned by the address look-up service based on the postcode the user inputs
  * @param {string} lcUrl The local councils URL
  *
@@ -237,7 +243,7 @@ const transformAnswersForSubmit = (
     "contact_representative_email",
     "operator_type",
     "operator_company_name",
-    "operator_company_house_number",
+    "operator_companies_house_number",
     "operator_charity_name",
     "operator_charity_number"
   ];
@@ -275,7 +281,8 @@ const transformAnswersForSubmit = (
     "opening_hours_saturday",
     "opening_hours_sunday"
   ];
-  const metadata_keys = [
+
+  const declaration_keys = [
     "declaration1",
     "declaration2",
     "declaration3",
@@ -290,7 +297,7 @@ const transformAnswersForSubmit = (
         premise: {},
         activities: {}
       },
-      metadata: {}
+      declaration: {}
     },
     local_council_url: lcUrl
   };
@@ -348,9 +355,9 @@ const transformAnswersForSubmit = (
     }
   });
 
-  metadata_keys.forEach(key => {
+  declaration_keys.forEach(key => {
     if (submitData[key] !== undefined) {
-      submitObject.registration.metadata[key] = submitData[key];
+      submitObject.registration.declaration[key] = submitData[key];
     }
   });
 

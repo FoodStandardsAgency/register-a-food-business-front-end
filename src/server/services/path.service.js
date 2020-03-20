@@ -279,11 +279,40 @@ const switchOffManualAddressInput = (newPath, currentPage) => {
   return manualAddressSwitchedPath;
 };
 
+/**
+ * A workaround function to disable company and charity details input pages if the user has gone
+ * back and selected Sole trader after having previously selected Representative registration role.
+ *
+ * @param {object} newPath The path object, already edited to enable pages
+ * @param {string} newAnswers The newAnswers object containg the answers going forward.
+ *
+ * @returns {object} The edited path
+ */
+const switchOffCompanyAndCharityDetails = (newAnswers, newPath) => {
+  logEmitter.emit(
+    "functionCall",
+    "path.service",
+    "switchOffCompanyAndCharityDetails"
+  );
+
+  const companyAndCharitySwitchedPath = JSON.parse(JSON.stringify(newPath));
+
+  if (
+    newAnswers.registration_role &&
+    newAnswers.registration_role !== "Representative"
+  ) {
+    companyAndCharitySwitchedPath["/operator-charity-details"].on = false;
+    companyAndCharitySwitchedPath["/operator-company-details"].on = false;
+  }
+  return companyAndCharitySwitchedPath;
+};
+
 module.exports = {
   editPath,
   editPathInEditMode,
   moveAlongPath,
   moveAlongEditPath,
   getPathPagesToSwitch,
-  switchOffManualAddressInput
+  switchOffManualAddressInput,
+  switchOffCompanyAndCharityDetails
 };

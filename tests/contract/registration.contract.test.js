@@ -37,7 +37,7 @@ const validBody = {
         import_export_activities: "None"
       }
     },
-    metadata: {
+    declaration: {
       declaration1: "Declaration",
       declaration2: "Declaration",
       declaration3: "Declaration"
@@ -81,7 +81,7 @@ const invalidBody = {
         import_export_activities: "None"
       }
     },
-    metadata: {
+    declaration: {
       declaration1: "Declaration",
       declaration2: "Declaration",
       declaration3: "Declaration"
