@@ -123,7 +123,7 @@ const continueController = (
         return controllerResponse;
       }
     }
-    
+
     // update the new path to switch off manual address input pages if the originator (currentPage) is one of the address select pagees
     const updatedNewPathManual = switchOffManualAddressInput(
       newPath,
