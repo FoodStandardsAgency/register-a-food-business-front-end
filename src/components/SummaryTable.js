@@ -705,7 +705,9 @@ const EstablishmentDetailsTable = props => (
           Trading date
         </AccessibleRowHeader>
         <AccessibleCell id="establishment_opening_date">
-          {moment(props.establishment_opening_date).format("DD MMM YYYY")}
+          {props.establishment_opening_date
+            ? moment(props.establishment_opening_date).format("DD MMM YYYY")
+            : ""}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
@@ -717,7 +719,7 @@ const EstablishmentDetailsTable = props => (
               {determineLinkText(
                 moment(props.establishment_opening_date).format(
                   "DD MMM YYYY"
-                ) !== "Invalid date"
+                ) !== "Invalid date" && props.establishment_opening_date
               )}
             </AnchorTag>
           </AccessibleChangeCell>
@@ -725,65 +727,76 @@ const EstablishmentDetailsTable = props => (
       </AccessibleTableRow>
     ) : null}
 
-    <AccessibleTableRow
-      acPage={props.applicationCompletePage}
-      id="establishmentOpeningDaysRow"
-    >
-      <AccessibleRowHeader
-        {...applyRowHeaderStyling(
-          props.validatorErrors["opening_days_start"] ||
-            props.validatorErrors["opening_days_irregular"] ||
-            props.validatorErrors["opening_days_some"]
-        )}
+    {props.opening_days_start ||
+    props.opening_days_some ||
+    props.opening_days_irregular ||
+    (props.validatorErrors["opening_days_start"] ||
+      props.validatorErrors["opening_days_some"] ||
+      props.validatorErrors["opening_days_irregular"]) ? (
+      <AccessibleTableRow
+        acPage={props.applicationCompletePage}
+        id="establishmentOpeningDaysRow"
       >
-        Opening days
-      </AccessibleRowHeader>
-      <AccessibleCell
-        id={`${
-          props.validatorErrors["opening_days_start"]
-            ? "opening_days_start"
-            : props.validatorErrors["opening_days_irregular"]
-              ? "opening_days_irregular"
-              : "opening_days_some"
-        }`}
-      >
-        {props.opening_days_irregular ||
-          props.open_some_days_summary_table || (
-            <div>
-              <div id="opening_day_monday">{props.opening_day_monday}</div>
-              <div id="opening_day_tuesday">{props.opening_day_tuesday}</div>
-              <div id="opening_day_wednesday">
-                {props.opening_day_wednesday}
-              </div>
-              <div id="opening_day_thursday">{props.opening_day_thursday}</div>
-              <div id="opening_day_friday">{props.opening_day_friday}</div>
-              <div id="opening_day_saturday">{props.opening_day_saturday}</div>
-              <div id="opening_day_sunday">{props.opening_day_sunday}</div>
-            </div>
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["opening_days_start"] ||
+              props.validatorErrors["opening_days_irregular"] ||
+              props.validatorErrors["opening_days_some"]
           )}
-      </AccessibleCell>
-      {props.applicationCompletePage ? null : (
-        <AccessibleChangeCell>
-          <AnchorTag
-            id="changeEstablishmentOpeningDaysRow"
-            href="/edit/opening-days-start"
-            aria-label="Change establishment opening days"
-          >
-            {determineLinkText(
-              props.opening_days_irregular ||
-                props.open_some_days_summary_table ||
-                props.opening_day_monday ||
-                props.opening_day_tuesday ||
-                props.opening_day_wednesday ||
-                props.opening_day_thursday ||
-                props.opening_day_friday ||
-                props.opening_day_saturday ||
-                props.opening_day_sunday
+        >
+          Opening days
+        </AccessibleRowHeader>
+        <AccessibleCell
+          id={`${
+            props.validatorErrors["opening_days_start"]
+              ? "opening_days_start"
+              : props.validatorErrors["opening_days_irregular"]
+                ? "opening_days_irregular"
+                : "opening_days_some"
+          }`}
+        >
+          {props.opening_days_irregular ||
+            props.open_some_days_summary_table || (
+              <div>
+                <div id="opening_day_monday">{props.opening_day_monday}</div>
+                <div id="opening_day_tuesday">{props.opening_day_tuesday}</div>
+                <div id="opening_day_wednesday">
+                  {props.opening_day_wednesday}
+                </div>
+                <div id="opening_day_thursday">
+                  {props.opening_day_thursday}
+                </div>
+                <div id="opening_day_friday">{props.opening_day_friday}</div>
+                <div id="opening_day_saturday">
+                  {props.opening_day_saturday}
+                </div>
+                <div id="opening_day_sunday">{props.opening_day_sunday}</div>
+              </div>
             )}
-          </AnchorTag>
-        </AccessibleChangeCell>
-      )}
-    </AccessibleTableRow>
+        </AccessibleCell>
+        {props.applicationCompletePage ? null : (
+          <AccessibleChangeCell>
+            <AnchorTag
+              id="changeEstablishmentOpeningDaysRow"
+              href="/edit/opening-days-start"
+              aria-label="Change establishment opening days"
+            >
+              {determineLinkText(
+                props.opening_days_irregular ||
+                  props.open_some_days_summary_table ||
+                  props.opening_day_monday ||
+                  props.opening_day_tuesday ||
+                  props.opening_day_wednesday ||
+                  props.opening_day_thursday ||
+                  props.opening_day_friday ||
+                  props.opening_day_saturday ||
+                  props.opening_day_sunday
+              )}
+            </AnchorTag>
+          </AccessibleChangeCell>
+        )}
+      </AccessibleTableRow>
+    ) : null}
     {props.opening_days_start ||
     props.opening_days_some ||
     (props.validatorErrors["opening_hours_monday"] ||

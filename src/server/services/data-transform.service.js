@@ -608,8 +608,13 @@ const combineOperatorTypes = (operator_type, registration_role) => {
 };
 
 //Combines the date to be in the correct format to display on summary table
-const combineDate = (day, month, year) => `${year}-${month}-${day}`;
-
+const combineDate = (day, month, year) => {
+  if (day && month && year) {
+    return `${year}-${month}-${day}`;
+  } else {
+    return null;
+  }
+};
 //Formats result of business type look up to display it correctly in the summary table
 const separateBracketsFromBusinessType = text => {
   let strippedBusinessType = text.trim();
