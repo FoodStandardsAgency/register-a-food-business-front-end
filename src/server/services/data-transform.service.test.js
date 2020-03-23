@@ -538,7 +538,85 @@ describe("data-transform.service transformAnswersForSummary()", () => {
             operator_address_line_3: "Example Dependant Locality"
           };
 
-          it("returns the response with the organisation included as address line 1", () => {
+          it("returns the response with the organisation included in address line 1", () => {
+            const response = transformAnswersForSummary(
+              cumulativeAnswersEstAddSelected,
+              testAddressLookupData
+            );
+            expect(response.operator_address_line_1).toBe(
+              correctResponse.operator_address_line_1
+            );
+            expect(response.operator_address_line_2).toBe(
+              correctResponse.operator_address_line_2
+            );
+            expect(response.operator_address_line_3).toBe(
+              correctResponse.operator_address_line_3
+            );
+          });
+        });
+
+        describe("operator address line 1 is equal to street but organisation is not present", () => {
+          const cumulativeAnswersEstAddSelected = {
+            operator_address_selected: "0"
+          };
+
+          const testAddressLookupData = {
+            operator_postcode_find: [
+              {
+                addressline1: "Example Street",
+                addressline2: "Example Town",
+                addressline3: "Example Dependant Locality",
+                organisation: "",
+                street: "Example Street"
+              }
+            ]
+          };
+          const correctResponse = {
+            operator_address_line_1: "Example Street",
+            operator_address_line_2: "Example Town",
+            operator_address_line_3: "Example Dependant Locality"
+          };
+
+          it("returns the response with the no changes to the address lines", () => {
+            const response = transformAnswersForSummary(
+              cumulativeAnswersEstAddSelected,
+              testAddressLookupData
+            );
+            expect(response.operator_address_line_1).toBe(
+              correctResponse.operator_address_line_1
+            );
+            expect(response.operator_address_line_2).toBe(
+              correctResponse.operator_address_line_2
+            );
+            expect(response.operator_address_line_3).toBe(
+              correctResponse.operator_address_line_3
+            );
+          });
+        });
+
+        describe("operator address line 1 is not equal to street but organisation is present", () => {
+          const cumulativeAnswersEstAddSelected = {
+            operator_address_selected: "0"
+          };
+
+          const testAddressLookupData = {
+            operator_postcode_find: [
+              {
+                addressline1: "Example House",
+                addressline2: "Example Street",
+                addressline3: "Example Dependant Locality",
+                organisation: "The Organisation",
+                street: "Example Street"
+              }
+            ]
+          };
+          const correctResponse = {
+            operator_address_line_1: "Example House",
+            operator_address_line_2: "Example Street",
+            operator_address_line_3: "Example Dependant Locality"
+          };
+
+          it("returns the response with the no changes to the address lines", () => {
             const response = transformAnswersForSummary(
               cumulativeAnswersEstAddSelected,
               testAddressLookupData
@@ -618,7 +696,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
             establishment_address_line_3: "Example Dependant Locality"
           };
 
-          it("returns the response with the organisation included as address line 1", () => {
+          it("returns the response with the organisation included in address line 1", () => {
             const response = transformAnswersForSummary(
               cumulativeAnswersEstAddSelected,
               testAddressLookupData
@@ -636,16 +714,16 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         });
       });
 
-      describe("operator address line 1 is equal to street but organisation is not present", () => {
+      describe("establishment address line 1 is equal to street but organisation is not present", () => {
         const cumulativeAnswersEstAddSelected = {
-          operator_address_selected: "0"
+          establishment_address_selected: "0"
         };
 
         const testAddressLookupData = {
-          operator_postcode_find: [
+          establishment_postcode_find: [
             {
-              addressline1: "Example House",
-              addressline2: "Example Street",
+              addressline1: "Example Street",
+              addressline2: "Example Town",
               addressline3: "Example Dependant Locality",
               organisation: "",
               street: "Example Street"
@@ -653,35 +731,35 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           ]
         };
         const correctResponse = {
-          operator_address_line_1: "Example House",
-          operator_address_line_2: "Example Street",
-          operator_address_line_3: "Example Dependant Locality"
+          establishment_address_line_1: "Example Street",
+          establishment_address_line_2: "Example Town",
+          establishment_address_line_3: "Example Dependant Locality"
         };
 
-        it("returns the response with the organisation included as address line 1", () => {
+        it("returns the response with the no changes to the address lines", () => {
           const response = transformAnswersForSummary(
             cumulativeAnswersEstAddSelected,
             testAddressLookupData
           );
-          expect(response.operator_address_line_1).toBe(
-            correctResponse.operator_address_line_1
+          expect(response.establishment_address_line_1).toBe(
+            correctResponse.establishment_address_line_1
           );
-          expect(response.operator_address_line_2).toBe(
-            correctResponse.operator_address_line_2
+          expect(response.establishment_address_line_2).toBe(
+            correctResponse.establishment_address_line_2
           );
-          expect(response.operator_address_line_3).toBe(
-            correctResponse.operator_address_line_3
+          expect(response.establishment_address_line_3).toBe(
+            correctResponse.establishment_address_line_3
           );
         });
       });
 
-      describe("operator address line 1 is not equal to street but organisation is present", () => {
+      describe("establishment address line 1 is not equal to street but organisation is present", () => {
         const cumulativeAnswersEstAddSelected = {
           establishment_address_selected: "0"
         };
 
         const testAddressLookupData = {
-          operator_postcode_find: [
+          establishment_postcode_find: [
             {
               addressline1: "Example House",
               addressline2: "Example Street",
@@ -692,105 +770,25 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           ]
         };
         const correctResponse = {
-          operator_address_line_1: "Example House",
-          operator_address_line_2: "Example Street",
-          operator_address_line_3: "Example Dependant Locality"
+          establishment_address_line_1: "Example House",
+          establishment_address_line_2: "Example Street",
+          establishment_address_line_3: "Example Dependant Locality"
         };
 
-        it("returns the response with the organisation included as address line 1", () => {
+        it("returns the response with the no changes to the address lines", () => {
           const response = transformAnswersForSummary(
             cumulativeAnswersEstAddSelected,
             testAddressLookupData
           );
-          expect(response.operator_address_line_1).toBe(
-            correctResponse.operator_address_line_1
+          expect(response.establishment_address_line_1).toBe(
+            correctResponse.establishment_address_line_1
           );
-          expect(response.operator_address_line_2).toBe(
-            correctResponse.operator_address_line_2
+          expect(response.establishment_address_line_2).toBe(
+            correctResponse.establishment_address_line_2
           );
-          expect(response.operator_address_line_3).toBe(
-            correctResponse.operator_address_line_3
+          expect(response.establishment_address_line_3).toBe(
+            correctResponse.establishment_address_line_3
           );
-        });
-      });
-
-      describe("establishment null tests", () => {
-        describe("establishment address line 1 is equal to street but organisation is not present", () => {
-          const cumulativeAnswersEstAddSelected = {
-            establishment_address_selected: "0"
-          };
-
-          const testAddressLookupData = {
-            establishment_postcode_find: [
-              {
-                addressline1: "Example House",
-                addressline2: "Example Street",
-                addressline3: "Example Dependant Locality",
-                organisation: "",
-                street: "Example Street"
-              }
-            ]
-          };
-          const correctResponse = {
-            establishment_address_line_1: "Example House",
-            establishment_address_line_2: "Example Street",
-            establishment_address_line_3: "Example Dependant Locality"
-          };
-
-          it("returns the response with the organisation included as address line 1", () => {
-            const response = transformAnswersForSummary(
-              cumulativeAnswersEstAddSelected,
-              testAddressLookupData
-            );
-            expect(response.establishment_address_line_1).toBe(
-              correctResponse.establishment_address_line_1
-            );
-            expect(response.establishment_address_line_2).toBe(
-              correctResponse.establishment_address_line_2
-            );
-            expect(response.establishment_address_line_3).toBe(
-              correctResponse.establishment_address_line_3
-            );
-          });
-        });
-
-        describe("establishment address line 1 is not equal to street but organisation is present", () => {
-          const cumulativeAnswersEstAddSelected = {
-            establishment_address_selected: "0"
-          };
-
-          const testAddressLookupData = {
-            establishment_postcode_find: [
-              {
-                addressline1: "Example House",
-                addressline2: "Example Street",
-                addressline3: "Example Dependant Locality",
-                organisation: "The Organisation",
-                street: "Example Street"
-              }
-            ]
-          };
-          const correctResponse = {
-            establishment_address_line_1: "Example House",
-            establishment_address_line_2: "Example Street",
-            establishment_address_line_3: "Example Dependant Locality"
-          };
-
-          it("returns the response with the organisation included as address line 1", () => {
-            const response = transformAnswersForSummary(
-              cumulativeAnswersEstAddSelected,
-              testAddressLookupData
-            );
-            expect(response.establishment_address_line_1).toBe(
-              correctResponse.establishment_address_line_1
-            );
-            expect(response.establishment_address_line_2).toBe(
-              correctResponse.establishment_address_line_2
-            );
-            expect(response.establishment_address_line_3).toBe(
-              correctResponse.establishment_address_line_3
-            );
-          });
         });
       });
 
