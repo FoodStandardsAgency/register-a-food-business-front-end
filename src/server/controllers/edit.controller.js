@@ -118,6 +118,16 @@ const editContinue = (
   let cleanedInactiveEditAnswers;
   let newAllValidationErrors = Object.assign({}, allValidationErrors);
   if (valid) {
+
+    // Account for difference in field names and their transform property names
+    // to allow for validation message deletion
+    if (newAnswers.directly_import || newAnswers.directly_export || newAnswers.no_import_export) {
+      newAnswers.import_export_activities = "validated";
+    }
+    if (newAnswers.supply_directly || newAnswers.supply_other) {
+      newAnswers.customer_type = "validated";
+    }
+
     Object.keys(newAnswers).forEach(validAnswerKey => {
       delete newAllValidationErrors[validAnswerKey];
     });
