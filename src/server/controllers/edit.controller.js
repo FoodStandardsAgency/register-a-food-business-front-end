@@ -117,18 +117,25 @@ const editContinue = (
   let cleanedInactiveFullAnswers;
   let cleanedInactiveEditAnswers;
   let newAllValidationErrors = Object.assign({}, allValidationErrors);
+  let transformedNewAnswers = Object.assign({}, newAnswers);
   if (valid) {
-
     // Account for difference in field names and their transform property names
     // to allow for validation message deletion
-    if (newAnswers.directly_import || newAnswers.directly_export || newAnswers.no_import_export) {
-      newAnswers.import_export_activities = "validated";
+    if (
+      transformedNewAnswers.directly_import ||
+      transformedNewAnswers.directly_export ||
+      transformedNewAnswers.no_import_export
+    ) {
+      transformedNewAnswers.import_export_activities = "validated";
     }
-    if (newAnswers.supply_directly || newAnswers.supply_other) {
-      newAnswers.customer_type = "validated";
+    if (
+      transformedNewAnswers.supply_directly ||
+      transformedNewAnswers.supply_other
+    ) {
+      transformedNewAnswers.customer_type = "validated";
     }
 
-    Object.keys(newAnswers).forEach(validAnswerKey => {
+    Object.keys(transformedNewAnswers).forEach(validAnswerKey => {
       delete newAllValidationErrors[validAnswerKey];
     });
     // TODO JMB: Merge switchOffManualAddressInput into editPathInEditMode
