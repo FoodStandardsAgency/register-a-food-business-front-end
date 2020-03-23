@@ -475,91 +475,407 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           });
         });
       });
-    });
-  });
 
-  describe("Using the transformBusinessImportExport function", () => {
-    let result;
+      describe("when operator address line 1 is the street", () => {
+        describe("operator address line 3 is null", () => {
+          const cumulativeAnswersEstAddSelected = {
+            operator_address_selected: "0"
+          };
 
-    describe("Given that directly_import, directly_export and no_import_export are part of cumulative answers", () => {
-      const cumulativeFullAnswers = {
-        directly_import: "True",
-        directly_export: "True",
-        no_import_export: "True"
-      };
-      it("Should return a import_export_activities value of 'Directly import and Export'", () => {
-        result = transformAnswersForSummary(cumulativeFullAnswers);
-        expect(result.import_export_activities).toBe(
-          "Directly import and export"
-        );
+          const testAddressLookupData = {
+            operator_postcode_find: [
+              {
+                addressline1: "Example Street",
+                addressline2: "Example Dependant Locality",
+                addressline3: "",
+                organisation: "The Organisation",
+                street: "Example Street"
+              }
+            ]
+          };
+          const correctResponse = {
+            operator_address_line_1: "The Organisation",
+            operator_address_line_2: "Example Street",
+            operator_address_line_3: "Example Dependant Locality"
+          };
+
+          it("returns the response with the organisation included as address line 1", () => {
+            const response = transformAnswersForSummary(
+              cumulativeAnswersEstAddSelected,
+              testAddressLookupData
+            );
+            expect(response.operator_address_line_1).toBe(
+              correctResponse.operator_address_line_1
+            );
+            expect(response.operator_address_line_2).toBe(
+              correctResponse.operator_address_line_2
+            );
+            expect(response.operator_address_line_3).toBe(
+              correctResponse.operator_address_line_3
+            );
+          });
+        });
+
+        describe("operator address line 3 is not null and organisation has a value", () => {
+          const cumulativeAnswersEstAddSelected = {
+            operator_address_selected: "0"
+          };
+
+          const testAddressLookupData = {
+            operator_postcode_find: [
+              {
+                addressline1: "Example Street",
+                addressline2: "Example District",
+                addressline3: "Example Dependant Locality",
+                organisation: "The Organisation",
+                street: "Example Street"
+              }
+            ]
+          };
+          const correctResponse = {
+            operator_address_line_1: "The Organisation, Example Street",
+            operator_address_line_2: "Example District",
+            operator_address_line_3: "Example Dependant Locality"
+          };
+
+          it("returns the response with the organisation included in address line 1", () => {
+            const response = transformAnswersForSummary(
+              cumulativeAnswersEstAddSelected,
+              testAddressLookupData
+            );
+            expect(response.operator_address_line_1).toBe(
+              correctResponse.operator_address_line_1
+            );
+            expect(response.operator_address_line_2).toBe(
+              correctResponse.operator_address_line_2
+            );
+            expect(response.operator_address_line_3).toBe(
+              correctResponse.operator_address_line_3
+            );
+          });
+        });
+
+        describe("operator address line 1 is equal to street but organisation is not present", () => {
+          const cumulativeAnswersEstAddSelected = {
+            operator_address_selected: "0"
+          };
+
+          const testAddressLookupData = {
+            operator_postcode_find: [
+              {
+                addressline1: "Example Street",
+                addressline2: "Example Town",
+                addressline3: "Example Dependant Locality",
+                organisation: "",
+                street: "Example Street"
+              }
+            ]
+          };
+          const correctResponse = {
+            operator_address_line_1: "Example Street",
+            operator_address_line_2: "Example Town",
+            operator_address_line_3: "Example Dependant Locality"
+          };
+
+          it("returns the response with the no changes to the address lines", () => {
+            const response = transformAnswersForSummary(
+              cumulativeAnswersEstAddSelected,
+              testAddressLookupData
+            );
+            expect(response.operator_address_line_1).toBe(
+              correctResponse.operator_address_line_1
+            );
+            expect(response.operator_address_line_2).toBe(
+              correctResponse.operator_address_line_2
+            );
+            expect(response.operator_address_line_3).toBe(
+              correctResponse.operator_address_line_3
+            );
+          });
+        });
+
+        describe("operator address line 1 is not equal to street but organisation is present", () => {
+          const cumulativeAnswersEstAddSelected = {
+            operator_address_selected: "0"
+          };
+
+          const testAddressLookupData = {
+            operator_postcode_find: [
+              {
+                addressline1: "Example House",
+                addressline2: "Example Street",
+                addressline3: "Example Dependant Locality",
+                organisation: "The Organisation",
+                street: "Example Street"
+              }
+            ]
+          };
+          const correctResponse = {
+            operator_address_line_1: "Example House",
+            operator_address_line_2: "Example Street",
+            operator_address_line_3: "Example Dependant Locality"
+          };
+
+          it("returns the response with the no changes to the address lines", () => {
+            const response = transformAnswersForSummary(
+              cumulativeAnswersEstAddSelected,
+              testAddressLookupData
+            );
+            expect(response.operator_address_line_1).toBe(
+              correctResponse.operator_address_line_1
+            );
+            expect(response.operator_address_line_2).toBe(
+              correctResponse.operator_address_line_2
+            );
+            expect(response.operator_address_line_3).toBe(
+              correctResponse.operator_address_line_3
+            );
+          });
+        });
       });
-    });
-    describe("Given that directly_import and directly_export are part of cumulative answers", () => {
-      const cumulativeFullAnswers = {
-        directly_import: "True",
-        directly_export: "True"
-      };
-      it("Should return a import_export_activities value of 'Directly import and Export'", () => {
-        result = transformAnswersForSummary(cumulativeFullAnswers);
-        expect(result.import_export_activities).toBe(
-          "Directly import and export"
-        );
+
+      describe("when establishment address line 1 is the street", () => {
+        describe("establishment address line 3 is null", () => {
+          const cumulativeAnswersEstAddSelected = {
+            establishment_address_selected: "0"
+          };
+
+          const testAddressLookupData = {
+            establishment_postcode_find: [
+              {
+                addressline1: "Example Street",
+                addressline2: "Example Dependant Locality",
+                addressline3: "",
+                organisation: "The Organisation",
+                street: "Example Street"
+              }
+            ]
+          };
+          const correctResponse = {
+            establishment_address_line_1: "The Organisation",
+            establishment_address_line_2: "Example Street",
+            establishment_address_line_3: "Example Dependant Locality"
+          };
+
+          it("returns the response with the organisation included as address line 1", () => {
+            const response = transformAnswersForSummary(
+              cumulativeAnswersEstAddSelected,
+              testAddressLookupData
+            );
+            expect(response.establishment_address_line_1).toBe(
+              correctResponse.establishment_address_line_1
+            );
+            expect(response.establishment_address_line_2).toBe(
+              correctResponse.establishment_address_line_2
+            );
+            expect(response.establishment_address_line_3).toBe(
+              correctResponse.establishment_address_line_3
+            );
+          });
+        });
+
+        describe("establishment address line 3 is not null", () => {
+          const cumulativeAnswersEstAddSelected = {
+            establishment_address_selected: "0"
+          };
+
+          const testAddressLookupData = {
+            establishment_postcode_find: [
+              {
+                addressline1: "Example Street",
+                addressline2: "Example District",
+                addressline3: "Example Dependant Locality",
+                organisation: "The Organisation",
+                street: "Example Street"
+              }
+            ]
+          };
+          const correctResponse = {
+            establishment_address_line_1: "The Organisation, Example Street",
+            establishment_address_line_2: "Example District",
+            establishment_address_line_3: "Example Dependant Locality"
+          };
+
+          it("returns the response with the organisation included in address line 1", () => {
+            const response = transformAnswersForSummary(
+              cumulativeAnswersEstAddSelected,
+              testAddressLookupData
+            );
+            expect(response.establishment_address_line_1).toBe(
+              correctResponse.establishment_address_line_1
+            );
+            expect(response.establishment_address_line_2).toBe(
+              correctResponse.establishment_address_line_2
+            );
+            expect(response.establishment_address_line_3).toBe(
+              correctResponse.establishment_address_line_3
+            );
+          });
+        });
       });
-    });
-    describe("Given that directly_import and no_import_export are part of cumulative answers", () => {
-      const cumulativeFullAnswers = {
-        directly_import: "True",
-        no_import_export: "True"
-      };
-      it("Should return a import_export_activities value of 'Directly import'", () => {
-        result = transformAnswersForSummary(cumulativeFullAnswers);
-        expect(result.import_export_activities).toBe("Directly import");
+
+      describe("establishment address line 1 is equal to street but organisation is not present", () => {
+        const cumulativeAnswersEstAddSelected = {
+          establishment_address_selected: "0"
+        };
+
+        const testAddressLookupData = {
+          establishment_postcode_find: [
+            {
+              addressline1: "Example Street",
+              addressline2: "Example Town",
+              addressline3: "Example Dependant Locality",
+              organisation: "",
+              street: "Example Street"
+            }
+          ]
+        };
+        const correctResponse = {
+          establishment_address_line_1: "Example Street",
+          establishment_address_line_2: "Example Town",
+          establishment_address_line_3: "Example Dependant Locality"
+        };
+
+        it("returns the response with the no changes to the address lines", () => {
+          const response = transformAnswersForSummary(
+            cumulativeAnswersEstAddSelected,
+            testAddressLookupData
+          );
+          expect(response.establishment_address_line_1).toBe(
+            correctResponse.establishment_address_line_1
+          );
+          expect(response.establishment_address_line_2).toBe(
+            correctResponse.establishment_address_line_2
+          );
+          expect(response.establishment_address_line_3).toBe(
+            correctResponse.establishment_address_line_3
+          );
+        });
       });
-    });
-    describe("Given that directly_export and no_import_export are part of cumulative answers", () => {
-      const cumulativeFullAnswers = {
-        directly_export: "True",
-        no_import_export: "True"
-      };
-      it("Should return a import_export_activities value of 'Directly export'", () => {
-        result = transformAnswersForSummary(cumulativeFullAnswers);
-        expect(result.import_export_activities).toBe("Directly export");
+
+      describe("establishment address line 1 is not equal to street but organisation is present", () => {
+        const cumulativeAnswersEstAddSelected = {
+          establishment_address_selected: "0"
+        };
+
+        const testAddressLookupData = {
+          establishment_postcode_find: [
+            {
+              addressline1: "Example House",
+              addressline2: "Example Street",
+              addressline3: "Example Dependant Locality",
+              organisation: "The Organisation",
+              street: "Example Street"
+            }
+          ]
+        };
+        const correctResponse = {
+          establishment_address_line_1: "Example House",
+          establishment_address_line_2: "Example Street",
+          establishment_address_line_3: "Example Dependant Locality"
+        };
+
+        it("returns the response with the no changes to the address lines", () => {
+          const response = transformAnswersForSummary(
+            cumulativeAnswersEstAddSelected,
+            testAddressLookupData
+          );
+          expect(response.establishment_address_line_1).toBe(
+            correctResponse.establishment_address_line_1
+          );
+          expect(response.establishment_address_line_2).toBe(
+            correctResponse.establishment_address_line_2
+          );
+          expect(response.establishment_address_line_3).toBe(
+            correctResponse.establishment_address_line_3
+          );
+        });
       });
-    });
-    describe("Given that only directly_export is part of cumulative answers", () => {
-      const cumulativeFullAnswers = {
-        directly_export: "True"
-      };
-      it("Should return a import_export_activities value of 'Directly export'", () => {
-        result = transformAnswersForSummary(cumulativeFullAnswers);
-        expect(result.import_export_activities).toBe("Directly export");
-      });
-    });
-    describe("Given that only directly_import is part of cumulative answers", () => {
-      const cumulativeFullAnswers = {
-        directly_import: "True"
-      };
-      it("Should return a import_export_activities value of 'Directly import'", () => {
-        result = transformAnswersForSummary(cumulativeFullAnswers);
-        expect(result.import_export_activities).toBe("Directly import");
-      });
-    });
-    describe("Given that only no_import_export is part of cumulative answers", () => {
-      const cumulativeFullAnswers = {
-        no_import_export: "True"
-      };
-      it("Should return a import_export_activities value of 'None'", () => {
-        result = transformAnswersForSummary(cumulativeFullAnswers);
-        expect(result.import_export_activities).toBe("None");
-      });
-    });
-    describe("Given that somethig ohter than the allowed combinations of no_import_export, direct_import and direct_export is part of cumulative answers", () => {
-      const cumulativeFullAnswers = {
-        random: "True"
-      };
-      it("Should return a import_export_activities value of undefined", () => {
-        result = transformAnswersForSummary(cumulativeFullAnswers);
-        expect(result.import_export_activities).toBe(undefined);
+
+      describe("Using the transformBusinessImportExport function", () => {
+        let result;
+
+        describe("Given that directly_import, directly_export and no_import_export are part of cumulative answers", () => {
+          const cumulativeFullAnswers = {
+            directly_import: "True",
+            directly_export: "True",
+            no_import_export: "True"
+          };
+          it("Should return a import_export_activities value of 'Directly import and Export'", () => {
+            result = transformAnswersForSummary(cumulativeFullAnswers);
+            expect(result.import_export_activities).toBe(
+              "Directly import and export"
+            );
+          });
+        });
+        describe("Given that directly_import and directly_export are part of cumulative answers", () => {
+          const cumulativeFullAnswers = {
+            directly_import: "True",
+            directly_export: "True"
+          };
+          it("Should return a import_export_activities value of 'Directly import and Export'", () => {
+            result = transformAnswersForSummary(cumulativeFullAnswers);
+            expect(result.import_export_activities).toBe(
+              "Directly import and export"
+            );
+          });
+        });
+        describe("Given that directly_import and no_import_export are part of cumulative answers", () => {
+          const cumulativeFullAnswers = {
+            directly_import: "True",
+            no_import_export: "True"
+          };
+          it("Should return a import_export_activities value of 'Directly import'", () => {
+            result = transformAnswersForSummary(cumulativeFullAnswers);
+            expect(result.import_export_activities).toBe("Directly import");
+          });
+        });
+        describe("Given that directly_export and no_import_export are part of cumulative answers", () => {
+          const cumulativeFullAnswers = {
+            directly_export: "True",
+            no_import_export: "True"
+          };
+          it("Should return a import_export_activities value of 'Directly export'", () => {
+            result = transformAnswersForSummary(cumulativeFullAnswers);
+            expect(result.import_export_activities).toBe("Directly export");
+          });
+        });
+        describe("Given that only directly_export is part of cumulative answers", () => {
+          const cumulativeFullAnswers = {
+            directly_export: "True"
+          };
+          it("Should return a import_export_activities value of 'Directly export'", () => {
+            result = transformAnswersForSummary(cumulativeFullAnswers);
+            expect(result.import_export_activities).toBe("Directly export");
+          });
+        });
+        describe("Given that only directly_import is part of cumulative answers", () => {
+          const cumulativeFullAnswers = {
+            directly_import: "True"
+          };
+          it("Should return a import_export_activities value of 'Directly import'", () => {
+            result = transformAnswersForSummary(cumulativeFullAnswers);
+            expect(result.import_export_activities).toBe("Directly import");
+          });
+        });
+        describe("Given that only no_import_export is part of cumulative answers", () => {
+          const cumulativeFullAnswers = {
+            no_import_export: "True"
+          };
+          it("Should return a import_export_activities value of 'None'", () => {
+            result = transformAnswersForSummary(cumulativeFullAnswers);
+            expect(result.import_export_activities).toBe("None");
+          });
+        });
+        describe("Given that somethig ohter than the allowed combinations of no_import_export, direct_import and direct_export is part of cumulative answers", () => {
+          const cumulativeFullAnswers = {
+            random: "True"
+          };
+          it("Should return a import_export_activities value of undefined", () => {
+            result = transformAnswersForSummary(cumulativeFullAnswers);
+            expect(result.import_export_activities).toBe(undefined);
+          });
+        });
       });
     });
   });

@@ -103,6 +103,23 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
 
         data.operator_uprn = trimUprn(operatorAddressLookupData["uprn"]);
 
+        if (
+          data.operator_address_line_1 === data.operator_street &&
+          operatorAddressLookupData["organisation"]
+        ) {
+          if (!data.operator_address_line_3) {
+            data.operator_address_line_3 = data.operator_address_line_2;
+            data.operator_address_line_2 = data.operator_address_line_1;
+            data.operator_address_line_1 =
+              operatorAddressLookupData["organisation"];
+          } else {
+            data.operator_address_line_1 =
+              operatorAddressLookupData["organisation"] +
+              ", " +
+              data.operator_address_line_1;
+          }
+        }
+
         delete data.operator_postcode_find;
         delete data.operator_address_selected;
       }
@@ -143,6 +160,25 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
         data.establishment_uprn = trimUprn(
           establishmentAddressLookupData["uprn"]
         );
+
+        if (
+          data.establishment_address_line_1 === data.establishment_street &&
+          establishmentAddressLookupData["organisation"]
+        ) {
+          if (!data.establishment_address_line_3) {
+            data.establishment_address_line_3 =
+              data.establishment_address_line_2;
+            data.establishment_address_line_2 =
+              data.establishment_address_line_1;
+            data.establishment_address_line_1 =
+              establishmentAddressLookupData["organisation"];
+          } else {
+            data.establishment_address_line_1 =
+              establishmentAddressLookupData["organisation"] +
+              ", " +
+              data.establishment_address_line_1;
+          }
+        }
 
         delete data.establishment_postcode_find;
         delete data.establishment_address_selected;
