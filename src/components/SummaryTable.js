@@ -797,7 +797,7 @@ const EstablishmentDetailsTable = props => (
         )}
       </AccessibleTableRow>
     ) : null}
-    {props.opening_days_start ||
+    {(props.opening_days_start && props.opening_days_start !== "Irregular days") ||
     props.opening_days_some ||
     (props.validatorErrors["opening_hours_monday"] ||
       props.validatorErrors["opening_hours_tuesday"] ||
