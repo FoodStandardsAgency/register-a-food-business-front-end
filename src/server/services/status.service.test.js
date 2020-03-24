@@ -56,6 +56,20 @@ describe("status.service getStatus()", () => {
       });
     });
   });
+
+  describe("given getStoredStatus throws error", () => {
+    beforeEach(async () => {
+      jest.clearAllMocks();
+      getStoredStatus.mockImplementation(() => {
+        throw new Error();
+      });
+      result = await getStatus();
+    });
+
+    it("should throw an error", () => {
+      expect(result).toStrictEqual({});
+    });
+  });
 });
 
 describe("status.service setStatus()", () => {
@@ -80,6 +94,20 @@ describe("status.service setStatus()", () => {
 
     it("should return the new value of the status name", () => {
       expect(result).toBe(false);
+    });
+  });
+
+  describe("given setStatus throws error", () => {
+    beforeEach(async () => {
+      jest.clearAllMocks();
+      updateStoredStatus.mockImplementation(() => {
+        throw new Error();
+      });
+      result = await setStatus();
+    });
+
+    it("should throw an error", () => {
+      expect(result).toBeUndefined();
     });
   });
 });

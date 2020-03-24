@@ -14,6 +14,7 @@ const { MAX_PARTNERS } = require("../config");
  * @param {object} previousAnswers An object containing every past answer that has been given by the user
  * @param {string} council local_council_url allowing to put the user back on the path by redirecting to /new/council
  * @param {boolean} edit Flag indicating if request was submitted in edit mode
+ * @param {object} allValidationErrors An object containing validation errors collected from all active pages
  *
  * @returns {object} Values for the router to store/update in the session and the page to redirect to.
  */
@@ -21,13 +22,15 @@ const partnerDetailsContinue = (
   currentPage,
   previousAnswers,
   council,
-  edit
+  edit,
+  allValidationErrors
 ) => {
   const controllerResponse = {
     validatorErrors: {},
     redirectRoute: null,
     addressLookups: {},
-    switches: {}
+    switches: {},
+    allValidationErrors: allValidationErrors
   };
   logEmitter.emit(
     "functionCall",
@@ -62,6 +65,7 @@ const partnerDetailsContinue = (
     controllerResponse.redirectRoute = `/new/${council}/main-partnership-contact`;
 
     if (edit) {
+      delete controllerResponse.allValidationErrors["partners"];
       if (
         previousAnswers.partners.find(partnerName => {
           return partnerName === previousAnswers.main_partnership_contact;

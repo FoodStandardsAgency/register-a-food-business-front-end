@@ -77,7 +77,7 @@ describe("validator.service validate()", () => {
       });
 
       expect(result.errors.customer_type).toBe(
-        "You must select an option before continuing"
+        "You must select a customer type before continuing"
       );
     });
   });
@@ -109,7 +109,7 @@ describe("validator.service validate()", () => {
       });
 
       expect(result.errors.import_export_activities).toBe(
-        "You must select valid option(s) before continuing"
+        "You must select a valid import or export option(s) before continuing"
       );
     });
     it("should return the business-import-export error when contradicting options are selected", () => {
@@ -120,7 +120,7 @@ describe("validator.service validate()", () => {
       });
 
       expect(result.errors.import_export_activities).toBe(
-        "You must select valid option(s) before continuing"
+        "You must select a valid import or export option(s) before continuing"
       );
     });
     it("should not return an error if only 'no_import/export' option is selected", () => {
@@ -192,6 +192,20 @@ describe("validator.service validate()", () => {
         business_type: "Example (Test)"
       });
       expect(separateBracketsFromBusinessType).toHaveBeenCalled();
+    });
+  });
+
+  describe("When given the opening hours page", () => {
+    it("should filter out fields not requiring validation", () => {
+      const result = validate("/opening-hours", {
+        opening_hours_monday: "09:00-17:00",
+        opening_hours_tuesday: undefined,
+        opening_day_friday: "yes"
+      });
+      expect(result.errors.opening_hours_tuesday).toBe(
+        "Invalid opening hours on Tuesday"
+      );
+      expect(Object.keys(result.errors).length).toBe(1);
     });
   });
 });

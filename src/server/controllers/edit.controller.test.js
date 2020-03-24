@@ -91,7 +91,8 @@ describe("Edit controller: editContinue()", () => {
             cumulativeFullAnswers,
             cumulativeEditAnswers,
             newAnswers,
-            switches
+            switches,
+            {}
           ];
           result = editController.editContinue(...args);
         });
@@ -127,7 +128,8 @@ describe("Edit controller: editContinue()", () => {
             cumulativeFullAnswers,
             cumulativeEditAnswers,
             newAnswers,
-            switches
+            switches,
+            {}
           ];
           result = editController.editContinue(...args);
         });
@@ -157,7 +159,8 @@ describe("Edit controller: editContinue()", () => {
           cumulativeFullAnswers,
           cumulativeEditAnswers,
           newAnswers,
-          switches
+          switches,
+          {}
         ];
         result = editController.editContinue(...args);
       });
@@ -197,7 +200,8 @@ describe("Edit controller: editContinue()", () => {
             cumulativeFullAnswers,
             cumulativeEditAnswers,
             newAnswers,
-            switches
+            switches,
+            {}
           ];
           result = editController.editContinue(...args);
         });
@@ -237,7 +241,8 @@ describe("Edit controller: editContinue()", () => {
             cumulativeFullAnswers,
             cumulativeEditAnswers,
             newAnswers,
-            switches
+            switches,
+            {}
           ];
           result = editController.editContinue(...args);
         });
@@ -280,7 +285,8 @@ describe("Edit controller: editContinue()", () => {
             cumulativeFullAnswers,
             cumulativeEditAnswers,
             newAnswers,
-            switches
+            switches,
+            {}
           ];
           result = editController.editContinue(...args);
         });
