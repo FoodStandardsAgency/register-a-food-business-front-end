@@ -134,6 +134,13 @@ const editContinue = (
     ) {
       transformedNewAnswers.customer_type = "validated";
     }
+    if (
+      transformedNewAnswers.day &&
+      transformedNewAnswers.month &&
+      transformedNewAnswers.year
+    ) {
+      transformedNewAnswers.establishment_opening_date = "validated";
+    }
 
     Object.keys(transformedNewAnswers).forEach(validAnswerKey => {
       delete newAllValidationErrors[validAnswerKey];
