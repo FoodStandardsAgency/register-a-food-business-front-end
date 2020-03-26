@@ -7,25 +7,32 @@
   "scripts": {
     "debug": "node --inspect src/server/index.js",
     "debug:prod": "NODE_ENV=production node --inspect src/server/index.js",
-    "debug:prod:local": "(export $(grep -v '^#' .env | xargs -d '\n')) && NODE_ENV=production node --inspect src/server/index.js",
+    "debug:prod:local":
+      "(export $(grep -v '^#' .env | xargs -d '\n')) && NODE_ENV=production node --inspect src/server/index.js",
     "dev": "node src/server/index.js",
     "build": "next build",
     "version": "NODE_ENV=production node -v",
     "start": "NODE_ENV=production node src/server/index.js",
-    "start:local": "(export $(grep -v '^#' .env | xargs -d '\n')) && NODE_ENV=production node src/server/index.js",
+    "start:local":
+      "(export $(grep -v '^#' .env | xargs -d '\n')) && NODE_ENV=production node src/server/index.js",
     "test": "jest ./src ./pages --coverage",
-    "test:ci": "export TEST_TYPE=unit && jest ./src ./pages --coverage --maxWorkers=4",
+    "test:ci":
+      "export TEST_TYPE=unit && jest ./src ./pages --coverage --maxWorkers=4",
     "test:watch": "jest ./src --watch",
-    "test:integration": "export TEST_TYPE=integration && jest tests/integration/*.js",
+    "test:integration":
+      "export TEST_TYPE=integration && jest tests/integration/*.js",
     "test:contract": "jest tests/contract/*.js",
     "test:securityallWizard": "snyk wizard",
     "test:securityWizard": "snyk wizard --severity-threshold=medium",
     "test:security": "snyk auth && snyk test --severity-threshold=medium",
     "lint": "eslint ./src ./pages",
-    "format:verify": "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*' '!./**/*.pdf'",
-    "format": "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./**/*.pdf' '!./src/__tests__/__snapshots__/**/*'",
+    "format:verify":
+      "prettier --list-different '{./src,./pages,./docs,./tests}/**/*' '!./src/__tests__/__snapshots__/**/*' '!./**/*.pdf'",
+    "format":
+      "prettier --write '{./src,./pages,./docs,./tests}/**/*' '!./**/*.pdf' '!./src/__tests__/__snapshots__/**/*'",
     "jsdoc": "rm -rf ./docs/jsdoc && jsdoc -r ./src -d ./docs/jsdoc",
-    "updateBusinessTypes": "node ./src/components/update-business-types.js && npm run format"
+    "updateBusinessTypes":
+      "node ./src/components/update-business-types.js && npm run format"
   },
   "dependencies": {
     "@emotion/core": "10.0.28",
@@ -45,7 +52,7 @@
     "express-session": "1.17.0",
     "express-useragent": "1.0.13",
     "govuk-react": "0.7.2",
-    "https-proxy-agent": "^5.0.0",
+    "https-proxy-agent": "5.0.0",
     "jsonschema": "1.2.5",
     "mongodb": "3.5.5",
     "next": "6.1.1",
@@ -69,7 +76,7 @@
     "babel-eslint": "7.2.3",
     "babel-jest": "23.4.2",
     "babel-plugin-emotion": "9.1.2",
-    "babel-plugin-inline-react-svg": "^0.5.4",
+    "babel-plugin-inline-react-svg": "0.5.4",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
     "eslint": "4.19.1",
@@ -87,7 +94,7 @@
     "prettier": "1.12.1",
     "prop-types": "15.7.2",
     "react-test-renderer": "16.4.2",
-    "snyk": "^1.94.0",
+    "snyk": "1.94.0",
     "webpack": "3.1.0"
   },
   "license": "MIT"
