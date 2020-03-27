@@ -10,7 +10,7 @@ const { info } = require("winston");
 const routes = require("./routes");
 const { Next } = require("./next");
 const { errorHandler } = require("./middleware/errorHandler");
-const helmet = require('helmet');
+const helmet = require("helmet");
 
 module.exports = async dbUrl => {
   const app = express();
@@ -53,9 +53,11 @@ module.exports = async dbUrl => {
   app.use(cookieParser());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(helmet.hsts({
-    maxAge: sixtyDaysInSeconds
-  }));
+  app.use(
+    helmet.hsts({
+      maxAge: sixtyDaysInSeconds
+    })
+  );
 
   await Next.prepare();
 
