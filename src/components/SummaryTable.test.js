@@ -263,27 +263,37 @@ const testComprehensiveAnswersForIrregularDays = Object.assign(
 // the summary table mounted with the complete set of non-optional answers
 const wrapperMinimum = mount(<SummaryTable {...testMandatoryAnswers} />);
 const wrapperMinimumForPartnership = mount(
-  <SummaryTable {...testMandatoryAnswersForPartnership} />
+  <SummaryTable {...testMandatoryAnswersForPartnership} validatorErrors={{}} />
 );
 const wrapperMinimumForIrregularDays = mount(
-  <SummaryTable {...testMandatoryAnswersForIrregularDays} />
+  <SummaryTable
+    {...testMandatoryAnswersForIrregularDays}
+    validatorErrors={{}}
+  />
 );
 
 // the summary table mounted with the complete set of possible answers
 const wrapperComprehensive = mount(
-  <SummaryTable {...testComprehensiveAnswers} />
+  <SummaryTable {...testComprehensiveAnswers} validatorErrors={{}} />
 );
 const wrapperComprehensiveForPartnership = mount(
-  <SummaryTable {...testComprehensiveAnswersForPartnership} />
+  <SummaryTable
+    {...testComprehensiveAnswersForPartnership}
+    validatorErrors={{}}
+  />
 );
 
 const wrapperComprehensiveForIrregularDays = mount(
-  <SummaryTable {...testComprehensiveAnswersForIrregularDays} />
+  <SummaryTable
+    {...testComprehensiveAnswersForIrregularDays}
+    validatorErrors={{}}
+  />
 );
 
 const wrapperApplicationComplete = mount(
   <SummaryTable
     {...testComprehensiveAnswersDeclaration}
+    validatorErrors={{}}
     applicationCompletePage={true}
   />
 );
@@ -291,6 +301,7 @@ const wrapperApplicationComplete = mount(
 const wrapperApplicationCompleteWithFeedback = mount(
   <SummaryTable
     {...testComprehensiveAnswersDeclarationFeedback}
+    validatorErrors={{}}
     applicationCompletePage={true}
   />
 );
@@ -298,6 +309,7 @@ const wrapperApplicationCompleteWithFeedback = mount(
 const wrapperApplicationCompleteForPartnership = mount(
   <SummaryTable
     {...testComprehensiveAnswersForPartnership}
+    validatorErrors={{}}
     applicationCompletePage={true}
   />
 );

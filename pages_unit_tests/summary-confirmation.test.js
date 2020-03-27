@@ -7,8 +7,7 @@ const cumulativeFullAnswers = {
 };
 
 const transformedData = {
-  operator_email: "email@email.com",
-  validatorErrors: {}
+  operator_email: "email@email.com"
 };
 
 const lcConfigCombined = {
@@ -61,6 +60,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           transformedData={transformedData}
@@ -76,6 +76,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           fsaRegistrationNumber="12345"
           lcConfig={lcConfigCombined}
@@ -89,6 +90,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           fsaRegistrationNumber={undefined}
           lcConfig={lcConfigCombined}
@@ -105,6 +107,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
           transformedData={transformedData}
@@ -123,6 +126,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           transformedData={transformedData}
@@ -138,6 +142,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
           transformedData={transformedData}
@@ -153,6 +158,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
           transformedData={transformedData}
@@ -172,6 +178,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
           transformedData={transformedDataRepresentative}
@@ -187,6 +194,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigCombinedNoNumber}
           transformedData={transformedData}
@@ -202,6 +210,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigSplitNoNumber}
           transformedData={transformedData}
@@ -217,6 +226,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigSplitNoNumber}
           transformedData={transformedData}
@@ -232,6 +242,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={{}}
           transformedData={transformedData}
@@ -245,6 +256,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           transformedData={transformedData}
@@ -260,6 +272,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           transformedData={transformedData}
@@ -279,6 +292,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           transformedData={transformedData}
