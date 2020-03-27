@@ -318,7 +318,11 @@ const ApplicationComplete = props => (
     <Header level={2} mb={5} size="LARGE">
       Your registration details:
     </Header>
-    <SummaryTable {...props.transformedData} validatorErrors={props.validatorErrors} applicationCompletePage={true} />
+    <SummaryTable
+      {...props.transformedData}
+      validatorErrors={props.validatorErrors}
+      applicationCompletePage={true}
+    />
   </FsaLayout>
 );
 
