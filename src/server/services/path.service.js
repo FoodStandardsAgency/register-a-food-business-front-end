@@ -198,6 +198,7 @@ const getPathPagesToSwitch = (
     `);
     }
 
+    // Get all properties with the properties they switch
     const allSwitches = {};
 
     for (let page in pathFromSession) {
@@ -213,8 +214,12 @@ const getPathPagesToSwitch = (
       }
     }
 
+    // Switching on values without also referencing key is risky since an unrelated value
+    // could clash e.g. Sole trader as a role would clash with Sole trader that happens to be
+    // establishment name
     const answerValuesAndTruthyKeys = allAnswerValues.concat(allAnswerKeys);
 
+    // I'm really not clear what impact sorting has here
     answerValuesAndTruthyKeys.sort((a, b) => {
       return (
         Object.keys(allSwitches).indexOf(a) -
