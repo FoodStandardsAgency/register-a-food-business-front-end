@@ -54,7 +54,7 @@ describe("Function: submitController: ", () => {
   describe("When submit returns an error", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({
-        status: "500",
+        status: 500,
         json: () => ({ reg_submission_date: "10 Jul 2018" })
       }));
       response = await submitController(...submitArgs);
@@ -62,6 +62,25 @@ describe("Function: submitController: ", () => {
 
     it("Should set redirectRoute to back", () => {
       expect(response.redirectRoute).toBe("back");
+    });
+  });
+
+  describe("When submit returns a 400 error", () => {
+    beforeEach(async () => {
+      submit.mockImplementation(() => ({
+        status: 400,
+        json: () => ({ userMessages: [{ message: "Error 123" }] })
+      }));
+      response = await submitController(...submitArgs);
+    });
+
+    it("Should set redirectRoute to back", () => {
+      expect(response.redirectRoute).toBe("back");
+    });
+
+    it("Should have caught correct error messages", () => {
+      expect(response.submissionError.length).toBe(1);
+      expect(response.submissionError[0]).toBe("Error 123");
     });
   });
 

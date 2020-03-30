@@ -97,7 +97,7 @@ const SelectListSection = props => (
   </div>
 );
 
-// 12/02/2020 - comment needed due to cloudflare caching next.js files
+// 26/03/2020 - comment needed due to cloudflare caching next.js files
 class BusinessTypeLookup extends React.Component {
   constructor(props) {
     super(props);

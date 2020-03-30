@@ -546,6 +546,7 @@ describe("Partner Details Route: ", () => {
             cumulativeFullAnswers: {
               partners: ["One First", "Two Second"]
             },
+            allValidationErrors: [],
             save: cb => {
               cb();
             }
@@ -571,7 +572,8 @@ describe("Partner Details Route: ", () => {
           { partners: ["One First", "Two Second"] },
 
           "council",
-          false
+          false,
+          []
         );
       });
       it("Should redirect to next page", () => {
@@ -593,6 +595,7 @@ describe("Partner Details Route: ", () => {
           session: {
             council: "council",
             cumulativeFullAnswers: { partners: [] },
+            allValidationErrors: [],
             save: cb => {
               cb();
             }
@@ -619,7 +622,8 @@ describe("Partner Details Route: ", () => {
           { partners: [] },
 
           "council",
-          false
+          false,
+          []
         );
       });
       it("Should redirect to next page", () => {

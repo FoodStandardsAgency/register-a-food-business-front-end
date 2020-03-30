@@ -271,9 +271,14 @@ const clearPathConfigCache = () => {
   return pathConfig;
 };
 
+const clearMongoConnection = () => {
+  client = undefined;
+};
+
 module.exports = {
   getPathConfigByVersion,
   clearPathConfigCache,
+  clearMongoConnection,
   getLocalCouncils,
   getCouncilData
 };

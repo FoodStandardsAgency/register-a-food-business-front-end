@@ -41,7 +41,11 @@ const EstablishmentAddressLookup = props => (
           </Paragraph>
           <AnchorTag
             id="changeEstablishmentPostcode"
-            href="/establishment-address"
+            href={
+              props.editModeFirstPage
+                ? "/establishment-address?edit=establishment-address"
+                : "/establishment-address"
+            }
           >
             Change postcode
           </AnchorTag>
@@ -74,7 +78,13 @@ const EstablishmentAddressLookup = props => (
         <ContentItem.B_30_15>
           <AnchorTag
             id="cantFindAddressLink"
-            href={`/new/${props.council}/establishment-address-manual`}
+            href={
+              props.editModeFirstPage
+                ? `/new/${
+                    props.council
+                  }/establishment-address-manual?edit=establishment-address-manual`
+                : `/new/${props.council}/establishment-address-manual`
+            }
           >
             I can't find my address in the list
           </AnchorTag>

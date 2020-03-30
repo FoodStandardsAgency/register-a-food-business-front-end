@@ -11,6 +11,9 @@ const {
   separateBracketsFromBusinessType
 } = require("./data-transform.service");
 const { MAX_PARTNERS } = require("../config");
+const {
+  validatePartners
+} = require("@slice-and-dice/register-a-food-business-validation");
 
 const errorMessages = {
   declaration1: "You must tick all the declarations before continuing",
@@ -27,21 +30,21 @@ const errorMessages = {
   operator_postcode: "Not a valid postcode",
   operator_postcode_find: "Not a valid postcode",
   establishment_trading_name: "Not a valid establishment trading name",
-  operator_primary_number: "Not a valid phone number",
-  operator_secondary_number: "Not a valid phone number",
-  operator_email: "Not a valid email address",
-  contact_representative_name: "Not a valid name",
-  contact_representative_role: "Not a valid role",
-  contact_representative_number: "Not a valid phone number",
-  contact_representative_email: "Not a valid email address",
+  operator_primary_number: "Not a valid operator phone number",
+  operator_secondary_number: "Not a valid operator phone number",
+  operator_email: "Not a valid operator email address",
+  contact_representative_name: "Not a valid representative name",
+  contact_representative_role: "Not a valid representative role",
+  contact_representative_number: "Not a valid representative phone number",
+  contact_representative_email: "Not a valid representative email address",
   operator_company_name: "Not a valid company name",
   operator_companies_house_number:
     "Not a valid Companies House reference number",
   operator_charity_name: "Not a valid charity name",
   operator_charity_number: "Not a valid charity number",
-  establishment_primary_number: "Not a valid phone number",
-  establishment_secondary_number: "Not a valid phone number",
-  establishment_email: "Not a valid email address",
+  establishment_primary_number: "Not a valid establishment phone number",
+  establishment_secondary_number: "Not a valid establishment phone number",
+  establishment_email: "Not a valid establishment email address",
   establishment_type:
     "You must select an establishment address type before continuing",
   establishment_town: "Not a valid town name",
@@ -53,10 +56,11 @@ const errorMessages = {
   establishment_opening_status:
     "You must select a trading status before continuing",
   establishment_opening_date: "Not a valid opening date",
-  customer_type: "You must select an option before continuing",
-  import_export_activities: "You must select valid option(s) before continuing",
+  customer_type: "You must select a customer type before continuing",
+  import_export_activities:
+    "You must select a valid import or export option(s) before continuing",
   business_type: "You must select a business type before continuing",
-  water_supply: "You must select an option before continuing",
+  water_supply: "You must select a water supply type before continuing",
   business_other_details:
     "Your message is too long. Please shorten it to less than 1500 characters",
   opening_days_start: "Please select which days this establishment is open",
@@ -66,6 +70,8 @@ const errorMessages = {
   partners: `Please define between 2-${MAX_PARTNERS} partners`,
   main_partnership_contact:
     "You must select the main partnership contact before continuing",
+  main_partnership_contact_deleted:
+    "Main partnership contact is not in the list of partners",
   opening_hours_monday: "Invalid opening hours on Monday",
   opening_hours_tuesday: "Invalid opening hours on Tuesday",
   opening_hours_wednesday: "Invalid opening hours on Wednesday",
@@ -115,9 +121,13 @@ const validate = (page, answers) => {
       }
 
       if (page === "/business-type") {
-        answersToValidate.business_type = separateBracketsFromBusinessType(
-          answers.business_type
-        ).business_type;
+        if (answers.business_type) {
+          answersToValidate.business_type = separateBracketsFromBusinessType(
+            answers.business_type
+          ).business_type;
+        } else {
+          answersToValidate.business_type = "";
+        }
       }
 
       const validatorResult = validator.validate(
@@ -174,4 +184,96 @@ const validate = (page, answers) => {
   }
 };
 
-module.exports = { validate };
+/**
+ * Runs the jsonschema validator package against answers from active pages
+ *
+ * @param {Array<string>} pages Pages on active path
+ * @param {object} cumulativeFullAnswers All answers provided by the user as part of registration process
+ *
+ * @returns {object} An errors object containing one entry per validation error
+ */
+const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
+  logEmitter.emit("functionCall", "validation.service", "revalidateAllAnswers");
+
+  const result = {
+    errors: {}
+  };
+  pages.forEach(page => {
+    if (page === "/partner-name") {
+      if (!validatePartners(cumulativeFullAnswers.partners)) {
+        Object.assign(result.errors, {
+          partners: errorMessages.partners
+        });
+      }
+      if (
+        !cumulativeFullAnswers.partners.includes(
+          cumulativeFullAnswers["main_partnership_contact"]
+        )
+      ) {
+        Object.assign(result.errors, {
+          main_partnership_contact:
+            errorMessages.main_partnership_contact_deleted
+        });
+      }
+    } else if (page === "/operator-contact-details") {
+      const answersToValidate = cumulativeFullAnswers;
+      if (answersToValidate["operator_secondary_number"] == null) {
+        Object.assign(result.errors, validate(page, answersToValidate).errors);
+        delete result.errors.operator_secondary_number;
+      } else {
+        Object.assign(result.errors, validate(page, answersToValidate).errors);
+      }
+    } else if (page === "/establishment-contact-details") {
+      const answersToValidate = cumulativeFullAnswers;
+      if (answersToValidate["establishment_secondary_number"] == null) {
+        Object.assign(result.errors, validate(page, answersToValidate).errors);
+        delete result.errors.establishment_secondary_number;
+      } else {
+        Object.assign(result.errors, validate(page, answersToValidate).errors);
+      }
+    } else if (page === "/opening-hours") {
+      const answersToValidate = cumulativeFullAnswers;
+      const days = [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ];
+      days.forEach(day => {
+        if (
+          cumulativeFullAnswers["opening_days_start"] === "Every day" ||
+          cumulativeFullAnswers[`opening_day_${day}`]
+        ) {
+          Object.assign(answersToValidate, {
+            [`opening_hours_${day}`]:
+              cumulativeFullAnswers[`opening_hours_${day}`] || ""
+          });
+        }
+      });
+      Object.assign(result.errors, validate(page, answersToValidate).errors);
+    } else if (page === "/business-other-details") {
+      if (cumulativeFullAnswers["business_other_details"] != null) {
+        Object.assign(
+          result.errors,
+          validate(page, cumulativeFullAnswers).errors
+        );
+      }
+    } else {
+      Object.assign(
+        result.errors,
+        validate(page, cumulativeFullAnswers).errors
+      );
+    }
+  });
+  logEmitter.emit(
+    "functionSuccess",
+    "validation.service",
+    "revalidateAllAnswers"
+  );
+  return result;
+};
+
+module.exports = { validate, revalidateAllAnswers };

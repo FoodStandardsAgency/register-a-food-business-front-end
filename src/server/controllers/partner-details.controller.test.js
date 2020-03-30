@@ -748,7 +748,8 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
             currentPage,
             { partners: ["partner one"] },
             council,
-            editMode
+            editMode,
+            {}
           );
         } catch (err) {
           response = err;
@@ -779,7 +780,8 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
             { partners: partnerArray, main_partnership_contact: "partner one" },
 
             council,
-            editMode
+            editMode,
+            {}
           );
         } catch (err) {
           response = err;
@@ -809,7 +811,8 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
           },
 
           council,
-          editMode
+          editMode,
+          {}
         );
       });
 
