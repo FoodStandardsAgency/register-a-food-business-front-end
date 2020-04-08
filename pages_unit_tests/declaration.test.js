@@ -24,6 +24,7 @@ describe("<Declaration />", () => {
           validatorErrors={testValidatorErrors}
           cumulativeFullAnswers={testCumulativeAnswers}
           switches={testSwitches}
+          submissionError={[]}
         />
       ).get(0)
     );

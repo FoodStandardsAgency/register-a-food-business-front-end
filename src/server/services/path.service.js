@@ -198,6 +198,7 @@ const getPathPagesToSwitch = (
     `);
     }
 
+    // Get all properties with the properties they switch
     const allSwitches = {};
 
     for (let page in pathFromSession) {
@@ -213,8 +214,12 @@ const getPathPagesToSwitch = (
       }
     }
 
+    // Switching on values without also referencing key is risky since an unrelated value
+    // could clash e.g. Sole trader as a role would clash with Sole trader that happens to be
+    // establishment name
     const answerValuesAndTruthyKeys = allAnswerValues.concat(allAnswerKeys);
 
+    // I'm really not clear what impact sorting has here
     answerValuesAndTruthyKeys.sort((a, b) => {
       return (
         Object.keys(allSwitches).indexOf(a) -
@@ -279,11 +284,40 @@ const switchOffManualAddressInput = (newPath, currentPage) => {
   return manualAddressSwitchedPath;
 };
 
+/**
+ * A workaround function to disable company and charity details input pages if the user has gone
+ * back and selected Sole trader after having previously selected Representative registration role.
+ *
+ * @param {object} newPath The path object, already edited to enable pages
+ * @param {string} newAnswers The newAnswers object containg the answers going forward.
+ *
+ * @returns {object} The edited path
+ */
+const switchOffCompanyAndCharityDetails = (newAnswers, newPath) => {
+  logEmitter.emit(
+    "functionCall",
+    "path.service",
+    "switchOffCompanyAndCharityDetails"
+  );
+
+  const companyAndCharitySwitchedPath = JSON.parse(JSON.stringify(newPath));
+
+  if (
+    newAnswers.registration_role &&
+    newAnswers.registration_role !== "Representative"
+  ) {
+    companyAndCharitySwitchedPath["/operator-charity-details"].on = false;
+    companyAndCharitySwitchedPath["/operator-company-details"].on = false;
+  }
+  return companyAndCharitySwitchedPath;
+};
+
 module.exports = {
   editPath,
   editPathInEditMode,
   moveAlongPath,
   moveAlongEditPath,
   getPathPagesToSwitch,
-  switchOffManualAddressInput
+  switchOffManualAddressInput,
+  switchOffCompanyAndCharityDetails
 };

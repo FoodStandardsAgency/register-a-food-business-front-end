@@ -49,8 +49,8 @@ describe("address.service getUkAddressesByPostcode()", () => {
       }
     });
 
-    it("Should throw the error", () => {
-      expect(response.message).toBe("Some error");
+    it("Should return an empty array", () => {
+      expect(response).toEqual([]);
     });
   });
 });

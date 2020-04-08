@@ -161,10 +161,12 @@ const partnerDetailsRouter = () => {
       originator,
       req.session.cumulativeFullAnswers,
       req.session.council,
-      isEditMode(req.query)
+      isEditMode(req.query),
+      req.session.allValidationErrors
     );
 
     req.session.validatorErrors = response.validatorErrors;
+    req.session.allValidationErrors = response.allValidationErrors;
 
     logEmitter.emit(
       "functionSuccess",

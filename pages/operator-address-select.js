@@ -25,7 +25,14 @@ const OperatorAddressLookup = props => (
           <Paragraph className="operatorPostcodeDisplay" mb={0}>
             {props.cumulativeFullAnswers.operator_postcode_find}
           </Paragraph>
-          <AnchorTag id="changeOperatorPostcode" href="/operator-address">
+          <AnchorTag
+            id="changeOperatorPostcode"
+            href={
+              props.editModeFirstPage
+                ? "/operator-address?edit=operator-address"
+                : "/operator-address"
+            }
+          >
             Change postcode
           </AnchorTag>
         </ContentItem.B_30_15>
@@ -57,7 +64,13 @@ const OperatorAddressLookup = props => (
         <ContentItem.B_30_15>
           <AnchorTag
             id="cantFindAddressLink"
-            href={`/new/${props.council}/operator-address-manual`}
+            href={
+              props.editModeFirstPage
+                ? `/new/${
+                    props.council
+                  }/operator-address-manual?edit=operator-address-manual`
+                : `/new/${props.council}/operator-address-manual`
+            }
           >
             I can't find my address in the list
           </AnchorTag>

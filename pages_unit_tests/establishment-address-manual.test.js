@@ -26,15 +26,15 @@ describe("<EstablishmentAddress />", () => {
           switches={testSwitches}
         />
       );
-      const establishmentFirstLine = wrapper.find(
-        "InputField#establishment_first_line"
+      const establishment_address_line_1 = wrapper.find(
+        "InputField#establishment_address_line_1"
       );
-      expect(establishmentFirstLine.length).toBe(1);
+      expect(establishment_address_line_1.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
       const validatorErrors = {
-        establishment_first_line: "test error"
+        establishment_address_line_1: "test error"
       };
       const wrapper = mount(
         <EstablishmentAddress
@@ -44,14 +44,14 @@ describe("<EstablishmentAddress />", () => {
         />
       );
       const establishmentFirstLine = wrapper.find(
-        "InputField#establishment_first_line"
+        "InputField#establishment_address_line_1"
       );
       expect(establishmentFirstLine.props().meta.error).toBe("test error");
     });
 
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        establishment_first_line: "default"
+        establishment_address_line_1: "default"
       };
       const wrapper = mount(
         <EstablishmentAddress
@@ -61,7 +61,7 @@ describe("<EstablishmentAddress />", () => {
         />
       );
       const establishmentFirstLine = wrapper.find(
-        "InputField#establishment_first_line"
+        "InputField#establishment_address_line_1"
       );
       expect(establishmentFirstLine.props().input.defaultValue).toBe("default");
     });

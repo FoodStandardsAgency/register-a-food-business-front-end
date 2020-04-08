@@ -68,6 +68,7 @@ const checkIfValid = validatorErrors =>
  * @param {object} cumulativeEditAnswers An object containing every past answer that has been given in this edit-mode path by the user
  * @param {object} newAnswers An object containing new answers from the current page
  * @param {object} switches The global switches object
+ * @param {object} allValidationErrors An object containing validation errors collected from all active pages
  *
  * @returns {object} Values for the router to store/update in the session and the page to redirect to.
  */
@@ -78,7 +79,8 @@ const editContinue = (
   cumulativeFullAnswers,
   cumulativeEditAnswers,
   newAnswers,
-  switches
+  switches,
+  allValidationErrors
 ) => {
   logEmitter.emit("functionCall", "edit.controller", "editContinue");
 
@@ -114,7 +116,35 @@ const editContinue = (
   let redirectRoute;
   let cleanedInactiveFullAnswers;
   let cleanedInactiveEditAnswers;
+  let newAllValidationErrors = Object.assign({}, allValidationErrors);
+  let transformedNewAnswers = Object.assign({}, newAnswers);
   if (valid) {
+    // Account for difference in field names and their transform property names
+    // to allow for validation message deletion
+    if (
+      transformedNewAnswers.directly_import ||
+      transformedNewAnswers.directly_export ||
+      transformedNewAnswers.no_import_export
+    ) {
+      transformedNewAnswers.import_export_activities = "validated";
+    }
+    if (
+      transformedNewAnswers.supply_directly ||
+      transformedNewAnswers.supply_other
+    ) {
+      transformedNewAnswers.customer_type = "validated";
+    }
+    if (
+      transformedNewAnswers.day &&
+      transformedNewAnswers.month &&
+      transformedNewAnswers.year
+    ) {
+      transformedNewAnswers.establishment_opening_date = "validated";
+    }
+
+    Object.keys(transformedNewAnswers).forEach(validAnswerKey => {
+      delete newAllValidationErrors[validAnswerKey];
+    });
     // TODO JMB: Merge switchOffManualAddressInput into editPathInEditMode
     const newEditModePath = editPathInEditMode(
       newCumulativeFullAnswers,
@@ -153,11 +183,11 @@ const editContinue = (
     cumulativeEditAnswersToReturn =
       cleanedInactiveEditAnswers || newCumulativeEditAnswers;
   }
-
   const controllerResponse = {
     cumulativeFullAnswers: cumulativeFullAnswersToReturn,
     cumulativeEditAnswers: cumulativeEditAnswersToReturn,
     validatorErrors,
+    newAllValidationErrors,
     switches: cleanedSwitches,
     redirectRoute
   };

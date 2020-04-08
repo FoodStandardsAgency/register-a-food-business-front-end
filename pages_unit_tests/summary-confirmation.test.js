@@ -3,10 +3,12 @@ import { shallow, mount } from "enzyme";
 jest.mock("../src/server/services/data-transform.service");
 
 const cumulativeFullAnswers = {
-  establishment_first_line: "Example first line"
+  establishment_address_line_1: "Example address line 1"
 };
 
-const transformedData = { operator_email: "email@email.com" };
+const transformedData = {
+  operator_email: "email@email.com"
+};
 
 const lcConfigCombined = {
   hygieneAndStandards: {
@@ -58,6 +60,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           transformedData={transformedData}
@@ -73,6 +76,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           fsaRegistrationNumber="12345"
           lcConfig={lcConfigCombined}
@@ -82,10 +86,11 @@ describe("<ApplicationComplete />", () => {
       const panel = wrapper.find("Panel#panelWithNumber");
       expect(panel.length).toBe(1);
     });
-    it("The panel renders 'Awaiting registration number' text when not defined", () => {
+    it("The panel renders 'Awaiting registration application reference' text when not defined", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           fsaRegistrationNumber={undefined}
           lcConfig={lcConfigCombined}
@@ -102,6 +107,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
           transformedData={transformedData}
@@ -120,6 +126,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           transformedData={transformedData}
@@ -135,6 +142,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
           transformedData={transformedData}
@@ -150,6 +158,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
           transformedData={transformedData}
@@ -163,11 +172,13 @@ describe("<ApplicationComplete />", () => {
   describe("When given a contact representative email", () => {
     it("The paragraph renders displaying it", () => {
       const transformedDataRepresentative = {
-        contact_representative_email: "rep@email.com"
+        contact_representative_email: "rep@email.com",
+        validatorErrors: {}
       };
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigSplit}
           transformedData={transformedDataRepresentative}
@@ -183,6 +194,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigCombinedNoNumber}
           transformedData={transformedData}
@@ -198,6 +210,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigSplitNoNumber}
           transformedData={transformedData}
@@ -213,6 +226,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigSplitNoNumber}
           transformedData={transformedData}
@@ -228,6 +242,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={{}}
           transformedData={transformedData}
@@ -241,6 +256,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           transformedData={transformedData}
@@ -256,6 +272,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           transformedData={transformedData}
@@ -275,6 +292,7 @@ describe("<ApplicationComplete />", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
+          validatorErrors={{}}
           applicationCompletePage={true}
           lcConfig={lcConfigCombined}
           transformedData={transformedData}

@@ -42,54 +42,51 @@ const OperatorAddress = props => (
         <ContentItem.B_30_15>
           <InputField
             input={{
-              name: "operator_first_line",
-              defaultValue: props.cumulativeFullAnswers.operator_first_line,
+              name: "operator_address_line_1",
+              defaultValue: props.cumulativeFullAnswers.operator_address_line_1,
               autoComplete: "address-line1"
             }}
-            id="operator_first_line"
-            // TODO APM: Decide on and implement validation for first line of address
-            // Work out why validator errors fails in test
+            id="operator_address_line_1"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_first_line
+              error: props.validatorErrors.operator_address_line_1
             }}
           >
-            First line of address
+            Address line 1
           </InputField>
         </ContentItem.B_30_15>
 
         <ContentItem.B_30_15>
           <InputField
             input={{
-              name: "operator_street",
-              defaultValue: props.cumulativeFullAnswers.operator_street,
+              name: "operator_address_line_2",
+              defaultValue: props.cumulativeFullAnswers.operator_address_line_2,
               autoComplete: "address-line2"
             }}
-            id="operator_street"
+            id="operator_address_line_2"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_street
+              error: props.validatorErrors.operator_address_line_2
             }}
           >
-            Street (optional)
+            Address line 2 (optional)
           </InputField>
         </ContentItem.B_30_15>
 
         <ContentItem.B_30_15>
           <InputField
             input={{
-              name: "operator_dependent_locality",
-              defaultValue:
-                props.cumulativeFullAnswers.operator_dependent_locality,
-              autoComplete: "dependent"
+              name: "operator_address_line_3",
+              defaultValue: props.cumulativeFullAnswers.operator_address_line_3,
+              autoComplete: "address-line3"
             }}
-            id="operator_dependent_locality"
+            id="operator_address_line_3"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_dependent_locality
+              error: props.validatorErrors.operator_address_line_3
             }}
           >
-            Locality for example village, suburb, parish (optional)
+            Address line 3 (optional)
           </InputField>
         </ContentItem.B_30_15>
 
@@ -106,7 +103,7 @@ const OperatorAddress = props => (
               error: props.validatorErrors.operator_town
             }}
           >
-            Town or city (optional)
+            Town or city
           </InputField>
         </ContentItem.B_30_15>
 

@@ -3,6 +3,7 @@ const {
   getPathConfigByVersion,
   getLocalCouncils,
   clearPathConfigCache,
+  clearMongoConnection,
   getCouncilData
 } = require("./config-db.connector");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
@@ -12,14 +13,32 @@ jest.mock("mongodb");
 jest.mock("./config-db.double");
 jest.mock("../../services/statusEmitter.service");
 
-let result;
-
 describe("Function: getPathConfigByVersion", () => {
+  let result;
+  beforeEach(async () => {
+    clearMongoConnection();
+    clearPathConfigCache();
+  });
   describe("given the request has not yet been run during this process (empty cache)", () => {
+    describe("When: connection to mongo is successful", () => {
+      beforeEach(async () => {
+        mongodb.MongoClient.connect.mockImplementation(() => ({
+          db: () => ({
+            collection: () => ({
+              findOne: () => pathConfigMock
+            })
+          })
+        }));
+        result = await getPathConfigByVersion("1.0.0");
+      });
+
+      it("Should return an object", () => {
+        expect(typeof result).toBe("object");
+      });
+    });
     describe("given the request throws an error", () => {
       beforeEach(async () => {
         process.env.DOUBLE_MODE = false;
-        clearPathConfigCache();
         mongodb.MongoClient.connect.mockImplementation(() => {
           throw new Error("example mongo error");
         });
@@ -42,7 +61,6 @@ describe("Function: getPathConfigByVersion", () => {
     describe("given the request returns null", () => {
       beforeEach(async () => {
         process.env.DOUBLE_MODE = false;
-        clearPathConfigCache();
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
@@ -62,7 +80,6 @@ describe("Function: getPathConfigByVersion", () => {
     describe("given the request is successful", () => {
       beforeEach(() => {
         process.env.DOUBLE_MODE = false;
-        clearPathConfigCache();
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
@@ -79,10 +96,67 @@ describe("Function: getPathConfigByVersion", () => {
       });
     });
 
+    describe("When: topology is invalid", () => {
+      const closeConnection = jest.fn();
+      let result1, result2;
+      beforeEach(async () => {
+        mongodb.MongoClient.connect.mockImplementation(() => ({
+          db: () => ({
+            collection: () => ({
+              findOne: () => pathConfigMock
+            })
+          }),
+          topology: null,
+          close: () => closeConnection()
+        }));
+        result1 = await getPathConfigByVersion("1.0.0");
+        clearPathConfigCache();
+        result2 = await getPathConfigByVersion("1.0.0");
+      });
+
+      it("Should close broken connection", () => {
+        expect(closeConnection).toHaveBeenCalledTimes(1);
+      });
+      it("Should return identical, valid results both times", () => {
+        expect(typeof result1).toBe("object");
+        expect(typeof result2).toBe("object");
+        expect(result1).toEqual(result2);
+      });
+    });
+
+    describe("When: connection is lost", () => {
+      const closeConnection = jest.fn();
+      let result1, result2;
+      beforeEach(async () => {
+        mongodb.MongoClient.connect.mockImplementation(() => ({
+          db: () => ({
+            collection: () => ({
+              findOne: () => pathConfigMock
+            })
+          }),
+          topology: {
+            isConnected: () => false
+          },
+          close: () => closeConnection()
+        }));
+        result1 = await getPathConfigByVersion("1.0.0");
+        clearPathConfigCache();
+        result2 = await getPathConfigByVersion("1.0.0");
+      });
+
+      it("Should close broken connection", () => {
+        expect(closeConnection).toHaveBeenCalledTimes(1);
+      });
+      it("Should return identical, valid results both times", () => {
+        expect(typeof result1).toBe("object");
+        expect(typeof result2).toBe("object");
+        expect(result1).toEqual(result2);
+      });
+    });
+
     describe("when running in double mode", () => {
       beforeEach(() => {
         process.env.DOUBLE_MODE = true;
-        clearPathConfigCache();
         configVersionCollectionDouble.findOne.mockImplementation(
           () => pathConfigMock
         );
@@ -92,6 +166,37 @@ describe("Function: getPathConfigByVersion", () => {
         await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
           pathConfigMock
         );
+      });
+    });
+
+    describe("When: two db calls are made", () => {
+      const closeConnection = jest.fn();
+      let result1, result2;
+      beforeEach(async () => {
+        process.env.DOUBLE_MODE = false;
+        mongodb.MongoClient.connect.mockImplementation(() => ({
+          db: () => ({
+            collection: () => ({
+              findOne: () => pathConfigMock
+            })
+          }),
+          topology: {
+            isConnected: () => true
+          },
+          close: () => closeConnection()
+        }));
+        result1 = await getPathConfigByVersion("1.0.0");
+        clearPathConfigCache();
+        result2 = await getPathConfigByVersion("1.0.0");
+      });
+
+      it("Should return identical, valid results both times", () => {
+        expect(typeof result1).toBe("object");
+        expect(typeof result2).toBe("object");
+        expect(result1).toEqual(result2);
+      });
+      it("Should not close connection", () => {
+        expect(closeConnection).toHaveBeenCalledTimes(0);
       });
     });
   });
@@ -105,7 +210,10 @@ describe("Function: getPathConfigByVersion", () => {
           collection: () => ({
             findOne: () => pathConfigMock
           })
-        })
+        }),
+        topology: {
+          isConnected: () => true
+        }
       }));
     });
 
@@ -140,6 +248,10 @@ describe("Function: getPathConfigByVersion", () => {
 });
 
 describe("Function: getLocalCouncils", () => {
+  let result;
+  beforeEach(async () => {
+    clearMongoConnection();
+  });
   describe("given the request throws an error", () => {
     beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => {
@@ -256,6 +368,10 @@ describe("Function: getLocalCouncils", () => {
 });
 
 describe("Function: getCouncilData", () => {
+  let result;
+  beforeEach(async () => {
+    clearMongoConnection();
+  });
   describe("given the request throws an error", () => {
     beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => {

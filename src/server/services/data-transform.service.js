@@ -17,7 +17,7 @@ const trimAnswers = cumulativeFullAnswers => {
 /**
  * Runs custom validation functions, on specific parts of cumulative answers, to get them in the correct format for the summary table,
  *
- * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the sesion with duplicates removed
+ * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the session with duplicates removed
  * @param {object} addressLookups The object returned by the address look-up service based on the postcode the user inputs
  *
  * @returns {object} An object containing the set of data in the correct format for the summary page with unnecessary fields deleted
@@ -75,34 +75,66 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
     delete data.year;
     delete data.establishment_opening_status;
 
+    // Populate tascomi fields for manual address entry
+    data.operator_first_line = data.operator_address_line_1;
+    data.operator_street = data.operator_address_line_2;
+
     if (data.operator_address_selected) {
-      if (data.operator_first_line) {
+      if (data.operator_address_line_1) {
         delete data.operator_address_selected;
       } else {
         const operatorAddressLookupData =
           addressLookups.operator_postcode_find[data.operator_address_selected];
+
+        data.operator_address_line_1 =
+          operatorAddressLookupData["addressline1"];
+
+        data.operator_address_line_2 =
+          operatorAddressLookupData["addressline2"];
+
+        data.operator_address_line_3 =
+          operatorAddressLookupData["addressline3"];
 
         data.operator_first_line =
           operatorAddressLookupData["premise"] ||
           operatorAddressLookupData["addressline1"];
 
         data.operator_street = operatorAddressLookupData["street"];
-        data.operator_dependent_locality =
-          operatorAddressLookupData["dependentlocality"];
 
         data.operator_town = operatorAddressLookupData["posttown"];
 
         data.operator_postcode = operatorAddressLookupData["postcode"];
 
-        data.operator_uprn = operatorAddressLookupData["uprn"];
+        data.operator_uprn = trimUprn(operatorAddressLookupData["uprn"]);
+
+        if (
+          data.operator_address_line_1 === data.operator_street &&
+          operatorAddressLookupData["organisation"]
+        ) {
+          if (!data.operator_address_line_3) {
+            data.operator_address_line_3 = data.operator_address_line_2;
+            data.operator_address_line_2 = data.operator_address_line_1;
+            data.operator_address_line_1 =
+              operatorAddressLookupData["organisation"];
+          } else {
+            data.operator_address_line_1 =
+              operatorAddressLookupData["organisation"] +
+              ", " +
+              data.operator_address_line_1;
+          }
+        }
 
         delete data.operator_postcode_find;
         delete data.operator_address_selected;
       }
     }
 
+    // Populate tascomi fields for manual address entry
+    data.establishment_first_line = data.establishment_address_line_1;
+    data.establishment_street = data.establishment_address_line_2;
+
     if (data.establishment_address_selected) {
-      if (data.establishment_first_line) {
+      if (data.establishment_address_line_1) {
         delete data.establishment_address_selected;
       } else {
         const establishmentAddressLookupData =
@@ -110,20 +142,48 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
             data.establishment_address_selected
           ];
 
+        data.establishment_address_line_1 =
+          establishmentAddressLookupData["addressline1"];
+
+        data.establishment_address_line_2 =
+          establishmentAddressLookupData["addressline2"];
+
+        data.establishment_address_line_3 =
+          establishmentAddressLookupData["addressline3"];
+
         data.establishment_first_line =
           establishmentAddressLookupData["premise"] ||
           establishmentAddressLookupData["addressline1"];
 
         data.establishment_street = establishmentAddressLookupData["street"];
-        data.establishment_dependent_locality =
-          establishmentAddressLookupData["dependentlocality"];
 
         data.establishment_town = establishmentAddressLookupData["posttown"];
 
         data.establishment_postcode =
           establishmentAddressLookupData["postcode"];
 
-        data.establishment_uprn = establishmentAddressLookupData["uprn"];
+        data.establishment_uprn = trimUprn(
+          establishmentAddressLookupData["uprn"]
+        );
+
+        if (
+          data.establishment_address_line_1 === data.establishment_street &&
+          establishmentAddressLookupData["organisation"]
+        ) {
+          if (!data.establishment_address_line_3) {
+            data.establishment_address_line_3 =
+              data.establishment_address_line_2;
+            data.establishment_address_line_2 =
+              data.establishment_address_line_1;
+            data.establishment_address_line_1 =
+              establishmentAddressLookupData["organisation"];
+          } else {
+            data.establishment_address_line_1 =
+              establishmentAddressLookupData["organisation"] +
+              ", " +
+              data.establishment_address_line_1;
+          }
+        }
 
         delete data.establishment_postcode_find;
         delete data.establishment_address_selected;
@@ -158,9 +218,26 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
 };
 
 /**
+ * Trims the UPRN field of any non-numeric characters (and any characters to the right of them)
+ * This is to account for postcoder API returning values such as 0123456789-1
+ *
+ * @param {string} uprn The raw UPRN returned from postcode lookup
+ *
+ * @returns {string} The trimmed UPRN or an empty string if invalid, empty or not defined
+ */
+const trimUprn = uprn => {
+  if (typeof uprn === "string" || uprn instanceof String) {
+    const regEx = /^(\d+).*/;
+    const match = uprn.match(regEx);
+    return (match && match[1]) || "";
+  }
+  return "";
+};
+
+/**
  * Runs custom validation functions, on specific parts of cumulative answers, to get them in the correct format for the submission
  *
- * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the sesion with duplicates removed
+ * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the session with duplicates removed
  * @param {object} addressLookups The object returned by the address look-up service based on the postcode the user inputs
  * @param {string} lcUrl The local councils URL
  *
@@ -187,11 +264,14 @@ const transformAnswersForSubmit = (
   const operator_keys = [
     "operator_first_name",
     "operator_last_name",
-    "operator_postcode",
+    "operator_address_line_1",
+    "operator_address_line_2",
+    "operator_address_line_3",
     "operator_first_line",
     "operator_street",
     "operator_town",
-    "operator_dependent_locality",
+    "operator_postcode",
+    "operator_uprn",
     "operator_primary_number",
     "operator_secondary_number",
     "operator_email",
@@ -201,19 +281,20 @@ const transformAnswersForSubmit = (
     "contact_representative_email",
     "operator_type",
     "operator_company_name",
-    "operator_company_house_number",
+    "operator_companies_house_number",
     "operator_charity_name",
-    "operator_charity_number",
-    "operator_uprn"
+    "operator_charity_number"
   ];
   const premise_keys = [
-    "establishment_postcode",
+    "establishment_type",
+    "establishment_address_line_1",
+    "establishment_address_line_2",
+    "establishment_address_line_3",
     "establishment_first_line",
     "establishment_street",
     "establishment_town",
-    "establishment_type",
-    "establishment_uprn",
-    "establishment_dependent_locality"
+    "establishment_postcode",
+    "establishment_uprn"
   ];
   const activities_keys = [
     "customer_type",
@@ -238,7 +319,8 @@ const transformAnswersForSubmit = (
     "opening_hours_saturday",
     "opening_hours_sunday"
   ];
-  const metadata_keys = [
+
+  const declaration_keys = [
     "declaration1",
     "declaration2",
     "declaration3",
@@ -253,7 +335,7 @@ const transformAnswersForSubmit = (
         premise: {},
         activities: {}
       },
-      metadata: {}
+      declaration: {}
     },
     local_council_url: lcUrl
   };
@@ -311,9 +393,9 @@ const transformAnswersForSubmit = (
     }
   });
 
-  metadata_keys.forEach(key => {
+  declaration_keys.forEach(key => {
     if (submitData[key] !== undefined) {
-      submitObject.registration.metadata[key] = submitData[key];
+      submitObject.registration.declaration[key] = submitData[key];
     }
   });
 
@@ -571,8 +653,13 @@ const combineOperatorTypes = (operator_type, registration_role) => {
 };
 
 //Combines the date to be in the correct format to display on summary table
-const combineDate = (day, month, year) => `${year}-${month}-${day}`;
-
+const combineDate = (day, month, year) => {
+  if (day && month && year) {
+    return `${year}-${month}-${day}`;
+  } else {
+    return null;
+  }
+};
 //Formats result of business type look up to display it correctly in the summary table
 const separateBracketsFromBusinessType = text => {
   let strippedBusinessType = text.trim();
@@ -613,5 +700,6 @@ module.exports = {
   transformAnswersForSubmit,
   combineDate,
   separateBracketsFromBusinessType,
+  trimUprn,
   trimAnswers
 };

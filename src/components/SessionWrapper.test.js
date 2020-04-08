@@ -26,7 +26,8 @@ const comprehensiveReqSessionObject = {
     browserVersion: "70.1.12",
     isBrowserSupported: true,
     isBrowserVersionVerified: true,
-    country: "wales"
+    country: "wales",
+    lcName: "cardiff county"
   }
 };
 

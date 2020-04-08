@@ -1,5 +1,5 @@
 /**
- * The submit router sends registration data and metadata to the back-end service and redirects to the final page if successful.
+ * The submit router sends registration data and declaration to the back-end service and redirects to the final page if successful.
  * Routes: /submit
  * @module routers/submit
  */
@@ -55,6 +55,7 @@ const submitRouter = () => {
           controllerResponse.redirectRoute
         );
         if (controllerResponse.redirectRoute === "back") {
+          req.session.submissionError = controllerResponse.submissionError;
           res.redirect("back");
         }
         req.session.save(err => {

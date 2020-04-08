@@ -59,6 +59,17 @@ const submitController = async (
         statusEmitter.emit("incrementCount", "submissionsSucceeded");
         statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
       } else {
+        controllerResponse.submissionError = [];
+        if (response.status === 400) {
+          for (let userMessage of res.userMessages) {
+            controllerResponse.submissionError.push(userMessage.message);
+          }
+        }
+        if (controllerResponse.submissionError.length < 1) {
+          controllerResponse.submissionError.push(
+            response.status + ": " + response.statusText
+          );
+        }
         controllerResponse.redirectRoute = "back";
         controllerResponse.submissionSucceeded = false;
         statusEmitter.emit("incrementCount", "submissionsFailed");

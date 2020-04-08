@@ -6,11 +6,9 @@
 const {
   validateDeclaration,
   validatePostCode,
-  validateFirstLine,
   validateOptionalString,
   validateName,
   validateRadioButtons,
-  validateTown,
   validateEstablishmentTradingName,
   validateCharityNumber,
   validateCharityName,
@@ -26,7 +24,8 @@ const {
   validateOpeningDaysIrregular,
   validatePartners,
   validatePartnerName,
-  validateOpeningHours
+  validateOpeningHours,
+  validateMandatoryString
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const schema = {
@@ -124,21 +123,21 @@ const schema = {
   "/operator-address-manual": {
     type: "object",
     properties: {
-      operator_first_line: {
+      operator_address_line_1: {
         type: "string",
-        validation: validateFirstLine
+        validation: validateMandatoryString
       },
-      operator_street: {
+      operator_address_line_2: {
         type: "string",
         validation: validateOptionalString
       },
-      operator_dependent_locality: {
+      operator_address_line_3: {
         type: "string",
         validation: validateOptionalString
       },
       operator_town: {
         type: "string",
-        validation: validateTown
+        validation: validateMandatoryString
       },
       operator_postcode: {
         type: "string",
@@ -187,7 +186,7 @@ const schema = {
   "/operator-company-details": {
     type: "object",
     properties: {
-      operator_company_house_number: {
+      operator_companies_house_number: {
         type: "string",
         validation: validateCompaniesHouseNumber
       },
@@ -259,25 +258,25 @@ const schema = {
   "/establishment-address-manual": {
     type: "object",
     properties: {
-      establishment_postcode: {
+      establishment_address_line_1: {
         type: "string",
-        validation: validatePostCode
+        validation: validateMandatoryString
       },
-      establishment_first_line: {
-        type: "string",
-        validation: validateFirstLine
-      },
-      establishment_street: {
+      establishment_address_line_2: {
         type: "string",
         validation: validateOptionalString
       },
-      establishment_dependent_locality: {
+      establishment_address_line_3: {
         type: "string",
         validation: validateOptionalString
       },
       establishment_town: {
         type: "string",
-        validation: validateTown
+        validation: validateMandatoryString
+      },
+      establishment_postcode: {
+        type: "string",
+        validation: validateMandatoryString
       }
     }
   },

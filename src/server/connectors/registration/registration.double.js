@@ -17,7 +17,8 @@ const {
   validateCustomerType,
   validateBusinessType,
   validateDate,
-  validateImportExportActivities
+  validateImportExportActivities,
+  validateMandatoryString
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const { Validator } = require("jsonschema");
@@ -85,9 +86,9 @@ const schema = {
                 type: "string",
                 validation: validatePostCode
               },
-              operator_first_line: {
+              operator_address_line_1: {
                 type: "string",
-                validation: validateFirstLine
+                validation: validateMandatoryString
               },
               operator_street: {
                 type: "string",
@@ -125,7 +126,7 @@ const schema = {
                 type: "string",
                 validation: validateCompanyName
               },
-              operator_company_house_number: {
+              operator_companies_house_number: {
                 type: "string",
                 validation: validateCompaniesHouseNumber
               },
@@ -141,7 +142,7 @@ const schema = {
             required: [
               "operator_type",
               "operator_postcode",
-              "operator_first_line"
+              "operator_address_line_1"
             ],
             allOf: [
               {
@@ -149,7 +150,7 @@ const schema = {
                   {
                     required: [
                       "operator_company_name",
-                      "operator_company_house_number"
+                      "operator_companies_house_number"
                     ]
                   },
                   { required: ["operator_charity_name"] },
@@ -178,9 +179,9 @@ const schema = {
                 type: "string",
                 validation: validatePostCode
               },
-              establishment_first_line: {
+              establishment_address_line_1: {
                 type: "string",
-                validation: validateFirstLine
+                validation: validateMandatoryString
               },
               establishment_street: {
                 type: "string",
@@ -197,7 +198,7 @@ const schema = {
             },
             required: [
               "establishment_postcode",
-              "establishment_first_line",
+              "establishment_address_line_1",
               "establishment_type"
             ]
           },
@@ -230,7 +231,7 @@ const schema = {
         },
         required: ["establishment_details", "operator", "premise", "activities"]
       },
-      metadata: {
+      declaration: {
         type: "object",
         properties: {
           declaration1: { type: "string", validation: validateDeclaration },
@@ -240,7 +241,7 @@ const schema = {
         required: ["declaration1", "declaration2", "declaration3"]
       }
     },
-    required: ["establishment", "metadata"]
+    required: ["establishment", "declaration"]
   },
   local_council_url: { type: "string" }
 };
@@ -339,7 +340,7 @@ const registrationDouble = body => {
         operatorId: 1,
         activitiesId: 1,
         premiseId: 1,
-        metadataId: 1,
+        declarationId: 1,
         reg_submission_date: moment().format("YYYY-MM-DD"),
         "fsa-rn": "12486-sdmbf",
         tascomiResponse: {
