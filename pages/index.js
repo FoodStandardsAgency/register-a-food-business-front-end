@@ -2,11 +2,11 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  ContinueButton
+  ContinueButton,
 } from "../src/components";
 import { Header, Paragraph, InsetText } from "govuk-react";
 
-const Index = props => (
+const Index = (props) => (
   <FsaLayout {...props}>
     <Header level={1}>Register a food business</Header>
 
@@ -52,9 +52,7 @@ const Index = props => (
           Registering Local Authority
         </Header>
         <Paragraph>
-          {`**${
-            props.lcName
-          }** is the local authority your registration will be sent to.
+          {`**${props.lcName}** is the local authority your registration will be sent to.
           Is this the correct local authority for your business? If unsure,
           please use this [Food Business Registration](https://www.gov.uk/food-business-registration)
           link to check using the location or site of your food business.`}

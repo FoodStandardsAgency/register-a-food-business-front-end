@@ -30,7 +30,7 @@ const partnerDetailsContinue = (
     redirectRoute: null,
     addressLookups: {},
     switches: {},
-    allValidationErrors: allValidationErrors
+    allValidationErrors: allValidationErrors,
   };
   logEmitter.emit(
     "functionCall",
@@ -67,7 +67,7 @@ const partnerDetailsContinue = (
     if (edit) {
       delete controllerResponse.allValidationErrors["partners"];
       if (
-        previousAnswers.partners.find(partnerName => {
+        previousAnswers.partners.find((partnerName) => {
           return partnerName === previousAnswers.main_partnership_contact;
         }) !== undefined
       ) {
@@ -118,7 +118,7 @@ const partnerDetailsSave = (
     redirectRoute: null,
     cumulativeFullAnswers: {},
     addressLookups: {},
-    switches: {}
+    switches: {},
   };
   logEmitter.emit(
     "functionCall",
@@ -217,7 +217,7 @@ const partnerDetailsDelete = (previousAnswers, newAnswers, council, edit) => {
     redirectRoute: null,
     cumulativeFullAnswers: {},
     addressLookups: {},
-    switches: {}
+    switches: {},
   };
   logEmitter.emit(
     "functionCall",
@@ -263,5 +263,5 @@ const partnerDetailsDelete = (previousAnswers, newAnswers, council, edit) => {
 module.exports = {
   partnerDetailsContinue,
   partnerDetailsSave,
-  partnerDetailsDelete
+  partnerDetailsDelete,
 };

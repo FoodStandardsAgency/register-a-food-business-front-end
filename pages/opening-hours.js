@@ -5,12 +5,12 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
 } from "../src/components";
 import { Header, InputField, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OpeningHours = props => (
+const OpeningHours = (props) => (
   <FsaLayout {...props}>
     <form action={props.formAction} method="post">
       <BackButton {...props} />
@@ -33,12 +33,12 @@ const OpeningHours = props => (
           <InputField
             input={{
               name: "opening_hours_monday",
-              defaultValue: props.cumulativeFullAnswers.opening_hours_monday
+              defaultValue: props.cumulativeFullAnswers.opening_hours_monday,
             }}
             id="opening_hours_monday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_monday
+              error: props.validatorErrors.opening_hours_monday,
             }}
           >
             <Header level={4} mb={1}>
@@ -53,12 +53,12 @@ const OpeningHours = props => (
           <InputField
             input={{
               name: "opening_hours_tuesday",
-              defaultValue: props.cumulativeFullAnswers.opening_hours_tuesday
+              defaultValue: props.cumulativeFullAnswers.opening_hours_tuesday,
             }}
             id="opening_hours_tuesday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_tuesday
+              error: props.validatorErrors.opening_hours_tuesday,
             }}
           >
             <Header level={4} mb={1}>
@@ -73,12 +73,12 @@ const OpeningHours = props => (
           <InputField
             input={{
               name: "opening_hours_wednesday",
-              defaultValue: props.cumulativeFullAnswers.opening_hours_wednesday
+              defaultValue: props.cumulativeFullAnswers.opening_hours_wednesday,
             }}
             id="opening_hours_wednesday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_wednesday
+              error: props.validatorErrors.opening_hours_wednesday,
             }}
           >
             <Header level={4} mb={1}>
@@ -93,12 +93,12 @@ const OpeningHours = props => (
           <InputField
             input={{
               name: "opening_hours_thursday",
-              defaultValue: props.cumulativeFullAnswers.opening_hours_thursday
+              defaultValue: props.cumulativeFullAnswers.opening_hours_thursday,
             }}
             id="opening_hours_thursday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_thursday
+              error: props.validatorErrors.opening_hours_thursday,
             }}
           >
             <Header level={4} mb={1}>
@@ -113,12 +113,12 @@ const OpeningHours = props => (
           <InputField
             input={{
               name: "opening_hours_friday",
-              defaultValue: props.cumulativeFullAnswers.opening_hours_friday
+              defaultValue: props.cumulativeFullAnswers.opening_hours_friday,
             }}
             id="opening_hours_friday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_friday
+              error: props.validatorErrors.opening_hours_friday,
             }}
           >
             <Header level={4} mb={1}>
@@ -133,12 +133,12 @@ const OpeningHours = props => (
           <InputField
             input={{
               name: "opening_hours_saturday",
-              defaultValue: props.cumulativeFullAnswers.opening_hours_saturday
+              defaultValue: props.cumulativeFullAnswers.opening_hours_saturday,
             }}
             id="opening_hours_saturday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_saturday
+              error: props.validatorErrors.opening_hours_saturday,
             }}
           >
             <Header level={4} mb={1}>
@@ -153,12 +153,12 @@ const OpeningHours = props => (
           <InputField
             input={{
               name: "opening_hours_sunday",
-              defaultValue: props.cumulativeFullAnswers.opening_hours_sunday
+              defaultValue: props.cumulativeFullAnswers.opening_hours_sunday,
             }}
             id="opening_hours_sunday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_sunday
+              error: props.validatorErrors.opening_hours_sunday,
             }}
           >
             <Header level={4} mb={1}>
@@ -178,5 +178,5 @@ OpeningHours.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

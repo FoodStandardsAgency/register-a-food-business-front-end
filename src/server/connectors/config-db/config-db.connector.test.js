@@ -4,7 +4,7 @@ const {
   getLocalCouncils,
   clearPathConfigCache,
   clearMongoConnection,
-  getCouncilData
+  getCouncilData,
 } = require("./config-db.connector");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
 const { configVersionCollectionDouble } = require("./config-db.double");
@@ -25,9 +25,9 @@ describe("Function: getPathConfigByVersion", () => {
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
-              findOne: () => pathConfigMock
-            })
-          })
+              findOne: () => pathConfigMock,
+            }),
+          }),
         }));
         result = await getPathConfigByVersion("1.0.0");
       });
@@ -64,9 +64,9 @@ describe("Function: getPathConfigByVersion", () => {
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
-              findOne: () => null
-            })
-          })
+              findOne: () => null,
+            }),
+          }),
         }));
 
         result = await getPathConfigByVersion("1.0.0");
@@ -83,9 +83,9 @@ describe("Function: getPathConfigByVersion", () => {
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
-              findOne: () => pathConfigMock
-            })
-          })
+              findOne: () => pathConfigMock,
+            }),
+          }),
         }));
       });
 
@@ -103,11 +103,11 @@ describe("Function: getPathConfigByVersion", () => {
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
-              findOne: () => pathConfigMock
-            })
+              findOne: () => pathConfigMock,
+            }),
           }),
           topology: null,
-          close: () => closeConnection()
+          close: () => closeConnection(),
         }));
         result1 = await getPathConfigByVersion("1.0.0");
         clearPathConfigCache();
@@ -131,13 +131,13 @@ describe("Function: getPathConfigByVersion", () => {
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
-              findOne: () => pathConfigMock
-            })
+              findOne: () => pathConfigMock,
+            }),
           }),
           topology: {
-            isConnected: () => false
+            isConnected: () => false,
           },
-          close: () => closeConnection()
+          close: () => closeConnection(),
         }));
         result1 = await getPathConfigByVersion("1.0.0");
         clearPathConfigCache();
@@ -177,13 +177,13 @@ describe("Function: getPathConfigByVersion", () => {
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
-              findOne: () => pathConfigMock
-            })
+              findOne: () => pathConfigMock,
+            }),
           }),
           topology: {
-            isConnected: () => true
+            isConnected: () => true,
           },
-          close: () => closeConnection()
+          close: () => closeConnection(),
         }));
         result1 = await getPathConfigByVersion("1.0.0");
         clearPathConfigCache();
@@ -208,12 +208,12 @@ describe("Function: getPathConfigByVersion", () => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
-            findOne: () => pathConfigMock
-          })
+            findOne: () => pathConfigMock,
+          }),
         }),
         topology: {
-          isConnected: () => true
-        }
+          isConnected: () => true,
+        },
       }));
     });
 
@@ -280,16 +280,16 @@ describe("Function: getLocalCouncils", () => {
           return {
             toArray: () => {
               return null;
-            }
+            },
           };
-        }
+        },
       };
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
-            find: () => mongoCursor
-          })
-        })
+            find: () => mongoCursor,
+          }),
+        }),
       }));
       try {
         await getLocalCouncils();
@@ -307,7 +307,7 @@ describe("Function: getLocalCouncils", () => {
   describe("given the request is successful", () => {
     const localCouncilsObjs = [
       { local_council_url: "cardiff" },
-      { local_council_url: "the-vale-of-glamorgan" }
+      { local_council_url: "the-vale-of-glamorgan" },
     ];
 
     const localCouncilsMock = ["cardiff", "the-vale-of-glamorgan"];
@@ -317,18 +317,18 @@ describe("Function: getLocalCouncils", () => {
         return {
           toArray: () => {
             return localCouncilsObjs;
-          }
+          },
         };
-      }
+      },
     };
 
     beforeEach(() => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
-            find: () => mongoCursor
-          })
-        })
+            find: () => mongoCursor,
+          }),
+        }),
       }));
     });
 
@@ -346,18 +346,18 @@ describe("Function: getLocalCouncils", () => {
         return {
           toArray: () => {
             return localCouncilsObjs;
-          }
+          },
         };
-      }
+      },
     };
 
     beforeEach(() => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
-            find: () => mongoCursor
-          })
-        })
+            find: () => mongoCursor,
+          }),
+        }),
       }));
     });
 
@@ -395,9 +395,9 @@ describe("Function: getCouncilData", () => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
-            findOne: () => null
-          })
-        })
+            findOne: () => null,
+          }),
+        }),
       }));
 
       try {
@@ -416,16 +416,16 @@ describe("Function: getCouncilData", () => {
     const exampleResult = {
       local_council_url: "cardiff",
       country: "wales",
-      local_council: "Cardiff Council"
+      local_council: "Cardiff Council",
     };
     beforeEach(() => {
       mongodb.MongoClient.connect.mockClear();
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
-            findOne: () => exampleResult
-          })
-        })
+            findOne: () => exampleResult,
+          }),
+        }),
       }));
     });
 

@@ -24,7 +24,7 @@ const editPath = (cumulativeFullAnswers, currentPage, pathFromSession) => {
 
   const newPath = JSON.parse(JSON.stringify(pathFromSession));
 
-  pathPagesToSwitch.forEach(page => {
+  pathPagesToSwitch.forEach((page) => {
     newPath[page].on = true;
   });
 
@@ -66,7 +66,7 @@ const editPathInEditMode = (
   );
 
   const newPath = JSON.parse(JSON.stringify(pathFromSession));
-  pagesToSwitchFull.forEach(page => {
+  pagesToSwitchFull.forEach((page) => {
     newPath[page].on = true;
     if (pagesToSwitchInEdit.includes(page)) {
       newPath[page].inEditPath = true;
@@ -93,7 +93,7 @@ const editPathInEditMode = (
 const moveAlongPath = (path, currentPage, movement) => {
   logEmitter.emit("functionCall", "path.service", "moveAlongPath");
 
-  const activePath = Object.keys(path).filter(entry => {
+  const activePath = Object.keys(path).filter((entry) => {
     return path[entry].on === true;
   });
 
@@ -140,7 +140,7 @@ const moveAlongPath = (path, currentPage, movement) => {
 const moveAlongEditPath = (editModePath, currentPage, movement) => {
   logEmitter.emit("functionCall", "path.service", "moveAlongEditPath");
 
-  const activePath = Object.keys(editModePath).filter(entry => {
+  const activePath = Object.keys(editModePath).filter((entry) => {
     return editModePath[entry].inEditPath === true;
   });
 
@@ -229,7 +229,7 @@ const getPathPagesToSwitch = (
 
     let pagesToSwitch = [];
 
-    answerValuesAndTruthyKeys.forEach(valueOrKey => {
+    answerValuesAndTruthyKeys.forEach((valueOrKey) => {
       if (allSwitches[valueOrKey]) {
         pagesToSwitch.push(...Object.keys(allSwitches[valueOrKey]));
       }
@@ -319,5 +319,5 @@ module.exports = {
   moveAlongEditPath,
   getPathPagesToSwitch,
   switchOffManualAddressInput,
-  switchOffCompanyAndCharityDetails
+  switchOffCompanyAndCharityDetails,
 };

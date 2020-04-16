@@ -6,12 +6,12 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
 } from "../src/components";
 import { Header, InputField, Paragraph, ErrorText } from "govuk-react";
 import PropTypes from "prop-types";
 
-const EstablishmentAddress = props => (
+const EstablishmentAddress = (props) => (
   <FsaLayout {...props}>
     <BackButton
       {...props}
@@ -42,9 +42,7 @@ const EstablishmentAddress = props => (
         {props.switches["/establishment-address-none-found"] ? (
           <ContentItem.B_30_15>
             <ErrorText id="addressNotFoundByPostcodeMessage">
-              {`No addresses found for the postcode "${
-                props.cumulativeFullAnswers.establishment_postcode_find
-              }". Please enter your address manually or go back to try a
+              {`No addresses found for the postcode "${props.cumulativeFullAnswers.establishment_postcode_find}". Please enter your address manually or go back to try a
               different postcode.`}
             </ErrorText>
           </ContentItem.B_30_15>
@@ -56,12 +54,12 @@ const EstablishmentAddress = props => (
               name: "establishment_address_line_1",
               defaultValue:
                 props.cumulativeFullAnswers.establishment_address_line_1,
-              autoComplete: "address-line1"
+              autoComplete: "address-line1",
             }}
             id="establishment_address_line_1"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_address_line_1
+              error: props.validatorErrors.establishment_address_line_1,
             }}
           >
             Address line 1
@@ -74,12 +72,12 @@ const EstablishmentAddress = props => (
               name: "establishment_address_line_2",
               defaultValue:
                 props.cumulativeFullAnswers.establishment_address_line_2,
-              autoComplete: "address-line2"
+              autoComplete: "address-line2",
             }}
             id="establishment_address_line_2"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_address_line_2
+              error: props.validatorErrors.establishment_address_line_2,
             }}
           >
             Address line 2 (optional)
@@ -92,12 +90,12 @@ const EstablishmentAddress = props => (
               name: "establishment_address_line_3",
               defaultValue:
                 props.cumulativeFullAnswers.establishment_address_line_3,
-              autoComplete: "address-line3"
+              autoComplete: "address-line3",
             }}
             id="establishment_address_line_3"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_address_line_3
+              error: props.validatorErrors.establishment_address_line_3,
             }}
           >
             Address line 3 (optional)
@@ -109,12 +107,12 @@ const EstablishmentAddress = props => (
             input={{
               name: "establishment_town",
               defaultValue: props.cumulativeFullAnswers.establishment_town,
-              autoComplete: "locality"
+              autoComplete: "locality",
             }}
             id="establishment_town"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_town
+              error: props.validatorErrors.establishment_town,
             }}
           >
             Town or city
@@ -126,12 +124,12 @@ const EstablishmentAddress = props => (
             input={{
               name: "establishment_postcode",
               defaultValue: props.cumulativeFullAnswers.establishment_postcode,
-              autoComplete: "postal-code"
+              autoComplete: "postal-code",
             }}
             id="establishment_postcode"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_postcode
+              error: props.validatorErrors.establishment_postcode,
             }}
           >
             Postcode
@@ -150,5 +148,5 @@ EstablishmentAddress.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

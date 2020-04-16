@@ -5,12 +5,12 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
 } from "../src/components";
 import { Header, Radio, MultiChoice } from "govuk-react";
 import PropTypes from "prop-types";
 
-const RegistrationRole = props => (
+const RegistrationRole = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -27,7 +27,7 @@ const RegistrationRole = props => (
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.registration_role
+            error: props.validatorErrors.registration_role,
           }}
         >
           <Radio
@@ -74,5 +74,5 @@ RegistrationRole.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

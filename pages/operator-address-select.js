@@ -5,14 +5,14 @@ import {
   BackButton,
   ContinueButton,
   SelectWithHeader,
-  AddressHelp
+  AddressHelp,
 } from "../src/components";
 import { Header, Paragraph, asAnchor } from "govuk-react";
 import PropTypes from "prop-types";
 
 const AnchorTag = asAnchor("a");
 
-const OperatorAddressLookup = props => (
+const OperatorAddressLookup = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
@@ -38,14 +38,12 @@ const OperatorAddressLookup = props => (
         </ContentItem.B_30_15>
 
         <SelectWithHeader
-          label={`Select an address for ${
-            props.cumulativeFullAnswers.operator_postcode_find
-          }`}
+          label={`Select an address for ${props.cumulativeFullAnswers.operator_postcode_find}`}
           input={{
             id: "operatorAddressDropdown",
             name: "operator_address_selected",
             defaultValue:
-              props.cumulativeFullAnswers.operator_address_selected || 0
+              props.cumulativeFullAnswers.operator_address_selected || 0,
           }}
         >
           {props.addressLookups.operator_postcode_find ? (
@@ -66,9 +64,7 @@ const OperatorAddressLookup = props => (
             id="cantFindAddressLink"
             href={
               props.editModeFirstPage
-                ? `/new/${
-                    props.council
-                  }/operator-address-manual?edit=operator-address-manual`
+                ? `/new/${props.council}/operator-address-manual?edit=operator-address-manual`
                 : `/new/${props.council}/operator-address-manual`
             }
           >
@@ -87,5 +83,5 @@ export default SessionWrapper(OperatorAddressLookup);
 OperatorAddressLookup.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
-  )
+  ),
 };

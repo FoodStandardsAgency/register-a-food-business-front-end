@@ -51,5 +51,5 @@ export {
   ContactDetailsHelp,
   AddressHelp,
   BrowserUnsupportedBanner,
-  SubmissionErrorSummary
+  SubmissionErrorSummary,
 };

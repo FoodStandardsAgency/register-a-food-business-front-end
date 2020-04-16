@@ -1,48 +1,48 @@
 import {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
-  cleanSwitches
+  cleanSwitches,
 } from "./session-management.service";
 
 const pathObject = {
   "/index": {
     on: true,
-    switches: {}
+    switches: {},
   },
   "/operator-name": {
     on: true,
-    switches: {}
+    switches: {},
   },
   "/operator-contact-details": {
     on: true,
-    switches: {}
+    switches: {},
   },
   "/establishment-trading-name": {
     on: true,
-    switches: {}
+    switches: {},
   },
   "/establishment-address-manual": {
     on: false,
-    switches: {}
+    switches: {},
   },
   "/registration-summary": {
     on: true,
-    switches: {}
+    switches: {},
   },
   "/declaration": {
     on: true,
-    switches: {}
-  }
+    switches: {},
+  },
 };
 
 const testSessionAnswers_Invalid = {
   not_a_valid_answer: "Example",
-  operator_first_name: "John"
+  operator_first_name: "John",
 };
 
 const testSessionAnswers_Valid = {
   example_exists_in_schema_but_not_in_path: "Example",
-  operator_first_name: "John"
+  operator_first_name: "John",
 };
 
 const testSessionAnswers_Correct = {
@@ -50,14 +50,14 @@ const testSessionAnswers_Correct = {
   operator_last_name: "Appleseed",
   operator_primary_number: "01234 567890",
   operator_email: "john@appleseed.com",
-  establishment_trading_name: "John's Apples"
+  establishment_trading_name: "John's Apples",
 };
 
 const answersBelongingToInactivePage = {
   establishment_address_line_1: "1 John House",
   establishment_address_line_2: "Apple Street",
   establishment_town: "London",
-  establishment_postcode: "AA11 1AA"
+  establishment_postcode: "AA11 1AA",
 };
 
 const testSessionAnswers_MoreThanNeeded = Object.assign(
@@ -124,7 +124,7 @@ describe("session-management.service cleanEmptiedAnswers()", () => {
     const someExistingAnswers = {
       declaration1: "My declaration",
       declaration2: "My declaration",
-      example_field_from_another_page: "example"
+      example_field_from_another_page: "example",
     };
 
     const oneDeclarationCheckbox = ["declaration1"];
@@ -141,7 +141,7 @@ describe("session-management.service cleanEmptiedAnswers()", () => {
       expect(result.declaration2).toBe(undefined);
       expect(result).toEqual({
         declaration1: "My declaration",
-        example_field_from_another_page: "example"
+        example_field_from_another_page: "example",
       });
     });
   });
@@ -162,22 +162,22 @@ describe("session-management.service cleanSwitches()", () => {
         operator_primary_number: "01234567890",
         operator_email: "email@email.com",
         establishment_primary_number: "01234567890",
-        establishment_email: "email@email.com"
+        establishment_email: "email@email.com",
       };
 
       it("does not modify the switch state", () => {
         const switchesPossibilities = [
           {
-            reuseOperatorContactDetails: true
+            reuseOperatorContactDetails: true,
           },
           {
-            reuseOperatorContactDetails: false
+            reuseOperatorContactDetails: false,
           },
           {},
-          { anotherSwitchName: true }
+          { anotherSwitchName: true },
         ];
 
-        switchesPossibilities.forEach(switchesObject => {
+        switchesPossibilities.forEach((switchesObject) => {
           const result = cleanSwitches(answers, switchesObject);
 
           expect(result.reuseOperatorContactDetails).toEqual(
@@ -192,21 +192,21 @@ describe("session-management.service cleanSwitches()", () => {
         operator_primary_number: "01234567890",
         operator_email: "email@email.com",
         establishment_primary_number: "01234567890",
-        establishment_email: "test@example.com"
+        establishment_email: "test@example.com",
       };
 
       describe("given switch exists", () => {
         const switchesPossibilities = [
           {
-            reuseOperatorContactDetails: true
+            reuseOperatorContactDetails: true,
           },
           {
-            reuseOperatorContactDetails: false
-          }
+            reuseOperatorContactDetails: false,
+          },
         ];
 
         it("turns the switch off", () => {
-          switchesPossibilities.forEach(switchesObject => {
+          switchesPossibilities.forEach((switchesObject) => {
             const result = cleanSwitches(answers, switchesObject);
 
             expect(result.reuseOperatorContactDetails).toBe(false);

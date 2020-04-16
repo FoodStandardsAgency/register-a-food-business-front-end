@@ -6,12 +6,12 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
 } from "../src/components";
 import { Header, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const ContactRepresentative = props => {
+const ContactRepresentative = (props) => {
   return (
     <FsaLayout {...props}>
       <BackButton {...props} />
@@ -41,12 +41,12 @@ const ContactRepresentative = props => {
                 name: "contact_representative_name",
                 defaultValue:
                   props.cumulativeFullAnswers.contact_representative_name,
-                autoComplete: "off"
+                autoComplete: "off",
               }}
               id="contact_representative_name"
               meta={{
                 touched: true,
-                error: props.validatorErrors.contact_representative_name
+                error: props.validatorErrors.contact_representative_name,
               }}
             >
               Name of contact
@@ -58,12 +58,12 @@ const ContactRepresentative = props => {
                 name: "contact_representative_role",
                 defaultValue:
                   props.cumulativeFullAnswers.contact_representative_role,
-                autoComplete: "off"
+                autoComplete: "off",
               }}
               id="contact_representative_role"
               meta={{
                 touched: true,
-                error: props.validatorErrors.contact_representative_role
+                error: props.validatorErrors.contact_representative_role,
               }}
             >
               Role (optional)
@@ -75,12 +75,12 @@ const ContactRepresentative = props => {
                 name: "contact_representative_number",
                 defaultValue:
                   props.cumulativeFullAnswers.contact_representative_number,
-                autoComplete: "tel"
+                autoComplete: "tel",
               }}
               id="contact_representative_number"
               meta={{
                 touched: true,
-                error: props.validatorErrors.contact_representative_number
+                error: props.validatorErrors.contact_representative_number,
               }}
             >
               Phone number
@@ -92,15 +92,15 @@ const ContactRepresentative = props => {
                 name: "contact_representative_email",
                 defaultValue:
                   props.cumulativeFullAnswers.contact_representative_email,
-                autoComplete: "email"
+                autoComplete: "email",
               }}
               id="contact_representative_email"
               hint={[
-                "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
+                "We will use your email to keep you informed of any policy or legal changes that could affect your food business.",
               ]}
               meta={{
                 touched: true,
-                error: props.validatorErrors.contact_representative_email
+                error: props.validatorErrors.contact_representative_email,
               }}
             >
               Email address
@@ -118,5 +118,5 @@ export default SessionWrapper(ContactRepresentative);
 
 ContactRepresentative.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

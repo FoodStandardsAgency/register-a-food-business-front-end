@@ -8,7 +8,7 @@ import { ContentItem } from "./";
 // HTML5 summary/details elements. However, this appeared not to work as planned during user testing
 // with screen reader (JAWS) users. The TODO is to explore why this did not work, and to resolve.
 
-const HiddenTextAccessible = props => (
+const HiddenTextAccessible = (props) => (
   <ContentItem.B_30_15>
     <HiddenText mb={0} aria-label="Additional information" {...props}>
       {/* <InvisibleLink href={`#skipAdditionalInfo_${props.hiddentextindex}`}>
@@ -24,11 +24,11 @@ const HiddenTextAccessible = props => (
 );
 
 HiddenTextAccessible.defaultProps = {
-  hiddentextindex: 0
+  hiddentextindex: 0,
 };
 
 HiddenTextAccessible.propTypes = {
-  hiddentextindex: PropTypes.number
+  hiddentextindex: PropTypes.number,
 };
 
 export default HiddenTextAccessible;

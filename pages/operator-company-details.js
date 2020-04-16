@@ -5,12 +5,12 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  HiddenTextAccessible
+  HiddenTextAccessible,
 } from "../src/components";
 import { Header, InputField } from "govuk-react";
 import PropTypes from "prop-types";
 
-const LimitedCompanyDetails = props => (
+const LimitedCompanyDetails = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary validatorErrors={props.validatorErrors} />
@@ -24,7 +24,7 @@ const LimitedCompanyDetails = props => (
           input={{
             name: "operator_company_name",
             defaultValue: props.cumulativeFullAnswers.operator_company_name,
-            autoComplete: "organization"
+            autoComplete: "organization",
           }}
           hint={
             "The name of the registered company that is acting as the operator of this food business."
@@ -32,7 +32,7 @@ const LimitedCompanyDetails = props => (
           id="operator_company_name"
           meta={{
             touched: true,
-            error: props.validatorErrors["operator_company_name"]
+            error: props.validatorErrors["operator_company_name"],
           }}
         >
           Registered company name
@@ -45,7 +45,7 @@ const LimitedCompanyDetails = props => (
             name: "operator_companies_house_number",
             defaultValue:
               props.cumulativeFullAnswers.operator_companies_house_number,
-            autoComplete: "off"
+            autoComplete: "off",
           }}
           hint={
             "Every registered company will have a Companies House reference number."
@@ -53,7 +53,7 @@ const LimitedCompanyDetails = props => (
           id="operator_companies_house_number"
           meta={{
             touched: true,
-            error: props.validatorErrors["operator_companies_house_number"]
+            error: props.validatorErrors["operator_companies_house_number"],
           }}
         >
           Companies House number
@@ -76,7 +76,8 @@ const LimitedCompanyDetails = props => (
               id="link-companies-house"
             >
               Companies House website (opens in new window)
-            </a>.
+            </a>
+            .
           </span>
         </HiddenTextAccessible>
       </ContentItem.B_30_15>
@@ -90,5 +91,5 @@ export default SessionWrapper(LimitedCompanyDetails);
 
 LimitedCompanyDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

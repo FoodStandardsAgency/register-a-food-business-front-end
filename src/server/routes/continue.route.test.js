@@ -1,8 +1,8 @@
 jest.mock("express", () => ({
   Router: jest.fn(() => ({
     post: jest.fn(),
-    get: jest.fn()
-  }))
+    get: jest.fn(),
+  })),
 }));
 jest.mock("../controllers/continue.controller");
 const continueController = require("../controllers/continue.controller");
@@ -21,9 +21,9 @@ describe("Continue route: ", () => {
         validatorErrors: {},
         redirectRoute: "/newPage",
         cumulativeFullAnswers: {
-          new: "answers"
+          new: "answers",
         },
-        switches: { exampleSwitch: true }
+        switches: { exampleSwitch: true },
       }));
 
       handler = router.post.mock.calls[0][1];
@@ -34,18 +34,18 @@ describe("Continue route: ", () => {
           switches: {},
           council: "council",
           pathConfig: { path: "existing path from session" },
-          save: cb => {
+          save: (cb) => {
             cb();
-          }
+          },
         },
         body: "body",
         params: {
-          originator: "originator"
-        }
+          originator: "originator",
+        },
       };
 
       res = {
-        redirect: jest.fn()
+        redirect: jest.fn(),
       };
 
       handler(req, res);
@@ -78,9 +78,9 @@ describe("Continue route: ", () => {
           validatorErrors: {},
           redirectRoute: "/submit",
           cumulativeFullAnswers: {
-            new: "answers"
+            new: "answers",
           },
-          switches: { exampleSwitch: true }
+          switches: { exampleSwitch: true },
         }));
 
         handler = router.post.mock.calls[0][1];
@@ -91,18 +91,18 @@ describe("Continue route: ", () => {
             switches: {},
             council: "council",
             pathConfig: { path: "existing path from session" },
-            save: cb => {
+            save: (cb) => {
               cb();
-            }
+            },
           },
           body: "body",
           params: {
-            originator: "originator"
-          }
+            originator: "originator",
+          },
         };
 
         res = {
-          redirect: jest.fn()
+          redirect: jest.fn(),
         };
 
         handler(req, res);
@@ -120,9 +120,9 @@ describe("Continue route: ", () => {
           validatorErrors: {},
           redirectRoute: "/submit",
           cumulativeFullAnswers: {
-            new: "answers"
+            new: "answers",
           },
-          switches: { exampleSwitch: true }
+          switches: { exampleSwitch: true },
         }));
 
         handler = router.post.mock.calls[0][1];
@@ -133,18 +133,18 @@ describe("Continue route: ", () => {
             switches: {},
             council: "council",
             pathConfig: { path: "existing path from session" },
-            save: cb => {
+            save: (cb) => {
               cb("session save error");
-            }
+            },
           },
           body: "body",
           params: {
-            originator: "originator"
-          }
+            originator: "originator",
+          },
         };
 
         res = {
-          redirect: jest.fn()
+          redirect: jest.fn(),
         };
         try {
           handler(req, res);

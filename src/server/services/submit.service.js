@@ -4,7 +4,7 @@
  */
 
 const {
-  sendRequest
+  sendRequest,
 } = require("../connectors/registration/registration.connector");
 const { logEmitter } = require("./logging.service");
 

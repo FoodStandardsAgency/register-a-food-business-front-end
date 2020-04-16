@@ -6,12 +6,12 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
 } from "../src/components";
 import { Header, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OperatorName = props => (
+const OperatorName = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -35,12 +35,12 @@ const OperatorName = props => (
             input={{
               name: "operator_first_name",
               defaultValue: props.cumulativeFullAnswers.operator_first_name,
-              autoComplete: "given-name"
+              autoComplete: "given-name",
             }}
             id="operator_first_name"
             meta={{
               touched: true,
-              error: props.validatorErrors["operator_first_name"]
+              error: props.validatorErrors["operator_first_name"],
             }}
           >
             First and middle names
@@ -52,12 +52,12 @@ const OperatorName = props => (
             input={{
               name: "operator_last_name",
               defaultValue: props.cumulativeFullAnswers.operator_last_name,
-              autoComplete: "family-name"
+              autoComplete: "family-name",
             }}
             id="operator_last_name"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_last_name
+              error: props.validatorErrors.operator_last_name,
             }}
           >
             Last name
@@ -73,5 +73,5 @@ export default SessionWrapper(OperatorName);
 
 OperatorName.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

@@ -6,18 +6,18 @@ const {
   moveAlongPath,
   editPath,
   switchOffManualAddressInput,
-  switchOffCompanyAndCharityDetails
+  switchOffCompanyAndCharityDetails,
 } = require("../services/path.service");
 const {
   validate,
-  revalidateAllAnswers
+  revalidateAllAnswers,
 } = require("../services/validation.service");
 const { logEmitter } = require("../services/logging.service");
 const { statusEmitter } = require("../services/statusEmitter.service");
 const {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
-  cleanSwitches
+  cleanSwitches,
 } = require("../services/session-management.service");
 
 /**
@@ -45,7 +45,7 @@ const continueController = (
     allValidationErrors: {},
     redirectRoute: null,
     cumulativeFullAnswers: {},
-    switches: {}
+    switches: {},
   };
 
   try {
@@ -108,7 +108,7 @@ const continueController = (
       pathFromSession
     );
 
-    const activePath = Object.keys(newPath).filter(entry => {
+    const activePath = Object.keys(newPath).filter((entry) => {
       return newPath[entry].on === true && entry !== "/declaration";
     });
 

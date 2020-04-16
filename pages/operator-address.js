@@ -6,12 +6,12 @@ import {
   FindAddressButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  AddressHelp
+  AddressHelp,
 } from "../src/components";
 import { InputField } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OperatorAddress = props => (
+const OperatorAddress = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -27,12 +27,12 @@ const OperatorAddress = props => (
               id: "operator_postcode_find",
               name: "operator_postcode_find",
               defaultValue: props.cumulativeFullAnswers.operator_postcode_find,
-              autoComplete: "postal-code"
+              autoComplete: "postal-code",
             }}
             id="operatorPostcodeFindComponent"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_postcode_find
+              error: props.validatorErrors.operator_postcode_find,
             }}
           >
             Postcode
@@ -51,5 +51,5 @@ OperatorAddress.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

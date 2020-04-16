@@ -3,7 +3,7 @@ import ContentItem from "./ContentItem";
 
 const HiddenBackButton = () => <ContentItem.B_30_15 />;
 
-const NormalBackButton = props => (
+const NormalBackButton = (props) => (
   <ContentItem.B_30_15>
     <BackLink
       href={props.href ? props.href : `/back${props.currentPage}`}
@@ -14,7 +14,7 @@ const NormalBackButton = props => (
   </ContentItem.B_30_15>
 );
 
-const EditModeBackButton = props => (
+const EditModeBackButton = (props) => (
   <ContentItem.B_30_15>
     <BackLink
       href={
@@ -29,7 +29,7 @@ const EditModeBackButton = props => (
   </ContentItem.B_30_15>
 );
 
-const BackButton = props => {
+const BackButton = (props) => {
   if (props.editModeFirstPage) {
     if (props.editModeFirstPage === props.currentPage) {
       return <HiddenBackButton />;

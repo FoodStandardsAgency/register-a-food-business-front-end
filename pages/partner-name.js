@@ -7,7 +7,7 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick,
   PartnersTable,
-  PartnershipDescription
+  PartnershipDescription,
 } from "../src/components";
 import { Header, Button, HintText } from "govuk-react";
 import styled from "react-emotion";
@@ -18,7 +18,7 @@ const StyledRow = styled.div`
   justify-content: space-between;
 `;
 
-const ButtonsRow = props => (
+const ButtonsRow = (props) => (
   <StyledRow>
     {!props.cumulativeFullAnswers.partners ||
     props.cumulativeFullAnswers.partners.length < 5 ? (
@@ -43,7 +43,7 @@ const ButtonsRow = props => (
   </StyledRow>
 );
 
-const PartnerName = props => (
+const PartnerName = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -76,5 +76,5 @@ PartnerName.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

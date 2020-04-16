@@ -33,12 +33,12 @@ const sendRequest = async (submissionData, regDataVersion) => {
         "Content-Type": "application/json",
         "api-secret": API_SECRET,
         "client-name": CLIENT_NAME,
-        "registration-data-version": regDataVersion
+        "registration-data-version": regDataVersion,
       };
       res = await fetch(SUBMIT_URL, {
         method: "POST",
         headers,
-        body: submissionData
+        body: submissionData,
       });
     }
     logEmitter.emit("functionSuccess", "registration.connector", "sendRequest");

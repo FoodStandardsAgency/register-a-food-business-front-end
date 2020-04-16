@@ -5,14 +5,14 @@ import { css } from "emotion";
 import {
   findMatches,
   inputValueFunction,
-  suggestionFunction
+  suggestionFunction,
 } from "./BusinessTypeLookupFunctions";
 import {
   ErrorText,
   HintText,
   UnorderedList,
   Input,
-  Paragraph
+  Paragraph,
 } from "govuk-react";
 import { SelectInput } from "@govuk-react/select";
 import ListItemConsistentSize from "./ListItemConsistentSize";
@@ -33,21 +33,21 @@ const autocompleteErrorStyling = css`
 
 const templates = {
   inputValue: inputValueFunction,
-  suggestion: suggestionFunction
+  suggestion: suggestionFunction,
 };
 
 const lineHeight = {
   lineHeight: "1.6em",
-  padding: 0
+  padding: 0,
 };
 
 const fullWidth = {
-  width: "100%"
+  width: "100%",
 };
 
 const BusinessTypeOptions = () => {
   let options = [];
-  distinctBusinessTypes.forEach(type => {
+  distinctBusinessTypes.forEach((type) => {
     options.push(
       <option key={type} value={type}>
         {type}
@@ -57,7 +57,7 @@ const BusinessTypeOptions = () => {
   return options;
 };
 
-const DataListSection = props => (
+const DataListSection = (props) => (
   <div id="dataListSection">
     <Paragraph>
       Search and select the most fitting business type from the suggestions
@@ -78,7 +78,7 @@ const DataListSection = props => (
   </div>
 );
 
-const SelectListSection = props => (
+const SelectListSection = (props) => (
   <div id="selectListSection">
     <Paragraph>
       Select the most fitting business type from the suggestions

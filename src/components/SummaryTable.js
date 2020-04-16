@@ -10,7 +10,7 @@ import {
   FONT_SIZE,
   LINE_HEIGHT,
   MEDIA_QUERIES,
-  NTA_LIGHT
+  NTA_LIGHT,
 } from "@govuk-react/constants";
 
 const StyledTableRow = styled("div")({
@@ -24,14 +24,14 @@ const StyledTableRow = styled("div")({
   lineHeight: LINE_HEIGHT.SIZE_16,
   [MEDIA_QUERIES.LARGESCREEN]: {
     fontSize: FONT_SIZE.SIZE_19,
-    lineHeight: LINE_HEIGHT.SIZE_19
+    lineHeight: LINE_HEIGHT.SIZE_19,
   },
-  color: `${COLOUR.GREY_1}`
+  color: `${COLOUR.GREY_1}`,
 });
 
 const GridRow = styled(Table.Row)`
   display: grid;
-  ${props =>
+  ${(props) =>
     props.acPage
       ? "grid-template-columns: 1fr 1fr;"
       : "grid-template-columns: 1fr 1fr 70px;"};
@@ -48,39 +48,39 @@ const TableCellBold = styled(Table.Cell)`
   font-weight: bold;
 `;
 
-const AccessibleTable = props => (
+const AccessibleTable = (props) => (
   <FsaStyledTable role="table" {...props}>
     {props.children}
   </FsaStyledTable>
 );
 
-const AccessibleTableRow = props => (
+const AccessibleTableRow = (props) => (
   <GridRow role="row" {...props}>
     {props.children}
   </GridRow>
 );
 
-const AccessibleRowHeader = props => (
+const AccessibleRowHeader = (props) => (
   <Table.CellHeader scope="row" role="rowheader" {...props}>
     {props.children}
   </Table.CellHeader>
 );
 
-const applyRowHeaderStyling = error => {
+const applyRowHeaderStyling = (error) => {
   return error
     ? {
-        style: { color: "#b10e1e" }
+        style: { color: "#b10e1e" },
       }
     : null;
 };
 
-const AccessibleCell = props => (
+const AccessibleCell = (props) => (
   <TableCellBold role="cell" className="summaryTableDataCell" {...props}>
     {props.children}
   </TableCellBold>
 );
 
-const AccessibleChangeCell = props => (
+const AccessibleChangeCell = (props) => (
   <Table.Cell role="cell" className="summaryTableChangeCell" {...props}>
     {props.children}
   </Table.Cell>
@@ -113,11 +113,11 @@ const ColumnHeaders = () => (
 
 const AnchorTag = asAnchor("a");
 
-const determineLinkText = property => {
+const determineLinkText = (property) => {
   return property ? "Change" : "Enter answer";
 };
 
-const OperatorDetailsTable = props => (
+const OperatorDetailsTable = (props) => (
   <React.Fragment>
     <ColumnHeaders />
     {props.operator_type || props.validatorErrors["operator_type"] ? (
@@ -521,7 +521,7 @@ const OperatorDetailsTable = props => (
   </React.Fragment>
 );
 
-const EstablishmentDetailsTable = props => (
+const EstablishmentDetailsTable = (props) => (
   <React.Fragment>
     <ColumnHeaders />
     {props.establishment_trading_name ||
@@ -730,9 +730,9 @@ const EstablishmentDetailsTable = props => (
     {props.opening_days_start ||
     props.opening_days_some ||
     props.opening_days_irregular ||
-    (props.validatorErrors["opening_days_start"] ||
-      props.validatorErrors["opening_days_some"] ||
-      props.validatorErrors["opening_days_irregular"]) ? (
+    props.validatorErrors["opening_days_start"] ||
+    props.validatorErrors["opening_days_some"] ||
+    props.validatorErrors["opening_days_irregular"] ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="establishmentOpeningDaysRow"
@@ -751,28 +751,23 @@ const EstablishmentDetailsTable = props => (
             props.validatorErrors["opening_days_start"]
               ? "opening_days_start"
               : props.validatorErrors["opening_days_irregular"]
-                ? "opening_days_irregular"
-                : "opening_days_some"
+              ? "opening_days_irregular"
+              : "opening_days_some"
           }`}
         >
-          {props.opening_days_irregular ||
-            props.open_some_days_summary_table || (
-              <div>
-                <div id="opening_day_monday">{props.opening_day_monday}</div>
-                <div id="opening_day_tuesday">{props.opening_day_tuesday}</div>
-                <div id="opening_day_wednesday">
-                  {props.opening_day_wednesday}
-                </div>
-                <div id="opening_day_thursday">
-                  {props.opening_day_thursday}
-                </div>
-                <div id="opening_day_friday">{props.opening_day_friday}</div>
-                <div id="opening_day_saturday">
-                  {props.opening_day_saturday}
-                </div>
-                <div id="opening_day_sunday">{props.opening_day_sunday}</div>
+          {props.opening_days_irregular || props.open_some_days_summary_table || (
+            <div>
+              <div id="opening_day_monday">{props.opening_day_monday}</div>
+              <div id="opening_day_tuesday">{props.opening_day_tuesday}</div>
+              <div id="opening_day_wednesday">
+                {props.opening_day_wednesday}
               </div>
-            )}
+              <div id="opening_day_thursday">{props.opening_day_thursday}</div>
+              <div id="opening_day_friday">{props.opening_day_friday}</div>
+              <div id="opening_day_saturday">{props.opening_day_saturday}</div>
+              <div id="opening_day_sunday">{props.opening_day_sunday}</div>
+            </div>
+          )}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
@@ -800,13 +795,13 @@ const EstablishmentDetailsTable = props => (
     {(props.opening_days_start &&
       props.opening_days_start !== "Irregular days") ||
     props.opening_days_some ||
-    (props.validatorErrors["opening_hours_monday"] ||
-      props.validatorErrors["opening_hours_tuesday"] ||
-      props.validatorErrors["opening_hours_wednesday"] ||
-      props.validatorErrors["opening_hours_thursday"] ||
-      props.validatorErrors["opening_hours_friday"] ||
-      props.validatorErrors["opening_hours_saturday"] ||
-      props.validatorErrors["opening_hours_sunday"]) ? (
+    props.validatorErrors["opening_hours_monday"] ||
+    props.validatorErrors["opening_hours_tuesday"] ||
+    props.validatorErrors["opening_hours_wednesday"] ||
+    props.validatorErrors["opening_hours_thursday"] ||
+    props.validatorErrors["opening_hours_friday"] ||
+    props.validatorErrors["opening_hours_saturday"] ||
+    props.validatorErrors["opening_hours_sunday"] ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="establishmentOpeningHoursRow"
@@ -904,7 +899,7 @@ const EstablishmentDetailsTable = props => (
   </React.Fragment>
 );
 
-const FoodActivitiesTable = props => (
+const FoodActivitiesTable = (props) => (
   <React.Fragment>
     <ColumnHeaders />
     {props.customer_type || props.validatorErrors["customer_type"] ? (
@@ -1023,7 +1018,7 @@ const FoodActivitiesTable = props => (
   </React.Fragment>
 );
 
-const DeclarationTable = props => (
+const DeclarationTable = (props) => (
   <React.Fragment>
     <ColumnHeaders />
     <AccessibleTableRow
@@ -1069,7 +1064,7 @@ const DeclarationTable = props => (
   </React.Fragment>
 );
 
-const SummaryTable = props => (
+const SummaryTable = (props) => (
   <React.Fragment>
     <ContentItem.B_45_30>
       <AccessibleTable
@@ -1126,5 +1121,5 @@ SummaryTable.propTypes = {
   establishment_town: PropTypes.string,
   establishment_postcode: PropTypes.string,
   customer_type: PropTypes.string,
-  import_export_activities: PropTypes.string
+  import_export_activities: PropTypes.string,
 };

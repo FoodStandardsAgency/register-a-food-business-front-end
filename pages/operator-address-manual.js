@@ -6,12 +6,12 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  AddressHelp
+  AddressHelp,
 } from "../src/components";
 import { InputField, ErrorText } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OperatorAddress = props => (
+const OperatorAddress = (props) => (
   <FsaLayout {...props}>
     <BackButton
       {...props}
@@ -31,9 +31,7 @@ const OperatorAddress = props => (
         {props.switches["/operator-address-none-found"] ? (
           <ContentItem.B_30_15>
             <ErrorText id="addressNotFoundByPostcodeMessage">
-              {`No addresses found for the postcode "${
-                props.cumulativeFullAnswers.operator_postcode_find
-              }". Please enter your address manually or go back to try a
+              {`No addresses found for the postcode "${props.cumulativeFullAnswers.operator_postcode_find}". Please enter your address manually or go back to try a
               different postcode.`}
             </ErrorText>
           </ContentItem.B_30_15>
@@ -44,12 +42,12 @@ const OperatorAddress = props => (
             input={{
               name: "operator_address_line_1",
               defaultValue: props.cumulativeFullAnswers.operator_address_line_1,
-              autoComplete: "address-line1"
+              autoComplete: "address-line1",
             }}
             id="operator_address_line_1"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_address_line_1
+              error: props.validatorErrors.operator_address_line_1,
             }}
           >
             Address line 1
@@ -61,12 +59,12 @@ const OperatorAddress = props => (
             input={{
               name: "operator_address_line_2",
               defaultValue: props.cumulativeFullAnswers.operator_address_line_2,
-              autoComplete: "address-line2"
+              autoComplete: "address-line2",
             }}
             id="operator_address_line_2"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_address_line_2
+              error: props.validatorErrors.operator_address_line_2,
             }}
           >
             Address line 2 (optional)
@@ -78,12 +76,12 @@ const OperatorAddress = props => (
             input={{
               name: "operator_address_line_3",
               defaultValue: props.cumulativeFullAnswers.operator_address_line_3,
-              autoComplete: "address-line3"
+              autoComplete: "address-line3",
             }}
             id="operator_address_line_3"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_address_line_3
+              error: props.validatorErrors.operator_address_line_3,
             }}
           >
             Address line 3 (optional)
@@ -95,12 +93,12 @@ const OperatorAddress = props => (
             input={{
               name: "operator_town",
               defaultValue: props.cumulativeFullAnswers.operator_town,
-              autoComplete: "locality"
+              autoComplete: "locality",
             }}
             id="operator_town"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_town
+              error: props.validatorErrors.operator_town,
             }}
           >
             Town or city
@@ -112,12 +110,12 @@ const OperatorAddress = props => (
             input={{
               name: "operator_postcode",
               defaultValue: props.cumulativeFullAnswers.operator_postcode,
-              autoComplete: "postal-code"
+              autoComplete: "postal-code",
             }}
             id="operator_postcode"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_postcode
+              error: props.validatorErrors.operator_postcode,
             }}
           >
             Postcode
@@ -136,5 +134,5 @@ OperatorAddress.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

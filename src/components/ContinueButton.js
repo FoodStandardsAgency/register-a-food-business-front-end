@@ -1,7 +1,7 @@
 import { Button } from "govuk-react";
 import { ButtonArrow } from "@govuk-react/icons";
 
-const ContinueButton = props => (
+const ContinueButton = (props) => (
   <Button
     onClick={props.onClick}
     disabled={props.disabled}
@@ -13,10 +13,10 @@ const ContinueButton = props => (
     {props.type === "begin"
       ? "Begin registration"
       : props.type === "submit"
-        ? "Submit"
-        : props.editModeFirstPage
-          ? "Save and continue"
-          : "Continue"}
+      ? "Submit"
+      : props.editModeFirstPage
+      ? "Save and continue"
+      : "Continue"}
   </Button>
 );
 

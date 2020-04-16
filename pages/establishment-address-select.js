@@ -5,14 +5,14 @@ import {
   BackButton,
   ContinueButton,
   SelectWithHeader,
-  HiddenTextAccessible
+  HiddenTextAccessible,
 } from "../src/components";
 import { Header, Paragraph, asAnchor } from "govuk-react";
 import PropTypes from "prop-types";
 
 const AnchorTag = asAnchor("a");
 
-const EstablishmentAddressLookup = props => (
+const EstablishmentAddressLookup = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <Header level={1} size="LARGE">
@@ -52,14 +52,12 @@ const EstablishmentAddressLookup = props => (
         </ContentItem.B_30_15>
 
         <SelectWithHeader
-          label={`Select an address for ${
-            props.cumulativeFullAnswers.establishment_postcode_find
-          }`}
+          label={`Select an address for ${props.cumulativeFullAnswers.establishment_postcode_find}`}
           input={{
             id: "establishmentAddressDropdown",
             name: "establishment_address_selected",
             defaultValue:
-              props.cumulativeFullAnswers.establishment_address_selected || 0
+              props.cumulativeFullAnswers.establishment_address_selected || 0,
           }}
         >
           {props.addressLookups.establishment_postcode_find ? (
@@ -80,9 +78,7 @@ const EstablishmentAddressLookup = props => (
             id="cantFindAddressLink"
             href={
               props.editModeFirstPage
-                ? `/new/${
-                    props.council
-                  }/establishment-address-manual?edit=establishment-address-manual`
+                ? `/new/${props.council}/establishment-address-manual?edit=establishment-address-manual`
                 : `/new/${props.council}/establishment-address-manual`
             }
           >
@@ -101,5 +97,5 @@ export default SessionWrapper(EstablishmentAddressLookup);
 EstablishmentAddressLookup.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
-  )
+  ),
 };

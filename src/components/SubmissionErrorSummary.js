@@ -1,12 +1,12 @@
 import { ErrorSummary } from "govuk-react";
 import PropTypes from "prop-types";
 
-const SubmissionErrorSummary = props => {
+const SubmissionErrorSummary = (props) => {
   const errors = [];
   for (let error of props.submissionErrors) {
     errors.push({
       targetName: error,
-      text: error
+      text: error,
     });
   }
   if (props.submissionErrors.length > 0) {
@@ -24,5 +24,5 @@ const SubmissionErrorSummary = props => {
 export default SubmissionErrorSummary;
 
 SubmissionErrorSummary.propTypes = {
-  submissionError: PropTypes.objectOf(PropTypes.string)
+  submissionError: PropTypes.objectOf(PropTypes.string),
 };

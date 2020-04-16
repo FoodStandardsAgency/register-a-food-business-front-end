@@ -1,9 +1,9 @@
-const SessionWrapper = Page => {
+const SessionWrapper = (Page) => {
   // Set 'wrapper' to be a function that:
   // - Takes 'props' as an argument
   // - Passes those props to 'Page', the React component taken by SessionWrapper as an argument
   // - Returns the 'Page' component with the new props
-  const wrapper = props => <Page {...props} />;
+  const wrapper = (props) => <Page {...props} />;
 
   // Set the Next.js 'getInitialProps' lifecycle function:
   // https://nextjs.org/learn/basics/fetching-data-for-pages
@@ -134,7 +134,8 @@ const SessionWrapper = Page => {
           : false,
       country:
         req && req.session && req.session.country ? req.session.country : "",
-      lcName: req && req.session && req.session.lcName ? req.session.lcName : ""
+      lcName:
+        req && req.session && req.session.lcName ? req.session.lcName : "",
     };
 
     // The getInitialProps function (a method of the 'wrapper' function) returns the initialProps object

@@ -1,8 +1,8 @@
 jest.mock("express", () => ({
   Router: jest.fn(() => ({
     post: jest.fn(),
-    get: jest.fn()
-  }))
+    get: jest.fn(),
+  })),
 }));
 const path = require("path");
 const { pdfsRouter } = require("./pdfs.route");
@@ -21,7 +21,7 @@ describe("PDF Route: ", () => {
 
         req = {};
         res = {
-          sendFile: jest.fn()
+          sendFile: jest.fn(),
         };
         handler(req, res);
       });

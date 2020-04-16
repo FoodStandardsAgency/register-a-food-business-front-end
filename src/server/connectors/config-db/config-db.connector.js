@@ -41,7 +41,7 @@ const establishConnectionToMongo = async () => {
           client.close();
         }
         client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
-          useNewUrlParser: true
+          useNewUrlParser: true,
         });
       } catch (err) {
         logEmitter.emit(
@@ -72,7 +72,7 @@ const establishConnectionToMongo = async () => {
  *
  * @returns {object} An object containing the _id and path fields of the config database data for the given config version
  */
-const getPathConfigByVersion = async version => {
+const getPathConfigByVersion = async (version) => {
   logEmitter.emit(
     "functionCall",
     "config-db.connector",
@@ -84,7 +84,7 @@ const getPathConfigByVersion = async version => {
       await establishConnectionToMongo();
 
       const configVersionRecord = await configVersionCollection.findOne({
-        _id: version
+        _id: version,
       });
 
       if (configVersionRecord === null) {
@@ -98,7 +98,7 @@ const getPathConfigByVersion = async version => {
       } else {
         pathConfig = {
           _id: configVersionRecord._id,
-          path: configVersionRecord.path
+          path: configVersionRecord.path,
         };
         statusEmitter.emit("incrementCount", "getPathConfigSucceeded");
         statusEmitter.emit(
@@ -154,8 +154,8 @@ const getLocalCouncils = async () => {
       .find({
         $and: [
           { local_council_url: { $ne: "" } },
-          { local_council_url: { $ne: null } }
-        ]
+          { local_council_url: { $ne: null } },
+        ],
       })
       .project({ local_council_url: 1, _id: 0 })
       .toArray();
@@ -168,7 +168,7 @@ const getLocalCouncils = async () => {
         false
       );
     } else {
-      localCouncilUrls = localCouncilUrls.map(res => res.local_council_url);
+      localCouncilUrls = localCouncilUrls.map((res) => res.local_council_url);
       statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
       statusEmitter.emit(
         "setStatus",
@@ -209,7 +209,7 @@ const getLocalCouncils = async () => {
  *
  * @returns {Object} Object with council data
  */
-const getCouncilData = async council => {
+const getCouncilData = async (council) => {
   logEmitter.emit("functionCall", "config-db.connector", "getCouncilData");
 
   let councilRecord = null;
@@ -217,7 +217,7 @@ const getCouncilData = async council => {
     await establishConnectionToMongo();
 
     councilRecord = await lcConfigCollection.findOne({
-      local_council_url: council
+      local_council_url: council,
     });
 
     if (councilRecord === null) {
@@ -280,5 +280,5 @@ module.exports = {
   clearPathConfigCache,
   clearMongoConnection,
   getLocalCouncils,
-  getCouncilData
+  getCouncilData,
 };

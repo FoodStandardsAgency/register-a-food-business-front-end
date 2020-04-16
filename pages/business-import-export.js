@@ -6,18 +6,18 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
 } from "../src/components";
 import {
   Header,
   Checkbox,
   MultiChoice,
   Paragraph,
-  HintText
+  HintText,
 } from "govuk-react";
 import PropTypes from "prop-types";
 
-const ImportExportActivities = props => (
+const ImportExportActivities = (props) => (
   <FsaLayout {...props}>
     <form action={props.formAction} method="post">
       <BackButton {...props} />
@@ -39,7 +39,7 @@ const ImportExportActivities = props => (
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.import_export_activities
+            error: props.validatorErrors.import_export_activities,
           }}
         >
           <Checkbox
@@ -88,7 +88,8 @@ const ImportExportActivities = props => (
               id="link-fsa-website"
             >
               Food Standards Agency website (opens in new window)
-            </a>.
+            </a>
+            .
           </span>
         </HiddenTextAccessible>
       </ContentItem.B_30_15>
@@ -104,5 +105,5 @@ ImportExportActivities.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

@@ -5,7 +5,7 @@ const {
   moveAlongEditPath,
   getPathPagesToSwitch,
   switchOffManualAddressInput,
-  switchOffCompanyAndCharityDetails
+  switchOffCompanyAndCharityDetails,
 } = require("./path.service");
 const pathConfigMock = require("../../__mocks__/pathConfigMock.json");
 const pathMock = pathConfigMock.path;
@@ -17,13 +17,13 @@ describe("path.service editPath()", () => {
     "/registration-role": {
       on: true,
       switches: {
-        Representative: { "/representative-details": true }
-      }
+        Representative: { "/representative-details": true },
+      },
     },
     "/representative-details": {
       on: false,
-      switches: {}
-    }
+      switches: {},
+    },
   };
 
   describe("given valid input", () => {
@@ -31,7 +31,7 @@ describe("path.service editPath()", () => {
       beforeEach(() => {
         const cumulativeFullAnswers = {
           registration_role: "Representative",
-          another_answer: "Value"
+          another_answer: "Value",
         };
         const currentPage = "/registration-role";
         const args = [cumulativeFullAnswers, currentPage, pathFromSession];
@@ -51,23 +51,23 @@ describe("path.service editPathInEditMode()", () => {
     "/registration-role": {
       on: true,
       switches: {
-        Representative: { "/representative-details": true }
-      }
+        Representative: { "/representative-details": true },
+      },
     },
     "/representative-details": {
       on: false,
-      switches: {}
-    }
+      switches: {},
+    },
   };
 
   describe("given valid input", () => {
     describe("given that an answer triggers a switch and is in both the full and edit answers", () => {
       beforeEach(() => {
         const cumulativeFullAnswers = {
-          registration_role: "Representative"
+          registration_role: "Representative",
         };
         const cumulativeEditAnswers = {
-          registration_role: "Representative"
+          registration_role: "Representative",
         };
         const editModeFirstPage = "/registration-role";
         const currentPage = "/registration-role";
@@ -76,7 +76,7 @@ describe("path.service editPathInEditMode()", () => {
           cumulativeEditAnswers,
           pathFromSession,
           editModeFirstPage,
-          currentPage
+          currentPage,
         ];
         result = editPathInEditMode(...args);
       });
@@ -93,10 +93,10 @@ describe("path.service editPathInEditMode()", () => {
       beforeEach(() => {
         const cumulativeFullAnswers = {
           registration_role: "Representative",
-          another_answer: "Value"
+          another_answer: "Value",
         };
         const cumulativeEditAnswers = {
-          another_answer: "Value"
+          another_answer: "Value",
         };
         const editModeFirstPage = "/registration-role";
         const currentPage = "/registration-role";
@@ -105,7 +105,7 @@ describe("path.service editPathInEditMode()", () => {
           cumulativeEditAnswers,
           pathFromSession,
           editModeFirstPage,
-          currentPage
+          currentPage,
         ];
         result = editPathInEditMode(...args);
       });
@@ -125,26 +125,26 @@ describe("path.service moveAlongPath()", () => {
   const path = {
     "/page-not-in-path": {
       on: false,
-      switches: {}
+      switches: {},
     },
     "/registration-role": {
       on: true,
       switches: {
-        Representative: { "/representative-details": true }
-      }
+        Representative: { "/representative-details": true },
+      },
     },
     "/page-to-skip": {
       on: false,
-      switches: {}
+      switches: {},
     },
     "/representative-details": {
       on: true,
-      switches: {}
+      switches: {},
     },
     "/another-page": {
       on: false,
-      switches: {}
-    }
+      switches: {},
+    },
   };
 
   describe("Given valid input", () => {
@@ -210,30 +210,30 @@ describe("path.service moveAlongEditPath()", () => {
     "/page-not-in-edit-path": {
       on: true,
       inEditPath: false,
-      switches: {}
+      switches: {},
     },
     "/registration-role": {
       on: true,
       inEditPath: true,
       switches: {
-        Representative: { "/representative-details": true }
-      }
+        Representative: { "/representative-details": true },
+      },
     },
     "/page-to-skip": {
       on: true,
       inEditPath: false,
-      switches: {}
+      switches: {},
     },
     "/representative-details": {
       on: true,
       inEditPath: true,
-      switches: {}
+      switches: {},
     },
     "/another-page": {
       on: false,
       inEditPath: false,
-      switches: {}
-    }
+      switches: {},
+    },
   };
 
   describe("Given valid input", () => {
@@ -348,7 +348,7 @@ describe("path.service getPathPagesToSwitch()", () => {
       const result = getPathPagesToSwitch(
         {
           answer_name_that_affects_path:
-            "the value is truthy but not used to calculate the path"
+            "the value is truthy but not used to calculate the path",
         },
         "/index",
         pathMock
@@ -359,7 +359,7 @@ describe("path.service getPathPagesToSwitch()", () => {
     it("does not edit the path if the string is empty", () => {
       const result = getPathPagesToSwitch(
         {
-          answer_name_that_affects_path: ""
+          answer_name_that_affects_path: "",
         },
         "/index",
         pathMock
@@ -384,12 +384,12 @@ describe("path.service switchOffManualAddressInput()", () => {
   const examplePath = {
     "/establishment-address-manual": {
       on: true,
-      switches: {}
+      switches: {},
     },
     "/operator-address-manual": {
       on: true,
-      switches: {}
-    }
+      switches: {},
+    },
   };
 
   describe("given a path and '/establishment-address-select'", () => {
@@ -429,12 +429,12 @@ describe("path.service switchOffCompanyAndCharityDetails()", () => {
   const examplePath = {
     "/operator-company-details": {
       on: true,
-      switches: {}
+      switches: {},
     },
     "/operator-charity-details": {
       on: true,
-      switches: {}
-    }
+      switches: {},
+    },
   };
 
   describe("given a path and Sole Trader", () => {

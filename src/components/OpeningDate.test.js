@@ -3,11 +3,11 @@ import { shallow, mount } from "enzyme";
 
 describe("<OpeningDate />", () => {
   const testValidatorErrors = {
-    example: "test error"
+    example: "test error",
   };
 
   const testCumulativeAnswers = {
-    example: "test answer"
+    example: "test answer",
   };
 
   const testSwitches = {};
@@ -31,7 +31,7 @@ describe("<OpeningDate />", () => {
         establishment_opening_status: "Establishment is not trading yet",
         day: "01",
         month: "01",
-        year: "2050"
+        year: "2050",
       };
       wrapper = mount(
         <OpeningDate
@@ -71,7 +71,7 @@ describe("<OpeningDate />", () => {
         establishment_opening_status: "Establishment is already trading",
         day: "07",
         month: "08",
-        year: "1998"
+        year: "1998",
       };
       wrapper = mount(
         <OpeningDate

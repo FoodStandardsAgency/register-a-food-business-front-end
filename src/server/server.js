@@ -11,13 +11,13 @@ const routes = require("./routes");
 const { Next } = require("./next");
 const { errorHandler } = require("./middleware/errorHandler");
 
-module.exports = async dbUrl => {
+module.exports = async (dbUrl) => {
   const app = express();
   const storeOptions = {};
   if (dbUrl) {
     info("Server: setting session cache to database");
     storeOptions.store = new MongoStore({
-      url: dbUrl
+      url: dbUrl,
     });
     info("Server: successfully set up database connection");
   } else {
@@ -31,15 +31,15 @@ module.exports = async dbUrl => {
     cookie: {
       // Session cookie set to expire after 24 hours
       maxAge: 86400000,
-      httpOnly: true
-    }
+      httpOnly: true,
+    },
   };
 
   if (process.env.COOKIE_SECURE === "true") {
     sessionOptions.cookie.secure = true;
   }
   const limiter = rateLimit({
-    max: process.env.RATE_LIMIT // limit each IP to x requests per minute
+    max: process.env.RATE_LIMIT, // limit each IP to x requests per minute
   });
 
   const options = Object.assign(sessionOptions, storeOptions);

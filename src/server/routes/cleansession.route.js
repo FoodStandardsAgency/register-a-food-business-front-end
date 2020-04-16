@@ -13,7 +13,7 @@ const cleansessionRouter = () => {
 
   router.get("", (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/cleansession route");
-    req.session.regenerate(async err => {
+    req.session.regenerate(async (err) => {
       if (err) {
         logEmitter.emit("functionFail", "Routes", "/cleansession route", err);
         res.json({ error: "Session regenerate failed." });

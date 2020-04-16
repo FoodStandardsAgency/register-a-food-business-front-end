@@ -4,7 +4,7 @@ import {
   ContentItem,
   BackButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
 } from "../src/components";
 import { Button, Header, InputField } from "govuk-react";
 import styled from "react-emotion";
@@ -15,7 +15,7 @@ const StyledRow = styled.div`
   justify-content: space-between;
 `;
 
-const PartnerDetails = props => (
+const PartnerDetails = (props) => (
   <FsaLayout {...props}>
     <BackButton href={props.partnerDetailsBackUrl} {...props} />
     <ProcessedErrorSummary
@@ -40,12 +40,12 @@ const PartnerDetails = props => (
               defaultValue:
                 props.cumulativeFullAnswers.partners[
                   props.cumulativeFullAnswers.targetPartner
-                ]
+                ],
             }}
             id="partner_name"
             meta={{
               touched: true,
-              error: props.validatorErrors["partnerName"]
+              error: props.validatorErrors["partnerName"],
             }}
           >
             Full name
@@ -90,8 +90,8 @@ PartnerDetails.propTypes = {
     PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
-      PropTypes.number
+      PropTypes.number,
     ])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

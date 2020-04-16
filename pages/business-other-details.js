@@ -5,12 +5,12 @@ import {
   ContinueButton,
   ContentItem,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
 } from "../src/components";
 import { Header, TextArea } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OtherDetails = props => (
+const OtherDetails = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -28,11 +28,11 @@ const OtherDetails = props => (
             input={{
               name: "business_other_details",
               defaultValue: props.cumulativeFullAnswers.business_other_details,
-              id: "business_other_details"
+              id: "business_other_details",
             }}
             meta={{
               touched: true,
-              error: props.validatorErrors.business_other_details
+              error: props.validatorErrors.business_other_details,
             }}
           >
             Is there anything else you need to tell us about this establishment?
@@ -49,5 +49,5 @@ export default SessionWrapper(OtherDetails);
 
 OtherDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

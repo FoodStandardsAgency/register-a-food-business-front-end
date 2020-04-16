@@ -13,9 +13,9 @@ const addressSchema = {
       posttown: { type: "string" },
       county: { type: "string" },
       postcode: { type: "string" },
-      uprn: { type: "string" }
-    }
-  }
+      uprn: { type: "string" },
+    },
+  },
 };
 
 module.exports = addressSchema;

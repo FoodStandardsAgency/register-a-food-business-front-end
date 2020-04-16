@@ -1,7 +1,7 @@
 const storedStatus = require("../../../__mocks__/storedStatusMock.json");
 
 const statusCollectionDouble = {
-  findOne: query => {
+  findOne: (query) => {
     if (query._id === "frontEndStatus") {
       return storedStatus;
     } else {
@@ -14,7 +14,7 @@ const statusCollectionDouble = {
     } else {
       return null;
     }
-  }
+  },
 };
 
 module.exports = { statusCollectionDouble };

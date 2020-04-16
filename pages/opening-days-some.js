@@ -5,12 +5,12 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
 } from "../src/components";
 import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OpeningSomeDays = props => (
+const OpeningSomeDays = (props) => (
   <FsaLayout {...props}>
     <form action={props.formAction} method="post">
       <BackButton {...props} />
@@ -30,7 +30,7 @@ const OpeningSomeDays = props => (
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.opening_days_some
+            error: props.validatorErrors.opening_days_some,
           }}
         >
           <Checkbox
@@ -102,5 +102,5 @@ OpeningSomeDays.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

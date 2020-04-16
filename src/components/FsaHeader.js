@@ -29,10 +29,10 @@ const Company = (
 
 const StyledHeader = styled("div")({});
 const HeaderMain = styled(Main)({
-  paddingTop: 3
+  paddingTop: 3,
 });
 
-const FsaHeader = props => (
+const FsaHeader = (props) => (
   <StyledHeader role="banner">
     {props.acceptAllCookies === "true" ||
     props.acceptAllCookies === "false" ? null : (

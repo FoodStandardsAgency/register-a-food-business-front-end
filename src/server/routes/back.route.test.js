@@ -1,8 +1,8 @@
 jest.mock("express", () => ({
   Router: jest.fn(() => ({
     post: jest.fn(),
-    get: jest.fn()
-  }))
+    get: jest.fn(),
+  })),
 }));
 jest.mock("../controllers/back.controller");
 const backController = require("../controllers/back.controller");
@@ -25,15 +25,15 @@ describe("Back route: ", () => {
         session: {
           cumulativeFullAnswers: {},
           council: "council",
-          pathConfig: { path: "existing path from session" }
+          pathConfig: { path: "existing path from session" },
         },
         params: {
-          originator: "originator"
-        }
+          originator: "originator",
+        },
       };
 
       res = {
-        redirect: jest.fn()
+        redirect: jest.fn(),
       };
 
       handler(req, res);

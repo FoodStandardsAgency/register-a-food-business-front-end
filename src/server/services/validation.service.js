@@ -8,11 +8,11 @@ const { logEmitter } = require("./logging.service");
 const schema = require("./schema");
 const {
   combineDate,
-  separateBracketsFromBusinessType
+  separateBracketsFromBusinessType,
 } = require("./data-transform.service");
 const { MAX_PARTNERS } = require("../config");
 const {
-  validatePartners
+  validatePartners,
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const errorMessages = {
@@ -78,7 +78,7 @@ const errorMessages = {
   opening_hours_thursday: "Invalid opening hours on Thursday",
   opening_hours_friday: "Invalid opening hours on Friday",
   opening_hours_saturday: "Invalid opening hours on Saturday",
-  opening_hours_sunday: "Invalid opening hours on Sunday"
+  opening_hours_sunday: "Invalid opening hours on Sunday",
 };
 
 const validator = new Validator();
@@ -102,7 +102,7 @@ const validate = (page, answers) => {
   logEmitter.emit("functionCall", "validation.service", "validate");
 
   const result = {
-    errors: {}
+    errors: {},
   };
 
   const answersToValidate = Object.assign({}, answers);
@@ -137,7 +137,7 @@ const validate = (page, answers) => {
 
       if (validatorResult.errors.length > 0 && page === "/opening-hours") {
         // ignore errors for fields not requiring validation
-        validatorResult.errors = validatorResult.errors.filter(error =>
+        validatorResult.errors = validatorResult.errors.filter((error) =>
           Object.keys(answersToValidate).includes(error.property.split(".")[1])
         );
       }
@@ -164,7 +164,7 @@ const validate = (page, answers) => {
       }
 
       // turn errors into key:value pairs
-      validatorResult.errors.forEach(error => {
+      validatorResult.errors.forEach((error) => {
         const key = error.property.split(".")[1];
         result.errors[key] = error.message;
       });
@@ -196,13 +196,13 @@ const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
   logEmitter.emit("functionCall", "validation.service", "revalidateAllAnswers");
 
   const result = {
-    errors: {}
+    errors: {},
   };
-  pages.forEach(page => {
+  pages.forEach((page) => {
     if (page === "/partner-name") {
       if (!validatePartners(cumulativeFullAnswers.partners)) {
         Object.assign(result.errors, {
-          partners: errorMessages.partners
+          partners: errorMessages.partners,
         });
       }
       if (
@@ -212,7 +212,7 @@ const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
       ) {
         Object.assign(result.errors, {
           main_partnership_contact:
-            errorMessages.main_partnership_contact_deleted
+            errorMessages.main_partnership_contact_deleted,
         });
       }
     } else if (page === "/operator-contact-details") {
@@ -240,16 +240,16 @@ const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
         "thursday",
         "friday",
         "saturday",
-        "sunday"
+        "sunday",
       ];
-      days.forEach(day => {
+      days.forEach((day) => {
         if (
           cumulativeFullAnswers["opening_days_start"] === "Every day" ||
           cumulativeFullAnswers[`opening_day_${day}`]
         ) {
           Object.assign(answersToValidate, {
             [`opening_hours_${day}`]:
-              cumulativeFullAnswers[`opening_hours_${day}`] || ""
+              cumulativeFullAnswers[`opening_hours_${day}`] || "",
           });
         }
       });

@@ -25,5 +25,5 @@ module.exports = {
   setCookieRouter,
   statusRouter,
   partnerDetailsRouter,
-  pdfsRouter
+  pdfsRouter,
 };

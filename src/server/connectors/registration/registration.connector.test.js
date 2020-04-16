@@ -31,9 +31,9 @@ describe("Function: sendRequest", () => {
       expect(fetch).toHaveBeenLastCalledWith(expect.anything(), {
         method: "POST",
         headers: expect.objectContaining({
-          "registration-data-version": "1.0.0"
+          "registration-data-version": "1.0.0",
         }),
-        body: testSubmissionData
+        body: testSubmissionData,
       });
     });
   });

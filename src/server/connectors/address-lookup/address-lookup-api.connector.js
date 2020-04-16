@@ -8,7 +8,7 @@ const {
   ADDRESS_API_URL_BASE,
   ADDRESS_API_URL_QUERY,
   ADDRESS_API_URL_BASE_STANDARD,
-  ADDRESS_API_URL_QUERY_STANDARD
+  ADDRESS_API_URL_QUERY_STANDARD,
 } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { addressLookupDouble } = require("./address-lookup-api.double");
@@ -69,7 +69,7 @@ const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
  *
  * @returns {object} API response object
  */
-const fetchUsingPostcoderPremium = async postcode => {
+const fetchUsingPostcoderPremium = async (postcode) => {
   logEmitter.emit(
     "functionCall",
     "address-lookup-api.connector",
@@ -95,9 +95,7 @@ const fetchUsingPostcoderPremium = async postcode => {
       "functionFail",
       "address-lookup-api.connector",
       "fetchUsingPostcoderPremium",
-      `Address lookup API responded with non-200 status: ${response.status} - ${
-        response.statusText
-      }`
+      `Address lookup API responded with non-200 status: ${response.status} - ${response.statusText}`
     );
   }
 };
@@ -109,7 +107,7 @@ const fetchUsingPostcoderPremium = async postcode => {
  *
  * @returns {object} API response object
  */
-const fetchUsingPostcoderStandard = async postcode => {
+const fetchUsingPostcoderStandard = async (postcode) => {
   logEmitter.emit(
     "functionCall",
     "address-lookup-api.connector",
@@ -134,9 +132,7 @@ const fetchUsingPostcoderStandard = async postcode => {
       "functionFail",
       "address-lookup-api.connector",
       "fetchUsingPostcoderStandard",
-      `Address lookup API responded with non-200 status: ${response.status} - ${
-        response.statusText
-      }`
+      `Address lookup API responded with non-200 status: ${response.status} - ${response.statusText}`
     );
     throw new Error(
       `Address lookup API responded with non-200 status: ${response.status}`

@@ -11,18 +11,18 @@ const { logEmitter } = require("../services/logging.service");
 const {
   partnerDetailsContinue,
   partnerDetailsSave,
-  partnerDetailsDelete
+  partnerDetailsDelete,
 } = require("../controllers/partner-details.controller");
 
-const getOriginator = referrerUrl => {
+const getOriginator = (referrerUrl) => {
   return referrerUrl.substr(referrerUrl.lastIndexOf("/")).split("?")[0];
 };
 
-const isEditMode = reqQuery => {
+const isEditMode = (reqQuery) => {
   return reqQuery.edit === "partner-name";
 };
 
-const initializePartners = session => {
+const initializePartners = (session) => {
   return session.cumulativeFullAnswers.partners || [];
 };
 
@@ -37,7 +37,7 @@ const partnerDetailsRouter = () => {
     const data =
       req.session.cumulativeFullAnswers.targetPartner !== undefined
         ? Object.assign({}, req.body, {
-            index: req.session.cumulativeFullAnswers.targetPartner
+            index: req.session.cumulativeFullAnswers.targetPartner,
           })
         : req.body;
 
@@ -57,7 +57,7 @@ const partnerDetailsRouter = () => {
     req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
 
     logEmitter.emit("functionSuccess", "Routes", "/partnership/save route");
-    req.session.save(err => {
+    req.session.save((err) => {
       if (err) {
         logEmitter.emit(
           "functionFail",
@@ -94,7 +94,7 @@ const partnerDetailsRouter = () => {
       "Routes",
       "/partnership/partner-details route"
     );
-    req.session.save(err => {
+    req.session.save((err) => {
       if (err) {
         logEmitter.emit(
           "functionFail",
@@ -134,7 +134,7 @@ const partnerDetailsRouter = () => {
       "Routes",
       "/partner-details/delete route"
     );
-    req.session.save(err => {
+    req.session.save((err) => {
       if (err) {
         logEmitter.emit(
           "functionFail",
@@ -173,7 +173,7 @@ const partnerDetailsRouter = () => {
       "Routes",
       "/partner-details/continue route"
     );
-    req.session.save(err => {
+    req.session.save((err) => {
       if (err) {
         logEmitter.emit(
           "functionFail",

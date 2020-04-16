@@ -6,13 +6,13 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick,
   HiddenTextAccessible,
-  FsaDateField
+  FsaDateField,
 } from "./";
 import { Header, Paragraph, HintText } from "govuk-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 
-const OpeningDate = props => {
+const OpeningDate = (props) => {
   return (
     <FsaLayout {...props}>
       <BackButton {...props} />
@@ -48,7 +48,7 @@ const OpeningDate = props => {
               defaultValues={{
                 day: props.cumulativeFullAnswers.day,
                 month: props.cumulativeFullAnswers.month,
-                year: props.cumulativeFullAnswers.year
+                year: props.cumulativeFullAnswers.year,
               }}
               inputNames={{ day: "day", month: "month", year: "year" }}
               hintText={`For example, ${moment()
@@ -88,7 +88,7 @@ const OpeningDate = props => {
             defaultValues={{
               day: props.cumulativeFullAnswers.day,
               month: props.cumulativeFullAnswers.month,
-              year: props.cumulativeFullAnswers.year
+              year: props.cumulativeFullAnswers.year,
             }}
             inputNames={{ day: "day", month: "month", year: "year" }}
             hintText={`For example, ${moment()
@@ -128,5 +128,5 @@ OpeningDate.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

@@ -7,14 +7,14 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   SubmissionErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
 } from "../src/components";
 import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 
 import PropTypes from "prop-types";
 
 const NewTabLinkRenderer = ({ href, children }) => (
-  <a href={href} target="_blank">
+  <a href={href} target="_blank" rel="noopener noreferrer">
     {children}
   </a>
 );
@@ -23,7 +23,7 @@ class Declaration extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      submitClicked: false
+      submitClicked: false,
     };
     this.clickSubmitButton = this.clickSubmitButton.bind(this);
   }
@@ -31,7 +31,7 @@ class Declaration extends React.Component {
   clickSubmitButton(e) {
     e.preventDefault();
     this.setState({
-      submitClicked: true
+      submitClicked: true,
     });
     this.refs.submitRegistration.submit();
   }
@@ -68,7 +68,7 @@ class Declaration extends React.Component {
                 error:
                   this.props.validatorErrors["declaration1"] ||
                   this.props.validatorErrors["declaration2"] ||
-                  this.props.validatorErrors["declaration3"]
+                  this.props.validatorErrors["declaration3"],
               }}
             >
               <Checkbox
@@ -151,5 +151,5 @@ Declaration.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

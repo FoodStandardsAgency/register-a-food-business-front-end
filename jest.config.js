@@ -1,4 +1,5 @@
 module.exports = {
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   setupFiles: ["<rootDir>/jest.setup.js"],
   reporters: [
     "default",

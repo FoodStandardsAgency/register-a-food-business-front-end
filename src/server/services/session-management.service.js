@@ -107,13 +107,13 @@ const cleanSwitches = (cumulativeFullAnswers, switches) => {
       const operatorContactDetails = [
         cumulativeFullAnswers.operator_primary_number,
         cumulativeFullAnswers.operator_secondary_number,
-        cumulativeFullAnswers.operator_email
+        cumulativeFullAnswers.operator_email,
       ];
 
       const establishmentContactDetails = [
         cumulativeFullAnswers.establishment_primary_number,
         cumulativeFullAnswers.establishment_secondary_number,
-        cumulativeFullAnswers.establishment_email
+        cumulativeFullAnswers.establishment_email,
       ];
 
       const operatorEstablishmentDetailsAreDifferent =
@@ -137,5 +137,5 @@ const cleanSwitches = (cumulativeFullAnswers, switches) => {
 module.exports = {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
-  cleanSwitches
+  cleanSwitches,
 };
