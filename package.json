@@ -45,7 +45,7 @@
     "express-session": "1.15.6",
     "express-useragent": "1.0.12",
     "govuk-react": "0.3.1",
-    "https-proxy-agent": "^5.0.0",
+    "https-proxy-agent": "^2.2.3",
     "jsonschema": "1.2.4",
     "mongodb": "3.1.6",
     "next": "6.1.1",
