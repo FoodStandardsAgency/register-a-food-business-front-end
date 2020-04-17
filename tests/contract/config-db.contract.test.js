@@ -1,5 +1,5 @@
 const {
-  getPathConfigByVersion
+  getPathConfigByVersion,
 } = require("../../src/server/connectors/config-db/config-db.connector");
 
 describe("config-db.connector contract: getPathConfigByVersion", () => {
