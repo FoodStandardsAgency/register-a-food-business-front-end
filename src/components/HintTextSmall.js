@@ -1,6 +1,6 @@
 import { HintText } from "govuk-react";
 import { FONT_SIZE, MEDIA_QUERIES } from "@govuk-react/constants";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 
 const HintTextSmall = styled(HintText)({
   fontSize: FONT_SIZE.SIZE_16,

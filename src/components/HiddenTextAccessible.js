@@ -1,4 +1,4 @@
-import { HiddenText } from "govuk-react";
+import { VisuallyHidden } from "govuk-react";
 import PropTypes from "prop-types";
 import { ContentItem } from "./";
 // import InvisibleLink from "./InvisibleLink";
@@ -10,7 +10,7 @@ import { ContentItem } from "./";
 
 const HiddenTextAccessible = (props) => (
   <ContentItem.B_30_15>
-    <HiddenText mb={0} aria-label="Additional information" {...props}>
+    <VisuallyHidden mb={0} aria-label="Additional information" {...props}>
       {/* <InvisibleLink href={`#skipAdditionalInfo_${props.hiddentextindex}`}>
     Skip this additional information
   </InvisibleLink> */}
@@ -19,7 +19,7 @@ const HiddenTextAccessible = (props) => (
     aria-hidden="true"
     id={`skipAdditionalInfo_${props.hiddentextindex}`}
   /> */}
-    </HiddenText>
+    </VisuallyHidden>
   </ContentItem.B_30_15>
 );
 

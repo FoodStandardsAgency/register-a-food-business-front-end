@@ -1,4 +1,4 @@
-import { css } from "emotion";
+import { css } from "@emotion/core";
 
 const NormalizeCSS = css`
   /* Start FSA-specific normalize options */

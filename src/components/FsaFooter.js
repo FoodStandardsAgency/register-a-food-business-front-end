@@ -1,4 +1,4 @@
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import { asAnchor, ListItem, UnorderedList } from "govuk-react";
 
 const fontSizeNormal = "16px";

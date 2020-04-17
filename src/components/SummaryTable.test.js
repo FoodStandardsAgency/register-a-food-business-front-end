@@ -47,7 +47,7 @@ const editableTableRows = [
   "businessOtherDetailsRow",
   "establishmentOpeningDaysRow",
   "operatorPartnersRow",
-  "mainPartnershipContactRow",
+  "operatorMainPartnerRow",
   "waterSupplyRow",
   "establishmentOpeningHoursRow",
 ];
@@ -55,14 +55,8 @@ const editableTableRows = [
 const optionalTableRows = [
   "operatorCharityNumberRow",
   "operatorPartnersRow",
-  "mainPartnershipContactRow",
+  "operatorMainPartnerRow",
   "establishmentOpeningHoursRow",
-];
-
-const optionalTableRowsForIrregularDays = [
-  "operatorCharityNumberRow",
-  "operatorPartnersRow",
-  "mainPartnershipContactRow",
 ];
 
 const declarationRows = [
@@ -73,10 +67,6 @@ const declarationRows = [
 const feedbackRows = ["feedback1Row"];
 
 const allTableRows = mandatoryTableRows.concat(optionalTableRows);
-
-const allTableRowsForIrregularDays = mandatoryTableRows.concat(
-  optionalTableRowsForIrregularDays
-);
 
 // the complete set of possible mandatory answer fields with example data
 const testMandatoryAnswers = {
@@ -91,7 +81,7 @@ const testMandatoryAnswers = {
   operator_first_name: "John",
   operator_last_name: "Appleseed",
   operator_company_name: "Company name",
-  operator_companies_house_number: "AA123456",
+  operator_company_house_number: "AA123456",
   operator_charity_name: "Charity name",
   customer_type: "End consumer and Other buisnesses",
   import_export_activities: "None",
@@ -106,10 +96,8 @@ const testMandatoryAnswers = {
   establishment_type: "Mobile or moveable premise",
   business_type: "Livestock farm",
   business_other_details: "This is the best business in the world",
-  opening_days_some: "Monday",
   opening_day_monday: "Monday",
   water_supply: "Private",
-  validatorErrors: {},
 };
 
 const testMandatoryAnswersForPartnership = {
@@ -122,7 +110,7 @@ const testMandatoryAnswersForPartnership = {
   operator_first_name: "John",
   operator_last_name: "Appleseed",
   operator_company_name: "Company name",
-  operator_companies_house_number: "AA123456",
+  operator_company_house_number: "AA123456",
   operator_charity_name: "Charity name",
   customer_type: "End consumer and Other buisnesses",
   import_export_activities: "None",
@@ -137,40 +125,8 @@ const testMandatoryAnswersForPartnership = {
   establishment_type: "Mobile or moveable premise",
   business_type: "Livestock farm",
   business_other_details: "This is the best business in the world",
-  opening_days_some: "Monday",
   opening_day_monday: "Monday",
   water_supply: "Private",
-  validatorErrors: {},
-};
-
-const testMandatoryAnswersForIrregularDays = {
-  operator_type: "Sole trader",
-  establishment_address_line_1: "Address line 1",
-  establishment_postcode: "AA11 1AA",
-  operator_address_line_1: "Address line 1",
-  operator_postcode: "AA11 1AA",
-  establishment_trading_name: "Example trading name",
-  operator_first_name: "John",
-  operator_last_name: "Appleseed",
-  operator_company_name: "Company name",
-  operator_companies_house_number: "AA123456",
-  operator_charity_name: "Charity name",
-  customer_type: "End consumer and Other buisnesses",
-  import_export_activities: "None",
-  operator_primary_number: "1234567",
-  operator_email: "operator@email.com",
-  establishment_primary_number: "12345678",
-  establishment_email: "establishment@email.com",
-  contact_representative_email: "representative@email.com",
-  contact_representative_number: "123456789",
-  contact_representative_name: "Jill",
-  establishment_opening_date: "2018-12-06",
-  establishment_type: "Mobile or moveable premise",
-  business_type: "Livestock farm",
-  business_other_details: "This is the best business in the world",
-  opening_days_irregular: "Open on the 29th Feb",
-  water_supply: "Private",
-  validatorErrors: {},
 };
 
 // a supplementary set of all optional answer fields with example data
@@ -204,19 +160,6 @@ const testOptionalAnswers = Object.assign(
   testOptionalMiscAnswers,
   testOptionalAddressAnswers
 );
-
-const testOptionalAnswersForIrregularDays = {
-  establishment_address_line_2: "Street name",
-  establishment_town: "Town",
-  operator_address_line_2: "Street name",
-  operator_town: "Town",
-  contact_representative_role: "Coder",
-  operator_charity_number: "123456",
-  establishment_secondary_number: "7654321",
-  operator_secondary_number: "7654321",
-  partners: ["John", "Doe"],
-  main_partnership_contact: "John",
-};
 
 const testDeclarationAnswers = {
   declaration1: "declaration",
@@ -254,46 +197,23 @@ const testComprehensiveAnswersForPartnership = Object.assign(
   testOptionalAnswers
 );
 
-const testComprehensiveAnswersForIrregularDays = Object.assign(
-  {},
-  testMandatoryAnswersForIrregularDays,
-  testOptionalAnswersForIrregularDays
-);
-
 // the summary table mounted with the complete set of non-optional answers
 const wrapperMinimum = mount(<SummaryTable {...testMandatoryAnswers} />);
 const wrapperMinimumForPartnership = mount(
-  <SummaryTable {...testMandatoryAnswersForPartnership} validatorErrors={{}} />
-);
-const wrapperMinimumForIrregularDays = mount(
-  <SummaryTable
-    {...testMandatoryAnswersForIrregularDays}
-    validatorErrors={{}}
-  />
+  <SummaryTable {...testMandatoryAnswersForPartnership} />
 );
 
 // the summary table mounted with the complete set of possible answers
 const wrapperComprehensive = mount(
-  <SummaryTable {...testComprehensiveAnswers} validatorErrors={{}} />
+  <SummaryTable {...testComprehensiveAnswers} />
 );
 const wrapperComprehensiveForPartnership = mount(
-  <SummaryTable
-    {...testComprehensiveAnswersForPartnership}
-    validatorErrors={{}}
-  />
-);
-
-const wrapperComprehensiveForIrregularDays = mount(
-  <SummaryTable
-    {...testComprehensiveAnswersForIrregularDays}
-    validatorErrors={{}}
-  />
+  <SummaryTable {...testComprehensiveAnswersForPartnership} />
 );
 
 const wrapperApplicationComplete = mount(
   <SummaryTable
     {...testComprehensiveAnswersDeclaration}
-    validatorErrors={{}}
     applicationCompletePage={true}
   />
 );
@@ -301,7 +221,6 @@ const wrapperApplicationComplete = mount(
 const wrapperApplicationCompleteWithFeedback = mount(
   <SummaryTable
     {...testComprehensiveAnswersDeclarationFeedback}
-    validatorErrors={{}}
     applicationCompletePage={true}
   />
 );
@@ -309,7 +228,6 @@ const wrapperApplicationCompleteWithFeedback = mount(
 const wrapperApplicationCompleteForPartnership = mount(
   <SummaryTable
     {...testComprehensiveAnswersForPartnership}
-    validatorErrors={{}}
     applicationCompletePage={true}
   />
 );
@@ -342,11 +260,11 @@ describe("<SummaryTable />", () => {
       describe("when given a props of applicationCompletePage = true", () => {
         it("It doesn't render a change button in all editable rows", () => {
           editableTableRows.forEach((tableRowName) => {
-            const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);
+            const row = wrapperApplicationComplete.find(`tr#${tableRowName}`);
             const buttonId = `change${
               tableRowName.charAt(0).toUpperCase() + tableRowName.substr(1)
             }`;
-            const button = row.find(`Anchor#${buttonId}`);
+            const button = row.find(`a#${buttonId}`);
 
             expect(button.length).toBe(0);
           });
@@ -355,70 +273,23 @@ describe("<SummaryTable />", () => {
 
       it("renders a change button in all editable rows", () => {
         editableTableRows.forEach((tableRowName) => {
-          const row = wrapperComprehensive.find(`Row#${tableRowName}`);
+          const row = wrapperComprehensive.find(`tr#${tableRowName}`);
           const buttonId = `change${
             tableRowName.charAt(0).toUpperCase() + tableRowName.substr(1)
           }`;
-          const button = row.find(`Anchor#${buttonId}`);
+          const button = row.find(`a#${buttonId}`);
           expect(button.length).toBe(1);
         });
       });
 
       it("renders all table rows", () => {
         allTableRows.forEach((tableRowName) => {
-          const row = wrapperComprehensive.find(`Row#${tableRowName}`);
+          const row = wrapperComprehensive.find(`tr#${tableRowName}`);
           expect(row.length).toBe(1);
-        });
-      });
-
-      describe("when opening days are irregular", () => {
-        it("the number of table rows matches the allTableRows array minus the establishment opening hours row", () => {
-          const rows = wrapperComprehensiveForIrregularDays.find(
-            "AccessibleRowHeader"
-          );
-
-          expect(rows.length).toEqual(allTableRowsForIrregularDays.length);
-        });
-
-        describe("when given a props of applicationCompletePage = true", () => {
-          it("It doesn't render a change button in all editable rows", () => {
-            editableTableRows.forEach((tableRowName) => {
-              const row = wrapperApplicationComplete.find(
-                `Row#${tableRowName}`
-              );
-              const buttonId = `change${
-                tableRowName.charAt(0).toUpperCase() + tableRowName.substr(1)
-              }`;
-              const button = row.find(`Anchor#${buttonId}`);
-
-              expect(button.length).toBe(0);
-            });
-          });
-        });
-
-        it("renders a change button in all editable rows", () => {
-          editableTableRows.forEach((tableRowName) => {
-            const row = wrapperComprehensive.find(`Row#${tableRowName}`);
-            const buttonId = `change${
-              tableRowName.charAt(0).toUpperCase() + tableRowName.substr(1)
-            }`;
-            const button = row.find(`Anchor#${buttonId}`);
-            expect(button.length).toBe(1);
-          });
-        });
-
-        it("renders all table rows", () => {
-          allTableRowsForIrregularDays.forEach((tableRowName) => {
-            const row = wrapperComprehensiveForIrregularDays.find(
-              `Row#${tableRowName}`
-            );
-            expect(row.length).toBe(1);
-          });
         });
       });
     });
   });
-
   describe("when registation role is partnership", () => {
     describe("when given a comprehensive set of answers", () => {
       it("the number of table rows matches the allTableRows array", () => {
@@ -433,12 +304,12 @@ describe("<SummaryTable />", () => {
         it("It doesn't render a change button in all editable rows", () => {
           editableTableRows.forEach((tableRowName) => {
             const row = wrapperApplicationCompleteForPartnership.find(
-              `Row#${tableRowName}`
+              `tr#${tableRowName}`
             );
             const buttonId = `change${
               tableRowName.charAt(0).toUpperCase() + tableRowName.substr(1)
             }`;
-            const button = row.find(`Anchor#${buttonId}`);
+            const button = row.find(`a#${buttonId}`);
 
             expect(button.length).toBe(0);
           });
@@ -448,21 +319,19 @@ describe("<SummaryTable />", () => {
       it("renders a change button in all editable rows", () => {
         editableTableRows.forEach((tableRowName) => {
           const row = wrapperComprehensiveForPartnership.find(
-            `Row#${tableRowName}`
+            `tr#${tableRowName}`
           );
           const buttonId = `change${
             tableRowName.charAt(0).toUpperCase() + tableRowName.substr(1)
           }`;
-          const button = row.find(`Anchor#${buttonId}`);
+          const button = row.find(`a#${buttonId}`);
           expect(button.length).toBe(1);
         });
       });
 
       it("renders all table rows", () => {
         allTableRows.forEach((tableRowName) => {
-          const row = wrapperComprehensiveForPartnership.find(
-            `Row#${tableRowName}`
-          );
+          const row = wrapperComprehensive.find(`tr#${tableRowName}`);
           expect(row.length).toBe(1);
         });
       });
@@ -471,20 +340,20 @@ describe("<SummaryTable />", () => {
   describe("when applicationCompletePage equals true", () => {
     it("renders the declaration table rows", () => {
       declarationRows.forEach((tableRowName) => {
-        const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);
+        const row = wrapperApplicationComplete.find(`tr#${tableRowName}`);
         expect(row.length).toBe(1);
       });
     });
     it("doesn't render the feedback table row", () => {
       feedbackRows.forEach((tableRowName) => {
-        const row = wrapperApplicationComplete.find(`Row#${tableRowName}`);
+        const row = wrapperApplicationComplete.find(`tr#${tableRowName}`);
         expect(row.length).toBe(0);
       });
     });
     it("does render the feedback table row when specified", () => {
       feedbackRows.forEach((tableRowName) => {
         const row = wrapperApplicationCompleteWithFeedback.find(
-          `Row#${tableRowName}`
+          `tr#${tableRowName}`
         );
         expect(row.length).toBe(1);
       });
@@ -494,7 +363,7 @@ describe("<SummaryTable />", () => {
     describe("when given a minimum set of answers", () => {
       it("renders all mandatory table rows", () => {
         mandatoryTableRows.forEach((tableRowName) => {
-          const row = wrapperMinimum.find(`Row#${tableRowName}`);
+          const row = wrapperMinimum.find(`tr#${tableRowName}`);
           expect(row.length).toBe(1);
         });
       });
@@ -507,32 +376,13 @@ describe("<SummaryTable />", () => {
           }
         }
       });
-      describe("when opening days are irregular", () => {
-        it("renders all mandatory table rows", () => {
-          mandatoryTableRows.forEach((tableRowName) => {
-            const row = wrapperMinimumForIrregularDays.find(
-              `Row#${tableRowName}`
-            );
-            expect(row.length).toBe(1);
-          });
-        });
-
-        it("contains empty strings or does not find the element for every optional answer", () => {
-          for (let answerID in testOptionalAnswersForIrregularDays) {
-            const element = wrapperMinimumForIrregularDays.find(`#${answerID}`);
-            if (element.length !== 0) {
-              expect(element.text()).toBe("");
-            }
-          }
-        });
-      });
     });
   });
   describe("when the registration role is partnership", () => {
     describe("when given a minimum set of answers", () => {
       it("renders all mandatory table rows", () => {
         mandatoryTableRows.forEach((tableRowName) => {
-          const row = wrapperMinimumForPartnership.find(`Row#${tableRowName}`);
+          const row = wrapperMinimumForPartnership.find(`tr#${tableRowName}`);
           expect(row.length).toBe(1);
         });
       });

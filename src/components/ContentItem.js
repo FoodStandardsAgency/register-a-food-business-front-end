@@ -1,5 +1,5 @@
 import { BREAKPOINTS } from "@govuk-react/constants";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 
 const ContentItem = {};
 

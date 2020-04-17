@@ -1,4 +1,4 @@
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import { Paragraph, Button, asAnchor } from "govuk-react";
 
 const fontSize = "16px";

@@ -1,4 +1,6 @@
 import BusinessTypeLookup from "../components/BusinessTypeLookup";
+import DataListSection from "../components/DataListSection";
+import SelectListSection from "../components/SelectListSection";
 import { Paragraph } from "govuk-react";
 import { SelectInput } from "@govuk-react/select";
 import { shallow, mount } from "enzyme";
@@ -47,10 +49,8 @@ describe("<BusinessTypeLookup />", () => {
   });
   describe("given JavaScript is disabled", () => {
     describe("when browser is not Safari", () => {
-      let wrapper;
-
-      beforeEach(() => {
-        wrapper = mount(
+      it("renders DataListSection", () => {
+        const wrapper = mount(
           <BusinessTypeLookup
             validatorErrors
             cumulativeFullAnswers
@@ -59,46 +59,33 @@ describe("<BusinessTypeLookup />", () => {
         );
         wrapper.setState({ renderAutoCompleteSection: false });
         wrapper.update();
+        expect(wrapper.find(DataListSection)).toHaveLength(1);
       });
-      it("should render Paragraph with appropriate text", () => {
-        expect(wrapper.find(Paragraph).text()).toEqual(
-          "Search and select the most fitting business type from the suggestions"
-        );
-      });
-      it("should render Datalist component", () => {
-        expect(wrapper.exists("datalist#business-types")).toBe(true);
-      });
-    });
-    describe("when browser is not Safari and there are validation errors", () => {
-      let wrapper;
+      describe("when DataListSection renders", () => {
+        let wrapper;
 
-      beforeEach(() => {
-        const validationError = { business_type: "invalid business type" };
-
-        wrapper = mount(
-          <BusinessTypeLookup
-            validatorErrors={validationError}
-            cumulativeFullAnswers
-            browser="Chrome"
-          />
-        );
-        wrapper.setState({ renderAutoCompleteSection: false });
-        wrapper.update();
-      });
-      it("should render Paragraph with appropriate text", () => {
-        expect(wrapper.find(Paragraph).text()).toEqual(
-          "Search and select the most fitting business type from the suggestions"
-        );
-      });
-      it("should render Datalist component", () => {
-        expect(wrapper.exists("datalist#business-types")).toBe(true);
+        beforeEach(() => {
+          wrapper = mount(
+            <DataListSection
+              validatorErrors
+              cumulativeFullAnswers
+              browser="Chrome"
+            />
+          );
+        });
+        it("should render Paragraph with appropriate text", () => {
+          expect(wrapper.find(Paragraph).text()).toEqual(
+            "Search and select the most fitting business type from the suggestions"
+          );
+        });
+        it("should render DataList component", () => {
+          expect(wrapper.exists("datalist#business-types")).toBe(true);
+        });
       });
     });
     describe("when browser is Safari", () => {
-      let wrapper;
-
-      beforeEach(() => {
-        wrapper = mount(
+      it("renders SelectListSection", () => {
+        const wrapper = mount(
           <BusinessTypeLookup
             validatorErrors
             cumulativeFullAnswers
@@ -107,45 +94,28 @@ describe("<BusinessTypeLookup />", () => {
         );
         wrapper.setState({ renderAutoCompleteSection: false });
         wrapper.update();
+        expect(wrapper.find(SelectListSection)).toHaveLength(1);
       });
-      it("should render Paragraph with appropriate text", () => {
-        expect(wrapper.find(Paragraph).text()).toEqual(
-          "Select the most fitting business type from the suggestions"
-        );
-      });
-      it("should render SelectInput component", () => {
-        expect(wrapper.find(SelectInput).prop("name")).toBe("business_type");
-      });
-      it("should not set autocompleteErrorStyling", () => {
-        expect(wrapper.find(SelectInput).prop("className")).toBe(null);
-      });
-    });
-    describe("when browser is Safari and there are validation errors", () => {
-      let wrapper;
+      describe("when SelectList component renders", () => {
+        let wrapper;
 
-      beforeEach(() => {
-        const validationError = { business_type: "invalid business type" };
-
-        wrapper = mount(
-          <BusinessTypeLookup
-            validatorErrors={validationError}
-            cumulativeFullAnswers
-            browser="Safari"
-          />
-        );
-        wrapper.setState({ renderAutoCompleteSection: false });
-        wrapper.update();
-      });
-      it("should render Paragraph with appropriate text", () => {
-        expect(wrapper.find(Paragraph).text()).toEqual(
-          "Select the most fitting business type from the suggestions"
-        );
-      });
-      it("should render SelectInput component", () => {
-        expect(wrapper.find(SelectInput).prop("name")).toBe("business_type");
-      });
-      it("should set autocompleteErrorStyling", () => {
-        expect(wrapper.find(SelectInput).prop("className")).not.toBe(null);
+        beforeEach(() => {
+          wrapper = mount(
+            <SelectListSection
+              validatorErrors
+              cumulativeFullAnswers
+              browser="Safari"
+            />
+          );
+        });
+        it("should render Paragraph with appropriate text", () => {
+          expect(wrapper.find(Paragraph).text()).toEqual(
+            "Select the most fitting business type from the suggestions"
+          );
+        });
+        it("should render SelectInput component", () => {
+          expect(wrapper.find(SelectInput).prop("name")).toBe("business_type");
+        });
       });
     });
   });

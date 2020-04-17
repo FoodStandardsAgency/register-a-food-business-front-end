@@ -7,7 +7,7 @@
 
 import Document, { Head, Main, NextScript } from "next/document";
 import { extractCritical } from "emotion-server";
-import { hydrate, injectGlobal } from "react-emotion";
+import { hydrate, Global, css } from "@emotion/core";
 import NormalizeCSS from "../src/components/NormalizeCSS";
 import AccessibleAutocompleteCSS from "../src/components/AccessibleAutocompleteCSS";
 
@@ -16,11 +16,6 @@ import AccessibleAutocompleteCSS from "../src/components/AccessibleAutocompleteC
 if (typeof window !== "undefined" && typeof __NEXT_DATA__ !== "undefined") {
   hydrate(window.__NEXT_DATA__.ids);
 }
-
-injectGlobal`
-  ${AccessibleAutocompleteCSS};
-  ${NormalizeCSS};
-`;
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage, req }) {
@@ -43,6 +38,11 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
+          <Global
+            styles={css`
+              ${AccessibleAutocompleteCSS} ${NormalizeCSS};
+            `}
+          />
           {/* Start Google Tag Manager */}
           {this.props.cookies.acceptAllCookies === "false" ? null : (
             <script

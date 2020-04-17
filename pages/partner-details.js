@@ -7,7 +7,7 @@ import {
   OnHandleErrorClick,
 } from "../src/components";
 import { Button, Header, InputField } from "govuk-react";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 
 const StyledRow = styled.div`

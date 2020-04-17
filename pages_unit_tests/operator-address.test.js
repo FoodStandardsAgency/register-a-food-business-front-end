@@ -34,7 +34,9 @@ describe("<OperatorAddress />", () => {
 
     it("renders correct header", () => {
       const header = wrapper.find(Header);
-      expect(header.at(1).props().children).toBe(
+
+      console.log(header.find("h1").debug());
+      expect(header.props().children).toBe(
         "What is the partnership contact's address?"
       );
     });
@@ -48,7 +50,7 @@ describe("<OperatorAddress />", () => {
 
     it("renders correct hidden text", () => {
       const hiddenText = wrapper.find(Paragraph);
-      expect(hiddenText.at(0).props().children).toBe(
+      expect(hiddenText.at(1).props().children).toBe(
         "In a partnership, you and your partner (or partners) personally share responsibility for your food business"
       );
     });

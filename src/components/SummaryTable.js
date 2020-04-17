@@ -1,9 +1,9 @@
 import React from "react";
-import { Table, asAnchor } from "govuk-react";
+import { Table, Link } from "govuk-react";
 import PropTypes from "prop-types";
 import * as COLOUR from "govuk-colours";
 import moment from "moment";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import ContentItem from "./ContentItem";
 
 import {
@@ -38,7 +38,7 @@ const GridRow = styled(Table.Row)`
 `;
 
 const FsaStyledTable = styled(Table)`
-  tr:nth-child(2) {
+  tr:nth-of-type(2) {
     border-top: 1px solid #bfc1c3;
     margin-top: 12px;
   }
@@ -65,14 +65,6 @@ const AccessibleRowHeader = (props) => (
     {props.children}
   </Table.CellHeader>
 );
-
-const applyRowHeaderStyling = (error) => {
-  return error
-    ? {
-        style: { color: "#b10e1e" },
-      }
-    : null;
-};
 
 const AccessibleCell = (props) => (
   <TableCellBold role="cell" className="summaryTableDataCell" {...props}>
@@ -111,193 +103,143 @@ const ColumnHeaders = () => (
   </InvisibleRow>
 );
 
-const AnchorTag = asAnchor("a");
-
-const determineLinkText = (property) => {
-  return property ? "Change" : "Enter answer";
-};
-
 const OperatorDetailsTable = (props) => (
   <React.Fragment>
     <ColumnHeaders />
-    {props.operator_type || props.validatorErrors["operator_type"] ? (
+    {props.operator_type ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorTypeRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(props.validatorErrors["operator_type"])}
-        >
-          Operator type
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Operator type</AccessibleRowHeader>
         <AccessibleCell id="operator_type">
           {props.operator_type}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeOperatorTypeRow"
               href="/edit/registration-role"
               aria-label="Change operator type"
             >
-              {determineLinkText(props.operator_type)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.operator_company_name ||
-    props.validatorErrors["operator_company_name"] ? (
+    {props.operator_company_name ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorCompanyNameRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["operator_company_name"]
-          )}
-        >
-          Company name
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Company name</AccessibleRowHeader>
         <AccessibleCell id="operator_company_name">
           {props.operator_company_name}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeOperatorCompanyNameRow"
               href="/edit/operator-company-details"
               aria-label="Change operator company name"
             >
-              {determineLinkText(props.operator_company_name)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.operator_companies_house_number ||
-    props.validatorErrors["operator_companies_house_number"] ? (
+    {props.operator_company_house_number ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorCompaniesHouseRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["operator_companies_house_number"]
-          )}
-        >
-          Companies House number
-        </AccessibleRowHeader>
-        <AccessibleCell id="operator_companies_house_number">
-          {props.operator_companies_house_number}
+        <AccessibleRowHeader>Company number</AccessibleRowHeader>
+        <AccessibleCell id="operator_company_house_number">
+          {props.operator_company_house_number}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeOperatorCompaniesHouseRow"
               href="/edit/operator-company-details"
               aria-label="Change operator companies house"
             >
-              {determineLinkText(props.operator_companies_house_number)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.operator_charity_name ||
-    props.validatorErrors["operator_charity_name"] ? (
+    {props.operator_charity_name ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorCharityNameRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["operator_charity_name"]
-          )}
-        >
-          Charity name
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Charity name</AccessibleRowHeader>
         <AccessibleCell id="operator_charity_name">
           {props.operator_charity_name}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeOperatorCharityNameRow"
               href="/edit/operator-charity-details"
               aria-label="Change operator charity name"
             >
-              {determineLinkText(props.operator_charity_name)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.operator_charity_number ||
-    props.validatorErrors["operator_charity_number"] ? (
+    {props.operator_charity_number ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorCharityNumberRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["operator_charity_number"]
-          )}
-        >
-          Charity number
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Charity number</AccessibleRowHeader>
         <AccessibleCell id="operator_charity_number">
           {props.operator_charity_number}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeOperatorCharityNumberRow"
               href="/edit/operator-charity-details"
               aria-label="Change operator charity number"
             >
-              {determineLinkText(props.operator_charity_number)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.operator_first_name ||
-    props.operator_last_name ||
-    props.validatorErrors["operator_first_name"] ||
-    props.validatorErrors["operator_last_name"] ? (
+    {props.operator_first_name ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorNameRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["operator_first_name"] ||
-              props.validatorErrors["operator_last_name"]
-          )}
-        >
-          Name
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Name</AccessibleRowHeader>
         <AccessibleCell>
           <span id="operator_first_name">{props.operator_first_name}</span>{" "}
           <span id="operator_last_name">{props.operator_last_name}</span>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeOperatorNameRow"
               href="/edit/operator-name"
               aria-label="Change operator name"
             >
-              {determineLinkText(
-                props.operator_first_name && props.operator_last_name
-              )}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
@@ -308,15 +250,7 @@ const OperatorDetailsTable = (props) => (
         acPage={props.applicationCompletePage}
         id="operatorAddressRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["operator_first_line"] ||
-              props.validatorErrors["operator_street"] ||
-              props.validatorErrors["operator_town"] ||
-              props.validatorErrors["operator_postcode"] ||
-              props.validatorErrors["operator_postcode_find"]
-          )}
-        >
+        <AccessibleRowHeader>
           {props.operator_type === "Partnership"
             ? "Partnership contact address"
             : "Operator address"}
@@ -342,21 +276,12 @@ const OperatorDetailsTable = (props) => (
       </AccessibleTableRow>
     ) : null}
 
-    {props.operator_primary_number ||
-    props.validatorErrors["operator_primary_number"] ||
-    props.validatorErrors["operator_secondary_number"] ? (
+    {props.operator_primary_number ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorContactDetailsRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["operator_primary_number"] ||
-              props.validatorErrors["operator_secondary_number"]
-          )}
-        >
-          Phone number
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Phone number</AccessibleRowHeader>
         <AccessibleCell>
           <div id="operator_primary_number">
             {props.operator_primary_number}
@@ -367,70 +292,64 @@ const OperatorDetailsTable = (props) => (
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeOperatorContactDetailsRow"
               href="/edit/operator-contact-details"
               aria-label="Change operator contact details"
             >
-              {determineLinkText(props.operator_primary_number)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.operator_email || props.validatorErrors["operator_email"] ? (
+    {props.operator_email ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorEmailRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(props.validatorErrors["operator_email"])}
-        >
-          Email address
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Email address</AccessibleRowHeader>
         <AccessibleCell id="operator_email">
           {props.operator_email}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeOperatorEmailRow"
               href="/edit/operator-contact-details"
               aria-label="Change operator email"
             >
-              {determineLinkText(props.operator_email)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.partners || props.validatorErrors["partners"] ? (
+    {props.partners ? (
       <React.Fragment>
         <AccessibleTableRow
           acPage={props.applicationCompletePage}
-          id="mainPartnershipContactRow"
+          id="operatorMainPartnerRow"
         >
-          <AccessibleRowHeader
-            {...applyRowHeaderStyling(
-              props.validatorErrors["main_partnership_contact"]
-            )}
-          >
-            Main partnership contact
-          </AccessibleRowHeader>
-          <AccessibleCell id="main_partnership_contact">
-            {props.main_partnership_contact}
+          <AccessibleRowHeader>Main partnership contact</AccessibleRowHeader>
+          <AccessibleCell>
+            <div>
+              <div id="main_partnership_contact">
+                {props.main_partnership_contact}
+              </div>
+            </div>
           </AccessibleCell>
           {props.applicationCompletePage ? null : (
             <AccessibleChangeCell>
-              <AnchorTag
-                id="changeMainPartnershipContactRow"
+              <Link
+                id="changeOperatorMainPartnerRow"
                 href="/edit/main-partnership-contact"
                 aria-label="Change main partnership contact"
               >
                 Change
-              </AnchorTag>
+              </Link>
             </AccessibleChangeCell>
           )}
         </AccessibleTableRow>
@@ -438,53 +357,35 @@ const OperatorDetailsTable = (props) => (
           acPage={props.applicationCompletePage}
           id="operatorPartnersRow"
         >
-          <AccessibleRowHeader
-            {...applyRowHeaderStyling(props.validatorErrors["partners"])}
-          >
-            Partners
-          </AccessibleRowHeader>
-          <AccessibleCell id="partners">
-            {props.partners.map((partner, index) => {
-              return <div key={`partner_${index}`}>{partner}</div>;
-            })}
+          <AccessibleRowHeader>Partners</AccessibleRowHeader>
+          <AccessibleCell>
+            <div>
+              {props.partners.map((partner, index) => {
+                return <div key={`partner_${index}`}>{partner}</div>;
+              })}
+            </div>
           </AccessibleCell>
           {props.applicationCompletePage ? null : (
             <AccessibleChangeCell>
-              <AnchorTag
+              <Link
                 id="changeOperatorPartnersRow"
                 href="/edit/partner-name"
                 aria-label="Change partner details"
               >
                 Change
-              </AnchorTag>
+              </Link>
             </AccessibleChangeCell>
           )}
         </AccessibleTableRow>
       </React.Fragment>
     ) : null}
 
-    {props.contact_representative_name ||
-    props.contact_representative_role ||
-    props.contact_representative_number ||
-    props.contact_representative_email ||
-    props.validatorErrors["contact_representative_name"] ||
-    props.validatorErrors["contact_representative_role"] ||
-    props.validatorErrors["contact_representative_number"] ||
-    props.validatorErrors["contact_representative_email"] ? (
+    {props.contact_representative_email ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="contactRepresentativeRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["contact_representative_name"] ||
-              props.validatorErrors["contact_representative_role"] ||
-              props.validatorErrors["contact_representative_number"] ||
-              props.validatorErrors["contact_representative_email"]
-          )}
-        >
-          Designated contact
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Designated contact</AccessibleRowHeader>
         <AccessibleCell>
           <StyledTableRow>
             <div id="contact_representative_name">
@@ -507,13 +408,13 @@ const OperatorDetailsTable = (props) => (
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeContactRepresentativeRow"
               href="/edit/contact-representative"
               aria-label="Change contact representative"
             >
-              {determineLinkText(props.contact_representative_name)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
@@ -524,31 +425,24 @@ const OperatorDetailsTable = (props) => (
 const EstablishmentDetailsTable = (props) => (
   <React.Fragment>
     <ColumnHeaders />
-    {props.establishment_trading_name ||
-    props.validatorErrors["establishment_trading_name"] ? (
+    {props.establishment_trading_name ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="establishmentTradingNameRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["establishment_trading_name"]
-          )}
-        >
-          Trading name
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Trading name</AccessibleRowHeader>
         <AccessibleCell id="establishment_trading_name">
           {props.establishment_trading_name}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeEstablishmentTradingNameRow"
               href="/edit/establishment-trading-name"
               aria-label="Change establishment trading name"
             >
-              {determineLinkText(props.establishment_trading_name)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
@@ -559,17 +453,7 @@ const EstablishmentDetailsTable = (props) => (
         acPage={props.applicationCompletePage}
         id="establishmentAddressRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["establishment_first_line"] ||
-              props.validatorErrors["establishment_street"] ||
-              props.validatorErrors["establishment_town"] ||
-              props.validatorErrors["establishment_postcode"] ||
-              props.validatorErrors["establishment_postcode_find"]
-          )}
-        >
-          Establishment address
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Establishment address</AccessibleRowHeader>
         <AccessibleCell>
           <div id="establishment_address_line_1">
             {props.establishment_address_line_1}
@@ -585,58 +469,43 @@ const EstablishmentDetailsTable = (props) => (
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleCell>
-            <AnchorTag>
+            <Link>
               <div />
-            </AnchorTag>
+            </Link>
           </AccessibleCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.establishment_type || props.validatorErrors["establishment_type"] ? (
+    {props.establishment_type ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="establishmentAddressTypeRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["establishment_type"]
-          )}
-        >
-          Address type
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Address type</AccessibleRowHeader>
         <AccessibleCell id="establishment_type">
           {props.establishment_type}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeEstablishmentAddressTypeRow"
               href="/edit/establishment-address-type"
               aria-label="Change establishment address type"
             >
-              {determineLinkText(props.establishment_type)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.establishment_primary_number ||
-    props.validatorErrors["establishment_primary_number"] ||
-    props.validatorErrors["establishment_secondary_number"] ? (
+    {props.establishment_primary_number ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="establishmentContactDetailsRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["establishment_primary_number"] ||
-              props.validatorErrors["establishment_secondary_number"]
-          )}
-        >
-          Phone number
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Phone number</AccessibleRowHeader>
         <AccessibleCell>
           <div id="establishment_primary_number">
             {props.establishment_primary_number}
@@ -647,251 +516,168 @@ const EstablishmentDetailsTable = (props) => (
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeEstablishmentContactDetailsRow"
               href="/edit/establishment-contact-details"
               aria-label="Change establishment contact details"
             >
-              {determineLinkText(props.establishment_primary_number)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.establishment_email ||
-    props.validatorErrors["establishment_email"] ? (
+    {props.establishment_email ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="establishmentEmailRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["establishment_email"]
-          )}
-        >
-          Email address
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Email address</AccessibleRowHeader>
         <AccessibleCell id="establishment_email">
           {props.establishment_email}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeEstablishmentEmailRow"
               href="/edit/establishment-contact-details"
               aria-label="Change establishment email"
             >
-              {determineLinkText(props.establishment_email)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.establishment_opening_date ||
-    props.validatorErrors["establishment_opening_status"] ||
-    props.validatorErrors["establishment_opening_date"] ? (
+    {props.establishment_opening_date ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="establishmentOpeningDateRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["establishment_opening_status"] ||
-              props.validatorErrors["establishment_opening_date"]
-          )}
-        >
-          Trading date
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Trading date</AccessibleRowHeader>
         <AccessibleCell id="establishment_opening_date">
-          {props.establishment_opening_date
-            ? moment(props.establishment_opening_date).format("DD MMM YYYY")
-            : ""}
+          {moment(props.establishment_opening_date).format("DD MMM YYYY")}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeEstablishmentOpeningDateRow"
               href="/edit/establishment-opening-status"
               aria-label="Change establishment opening date"
             >
-              {determineLinkText(
-                moment(props.establishment_opening_date).format(
-                  "DD MMM YYYY"
-                ) !== "Invalid date" && props.establishment_opening_date
-              )}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.opening_days_start ||
-    props.opening_days_some ||
-    props.opening_days_irregular ||
-    props.validatorErrors["opening_days_start"] ||
-    props.validatorErrors["opening_days_some"] ||
-    props.validatorErrors["opening_days_irregular"] ? (
-      <AccessibleTableRow
-        acPage={props.applicationCompletePage}
-        id="establishmentOpeningDaysRow"
-      >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["opening_days_start"] ||
-              props.validatorErrors["opening_days_irregular"] ||
-              props.validatorErrors["opening_days_some"]
-          )}
-        >
-          Opening days
-        </AccessibleRowHeader>
-        <AccessibleCell
-          id={`${
-            props.validatorErrors["opening_days_start"]
-              ? "opening_days_start"
-              : props.validatorErrors["opening_days_irregular"]
-              ? "opening_days_irregular"
-              : "opening_days_some"
-          }`}
-        >
-          {props.opening_days_irregular || props.open_some_days_summary_table || (
-            <div>
-              <div id="opening_day_monday">{props.opening_day_monday}</div>
-              <div id="opening_day_tuesday">{props.opening_day_tuesday}</div>
-              <div id="opening_day_wednesday">
-                {props.opening_day_wednesday}
-              </div>
-              <div id="opening_day_thursday">{props.opening_day_thursday}</div>
-              <div id="opening_day_friday">{props.opening_day_friday}</div>
-              <div id="opening_day_saturday">{props.opening_day_saturday}</div>
-              <div id="opening_day_sunday">{props.opening_day_sunday}</div>
-            </div>
-          )}
-        </AccessibleCell>
-        {props.applicationCompletePage ? null : (
-          <AccessibleChangeCell>
-            <AnchorTag
-              id="changeEstablishmentOpeningDaysRow"
-              href="/edit/opening-days-start"
-              aria-label="Change establishment opening days"
-            >
-              {determineLinkText(
-                props.opening_days_irregular ||
-                  props.open_some_days_summary_table ||
-                  props.opening_day_monday ||
-                  props.opening_day_tuesday ||
-                  props.opening_day_wednesday ||
-                  props.opening_day_thursday ||
-                  props.opening_day_friday ||
-                  props.opening_day_saturday ||
-                  props.opening_day_sunday
-              )}
-            </AnchorTag>
-          </AccessibleChangeCell>
+    <AccessibleTableRow
+      acPage={props.applicationCompletePage}
+      id="establishmentOpeningDaysRow"
+    >
+      <AccessibleRowHeader>Opening days</AccessibleRowHeader>
+      <AccessibleCell>
+        {props.opening_days_irregular || props.open_some_days_summary_table || (
+          <div>
+            <div id="opening_day_monday">{props.opening_day_monday}</div>
+            <div id="opening_day_tuesday">{props.opening_day_tuesday}</div>
+            <div id="opening_day_wednesday">{props.opening_day_wednesday}</div>
+            <div id="opening_day_thursday">{props.opening_day_thursday}</div>
+            <div id="opening_day_friday">{props.opening_day_friday}</div>
+            <div id="opening_day_saturday">{props.opening_day_saturday}</div>
+            <div id="opening_day_sunday">{props.opening_day_sunday}</div>
+          </div>
         )}
-      </AccessibleTableRow>
-    ) : null}
-    {(props.opening_days_start &&
-      props.opening_days_start !== "Irregular days") ||
-    props.opening_days_some ||
-    props.validatorErrors["opening_hours_monday"] ||
-    props.validatorErrors["opening_hours_tuesday"] ||
-    props.validatorErrors["opening_hours_wednesday"] ||
-    props.validatorErrors["opening_hours_thursday"] ||
-    props.validatorErrors["opening_hours_friday"] ||
-    props.validatorErrors["opening_hours_saturday"] ||
-    props.validatorErrors["opening_hours_sunday"] ? (
+      </AccessibleCell>
+      {props.applicationCompletePage ? null : (
+        <AccessibleChangeCell>
+          <Link
+            id="changeEstablishmentOpeningDaysRow"
+            href="/edit/opening-days-start"
+            aria-label="Change establishment opening days"
+          >
+            Change
+          </Link>
+        </AccessibleChangeCell>
+      )}
+    </AccessibleTableRow>
+    {!props.opening_days_irregular ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="establishmentOpeningHoursRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["opening_hours_monday"] ||
-              props.validatorErrors["opening_hours_tuesday"] ||
-              props.validatorErrors["opening_hours_wednesday"] ||
-              props.validatorErrors["opening_hours_thursday"] ||
-              props.validatorErrors["opening_hours_friday"] ||
-              props.validatorErrors["opening_hours_saturday"] ||
-              props.validatorErrors["opening_hours_sunday"]
-          )}
-        >
-          Opening hours
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Opening hours</AccessibleRowHeader>
         <AccessibleCell>
           <div>
-            <div id="opening_hours_monday">
-              {props.opening_hours_monday &&
-                `Monday: ${props.opening_hours_monday}`}
-            </div>
-            <div id="opening_hours_tuesday">
-              {props.opening_hours_tuesday &&
-                `Tuesday: ${props.opening_hours_tuesday}`}
-            </div>
-            <div id="opening_hours_wednesday">
-              {props.opening_hours_wednesday &&
-                `Wednesday: ${props.opening_hours_wednesday}`}
-            </div>
-            <div id="opening_hours_thursday">
-              {props.opening_hours_thursday &&
-                `Thursday: ${props.opening_hours_thursday}`}
-            </div>
-            <div id="opening_hours_friday">
-              {props.opening_hours_friday &&
-                `Friday: ${props.opening_hours_friday}`}
-            </div>
-            <div id="opening_hours_saturday">
-              {props.opening_hours_saturday &&
-                `Saturday: ${props.opening_hours_saturday}`}
-            </div>
-            <div id="opening_hours_sunday">
-              {props.opening_hours_sunday &&
-                `Sunday: ${props.opening_hours_sunday}`}
-            </div>
+            {props.opening_hours_monday ? (
+              <div id="opening_hours_monday">
+                Monday: {props.opening_hours_monday}
+              </div>
+            ) : null}
+            {props.opening_hours_tuesday ? (
+              <div id="opening_hours_tuesday">
+                Tuesday: {props.opening_hours_tuesday}
+              </div>
+            ) : null}
+            {props.opening_hours_wednesday ? (
+              <div id="opening_hours_wednesday">
+                Wednesday: {props.opening_hours_wednesday}
+              </div>
+            ) : null}
+            {props.opening_hours_thursday ? (
+              <div id="opening_hours_thursday">
+                Thursday: {props.opening_hours_thursday}
+              </div>
+            ) : null}
+            {props.opening_hours_friday ? (
+              <div id="opening_hours_friday">
+                Friday: {props.opening_hours_friday}
+              </div>
+            ) : null}
+            {props.opening_hours_saturday ? (
+              <div id="opening_hours_saturday">
+                Saturday: {props.opening_hours_saturday}
+              </div>
+            ) : null}
+            {props.opening_hours_sunday ? (
+              <div id="opening_hours_sunday">
+                Sunday: {props.opening_hours_sunday}
+              </div>
+            ) : null}
           </div>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeEstablishmentOpeningHoursRow"
               href="/edit/opening-hours"
               aria-label="Change establishment opening hours"
             >
-              {determineLinkText(
-                props.opening_hours_monday ||
-                  props.opening_hours_tuesday ||
-                  props.opening_hours_wednesday ||
-                  props.opening_hours_thursday ||
-                  props.opening_hours_friday ||
-                  props.opening_hours_saturday ||
-                  props.opening_hours_sunday
-              )}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
-    {props.water_supply || props.validatorErrors["water_supply"] ? (
+    {props.water_supply ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="waterSupplyRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(props.validatorErrors["water_supply"])}
-        >
-          Water supply
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Water supply</AccessibleRowHeader>
         <AccessibleCell id="water_supply">{props.water_supply}</AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeWaterSupplyRow"
               href="/edit/business-water-supply"
               aria-label="Change water supply"
             >
-              {determineLinkText(props.water_supply)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
@@ -902,115 +688,93 @@ const EstablishmentDetailsTable = (props) => (
 const FoodActivitiesTable = (props) => (
   <React.Fragment>
     <ColumnHeaders />
-    {props.customer_type || props.validatorErrors["customer_type"] ? (
+    {props.customer_type ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="activitiesCustomersRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(props.validatorErrors["customer_type"])}
-        >
-          Customers
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Customers</AccessibleRowHeader>
         <AccessibleCell id="customer_type">
           {props.customer_type}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeActivitiesCustomersRow"
               href="/edit/customer-type"
               aria-label="Change activities customer type"
             >
-              {determineLinkText(props.customer_type)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.business_type || props.validatorErrors["business_type"] ? (
+    {props.business_type ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="businessTypeRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(props.validatorErrors["business_type"])}
-        >
-          Business type
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Business type</AccessibleRowHeader>
         <AccessibleCell id="business_type">
           {props.business_type}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeBusinessTypeRow"
               href="/edit/business-type"
               aria-label="Change business type"
             >
-              {determineLinkText(props.business_type)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.import_export_activities ||
-    props.validatorErrors["import_export_activities"] ? (
+    {props.import_export_activities ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="activitiesBusinessImportExportRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["import_export_activities"]
-          )}
-        >
-          Import and export
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Import and export</AccessibleRowHeader>
         <AccessibleCell id="import_export_activities">
           {props.import_export_activities}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeActivitiesBusinessImportExportRow"
               href="/edit/business-import-export"
               aria-label="Change business activities import export"
             >
-              {determineLinkText(props.import_export_activities)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
     ) : null}
 
-    {props.business_other_details ||
-    props.validatorErrors["business_other_details"] ? (
+    {props.business_other_details ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="businessOtherDetailsRow"
       >
-        <AccessibleRowHeader
-          {...applyRowHeaderStyling(
-            props.validatorErrors["business_other_details"]
-          )}
-        >
-          Additional details
-        </AccessibleRowHeader>
+        <AccessibleRowHeader>Additional details</AccessibleRowHeader>
         <AccessibleCell id="business_other_details">
           {props.business_other_details}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeBusinessOtherDetailsRow"
               href="/edit/business-other-details"
               aria-label="Change business other details"
             >
-              {determineLinkText(props.business_other_details)}
-            </AnchorTag>
+              Change
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>
@@ -1103,7 +867,7 @@ export default SummaryTable;
 
 SummaryTable.propTypes = {
   operator_company_name: PropTypes.string,
-  operator_companies_house_number: PropTypes.string,
+  operator_company_house_number: PropTypes.string,
   operator_charity_name: PropTypes.string,
   operator_charity_number: PropTypes.string,
   operator_address_line_1: PropTypes.string,

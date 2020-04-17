@@ -1,5 +1,5 @@
 import { WarningText } from "govuk-react";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 
 const StyledWarning = styled(WarningText)`
   border: 3px solid black;
