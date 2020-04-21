@@ -7,7 +7,7 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick,
 } from "../src/components";
-import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
+import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const CustomerType = (props) => (
@@ -17,9 +17,9 @@ const CustomerType = (props) => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       Who will this establishment supply food to?
-    </Header>
+    </Heading>
     <Paragraph>Select all that apply</Paragraph>
 
     <form action={props.formAction} method="post">

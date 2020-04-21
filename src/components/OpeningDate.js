@@ -7,8 +7,8 @@ import {
   OnHandleErrorClick,
   HiddenTextAccessible,
   FsaDateField,
-} from "./";
-import { Header, Paragraph, HintText } from "govuk-react";
+} from "./index";
+import { Heading, Paragraph, HintText } from "govuk-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 
@@ -20,9 +20,9 @@ const OpeningDate = (props) => {
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
       />
-      <Header level={1} size="LARGE">
+      <Heading as="h1" size="LARGE">
         Trading date
-      </Header>
+      </Heading>
       <ContentItem.B_30_15>
         <HintText>
           Establishments begin trading when they first start serving or
@@ -32,7 +32,7 @@ const OpeningDate = (props) => {
       <HiddenTextAccessible
         hiddentextindex={1}
         id="hiddenTextEstablishment"
-        summaryText={"What is an establishment?"}
+        summary={"What is an establishment?"}
       >
         <Paragraph mb={0}>
           An establishment is the location of your food business, and the food
@@ -66,7 +66,7 @@ const OpeningDate = (props) => {
               <HiddenTextAccessible
                 hiddentextindex={2}
                 id="hiddenTextTradingDate"
-                summaryText={
+                summary={
                   "I don't know when this establishment will begin trading"
                 }
               >
@@ -105,7 +105,7 @@ const OpeningDate = (props) => {
           <ContentItem.B_30_15>
             <HiddenTextAccessible
               hiddentextindex={3}
-              summaryText={"I don't know when this establishment began trading"}
+              summary={"I don't know when this establishment began trading"}
             >
               <Paragraph mb={0}>
                 Trading begins the day your business started to serve or make

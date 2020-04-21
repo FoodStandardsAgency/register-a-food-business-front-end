@@ -8,7 +8,7 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick,
 } from "../src/components";
-import { Header } from "govuk-react";
+import { Heading } from "govuk-react";
 import PropTypes from "prop-types";
 
 const BusinessType = (props) => (
@@ -18,9 +18,9 @@ const BusinessType = (props) => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       What kind of food business are you registering?
-    </Header>
+    </Heading>
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>

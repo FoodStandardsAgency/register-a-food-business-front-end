@@ -7,7 +7,7 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick,
 } from "../src/components";
-import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
+import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OpeningSomeDays = (props) => (
@@ -18,9 +18,9 @@ const OpeningSomeDays = (props) => (
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
       />
-      <Header level={1} size="LARGE">
+      <Heading as="h1" size="LARGE">
         Opening days
-      </Header>
+      </Heading>
       <Paragraph>
         What days will this establishment be producing or serving food?
       </Paragraph>

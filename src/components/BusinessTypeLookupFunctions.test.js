@@ -4,7 +4,7 @@ import {
   inputValueFunction,
   suggestionFunction,
   findMatches,
-} from "../components/BusinessTypeLookupFunctions";
+} from "./BusinessTypeLookupFunctions";
 
 jest.mock("stemmer");
 jest.mock("../components/business-type-transformed.json", () => [

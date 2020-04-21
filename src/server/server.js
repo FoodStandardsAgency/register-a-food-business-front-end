@@ -1,6 +1,7 @@
 require("dotenv").config();
-
+const { INFO, logEmitter} = require("./services/logging.service");
 const express = require("express");
+const next = require('next')
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const bodyParser = require("body-parser");
@@ -8,54 +9,72 @@ const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
 const { info } = require("winston");
 const routes = require("./routes");
-const { Next } = require("./next");
 const { errorHandler } = require("./middleware/errorHandler");
 
-module.exports = async (dbUrl) => {
-  const app = express();
-  const storeOptions = {};
-  if (dbUrl) {
-    info("Server: setting session cache to database");
-    storeOptions.store = new MongoStore({
-      url: dbUrl,
+const { MONGODB_URL } = require("./config");
+
+function byteToHex(byte) {
+  return ('0' + byte.toString(16)).slice(-2);
+}
+
+// str generateId(int len);
+//   len - must be an even number (default: 40)
+function generateId(len = 40) {
+  var arr = new Uint8Array(len / 2);
+  window.crypto.getRandomValues(arr);
+  return Array.from(arr, byteToHex).join("");
+}
+const port = parseInt(process.env.PORT, 10) || 3000
+const dev = process.env.NODE_ENV !== 'production'
+const app = next({ dev });
+
+app.prepare().then(() => {
+  let server = express();
+  let store = null;
+  if (MONGODB_URL) {
+    logEmitter.emit(INFO,"Server: setting session cache to database");
+    store = new MongoStore({
+      url: MONGODB_URL,
     });
-    info("Server: successfully set up database connection");
+    logEmitter.emit(INFO,"Server: successfully set up database connection");
   } else {
-    info("Server: setting session cache to memory");
+    logEmitter.emit(INFO,"Server: setting session cache to memory");
   }
 
-  const sessionOptions = {
-    secret: process.env.COOKIE_SECRET,
-    resave: false,
+  let sessionOptions = {
+    secret: process.env.COOKIE_SECRET ? process.env.COOKIE_SECRET : generateId(),
+    resave: true,
     saveUninitialized: false,
     cookie: {
       // Session cookie set to expire after 24 hours
       maxAge: 86400000,
-      httpOnly: true,
+      httpOnly: true
     },
+    store: store
   };
 
   if (process.env.COOKIE_SECURE === "true") {
     sessionOptions.cookie.secure = true;
   }
-  const limiter = rateLimit({
+  let limiter = rateLimit({
     max: process.env.RATE_LIMIT, // limit each IP to x requests per minute
   });
 
-  const options = Object.assign(sessionOptions, storeOptions);
-  app.set("trust proxy", 1);
-  app.enable("trust proxy");
+  server.set("trust proxy", 1);
+  server.enable("trust proxy");
 
-  app.use(limiter);
-  app.use(session(options));
-  app.use(cookieParser());
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true }));
+  server.use(limiter);
+  server.use(session(sessionOptions));
+  server.use(cookieParser());
+  server.use(bodyParser.json());
+  server.use(bodyParser.urlencoded({ extended: true }));
 
-  await Next.prepare();
+  server.use(routes());
+  server.use(errorHandler);
 
-  app.use(routes());
-  app.use(errorHandler);
+  server.listen(port, err => {
+    if (err) throw err;
 
-  return app;
-};
+    logEmitter.emit(INFO, `Server ready on http://localhost:${port}`);
+  })
+});

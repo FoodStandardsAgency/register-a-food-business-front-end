@@ -1,18 +1,16 @@
 import SessionWrapper from "../src/components/SessionWrapper";
 import { FsaLayout, ContentItem, SummaryTable } from "../src/components";
 import {
-  Header,
+  Heading,
   Panel,
   Paragraph,
   InsetText,
-  asAnchor,
+  Link,
   HintText,
 } from "govuk-react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import moment from "moment";
-
-const AnchorTag = asAnchor("a");
 
 const FsaPanel = styled(Panel)`
   h2 {
@@ -22,9 +20,9 @@ const FsaPanel = styled(Panel)`
 
 const ApplicationComplete = (props) => (
   <FsaLayout {...props}>
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       Submission complete
-    </Header>
+    </Heading>
     <Paragraph>
       Thank you for submitting your food business registration.
     </Paragraph>
@@ -33,7 +31,7 @@ const ApplicationComplete = (props) => (
         id="panelWithNumber"
         panelTitle=""
         panelBody={[
-          "Your unique food business registration application reference is",
+          "Your unique food business registration number is",
           <br />,
           <br />,
           <span className="bold" id="fsa-rn">
@@ -45,34 +43,33 @@ const ApplicationComplete = (props) => (
       <FsaPanel
         id="panelWithText"
         panelTitle="Registration submitted"
-        panelBody={"Awaiting registration application reference"}
+        panelBody={"Awaiting registration number"}
       />
     )}
     <InsetText>
       <Paragraph mb={0}>
-        Please keep note of this registration application reference for your
-        records.
+        Please keep note of this registration number for your records.
       </Paragraph>
     </InsetText>
 
     <ContentItem.B_30_15>
-      <Header level={2} size="MEDIUM" mb={1}>
+      <Heading as="h2" size="MEDIUM" mb={1}>
         Submitted on
-      </Header>
+      </Heading>
       <Paragraph mb={0}>
         {moment(props.submissionDate).format("DD MMM YYYY")}
       </Paragraph>
     </ContentItem.B_30_15>
 
     <div id="sentToCouncilsSection">
-      <Header level={2} size="MEDIUM" mb={2}>
+      <Heading as="h2" size="MEDIUM" mb={2}>
         Your registration has been sent to:
-      </Header>
+      </Heading>
       {props.lcConfig.hygieneAndStandards ? (
         <ContentItem.B_30_15 id="hygieneAndStandardsCouncil">
-          <Header level={4} mb={1}>
+          <Heading as="h4" mb={1}>
             {props.lcConfig.hygieneAndStandards.local_council}
-          </Header>
+          </Heading>
           <Paragraph mb={0}>
             {`Email: ${props.lcConfig.hygieneAndStandards.local_council_email}`}
           </Paragraph>
@@ -85,9 +82,9 @@ const ApplicationComplete = (props) => (
       ) : props.lcConfig.hygiene && props.lcConfig.standards ? (
         <div>
           <ContentItem.B_30_15 id="hygieneCouncil">
-            <Header level={4} mb={1}>
+            <Heading as="h4" mb={1}>
               {props.lcConfig.hygiene.local_council}
-            </Header>
+            </Heading>
             <Paragraph mb={0}>
               {`Email: ${props.lcConfig.hygiene.local_council_email}`}
             </Paragraph>
@@ -99,9 +96,9 @@ const ApplicationComplete = (props) => (
             <HintText>Responsible local council for food hygiene</HintText>
           </ContentItem.B_30_15>
           <ContentItem.B_30_15 id="standardsCouncil">
-            <Header level={4} mb={1}>
+            <Heading as="h4" mb={1}>
               {props.lcConfig.standards.local_council}
-            </Header>
+            </Heading>
             <Paragraph mb={0}>
               {`Email: ${props.lcConfig.standards.local_council_email}`}
             </Paragraph>
@@ -125,9 +122,9 @@ const ApplicationComplete = (props) => (
       </Paragraph>
     </ContentItem.B_30_15>
 
-    <Header level={2} size="LARGE">
+    <Heading as="h2" size="LARGE">
       What's next?
-    </Header>
+    </Heading>
     <InsetText>
       <Paragraph mb={0}>
         **You may receive an unannounced food inspection from your local council
@@ -143,53 +140,53 @@ const ApplicationComplete = (props) => (
     </ContentItem.B_30_15>
 
     <ContentItem.B_30_15>
-      <Header level={2} size="LARGE">
+      <Heading as="h2" size="LARGE">
         Find out here what you can do to prepare:
-      </Header>
+      </Heading>
       <HintText mb={3}>All links open in a new window</HintText>
 
       {props.country === "wales" ? (
-        <Header level={3} mb={2} size="SMALL">
+        <Heading as="h3" mb={2} size="SMALL">
           English
-        </Header>
+        </Heading>
       ) : null}
 
       <ContentItem.B_20_20>
-        <AnchorTag
+        <Link
           id="foodSafetyLink"
           href="https://www.food.gov.uk/business-guidance"
           target="_blank"
           rel="noopener noreferrer"
         >
           Guidance on food hygiene and how to run a safe food business
-        </AnchorTag>
+        </Link>
       </ContentItem.B_20_20>
       <ContentItem.B_20_20>
-        <AnchorTag
+        <Link
           id="fhrsScoreLink"
           href="https://www.food.gov.uk/business-guidance/food-hygiene-ratings-for-businesses"
           target="_blank"
           rel="noopener noreferrer"
         >
           How to achieve a high food hygiene rating (FHRS score)
-        </AnchorTag>
+        </Link>
       </ContentItem.B_20_20>
 
       {props.country === "northern-ireland" ? (
         <ContentItem.B_20_20>
-          <AnchorTag
+          <Link
             id="safeCateringLink"
             href="https://www.food.gov.uk/business-guidance/safe-catering"
             target="_blank"
             rel="noopener noreferrer"
           >
             Safe catering
-          </AnchorTag>
+          </Link>
         </ContentItem.B_20_20>
       ) : null}
 
       <ContentItem.B_20_20>
-        <AnchorTag
+        <Link
           id="safetyManagementLink"
           href="https://www.food.gov.uk/business-guidance/safer-food-better-business"
           target="_blank"
@@ -197,23 +194,23 @@ const ApplicationComplete = (props) => (
         >
           Information on the food safety management system safer food, better
           business
-        </AnchorTag>
+        </Link>
       </ContentItem.B_20_20>
 
       <ContentItem.B_20_20>
-        <AnchorTag
+        <Link
           id="foodLabellingLink"
           href="https://www.food.gov.uk/business-guidance/industry-specific-advice/labelling-and-allergens"
           target="_blank"
           rel="noopener noreferrer"
         >
           Food labelling and allergens guidance
-        </AnchorTag>
+        </Link>
       </ContentItem.B_20_20>
 
       {props.country === "wales" || props.country === "northern-ireland" ? (
         <ContentItem.B_20_20>
-          <AnchorTag
+          <Link
             id="businessGuidanceLink"
             href={
               props.country === "northern-ireland"
@@ -225,19 +222,19 @@ const ApplicationComplete = (props) => (
           >
             Business support -
             {props.country === "wales" ? ` Wales` : " Northern Ireland"}
-          </AnchorTag>
+          </Link>
         </ContentItem.B_20_20>
       ) : (
         <ContentItem.B_30_15>
           <ContentItem.B_20_20>
-            <AnchorTag
+            <Link
               id="businessSupportHelplineEnglishLink"
               href="https://www.gov.uk/business-support-helpline"
               target="_blank"
               rel="noopener noreferrer"
             >
               Business support & helpline
-            </AnchorTag>
+            </Link>
           </ContentItem.B_20_20>
 
           <ContentItem.B_20_20>
@@ -248,11 +245,11 @@ const ApplicationComplete = (props) => (
 
       {props.country === "wales" ? (
         <ContentItem.B_30_15>
-          <Header level={3} mb={2} size="SMALL">
+          <Heading as="h3" mb={2} size="SMALL">
             Cymru
-          </Header>
+          </Heading>
           <ContentItem.B_20_20>
-            <AnchorTag
+            <Link
               id="businessGuidanceWelshLink"
               href="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau"
               target="_blank"
@@ -260,11 +257,11 @@ const ApplicationComplete = (props) => (
             >
               I gael cyngor cyffredinol ar hylendid bwyd a sut i redeg busnes
               bwyd diogel
-            </AnchorTag>
+            </Link>
           </ContentItem.B_20_20>
 
           <ContentItem.B_20_20>
-            <AnchorTag
+            <Link
               id="foodHygieneRatingsWelshLink"
               href="https://www.food.gov.uk/cy/business-guidance/sgoriau-hylendid-bwyd-ar-gyfer-busnesau"
               target="_blank"
@@ -272,11 +269,11 @@ const ApplicationComplete = (props) => (
             >
               I gael gwybodaeth am sut i gael sgôr uchel o dan y Cynllun Sgorio
               Hylendid Bwyd
-            </AnchorTag>
+            </Link>
           </ContentItem.B_20_20>
 
           <ContentItem.B_20_20>
-            <AnchorTag
+            <Link
               id="saferFoodBetterBusinessWelshLink"
               href="https://www.food.gov.uk/cy/business-guidance/bwyd-mwy-diogel-busnes-gwell"
               target="_blank"
@@ -284,37 +281,37 @@ const ApplicationComplete = (props) => (
             >
               I gael gwybodaeth am y system rheoli diogelwch bwyd, Bwyd mwy
               Diogel, Busnes Gwell
-            </AnchorTag>
+            </Link>
           </ContentItem.B_20_20>
 
           <ContentItem.B_20_20>
-            <AnchorTag
+            <Link
               id="labellingAndAllergensWelshLink"
               href="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau/cyngor-penodol-ar-gyfer-y-diwydiant/labelu-ac-alergenau"
               target="_blank"
               rel="noopener noreferrer"
             >
               I gael canllawiau ar labelu bwyd ac alergenau
-            </AnchorTag>
+            </Link>
           </ContentItem.B_20_20>
 
           <ContentItem.B_20_20>
-            <AnchorTag
+            <Link
               id="businessStartUpGuidanceWelshLink"
               href="https://businesswales.gov.wales/starting-up/cy"
               target="_blank"
               rel="noopener noreferrer"
             >
               I gael cyngor busnes cyffredinol
-            </AnchorTag>
+            </Link>
           </ContentItem.B_20_20>
         </ContentItem.B_30_15>
       ) : null}
     </ContentItem.B_30_15>
 
-    <Header level={2} mb={5} size="LARGE">
+    <Heading as="h2" mb={5} size="LARGE">
       Your registration details:
-    </Header>
+    </Heading>
     <SummaryTable
       {...props.transformedData}
       validatorErrors={props.validatorErrors}

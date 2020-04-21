@@ -6,7 +6,7 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick,
 } from "../src/components";
-import { Button, Header, InputField } from "govuk-react";
+import { Button, Heading, InputField } from "govuk-react";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 
@@ -22,14 +22,14 @@ const PartnerDetails = (props) => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       {props.cumulativeFullAnswers.partners[
         props.cumulativeFullAnswers.targetPartner
       ]
         ? "Edit "
         : "Add "}
       partner's name
-    </Header>
+    </Heading>
     <form action={props.partnerDetailsSaveFormAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>

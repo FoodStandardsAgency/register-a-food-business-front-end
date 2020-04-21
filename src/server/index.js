@@ -8,7 +8,7 @@ const startServer = async () => {
   const app = await server(MONGODB_URL);
   app.listen(port, () =>
     info(
-      `App running in ${
+      `App running in ${MONGODB_URL} ${
         dev ? "DEVELOPMENT" : "PRODUCTION"
       } mode on http://localhost:${port}`
     )

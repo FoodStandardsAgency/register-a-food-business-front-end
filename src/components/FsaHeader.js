@@ -8,11 +8,11 @@ const AnchorTag = asTopNavAnchor("a");
 const feedbackLink = "https://goo.gl/forms/WB5adxvWQdDIfVvs2";
 
 const FsaTopNav = styled(TopNav)`
-  div:nth-child(1) {
+  div:nth-of-type(1) {
     width: 95%;
   }
 
-  div:nth-child(2) {
+  div:nth-of-type(2) {
     width: 1%;
   }
 `;
@@ -22,6 +22,14 @@ const Company = (
     href="https://www.food.gov.uk"
     target="_blank"
     aria-label="food.gov.uk website (opens in new window)"
+    style={{
+      color: "rgb(255, 255, 255)",
+      textDecorationSkipInk: "none",
+      fontWeight: 700,
+      lineHeight: 1,
+      textDecoration: "none",
+      borderBottom: "1px solid transparent",
+    }}
   >
     Register a Food Business
   </AnchorTag>

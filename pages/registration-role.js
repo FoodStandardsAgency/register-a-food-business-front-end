@@ -7,7 +7,7 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick,
 } from "../src/components";
-import { Header, Radio, MultiChoice } from "govuk-react";
+import { Heading, Radio, MultiChoice } from "govuk-react";
 import PropTypes from "prop-types";
 
 const RegistrationRole = (props) => (
@@ -17,9 +17,9 @@ const RegistrationRole = (props) => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       What is your role in this food business?
-    </Header>
+    </Heading>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_45_30>

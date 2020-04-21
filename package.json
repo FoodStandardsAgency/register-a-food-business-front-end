@@ -3,35 +3,29 @@
   "version": "8.4.0",
   "private": true,
   "scripts": {
+    "dev": "node ./src/server/server.js",
+    "build": "next build",
+    "start": "cross-env NODE_ENV=production node ./src/server/server.js",
+    "start:local": "(export $(grep -v '^#' .env | xargs -d '\n')) && cross-env NODE_ENV=production node ./src/server.js",
     "debug": "node --inspect src/server/index.js",
     "debug:prod": "NODE_ENV=production node --inspect src/server/index.js",
-    "debug:prod:local":
-    "(export $(grep -v '^#' .env | xargs -d '\n')) && NODE_ENV=production node --inspect src/server/index.js",
-    "build": "next build",
+    "debug:prod:local": "(export $(grep -v '^#' .env | xargs -d '\n')) && NODE_ENV=production node --inspect src/server/index.js",
     "version": "NODE_ENV=production node -v",
-    "start:local":
-    "(export $(grep -v '^#' .env | xargs -d '\n')) && NODE_ENV=production next start",
     "test": "jest ./src ./pages --coverage",
-    "test:ci":
-    "export TEST_TYPE=unit && jest ./src ./pages --coverage --maxWorkers=4",
+    "test:ci": "export TEST_TYPE=unit && jest ./src ./pages --coverage --maxWorkers=4",
     "test:watch": "jest ./src --watch",
-    "test:integration":
-    "export TEST_TYPE=integration && jest tests/integration/*.js",
+    "test:integration": "export TEST_TYPE=integration && jest tests/integration/*.js",
     "test:contract": "jest tests/contract/*.js",
     "test:securityallWizard": "snyk wizard",
     "test:securityWizard": "snyk wizard --severity-threshold=medium",
     "test:security": "snyk auth && snyk test --severity-threshold=medium",
     "lint": "eslint ./src ./pages",
     "lint:fix": "eslint --fix ./src ./pages",
-    "format:verify":
-    "prettier --list-different src/ pages docs/ tests/  '!./src/__tests__/__snapshots__/**/*' '!./**/*.pdf'",
-    "format":
-    "prettier --write src/ pages docs/ tests/ '!./**/*.pdf' '!./src/__tests__/__snapshots__/**/*'",
+    "format:verify": "prettier --list-different src/ pages docs/ tests/  '!./src/__tests__/__snapshots__/**/*' '!./**/*.pdf'",
+    "format": "prettier --write src/ pages docs/ tests/ '!./**/*.pdf' '!./src/__tests__/__snapshots__/**/*'",
     "jsdoc": "rm -rf ./docs/jsdoc && jsdoc -r ./src -d ./docs/jsdoc",
-    "updateBusinessTypes":
-    "node ./src/components/update-business-types.js && yarn format"
+    "updateBusinessTypes": "node ./src/components/update-business-types.js && yarn format"
   },
-
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
@@ -41,10 +35,11 @@
     "accessible-autocomplete": "^2.0.2",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
+    "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^1.7.0",
-    "emotion": "^9.2.8",
-    "emotion-server": "9.2.8",
+    "emotion": "^10.0.27",
+    "emotion-server": "^10.0.27",
     "express": "^4.17.1",
     "express-rate-limit": "^5.1.1",
     "express-session": "^1.17.0",
@@ -55,7 +50,7 @@
     "jest-junit": "^10.0.0",
     "jsonschema": "^1.2.6",
     "mongodb": "^3.5.6",
-    "next": "^9.2",
+    "next": "^9.3.5",
     "node-cache": "^5.1.0",
     "node-fetch": "^2.6.0",
     "prop-types": "^15.7.2",
@@ -84,6 +79,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "6.x",
     "eslint-config-react-app": "^5.2.1",
+    "eslint-loader": "^4.0.0",
     "eslint-plugin-emotion": "^10.0.27",
     "eslint-plugin-flowtype": "4.x",
     "eslint-plugin-import": "2.x",

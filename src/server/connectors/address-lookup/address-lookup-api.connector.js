@@ -79,10 +79,8 @@ const fetchUsingPostcoderPremium = async (postcode) => {
 
   const options = { method: "GET" };
   if (process.env.HTTP_PROXY) {
-    console.log(process.env.HTTP_PROXY);
     options.agent = new HttpsProxyAgent(process.env.HTTP_PROXY);
   }
-  console.log(`${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`);
   const response = await fetch(
     `${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`,
     options
@@ -118,9 +116,7 @@ const fetchUsingPostcoderStandard = async (postcode) => {
   if (process.env.HTTP_PROXY) {
     options.agent = new HttpsProxyAgent(process.env.HTTP_PROXY);
   }
-  console.log(
-    `${ADDRESS_API_URL_BASE_STANDARD}/uk/${postcode}?${ADDRESS_API_URL_QUERY_STANDARD}`
-  );
+
   const response = await fetch(
     `${ADDRESS_API_URL_BASE_STANDARD}/uk/${postcode}?${ADDRESS_API_URL_QUERY_STANDARD}`,
     options

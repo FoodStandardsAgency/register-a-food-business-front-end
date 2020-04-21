@@ -20,7 +20,7 @@ const FsaLayout = (props) => (
   <React.Fragment>
     <Page header={<FsaHeader {...props} />}>
       <GridRowZeroMargin>
-        <GridColZeroPadding columnTwoThirds>
+        <GridColZeroPadding setWidth="two-thirds">
           {!props.isBrowserSupported && props.isBrowserVersionVerified ? (
             <BrowserUnsupportedBanner
               browser={props.browser}

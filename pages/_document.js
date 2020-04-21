@@ -5,9 +5,11 @@
 // Any other changes should not be undertaken without an understanding of how the custom _document.js file works.
 //////// IMPORTANT ///////////////////////////////////////////////
 
+/** @jsx jsx */
+import { jsx } from "@emotion/core";
 import Document, { Head, Main, NextScript } from "next/document";
 import { extractCritical } from "emotion-server";
-import { hydrate, Global, css } from "@emotion/core";
+import { hydrate, Global } from "@emotion/core";
 import NormalizeCSS from "../src/components/NormalizeCSS";
 import AccessibleAutocompleteCSS from "../src/components/AccessibleAutocompleteCSS";
 
@@ -15,6 +17,10 @@ import AccessibleAutocompleteCSS from "../src/components/AccessibleAutocompleteC
 // '__NEXT_DATA__.ids' is set in '_document.js'
 if (typeof window !== "undefined" && typeof __NEXT_DATA__ !== "undefined") {
   hydrate(window.__NEXT_DATA__.ids);
+}
+
+if (typeof window === "undefined") {
+  global.window = {};
 }
 
 export default class MyDocument extends Document {
@@ -38,13 +44,10 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          <Global
-            styles={css`
-              ${AccessibleAutocompleteCSS} ${NormalizeCSS};
-            `}
-          />
+          <Global styles={[AccessibleAutocompleteCSS, NormalizeCSS]} />
           {/* Start Google Tag Manager */}
-          {this.props.cookies.acceptAllCookies === "false" ? null : (
+          {this.props.cookies &&
+          this.props.cookies.acceptAllCookies === "false" ? null : (
             <script
               dangerouslySetInnerHTML={{
                 __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -63,9 +66,12 @@ export default class MyDocument extends Document {
             charSet="UTF-8"
           />
           <meta name="format-detection" content="telephone=no" />
-          <title>Register a food business</title>
+          {/*<title>Register a food business</title>*/}
           <link rel="stylesheet" href="/_next/static/style.css" />
-          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
+          <style
+            data-emotion-css={this.props.ids.join(" ")}
+            dangerouslySetInnerHTML={{ __html: this.props.css }}
+          />
         </Head>
         <body>
           <Main />

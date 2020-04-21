@@ -6,10 +6,9 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  SubmissionErrorSummary,
   OnHandleErrorClick,
 } from "../src/components";
-import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
+import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 
 import PropTypes from "prop-types";
 
@@ -49,12 +48,9 @@ class Declaration extends React.Component {
             validatorErrors={this.props.validatorErrors}
             onHandleErrorClick={OnHandleErrorClick}
           />
-          <SubmissionErrorSummary
-            submissionErrors={this.props.submissionError}
-          />
-          <Header level={1} size="LARGE">
+          <Heading as="h1" size="LARGE">
             Declaration
-          </Header>
+          </Heading>
 
           <Paragraph>
             Review these statements and tick all three boxes to agree.
@@ -110,9 +106,9 @@ class Declaration extends React.Component {
             </MultiChoice>
           </ContentItem.B_45_30>
 
-          <Header level={1} size="LARGE">
+          <Heading as="h1" size="LARGE">
             Feedback
-          </Header>
+          </Heading>
 
           <Paragraph>
             Congratulations, you've almost finished. We want to provide you with
