@@ -4,9 +4,9 @@
  * Routes: /partner-details/:originator
  * @module routers/partner-details
  */
+const { app } = require("../server.js");
 
 const { Router } = require("express");
-const { Next } = require("../next");
 const { logEmitter } = require("../services/logging.service");
 const {
   partnerDetailsContinue,
@@ -104,7 +104,7 @@ const partnerDetailsRouter = () => {
         );
         throw err;
       }
-      Next.render(req, res, `/partner-details`);
+      app.render(req, res, `/partner-details`);
     });
   });
 

@@ -1,20 +1,12 @@
 require("dotenv").config();
-const { INFO, logEmitter} = require("./services/logging.service");
-const express = require("express");
-const next = require('next')
-const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const rateLimit = require("express-rate-limit");
-const { info } = require("winston");
-const routes = require("./routes");
-const { errorHandler } = require("./middleware/errorHandler");
+
+
+
 
 const { MONGODB_URL } = require("./config");
 
 function byteToHex(byte) {
-  return ('0' + byte.toString(16)).slice(-2);
+  return ("0" + byte.toString(16)).slice(-2);
 }
 
 // str generateId(int len);
@@ -24,33 +16,52 @@ function generateId(len = 40) {
   window.crypto.getRandomValues(arr);
   return Array.from(arr, byteToHex).join("");
 }
-const port = parseInt(process.env.PORT, 10) || 3000
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev });
+const port = parseInt(process.env.PORT, 10) || 3000;
+const dev = process.env.NODE_ENV !== "production";
 
-app.prepare().then(() => {
+const express = require("express");
+const next = require("next");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const rateLimit = require("express-rate-limit");
+const { info } = require("winston");
+
+
+const app = next({ dev });
+const handle = app.getRequestHandler();
+
+module.exports = { app };
+const routes = require("./routes");
+const { errorHandler } = require("./middleware/errorHandler");
+
+app.prepare().then(async () => {
   let server = express();
+
   let store = null;
   if (MONGODB_URL) {
-    logEmitter.emit(INFO,"Server: setting session cache to database");
+    info("Server: setting session cache to database");
     store = new MongoStore({
       url: MONGODB_URL,
     });
-    logEmitter.emit(INFO,"Server: successfully set up database connection");
+    info("Server: successfully set up database connection");
   } else {
-    logEmitter.emit(INFO,"Server: setting session cache to memory");
+    info("Server: setting session cache to memory");
   }
 
   let sessionOptions = {
-    secret: process.env.COOKIE_SECRET ? process.env.COOKIE_SECRET : generateId(),
+    secret: process.env.COOKIE_SECRET
+      ? process.env.COOKIE_SECRET
+      : generateId(),
     resave: true,
     saveUninitialized: false,
     cookie: {
       // Session cookie set to expire after 24 hours
       maxAge: 86400000,
-      httpOnly: true
+      httpOnly: true,
     },
-    store: store
+    store: store,
   };
 
   if (process.env.COOKIE_SECURE === "true") {
@@ -72,9 +83,16 @@ app.prepare().then(() => {
   server.use(routes());
   server.use(errorHandler);
 
-  server.listen(port, err => {
-    if (err) throw err;
+  server.all("*", (req, res) => {
+    handle(req, res);
+  });
 
-    logEmitter.emit(INFO, `Server ready on http://localhost:${port}`);
-  })
+  server.listen(port, (err) => {
+    if (err) throw err;
+    info(
+      `App running in ${MONGODB_URL} ${
+        dev ? "DEVELOPMENT" : "PRODUCTION"
+      } mode on http://localhost:${port}`
+    );
+  });
 });

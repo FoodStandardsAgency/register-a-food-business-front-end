@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { handle } = require("./next");
+const { handle } = require("next");
 
 const {
   backRouter,
@@ -39,8 +39,6 @@ module.exports = () => {
   router.use("/status", statusRouter());
   router.use("/partnership", partnerDetailsRouter());
   router.use("/pdfs", pdfsRouter());
-  router.get("*", (req, res) => {
-    handle(req, res);
-  });
+
   return router;
 };

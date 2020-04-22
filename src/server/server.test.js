@@ -12,10 +12,10 @@ jest.mock("connect-mongo", () => {
   };
 });
 jest.mock("./routes");
-jest.mock("./next");
+jest.mock("next");
 
 const session = require("express-session");
-const { Next } = require("./next");
+const { Next } = require("next");
 const server = require("./server");
 
 describe("server: ", () => {

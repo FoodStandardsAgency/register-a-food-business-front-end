@@ -5,7 +5,7 @@ jest.mock("express", () => ({
   })),
 }));
 jest.mock("../controllers/partner-details.controller");
-jest.mock("../next", () => ({
+jest.mock("next", () => ({
   Next: {
     render: jest.fn(),
   },
@@ -16,7 +16,7 @@ const {
   partnerDetailsDelete,
 } = require("../controllers/partner-details.controller");
 const { partnerDetailsRouter } = require("./partner-details.route");
-const { Next } = require("../next");
+const { Next } = require("next");
 
 describe("Partner Details Route: ", () => {
   let router, handler;

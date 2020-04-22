@@ -5,8 +5,16 @@ import { Heading, Paragraph, BackLink, Button } from "govuk-react";
 class Error extends React.Component {
   static getInitialProps({ req, res, err }) {
     const statusCode = res ? res.statusCode : err ? err.statusCode : null;
-    const council = req.session.council ? req.session.council : "unknown";
-    const referrer = req.header("Referrer");
+    let referrer = null;
+    let council = null;
+    if (req) {
+      council =
+        req.session && req.session.council ? req.session.council : "unknown";
+      referrer = req.header("Referrer");
+    } else {
+      console.log(`req is not set`);
+    }
+
     return { statusCode, council, referrer };
   }
 

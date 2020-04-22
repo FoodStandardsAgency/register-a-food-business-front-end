@@ -1,8 +1,8 @@
-jest.mock("../next");
+jest.mock("next");
 jest.mock("../services/logging.service");
 
 const { errorHandler } = require("../middleware/errorHandler");
-const { Next } = require("../next");
+const { Next } = require("next");
 const { logEmitter } = require("../services/logging.service");
 
 describe("errorHandler", () => {

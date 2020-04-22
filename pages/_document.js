@@ -28,7 +28,7 @@ export default class MyDocument extends Document {
     const page = renderPage();
     const styles = extractCritical(page.html);
     const gtmAuth = process.env.GTM_AUTH;
-    const cookies = req.cookies;
+    const cookies = req && req.cookies ? req.cookies : null;
     return { ...page, ...styles, gtmAuth, cookies };
   }
 

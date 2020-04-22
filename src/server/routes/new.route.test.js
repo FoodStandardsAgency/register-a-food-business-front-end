@@ -5,15 +5,15 @@ jest.mock("express", () => ({
   })),
 }));
 jest.mock("../services/data-transform.service");
-jest.mock("../next", () => ({
-  Next: {
+jest.mock("next", () => ({
+  next: {
     render: jest.fn(),
   },
 }));
 jest.mock("../connectors/config-db/config-db.connector");
 jest.mock("../services/browser-support.service");
 
-const { Next } = require("../next");
+const { Next } = require("next");
 const { newRouter } = require("./new.route");
 const {
   transformAnswersForSummary,
@@ -92,8 +92,8 @@ describe("New route: ", () => {
         expect(req.session.lcName).toEqual("Belfast Council");
       });
 
-      it("Should call Next.render", () => {
-        expect(Next.render).toBeCalled();
+      it("Should call app.render", () => {
+        expect(app.render).toBeCalled();
       });
     });
 
@@ -125,8 +125,8 @@ describe("New route: ", () => {
         handler(req, res);
       });
 
-      it("Should call Next.render with page", () => {
-        expect(Next.render).toBeCalledWith(req, res, "/new page");
+      it("Should call app.render with page", () => {
+        expect(app.render).toBeCalledWith(req, res, "/new page");
       });
 
       it("Should not change the path", () => {
@@ -194,8 +194,8 @@ describe("New route: ", () => {
           await handler(req, res);
         });
 
-        it("Should call Next.render with page", () => {
-          expect(Next.render).toBeCalledWith(
+        it("Should call app.render with page", () => {
+          expect(app.render).toBeCalledWith(
             expect.anything(),
             res,
             "/registration-summary"
@@ -235,8 +235,8 @@ describe("New route: ", () => {
         await handler(req, res);
       });
 
-      it("Should call Next.render with index", () => {
-        expect(Next.render).toBeCalledWith(req, res, "/index");
+      it("Should call app.render with index", () => {
+        expect(app.render).toBeCalledWith(req, res, "/index");
       });
 
       it("Should set req.session.country", () => {
@@ -274,8 +274,8 @@ describe("New route: ", () => {
         handler(req, res);
       });
 
-      it("Should call Next.render with unsupported-council", () => {
-        expect(Next.render).toBeCalledWith(req, res, "/unsupported-council");
+      it("Should call app.render with unsupported-council", () => {
+        expect(app.render).toBeCalledWith(req, res, "/unsupported-council");
       });
     });
   });
