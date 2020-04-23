@@ -5,18 +5,20 @@ jest.mock("express", () => ({
   })),
 }));
 jest.mock("../controllers/partner-details.controller");
-jest.mock("next", () => ({
-  Next: {
+
+jest.mock("../server", () => ({
+  app: {
     render: jest.fn(),
   },
 }));
+
 const {
   partnerDetailsContinue,
   partnerDetailsSave,
   partnerDetailsDelete,
 } = require("../controllers/partner-details.controller");
 const { partnerDetailsRouter } = require("./partner-details.route");
-const { Next } = require("next");
+const { app } = require("../server");
 
 describe("Partner Details Route: ", () => {
   let router, handler;
@@ -268,8 +270,8 @@ describe("Partner Details Route: ", () => {
           "Second Two",
         ]);
       });
-      it("Should call Next.render", () => {
-        expect(Next.render).toBeCalled();
+      it("Should call app.render", () => {
+        expect(app.render).toBeCalled();
       });
     });
 
@@ -301,8 +303,8 @@ describe("Partner Details Route: ", () => {
       it("Should have Partners as an empty array", () => {
         expect(req.session.cumulativeFullAnswers.partners).toEqual([]);
       });
-      it("Should call Next.render", () => {
-        expect(Next.render).toBeCalled();
+      it("Should call app.render", () => {
+        expect(app.render).toBeCalled();
       });
     });
 
@@ -333,8 +335,8 @@ describe("Partner Details Route: ", () => {
       it("Should delete target partner", () => {
         expect(req.session.cumulativeFullAnswers.targetPartner).toBe(undefined);
       });
-      it("Should call Next.render", () => {
-        expect(Next.render).toBeCalled();
+      it("Should call app.render", () => {
+        expect(app.render).toBeCalled();
       });
     });
 

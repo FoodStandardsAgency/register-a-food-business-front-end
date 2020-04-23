@@ -32,4 +32,4 @@ class InternalServerError extends React.Component {
   }
 }
 
-export default SessionWrapper(InternalServerError);
+export default InternalServerError;

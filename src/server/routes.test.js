@@ -4,6 +4,13 @@ jest.mock("express", () => ({
     get: jest.fn(),
   })),
 }));
+jest.mock("./server", () => ({
+  app: {
+    render: jest.fn(),
+    getRequestHandler: jest.fn(),
+  },
+}));
+
 jest.mock("next");
 jest.mock("./routes/index");
 

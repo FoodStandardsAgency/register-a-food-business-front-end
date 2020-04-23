@@ -5,15 +5,15 @@ jest.mock("express", () => ({
   })),
 }));
 jest.mock("../services/data-transform.service");
-jest.mock("next", () => ({
-  next: {
+jest.mock("../server", () => ({
+  app: {
     render: jest.fn(),
   },
 }));
 jest.mock("../connectors/config-db/config-db.connector");
 jest.mock("../services/browser-support.service");
 
-const { Next } = require("next");
+const { app } = require("../server");
 const { newRouter } = require("./new.route");
 const {
   transformAnswersForSummary,

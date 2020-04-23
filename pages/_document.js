@@ -34,7 +34,8 @@ export default class MyDocument extends Document {
 
   constructor(props) {
     super(props);
-    const { __NEXT_DATA__, ids } = props;
+    const { __NEXT_DATA__ = {}, ids } = props;
+
     if (ids) {
       __NEXT_DATA__.ids = ids;
     }

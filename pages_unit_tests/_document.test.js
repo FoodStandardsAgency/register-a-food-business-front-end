@@ -7,7 +7,7 @@ import { shallow } from "enzyme";
 describe("<Document />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(
-      <Document cookies={{ acceptAllCookies: "true" }} />
+      <Document ids={[]} cookies={{ acceptAllCookies: "true" }} />
     );
     expect(wrapper.length).toBe(1);
   });

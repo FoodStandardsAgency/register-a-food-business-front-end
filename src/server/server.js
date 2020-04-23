@@ -1,8 +1,5 @@
 require("dotenv").config();
 
-
-
-
 const { MONGODB_URL } = require("./config");
 
 function byteToHex(byte) {
@@ -27,7 +24,6 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
 const { info } = require("winston");
-
 
 const app = next({ dev });
 const handle = app.getRequestHandler();

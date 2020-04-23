@@ -21,13 +21,10 @@ const SessionWrapper = (Page) => {
       req.query.edit &&
       (req.query.edit === "partner-name" || "registration-role");
 
-    console.error("got here");
     const acceptAllCookies =
       req && req.cookies && req.cookies.acceptAllCookies
         ? req.cookies.acceptAllCookies
         : undefined;
-
-    console.error("got there");
 
     const currentPageWithQuery = `/${req.url.split("/")[2]}`;
 
