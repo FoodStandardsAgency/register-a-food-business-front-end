@@ -38,7 +38,7 @@ const establishConnectionToMongo = async () => {
           client.close();
         }
         client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
-          useNewUrlParser: true
+          useNewUrlParser: true,
         });
       } catch (err) {
         logEmitter.emit(
@@ -72,7 +72,7 @@ const getStoredStatus = async () => {
   try {
     await establishConnectionToMongo();
     const storedStatus = await statusCollection.findOne({
-      _id: "frontEndStatus"
+      _id: "frontEndStatus",
     });
     logEmitter.emit(
       "functionSuccess",

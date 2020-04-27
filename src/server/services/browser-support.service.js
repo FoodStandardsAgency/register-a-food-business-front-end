@@ -11,7 +11,7 @@ const {
   EDGE_SUPPORTED_SINCE,
   IE_SUPPORTED_SINCE,
   IOS_SAFARI_SUPPORTED_SINCE,
-  MAC_SAFARI_SUPPORTED_SINCE
+  MAC_SAFARI_SUPPORTED_SINCE,
 } = require("../config");
 
 /**
@@ -21,7 +21,7 @@ const {
  *
  * @returns {boolean} True if supported, false if not
  */
-const getBrowserInfo = userAgentHeader => {
+const getBrowserInfo = (userAgentHeader) => {
   logEmitter.emit(
     "functionCallWith",
     "browser-support.service",
@@ -32,7 +32,7 @@ const getBrowserInfo = userAgentHeader => {
     browser: "",
     browserVersion: "",
     isBrowserSupported: false,
-    isBrowserVersionVerified: true
+    isBrowserVersionVerified: true,
   };
   const ua = useragent.parse(userAgentHeader);
   response.browser = ua.browser;

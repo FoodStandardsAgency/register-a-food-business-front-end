@@ -1,5 +1,5 @@
 const {
-  getAddressesByPostcode
+  getAddressesByPostcode,
 } = require("../../src/server/connectors/address-lookup/address-lookup-api.connector");
 
 let response;

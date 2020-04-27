@@ -18,18 +18,18 @@ const setCookieRouter = () => {
     if (cookieName === "acceptAllCookies") {
       res.cookie("acceptAllCookies", newValue, {
         // User's cookie preferences set to expire after 25 days
-        maxAge: 2160000000
+        maxAge: 2160000000,
       });
 
       if (newValue === "false") {
         // remove the content of optional cookies and set immediate expiration
-        const googleCookieNames = Object.keys(req.cookies).filter(cookieName =>
-          cookieName.startsWith("_g")
-        );
+        const googleCookieNames = Object.keys(
+          req.cookies
+        ).filter((cookieName) => cookieName.startsWith("_g"));
 
-        googleCookieNames.forEach(cookieName => {
+        googleCookieNames.forEach((cookieName) => {
           res.cookie(cookieName, "deleted", {
-            maxAge: 0
+            maxAge: 0,
           });
         });
       }

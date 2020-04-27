@@ -1,8 +1,8 @@
 jest.mock("express", () => ({
   Router: jest.fn(() => ({
     post: jest.fn(),
-    get: jest.fn()
-  }))
+    get: jest.fn(),
+  })),
 }));
 const { setCookieRouter } = require("./set-cookie.route");
 
@@ -20,11 +20,11 @@ describe("Set Cookie route: ", () => {
         beforeEach(() => {
           handler = router.get.mock.calls[0][1];
           req = {
-            params: { cookieName: "acceptAllCookies", newValue: "true" }
+            params: { cookieName: "acceptAllCookies", newValue: "true" },
           };
           res = {
             redirect: jest.fn(),
-            cookie: jest.fn()
+            cookie: jest.fn(),
           };
           res.cookie.mockClear();
           res.redirect.mockClear();
@@ -56,12 +56,12 @@ describe("Set Cookie route: ", () => {
             cookies: {
               _ga: "thisShouldBeDeleted",
               _gid: "thisShouldBeDeleted",
-              some_cookie: "thisShouldBePersisted"
-            }
+              some_cookie: "thisShouldBePersisted",
+            },
           };
           res = {
             redirect: jest.fn(),
-            cookie: jest.fn()
+            cookie: jest.fn(),
           };
           res.cookie.mockClear();
           res.redirect.mockClear();
@@ -70,17 +70,17 @@ describe("Set Cookie route: ", () => {
 
         it("should call res.cookie with 'acceptAllCookies', the new value, a max age of 25 days", () => {
           expect(res.cookie).toHaveBeenCalledWith("acceptAllCookies", "false", {
-            maxAge: 2160000000
+            maxAge: 2160000000,
           });
         });
 
         it("should call res.cookie once more for each each cookie name beginning with '_g', with the cookie name, 'deleted' as the value, and a maxAge of zero", () => {
           expect(res.cookie).toHaveBeenCalledTimes(3);
           expect(res.cookie).toHaveBeenCalledWith("_ga", "deleted", {
-            maxAge: 0
+            maxAge: 0,
           });
           expect(res.cookie).toHaveBeenCalledWith("_gid", "deleted", {
-            maxAge: 0
+            maxAge: 0,
           });
         });
 
@@ -96,11 +96,11 @@ describe("Set Cookie route: ", () => {
       beforeEach(() => {
         handler = router.get.mock.calls[0][1];
         req = {
-          params: { cookieName: "notRecognised", newValue: "true" }
+          params: { cookieName: "notRecognised", newValue: "true" },
         };
         res = {
           redirect: jest.fn(),
-          cookie: jest.fn()
+          cookie: jest.fn(),
         };
         res.cookie.mockClear();
         res.redirect.mockClear();

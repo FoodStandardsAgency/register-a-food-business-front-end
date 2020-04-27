@@ -1,5 +1,5 @@
 const {
-  sendRequest
+  sendRequest,
 } = require("../../src/server/connectors/registration/registration.connector");
 
 const validBody = {
@@ -10,7 +10,7 @@ const validBody = {
         establishment_primary_number: "329857245",
         establishment_secondary_number: "84345245",
         establishment_email: "django@uk.ibm.com",
-        establishment_opening_date: "2018-06-07"
+        establishment_opening_date: "2018-06-07",
       },
       operator: {
         operator_first_name: "Fred",
@@ -21,29 +21,29 @@ const validBody = {
         operator_town: "London",
         operator_primary_number: "9827235",
         operator_email: "fsatestemail.valid@gmail.com",
-        operator_type: "Sole trader"
+        operator_type: "Sole trader",
       },
       premise: {
         establishment_postcode: "SW12 9RQ",
         establishment_address_line_1: "123",
         establishment_adress_line_2: "Street",
         establishment_town: "London",
-        establishment_type: "Somewhere"
+        establishment_type: "Somewhere",
       },
       activities: {
         customer_type: "End consumer",
         business_type: "Livestock farm",
         business_type_search_term: "Example",
-        import_export_activities: "None"
-      }
+        import_export_activities: "None",
+      },
     },
     declaration: {
       declaration1: "Declaration",
       declaration2: "Declaration",
-      declaration3: "Declaration"
-    }
+      declaration3: "Declaration",
+    },
   },
-  local_council_url: "this is set in the tests"
+  local_council_url: "this is set in the tests",
 };
 
 describe("Registration service", () => {

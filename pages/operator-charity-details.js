@@ -6,12 +6,12 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
 } from "../src/components";
 import { Header, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OperatorCharityDetails = props => (
+const OperatorCharityDetails = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -41,12 +41,12 @@ const OperatorCharityDetails = props => (
             input={{
               name: "operator_charity_name",
               defaultValue: props.cumulativeFullAnswers.operator_charity_name,
-              autoComplete: "off"
+              autoComplete: "off",
             }}
             id="operator_charity_name"
             meta={{
               touched: true,
-              error: props.validatorErrors["operator_charity_name"]
+              error: props.validatorErrors["operator_charity_name"],
             }}
           >
             Charity name
@@ -58,12 +58,12 @@ const OperatorCharityDetails = props => (
             input={{
               name: "operator_charity_number",
               defaultValue: props.cumulativeFullAnswers.operator_charity_number,
-              autoComplete: "off"
+              autoComplete: "off",
             }}
             id="operator_charity_number"
             meta={{
               touched: true,
-              error: props.validatorErrors["operator_charity_number"]
+              error: props.validatorErrors["operator_charity_number"],
             }}
           >
             Charity reference number (optional)
@@ -86,7 +86,8 @@ const OperatorCharityDetails = props => (
               id="link-charity-commission"
             >
               Charity Commission website (opens in new window)
-            </a>.
+            </a>
+            .
           </span>
         </HiddenTextAccessible>
       </ContentItem.B_30_15>
@@ -100,5 +101,5 @@ export default SessionWrapper(OperatorCharityDetails);
 
 OperatorCharityDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

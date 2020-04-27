@@ -6,12 +6,12 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  PartnershipDescription
+  PartnershipDescription,
 } from "../src/components";
 import { Header, Radio, MultiChoice, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 
-const PartnersList = props => {
+const PartnersList = (props) => {
   let list = [];
   const partners = props.cumulativeFullAnswers.partners;
 
@@ -33,7 +33,7 @@ const PartnersList = props => {
   return list;
 };
 
-const PrimaryPartner = props => (
+const PrimaryPartner = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -56,7 +56,7 @@ const PrimaryPartner = props => (
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.partner_is_primary
+            error: props.validatorErrors.partner_is_primary,
           }}
         >
           <PartnersList {...props} />
@@ -74,5 +74,5 @@ PrimaryPartner.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

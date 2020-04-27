@@ -6,12 +6,12 @@ import {
   FindAddressButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
 } from "../src/components";
 import { Header, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const EstablishmentAddress = props => (
+const EstablishmentAddress = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -39,12 +39,12 @@ const EstablishmentAddress = props => (
               name: "establishment_postcode_find",
               defaultValue:
                 props.cumulativeFullAnswers.establishment_postcode_find,
-              autoComplete: "postal-code"
+              autoComplete: "postal-code",
             }}
             id="establishment_postcode_find"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_postcode_find
+              error: props.validatorErrors.establishment_postcode_find,
             }}
           >
             Postcode
@@ -63,5 +63,5 @@ EstablishmentAddress.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

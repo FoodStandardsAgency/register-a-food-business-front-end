@@ -6,12 +6,12 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  ContactDetailsHelp
+  ContactDetailsHelp,
 } from "../src/components";
 import { Header, InputField } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OperatorContactDetails = props => (
+const OperatorContactDetails = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -33,12 +33,12 @@ const OperatorContactDetails = props => (
             input={{
               name: "operator_primary_number",
               defaultValue: props.cumulativeFullAnswers.operator_primary_number,
-              autoComplete: "tel"
+              autoComplete: "tel",
             }}
             id="operator_primary_number"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_primary_number
+              error: props.validatorErrors.operator_primary_number,
             }}
           >
             Main phone number
@@ -51,12 +51,12 @@ const OperatorContactDetails = props => (
               name: "operator_secondary_number",
               defaultValue:
                 props.cumulativeFullAnswers.operator_secondary_number,
-              autoComplete: "off"
+              autoComplete: "off",
             }}
             id="operator_secondary_number"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_secondary_number
+              error: props.validatorErrors.operator_secondary_number,
             }}
           >
             Secondary phone number (optional)
@@ -68,15 +68,15 @@ const OperatorContactDetails = props => (
             input={{
               name: "operator_email",
               defaultValue: props.cumulativeFullAnswers.operator_email,
-              autoComplete: "email"
+              autoComplete: "email",
             }}
             id="operator_email"
             hint={[
-              "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
+              "We will use your email to keep you informed of any policy or legal changes that could affect your food business.",
             ]}
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_email
+              error: props.validatorErrors.operator_email,
             }}
           >
             Email address
@@ -95,5 +95,5 @@ OperatorContactDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

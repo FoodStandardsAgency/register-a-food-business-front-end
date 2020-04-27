@@ -6,12 +6,12 @@ import {
   BusinessTypeLookup,
   ContentItem,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
 } from "../src/components";
 import { Header } from "govuk-react";
 import PropTypes from "prop-types";
 
-const BusinessType = props => (
+const BusinessType = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -38,5 +38,5 @@ BusinessType.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

@@ -5,12 +5,12 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
 } from "../src/components";
 import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const CustomerType = props => (
+const CustomerType = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -28,7 +28,7 @@ const CustomerType = props => (
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.customer_type
+            error: props.validatorErrors.customer_type,
           }}
         >
           <Checkbox
@@ -62,5 +62,5 @@ CustomerType.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

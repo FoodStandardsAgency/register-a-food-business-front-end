@@ -6,12 +6,12 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
 } from "../src/components";
 import { Header, Radio, MultiChoice, HintText, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const EstablishmentOpeningStatus = props => (
+const EstablishmentOpeningStatus = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -40,7 +40,7 @@ const EstablishmentOpeningStatus = props => (
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.establishment_opening_status
+            error: props.validatorErrors.establishment_opening_status,
           }}
         >
           <Radio
@@ -79,5 +79,5 @@ EstablishmentOpeningStatus.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

@@ -14,11 +14,11 @@ const updateBusinessTypesForAutocomplete = async () => {
 
   const transformedBusinessTypeArray = [];
 
-  newBusinessTypesArray.forEach(businessType => {
-    businessType.searchTerms.forEach(searchTerm => {
+  newBusinessTypesArray.forEach((businessType) => {
+    businessType.searchTerms.forEach((searchTerm) => {
       const newArrayEntry = {
         displayName: businessType.displayName,
-        searchTerm
+        searchTerm,
       };
       transformedBusinessTypeArray.push(newArrayEntry);
     });
@@ -27,7 +27,7 @@ const updateBusinessTypesForAutocomplete = async () => {
   fs.writeFile(
     "./src/components/business-type-transformed.json",
     JSON.stringify(transformedBusinessTypeArray),
-    err => {
+    (err) => {
       if (err) {
         return console.log(err);
       }

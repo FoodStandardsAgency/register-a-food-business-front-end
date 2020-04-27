@@ -27,14 +27,14 @@ const comprehensiveReqSessionObject = {
     isBrowserSupported: true,
     isBrowserVersionVerified: true,
     country: "wales",
-    lcName: "cardiff county"
-  }
+    lcName: "cardiff county",
+  },
 };
 
 const emptyReqSessionObject = {
   query: "",
   url: "/",
-  session: {}
+  session: {},
 };
 
 let initialProps;
@@ -52,7 +52,7 @@ describe("<SessionWrapper />", () => {
     describe("given that comprehensive session data is passed as part of the req object", () => {
       beforeEach(() => {
         initialProps = WrappedComponent.getInitialProps({
-          req: comprehensiveReqSessionObject
+          req: comprehensiveReqSessionObject,
         });
         componentProps = WrappedComponent(initialProps).props;
       });
@@ -73,7 +73,7 @@ describe("<SessionWrapper />", () => {
     describe("given that zero session data is passed as part of the req object", () => {
       beforeEach(() => {
         initialProps = WrappedComponent.getInitialProps({
-          req: emptyReqSessionObject
+          req: emptyReqSessionObject,
         });
 
         componentProps = WrappedComponent(initialProps).props;
@@ -107,10 +107,10 @@ describe("<SessionWrapper />", () => {
         beforeEach(() => {
           const reqObjectWithEditQuery = {
             query: { edit: "some-page" },
-            url: "/"
+            url: "/",
           };
           initialProps = WrappedComponent.getInitialProps({
-            req: reqObjectWithEditQuery
+            req: reqObjectWithEditQuery,
           });
         });
 
@@ -123,10 +123,10 @@ describe("<SessionWrapper />", () => {
         beforeEach(() => {
           const reqObjectWithoutEditQuery = {
             query: { some_other_query: "value" },
-            url: "/"
+            url: "/",
           };
           initialProps = WrappedComponent.getInitialProps({
-            req: reqObjectWithoutEditQuery
+            req: reqObjectWithoutEditQuery,
           });
         });
 
@@ -142,10 +142,10 @@ describe("<SessionWrapper />", () => {
           beforeEach(() => {
             const reqObjectWithUrlAndEdit = {
               url: "/west-dorset/operator-name",
-              query: { edit: "some-edit-page" }
+              query: { edit: "some-edit-page" },
             };
             initialProps = WrappedComponent.getInitialProps({
-              req: reqObjectWithUrlAndEdit
+              req: reqObjectWithUrlAndEdit,
             });
           });
 
@@ -160,10 +160,10 @@ describe("<SessionWrapper />", () => {
           beforeEach(() => {
             const reqObjectWithUrlWithoutEdit = {
               url: "/west-dorset/operator-name",
-              query: {}
+              query: {},
             };
             initialProps = WrappedComponent.getInitialProps({
-              req: reqObjectWithUrlWithoutEdit
+              req: reqObjectWithUrlWithoutEdit,
             });
           });
 
@@ -177,10 +177,10 @@ describe("<SessionWrapper />", () => {
         beforeEach(() => {
           const reqObjectWithUrlAndEdit = {
             url: "/west-dorset/another-page",
-            query: { edit: "some-edit-page" }
+            query: { edit: "some-edit-page" },
           };
           initialProps = WrappedComponent.getInitialProps({
-            req: reqObjectWithUrlAndEdit
+            req: reqObjectWithUrlAndEdit,
           });
         });
 
@@ -195,10 +195,10 @@ describe("<SessionWrapper />", () => {
         beforeEach(() => {
           const reqObjectWithAcceptCookies = {
             url: "/",
-            cookies: { acceptAllCookies: true }
+            cookies: { acceptAllCookies: true },
           };
           initialProps = WrappedComponent.getInitialProps({
-            req: reqObjectWithAcceptCookies
+            req: reqObjectWithAcceptCookies,
           });
         });
 
@@ -211,11 +211,11 @@ describe("<SessionWrapper />", () => {
         beforeEach(() => {
           const reqObjectWithoutAcceptCookies = {
             url: "/",
-            cookies: { some_other_cookie: true }
+            cookies: { some_other_cookie: true },
           };
 
           initialProps = WrappedComponent.getInitialProps({
-            req: reqObjectWithoutAcceptCookies
+            req: reqObjectWithoutAcceptCookies,
           });
         });
 

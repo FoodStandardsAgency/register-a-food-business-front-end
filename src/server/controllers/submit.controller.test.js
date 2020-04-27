@@ -3,7 +3,7 @@ jest.mock("../services/submit.service");
 jest.mock("../services/statusEmitter.service");
 
 const {
-  transformAnswersForSubmit
+  transformAnswersForSubmit,
 } = require("../services/data-transform.service");
 const { submit } = require("../services/submit.service");
 
@@ -18,7 +18,7 @@ const submitArgs = [
   testLcUrl,
   testSubmissionData,
   testAddressLookups,
-  testRegDataVersion
+  testRegDataVersion,
 ];
 
 let response;
@@ -26,7 +26,7 @@ let response;
 describe("Function: submitController: ", () => {
   beforeEach(() => {
     transformAnswersForSubmit.mockImplementation(() => ({
-      transformedDataExample: "value"
+      transformedDataExample: "value",
     }));
   });
 
@@ -55,7 +55,7 @@ describe("Function: submitController: ", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({
         status: 500,
-        json: () => ({ reg_submission_date: "10 Jul 2018" })
+        json: () => ({ reg_submission_date: "10 Jul 2018" }),
       }));
       response = await submitController(...submitArgs);
     });
@@ -69,7 +69,7 @@ describe("Function: submitController: ", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({
         status: 400,
-        json: () => ({ userMessages: [{ message: "Error 123" }] })
+        json: () => ({ userMessages: [{ message: "Error 123" }] }),
       }));
       response = await submitController(...submitArgs);
     });
@@ -93,10 +93,10 @@ describe("Function: submitController: ", () => {
           "fsa-rn": "D9YC4B-KFK5JE-PKR7VX",
           email_fbo: {
             success: true,
-            recipient: "fbo@example.com"
+            recipient: "fbo@example.com",
           },
-          lc_config: { example: "data" }
-        })
+          lc_config: { example: "data" },
+        }),
       }));
       response = await submitController(...submitArgs);
     });
@@ -104,7 +104,7 @@ describe("Function: submitController: ", () => {
     it("Should call the submit service function with the correct args", () => {
       expect(submit).toHaveBeenLastCalledWith(
         {
-          transformedDataExample: "value"
+          transformedDataExample: "value",
         },
         testRegDataVersion
       );

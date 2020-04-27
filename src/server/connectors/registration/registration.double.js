@@ -18,7 +18,7 @@ const {
   validateBusinessType,
   validateDate,
   validateImportExportActivities,
-  validateMandatoryString
+  validateMandatoryString,
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const { Validator } = require("jsonschema");
@@ -45,104 +45,104 @@ const schema = {
             properties: {
               establishment_trading_name: {
                 type: "string",
-                validation: validateEstablishmentTradingName
+                validation: validateEstablishmentTradingName,
               },
               establishment_primary_number: {
                 type: "string",
-                validation: validatePhoneNumber
+                validation: validatePhoneNumber,
               },
               establishment_secondary_number: {
                 type: "string",
-                validation: validatePhoneNumberOptional
+                validation: validatePhoneNumberOptional,
               },
               establishment_email: {
                 type: "string",
-                validation: validateEmail
+                validation: validateEmail,
               },
               establishment_opening_date: {
                 type: "string",
-                validation: validateDate
-              }
+                validation: validateDate,
+              },
             },
             required: [
               "establishment_trading_name",
               "establishment_primary_number",
               "establishment_email",
-              "establishment_opening_date"
-            ]
+              "establishment_opening_date",
+            ],
           },
           operator: {
             type: "object",
             properties: {
               operator_first_name: {
                 type: "string",
-                validation: validateName
+                validation: validateName,
               },
               operator_last_name: {
                 type: "string",
-                validation: validateName
+                validation: validateName,
               },
               operator_postcode: {
                 type: "string",
-                validation: validatePostCode
+                validation: validatePostCode,
               },
               operator_address_line_1: {
                 type: "string",
-                validation: validateMandatoryString
+                validation: validateMandatoryString,
               },
               operator_street: {
                 type: "string",
-                validation: validateOptionalString
+                validation: validateOptionalString,
               },
               operator_town: {
                 type: "string",
-                validation: validateTown
+                validation: validateTown,
               },
               operator_primary_number: {
                 type: "string",
-                validation: validatePhoneNumber
+                validation: validatePhoneNumber,
               },
               operator_secondary_number: {
                 type: "string",
-                validation: validatePhoneNumberOptional
+                validation: validatePhoneNumberOptional,
               },
               operator_email: {
                 type: "string",
-                validation: validateEmail
+                validation: validateEmail,
               },
               contact_representative_number: {
                 type: "string",
-                validation: validatePhoneNumber
+                validation: validatePhoneNumber,
               },
               contact_representative_email: {
                 type: "string",
-                validation: validateEmail
+                validation: validateEmail,
               },
               operator_type: {
                 type: "string",
-                validation: validateRadioButtons
+                validation: validateRadioButtons,
               },
               operator_company_name: {
                 type: "string",
-                validation: validateCompanyName
+                validation: validateCompanyName,
               },
               operator_companies_house_number: {
                 type: "string",
-                validation: validateCompaniesHouseNumber
+                validation: validateCompaniesHouseNumber,
               },
               operator_charity_name: {
                 type: "string",
-                validation: validateCharityName
+                validation: validateCharityName,
               },
               operator_charity_number: {
                 type: "string",
-                validation: validateCharityNumber
-              }
+                validation: validateCharityNumber,
+              },
             },
             required: [
               "operator_type",
               "operator_postcode",
-              "operator_address_line_1"
+              "operator_address_line_1",
             ],
             allOf: [
               {
@@ -150,103 +150,108 @@ const schema = {
                   {
                     required: [
                       "operator_company_name",
-                      "operator_companies_house_number"
-                    ]
+                      "operator_companies_house_number",
+                    ],
                   },
                   { required: ["operator_charity_name"] },
-                  { required: ["operator_first_name", "operator_last_name"] }
-                ]
+                  { required: ["operator_first_name", "operator_last_name"] },
+                ],
               },
               {
                 oneOf: [
                   {
-                    required: ["operator_primary_number", "operator_email"]
+                    required: ["operator_primary_number", "operator_email"],
                   },
                   {
                     required: [
                       "contact_representative_email",
-                      "contact_representative_number"
-                    ]
-                  }
-                ]
-              }
-            ]
+                      "contact_representative_number",
+                    ],
+                  },
+                ],
+              },
+            ],
           },
           premise: {
             type: "object",
             properties: {
               establishment_postcode: {
                 type: "string",
-                validation: validatePostCode
+                validation: validatePostCode,
               },
               establishment_address_line_1: {
                 type: "string",
-                validation: validateMandatoryString
+                validation: validateMandatoryString,
               },
               establishment_street: {
                 type: "string",
-                validation: validateOptionalString
+                validation: validateOptionalString,
               },
               establishment_town: {
                 type: "string",
-                validation: validateTown
+                validation: validateTown,
               },
               establishment_type: {
                 type: "string",
-                validation: validateRadioButtons
-              }
+                validation: validateRadioButtons,
+              },
             },
             required: [
               "establishment_postcode",
               "establishment_address_line_1",
-              "establishment_type"
-            ]
+              "establishment_type",
+            ],
           },
           activities: {
             type: "object",
             properties: {
               customer_type: {
                 type: "string",
-                validation: validateCustomerType
+                validation: validateCustomerType,
               },
               business_type: {
                 type: "string",
-                validation: validateBusinessType
+                validation: validateBusinessType,
               },
               business_type_search_term: {
                 type: "string",
-                validation: validateFirstLine
+                validation: validateFirstLine,
               },
               import_export_activities: {
                 type: "string",
-                validation: validateImportExportActivities
-              }
+                validation: validateImportExportActivities,
+              },
             },
             required: [
               "customer_type",
               "business_type",
-              "import_export_activities"
-            ]
-          }
+              "import_export_activities",
+            ],
+          },
         },
-        required: ["establishment_details", "operator", "premise", "activities"]
+        required: [
+          "establishment_details",
+          "operator",
+          "premise",
+          "activities",
+        ],
       },
       declaration: {
         type: "object",
         properties: {
           declaration1: { type: "string", validation: validateDeclaration },
           declaration2: { type: "string", validation: validateDeclaration },
-          declaration3: { type: "string", validation: validateDeclaration }
+          declaration3: { type: "string", validation: validateDeclaration },
         },
-        required: ["declaration1", "declaration2", "declaration3"]
-      }
+        required: ["declaration1", "declaration2", "declaration3"],
+      },
     },
-    required: ["establishment", "declaration"]
+    required: ["establishment", "declaration"],
   },
-  local_council_url: { type: "string" }
+  local_council_url: { type: "string" },
 };
 
-const registrationDouble = body => {
+const registrationDouble = (body) => {
   const objectBody = JSON.parse(body);
   const validatorResult = validator.validate(
     objectBody.registration,
@@ -263,10 +268,10 @@ const registrationDouble = body => {
           {
             property:
               "instance.establishment.establishment_details.establishment_email",
-            message: "Invalid operator email"
-          }
-        ]
-      })
+            message: "Invalid operator email",
+          },
+        ],
+      }),
     };
   } else {
     const lcConfigCombined = {
@@ -275,8 +280,8 @@ const registrationDouble = body => {
         local_council: "City of Cardiff Council",
         local_council_email: "both@example.com",
         local_council_notify_emails: ["both@example.com"],
-        local_council_url: "cardiff"
-      }
+        local_council_url: "cardiff",
+      },
     };
 
     const lcConfigSplit = {
@@ -284,32 +289,32 @@ const registrationDouble = body => {
         code: 4221,
         local_council: "West Dorset District Council",
         local_council_notify_emails: ["hygiene@example.com"],
-        local_council_email: "hygiene@example.com"
+        local_council_email: "hygiene@example.com",
       },
       standards: {
         code: 4226,
         local_council: "Dorset County Council",
         local_council_notify_emails: ["standards@example.com"],
-        local_council_email: "standards@example.com"
-      }
+        local_council_email: "standards@example.com",
+      },
     };
 
     const lcEmailCombined = {
       hygieneAndStandards: {
         success: true,
-        recipient: "both@example.com"
-      }
+        recipient: "both@example.com",
+      },
     };
 
     const lcEmailSplit = {
       hygiene: {
         success: true,
-        recipient: "hygiene@example.com"
+        recipient: "hygiene@example.com",
       },
       standards: {
         success: true,
-        recipient: "standards@example.com"
-      }
+        recipient: "standards@example.com",
+      },
     };
 
     let lcConfig;
@@ -327,9 +332,7 @@ const registrationDouble = body => {
       lcEmail = lcEmailSplit;
     } else {
       throw new Error(
-        `registration.double: the council "${
-          objectBody.local_council_url
-        }" is not supported by the double.`
+        `registration.double: the council "${objectBody.local_council_url}" is not supported by the double.`
       );
     }
 
@@ -345,16 +348,16 @@ const registrationDouble = body => {
         "fsa-rn": "12486-sdmbf",
         tascomiResponse: {
           id: "25",
-          online_reference: "0000025"
+          online_reference: "0000025",
         },
         emailFbo: {
           success: true,
-          recipient: "fsatestemail.valid@gmail.com"
+          recipient: "fsatestemail.valid@gmail.com",
         },
         email_lc: lcEmail,
-        lcConfig: lcConfig
+        lcConfig: lcConfig,
       }),
-      status: 200
+      status: 200,
     };
   }
 };

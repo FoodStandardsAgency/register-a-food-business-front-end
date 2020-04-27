@@ -6,12 +6,12 @@ import {
   ContinueButton,
   SummaryTable,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
 } from "../src/components";
 import { Header, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 
-const RegistrationSummary = props => (
+const RegistrationSummary = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -41,5 +41,5 @@ export default SessionWrapper(RegistrationSummary);
 RegistrationSummary.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
-  )
+  ),
 };

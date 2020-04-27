@@ -1,6 +1,6 @@
 const {
   getPathConfigByVersion,
-  clearPathConfigCache
+  clearPathConfigCache,
 } = require("../../src/server/connectors/config-db/config-db.connector");
 
 let response;

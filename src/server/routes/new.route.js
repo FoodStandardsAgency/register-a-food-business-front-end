@@ -9,12 +9,12 @@ const { Next } = require("../next");
 const { logEmitter } = require("../services/logging.service");
 const { LC_CACHE_TIME_TO_LIVE } = require("../config");
 const {
-  transformAnswersForSummary
+  transformAnswersForSummary,
 } = require("../services/data-transform.service");
 const {
   getPathConfigByVersion,
   getLocalCouncils,
-  getCouncilData
+  getCouncilData,
 } = require("../connectors/config-db/config-db.connector");
 const { REGISTRATION_DATA_VERSION } = require("../config");
 const { Cache } = require("../services/cache.service");

@@ -12,11 +12,11 @@ const findAddressController = require("./find-address.controller");
 const testEmptyAddressArray = [];
 
 const testPreviousAnswers = {
-  example: "answer"
+  example: "answer",
 };
 
 const testNewAnswerPostcode = {
-  establishment_postcode_find: "AA11 1AA"
+  establishment_postcode_find: "AA11 1AA",
 };
 
 let response;
@@ -25,7 +25,7 @@ describe("Function: findAddressController: ", () => {
   describe("given previous answers and a valid postcode", () => {
     beforeEach(() => {
       validate.mockImplementation(() => ({
-        errors: {}
+        errors: {},
       }));
     });
 
@@ -55,7 +55,7 @@ describe("Function: findAddressController: ", () => {
       it("Should return cumulativeFullAnswers including the previous answers and the new postcode", () => {
         expect(response.cumulativeFullAnswers).toEqual({
           example: "answer",
-          establishment_postcode_find: "AA11 1AA"
+          establishment_postcode_find: "AA11 1AA",
         });
       });
 
@@ -83,7 +83,7 @@ describe("Function: findAddressController: ", () => {
       it("Should return cumulativeFullAnswers including the previous answers and the new postcode", () => {
         expect(response.cumulativeFullAnswers).toEqual({
           example: "answer",
-          establishment_postcode_find: "AA11 1AA"
+          establishment_postcode_find: "AA11 1AA",
         });
       });
 
@@ -118,7 +118,7 @@ describe("Function: findAddressController: ", () => {
       it("Should return cumulativeFullAnswers including the previous answers and the new postcode", () => {
         expect(response.cumulativeFullAnswers).toEqual({
           example: "answer",
-          establishment_postcode_find: "AA11 1AA"
+          establishment_postcode_find: "AA11 1AA",
         });
       });
 
@@ -137,14 +137,14 @@ describe("Function: findAddressController: ", () => {
   describe("given previous answers and an invalid postcode", () => {
     beforeEach(async () => {
       validate.mockImplementation(() => ({
-        errors: { example: "error" }
+        errors: { example: "error" },
       }));
 
       response = await findAddressController(
         "/establishment-address",
         testPreviousAnswers,
         {
-          establishment_postcode_find: "not a valid postcode"
+          establishment_postcode_find: "not a valid postcode",
         }
       );
     });
@@ -156,13 +156,13 @@ describe("Function: findAddressController: ", () => {
     it("Should return cumulativeFullAnswers including the previous answers and the invalid postcode", () => {
       expect(response.cumulativeFullAnswers).toEqual({
         example: "answer",
-        establishment_postcode_find: "not a valid postcode"
+        establishment_postcode_find: "not a valid postcode",
       });
     });
 
     it("Should return the correct validatorErrors", () => {
       expect(response.validatorErrors).toEqual({
-        example: "error"
+        example: "error",
       });
     });
   });

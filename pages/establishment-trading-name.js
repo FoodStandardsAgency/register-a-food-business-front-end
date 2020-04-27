@@ -6,12 +6,12 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
 } from "../src/components";
 import { Header, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const EstablishmentTradingName = props => (
+const EstablishmentTradingName = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -37,15 +37,15 @@ const EstablishmentTradingName = props => (
             input={{
               name: "establishment_trading_name",
               defaultValue:
-                props.cumulativeFullAnswers.establishment_trading_name
+                props.cumulativeFullAnswers.establishment_trading_name,
             }}
             id="establishment_trading_name"
             hint={[
-              "A trading name is what your customers will call your business."
+              "A trading name is what your customers will call your business.",
             ]}
             meta={{
               touched: true,
-              error: props.validatorErrors["establishment_trading_name"]
+              error: props.validatorErrors["establishment_trading_name"],
             }}
           >
             What is the trading name of this establishment?
@@ -64,5 +64,5 @@ EstablishmentTradingName.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

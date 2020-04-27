@@ -6,7 +6,7 @@ const { submit } = require("../services/submit.service");
 const { logEmitter } = require("../services/logging.service");
 const { statusEmitter } = require("../services/statusEmitter.service");
 const {
-  transformAnswersForSubmit
+  transformAnswersForSubmit,
 } = require("../services/data-transform.service");
 
 /**
@@ -32,7 +32,7 @@ const submitController = async (
     fsaRegistrationNumber: "",
     emailFbo: {},
     lc_details: {},
-    submissionSucceeded: null
+    submissionSucceeded: null,
   };
   logEmitter.emit("functionCall", "submit.controller", "submitController");
 

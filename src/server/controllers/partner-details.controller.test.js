@@ -6,7 +6,7 @@ const { validate } = require("../services/validation.service");
 const {
   partnerDetailsSave,
   partnerDetailsContinue,
-  partnerDetailsDelete
+  partnerDetailsDelete,
 } = require("./partner-details.controller");
 
 const currentPage = "/current";
@@ -22,7 +22,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
 
         try {
@@ -43,7 +43,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner two"]
+          partners: ["partner one", "partner two"],
         });
       });
 
@@ -55,7 +55,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
 
         try {
@@ -76,7 +76,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner new name", "partner two"]
+          partners: ["partner new name", "partner two"],
         });
       });
 
@@ -89,7 +89,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
 
         try {
@@ -101,8 +101,8 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
                 "partner 2",
                 "partner 3",
                 "partner 4",
-                "partner 5"
-              ]
+                "partner 5",
+              ],
             },
             { partner_name: "partner 6" },
             council,
@@ -123,8 +123,8 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
             "partner 2",
             "partner 3",
             "partner 4",
-            "partner 5"
-          ]
+            "partner 5",
+          ],
         });
       });
 
@@ -137,7 +137,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: { example: "error" }
+          errors: { example: "error" },
         }));
 
         try {
@@ -163,7 +163,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
 
       it("Should return cumulativeFullAnswers", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one"]
+          partners: ["partner one"],
         });
       });
     });
@@ -171,7 +171,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: { example: "error" }
+          errors: { example: "error" },
         }));
 
         try {
@@ -197,7 +197,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
 
       it("Should return cumulativeFullAnswers", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one"]
+          partners: ["partner one"],
         });
       });
     });
@@ -237,7 +237,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
 
         try {
@@ -260,7 +260,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner two"]
+          partners: ["partner one", "partner two"],
         });
       });
 
@@ -272,7 +272,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
 
         try {
@@ -295,7 +295,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner new name", "partner two"]
+          partners: ["partner new name", "partner two"],
         });
       });
 
@@ -308,7 +308,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
 
         try {
@@ -320,8 +320,8 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
                 "partner 2",
                 "partner 3",
                 "partner 4",
-                "partner 5"
-              ]
+                "partner 5",
+              ],
             },
             { partner_name: "partner 6" },
             council,
@@ -344,8 +344,8 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
             "partner 2",
             "partner 3",
             "partner 4",
-            "partner 5"
-          ]
+            "partner 5",
+          ],
         });
       });
 
@@ -358,7 +358,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: { example: "error" }
+          errors: { example: "error" },
         }));
 
         try {
@@ -386,7 +386,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
 
       it("Should return cumulativeFullAnswers", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one"]
+          partners: ["partner one"],
         });
       });
     });
@@ -395,7 +395,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: { example: "error" }
+          errors: { example: "error" },
         }));
 
         try {
@@ -423,7 +423,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
 
       it("Should return cumulativeFullAnswers", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one"]
+          partners: ["partner one"],
         });
       });
     });
@@ -465,7 +465,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
 
         try {
@@ -485,7 +485,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers without the deleted partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner three"]
+          partners: ["partner one", "partner three"],
         });
       });
     });
@@ -494,7 +494,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
 
         try {
@@ -514,7 +514,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers wwith no changes", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner two", "partner three"]
+          partners: ["partner one", "partner two", "partner three"],
         });
       });
 
@@ -543,7 +543,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
       it("Should return cumulativeFullAnswers still with the empty array", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: []
+          partners: [],
         });
       });
 
@@ -575,7 +575,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
 
         try {
@@ -597,7 +597,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers without the deleted partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner three"]
+          partners: ["partner one", "partner three"],
         });
       });
     });
@@ -606,7 +606,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
 
         try {
@@ -628,7 +628,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
       it("Should return cumulativeFullAnswers including the previous answers with no changes", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: ["partner one", "partner two", "partner three"]
+          partners: ["partner one", "partner two", "partner three"],
         });
       });
 
@@ -641,7 +641,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
 
         try {
@@ -663,7 +663,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
       it("Should return cumulativeFullAnswers still with the empty array", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: []
+          partners: [],
         });
       });
 
@@ -685,7 +685,7 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
 
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
 
         try {
@@ -716,7 +716,7 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
       let response;
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: { partners: "Invalid partners" }
+          errors: { partners: "Invalid partners" },
         }));
         response = await partnerDetailsContinue(
           currentPage,
@@ -732,7 +732,7 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
 
       it("Should return empty validatorErrors", () => {
         expect(response.validatorErrors).toEqual({
-          partners: "Invalid partners"
+          partners: "Invalid partners",
         });
       });
     });
@@ -771,7 +771,7 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
 
       beforeEach(async () => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
 
         try {
@@ -807,7 +807,7 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
           currentPage,
           {
             partners: partnerArray,
-            main_partnership_contact: "deleted partner"
+            main_partnership_contact: "deleted partner",
           },
 
           council,

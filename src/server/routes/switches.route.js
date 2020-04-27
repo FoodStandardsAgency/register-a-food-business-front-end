@@ -42,7 +42,7 @@ const switchesRouter = () => {
       "Routes",
       "/switches/:switchName/:action/:originator route"
     );
-    req.session.save(err => {
+    req.session.save((err) => {
       if (err) {
         logEmitter.emit("functionFail", "Routes", "/switches route", err);
         throw err;

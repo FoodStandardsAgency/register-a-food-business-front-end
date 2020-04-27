@@ -14,7 +14,7 @@ describe("cache.service get()", () => {
     });
     beforeEach(() => {
       mockResult = obj2;
-      return cache.get().then(value => {
+      return cache.get().then((value) => {
         result = value;
       });
     });
@@ -32,7 +32,7 @@ describe("cache.service get()", () => {
     beforeEach(() => {
       return cache.get().then(() => {
         mockResult = obj2;
-        return cache.get().then(value => {
+        return cache.get().then((value) => {
           result = value;
         });
       });
@@ -47,7 +47,7 @@ describe("cache.service get()", () => {
     const deleteOnExpire = true;
     const waitTimeForCacheToExpire = 700;
     const waitTimeForValueToAutoRetrieve = 400;
-    const delay = t => new Promise(resolve => setTimeout(resolve, t));
+    const delay = (t) => new Promise((resolve) => setTimeout(resolve, t));
     beforeEach(() => {
       logEmitter.emit.mockClear();
     });
@@ -65,12 +65,12 @@ describe("cache.service get()", () => {
             return delay(waitTimeForCacheToExpire).then(() => {
               if (cache.isEmpty()) {
                 return delay(waitTimeForValueToAutoRetrieve).then(() => {
-                  return cache.get().then(value => {
+                  return cache.get().then((value) => {
                     result = Promise.resolve(value);
                   });
                 });
               } else {
-                return cache.get().then(value => {
+                return cache.get().then((value) => {
                   result = Promise.resolve(value);
                 });
               }
@@ -78,7 +78,7 @@ describe("cache.service get()", () => {
           });
         });
         it("should return new auto-retrieved object from cache", () => {
-          return result.then(r => {
+          return result.then((r) => {
             expect(r).toEqual(obj2);
             expect(logEmitter.emit).toHaveBeenNthCalledWith(
               1,
@@ -121,12 +121,12 @@ describe("cache.service get()", () => {
             return delay(waitTimeForCacheToExpire).then(() => {
               if (cache.isEmpty()) {
                 return delay(waitTimeForValueToAutoRetrieve).then(() => {
-                  return cache.get().then(value => {
+                  return cache.get().then((value) => {
                     result = Promise.resolve(value);
                   });
                 });
               } else {
-                return cache.get().then(value => {
+                return cache.get().then((value) => {
                   result = Promise.resolve(value);
                 });
               }
@@ -134,7 +134,7 @@ describe("cache.service get()", () => {
           });
         });
         it("should return the old value", () => {
-          return result.then(r => {
+          return result.then((r) => {
             expect(r).toEqual(obj1);
             expect(logEmitter.emit).toHaveBeenNthCalledWith(
               1,
@@ -180,12 +180,12 @@ describe("cache.service get()", () => {
           return delay(waitTimeForCacheToExpire).then(() => {
             if (cache.isEmpty()) {
               return delay(waitTimeForValueToAutoRetrieve).then(() => {
-                return cache.get().then(value => {
+                return cache.get().then((value) => {
                   result = Promise.resolve(value);
                 });
               });
             } else {
-              return cache.get().then(value => {
+              return cache.get().then((value) => {
                 result = Promise.resolve(value);
               });
             }
@@ -193,7 +193,7 @@ describe("cache.service get()", () => {
         });
       });
       it("should return old object from db", () => {
-        return result.then(r => {
+        return result.then((r) => {
           expect(r).toEqual(obj1);
           expect(logEmitter.emit).toHaveBeenNthCalledWith(
             1,

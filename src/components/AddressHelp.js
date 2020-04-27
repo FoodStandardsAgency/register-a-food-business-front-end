@@ -3,7 +3,7 @@ import { ContentItem } from "../../src/components";
 import { Header, HintText } from "govuk-react";
 import { PartnershipDescription, OperatorDescription } from "./";
 
-const AddressHelp = props => {
+const AddressHelp = (props) => {
   return props.role === "Partnership" ? (
     <React.Fragment>
       <Header level={1} size="LARGE">

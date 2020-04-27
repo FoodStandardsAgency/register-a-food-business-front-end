@@ -21,9 +21,9 @@ describe("Connector: lookupAPI: ", () => {
 
   describe("Given a valid UK postcode:", () => {
     beforeEach(async () => {
-      fetch.mockImplementation(url => ({
+      fetch.mockImplementation((url) => ({
         json: jest.fn(() => smallAddressResponseJSON),
-        status: 200
+        status: 200,
       }));
 
       responseJSON = await getAddressesByPostcode("NR14 7PZ");
@@ -38,7 +38,7 @@ describe("Connector: lookupAPI: ", () => {
         process.env.DOUBLE_MODE = "true";
         addressLookupDouble.mockImplementation(() => ({
           json: () => regularIntegrationResponse,
-          status: 200
+          status: 200,
         }));
 
         responseJSON = await getAddressesByPostcode("BS249ST");
@@ -56,7 +56,7 @@ describe("Connector: lookupAPI: ", () => {
     describe("When given a non-200 response from the API", () => {
       beforeEach(async () => {
         fetch.mockImplementation(() => ({
-          status: 500
+          status: 500,
         }));
       });
 
@@ -76,11 +76,11 @@ describe("Connector: lookupAPI: ", () => {
       beforeEach(async () => {
         fetch.mockImplementation(() => ({
           status: 200,
-          json: jest.fn(() => regularIntegrationResponse)
+          json: jest.fn(() => regularIntegrationResponse),
         }));
         fetch.mockImplementationOnce(() => ({
           status: 200,
-          json: jest.fn(() => [])
+          json: jest.fn(() => []),
         }));
         responseJSON = await getAddressesByPostcode("BS249ST");
       });
@@ -92,11 +92,11 @@ describe("Connector: lookupAPI: ", () => {
     describe("When given a non-200 response from the API on second attempt", () => {
       beforeEach(async () => {
         fetch.mockImplementation(() => ({
-          status: 500
+          status: 500,
         }));
         fetch.mockImplementationOnce(() => ({
           status: 200,
-          json: jest.fn(() => [])
+          json: jest.fn(() => []),
         }));
       });
 
@@ -217,7 +217,7 @@ describe("Connector: lookupAPI: ", () => {
     beforeEach(async () => {
       fetch.mockImplementation(() => ({
         json: jest.fn(() => []),
-        status: 200
+        status: 200,
       }));
 
       responseJSON = await getAddressesByPostcode("invalid postcode");
@@ -232,7 +232,7 @@ describe("Connector: lookupAPI: ", () => {
         process.env.DOUBLE_MODE = "true";
         addressLookupDouble.mockImplementation(() => ({
           json: () => [],
-          status: 200
+          status: 200,
         }));
 
         responseJSON = await getAddressesByPostcode("invalid postcode");

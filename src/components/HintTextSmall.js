@@ -5,8 +5,8 @@ import styled from "react-emotion";
 const HintTextSmall = styled(HintText)({
   fontSize: FONT_SIZE.SIZE_16,
   [MEDIA_QUERIES.LARGESCREEN]: {
-    fontSize: FONT_SIZE.SIZE_16
-  }
+    fontSize: FONT_SIZE.SIZE_16,
+  },
 });
 
 export default HintTextSmall;

@@ -1,8 +1,8 @@
 jest.mock("express", () => ({
   Router: jest.fn(() => ({
     post: jest.fn(),
-    get: jest.fn()
-  }))
+    get: jest.fn(),
+  })),
 }));
 jest.mock("../controllers/submit.controller");
 const submitController = require("../controllers/submit.controller");
@@ -14,14 +14,14 @@ describe("Submit route: ", () => {
       code: 4221,
       local_council: "District Council",
       local_council_notify_emails: ["fsatestemail.valid@gmail.com"],
-      local_council_email: "fsatestemail.valid@gmail.com"
+      local_council_email: "fsatestemail.valid@gmail.com",
     },
     standards: {
       code: 4226,
       local_council: "County Council",
       local_council_notify_emails: ["fsatestemail.valid@gmail.com"],
-      local_council_email: "fsatestemail.valid@gmail.com"
-    }
+      local_council_email: "fsatestemail.valid@gmail.com",
+    },
   };
   let router, handler;
   beforeEach(() => {
@@ -38,7 +38,7 @@ describe("Submit route: ", () => {
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
           emailFbo: { recipient: "fbo@example.com", success: true },
-          lcConfig: lcConfig
+          lcConfig: lcConfig,
         }));
 
         handler = router.get.mock.calls[0][1];
@@ -46,18 +46,18 @@ describe("Submit route: ", () => {
         req = {
           session: {
             cumulativeFullAnswers: {
-              some: "answers"
+              some: "answers",
             },
             council: "cardiff",
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },
-            save: cb => {
+            save: (cb) => {
               cb();
-            }
-          }
+            },
+          },
         };
         res = {
-          redirect: jest.fn()
+          redirect: jest.fn(),
         };
         handler(req, res);
       });
@@ -66,7 +66,7 @@ describe("Submit route: ", () => {
         expect(submitController).toHaveBeenCalledWith(
           "cardiff",
           {
-            some: "answers"
+            some: "answers",
           },
           ["1"],
           "1.0.0"
@@ -97,7 +97,7 @@ describe("Submit route: ", () => {
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
           emailFbo: { recipient: "fbo@example.com", success: true },
-          lcConfig: lcConfig
+          lcConfig: lcConfig,
         }));
 
         handler = router.get.mock.calls[0][1];
@@ -105,18 +105,18 @@ describe("Submit route: ", () => {
         req = {
           session: {
             cumulativeFullAnswers: {
-              some: "answers"
+              some: "answers",
             },
             council: "cardiff",
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },
-            save: cb => {
+            save: (cb) => {
               cb();
-            }
-          }
+            },
+          },
         };
         res = {
-          redirect: jest.fn()
+          redirect: jest.fn(),
         };
         handler(req, res);
       });
@@ -135,7 +135,7 @@ describe("Submit route: ", () => {
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
           emailFbo: { recipient: "fbo@example.com", success: true },
-          lcConfig: lcConfig
+          lcConfig: lcConfig,
         }));
 
         handler = router.get.mock.calls[0][1];
@@ -143,18 +143,18 @@ describe("Submit route: ", () => {
         req = {
           session: {
             cumulativeFullAnswers: {
-              some: "answers"
+              some: "answers",
             },
             council: "cardiff",
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },
-            save: cb => {
+            save: (cb) => {
               cb("session save error");
-            }
-          }
+            },
+          },
         };
         res = {
-          redirect: jest.fn()
+          redirect: jest.fn(),
         };
         try {
           await handler(req, res);

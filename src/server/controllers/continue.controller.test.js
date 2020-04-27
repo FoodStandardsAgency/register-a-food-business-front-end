@@ -6,13 +6,13 @@ jest.mock("../services/statusEmitter.service");
 const {
   moveAlongPath,
   editPath,
-  switchOffManualAddressInput
+  switchOffManualAddressInput,
 } = require("../services/path.service");
 const { validate } = require("../services/validation.service");
 const {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
-  cleanSwitches
+  cleanSwitches,
 } = require("../services/session-management.service");
 const pathConfigMock = require("../../__mocks__/pathConfigMock.json");
 const continueController = require("./continue.controller");
@@ -20,34 +20,33 @@ const continueController = require("./continue.controller");
 describe("Function: continueController: ", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    cleanInactivePathAnswers.mockImplementation(input => input);
-    cleanEmptiedAnswers.mockImplementation(
-      (previousAnswers, newAnswersArray) =>
-        newAnswersArray.length > 0 ? previousAnswers : null
+    cleanInactivePathAnswers.mockImplementation((input) => input);
+    cleanEmptiedAnswers.mockImplementation((previousAnswers, newAnswersArray) =>
+      newAnswersArray.length > 0 ? previousAnswers : null
     );
     cleanSwitches.mockImplementation(() => ({}));
     editPath.mockImplementation(() => ({
       "/some-page": {
         on: true,
-        switches: {}
+        switches: {},
       },
       "/final-page": {
         on: true,
-        switches: {}
-      }
+        switches: {},
+      },
     }));
     switchOffManualAddressInput.mockImplementation(() => ({
       "/some-page": {
         on: true,
-        switches: {}
+        switches: {},
       },
       "/final-page": {
         on: true,
-        switches: {}
-      }
+        switches: {},
+      },
     }));
     validate.mockImplementation(() => ({
-      errors: {}
+      errors: {},
     }));
   });
 
@@ -56,13 +55,13 @@ describe("Function: continueController: ", () => {
   const exampleSwitches = { switch1: true, switch2: false };
 
   const exampleAnswers = {
-    answer: "answer-pathAnswer"
+    answer: "answer-pathAnswer",
   };
 
   describe("When there are no new answers on the originator page: ", () => {
     beforeEach(() => {
       validate.mockImplementation(() => ({
-        errors: {}
+        errors: {},
       }));
       response = continueController(
         "/some-page",
@@ -85,7 +84,7 @@ describe("Function: continueController: ", () => {
   describe("When newAnswers is undefined", () => {
     beforeEach(() => {
       validate.mockImplementation(() => ({
-        errors: {}
+        errors: {},
       }));
       response = continueController(
         "/some-page",
@@ -103,12 +102,12 @@ describe("Function: continueController: ", () => {
   describe("When newAnswers contains answers with empty spaces", () => {
     beforeEach(() => {
       validate.mockImplementation(() => ({
-        errors: {}
+        errors: {},
       }));
 
       const testNewAnswersWithSpaces = {
         operator_secondary_number: "       ",
-        operator_first_name: "  name  "
+        operator_first_name: "  name  ",
       };
 
       response = continueController(
@@ -129,7 +128,7 @@ describe("Function: continueController: ", () => {
     describe("When the current page is at the end of the path", () => {
       beforeEach(() => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
         moveAlongPath.mockImplementation(() => "/submit");
         response = continueController(
@@ -149,7 +148,7 @@ describe("Function: continueController: ", () => {
     describe("When the switches are undefined", () => {
       beforeEach(() => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
         moveAlongPath.mockImplementation(() => "/nextPage");
         response = continueController(
@@ -169,7 +168,7 @@ describe("Function: continueController: ", () => {
     describe("When the current page is NOT at the end of the path", () => {
       beforeEach(() => {
         validate.mockImplementation(() => ({
-          errors: {}
+          errors: {},
         }));
         moveAlongPath.mockImplementation(() => "/nextPage");
         response = continueController(
@@ -204,7 +203,7 @@ describe("Function: continueController: ", () => {
   describe("When there are validator errors: ", () => {
     beforeEach(() => {
       validate.mockImplementation(() => ({
-        errors: { some: "error" }
+        errors: { some: "error" },
       }));
       response = continueController(
         "/mock-page-1",
@@ -227,7 +226,7 @@ describe("Function: continueController: ", () => {
       beforeEach(() => {
         cleanSwitches.mockImplementation(() => ({
           switch1: false,
-          switch2: true
+          switch2: true,
         }));
       });
 
@@ -293,7 +292,7 @@ describe("Function: continueController: ", () => {
 
       const responseSwitchesValueArray = Object.values(response.switches);
 
-      responseSwitchesValueArray.forEach(value => {
+      responseSwitchesValueArray.forEach((value) => {
         expect(typeof value).toBe("boolean");
       });
     });
@@ -302,7 +301,7 @@ describe("Function: continueController: ", () => {
       beforeEach(() => {
         cleanSwitches.mockImplementation(() => ({
           switch1: false,
-          switch2: true
+          switch2: true,
         }));
       });
 

@@ -11,12 +11,12 @@ describe("Function: backController: ", () => {
       editPath.mockImplementation(() => ({
         "/previous-page": {
           on: true,
-          switches: {}
+          switches: {},
         },
         "/current-page": {
           on: true,
-          switches: {}
-        }
+          switches: {},
+        },
       }));
       moveAlongPath.mockImplementation(() => "/previous-page");
       result = backController("/current-page", {}, pathConfigMock);

@@ -3,7 +3,7 @@
  */
 
 const {
-  cleanEmptiedAnswers
+  cleanEmptiedAnswers,
 } = require("../services/session-management.service");
 const { changeSwitch } = require("../services/switches.service");
 const { logEmitter } = require("../services/logging.service");
@@ -30,7 +30,7 @@ const switchesController = (
 
   const controllerResponse = {
     cumulativeFullAnswers: {},
-    newSwitchState: undefined
+    newSwitchState: undefined,
   };
 
   try {

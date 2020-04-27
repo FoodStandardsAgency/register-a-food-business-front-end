@@ -3,35 +3,35 @@ import stemmer from "stemmer";
 import {
   inputValueFunction,
   suggestionFunction,
-  findMatches
+  findMatches,
 } from "../components/BusinessTypeLookupFunctions";
 
 jest.mock("stemmer");
 jest.mock("../components/business-type-transformed.json", () => [
   {
     displayName: "Restaurant, cafe, canteen or fast food",
-    searchTerm: "fusion"
+    searchTerm: "fusion",
   },
   {
     displayName: "Livestock farm",
-    searchTerm: "cow"
+    searchTerm: "cow",
   },
   {
     displayName: "Take away with no food consumed on site",
-    searchTerm: "fusion"
+    searchTerm: "fusion",
   },
   {
     displayName: "Online retailer",
-    searchTerm: "computer"
+    searchTerm: "computer",
   },
   {
     displayName: "Online retailer",
-    searchTerm: "example"
+    searchTerm: "example",
   },
   {
     displayName: "Butcher",
-    searchTerm: "retail"
-  }
+    searchTerm: "retail",
+  },
 ]);
 
 describe("Function: inputValueFunction", () => {
@@ -81,7 +81,7 @@ let returnResultsArray;
 
 describe("Function: findMatches", () => {
   beforeEach(() => {
-    stemmer.mockImplementation(word => word);
+    stemmer.mockImplementation((word) => word);
     returnResultsArray = jest.fn();
   });
 
@@ -92,22 +92,22 @@ describe("Function: findMatches", () => {
         expect(returnResultsArray).toHaveBeenLastCalledWith([
           {
             displayName: "Livestock farm",
-            searchTerm: "cow"
-          }
+            searchTerm: "cow",
+          },
         ]);
       });
     });
 
     describe("query of 'cows'", () => {
       it("should call the return function with one entry - Livestock farm - with the searchTerm still as cow", () => {
-        stemmer.mockImplementation(word => (word === "cows" ? "cow" : word));
+        stemmer.mockImplementation((word) => (word === "cows" ? "cow" : word));
 
         findMatches("cows", returnResultsArray);
         expect(returnResultsArray).toHaveBeenLastCalledWith([
           {
             displayName: "Livestock farm",
-            searchTerm: "cow"
-          }
+            searchTerm: "cow",
+          },
         ]);
       });
     });
@@ -118,32 +118,32 @@ describe("Function: findMatches", () => {
         expect(returnResultsArray).toHaveBeenLastCalledWith([
           {
             displayName: "Restaurant, cafe, canteen or fast food",
-            searchTerm: "fusion"
+            searchTerm: "fusion",
           },
           {
             displayName: "Take away with no food consumed on site",
-            searchTerm: "fusion"
-          }
+            searchTerm: "fusion",
+          },
         ]);
       });
     });
 
     describe("query of 'retailer'", () => {
       it("should call the return function with two entries - Online retailer (searchTerm removed) and Butcher (retail)", () => {
-        stemmer.mockImplementation(
-          word => (word === "retailer" ? "retail" : word)
+        stemmer.mockImplementation((word) =>
+          word === "retailer" ? "retail" : word
         );
 
         findMatches("retailer", returnResultsArray);
         expect(returnResultsArray).toHaveBeenLastCalledWith([
           {
             displayName: "Butcher",
-            searchTerm: "retail"
+            searchTerm: "retail",
           },
           {
             displayName: "Online retailer",
-            searchTerm: undefined
-          }
+            searchTerm: undefined,
+          },
         ]);
       });
     });

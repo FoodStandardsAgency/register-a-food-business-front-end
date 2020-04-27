@@ -6,12 +6,12 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
 } from "../src/components";
 import { Header, Radio, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OperatorType = props => (
+const OperatorType = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -36,7 +36,7 @@ const OperatorType = props => (
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.operator_type
+            error: props.validatorErrors.operator_type,
           }}
         >
           <Radio
@@ -81,5 +81,5 @@ export default SessionWrapper(OperatorType);
 
 OperatorType.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

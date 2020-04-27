@@ -1,8 +1,8 @@
 jest.mock("express", () => ({
   Router: jest.fn(() => ({
     post: jest.fn(),
-    get: jest.fn()
-  }))
+    get: jest.fn(),
+  })),
 }));
 
 const { cleansessionRouter } = require("./cleansession.route");
@@ -17,12 +17,12 @@ describe("Cleansession route: ", () => {
     describe("given an error occurs on session regenerate", () => {
       const req = {
         session: {
-          regenerate: jest.fn(callback => callback("this is an error"))
-        }
+          regenerate: jest.fn((callback) => callback("this is an error")),
+        },
       };
 
       const res = {
-        json: jest.fn()
+        json: jest.fn(),
       };
 
       beforeEach(() => {
@@ -32,7 +32,7 @@ describe("Cleansession route: ", () => {
 
       it("Should call res.redirect with target of 'back'", () => {
         expect(res.json).toHaveBeenCalledWith({
-          error: "Session regenerate failed."
+          error: "Session regenerate failed.",
         });
       });
     });
@@ -40,16 +40,16 @@ describe("Cleansession route: ", () => {
     describe("given session destroy is successful and no errors occur", () => {
       const req = {
         session: {
-          regenerate: jest.fn(callback => {
+          regenerate: jest.fn((callback) => {
             callback();
-          })
+          }),
         },
-        sessionID: "123456"
+        sessionID: "123456",
       };
 
       const res = {
         set: jest.fn(),
-        json: jest.fn()
+        json: jest.fn(),
       };
 
       beforeEach(() => {

@@ -16,7 +16,7 @@ const GridColZeroPadding = styled(GridCol)`
   }
 `;
 
-const FsaLayout = props => (
+const FsaLayout = (props) => (
   <React.Fragment>
     <Page header={<FsaHeader {...props} />}>
       <GridRowZeroMargin>

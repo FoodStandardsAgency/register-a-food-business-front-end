@@ -14,7 +14,7 @@ const {
   setCookieRouter,
   statusRouter,
   partnerDetailsRouter,
-  pdfsRouter
+  pdfsRouter,
 } = require("./routes/index");
 
 module.exports = () => {

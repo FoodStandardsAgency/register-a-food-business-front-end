@@ -5,7 +5,7 @@ import {
   ContinueButton,
   ContentItem,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
 } from "../src/components";
 import ListItemConsistentSize from "../src/components/ListItemConsistentSize";
 import {
@@ -13,11 +13,11 @@ import {
   TextArea,
   HintText,
   Paragraph,
-  UnorderedList
+  UnorderedList,
 } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OtherDaysIrregular = props => (
+const OtherDaysIrregular = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -49,11 +49,11 @@ const OtherDaysIrregular = props => (
             input={{
               name: "opening_days_irregular",
               defaultValue: props.cumulativeFullAnswers.opening_days_irregular,
-              id: "opening_days_irregular"
+              id: "opening_days_irregular",
             }}
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_days_irregular
+              error: props.validatorErrors.opening_days_irregular,
             }}
           />
         </ContentItem.B_30_15>
@@ -69,5 +69,5 @@ OtherDaysIrregular.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

@@ -1,7 +1,7 @@
 const { submit } = require("./submit.service");
 jest.mock("../connectors/registration/registration.connector");
 const {
-  sendRequest
+  sendRequest,
 } = require("../connectors/registration/registration.connector");
 
 describe("Function: submit", () => {

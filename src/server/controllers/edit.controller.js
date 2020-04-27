@@ -6,13 +6,13 @@ const { logEmitter } = require("../services/logging.service");
 const {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
-  cleanSwitches
+  cleanSwitches,
 } = require("../services/session-management.service");
 const { validate } = require("../services/validation.service");
 const { trimAnswers } = require("../services/data-transform.service");
 const {
   editPathInEditMode,
-  moveAlongEditPath
+  moveAlongEditPath,
 } = require("../services/path.service");
 
 /**
@@ -54,7 +54,7 @@ const editBack = (
   return previousPage;
 };
 
-const checkIfValid = validatorErrors =>
+const checkIfValid = (validatorErrors) =>
   Object.keys(validatorErrors).length === 0;
 
 /**
@@ -100,12 +100,12 @@ const editContinue = (
 
   const newCumulativeFullAnswers = {
     ...truthyCumulativeFullAnswers,
-    ...trimmedNewAnswers
+    ...trimmedNewAnswers,
   };
 
   const newCumulativeEditAnswers = {
     ...truthyCumulativeEditAnswers,
-    ...trimmedNewAnswers
+    ...trimmedNewAnswers,
   };
 
   const cleanedSwitches = cleanSwitches(newCumulativeFullAnswers, switches);
@@ -142,7 +142,7 @@ const editContinue = (
       transformedNewAnswers.establishment_opening_date = "validated";
     }
 
-    Object.keys(transformedNewAnswers).forEach(validAnswerKey => {
+    Object.keys(transformedNewAnswers).forEach((validAnswerKey) => {
       delete newAllValidationErrors[validAnswerKey];
     });
     // TODO JMB: Merge switchOffManualAddressInput into editPathInEditMode
@@ -189,7 +189,7 @@ const editContinue = (
     validatorErrors,
     newAllValidationErrors,
     switches: cleanedSwitches,
-    redirectRoute
+    redirectRoute,
   };
 
   logEmitter.emit(

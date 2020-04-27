@@ -5,7 +5,7 @@
 
 const { logEmitter } = require("./logging.service");
 
-const trimAnswers = cumulativeFullAnswers => {
+const trimAnswers = (cumulativeFullAnswers) => {
   const trimmedAnswers = JSON.parse(JSON.stringify(cumulativeFullAnswers));
 
   for (let answer in trimmedAnswers) {
@@ -225,7 +225,7 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
  *
  * @returns {string} The trimmed UPRN or an empty string if invalid, empty or not defined
  */
-const trimUprn = uprn => {
+const trimUprn = (uprn) => {
   if (typeof uprn === "string" || uprn instanceof String) {
     const regEx = /^(\d+).*/;
     const match = uprn.match(regEx);
@@ -259,7 +259,7 @@ const transformAnswersForSubmit = (
     "establishment_primary_number",
     "establishment_secondary_number",
     "establishment_email",
-    "establishment_opening_date"
+    "establishment_opening_date",
   ];
   const operator_keys = [
     "operator_first_name",
@@ -283,7 +283,7 @@ const transformAnswersForSubmit = (
     "operator_company_name",
     "operator_companies_house_number",
     "operator_charity_name",
-    "operator_charity_number"
+    "operator_charity_number",
   ];
   const premise_keys = [
     "establishment_type",
@@ -294,7 +294,7 @@ const transformAnswersForSubmit = (
     "establishment_street",
     "establishment_town",
     "establishment_postcode",
-    "establishment_uprn"
+    "establishment_uprn",
   ];
   const activities_keys = [
     "customer_type",
@@ -317,14 +317,14 @@ const transformAnswersForSubmit = (
     "opening_hours_thursday",
     "opening_hours_friday",
     "opening_hours_saturday",
-    "opening_hours_sunday"
+    "opening_hours_sunday",
   ];
 
   const declaration_keys = [
     "declaration1",
     "declaration2",
     "declaration3",
-    "feedback1"
+    "feedback1",
   ];
 
   const submitObject = {
@@ -333,11 +333,11 @@ const transformAnswersForSubmit = (
         establishment_details: {},
         operator: {},
         premise: {},
-        activities: {}
+        activities: {},
       },
-      declaration: {}
+      declaration: {},
     },
-    local_council_url: lcUrl
+    local_council_url: lcUrl,
   };
 
   const summaryData = transformAnswersForSummary(
@@ -368,32 +368,32 @@ const transformAnswersForSubmit = (
 
   const submitData = Object.assign({}, summaryData, openingDays, openingHours);
 
-  establishment_details_keys.forEach(key => {
+  establishment_details_keys.forEach((key) => {
     if (submitData[key] !== undefined) {
       submitObject.registration.establishment.establishment_details[key] =
         submitData[key];
     }
   });
 
-  operator_keys.forEach(key => {
+  operator_keys.forEach((key) => {
     if (submitData[key] !== undefined) {
       submitObject.registration.establishment.operator[key] = submitData[key];
     }
   });
 
-  premise_keys.forEach(key => {
+  premise_keys.forEach((key) => {
     if (submitData[key] !== undefined) {
       submitObject.registration.establishment.premise[key] = submitData[key];
     }
   });
 
-  activities_keys.forEach(key => {
+  activities_keys.forEach((key) => {
     if (submitData[key] !== undefined) {
       submitObject.registration.establishment.activities[key] = submitData[key];
     }
   });
 
-  declaration_keys.forEach(key => {
+  declaration_keys.forEach((key) => {
     if (submitData[key] !== undefined) {
       submitObject.registration.declaration[key] = submitData[key];
     }
@@ -401,10 +401,10 @@ const transformAnswersForSubmit = (
 
   if (submitData.partners) {
     submitObject.registration.establishment.operator.partners = [];
-    submitData.partners.forEach(key => {
+    submitData.partners.forEach((key) => {
       submitObject.registration.establishment.operator.partners.push({
         partner_name: key,
-        partner_is_primary_contact: key === submitData.main_partnership_contact
+        partner_is_primary_contact: key === submitData.main_partnership_contact,
       });
     });
   }
@@ -523,7 +523,7 @@ const transformOpeningDaysForSubmit = (
     opening_day_thursday: false,
     opening_day_friday: false,
     opening_day_saturday: false,
-    opening_day_sunday: false
+    opening_day_sunday: false,
   };
 
   if (opening_days_start === "Every day") {
@@ -597,7 +597,7 @@ const transformOpeningHoursForSubmit = (
       : undefined,
     opening_hours_sunday: opening_hours_sunday
       ? opening_hours_sunday
-      : undefined
+      : undefined,
   };
 };
 
@@ -661,7 +661,7 @@ const combineDate = (day, month, year) => {
   }
 };
 //Formats result of business type look up to display it correctly in the summary table
-const separateBracketsFromBusinessType = text => {
+const separateBracketsFromBusinessType = (text) => {
   let strippedBusinessType = text.trim();
   let strippedSearchTerm = undefined;
 
@@ -685,13 +685,13 @@ const separateBracketsFromBusinessType = text => {
     strippedBusinessType = text.replace(textInBrackets, "").trim();
     strippedSearchTerm = textInBrackets
       .slice(1, -1)
-      .replace(/^\w/, firstLetter => firstLetter.toUpperCase())
+      .replace(/^\w/, (firstLetter) => firstLetter.toUpperCase())
       .trim();
   }
 
   return {
     business_type: strippedBusinessType,
-    business_type_search_term: strippedSearchTerm
+    business_type_search_term: strippedSearchTerm,
   };
 };
 
@@ -701,5 +701,5 @@ module.exports = {
   combineDate,
   separateBracketsFromBusinessType,
   trimUprn,
-  trimAnswers
+  trimAnswers,
 };

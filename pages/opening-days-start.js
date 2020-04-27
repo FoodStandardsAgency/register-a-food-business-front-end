@@ -6,12 +6,12 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
 } from "../src/components";
 import { Header, Radio, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OpeningDaysStart = props => (
+const OpeningDaysStart = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -28,7 +28,7 @@ const OpeningDaysStart = props => (
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.opening_days_start
+            error: props.validatorErrors.opening_days_start,
           }}
         >
           <Radio
@@ -84,5 +84,5 @@ OpeningDaysStart.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
-  validatorErrors: PropTypes.objectOf(PropTypes.string)
+  validatorErrors: PropTypes.objectOf(PropTypes.string),
 };

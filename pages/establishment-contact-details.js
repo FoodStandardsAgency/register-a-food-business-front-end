@@ -6,12 +6,12 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
 } from "../src/components";
 import { Header, InputField, Paragraph, Button } from "govuk-react";
 import PropTypes from "prop-types";
 
-const EstablishmentContactDetails = props => (
+const EstablishmentContactDetails = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -50,12 +50,12 @@ const EstablishmentContactDetails = props => (
                 ? props.cumulativeFullAnswers.operator_primary_number ||
                   props.cumulativeFullAnswers.contact_representative_number
                 : props.cumulativeFullAnswers.establishment_primary_number,
-              autoComplete: "tel"
+              autoComplete: "tel",
             }}
             id="establishment_primary_number"
             meta={{
               touched: true,
-              error: props.validatorErrors["establishment_primary_number"]
+              error: props.validatorErrors["establishment_primary_number"],
             }}
           >
             Main phone number
@@ -69,12 +69,12 @@ const EstablishmentContactDetails = props => (
               defaultValue: props.switches.reuseOperatorContactDetails
                 ? props.cumulativeFullAnswers.operator_secondary_number
                 : props.cumulativeFullAnswers.establishment_secondary_number,
-              autoComplete: "off"
+              autoComplete: "off",
             }}
             id="establishment_secondary_number"
             meta={{
               touched: true,
-              error: props.validatorErrors["establishment_secondary_number"]
+              error: props.validatorErrors["establishment_secondary_number"],
             }}
           >
             Secondary phone number (optional)
@@ -89,15 +89,15 @@ const EstablishmentContactDetails = props => (
                 ? props.cumulativeFullAnswers.operator_email ||
                   props.cumulativeFullAnswers.contact_representative_email
                 : props.cumulativeFullAnswers.establishment_email,
-              autoComplete: "email"
+              autoComplete: "email",
             }}
             id="establishment_email"
             hint={[
-              "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
+              "We will use your email to keep you informed of any policy or legal changes that could affect your food business.",
             ]}
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_email
+              error: props.validatorErrors.establishment_email,
             }}
           >
             Email address
@@ -117,5 +117,5 @@ EstablishmentContactDetails.propTypes = {
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
   ),
   validatorErrors: PropTypes.objectOf(PropTypes.string),
-  switches: PropTypes.objectOf(PropTypes.bool)
+  switches: PropTypes.objectOf(PropTypes.bool),
 };

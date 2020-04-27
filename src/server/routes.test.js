@@ -1,8 +1,8 @@
 jest.mock("express", () => ({
   Router: jest.fn(() => ({
     use: jest.fn(),
-    get: jest.fn()
-  }))
+    get: jest.fn(),
+  })),
 }));
 jest.mock("./next");
 jest.mock("./routes/index");
@@ -16,7 +16,7 @@ const {
   newRouter,
   qaRouter,
   submitRouter,
-  switchesRouter
+  switchesRouter,
 } = require("./routes/index");
 const { handle } = require("./next");
 

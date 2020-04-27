@@ -1,4 +1,4 @@
-const OnHandleErrorClick = targetName => {
+const OnHandleErrorClick = (targetName) => {
   if (targetName === "establishment_opening_status") {
     let targetTradingDate =
       document.getElementsByName(targetName)[0] ||

@@ -1,11 +1,11 @@
 jest.mock("express", () => ({
   Router: jest.fn(() => ({
     post: jest.fn(),
-    get: jest.fn()
-  }))
+    get: jest.fn(),
+  })),
 }));
 jest.mock("../config", () => ({
-  QA_KEY: "abcd"
+  QA_KEY: "abcd",
 }));
 const { qaRouter } = require("./qa.route");
 
@@ -24,22 +24,22 @@ describe("QA Route: ", () => {
         req = {
           session: {
             council: "original-council",
-            save: cb => {
+            save: (cb) => {
               cb();
-            }
+            },
           },
           query: {
             QA_KEY: "abcd",
             registration_role: "Representative",
-            operator_type: "A company"
+            operator_type: "A company",
           },
           params: {
             lc: "cardiff",
-            target: "registration-summary"
-          }
+            target: "registration-summary",
+          },
         };
         res = {
-          redirect: jest.fn()
+          redirect: jest.fn(),
         };
         handler(req, res);
       });
@@ -66,21 +66,21 @@ describe("QA Route: ", () => {
 
         req = {
           session: {
-            save: cb => {
+            save: (cb) => {
               cb();
-            }
+            },
           },
           query: {
             QA_KEY: null,
             registration_role: "Representative",
-            operator_type: "A company"
-          }
+            operator_type: "A company",
+          },
         };
 
         res = {
           status: jest.fn(),
           send: jest.fn(),
-          redirect: jest.fn()
+          redirect: jest.fn(),
         };
         handler(req, res);
       });

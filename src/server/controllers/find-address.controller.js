@@ -27,7 +27,7 @@ const findAddressController = async (
     redirectRoute: null,
     cumulativeFullAnswers: {},
     addressLookups: {},
-    switches: {}
+    switches: {},
   };
   logEmitter.emit(
     "functionCall",
@@ -54,9 +54,7 @@ const findAddressController = async (
         "functionSuccessWith",
         "find-address.controller",
         "findAddressController",
-        `validatorErrors: ${
-          controllerResponse.validatorErrors
-        }. redirectRoute: ${controllerResponse.redirectRoute}`
+        `validatorErrors: ${controllerResponse.validatorErrors}. redirectRoute: ${controllerResponse.redirectRoute}`
       );
       return controllerResponse;
     }

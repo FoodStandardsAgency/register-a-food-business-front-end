@@ -1,8 +1,8 @@
 jest.mock("express", () => ({
   Router: jest.fn(() => ({
     post: jest.fn(),
-    get: jest.fn()
-  }))
+    get: jest.fn(),
+  })),
 }));
 
 jest.mock("../controllers/find-address.controller");
@@ -26,21 +26,21 @@ describe("findAddress route: ", () => {
           cumulativeFullAnswers: {},
           addressLookups: { some_page: [] },
           council: "council",
-          save: cb => {
+          save: (cb) => {
             cb();
-          }
+          },
         },
         body: "body",
         params: {
-          originator: "/some-page"
+          originator: "/some-page",
         },
         headers: {
-          referer: ""
-        }
+          referer: "",
+        },
       };
 
       const res = {
-        redirect: jest.fn()
+        redirect: jest.fn(),
       };
 
       beforeEach(() => {
@@ -48,7 +48,7 @@ describe("findAddress route: ", () => {
           cumulativeFullAnswers: { example: "answer" },
           validatorErrors: {},
           addressLookups: { example: [] },
-          redirectRoute: "/another-page"
+          redirectRoute: "/another-page",
         }));
         handler = router.post.mock.calls[0][1];
         handler(req, res);
@@ -59,12 +59,12 @@ describe("findAddress route: ", () => {
 
       it("Should update session without overwriting existing addressLookups values", () => {
         expect(req.session.cumulativeFullAnswers).toEqual({
-          example: "answer"
+          example: "answer",
         });
         expect(req.session.validatorErrors).toEqual({});
         expect(req.session.addressLookups).toEqual({
           some_page: [],
-          example: []
+          example: [],
         });
       });
     });
@@ -76,18 +76,18 @@ describe("findAddress route: ", () => {
           cumulativeFullAnswers: {},
           addressLookups: { some_page: [] },
           council: "council",
-          save: cb => {
+          save: (cb) => {
             cb("session save error");
-          }
+          },
         },
         body: "body",
         params: {
-          originator: "/some-page"
-        }
+          originator: "/some-page",
+        },
       };
 
       const res = {
-        redirect: jest.fn()
+        redirect: jest.fn(),
       };
 
       beforeEach(async () => {
@@ -95,7 +95,7 @@ describe("findAddress route: ", () => {
           cumulativeFullAnswers: { example: "answer" },
           validatorErrors: {},
           addressLookups: { example: [] },
-          redirectRoute: "/another-page"
+          redirectRoute: "/another-page",
         }));
         handler = router.post.mock.calls[0][1];
         try {

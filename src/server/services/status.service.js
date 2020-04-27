@@ -6,7 +6,7 @@
 const { logEmitter } = require("./logging.service");
 const {
   getStoredStatus,
-  updateStoredStatus
+  updateStoredStatus,
 } = require("../connectors/status-db/status-db.connector");
 
 /**
@@ -16,7 +16,7 @@ const {
  *
  * @returns {any} The value of the status variable
  */
-const getStatus = async statusName => {
+const getStatus = async (statusName) => {
   logEmitter.emit("functionCall", "status.service", "getStatus");
 
   let status;
@@ -78,7 +78,7 @@ const setStatus = async (statusName, newStatus) => {
  *
  * @returns {number} The new value of the status variable
  */
-const incrementStatusCount = async statusName => {
+const incrementStatusCount = async (statusName) => {
   logEmitter.emit("functionCall", "status.service", "incrementStatusCount");
   let status;
   try {

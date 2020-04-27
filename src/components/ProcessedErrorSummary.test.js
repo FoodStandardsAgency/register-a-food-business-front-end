@@ -3,7 +3,7 @@ import { shallow, mount } from "enzyme";
 
 const testValidatorErrorsExists = {
   example: "test error",
-  example2: "test error 2"
+  example2: "test error 2",
 };
 
 const emptyValidatorErrors = {};
@@ -42,7 +42,7 @@ describe("<ProcessedErrorSummary />", () => {
     wrapperProcessedErrorSummaryClickMock
       .find("UnorderedList")
       .find("ListItem")
-      .forEach(listItem => {
+      .forEach((listItem) => {
         listItem.find("Anchor").simulate("click");
         timesClicked += 1;
         expect(mockOnHandleErrorClickCallback.mock.calls.length).toBe(

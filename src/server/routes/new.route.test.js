@@ -1,14 +1,14 @@
 jest.mock("express", () => ({
   Router: jest.fn(() => ({
     post: jest.fn(),
-    get: jest.fn()
-  }))
+    get: jest.fn(),
+  })),
 }));
 jest.mock("../services/data-transform.service");
 jest.mock("../next", () => ({
   Next: {
-    render: jest.fn()
-  }
+    render: jest.fn(),
+  },
 }));
 jest.mock("../connectors/config-db/config-db.connector");
 jest.mock("../services/browser-support.service");
@@ -16,12 +16,12 @@ jest.mock("../services/browser-support.service");
 const { Next } = require("../next");
 const { newRouter } = require("./new.route");
 const {
-  transformAnswersForSummary
+  transformAnswersForSummary,
 } = require("../services/data-transform.service");
 const {
   getPathConfigByVersion,
   getLocalCouncils,
-  getCouncilData
+  getCouncilData,
 } = require("../connectors/config-db/config-db.connector");
 const { getBrowserInfo } = require("../services/browser-support.service");
 
@@ -34,16 +34,16 @@ describe("New route: ", () => {
       () => "fetched path from either cache or DB"
     );
     getLocalCouncils.mockImplementation(() => Promise.resolve(["purbeck"]));
-    getBrowserInfo.mockImplementation(req => () => {
+    getBrowserInfo.mockImplementation((req) => () => {
       return {
         browser: "chrome",
         browserVersion: "70.0.12",
-        isSupported: true
+        isSupported: true,
       };
     });
     getCouncilData.mockImplementation(() => ({
       country: "northern-ireland",
-      local_council: "Belfast Council"
+      local_council: "Belfast Council",
     }));
   });
 
@@ -55,18 +55,18 @@ describe("New route: ", () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
-            regenerate: cb => {
+            regenerate: (cb) => {
               cb();
-            }
+            },
           },
           params: {
             lc: "purbeck",
-            page: "operator-type"
+            page: "operator-type",
           },
           headers: {
             "user-agent":
-              "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
-          }
+              "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
+          },
         };
 
         res = "res";
@@ -106,18 +106,18 @@ describe("New route: ", () => {
           session: {
             council: "purbeck",
             pathConfig: "existing path from session",
-            regenerate: cb => {
+            regenerate: (cb) => {
               cb();
-            }
+            },
           },
           params: {
             page: "new page",
-            lc: "purbeck"
+            lc: "purbeck",
           },
           headers: {
             "user-agent":
-              "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
-          }
+              "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
+          },
         };
 
         res = "res";
@@ -140,18 +140,18 @@ describe("New route: ", () => {
             session: {
               council: "purbeck",
               pathConfig: "existing path from session",
-              regenerate: cb => {
+              regenerate: (cb) => {
                 cb();
-              }
+              },
             },
             params: {
               page: "index",
-              lc: "purbeck"
+              lc: "purbeck",
             },
             headers: {
               "user-agent":
-                "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
-            }
+                "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
+            },
           };
 
           res = "res";
@@ -169,24 +169,24 @@ describe("New route: ", () => {
       describe("When page is registration-summary", () => {
         beforeEach(async () => {
           transformAnswersForSummary.mockImplementation(() => ({
-            example: "data"
+            example: "data",
           }));
           handler = router.get.mock.calls[0][1];
           req = {
             session: {
               council: "purbeck",
-              save: cb => {
+              save: (cb) => {
                 cb();
-              }
+              },
             },
             params: {
               page: "registration-summary",
-              lc: "purbeck"
+              lc: "purbeck",
             },
             headers: {
               "user-agent":
-                "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
-            }
+                "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
+            },
           };
 
           res = "res";
@@ -204,7 +204,7 @@ describe("New route: ", () => {
 
         it("Should set session.transformedData", () => {
           expect(req.session.transformedData).toEqual({
-            example: "data"
+            example: "data",
           });
         });
       });
@@ -217,17 +217,17 @@ describe("New route: ", () => {
         req = {
           session: {
             council: "purbeck",
-            regenerate: cb => {
+            regenerate: (cb) => {
               cb();
-            }
+            },
           },
           params: {
-            lc: "purbeck"
+            lc: "purbeck",
           },
           headers: {
             "user-agent":
-              "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
-          }
+              "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
+          },
         };
 
         res = "res";
@@ -256,17 +256,17 @@ describe("New route: ", () => {
         req = {
           session: {
             council: "not a supported council",
-            regenerate: cb => {
+            regenerate: (cb) => {
               cb();
-            }
+            },
           },
           params: {
-            lc: "not a supported council"
+            lc: "not a supported council",
           },
           headers: {
             "user-agent":
-              "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
-          }
+              "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
+          },
         };
 
         res = "res";

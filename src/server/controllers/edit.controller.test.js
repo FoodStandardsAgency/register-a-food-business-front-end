@@ -3,23 +3,23 @@ const editController = require("./edit.controller");
 const testPath = {
   "/test-page1": {
     on: true,
-    switches: {}
+    switches: {},
   },
   "/registration-role": {
     on: true,
     switches: {
       "Sole trader": {
         "/operator-name": true,
-        "/test-page2": true
+        "/test-page2": true,
       },
       Representative: {
-        "/operator-type": true
-      }
-    }
+        "/operator-type": true,
+      },
+    },
   },
   "/operator-name": {
     on: false,
-    switches: {}
+    switches: {},
   },
   "/operator-type": {
     on: false,
@@ -27,38 +27,38 @@ const testPath = {
       "A charity": { "/operator-charity-details": true },
       "A company": {
         "/operator-company-details": true,
-        "/contact-representative": true
-      }
-    }
+        "/contact-representative": true,
+      },
+    },
   },
   "/test-page2": {
     on: true,
-    switches: {}
+    switches: {},
   },
   "/operator-charity-details": {
     on: false,
-    switches: {}
+    switches: {},
   },
   "/operator-company-details": {
     on: false,
-    switches: {}
+    switches: {},
   },
   "/contact-representative": {
     on: false,
-    switches: {}
+    switches: {},
   },
   "/business-import-export": {
     on: true,
     switches: {
       "Directly export": {
-        "/test-page3": true
-      }
-    }
+        "/test-page3": true,
+      },
+    },
   },
   "/test-page3": {
     on: false,
-    switches: {}
-  }
+    switches: {},
+  },
 };
 
 describe("Edit controller: editContinue()", () => {
@@ -72,15 +72,15 @@ describe("Edit controller: editContinue()", () => {
           const currentPage = "/operator-name";
           const cumulativeFullAnswers = {
             registration_role: "Sole trader",
-            example_answer: "value"
+            example_answer: "value",
           };
           const cumulativeEditAnswers = {
             registration_role: "Sole trader",
-            example_answer: "value"
+            example_answer: "value",
           };
           const newAnswers = {
             operator_first_name: "Bob Harry ",
-            operator_last_name: "  Smith "
+            operator_last_name: "  Smith ",
           };
           const switches = {};
 
@@ -92,7 +92,7 @@ describe("Edit controller: editContinue()", () => {
             cumulativeEditAnswers,
             newAnswers,
             switches,
-            {}
+            {},
           ];
           result = editController.editContinue(...args);
         });
@@ -102,7 +102,7 @@ describe("Edit controller: editContinue()", () => {
             registration_role: "Sole trader",
             example_answer: "value",
             operator_first_name: "Bob Harry",
-            operator_last_name: "Smith"
+            operator_last_name: "Smith",
           };
           expect(result.cumulativeEditAnswers).toEqual(expectedAnswers);
         });
@@ -113,11 +113,11 @@ describe("Edit controller: editContinue()", () => {
           const editModeFirstPage = "/business-import-export";
           const currentPage = "/business-import-export";
           const cumulativeFullAnswers = {
-            directly_import: "Directly import"
+            directly_import: "Directly import",
           };
           const cumulativeEditAnswers = undefined;
           const newAnswers = {
-            directly_export: "Directly export"
+            directly_export: "Directly export",
           };
           const switches = {};
 
@@ -129,14 +129,14 @@ describe("Edit controller: editContinue()", () => {
             cumulativeEditAnswers,
             newAnswers,
             switches,
-            {}
+            {},
           ];
           result = editController.editContinue(...args);
         });
 
         it("should not return the answers that were previously truthy and are now removed", () => {
           const expectedAnswers = {
-            directly_export: "Directly export"
+            directly_export: "Directly export",
           };
           expect(result.cumulativeEditAnswers).toEqual(expectedAnswers);
         });
@@ -160,7 +160,7 @@ describe("Edit controller: editContinue()", () => {
           cumulativeEditAnswers,
           newAnswers,
           switches,
-          {}
+          {},
         ];
         result = editController.editContinue(...args);
       });
@@ -182,14 +182,14 @@ describe("Edit controller: editContinue()", () => {
           const cumulativeFullAnswers = {
             example_answer: "value",
             registration_role: "Representative",
-            operator_type: "A charity"
+            operator_type: "A charity",
           };
           const cumulativeEditAnswers = {
             registration_role: "Representative",
-            operator_type: "A charity"
+            operator_type: "A charity",
           };
           const newAnswers = {
-            registration_role: "Sole trader"
+            registration_role: "Sole trader",
           };
           const switches = {};
 
@@ -201,7 +201,7 @@ describe("Edit controller: editContinue()", () => {
             cumulativeEditAnswers,
             newAnswers,
             switches,
-            {}
+            {},
           ];
           result = editController.editContinue(...args);
         });
@@ -209,14 +209,14 @@ describe("Edit controller: editContinue()", () => {
         it("should not return FULL answers that are associated with inactive pages on the path", () => {
           const expectedFullAnswers = {
             example_answer: "value",
-            registration_role: "Sole trader"
+            registration_role: "Sole trader",
           };
           expect(result.cumulativeFullAnswers).toEqual(expectedFullAnswers);
         });
 
         it("should not return EDIT answers that are associated with inactive pages on the path", () => {
           const expectedEditAnswers = {
-            registration_role: "Sole trader"
+            registration_role: "Sole trader",
           };
           expect(result.cumulativeEditAnswers).toEqual(expectedEditAnswers);
         });
@@ -230,7 +230,7 @@ describe("Edit controller: editContinue()", () => {
           const cumulativeEditAnswers = {};
           const newAnswers = {
             operator_first_name: "John",
-            operator_last_name: "McNugget"
+            operator_last_name: "McNugget",
           };
           const switches = {};
 
@@ -242,7 +242,7 @@ describe("Edit controller: editContinue()", () => {
             cumulativeEditAnswers,
             newAnswers,
             switches,
-            {}
+            {},
           ];
           result = editController.editContinue(...args);
         });
@@ -266,15 +266,15 @@ describe("Edit controller: editContinue()", () => {
           const currentPage = "/operator-company-details";
           const cumulativeFullAnswers = {
             registration_role: "Representative",
-            operator_type: "A company"
+            operator_type: "A company",
           };
           const cumulativeEditAnswers = {
             registration_role: "Representative",
-            operator_type: "A company"
+            operator_type: "A company",
           };
           const newAnswers = {
             operator_company_name: "Nugget Co",
-            operator_companies_house_number: "AA123456"
+            operator_companies_house_number: "AA123456",
           };
           const switches = {};
 
@@ -286,7 +286,7 @@ describe("Edit controller: editContinue()", () => {
             cumulativeEditAnswers,
             newAnswers,
             switches,
-            {}
+            {},
           ];
           result = editController.editContinue(...args);
         });
@@ -312,18 +312,18 @@ describe("Edit controller: editBack()", () => {
       const currentPage = "/operator-company-details";
       const cumulativeFullAnswers = {
         registration_role: "Representative",
-        operator_type: "A company"
+        operator_type: "A company",
       };
       const cumulativeEditAnswers = {
         registration_role: "Representative",
-        operator_type: "A company"
+        operator_type: "A company",
       };
       const args = [
         testPath,
         editModeFirstPage,
         currentPage,
         cumulativeFullAnswers,
-        cumulativeEditAnswers
+        cumulativeEditAnswers,
       ];
 
       result = editController.editBack(...args);

@@ -1,8 +1,8 @@
 jest.mock("express", () => ({
   Router: jest.fn(() => ({
     post: jest.fn(),
-    get: jest.fn()
-  }))
+    get: jest.fn(),
+  })),
 }));
 
 jest.mock("../controllers/switches.controller");
@@ -19,24 +19,24 @@ describe("Switches route: ", () => {
     const req = {
       session: {
         switches: {},
-        save: cb => {
+        save: (cb) => {
           cb();
-        }
+        },
       },
       params: {
         switchName: "exampleSwitch",
         action: "on",
-        originator: "/mock-page-1"
-      }
+        originator: "/mock-page-1",
+      },
     };
     const res = {
-      redirect: jest.fn()
+      redirect: jest.fn(),
     };
 
     beforeEach(() => {
       switchesController.mockImplementation(() => ({
         cumulativeFullAnswers: { example: "answer" },
-        newSwitchState: true
+        newSwitchState: true,
       }));
       handler = router.post.mock.calls[0][1];
       handler(req, res);
@@ -67,24 +67,24 @@ describe("Switches route: ", () => {
       const req = {
         session: {
           switches: {},
-          save: cb => {
+          save: (cb) => {
             cb("session save error");
-          }
+          },
         },
         params: {
           switchName: "exampleSwitch",
           action: "on",
-          originator: "/mock-page-1"
-        }
+          originator: "/mock-page-1",
+        },
       };
       const res = {
-        redirect: jest.fn()
+        redirect: jest.fn(),
       };
 
       beforeEach(() => {
         switchesController.mockImplementation(() => ({
           cumulativeFullAnswers: { example: "answer" },
-          newSwitchState: true
+          newSwitchState: true,
         }));
         handler = router.post.mock.calls[0][1];
         try {

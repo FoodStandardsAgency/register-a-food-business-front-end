@@ -1,7 +1,7 @@
 const {
   getStoredStatus,
   updateStoredStatus,
-  clearMongoConnection
+  clearMongoConnection,
 } = require("./status-db.connector");
 const storedStatusMock = require("../../../__mocks__/storedStatusMock.json");
 const mongodb = require("mongodb");
@@ -17,9 +17,9 @@ describe("Function: getStoredStatus", () => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
-            findOne: () => storedStatusMock
-          })
-        })
+            findOne: () => storedStatusMock,
+          }),
+        }),
       }));
       result = await getStoredStatus();
     });
@@ -56,11 +56,11 @@ describe("Function: getStoredStatus", () => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
-            findOne: () => storedStatusMock
-          })
+            findOne: () => storedStatusMock,
+          }),
         }),
         topology: null,
-        close: () => closeConnection()
+        close: () => closeConnection(),
       }));
       result1 = await getStoredStatus();
       result2 = await getStoredStatus();
@@ -83,13 +83,13 @@ describe("Function: getStoredStatus", () => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
-            findOne: () => storedStatusMock
-          })
+            findOne: () => storedStatusMock,
+          }),
         }),
         topology: {
-          isConnected: () => false
+          isConnected: () => false,
         },
-        close: () => closeConnection()
+        close: () => closeConnection(),
       }));
       result1 = await getStoredStatus();
       result2 = await getStoredStatus();
@@ -125,13 +125,13 @@ describe("Function: getStoredStatus", () => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
-            findOne: () => storedStatusMock
-          })
+            findOne: () => storedStatusMock,
+          }),
         }),
         topology: {
-          isConnected: () => true
+          isConnected: () => true,
         },
-        close: () => closeConnection()
+        close: () => closeConnection(),
       }));
       result1 = await getStoredStatus();
       result2 = await getStoredStatus();
@@ -157,9 +157,9 @@ describe("Function: updateStoredStatus", () => {
       db: () => ({
         collection: () => ({
           findOne: () => storedStatusMock,
-          updateOne: (id, set) => set.$set.submissionsSucceeded
-        })
-      })
+          updateOne: (id, set) => set.$set.submissionsSucceeded,
+        }),
+      }),
     }));
     result = await updateStoredStatus("submissionsSucceeded", 3);
   });
