@@ -9,49 +9,54 @@ const { logEmitter } = require("../services/logging.service");
 const switchesController = require("../controllers/switches.controller");
 
 const switchesRouter = () => {
-  const router = Router();
-  router.post("/:switchName/:action/:originator", (req, res) => {
-    logEmitter.emit(
-      "functionCall",
-      "Routes",
-      "/switches/:switchName/:action route"
-    );
+    const router = Router();
+    router.post("/:switchName/:action/:originator", (req, res) => {
+        logEmitter.emit(
+            "functionCall",
+            "Routes",
+            "/switches/:switchName/:action route"
+        );
 
-    if (!req.session.switches) {
-      req.session.switches = {};
-    }
+        if (!req.session.switches) {
+            req.session.switches = {};
+        }
 
-    const switchName = req.params.switchName;
-    const action = req.params.action;
+        const switchName = req.params.switchName;
+        const action = req.params.action;
 
-    const currentSwitchState = req.session.switches[switchName];
-    const response = switchesController(
-      currentSwitchState,
-      action,
-      req.session.cumulativeFullAnswers,
-      req.body,
-      `/${req.params.originator}`
-    );
+        const currentSwitchState = req.session.switches[switchName];
+        const response = switchesController(
+            currentSwitchState,
+            action,
+            req.session.cumulativeFullAnswers,
+            req.body,
+            `/${req.params.originator}`
+        );
 
-    req.session.switches[switchName] = response.newSwitchState;
+        req.session.switches[switchName] = response.newSwitchState;
 
-    req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
+        req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
 
-    logEmitter.emit(
-      "functionSuccess",
-      "Routes",
-      "/switches/:switchName/:action/:originator route"
-    );
-    req.session.save((err) => {
-      if (err) {
-        logEmitter.emit("functionFail", "Routes", "/switches route", err);
-        throw err;
-      }
-      res.redirect("back");
+        logEmitter.emit(
+            "functionSuccess",
+            "Routes",
+            "/switches/:switchName/:action/:originator route"
+        );
+        req.session.save((err) => {
+            if (err) {
+                logEmitter.emit(
+                    "functionFail",
+                    "Routes",
+                    "/switches route",
+                    err
+                );
+                throw err;
+            }
+            res.redirect("back");
+        });
     });
-  });
 
-  return router;
+    return router;
 };
 
 module.exports = { switchesRouter };

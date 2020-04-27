@@ -91,5 +91,10 @@
     "snyk": "^1.94.0",
     "webpack": "3.1.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "prettier": {
+    "trailingComma": "none",
+    "tabWidth": 4,
+    "semi": true
+  }
 }
