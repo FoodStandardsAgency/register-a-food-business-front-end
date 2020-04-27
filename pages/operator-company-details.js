@@ -42,18 +42,18 @@ const LimitedCompanyDetails = (props) => (
       <ContentItem.B_30_15>
         <InputField
           input={{
-            name: "operator_company_house_number",
+            name: "operator_companies_house_number",
             defaultValue:
-              props.cumulativeFullAnswers.operator_company_house_number,
+              props.cumulativeFullAnswers.operator_companies_house_number,
             autoComplete: "off",
           }}
           hint={
             "Every registered company will have a Companies House reference number."
           }
-          id="operator_company_house_number"
+          id="operator_companies_house_number"
           meta={{
             touched: true,
-            error: props.validatorErrors["operator_company_house_number"],
+            error: props.validatorErrors["operator_companies_house_number"],
           }}
         >
           Companies House number

@@ -39,6 +39,7 @@ describe("<ContinueButton />", () => {
 
   describe("given a type of 'begin'", () => {
     const wrapper = mount(<ContinueButton type="begin" />);
+
     it("has 'Begin registration' as the button text", () => {
       expect(wrapper.text()).toContain("Begin registration");
     });

@@ -76,14 +76,14 @@ describe("<OperatorCompanyDetails />", () => {
         />
       );
       const operatorCompaniesHouseNumber = wrapper.find(
-        "InputField#operator_company_house_number"
+        "InputField#operator_companies_house_number"
       );
       expect(operatorCompaniesHouseNumber.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
       const validatorErrors = {
-        operator_company_house_number: "test error"
+        operator_companies_house_number: "test error"
       };
       const wrapper = mount(
         <OperatorCompanyDetails
@@ -93,7 +93,7 @@ describe("<OperatorCompanyDetails />", () => {
         />
       );
       const operatorCompaniesHouseNumber = wrapper.find(
-        "InputField#operator_company_house_number"
+        "InputField#operator_companies_house_number"
       );
       expect(operatorCompaniesHouseNumber.props().meta.error).toBe(
         "test error"
@@ -102,7 +102,7 @@ describe("<OperatorCompanyDetails />", () => {
 
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        operator_company_house_number: "default"
+        operator_companies_house_number: "default"
       };
       const wrapper = mount(
         <OperatorCompanyDetails
@@ -112,7 +112,7 @@ describe("<OperatorCompanyDetails />", () => {
         />
       );
       const operatorCompaniesHouseNumber = wrapper.find(
-        "InputField#operator_company_house_number"
+        "InputField#operator_companies_house_number"
       );
       expect(operatorCompaniesHouseNumber.props().input.defaultValue).toBe(
         "default"

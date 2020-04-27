@@ -31,7 +31,7 @@ const ApplicationComplete = (props) => (
         id="panelWithNumber"
         panelTitle=""
         panelBody={[
-          "Your unique food business registration number is",
+          "Your unique food business registration application reference is",
           <br />,
           <br />,
           <span className="bold" id="fsa-rn">
@@ -43,12 +43,13 @@ const ApplicationComplete = (props) => (
       <FsaPanel
         id="panelWithText"
         panelTitle="Registration submitted"
-        panelBody={"Awaiting registration number"}
+        panelBody={"Awaiting registration application reference"}
       />
     )}
     <InsetText>
       <Paragraph mb={0}>
-        Please keep note of this registration number for your records.
+        Please keep note of this registration application reference for your
+        records.
       </Paragraph>
     </InsetText>
 

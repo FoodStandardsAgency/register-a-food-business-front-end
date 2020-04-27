@@ -6,6 +6,7 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
+  SubmissionErrorSummary,
   OnHandleErrorClick,
 } from "../src/components";
 import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
@@ -48,7 +49,10 @@ class Declaration extends React.Component {
             validatorErrors={this.props.validatorErrors}
             onHandleErrorClick={OnHandleErrorClick}
           />
-          <Heading as="h1" size="LARGE">
+          <SubmissionErrorSummary
+            submissionErrors={this.props.submissionError}
+          />
+          <Header level={1} size="LARGE">
             Declaration
           </Heading>
 

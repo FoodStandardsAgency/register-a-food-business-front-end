@@ -6,7 +6,9 @@ const cumulativeFullAnswers = {
   establishment_address_line_1: "Example address line 1"
 };
 
-const transformedData = { operator_email: "email@email.com" };
+const transformedData = {
+  operator_email: "email@email.com"
+};
 
 const lcConfigCombined = {
   hygieneAndStandards: {
@@ -84,7 +86,7 @@ describe("<ApplicationComplete />", () => {
       const panel = wrapper.find("Panel#panelWithNumber");
       expect(panel.length).toBe(1);
     });
-    it("The panel renders 'Awaiting registration number' text when not defined", () => {
+    it("The panel renders 'Awaiting registration application reference' text when not defined", () => {
       const wrapper = mount(
         <ApplicationComplete
           cumulativeFullAnswers={cumulativeFullAnswers}
