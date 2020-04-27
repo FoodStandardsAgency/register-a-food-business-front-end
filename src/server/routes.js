@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const { handle } = require("next");
 
 const {
   backRouter,

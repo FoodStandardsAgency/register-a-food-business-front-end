@@ -1,5 +1,5 @@
 import React from "react";
-import { FsaLayout, SessionWrapper } from "../src/components";
+import { FsaLayout } from "../src/components";
 import { Heading, Paragraph, BackLink, Button } from "govuk-react";
 
 class InternalServerError extends React.Component {

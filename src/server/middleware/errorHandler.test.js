@@ -8,7 +8,6 @@ jest.mock("winston", () => ({
 }));
 
 const { errorHandler } = require("../middleware/errorHandler");
-const { logEmitter } = require("../services/logging.service");
 const { app } = require("../server");
 const { error } = require("winston");
 
