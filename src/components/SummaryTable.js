@@ -112,7 +112,7 @@ const ColumnHeaders = () => (
 );
 
 const determineLinkText = (property) => {
-    return property ? "Change" : "Enter answer";
+  return property ? "Change" : "Enter answer";
 };
 
 const OperatorDetailsTable = (props) => (
@@ -198,7 +198,7 @@ const OperatorDetailsTable = (props) => (
               href="/edit/operator-company-details"
               aria-label="Change operator companies house"
             >
-                {determineLinkText(props.operator_companies_house_number)}
+              {determineLinkText(props.operator_companies_house_number)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -397,7 +397,7 @@ const OperatorDetailsTable = (props) => (
               href="/edit/operator-contact-details"
               aria-label="Change operator email"
             >
-                {determineLinkText(props.operator_email)}
+              {determineLinkText(props.operator_email)}
             </Link>
           </AccessibleChangeCell>
         )}

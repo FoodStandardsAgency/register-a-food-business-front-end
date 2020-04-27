@@ -383,9 +383,7 @@ describe("<SummaryTable />", () => {
         describe("when given a props of applicationCompletePage = true", () => {
           it("It doesn't render a change button in all editable rows", () => {
             editableTableRows.forEach((tableRowName) => {
-              const row = wrapperApplicationComplete.find(
-                `tr#${tableRowName}`
-              );
+              const row = wrapperApplicationComplete.find(`tr#${tableRowName}`);
               const buttonId = `change${
                 tableRowName.charAt(0).toUpperCase() + tableRowName.substr(1)
               }`;

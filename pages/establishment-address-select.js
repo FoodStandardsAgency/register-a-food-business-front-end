@@ -37,11 +37,14 @@ const EstablishmentAddressLookup = (props) => (
           <Paragraph className="establishmentPostcodeDisplay" mb={0}>
             {props.cumulativeFullAnswers.establishment_postcode_find}
           </Paragraph>
-          <Link id="changeEstablishmentPostcode" href={
+          <Link
+            id="changeEstablishmentPostcode"
+            href={
               props.editModeFirstPage
-                  ? "/establishment-address?edit=establishment-address"
-                  : "/establishment-address"
-          }>
+                ? "/establishment-address?edit=establishment-address"
+                : "/establishment-address"
+            }
+          >
             Change postcode
           </Link>
         </ContentItem.B_30_15>
@@ -72,9 +75,9 @@ const EstablishmentAddressLookup = (props) => (
           <Link
             id="cantFindAddressLink"
             href={
-                props.editModeFirstPage
-                    ? `/new/${props.council}/establishment-address-manual?edit=establishment-address-manual`
-                    : `/new/${props.council}/establishment-address-manual`
+              props.editModeFirstPage
+                ? `/new/${props.council}/establishment-address-manual?edit=establishment-address-manual`
+                : `/new/${props.council}/establishment-address-manual`
             }
           >
             I can't find my address in the list
