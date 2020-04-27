@@ -15,44 +15,44 @@ const DOUBLE_MODE = "doubleMode";
 const logEmitter = new LogEmitter();
 
 logEmitter.on(FUNCTION_CALL, (module, functionName) => {
-  info(`${module}: ${functionName} called`);
+    info(`${module}: ${functionName} called`);
 });
 
 logEmitter.on(FUNCTION_SUCCESS, (module, functionName) => {
-  info(`${module}: ${functionName} successful`);
+    info(`${module}: ${functionName} successful`);
 });
 
 logEmitter.on(FUNCTION_FAIL, (module, functionName, err) => {
-  error(`${module}: ${functionName} failed with: ${err.message}`);
+    error(`${module}: ${functionName} failed with: ${err.message}`);
 });
 
 logEmitter.on(DOUBLE_MODE, (module, functionName) => {
-  info(`${module}: ${functionName}: running in double mode`);
+    info(`${module}: ${functionName}: running in double mode`);
 });
 
 logEmitter.on(INFO, (message) => {
-  info(message);
+    info(message);
 });
 
 logEmitter.on(WARN, (message) => {
-  warn(message);
+    warn(message);
 });
 
 logEmitter.on(DEBUG, (message) => {
-  debug(message);
+    debug(message);
 });
 
 logEmitter.on(ERROR, (message) => {
-  error(message);
+    error(message);
 });
 
 module.exports = {
-  logEmitter,
-  FUNCTION_CALL,
-  FUNCTION_FAIL,
-  FUNCTION_SUCCESS,
-  DOUBLE_MODE,
-  INFO,
-  ERROR,
-  DEBUG,
+    logEmitter,
+    FUNCTION_CALL,
+    FUNCTION_FAIL,
+    FUNCTION_SUCCESS,
+    DOUBLE_MODE,
+    INFO,
+    ERROR,
+    DEBUG
 };

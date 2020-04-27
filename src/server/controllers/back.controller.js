@@ -15,26 +15,31 @@ const { logEmitter } = require("../services/logging.service");
  * @returns {string} The previous page in the path
  */
 const backController = (currentPage, previousAnswers = {}, pathFromSession) => {
-  logEmitter.emit("functionCall", "back.controller", "backController");
+    logEmitter.emit("functionCall", "back.controller", "backController");
 
-  let previousPage;
-  let newPath;
+    let previousPage;
+    let newPath;
 
-  try {
-    newPath = editPath(previousAnswers, currentPage, pathFromSession);
-    previousPage = moveAlongPath(newPath, currentPage, -1);
+    try {
+        newPath = editPath(previousAnswers, currentPage, pathFromSession);
+        previousPage = moveAlongPath(newPath, currentPage, -1);
 
-    logEmitter.emit(
-      "functionSuccessWith",
-      "back.controller",
-      "backController",
-      `Previous page is ${previousPage}`
-    );
-    return previousPage;
-  } catch (err) {
-    logEmitter.emit("functionFail", "back.controller", "backController", err);
-    throw err;
-  }
+        logEmitter.emit(
+            "functionSuccessWith",
+            "back.controller",
+            "backController",
+            `Previous page is ${previousPage}`
+        );
+        return previousPage;
+    } catch (err) {
+        logEmitter.emit(
+            "functionFail",
+            "back.controller",
+            "backController",
+            err
+        );
+        throw err;
+    }
 };
 
 module.exports = backController;

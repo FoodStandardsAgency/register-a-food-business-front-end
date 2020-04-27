@@ -137,6 +137,11 @@
       "next/babel"
     ]
   },
+  "prettier": {
+    "trailingComma": "none",
+    "tabWidth": 4,
+    "semi": true
+  },
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
