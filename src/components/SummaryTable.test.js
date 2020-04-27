@@ -384,12 +384,12 @@ describe("<SummaryTable />", () => {
           it("It doesn't render a change button in all editable rows", () => {
             editableTableRows.forEach((tableRowName) => {
               const row = wrapperApplicationComplete.find(
-                `Row#${tableRowName}`
+                `tr#${tableRowName}`
               );
               const buttonId = `change${
                 tableRowName.charAt(0).toUpperCase() + tableRowName.substr(1)
               }`;
-              const button = row.find(`Anchor#${buttonId}`);
+              const button = row.find(`a#${buttonId}`);
 
               expect(button.length).toBe(0);
             });
@@ -398,11 +398,11 @@ describe("<SummaryTable />", () => {
 
         it("renders a change button in all editable rows", () => {
           editableTableRows.forEach((tableRowName) => {
-            const row = wrapperComprehensive.find(`Row#${tableRowName}`);
+            const row = wrapperComprehensive.find(`tr#${tableRowName}`);
             const buttonId = `change${
               tableRowName.charAt(0).toUpperCase() + tableRowName.substr(1)
             }`;
-            const button = row.find(`Anchor#${buttonId}`);
+            const button = row.find(`a#${buttonId}`);
             expect(button.length).toBe(1);
           });
         });
@@ -410,7 +410,7 @@ describe("<SummaryTable />", () => {
         it("renders all table rows", () => {
           allTableRowsForIrregularDays.forEach((tableRowName) => {
             const row = wrapperComprehensiveForIrregularDays.find(
-              `Row#${tableRowName}`
+              `tr#${tableRowName}`
             );
             expect(row.length).toBe(1);
           });
@@ -511,7 +511,7 @@ describe("<SummaryTable />", () => {
         it("renders all mandatory table rows", () => {
           mandatoryTableRows.forEach((tableRowName) => {
             const row = wrapperMinimumForIrregularDays.find(
-              `Row#${tableRowName}`
+              `tr#${tableRowName}`
             );
             expect(row.length).toBe(1);
           });

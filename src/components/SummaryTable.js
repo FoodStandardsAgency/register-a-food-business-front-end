@@ -769,7 +769,7 @@ const EstablishmentDetailsTable = (props) => (
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
-            <AnchorTag
+            <Link
               id="changeEstablishmentOpeningDaysRow"
               href="/edit/opening-days-start"
               aria-label="Change establishment opening days"
@@ -785,7 +785,7 @@ const EstablishmentDetailsTable = (props) => (
                   props.opening_day_saturday ||
                   props.opening_day_sunday
               )}
-            </AnchorTag>
+            </Link>
           </AccessibleChangeCell>
         )}
       </AccessibleTableRow>

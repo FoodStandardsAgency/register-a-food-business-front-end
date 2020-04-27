@@ -52,7 +52,7 @@ class Declaration extends React.Component {
           <SubmissionErrorSummary
             submissionErrors={this.props.submissionError}
           />
-          <Header level={1} size="LARGE">
+          <Heading as="h1"  size="LARGE">
             Declaration
           </Heading>
 
