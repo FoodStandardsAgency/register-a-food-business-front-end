@@ -1,54 +1,54 @@
 jest.mock("express", () => ({
-    Router: jest.fn(() => ({
-        post: jest.fn(),
-        get: jest.fn()
-    }))
+  Router: jest.fn(() => ({
+    post: jest.fn(),
+    get: jest.fn()
+  }))
 }));
 jest.mock("../controllers/back.controller");
 const backController = require("../controllers/back.controller");
 const { backRouter } = require("./back.route");
 
 describe("Back route: ", () => {
-    let router, handler;
+  let router, handler;
+  beforeEach(() => {
+    router = backRouter();
+  });
+
+  describe("GET to /back/:originator", () => {
+    let req, res;
+
     beforeEach(() => {
-        router = backRouter();
+      backController.mockImplementation(() => "/previousPage");
+      handler = router.get.mock.calls[0][1];
+
+      req = {
+        session: {
+          cumulativeFullAnswers: {},
+          council: "council",
+          pathConfig: { path: "existing path from session" }
+        },
+        params: {
+          originator: "originator"
+        }
+      };
+
+      res = {
+        redirect: jest.fn()
+      };
+
+      handler(req, res);
     });
 
-    describe("GET to /back/:originator", () => {
-        let req, res;
-
-        beforeEach(() => {
-            backController.mockImplementation(() => "/previousPage");
-            handler = router.get.mock.calls[0][1];
-
-            req = {
-                session: {
-                    cumulativeFullAnswers: {},
-                    council: "council",
-                    pathConfig: { path: "existing path from session" }
-                },
-                params: {
-                    originator: "originator"
-                }
-            };
-
-            res = {
-                redirect: jest.fn()
-            };
-
-            handler(req, res);
-        });
-
-        it("Should call backController with currentPage, cumulativeFullAnswers, and the path", () => {
-            expect(backController).toHaveBeenCalledWith(
-                "/originator",
-                {},
-                "existing path from session"
-            );
-        });
-
-        it("Should redirect to previous page", () => {
-            expect(res.redirect).toBeCalledWith("/new/council/previousPage");
-        });
+    it("Should call backController with currentPage, cumulativeFullAnswers, and the path", () => {
+      expect(backController).toHaveBeenCalledWith(
+        "/originator",
+        {},
+        "existing path from session"
+      );
     });
+
+    it("Should redirect to previous page", () => {
+      expect(res.redirect).toBeCalledWith("/new/council/previousPage");
+    });
+  });
 });

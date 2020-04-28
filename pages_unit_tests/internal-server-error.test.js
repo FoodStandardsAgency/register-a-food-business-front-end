@@ -4,6 +4,7 @@ import { shallow, mount } from "enzyme";
 const req = {};
 req.session = {};
 req.session.council = "council";
+req.url = "test/test";
 
 const res = { statusCode: 100 };
 const err = { statusCode: 101 };
@@ -19,6 +20,7 @@ describe("<Error />", () => {
   describe("initial props", () => {
     it("returns response status code if present", () => {
       const props = InternalServerError.getInitialProps({ req, res, err });
+
       expect(props.council).toEqual("council");
       expect(props.statusCode).toEqual(100);
     });

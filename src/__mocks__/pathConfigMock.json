@@ -1,39 +1,39 @@
 {
-    "_id": "1.0.0",
-    "path": {
-        "/index": {
-            "on": true,
-            "switches": {
-                "A1": { "/mock-page-1": true },
-                "A2": { "/mock-page-1": true, "/mock-page-2": true },
-                "A3": { "/mock-page-2": true },
-                "answer_name_that_affects_path": { "/mock-page-2": true }
-            }
-        },
-        "/mock-page-off": {
-            "on": false,
-            "switches": {
-                "turnOnCurrentPageTest": { "/mock-page-off": true }
-            }
-        },
-        "/mock-page-1": {
-            "on": false,
-            "switches": {
-                "A6": { "/mock-page-2": true },
-                "A4": { "/mock-page-2": true },
-                "A5": { "/mock-page-3": true }
-            }
-        },
-        "/mock-page-2": {
-            "on": false,
-            "switches": {
-                "A7": { "/mock-page-3": true },
-                "A8": { "/mock-page-2": true }
-            }
-        },
-        "/mock-page-3": {
-            "on": false,
-            "switches": {}
-        }
+  "_id": "1.0.0",
+  "path": {
+    "/index": {
+      "on": true,
+      "switches": {
+        "A1": { "/mock-page-1": true },
+        "A2": { "/mock-page-1": true, "/mock-page-2": true },
+        "A3": { "/mock-page-2": true },
+        "answer_name_that_affects_path": { "/mock-page-2": true }
+      }
+    },
+    "/mock-page-off": {
+      "on": false,
+      "switches": {
+        "turnOnCurrentPageTest": { "/mock-page-off": true }
+      }
+    },
+    "/mock-page-1": {
+      "on": false,
+      "switches": {
+        "A6": { "/mock-page-2": true },
+        "A4": { "/mock-page-2": true },
+        "A5": { "/mock-page-3": true }
+      }
+    },
+    "/mock-page-2": {
+      "on": false,
+      "switches": {
+        "A7": { "/mock-page-3": true },
+        "A8": { "/mock-page-2": true }
+      }
+    },
+    "/mock-page-3": {
+      "on": false,
+      "switches": {}
     }
+  }
 }

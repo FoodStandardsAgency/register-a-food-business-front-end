@@ -9,63 +9,54 @@ const { logEmitter } = require("../services/logging.service");
 const findAddressController = require("../controllers/find-address.controller");
 
 const findAddressRouter = () => {
-    const router = Router();
+  const router = Router();
 
-    router.post("/:originator", async (req, res) => {
-        logEmitter.emit(
-            "functionCall",
-            "Routes",
-            "/findaddress/:originator route"
-        );
+  router.post("/:originator", async (req, res) => {
+    logEmitter.emit("functionCall", "Routes", "/findaddress/:originator route");
 
-        const response = await findAddressController(
-            `/${req.params.originator}`,
-            req.session.cumulativeFullAnswers,
-            req.body
-        );
+    const response = await findAddressController(
+      `/${req.params.originator}`,
+      req.session.cumulativeFullAnswers,
+      req.body
+    );
 
-        req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
-        req.session.validatorErrors = response.validatorErrors;
+    req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
+    req.session.validatorErrors = response.validatorErrors;
 
-        req.session.addressLookups = Object.assign(
-            {},
-            req.session.addressLookups,
-            response.addressLookups
-        );
+    req.session.addressLookups = Object.assign(
+      {},
+      req.session.addressLookups,
+      response.addressLookups
+    );
 
-        req.session.switches = Object.assign(
-            {},
-            req.session.switches,
-            response.switches
-        );
+    req.session.switches = Object.assign(
+      {},
+      req.session.switches,
+      response.switches
+    );
 
-        logEmitter.emit(
-            "functionSuccess",
-            "Routes",
-            "/findaddress/:originator route"
-        );
-        req.session.save((err) => {
-            if (err) {
-                logEmitter.emit(
-                    "functionFail",
-                    "Routes",
-                    "/find-address route",
-                    err
-                );
-                throw err;
-            }
+    logEmitter.emit(
+      "functionSuccess",
+      "Routes",
+      "/findaddress/:originator route"
+    );
+    req.session.save((err) => {
+      if (err) {
+        logEmitter.emit("functionFail", "Routes", "/find-address route", err);
+        throw err;
+      }
 
-            const query = req.headers.referer.includes("edit")
-                ? `?edit=${response.redirectRoute.substring(1)}`
-                : "";
+      const query = req.headers.referer.includes("edit")
+        ? `?edit=${response.redirectRoute.substring(1)}`
+        : "";
 
-            res.redirect(
-                `/new/${req.session.council}${response.redirectRoute}${query}`
-            );
-        });
+      res.redirect(
+        `/new/${req.session.council}${response.redirectRoute}${query}`
+      );
     });
+  });
 
-    return router;
+  return router;
 };
 
 module.exports = { findAddressRouter };

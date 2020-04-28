@@ -5,10 +5,10 @@
 const fetch = require("node-fetch");
 const HttpsProxyAgent = require("https-proxy-agent");
 const {
-    ADDRESS_API_URL_BASE,
-    ADDRESS_API_URL_QUERY,
-    ADDRESS_API_URL_BASE_STANDARD,
-    ADDRESS_API_URL_QUERY_STANDARD
+  ADDRESS_API_URL_BASE,
+  ADDRESS_API_URL_QUERY,
+  ADDRESS_API_URL_BASE_STANDARD,
+  ADDRESS_API_URL_QUERY_STANDARD
 } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { addressLookupDouble } = require("./address-lookup-api.double");
@@ -22,44 +22,44 @@ const { addressLookupDouble } = require("./address-lookup-api.double");
  * @returns {array} A list of addresses
  */
 const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
-    logEmitter.emit(
-        "functionCallWith",
-        "address-lookup-api.connector",
-        "getAddressByPostcode",
-        postcode
-    );
+  logEmitter.emit(
+    "functionCallWith",
+    "address-lookup-api.connector",
+    "getAddressByPostcode",
+    postcode
+  );
 
-    const DOUBLE_MODE = process.env.DOUBLE_MODE;
+  const DOUBLE_MODE = process.env.DOUBLE_MODE;
 
-    let firstJson;
-    if (DOUBLE_MODE === "true") {
-        const firstRes = addressLookupDouble(postcode, ADDRESS_API_URL_QUERY);
-        if (firstRes.status === 200) {
-            firstJson = firstRes.json();
-        } else {
-            logEmitter.emit(
-                "functionFail",
-                "address-lookup-api.connector",
-                "getAddressesByPostcode",
-                `Address lookup API responded with non-200 status: ${firstRes.status}`
-            );
-            throw new Error(
-                `Address lookup API responded with non-200 status: ${firstRes.status}`
-            );
-        }
+  let firstJson;
+  if (DOUBLE_MODE === "true") {
+    const firstRes = addressLookupDouble(postcode, ADDRESS_API_URL_QUERY);
+    if (firstRes.status === 200) {
+      firstJson = firstRes.json();
     } else {
-        firstJson = await fetchUsingPostcoderPremium(postcode);
-        if (!firstJson || firstJson.length === 0) {
-            firstJson = await fetchUsingPostcoderStandard(postcode);
-        }
-    }
-
-    logEmitter.emit(
-        "functionSuccess",
+      logEmitter.emit(
+        "functionFail",
         "address-lookup-api.connector",
-        "getAddressByPostcode"
-    );
-    return firstJson;
+        "getAddressesByPostcode",
+        `Address lookup API responded with non-200 status: ${firstRes.status}`
+      );
+      throw new Error(
+        `Address lookup API responded with non-200 status: ${firstRes.status}`
+      );
+    }
+  } else {
+    firstJson = await fetchUsingPostcoderPremium(postcode);
+    if (!firstJson || firstJson.length === 0) {
+      firstJson = await fetchUsingPostcoderStandard(postcode);
+    }
+  }
+
+  logEmitter.emit(
+    "functionSuccess",
+    "address-lookup-api.connector",
+    "getAddressByPostcode"
+  );
+  return firstJson;
 };
 
 /**
@@ -70,34 +70,32 @@ const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
  * @returns {object} API response object
  */
 const fetchUsingPostcoderPremium = async (postcode) => {
+  logEmitter.emit(
+    "functionCall",
+    "address-lookup-api.connector",
+    "fetchUsingPostcoderPremium",
+    postcode
+  );
+
+  const options = { method: "GET" };
+  if (process.env.HTTP_PROXY) {
+    options.agent = new HttpsProxyAgent(process.env.HTTP_PROXY);
+  }
+  const response = await fetch(
+    `${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`,
+    options
+  );
+
+  if (response.status === 200) {
+    return response.json();
+  } else {
     logEmitter.emit(
-        "functionCall",
-        "address-lookup-api.connector",
-        "fetchUsingPostcoderPremium",
-        postcode
+      "functionFail",
+      "address-lookup-api.connector",
+      "fetchUsingPostcoderPremium",
+      `Address lookup API responded with non-200 status: ${response.status} - ${response.statusText}`
     );
-
-    const options = { method: "GET" };
-    if (process.env.HTTP_PROXY) {
-        console.log(process.env.HTTP_PROXY);
-        options.agent = new HttpsProxyAgent(process.env.HTTP_PROXY);
-    }
-    console.log(`${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`);
-    const response = await fetch(
-        `${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`,
-        options
-    );
-
-    if (response.status === 200) {
-        return response.json();
-    } else {
-        logEmitter.emit(
-            "functionFail",
-            "address-lookup-api.connector",
-            "fetchUsingPostcoderPremium",
-            `Address lookup API responded with non-200 status: ${response.status} - ${response.statusText}`
-        );
-    }
+  }
 };
 
 /**
@@ -108,36 +106,34 @@ const fetchUsingPostcoderPremium = async (postcode) => {
  * @returns {object} API response object
  */
 const fetchUsingPostcoderStandard = async (postcode) => {
+  logEmitter.emit(
+    "functionCall",
+    "address-lookup-api.connector",
+    "fetchUsingPostcoderStandard",
+    postcode
+  );
+  const options = { method: "GET" };
+  if (process.env.HTTP_PROXY) {
+    options.agent = new HttpsProxyAgent(process.env.HTTP_PROXY);
+  }
+
+  const response = await fetch(
+    `${ADDRESS_API_URL_BASE_STANDARD}/uk/${postcode}?${ADDRESS_API_URL_QUERY_STANDARD}`,
+    options
+  );
+  if (response.status === 200) {
+    return response.json();
+  } else {
     logEmitter.emit(
-        "functionCall",
-        "address-lookup-api.connector",
-        "fetchUsingPostcoderStandard",
-        postcode
+      "functionFail",
+      "address-lookup-api.connector",
+      "fetchUsingPostcoderStandard",
+      `Address lookup API responded with non-200 status: ${response.status} - ${response.statusText}`
     );
-    const options = { method: "GET" };
-    if (process.env.HTTP_PROXY) {
-        options.agent = new HttpsProxyAgent(process.env.HTTP_PROXY);
-    }
-    console.log(
-        `${ADDRESS_API_URL_BASE_STANDARD}/uk/${postcode}?${ADDRESS_API_URL_QUERY_STANDARD}`
+    throw new Error(
+      `Address lookup API responded with non-200 status: ${response.status}`
     );
-    const response = await fetch(
-        `${ADDRESS_API_URL_BASE_STANDARD}/uk/${postcode}?${ADDRESS_API_URL_QUERY_STANDARD}`,
-        options
-    );
-    if (response.status === 200) {
-        return response.json();
-    } else {
-        logEmitter.emit(
-            "functionFail",
-            "address-lookup-api.connector",
-            "fetchUsingPostcoderStandard",
-            `Address lookup API responded with non-200 status: ${response.status} - ${response.statusText}`
-        );
-        throw new Error(
-            `Address lookup API responded with non-200 status: ${response.status}`
-        );
-    }
+  }
 };
 
 module.exports = { getAddressesByPostcode };
