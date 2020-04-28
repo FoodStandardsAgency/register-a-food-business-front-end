@@ -3,7 +3,7 @@
   "version": "8.4.0",
   "private": true,
   "scripts": {
-    "dev": "node ./src/server/server.js",
+    "dev": "nodemon ./src/server/server.js",
     "build": "next build",
     "start": "cross-env NODE_ENV=production node ./src/server/server.js",
     "start:local": "(export $(grep -v '^#' .env | xargs -d '\n')) && cross-env NODE_ENV=production node ./src/server.js",
@@ -53,6 +53,7 @@
     "next": "^9.3.5",
     "node-cache": "^5.1.0",
     "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.3",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -165,5 +166,17 @@
       "emotion",
       "prettier"
     ]
+  },
+  "nodemonConfig": {
+    "verbose": true,
+    "ignore": [
+      "node_modules",
+      ".next"
+    ],
+    "watch": [
+      "pages",
+      "src"
+    ],
+    "ext": "js json"
   }
 }
