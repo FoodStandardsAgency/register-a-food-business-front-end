@@ -1,37 +1,68 @@
-/**
- * EventEmitters for different logging purposes
- * @module services/logging
- */
-
 const EventEmitter = require("events");
-const { info, error } = require("winston");
+const { info, error, debug, warn } = require("winston");
 
 class LogEmitter extends EventEmitter {}
 
+const DEBUG = "debug";
+const WARN = "warning";
+const ERROR = "error";
+const INFO = "info";
+const FUNCTION_CALL_WITH = "functionCallWith";
+const FUNCTION_SUCCESS_WITH = "functionSuccessWith";
+const FUNCTION_CALL = "functionCall";
+const FUNCTION_SUCCESS = "functionSuccess";
+const FUNCTION_FAIL = "functionFail";
+const DOUBLE_MODE = "doubleMode";
+
 const logEmitter = new LogEmitter();
 
-logEmitter.on("functionCall", (module, functionName) => {
-    info(`${module}: ${functionName} called`);
+logEmitter.on(FUNCTION_CALL, (module, functionName) => {
+  info(`${module}: ${functionName} called`);
 });
 
-logEmitter.on("functionCallWith", (module, functionName, data) => {
-    info(`${module}: ${functionName} called with: ${data}`);
+logEmitter.on(FUNCTION_CALL_WITH, (module, functionName, data) => {
+  info(`${module}: ${functionName} called with: ${data}`);
 });
 
-logEmitter.on("functionSuccess", (module, functionName) => {
-    info(`${module}: ${functionName} successful`);
+logEmitter.on(FUNCTION_SUCCESS, (module, functionName) => {
+  info(`${module}: ${functionName} successful`);
 });
 
-logEmitter.on("functionSuccessWith", (module, functionName, data) => {
-    info(`${module}: ${functionName} successful with: ${data}`);
+logEmitter.on(FUNCTION_SUCCESS_WITH, (module, functionName, data) => {
+  info(`${module}: ${functionName} successful with: ${data}`);
 });
 
-logEmitter.on("functionFail", (module, functionName, err) => {
-    error(`${module}: ${functionName} failed with: ${err}`);
+logEmitter.on(FUNCTION_FAIL, (module, functionName, err) => {
+  error(`${module}: ${functionName} failed with: ${err.message}`);
 });
 
-logEmitter.on("doubleMode", (module, functionName) => {
-    info(`${module}: ${functionName}: running in double mode`);
+logEmitter.on(DOUBLE_MODE, (module, functionName) => {
+  info(`${module}: ${functionName}: running in double mode`);
 });
 
-module.exports = { logEmitter };
+logEmitter.on(INFO, (message) => {
+  info(message);
+});
+
+logEmitter.on(WARN, (message) => {
+  warn(message);
+});
+
+logEmitter.on(DEBUG, (message) => {
+  debug(message);
+});
+
+logEmitter.on(ERROR, (message) => {
+  error(message);
+});
+
+module.exports = {
+  logEmitter,
+  FUNCTION_CALL,
+  FUNCTION_FAIL,
+  FUNCTION_SUCCESS,
+  DOUBLE_MODE,
+  INFO,
+  ERROR,
+  DEBUG
+};
