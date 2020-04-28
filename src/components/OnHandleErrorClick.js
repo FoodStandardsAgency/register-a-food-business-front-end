@@ -1,7 +1,8 @@
 const OnHandleErrorClick = (targetName) => {
-    if(
+    if (
         targetName === "operator_postcode_find" ||
-        targetName === "establishment_postcode_find"){
+        targetName === "establishment_postcode_find"
+    ) {
         return;
     }
 
