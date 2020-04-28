@@ -23,3 +23,5 @@ yarn-error.log*
 .vs/slnx.sqlite
 
 /docs/jsdoc
+
+junit.xml
