@@ -4,7 +4,7 @@
  */
 
 const {
-    getAddressesByPostcode
+  getAddressesByPostcode
 } = require("../connectors/address-lookup/address-lookup-api.connector");
 const { statusEmitter } = require("../services/statusEmitter.service");
 const { logEmitter } = require("./logging.service");
@@ -17,44 +17,33 @@ const { logEmitter } = require("./logging.service");
  * @returns {array} A list of addresses
  */
 const getUkAddressesByPostcode = async (postcode) => {
+  logEmitter.emit(
+    "functionCall",
+    "address.service",
+    "getUkAddressesByPostcode"
+  );
+
+  try {
+    const addressLookupResponse = await getAddressesByPostcode(postcode, 500);
+
+    statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", true);
     logEmitter.emit(
-        "functionCall",
-        "address.service",
-        "getUkAddressesByPostcode"
+      "functionSuccess",
+      "address.service",
+      "getUkAddressesByPostcode"
     );
-
-    try {
-        const addressLookupResponse = await getAddressesByPostcode(
-            postcode,
-            500
-        );
-
-        statusEmitter.emit(
-            "setStatus",
-            "mostRecentAddressLookupSucceeded",
-            true
-        );
-        logEmitter.emit(
-            "functionSuccess",
-            "address.service",
-            "getUkAddressesByPostcode"
-        );
-        return addressLookupResponse;
-    } catch (err) {
-        statusEmitter.emit("incrementCount", "addressLookupsFailed");
-        statusEmitter.emit(
-            "setStatus",
-            "mostRecentAddressLookupSucceeded",
-            false
-        );
-        logEmitter.emit(
-            "functionFail",
-            "address.service",
-            "getUkAddressesByPostcode",
-            err
-        );
-        return [];
-    }
+    return addressLookupResponse;
+  } catch (err) {
+    statusEmitter.emit("incrementCount", "addressLookupsFailed");
+    statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", false);
+    logEmitter.emit(
+      "functionFail",
+      "address.service",
+      "getUkAddressesByPostcode",
+      err
+    );
+    return [];
+  }
 };
 
 module.exports = { getUkAddressesByPostcode };

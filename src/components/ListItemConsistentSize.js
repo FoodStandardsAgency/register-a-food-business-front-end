@@ -7,12 +7,12 @@ const MediaQueryMobile = `@media only screen and (max-width: ${BREAKPOINTS.LARGE
 const MediaQueryDesktop = `@media only screen and (min-width: ${BREAKPOINTS.LARGESCREEN})`;
 
 const ListItemConsistentSize = styled(ListItem)`
-    ${MediaQueryMobile} {
-        font-size: ${FONT_SIZE.SIZE_16};
-    }
-    ${MediaQueryDesktop} {
-        font-size: ${FONT_SIZE.SIZE_19};
-    }
+  ${MediaQueryMobile} {
+    font-size: ${FONT_SIZE.SIZE_16};
+  }
+  ${MediaQueryDesktop} {
+    font-size: ${FONT_SIZE.SIZE_19};
+  }
 `;
 
 export default ListItemConsistentSize;

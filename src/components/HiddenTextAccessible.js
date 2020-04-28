@@ -9,26 +9,26 @@ import { ContentItem } from "./";
 // with screen reader (JAWS) users. The TODO is to explore why this did not work, and to resolve.
 
 const HiddenTextAccessible = (props) => (
-    <ContentItem.B_30_15>
-        <VisuallyHidden mb={0} aria-label="Additional information" {...props}>
-            {/* <InvisibleLink href={`#skipAdditionalInfo_${props.hiddentextindex}`}>
+  <ContentItem.B_30_15>
+    <VisuallyHidden mb={0} aria-label="Additional information" {...props}>
+      {/* <InvisibleLink href={`#skipAdditionalInfo_${props.hiddentextindex}`}>
     Skip this additional information
   </InvisibleLink> */}
-            {props.children}
-            {/* <div
+      {props.children}
+      {/* <div
     aria-hidden="true"
     id={`skipAdditionalInfo_${props.hiddentextindex}`}
   /> */}
-        </VisuallyHidden>
-    </ContentItem.B_30_15>
+    </VisuallyHidden>
+  </ContentItem.B_30_15>
 );
 
 HiddenTextAccessible.defaultProps = {
-    hiddentextindex: 0
+  hiddentextindex: 0
 };
 
 HiddenTextAccessible.propTypes = {
-    hiddentextindex: PropTypes.number
+  hiddentextindex: PropTypes.number
 };
 
 export default HiddenTextAccessible;

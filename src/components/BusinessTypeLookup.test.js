@@ -7,52 +7,47 @@ import { shallow } from "enzyme";
 import { act } from "react-dom/test-utils"; // ES6
 
 describe("<BusinessTypeLookup />", () => {
-    it("renders without crashing", async () => {
-        let wrapper;
-        await act(async () => {
-            wrapper = shallow(
-                <BusinessTypeLookup validatorErrors cumulativeFullAnswers />
-            );
-        });
-        expect(wrapper.length).toBe(1);
+  it("renders without crashing", async () => {
+    let wrapper;
+    await act(async () => {
+      wrapper = shallow(
+        <BusinessTypeLookup validatorErrors cumulativeFullAnswers />
+      );
     });
+    expect(wrapper.length).toBe(1);
+  });
 
-    describe("given validatorErrors.business_type", () => {
-        it("renders the container div with different styling", async () => {
-            let wrapperNoErrors;
-            await act(async () => {
-                wrapperNoErrors = shallow(
-                    <BusinessTypeLookup
-                        validatorErrors={{}}
-                        cumulativeFullAnswers
-                    />
-                );
-            });
-            const appliedClassNameNoErrors = wrapperNoErrors
-                .find("#autocompleteContainer")
-                .prop("className");
+  describe("given validatorErrors.business_type", () => {
+    it("renders the container div with different styling", async () => {
+      let wrapperNoErrors;
+      await act(async () => {
+        wrapperNoErrors = shallow(
+          <BusinessTypeLookup validatorErrors={{}} cumulativeFullAnswers />
+        );
+      });
+      const appliedClassNameNoErrors = wrapperNoErrors
+        .find("#autocompleteContainer")
+        .prop("className");
 
-            let wrapperErrors;
-            await act(async () => {
-                wrapperErrors = shallow(
-                    <BusinessTypeLookup
-                        validatorErrors={{ business_type: "An error" }}
-                        cumulativeFullAnswers
-                    />
-                );
-            });
+      let wrapperErrors;
+      await act(async () => {
+        wrapperErrors = shallow(
+          <BusinessTypeLookup
+            validatorErrors={{ business_type: "An error" }}
+            cumulativeFullAnswers
+          />
+        );
+      });
 
-            const appliedClassNameErrors = wrapperErrors
-                .find("#autocompleteContainer")
-                .prop("className");
+      const appliedClassNameErrors = wrapperErrors
+        .find("#autocompleteContainer")
+        .prop("className");
 
-            expect(appliedClassNameNoErrors).not.toEqual(
-                appliedClassNameErrors
-            );
-        });
+      expect(appliedClassNameNoErrors).not.toEqual(appliedClassNameErrors);
     });
+  });
 
-    /*
+  /*
   describe("given JavaScript is enabled", () => {
     let wrapper;
     beforeEach(async () => {
@@ -74,7 +69,7 @@ describe("<BusinessTypeLookup />", () => {
     });
   });
   */
-    /*
+  /*
   describe("given JavaScript is disabled", () => {
     /*
     describe("when browser is not Safari", () => {
@@ -123,7 +118,7 @@ describe("<BusinessTypeLookup />", () => {
     });
     /*
      */
-    /*
+  /*
     describe("when browser is Safari", () => {
       it("renders SelectListSection", async () => {
         let wrapper;
@@ -168,5 +163,5 @@ describe("<BusinessTypeLookup />", () => {
       });
     });
     */
-    //  });
+  //  });
 });
