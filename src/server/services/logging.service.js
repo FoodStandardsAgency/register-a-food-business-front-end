@@ -7,6 +7,8 @@ const DEBUG = "debug";
 const WARN = "warning";
 const ERROR = "error";
 const INFO = "info";
+const FUNCTION_CALL_WITH = "functionCallWith";
+const FUNCTION_SUCCESS_WITH = "functionSuccessWith";
 const FUNCTION_CALL = "functionCall";
 const FUNCTION_SUCCESS = "functionSuccess";
 const FUNCTION_FAIL = "functionFail";
@@ -18,8 +20,16 @@ logEmitter.on(FUNCTION_CALL, (module, functionName) => {
   info(`${module}: ${functionName} called`);
 });
 
+logEmitter.on(FUNCTION_CALL_WITH, (module, functionName, data) => {
+  info(`${module}: ${functionName} called with: ${data}`);
+});
+
 logEmitter.on(FUNCTION_SUCCESS, (module, functionName) => {
   info(`${module}: ${functionName} successful`);
+});
+
+logEmitter.on(FUNCTION_SUCCESS_WITH, (module, functionName, data) => {
+  info(`${module}: ${functionName} successful with: ${data}`);
 });
 
 logEmitter.on(FUNCTION_FAIL, (module, functionName, err) => {
