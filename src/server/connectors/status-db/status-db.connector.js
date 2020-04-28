@@ -16,50 +16,50 @@ let statusCollection;
  * The client, configDB and statusCollection variables are accessible to other functions in this connector.
  */
 const establishConnectionToMongo = async () => {
-  if (process.env.DOUBLE_MODE === "true") {
-    logEmitter.emit(
-      "doubleMode",
-      "status-db.connector",
-      "establishConnectionToMongo"
-    );
-
-    statusCollection = statusCollectionDouble;
-  } else {
-    logEmitter.emit(
-      "functionCall",
-      "status-db.connector",
-      "establishConnectionToMongo"
-    );
-
-    // If no connection or connection is not valid after downtime
-    if (!client || !client.topology || !client.topology.isConnected()) {
-      try {
-        if (client && client.topology !== undefined) {
-          client.close();
-        }
-        client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
-          useNewUrlParser: true
-        });
-      } catch (err) {
+    if (process.env.DOUBLE_MODE === "true") {
         logEmitter.emit(
-          "functionFail",
-          "status-db.connector",
-          "establishConnectionToMongo",
-          err
+            "doubleMode",
+            "status-db.connector",
+            "establishConnectionToMongo"
         );
-        throw err;
-      }
+
+        statusCollection = statusCollectionDouble;
+    } else {
+        logEmitter.emit(
+            "functionCall",
+            "status-db.connector",
+            "establishConnectionToMongo"
+        );
+
+        // If no connection or connection is not valid after downtime
+        if (!client || !client.topology || !client.topology.isConnected()) {
+            try {
+                if (client && client.topology !== undefined) {
+                    client.close();
+                }
+                client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
+                    useNewUrlParser: true
+                });
+            } catch (err) {
+                logEmitter.emit(
+                    "functionFail",
+                    "status-db.connector",
+                    "establishConnectionToMongo",
+                    err
+                );
+                throw err;
+            }
+        }
+
+        statusDB = client.db("register_a_food_business_status");
+        statusCollection = statusDB.collection("status");
+
+        logEmitter.emit(
+            "functionSuccess",
+            "status-db.connector",
+            "establishConnectionToMongo"
+        );
     }
-
-    statusDB = client.db("register_a_food_business_status");
-    statusCollection = statusDB.collection("status");
-
-    logEmitter.emit(
-      "functionSuccess",
-      "status-db.connector",
-      "establishConnectionToMongo"
-    );
-  }
 };
 
 /**
@@ -68,32 +68,32 @@ const establishConnectionToMongo = async () => {
  * @returns {object} All status values
  */
 const getStoredStatus = async () => {
-  logEmitter.emit("functionCall", "status-db.connector", "getStoredStatus");
-  try {
-    await establishConnectionToMongo();
-    const storedStatus = await statusCollection.findOne({
-      _id: "frontEndStatus"
-    });
-    logEmitter.emit(
-      "functionSuccess",
-      "status-db.connector",
-      "getStoredStatus"
-    );
+    logEmitter.emit("functionCall", "status-db.connector", "getStoredStatus");
+    try {
+        await establishConnectionToMongo();
+        const storedStatus = await statusCollection.findOne({
+            _id: "frontEndStatus"
+        });
+        logEmitter.emit(
+            "functionSuccess",
+            "status-db.connector",
+            "getStoredStatus"
+        );
 
-    return storedStatus;
-  } catch (err) {
-    logEmitter.emit(
-      "functionFail",
-      "status-db.connector",
-      "getStoredStatus",
-      err
-    );
-    const newError = new Error();
-    newError.name = "mongoConnectionError";
-    newError.message = err.message;
+        return storedStatus;
+    } catch (err) {
+        logEmitter.emit(
+            "functionFail",
+            "status-db.connector",
+            "getStoredStatus",
+            err
+        );
+        const newError = new Error();
+        newError.name = "mongoConnectionError";
+        newError.message = err.message;
 
-    throw newError;
-  }
+        throw newError;
+    }
 };
 
 /**
@@ -105,38 +105,42 @@ const getStoredStatus = async () => {
  * @returns {any} The new status value
  */
 const updateStoredStatus = async (statusName, newStatus) => {
-  logEmitter.emit("functionCall", "status-db.connector", "updateStoredStatus");
-  try {
-    await establishConnectionToMongo();
-    await statusCollection.updateOne(
-      { _id: "frontEndStatus" },
-      { $set: { [statusName]: newStatus } }
-    );
-
     logEmitter.emit(
-      "functionsuccess",
-      "status-db.connector",
-      "updateStoredStatus"
+        "functionCall",
+        "status-db.connector",
+        "updateStoredStatus"
     );
-    return newStatus;
-  } catch (err) {
-    logEmitter.emit(
-      "functionFail",
-      "status-db.connector",
-      "updateStoredStatus",
-      err
-    );
+    try {
+        await establishConnectionToMongo();
+        await statusCollection.updateOne(
+            { _id: "frontEndStatus" },
+            { $set: { [statusName]: newStatus } }
+        );
 
-    const newError = new Error();
-    newError.name = "mongoConnectionError";
-    newError.message = err.message;
+        logEmitter.emit(
+            "functionsuccess",
+            "status-db.connector",
+            "updateStoredStatus"
+        );
+        return newStatus;
+    } catch (err) {
+        logEmitter.emit(
+            "functionFail",
+            "status-db.connector",
+            "updateStoredStatus",
+            err
+        );
 
-    throw newError;
-  }
+        const newError = new Error();
+        newError.name = "mongoConnectionError";
+        newError.message = err.message;
+
+        throw newError;
+    }
 };
 
 const clearMongoConnection = () => {
-  client = undefined;
+    client = undefined;
 };
 
 module.exports = { getStoredStatus, updateStoredStatus, clearMongoConnection };

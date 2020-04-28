@@ -20,49 +20,49 @@ let pathConfig = null;
  * The client, configDB and configVersionCollection variables are accessible to other functions in this connector.
  */
 const establishConnectionToMongo = async () => {
-  if (process.env.DOUBLE_MODE === "true") {
-    logEmitter.emit(
-      "doubleMode",
-      "config-db.connector",
-      "establishConnectionToMongo"
-    );
-    configVersionCollection = configVersionCollectionDouble;
-  } else {
-    logEmitter.emit(
-      "functionCall",
-      "config-db.connector",
-      "establishConnectionToMongo"
-    );
-
-    // If no connection or connection is not valid after downtime
-    if (!client || !client.topology || !client.topology.isConnected()) {
-      try {
-        if (client && client.topology !== undefined) {
-          client.close();
-        }
-        client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
-          useNewUrlParser: true
-        });
-      } catch (err) {
+    if (process.env.DOUBLE_MODE === "true") {
         logEmitter.emit(
-          "functionFail",
-          "config-db.connector",
-          "establishConnectionToMongo",
-          err
+            "doubleMode",
+            "config-db.connector",
+            "establishConnectionToMongo"
         );
-        throw err;
-      }
-    }
+        configVersionCollection = configVersionCollectionDouble;
+    } else {
+        logEmitter.emit(
+            "functionCall",
+            "config-db.connector",
+            "establishConnectionToMongo"
+        );
 
-    configDB = client.db("register_a_food_business_config");
-    configVersionCollection = configDB.collection("configVersion");
-    lcConfigCollection = configDB.collection("lcConfig");
-    logEmitter.emit(
-      "functionSuccess",
-      "config-db.connector",
-      "establishConnectionToMongo"
-    );
-  }
+        // If no connection or connection is not valid after downtime
+        if (!client || !client.topology || !client.topology.isConnected()) {
+            try {
+                if (client && client.topology !== undefined) {
+                    client.close();
+                }
+                client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
+                    useNewUrlParser: true
+                });
+            } catch (err) {
+                logEmitter.emit(
+                    "functionFail",
+                    "config-db.connector",
+                    "establishConnectionToMongo",
+                    err
+                );
+                throw err;
+            }
+        }
+
+        configDB = client.db("register_a_food_business_config");
+        configVersionCollection = configDB.collection("configVersion");
+        lcConfigCollection = configDB.collection("lcConfig");
+        logEmitter.emit(
+            "functionSuccess",
+            "config-db.connector",
+            "establishConnectionToMongo"
+        );
+    }
 };
 
 /**
@@ -72,70 +72,70 @@ const establishConnectionToMongo = async () => {
  *
  * @returns {object} An object containing the _id and path fields of the config database data for the given config version
  */
-const getPathConfigByVersion = async version => {
-  logEmitter.emit(
-    "functionCall",
-    "config-db.connector",
-    "getPathConfigByVersion"
-  );
-
-  if (pathConfig === null) {
-    try {
-      await establishConnectionToMongo();
-
-      const configVersionRecord = await configVersionCollection.findOne({
-        _id: version
-      });
-
-      if (configVersionRecord === null) {
-        pathConfig = null;
-        statusEmitter.emit("incrementCount", "getPathConfigFailed");
-        statusEmitter.emit(
-          "setStatus",
-          "mostRecentGetPathConfigSucceeded",
-          false
-        );
-      } else {
-        pathConfig = {
-          _id: configVersionRecord._id,
-          path: configVersionRecord.path
-        };
-        statusEmitter.emit("incrementCount", "getPathConfigSucceeded");
-        statusEmitter.emit(
-          "setStatus",
-          "mostRecentGetPathConfigSucceeded",
-          true
-        );
-      }
-    } catch (err) {
-      statusEmitter.emit("incrementCount", "getPathConfigFailed");
-      statusEmitter.emit(
-        "setStatus",
-        "mostRecentGetPathConfigSucceeded",
-        false
-      );
-      logEmitter.emit(
-        "functionFail",
+const getPathConfigByVersion = async (version) => {
+    logEmitter.emit(
+        "functionCall",
         "config-db.connector",
-        "getPathConfigByVersion",
-        err
-      );
+        "getPathConfigByVersion"
+    );
 
-      const newError = new Error();
-      newError.name = "mongoConnectionError";
-      newError.message = err.message;
+    if (pathConfig === null) {
+        try {
+            await establishConnectionToMongo();
 
-      throw newError;
+            const configVersionRecord = await configVersionCollection.findOne({
+                _id: version
+            });
+
+            if (configVersionRecord === null) {
+                pathConfig = null;
+                statusEmitter.emit("incrementCount", "getPathConfigFailed");
+                statusEmitter.emit(
+                    "setStatus",
+                    "mostRecentGetPathConfigSucceeded",
+                    false
+                );
+            } else {
+                pathConfig = {
+                    _id: configVersionRecord._id,
+                    path: configVersionRecord.path
+                };
+                statusEmitter.emit("incrementCount", "getPathConfigSucceeded");
+                statusEmitter.emit(
+                    "setStatus",
+                    "mostRecentGetPathConfigSucceeded",
+                    true
+                );
+            }
+        } catch (err) {
+            statusEmitter.emit("incrementCount", "getPathConfigFailed");
+            statusEmitter.emit(
+                "setStatus",
+                "mostRecentGetPathConfigSucceeded",
+                false
+            );
+            logEmitter.emit(
+                "functionFail",
+                "config-db.connector",
+                "getPathConfigByVersion",
+                err
+            );
+
+            const newError = new Error();
+            newError.name = "mongoConnectionError";
+            newError.message = err.message;
+
+            throw newError;
+        }
     }
-  }
 
-  logEmitter.emit(
-    "functionSuccess",
-    "config-db.connector",
-    "getPathConfigByVersion"
-  );
+    logEmitter.emit(
+        "functionSuccess",
+        "config-db.connector",
+        "getPathConfigByVersion"
+    );
 
-  return pathConfig;
+    return pathConfig;
 };
 
 /**
@@ -144,62 +144,68 @@ const getPathConfigByVersion = async version => {
  * @returns {Array} An array containing shortened local council names
  */
 const getLocalCouncils = async () => {
-  let localCouncilUrls = null;
-  logEmitter.emit("functionCall", "config-db.connector", "getLocalCouncils");
+    let localCouncilUrls = null;
+    logEmitter.emit("functionCall", "config-db.connector", "getLocalCouncils");
 
-  try {
-    await establishConnectionToMongo();
+    try {
+        await establishConnectionToMongo();
 
-    localCouncilUrls = await lcConfigCollection
-      .find({
-        $and: [
-          { local_council_url: { $ne: "" } },
-          { local_council_url: { $ne: null } }
-        ]
-      })
-      .project({ local_council_url: 1, _id: 0 })
-      .toArray();
+        localCouncilUrls = await lcConfigCollection
+            .find({
+                $and: [
+                    { local_council_url: { $ne: "" } },
+                    { local_council_url: { $ne: null } }
+                ]
+            })
+            .project({ local_council_url: 1, _id: 0 })
+            .toArray();
 
-    if (localCouncilUrls.length < 1) {
-      statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
-      statusEmitter.emit(
-        "setStatus",
-        "mostRecentGetLocalCouncilsSucceeded",
-        false
-      );
-    } else {
-      localCouncilUrls = localCouncilUrls.map(res => res.local_council_url);
-      statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
-      statusEmitter.emit(
-        "setStatus",
-        "mostRecentGetLocalCouncilsSucceeded",
-        true
-      );
+        if (localCouncilUrls.length < 1) {
+            statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
+            statusEmitter.emit(
+                "setStatus",
+                "mostRecentGetLocalCouncilsSucceeded",
+                false
+            );
+        } else {
+            localCouncilUrls = localCouncilUrls.map(
+                (res) => res.local_council_url
+            );
+            statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
+            statusEmitter.emit(
+                "setStatus",
+                "mostRecentGetLocalCouncilsSucceeded",
+                true
+            );
+        }
+    } catch (err) {
+        statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
+        statusEmitter.emit(
+            "setStatus",
+            "mostRecentGetLocalCouncilsSucceeded",
+            false
+        );
+        logEmitter.emit(
+            "functionFail",
+            "config-db.connector",
+            "getLocalCouncils",
+            err
+        );
+
+        const newError = new Error();
+        newError.name = "mongoConnectionError";
+        newError.message = err.message;
+
+        throw newError;
     }
-  } catch (err) {
-    statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
-    statusEmitter.emit(
-      "setStatus",
-      "mostRecentGetLocalCouncilsSucceeded",
-      false
-    );
+
     logEmitter.emit(
-      "functionFail",
-      "config-db.connector",
-      "getLocalCouncils",
-      err
+        "functionSuccess",
+        "config-db.connector",
+        "getLocalCouncils"
     );
 
-    const newError = new Error();
-    newError.name = "mongoConnectionError";
-    newError.message = err.message;
-
-    throw newError;
-  }
-
-  logEmitter.emit("functionSuccess", "config-db.connector", "getLocalCouncils");
-
-  return localCouncilUrls;
+    return localCouncilUrls;
 };
 
 /**
@@ -209,56 +215,60 @@ const getLocalCouncils = async () => {
  *
  * @returns {Object} Object with council data
  */
-const getCouncilData = async council => {
-  logEmitter.emit("functionCall", "config-db.connector", "getCouncilData");
+const getCouncilData = async (council) => {
+    logEmitter.emit("functionCall", "config-db.connector", "getCouncilData");
 
-  let councilRecord = null;
-  try {
-    await establishConnectionToMongo();
+    let councilRecord = null;
+    try {
+        await establishConnectionToMongo();
 
-    councilRecord = await lcConfigCollection.findOne({
-      local_council_url: council
-    });
+        councilRecord = await lcConfigCollection.findOne({
+            local_council_url: council
+        });
 
-    if (councilRecord === null) {
-      statusEmitter.emit("incrementCount", "getCouncilDataFailed");
-      statusEmitter.emit(
-        "setStatus",
-        "mostRecentGetCouncilDataSucceeded",
-        false
-      );
-      const newError = new Error();
-      newError.name = "mongoConnectionError";
-      newError.message = "getCouncilData retrieved null";
-      throw newError;
-    } else {
-      statusEmitter.emit("incrementCount", "getCouncilDataSucceeded");
-      statusEmitter.emit(
-        "setStatus",
-        "mostRecentGetCouncilDataSucceeded",
-        true
-      );
+        if (councilRecord === null) {
+            statusEmitter.emit("incrementCount", "getCouncilDataFailed");
+            statusEmitter.emit(
+                "setStatus",
+                "mostRecentGetCouncilDataSucceeded",
+                false
+            );
+            const newError = new Error();
+            newError.name = "mongoConnectionError";
+            newError.message = "getCouncilData retrieved null";
+            throw newError;
+        } else {
+            statusEmitter.emit("incrementCount", "getCouncilDataSucceeded");
+            statusEmitter.emit(
+                "setStatus",
+                "mostRecentGetCouncilDataSucceeded",
+                true
+            );
+        }
+    } catch (err) {
+        statusEmitter.emit("incrementCount", "getCouncilDataFailed");
+        statusEmitter.emit(
+            "setStatus",
+            "mostRecentGetCouncilDataSucceeded",
+            false
+        );
+        logEmitter.emit(
+            "functionFail",
+            "config-db.connector",
+            "getCouncilData",
+            err
+        );
+
+        const newError = new Error();
+        newError.name = "mongoConnectionError";
+        newError.message = err.message;
+
+        throw newError;
     }
-  } catch (err) {
-    statusEmitter.emit("incrementCount", "getCouncilDataFailed");
-    statusEmitter.emit("setStatus", "mostRecentGetCouncilDataSucceeded", false);
-    logEmitter.emit(
-      "functionFail",
-      "config-db.connector",
-      "getCouncilData",
-      err
-    );
 
-    const newError = new Error();
-    newError.name = "mongoConnectionError";
-    newError.message = err.message;
+    logEmitter.emit("functionSuccess", "config-db.connector", "getCouncilData");
 
-    throw newError;
-  }
-
-  logEmitter.emit("functionSuccess", "config-db.connector", "getCouncilData");
-
-  return councilRecord;
+    return councilRecord;
 };
 
 /**
@@ -267,18 +277,18 @@ const getCouncilData = async council => {
  * @returns {any} The cleared in-memory path config
  */
 const clearPathConfigCache = () => {
-  pathConfig = null;
-  return pathConfig;
+    pathConfig = null;
+    return pathConfig;
 };
 
 const clearMongoConnection = () => {
-  client = undefined;
+    client = undefined;
 };
 
 module.exports = {
-  getPathConfigByVersion,
-  clearPathConfigCache,
-  clearMongoConnection,
-  getLocalCouncils,
-  getCouncilData
+    getPathConfigByVersion,
+    clearPathConfigCache,
+    clearMongoConnection,
+    getLocalCouncils,
+    getCouncilData
 };

@@ -13,17 +13,17 @@ const { partnerDetailsRouter } = require("./partner-details.route");
 const { pdfsRouter } = require("./pdfs.route");
 
 module.exports = {
-  backRouter,
-  cleansessionRouter,
-  continueRouter,
-  editRouter,
-  findAddressRouter,
-  newRouter,
-  qaRouter,
-  submitRouter,
-  switchesRouter,
-  setCookieRouter,
-  statusRouter,
-  partnerDetailsRouter,
-  pdfsRouter
+    backRouter,
+    cleansessionRouter,
+    continueRouter,
+    editRouter,
+    findAddressRouter,
+    newRouter,
+    qaRouter,
+    submitRouter,
+    switchesRouter,
+    setCookieRouter,
+    statusRouter,
+    partnerDetailsRouter,
+    pdfsRouter
 };
