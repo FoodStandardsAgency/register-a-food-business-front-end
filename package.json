@@ -1,7 +1,9 @@
 {
   "name": "register_a_food_business_front_end",
   "version": "8.4.0",
-  "private": true,
+  "engines": {
+    "node": ">=12.9"
+  },
   "scripts": {
     "dev": "node ./src/server/server.js",
     "build": "next build",
