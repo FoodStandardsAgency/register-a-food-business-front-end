@@ -38,7 +38,8 @@ const establishConnectionToMongo = async () => {
           client.close();
         }
         client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
-          useNewUrlParser: true
+          useNewUrlParser: true,
+          useUnifiedTopology: true
         });
       } catch (err) {
         logEmitter.emit(
