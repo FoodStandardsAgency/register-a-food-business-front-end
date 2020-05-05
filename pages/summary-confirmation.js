@@ -30,14 +30,14 @@ const ApplicationComplete = (props) => (
       <FsaPanel
         id="panelWithNumber"
         panelTitle=""
-        panelBody={[
-          "Your unique food business registration application reference is",
-          <br />,
-          <br />,
+        panelBody={
+          "Your unique food business registration application reference is"
+          <br>
+          <br>
           <span className="bold" id="fsa-rn">
             {props.fsaRegistrationNumber.split("-").join(" - ")}
           </span>
-        ]}
+        }
       />
     ) : (
       <FsaPanel
