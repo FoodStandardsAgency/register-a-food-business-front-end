@@ -18,7 +18,7 @@ const FsaPanel = styled(Panel)`
   }
 `;
 
-const ApplicationComplete = props => (
+const ApplicationComplete = (props) => (
   <FsaLayout {...props}>
     <Heading as="h1" size="LARGE">
       Submission complete
@@ -74,9 +74,7 @@ const ApplicationComplete = props => (
           </Paragraph>
           {props.lcConfig.hygieneAndStandards.local_council_phone_number ? (
             <Paragraph mb={0} id="hygieneAndStandardsNumber">
-              {`Phone: ${
-                props.lcConfig.hygieneAndStandards.local_council_phone_number
-              }`}
+              {`Phone: ${props.lcConfig.hygieneAndStandards.local_council_phone_number}`}
             </Paragraph>
           ) : null}
         </ContentItem.B_30_15>
@@ -105,9 +103,7 @@ const ApplicationComplete = props => (
             </Paragraph>
             {props.lcConfig.standards.local_council_phone_number ? (
               <Paragraph mb={0} id="standardsNumber">
-                {`Phone: ${
-                  props.lcConfig.standards.local_council_phone_number
-                }`}
+                {`Phone: ${props.lcConfig.standards.local_council_phone_number}`}
               </Paragraph>
             ) : null}
             <HintText>Responsible local council for food standards</HintText>
@@ -118,9 +114,10 @@ const ApplicationComplete = props => (
 
     <ContentItem.B_30_15>
       <Paragraph className="receiveConfirmationEmail">
-        {`A copy of this registration has been sent to **${props.transformedData
-          .operator_email ||
-          props.transformedData.contact_representative_email}.**`}
+        {`A copy of this registration has been sent to **${
+          props.transformedData.operator_email ||
+          props.transformedData.contact_representative_email
+        }.**`}
       </Paragraph>
     </ContentItem.B_30_15>
 
