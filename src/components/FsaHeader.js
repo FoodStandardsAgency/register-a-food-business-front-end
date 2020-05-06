@@ -17,8 +17,28 @@ const FsaTopNav = styled(TopNav)`
   }
 `;
 
+const StyledCompany = styled(AnchorTag)`
+border-bottom-color:rgba(0, 0, 0, 0);
+border-bottom-style:solid;
+border-bottom-width:1px;
+color:rgb(255, 255, 255);
+cursor:pointer;
+display:block;
+font-family:nta, Arial, sans-serif;
+font-size:30px;
+font-weight:700;
+height:30px;
+line-height:30px;
+text-decoration-color:rgb(255, 255, 255);
+text-decoration-line:none;
+text-decoration-skip-ink:none;
+text-decoration-style:solid;
+text-size-adjust:100%;
+width:368.438px;
+`;
+
 const Company = (
-  <AnchorTag
+  <StyledCompany
     href="https://www.food.gov.uk"
     target="_blank"
     aria-label="food.gov.uk website (opens in new window)"
@@ -32,13 +52,39 @@ const Company = (
     }}
   >
     Register a Food Business
-  </AnchorTag>
+  </StyledCompany>
 );
 
 const StyledHeader = styled("div")({});
 const HeaderMain = styled(Main)({
-  paddingTop: 3
+  paddingTop: 0
 });
+
+const StyledFeedbackLink = styled(AnchorTag)`
+border-bottom-color:rgba(0, 0, 0, 0);
+transparent.css-yttx5r-StyledHoc
+transparent.css-yttx5r-StyledHoc
+border-bottom-style:solid;
+solid.css-yttx5r-StyledHoc
+solid.css-yttx5r-StyledHoc
+border-bottom-width:1px;
+color:rgb(0, 94, 165);
+cursor:pointer;
+display:inline;
+font-family:nta, Arial, sans-serif;
+font-size:16px;
+font-weight:700;
+height:auto;
+line-height:16px;
+text-align:left;
+text-decoration-color:rgb(0, 94, 165);
+text-decoration-line:none;
+text-decoration-skip-ink:none;
+text-decoration-style:solid;
+text-size-adjust:100%;
+text-transform:none;
+width:auto;
+`;
 
 const FsaHeader = (props) => (
   <StyledHeader role="banner">
@@ -49,17 +95,17 @@ const FsaHeader = (props) => (
       </section>
     )}
     <FsaTopNav company={Company} />
-    <HeaderMain>
+    <HeaderMain style={{paddingTop:0}}>
       <PhaseBanner level="beta">
         This is a new service -{" "}
-        <AnchorTag
+        <StyledFeedbackLink
           id="feedbackLink"
           href={feedbackLink}
           target="_blank"
           aria-label="your feedback (opens in new window)"
         >
           your feedback
-        </AnchorTag>{" "}
+        </StyledFeedbackLink>{" "}
         will help us improve it
       </PhaseBanner>
     </HeaderMain>
