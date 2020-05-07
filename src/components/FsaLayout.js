@@ -5,6 +5,9 @@ import styled from "@emotion/styled";
 import React from "react";
 import { MEDIA_QUERIES } from "@govuk-react/constants";
 import BrowserUnsupportedBanner from "./BrowserUnsupportedBanner";
+import AccessibleAutocompleteCSS from "./AccessibleAutocompleteCSS";
+import NormalizeCSS from "./NormalizeCSS";
+import { Global } from "@emotion/core";
 
 const GridRowZeroMargin = styled(GridRow)`
   margin: 0px;
@@ -18,6 +21,8 @@ const GridColZeroPadding = styled(GridCol)`
 
 const FsaLayout = (props) => (
   <React.Fragment>
+    <Global styles={AccessibleAutocompleteCSS} />
+    <Global styles={NormalizeCSS} />
     <Page header={<FsaHeader {...props} />}>
       <GridRowZeroMargin>
         <GridColZeroPadding setWidth="two-thirds">
