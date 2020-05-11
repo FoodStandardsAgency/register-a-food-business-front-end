@@ -1,51 +1,48 @@
-//////// IMPORTANT ///////////////////////////////////////////////
-// This custom _document file is based on the official Zeit (Next.js) example of Next with Emotion:
-// https://github.com/zeit/next.js/blob/master/examples/with-emotion/pages/_document.js
-// The injectGlobal CSS styles can be edited if required, as well as the page title.
-// Any other changes should not be undertaken without an understanding of how the custom _document.js file works.
-//////// IMPORTANT ///////////////////////////////////////////////
-
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
 import Document, { Head, Main, NextScript } from "next/document";
-import { extractCritical } from "emotion-server";
-import { hydrate, Global } from "@emotion/core";
-import NormalizeCSS from "../src/components/NormalizeCSS";
-import AccessibleAutocompleteCSS from "../src/components/AccessibleAutocompleteCSS";
-
-// Adds server generated styles to emotion cache.
-// '__NEXT_DATA__.ids' is set in '_document.js'
-if (typeof window !== "undefined" && typeof __NEXT_DATA__ !== "undefined") {
-  hydrate(window.__NEXT_DATA__.ids);
-}
+import { CacheProvider } from "@emotion/core";
+import createEmotionServer from "create-emotion-server";
+import createCache from "@emotion/cache";
+import { ServerStyleSheet } from "styled-components";
 
 if (typeof window === "undefined") {
   global.window = {};
 }
 
-export default class MyDocument extends Document {
-  static getInitialProps({ renderPage, req }) {
-    const page = renderPage();
-    const styles = extractCritical(page.html);
+class MyDocument extends Document {
+  static async getInitialProps(ctx) {
     const gtmAuth = process.env.GTM_AUTH;
-    const cookies = req && req.cookies ? req.cookies : null;
-    return { ...page, ...styles, gtmAuth, cookies };
-  }
+    const cookies = ctx.req && ctx.req.cookies ? ctx.req.cookies : null;
+    const cache = createCache();
+    const sheet = new ServerStyleSheet();
 
-  constructor(props) {
-    super(props);
-    const { __NEXT_DATA__ = {}, ids } = props;
+    const initialProps = ctx.renderPage((App) => (props) =>
+      sheet.collectStyles(
+        <CacheProvider value={cache}>
+          <App {...props} />
+        </CacheProvider>
+      )
+    );
 
-    if (ids) {
-      __NEXT_DATA__.ids = ids;
-    }
+    let { ids, css } = createEmotionServer(cache).extractCritical(
+      initialProps.html
+    );
+
+    return {
+      ...initialProps,
+      ids,
+      css,
+      styles: sheet.getStyleElement(),
+      gtmAuth,
+      cookies
+    };
   }
 
   render() {
     return (
       <html lang="en">
         <Head>
-          <Global styles={[AccessibleAutocompleteCSS, NormalizeCSS]} />
+          {this.props.styles}
+
           {/* Start Google Tag Manager */}
           {this.props.cookies &&
           this.props.cookies.acceptAllCookies === "false" ? null : (
@@ -67,8 +64,6 @@ export default class MyDocument extends Document {
             charSet="UTF-8"
           />
           <meta name="format-detection" content="telephone=no" />
-          {/*<title>Register a food business</title>*/}
-          <link rel="stylesheet" href="/_next/static/style.css" />
           <style
             data-emotion-css={this.props.ids.join(" ")}
             dangerouslySetInnerHTML={{ __html: this.props.css }}
@@ -82,3 +77,5 @@ export default class MyDocument extends Document {
     );
   }
 }
+
+export default MyDocument;

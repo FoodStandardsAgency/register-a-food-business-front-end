@@ -25,7 +25,7 @@ describe("<ContinueButton />", () => {
 
   it("passes the prop 'start' as 'false' by default for the Button component", () => {
     const wrapper = mount(<ContinueButton />);
-    const GovUkButton = wrapper.find("StyledComponent");
+    const GovUkButton = wrapper.find("#continue-button").at(1);
     expect(GovUkButton.props().isStart).toBe(false);
   });
 
@@ -45,7 +45,7 @@ describe("<ContinueButton />", () => {
     });
 
     it("passes the prop 'start' as 'true' for the Button component", () => {
-      const GovUkButton = wrapper.find("StyledComponent").at(0);
+      const GovUkButton = wrapper.find("#continue-button").at(1);
       expect(GovUkButton.props().isStart).toBe(true);
     });
 

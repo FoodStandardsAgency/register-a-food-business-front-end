@@ -30,6 +30,9 @@
     "jsdoc": "rm -rf ./docs/jsdoc && jsdoc -r ./src -d ./docs/jsdoc",
     "updateBusinessTypes": "node ./src/components/update-business-types.js && yarn format"
   },
+  "resolutions": {
+    "styled-components": "^5.1.0"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
@@ -67,13 +70,17 @@
     "react-is": "^16.13.1",
     "react-markdown": "^4.3.1",
     "stemmer": "^1.0.5",
-    "styled-components": "4",
+    "styled-components": "^5.1.0",
     "validator": "^13.0.0",
     "winston": "2.4.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-react-jsx": "^7.9.4",
+    "@babel/plugin-transform-runtime": "^7.9.6",
     "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
     "@storybook/addons": "^5.3.18",
     "@typescript-eslint/eslint-plugin": "^2.28.0",
     "@typescript-eslint/parser": "2.x",
@@ -116,12 +123,8 @@
       }
     },
     "plugins": [
-      [
-        "emotion",
-        {
-          "inline": true
-        }
-      ],
+      "babel-plugin-styled-components",
+      "@babel/plugin-transform-runtime",
       "inline-react-svg"
     ],
     "presets": [
@@ -129,6 +132,7 @@
         "@babel/preset-env",
         {
           "targets": {
+            "node": "12",
             "edge": "16",
             "firefox": "60",
             "chrome": "67",
@@ -141,6 +145,7 @@
           "useBuiltIns": "entry"
         }
       ],
+      "@babel/preset-react",
       "next/babel"
     ]
   },
