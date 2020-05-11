@@ -4,8 +4,8 @@ import { ContentItem } from "./";
 
 const HiddenTextAccessible = (props) => (
   <ContentItem.B_30_15>
-    <Details summary={ props.summary } mb={0} aria-label="Additional information">
-        { props.children }
+    <Details summary={props.summary} mb={0} aria-label="Additional information">
+      {props.children}
     </Details>
   </ContentItem.B_30_15>
 );
