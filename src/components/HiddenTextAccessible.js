@@ -1,13 +1,17 @@
 import { Details } from "govuk-react";
 import PropTypes from "prop-types";
-import { ContentItem } from "./";
+import styled from "@emotion/styled";
+
+const StyledDiv = styled("div")`
+  margin-bottom: 30px;
+`;
 
 const HiddenTextAccessible = (props) => (
-  <ContentItem.B_30_15>
+  <StyledDiv>
     <Details summary={props.summary} mb={0} aria-label="Additional information">
       {props.children}
     </Details>
-  </ContentItem.B_30_15>
+  </StyledDiv>
 );
 
 HiddenTextAccessible.defaultProps = {
