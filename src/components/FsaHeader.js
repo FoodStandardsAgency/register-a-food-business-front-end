@@ -1,4 +1,5 @@
-import TopNav, { asTopNavAnchor } from "@govuk-react/top-nav";
+import TopNav from "@govuk-react/top-nav";
+import asTopNavAnchor from "../hoc/asTopNavAnchor";
 import Main from "@govuk-react/main";
 import PhaseBanner from "@govuk-react/phase-banner";
 import styled from "@emotion/styled";
