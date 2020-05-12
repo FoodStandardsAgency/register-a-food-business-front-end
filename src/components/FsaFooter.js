@@ -75,6 +75,7 @@ const FsaFooter = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="cookie policy (opens in a new window)"
+                style={{color:"#454a4c"}}
               >
                 Cookies
               </FooterLink>
@@ -86,6 +87,7 @@ const FsaFooter = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="privacy policy (opens in a new window)"
+                style={{color:"#454a4c"}}
               >
                 Privacy
               </FooterLink>
@@ -97,6 +99,7 @@ const FsaFooter = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="give us feedback on the service (opens in a new window)"
+                style={{color:"#454a4c"}}
               >
                 Feedback
               </FooterLink>
