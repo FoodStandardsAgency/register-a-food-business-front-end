@@ -49,28 +49,29 @@ const EstablishmentAddressLookup = (props) => (
           </Link>
         </ContentItem.B_30_15>
 
-        <SelectWithHeader
-          label={`Select an address for ${props.cumulativeFullAnswers.establishment_postcode_find}`}
-          input={{
-            id: "establishmentAddressDropdown",
-            name: "establishment_address_selected",
-            defaultValue:
-              props.cumulativeFullAnswers.establishment_address_selected || 0
-          }}
-        >
-          {props.addressLookups.establishment_postcode_find ? (
-            props.addressLookups.establishment_postcode_find.map(
-              (address, index) => (
-                <option key={address.summaryline} value={index}>
-                  {address.summaryline}
-                </option>
+        <ContentItem.B_20_20>
+          <SelectWithHeader
+            label={`Select an address for ${props.cumulativeFullAnswers.establishment_postcode_find}`}
+            input={{
+              id: "establishmentAddressDropdown",
+              name: "establishment_address_selected",
+              defaultValue:
+                props.cumulativeFullAnswers.establishment_address_selected || 0
+            }}
+          >
+            {props.addressLookups.establishment_postcode_find ? (
+              props.addressLookups.establishment_postcode_find.map(
+                (address, index) => (
+                  <option key={address.summaryline} value={index}>
+                    {address.summaryline}
+                  </option>
+                )
               )
-            )
-          ) : (
-            <option>No addresses found</option>
-          )}
-        </SelectWithHeader>
-
+            ) : (
+              <option>No addresses found</option>
+            )}
+          </SelectWithHeader>
+        </ContentItem.B_20_20>
         <ContentItem.B_30_15>
           <Link
             id="cantFindAddressLink"
