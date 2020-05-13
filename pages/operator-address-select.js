@@ -34,28 +34,29 @@ const OperatorAddressLookup = (props) => (
             Change postcode
           </Link>
         </ContentItem.B_30_15>
-
-        <SelectWithHeader
-          label={`Select an address for ${props.cumulativeFullAnswers.operator_postcode_find}`}
-          input={{
-            id: "operatorAddressDropdown",
-            name: "operator_address_selected",
-            defaultValue:
-              props.cumulativeFullAnswers.operator_address_selected || 0
-          }}
-        >
-          {props.addressLookups.operator_postcode_find ? (
-            props.addressLookups.operator_postcode_find.map(
-              (address, index) => (
-                <option key={address.summaryline} value={index}>
-                  {address.summaryline}
-                </option>
+        <ContentItem.B_20_20>
+          <SelectWithHeader
+            label={`Select an address for ${props.cumulativeFullAnswers.operator_postcode_find}`}
+            input={{
+              id: "operatorAddressDropdown",
+              name: "operator_address_selected",
+              defaultValue:
+                props.cumulativeFullAnswers.operator_address_selected || 0
+            }}
+          >
+            {props.addressLookups.operator_postcode_find ? (
+              props.addressLookups.operator_postcode_find.map(
+                (address, index) => (
+                  <option key={address.summaryline} value={index}>
+                    {address.summaryline}
+                  </option>
+                )
               )
-            )
-          ) : (
-            <option>No addresses found</option>
-          )}
-        </SelectWithHeader>
+            ) : (
+              <option>No addresses found</option>
+            )}
+          </SelectWithHeader>
+        </ContentItem.B_20_20>
 
         <ContentItem.B_30_15>
           <Link
