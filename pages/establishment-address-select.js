@@ -49,6 +49,7 @@ const EstablishmentAddressLookup = (props) => (
           </Link>
         </ContentItem.B_30_15>
 
+          <ContentItem.B_20_20>
         <SelectWithHeader
           label={`Select an address for ${props.cumulativeFullAnswers.establishment_postcode_find}`}
           input={{
@@ -70,7 +71,7 @@ const EstablishmentAddressLookup = (props) => (
             <option>No addresses found</option>
           )}
         </SelectWithHeader>
-
+          </ContentItem.B_20_20>
         <ContentItem.B_30_15>
           <Link
             id="cantFindAddressLink"
