@@ -1,6 +1,6 @@
 import React from "react";
 import { FsaLayout } from "../src/components";
-import { Header, Paragraph, BackLink, Button } from "govuk-react";
+import { Heading, Paragraph, BackLink, Button } from "govuk-react";
 
 class InternalServerError extends React.Component {
   static getInitialProps({ req, res, err }) {
@@ -16,7 +16,7 @@ class InternalServerError extends React.Component {
     return (
       <FsaLayout {...this.props}>
         <BackLink href={backToStartLink}>Back to start</BackLink>
-        <Header level={1}>This service is currently unavailable</Header>
+        <Heading as="h1">This service is currently unavailable</Heading>
         <Paragraph>
           Sorry about that, we seem to be experiencing some difficulties.
         </Paragraph>

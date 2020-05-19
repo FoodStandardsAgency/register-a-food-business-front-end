@@ -1,10 +1,13 @@
 import FsaHeader from "./FsaHeader";
 import { GridRow, GridCol, Page } from "govuk-react";
 import FsaFooter from "./FsaFooter";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import React from "react";
 import { MEDIA_QUERIES } from "@govuk-react/constants";
 import BrowserUnsupportedBanner from "./BrowserUnsupportedBanner";
+import AccessibleAutocompleteCSS from "./AccessibleAutocompleteCSS";
+import NormalizeCSS from "./NormalizeCSS";
+import { Global } from "@emotion/core";
 
 const GridRowZeroMargin = styled(GridRow)`
   margin: 0px;
@@ -16,11 +19,13 @@ const GridColZeroPadding = styled(GridCol)`
   }
 `;
 
-const FsaLayout = props => (
+const FsaLayout = (props) => (
   <React.Fragment>
+    <Global styles={AccessibleAutocompleteCSS} />
+    <Global styles={NormalizeCSS} />
     <Page header={<FsaHeader {...props} />}>
       <GridRowZeroMargin>
-        <GridColZeroPadding columnTwoThirds>
+        <GridColZeroPadding setWidth="two-thirds">
           {!props.isBrowserSupported && props.isBrowserVersionVerified ? (
             <BrowserUnsupportedBanner
               browser={props.browser}

@@ -8,26 +8,26 @@ import {
   OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
-import { Header, Radio, MultiChoice, HintText, Paragraph } from "govuk-react";
+import { Heading, Radio, MultiChoice, HintText, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const EstablishmentOpeningStatus = props => (
+const EstablishmentOpeningStatus = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       Is this establishment already trading?
-    </Header>
+    </Heading>
     <ContentItem.B_30_15>
       <HintText>
         It is trading if it is already producing or serving food, or if the new
         operator has already taken control
       </HintText>
     </ContentItem.B_30_15>
-    <HiddenTextAccessible summaryText={"What is an establishment?"}>
+    <HiddenTextAccessible summary={"What is an establishment?"}>
       <Paragraph mb={0}>
         An establishment is the location of your food business, and the food
         activities taking place there. If it is a mobile food business, please

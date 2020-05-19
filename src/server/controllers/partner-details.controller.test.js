@@ -470,7 +470,9 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
 
         try {
           response = await partnerDetailsDelete(
-            { partners: ["partner one", "partner two", "partner three"] },
+            {
+              partners: ["partner one", "partner two", "partner three"]
+            },
             { index: 1 },
             council,
             editMode
@@ -499,7 +501,9 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
 
         try {
           response = await partnerDetailsDelete(
-            { partners: ["partner one", "partner two", "partner three"] },
+            {
+              partners: ["partner one", "partner two", "partner three"]
+            },
             { index: -1 },
             council,
             editMode
@@ -580,7 +584,9 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
 
         try {
           response = await partnerDetailsDelete(
-            { partners: ["partner one", "partner two", "partner three"] },
+            {
+              partners: ["partner one", "partner two", "partner three"]
+            },
             { index: 1 },
             council,
             editMode
@@ -611,7 +617,9 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
 
         try {
           response = await partnerDetailsDelete(
-            { partners: ["partner one", "partner two", "partner three"] },
+            {
+              partners: ["partner one", "partner two", "partner three"]
+            },
             { index: -1 },
             council,
             editMode
@@ -777,7 +785,10 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
         try {
           response = await partnerDetailsContinue(
             currentPage,
-            { partners: partnerArray, main_partnership_contact: "partner one" },
+            {
+              partners: partnerArray,
+              main_partnership_contact: "partner one"
+            },
 
             council,
             editMode,

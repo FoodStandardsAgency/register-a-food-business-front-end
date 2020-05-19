@@ -67,7 +67,7 @@ const partnerDetailsContinue = (
     if (edit) {
       delete controllerResponse.allValidationErrors["partners"];
       if (
-        previousAnswers.partners.find(partnerName => {
+        previousAnswers.partners.find((partnerName) => {
           return partnerName === previousAnswers.main_partnership_contact;
         }) !== undefined
       ) {

@@ -34,7 +34,7 @@ describe("Continue route: ", () => {
           switches: {},
           council: "council",
           pathConfig: { path: "existing path from session" },
-          save: cb => {
+          save: (cb) => {
             cb();
           }
         },
@@ -62,7 +62,9 @@ describe("Continue route: ", () => {
     });
 
     it("Should update session", () => {
-      expect(req.session.cumulativeFullAnswers).toEqual({ new: "answers" });
+      expect(req.session.cumulativeFullAnswers).toEqual({
+        new: "answers"
+      });
       expect(req.session.switches).toEqual({ exampleSwitch: true });
     });
 
@@ -91,7 +93,7 @@ describe("Continue route: ", () => {
             switches: {},
             council: "council",
             pathConfig: { path: "existing path from session" },
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           },
@@ -133,7 +135,7 @@ describe("Continue route: ", () => {
             switches: {},
             council: "council",
             pathConfig: { path: "existing path from session" },
-            save: cb => {
+            save: (cb) => {
               cb("session save error");
             }
           },

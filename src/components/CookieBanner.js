@@ -1,5 +1,5 @@
-import styled from "react-emotion";
-import { Paragraph, Button, asAnchor } from "govuk-react";
+import styled from "@emotion/styled";
+import { Paragraph, Button, Link } from "govuk-react";
 
 const fontSize = "16px";
 
@@ -96,7 +96,7 @@ const RejectCookiesButton = styled("button")`
   }
 `;
 
-const AnchorTag = styled(asAnchor("a"))`
+const BannerLink = styled(Link)`
   padding: 5px;
   font-size: ${fontSize};
   @media only screen and (min-width: 641px) {
@@ -115,22 +115,22 @@ const CookieBanner = () => (
       </BannerParagraph>
       <BannerRow>
         <BannerLinkContainer>
-          <AnchorTag
+          <BannerLink
             id="cookieInfo"
             href="https://www.gov.uk/help/cookies"
             target="_blank"
             aria-label="find out more about cookies (opens in new window)"
           >
             Find out more about cookies
-          </AnchorTag>
-          <AnchorTag
+          </BannerLink>
+          <BannerLink
             id="cookiePolicy"
             href="https://www.food.gov.uk/cookie-policy"
             target="_blank"
             aria-label="read our cookie policy (opens in new window)"
           >
             Read our cookie policy
-          </AnchorTag>
+          </BannerLink>
         </BannerLinkContainer>
 
         <BannerActionContainer>

@@ -7,10 +7,10 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick
 } from "../src/components";
-import { Header, InputField, HintText } from "govuk-react";
+import { Heading, InputField, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OpeningHours = props => (
+const OpeningHours = (props) => (
   <FsaLayout {...props}>
     <form action={props.formAction} method="post">
       <BackButton {...props} />
@@ -18,9 +18,9 @@ const OpeningHours = props => (
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
       />
-      <Header level={1} size="LARGE">
+      <Heading as="h1" size="LARGE">
         Opening hours
-      </Header>
+      </Heading>
       <ContentItem.B_30_15>
         <HintText>
           Fill in the expected opening times for this establishment using 24
@@ -41,9 +41,9 @@ const OpeningHours = props => (
               error: props.validatorErrors.opening_hours_monday
             }}
           >
-            <Header level={4} mb={1}>
+            <Heading as="h4" mb={1} size="MEDIUM">
               Monday
-            </Header>
+            </Heading>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -61,9 +61,9 @@ const OpeningHours = props => (
               error: props.validatorErrors.opening_hours_tuesday
             }}
           >
-            <Header level={4} mb={1}>
+            <Heading as="h4" mb={1} size="MEDIUM">
               Tuesday
-            </Header>
+            </Heading>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -81,9 +81,9 @@ const OpeningHours = props => (
               error: props.validatorErrors.opening_hours_wednesday
             }}
           >
-            <Header level={4} mb={1}>
+            <Heading as="h4" mb={1} size="MEDIUM">
               Wednesday
-            </Header>
+            </Heading>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -101,9 +101,9 @@ const OpeningHours = props => (
               error: props.validatorErrors.opening_hours_thursday
             }}
           >
-            <Header level={4} mb={1}>
+            <Heading as="h4" mb={1} size="MEDIUM">
               Thursday
-            </Header>
+            </Heading>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -121,9 +121,9 @@ const OpeningHours = props => (
               error: props.validatorErrors.opening_hours_friday
             }}
           >
-            <Header level={4} mb={1}>
+            <Heading as="h4" mb={1} size="MEDIUM">
               Friday
-            </Header>
+            </Heading>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -141,9 +141,9 @@ const OpeningHours = props => (
               error: props.validatorErrors.opening_hours_saturday
             }}
           >
-            <Header level={4} mb={1}>
+            <Heading as="h4" mb={1} size="MEDIUM">
               Saturday
-            </Header>
+            </Heading>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -161,9 +161,9 @@ const OpeningHours = props => (
               error: props.validatorErrors.opening_hours_sunday
             }}
           >
-            <Header level={4} mb={1}>
+            <Heading as="h4" mb={1} size="MEDIUM">
               Sunday
-            </Header>
+            </Heading>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}

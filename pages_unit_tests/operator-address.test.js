@@ -1,6 +1,6 @@
 import OperatorAddress from "../pages/operator-address";
 import { mount, shallow } from "enzyme";
-import { HintText, Header } from "govuk-react";
+import { HintText, Heading } from "govuk-react";
 import { Paragraph } from "govuk-react";
 
 const testValidatorErrors = {
@@ -33,7 +33,7 @@ describe("<OperatorAddress />", () => {
     });
 
     it("renders correct header", () => {
-      const header = wrapper.find(Header);
+      const header = wrapper.find(Heading);
       expect(header.at(1).props().children).toBe(
         "What is the partnership contact's address?"
       );
@@ -48,7 +48,7 @@ describe("<OperatorAddress />", () => {
 
     it("renders correct hidden text", () => {
       const hiddenText = wrapper.find(Paragraph);
-      expect(hiddenText.at(0).props().children).toBe(
+      expect(hiddenText.at(1).props().children).toBe(
         "In a partnership, you and your partner (or partners) personally share responsibility for your food business"
       );
     });

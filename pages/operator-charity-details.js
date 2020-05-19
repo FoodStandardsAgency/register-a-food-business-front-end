@@ -8,24 +8,24 @@ import {
   OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
-import { Header, InputField, Paragraph } from "govuk-react";
+import { Heading, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OperatorCharityDetails = props => (
+const OperatorCharityDetails = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       Details of the operating charity
-    </Header>
+    </Heading>
 
     <HiddenTextAccessible
       hiddentextindex={1}
       id="hiddenTextFBO"
-      summaryText={"What is a food business operator?"}
+      summary={"What is a food business operator?"}
     >
       <Paragraph mb={0}>
         The operator is the person or people, charity or company who makes the
@@ -73,7 +73,7 @@ const OperatorCharityDetails = props => (
         <HiddenTextAccessible
           hiddentextindex={2}
           id="hiddenTextCharityNumbers"
-          summaryText={"Questions about charity reference numbers"}
+          summary={"Questions about charity reference numbers"}
         >
           <span>
             Charities that are registered with the Charities Commission will
@@ -86,7 +86,8 @@ const OperatorCharityDetails = props => (
               id="link-charity-commission"
             >
               Charity Commission website (opens in new window)
-            </a>.
+            </a>
+            .
           </span>
         </HiddenTextAccessible>
       </ContentItem.B_30_15>

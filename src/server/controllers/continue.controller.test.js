@@ -20,10 +20,9 @@ const continueController = require("./continue.controller");
 describe("Function: continueController: ", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    cleanInactivePathAnswers.mockImplementation(input => input);
-    cleanEmptiedAnswers.mockImplementation(
-      (previousAnswers, newAnswersArray) =>
-        newAnswersArray.length > 0 ? previousAnswers : null
+    cleanInactivePathAnswers.mockImplementation((input) => input);
+    cleanEmptiedAnswers.mockImplementation((previousAnswers, newAnswersArray) =>
+      newAnswersArray.length > 0 ? previousAnswers : null
     );
     cleanSwitches.mockImplementation(() => ({}));
     editPath.mockImplementation(() => ({
@@ -239,7 +238,10 @@ describe("Function: continueController: ", () => {
           exampleSwitches,
           pathConfigMock
         );
-        expect(response.switches).toEqual({ switch1: false, switch2: true });
+        expect(response.switches).toEqual({
+          switch1: false,
+          switch2: true
+        });
       });
     });
   });
@@ -293,7 +295,7 @@ describe("Function: continueController: ", () => {
 
       const responseSwitchesValueArray = Object.values(response.switches);
 
-      responseSwitchesValueArray.forEach(value => {
+      responseSwitchesValueArray.forEach((value) => {
         expect(typeof value).toBe("boolean");
       });
     });
@@ -315,7 +317,10 @@ describe("Function: continueController: ", () => {
           pathConfigMock
         );
 
-        expect(response.switches).toEqual({ switch1: false, switch2: true });
+        expect(response.switches).toEqual({
+          switch1: false,
+          switch2: true
+        });
       });
     });
   });

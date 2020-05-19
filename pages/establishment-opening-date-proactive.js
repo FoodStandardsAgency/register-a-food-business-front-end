@@ -2,7 +2,7 @@ import { SessionWrapper } from "../src/components";
 import PropTypes from "prop-types";
 import OpeningDate from "../src/components/OpeningDate";
 
-const EstablishmentOpeningDate = props => <OpeningDate {...props} />;
+const EstablishmentOpeningDate = (props) => <OpeningDate {...props} />;
 
 export default SessionWrapper(EstablishmentOpeningDate);
 

@@ -24,7 +24,7 @@ describe("QA Route: ", () => {
         req = {
           session: {
             council: "original-council",
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           },
@@ -66,7 +66,7 @@ describe("QA Route: ", () => {
 
         req = {
           session: {
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           },

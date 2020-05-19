@@ -20,7 +20,10 @@ describe("Set Cookie route: ", () => {
         beforeEach(() => {
           handler = router.get.mock.calls[0][1];
           req = {
-            params: { cookieName: "acceptAllCookies", newValue: "true" }
+            params: {
+              cookieName: "acceptAllCookies",
+              newValue: "true"
+            }
           };
           res = {
             redirect: jest.fn(),
@@ -36,7 +39,9 @@ describe("Set Cookie route: ", () => {
           expect(res.cookie).toHaveBeenLastCalledWith(
             "acceptAllCookies",
             "true",
-            { maxAge: 2160000000 }
+            {
+              maxAge: 2160000000
+            }
           );
         });
 
@@ -52,7 +57,10 @@ describe("Set Cookie route: ", () => {
           process.env.COOKIE_SECURE = "true";
           handler = router.get.mock.calls[0][1];
           req = {
-            params: { cookieName: "acceptAllCookies", newValue: "false" },
+            params: {
+              cookieName: "acceptAllCookies",
+              newValue: "false"
+            },
             cookies: {
               _ga: "thisShouldBeDeleted",
               _gid: "thisShouldBeDeleted",

@@ -11,7 +11,7 @@ const PartnershipHintText = () => (
   </ContentItem.B_30_15>
 );
 
-const ContactDetailsHelp = props => {
+const ContactDetailsHelp = (props) => {
   return props.role === "Partnership" ? (
     <React.Fragment>
       <PartnershipHintText />

@@ -8,10 +8,10 @@ import {
   OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
-import { Header, InputField, Paragraph } from "govuk-react";
+import { Heading, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const ContactRepresentative = props => {
+const ContactRepresentative = (props) => {
   return (
     <FsaLayout {...props}>
       <BackButton {...props} />
@@ -19,14 +19,14 @@ const ContactRepresentative = props => {
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
       />
-      <Header level={1} size="LARGE">
+      <Heading as="h1" size="LARGE">
         Operator contact details
-      </Header>
+      </Heading>
       <Paragraph>
         Please give us the details of the person at this company or charity we
         should speak to about food hygiene and safety.
       </Paragraph>
-      <HiddenTextAccessible summaryText={"What is a food business operator?"}>
+      <HiddenTextAccessible summary={"What is a food business operator?"}>
         <Paragraph mb={0}>
           The operator is the person or people, charity or company who makes the
           decisions about the food business. They decide what it serves and how

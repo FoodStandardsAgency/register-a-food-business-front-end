@@ -26,7 +26,7 @@ describe("findAddress route: ", () => {
           cumulativeFullAnswers: {},
           addressLookups: { some_page: [] },
           council: "council",
-          save: cb => {
+          save: (cb) => {
             cb();
           }
         },
@@ -76,7 +76,7 @@ describe("findAddress route: ", () => {
           cumulativeFullAnswers: {},
           addressLookups: { some_page: [] },
           council: "council",
-          save: cb => {
+          save: (cb) => {
             cb("session save error");
           }
         },

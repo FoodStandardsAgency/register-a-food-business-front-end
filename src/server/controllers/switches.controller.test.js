@@ -16,11 +16,10 @@ const exampleCurrentPage = "/mock-page-1";
 describe("Function: switchController: ", () => {
   let result;
   beforeEach(() => {
-    cleanEmptiedAnswers.mockImplementation(
-      (previousAnswers, newAnswersArray) =>
-        newAnswersArray.length > 0
-          ? Object.assign({}, previousAnswers, newAnswersArray)
-          : null
+    cleanEmptiedAnswers.mockImplementation((previousAnswers, newAnswersArray) =>
+      newAnswersArray.length > 0
+        ? Object.assign({}, previousAnswers, newAnswersArray)
+        : null
     );
 
     changeSwitch.mockImplementation(() => true);

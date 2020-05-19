@@ -108,7 +108,7 @@ const continueController = (
       pathFromSession
     );
 
-    const activePath = Object.keys(newPath).filter(entry => {
+    const activePath = Object.keys(newPath).filter((entry) => {
       return newPath[entry].on === true && entry !== "/declaration";
     });
 

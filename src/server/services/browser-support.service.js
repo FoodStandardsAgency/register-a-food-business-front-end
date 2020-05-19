@@ -21,7 +21,7 @@ const {
  *
  * @returns {boolean} True if supported, false if not
  */
-const getBrowserInfo = userAgentHeader => {
+const getBrowserInfo = (userAgentHeader) => {
   logEmitter.emit(
     "functionCallWith",
     "browser-support.service",

@@ -277,12 +277,27 @@
   { "displayName": "Oil and/or fat manufacturer", "searchTerm": "sunflower" },
   { "displayName": "Oil and/or fat manufacturer", "searchTerm": "maker" },
   { "displayName": "Oil and/or fat manufacturer", "searchTerm": "producer" },
-  { "displayName": "Dairies and cheese manufacturer", "searchTerm": "yoghurt" },
-  { "displayName": "Dairies and cheese manufacturer", "searchTerm": "process" },
-  { "displayName": "Dairies and cheese manufacturer", "searchTerm": "factory" },
-  { "displayName": "Dairies and cheese manufacturer", "searchTerm": "fromage" },
+  {
+    "displayName": "Dairies and cheese manufacturer",
+    "searchTerm": "yoghurt"
+  },
+  {
+    "displayName": "Dairies and cheese manufacturer",
+    "searchTerm": "process"
+  },
+  {
+    "displayName": "Dairies and cheese manufacturer",
+    "searchTerm": "factory"
+  },
+  {
+    "displayName": "Dairies and cheese manufacturer",
+    "searchTerm": "fromage"
+  },
   { "displayName": "Dairies and cheese manufacturer", "searchTerm": "cream" },
-  { "displayName": "Dairies and cheese manufacturer", "searchTerm": "cheddar" },
+  {
+    "displayName": "Dairies and cheese manufacturer",
+    "searchTerm": "cheddar"
+  },
   { "displayName": "Dairies and cheese manufacturer", "searchTerm": "milk" },
   { "displayName": "Dairies and cheese manufacturer", "searchTerm": "whey" },
   { "displayName": "Dairies and cheese manufacturer", "searchTerm": "maker" },
@@ -345,14 +360,26 @@
     "displayName": "Dietic or baby food manufacturer",
     "searchTerm": "protein"
   },
-  { "displayName": "Dietic or baby food manufacturer", "searchTerm": "powder" },
-  { "displayName": "Dietic or baby food manufacturer", "searchTerm": "gluten" },
-  { "displayName": "Dietic or baby food manufacturer", "searchTerm": "celiac" },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "powder"
+  },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "gluten"
+  },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "celiac"
+  },
   {
     "displayName": "Dietic or baby food manufacturer",
     "searchTerm": "lactose"
   },
-  { "displayName": "Dietic or baby food manufacturer", "searchTerm": "infant" },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "infant"
+  },
   {
     "displayName": "Dietic or baby food manufacturer",
     "searchTerm": "supplement"
@@ -365,17 +392,26 @@
     "displayName": "Dietic or baby food manufacturer",
     "searchTerm": "medical"
   },
-  { "displayName": "Dietic or baby food manufacturer", "searchTerm": "health" },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "health"
+  },
   {
     "displayName": "Dietic or baby food manufacturer",
     "searchTerm": "weaning"
   },
-  { "displayName": "Dietic or baby food manufacturer", "searchTerm": "maker" },
+  {
+    "displayName": "Dietic or baby food manufacturer",
+    "searchTerm": "maker"
+  },
   {
     "displayName": "Dietic or baby food manufacturer",
     "searchTerm": "producer"
   },
-  { "displayName": "Manufacturer of other food products", "searchTerm": "ice" },
+  {
+    "displayName": "Manufacturer of other food products",
+    "searchTerm": "ice"
+  },
   {
     "displayName": "Manufacturer of other food products",
     "searchTerm": "mill"
@@ -417,19 +453,40 @@
   { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "perry" },
   { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "mead" },
   { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "winery" },
-  { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "vineyard" },
-  { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "moonshine" },
+  {
+    "displayName": "Alcoholic drinks manufacturer",
+    "searchTerm": "vineyard"
+  },
+  {
+    "displayName": "Alcoholic drinks manufacturer",
+    "searchTerm": "moonshine"
+  },
   { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "gin" },
-  { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "cocktail" },
+  {
+    "displayName": "Alcoholic drinks manufacturer",
+    "searchTerm": "cocktail"
+  },
   { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "whiskey" },
   { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "vodka" },
   { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "rum" },
   { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "craft" },
   { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "maker" },
-  { "displayName": "Alcoholic drinks manufacturer", "searchTerm": "producer" },
-  { "displayName": "Non alcoholic drinks manufacturer", "searchTerm": "soft" },
-  { "displayName": "Non alcoholic drinks manufacturer", "searchTerm": "soda" },
-  { "displayName": "Non alcoholic drinks manufacturer", "searchTerm": "water" },
+  {
+    "displayName": "Alcoholic drinks manufacturer",
+    "searchTerm": "producer"
+  },
+  {
+    "displayName": "Non alcoholic drinks manufacturer",
+    "searchTerm": "soft"
+  },
+  {
+    "displayName": "Non alcoholic drinks manufacturer",
+    "searchTerm": "soda"
+  },
+  {
+    "displayName": "Non alcoholic drinks manufacturer",
+    "searchTerm": "water"
+  },
   {
     "displayName": "Non alcoholic drinks manufacturer",
     "searchTerm": "factory"
@@ -462,7 +519,10 @@
     "displayName": "Non alcoholic drinks manufacturer",
     "searchTerm": "energy"
   },
-  { "displayName": "Non alcoholic drinks manufacturer", "searchTerm": "maker" },
+  {
+    "displayName": "Non alcoholic drinks manufacturer",
+    "searchTerm": "maker"
+  },
   {
     "displayName": "Non alcoholic drinks manufacturer",
     "searchTerm": "producer"
@@ -554,7 +614,10 @@
   { "displayName": "Farm shop", "searchTerm": "farmshop" },
   { "displayName": "Sweet shop or Confectioner", "searchTerm": "candy" },
   { "displayName": "Sweet shop or Confectioner", "searchTerm": "dessert" },
-  { "displayName": "Sweet shop or Confectioner", "searchTerm": "chocolatier" },
+  {
+    "displayName": "Sweet shop or Confectioner",
+    "searchTerm": "chocolatier"
+  },
   { "displayName": "Sweet shop or Confectioner", "searchTerm": "store" },
   { "displayName": "Sweet shop or Confectioner", "searchTerm": "bonbon" },
   { "displayName": "Sweet shop or Confectioner", "searchTerm": "retail" },
@@ -956,7 +1019,10 @@
   { "displayName": "Hostel or bed and breakfast ", "searchTerm": "B&B" },
   { "displayName": "Hostel or bed and breakfast ", "searchTerm": "&" },
   { "displayName": "Hostel or bed and breakfast ", "searchTerm": "B and B" },
-  { "displayName": "Hostel or bed and breakfast ", "searchTerm": "guesthouse" },
+  {
+    "displayName": "Hostel or bed and breakfast ",
+    "searchTerm": "guesthouse"
+  },
   { "displayName": "Hostel or bed and breakfast ", "searchTerm": "inn" },
   { "displayName": "Hostel or bed and breakfast ", "searchTerm": "motel" },
   {
@@ -999,7 +1065,10 @@
   { "displayName": "Pub serving meals", "searchTerm": "attraction" },
   { "displayName": "Pub serving meals", "searchTerm": "winebar" },
   { "displayName": "Pub serving meals", "searchTerm": "brewery" },
-  { "displayName": "Pub serving only snacks and drinks", "searchTerm": "bar" },
+  {
+    "displayName": "Pub serving only snacks and drinks",
+    "searchTerm": "bar"
+  },
   {
     "displayName": "Pub serving only snacks and drinks",
     "searchTerm": "alcohol"
@@ -1008,7 +1077,10 @@
     "displayName": "Pub serving only snacks and drinks",
     "searchTerm": "cocktail"
   },
-  { "displayName": "Pub serving only snacks and drinks", "searchTerm": "beer" },
+  {
+    "displayName": "Pub serving only snacks and drinks",
+    "searchTerm": "beer"
+  },
   {
     "displayName": "Pub serving only snacks and drinks",
     "searchTerm": "theatre"
@@ -1021,7 +1093,10 @@
     "displayName": "Pub serving only snacks and drinks",
     "searchTerm": "nightclub"
   },
-  { "displayName": "Pub serving only snacks and drinks", "searchTerm": "club" },
+  {
+    "displayName": "Pub serving only snacks and drinks",
+    "searchTerm": "club"
+  },
   {
     "displayName": "Pub serving only snacks and drinks",
     "searchTerm": "stadium"
@@ -1066,7 +1141,10 @@
     "displayName": "Pub serving only snacks and drinks",
     "searchTerm": "bowling"
   },
-  { "displayName": "Pub serving only snacks and drinks", "searchTerm": "park" },
+  {
+    "displayName": "Pub serving only snacks and drinks",
+    "searchTerm": "park"
+  },
   {
     "displayName": "Pub serving only snacks and drinks",
     "searchTerm": "amusement"
@@ -1434,12 +1512,18 @@
   { "displayName": "Childminder", "searchTerm": "minder" },
   { "displayName": "Childminder", "searchTerm": "babysitter" },
   { "displayName": "Childminder", "searchTerm": "nanny" },
-  { "displayName": "Childcarer, nursery or play group", "searchTerm": "care" },
+  {
+    "displayName": "Childcarer, nursery or play group",
+    "searchTerm": "care"
+  },
   {
     "displayName": "Childcarer, nursery or play group",
     "searchTerm": "babysitter"
   },
-  { "displayName": "Childcarer, nursery or play group", "searchTerm": "nanny" },
+  {
+    "displayName": "Childcarer, nursery or play group",
+    "searchTerm": "nanny"
+  },
   {
     "displayName": "Childcarer, nursery or play group",
     "searchTerm": "daycare"

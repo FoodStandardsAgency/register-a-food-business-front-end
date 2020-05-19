@@ -154,7 +154,9 @@ const schema = {
                     ]
                   },
                   { required: ["operator_charity_name"] },
-                  { required: ["operator_first_name", "operator_last_name"] }
+                  {
+                    required: ["operator_first_name", "operator_last_name"]
+                  }
                 ]
               },
               {
@@ -234,9 +236,18 @@ const schema = {
       declaration: {
         type: "object",
         properties: {
-          declaration1: { type: "string", validation: validateDeclaration },
-          declaration2: { type: "string", validation: validateDeclaration },
-          declaration3: { type: "string", validation: validateDeclaration }
+          declaration1: {
+            type: "string",
+            validation: validateDeclaration
+          },
+          declaration2: {
+            type: "string",
+            validation: validateDeclaration
+          },
+          declaration3: {
+            type: "string",
+            validation: validateDeclaration
+          }
         },
         required: ["declaration1", "declaration2", "declaration3"]
       }
@@ -246,7 +257,7 @@ const schema = {
   local_council_url: { type: "string" }
 };
 
-const registrationDouble = body => {
+const registrationDouble = (body) => {
   const objectBody = JSON.parse(body);
   const validatorResult = validator.validate(
     objectBody.registration,
@@ -327,9 +338,7 @@ const registrationDouble = body => {
       lcEmail = lcEmailSplit;
     } else {
       throw new Error(
-        `registration.double: the council "${
-          objectBody.local_council_url
-        }" is not supported by the double.`
+        `registration.double: the council "${objectBody.local_council_url}" is not supported by the double.`
       );
     }
 

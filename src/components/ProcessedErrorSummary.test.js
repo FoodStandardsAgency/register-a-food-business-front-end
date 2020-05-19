@@ -42,7 +42,7 @@ describe("<ProcessedErrorSummary />", () => {
     wrapperProcessedErrorSummaryClickMock
       .find("UnorderedList")
       .find("ListItem")
-      .forEach(listItem => {
+      .forEach((listItem) => {
         listItem.find("Anchor").simulate("click");
         timesClicked += 1;
         expect(mockOnHandleErrorClickCallback.mock.calls.length).toBe(

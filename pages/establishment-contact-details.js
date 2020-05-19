@@ -8,20 +8,20 @@ import {
   OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
-import { Header, InputField, Paragraph, Button } from "govuk-react";
+import { Heading, InputField, Paragraph, Button } from "govuk-react";
 import PropTypes from "prop-types";
 
-const EstablishmentContactDetails = props => (
+const EstablishmentContactDetails = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       Establishment contact details
-    </Header>
-    <HiddenTextAccessible summaryText={"What is an establishment?"}>
+    </Heading>
+    <HiddenTextAccessible summary={"What is an establishment?"}>
       <Paragraph mb={0}>
         An establishment is the location of your food business, and the food
         activities taking place there. If it is a mobile food business, please

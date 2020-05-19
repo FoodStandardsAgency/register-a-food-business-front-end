@@ -31,7 +31,7 @@ const editRouter = () => {
     req.session.allValidationErrors = controllerResponse.newAllValidationErrors;
     req.session.switches = controllerResponse.switches;
 
-    req.session.save(err => {
+    req.session.save((err) => {
       if (err) {
         logEmitter.emit("functionFail", "Routes", "/continue route", err);
         throw err;
@@ -40,9 +40,7 @@ const editRouter = () => {
         res.redirect(`/new/${req.session.council}/registration-summary`);
       } else {
         res.redirect(
-          `/new/${req.session.council}${
-            controllerResponse.redirectRoute
-          }?edit=${req.query.edit}`
+          `/new/${req.session.council}${controllerResponse.redirectRoute}?edit=${req.query.edit}`
         );
       }
     });

@@ -1,10 +1,10 @@
 import React from "react";
-import { Table, asAnchor, Button } from "govuk-react";
+import { Table, Link, Button } from "govuk-react";
 import PropTypes from "prop-types";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import ContentItem from "./ContentItem";
 
-const AccessibleChangeCell = props => (
+const AccessibleChangeCell = (props) => (
   <Table.Cell role="cell" className="partnersTableChangeCell" {...props}>
     {props.children}
   </Table.Cell>
@@ -16,7 +16,7 @@ const GridRow = styled(Table.Row)`
 `;
 
 const FsaStyledTable = styled(Table)`
-  tr:nth-child(2) {
+  tr:nth-of-type(2) {
     border-top: 1px solid #bfc1c3;
     margin-top: 12px;
   }
@@ -26,19 +26,19 @@ const TableCellBold = styled(Table.Cell)`
   font-weight: bold;
 `;
 
-const AccessibleTable = props => (
+const AccessibleTable = (props) => (
   <FsaStyledTable role="table" {...props}>
     {props.children}
   </FsaStyledTable>
 );
 
-const AccessibleTableRow = props => (
+const AccessibleTableRow = (props) => (
   <GridRow role="row" {...props}>
     {props.children}
   </GridRow>
 );
 
-const AccessibleCell = props => (
+const AccessibleCell = (props) => (
   <TableCellBold role="cell" className="summaryTableDataCell" {...props}>
     {props.children}
   </TableCellBold>
@@ -69,9 +69,7 @@ const ColumnHeaders = () => (
   </InvisibleRow>
 );
 
-const AnchorTag = asAnchor("a");
-
-const PartnerRows = props => {
+const PartnerRows = (props) => {
   let children = [];
   const partners = props.cumulativeFullAnswers.partners;
   const hasGETParams =
@@ -82,7 +80,7 @@ const PartnerRows = props => {
       <AccessibleTableRow key={`partnerRow${i}`} id={`partnerRow${i}`}>
         <AccessibleCell id={`partner${i}`}>{partners[i]}</AccessibleCell>
         <AccessibleChangeCell>
-          <AnchorTag
+          <Link
             id={`partner${i}RowChange`}
             href={`${props.partnerDetailsUrl}${
               hasGETParams ? "&" : "?"
@@ -90,7 +88,7 @@ const PartnerRows = props => {
             aria-label="Change partner name"
           >
             Change
-          </AnchorTag>
+          </Link>
         </AccessibleChangeCell>
         <AccessibleChangeCell>
           <ContentItem.B_30_15>
@@ -110,14 +108,14 @@ const PartnerRows = props => {
   return children;
 };
 
-const TableBody = props => (
+const TableBody = (props) => (
   <React.Fragment>
     <ColumnHeaders />
     <PartnerRows {...props} />
   </React.Fragment>
 );
 
-const PartnersTable = props => (
+const PartnersTable = (props) => (
   <React.Fragment>
     <ContentItem.B_45_30>
       <AccessibleTable

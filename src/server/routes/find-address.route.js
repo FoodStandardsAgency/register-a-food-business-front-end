@@ -40,7 +40,7 @@ const findAddressRouter = () => {
       "Routes",
       "/findaddress/:originator route"
     );
-    req.session.save(err => {
+    req.session.save((err) => {
       if (err) {
         logEmitter.emit("functionFail", "Routes", "/find-address route", err);
         throw err;

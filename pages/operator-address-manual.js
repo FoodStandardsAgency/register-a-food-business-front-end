@@ -11,7 +11,7 @@ import {
 import { InputField, ErrorText } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OperatorAddress = props => (
+const OperatorAddress = (props) => (
   <FsaLayout {...props}>
     <BackButton
       {...props}
@@ -31,9 +31,7 @@ const OperatorAddress = props => (
         {props.switches["/operator-address-none-found"] ? (
           <ContentItem.B_30_15>
             <ErrorText id="addressNotFoundByPostcodeMessage">
-              {`No addresses found for the postcode "${
-                props.cumulativeFullAnswers.operator_postcode_find
-              }". Please enter your address manually or go back to try a
+              {`No addresses found for the postcode "${props.cumulativeFullAnswers.operator_postcode_find}". Please enter your address manually or go back to try a
               different postcode.`}
             </ErrorText>
           </ContentItem.B_30_15>

@@ -8,10 +8,10 @@ import {
   OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
-import { Header, InputField, Paragraph, ErrorText } from "govuk-react";
+import { Heading, InputField, Paragraph, ErrorText } from "govuk-react";
 import PropTypes from "prop-types";
 
-const EstablishmentAddress = props => (
+const EstablishmentAddress = (props) => (
   <FsaLayout {...props}>
     <BackButton
       {...props}
@@ -25,11 +25,11 @@ const EstablishmentAddress = props => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       What is the establishment's address?
-    </Header>
+    </Heading>
 
-    <HiddenTextAccessible summaryText={"What is an establishment?"}>
+    <HiddenTextAccessible summary={"What is an establishment?"}>
       <Paragraph mb={0}>
         An establishment is the location of your food business, and the food
         activities taking place there. If it is a mobile food business, please
@@ -42,9 +42,7 @@ const EstablishmentAddress = props => (
         {props.switches["/establishment-address-none-found"] ? (
           <ContentItem.B_30_15>
             <ErrorText id="addressNotFoundByPostcodeMessage">
-              {`No addresses found for the postcode "${
-                props.cumulativeFullAnswers.establishment_postcode_find
-              }". Please enter your address manually or go back to try a
+              {`No addresses found for the postcode "${props.cumulativeFullAnswers.establishment_postcode_find}". Please enter your address manually or go back to try a
               different postcode.`}
             </ErrorText>
           </ContentItem.B_30_15>

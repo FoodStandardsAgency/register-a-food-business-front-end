@@ -51,7 +51,7 @@ describe("Submit route: ", () => {
             council: "cardiff",
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           }
@@ -110,7 +110,7 @@ describe("Submit route: ", () => {
             council: "cardiff",
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           }
@@ -148,7 +148,7 @@ describe("Submit route: ", () => {
             council: "cardiff",
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },
-            save: cb => {
+            save: (cb) => {
               cb("session save error");
             }
           }

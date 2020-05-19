@@ -16,7 +16,7 @@ const { logEmitter } = require("./logging.service");
  *
  * @returns {array} A list of addresses
  */
-const getUkAddressesByPostcode = async postcode => {
+const getUkAddressesByPostcode = async (postcode) => {
   logEmitter.emit(
     "functionCall",
     "address.service",

@@ -177,7 +177,7 @@ describe("session-management.service cleanSwitches()", () => {
           { anotherSwitchName: true }
         ];
 
-        switchesPossibilities.forEach(switchesObject => {
+        switchesPossibilities.forEach((switchesObject) => {
           const result = cleanSwitches(answers, switchesObject);
 
           expect(result.reuseOperatorContactDetails).toEqual(
@@ -206,7 +206,7 @@ describe("session-management.service cleanSwitches()", () => {
         ];
 
         it("turns the switch off", () => {
-          switchesPossibilities.forEach(switchesObject => {
+          switchesPossibilities.forEach((switchesObject) => {
             const result = cleanSwitches(answers, switchesObject);
 
             expect(result.reuseOperatorContactDetails).toBe(false);
@@ -215,7 +215,9 @@ describe("session-management.service cleanSwitches()", () => {
       });
       describe("given the switch does not exist", () => {
         it("does not create the switch", () => {
-          const result = cleanSwitches(answers, { anotherSwitchName: true });
+          const result = cleanSwitches(answers, {
+            anotherSwitchName: true
+          });
 
           expect(result.reuseOperatorContactDetails).toBe(undefined);
         });

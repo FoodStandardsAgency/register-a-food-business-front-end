@@ -1,7 +1,7 @@
 import { ErrorSummary } from "govuk-react";
 import PropTypes from "prop-types";
 
-const SubmissionErrorSummary = props => {
+const SubmissionErrorSummary = (props) => {
   const errors = [];
   for (let error of props.submissionErrors) {
     errors.push({

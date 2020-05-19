@@ -54,7 +54,7 @@ const editBack = (
   return previousPage;
 };
 
-const checkIfValid = validatorErrors =>
+const checkIfValid = (validatorErrors) =>
   Object.keys(validatorErrors).length === 0;
 
 /**
@@ -142,7 +142,7 @@ const editContinue = (
       transformedNewAnswers.establishment_opening_date = "validated";
     }
 
-    Object.keys(transformedNewAnswers).forEach(validAnswerKey => {
+    Object.keys(transformedNewAnswers).forEach((validAnswerKey) => {
       delete newAllValidationErrors[validAnswerKey];
     });
     // TODO JMB: Merge switchOffManualAddressInput into editPathInEditMode

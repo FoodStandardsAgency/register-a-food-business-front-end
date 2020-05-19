@@ -1,14 +1,10 @@
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import { BREAKPOINTS, FONT_SIZE } from "@govuk-react/constants";
 import { ListItem } from "govuk-react";
 
-const MediaQueryMobile = `@media only screen and (max-width: ${
-  BREAKPOINTS.LARGESCREEN
-})`;
+const MediaQueryMobile = `@media only screen and (max-width: ${BREAKPOINTS.LARGESCREEN})`;
 
-const MediaQueryDesktop = `@media only screen and (min-width: ${
-  BREAKPOINTS.LARGESCREEN
-})`;
+const MediaQueryDesktop = `@media only screen and (min-width: ${BREAKPOINTS.LARGESCREEN})`;
 
 const ListItemConsistentSize = styled(ListItem)`
   ${MediaQueryMobile} {

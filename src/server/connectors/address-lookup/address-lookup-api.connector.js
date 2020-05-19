@@ -69,7 +69,7 @@ const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
  *
  * @returns {object} API response object
  */
-const fetchUsingPostcoderPremium = async postcode => {
+const fetchUsingPostcoderPremium = async (postcode) => {
   logEmitter.emit(
     "functionCall",
     "address-lookup-api.connector",
@@ -79,10 +79,8 @@ const fetchUsingPostcoderPremium = async postcode => {
 
   const options = { method: "GET" };
   if (process.env.HTTP_PROXY) {
-    console.log(process.env.HTTP_PROXY);
     options.agent = new HttpsProxyAgent(process.env.HTTP_PROXY);
   }
-  console.log(`${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`);
   const response = await fetch(
     `${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`,
     options
@@ -95,9 +93,7 @@ const fetchUsingPostcoderPremium = async postcode => {
       "functionFail",
       "address-lookup-api.connector",
       "fetchUsingPostcoderPremium",
-      `Address lookup API responded with non-200 status: ${response.status} - ${
-        response.statusText
-      }`
+      `Address lookup API responded with non-200 status: ${response.status} - ${response.statusText}`
     );
   }
 };
@@ -109,7 +105,7 @@ const fetchUsingPostcoderPremium = async postcode => {
  *
  * @returns {object} API response object
  */
-const fetchUsingPostcoderStandard = async postcode => {
+const fetchUsingPostcoderStandard = async (postcode) => {
   logEmitter.emit(
     "functionCall",
     "address-lookup-api.connector",
@@ -120,9 +116,7 @@ const fetchUsingPostcoderStandard = async postcode => {
   if (process.env.HTTP_PROXY) {
     options.agent = new HttpsProxyAgent(process.env.HTTP_PROXY);
   }
-  console.log(
-    `${ADDRESS_API_URL_BASE_STANDARD}/uk/${postcode}?${ADDRESS_API_URL_QUERY_STANDARD}`
-  );
+
   const response = await fetch(
     `${ADDRESS_API_URL_BASE_STANDARD}/uk/${postcode}?${ADDRESS_API_URL_QUERY_STANDARD}`,
     options
@@ -134,9 +128,7 @@ const fetchUsingPostcoderStandard = async postcode => {
       "functionFail",
       "address-lookup-api.connector",
       "fetchUsingPostcoderStandard",
-      `Address lookup API responded with non-200 status: ${response.status} - ${
-        response.statusText
-      }`
+      `Address lookup API responded with non-200 status: ${response.status} - ${response.statusText}`
     );
     throw new Error(
       `Address lookup API responded with non-200 status: ${response.status}`

@@ -137,7 +137,7 @@ const validate = (page, answers) => {
 
       if (validatorResult.errors.length > 0 && page === "/opening-hours") {
         // ignore errors for fields not requiring validation
-        validatorResult.errors = validatorResult.errors.filter(error =>
+        validatorResult.errors = validatorResult.errors.filter((error) =>
           Object.keys(answersToValidate).includes(error.property.split(".")[1])
         );
       }
@@ -164,7 +164,7 @@ const validate = (page, answers) => {
       }
 
       // turn errors into key:value pairs
-      validatorResult.errors.forEach(error => {
+      validatorResult.errors.forEach((error) => {
         const key = error.property.split(".")[1];
         result.errors[key] = error.message;
       });
@@ -198,7 +198,7 @@ const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
   const result = {
     errors: {}
   };
-  pages.forEach(page => {
+  pages.forEach((page) => {
     if (page === "/partner-name") {
       if (!validatePartners(cumulativeFullAnswers.partners)) {
         Object.assign(result.errors, {
@@ -242,7 +242,7 @@ const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
         "saturday",
         "sunday"
       ];
-      days.forEach(day => {
+      days.forEach((day) => {
         if (
           cumulativeFullAnswers["opening_days_start"] === "Every day" ||
           cumulativeFullAnswers[`opening_day_${day}`]

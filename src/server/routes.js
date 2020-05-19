@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const { handle } = require("./next");
 
 const {
   backRouter,
@@ -20,9 +19,11 @@ const {
 module.exports = () => {
   const router = Router();
 
-  router.get("/", (req, res) => {
-    res.redirect("https://www.gov.uk/food-business-registration");
-  });
+  if (process.env.NODE_ENV === "production") {
+    router.get("/", (req, res) => {
+      res.redirect("https://www.gov.uk/food-business-registration");
+    });
+  }
 
   router.use("/back", backRouter());
   router.use("/cleansession", cleansessionRouter());
@@ -37,8 +38,6 @@ module.exports = () => {
   router.use("/status", statusRouter());
   router.use("/partnership", partnerDetailsRouter());
   router.use("/pdfs", pdfsRouter());
-  router.get("*", (req, res) => {
-    handle(req, res);
-  });
+
   return router;
 };

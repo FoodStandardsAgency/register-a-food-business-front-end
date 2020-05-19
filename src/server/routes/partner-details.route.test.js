@@ -5,18 +5,20 @@ jest.mock("express", () => ({
   }))
 }));
 jest.mock("../controllers/partner-details.controller");
-jest.mock("../next", () => ({
-  Next: {
+
+jest.mock("../server", () => ({
+  app: {
     render: jest.fn()
   }
 }));
+
 const {
   partnerDetailsContinue,
   partnerDetailsSave,
   partnerDetailsDelete
 } = require("../controllers/partner-details.controller");
 const { partnerDetailsRouter } = require("./partner-details.route");
-const { Next } = require("../next");
+const { app } = require("../server");
 
 describe("Partner Details Route: ", () => {
   let router, handler;
@@ -47,11 +49,11 @@ describe("Partner Details Route: ", () => {
             switches: {},
             council: "council",
             pathConfig: { path: "existing path from session" },
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           },
-          get: value => "www.test.com/new/thepage?display=true",
+          get: (value) => "www.test.com/new/thepage?display=true",
           body: "body",
           query: {}
         };
@@ -98,11 +100,11 @@ describe("Partner Details Route: ", () => {
             switches: {},
             council: "council",
             pathConfig: { path: "existing path from session" },
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           },
-          get: value => "www.test.com/new/thepage?display=true",
+          get: (value) => "www.test.com/new/thepage?display=true",
           header: {
             Referrer: "www.test.com/new/thepage?display=true"
           },
@@ -137,7 +139,7 @@ describe("Partner Details Route: ", () => {
           cumulativeFullAnswers: {},
           council: "council",
           pathConfig: { path: "existing path from session" },
-          save: cb => {
+          save: (cb) => {
             cb("save error");
           }
         },
@@ -147,7 +149,7 @@ describe("Partner Details Route: ", () => {
           action: "on",
           originator: "/mock-page-1"
         },
-        get: value => "www.test.com/new/thepage?display=true",
+        get: (value) => "www.test.com/new/thepage?display=true",
         header: {
           Referrer: "www.test.com/new/thepage?display=true"
         },
@@ -199,11 +201,11 @@ describe("Partner Details Route: ", () => {
             switches: {},
             council: "council",
             pathConfig: { path: "existing path from session" },
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           },
-          get: value => "www.test.com/new/thepage?display=true",
+          get: (value) => "www.test.com/new/thepage?display=true",
           header: {
             Referrer: "www.test.com/new/thepage?display=true"
           },
@@ -243,7 +245,7 @@ describe("Partner Details Route: ", () => {
             cumulativeFullAnswers: {
               partners: ["First One", "Second Two"]
             },
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           },
@@ -268,8 +270,8 @@ describe("Partner Details Route: ", () => {
           "Second Two"
         ]);
       });
-      it("Should call Next.render", () => {
-        expect(Next.render).toBeCalled();
+      it("Should call app.render", () => {
+        expect(app.render).toBeCalled();
       });
     });
 
@@ -281,7 +283,7 @@ describe("Partner Details Route: ", () => {
         req = {
           session: {
             cumulativeFullAnswers: {},
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           },
@@ -301,8 +303,8 @@ describe("Partner Details Route: ", () => {
       it("Should have Partners as an empty array", () => {
         expect(req.session.cumulativeFullAnswers.partners).toEqual([]);
       });
-      it("Should call Next.render", () => {
-        expect(Next.render).toBeCalled();
+      it("Should call app.render", () => {
+        expect(app.render).toBeCalled();
       });
     });
 
@@ -317,7 +319,7 @@ describe("Partner Details Route: ", () => {
               targetPartner: "Brian",
               partners: ["Brian"]
             },
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           },
@@ -333,8 +335,8 @@ describe("Partner Details Route: ", () => {
       it("Should delete target partner", () => {
         expect(req.session.cumulativeFullAnswers.targetPartner).toBe(undefined);
       });
-      it("Should call Next.render", () => {
-        expect(Next.render).toBeCalled();
+      it("Should call app.render", () => {
+        expect(app.render).toBeCalled();
       });
     });
 
@@ -348,7 +350,7 @@ describe("Partner Details Route: ", () => {
             cumulativeFullAnswers: {
               partners: ["First One", "Second Two"]
             },
-            save: cb => {
+            save: (cb) => {
               cb("session save error");
             }
           },
@@ -395,11 +397,11 @@ describe("Partner Details Route: ", () => {
             cumulativeFullAnswers: {
               partners: ["One First", "Two Second"]
             },
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           },
-          get: value => "www.test.com/new/thepage?display=true",
+          get: (value) => "www.test.com/new/thepage?display=true",
           body: {
             example: "property"
           },
@@ -442,11 +444,11 @@ describe("Partner Details Route: ", () => {
           session: {
             council: "council",
             cumulativeFullAnswers: {},
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           },
-          get: value => "www.test.com/new/thepage?display=true",
+          get: (value) => "www.test.com/new/thepage?display=true",
           body: {
             example: "property"
           },
@@ -495,11 +497,11 @@ describe("Partner Details Route: ", () => {
             cumulativeFullAnswers: {
               partners: ["One First", "Two Second"]
             },
-            save: cb => {
+            save: (cb) => {
               cb("Error saving session");
             }
           },
-          get: value => "www.test.com/new/thepage?display=true",
+          get: (value) => "www.test.com/new/thepage?display=true",
           body: {
             example: "property"
           },
@@ -547,11 +549,11 @@ describe("Partner Details Route: ", () => {
               partners: ["One First", "Two Second"]
             },
             allValidationErrors: [],
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           },
-          get: value => "www.test.com/new/thepage?display=true",
+          get: (value) => "www.test.com/new/thepage?display=true",
           body: {
             example: "property to ignore"
           },
@@ -596,11 +598,11 @@ describe("Partner Details Route: ", () => {
             council: "council",
             cumulativeFullAnswers: { partners: [] },
             allValidationErrors: [],
-            save: cb => {
+            save: (cb) => {
               cb();
             }
           },
-          get: value => "www.test.com/new/thepage?display=true",
+          get: (value) => "www.test.com/new/thepage?display=true",
           body: {
             example: "property"
           },
@@ -651,7 +653,7 @@ describe("Partner Details Route: ", () => {
             cumulativeFullAnswers: {
               partners: ["One First", "Two Second"]
             },
-            save: cb => {
+            save: (cb) => {
               cb("Error saving session");
             }
           },

@@ -10,16 +10,16 @@ const findMatches = (query, returnResultsArray) => {
     const wordArray = searchableText
       .toLowerCase()
       .split(" ")
-      .filter(word => word !== "");
+      .filter((word) => word !== "");
 
     const queryArray = query
       .toLowerCase()
       .split(" ")
-      .filter(word => word !== "");
+      .filter((word) => word !== "");
 
     const matching = queryArray.some(
-      word =>
-        wordArray.findIndex(entry => {
+      (word) =>
+        wordArray.findIndex((entry) => {
           return entry.startsWith(word) || entry.startsWith(stemmer(word));
         }) !== -1
     );
@@ -37,17 +37,20 @@ const findMatches = (query, returnResultsArray) => {
       .filter(
         (obj, pos, arr) =>
           arr
-            .map(mapObj => mapObj["displayName"])
+            .map((mapObj) => mapObj["displayName"])
             .indexOf(obj["displayName"]) === pos
       )
       // check for matching words and beginnings of words
-      .filter(entry => checkForQueryMatch(entry.displayName, query))
+      .filter((entry) => checkForQueryMatch(entry.displayName, query))
       // remove the searchTerm field of each result
-      .map(entry => {
-        return { displayName: entry.displayName, searchTerm: undefined };
+      .map((entry) => {
+        return {
+          displayName: entry.displayName,
+          searchTerm: undefined
+        };
       });
 
-    searchTermMatchArray = businessTypesArray.filter(entry =>
+    searchTermMatchArray = businessTypesArray.filter((entry) =>
       // check for matching words and beginnings of words (including the displayName)
       checkForQueryMatch(entry.searchTerm, query)
     );
@@ -63,18 +66,16 @@ const findMatches = (query, returnResultsArray) => {
   returnResultsArray(resultsArray);
 };
 
-const suggestionFunction = suggestionToBeDisplayed => {
+const suggestionFunction = (suggestionToBeDisplayed) => {
   return (
     suggestionToBeDisplayed.displayName +
     (suggestionToBeDisplayed.searchTerm
-      ? ` <span class="searchTermResult">(${
-          suggestionToBeDisplayed.searchTerm
-        })</span>`
+      ? ` <span class="searchTermResult">(${suggestionToBeDisplayed.searchTerm})</span>`
       : "")
   );
 };
 
-const inputValueFunction = selectedSuggestion =>
+const inputValueFunction = (selectedSuggestion) =>
   selectedSuggestion
     ? selectedSuggestion.displayName +
       (selectedSuggestion.searchTerm

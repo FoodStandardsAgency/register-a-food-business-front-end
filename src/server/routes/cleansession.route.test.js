@@ -17,7 +17,7 @@ describe("Cleansession route: ", () => {
     describe("given an error occurs on session regenerate", () => {
       const req = {
         session: {
-          regenerate: jest.fn(callback => callback("this is an error"))
+          regenerate: jest.fn((callback) => callback("this is an error"))
         }
       };
 
@@ -40,7 +40,7 @@ describe("Cleansession route: ", () => {
     describe("given session destroy is successful and no errors occur", () => {
       const req = {
         session: {
-          regenerate: jest.fn(callback => {
+          regenerate: jest.fn((callback) => {
             callback();
           })
         },
@@ -62,7 +62,9 @@ describe("Cleansession route: ", () => {
       });
 
       it("Should call res.json with an object including the session ID", () => {
-        expect(res.json).toHaveBeenCalledWith({ session_id: req.sessionID });
+        expect(res.json).toHaveBeenCalledWith({
+          session_id: req.sessionID
+        });
       });
     });
   });

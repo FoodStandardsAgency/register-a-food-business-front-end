@@ -1,11 +1,9 @@
 import { BREAKPOINTS } from "@govuk-react/constants";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 
 const ContentItem = {};
 
-const MediaQueryLarge = `@media only screen and (max-width: ${
-  BREAKPOINTS.LARGESCREEN
-})`;
+const MediaQueryLarge = `@media only screen and (max-width: ${BREAKPOINTS.LARGESCREEN})`;
 
 ContentItem.B_30_15 = styled("div")({
   paddingBottom: "30px",

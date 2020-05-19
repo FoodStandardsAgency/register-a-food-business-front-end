@@ -25,7 +25,7 @@ const submitRouter = () => {
     } else {
       if (!req.session.submissionPending) {
         req.session.submissionPending = true;
-        req.session.save(err => {
+        req.session.save((err) => {
           if (err) {
             logEmitter.emit("functionFail", "Routes", "/submit route", err);
             throw err;
@@ -58,7 +58,7 @@ const submitRouter = () => {
           req.session.submissionError = controllerResponse.submissionError;
           res.redirect("back");
         }
-        req.session.save(err => {
+        req.session.save((err) => {
           if (err) {
             logEmitter.emit("functionFail", "Routes", "/submit route", err);
             throw err;

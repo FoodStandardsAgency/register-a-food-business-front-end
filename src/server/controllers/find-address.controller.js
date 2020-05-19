@@ -54,9 +54,7 @@ const findAddressController = async (
         "functionSuccessWith",
         "find-address.controller",
         "findAddressController",
-        `validatorErrors: ${
-          controllerResponse.validatorErrors
-        }. redirectRoute: ${controllerResponse.redirectRoute}`
+        `validatorErrors: ${controllerResponse.validatorErrors}. redirectRoute: ${controllerResponse.redirectRoute}`
       );
       return controllerResponse;
     }

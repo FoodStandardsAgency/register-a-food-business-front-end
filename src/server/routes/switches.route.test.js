@@ -19,7 +19,7 @@ describe("Switches route: ", () => {
     const req = {
       session: {
         switches: {},
-        save: cb => {
+        save: (cb) => {
           cb();
         }
       },
@@ -47,7 +47,9 @@ describe("Switches route: ", () => {
     });
 
     it("Should update session", () => {
-      expect(req.session.cumulativeFullAnswers).toEqual({ example: "answer" });
+      expect(req.session.cumulativeFullAnswers).toEqual({
+        example: "answer"
+      });
       expect(req.session.switches).toEqual({ exampleSwitch: true });
     });
 
@@ -67,7 +69,7 @@ describe("Switches route: ", () => {
       const req = {
         session: {
           switches: {},
-          save: cb => {
+          save: (cb) => {
             cb("session save error");
           }
         },

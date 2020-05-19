@@ -1,7 +1,7 @@
 import { ErrorSummary } from "govuk-react";
 import PropTypes from "prop-types";
 
-const ProcessedErrorSummary = props => {
+const ProcessedErrorSummary = (props) => {
   const errors = [];
   for (let error in props.validatorErrors) {
     errors.push({

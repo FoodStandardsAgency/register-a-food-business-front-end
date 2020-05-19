@@ -8,10 +8,10 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick
 } from "../src/components";
-import { Header, HintText } from "govuk-react";
+import { Heading, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 
-const RegistrationSummary = props => (
+const RegistrationSummary = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
@@ -19,9 +19,9 @@ const RegistrationSummary = props => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <ContentItem.B_30_15>
-      <Header level={1} size="LARGE">
+      <Heading as="h1" size="LARGE">
         Check your answers
-      </Header>
+      </Heading>
       <HintText>You must check your answers before you continue</HintText>
     </ContentItem.B_30_15>
 

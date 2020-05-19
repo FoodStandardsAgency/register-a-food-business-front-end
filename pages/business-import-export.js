@@ -9,7 +9,7 @@ import {
   HiddenTextAccessible
 } from "../src/components";
 import {
-  Header,
+  Heading,
   Checkbox,
   MultiChoice,
   Paragraph,
@@ -17,7 +17,7 @@ import {
 } from "govuk-react";
 import PropTypes from "prop-types";
 
-const ImportExportActivities = props => (
+const ImportExportActivities = (props) => (
   <FsaLayout {...props}>
     <form action={props.formAction} method="post">
       <BackButton {...props} />
@@ -25,9 +25,9 @@ const ImportExportActivities = props => (
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
       />
-      <Header level={1} size="LARGE">
+      <Heading as="h1" size="LARGE">
         Will this food business import or export any food from outside the UK?
-      </Header>
+      </Heading>
       <HintText mb={1}>
         This does not include any food imported or exported by other food
         businesses.
@@ -72,7 +72,7 @@ const ImportExportActivities = props => (
       <ContentItem.B_30_15>
         <HiddenTextAccessible
           id="hiddenTextImportExportActivities"
-          summaryText={"More information about import and export activities"}
+          summary={"More information about import and export activities"}
         >
           <span>
             If a food business is directly importing or exporting food outside
@@ -88,7 +88,8 @@ const ImportExportActivities = props => (
               id="link-fsa-website"
             >
               Food Standards Agency website (opens in new window)
-            </a>.
+            </a>
+            .
           </span>
         </HiddenTextAccessible>
       </ContentItem.B_30_15>

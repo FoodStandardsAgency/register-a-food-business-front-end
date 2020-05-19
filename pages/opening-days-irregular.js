@@ -9,7 +9,7 @@ import {
 } from "../src/components";
 import ListItemConsistentSize from "../src/components/ListItemConsistentSize";
 import {
-  Header,
+  Heading,
   TextArea,
   HintText,
   Paragraph,
@@ -17,16 +17,16 @@ import {
 } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OtherDaysIrregular = props => (
+const OtherDaysIrregular = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       Opening days
-    </Header>
+    </Heading>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>

@@ -8,10 +8,10 @@ import {
   OnHandleErrorClick,
   PartnershipDescription
 } from "../src/components";
-import { Header, Radio, MultiChoice, HintText } from "govuk-react";
+import { Heading, Radio, MultiChoice, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 
-const PartnersList = props => {
+const PartnersList = (props) => {
   let list = [];
   const partners = props.cumulativeFullAnswers.partners;
 
@@ -33,16 +33,16 @@ const PartnersList = props => {
   return list;
 };
 
-const PrimaryPartner = props => (
+const PrimaryPartner = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       Who is the main point of contact?
-    </Header>
+    </Heading>
     <ContentItem.B_30_15>
       <HintText>
         Please select the partner who will be the main point of contact for this

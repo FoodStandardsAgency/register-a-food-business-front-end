@@ -1,8 +1,13 @@
 import { Button } from "govuk-react";
 import { ButtonArrow } from "@govuk-react/icons";
+import styled from "@emotion/styled";
 
-const ContinueButton = props => (
-  <Button
+const StyledButton = styled(Button)`
+  margin-bottom: 18px;
+`;
+
+const ContinueButton = (props) => (
+  <StyledButton
     onClick={props.onClick}
     disabled={props.disabled}
     id="continue-button"
@@ -13,11 +18,11 @@ const ContinueButton = props => (
     {props.type === "begin"
       ? "Begin registration"
       : props.type === "submit"
-        ? "Submit"
-        : props.editModeFirstPage
-          ? "Save and continue"
-          : "Continue"}
-  </Button>
+      ? "Submit"
+      : props.editModeFirstPage
+      ? "Save and continue"
+      : "Continue"}
+  </StyledButton>
 );
 
 export default ContinueButton;

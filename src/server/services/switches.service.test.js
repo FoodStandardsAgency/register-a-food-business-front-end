@@ -13,7 +13,7 @@ describe("switches.service changeSwitch()", () => {
         const existingSwitchStates = [undefined, true, false];
 
         it("Should set the switch to true", () => {
-          existingSwitchStates.forEach(switchState => {
+          existingSwitchStates.forEach((switchState) => {
             const response = changeSwitch("on", switchState);
             expect(response).toEqual(true);
           });
@@ -26,7 +26,7 @@ describe("switches.service changeSwitch()", () => {
         const existingSwitchStates = [undefined, true, false];
 
         it("Should set the switch to false", () => {
-          existingSwitchStates.forEach(switchState => {
+          existingSwitchStates.forEach((switchState) => {
             const response = changeSwitch("off", switchState);
             expect(response).toEqual(false);
           });
@@ -39,7 +39,7 @@ describe("switches.service changeSwitch()", () => {
         const existingSwitchStates = [undefined, true, false];
 
         it("Should set the switch to the opposite of what it was", () => {
-          existingSwitchStates.forEach(switchState => {
+          existingSwitchStates.forEach((switchState) => {
             const response = changeSwitch("toggle", switchState);
             expect(response).toEqual(!switchState);
           });

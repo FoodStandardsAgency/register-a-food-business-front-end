@@ -8,19 +8,19 @@ import {
   OnHandleErrorClick,
   HiddenTextAccessible
 } from "../src/components";
-import { Header, Radio, MultiChoice, Paragraph } from "govuk-react";
+import { Heading, Radio, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OpeningDaysStart = props => (
+const OpeningDaysStart = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       What days will this establishment be open and producing or serving food?
-    </Header>
+    </Heading>
 
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
@@ -64,7 +64,7 @@ const OpeningDaysStart = props => (
           </Radio>
         </MultiChoice>
       </ContentItem.B_30_15>
-      <HiddenTextAccessible summaryText={"I don't know what days to select"}>
+      <HiddenTextAccessible summary={"I don't know what days to select"}>
         <Paragraph mb={0}>
           The food business will have irregular opening days if it isn't open
           the same days every week. This could include seasonal establishments

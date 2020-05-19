@@ -17,7 +17,7 @@ describe("browserSupportService", () => {
           version: 66,
           browser: "Chrome"
         };
-        useragent.parse.mockImplementation(input => ua);
+        useragent.parse.mockImplementation((input) => ua);
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "Chrome",
           browserVersion: 66,
@@ -32,7 +32,7 @@ describe("browserSupportService", () => {
           version: 67,
           browser: "Chrome"
         };
-        useragent.parse.mockImplementation(input => ua);
+        useragent.parse.mockImplementation((input) => ua);
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "Chrome",
           browserVersion: 67,
@@ -50,7 +50,7 @@ describe("browserSupportService", () => {
           version: 59,
           browser: "Firefox"
         };
-        useragent.parse.mockImplementation(input => ua);
+        useragent.parse.mockImplementation((input) => ua);
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "Firefox",
           browserVersion: 59,
@@ -67,7 +67,7 @@ describe("browserSupportService", () => {
           browser: "Firefox",
           isBrowserVersionVerified: true
         };
-        useragent.parse.mockImplementation(input => ua);
+        useragent.parse.mockImplementation((input) => ua);
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "Firefox",
           browserVersion: 60,
@@ -86,7 +86,7 @@ describe("browserSupportService", () => {
           version: 15,
           browser: "Edge"
         };
-        useragent.parse.mockImplementation(input => ua);
+        useragent.parse.mockImplementation((input) => ua);
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "Edge",
           browserVersion: 15,
@@ -103,7 +103,7 @@ describe("browserSupportService", () => {
           version: 16,
           browser: "Edge"
         };
-        useragent.parse.mockImplementation(input => ua);
+        useragent.parse.mockImplementation((input) => ua);
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "Edge",
           browserVersion: 16,
@@ -123,7 +123,7 @@ describe("browserSupportService", () => {
           version: 10,
           browser: "IE"
         };
-        useragent.parse.mockImplementation(input => ua);
+        useragent.parse.mockImplementation((input) => ua);
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "IE",
           browserVersion: 10,
@@ -141,7 +141,7 @@ describe("browserSupportService", () => {
           version: 11,
           browser: "IE"
         };
-        useragent.parse.mockImplementation(input => ua);
+        useragent.parse.mockImplementation((input) => ua);
         expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
           browser: "IE",
           browserVersion: 11,
@@ -164,7 +164,7 @@ describe("browserSupportService", () => {
             version: 9.1,
             browser: "Safari"
           };
-          useragent.parse.mockImplementation(input => ua);
+          useragent.parse.mockImplementation((input) => ua);
           expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
             browser: "Safari",
             browserVersion: 9.1,
@@ -184,7 +184,7 @@ describe("browserSupportService", () => {
             version: 9.2,
             browser: "Safari"
           };
-          useragent.parse.mockImplementation(input => ua);
+          useragent.parse.mockImplementation((input) => ua);
           expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
             browser: "Safari",
             browserVersion: 9.2,
@@ -206,7 +206,7 @@ describe("browserSupportService", () => {
             version: 8.9,
             browser: "Safari"
           };
-          useragent.parse.mockImplementation(input => ua);
+          useragent.parse.mockImplementation((input) => ua);
           expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
             browser: "Safari",
             browserVersion: 8.9,
@@ -226,7 +226,7 @@ describe("browserSupportService", () => {
             version: 9,
             browser: "Safari"
           };
-          useragent.parse.mockImplementation(input => ua);
+          useragent.parse.mockImplementation((input) => ua);
           expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
             browser: "Safari",
             browserVersion: 9,
@@ -247,7 +247,7 @@ describe("browserSupportService", () => {
         version: 10,
         browser: ""
       };
-      useragent.parse.mockImplementation(input => ua);
+      useragent.parse.mockImplementation((input) => ua);
       expect(getBrowserInfo(req.headers["user-agent"])).toEqual({
         browser: "",
         browserVersion: 10,

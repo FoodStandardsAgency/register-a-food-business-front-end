@@ -1,14 +1,10 @@
-const { Next } = require("../next");
-const { logEmitter } = require("../services/logging.service");
+const { app } = require("../server");
+const { error } = require("winston");
 
 const errorHandler = (err, req, res, next) => {
-  logEmitter.emit(
-    "functionCallWith",
-    "errorHandler",
-    "errorHandler",
-    `statusCode: ${res ? res.statusCode : err ? err.statusCode : null}`
-  );
-  Next.render(req, res, "/internal-server-error");
+  error(err);
+  error(`statusCode: ${res ? res.statusCode : err ? err.statusCode : null}`);
+  app.render(req, res, "/internal-server-error");
 };
 
 module.exports = { errorHandler };

@@ -11,7 +11,7 @@ import {
 import { InputField } from "govuk-react";
 import PropTypes from "prop-types";
 
-const OperatorAddress = props => (
+const OperatorAddress = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary

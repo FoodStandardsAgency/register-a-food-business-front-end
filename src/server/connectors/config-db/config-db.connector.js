@@ -41,7 +41,8 @@ const establishConnectionToMongo = async () => {
           client.close();
         }
         client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
-          useNewUrlParser: true
+          useNewUrlParser: true,
+          useUnifiedTopology: true
         });
       } catch (err) {
         logEmitter.emit(
@@ -72,7 +73,7 @@ const establishConnectionToMongo = async () => {
  *
  * @returns {object} An object containing the _id and path fields of the config database data for the given config version
  */
-const getPathConfigByVersion = async version => {
+const getPathConfigByVersion = async (version) => {
   logEmitter.emit(
     "functionCall",
     "config-db.connector",
@@ -168,7 +169,7 @@ const getLocalCouncils = async () => {
         false
       );
     } else {
-      localCouncilUrls = localCouncilUrls.map(res => res.local_council_url);
+      localCouncilUrls = localCouncilUrls.map((res) => res.local_council_url);
       statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
       statusEmitter.emit(
         "setStatus",
@@ -209,7 +210,7 @@ const getLocalCouncils = async () => {
  *
  * @returns {Object} Object with council data
  */
-const getCouncilData = async council => {
+const getCouncilData = async (council) => {
   logEmitter.emit("functionCall", "config-db.connector", "getCouncilData");
 
   let councilRecord = null;

@@ -7,21 +7,19 @@ import {
   SelectWithHeader,
   HiddenTextAccessible
 } from "../src/components";
-import { Header, Paragraph, asAnchor } from "govuk-react";
+import { Heading, Paragraph, Link } from "govuk-react";
 import PropTypes from "prop-types";
 
-const AnchorTag = asAnchor("a");
-
-const EstablishmentAddressLookup = props => (
+const EstablishmentAddressLookup = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <Header level={1} size="LARGE">
+    <Heading as="h1" size="LARGE">
       What is the establishment's address?
-    </Header>
+    </Heading>
 
     <HiddenTextAccessible
       id="hiddenTextEstablishment"
-      summaryText={"What is an establishment?"}
+      summary={"What is an establishment?"}
     >
       <Paragraph mb={0}>
         An establishment is the location of your food business. If it is a
@@ -33,13 +31,13 @@ const EstablishmentAddressLookup = props => (
     <form action={props.formAction} method="post">
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
-          <Header level={2} size="MEDIUM">
+          <Heading as="h2" size="MEDIUM">
             Postcode
-          </Header>
+          </Heading>
           <Paragraph className="establishmentPostcodeDisplay" mb={0}>
             {props.cumulativeFullAnswers.establishment_postcode_find}
           </Paragraph>
-          <AnchorTag
+          <Link
             id="changeEstablishmentPostcode"
             href={
               props.editModeFirstPage
@@ -48,46 +46,43 @@ const EstablishmentAddressLookup = props => (
             }
           >
             Change postcode
-          </AnchorTag>
+          </Link>
         </ContentItem.B_30_15>
 
-        <SelectWithHeader
-          label={`Select an address for ${
-            props.cumulativeFullAnswers.establishment_postcode_find
-          }`}
-          input={{
-            id: "establishmentAddressDropdown",
-            name: "establishment_address_selected",
-            defaultValue:
-              props.cumulativeFullAnswers.establishment_address_selected || 0
-          }}
-        >
-          {props.addressLookups.establishment_postcode_find ? (
-            props.addressLookups.establishment_postcode_find.map(
-              (address, index) => (
-                <option key={address.summaryline} value={index}>
-                  {address.summaryline}
-                </option>
+        <ContentItem.B_20_20>
+          <SelectWithHeader
+            label={`Select an address for ${props.cumulativeFullAnswers.establishment_postcode_find}`}
+            input={{
+              id: "establishmentAddressDropdown",
+              name: "establishment_address_selected",
+              defaultValue:
+                props.cumulativeFullAnswers.establishment_address_selected || 0
+            }}
+          >
+            {props.addressLookups.establishment_postcode_find ? (
+              props.addressLookups.establishment_postcode_find.map(
+                (address, index) => (
+                  <option key={address.summaryline} value={index}>
+                    {address.summaryline}
+                  </option>
+                )
               )
-            )
-          ) : (
-            <option>No addresses found</option>
-          )}
-        </SelectWithHeader>
-
+            ) : (
+              <option>No addresses found</option>
+            )}
+          </SelectWithHeader>
+        </ContentItem.B_20_20>
         <ContentItem.B_30_15>
-          <AnchorTag
+          <Link
             id="cantFindAddressLink"
             href={
               props.editModeFirstPage
-                ? `/new/${
-                    props.council
-                  }/establishment-address-manual?edit=establishment-address-manual`
+                ? `/new/${props.council}/establishment-address-manual?edit=establishment-address-manual`
                 : `/new/${props.council}/establishment-address-manual`
             }
           >
             I can't find my address in the list
-          </AnchorTag>
+          </Link>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 

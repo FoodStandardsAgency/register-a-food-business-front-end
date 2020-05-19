@@ -176,7 +176,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       it("the transformed data contains a field called operator_type that contains the original text plus an additional representative description", () => {
         const operatorTypesArray = ["A person", "A charity", "A company"];
 
-        operatorTypesArray.forEach(operatorType => {
+        operatorTypesArray.forEach((operatorType) => {
           const data = {
             registration_role: "Representative",
             operator_type: operatorType,
@@ -885,7 +885,7 @@ describe("data-transform.service trimUprn()", () => {
   it("Should return empty string when UPRN is not a string or is empty string", () => {
     const badText = [[], {}, null, undefined, ""];
 
-    badText.forEach(text => {
+    badText.forEach((text) => {
       const result = trimUprn(text);
       expect(result).toBe("");
     });
@@ -894,7 +894,7 @@ describe("data-transform.service trimUprn()", () => {
   it("Should return empty string when UPRN is completely invalid", () => {
     const badText = ["asdasd333333", "dsdfsdfs344", "%f", "--4"];
 
-    badText.forEach(text => {
+    badText.forEach((text) => {
       const result = trimUprn(text);
       expect(result).toBe("");
     });
@@ -912,7 +912,7 @@ describe("data-transform.service trimUprn()", () => {
   describe("Should return unaltered UPRN if already valid", () => {
     const valid = ["213456", "789456123", "9998887776"];
 
-    valid.forEach(text => {
+    valid.forEach((text) => {
       const result = trimUprn(text);
       expect(result).toBe(text);
     });
@@ -1251,7 +1251,7 @@ describe("data-transform.service separateBracketsFromBusinessType()", () => {
         "Example with space at end  "
       ];
       //Act
-      goodTypes.forEach(text => {
+      goodTypes.forEach((text) => {
         result = separateBracketsFromBusinessType(text);
         expect(result.business_type).toBe(text.trim());
         expect(result.business_type_search_term).toBe(undefined);
@@ -1281,7 +1281,7 @@ describe("data-transform.service separateBracketsFromBusinessType()", () => {
         "Brackets but invalid )("
       ];
       //Act
-      badTypes.forEach(text => {
+      badTypes.forEach((text) => {
         result = separateBracketsFromBusinessType(text);
         expect(result.business_type).toBe(text.trim());
         expect(result.business_type_search_term).toBe(undefined);

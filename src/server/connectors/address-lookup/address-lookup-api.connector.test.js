@@ -21,7 +21,7 @@ describe("Connector: lookupAPI: ", () => {
 
   describe("Given a valid UK postcode:", () => {
     beforeEach(async () => {
-      fetch.mockImplementation(url => ({
+      fetch.mockImplementation((url) => ({
         json: jest.fn(() => smallAddressResponseJSON),
         status: 200
       }));

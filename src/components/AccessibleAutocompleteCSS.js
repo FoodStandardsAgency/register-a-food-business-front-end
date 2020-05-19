@@ -1,4 +1,4 @@
-import { css } from "emotion";
+import { css } from "@emotion/core";
 
 const AccessibleAutocompleteCSS = css`
   .autocomplete__option {

@@ -3,10 +3,10 @@
  * Routes: /new/:lc, /new/:lc/:page
  * @module routers/new
  */
-
+const { app } = require("../server");
 const { Router } = require("express");
-const { Next } = require("../next");
 const { logEmitter } = require("../services/logging.service");
+
 const { LC_CACHE_TIME_TO_LIVE } = require("../config");
 const {
   transformAnswersForSummary
@@ -62,7 +62,7 @@ const newRouter = () => {
             "Session regenerated. Rendering page: /index"
           );
 
-          Next.render(req, res, `/index`);
+          app.render(req, res, `/index`);
         });
       } else {
         // Save council to session if not yet there
@@ -105,7 +105,7 @@ const newRouter = () => {
               `Rendering page: ${page}`
             );
 
-            Next.render(req, res, `/${page}`);
+            app.render(req, res, `/${page}`);
           });
           // For all other scenarios, render the requested page.
         } else {
@@ -116,7 +116,7 @@ const newRouter = () => {
             `Rendering page: ${page}`
           );
 
-          Next.render(req, res, `/${page}`);
+          app.render(req, res, `/${page}`);
         }
       }
     } else {
@@ -126,7 +126,7 @@ const newRouter = () => {
         "/new route",
         `Unsupported council: "${req.params.lc}". Rendering error page.`
       );
-      Next.render(req, res, "/unsupported-council");
+      app.render(req, res, "/unsupported-council");
     }
   });
 

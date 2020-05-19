@@ -9,12 +9,12 @@ import {
   SubmissionErrorSummary,
   OnHandleErrorClick
 } from "../src/components";
-import { Header, Checkbox, MultiChoice, Paragraph } from "govuk-react";
+import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 
 import PropTypes from "prop-types";
 
 const NewTabLinkRenderer = ({ href, children }) => (
-  <a href={href} target="_blank">
+  <a href={href} target="_blank" rel="noopener noreferrer">
     {children}
   </a>
 );
@@ -52,9 +52,9 @@ class Declaration extends React.Component {
           <SubmissionErrorSummary
             submissionErrors={this.props.submissionError}
           />
-          <Header level={1} size="LARGE">
+          <Heading as="h1" size="LARGE">
             Declaration
-          </Header>
+          </Heading>
 
           <Paragraph>
             Review these statements and tick all three boxes to agree.
@@ -110,9 +110,9 @@ class Declaration extends React.Component {
             </MultiChoice>
           </ContentItem.B_45_30>
 
-          <Header level={1} size="LARGE">
+          <Heading as="h1" size="LARGE">
             Feedback
-          </Header>
+          </Heading>
 
           <Paragraph>
             Congratulations, you've almost finished. We want to provide you with
