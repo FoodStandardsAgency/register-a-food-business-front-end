@@ -314,8 +314,9 @@ const OperatorDetailsTable = (props) => (
       >
         <AccessibleRowHeader
           {...applyRowHeaderStyling(
-            props.validatorErrors["operator_first_line"] ||
-              props.validatorErrors["operator_street"] ||
+            props.validatorErrors["operator_address_line_1"] ||
+              props.validatorErrors["operator_address_line_2"] ||
+              props.validatorErrors["operator_address_line_3"] ||
               props.validatorErrors["operator_town"] ||
               props.validatorErrors["operator_postcode"] ||
               props.validatorErrors["operator_postcode_find"]
@@ -582,8 +583,9 @@ const EstablishmentDetailsTable = (props) => (
       >
         <AccessibleRowHeader
           {...applyRowHeaderStyling(
-            props.validatorErrors["establishment_first_line"] ||
-              props.validatorErrors["establishment_street"] ||
+            props.validatorErrors["establishment_address_line_1"] ||
+              props.validatorErrors["establishment_address_line_2"] ||
+              props.validatorErrors["establishment_address_line_3"] ||
               props.validatorErrors["establishment_town"] ||
               props.validatorErrors["establishment_postcode"] ||
               props.validatorErrors["establishment_postcode_find"]
