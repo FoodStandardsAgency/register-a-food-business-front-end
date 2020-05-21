@@ -302,6 +302,7 @@ const OperatorDetailsTable = (props) => (
     ) : null}
 
     {props.operator_address_line_1 ||
+    props.operator_postcode_find ||
     props.validatorErrors["operator_address_line_1"] ||
     props.validatorErrors["operator_address_line_2"] ||
     props.validatorErrors["operator_address_line_3"] ||
@@ -571,6 +572,7 @@ const EstablishmentDetailsTable = (props) => (
     ) : null}
 
     {props.establishment_address_line_1 ||
+    props.establishment_postcode_find ||
     props.validatorErrors["establishment_address_line_1"] ||
     props.validatorErrors["establishment_address_line_2"] ||
     props.validatorErrors["establishment_address_line_3"] ||
