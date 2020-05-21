@@ -344,7 +344,7 @@ const OperatorDetailsTable = (props) => (
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
             <Link
-              id="changeOperatorAddress"
+              id="changeOperatorAddressRow"
               href="/edit/operator-address"
               aria-label="Change operator address"
             >
@@ -612,7 +612,7 @@ const EstablishmentDetailsTable = (props) => (
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
             <Link
-              id="changeEstablishmentAddress"
+              id="changeEstablishmentAddressRow"
               href="/edit/establishment-address"
               aria-label="Change establishment address"
             >
