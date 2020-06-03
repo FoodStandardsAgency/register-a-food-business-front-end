@@ -1,4 +1,11 @@
 const OnHandleErrorClick = (targetName) => {
+  if (
+    targetName === "operator_postcode_find" ||
+    targetName === "establishment_postcode_find"
+  ) {
+    return;
+  }
+
   if (targetName === "establishment_opening_status") {
     let targetTradingDate =
       document.getElementsByName(targetName)[0] ||

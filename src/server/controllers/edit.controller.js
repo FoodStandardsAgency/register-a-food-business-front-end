@@ -141,18 +141,6 @@ const editContinue = (
     ) {
       transformedNewAnswers.establishment_opening_date = "validated";
     }
-    if (
-      transformedNewAnswers.operator_postcode ||
-      transformedNewAnswers.operator_address_selected
-    ) {
-      transformedNewAnswers.operator_postcode_find = "validated";
-    }
-    if (
-      transformedNewAnswers.establishment_postcode ||
-      transformedNewAnswers.establishment_address_selected
-    ) {
-      transformedNewAnswers.establishment_postcode_find = "validated";
-    }
 
     Object.keys(transformedNewAnswers).forEach((validAnswerKey) => {
       delete newAllValidationErrors[validAnswerKey];

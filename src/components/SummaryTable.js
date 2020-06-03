@@ -301,23 +301,15 @@ const OperatorDetailsTable = (props) => (
       </AccessibleTableRow>
     ) : null}
 
-    {props.operator_address_line_1 ||
-    props.operator_postcode_find ||
-    props.validatorErrors["operator_address_line_1"] ||
-    props.validatorErrors["operator_address_line_2"] ||
-    props.validatorErrors["operator_address_line_3"] ||
-    props.validatorErrors["operator_town"] ||
-    props.validatorErrors["operator_postcode"] ||
-    props.validatorErrors["operator_postcode_find"] ? (
+    {props.operator_address_line_1 ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="operatorAddressRow"
       >
         <AccessibleRowHeader
           {...applyRowHeaderStyling(
-            props.validatorErrors["operator_address_line_1"] ||
-              props.validatorErrors["operator_address_line_2"] ||
-              props.validatorErrors["operator_address_line_3"] ||
+            props.validatorErrors["operator_first_line"] ||
+              props.validatorErrors["operator_street"] ||
               props.validatorErrors["operator_town"] ||
               props.validatorErrors["operator_postcode"] ||
               props.validatorErrors["operator_postcode_find"]
@@ -339,22 +331,11 @@ const OperatorDetailsTable = (props) => (
           </div>
           <div id="operator_town">{props.operator_town}</div>
           <div id="operator_postcode">{props.operator_postcode}</div>
-          <div id="operator_postcode_find"></div>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
-          <AccessibleChangeCell>
-            <Link
-              id="changeOperatorAddressRow"
-              href="/edit/operator-address"
-              aria-label="Change operator address"
-            >
-              {determineLinkText(
-                props.operator_address_line_1 &&
-                  props.operator_town &&
-                  props.operator_postcode
-              )}
-            </Link>
-          </AccessibleChangeCell>
+          <AccessibleCell>
+            <div />
+          </AccessibleCell>
         )}
       </AccessibleTableRow>
     ) : null}
@@ -571,23 +552,15 @@ const EstablishmentDetailsTable = (props) => (
       </AccessibleTableRow>
     ) : null}
 
-    {props.establishment_address_line_1 ||
-    props.establishment_postcode_find ||
-    props.validatorErrors["establishment_address_line_1"] ||
-    props.validatorErrors["establishment_address_line_2"] ||
-    props.validatorErrors["establishment_address_line_3"] ||
-    props.validatorErrors["establishment_town"] ||
-    props.validatorErrors["establishment_postcode"] ||
-    props.validatorErrors["establishment_postcode_find"] ? (
+    {props.establishment_address_line_1 ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
         id="establishmentAddressRow"
       >
         <AccessibleRowHeader
           {...applyRowHeaderStyling(
-            props.validatorErrors["establishment_address_line_1"] ||
-              props.validatorErrors["establishment_address_line_2"] ||
-              props.validatorErrors["establishment_address_line_3"] ||
+            props.validatorErrors["establishment_first_line"] ||
+              props.validatorErrors["establishment_street"] ||
               props.validatorErrors["establishment_town"] ||
               props.validatorErrors["establishment_postcode"] ||
               props.validatorErrors["establishment_postcode_find"]
@@ -607,22 +580,13 @@ const EstablishmentDetailsTable = (props) => (
           </div>
           <div id="establishment_town">{props.establishment_town}</div>
           <div id="establishment_postcode">{props.establishment_postcode}</div>
-          <div id="establishment_postcode_find"></div>
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
-          <AccessibleChangeCell>
-            <Link
-              id="changeEstablishmentAddressRow"
-              href="/edit/establishment-address"
-              aria-label="Change establishment address"
-            >
-              {determineLinkText(
-                props.establishment_address_line_1 &&
-                  props.establishment_town &&
-                  props.establishment_postcode
-              )}
+          <AccessibleCell>
+            <Link>
+              <div />
             </Link>
-          </AccessibleChangeCell>
+          </AccessibleCell>
         )}
       </AccessibleTableRow>
     ) : null}
