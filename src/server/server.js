@@ -1,3 +1,11 @@
+const appInsights = require('applicationinsights');
+
+if ('APPINSIGHTS_INSTRUMENTATIONKEY' in process.env) {
+  console.log(`Setting up application insights modules`)
+  appInsights.setup().start();
+}
+const { logger } = require("./services/winston");
+
 require("dotenv").config();
 
 const { MONGODB_URL } = require("./config");
@@ -37,13 +45,13 @@ app.prepare().then(async () => {
 
   let store = null;
   if (MONGODB_URL) {
-    info("Server: setting session cache to database");
+    logger.info("Server: setting session cache to database");
     store = new MongoStore({
       url: MONGODB_URL
     });
-    info("Server: successfully set up database connection");
+    logger.info("Server: successfully set up database connection");
   } else {
-    info("Server: setting session cache to memory");
+    logger.info("Server: setting session cache to memory");
   }
 
   let sessionOptions = {
@@ -85,7 +93,7 @@ app.prepare().then(async () => {
 
   server.listen(port, (err) => {
     if (err) throw err;
-    info(
+    logger.info(
       `App running in ${MONGODB_URL} ${
         dev ? "DEVELOPMENT" : "PRODUCTION"
       } mode on http://localhost:${port}`
