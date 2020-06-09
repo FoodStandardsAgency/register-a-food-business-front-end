@@ -31,7 +31,7 @@ switch(env){
         };
 
 
-        if('APPINSIGHTS_INSTRUMENTATIONKEY' in process.env){
+        if('APPINSIGHTS_INSTRUMENTATIONKEY' in process.env && process.env['APPINSIGHTS_INSTRUMENTATIONKEY'] !== ""){
             console.log(`Starting azure logger`);
             transportConfig = [
                 new AzureApplicationInsightsLogger(options.azureOpts)
