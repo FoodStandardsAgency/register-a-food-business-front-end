@@ -1,3 +1,4 @@
+const cls = require('cls-hooked');
 const appInsights = require('applicationinsights');
 
 if ('APPINSIGHTS_INSTRUMENTATIONKEY' in process.env && process.env['APPINSIGHTS_INSTRUMENTATIONKEY'] !== "") {
@@ -31,7 +32,6 @@ const MongoStore = require("connect-mongo")(session);
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
-const { info } = require("winston");
 
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -39,6 +39,20 @@ const handle = app.getRequestHandler();
 module.exports = { app };
 const routes = require("./routes");
 const { errorHandler } = require("./middleware/errorHandler");
+
+const clsNamespace = cls.createNamespace('rafbfe');
+
+const clsMiddleware = (req, res, next) => {
+  // req and res are event emitters. We want to access CLS context inside of their event callbacks
+  clsNamespace.bind(req);
+  clsNamespace.bind(res);
+
+  clsNamespace.run(() => {
+    clsNamespace.set('request', req);
+
+    next();
+  })
+}
 
 app.prepare().then(async () => {
   let server = express();
@@ -77,7 +91,7 @@ app.prepare().then(async () => {
 
   server.set("trust proxy", 1);
   server.enable("trust proxy");
-
+  server.use(clsMiddleware);
   server.use(limiter);
   server.use(session(sessionOptions));
   server.use(cookieParser());
@@ -87,8 +101,16 @@ app.prepare().then(async () => {
   server.use(routes());
   server.use(errorHandler);
 
+
+
+
+
+
+
   server.all("*", (req, res) => {
+
     handle(req, res);
+
   });
 
   server.listen(port, (err) => {
@@ -100,3 +122,4 @@ app.prepare().then(async () => {
     );
   });
 });
+

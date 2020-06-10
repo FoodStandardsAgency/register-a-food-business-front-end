@@ -16,44 +16,64 @@ const DOUBLE_MODE = "doubleMode";
 
 const logEmitter = new LogEmitter();
 
+const getPresentContext = () => {
+  var getNamespace = require('cls-hooked').getNamespace;
+
+  var writer = getNamespace('rafbfe');
+
+  let req = writer.get('request');
+
+  if(req){
+    return {context: {
+        status: 'has-session',
+        session_id: req.session.id
+      }};
+  }
+
+  return {
+    status: 'no-session',
+    session_id: null
+  }
+};
+
 logEmitter.on(FUNCTION_CALL, (module, functionName) => {
-  logger.info(`${module}: ${functionName} called`);
+  logger.info(`${module}: ${functionName} called`, getPresentContext());
 });
 
 logEmitter.on(FUNCTION_CALL_WITH, (module, functionName, data) => {
-  logger.info(`${module}: ${functionName} called with: ${data}`);
+  logger.info(`${module}: ${functionName} called with: ${data}`, getPresentContext());
 });
 
 logEmitter.on(FUNCTION_SUCCESS, (module, functionName) => {
-  logger.info(`${module}: ${functionName} successful`);
+  logger.info(`${module}: ${functionName} successful`, getPresentContext());
 });
 
 logEmitter.on(FUNCTION_SUCCESS_WITH, (module, functionName, data) => {
-  logger.info(`${module}: ${functionName} successful with: ${data}`);
+  logger.info(`${module}: ${functionName} successful with: ${data}`, getPresentContext());
 });
 
 logEmitter.on(FUNCTION_FAIL, (module, functionName, err) => {
-  logger.error(`${module}: ${functionName} failed with: ${err.message}`);
+  logger.error(`${module}: ${functionName} failed with: ${err.message}`, getPresentContext());
 });
 
 logEmitter.on(DOUBLE_MODE, (module, functionName) => {
-  logger.info(`${module}: ${functionName}: running in double mode`);
+  logger.info(`${module}: ${functionName}: running in double mode`, getPresentContext());
 });
 
 logEmitter.on(INFO, (message) => {
-  logger.info(message);
+  logger.info(message, getPresentContext());
 });
 
 logEmitter.on(WARN, (message) => {
-  logger.warn(message);
+  logger.warn(message, getPresentContext());
 });
 
 logEmitter.on(DEBUG, (message) => {
-  logger.debug(message);
+  logger.debug(message, getPresentContext());
 });
 
 logEmitter.on(ERROR, (message) => {
-  logger.error(message);
+  logger.error(message, getPresentContext());
 });
 
 module.exports = {
