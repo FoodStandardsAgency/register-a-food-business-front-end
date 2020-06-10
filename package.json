@@ -52,8 +52,6 @@
     "emotion": "^10.0.27",
     "emotion-server": "^10.0.27",
     "express": "^4.17.1",
-    "express-cls-hooked": "^0.3.8",
-    "express-http-context": "^1.2.3",
     "express-rate-limit": "^5.1.1",
     "express-session": "^1.17.0",
     "express-useragent": "^1.0.13",
