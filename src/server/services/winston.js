@@ -16,8 +16,7 @@ let options;
 let transportConfig;
 
 switch (env) {
-  case "test":
-  case "development":
+
   case "production":
     options = {
       console: {
@@ -41,13 +40,25 @@ switch (env) {
     }
 
     break;
+  case "test":
+    options = {
+      console: {
+        level: "info",
+        handleExceptions: true,
+        json: true,
+        colorize: true
+      }};
+
+    transportConfig = [];
+    break;
+  case "development":
   case "local":
   default:
     options = {
       console: {
         level: "info",
         handleExceptions: true,
-        json: false,
+        json: true,
         colorize: true
       },
 
@@ -81,5 +92,8 @@ transportConfig.push(new transports.Console(options.console));
 transportConfig.forEach((item) => {
   logger.add(item);
 });
+console.log('exporting logger');
+console.log(logger);
+
 
 module.exports = { logger };
