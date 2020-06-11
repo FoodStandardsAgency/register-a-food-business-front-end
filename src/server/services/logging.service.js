@@ -1,5 +1,5 @@
 const EventEmitter = require("events");
-const {logger} = require("./winston");
+const { logger } = require("./winston");
 
 class LogEmitter extends EventEmitter {}
 
@@ -17,23 +17,25 @@ const DOUBLE_MODE = "doubleMode";
 const logEmitter = new LogEmitter();
 
 const getPresentContext = () => {
-  var getNamespace = require('cls-hooked').getNamespace;
+  var getNamespace = require("cls-hooked").getNamespace;
 
-  var writer = getNamespace('rafbfe');
+  var writer = getNamespace("rafbfe");
 
-  let req = writer.get('request');
+  let req = writer.get("request");
 
-  if(req){
-    return {context: {
-        status: 'has-session',
+  if (req) {
+    return {
+      context: {
+        status: "has-session",
         session_id: req.session.id
-      }};
+      }
+    };
   }
 
   return {
-    status: 'no-session',
+    status: "no-session",
     session_id: null
-  }
+  };
 };
 
 logEmitter.on(FUNCTION_CALL, (module, functionName) => {
@@ -41,7 +43,10 @@ logEmitter.on(FUNCTION_CALL, (module, functionName) => {
 });
 
 logEmitter.on(FUNCTION_CALL_WITH, (module, functionName, data) => {
-  logger.info(`${module}: ${functionName} called with: ${data}`, getPresentContext());
+  logger.info(
+    `${module}: ${functionName} called with: ${data}`,
+    getPresentContext()
+  );
 });
 
 logEmitter.on(FUNCTION_SUCCESS, (module, functionName) => {
@@ -49,15 +54,24 @@ logEmitter.on(FUNCTION_SUCCESS, (module, functionName) => {
 });
 
 logEmitter.on(FUNCTION_SUCCESS_WITH, (module, functionName, data) => {
-  logger.info(`${module}: ${functionName} successful with: ${data}`, getPresentContext());
+  logger.info(
+    `${module}: ${functionName} successful with: ${data}`,
+    getPresentContext()
+  );
 });
 
 logEmitter.on(FUNCTION_FAIL, (module, functionName, err) => {
-  logger.error(`${module}: ${functionName} failed with: ${err.message}`, getPresentContext());
+  logger.error(
+    `${module}: ${functionName} failed with: ${err.message}`,
+    getPresentContext()
+  );
 });
 
 logEmitter.on(DOUBLE_MODE, (module, functionName) => {
-  logger.info(`${module}: ${functionName}: running in double mode`, getPresentContext());
+  logger.info(
+    `${module}: ${functionName}: running in double mode`,
+    getPresentContext()
+  );
 });
 
 logEmitter.on(INFO, (message) => {

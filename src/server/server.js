@@ -1,8 +1,11 @@
-const cls = require('cls-hooked');
-const appInsights = require('applicationinsights');
+const cls = require("cls-hooked");
+const appInsights = require("applicationinsights");
 
-if ('APPINSIGHTS_INSTRUMENTATIONKEY' in process.env && process.env['APPINSIGHTS_INSTRUMENTATIONKEY'] !== "") {
-  console.log(`Setting up application insights modules`)
+if (
+  "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
+  process.env["APPINSIGHTS_INSTRUMENTATIONKEY"] !== ""
+) {
+  console.log(`Setting up application insights modules`);
   appInsights.setup().start();
 }
 const { logger } = require("./services/winston");
@@ -40,7 +43,7 @@ module.exports = { app };
 const routes = require("./routes");
 const { errorHandler } = require("./middleware/errorHandler");
 
-const clsNamespace = cls.createNamespace('rafbfe');
+const clsNamespace = cls.createNamespace("rafbfe");
 
 const clsMiddleware = (req, res, next) => {
   // req and res are event emitters. We want to access CLS context inside of their event callbacks
@@ -48,11 +51,11 @@ const clsMiddleware = (req, res, next) => {
   clsNamespace.bind(res);
 
   clsNamespace.run(() => {
-    clsNamespace.set('request', req);
+    clsNamespace.set("request", req);
 
     next();
-  })
-}
+  });
+};
 
 app.prepare().then(async () => {
   let server = express();
@@ -101,16 +104,8 @@ app.prepare().then(async () => {
   server.use(routes());
   server.use(errorHandler);
 
-
-
-
-
-
-
   server.all("*", (req, res) => {
-
     handle(req, res);
-
   });
 
   server.listen(port, (err) => {
@@ -122,4 +117,3 @@ app.prepare().then(async () => {
     );
   });
 });
-
