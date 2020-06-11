@@ -16,7 +16,6 @@ let options;
 let transportConfig;
 
 switch (env) {
-
   case "production":
     options = {
       console: {
@@ -47,7 +46,8 @@ switch (env) {
         handleExceptions: true,
         json: true,
         colorize: true
-      }};
+      }
+    };
 
     transportConfig = [];
     break;
@@ -92,8 +92,7 @@ transportConfig.push(new transports.Console(options.console));
 transportConfig.forEach((item) => {
   logger.add(item);
 });
-console.log('exporting logger');
+console.log("exporting logger");
 console.log(logger);
-
 
 module.exports = { logger };

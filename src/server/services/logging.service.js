@@ -1,4 +1,4 @@
-const {logger} = require("./winston");
+const { logger } = require("./winston");
 const EventEmitter = require("events");
 class LogEmitter extends EventEmitter {}
 
@@ -20,11 +20,11 @@ const getPresentContext = () => {
 
   let writer = getNamespace("rafbfe");
 
-  if(writer === undefined){
+  if (writer === undefined) {
     return {
       status: "no-session",
       session_id: null
-    }
+    };
   }
 
   let req = writer.get("request");
@@ -44,17 +44,14 @@ const getPresentContext = () => {
   };
 };
 
-const logStuff = (message, data={}, method="info") => {
-  if(!logger){
+const logStuff = (message, data = {}, method = "info") => {
+  if (!logger) {
     //create a logger now... its probably a test - enable below if you want debug
     //console.log({message, data, method});
-  }
-  else{
+  } else {
     logger[method](message, getPresentContext());
   }
-}
-
-
+};
 
 logEmitter.on(FUNCTION_CALL_WITH, (module, functionName, data) => {
   let message = `${module}: ${functionName} called with: ${data}`;
