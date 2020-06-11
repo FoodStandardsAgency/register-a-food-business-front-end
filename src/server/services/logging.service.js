@@ -1,5 +1,5 @@
 const EventEmitter = require("events");
-const { logger } = require("./winston");
+
 
 class LogEmitter extends EventEmitter {}
 
@@ -21,6 +21,8 @@ const getPresentContext = () => {
 
   var writer = getNamespace("rafbfe");
 
+  console.log(`banana` +writer);
+
   let req = writer.get("request");
 
   if (req) {
@@ -38,15 +40,17 @@ const getPresentContext = () => {
   };
 };
 
-logEmitter.on(FUNCTION_CALL, (module, functionName) => {
-  logger.info(`${module}: ${functionName} called`, getPresentContext());
-});
-
 logEmitter.on(FUNCTION_CALL_WITH, (module, functionName, data) => {
   logger.info(
     `${module}: ${functionName} called with: ${data}`,
     getPresentContext()
   );
+});
+
+logEmitter.on(FUNCTION_CALL, (module, functionName) => {
+  console.log("calling function call alone!");
+
+  logger.info(`${module}: ${functionName} called`, getPresentContext());
 });
 
 logEmitter.on(FUNCTION_SUCCESS, (module, functionName) => {
@@ -93,8 +97,10 @@ logEmitter.on(ERROR, (message) => {
 module.exports = {
   logEmitter,
   FUNCTION_CALL,
+  FUNCTION_CALL_WITH,
   FUNCTION_FAIL,
   FUNCTION_SUCCESS,
+  FUNCTION_SUCCESS_WITH,
   DOUBLE_MODE,
   INFO,
   ERROR,
