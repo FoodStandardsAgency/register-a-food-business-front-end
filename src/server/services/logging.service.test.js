@@ -1,5 +1,15 @@
 const cls = require("cls-hooked");
+jest.mock("./winston", () => ({
+  logger: {
+    info: jest.fn(),
+    error: jest.fn(),
+    debug: jest.fn(),
+    warn: jest.fn()
+  }
+}));
+
 const { logger } = require("./winston");
+
 const {
   logEmitter,
   FUNCTION_CALL,
@@ -7,20 +17,17 @@ const {
   FUNCTION_SUCCESS,
   FUNCTION_SUCCESS_WITH,
   FUNCTION_FAIL,
-  DOUBLE_MODE
+  DOUBLE_MODE,
+  INFO,
+  ERROR,
+  DEBUG,
+  WARN
 } = require("./logging.service");
 
 const noSession = {
   session_id: null,
   status: "no-session"
 };
-
-jest.mock("./winston", () => ({
-  logger: {
-    info: jest.fn(),
-    error: jest.fn()
-  }
-}));
 
 describe("logEmitter", () => {
   /* eslint-disable */
@@ -118,6 +125,48 @@ describe("logEmitter", () => {
       await logEmitter.emit(message, moduleMessage, funcMessage);
 
       await expect(logger.info).toBeCalledWith(expected, noSession);
+    });
+  });
+
+  describe("simple logging", () => {
+    it("should call winston info", async () => {
+      let message = INFO;
+      let expected = "someModule";
+      logger.info.mockImplementation(() => {});
+
+      await logEmitter.emit(message, expected);
+
+      await expect(logger.info).toBeCalledWith(expected, noSession);
+    });
+
+    it("should call winston error", async () => {
+      let message = ERROR;
+      let expected = "someModule";
+      logger.error.mockImplementation(() => {});
+
+      await logEmitter.emit(message, expected);
+
+      await expect(logger.error).toBeCalledWith(expected, noSession);
+    });
+
+    it("should call winston debug", async () => {
+      let message = DEBUG;
+      let expected = "someModule";
+      logger.debug.mockImplementation(() => {});
+
+      await logEmitter.emit(message, expected);
+
+      await expect(logger.debug).toBeCalledWith(expected, noSession);
+    });
+
+    it("should call winston warn", async () => {
+      let message = WARN;
+      let expected = "someModule";
+      logger.warn.mockImplementation(() => {});
+
+      await logEmitter.emit(message, expected);
+
+      await expect(logger.warn).toBeCalledWith(expected, noSession);
     });
   });
 });

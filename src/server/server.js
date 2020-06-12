@@ -35,6 +35,7 @@ const MongoStore = require("connect-mongo")(session);
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
 
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -92,6 +93,7 @@ app.prepare().then(async () => {
     max: process.env.RATE_LIMIT // limit each IP to x requests per minute
   });
 
+  const sixtyDaysInSeconds = 5184000;
   server.set("trust proxy", 1);
   server.enable("trust proxy");
   server.use(clsMiddleware);
@@ -100,6 +102,11 @@ app.prepare().then(async () => {
   server.use(cookieParser());
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: true }));
+  server.use(
+    helmet.hsts({
+      maxAge: sixtyDaysInSeconds
+    })
+  );
 
   server.use(routes());
   server.use(errorHandler);

@@ -88,7 +88,7 @@ logEmitter.on(INFO, (message) => {
 });
 
 logEmitter.on(WARN, (message) => {
-  logStuff(message);
+  logStuff(message, {}, "warn");
 });
 
 logEmitter.on(DEBUG, (message) => {
@@ -109,5 +109,6 @@ module.exports = {
   DOUBLE_MODE,
   INFO,
   ERROR,
-  DEBUG
+  DEBUG,
+  WARN
 };
