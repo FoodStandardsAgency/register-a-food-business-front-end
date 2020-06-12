@@ -40,6 +40,9 @@
     "@govuk-react/icons": "^0.7.1",
     "@slice-and-dice/register-a-food-business-validation": "^1.17.0",
     "accessible-autocomplete": "^2.0.2",
+    "applicationinsights": "^1.7.6",
+    "applicationinsights-native-metrics": "^0.0.5",
+    "cls-hooked": "^4.2.2",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
     "cross-env": "^7.0.2",
@@ -73,7 +76,9 @@
     "stemmer": "^1.0.5",
     "styled-components": "^5.1.0",
     "validator": "^13.0.0",
-    "winston": "2.4.2"
+    "winston": "^3.2.1",
+    "winston-azure-application-insights": "^2.0.0",
+    "winston-elasticsearch": "^0.8.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",

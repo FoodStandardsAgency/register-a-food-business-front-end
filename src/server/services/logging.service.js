@@ -1,6 +1,5 @@
+const { logger } = require("./winston");
 const EventEmitter = require("events");
-const { info, error, debug, warn } = require("winston");
-
 class LogEmitter extends EventEmitter {}
 
 const DEBUG = "debug";
@@ -16,53 +15,100 @@ const DOUBLE_MODE = "doubleMode";
 
 const logEmitter = new LogEmitter();
 
-logEmitter.on(FUNCTION_CALL, (module, functionName) => {
-  info(`${module}: ${functionName} called`);
-});
+const getPresentContext = () => {
+  let getNamespace = require("cls-hooked").getNamespace;
+
+  let writer = getNamespace("rafbfe");
+
+  if (writer === undefined) {
+    return {
+      status: "no-session",
+      session_id: null
+    };
+  }
+
+  let req = writer.get("request");
+
+  if (req) {
+    return {
+      context: {
+        status: "has-session",
+        session_id: req.session.id
+      }
+    };
+  }
+
+  return {
+    status: "no-session",
+    session_id: null
+  };
+};
+
+const logStuff = (message, data = {}, method = "info") => {
+  if (!logger) {
+    //create a logger now... its probably a test - enable below if you want debug
+    //console.log({message, data, method});
+  } else {
+    logger[method](message, getPresentContext());
+  }
+};
 
 logEmitter.on(FUNCTION_CALL_WITH, (module, functionName, data) => {
-  info(`${module}: ${functionName} called with: ${data}`);
+  let message = `${module}: ${functionName} called with: ${data}`;
+  logStuff(message, data);
+});
+
+logEmitter.on(FUNCTION_CALL, (module, functionName) => {
+  let message = `${module}: ${functionName} called`;
+  logStuff(message);
 });
 
 logEmitter.on(FUNCTION_SUCCESS, (module, functionName) => {
-  info(`${module}: ${functionName} successful`);
+  let message = `${module}: ${functionName} successful`;
+  logStuff(message);
 });
 
 logEmitter.on(FUNCTION_SUCCESS_WITH, (module, functionName, data) => {
-  info(`${module}: ${functionName} successful with: ${data}`);
+  let message = `${module}: ${functionName} successful with: ${data}`;
+  logStuff(message);
 });
 
 logEmitter.on(FUNCTION_FAIL, (module, functionName, err) => {
-  error(`${module}: ${functionName} failed with: ${err.message}`);
+  let message = `${module}: ${functionName} failed with: ${err.message}`;
+  logStuff(message, {}, "error");
 });
 
 logEmitter.on(DOUBLE_MODE, (module, functionName) => {
-  info(`${module}: ${functionName}: running in double mode`);
+  let message = `${module}: ${functionName}: running in double mode`;
+  logStuff(message);
 });
 
 logEmitter.on(INFO, (message) => {
-  info(message);
+  logStuff(message);
 });
 
 logEmitter.on(WARN, (message) => {
-  warn(message);
+  logStuff(message, {}, "warn");
 });
 
 logEmitter.on(DEBUG, (message) => {
-  debug(message);
+  logStuff(message, {}, "debug");
 });
 
 logEmitter.on(ERROR, (message) => {
-  error(message);
+  logStuff(message, {}, "error");
 });
 
 module.exports = {
   logEmitter,
   FUNCTION_CALL,
+  FUNCTION_CALL_WITH,
   FUNCTION_FAIL,
   FUNCTION_SUCCESS,
+  FUNCTION_SUCCESS_WITH,
   DOUBLE_MODE,
   INFO,
   ERROR,
-  DEBUG
+  DEBUG,
+  WARN
 };
