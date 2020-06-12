@@ -52,63 +52,69 @@ class BusinessTypeLookup extends React.Component {
     const props = this.props;
     return (
       <div>
-        {this.state && this.state.renderAutoCompleteSection ? (
-          <div id="autocompleteSection">
-            <Paragraph>
-              Search with your own keywords and then select the most fitting
-              business type from the suggestions
-            </Paragraph>
-            <ContentItem.B_30_15>
-              <HintText>
-                For example
-                <UnorderedList>
-                  <ListItemConsistentSize>cafe</ListItemConsistentSize>
-                  <ListItemConsistentSize>
-                    food delivery service
-                  </ListItemConsistentSize>
-                  <ListItemConsistentSize>
-                    commercial bakery
-                  </ListItemConsistentSize>
-                  <ListItemConsistentSize>
-                    meat product manufacturer
-                  </ListItemConsistentSize>
-                </UnorderedList>
-              </HintText>
-            </ContentItem.B_30_15>
-            <div
-              id="autocompleteContainer"
-              className={
-                props.validatorErrors.business_type
-                  ? autocompleteErrorStyling
-                  : null
-              }
-            >
-              {props.validatorErrors.business_type ? (
-                <ErrorText style={lineHeight}>
-                  {props.validatorErrors.business_type}
-                </ErrorText>
-              ) : null}
-              <div aria-label="business type autocomplete, type and then choose from results">
-                <Autocomplete
-                  source={findMatches}
-                  templates={templates}
-                  autoselect={false}
-                  displayMenu="inline"
-                  confirmOnBlur={false}
-                  name="business_type"
-                  defaultValue={props.cumulativeFullAnswers.business_type}
-                />
-              </div>
-            </div>
-          </div>
+        {props.browser === "IE" ? (
+          <DataListSection {...props} />
         ) : (
-          <noscript id="jsDisabledSection">
-            {props.browser === "Safari" ? (
-              <SelectListSection {...props} />
+          <div>
+            {this.state && this.state.renderAutoCompleteSection ? (
+              <div id="autocompleteSection">
+                <Paragraph>
+                  Search with your own keywords and then select the most fitting
+                  business type from the suggestions
+                </Paragraph>
+                <ContentItem.B_30_15>
+                  <HintText>
+                    For example
+                    <UnorderedList>
+                      <ListItemConsistentSize>cafe</ListItemConsistentSize>
+                      <ListItemConsistentSize>
+                        food delivery service
+                      </ListItemConsistentSize>
+                      <ListItemConsistentSize>
+                        commercial bakery
+                      </ListItemConsistentSize>
+                      <ListItemConsistentSize>
+                        meat product manufacturer
+                      </ListItemConsistentSize>
+                    </UnorderedList>
+                  </HintText>
+                </ContentItem.B_30_15>
+                <div
+                  id="autocompleteContainer"
+                  className={
+                    props.validatorErrors.business_type
+                      ? autocompleteErrorStyling
+                      : null
+                  }
+                >
+                  {props.validatorErrors.business_type ? (
+                    <ErrorText style={lineHeight}>
+                      {props.validatorErrors.business_type}
+                    </ErrorText>
+                  ) : null}
+                  <div aria-label="business type autocomplete, type and then choose from results">
+                    <Autocomplete
+                      source={findMatches}
+                      templates={templates}
+                      autoselect={false}
+                      displayMenu="inline"
+                      confirmOnBlur={false}
+                      name="business_type"
+                      defaultValue={props.cumulativeFullAnswers.business_type}
+                    />
+                  </div>
+                </div>
+              </div>
             ) : (
-              <DataListSection {...props} />
+              <noscript id="jsDisabledSection">
+                {props.browser === "Safari" ? (
+                  <SelectListSection {...props} />
+                ) : (
+                  <DataListSection {...props} />
+                )}
+              </noscript>
             )}
-          </noscript>
+          </div>
         )}
       </div>
     );
