@@ -13,7 +13,7 @@ let env = process.env.NODE_ENV;
 let options;
 
 // transports
-let transportConfig;
+let transportConfig = [];
 
 switch (env) {
   case "production":
@@ -35,7 +35,7 @@ switch (env) {
       process.env["APPINSIGHTS_INSTRUMENTATIONKEY"] !== ""
     ) {
       console.log(`Starting azure logger`);
-      transportConfig = [new AzureApplicationInsightsLogger(options.azureOpts)];
+      transportConfig.push(new AzureApplicationInsightsLogger(options.azureOpts));
     }
 
     break;
@@ -49,7 +49,6 @@ switch (env) {
       }
     };
 
-    transportConfig = [];
     break;
   case "development":
   case "local":
@@ -75,7 +74,7 @@ switch (env) {
       }
     };
 
-    transportConfig = [new ElasticsearchTransport(options.esTransportOpts)];
+    transportConfig.push(new ElasticsearchTransport(options.esTransportOpts));
 
     break;
 }
@@ -92,7 +91,5 @@ transportConfig.push(new transports.Console(options.console));
 transportConfig.forEach((item) => {
   logger.add(item);
 });
-console.log("exporting logger");
-console.log(logger);
 
 module.exports = { logger };
