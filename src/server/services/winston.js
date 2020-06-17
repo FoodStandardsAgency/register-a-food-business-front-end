@@ -9,32 +9,31 @@ const {
 const { ElasticsearchTransport } = require("winston-elasticsearch");
 
 let env = process.env.NODE_ENV;
+let logLevel = env === "production" ? "error" : "info";
+logLevel = process.env.LOG_LEVEL ? process.env.LOG_LEVEL : logLevel;
 
 let options;
 
 // transports
 let transportConfig = [];
+let azureKey = "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env && process.env["APPINSIGHTS_INSTRUMENTATIONKEY"] ? process.env.APPINSIGHTS_INSTRUMENTATIONKEY : null;
 
 switch (env) {
   case "production":
     options = {
       console: {
-        level: "error",
+        level: logLevel,
         handleExceptions: true,
         colorize: true
       },
 
       azureOpts: {
-        level: "error",
-        key: process.env.APPINSIGHTS_INSTRUMENTATIONKEY
+        level: logLevel,
+        key: azureKey
       }
     };
 
-    if (
-      "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
-      process.env["APPINSIGHTS_INSTRUMENTATIONKEY"] !== ""
-    ) {
-      console.log(`Starting azure logger`);
+    if (azureKey !== null) {
       transportConfig.push(
         new AzureApplicationInsightsLogger(options.azureOpts)
       );
@@ -44,7 +43,7 @@ switch (env) {
   case "test":
     options = {
       console: {
-        level: "info",
+        level: logLevel,
         handleExceptions: true,
         json: true,
         colorize: true
@@ -57,7 +56,7 @@ switch (env) {
   default:
     options = {
       console: {
-        level: "info",
+        level: logLevel,
         handleExceptions: true,
         json: true,
         colorize: true
@@ -67,12 +66,7 @@ switch (env) {
         clientOpts: {
           node: "http://elk:9200"
         },
-        level: "info"
-      },
-
-      azureOpts: {
-        level: "error",
-        key: process.env.APPINSIGHTS_INSTRUMENTATIONKEY
+        level: logLevel
       }
     };
 

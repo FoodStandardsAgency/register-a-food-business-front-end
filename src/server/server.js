@@ -1,5 +1,6 @@
 const cls = require("cls-hooked");
 const appInsights = require("applicationinsights");
+const morgan = require("morgan");
 
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
@@ -44,7 +45,7 @@ module.exports = { app };
 const routes = require("./routes");
 const { errorHandler } = require("./middleware/errorHandler");
 
-const clsNamespace = cls.createNamespace("rafbfe");
+const clsNamespace = cls.createNamespace("application");
 
 const clsMiddleware = (req, res, next) => {
   // req and res are event emitters. We want to access CLS context inside of their event callbacks
@@ -110,6 +111,8 @@ app.prepare().then(async () => {
 
   server.use(routes());
   server.use(errorHandler);
+
+  server.use(morgan("combined", { stream: logger.stream }));
 
   server.all("*", (req, res) => {
     handle(req, res);

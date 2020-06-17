@@ -1,5 +1,6 @@
 const { logger } = require("./winston");
 const EventEmitter = require("events");
+const packageJson = require("../../../package.json");
 class LogEmitter extends EventEmitter {}
 
 const DEBUG = "debug";
@@ -18,30 +19,26 @@ const logEmitter = new LogEmitter();
 const getPresentContext = () => {
   let getNamespace = require("cls-hooked").getNamespace;
 
-  let writer = getNamespace("rafbfe");
+  let writer = getNamespace("application");
+
+  let context = {
+    context: {
+      application_name: packageJson.name,
+      session_id: null
+    }
+  };
 
   if (writer === undefined) {
-    return {
-      status: "no-session",
-      session_id: null
-    };
+    return context;
   }
 
   let req = writer.get("request");
 
   if (req) {
-    return {
-      context: {
-        status: "has-session",
-        session_id: req.session.id
-      }
-    };
+    context.context.session_id = req.session.id;
   }
 
-  return {
-    status: "no-session",
-    session_id: null
-  };
+  return context;
 };
 
 const logStuff = (message, data = {}, method = "info") => {
