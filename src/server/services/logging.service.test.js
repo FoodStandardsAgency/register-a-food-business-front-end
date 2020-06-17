@@ -1,4 +1,6 @@
 const cls = require("cls-hooked");
+const packageJson = require("../../../package.json");
+
 jest.mock("./winston", () => ({
   logger: {
     info: jest.fn(),
@@ -25,8 +27,10 @@ const {
 } = require("./logging.service");
 
 const noSession = {
-  session_id: null,
-  status: "no-session"
+  context: {
+    application_name: packageJson.name,
+    session_id: null
+  }
 };
 
 describe("logEmitter", () => {
