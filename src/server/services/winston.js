@@ -20,10 +20,10 @@ let options;
 // transports
 let transportConfig = [];
 let azureKey =
-    "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
-    process.env["APPINSIGHTS_INSTRUMENTATIONKEY"]
-        ? process.env.APPINSIGHTS_INSTRUMENTATIONKEY
-        : null;
+  "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
+  process.env["APPINSIGHTS_INSTRUMENTATIONKEY"]
+    ? process.env.APPINSIGHTS_INSTRUMENTATIONKEY
+    : null;
 
 switch (env) {
   case "production":
@@ -41,7 +41,7 @@ switch (env) {
 
     if (azureKey !== null) {
       transportConfig.push(
-          new AzureApplicationInsightsLogger(options.azureOpts)
+        new AzureApplicationInsightsLogger(options.azureOpts)
       );
     }
 
