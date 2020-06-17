@@ -52,7 +52,7 @@ const logStuff = (message, data = {}, method = "info") => {
 };
 /* eslint-enable */
 
-logEmitter.on(FUNCTION_CALL_WITH, (module, functionName, data) => {
+logEmitter.on(FUNCTION_CALL_WITH, (module, functionName, data={}) => {
   let message = `${module}: ${functionName} called with: ${data}`;
   logStuff(message, data);
 });
@@ -72,7 +72,7 @@ logEmitter.on(FUNCTION_SUCCESS_WITH, (module, functionName, data) => {
   logStuff(message);
 });
 
-logEmitter.on(FUNCTION_FAIL, (module, functionName, err) => {
+logEmitter.on(FUNCTION_FAIL, (module, functionName, err={message:null}) => {
   let message = `${module}: ${functionName} failed with: ${err.message}`;
   logStuff(message, {}, "error");
 });
