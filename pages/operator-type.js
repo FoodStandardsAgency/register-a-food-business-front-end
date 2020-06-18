@@ -67,7 +67,8 @@ const OperatorType = (props) => (
               props.cumulativeFullAnswers.operator_type === "A charity"
             }
           >
-            The food business is owned or operated by a charity
+            The food business is owned or operated by a charity, organisation or
+            trust
           </Radio>
         </MultiChoice>
       </ContentItem.B_45_30>
