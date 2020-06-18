@@ -19,7 +19,7 @@ const OperatorCharityDetails = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      Details of the operating charity
+      Details of the operating charity, organisation or trust
     </Heading>
 
     <HiddenTextAccessible
@@ -49,7 +49,7 @@ const OperatorCharityDetails = (props) => (
               error: props.validatorErrors["operator_charity_name"]
             }}
           >
-            Charity name
+            Charity, organisation or trust name
           </InputField>
         </ContentItem.B_30_15>
 

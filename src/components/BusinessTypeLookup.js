@@ -35,7 +35,7 @@ const lineHeight = {
   padding: 0
 };
 
-// 03/06/2020 - comment needed due to cloudflare caching next.js files
+// 17/06/2020 - comment needed due to cloudflare caching next.js files
 class BusinessTypeLookup extends React.Component {
   constructor(props) {
     super(props);
