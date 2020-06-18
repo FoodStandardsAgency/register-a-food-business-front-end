@@ -84,7 +84,7 @@ class Declaration extends React.Component {
 
               <Checkbox
                 name="declaration2"
-                value="I, or the operator, will notify food authorities of any significant
+                value="I, or the operator, will notify my local authority of any significant
         changes to the business activity, including closure, within 28 days of
         the change happening."
                 error={this.props.validatorErrors["declaration2"]}

@@ -1,3 +1,16 @@
+const cls = require("cls-hooked");
+const appInsights = require("applicationinsights");
+const morgan = require("morgan");
+
+if (
+  "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
+  process.env["APPINSIGHTS_INSTRUMENTATIONKEY"] !== ""
+) {
+  console.log(`Setting up application insights modules`);
+  appInsights.setup().start();
+}
+const { logger } = require("./services/winston");
+
 require("dotenv").config();
 
 const { MONGODB_URL } = require("./config");
@@ -23,7 +36,7 @@ const MongoStore = require("connect-mongo")(session);
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
-const { info } = require("winston");
+const helmet = require("helmet");
 
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -32,18 +45,32 @@ module.exports = { app };
 const routes = require("./routes");
 const { errorHandler } = require("./middleware/errorHandler");
 
+const clsNamespace = cls.createNamespace("application");
+
+const clsMiddleware = (req, res, next) => {
+  // req and res are event emitters. We want to access CLS context inside of their event callbacks
+  clsNamespace.bind(req);
+  clsNamespace.bind(res);
+
+  clsNamespace.run(() => {
+    clsNamespace.set("request", req);
+
+    next();
+  });
+};
+
 app.prepare().then(async () => {
   let server = express();
 
   let store = null;
   if (MONGODB_URL) {
-    info("Server: setting session cache to database");
+    logger.info("Server: setting session cache to database");
     store = new MongoStore({
       url: MONGODB_URL
     });
-    info("Server: successfully set up database connection");
+    logger.info("Server: successfully set up database connection");
   } else {
-    info("Server: setting session cache to memory");
+    logger.info("Server: setting session cache to memory");
   }
 
   let sessionOptions = {
@@ -67,17 +94,25 @@ app.prepare().then(async () => {
     max: process.env.RATE_LIMIT // limit each IP to x requests per minute
   });
 
+  const sixtyDaysInSeconds = 5184000;
   server.set("trust proxy", 1);
   server.enable("trust proxy");
-
+  server.use(clsMiddleware);
   server.use(limiter);
   server.use(session(sessionOptions));
   server.use(cookieParser());
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: true }));
+  server.use(
+    helmet.hsts({
+      maxAge: sixtyDaysInSeconds
+    })
+  );
 
   server.use(routes());
   server.use(errorHandler);
+
+  server.use(morgan("combined", { stream: logger.stream }));
 
   server.all("*", (req, res) => {
     handle(req, res);
@@ -85,7 +120,7 @@ app.prepare().then(async () => {
 
   server.listen(port, (err) => {
     if (err) throw err;
-    info(
+    logger.info(
       `App running in ${MONGODB_URL} ${
         dev ? "DEVELOPMENT" : "PRODUCTION"
       } mode on http://localhost:${port}`
