@@ -26,6 +26,8 @@ const SessionWrapper = (Page) => {
         ? req.cookies.acceptAllCookies
         : undefined;
 
+    const csrfToken = req.csrfToken();
+
     const currentPageWithQuery = `/${req.url.split("/")[2]}`;
 
     const formAction = editModeFirstPage
@@ -78,6 +80,7 @@ const SessionWrapper = (Page) => {
       acceptAllCookies,
       editModeFirstPage,
       formAction,
+      csrfToken,
       partnerDetailsUrl,
       partnerDetailsDeleteFormAction,
       partnerDetailsContinueFormAction,

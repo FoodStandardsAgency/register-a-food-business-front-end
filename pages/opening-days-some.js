@@ -5,14 +5,15 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  PostForm
 } from "../src/components";
 import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OpeningSomeDays = (props) => (
   <FsaLayout {...props}>
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <BackButton {...props} />
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
@@ -92,7 +93,7 @@ const OpeningSomeDays = (props) => (
         </MultiChoice>
       </ContentItem.B_30_15>
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

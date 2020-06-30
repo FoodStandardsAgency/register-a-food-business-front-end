@@ -5,7 +5,8 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  PostForm
 } from "../src/components";
 import { Heading, Radio, MultiChoice } from "govuk-react";
 import PropTypes from "prop-types";
@@ -21,7 +22,7 @@ const RegistrationRole = (props) => (
       What is your role in this food business?
     </Heading>
 
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_45_30>
         <MultiChoice
           label=""
@@ -65,7 +66,7 @@ const RegistrationRole = (props) => (
       </ContentItem.B_45_30>
 
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

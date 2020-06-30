@@ -7,7 +7,8 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick,
   PartnersTable,
-  PartnershipDescription
+  PartnershipDescription,
+  PostForm
 } from "../src/components";
 import { Heading, Button, HintText } from "govuk-react";
 import styled from "@emotion/styled";
@@ -36,9 +37,12 @@ const ButtonsRow = (props) => (
     ) : null}
     {props.cumulativeFullAnswers.partners &&
     props.cumulativeFullAnswers.partners.length >= 2 ? (
-      <form action={props.partnerDetailsContinueFormAction} method="post">
+      <PostForm
+        action={props.partnerDetailsContinueFormAction}
+        csrfToken={props.csrfToken}
+      >
         <ContinueButton {...props} />
-      </form>
+      </PostForm>
     ) : null}
   </StyledRow>
 );
@@ -60,12 +64,15 @@ const PartnerName = (props) => (
       </HintText>
     </ContentItem.B_30_15>
     <PartnershipDescription />
-    <form action={props.partnerDetailsDeleteFormAction} method="post">
+    <PostForm
+      action={props.partnerDetailsDeleteFormAction}
+      csrfToken={props.csrfToken}
+    >
       {props.cumulativeFullAnswers.partners &&
       props.cumulativeFullAnswers.partners.length > 0 ? (
         <PartnersTable {...props} />
       ) : null}
-    </form>
+    </PostForm>
     <ButtonsRow {...props} />
   </FsaLayout>
 );

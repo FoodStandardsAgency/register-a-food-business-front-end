@@ -37,6 +37,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
+const csurf = require("csurf");
 
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -108,6 +109,7 @@ app.prepare().then(async () => {
       maxAge: sixtyDaysInSeconds
     })
   );
+  server.use(csurf());
 
   server.use(routes());
   server.use(errorHandler);

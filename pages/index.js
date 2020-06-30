@@ -2,7 +2,8 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  ContinueButton
+  ContinueButton,
+  PostForm
 } from "../src/components";
 import { Heading, Paragraph } from "govuk-react";
 import InsetText from "../src/components/InsetText";
@@ -56,9 +57,9 @@ const Index = (props) => (
       </Paragraph>
     </ContentItem.B_30_15>
 
-    <form action="/continue/index" method="post">
+    <PostForm action="/continue/index" csrfToken={props.csrfToken}>
       <ContinueButton type="begin" />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

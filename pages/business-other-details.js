@@ -5,7 +5,8 @@ import {
   ContinueButton,
   ContentItem,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  PostForm
 } from "../src/components";
 import { Heading, TextArea } from "govuk-react";
 import PropTypes from "prop-types";
@@ -21,7 +22,7 @@ const OtherDetails = (props) => (
       Other details
     </Heading>
 
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <TextArea
@@ -41,7 +42,7 @@ const OtherDetails = (props) => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

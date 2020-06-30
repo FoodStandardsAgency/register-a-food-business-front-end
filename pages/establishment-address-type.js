@@ -6,7 +6,8 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
+  PostForm
 } from "../src/components";
 import { Heading, Radio, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
@@ -30,7 +31,7 @@ const EstablishmentAddressType = (props) => (
       </Paragraph>
     </HiddenTextAccessible>
 
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_45_30>
         <MultiChoice
           label=""
@@ -76,7 +77,7 @@ const EstablishmentAddressType = (props) => (
       </ContentItem.B_45_30>
 
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

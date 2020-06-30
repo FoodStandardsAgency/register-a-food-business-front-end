@@ -5,7 +5,8 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  PostForm
 } from "../src/components";
 import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
@@ -22,7 +23,7 @@ const CustomerType = (props) => (
     </Heading>
     <Paragraph>Select all that apply</Paragraph>
 
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_45_30>
         <MultiChoice
           label=""
@@ -52,7 +53,7 @@ const CustomerType = (props) => (
       </ContentItem.B_45_30>
 
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

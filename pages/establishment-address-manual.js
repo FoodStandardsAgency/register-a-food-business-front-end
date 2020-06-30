@@ -6,7 +6,8 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
+  PostForm
 } from "../src/components";
 import { Heading, InputField, Paragraph, ErrorText } from "govuk-react";
 import PropTypes from "prop-types";
@@ -37,7 +38,7 @@ const EstablishmentAddress = (props) => (
       </Paragraph>
     </HiddenTextAccessible>
 
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         {props.switches["/establishment-address-none-found"] ? (
           <ContentItem.B_30_15>
@@ -138,7 +139,7 @@ const EstablishmentAddress = (props) => (
       </ContentItem.B_30_15>
 
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

@@ -6,7 +6,8 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  ContactDetailsHelp
+  ContactDetailsHelp,
+  PostForm
 } from "../src/components";
 import { Heading, InputField } from "govuk-react";
 import PropTypes from "prop-types";
@@ -26,7 +27,7 @@ const OperatorContactDetails = (props) => (
       } contact details`}
     </Heading>
     <ContactDetailsHelp role={props.cumulativeFullAnswers.registration_role} />
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
@@ -85,7 +86,7 @@ const OperatorContactDetails = (props) => (
       </ContentItem.B_30_15>
 
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 
