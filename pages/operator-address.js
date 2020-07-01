@@ -6,7 +6,8 @@ import {
   FindAddressButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  AddressHelp
+  AddressHelp,
+  PostForm
 } from "../src/components";
 import { InputField } from "govuk-react";
 import PropTypes from "prop-types";
@@ -19,7 +20,10 @@ const OperatorAddress = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
-    <form action="/findaddress/operator-address" method="post">
+    <PostForm
+      action="/findaddress/operator-address"
+      csrfToken={props.csrfToken}
+    >
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
@@ -41,7 +45,7 @@ const OperatorAddress = (props) => (
       </ContentItem.B_30_15>
 
       <FindAddressButton />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

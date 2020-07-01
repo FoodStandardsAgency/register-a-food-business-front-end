@@ -4,7 +4,8 @@ import {
   ContentItem,
   BackButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  PostForm
 } from "../src/components";
 import { Button, Heading, InputField } from "govuk-react";
 import styled from "@emotion/styled";
@@ -30,7 +31,10 @@ const PartnerDetails = (props) => (
         : "Add "}
       partner's name
     </Heading>
-    <form action={props.partnerDetailsSaveFormAction} method="post">
+    <PostForm
+      action={props.partnerDetailsSaveFormAction}
+      csrfToken={props.csrfToken}
+    >
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
@@ -79,7 +83,7 @@ const PartnerDetails = (props) => (
           </a>
         </ContentItem.B_30_15>
       </StyledRow>
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

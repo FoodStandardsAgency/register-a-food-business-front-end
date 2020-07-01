@@ -6,7 +6,8 @@ import {
   BusinessTypeLookup,
   ContentItem,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  PostForm
 } from "../src/components";
 import { Heading } from "govuk-react";
 import PropTypes from "prop-types";
@@ -21,14 +22,14 @@ const BusinessType = (props) => (
     <Heading as="h1" size="LARGE">
       What kind of food business are you registering?
     </Heading>
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <BusinessTypeLookup id="businessTypeLookup" {...props} />
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

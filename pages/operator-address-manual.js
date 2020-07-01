@@ -6,7 +6,8 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  AddressHelp
+  AddressHelp,
+  PostForm
 } from "../src/components";
 import { InputField, ErrorText } from "govuk-react";
 import PropTypes from "prop-types";
@@ -26,7 +27,7 @@ const OperatorAddress = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         {props.switches["/operator-address-none-found"] ? (
           <ContentItem.B_30_15>
@@ -124,7 +125,7 @@ const OperatorAddress = (props) => (
       </ContentItem.B_30_15>
 
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

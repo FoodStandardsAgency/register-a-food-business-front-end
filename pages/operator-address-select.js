@@ -5,7 +5,8 @@ import {
   BackButton,
   ContinueButton,
   SelectWithHeader,
-  AddressHelp
+  AddressHelp,
+  PostForm
 } from "../src/components";
 import { Heading, Paragraph, Link } from "govuk-react";
 import PropTypes from "prop-types";
@@ -14,7 +15,7 @@ const OperatorAddressLookup = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Heading as="h2" size="MEDIUM">
@@ -73,7 +74,7 @@ const OperatorAddressLookup = (props) => (
       </ContentItem.B_30_15>
 
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

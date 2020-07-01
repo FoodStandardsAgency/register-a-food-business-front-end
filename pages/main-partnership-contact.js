@@ -6,7 +6,8 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  PartnershipDescription
+  PartnershipDescription,
+  PostForm
 } from "../src/components";
 import { Heading, Radio, MultiChoice, HintText } from "govuk-react";
 import PropTypes from "prop-types";
@@ -50,7 +51,7 @@ const PrimaryPartner = (props) => (
       </HintText>
     </ContentItem.B_30_15>
     <PartnershipDescription />
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_45_30>
         <MultiChoice
           label=""
@@ -64,7 +65,7 @@ const PrimaryPartner = (props) => (
       </ContentItem.B_45_30>
 
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 
