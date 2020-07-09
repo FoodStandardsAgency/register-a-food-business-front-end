@@ -1,6 +1,7 @@
 const cls = require("cls-hooked");
 const appInsights = require("applicationinsights");
 const morgan = require("morgan");
+const packageJson = require("../../package.json");
 
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
@@ -8,6 +9,9 @@ if (
 ) {
   console.log(`Setting up application insights modules`);
   appInsights.setup().start();
+  appInsights.defaultClient.addTelemetryProcessor((envelope) => {
+    envelope.tags["ai.cloud.role"] = packageJson.name;
+  });
 }
 const { logger } = require("./services/winston");
 
