@@ -7,6 +7,10 @@ const { configVersionCollectionDouble } = require("./config-db.double");
 const { CONFIGDB_URL } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { statusEmitter } = require("../../services/statusEmitter.service");
+const {
+  getCouncilByUrl,
+  getAllCouncils
+} = require("../councils-db/councilsDb");
 
 let client;
 let configDB;
@@ -149,15 +153,7 @@ const getLocalCouncils = async () => {
   logEmitter.emit("functionCall", "config-db.connector", "getLocalCouncils");
 
   try {
-    await establishConnectionToMongo();
-
-    localCouncilUrls = await lcConfigCollection
-      .find({
-        $and: [
-          { local_council_url: { $ne: "" } },
-          { local_council_url: { $ne: null } }
-        ]
-      })
+    localCouncilUrls = await getAllCouncils()
       .project({ local_council_url: 1, _id: 0 })
       .toArray();
 
@@ -192,7 +188,7 @@ const getLocalCouncils = async () => {
     );
 
     const newError = new Error();
-    newError.name = "mongoConnectionError";
+    newError.name = "ConnectionError";
     newError.message = err.message;
 
     throw newError;
@@ -215,11 +211,7 @@ const getCouncilData = async (council) => {
 
   let councilRecord = null;
   try {
-    await establishConnectionToMongo();
-
-    councilRecord = await lcConfigCollection.findOne({
-      local_council_url: council
-    });
+    councilRecord = await getCouncilByUrl(council);
 
     if (councilRecord === null) {
       statusEmitter.emit("incrementCount", "getCouncilDataFailed");
@@ -251,7 +243,7 @@ const getCouncilData = async (council) => {
     );
 
     const newError = new Error();
-    newError.name = "mongoConnectionError";
+    newError.name = "ConnectionError";
     newError.message = err.message;
 
     throw newError;
