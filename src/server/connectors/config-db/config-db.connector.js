@@ -15,7 +15,6 @@ const {
 let client;
 let configDB;
 let configVersionCollection;
-let lcConfigCollection;
 
 let pathConfig = null;
 
@@ -61,7 +60,6 @@ const establishConnectionToMongo = async () => {
 
     configDB = client.db("register_a_food_business_config");
     configVersionCollection = configDB.collection("configVersion");
-    lcConfigCollection = configDB.collection("lcConfig");
     logEmitter.emit(
       "functionSuccess",
       "config-db.connector",
@@ -156,6 +154,7 @@ const getLocalCouncils = async () => {
     let localCouncils = await getAllCouncils();
 
     if (localCouncils.length < 1) {
+      localCouncilUrls = [];
       statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
       statusEmitter.emit(
         "setStatus",
@@ -219,7 +218,7 @@ const getCouncilData = async (council) => {
         false
       );
       const newError = new Error();
-      newError.name = "mongoConnectionError";
+      newError.name = "ConnectionError";
       newError.message = "getCouncilData retrieved null";
       throw newError;
     } else {

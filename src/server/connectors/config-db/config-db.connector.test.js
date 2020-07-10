@@ -1,4 +1,5 @@
 const mongodb = require("mongodb");
+const councilsDb = require("../councils-db/councils-db.connector");
 const {
   getPathConfigByVersion,
   getLocalCouncils,
@@ -12,6 +13,7 @@ const { configVersionCollectionDouble } = require("./config-db.double");
 jest.mock("mongodb");
 jest.mock("./config-db.double");
 jest.mock("../../services/statusEmitter.service");
+jest.mock("../councils-db/councils-db.connector");
 
 describe("Function: getPathConfigByVersion", () => {
   let result;
@@ -249,13 +251,10 @@ describe("Function: getPathConfigByVersion", () => {
 
 describe("Function: getLocalCouncils", () => {
   let result;
-  beforeEach(async () => {
-    clearMongoConnection();
-  });
   describe("given the request throws an error", () => {
     beforeEach(async () => {
-      mongodb.MongoClient.connect.mockImplementation(() => {
-        throw new Error("example mongo error");
+      councilsDb.getAllCouncils.mockImplementation(() => {
+        throw new Error("example error");
       });
 
       try {
@@ -266,31 +265,16 @@ describe("Function: getLocalCouncils", () => {
     });
 
     describe("when the error shows that the connection has failed", () => {
-      it("should throw mongoConnectionError error", () => {
-        expect(result.name).toBe("mongoConnectionError");
-        expect(result.message).toBe("example mongo error");
+      it("should throw ConnectionError error", () => {
+        expect(result.name).toBe("ConnectionError");
+        expect(result.message).toBe("example error");
       });
     });
   });
 
   describe("given the request returns null", () => {
     beforeEach(async () => {
-      const mongoCursor = {
-        project: () => {
-          return {
-            toArray: () => {
-              return null;
-            }
-          };
-        }
-      };
-      mongodb.MongoClient.connect.mockImplementation(() => ({
-        db: () => ({
-          collection: () => ({
-            find: () => mongoCursor
-          })
-        })
-      }));
+      councilsDb.getAllCouncils.mockImplementation(() => null);
       try {
         await getLocalCouncils();
       } catch (err) {
@@ -298,8 +282,8 @@ describe("Function: getLocalCouncils", () => {
       }
     });
 
-    it("should throw mongoConnectionError error", () => {
-      expect(result.name).toBe("mongoConnectionError");
+    it("should throw ConnectionError error", () => {
+      expect(result.name).toBe("ConnectionError");
       expect(result.message).toBe("Cannot read property 'length' of null");
     });
   });
@@ -312,24 +296,8 @@ describe("Function: getLocalCouncils", () => {
 
     const localCouncilsMock = ["cardiff", "the-vale-of-glamorgan"];
 
-    const mongoCursor = {
-      project: () => {
-        return {
-          toArray: () => {
-            return localCouncilsObjs;
-          }
-        };
-      }
-    };
-
     beforeEach(() => {
-      mongodb.MongoClient.connect.mockImplementation(() => ({
-        db: () => ({
-          collection: () => ({
-            find: () => mongoCursor
-          })
-        })
-      }));
+      councilsDb.getAllCouncils.mockImplementation(() => localCouncilsObjs);
     });
 
     it("should return the array of councils", async () => {
@@ -341,24 +309,8 @@ describe("Function: getLocalCouncils", () => {
     const localCouncilsObjs = [];
     const localCouncilsMock = [];
 
-    const mongoCursor = {
-      project: () => {
-        return {
-          toArray: () => {
-            return localCouncilsObjs;
-          }
-        };
-      }
-    };
-
     beforeEach(() => {
-      mongodb.MongoClient.connect.mockImplementation(() => ({
-        db: () => ({
-          collection: () => ({
-            find: () => mongoCursor
-          })
-        })
-      }));
+      councilsDb.getAllCouncils.mockImplementation(() => localCouncilsObjs);
     });
 
     it("should return an empty array and not throw an exception", async () => {
@@ -369,13 +321,10 @@ describe("Function: getLocalCouncils", () => {
 
 describe("Function: getCouncilData", () => {
   let result;
-  beforeEach(async () => {
-    clearMongoConnection();
-  });
   describe("given the request throws an error", () => {
     beforeEach(async () => {
-      mongodb.MongoClient.connect.mockImplementation(() => {
-        throw new Error("example mongo error");
+      councilsDb.getCouncilByUrl.mockImplementation(() => {
+        throw new Error("example error");
       });
 
       try {
@@ -385,20 +334,14 @@ describe("Function: getCouncilData", () => {
       }
     });
 
-    it("should throw mongoConnectionError error", () => {
-      expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe("example mongo error");
+    it("should throw ConnectionError error", () => {
+      expect(result.name).toBe("ConnectionError");
+      expect(result.message).toBe("example error");
     });
   });
   describe("given the request returns null", () => {
     beforeEach(async () => {
-      mongodb.MongoClient.connect.mockImplementation(() => ({
-        db: () => ({
-          collection: () => ({
-            findOne: () => null
-          })
-        })
-      }));
+      councilsDb.getCouncilByUrl.mockImplementation(() => null);
 
       try {
         await getCouncilData("cardiff");
@@ -407,8 +350,8 @@ describe("Function: getCouncilData", () => {
       }
     });
 
-    it("should throw mongoConnectionError error with custom message", () => {
-      expect(result.name).toBe("mongoConnectionError");
+    it("should throw ConnectionError error with custom message", () => {
+      expect(result.name).toBe("ConnectionError");
       expect(result.message).toBe("getCouncilData retrieved null");
     });
   });
@@ -419,14 +362,7 @@ describe("Function: getCouncilData", () => {
       local_council: "Cardiff Council"
     };
     beforeEach(() => {
-      mongodb.MongoClient.connect.mockClear();
-      mongodb.MongoClient.connect.mockImplementation(() => ({
-        db: () => ({
-          collection: () => ({
-            findOne: () => exampleResult
-          })
-        })
-      }));
+      councilsDb.getCouncilByUrl.mockImplementation(() => exampleResult);
     });
 
     it("returns the correct value", async () => {

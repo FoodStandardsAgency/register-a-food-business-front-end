@@ -1,4 +1,3 @@
-"use strict";
 const { Council } = require("../../db/db");
 
 const db = require("../../db/models");
