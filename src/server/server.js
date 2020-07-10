@@ -10,7 +10,7 @@ if (
   console.log(`Setting up application insights modules`);
   appInsights.setup().start();
   appInsights.defaultClient.addTelemetryProcessor((envelope) => {
-    envelope.tags["ai.cloud.role"] = packageJson.name;
+    envelope.tags["ai.cloud.role"] = packageJson.name; // eslint-disable-line no-param-reassign
   });
 }
 const { logger } = require("./services/winston");
@@ -128,7 +128,7 @@ app.prepare().then(async () => {
     if (err) throw err;
     logger.info(
       `App running in ${MONGODB_URL} ${
-        dev ? "DEVELOPMENT" : "PRODUCTION"
+      dev ? "DEVELOPMENT" : "PRODUCTION"
       } mode on http://localhost:${port}`
     );
   });
