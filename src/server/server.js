@@ -10,7 +10,7 @@ if (
   console.log(`Setting up application insights modules`);
   appInsights.setup().start();
   appInsights.defaultClient.addTelemetryProcessor((envelope) => {
-    envelope.tags["ai.cloud.role"] = packageJson.name;
+    envelope.tags["ai.cloud.role"] = packageJson.name; // eslint-disable-line no-param-reassign
   });
 }
 const { logger } = require("./services/winston");
