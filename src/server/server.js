@@ -128,7 +128,7 @@ app.prepare().then(async () => {
     if (err) throw err;
     logger.info(
       `App running in ${MONGODB_URL} ${
-      dev ? "DEVELOPMENT" : "PRODUCTION"
+        dev ? "DEVELOPMENT" : "PRODUCTION"
       } mode on http://localhost:${port}`
     );
   });
