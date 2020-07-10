@@ -1,7 +1,5 @@
 "use strict";
-const {
-  Council
-} = require("../../db/db");
+const { Council } = require("../../db/db");
 
 const db = require("../../db/models");
 
@@ -11,22 +9,30 @@ const managedTransaction = async (callback = () => {}) => async () =>
   await db.sequelize.transaction(async (t) => callback(t));
 
 const modelFindOne = async (query, model, functionName, transaction = null) => {
-  logEmitter.emit("functionCall", "councilsDb.js", functionName);
+  logEmitter.emit("functionCall", "councils-db.connector.js", functionName);
 
   let t = Object.assign({}, query, { transaction });
   try {
     const response = await model.findOne(t);
-    logEmitter.emit("functionSuccess", "councilsDb.js", functionName);
+    logEmitter.emit(
+      "functionSuccess",
+      "councils-db.connector.js",
+      functionName
+    );
     return response;
   } catch (err) {
-    logEmitter.emit("functionFail", "councilsDb.js", functionName, err);
+    logEmitter.emit(
+      "functionFail",
+      "councils-db.connector.js",
+      functionName,
+      err
+    );
     throw err;
   }
 };
 
 const getAllCouncils = async () => {
   let out = await Council.findAll();
-
   return out;
 };
 
@@ -50,5 +56,5 @@ module.exports = {
   managedTransaction,
   getCouncilByUrl,
   getCouncilById,
-  getAllCouncils,
+  getAllCouncils
 };

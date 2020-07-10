@@ -10,7 +10,7 @@ const { statusEmitter } = require("../../services/statusEmitter.service");
 const {
   getCouncilByUrl,
   getAllCouncils
-} = require("../councils-db/councilsDb");
+} = require("../councils-db/councils-db.connector");
 
 let client;
 let configDB;
@@ -153,11 +153,9 @@ const getLocalCouncils = async () => {
   logEmitter.emit("functionCall", "config-db.connector", "getLocalCouncils");
 
   try {
-    localCouncilUrls = await getAllCouncils()
-      .project({ local_council_url: 1, _id: 0 })
-      .toArray();
+    let localCouncils = await getAllCouncils();
 
-    if (localCouncilUrls.length < 1) {
+    if (localCouncils.length < 1) {
       statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
       statusEmitter.emit(
         "setStatus",
@@ -165,7 +163,7 @@ const getLocalCouncils = async () => {
         false
       );
     } else {
-      localCouncilUrls = localCouncilUrls.map((res) => res.local_council_url);
+      localCouncilUrls = localCouncils.map((res) => res.local_council_url);
       statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
       statusEmitter.emit(
         "setStatus",
