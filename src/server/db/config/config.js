@@ -6,7 +6,7 @@ module.exports = {
     host: process.env.POSTGRES_HOST,
     dialect: "postgres",
     dialectOptions: {
-      ssl: true
+      ssl: process.env.POSTGRES_SSL == 'true' || process.env.POSTGRES_SSL == null
     },
     keepAlive: true,
     logging: false
@@ -18,7 +18,7 @@ module.exports = {
     host: process.env.POSTGRES_HOST,
     dialect: "postgres",
     dialectOptions: {
-      ssl: true
+      ssl: process.env.POSTGRES_SSL == 'true' || process.env.POSTGRES_SSL == null
     }
   },
   test: {
