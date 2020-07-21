@@ -31,12 +31,13 @@ const submitRouter = () => {
             throw err;
           }
         });
-
+        
         const controllerResponse = await submitController(
           req.session.council,
           req.session.cumulativeFullAnswers,
           req.session.addressLookups,
-          req.session.pathConfig._id
+          req.session.pathConfig._id,
+          req.session.id
         );
 
         req.session.submissionDate = controllerResponse.submissionDate;
