@@ -13,7 +13,11 @@ const submit = async (submissionData, regDataVersion, sessionId) => {
 
   try {
     const stringSubmissionData = JSON.stringify(submissionData);
-    const response = await sendRequest(stringSubmissionData, regDataVersion, sessionId);
+    const response = await sendRequest(
+      stringSubmissionData,
+      regDataVersion,
+      sessionId
+    );
     logEmitter.emit("functionSuccess", "submit.service", "submit");
     return response;
   } catch (err) {

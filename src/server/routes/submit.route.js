@@ -31,7 +31,7 @@ const submitRouter = () => {
             throw err;
           }
         });
-        
+
         const controllerResponse = await submitController(
           req.session.council,
           req.session.cumulativeFullAnswers,
