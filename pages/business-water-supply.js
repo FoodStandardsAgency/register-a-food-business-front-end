@@ -46,6 +46,16 @@ const WaterSupply = (props) => (
         >
           <Radio
             name="water_supply"
+            value="Public"
+            id="water_supply_public"
+            defaultChecked={
+              props.cumulativeFullAnswers.water_supply === "Public"
+            }
+          >
+            Mains water supply (most common supply)
+          </Radio>
+          <Radio
+            name="water_supply"
             value="Private"
             id="water_supply_private"
             defaultChecked={
@@ -56,23 +66,13 @@ const WaterSupply = (props) => (
           </Radio>
           <Radio
             name="water_supply"
-            value="Public"
-            id="water_supply_public"
-            defaultChecked={
-              props.cumulativeFullAnswers.water_supply === "Public"
-            }
-          >
-            Public water supply
-          </Radio>
-          <Radio
-            name="water_supply"
             value="Public and private"
             id="water_supply_public_and_private"
             defaultChecked={
               props.cumulativeFullAnswers.water_supply === "Public and private"
             }
           >
-            Both private and public water supply
+            Both mains and private water supplies
           </Radio>
         </MultiChoice>
       </ContentItem.B_45_30>
