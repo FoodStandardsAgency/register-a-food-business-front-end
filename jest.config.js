@@ -4,7 +4,7 @@ module.exports = {
   setupFiles: ["<rootDir>/jest.setup.js"],
   reporters: [
     "default",
-    ["jest-junit", { output: `./reports/TEST-${process.env.TEST_TYPE}.xml` }]
+    ["jest-junit", { outputName: `./reports/TEST-${process.env.TEST_TYPE}.xml` }]
   ],
   coverageReporters: ["cobertura", "lcov", "json", "text"],
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
