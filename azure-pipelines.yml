@@ -52,7 +52,7 @@ steps:
   - script: yarn build
     displayName: "Yarn build"
 
-    task: SonarCloudPrepare@1
+  - task: SonarCloudPrepare@1
     inputs:
       SonarCloud: 'Sonarcloud'
       organization: 'fsa'
