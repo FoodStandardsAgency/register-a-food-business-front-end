@@ -24,6 +24,7 @@ const getPresentContext = () => {
   let context = {
     context: {
       application_name: packageJson.name,
+      request_id: null,
       session_id: null
     }
   };
@@ -32,9 +33,11 @@ const getPresentContext = () => {
     return context;
   }
 
+  let reqId = writer.get("requestId");
   let req = writer.get("request");
 
   if (req) {
+    context.context.request_id = reqId;
     context.context.session_id = req.session.id;
   }
 
