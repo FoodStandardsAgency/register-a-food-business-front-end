@@ -35,13 +35,5 @@ module.exports = {
     "!tests/**/*.js",
     "!src/server/routes/*.route.js"
   ],
-  coverageThreshold: {
-    global: {
-      branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: -10
-    }
-  },
   testURL: "http://localhost/"
 };
