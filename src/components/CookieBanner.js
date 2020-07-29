@@ -102,6 +102,15 @@ const BannerLink = styled(Link)`
   @media only screen and (min-width: 641px) {
     font-size: ${fontSize};
   }
+  &:link {
+    color: #0b0c0c;
+  }
+  &:hover {
+    color: #4a4a4a;
+  }
+  &:visited {
+    color: #2f2f2f;
+  }
 `;
 
 const CookieBanner = () => (
