@@ -13,7 +13,7 @@ describe("PageTitles", () => {
 
   it("returns the relevant page title with prefix for URL", () => {
     const page = "business-type";
-    const title = PageTitles.getUrlPageTitle("new/council/" + page);
-    expect(title).toBe(PageTitles.prefix + " - " + PageTitles.pageTitles[page]);
+    const title = PageTitles.getUrlPageTitle(`new/council/${page}`);
+    expect(title).toBe(`${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`);
   });
 });

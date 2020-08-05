@@ -46,7 +46,7 @@ PageTitles.getUrlPageTitle = (url) => {
   var page = (urlParts[2] ?? urlParts[1]).split("?")[0];
 
   if (page && page in PageTitles.pageTitles) {
-    return PageTitles.prefix + " - " + PageTitles.pageTitles[page];
+    return `${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`;
   }
 
   return PageTitles.defaultPageTitle;
