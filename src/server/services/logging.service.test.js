@@ -29,6 +29,7 @@ const {
 const noSession = {
   context: {
     application_name: packageJson.name,
+    request_id: null,
     session_id: null
   }
 };

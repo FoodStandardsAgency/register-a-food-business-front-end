@@ -12,11 +12,15 @@ describe("Function: submit", () => {
       sendRequest.mockImplementation(() => {
         return { json: jest.fn() };
       });
-      result = await submit({ data: "data" }, "1.0.0");
+      result = await submit({ data: "data" }, "1.0.0", "s3s51onI6");
     });
 
     it("Should call sendRequest with stringified data and path config", () => {
-      expect(sendRequest).toBeCalledWith('{"data":"data"}', "1.0.0");
+      expect(sendRequest).toBeCalledWith(
+        '{"data":"data"}',
+        "1.0.0",
+        "s3s51onI6"
+      );
     });
 
     it("Should return the response", () => {

@@ -15,7 +15,7 @@ const { registrationDouble } = require("./registration.double");
  *
  * @returns {object} The back-end service response
  */
-const sendRequest = async (submissionData, regDataVersion) => {
+const sendRequest = async (submissionData, regDataVersion, sessionId) => {
   const DOUBLE_MODE = process.env.DOUBLE_MODE;
   try {
     let res;
@@ -33,7 +33,8 @@ const sendRequest = async (submissionData, regDataVersion) => {
         "Content-Type": "application/json",
         "api-secret": API_SECRET,
         "client-name": CLIENT_NAME,
-        "registration-data-version": regDataVersion
+        "registration-data-version": regDataVersion,
+        "front-end-session-id": sessionId
       };
       res = await fetch(SUBMIT_URL, {
         method: "POST",
