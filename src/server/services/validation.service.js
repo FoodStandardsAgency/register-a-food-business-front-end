@@ -40,7 +40,7 @@ const errorMessages = {
   operator_company_name: "Not a valid company name",
   operator_companies_house_number:
     "Not a valid Companies House reference number",
-  operator_charity_name: "Not a valid charity name",
+  operator_charity_name: "Not a valid charity, organisation or trust name",
   operator_charity_number: "Not a valid charity number",
   establishment_primary_number: "Not a valid establishment phone number",
   establishment_secondary_number: "Not a valid establishment phone number",
