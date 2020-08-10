@@ -83,7 +83,7 @@ const FsaFooter = () => (
             <FooterListItem>
               <FooterLink
                 id="privacyPolicyFooter"
-                href="https://www.food.gov.uk/privacy-policy"
+                href="https://www.food.gov.uk/about-us/register-a-food-business-privacy-notice"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="privacy policy (opens in a new window)"
