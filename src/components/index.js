@@ -25,6 +25,7 @@ import ContactDetailsHelp from "./ContactDetailsHelp";
 import AddressHelp from "./AddressHelp";
 import BrowserUnsupportedBanner from "./BrowserUnsupportedBanner";
 import SubmissionErrorSummary from "./SubmissionErrorSummary";
+import PageTitles from "./PageTitles";
 
 export {
   SessionWrapper,
@@ -53,5 +54,6 @@ export {
   ContactDetailsHelp,
   AddressHelp,
   BrowserUnsupportedBanner,
-  SubmissionErrorSummary
+  SubmissionErrorSummary,
+  PageTitles
 };

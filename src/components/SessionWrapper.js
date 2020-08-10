@@ -1,3 +1,5 @@
+import { PageTitles } from "../components";
+
 const SessionWrapper = (Page) => {
   // Set 'wrapper' to be a function that:
   // - Takes 'props' as an argument
@@ -27,6 +29,8 @@ const SessionWrapper = (Page) => {
         : undefined;
 
     const csrfToken = req.csrfToken();
+
+    const currentPageTitle = PageTitles.getUrlPageTitle(req.url);
 
     const currentPageWithQuery = `/${req.url.split("/")[2]}`;
 
@@ -87,6 +91,7 @@ const SessionWrapper = (Page) => {
       partnerDetailsSaveFormAction,
       partnerDetailsBackUrl,
       currentPage,
+      currentPageTitle,
       cumulativeFullAnswers:
         req && req.session && req.session.cumulativeFullAnswers
           ? req.session.cumulativeFullAnswers
