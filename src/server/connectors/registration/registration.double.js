@@ -1,10 +1,8 @@
 const {
   validateDeclaration,
   validatePostCode,
-  validateFirstLine,
   validateOptionalString,
   validateName,
-  validateTown,
   validateEstablishmentTradingName,
   validatePhoneNumber,
   validatePhoneNumberOptional,
@@ -96,7 +94,7 @@ const schema = {
               },
               operator_town: {
                 type: "string",
-                validation: validateTown
+                validation: validateMandatoryString
               },
               operator_primary_number: {
                 type: "string",
@@ -191,7 +189,7 @@ const schema = {
               },
               establishment_town: {
                 type: "string",
-                validation: validateTown
+                validation: validateMandatoryString
               },
               establishment_type: {
                 type: "string",
@@ -217,7 +215,7 @@ const schema = {
               },
               business_type_search_term: {
                 type: "string",
-                validation: validateFirstLine
+                validation: validateMandatoryString
               },
               import_export_activities: {
                 type: "string",
