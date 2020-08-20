@@ -59,7 +59,7 @@ const RegistrationRole = (props) => (
               props.cumulativeFullAnswers.registration_role === "Representative"
             }
           >
-            I represent a person, charity, limited company, (Ltd) organisation
+            I represent a person, charity, limited company (Ltd), organisation
             or trust that operates it
           </Radio>
         </MultiChoice>
