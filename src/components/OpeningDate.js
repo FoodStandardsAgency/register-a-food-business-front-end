@@ -6,7 +6,8 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick,
   HiddenTextAccessible,
-  FsaDateField
+  FsaDateField,
+  PostForm
 } from "./index";
 import { Heading, Paragraph, HintText } from "govuk-react";
 import moment from "moment";
@@ -42,7 +43,7 @@ const OpeningDate = (props) => {
       </HiddenTextAccessible>
       {props.cumulativeFullAnswers.establishment_opening_status ===
       "Establishment is not trading yet" ? (
-        <form action={props.formAction} method="post">
+        <PostForm action={props.formAction} csrfToken={props.csrfToken}>
           <div>
             <FsaDateField
               defaultValues={{
@@ -85,9 +86,9 @@ const OpeningDate = (props) => {
           </div>
 
           <ContinueButton {...props} />
-        </form>
+        </PostForm>
       ) : (
-        <form action={props.formAction} method="post">
+        <PostForm action={props.formAction} csrfToken={props.csrfToken}>
           <FsaDateField
             defaultValues={{
               day: props.cumulativeFullAnswers.day,
@@ -125,7 +126,7 @@ const OpeningDate = (props) => {
           </ContentItem.B_30_15>
 
           <ContinueButton {...props} />
-        </form>
+        </PostForm>
       )}
     </FsaLayout>
   );

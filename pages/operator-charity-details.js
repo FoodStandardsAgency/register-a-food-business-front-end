@@ -6,7 +6,8 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
+  PostForm
 } from "../src/components";
 import { Heading, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
@@ -34,7 +35,7 @@ const OperatorCharityDetails = (props) => (
       </Paragraph>
     </HiddenTextAccessible>
 
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
@@ -93,7 +94,7 @@ const OperatorCharityDetails = (props) => (
       </ContentItem.B_30_15>
 
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

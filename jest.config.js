@@ -4,7 +4,7 @@ module.exports = {
   setupFiles: ["<rootDir>/jest.setup.js"],
   reporters: [
     "default",
-    ["jest-junit", { output: `./reports/TEST-${process.env.TEST_TYPE}.xml` }]
+    ["jest-junit", { outputName: `./reports/TEST-${process.env.TEST_TYPE}.xml` }]
   ],
   coverageReporters: ["cobertura", "lcov", "json", "text"],
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
@@ -35,13 +35,5 @@ module.exports = {
     "!tests/**/*.js",
     "!src/server/routes/*.route.js"
   ],
-  coverageThreshold: {
-    global: {
-      branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: -10
-    }
-  },
   testURL: "http://localhost/"
 };

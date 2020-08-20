@@ -1,6 +1,7 @@
 const cls = require("cls-hooked");
 const appInsights = require("applicationinsights");
 const morgan = require("morgan");
+const packageJson = require("../../package.json");
 
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
@@ -8,6 +9,9 @@ if (
 ) {
   console.log(`Setting up application insights modules`);
   appInsights.setup().start();
+  appInsights.defaultClient.addTelemetryProcessor((envelope) => {
+    envelope.tags["ai.cloud.role"] = packageJson.name; // eslint-disable-line no-param-reassign
+  });
 }
 const { logger } = require("./services/winston");
 
@@ -37,6 +41,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
+const csurf = require("csurf");
 
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -46,13 +51,14 @@ const routes = require("./routes");
 const { errorHandler } = require("./middleware/errorHandler");
 
 const clsNamespace = cls.createNamespace("application");
-
+const { v4: uuidv4 } = require("uuid");
 const clsMiddleware = (req, res, next) => {
   // req and res are event emitters. We want to access CLS context inside of their event callbacks
   clsNamespace.bind(req);
   clsNamespace.bind(res);
 
   clsNamespace.run(() => {
+    clsNamespace.set("requestId", uuidv4());
     clsNamespace.set("request", req);
 
     next();
@@ -108,6 +114,7 @@ app.prepare().then(async () => {
       maxAge: sixtyDaysInSeconds
     })
   );
+  server.use(csurf());
 
   server.use(routes());
   server.use(errorHandler);

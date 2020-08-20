@@ -5,7 +5,8 @@ import {
   BackButton,
   ContinueButton,
   SelectWithHeader,
-  HiddenTextAccessible
+  HiddenTextAccessible,
+  PostForm
 } from "../src/components";
 import { Heading, Paragraph, Link } from "govuk-react";
 import PropTypes from "prop-types";
@@ -28,7 +29,7 @@ const EstablishmentAddressLookup = (props) => (
       </Paragraph>
     </HiddenTextAccessible>
 
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Heading as="h2" size="MEDIUM">
@@ -87,7 +88,7 @@ const EstablishmentAddressLookup = (props) => (
       </ContentItem.B_30_15>
 
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

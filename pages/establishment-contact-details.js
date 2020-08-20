@@ -6,7 +6,8 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
+  PostForm
 } from "../src/components";
 import { Heading, InputField, Paragraph, Button } from "govuk-react";
 import PropTypes from "prop-types";
@@ -28,7 +29,7 @@ const EstablishmentContactDetails = (props) => (
         use the location where it is normally stored overnight.
       </Paragraph>
     </HiddenTextAccessible>
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <Button
           type="submit"
@@ -106,7 +107,7 @@ const EstablishmentContactDetails = (props) => (
       </ContentItem.B_30_15>
 
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

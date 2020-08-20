@@ -13,12 +13,14 @@ const testLcUrl = "example-lc";
 const testSubmissionData = { some: "data" };
 const testAddressLookups = {};
 const testRegDataVersion = "1.0.0";
+const testSessionId = "S35S10NI6";
 
 const submitArgs = [
   testLcUrl,
   testSubmissionData,
   testAddressLookups,
-  testRegDataVersion
+  testRegDataVersion,
+  testSessionId
 ];
 
 let response;
@@ -37,7 +39,8 @@ describe("Function: submitController: ", () => {
           testLcUrl,
           {},
           testAddressLookups,
-          testRegDataVersion
+          testRegDataVersion,
+          testSessionId
         );
       } catch (err) {
         response = err;
@@ -106,7 +109,8 @@ describe("Function: submitController: ", () => {
         {
           transformedDataExample: "value"
         },
-        testRegDataVersion
+        testRegDataVersion,
+        testSessionId
       );
     });
     it("Should set redirectRoute to summary-confirmation", () => {

@@ -4,6 +4,7 @@ import FsaLayout from "./FsaLayout";
 import ContentItem from "./ContentItem";
 import BackButton from "./BackButton";
 import ContinueButton from "./ContinueButton";
+import PostForm from "./PostForm";
 import FindAddressButton from "./FindAddressButton";
 import HintTextSmall from "./HintTextSmall";
 import SummaryTable from "./SummaryTable";
@@ -24,6 +25,7 @@ import ContactDetailsHelp from "./ContactDetailsHelp";
 import AddressHelp from "./AddressHelp";
 import BrowserUnsupportedBanner from "./BrowserUnsupportedBanner";
 import SubmissionErrorSummary from "./SubmissionErrorSummary";
+import PageTitles from "./PageTitles";
 
 export {
   SessionWrapper,
@@ -32,6 +34,7 @@ export {
   ContentItem,
   BackButton,
   ContinueButton,
+  PostForm,
   FindAddressButton,
   HintTextSmall,
   SummaryTable,
@@ -51,5 +54,6 @@ export {
   ContactDetailsHelp,
   AddressHelp,
   BrowserUnsupportedBanner,
-  SubmissionErrorSummary
+  SubmissionErrorSummary,
+  PageTitles
 };

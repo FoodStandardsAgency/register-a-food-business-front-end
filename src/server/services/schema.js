@@ -276,7 +276,7 @@ const schema = {
       },
       establishment_postcode: {
         type: "string",
-        validation: validateMandatoryString
+        validation: validatePostCode
       }
     }
   },

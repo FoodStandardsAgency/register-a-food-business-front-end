@@ -6,7 +6,8 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
+  PostForm
 } from "../src/components";
 import { Heading, InputField } from "govuk-react";
 import PropTypes from "prop-types";
@@ -26,7 +27,7 @@ const OperatorName = (props) => (
       decisions about the food business. They decide what it serves and how it
       operates.
     </HiddenTextAccessible>
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <InputField
           input={{
@@ -61,7 +62,7 @@ const OperatorName = (props) => (
         </InputField>
       </ContentItem.B_30_15>
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

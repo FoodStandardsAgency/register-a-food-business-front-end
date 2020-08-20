@@ -7,7 +7,8 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   SubmissionErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  PostForm
 } from "../src/components";
 import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 
@@ -39,10 +40,10 @@ class Declaration extends React.Component {
   render() {
     return (
       <FsaLayout {...this.props}>
-        <form
+        <PostForm
           action={this.props.formAction}
-          method="post"
           ref="submitRegistration"
+          csrfToken={this.props.csrfToken}
         >
           <BackButton {...this.props} />
           <ProcessedErrorSummary
@@ -139,7 +140,7 @@ class Declaration extends React.Component {
           ) : (
             <ContinueButton onClick={this.clickSubmitButton} type="submit" />
           )}
-        </form>
+        </PostForm>
       </FsaLayout>
     );
   }

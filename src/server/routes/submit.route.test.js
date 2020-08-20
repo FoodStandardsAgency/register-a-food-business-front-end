@@ -51,6 +51,7 @@ describe("Submit route: ", () => {
             council: "cardiff",
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },
+            id: "S3S510NI6",
             save: (cb) => {
               cb();
             }
@@ -69,7 +70,8 @@ describe("Submit route: ", () => {
             some: "answers"
           },
           ["1"],
-          "1.0.0"
+          "1.0.0",
+          "S3S510NI6"
         );
       });
 

@@ -6,7 +6,8 @@ import {
   ContinueButton,
   SummaryTable,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  PostForm
 } from "../src/components";
 import { Heading, HintText } from "govuk-react";
 import PropTypes from "prop-types";
@@ -30,9 +31,12 @@ const RegistrationSummary = (props) => (
       validatorErrors={props.allValidationErrors}
     />
 
-    <form action="/continue/registration-summary" method="post">
+    <PostForm
+      action="/continue/registration-summary"
+      csrfToken={props.csrfToken}
+    >
       <ContinueButton />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

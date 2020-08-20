@@ -6,7 +6,8 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible
+  HiddenTextAccessible,
+  PostForm
 } from "../src/components";
 import {
   Heading,
@@ -19,7 +20,7 @@ import PropTypes from "prop-types";
 
 const ImportExportActivities = (props) => (
   <FsaLayout {...props}>
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <BackButton {...props} />
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
@@ -95,7 +96,7 @@ const ImportExportActivities = (props) => (
       </ContentItem.B_30_15>
 
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

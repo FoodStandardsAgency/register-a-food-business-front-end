@@ -5,14 +5,15 @@ import {
   BackButton,
   ContinueButton,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  PostForm
 } from "../src/components";
 import { Heading, InputField, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OpeningHours = (props) => (
   <FsaLayout {...props}>
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <BackButton {...props} />
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
@@ -168,7 +169,7 @@ const OpeningHours = (props) => (
         </ContentItem.B_20_20>
       ) : null}
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 

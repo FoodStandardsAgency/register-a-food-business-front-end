@@ -201,6 +201,39 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
         });
       });
     });
+    describe("When given valid submission data with extra whitespace on save adding new partner", () => {
+      let response;
+      beforeEach(async () => {
+        validate.mockImplementation(() => ({
+          errors: {}
+        }));
+
+        try {
+          response = await partnerDetailsSave(
+            currentPage,
+            { partners: ["partner one"] },
+            { partner_name: "  partner two  " },
+            council,
+            editMode
+          );
+        } catch (err) {
+          response = err;
+        }
+      });
+
+      it("Should set redirectRoute back to partner-name", () => {
+        expect(response.redirectRoute).toBe("/new/cardiff/partner-name");
+      });
+      it("Should return cumulativeFullAnswers including the previous answers and the new partner without additional whitespace", () => {
+        expect(response.cumulativeFullAnswers).toEqual({
+          partners: ["partner one", "partner two"]
+        });
+      });
+
+      it("Should return empty validatorErrors", () => {
+        expect(response.validatorErrors).toEqual({});
+      });
+    });
 
     describe("Given a service thrown an error", () => {
       let response;

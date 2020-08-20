@@ -5,7 +5,8 @@ import {
   ContinueButton,
   ContentItem,
   ProcessedErrorSummary,
-  OnHandleErrorClick
+  OnHandleErrorClick,
+  PostForm
 } from "../src/components";
 import ListItemConsistentSize from "../src/components/ListItemConsistentSize";
 import {
@@ -28,7 +29,7 @@ const OtherDaysIrregular = (props) => (
       Opening days
     </Heading>
 
-    <form action={props.formAction} method="post">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Paragraph mb={3}>
@@ -59,7 +60,7 @@ const OtherDaysIrregular = (props) => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
       <ContinueButton {...props} />
-    </form>
+    </PostForm>
   </FsaLayout>
 );
 
