@@ -61,7 +61,7 @@ steps:
       configMode: 'file'
       
   - task: SonarCloudAnalyze@1
-
+  
   - script: yarn --production
     displayName: Prune dev dependencies
 
