@@ -9,7 +9,7 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Heading, Radio, MultiChoice, HintText, Paragraph } from "govuk-react";
+import { Fieldset, Radio, MultiChoice, HintText, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const WaterSupply = (props) => (
@@ -19,63 +19,71 @@ const WaterSupply = (props) => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Heading as="h1" size="LARGE">
-      What type of water supply does this establishment use?
-    </Heading>
-    <HiddenTextAccessible summary={"What is an establishment?"}>
-      <Paragraph mb={0}>
-        An establishment is the location of your food business, and the food
-        activities taking place there. If it is a mobile food business, please
-        use the location where it is normally stored overnight.
-      </Paragraph>
-    </HiddenTextAccessible>
-    <ContentItem.B_30_15>
-      <HintText>
-        The water supply is where you get your tap water from. It has a private
-        water supply if it uses water that you take up from the ground by
-        yourself. For example from a well.
-      </HintText>
-    </ContentItem.B_30_15>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_45_30>
-        <MultiChoice
-          label=""
-          meta={{
-            touched: true,
-            error: props.validatorErrors.water_supply
-          }}
-        >
-          <Radio
-            name="water_supply"
-            value="Public"
-            id="water_supply_public"
-            defaultChecked={
-              props.cumulativeFullAnswers.water_supply === "Public"
-            }
+        <Fieldset>
+          <Fieldset.Legend
+            size="LARGE"
+            isPageHeading
+            style={{ "margin-bottom": "30px" }}
           >
-            Mains water supply (most common supply)
-          </Radio>
-          <Radio
-            name="water_supply"
-            value="Private"
-            id="water_supply_private"
-            defaultChecked={
-              props.cumulativeFullAnswers.water_supply === "Private"
-            }
+            What type of water supply does this establishment use?
+          </Fieldset.Legend>
+          <HiddenTextAccessible summary={"What is an establishment?"}>
+            <Paragraph mb={0}>
+              An establishment is the location of your food business, and the
+              food activities taking place there. If it is a mobile food
+              business, please use the location where it is normally stored
+              overnight.
+            </Paragraph>
+          </HiddenTextAccessible>
+          <ContentItem.B_30_15>
+            <HintText>
+              The water supply is where you get your tap water from. It has a
+              private water supply if it uses water that you take up from the
+              ground by yourself. For example from a well.
+            </HintText>
+          </ContentItem.B_30_15>
+          <MultiChoice
+            label=""
+            meta={{
+              touched: true,
+              error: props.validatorErrors.water_supply
+            }}
           >
-            Private water supply
-          </Radio>
-          <Radio
-            name="water_supply"
-            value="Public and private"
-            id="water_supply_public_and_private"
-            defaultChecked={
-              props.cumulativeFullAnswers.water_supply === "Public and private"
-            }
-          >
-            Both mains and private water supplies
-          </Radio>
-        </MultiChoice>
+            <Radio
+              name="water_supply"
+              value="Public"
+              id="water_supply_public"
+              defaultChecked={
+                props.cumulativeFullAnswers.water_supply === "Public"
+              }
+            >
+              Mains water supply (most common supply)
+            </Radio>
+            <Radio
+              name="water_supply"
+              value="Private"
+              id="water_supply_private"
+              defaultChecked={
+                props.cumulativeFullAnswers.water_supply === "Private"
+              }
+            >
+              Private water supply
+            </Radio>
+            <Radio
+              name="water_supply"
+              value="Public and private"
+              id="water_supply_public_and_private"
+              defaultChecked={
+                props.cumulativeFullAnswers.water_supply ===
+                "Public and private"
+              }
+            >
+              Both mains and private water supplies
+            </Radio>
+          </MultiChoice>
+        </Fieldset>
       </ContentItem.B_45_30>
       <ContentItem.B_30_15>
         <HiddenTextAccessible

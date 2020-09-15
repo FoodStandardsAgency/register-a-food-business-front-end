@@ -9,7 +9,7 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Heading, Radio, MultiChoice, Paragraph } from "govuk-react";
+import { Fieldset, Radio, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
 const OpeningDaysStart = (props) => (
@@ -19,51 +19,57 @@ const OpeningDaysStart = (props) => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Heading as="h1" size="LARGE">
-      What days will this establishment be open and producing or serving food?
-    </Heading>
-
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
-        <MultiChoice
-          label=""
-          meta={{
-            touched: true,
-            error: props.validatorErrors.opening_days_start
-          }}
-        >
-          <Radio
-            name="opening_days_start"
-            value="Every day"
-            id="opening_days_start_everyday"
-            defaultChecked={
-              props.cumulativeFullAnswers.opening_days_start === "Every day"
-            }
+        <Fieldset>
+          <Fieldset.Legend
+            size="LARGE"
+            isPageHeading
+            style={{ "margin-bottom": "30px" }}
           >
-            Every day
-          </Radio>
-          <Radio
-            name="opening_days_start"
-            value="Some days"
-            id="opening_days_start_some_days"
-            defaultChecked={
-              props.cumulativeFullAnswers.opening_days_start === "Some days"
-            }
+            What days will this establishment be open and producing or serving
+            food?
+          </Fieldset.Legend>
+          <MultiChoice
+            label=""
+            meta={{
+              touched: true,
+              error: props.validatorErrors.opening_days_start
+            }}
           >
-            Some days a week
-          </Radio>
-          <Radio
-            name="opening_days_start"
-            value="Irregular days"
-            id="opening_days_start_irregular_days"
-            defaultChecked={
-              props.cumulativeFullAnswers.opening_days_start ===
-              "Irregular days"
-            }
-          >
-            Irregular days or seasonal
-          </Radio>
-        </MultiChoice>
+            <Radio
+              name="opening_days_start"
+              value="Every day"
+              id="opening_days_start_everyday"
+              defaultChecked={
+                props.cumulativeFullAnswers.opening_days_start === "Every day"
+              }
+            >
+              Every day
+            </Radio>
+            <Radio
+              name="opening_days_start"
+              value="Some days"
+              id="opening_days_start_some_days"
+              defaultChecked={
+                props.cumulativeFullAnswers.opening_days_start === "Some days"
+              }
+            >
+              Some days a week
+            </Radio>
+            <Radio
+              name="opening_days_start"
+              value="Irregular days"
+              id="opening_days_start_irregular_days"
+              defaultChecked={
+                props.cumulativeFullAnswers.opening_days_start ===
+                "Irregular days"
+              }
+            >
+              Irregular days or seasonal
+            </Radio>
+          </MultiChoice>
+        </Fieldset>
       </ContentItem.B_30_15>
       <HiddenTextAccessible summary={"I don't know what days to select"}>
         <Paragraph mb={0}>
