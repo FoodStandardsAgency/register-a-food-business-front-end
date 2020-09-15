@@ -1,5 +1,5 @@
 import { css } from "@emotion/core";
-import { Paragraph } from "govuk-react";
+import { Label } from "govuk-react";
 import { SelectInput } from "@govuk-react/select";
 import distinctBusinessTypes from "./distinct-business-types.json";
 
@@ -11,8 +11,9 @@ const autocompleteErrorStyling = css`
   }
 `;
 
-const fullWidth = {
-  width: "100%"
+const style = {
+  width: "100%",
+  "margin-top": "20px"
 };
 
 const BusinessTypeOptions = () => {
@@ -29,20 +30,22 @@ const BusinessTypeOptions = () => {
 
 const SelectListSection = (props) => (
   <div id="selectListSection">
-    <Paragraph>
+    <Label style={{ "font-size": "17px", "padding-top": "0px" }}>
       Select the most fitting business type from the suggestions
-    </Paragraph>
-    <div aria-label="business type select, click and choose from dropdown">
-      <SelectInput
-        name="business_type"
-        style={fullWidth}
-        className={
-          props.validatorErrors.business_type ? autocompleteErrorStyling : null
-        }
-      >
-        <BusinessTypeOptions />
-      </SelectInput>
-    </div>
+      <div aria-label="business type select, click and choose from dropdown">
+        <SelectInput
+          name="business_type"
+          style={style}
+          className={
+            props.validatorErrors.business_type
+              ? autocompleteErrorStyling
+              : null
+          }
+        >
+          <BusinessTypeOptions />
+        </SelectInput>
+      </div>
+    </Label>
   </div>
 );
 
