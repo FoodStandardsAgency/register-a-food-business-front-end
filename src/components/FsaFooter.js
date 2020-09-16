@@ -104,6 +104,18 @@ const FsaFooter = () => (
                 Feedback
               </FooterLink>
             </FooterListItem>
+            <FooterListItem>
+              <FooterLink
+                id="feedbackFooter"
+                href="https://www.food.gov.uk/accessibility-rafb"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="accessibility statement (opens in a new window)"
+                style={{ color: "#454a4c" }}
+              >
+                Accessibility
+              </FooterLink>
+            </FooterListItem>
           </FooterUnorderedList>
         </FooterLinkContainer>
       </FooterContent>
