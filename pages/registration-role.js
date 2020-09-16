@@ -25,7 +25,7 @@ const RegistrationRole = (props) => (
           <Fieldset.Legend
             size="LARGE"
             isPageHeading
-            style={{ "margin-bottom": "30px" }}
+            style={{ marginBottom: "30px" }}
           >
             What is your role in this food business?
           </Fieldset.Legend>

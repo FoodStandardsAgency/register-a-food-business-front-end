@@ -25,7 +25,7 @@ const WaterSupply = (props) => (
           <Fieldset.Legend
             size="LARGE"
             isPageHeading
-            style={{ "margin-bottom": "30px" }}
+            style={{ marginBottom: "30px" }}
           >
             What type of water supply does this establishment use?
           </Fieldset.Legend>

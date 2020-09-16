@@ -26,7 +26,7 @@ const OperatorType = (props) => (
           <Fieldset.Legend
             size="LARGE"
             isPageHeading
-            style={{ "margin-bottom": "30px" }}
+            style={{ marginBottom: "30px" }}
           >
             Who operates this business?
           </Fieldset.Legend>

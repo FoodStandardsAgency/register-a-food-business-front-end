@@ -1,6 +1,6 @@
 import BusinessTypeLookup from "../components/BusinessTypeLookup";
 import SelectListSection from "../components/SelectListSection";
-import { Paragraph } from "govuk-react";
+import { Label } from "govuk-react";
 import { SelectInput } from "@govuk-react/select";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils"; // ES6
@@ -37,11 +37,15 @@ describe("given JavaScript is disabled", () => {
           );
         });
       });
-
-      it("should render Paragraph with appropriate text", () => {
-        expect(wrapper.find(Paragraph).text()).toEqual(
-          "Select the most fitting business type from the suggestions"
-        );
+      it("should render Label with appropriate text", () => {
+        expect(
+          wrapper
+            .find(Label)
+            .text()
+            .includes(
+              "Select the most fitting business type from the suggestions"
+            )
+        ).toBe(true);
       });
       it("should render SelectInput component", () => {
         expect(wrapper.find(SelectInput).prop("name")).toBe("business_type");

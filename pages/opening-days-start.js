@@ -25,7 +25,7 @@ const OpeningDaysStart = (props) => (
           <Fieldset.Legend
             size="LARGE"
             isPageHeading
-            style={{ "margin-bottom": "30px" }}
+            style={{ marginBottom: "30px" }}
           >
             What days will this establishment be open and producing or serving
             food?

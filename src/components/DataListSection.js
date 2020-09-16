@@ -12,7 +12,7 @@ const autocompleteErrorStyling = css`
 
 const style = {
   width: "100%",
-  "margin-top": "20px"
+  marginTop: "20px"
 };
 
 const BusinessTypeOptions = () => {
@@ -29,7 +29,7 @@ const BusinessTypeOptions = () => {
 
 const DataListSection = (props) => (
   <div id="dataListSection">
-    <Label style={{ "font-size": "17px", "padding-top": "0px" }}>
+    <Label style={{ fontSize: "17px", paddingTop: "0px" }}>
       Search and select the most fitting business type from the suggestions
       <div aria-label="business type autocomplete, type and then choose from results">
         <Input

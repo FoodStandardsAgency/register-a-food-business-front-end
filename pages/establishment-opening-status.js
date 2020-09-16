@@ -25,7 +25,7 @@ const EstablishmentOpeningStatus = (props) => (
           <Fieldset.Legend
             size="LARGE"
             isPageHeading
-            style={{ "margin-bottom": "30px" }}
+            style={{ marginBottom: "30px" }}
           >
             Is this establishment already trading?
           </Fieldset.Legend>
