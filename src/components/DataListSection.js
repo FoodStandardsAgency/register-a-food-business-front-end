@@ -29,7 +29,7 @@ const BusinessTypeOptions = () => {
 
 const DataListSection = (props) => (
   <div id="dataListSection">
-    <Label style={{ fontSize: "17px", paddingTop: "0px" }}>
+    <Label style={{ paddingTop: "0px" }}>
       Search and select the most fitting business type from the suggestions
       <div aria-label="business type autocomplete, type and then choose from results">
         <Input

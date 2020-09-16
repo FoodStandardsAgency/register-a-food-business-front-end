@@ -30,7 +30,7 @@ const BusinessTypeOptions = () => {
 
 const SelectListSection = (props) => (
   <div id="selectListSection">
-    <Label style={{ fontSize: "17px", paddingTop: "0px" }}>
+    <Label style={{ paddingTop: "0px" }}>
       Select the most fitting business type from the suggestions
       <div aria-label="business type select, click and choose from dropdown">
         <SelectInput
