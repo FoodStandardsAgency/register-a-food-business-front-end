@@ -9,7 +9,7 @@ import {
   PartnershipDescription,
   PostForm
 } from "../src/components";
-import { Heading, Radio, MultiChoice, HintText } from "govuk-react";
+import { Fieldset, Radio, MultiChoice, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 
 const PartnersList = (props) => {
@@ -41,27 +41,34 @@ const PrimaryPartner = (props) => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Heading as="h1" size="LARGE">
-      Who is the main point of contact?
-    </Heading>
-    <ContentItem.B_30_15>
-      <HintText>
-        Please select the partner who will be the main point of contact for this
-        business
-      </HintText>
-    </ContentItem.B_30_15>
-    <PartnershipDescription />
+
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_45_30>
-        <MultiChoice
-          label=""
-          meta={{
-            touched: true,
-            error: props.validatorErrors.partner_is_primary
-          }}
-        >
-          <PartnersList {...props} />
-        </MultiChoice>
+        <Fieldset>
+          <Fieldset.Legend
+            size="LARGE"
+            isPageHeading
+            style={{ marginBottom: "30px" }}
+          >
+            Who is the main point of contact?
+          </Fieldset.Legend>
+          <ContentItem.B_30_15>
+            <HintText>
+              Please select the partner who will be the main point of contact
+              for this business
+            </HintText>
+          </ContentItem.B_30_15>
+          <PartnershipDescription />
+          <MultiChoice
+            label=""
+            meta={{
+              touched: true,
+              error: props.validatorErrors.partner_is_primary
+            }}
+          >
+            <PartnersList {...props} />
+          </MultiChoice>
+        </Fieldset>
       </ContentItem.B_45_30>
 
       <ContinueButton {...props} />

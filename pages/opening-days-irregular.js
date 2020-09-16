@@ -32,20 +32,6 @@ const OtherDaysIrregular = (props) => (
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
-          <Paragraph mb={3}>
-            When will this establishment be open and serving or preparing food?
-          </Paragraph>
-          <HintText mb={3}>
-            For example
-            <UnorderedList>
-              <ListItemConsistentSize>
-                only serving food during December at Christmas markets
-              </ListItemConsistentSize>
-              <ListItemConsistentSize>
-                open at weekends in June and August between 10:00 and 19:00
-              </ListItemConsistentSize>
-            </UnorderedList>
-          </HintText>
           <TextArea
             input={{
               name: "opening_days_irregular",
@@ -56,7 +42,23 @@ const OtherDaysIrregular = (props) => (
               touched: true,
               error: props.validatorErrors.opening_days_irregular
             }}
-          />
+          >
+            <Paragraph mb={3}>
+              When will this establishment be open and serving or preparing
+              food?
+            </Paragraph>
+            <HintText mb={3}>
+              For example
+              <UnorderedList>
+                <ListItemConsistentSize>
+                  only serving food during December at Christmas markets
+                </ListItemConsistentSize>
+                <ListItemConsistentSize>
+                  open at weekends in June and August between 10:00 and 19:00
+                </ListItemConsistentSize>
+              </UnorderedList>
+            </HintText>
+          </TextArea>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
       <ContinueButton {...props} />

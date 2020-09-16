@@ -1,6 +1,6 @@
 import BusinessTypeLookup from "../components/BusinessTypeLookup";
 import DataListSection from "../components/DataListSection";
-import { Paragraph } from "govuk-react";
+import { Label } from "govuk-react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils"; // ES6
 
@@ -56,10 +56,15 @@ describe("given JavaScript is disabled", () => {
           );
         });
       });
-      it("should render Paragraph with appropriate text", () => {
-        expect(wrapper.find(Paragraph).text()).toEqual(
-          "Search and select the most fitting business type from the suggestions"
-        );
+      it("should render Label with appropriate text", () => {
+        expect(
+          wrapper
+            .find(Label)
+            .text()
+            .includes(
+              "Search and select the most fitting business type from the suggestions"
+            )
+        ).toBe(true);
       });
       it("should render DataList component", () => {
         expect(wrapper.exists("datalist#business-types")).toBe(true);

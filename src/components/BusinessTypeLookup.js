@@ -9,7 +9,13 @@ import {
   inputValueFunction,
   suggestionFunction
 } from "./BusinessTypeLookupFunctions";
-import { ErrorText, HintText, UnorderedList, Paragraph } from "govuk-react";
+import {
+  ErrorText,
+  HintText,
+  UnorderedList,
+  Paragraph,
+  Label
+} from "govuk-react";
 import ListItemConsistentSize from "./ListItemConsistentSize";
 
 // dynamic import used because Autocomplete component from AlphaGov uses the document object on import.
@@ -79,31 +85,34 @@ class BusinessTypeLookup extends React.Component {
                     </UnorderedList>
                   </HintText>
                 </ContentItem.B_30_15>
-                <div
-                  id="autocompleteContainer"
-                  className={
-                    props.validatorErrors.business_type
-                      ? autocompleteErrorStyling
-                      : null
-                  }
-                >
-                  {props.validatorErrors.business_type ? (
-                    <ErrorText style={lineHeight}>
-                      {props.validatorErrors.business_type}
-                    </ErrorText>
-                  ) : null}
-                  <div aria-label="business type autocomplete, type and then choose from results">
-                    <Autocomplete
-                      source={findMatches}
-                      templates={templates}
-                      autoselect={false}
-                      displayMenu="inline"
-                      confirmOnBlur={false}
-                      name="business_type"
-                      defaultValue={props.cumulativeFullAnswers.business_type}
-                    />
+                <Label>
+                  Select business type
+                  <div
+                    id="autocompleteContainer"
+                    className={
+                      props.validatorErrors.business_type
+                        ? autocompleteErrorStyling
+                        : null
+                    }
+                  >
+                    {props.validatorErrors.business_type ? (
+                      <ErrorText style={lineHeight}>
+                        {props.validatorErrors.business_type}
+                      </ErrorText>
+                    ) : null}
+                    <div aria-label="business type autocomplete, type and then choose from results">
+                      <Autocomplete
+                        source={findMatches}
+                        templates={templates}
+                        autoselect={false}
+                        displayMenu="inline"
+                        confirmOnBlur={false}
+                        name="business_type"
+                        defaultValue={props.cumulativeFullAnswers.business_type}
+                      />
+                    </div>
                   </div>
-                </div>
+                </Label>
               </div>
             ) : (
               <noscript id="jsDisabledSection">
