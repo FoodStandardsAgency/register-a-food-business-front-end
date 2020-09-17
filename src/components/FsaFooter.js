@@ -106,7 +106,7 @@ const FsaFooter = () => (
             </FooterListItem>
             <FooterListItem>
               <FooterLink
-                id="feedbackFooter"
+                id="accessibilityFooter"
                 href="https://www.food.gov.uk/accessibility-rafb"
                 target="_blank"
                 rel="noopener noreferrer"
