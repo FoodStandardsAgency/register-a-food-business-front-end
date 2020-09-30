@@ -1,5 +1,5 @@
 import { css } from "@emotion/core";
-import { Input, Paragraph } from "govuk-react";
+import { Input, Label } from "govuk-react";
 import distinctBusinessTypes from "./distinct-business-types.json";
 
 const autocompleteErrorStyling = css`
@@ -10,8 +10,9 @@ const autocompleteErrorStyling = css`
   }
 `;
 
-const fullWidth = {
-  width: "100%"
+const style = {
+  width: "100%",
+  marginTop: "20px"
 };
 
 const BusinessTypeOptions = () => {
@@ -28,22 +29,24 @@ const BusinessTypeOptions = () => {
 
 const DataListSection = (props) => (
   <div id="dataListSection">
-    <Paragraph>
+    <Label style={{ paddingTop: "0px" }}>
       Search and select the most fitting business type from the suggestions
-    </Paragraph>
-    <div aria-label="business type autocomplete, type and then choose from results">
-      <Input
-        name="business_type"
-        className={
-          props.validatorErrors.business_type ? autocompleteErrorStyling : null
-        }
-        style={fullWidth}
-        list="business-types"
-      />
-      <datalist id="business-types">
-        <BusinessTypeOptions />
-      </datalist>
-    </div>
+      <div aria-label="business type autocomplete, type and then choose from results">
+        <Input
+          name="business_type"
+          className={
+            props.validatorErrors.business_type
+              ? autocompleteErrorStyling
+              : null
+          }
+          style={style}
+          list="business-types"
+        />
+        <datalist id="business-types">
+          <BusinessTypeOptions />
+        </datalist>
+      </div>
+    </Label>
   </div>
 );
 
