@@ -36,6 +36,10 @@ const cleanInactivePathAnswers = (cumulativeFullAnswers, path) => {
     // if that page is off in the given path, delete the answer
     if (path[pageOfAnswer] && path[pageOfAnswer].on === false) {
       delete cleanedAnswers[answer];
+      logEmitter.emit(
+        "info",
+        `session-management.service: cleanInactivePathAnswers: deleted answer '${answer}'`
+      );
     }
   }
 
@@ -74,6 +78,10 @@ const cleanEmptiedAnswers = (
       newAnswersArray.indexOf(schemaDefinedAnswer) === -1
     ) {
       delete cleanedAnswers[schemaDefinedAnswer];
+      logEmitter.emit(
+        "info",
+        `session-management.service: cleanEmptiedAnswers: deleted answer '${schemaDefinedAnswer}'`
+      );
     }
   }
 
@@ -122,6 +130,10 @@ const cleanSwitches = (cumulativeFullAnswers, switches) => {
 
       if (operatorEstablishmentDetailsAreDifferent) {
         cleanedSwitches.reuseOperatorContactDetails = false;
+        logEmitter.emit(
+          "info",
+          "session-management.service: cleanSwitches: reset switch 'reuseOperatorContactDetails'"
+        );
       }
     }
   }
