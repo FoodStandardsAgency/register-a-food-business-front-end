@@ -309,6 +309,12 @@ const switchOffCompanyAndCharityDetails = (newAnswers, newPath) => {
     companyAndCharitySwitchedPath["/operator-charity-details"].on = false;
     companyAndCharitySwitchedPath["/operator-company-details"].on = false;
   }
+
+  logEmitter.emit(
+    "functionSuccess",
+    "path.service",
+    "switchOffCompanyAndCharityDetails"
+  );
   return companyAndCharitySwitchedPath;
 };
 
