@@ -8,6 +8,8 @@ import {
   OnHandleErrorClick,
   PostForm
 } from "../src/components";
+//import Enums from "../src/enums";
+import { RegistrationRoleEnum } from "../src/enums";
 import { Radio, MultiChoice, Fieldset } from "govuk-react";
 import PropTypes from "prop-types";
 
@@ -38,31 +40,33 @@ const RegistrationRole = (props) => (
           >
             <Radio
               name="registration_role"
-              value="Sole trader"
+              value={RegistrationRoleEnum.SOLETRADER.key}
               id="registration_role_sole_trader"
               defaultChecked={
-                props.cumulativeFullAnswers.registration_role === "Sole trader"
+                props.cumulativeFullAnswers.registration_role ===
+                RegistrationRoleEnum.SOLETRADER.key
               }
             >
               I operate it as a sole trader
             </Radio>
             <Radio
               name="registration_role"
-              value="Partnership"
+              value={RegistrationRoleEnum.PARTNERSHIP.key}
               id="registration_role_partnership"
               defaultChecked={
-                props.cumulativeFullAnswers.registration_role === "Partnership"
+                props.cumulativeFullAnswers.registration_role ===
+                RegistrationRoleEnum.PARTNERSHIP.key
               }
             >
               I operate it in a partnership
             </Radio>
             <Radio
               name="registration_role"
-              value="Representative"
+              value={RegistrationRoleEnum.REPRESENTATIVE.key}
               id="registration_role_representative"
               defaultChecked={
                 props.cumulativeFullAnswers.registration_role ===
-                "Representative"
+                RegistrationRoleEnum.REPRESENTATIVE.key
               }
             >
               I represent a person, charity, limited company (Ltd), organisation

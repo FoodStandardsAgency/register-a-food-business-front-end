@@ -2,6 +2,7 @@ import React from "react";
 import { ContentItem } from "../../src/components";
 import { HintText } from "govuk-react";
 import { PartnershipDescription, OperatorDescription } from "./";
+import { RegistrationRoleEnum } from "../enums";
 
 const PartnershipHintText = () => (
   <ContentItem.B_30_15>
@@ -12,7 +13,7 @@ const PartnershipHintText = () => (
 );
 
 const ContactDetailsHelp = (props) => {
-  return props.role === "Partnership" ? (
+  return props.role === RegistrationRoleEnum.PARTNERSHIP.key ? (
     <React.Fragment>
       <PartnershipHintText />
       <PartnershipDescription />

@@ -9,8 +9,11 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
+import { OperatorTypeEnum } from "../src/enums";
 import { Radio, MultiChoice, Paragraph, Fieldset } from "govuk-react";
 import PropTypes from "prop-types";
+
+console.log(OperatorTypeEnum);
 
 const OperatorType = (props) => (
   <FsaLayout {...props}>
@@ -46,30 +49,33 @@ const OperatorType = (props) => (
           >
             <Radio
               name="operator_type"
-              value="A person"
+              value={OperatorTypeEnum.PERSON.key}
               id="operator_type_person"
               defaultChecked={
-                props.cumulativeFullAnswers.operator_type === "A person"
+                props.cumulativeFullAnswers.operator_type ===
+                OperatorTypeEnum.PERSON.key
               }
             >
               The food business is owned or operated by a person
             </Radio>
             <Radio
               name="operator_type"
-              value="A company"
+              value={OperatorTypeEnum.COMPANY.key}
               id="operator_type_company"
               defaultChecked={
-                props.cumulativeFullAnswers.operator_type === "A company"
+                props.cumulativeFullAnswers.operator_type ===
+                OperatorTypeEnum.COMPANY.key
               }
             >
               The food business is owned or operated by a limited company
             </Radio>
             <Radio
               name="operator_type"
-              value="A charity"
+              value={OperatorTypeEnum.CHARITY.key}
               id="operator_type_charity"
               defaultChecked={
-                props.cumulativeFullAnswers.operator_type === "A charity"
+                props.cumulativeFullAnswers.operator_type ===
+                OperatorTypeEnum.CHARITY.key
               }
             >
               The food business is owned or operated by a charity, organisation

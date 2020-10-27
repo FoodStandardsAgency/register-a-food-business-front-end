@@ -9,6 +9,7 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
+import { RegistrationRoleEnum } from "../src/enums";
 import { Heading, InputField, Paragraph, Button } from "govuk-react";
 import PropTypes from "prop-types";
 
@@ -37,7 +38,8 @@ const EstablishmentContactDetails = (props) => (
           id="reuseButton"
         >
           {`Re-use ${
-            props.cumulativeFullAnswers.registration_role === "Partnership"
+            props.cumulativeFullAnswers.registration_role ===
+            RegistrationRoleEnum.PARTNERSHIP.key
               ? "partnership"
               : "operator"
           } contact details`}

@@ -4,6 +4,7 @@
  */
 
 const { logEmitter } = require("./logging.service");
+const { RegistrationRoleEnum } = require("../../enums");
 
 const trimAnswers = (cumulativeFullAnswers) => {
   const trimmedAnswers = JSON.parse(JSON.stringify(cumulativeFullAnswers));
@@ -635,9 +636,12 @@ const combineOperatorTypes = (operator_type, registration_role) => {
   let newOperatorType;
 
   if (registration_role) {
-    if (registration_role === "Representative" && operator_type) {
-      newOperatorType = `${operator_type} (registered by a representative)`;
-    } else if (registration_role !== "Representative") {
+    if (
+      registration_role === RegistrationRoleEnum.REPRESENTATIVE.key &&
+      operator_type
+    ) {
+      newOperatorType = operator_type;
+    } else if (registration_role !== RegistrationRoleEnum.REPRESENTATIVE.key) {
       newOperatorType = registration_role;
     } else {
       throw new Error(`

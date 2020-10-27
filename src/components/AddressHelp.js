@@ -2,9 +2,10 @@ import React from "react";
 import { ContentItem } from "../../src/components";
 import { Heading, HintText } from "govuk-react";
 import { PartnershipDescription, OperatorDescription } from "./";
+import { RegistrationRoleEnum } from "../enums";
 
 const AddressHelp = (props) => {
-  return props.role === "Partnership" ? (
+  return props.role === RegistrationRoleEnum.PARTNERSHIP.key ? (
     <React.Fragment>
       <Heading as="h1" size="LARGE">
         What is the partnership contact's address?

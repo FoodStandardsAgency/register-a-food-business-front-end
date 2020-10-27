@@ -4,6 +4,7 @@
  */
 
 const { logEmitter } = require("./logging.service");
+const { RegistrationRoleEnum } = require("../../enums");
 
 /**
  * Creates a version of the path object with the correct pages enabled, based on the user's cumulative answers.
@@ -304,7 +305,7 @@ const switchOffCompanyAndCharityDetails = (newAnswers, newPath) => {
 
   if (
     newAnswers.registration_role &&
-    newAnswers.registration_role !== "Representative"
+    newAnswers.registration_role !== RegistrationRoleEnum.REPRESENTATIVE.key
   ) {
     companyAndCharitySwitchedPath["/operator-charity-details"].on = false;
     companyAndCharitySwitchedPath["/operator-company-details"].on = false;
