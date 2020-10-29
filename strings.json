@@ -1,0 +1,606 @@
+{
+    "pages" : {
+            "error" :[
+                {
+                    "BackLink": "Back to start",
+                    "Heading": "Page Not Found",
+                    "Paragraph 1":"Please contact your Local Council if you need to speak to someone about your food business registration urgently.",
+                    "Button": "Return to previous page"
+                }],
+            "404" :[
+                {
+                    "BackLink": "Back to start",
+                    "Heading": "Page Not Found",
+                    "Paragraph": "Please contact your Local Council if you need to speak to someone about your food business registration urgently."
+                }],
+            "business-import-export":[
+                {
+                    "Heading": "Will this food business import or export any food from outside the UK?",
+                    "HintText": "This does not include any food imported or exported by other food businesses.",
+                    "Paragraph": "Select all that apply",
+                    "Checkbox": "Directly import food",
+                    "Checkbox 2":"Directly export food",
+                    "Checkbox 3":"No import or export activities",
+                    "HiddenTextAccessible": "More information about import and export activities",
+                    "span" : "If a food business is directly importing or exporting food outside of the UK, there are some extra requirements for the business to follow.",
+                    "br" : "Find out more by visiting the...",
+                    "a": "Food Standards Agency website (opens in new window)"
+                
+                }],
+            "business-other-details":[
+                {
+                    "Heading": "Other details",
+                    "Text area": "Is there anything else you need to tell us about this establishment? (optional)"
+                }],
+            "business-type":[
+                {
+                    "Field set": "What kind of food business are you registering?"
+                }],
+            "business-water-supply":[
+                {
+                    "FieldeSTeLegend": "What type of water supply does this establishment use?",
+                    "HiddenTextAccessible":"What is an establishment?",
+                    "Paragraph": "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.",
+                    "HintText": "The water supply is where you get your tap water from. It has a private water supply if it uses water that you take up from the ground by yourself. For example from a well.",
+                    "Radio": "Mains water supply (most common supply)",
+                    "Radio 2": "Private water supply",
+                    "Radio 3": "Both mains and private water supplies",
+                    "Summary": "I don't know if I have a private water supply",
+                    "Span": "If you are not registered with a water supply company or paying a bill for water, this is an indication that your water supply could be private."               
+                }],
+            "contact-representative":[
+                {
+                    "Heading": "Operator contact details",
+                    "Paragraph": "Please give us the details of the person at this company or charity we should speak to about food hygiene and safety.",
+                    "SUmmary": "What is a food business operator?",
+                    "Paragraph 2": "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.",
+                    "Header": "Name of contact",
+                    "Header 2": "Role (optional)",
+                    "Header 3": "Phone number",
+                    "hint": "We will use your email to keep you informed of any policy or legal changes that could affect your food business.",
+                    "Header 4": "Email address"
+                }],
+            "customer-type":[
+                {
+                    "Heading": "Who will this establishment supply food to?",
+                    "Paragraph": "Select all that apply",
+                    "Checkbox": "It will supply food to other businesses to process, sell or serve",
+                    "CHeckbox": "It will supply food directly to end consumers"
+
+                }],
+            "declration":[
+                {
+                    "Heading": "Declaration",
+                    "Paragraph": "Review these statements and tick all three boxes to agree.",
+                    "declaration 1 value": "I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief.",
+                    "checkbox 1": "I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief.",
+                    "declaration 2 value": "I, or the operator, will notify my local authority of any significant changes to the business activity, including closure, within 28 days of the change happening.",
+                    "checkbox 2":"The operator will notify their local council of any significant changes to the business activity, including closure, within 28 days of the change happening.",
+                    "declaration 3 value":"I, or the operator, understands the operator is legally responsible for the safety and authenticity of the food being produced or served at this establishment.",
+                    "checkbox 3": "The operator understands they are legally responsible for the safety and authenticity of the food being produced or served at this establishment.",
+                    "Heading 2": "Feedback",
+                    "Paragraph 2": "Congratulations, you've almost finished. We want to provide you with the best experience possible and value your feedback.",
+                    "feedback 1 value": "I agree to be contacted to provide feedback to help develop this service",
+                    "checkbox 4": "I agree to be contacted to provide feedback to help develop this service (optional)",
+                    "Paragraph 3": "See [here](/pdfs/feedback) for details on how we will use your data."
+
+                }],
+            "establishment-address-manual":[
+                {
+                    "Heading": "What is the establishment's address?",
+                    "summary": "What is an establishment?",
+                    "Paragraph":"An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.",
+                    "ErrorText":"No addresses found for the postcode .... Please enter your address manually or go back to try a different postcode.",
+                    "InputFIeld": "Address line 1",
+                    "InputField 2": "Address line 2 (optional)",
+                    "InputField 3": "Address line 3 (optional)",
+                    "InputField 4": "Town or city",
+                    "InputField 5": "Postcode"
+                }],
+            "establishment-address-select":[
+                {
+                    "Heading" : "What is the establishment's address?",
+                    "summary" : "What is an establishment?",
+                    "Paragraph": "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.",
+                    "Heading 2": "Postcode",
+                    "Link": "Change postcode",
+                    "Label": "Select an address for ...",
+                    "option": "No addresses found",
+                    "Link 2": "I can't find my address in the list"
+                }],
+            "establishment-address-type":[
+                {
+                    "Fieldset-Legend": "Where is this establishment located?",
+                    "summary": "What is an establishment?",
+                    "Paragraoh": "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.",
+                    "Radio value": "Mobile or moveable premises",
+                    "Radio header": "In a mobile or moveable premises",
+                    "Radio value 1": "Home or domestic premises",
+                    "Radio header 2": "In a home or domestic premises",
+                    "Radio value 2": "Place of business or commercial premises",
+                    "Radio header 3": "In a commercial or public premises" 
+                }],
+            "establishment address":[
+                {
+                    "Heading": "Establishment address",
+                    "Paragraph": "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.",
+                    "InputField": "Postcode"
+                }],
+            "establishment-contact-details":[
+                {
+                    "Heading":"Establishment contact details",
+                    "summary":"What is an establishment?",
+                    "Paragraph": "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.",
+                    "InputField 1": "Main phone number",
+                    "InputField 2": "Secondary phone number (optional)",
+                    "hint": "We will use your email to keep you informed of any policy or legal changes that could affect your food business.",
+                    "InputField 3": "Email address"
+                }],
+            "establishment-opening-status":[
+                {
+                    "Fieldset Legend": "Is this establishment already trading?",
+                    "HintText": "It is trading if it is already producing or serving food, or if the new operator has already taken control",
+                    "summary": "What is an establishment?",
+                    "Paragraph": "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.",
+                    "Radio value": "Establishment is already trading",
+                    "Radio": "Yes, it is already trading",
+                    "Radio 2 value": "Establishment is not trading yet",
+                    "Radio 2": "No, it is not trading yet"
+                }],
+            "establishment-trading-name":[
+                {
+                    "Heading": "Trading name",
+                    "summary": "What is an establishment?",
+                    "Paragraph":"An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.",
+                    "hint": "A trading name is what your customers will call your business.",
+                    "InputField": "What is the trading name of this establishment?"
+                }],
+            "index":[
+                {
+                    "Heading": "Register a food business",
+                    "Paragraph": "When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least **28 days** before trading or before food operations start.",
+                    "InsetText": "During this registration, you may come across a few specialist terms, which we have described below:",
+                    "Heading 2": "Food business operator",
+                    "Paragraph 1": "The operator is the person, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.",
+                    "Heading 3": "Establishment",
+                    "Paragraph 2": "The establishment is the location or site of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.",
+                    "Heading 4": "Registering Local Authority",
+                    "Paragraph 3": "... is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this [Food Business Registration](https://www.gov.uk/food-business-registration) link to check using the location or site of your food business."
+                }],
+            "internal-server-error":[
+                {
+                    "BackLink": "Back to start",
+                    "Heading": "This service is currently unavailable",
+                    "Paragraph": "Sorry about that, we seem to be experiencing some difficulties.",
+                    "Paragraph 2": "Please try again later",
+                    "Button": "Return to food.gov.uk"
+                }],
+            "main-partnership-contact":[
+                {
+                    "Fieldset Legend": "Who is the main point of contact?",
+                    "HintText": "Please select the partner who will be the main point of contact for this business"
+                }],
+            "opening-days-irregular":[
+                {
+                    "Heading": "Opening days",
+                    "Paragraph": "When will this establishment be open and serving or preparing food?",
+                    "HintText": "For example",
+                    "HintText 2": "only serving food during December at Christmas markets",
+                    "HintText 3": "open at weekends in June and August between 10:00 and 19:00"
+                }],
+            "opening-days-some":[
+                {
+                    "Heading": "Opening days",
+                    "Paragraph": "What days will this establishment be producing or serving food?",
+                    "Paragraph 2": "Select all that apply",
+                    "Checkbox 1": "Monday",
+                    "Checkbox 2": "Tuesday",
+                    "Checkbox 3": "Wednesday",
+                    "Checkbox 4": "Thursday",
+                    "Checkbox 5": "Friday",
+                    "Checkbox 6": "Saturday",
+                    "Checkbox 7": "SUnday"
+                }],
+            "opening-days-start":[
+                {
+                    "Fieldset Legend": "What days will this establishment be open and producing or serving food?",
+                    "value": "Every day",
+                    "Radio": "Every day",
+                    "value 2": "Some days",
+                    "Radio 2": "Some days a week",
+                    "value 3": "Irregular days",
+                    "Radio 3": "Irregular days or seasonal",
+                    "summary": "I don't know what days to select",
+                    "paragraph": "The food business will have irregular opening days if it isn't open the same days every week. This could include seasonal establishments such as summer ice-cream vendors. It can also include establishments which only open for events such as football matches."
+                }],
+            "opening hours": [
+                {
+                    "Heading": "Opening hours",
+                    "HintText": "Fill in the expected opening times for this establishment using 24 hour clocks. For example, 09:30 to 19:00.",
+                    "Heading 1": "Monday",
+                    "Heading 2": "Tuesday",
+                    "Heading 3": "Wednesday",
+                    "Heading 4": "Thursday",
+                    "Heading 5": "Friday",
+                    "Heading 6": "Saturday",
+                    "Heading 7": "SUnday"
+                
+                }],
+            "operator-address-manual":[
+                {
+                    "ErrorText": "No addresses found for the postcode ... Please enter your address manually or go back to try a different postcode.",
+                    "InputField 1": "Address line 1",
+                    "InputField 2": "Address line 2 (optional)",
+                    "InputField 3": "Address line 3 (optional)",
+                    "InputField 4": "Town or city",
+                    "InputField 5": "POstcode"
+                }],
+            "operator-address-select":[
+                {
+                    "Heading": "Postcode",
+                    "Link 1": "Change postcode",
+                    "label": "Select an address for",
+                    "option": "No addresses found",
+                    "Link 2": "I can't find my address in the list"
+                }],
+            "operator-address":[
+                {
+                    "InputFIeld": "Postcode"
+                }],
+            "operator-charity-details":[
+                {
+                    "Heading": "Details of the operating charity, organisation or trust",
+                    "summary 1": "What is a food business operator?",
+                    "Paragraph": "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.",
+                    "inputField 1": "Charity, organisation or trust name",
+                    "InputField 2": "Charity reference number (optional)",
+                    "summary 2": "Questions about charity reference numbers",
+                    "span": "Charities that are registered with the Charities Commission will have a charity reference number. You can find your charity reference number by visiting the...",
+                    "span header":"Charity Commission website (opens in new window)"
+                }],
+            "operator-company-details":[
+                {
+                    "Heading 1": "Company details",
+                    "hint 1": "The name of the registered company that is acting as the operator of this food business.",
+                    "Heading 2": "Registered company name",
+                    "hint 2": "Every registered company will have a Companies House reference number.",
+                    "Heading 3": "Companies House number",
+                    "summary": "I don't know my Companies House number",
+                    "span": "Every limited company has to be registered with Companies House, and will have a company reference number. You can find your company reference number by visiting the",
+                    "span header":"Companies House website (opens in new window)"
+                }],
+            "operator-contact-details":[
+                {
+                    "InputField 1": "Main phone number",
+                    "InputField 2": "Secondary phone number (optional)",
+                    "hint 1": "We will use your email to keep you informed of any policy or legal changes that could affect your food business.",
+                    "hint header": "Email address"
+                }],
+            "operator-name":[
+                {
+                    "Heading": "What is the operator's name?",
+                    "summary": "What is a food business operator?",
+                    "Text 1": "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.",
+                    "Input 1 header": "First and middle names",
+                    "Input 2 header": "Last name"
+                }],
+            "operator-type":[
+                {
+                    "Fieldset Legend": "Who operates this business?",
+                    "summary": "What is a food business operator?",
+                    "Paragraph": "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.",
+                    "Radio value": "A person",
+                    "Radio 1": "The food business is owned or operated by a person",
+                    "Radio 1 value": "A company",
+                    "Radio 2": "The food business is owned or operated by a limited company",
+                    "Radio 2 value": "A charity",
+                    "Radio 3": "The food business is owned or operated by a charity, organisation or trust"
+                }],
+            "partner-details":[
+                {
+                    "Heading": "partner's name",
+                    "InputField 1": "Full name",
+                    "Button": "partner",
+                    "Button 2": "Cancel"
+                }],
+            "partner-name":[
+                {
+                    "Button": "Add partner",
+                    "Heading": "What are the partners' names?",
+                    "HintText": "Please advise your local authority directly if more than 5 partners are responsible for this food business"
+                }],
+            "registration-role":[
+                {
+                    "Fieldset": "What is your role in this food business?",
+                    "Radio 1 value": "Sole trader",
+                    "Radio 1 header": "I operate it as a sole trader",
+                    "Radio 2 value": "Partnership",
+                    "Radio 2 header": "I operate it in a partnership",
+                    "Radio 3 value": "Representative",
+                    "Radio 3 header": "I represent a person, charity, limited company (Ltd), organisation or trust that operates it"
+                }],
+            "registration-summary":[
+                {
+                    "Heading": "Check your answers",
+                    "HintText": "You must check your answers before you continue"
+                }],
+            "summary-confirmation":[
+                {
+                    "Heading": "Submission complete",
+                    "Paragraph": "Thank you for submitting your food business registration.",
+                    "FsaPanel 1": "Your unique food business registration application reference is",
+                    "FsaPanel Title": "Registration submitted",
+                    "FsaPanel Body": "Awaiting registration application reference",
+                    "Paragraph 2": "Please keep note of this registration application reference for your records.",
+                    "Heading 2": "Submitted on",
+                    "Heading 3": "Your registration has been sent to:",
+                    "HintText": "Responsible local council for food hygiene",
+                    "HintText 2": "Responsible local council for food standards",
+                    "Paragraph 3": "A copy of this registration has been sent to...",
+                    "Heading 4": "What's next?",
+                    "Paragraph 4": "**You may receive an unannounced food inspection from your local council soon after you start trading.**",
+                    "Paragraph 5": "The council may contact you before the inspection to discuss how your business operates or to offer advice. Meanwhile, there are some things you can do to help prepare for the opening of your business.",
+                    "Heading 5": "Find out here what you can do to prepare:",
+                    "HintText 3": "All links open in a new window",
+                    "Heading 6": "English",
+                    "Link": "Guidance on food hygiene and how to run a safe food business",
+                    "Link 2": "How to achieve a high food hygiene rating (FHRS score)",
+                    "Link 3": "Safe catering",
+                    "Link 4": "Information on the food safety management system safer food, better business",
+                    "Link 5": "Food labelling and allergens guidance",
+                    "Link 6": "Business support",
+                    "Link 7": "Business support & helpline",
+                    "Content Item": "or contact the Business Support Helpline on 0300 456 3565",
+                    "Heading7": "Cymru",
+                    "Link 8": "I gael cyngor cyffredinol ar hylendid bwyd a sut i redeg busnes bwyd diogel",
+                    "Link 9": "I gael gwybodaeth am sut i gael sg�r uchel o dan y Cynllun Sgorio Hylendid Bwyd",
+                    "Link 10": "I gael gwybodaeth am y system rheoli diogelwch bwyd, Bwyd mwy Diogel, Busnes Gwell",
+                    "Link 11": "I gael canllawiau ar labelu bwyd ac alergenau",
+                    "Link 12": "I gael cyngor busnes cyffredinol",
+                    "Heading 8": "Your registration details:"
+                }]
+            },
+    "Components" : {
+            "AddressHelp":[
+                {
+                    "Heading": "What is the partnership contact's address?",
+                    "HintText": "Partnership address is the contact address for the partner who is the main point of contact.",
+                    "Heading 2": "What is the operator's address?",
+                    "HintText 2": "Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company."
+                }],
+            "BackButton":[
+                {
+                    "BackLink": "Back",
+                    "BackLink 2": "Back"
+                }],
+            "BrowserUnsupportedBanner":[
+                {
+                    "Warning text": "Your web browser�... is out of date.�You may not be able to complete the registration. Update your browser for more security, speed and the best experience on this site."
+                }],
+            "BUsinessTypeLookup": [
+                {
+                    "Paragraph": "Search with your own keywords and then select the most fitting business type from the suggestions",
+                    "HintText": "'For example' 'cafe' 'food delivery service' 'commercial bakery' 'meat product manufacture'",
+                    "Label": "Select business type",
+                    "aria-Label":"business type autocomplete, type and then choose from results"
+                }],
+            "ContactDetailsHelp": [
+                {
+                    "HintText": "Contact details for the main point of contact for this business"
+                }],
+            "ContinueButton": [
+                {
+                    "props type 1": "Begin registration",
+                    "Props type 2": "Submit",
+                    "Props type 3": "Save amd continue",
+                    "Props type 4": "Continue"
+                }],
+            "CookieBanner": [
+                {
+                    "Banner paragraph": "Register a food business uses a cookie to create the registration. We also use optional cookies to analyse how the service is performing. We do not share any information with advertisers or social media platforms. We do not store any information about you in the cookie.",
+                    "aria-label": "find out more about cookies (opens in new window)",
+                    "BannerLink": "Find out more about cookies",
+                    "BannerLink 2": "Read our cookie policy",
+                    "Reject Banner": "I do not accept optional cookies",
+                    "Cookie Banner": "I accept cookies"
+                }],
+            "DataListSection": [
+                {
+                    "Label": "Search and select the most fitting business type from the suggestions",
+                    "aria-label":"business type autocomplete, type and then choose from results"
+                }],
+            "FindAddressButton": [
+                {
+                    "Label": "Find address"
+                }],
+            "FsaFooter": [
+                {
+                    "aria-label 1": "cookie policy (opens in a new window)",
+                    "Footerheader 1": "Cookies",
+                    "aria-label 2": "privacy policy (opens in a new window)",
+                    "Footerheader 2": "Privacy",
+                    "aria-label 3": "give us feedback on the service (opens in a new window)",
+                    "Footerheader 3": "Feedback",
+                    "aria0label 4": "accessibility statement (opens in a new window)",
+                    "Footerheader 4": "Accessibility"
+                }],
+            "FsaHeader": [
+                {
+                    "aria-label": "food.gov.uk website (opens in new window)",
+                    "Anchor Tag": "Register a Food Business",
+                    "aria-label 2": "cookie banner",
+                    "Anchor Tag 2": "This is a new service... ",
+                    "aria-label 3": "your feedback (opens in new window)",
+                    "Anchor tag 3": "your feedback",
+                    "Phase Banner": "will help us improve it"
+                }],
+            "HiddenTextAccessible": [
+                {
+                    "aria-label": "Additional information"
+                }],
+            "OpeningDate": [
+                {
+                    "Heading": "Trading date",
+                    "HIntText": "Establishments begin trading when they first start serving or manufacturing food for customers.",
+                    "summary": "What is an establishment?",
+                    "Paragraph": "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.",
+                    "inputNames": "'day' 'month' 'year'",
+                    "HintText": "For example",
+                    "className": "When is this establishment expected to begin trading?",
+                    "summary 2": "I don't know when this establishment will begin trading",
+                    "Paragraph 2": "Food businesses are required to register at least 28 days before they begin trading. If you are not sure when this business will open, it may be too early to register. You can also use an estimated date.",
+                    "inputNames 2": "'day' 'month' 'year'",
+                    "HintText 2": "For example",
+                    "ClassName": "What date did this establishment begin trading?",
+                    "summary 3": "I don't know when this establishment began trading",
+                    "Paragraph 3": "Trading begins the day your business started to serve or make food. Alternatively, it can be the day you took over the business as an operator. If you do not remember the exact date, use an estimated date."
+                }],
+            "OperatorDescription": [
+                {
+                    "summary": "What is a food business operator?",
+                    "Paragraph": "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
+                }],
+            "PageTitles": [
+                {
+                    "business-import-export": "Import/Export",
+                    "business-other-details": "Other Details",
+                    "business-type": "Business Type",
+                    "business-water-supply": "Water Supply",
+                    "contact-representative": "Contact Details",
+                    "customer-type": "Type of Customer",
+                    "declaration": "Declaration",
+                    "establishment-address": "Establishment Address",
+                    "establishment-address-manual": "Establishment Address",
+                    "establishment-address-select": "Establishment Address",
+                    "establishment-address-type": "Establishment Address Type",
+                    "establishment-contact-details": "Establishment Contact Details",
+                    "establishment-opening-date-proactive": "Opening Date",
+                    "establishment-opening-date-retroactive": "Opening Date",
+                    "establishment-opening-status": "Opening Status",
+                    "establishment-trading-name": "Trading Name",
+                    "main-partnership-contact": "Point of Contact",
+                    "opening-days-irregular": "Opening Days",
+                    "opening-days-some": "Opening Days",
+                    "opening-days-start": "Opening Days",
+                    "opening-hours": "Opening Hours",
+                    "operator-address": "Operator Address",
+                    "operator-address-manual": "Operator Address",
+                    "operator-address-select": "Operator Address",
+                    "operator-charity-details": "Details",
+                    "operator-company-details": "Company Details",
+                    "operator-contact-details": "Operator Contact Details",
+                    "operator-name": "Operator Name",
+                    "operator-type": "Operator Type",
+                    "partner-details": "Partner Details",
+                    "partner-name": "Partners",
+                    "registration-role": "Your Role",
+                    "registration-summary": "Registration Summary",
+                    "summary-confirmation": "Confirmation",
+                    "defaultPageTitle": "Register a Food Business"
+                }],
+            "PartnershipDescription": [
+                {
+                    "summary": "What is a partnership?",
+                    "Paragraph": "In a partnership, you and your partner (or partners) personally share responsibility for your food business"
+                }],
+            "Partners Table": [
+                {
+                    "ColumnHeaders": "'Partner name' 'Edit' 'Remove'",
+                    "aria-label": "Change partner name",
+                    "Link": "Change",
+                    "Button": "Delete partner",
+                    "caption": "Partners"
+
+                }],
+            "ProcessedErrorSummary": [
+                {
+                    "Heading": "There is a problem"
+                }],
+            "SelectListSection": [
+                {
+                    "Label": "Select the most fitting business type from the suggestions",
+                    "aria-label": "business type select, click and choose from dropdown"
+                }],
+            "SubmissionErrorSUmmary": [
+                {
+                    "heading": "There was a problem submitting the registration"
+                }],
+            "SummaryTable": [
+                {
+                    "ColumnHeaders": "'The question' 'Your answer' 'Change your answer'",
+                    "RowHeaders": "'Operator type' 'Company name' 'Companies House number' 'Charity name' 'Charity number' 'Name'",
+                    "aria labels":"'Change operator type' 'Change operator company name' 'Change operator companies house' 'Change operator charity name' 'Change operator charity number' 'Change operator name' 'Change operator address'",
+                    "Props": "'Partnership' 'Partnership contact address' 'Operator address'",
+                    "RowHeaders 2":"'Phone number' 'Email address' 'Main partnership contact' 'Partners' 'Designated contact'",
+                    "aria labels 2": "'Change operator contact details' 'Change operator email' 'Change main partnership contact' 'Change partner details' 'Change contact representative'",
+                    "Change cell": "Change",
+                    "RowHeaders 3": "'Trading name' 'Establishment address' 'Address type' 'Phone number' 'Email address'",
+                    "aria labels 3": "'Change establishment trading name' 'Change establishment address' 'Change establishment address type' 'Change establishment contact details' 'Change establishment email'",
+                    "RowHeaders 4": "'Trading date' 'Opening days' 'Opening hours' Water supply' 'Customers' 'Business type'",
+                    "aria labels 4": "'Change establishment opening date' 'Change establishment opening days' 'Change establishment opening hours' 'Change water supply' 'Change activities customer type' 'Change business type'",
+                    "date errors": "'Invalid date' 'Irregular days'",
+                    "RowHeaders 5": "'Import and export' 'Additional details'",
+                    "aria labels 5": "'Change business activities import export' 'Change business other details'",
+                    "Accessible cell": "Accepted"
+                }]
+            },
+    "Validation messages" : [
+            {
+                "declaration1": "You must tick all the declarations before continuing",
+                "declaration2": "You must tick all the declarations before continuing",
+                "declaration3": "You must tick all the declarations before continuing",
+                "registration_role": "You must select a role before continuing",
+                "operator_type": "You must select an operator type before continuing",
+                "operator_first_name": "Not a valid first name",
+                "operator_last_name": "Not a valid last name",
+                "operator_town": "Not a valid town name",
+                "operator_address_line_1": "Not a valid first line of address",
+                "operator_address_line_2": "Not a valid second line of address",
+                "operator_address_line_3": "Not a valid third line of address",
+                "operator_postcode": "Not a valid postcode",
+                "operator_postcode_find": "Not a valid postcode",
+                "establishment_trading_name": "Not a valid establishment trading name",
+                "operator_primary_number": "Not a valid operator phone number",
+                "operator_secondary_number": "Not a valid operator phone number",
+                "operator_email": "Not a valid operator email address",
+                "contact_representative_name": "Not a valid representative name",
+                "contact_representative_role": "Not a valid representative role",
+                "contact_representative_number": "Not a valid representative phone number",
+                "contact_representative_email": "Not a valid representative email address",
+                "operator_company_name": "Not a valid company name",
+                "operator_companies_house_number":"Not a valid Companies House reference number",
+                "operator_charity_name": "Not a valid charity, organisation or trust name",
+                "operator_charity_number": "Not a valid charity number",
+                "establishment_primary_number": "Not a valid establishment phone number",
+                "establishment_secondary_number": "Not a valid establishment phone number",
+                "establishment_email": "Not a valid establishment email address",
+                "establishment_type": "You must select an establishment address type before continuing",
+                "establishment_town": "Not a valid town name",
+                "establishment_address_line_1": "Not a valid first line of address",
+                "establishment_address_line_2": "Not a valid second line of address",
+                "establishment_address_line_3": "Not a valid third line of address",
+                "establishment_postcode": "Not a valid postcode",
+                "establishment_postcode_find": "Not a valid postcode",
+                "establishment_opening_status": "You must select a trading status before continuing",
+                "establishment_opening_date": "Not a valid opening date",
+                "customer_type": "You must select a customer type before continuing",
+                "import_export_activities": "You must select a valid import or export option(s) before continuing",
+                "business_type": "You must select a business type before continuing",
+                "water_supply": "You must select a water supply type before continuing",
+                "business_other_details": "Your message is too long. Please shorten it to less than 1500 characters",
+                "opening_days_start": "Please select which days this establishment is open",
+                "opening_days_irregular": "Please describe when this establishment is open",
+                "opening_days_some": "Please select which days this establishment is open",
+                "partner_name": "Not a valid name",
+                "partners": "Please define between ...partners",
+                "main_partnership_contact": "You must select the main partnership contact before continuing",
+                "main_partnership_contact_deleted": "Main partnership contact is not in the list of partners",
+                "opening_hours_monday": "Invalid opening hours on Monday",
+                "opening_hours_tuesday": "Invalid opening hours on Tuesday",
+                "opening_hours_wednesday": "Invalid opening hours on Wednesday",
+                "opening_hours_thursday": "Invalid opening hours on Thursday",
+                "opening_hours_friday": "Invalid opening hours on Friday",
+                "opening_hours_saturday": "Invalid opening hours on Saturday",
+                "opening_hours_sunday": "Invalid opening hours on Sunday"
+            }]
+}
