@@ -4,7 +4,7 @@
  */
 
 const { logEmitter } = require("./logging.service");
-const { RegistrationRoleEnum } = require("../../enums");
+const { RegistrationRoleEnum, CustomerTypeEnum, ImportExportActivitiesEnum } = require("../../enums");
 
 const trimAnswers = (cumulativeFullAnswers) => {
   const trimmedAnswers = JSON.parse(JSON.stringify(cumulativeFullAnswers));
@@ -432,20 +432,14 @@ const transformBusinessImportExport = (
   directly_export,
   no_import_export
 ) => {
-  if (directly_import && directly_export && no_import_export) {
-    return "Directly import and export";
-  } else if (directly_import && no_import_export) {
-    return "Directly import";
-  } else if (directly_export && no_import_export) {
-    return "Directly export";
-  } else if (directly_import && directly_export) {
-    return "Directly import and export";
+  if (directly_import && directly_export) {
+    return ImportExportActivitiesEnum.BOTH.key;
   } else if (directly_import) {
-    return "Directly import";
+    return ImportExportActivitiesEnum.IMPORT.key;
   } else if (directly_export) {
-    return "Directly export";
+    return ImportExportActivitiesEnum.EXPORT.key;
   } else if (no_import_export) {
-    return "None";
+    return ImportExportActivitiesEnum.NONE.key;
   } else {
     return undefined;
   }
@@ -613,11 +607,11 @@ const transformOpeningHoursForSubmit = (
 
 const transformCustomerType = (supply_directly, supply_other) => {
   if (supply_directly && supply_other) {
-    return "End consumer and other businesses";
+    return CustomerTypeEnum.BOTH.key;
   } else if (supply_directly) {
-    return "End consumer";
+    return CustomerTypeEnum.END_CONSUMERS.key;
   } else if (supply_other) {
-    return "Other businesses";
+    return CustomerTypeEnum.OTHER_BUSINESSES.key;
   } else {
     return undefined;
   }
