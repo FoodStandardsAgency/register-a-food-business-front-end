@@ -57,11 +57,11 @@ const EstablishmentAddressType = (props) => (
             </Radio>
             <Radio
               name="establishment_type"
-              value={EstablishmentTypeEnum.DOEMSTIC.key}
+              value={EstablishmentTypeEnum.DOMESTIC.key}
               id="establishment_type_home_domestic"
               defaultChecked={
                 props.cumulativeFullAnswers.establishment_type ===
-                EstablishmentTypeEnum.DOEMSTIC.key
+                EstablishmentTypeEnum.DOMESTIC.key
               }
             >
               In a home or domestic premises

@@ -45,7 +45,7 @@ const CustomerType = (props) => (
           <Checkbox
             name="supply_directly"
             id="customer_type_supply_directly"
-            value={CustomerTypeEnum.END_CONSUMERS.key}
+            value={CustomerTypeEnum.END_CONSUMER.key}
             defaultChecked={props.cumulativeFullAnswers.supply_directly}
           >
             It will supply food directly to end consumers

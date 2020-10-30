@@ -45,9 +45,9 @@ const EstablishmentTypeEnum = {
     key: "MOBILE",
     value: "Mobile or moveable premises"
   },
-  DOEMSTIC: { 
+  DOMESTIC: { 
     key: "DOMESTIC",
-    value: "Home or deomtstic premises"
+    value: "Home or domestic premises"
   }
 };
 
@@ -56,8 +56,8 @@ const CustomerTypeEnum = {
     key: "OTHER_BUSINESSES",
     value: "Other businesses"
   },
-  END_CONSUMERS: {
-    key: "END_CONSUMERS",
+  END_CONSUMER: {
+    key: "END_CONSUMER",
     value: "End consumer"
   },
   BOTH: {
@@ -69,7 +69,7 @@ const CustomerTypeEnum = {
 const ImportExportActivitiesEnum = {
   IMPORT: {
     key: "IMPORT",
-    value: "Direclty import"
+    value: "Directly import"
   },
   EXPORT: {
     key: "EXPORT",
