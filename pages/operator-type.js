@@ -13,8 +13,6 @@ import { OperatorTypeEnum } from "../src/enums";
 import { Radio, MultiChoice, Paragraph, Fieldset } from "govuk-react";
 import PropTypes from "prop-types";
 
-console.log(OperatorTypeEnum);
-
 const OperatorType = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
