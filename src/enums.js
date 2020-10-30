@@ -75,8 +75,8 @@ const ImportExportActivitiesEnum = {
     key: "EXPORT",
     value: "Directly export"
   },
-  IMPORTANDEXPORT: {
-    key: "IMPORTANDEXPORT",
+  BOTH: {
+    key: "BOTH",
     value: "Directly import and export"
   },
   NONE: { 
