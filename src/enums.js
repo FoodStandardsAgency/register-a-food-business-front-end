@@ -45,7 +45,7 @@ const EstablishmentTypeEnum = {
     key: "MOBILE",
     value: "Mobile or moveable premises"
   },
-  DOMESTIC: { 
+  DOMESTIC: {
     key: "DOMESTIC",
     value: "Home or domestic premises"
   }
@@ -79,7 +79,7 @@ const ImportExportActivitiesEnum = {
     key: "BOTH",
     value: "Directly import and export"
   },
-  NONE: { 
+  NONE: {
     key: "NONE",
     value: "None"
   }
@@ -89,7 +89,7 @@ const WaterSupplyEnum = {
   PUBLIC: {
     key: "PUBLIC",
     value: "Public"
-  }, 
+  },
   PRIVATE: {
     key: "PRIVATE",
     value: "Private"
@@ -100,4 +100,11 @@ const WaterSupplyEnum = {
   }
 };
 
-module.exports = { RegistrationRoleEnum, OperatorTypeEnum, EstablishmentTypeEnum, CustomerTypeEnum, ImportExportActivitiesEnum, WaterSupplyEnum };
+module.exports = {
+  RegistrationRoleEnum,
+  OperatorTypeEnum,
+  EstablishmentTypeEnum,
+  CustomerTypeEnum,
+  ImportExportActivitiesEnum,
+  WaterSupplyEnum
+};

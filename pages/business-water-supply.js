@@ -57,7 +57,8 @@ const WaterSupply = (props) => (
               value={WaterSupplyEnum.PUBLIC.key}
               id="water_supply_public"
               defaultChecked={
-                props.cumulativeFullAnswers.water_supply === WaterSupplyEnum.PUBLIC.key
+                props.cumulativeFullAnswers.water_supply ===
+                WaterSupplyEnum.PUBLIC.key
               }
             >
               Mains water supply (most common supply)
@@ -67,7 +68,8 @@ const WaterSupply = (props) => (
               value={WaterSupplyEnum.PRIVATE.key}
               id="water_supply_private"
               defaultChecked={
-                props.cumulativeFullAnswers.water_supply === WaterSupplyEnum.PRIVATE.key
+                props.cumulativeFullAnswers.water_supply ===
+                WaterSupplyEnum.PRIVATE.key
               }
             >
               Private water supply

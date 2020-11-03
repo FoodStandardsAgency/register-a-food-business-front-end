@@ -4,7 +4,11 @@
  */
 
 const { logEmitter } = require("./logging.service");
-const { RegistrationRoleEnum, CustomerTypeEnum, ImportExportActivitiesEnum } = require("../../enums");
+const {
+  RegistrationRoleEnum,
+  CustomerTypeEnum,
+  ImportExportActivitiesEnum
+} = require("../../enums");
 
 const trimAnswers = (cumulativeFullAnswers) => {
   const trimmedAnswers = JSON.parse(JSON.stringify(cumulativeFullAnswers));
