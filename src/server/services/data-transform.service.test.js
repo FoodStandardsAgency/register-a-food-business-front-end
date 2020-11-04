@@ -77,7 +77,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       };
       it("Should return a customer_type value of 'End consumer and other businesses'", () => {
         result = transformAnswersForSummary(supplyBoth);
-        expect(result.customer_type).toBe("End consumer and other businesses");
+        expect(result.customer_type).toBe("BOTH");
       });
     });
 
@@ -113,7 +113,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
 
       it("Should return a customer_type value of 'Other businesses'", () => {
         result = transformAnswersForSummary(supplyDirectlyOnly);
-        expect(result.customer_type).toBe("Other businesses");
+        expect(result.customer_type).toBe("OTHER_BUSINESSES");
       });
     });
 
@@ -124,7 +124,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
 
       it("Should return a customer_type value of 'End consumer'", () => {
         result = transformAnswersForSummary(supplyDirectlyOnly);
-        expect(result.customer_type).toBe("End consumer");
+        expect(result.customer_type).toBe("END_CONSUMER");
       });
     });
 
@@ -149,7 +149,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
 
     describe("given the registration_role is Representative and operator_type is passed", () => {
       const registrationRoleAndOperatorType = {
-        registration_role: "Representative",
+        registration_role: "REPRESENTATIVE",
         operator_type: "test",
         other_data: "example"
       };
@@ -166,19 +166,12 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         expect(result.registration_role).toBe(undefined);
       });
 
-      it("the transformed data contains a field called operator_type that does not equal the original operator_type data", () => {
-        result = transformAnswersForSummary(registrationRoleAndOperatorType);
-        expect(result.operator_type).not.toEqual(
-          registrationRoleAndOperatorType.operator_type
-        );
-      });
-
       it("the transformed data contains a field called operator_type that contains the original text plus an additional representative description", () => {
-        const operatorTypesArray = ["A person", "A charity", "A company"];
+        const operatorTypesArray = ["PERSON", "CHARITY", "COMPANY"];
 
         operatorTypesArray.forEach((operatorType) => {
           const data = {
-            registration_role: "Representative",
+            registration_role: "REPRESENTATIVE",
             operator_type: operatorType,
             other_data: "example"
           };
@@ -186,7 +179,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           result = transformAnswersForSummary(data);
 
           expect(result.operator_type).toBe(
-            `${operatorType} (registered by a representative)`
+            `${operatorType}`
           );
         });
       });
@@ -194,7 +187,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
 
     describe("given that registration_role is Representative but operator_type is not passed", () => {
       const data = {
-        registration_role: "Representative",
+        registration_role: "REPRESENTATIVE",
         other_data: "example"
       };
 
@@ -804,7 +797,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           it("Should return a import_export_activities value of 'Directly import and Export'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
             expect(result.import_export_activities).toBe(
-              "Directly import and export"
+              "BOTH"
             );
           });
         });
@@ -816,7 +809,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           it("Should return a import_export_activities value of 'Directly import and Export'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
             expect(result.import_export_activities).toBe(
-              "Directly import and export"
+              "BOTH"
             );
           });
         });
@@ -827,7 +820,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           };
           it("Should return a import_export_activities value of 'Directly import'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
-            expect(result.import_export_activities).toBe("Directly import");
+            expect(result.import_export_activities).toBe("IMPORT");
           });
         });
         describe("Given that directly_export and no_import_export are part of cumulative answers", () => {
@@ -837,7 +830,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           };
           it("Should return a import_export_activities value of 'Directly export'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
-            expect(result.import_export_activities).toBe("Directly export");
+            expect(result.import_export_activities).toBe("EXPORT");
           });
         });
         describe("Given that only directly_export is part of cumulative answers", () => {
@@ -846,7 +839,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           };
           it("Should return a import_export_activities value of 'Directly export'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
-            expect(result.import_export_activities).toBe("Directly export");
+            expect(result.import_export_activities).toBe("EXPORT");
           });
         });
         describe("Given that only directly_import is part of cumulative answers", () => {
@@ -855,7 +848,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           };
           it("Should return a import_export_activities value of 'Directly import'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
-            expect(result.import_export_activities).toBe("Directly import");
+            expect(result.import_export_activities).toBe("IMPORT");
           });
         });
         describe("Given that only no_import_export is part of cumulative answers", () => {
@@ -864,7 +857,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           };
           it("Should return a import_export_activities value of 'None'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
-            expect(result.import_export_activities).toBe("None");
+            expect(result.import_export_activities).toBe("NONE");
           });
         });
         describe("Given that somethig ohter than the allowed combinations of no_import_export, direct_import and direct_export is part of cumulative answers", () => {

@@ -613,7 +613,7 @@ const transformCustomerType = (supply_directly, supply_other) => {
   if (supply_directly && supply_other) {
     return CustomerTypeEnum.BOTH.key;
   } else if (supply_directly) {
-    return CustomerTypeEnum.END_CONSUMERS.key;
+    return CustomerTypeEnum.END_CONSUMER.key;
   } else if (supply_other) {
     return CustomerTypeEnum.OTHER_BUSINESSES.key;
   } else {
