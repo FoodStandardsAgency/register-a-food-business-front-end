@@ -178,9 +178,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
 
           result = transformAnswersForSummary(data);
 
-          expect(result.operator_type).toBe(
-            `${operatorType}`
-          );
+          expect(result.operator_type).toBe(`${operatorType}`);
         });
       });
     });
@@ -796,9 +794,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           };
           it("Should return a import_export_activities value of 'Directly import and Export'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
-            expect(result.import_export_activities).toBe(
-              "BOTH"
-            );
+            expect(result.import_export_activities).toBe("BOTH");
           });
         });
         describe("Given that directly_import and directly_export are part of cumulative answers", () => {
@@ -808,9 +804,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           };
           it("Should return a import_export_activities value of 'Directly import and Export'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
-            expect(result.import_export_activities).toBe(
-              "BOTH"
-            );
+            expect(result.import_export_activities).toBe("BOTH");
           });
         });
         describe("Given that directly_import and no_import_export are part of cumulative answers", () => {
