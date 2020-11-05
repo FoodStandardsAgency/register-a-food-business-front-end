@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import React from "react";
 import { FsaLayout } from "../src/components";
 import { Heading, Paragraph, BackLink } from "govuk-react";

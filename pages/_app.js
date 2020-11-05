@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import React from "react";
 import Head from "next/head";
 import { PageTitles } from "../src/components";

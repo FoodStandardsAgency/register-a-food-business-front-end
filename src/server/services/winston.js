@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 let { createLogger, transports } = require("winston");
 const logger = createLogger({
   exitOnError: false // do not exit on handled exceptions

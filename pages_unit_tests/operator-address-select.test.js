@@ -5,6 +5,8 @@ const testCumulativeAnswers = {
   example: "test answer"
 };
 
+const testEditModeFirstPage = "/registration-role"
+
 const testSwitches = {};
 
 const testAddressLookup = {};
@@ -14,6 +16,40 @@ describe("<OperatorAddressLookup />", () => {
     const wrapper = shallow(<OperatorAddressLookup />);
     expect(wrapper.length).toBe(1);
   });
+
+
+
+  describe("Cant find address link", () => {
+    it("Displays the correct href when editModeFirstPage is true", () => {
+      const cumulativeFullAnswers = {
+        operator_postcode_find: "default"
+      };
+      const wrapper = mount(
+        <OperatorAddressLookup
+        cumulativeFullAnswers={testCumulativeAnswers}
+        editModeFirstPage = {testEditModeFirstPage}
+        switches={testSwitches}
+        addressLookups={testAddressLookup}
+        />
+      );
+      const operatorAddressLink = wrapper.find('a#cantFindAddressLink');
+      expect(operatorAddressLink.prop('href')).toContain('/operator-address-manual?edit=operator-address-manual');
+    });
+    it("Displays the correct href when editModeFirstPage is false", () => {
+      const cumulativeFullAnswers = {
+        operator_postcode_find: "default"
+      };
+      const wrapper = mount(
+        <OperatorAddressLookup
+        cumulativeFullAnswers={testCumulativeAnswers}
+        switches={testSwitches}
+        addressLookups={testAddressLookup}
+        />
+      );
+      const operatorAddressLink= wrapper.find('a#cantFindAddressLink');
+      expect(operatorAddressLink.prop('href')).toContain('/operator-address-manual');
+    });
+  })
 
   describe("Operator postcode display", () => {
     it("renders even when the addressLookups key is not found", () => {
@@ -29,6 +65,39 @@ describe("<OperatorAddressLookup />", () => {
       );
       expect(operatorPostcode.length).toBe(1);
     });
+
+    it('displays the correct href when editModeFirstPage is true', () => {
+      const cumulativeFullAnswers = {
+        operator_postcode_find: "default"
+      };
+      const wrapper = mount(
+        <OperatorAddressLookup
+          cumulativeFullAnswers={cumulativeFullAnswers}
+          editModeFirstPage = {testEditModeFirstPage}
+          switches={testSwitches}
+          addressLookups={testAddressLookup}
+        />
+      );
+      const operatorLink = wrapper.find("a#changeOperatorPostcode")
+      expect(operatorLink.prop('href')).toBe("/operator-address?edit=operator-address")
+    })
+
+    it('displays the correct href when editModeFirstPage is false', () => {
+      const cumulativeFullAnswers = {
+        operator_postcode_find: "default"
+      };
+      const wrapper = mount(
+        <OperatorAddressLookup
+          cumulativeFullAnswers={cumulativeFullAnswers}
+          switches={testSwitches}
+          addressLookups={testAddressLookup}
+        />
+      );
+      const operatorLink = wrapper.find("a#changeOperatorPostcode")
+      expect(operatorLink.prop('href')).toBe("/operator-address")
+    })
+
+    
 
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {

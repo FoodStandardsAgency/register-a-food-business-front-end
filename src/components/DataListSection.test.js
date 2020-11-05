@@ -56,6 +56,24 @@ describe("given JavaScript is disabled", () => {
           );
         });
       });
+
+      it('check that the class name is different with and without errors',async () =>{
+
+        const wrapperNoErrors = wrapper.find('input').prop('className')
+        let wrapperWithErrors;
+        await act(async () => {
+          wrapperWithErrors = mount(
+            <DataListSection
+              validatorErrors={{ business_type: 'An error' }}
+              cumulativeFullAnswers
+            />
+          );
+        });
+        
+        const wrapperErrors = wrapperWithErrors.find('input').prop('className')
+        expect(wrapperNoErrors).not.toEqual(wrapperErrors)
+      })
+
       it("should render Label with appropriate text", () => {
         expect(
           wrapper
@@ -72,3 +90,5 @@ describe("given JavaScript is disabled", () => {
     });
   });
 });
+
+  
