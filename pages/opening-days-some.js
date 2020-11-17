@@ -10,6 +10,7 @@ import {
 } from "../src/components";
 import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
+import { OpeningDaysEnum } from "../src/enums";
 
 const OpeningSomeDays = (props) => (
   <FsaLayout {...props}>
@@ -37,7 +38,7 @@ const OpeningSomeDays = (props) => (
           <Checkbox
             name="opening_day_monday"
             id="opening_day_monday"
-            value="Monday"
+            value={OpeningDaysEnum.opening_day_monday.value}
             defaultChecked={props.cumulativeFullAnswers.opening_day_monday}
           >
             Monday
@@ -45,7 +46,7 @@ const OpeningSomeDays = (props) => (
           <Checkbox
             name="opening_day_tuesday"
             id="opening_day_tuesday"
-            value="Tuesday"
+            value={OpeningDaysEnum.opening_day_tuesday.value}
             defaultChecked={props.cumulativeFullAnswers.opening_day_tuesday}
           >
             Tuesday
@@ -53,7 +54,7 @@ const OpeningSomeDays = (props) => (
           <Checkbox
             name="opening_day_wednesday"
             id="opening_day_wednesday"
-            value="Wednesday"
+            value={OpeningDaysEnum.opening_day_wednesday.value}
             defaultChecked={props.cumulativeFullAnswers.opening_day_wednesday}
           >
             Wednesday
@@ -61,7 +62,7 @@ const OpeningSomeDays = (props) => (
           <Checkbox
             name="opening_day_thursday"
             id="opening_day_thursday"
-            value="Thursday"
+            value={OpeningDaysEnum.opening_day_thursday.value}
             defaultChecked={props.cumulativeFullAnswers.opening_day_thursday}
           >
             Thursday
@@ -69,7 +70,7 @@ const OpeningSomeDays = (props) => (
           <Checkbox
             name="opening_day_friday"
             id="opening_day_friday"
-            value="Friday"
+            value={OpeningDaysEnum.opening_day_friday.value}
             defaultChecked={props.cumulativeFullAnswers.opening_day_friday}
           >
             Friday
@@ -77,7 +78,7 @@ const OpeningSomeDays = (props) => (
           <Checkbox
             name="opening_day_saturday"
             id="opening_day_saturday"
-            value="Saturday"
+            value={OpeningDaysEnum.opening_day_saturday.value}
             defaultChecked={props.cumulativeFullAnswers.opening_day_saturday}
           >
             Saturday
@@ -85,7 +86,7 @@ const OpeningSomeDays = (props) => (
           <Checkbox
             name="opening_day_sunday"
             id="opening_day_sunday"
-            value="Sunday"
+            value={OpeningDaysEnum.opening_day_sunday.value}
             defaultChecked={props.cumulativeFullAnswers.opening_day_sunday}
           >
             Sunday

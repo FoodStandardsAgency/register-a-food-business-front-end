@@ -2,12 +2,17 @@
  * Functions for running transformations on the answers to get them in the correct format for submit and summary
  * @module services/data-transform
  */
+const businessTypesJSON = require("../../components/business-type-transformed-en.json");
 
 const { logEmitter } = require("./logging.service");
 const {
   RegistrationRoleEnum,
+  EstablishmentTypeEnum,
   CustomerTypeEnum,
-  ImportExportActivitiesEnum
+  OpeningDaysEnum,
+  ImportExportActivitiesEnum,
+  OperatorTypeEnum,
+  WaterSupplyEnum
 } = require("../../enums");
 
 const trimAnswers = (cumulativeFullAnswers) => {
@@ -27,14 +32,107 @@ const trimAnswers = (cumulativeFullAnswers) => {
  *
  * @returns {object} An object containing the set of data in the correct format for the summary page with unnecessary fields deleted
  */
-const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
+const transformAnswersForSubmit = (
+  cumulativeFullAnswers,
+  addressLookups,
+  lcUrl
+) => {
   logEmitter.emit(
     "functionCall",
     "data-transform.service",
-    "transformAnswersForSummary"
+    "transformAnswersForSubmit"
   );
 
+  const establishment_details_keys = [
+    "establishment_trading_name",
+    "establishment_primary_number",
+    "establishment_secondary_number",
+    "establishment_email",
+    "establishment_opening_date"
+  ];
+  const operator_keys = [
+    "operator_first_name",
+    "operator_last_name",
+    "operator_address_line_1",
+    "operator_address_line_2",
+    "operator_address_line_3",
+    "operator_first_line",
+    "operator_street",
+    "operator_town",
+    "operator_postcode",
+    "operator_uprn",
+    "operator_primary_number",
+    "operator_secondary_number",
+    "operator_email",
+    "contact_representative_name",
+    "contact_representative_role",
+    "contact_representative_number",
+    "contact_representative_email",
+    "operator_type",
+    "operator_company_name",
+    "operator_companies_house_number",
+    "operator_charity_name",
+    "operator_charity_number"
+  ];
+  const premise_keys = [
+    "establishment_type",
+    "establishment_address_line_1",
+    "establishment_address_line_2",
+    "establishment_address_line_3",
+    "establishment_first_line",
+    "establishment_street",
+    "establishment_town",
+    "establishment_postcode",
+    "establishment_uprn"
+  ];
+  const activities_keys = [
+    "customer_type",
+    "business_type",
+    "business_type_search_term",
+    "import_export_activities",
+    "opening_days_irregular",
+    "water_supply",
+    "business_other_details",
+    "opening_day_monday",
+    "opening_day_tuesday",
+    "opening_day_wednesday",
+    "opening_day_thursday",
+    "opening_day_friday",
+    "opening_day_saturday",
+    "opening_day_sunday",
+    "opening_hours_monday",
+    "opening_hours_tuesday",
+    "opening_hours_wednesday",
+    "opening_hours_thursday",
+    "opening_hours_friday",
+    "opening_hours_saturday",
+    "opening_hours_sunday"
+  ];
+
+  const declaration_keys = [
+    "declaration1",
+    "declaration2",
+    "declaration3",
+    "feedback1"
+  ];
+
+  const submitObject = {
+    registration: {
+      establishment: {
+        establishment_details: {},
+        operator: {},
+        premise: {},
+        activities: {}
+      },
+      declaration: {}
+    },
+    local_council_url: lcUrl
+  };
+
   const data = Object.assign({}, cumulativeFullAnswers);
+
+  delete data.operator_postcode_find;
+  delete data.establishment_postcode_find;
 
   try {
     data.operator_type = combineOperatorTypes(
@@ -43,25 +141,35 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
     );
     delete data.registration_role;
 
-    data.customer_type = transformCustomerType(
+    data.customer_type = tranformCustomerTypeForSubmit(
       data.supply_directly,
       data.supply_other
     );
     delete data.supply_directly;
     delete data.supply_other;
 
-    data.open_some_days_summary_table = transformOpeningDaysForSummary(
+    const openingDays = transformOpeningDaysForSubmit(
+      data.opening_days_start,
       data.opening_day_monday,
       data.opening_day_tuesday,
       data.opening_day_wednesday,
       data.opening_day_thursday,
       data.opening_day_friday,
       data.opening_day_saturday,
-      data.opening_day_sunday,
-      data.opening_days_start
+      data.opening_day_sunday
     );
 
-    data.import_export_activities = transformBusinessImportExport(
+    const openingHours = transformOpeningHoursForSubmit(
+      data.opening_hours_monday,
+      data.opening_hours_tuesday,
+      data.opening_hours_wednesday,
+      data.opening_hours_thursday,
+      data.opening_hours_friday,
+      data.opening_hours_saturday,
+      data.opening_hours_sunday
+    );
+
+    data.import_export_activities = transformBusinessImportExportForSubmit(
       data.directly_import,
       data.directly_export,
       data.no_import_export
@@ -200,22 +308,71 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups) => {
         data.business_type
       );
 
-      data.business_type = separatedBusinessTypeSearchTerm.business_type;
+      data.business_type = transformBusinessTypeForSubmit(
+        separatedBusinessTypeSearchTerm.business_type
+      );
 
       data.business_type_search_term =
         separatedBusinessTypeSearchTerm.business_type_search_term;
     }
+
+    const submitData = Object.assign({}, data, openingDays, openingHours);
+
+    establishment_details_keys.forEach((key) => {
+      if (submitData[key] !== undefined) {
+        submitObject.registration.establishment.establishment_details[key] =
+          submitData[key];
+      }
+    });
+
+    operator_keys.forEach((key) => {
+      if (submitData[key] !== undefined) {
+        submitObject.registration.establishment.operator[key] = submitData[key];
+      }
+    });
+
+    premise_keys.forEach((key) => {
+      if (submitData[key] !== undefined) {
+        submitObject.registration.establishment.premise[key] = submitData[key];
+      }
+    });
+
+    activities_keys.forEach((key) => {
+      if (submitData[key] !== undefined) {
+        submitObject.registration.establishment.activities[key] =
+          submitData[key];
+      }
+    });
+
+    declaration_keys.forEach((key) => {
+      if (submitData[key] !== undefined) {
+        submitObject.registration.declaration[key] = submitData[key];
+      }
+    });
+
+    if (submitData.partners) {
+      submitObject.registration.establishment.operator.partners = [];
+      submitData.partners.forEach((key) => {
+        submitObject.registration.establishment.operator.partners.push({
+          partner_name: key,
+          partner_is_primary_contact:
+            key === submitData.main_partnership_contact
+        });
+      });
+    }
+
     logEmitter.emit(
       "functionSuccess",
       "data-transform.service",
-      "transformAnswersForSummary"
+      "transformAnswersForSubmit"
     );
-    return data;
+
+    return submitObject;
   } catch (err) {
     logEmitter.emit(
       "functionFail",
       "data-transform-service",
-      "transformAnswersForSummary",
+      "transformAnswersForSubmit",
       err
     );
     throw err;
@@ -248,180 +405,110 @@ const trimUprn = (uprn) => {
  *
  * @returns {object} An object containing the set of data in the correct format for the submittion with unnecessary fields deleted
  */
-const transformAnswersForSubmit = (
-  lcUrl,
+const transformAnswersForSummary = (
   cumulativeFullAnswers,
-  addressLookups
+  addressLookups,
+  lcUrl
 ) => {
   logEmitter.emit(
     "functionCall",
     "data-transform.service",
-    "transformAnswersForSubmit"
+    "transformAnswersForSummary"
   );
 
-  const establishment_details_keys = [
-    "establishment_trading_name",
-    "establishment_primary_number",
-    "establishment_secondary_number",
-    "establishment_email",
-    "establishment_opening_date"
-  ];
-  const operator_keys = [
-    "operator_first_name",
-    "operator_last_name",
-    "operator_address_line_1",
-    "operator_address_line_2",
-    "operator_address_line_3",
-    "operator_first_line",
-    "operator_street",
-    "operator_town",
-    "operator_postcode",
-    "operator_uprn",
-    "operator_primary_number",
-    "operator_secondary_number",
-    "operator_email",
-    "contact_representative_name",
-    "contact_representative_role",
-    "contact_representative_number",
-    "contact_representative_email",
-    "operator_type",
-    "operator_company_name",
-    "operator_companies_house_number",
-    "operator_charity_name",
-    "operator_charity_number"
-  ];
-  const premise_keys = [
-    "establishment_type",
-    "establishment_address_line_1",
-    "establishment_address_line_2",
-    "establishment_address_line_3",
-    "establishment_first_line",
-    "establishment_street",
-    "establishment_town",
-    "establishment_postcode",
-    "establishment_uprn"
-  ];
-  const activities_keys = [
-    "customer_type",
-    "business_type",
-    "business_type_search_term",
-    "import_export_activities",
-    "opening_days_irregular",
-    "water_supply",
-    "business_other_details",
-    "opening_day_monday",
-    "opening_day_tuesday",
-    "opening_day_wednesday",
-    "opening_day_thursday",
-    "opening_day_friday",
-    "opening_day_saturday",
-    "opening_day_sunday",
-    "opening_hours_monday",
-    "opening_hours_tuesday",
-    "opening_hours_wednesday",
-    "opening_hours_thursday",
-    "opening_hours_friday",
-    "opening_hours_saturday",
-    "opening_hours_sunday"
-  ];
+  try {
+    const data = transformAnswersForSubmit(
+      cumulativeFullAnswers,
+      addressLookups,
+      lcUrl
+    );
 
-  const declaration_keys = [
-    "declaration1",
-    "declaration2",
-    "declaration3",
-    "feedback1"
-  ];
+    let summaryData = Object.assign(
+      {},
+      data.registration.establishment.establishment_details,
+      data.registration.establishment.operator,
+      data.registration.establishment.premise,
+      data.registration.establishment.activities
+    );
 
-  const submitObject = {
-    registration: {
-      establishment: {
-        establishment_details: {},
-        operator: {},
-        premise: {},
-        activities: {}
-      },
-      declaration: {}
-    },
-    local_council_url: lcUrl
-  };
+    summaryData.summary_opening_days = transformOpeningDaysForSummary(
+      summaryData.opening_day_monday,
+      summaryData.opening_day_tuesday,
+      summaryData.opening_day_wednesday,
+      summaryData.opening_day_thursday,
+      summaryData.opening_day_friday,
+      summaryData.opening_day_saturday,
+      summaryData.opening_day_sunday,
+      summaryData.opening_days_irregular
+    );
 
-  const summaryData = transformAnswersForSummary(
-    cumulativeFullAnswers,
-    addressLookups
-  );
+    summaryData.partnersData = transformPartnersForSummary(
+      summaryData.partners
+    );
 
-  const openingDays = transformOpeningDaysForSubmit(
-    summaryData.opening_days_start,
-    summaryData.opening_day_monday,
-    summaryData.opening_day_tuesday,
-    summaryData.opening_day_wednesday,
-    summaryData.opening_day_thursday,
-    summaryData.opening_day_friday,
-    summaryData.opening_day_saturday,
-    summaryData.opening_day_sunday
-  );
+    summaryData = Object.assign(
+      summaryData,
+      summaryData.summary_opening_days,
+      summaryData.partnersData
+    );
+    delete summaryData.summary_opening_days;
 
-  const openingHours = transformOpeningHoursForSubmit(
-    summaryData.opening_hours_monday,
-    summaryData.opening_hours_tuesday,
-    summaryData.opening_hours_wednesday,
-    summaryData.opening_hours_thursday,
-    summaryData.opening_hours_friday,
-    summaryData.opening_hours_saturday,
-    summaryData.opening_hours_sunday
-  );
+    summaryData.operator_type = transformOperatorTypeForSummary(
+      summaryData.operator_type
+    );
+    summaryData.establishment_type = transformEstablishmentTypeForSummary(
+      summaryData.establishment_type
+    );
+    summaryData.customer_type = transformCustomerTypeForSummary(
+      summaryData.customer_type
+    );
+    summaryData.business_type = transformBusinessTypeForSummary(
+      summaryData.business_type
+    );
+    summaryData.import_export_activities = transformBusinessImportExportForSummary(
+      summaryData.import_export_activities
+    );
+    summaryData.water_supply = transformWaterSupplyForSummary(
+      summaryData.water_supply
+    );
 
-  const submitData = Object.assign({}, summaryData, openingDays, openingHours);
+    logEmitter.emit(
+      "functionSuccess",
+      "data-transform.service",
+      "transformAnswersForSummary"
+    );
 
-  establishment_details_keys.forEach((key) => {
-    if (submitData[key] !== undefined) {
-      submitObject.registration.establishment.establishment_details[key] =
-        submitData[key];
-    }
-  });
-
-  operator_keys.forEach((key) => {
-    if (submitData[key] !== undefined) {
-      submitObject.registration.establishment.operator[key] = submitData[key];
-    }
-  });
-
-  premise_keys.forEach((key) => {
-    if (submitData[key] !== undefined) {
-      submitObject.registration.establishment.premise[key] = submitData[key];
-    }
-  });
-
-  activities_keys.forEach((key) => {
-    if (submitData[key] !== undefined) {
-      submitObject.registration.establishment.activities[key] = submitData[key];
-    }
-  });
-
-  declaration_keys.forEach((key) => {
-    if (submitData[key] !== undefined) {
-      submitObject.registration.declaration[key] = submitData[key];
-    }
-  });
-
-  if (submitData.partners) {
-    submitObject.registration.establishment.operator.partners = [];
-    submitData.partners.forEach((key) => {
-      submitObject.registration.establishment.operator.partners.push({
-        partner_name: key,
-        partner_is_primary_contact: key === submitData.main_partnership_contact
-      });
-    });
+    return summaryData;
+  } catch (err) {
+    logEmitter.emit(
+      "functionFail",
+      "data-transform-service",
+      "transformAnswersForSummary",
+      err
+    );
+    throw err;
   }
-
-  logEmitter.emit(
-    "functionSuccess",
-    "data-transform.service",
-    "transformAnswersForSubmit"
-  );
-  return submitObject;
 };
 
+const transformPartnersForSummary = (partnersObjects) => {
+  let partnersData = {};
+  if (partnersObjects) {
+    partnersData.partners = partnersObjects.map(
+      (partner) => partner.partner_name
+    );
+
+    if (
+      partnersObjects.some(
+        (partner) => partner.partner_is_primary_contact === true
+      )
+    ) {
+      partnersData.main_partnership_contact = partnersObjects.filter(
+        (partner) => partner.partner_is_primary_contact === true
+      )[0].partner_name;
+    }
+  }
+  return partnersData;
+};
 /**
  * Combines the answers submitted for the import/export activities to ignore the "no import or export" option when it is selected with one of the other options
  *
@@ -431,7 +518,7 @@ const transformAnswersForSubmit = (
  *
  * @returns {string} A string displaying the correct answer for import/export activities for the summary page
  */
-const transformBusinessImportExport = (
+const transformBusinessImportExportForSubmit = (
   directly_import,
   directly_export,
   no_import_export
@@ -446,6 +533,12 @@ const transformBusinessImportExport = (
     return ImportExportActivitiesEnum.NONE.key;
   } else {
     return undefined;
+  }
+};
+
+const transformBusinessImportExportForSummary = (import_export_activities) => {
+  if (import_export_activities) {
+    return ImportExportActivitiesEnum[import_export_activities].value;
   }
 };
 
@@ -472,27 +565,40 @@ const transformOpeningDaysForSummary = (
   opening_day_friday,
   opening_day_saturday,
   opening_day_sunday,
-  opening_days_start
+  opening_days_irregular
 ) => {
-  if (
-    opening_day_monday &&
-    opening_day_tuesday &&
-    opening_day_wednesday &&
-    opening_day_thursday &&
-    opening_day_friday &&
-    opening_day_saturday &&
-    opening_day_sunday
-  ) {
-    return "Every day";
-  } else if (opening_days_start === "Every day") {
-    return "Every day";
-  } else {
-    return undefined;
+  let opening_days = {};
+  opening_days.opening_day_monday = opening_day_monday;
+  opening_days.opening_day_tuesday = opening_day_tuesday;
+  opening_days.opening_day_wednesday = opening_day_wednesday;
+  opening_days.opening_day_thursday = opening_day_thursday;
+  opening_days.opening_day_friday = opening_day_friday;
+  opening_days.opening_day_saturday = opening_day_saturday;
+  opening_days.opening_day_sunday = opening_day_sunday;
+  for (let day in opening_days) {
+    opening_days[day] = opening_days[day] ? OpeningDaysEnum[day].value : false;
   }
+  if (
+    opening_days.opening_day_monday &&
+    opening_days.opening_day_tuesday &&
+    opening_days.opening_day_wednesday &&
+    opening_days.opening_day_thursday &&
+    opening_days.opening_day_friday &&
+    opening_days.opening_day_saturday &&
+    opening_days.opening_day_sunday
+  ) {
+    opening_days.opening_days_start = "Every day";
+    opening_days.open_some_days_summary_table = "Every day";
+  } else if (Object.values(opening_days).some((day) => day !== false)) {
+    opening_days.opening_days_start = "Some days";
+  } else if (opening_days_irregular) {
+    opening_days.opening_days_start = "Irregular days";
+  }
+  return opening_days;
 };
 
 /**
- * Sets the opening days to true or false depending on whetehr they are selcted or not. Also sets mobday-sunday to true, if opening_days_start is "Every day".
+ * Sets the opening days to true or false depending on whetehr they are selcted or not. Also sets monday-sunday to true, if opening_days_start is "Every day".
  *
  * @param {string} opening_day_monday String submitted to cumulative answers when user selects open monday
  * @param {string} opening_day_tuesday String submitted to cumulative answers when user selects open tuesday
@@ -609,7 +715,7 @@ const transformOpeningHoursForSubmit = (
  * @returns {string} A string with the text to be displayed on the summary table
  */
 
-const transformCustomerType = (supply_directly, supply_other) => {
+const tranformCustomerTypeForSubmit = (supply_directly, supply_other) => {
   if (supply_directly && supply_other) {
     return CustomerTypeEnum.BOTH.key;
   } else if (supply_directly) {
@@ -618,6 +724,12 @@ const transformCustomerType = (supply_directly, supply_other) => {
     return CustomerTypeEnum.OTHER_BUSINESSES.key;
   } else {
     return undefined;
+  }
+};
+
+const transformCustomerTypeForSummary = (customer_type) => {
+  if (customer_type) {
+    return CustomerTypeEnum[customer_type].value;
   }
 };
 
@@ -654,6 +766,23 @@ const combineOperatorTypes = (operator_type, registration_role) => {
   return newOperatorType;
 };
 
+const transformEstablishmentTypeForSummary = (establishment_type) => {
+  if (establishment_type) {
+    return EstablishmentTypeEnum[establishment_type].value;
+  }
+};
+
+const transformOperatorTypeForSummary = (operator_type) => {
+  if (operator_type) {
+    return OperatorTypeEnum[operator_type].value;
+  }
+};
+
+const transformWaterSupplyForSummary = (water_supply) => {
+  if (water_supply) {
+    return WaterSupplyEnum[water_supply].value;
+  }
+};
 //Combines the date to be in the correct format to display on summary table
 const combineDate = (day, month, year) => {
   if (day && month && year) {
@@ -695,6 +824,24 @@ const separateBracketsFromBusinessType = (text) => {
     business_type: strippedBusinessType,
     business_type_search_term: strippedSearchTerm
   };
+};
+
+const transformBusinessTypeForSubmit = (displayName) => {
+  const businessTypesArray = JSON.parse(JSON.stringify(businessTypesJSON));
+  for (var obj = 0; obj < businessTypesArray.length; obj++) {
+    if (businessTypesArray[obj].displayName === displayName) {
+      return businessTypesArray[obj].id;
+    }
+  }
+};
+
+const transformBusinessTypeForSummary = (id) => {
+  const businessTypesArray = JSON.parse(JSON.stringify(businessTypesJSON));
+  for (var obj = 0; obj < businessTypesArray.length; obj++) {
+    if (businessTypesArray[obj].id === id) {
+      return businessTypesArray[obj].displayName;
+    }
+  }
 };
 
 module.exports = {

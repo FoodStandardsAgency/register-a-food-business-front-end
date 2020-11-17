@@ -66,6 +66,37 @@ const CustomerTypeEnum = {
   }
 };
 
+const OpeningDaysEnum = {
+  opening_day_monday: {
+    key: "opening_day_monday",
+    value: "Monday"
+  },
+  opening_day_tuesday: {
+    key: "opening_day_tuesday",
+    value: "Tuesday"
+  },
+  opening_day_wednesday: {
+    key: "opening_day_wednesday",
+    value: "Wednesday"
+  },
+  opening_day_thursday: {
+    key: "opening_day_thursday",
+    value: "Thursday"
+  },
+  opening_day_friday: {
+    key: "opening_day_friday",
+    value: "Friday"
+  },
+  opening_day_saturday: {
+    key: "opening_day_saturday",
+    value: "Saturday"
+  },
+  opening_day_sunday: {
+    key: "opening_day_sunday",
+    value: "Sunday"
+  }
+};
+
 const ImportExportActivitiesEnum = {
   IMPORT: {
     key: "IMPORT",
@@ -105,6 +136,7 @@ module.exports = {
   OperatorTypeEnum,
   EstablishmentTypeEnum,
   CustomerTypeEnum,
+  OpeningDaysEnum,
   ImportExportActivitiesEnum,
   WaterSupplyEnum
 };
