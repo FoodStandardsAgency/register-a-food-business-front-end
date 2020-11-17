@@ -9,7 +9,6 @@ const {
   RegistrationRoleEnum,
   EstablishmentTypeEnum,
   CustomerTypeEnum,
-  OpeningDaysEnum,
   ImportExportActivitiesEnum,
   OperatorTypeEnum,
   WaterSupplyEnum
@@ -568,16 +567,15 @@ const transformOpeningDaysForSummary = (
   opening_days_irregular
 ) => {
   let opening_days = {};
-  opening_days.opening_day_monday = opening_day_monday;
-  opening_days.opening_day_tuesday = opening_day_tuesday;
-  opening_days.opening_day_wednesday = opening_day_wednesday;
-  opening_days.opening_day_thursday = opening_day_thursday;
-  opening_days.opening_day_friday = opening_day_friday;
-  opening_days.opening_day_saturday = opening_day_saturday;
-  opening_days.opening_day_sunday = opening_day_sunday;
-  for (let day in opening_days) {
-    opening_days[day] = opening_days[day] ? OpeningDaysEnum[day].value : false;
-  }
+  opening_days.opening_day_monday = opening_day_monday ? "Monday" : false;
+  opening_days.opening_day_tuesday = opening_day_tuesday ? "Tuesday" : false;
+  opening_days.opening_day_wednesday = opening_day_wednesday
+    ? "Wednesday"
+    : false;
+  opening_days.opening_day_thursday = opening_day_thursday ? "Thursday" : false;
+  opening_days.opening_day_friday = opening_day_friday ? "Friday" : false;
+  opening_days.opening_day_saturday = opening_day_saturday ? "Saturday" : false;
+  opening_days.opening_day_sunday = opening_day_sunday ? "Sunday" : false;
   if (
     opening_days.opening_day_monday &&
     opening_days.opening_day_tuesday &&
