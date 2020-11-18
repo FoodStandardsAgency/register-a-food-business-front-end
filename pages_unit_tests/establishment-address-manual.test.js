@@ -1,5 +1,7 @@
 import EstablishmentAddress from "../pages/establishment-address-manual";
 import { mount, shallow } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 const testValidatorErrors = {
   example: "test error"

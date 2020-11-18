@@ -1,5 +1,7 @@
 import Error from "../pages/_error";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 let req = {};
 req.session = {};
@@ -21,7 +23,7 @@ describe("<Error />", () => {
 
   describe("initial props", () => {
     it("sets correctly using res not err error code", () => {
-      req.header = jest.fn(headerName => undefined);
+      req.header = jest.fn((headerName) => undefined);
       const props = Error.getInitialProps({ req, res, err });
       expect(props.council).toEqual("council");
       expect(props.referrer).toBeFalsy();
@@ -29,7 +31,7 @@ describe("<Error />", () => {
     });
 
     it("sets correctly using res error code", () => {
-      req.header = jest.fn(headerName => undefined);
+      req.header = jest.fn((headerName) => undefined);
       const props = Error.getInitialProps({ req, res });
       expect(props.council).toEqual("council");
       expect(props.referrer).toBeFalsy();
@@ -37,7 +39,7 @@ describe("<Error />", () => {
     });
 
     it("sets correctly using err error code", () => {
-      req.header = jest.fn(headerName => "referrer");
+      req.header = jest.fn((headerName) => "referrer");
       const props = Error.getInitialProps({ req, err });
       expect(props.council).toEqual("council");
       expect(props.referrer).toEqual("referrer");
@@ -45,7 +47,7 @@ describe("<Error />", () => {
     });
 
     it("sets to null if no code provided", () => {
-      req.header = jest.fn(headerName => "referrer");
+      req.header = jest.fn((headerName) => "referrer");
       const props = Error.getInitialProps({ req });
       expect(props.council).toEqual("council");
       expect(props.referrer).toEqual("referrer");

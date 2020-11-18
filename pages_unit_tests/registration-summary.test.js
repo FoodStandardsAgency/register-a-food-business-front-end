@@ -1,6 +1,8 @@
 import RegistrationSummary from "../pages/registration-summary";
 import { shallow, mount } from "enzyme";
 import { transformAnswersForSummary } from "../src/server/services/data-transform.service";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 jest.mock("../src/server/services/data-transform.service");
 
 const cumulativeFullAnswers = {

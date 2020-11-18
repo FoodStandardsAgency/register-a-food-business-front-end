@@ -1,5 +1,7 @@
 import WaterSupply from "../pages/business-water-supply";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 const testValidatorErrors = {
   example: "test error"

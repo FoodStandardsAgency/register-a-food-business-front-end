@@ -1,5 +1,7 @@
 import ApplicationComplete from "../pages/summary-confirmation";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 jest.mock("../src/server/services/data-transform.service");
 
 const cumulativeFullAnswers = {
