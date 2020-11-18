@@ -5,7 +5,7 @@ import * as COLOUR from "govuk-colours";
 import moment from "moment";
 import styled from "@emotion/styled";
 import ContentItem from "./ContentItem";
-import { OperatorTypeEnum } from "../enums";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 import {
   FONT_SIZE,
@@ -324,7 +324,7 @@ const OperatorDetailsTable = (props) => (
               props.validatorErrors["operator_postcode_find"]
           )}
         >
-          {props.operator_type === OperatorTypeEnum.PARTNERSHIP.key
+          {props.operator_type === operatorTypeEnum.PARTNERSHIP.key
             ? "Partnership contact address"
             : "Operator address"}
         </AccessibleRowHeader>

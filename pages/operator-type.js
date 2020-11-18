@@ -9,7 +9,7 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { OperatorTypeEnum } from "../src/enums";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { Radio, MultiChoice, Paragraph, Fieldset } from "govuk-react";
 import PropTypes from "prop-types";
 
@@ -47,33 +47,33 @@ const OperatorType = (props) => (
           >
             <Radio
               name="operator_type"
-              value={OperatorTypeEnum.PERSON.key}
+              value={operatorTypeEnum.PERSON.key}
               id="operator_type_person"
               defaultChecked={
                 props.cumulativeFullAnswers.operator_type ===
-                OperatorTypeEnum.PERSON.key
+                operatorTypeEnum.PERSON.key
               }
             >
               The food business is owned or operated by a person
             </Radio>
             <Radio
               name="operator_type"
-              value={OperatorTypeEnum.COMPANY.key}
+              value={operatorTypeEnum.COMPANY.key}
               id="operator_type_company"
               defaultChecked={
                 props.cumulativeFullAnswers.operator_type ===
-                OperatorTypeEnum.COMPANY.key
+                operatorTypeEnum.COMPANY.key
               }
             >
               The food business is owned or operated by a limited company
             </Radio>
             <Radio
               name="operator_type"
-              value={OperatorTypeEnum.CHARITY.key}
+              value={operatorTypeEnum.CHARITY.key}
               id="operator_type_charity"
               defaultChecked={
                 props.cumulativeFullAnswers.operator_type ===
-                OperatorTypeEnum.CHARITY.key
+                operatorTypeEnum.CHARITY.key
               }
             >
               The food business is owned or operated by a charity, organisation

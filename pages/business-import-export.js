@@ -9,7 +9,7 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { ImportExportActivitiesEnum } from "../src/enums";
+import { importExportEnum } from "@slice-and-dice/register-a-food-business-validation";
 import {
   Heading,
   Checkbox,
@@ -47,7 +47,7 @@ const ImportExportActivities = (props) => (
           <Checkbox
             name="directly_import"
             id="import_export_activities_directly_import"
-            value={ImportExportActivitiesEnum.IMPORT.key}
+            value={importExportEnum.IMPORT.key}
             defaultChecked={props.cumulativeFullAnswers.directly_import}
           >
             Directly import food
@@ -55,7 +55,7 @@ const ImportExportActivities = (props) => (
           <Checkbox
             name="directly_export"
             id="import_export_activities_directly_export"
-            value={ImportExportActivitiesEnum.EXPORT.key}
+            value={importExportEnum.EXPORT.key}
             defaultChecked={props.cumulativeFullAnswers.directly_export}
           >
             Directly export food
@@ -63,7 +63,7 @@ const ImportExportActivities = (props) => (
           <Checkbox
             name="no_import_export"
             id="import_export_activities_none"
-            value={ImportExportActivitiesEnum.NONE.key}
+            value={importExportEnum.NONE.key}
             defaultChecked={props.cumulativeFullAnswers.no_import_export}
           >
             No import or export activities

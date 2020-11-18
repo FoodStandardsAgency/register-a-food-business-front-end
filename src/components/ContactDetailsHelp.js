@@ -2,7 +2,7 @@ import React from "react";
 import { ContentItem } from "../../src/components";
 import { HintText } from "govuk-react";
 import { PartnershipDescription, OperatorDescription } from "./";
-import { RegistrationRoleEnum } from "../enums";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const PartnershipHintText = () => (
   <ContentItem.B_30_15>
@@ -13,7 +13,7 @@ const PartnershipHintText = () => (
 );
 
 const ContactDetailsHelp = (props) => {
-  return props.role === RegistrationRoleEnum.PARTNERSHIP.key ? (
+  return props.role === operatorTypeEnum.PARTNERSHIP.key ? (
     <React.Fragment>
       <PartnershipHintText />
       <PartnershipDescription />

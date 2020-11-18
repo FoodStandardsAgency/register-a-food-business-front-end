@@ -10,7 +10,7 @@ import {
 } from "../src/components";
 import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
-import { CustomerTypeEnum } from "../src/enums";
+import { customerTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const CustomerType = (props) => (
   <FsaLayout {...props}>
@@ -36,7 +36,7 @@ const CustomerType = (props) => (
           <Checkbox
             name="supply_other"
             id="customer_type_supply_other"
-            value={CustomerTypeEnum.OTHER_BUSINESSES.key}
+            value={customerTypeEnum.OTHER_BUSINESSES.key}
             defaultChecked={props.cumulativeFullAnswers.supply_other}
           >
             It will supply food to other businesses to process, sell or serve
@@ -45,7 +45,7 @@ const CustomerType = (props) => (
           <Checkbox
             name="supply_directly"
             id="customer_type_supply_directly"
-            value={CustomerTypeEnum.END_CONSUMER.key}
+            value={customerTypeEnum.END_CONSUMER.key}
             defaultChecked={props.cumulativeFullAnswers.supply_directly}
           >
             It will supply food directly to end consumers

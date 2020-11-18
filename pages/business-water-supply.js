@@ -9,7 +9,7 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { WaterSupplyEnum } from "../src/enums";
+import { waterSupplyEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { Fieldset, Radio, MultiChoice, HintText, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
@@ -54,33 +54,33 @@ const WaterSupply = (props) => (
           >
             <Radio
               name="water_supply"
-              value={WaterSupplyEnum.PUBLIC.key}
+              value={waterSupplyEnum.PUBLIC.key}
               id="water_supply_public"
               defaultChecked={
                 props.cumulativeFullAnswers.water_supply ===
-                WaterSupplyEnum.PUBLIC.key
+                waterSupplyEnum.PUBLIC.key
               }
             >
               Mains water supply (most common supply)
             </Radio>
             <Radio
               name="water_supply"
-              value={WaterSupplyEnum.PRIVATE.key}
+              value={waterSupplyEnum.PRIVATE.key}
               id="water_supply_private"
               defaultChecked={
                 props.cumulativeFullAnswers.water_supply ===
-                WaterSupplyEnum.PRIVATE.key
+                waterSupplyEnum.PRIVATE.key
               }
             >
               Private water supply
             </Radio>
             <Radio
               name="water_supply"
-              value={WaterSupplyEnum.BOTH.key}
+              value={waterSupplyEnum.BOTH.key}
               id="water_supply_public_and_private"
               defaultChecked={
                 props.cumulativeFullAnswers.water_supply ===
-                WaterSupplyEnum.BOTH.key
+                waterSupplyEnum.BOTH.key
               }
             >
               Both mains and private water supplies

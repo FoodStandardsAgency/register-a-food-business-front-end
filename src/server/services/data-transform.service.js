@@ -2,17 +2,16 @@
  * Functions for running transformations on the answers to get them in the correct format for submit and summary
  * @module services/data-transform
  */
-const businessTypesJSON = require("../../components/business-type-transformed-en.json");
 
 const { logEmitter } = require("./logging.service");
 const {
-  RegistrationRoleEnum,
-  EstablishmentTypeEnum,
-  CustomerTypeEnum,
-  ImportExportActivitiesEnum,
-  OperatorTypeEnum,
-  WaterSupplyEnum
-} = require("../../enums");
+  operatorTypeEnum,
+  establishmentTypeEnum,
+  customerTypeEnum,
+  importExportEnum,
+  waterSupplyEnum,
+  businessTypeEnum
+} = require("@slice-and-dice/register-a-food-business-validation");
 
 const trimAnswers = (cumulativeFullAnswers) => {
   const trimmedAnswers = JSON.parse(JSON.stringify(cumulativeFullAnswers));
@@ -523,13 +522,13 @@ const transformBusinessImportExportForSubmit = (
   no_import_export
 ) => {
   if (directly_import && directly_export) {
-    return ImportExportActivitiesEnum.BOTH.key;
+    return importExportEnum.BOTH.key;
   } else if (directly_import) {
-    return ImportExportActivitiesEnum.IMPORT.key;
+    return importExportEnum.IMPORT.key;
   } else if (directly_export) {
-    return ImportExportActivitiesEnum.EXPORT.key;
+    return importExportEnum.EXPORT.key;
   } else if (no_import_export) {
-    return ImportExportActivitiesEnum.NONE.key;
+    return importExportEnum.NONE.key;
   } else {
     return undefined;
   }
@@ -537,7 +536,7 @@ const transformBusinessImportExportForSubmit = (
 
 const transformBusinessImportExportForSummary = (import_export_activities) => {
   if (import_export_activities) {
-    return ImportExportActivitiesEnum[import_export_activities].value;
+    return importExportEnum[import_export_activities].value;
   }
 };
 
@@ -715,11 +714,11 @@ const transformOpeningHoursForSubmit = (
 
 const tranformCustomerTypeForSubmit = (supply_directly, supply_other) => {
   if (supply_directly && supply_other) {
-    return CustomerTypeEnum.BOTH.key;
+    return customerTypeEnum.BOTH.key;
   } else if (supply_directly) {
-    return CustomerTypeEnum.END_CONSUMER.key;
+    return customerTypeEnum.END_CONSUMER.key;
   } else if (supply_other) {
-    return CustomerTypeEnum.OTHER_BUSINESSES.key;
+    return customerTypeEnum.OTHER_BUSINESSES.key;
   } else {
     return undefined;
   }
@@ -727,7 +726,7 @@ const tranformCustomerTypeForSubmit = (supply_directly, supply_other) => {
 
 const transformCustomerTypeForSummary = (customer_type) => {
   if (customer_type) {
-    return CustomerTypeEnum[customer_type].value;
+    return customerTypeEnum[customer_type].value;
   }
 };
 
@@ -744,12 +743,9 @@ const combineOperatorTypes = (operator_type, registration_role) => {
   let newOperatorType;
 
   if (registration_role) {
-    if (
-      registration_role === RegistrationRoleEnum.REPRESENTATIVE.key &&
-      operator_type
-    ) {
+    if (registration_role === "Representative" && operator_type) {
       newOperatorType = operator_type;
-    } else if (registration_role !== RegistrationRoleEnum.REPRESENTATIVE.key) {
+    } else if (registration_role !== "Representative") {
       newOperatorType = registration_role;
     } else {
       throw new Error(`
@@ -766,19 +762,19 @@ const combineOperatorTypes = (operator_type, registration_role) => {
 
 const transformEstablishmentTypeForSummary = (establishment_type) => {
   if (establishment_type) {
-    return EstablishmentTypeEnum[establishment_type].value;
+    return establishmentTypeEnum[establishment_type].value;
   }
 };
 
 const transformOperatorTypeForSummary = (operator_type) => {
   if (operator_type) {
-    return OperatorTypeEnum[operator_type].value;
+    return operatorTypeEnum[operator_type].value;
   }
 };
 
 const transformWaterSupplyForSummary = (water_supply) => {
   if (water_supply) {
-    return WaterSupplyEnum[water_supply].value;
+    return waterSupplyEnum[water_supply].value;
   }
 };
 //Combines the date to be in the correct format to display on summary table
@@ -825,19 +821,19 @@ const separateBracketsFromBusinessType = (text) => {
 };
 
 const transformBusinessTypeForSubmit = (displayName) => {
-  const businessTypesArray = JSON.parse(JSON.stringify(businessTypesJSON));
-  for (var obj = 0; obj < businessTypesArray.length; obj++) {
-    if (businessTypesArray[obj].displayName === displayName) {
-      return businessTypesArray[obj].id;
+  const businessTypesObject = JSON.parse(JSON.stringify(businessTypeEnum));
+  for (let record in businessTypesObject) {
+    if (businessTypesObject[record].value === displayName) {
+      return businessTypesObject[record].key;
     }
   }
 };
 
 const transformBusinessTypeForSummary = (id) => {
-  const businessTypesArray = JSON.parse(JSON.stringify(businessTypesJSON));
-  for (var obj = 0; obj < businessTypesArray.length; obj++) {
-    if (businessTypesArray[obj].id === id) {
-      return businessTypesArray[obj].displayName;
+  const businessTypesObject = JSON.parse(JSON.stringify(businessTypeEnum));
+  for (let record in businessTypesObject) {
+    if (businessTypesObject[record].key === id) {
+      return businessTypesObject[record].value;
     }
   }
 };
@@ -845,6 +841,7 @@ const transformBusinessTypeForSummary = (id) => {
 module.exports = {
   transformAnswersForSummary,
   transformAnswersForSubmit,
+  transformBusinessTypeForSubmit,
   combineDate,
   separateBracketsFromBusinessType,
   trimUprn,

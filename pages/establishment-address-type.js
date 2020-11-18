@@ -9,7 +9,7 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { EstablishmentTypeEnum } from "../src/enums";
+import { establishmentTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { Fieldset, Radio, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 
@@ -46,33 +46,33 @@ const EstablishmentAddressType = (props) => (
           >
             <Radio
               name="establishment_type"
-              value={EstablishmentTypeEnum.MOBILE.key}
+              value={establishmentTypeEnum.MOBILE.key}
               id="establishment_type_mobile_moveable"
               defaultChecked={
                 props.cumulativeFullAnswers.establishment_type ===
-                EstablishmentTypeEnum.MOBILE.key
+                establishmentTypeEnum.MOBILE.key
               }
             >
               In a mobile or moveable premises
             </Radio>
             <Radio
               name="establishment_type"
-              value={EstablishmentTypeEnum.DOMESTIC.key}
+              value={establishmentTypeEnum.DOMESTIC.key}
               id="establishment_type_home_domestic"
               defaultChecked={
                 props.cumulativeFullAnswers.establishment_type ===
-                EstablishmentTypeEnum.DOMESTIC.key
+                establishmentTypeEnum.DOMESTIC.key
               }
             >
               In a home or domestic premises
             </Radio>
             <Radio
               name="establishment_type"
-              value={EstablishmentTypeEnum.COMMERCIAL.key}
+              value={establishmentTypeEnum.COMMERCIAL.key}
               id="establishment_type_business_commercial"
               defaultChecked={
                 props.cumulativeFullAnswers.establishment_type ===
-                EstablishmentTypeEnum.COMMERCIAL.key
+                establishmentTypeEnum.COMMERCIAL.key
               }
             >
               In a commercial or public premises
