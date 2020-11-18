@@ -11,6 +11,7 @@ import {
 } from "../src/components";
 import { Heading, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const ContactRepresentative = (props) => {
   return (
@@ -21,17 +22,20 @@ const ContactRepresentative = (props) => {
         onHandleErrorClick={OnHandleErrorClick}
       />
       <Heading as="h1" size="LARGE">
-        Operator contact details
+        {props.t("Operator contact details")}
       </Heading>
       <Paragraph>
-        Please give us the details of the person at this company or charity we
-        should speak to about food hygiene and safety.
+        {props.t(
+          "Please give us the details of the person at this company or charity we should speak to about food hygiene and safety."
+        )}
       </Paragraph>
-      <HiddenTextAccessible summary={"What is a food business operator?"}>
+      <HiddenTextAccessible
+        summary={props.t("What is a food business operator?")}
+      >
         <Paragraph mb={0}>
-          The operator is the person or people, charity or company who makes the
-          decisions about the food business. They decide what it serves and how
-          it operates.
+          {props.t(
+            "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
+          )}
         </Paragraph>
       </HiddenTextAccessible>
       <PostForm action={props.formAction} csrfToken={props.csrfToken}>
@@ -50,7 +54,7 @@ const ContactRepresentative = (props) => {
                 error: props.validatorErrors.contact_representative_name
               }}
             >
-              Name of contact
+              {props.t("Name of contact")}
             </InputField>
           </ContentItem.B_30_15>
           <ContentItem.B_30_15>
@@ -67,7 +71,7 @@ const ContactRepresentative = (props) => {
                 error: props.validatorErrors.contact_representative_role
               }}
             >
-              Role (optional)
+              {props.t("Role (optional)")}
             </InputField>
           </ContentItem.B_30_15>
           <ContentItem.B_30_15>
@@ -84,7 +88,7 @@ const ContactRepresentative = (props) => {
                 error: props.validatorErrors.contact_representative_number
               }}
             >
-              Phone number
+              {props.t("Phone number")}
             </InputField>
           </ContentItem.B_30_15>
           <ContentItem.B_30_15>
@@ -96,15 +100,15 @@ const ContactRepresentative = (props) => {
                 autoComplete: "email"
               }}
               id="contact_representative_email"
-              hint={[
+              hint={props.t(
                 "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
-              ]}
+              )}
               meta={{
                 touched: true,
                 error: props.validatorErrors.contact_representative_email
               }}
             >
-              Email address
+              {props.t("Email address")}
             </InputField>
           </ContentItem.B_30_15>
         </ContentItem.B_30_15>
@@ -115,7 +119,9 @@ const ContactRepresentative = (props) => {
   );
 };
 
-export default SessionWrapper(ContactRepresentative);
+export default withTranslation("SessionWrapper(ContactRepresentative)")(
+  SessionWrapper(ContactRepresentative)
+);
 
 ContactRepresentative.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),

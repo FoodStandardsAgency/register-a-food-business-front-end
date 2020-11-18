@@ -10,6 +10,7 @@ import {
 } from "../src/components";
 import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const CustomerType = (props) => (
   <FsaLayout {...props}>
@@ -19,9 +20,9 @@ const CustomerType = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      Who will this establishment supply food to?
+      {props.t("Who will this establishment supply food to?")}
     </Heading>
-    <Paragraph>Select all that apply</Paragraph>
+    <Paragraph>{props.t("Select all that apply")}</Paragraph>
 
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_45_30>
@@ -38,7 +39,9 @@ const CustomerType = (props) => (
             value="It will supply food to other businesses to process, sell or serve"
             defaultChecked={props.cumulativeFullAnswers.supply_other}
           >
-            It will supply food to other businesses to process, sell or serve
+            {props.t(
+              "It will supply food to other businesses to process, sell or serve"
+            )}
           </Checkbox>
 
           <Checkbox
@@ -47,7 +50,7 @@ const CustomerType = (props) => (
             value="It will supply food directly to end consumer"
             defaultChecked={props.cumulativeFullAnswers.supply_directly}
           >
-            It will supply food directly to end consumers
+            {props.t("It will supply food directly to end consumers")}
           </Checkbox>
         </MultiChoice>
       </ContentItem.B_45_30>
@@ -57,7 +60,9 @@ const CustomerType = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(CustomerType);
+export default withTranslation("SessionWrapper(CustomerType)")(
+  SessionWrapper(CustomerType)
+);
 
 CustomerType.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

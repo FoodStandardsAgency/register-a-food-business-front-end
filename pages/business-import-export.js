@@ -17,6 +17,7 @@ import {
   HintText
 } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const ImportExportActivities = (props) => (
   <FsaLayout {...props}>
@@ -27,13 +28,16 @@ const ImportExportActivities = (props) => (
         onHandleErrorClick={OnHandleErrorClick}
       />
       <Heading as="h1" size="LARGE">
-        Will this food business import or export any food from outside the UK?
+        {props.t(
+          "Will this food business import or export any food from outside the UK?"
+        )}
       </Heading>
       <HintText mb={1}>
-        This does not include any food imported or exported by other food
-        businesses.
+        {props.t(
+          "This does not include any food imported or exported by other food businesses."
+        )}
       </HintText>
-      <Paragraph>Select all that apply</Paragraph>
+      <Paragraph>{props.t("Select all that apply")}</Paragraph>
 
       <ContentItem.B_30_15>
         <MultiChoice
@@ -49,7 +53,7 @@ const ImportExportActivities = (props) => (
             value="Directly import"
             defaultChecked={props.cumulativeFullAnswers.directly_import}
           >
-            Directly import food
+            {props.t("Directly import food")}
           </Checkbox>
           <Checkbox
             name="directly_export"
@@ -57,7 +61,7 @@ const ImportExportActivities = (props) => (
             value="Directly export"
             defaultChecked={props.cumulativeFullAnswers.directly_export}
           >
-            Directly export food
+            {props.t("Directly export food")}
           </Checkbox>
           <Checkbox
             name="no_import_export"
@@ -65,7 +69,7 @@ const ImportExportActivities = (props) => (
             value="None"
             defaultChecked={props.cumulativeFullAnswers.no_import_export}
           >
-            No import or export activities
+            {props.t("No import or export activities")}
           </Checkbox>
         </MultiChoice>
       </ContentItem.B_30_15>
@@ -73,22 +77,24 @@ const ImportExportActivities = (props) => (
       <ContentItem.B_30_15>
         <HiddenTextAccessible
           id="hiddenTextImportExportActivities"
-          summary={"More information about import and export activities"}
+          summary={props.t(
+            "More information about import and export activities"
+          )}
         >
           <span>
-            If a food business is directly importing or exporting food outside
-            of the UK, there are some extra requirements for the business to
-            follow.
+            {props.t(
+              "If a food business is directly importing or exporting food outside of the UK, there are some extra requirements for the business to follow."
+            )}
             <br />
             <br />
-            Find out more by visiting the{" "}
+            {props.t("Find out more by visiting the")}{" "}
             <a
               href="https://www.food.gov.uk/business-guidance/imports-exports"
               target="_blank"
               rel="noopener noreferrer"
               id="link-fsa-website"
             >
-              Food Standards Agency website (opens in new window)
+              {props.t("Food Standards Agency website (opens in new window)")}
             </a>
             .
           </span>
@@ -100,7 +106,9 @@ const ImportExportActivities = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(ImportExportActivities);
+export default withTranslation("SessionWrapper(ImportExportActivities)")(
+  SessionWrapper(ImportExportActivities)
+);
 
 ImportExportActivities.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

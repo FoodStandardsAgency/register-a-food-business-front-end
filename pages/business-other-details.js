@@ -10,6 +10,7 @@ import {
 } from "../src/components";
 import { Heading, TextArea } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from '../i18n';
 
 const OtherDetails = (props) => (
   <FsaLayout {...props}>
@@ -19,7 +20,7 @@ const OtherDetails = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      Other details
+      {props.t("Other details")}
     </Heading>
 
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
@@ -36,8 +37,7 @@ const OtherDetails = (props) => (
               error: props.validatorErrors.business_other_details
             }}
           >
-            Is there anything else you need to tell us about this establishment?
-            (optional)
+            {props.t("Is there anything else you need to tell us about this establishment? (optional)")}
           </TextArea>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
@@ -46,7 +46,7 @@ const OtherDetails = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(OtherDetails);
+export default withTranslation('SessionWrapper(OtherDetails)')(SessionWrapper(OtherDetails));
 
 OtherDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),

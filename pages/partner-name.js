@@ -13,6 +13,7 @@ import {
 import { Heading, Button, HintText } from "govuk-react";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
+import { withTranslation } from '../i18n';
 
 const StyledRow = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ const ButtonsRow = (props) => (
           style={{ textDecoration: "none" }}
         >
           <Button type="submit" id="addPartnerButton">
-            Add partner
+            {props.t("Add partner")}
           </Button>
         </a>
       </ContentItem.B_30_15>
@@ -55,12 +56,11 @@ const PartnerName = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      What are the partners' names?
+      {props.t("What are the partners' names?")}
     </Heading>
     <ContentItem.B_30_15>
       <HintText>
-        Please advise your local authority directly if more than 5 partners are
-        responsible for this food business
+        {props.t("Please advise your local authority directly if more than 5 partners are responsible for this food business")}
       </HintText>
     </ContentItem.B_30_15>
     <PartnershipDescription />
@@ -77,7 +77,7 @@ const PartnerName = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(PartnerName);
+export default withTranslation('SessionWrapper(PartnerName)')(SessionWrapper(PartnerName));
 
 PartnerName.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

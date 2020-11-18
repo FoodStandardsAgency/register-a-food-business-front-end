@@ -11,6 +11,7 @@ import {
 } from "../src/components";
 import { Heading, InputField } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const OperatorContactDetails = (props) => (
   <FsaLayout {...props}>
@@ -42,7 +43,7 @@ const OperatorContactDetails = (props) => (
               error: props.validatorErrors.operator_primary_number
             }}
           >
-            Main phone number
+            {props.t("Main phone number")}
           </InputField>
         </ContentItem.B_30_15>
 
@@ -60,7 +61,7 @@ const OperatorContactDetails = (props) => (
               error: props.validatorErrors.operator_secondary_number
             }}
           >
-            Secondary phone number (optional)
+            {props.t("Secondary phone number (optional)")}
           </InputField>
         </ContentItem.B_30_15>
 
@@ -72,15 +73,15 @@ const OperatorContactDetails = (props) => (
               autoComplete: "email"
             }}
             id="operator_email"
-            hint={[
+            hint={props.t(
               "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
-            ]}
+            )}
             meta={{
               touched: true,
               error: props.validatorErrors.operator_email
             }}
           >
-            Email address
+            {props.t("Email address")}
           </InputField>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
@@ -90,7 +91,9 @@ const OperatorContactDetails = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(OperatorContactDetails);
+export default withTranslation("SessionWrapper(OperatorContactDetails)")(
+  SessionWrapper(OperatorContactDetails)
+);
 
 OperatorContactDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

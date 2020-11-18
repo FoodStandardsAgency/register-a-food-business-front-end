@@ -11,6 +11,7 @@ import {
 } from "../src/components";
 import { Radio, MultiChoice, Paragraph, Fieldset } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from '../i18n';
 
 const OperatorType = (props) => (
   <FsaLayout {...props}>
@@ -28,13 +29,11 @@ const OperatorType = (props) => (
             isPageHeading
             style={{ marginBottom: "30px" }}
           >
-            Who operates this business?
+            {props.t("Who operates this business?")}
           </Fieldset.Legend>
-          <HiddenTextAccessible summary={"What is a food business operator?"}>
+          <HiddenTextAccessible summary={props.t("What is a food business operator?")}>
             <Paragraph mb={0}>
-              The operator is the person or people, charity or company who makes
-              the decisions about the food business. They decide what it serves
-              and how it operates.
+              {props.t("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.")}
             </Paragraph>
           </HiddenTextAccessible>
           <MultiChoice
@@ -52,7 +51,7 @@ const OperatorType = (props) => (
                 props.cumulativeFullAnswers.operator_type === "A person"
               }
             >
-              The food business is owned or operated by a person
+              {props.t("The food business is owned or operated by a person")}
             </Radio>
             <Radio
               name="operator_type"
@@ -62,7 +61,7 @@ const OperatorType = (props) => (
                 props.cumulativeFullAnswers.operator_type === "A company"
               }
             >
-              The food business is owned or operated by a limited company
+              {props.t("The food business is owned or operated by a limited company")}
             </Radio>
             <Radio
               name="operator_type"
@@ -72,8 +71,7 @@ const OperatorType = (props) => (
                 props.cumulativeFullAnswers.operator_type === "A charity"
               }
             >
-              The food business is owned or operated by a charity, organisation
-              or trust
+              {props.t("The food business is owned or operated by a charity, organisation or trust")}
             </Radio>
           </MultiChoice>
         </Fieldset>
@@ -84,7 +82,7 @@ const OperatorType = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(OperatorType);
+export default withTranslation('SessionWrapper(OperatorType)')(SessionWrapper(OperatorType));
 
 OperatorType.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),

@@ -10,6 +10,7 @@ import {
 import { Button, Heading, InputField } from "govuk-react";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
+import { withTranslation } from '../i18n';
 
 const StyledRow = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ const PartnerDetails = (props) => (
       ]
         ? "Edit "
         : "Add "}
-      partner's name
+      {props.t("partner's name")}
     </Heading>
     <PostForm
       action={props.partnerDetailsSaveFormAction}
@@ -52,7 +53,7 @@ const PartnerDetails = (props) => (
               error: props.validatorErrors["partnerName"]
             }}
           >
-            Full name
+            {props.t("Full name")}
           </InputField>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
@@ -69,7 +70,7 @@ const PartnerDetails = (props) => (
             ]
               ? "Save"
               : "Add"}{" "}
-            partner
+            {props.t("partner")}
           </Button>
         </ContentItem.B_30_15>
         <ContentItem.B_30_15>
@@ -78,7 +79,7 @@ const PartnerDetails = (props) => (
             style={{ textDecoration: "none" }}
           >
             <Button type="button" id="cancelButton">
-              Cancel
+              {props.t("Cancel")}
             </Button>
           </a>
         </ContentItem.B_30_15>
@@ -87,7 +88,7 @@ const PartnerDetails = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(PartnerDetails);
+export default withTranslation('SessionWrapper(PartnerDetails)')(SessionWrapper(PartnerDetails));
 
 PartnerDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
