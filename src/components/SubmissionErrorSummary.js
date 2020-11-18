@@ -1,5 +1,6 @@
 import { ErrorSummary } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../../i18n.js";
 
 const SubmissionErrorSummary = (props) => {
   const errors = [];
@@ -13,7 +14,7 @@ const SubmissionErrorSummary = (props) => {
     return (
       <ErrorSummary
         id="errorSummary"
-        heading="There was a problem submitting the registration"
+        heading={props.t("There was a problem submitting the registration")}
         errors={errors}
       />
     );
@@ -21,7 +22,7 @@ const SubmissionErrorSummary = (props) => {
     return null;
   }
 };
-export default SubmissionErrorSummary;
+export default withTranslation(SubmissionErrorSummary);
 
 SubmissionErrorSummary.propTypes = {
   submissionError: PropTypes.objectOf(PropTypes.string)

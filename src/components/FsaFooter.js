@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Link, ListItem, UnorderedList } from "govuk-react";
+import { withTranslation } from "../../i18n.js";
 
 const fontSizeNormal = "16px";
 const fontSizeSmall = "14px";
@@ -62,7 +63,7 @@ const FooterUnorderedList = styled(UnorderedList)`
   padding-left: 0px;
 `;
 
-const FsaFooter = () => (
+const FsaFooter = (props) => (
   <Footer id="fsaFooter" role="contentinfo">
     <FooterBody>
       <FooterContent>
@@ -74,10 +75,10 @@ const FsaFooter = () => (
                 href="https://www.food.gov.uk/cookie-policy"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="cookie policy (opens in a new window)"
+                aria-label={props.t("cookie policy (opens in a new window)")}
                 style={{ color: "#454a4c" }}
               >
-                Cookies
+                {props.t("Cookies")}
               </FooterLink>
             </FooterListItem>
             <FooterListItem>
@@ -86,10 +87,10 @@ const FsaFooter = () => (
                 href="https://www.food.gov.uk/about-us/register-a-food-business-privacy-notice"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="privacy policy (opens in a new window)"
+                aria-label={props.t("privacy policy (opens in a new window)")}
                 style={{ color: "#454a4c" }}
               >
-                Privacy
+                {props.t("Privacy")}
               </FooterLink>
             </FooterListItem>
             <FooterListItem>
@@ -98,10 +99,12 @@ const FsaFooter = () => (
                 href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="give us feedback on the service (opens in a new window)"
+                aria-label={props.t(
+                  "give us feedback on the service (opens in a new window)"
+                )}
                 style={{ color: "#454a4c" }}
               >
-                Feedback
+                {props.t("Feedback")}
               </FooterLink>
             </FooterListItem>
             <FooterListItem>
@@ -110,10 +113,12 @@ const FsaFooter = () => (
                 href="https://www.food.gov.uk/accessibility-rafb"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="accessibility statement (opens in a new window)"
+                aria-label={props.t(
+                  "accessibility statement (opens in a new window)"
+                )}
                 style={{ color: "#454a4c" }}
               >
-                Accessibility
+                {props.t("Accessibility")}
               </FooterLink>
             </FooterListItem>
           </FooterUnorderedList>
@@ -123,4 +128,4 @@ const FsaFooter = () => (
   </Footer>
 );
 
-export default FsaFooter;
+export default withTranslation(FsaFooter);

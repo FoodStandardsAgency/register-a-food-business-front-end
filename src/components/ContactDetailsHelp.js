@@ -2,11 +2,14 @@ import React from "react";
 import { ContentItem } from "../../src/components";
 import { HintText } from "govuk-react";
 import { PartnershipDescription, OperatorDescription } from "./";
+import { withTranslation } from "../../i18n.js";
 
-const PartnershipHintText = () => (
+const PartnershipHintText = (props) => (
   <ContentItem.B_30_15>
     <HintText>
-      Contact details for the main point of contact for this business
+      {props.t(
+        "Contact details for the main point of contact for this business"
+      )}
     </HintText>
   </ContentItem.B_30_15>
 );
@@ -22,4 +25,4 @@ const ContactDetailsHelp = (props) => {
   );
 };
 
-export default ContactDetailsHelp;
+export default withTranslation(ContactDetailsHelp);

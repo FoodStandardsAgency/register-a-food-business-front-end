@@ -2,6 +2,7 @@ import { css } from "@emotion/core";
 import { Label } from "govuk-react";
 import { SelectInput } from "@govuk-react/select";
 import distinctBusinessTypes from "./distinct-business-types.json";
+import { withTranslation } from "../../i18n.js";
 
 const autocompleteErrorStyling = css`
   border-left: 4px solid #b10e1e;
@@ -31,8 +32,12 @@ const BusinessTypeOptions = () => {
 const SelectListSection = (props) => (
   <div id="selectListSection">
     <Label style={{ paddingTop: "0px" }}>
-      Select the most fitting business type from the suggestions
-      <div aria-label="business type select, click and choose from dropdown">
+      {props.t("Select the most fitting business type from the suggestions")}
+      <div
+        aria-label={props.t(
+          "business type select, click and choose from dropdown"
+        )}
+      >
         <SelectInput
           name="business_type"
           style={style}
@@ -49,4 +54,4 @@ const SelectListSection = (props) => (
   </div>
 );
 
-export default SelectListSection;
+export default withTranslation(SelectListSection);

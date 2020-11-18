@@ -1,5 +1,6 @@
 import { WarningText } from "govuk-react";
 import styled from "@emotion/styled";
+import { withTranslation } from "../../i18n.js";
 
 const StyledWarning = styled(WarningText)`
   border: 3px solid black;
@@ -14,11 +15,15 @@ const WarningWrapper = styled("div")`
 const BrowserUnsupportedBanner = (props) => (
   <WarningWrapper id="warningWrapper">
     <StyledWarning>
-      {`Your web browser ${props.browser} v${props.version} is out of date. You may not be able to
-    complete the registration. Update your browser for more security, speed and
-    the best experience on this site.`}
+      {props.t("Your web browser")}
+      {`${props.browser} v${props.version}`}{" "}
+      {props.t(
+        "is out of date. You may not be able to complete the registration. Update your browser for more security, speed and the best experience on this site."
+      )}
     </StyledWarning>
   </WarningWrapper>
 );
 
-export default BrowserUnsupportedBanner;
+export default withTranslation("BrowserUnsupportedBanner")(
+  BrowserUnsupportedBanner
+);
