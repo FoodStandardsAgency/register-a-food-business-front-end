@@ -51,7 +51,7 @@ describe("<RegistrationRole />", () => {
       const radioButtonIdsAndValues = {
         registration_role_sole_trader: "SOLETRADER",
         registration_role_partnership: "PARTNERSHIP",
-        registration_role_representative: "REPRESENTATIVE"
+        registration_role_representative: "Representative"
       };
 
       for (let radioButtonId in radioButtonIdsAndValues) {
