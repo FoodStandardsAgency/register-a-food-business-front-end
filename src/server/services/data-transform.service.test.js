@@ -1,11 +1,20 @@
 import {
   transformAnswersForSubmit,
   transformAnswersForSummary,
+  transformBusinessTypeForSubmit,
   combineDate,
   separateBracketsFromBusinessType,
   trimUprn,
   trimAnswers
 } from "./data-transform.service";
+
+describe("data-transform.service transformBusinessTypeForSubmit", () => {
+  it("given a correct business type value, it should return the correct corresponding key", () => {
+    const businessTypeValue = "Egg producer or packer";
+    const result = transformBusinessTypeForSubmit(businessTypeValue);
+    expect(result).toBe("008");
+  });
+});
 
 describe("data-transform.service trimAnswers()", () => {
   let result;
