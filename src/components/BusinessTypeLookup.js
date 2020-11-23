@@ -59,7 +59,7 @@ class BusinessTypeLookup extends React.Component {
     return (
       <div>
         {props.browser === "IE" ? (
-          <DataListSection {...props} />
+          <SelectListSection {...props} />
         ) : (
           <div>
             {this.state && this.state.renderAutoCompleteSection ? (
