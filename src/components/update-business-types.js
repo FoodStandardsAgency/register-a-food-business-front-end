@@ -34,7 +34,6 @@ const updateBusinessTypesForAutocomplete = async () => {
   );
 
   const transformedBusinessTypeArray_en = [];
-  const transformedBusinessTypeArray_cy = [];
 
   function getDisplayNames(prefLabel) {
     const displayNames = {};
@@ -66,12 +65,6 @@ const updateBusinessTypesForAutocomplete = async () => {
             searchTerm
           };
           transformedBusinessTypeArray_en.push(newArrayEntry_en);
-          const newArrayEntry_cy = {
-            id: businessType["skos:notation"],
-            displayName: displayNames.cy || displayNames.en,
-            searchTerm
-          };
-          transformedBusinessTypeArray_cy.push(newArrayEntry_cy);
         });
       }
     });
@@ -88,18 +81,6 @@ const updateBusinessTypesForAutocomplete = async () => {
       console.log(`SUCCESS: ${en_filename} updated.`);
     }
   );
-
-  // const cy_filename = "./src/components/business-type-transformed-cy.json";
-  // fs.writeFile(
-  //   cy_filename,
-  //   JSON.stringify(transformedBusinessTypeArray_cy),
-  //   (err) => {
-  //     if (err) {
-  //       return console.log(err);
-  //     }
-  //     console.log(`SUCCESS: ${cy_filename} updated.`);
-  //   }
-  // );
 };
 
 updateBusinessTypesForAutocomplete();

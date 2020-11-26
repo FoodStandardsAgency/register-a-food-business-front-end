@@ -66,20 +66,20 @@ const invalidBody = {
         operator_town: "London",
         operator_primary_number: "9827235",
         operator_email: "fsatestemail.valid@gmail.com",
-        operator_type: "Sole trader"
+        operator_type: "invalid"
       },
       premise: {
         establishment_postcode: "SW12 9RQ",
         establishment_address_line_1: "123",
         establishment_adress_line_2: "Street",
         establishment_town: "London",
-        establishment_type: "Somewhere"
+        establishment_type: "invalid"
       },
       activities: {
-        customer_type: "End consumer",
-        business_type: "Livestock farm",
+        customer_type: "invalid",
+        business_type: "invalid",
         business_type_search_term: "Example",
-        import_export_activities: "None"
+        import_export_activities: "invalid"
       }
     },
     declaration: {
