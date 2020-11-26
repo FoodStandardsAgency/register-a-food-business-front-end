@@ -17,12 +17,12 @@ const PartnershipHintText = (props) => (
 const ContactDetailsHelp = (props) => {
   return props.role === "Partnership" ? (
     <React.Fragment>
-      <PartnershipHintText />
-      <PartnershipDescription />
+      <PartnershipHintText t={props.t} />
+      <PartnershipDescription t={props.t} />
     </React.Fragment>
   ) : (
-    <OperatorDescription />
+    <OperatorDescription t={props.t} />
   );
 };
 
-export default withTranslation(ContactDetailsHelp);
+export default withTranslation("ContactDetailsHelp")(ContactDetailsHelp);

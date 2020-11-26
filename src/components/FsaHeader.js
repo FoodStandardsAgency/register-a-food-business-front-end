@@ -5,7 +5,6 @@ import PhaseBanner from "@govuk-react/phase-banner";
 import styled from "@emotion/styled";
 import CookieBanner from "./CookieBanner";
 import { withTranslation } from "../../i18n.js";
-import { FsaFooter } from ".";
 
 const AnchorTag = asTopNavAnchor("a");
 const feedbackLink = "https://goo.gl/forms/WB5adxvWQdDIfVvs2";
@@ -48,10 +47,10 @@ const FsaHeader = (props) => (
     {props.acceptAllCookies === "true" ||
     props.acceptAllCookies === "false" ? null : (
       <section aria-label={props.t("cookie banner")}>
-        <CookieBanner />
+        <CookieBanner t={props.t} />
       </section>
     )}
-    <FsaTopNav company={Company} />
+    <FsaTopNav company={Company} t={props.t} />
     <HeaderMain>
       <PhaseBanner level="beta">
         {props.t("This is a new service")} -{" "}
@@ -72,4 +71,4 @@ const FsaHeader = (props) => (
   </StyledHeader>
 );
 
-export default withTranslation(FsaHeader);
+export default withTranslation("FsaHeader")(FsaHeader);

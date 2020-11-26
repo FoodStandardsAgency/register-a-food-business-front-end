@@ -8,6 +8,7 @@ import BrowserUnsupportedBanner from "./BrowserUnsupportedBanner";
 import AccessibleAutocompleteCSS from "./AccessibleAutocompleteCSS";
 import NormalizeCSS from "./NormalizeCSS";
 import { Global } from "@emotion/core";
+import { withTranslation } from "../../i18n.js";
 
 const GridRowZeroMargin = styled(GridRow)`
   margin: 0px;
@@ -28,6 +29,7 @@ const FsaLayout = (props) => (
         <GridColZeroPadding setWidth="two-thirds">
           {!props.isBrowserSupported && props.isBrowserVersionVerified ? (
             <BrowserUnsupportedBanner
+              t={props.t}
               browser={props.browser}
               version={props.browserVersion}
             />
@@ -36,8 +38,8 @@ const FsaLayout = (props) => (
         </GridColZeroPadding>
       </GridRowZeroMargin>
     </Page>
-    <FsaFooter />
+    <FsaFooter t={props.t} />
   </React.Fragment>
 );
 
-export default FsaLayout;
+export default withTranslation("FsaLayout")(FsaLayout);

@@ -111,8 +111,8 @@ const PartnerRows = (props) => {
 
 const TableBody = (props) => (
   <React.Fragment>
-    <ColumnHeaders />
-    <PartnerRows {...props} />
+    <ColumnHeaders t={props.t} />
+    <PartnerRows {...props} t={props.t} />
   </React.Fragment>
 );
 
@@ -122,13 +122,13 @@ const PartnersTable = (props) => (
       <AccessibleTable
         id="partnersTable"
         caption="Partners"
-        body={<TableBody {...props} />}
+        body={<TableBody {...props} t={props.t} />}
       />
     </ContentItem.B_45_30>
   </React.Fragment>
 );
 
-export default withTranslation(PartnersTable);
+export default withTranslation("PartnersTable")(PartnersTable);
 
 PartnersTable.propTypes = {
   partners: PropTypes.array

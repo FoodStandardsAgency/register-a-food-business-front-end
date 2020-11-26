@@ -3,7 +3,7 @@ import { Paragraph } from "govuk-react";
 import { withTranslation } from "../../i18n.js";
 
 const PartnershipDescription = (props) => (
-  <HiddenTextAccessible summary={props.t("What is a partnership?")}>
+  <HiddenTextAccessible t={props.t} summary={props.t("What is a partnership?")}>
     <Paragraph mb={0}>
       {props.t(
         "In a partnership, you and your partner (or partners) personally share responsibility for your food business"
@@ -12,4 +12,6 @@ const PartnershipDescription = (props) => (
   </HiddenTextAccessible>
 );
 
-export default withTranslation(PartnershipDescription);
+export default withTranslation("PartnershipDescription")(
+  PartnershipDescription
+);

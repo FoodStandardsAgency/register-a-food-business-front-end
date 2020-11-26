@@ -161,4 +161,4 @@ const CookieBanner = (props) => (
   </Banner>
 );
 
-export default withTranslation(CookieBanner);
+export default withTranslation("CookieBanner")(CookieBanner);

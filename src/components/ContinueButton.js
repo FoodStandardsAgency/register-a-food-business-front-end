@@ -17,13 +17,13 @@ const ContinueButton = (props) => (
     start={props.type === "begin"}
   >
     {props.type === "begin"
-      ? { props: t("Begin registration") }
+      ? props.t("Begin registration")
       : props.type === "submit"
-      ? { props: t("Submit") }
+      ? props.t("Submit")
       : props.editModeFirstPage
-      ? { props: t("Save and continue") }
+      ? props.t("Save and continue")
       : "Continue"}
   </StyledButton>
 );
 
-export default withTranslation(ContinueButton);
+export default withTranslation("ContinueButton")(ContinueButton);

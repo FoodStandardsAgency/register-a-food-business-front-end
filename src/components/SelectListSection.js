@@ -54,4 +54,4 @@ const SelectListSection = (props) => (
   </div>
 );
 
-export default withTranslation(SelectListSection);
+export default withTranslation("SelectListSection")(SelectListSection);

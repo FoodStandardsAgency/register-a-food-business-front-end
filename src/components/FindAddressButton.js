@@ -7,4 +7,4 @@ const FindAddressButton = (props) => (
   </Button>
 );
 
-export default withTranslation(FindAddressButton);
+export default withTranslation("FindAddressButton")(FindAddressButton);

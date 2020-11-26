@@ -57,4 +57,4 @@ const DataListSection = (props) => (
   </div>
 );
 
-export default withTranslation(DataListSection);
+export default withTranslation("DataListSection")(DataListSection);

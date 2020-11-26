@@ -118,7 +118,7 @@ const determineLinkText = (property) => {
 
 const OperatorDetailsTable = (props) => (
   <React.Fragment>
-    <ColumnHeaders />
+    <ColumnHeaders t={props.t} />
     {props.operator_type || props.validatorErrors["operator_type"] ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
@@ -324,9 +324,9 @@ const OperatorDetailsTable = (props) => (
               props.validatorErrors["operator_postcode_find"]
           )}
         >
-          {props.operator_type === { props: t("Partnership") }
-            ? { props: t("Partnership contact address") }
-            : { props: t("Operator address") }}
+          {props.operator_type === props.t("Partnership")
+            ? props.t("Partnership contact address")
+            : props.t("Operator address")}
         </AccessibleRowHeader>
         <AccessibleCell>
           <div id="operator_address_line_1">
@@ -541,7 +541,7 @@ const OperatorDetailsTable = (props) => (
 
 const EstablishmentDetailsTable = (props) => (
   <React.Fragment>
-    <ColumnHeaders />
+    <ColumnHeaders t={props.t} />
     {props.establishment_trading_name ||
     props.validatorErrors["establishment_trading_name"] ? (
       <AccessibleTableRow
@@ -936,7 +936,7 @@ const EstablishmentDetailsTable = (props) => (
 
 const FoodActivitiesTable = (props) => (
   <React.Fragment>
-    <ColumnHeaders />
+    <ColumnHeaders t={props.t} />
     {props.customer_type || props.validatorErrors["customer_type"] ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
@@ -1055,7 +1055,7 @@ const FoodActivitiesTable = (props) => (
 
 const DeclarationTable = (props) => (
   <React.Fragment>
-    <ColumnHeaders />
+    <ColumnHeaders t={props.t} />
     <AccessibleTableRow
       acPage={props.applicationCompletePage}
       id="declaration1Row"
@@ -1112,14 +1112,14 @@ const SummaryTable = (props) => (
       <AccessibleTable
         id="establishmentDetailsTable"
         caption={props.t("Establishment details")}
-        body={<EstablishmentDetailsTable {...props} />}
+        body={<EstablishmentDetailsTable {...props} t={props.t} />}
       />
     </ContentItem.B_45_30>
     <ContentItem.B_45_30>
       <AccessibleTable
         id="foodActivitiesTable"
         caption={props.t("Activities")}
-        body={<FoodActivitiesTable {...props} />}
+        body={<FoodActivitiesTable {...props} t={props.t} />}
       />
     </ContentItem.B_45_30>
     {props.applicationCompletePage ? (
@@ -1127,14 +1127,14 @@ const SummaryTable = (props) => (
         <AccessibleTable
           id="declarationTable"
           caption={props.t("Declaration")}
-          body={<DeclarationTable {...props} />}
+          body={<DeclarationTable {...props} t={props.t} />}
         />
       </ContentItem.B_45_30>
     ) : null}
   </React.Fragment>
 );
 
-export default withTranslation(SummaryTable);
+export default withTranslation("SummaryTable")(SummaryTable);
 
 SummaryTable.propTypes = {
   operator_company_name: PropTypes.string,

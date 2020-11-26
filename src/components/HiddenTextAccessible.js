@@ -27,4 +27,4 @@ HiddenTextAccessible.propTypes = {
   hiddentextindex: PropTypes.number
 };
 
-export default withTranslation(HiddenTextAccessible);
+export default withTranslation("HiddenTextAccessible")(HiddenTextAccessible);

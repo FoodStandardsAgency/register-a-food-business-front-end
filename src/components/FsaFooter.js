@@ -128,4 +128,4 @@ const FsaFooter = (props) => (
   </Footer>
 );
 
-export default withTranslation(FsaFooter);
+export default withTranslation("FsaFooter")(FsaFooter);

@@ -17,8 +17,9 @@ import { withTranslation } from "../../i18n.js";
 const OpeningDate = (props) => {
   return (
     <FsaLayout {...props}>
-      <BackButton {...props} />
+      <BackButton {...props} t={props.t} />
       <ProcessedErrorSummary
+        t={props.t}
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
       />
@@ -33,6 +34,7 @@ const OpeningDate = (props) => {
         </HintText>
       </ContentItem.B_30_15>
       <HiddenTextAccessible
+        t={props.t}
         hiddentextindex={1}
         id="hiddenTextEstablishment"
         summary={props.t("What is an establishment?")}
@@ -54,9 +56,9 @@ const OpeningDate = (props) => {
                 year: props.cumulativeFullAnswers.year
               }}
               inputNames={{
-                day: { props: t("day") },
-                month: { props: t("month") },
-                year: { props: t("year") }
+                day: props.t("day"),
+                month: props.t("month"),
+                year: props.t("year")
               }}
               hintText={`For example, ${moment()
                 .add(40, "d")
@@ -73,13 +75,12 @@ const OpeningDate = (props) => {
 
             <ContentItem.B_30_15>
               <HiddenTextAccessible
+                t={props.t}
                 hiddentextindex={2}
                 id="hiddenTextTradingDate"
-                summary={{
-                  props: t(
-                    "I don't know when this establishment will begin trading"
-                  )
-                }}
+                summary={props.t(
+                  "I don't know when this establishment will begin trading"
+                )}
               >
                 <Paragraph mb={0}>
                   {props.t(
@@ -90,7 +91,7 @@ const OpeningDate = (props) => {
             </ContentItem.B_30_15>
           </div>
 
-          <ContinueButton {...props} />
+          <ContinueButton {...props} t={props.t} />
         </PostForm>
       ) : (
         <PostForm action={props.formAction} csrfToken={props.csrfToken}>
@@ -101,9 +102,9 @@ const OpeningDate = (props) => {
               year: props.cumulativeFullAnswers.year
             }}
             inputNames={{
-              day: { props: t("day") },
-              month: { props: t("month") },
-              year: { props: t("year") }
+              day: props.t("day"),
+              month: props.t("month"),
+              year: props.t("year")
             }}
             hintText={`For example, ${moment()
               .subtract(40, "d")
@@ -118,6 +119,7 @@ const OpeningDate = (props) => {
 
           <ContentItem.B_30_15>
             <HiddenTextAccessible
+              t={props.t}
               hiddentextindex={3}
               summary={props.t(
                 "I don't know when this establishment began trading"
@@ -131,13 +133,13 @@ const OpeningDate = (props) => {
             </HiddenTextAccessible>
           </ContentItem.B_30_15>
 
-          <ContinueButton {...props} />
+          <ContinueButton {...props} t={props.t} />
         </PostForm>
       )}
     </FsaLayout>
   );
 };
-export default withTranslation(OpeningDate);
+export default withTranslation("OpeningDate")(OpeningDate);
 
 OpeningDate.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
