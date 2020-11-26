@@ -39,6 +39,15 @@
   { "id": "005", "displayName": "Honey maker", "searchTerm": "bee" },
   { "id": "005", "displayName": "Honey maker", "searchTerm": "manufacturer" },
   { "id": "005", "displayName": "Honey maker", "searchTerm": "honeymaker" },
+  {
+    "id": "006",
+    "displayName": "Hunter and trapper",
+    "searchTerm": "wildlife"
+  },
+  { "id": "006", "displayName": "Hunter and trapper", "searchTerm": "game" },
+  { "id": "006", "displayName": "Hunter and trapper", "searchTerm": "wild" },
+  { "id": "006", "displayName": "Hunter and trapper", "searchTerm": "fowl" },
+  { "id": "006", "displayName": "Hunter and trapper", "searchTerm": "deer" },
   { "id": "007", "displayName": "Egg processor", "searchTerm": "duck" },
   { "id": "007", "displayName": "Egg processor", "searchTerm": "chicken" },
   { "id": "007", "displayName": "Egg processor", "searchTerm": "quail" },
@@ -529,6 +538,56 @@
   {
     "id": "018",
     "displayName": "Oil and/or fat manufacturer",
+    "searchTerm": "producer"
+  },
+  {
+    "id": "019",
+    "displayName": "Dairy and cheese manufacturer",
+    "searchTerm": "yoghurt"
+  },
+  {
+    "id": "019",
+    "displayName": "Dairy and cheese manufacturer",
+    "searchTerm": "process"
+  },
+  {
+    "id": "019",
+    "displayName": "Dairy and cheese manufacturer",
+    "searchTerm": "factory"
+  },
+  {
+    "id": "019",
+    "displayName": "Dairy and cheese manufacturer",
+    "searchTerm": "fromage"
+  },
+  {
+    "id": "019",
+    "displayName": "Dairy and cheese manufacturer",
+    "searchTerm": "cream"
+  },
+  {
+    "id": "019",
+    "displayName": "Dairy and cheese manufacturer",
+    "searchTerm": "cheddar"
+  },
+  {
+    "id": "019",
+    "displayName": "Dairy and cheese manufacturer",
+    "searchTerm": "milk"
+  },
+  {
+    "id": "019",
+    "displayName": "Dairy and cheese manufacturer",
+    "searchTerm": "whey"
+  },
+  {
+    "id": "019",
+    "displayName": "Dairy and cheese manufacturer",
+    "searchTerm": "maker"
+  },
+  {
+    "id": "019",
+    "displayName": "Dairy and cheese manufacturer",
     "searchTerm": "producer"
   },
   {
@@ -1050,6 +1109,36 @@
   { "id": "039", "displayName": "Farm gate sales", "searchTerm": "raw" },
   { "id": "040", "displayName": "Farm shop", "searchTerm": "retail" },
   { "id": "040", "displayName": "Farm shop", "searchTerm": "farmshop" },
+  {
+    "id": "041",
+    "displayName": "Sweet shop or confectioner",
+    "searchTerm": "candy"
+  },
+  {
+    "id": "041",
+    "displayName": "Sweet shop or confectioner",
+    "searchTerm": "dessert"
+  },
+  {
+    "id": "041",
+    "displayName": "Sweet shop or confectioner",
+    "searchTerm": "chocolatier"
+  },
+  {
+    "id": "041",
+    "displayName": "Sweet shop or confectioner",
+    "searchTerm": "store"
+  },
+  {
+    "id": "041",
+    "displayName": "Sweet shop or confectioner",
+    "searchTerm": "bonbon"
+  },
+  {
+    "id": "041",
+    "displayName": "Sweet shop or confectioner",
+    "searchTerm": "retail"
+  },
   { "id": "042", "displayName": "Butcher", "searchTerm": "meat" },
   { "id": "042", "displayName": "Butcher", "searchTerm": "halal" },
   { "id": "042", "displayName": "Butcher", "searchTerm": "retail" },
@@ -1122,6 +1211,21 @@
     "id": "047",
     "displayName": "Newsagent or Post Office",
     "searchTerm": "store"
+  },
+  {
+    "id": "048",
+    "displayName": "Market stall with permanent location",
+    "searchTerm": "pop up"
+  },
+  {
+    "id": "048",
+    "displayName": "Market stall with permanent location",
+    "searchTerm": "popup"
+  },
+  {
+    "id": "048",
+    "displayName": "Market stall with permanent location",
+    "searchTerm": "bazar"
   },
   { "id": "049", "displayName": "Off licence", "searchTerm": "tobacconist" },
   { "id": "049", "displayName": "Off licence", "searchTerm": "wine" },
@@ -1260,6 +1364,346 @@
     "id": "054",
     "displayName": "Vending machine",
     "searchTerm": "water fountain"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "bistro"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "brunch"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "afternoon tea"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "breakfast"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "supper"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "dinner"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "diner"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "Buffet"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "coffee"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "dessert"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "espresso"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "fusion"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "greasy"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "hamburger"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "burger"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "kebab"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "pizza"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "lunch"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "pizzeria"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "playground"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "sandwich"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "softplay"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "sushi"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "tea"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "juice"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "museum"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "zoo"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "aquarium"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "brasserie"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "carvery"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "churreria"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "creperie"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "fish and chip"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "grill"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "cafeteria"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "shelter"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "halfway"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "prison"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "detention"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "spa"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "charity"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "library"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "gym"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "fast food"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "office"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "church"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "mosque"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "synagogue"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "village hall"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "temple"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "community"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "gastropub"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "theatre"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "cinema"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "stadium"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "circus"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "concert"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "music"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "bingo"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "lounge"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "racecourse"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "racetrack"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "bowling"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "park"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "amusement"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "fairground"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "casino"
+  },
+  {
+    "id": "055",
+    "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
+    "searchTerm": "attraction"
   },
   { "id": "057", "displayName": "Hotel", "searchTerm": "guesthouse" },
   { "id": "057", "displayName": "Hotel", "searchTerm": "inn" },

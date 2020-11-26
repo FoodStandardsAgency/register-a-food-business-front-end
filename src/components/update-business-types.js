@@ -1,6 +1,17 @@
 const fs = require("fs");
 const fetch = require("node-fetch");
 
+// Mapping V2 Business Type strings to V1 strings
+const v1BusinessTypesMapping = {
+  "Hunter and trapper": "Hunting and trapping",
+  "Dairy and cheese manufacturer": "Dairies and cheese manufacturer",
+  "Sweet shop or confectioner": "Sweet shop or Confectioner",
+  "Market stall with permanent location": "Market stalls with permanent pitch",
+  "Restaurant, cafe, canteen, or fast food restaurant":
+    "Restaurant, cafe, canteen or fast food",
+  "Hostel or bed & breakfast": "Hostel or bed and breakfast"
+};
+
 const updateBusinessTypesForAutocomplete = async () => {
   const businessTypesData = await fetch(
     "https://data.food.gov.uk/codes/business/rafb/establishment-type?_format=jsonld"
@@ -25,24 +36,28 @@ const updateBusinessTypesForAutocomplete = async () => {
   const transformedBusinessTypeArray_en = [];
   const transformedBusinessTypeArray_cy = [];
 
-  function getDisplayNames(rdfsLabel) {
+  function getDisplayNames(prefLabel) {
     const displayNames = {};
-    if (Array.isArray(rdfsLabel)) {
-      rdfsLabel.forEach((label) => {
-        displayNames[label["@language"]] = label["@value"];
-      });
-    } else {
-      displayNames[rdfsLabel["@language"]] = rdfsLabel["@value"];
+    if (prefLabel) {
+      if (Array.isArray(prefLabel)) {
+        prefLabel.forEach((label) => {
+          displayNames[label["@language"]] = label["@value"];
+        });
+      } else {
+        displayNames[prefLabel["@language"]] = prefLabel["@value"];
+      }
     }
     return displayNames;
   }
 
   newBusinessTypesSearchDataArray.forEach((businessTypeSearchData) => {
     newBusinessTypesArray.forEach((businessType) => {
-      const displayNames = getDisplayNames(businessType["rdfs:label"]);
+      const displayNames = getDisplayNames(businessType["skos:prefLabel"]);
+      const v1DisplayName = v1BusinessTypesMapping[displayNames.en];
       if (
         businessType["skos:notation"] &&
-        displayNames.en === businessTypeSearchData.displayName
+        (displayNames.en === businessTypeSearchData.displayName ||
+          v1DisplayName === businessTypeSearchData.displayName)
       ) {
         businessTypeSearchData.searchTerms.forEach((searchTerm) => {
           const newArrayEntry_en = {
