@@ -15,12 +15,16 @@ import { withTranslation } from "../i18n";
 
 const OperatorAddress = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
+    <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
+      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
+    <AddressHelp
+      role={props.cumulativeFullAnswers.registration_role}
+      t={props.t}
+    />
     <PostForm
       action="/findaddress/operator-address"
       csrfToken={props.csrfToken}
@@ -45,7 +49,7 @@ const OperatorAddress = (props) => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <FindAddressButton />
+      <FindAddressButton t={props.t} />
     </PostForm>
   </FsaLayout>
 );

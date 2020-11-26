@@ -17,6 +17,7 @@ const OperatorAddress = (props) => (
   <FsaLayout {...props}>
     <BackButton
       {...props}
+      t={props.t}
       href={
         props.switches["/operator-address-none-found"]
           ? `/new/${props.council}/operator-address`
@@ -24,20 +25,24 @@ const OperatorAddress = (props) => (
       }
     />
     <ProcessedErrorSummary
+      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
+    <AddressHelp
+      t={props.t}
+      role={props.cumulativeFullAnswers.registration_role}
+    />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         {props.switches["/operator-address-none-found"] ? (
           <ContentItem.B_30_15>
             <ErrorText id="addressNotFoundByPostcodeMessage">
-              {props.t("No addresses found for the postcode")}{" "}
-              {props.cumulativeFullAnswers.operator_postcode_find}{" "}
-              {props.t(
+              {`${props.t("No addresses found for the postcode")} "${
+                props.cumulativeFullAnswers.operator_postcode_find
+              }". ${props.t(
                 "Please enter your address manually or go back to try a different postcode."
-              )}
+              )}`}
             </ErrorText>
           </ContentItem.B_30_15>
         ) : null}
@@ -128,7 +133,7 @@ const OperatorAddress = (props) => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton {...props} />
+      <ContinueButton {...props} t={props.t} />
     </PostForm>
   </FsaLayout>
 );

@@ -13,7 +13,7 @@ import {
 import { Heading, Button, HintText } from "govuk-react";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
-import { withTranslation } from '../i18n';
+import { withTranslation } from "../i18n";
 
 const StyledRow = styled.div`
   display: flex;
@@ -42,7 +42,7 @@ const ButtonsRow = (props) => (
         action={props.partnerDetailsContinueFormAction}
         csrfToken={props.csrfToken}
       >
-        <ContinueButton {...props} />
+        <ContinueButton {...props} t={props.t} />
       </PostForm>
     ) : null}
   </StyledRow>
@@ -50,8 +50,9 @@ const ButtonsRow = (props) => (
 
 const PartnerName = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
+    <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
+      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -60,24 +61,28 @@ const PartnerName = (props) => (
     </Heading>
     <ContentItem.B_30_15>
       <HintText>
-        {props.t("Please advise your local authority directly if more than 5 partners are responsible for this food business")}
+        {props.t(
+          "Please advise your local authority directly if more than 5 partners are responsible for this food business"
+        )}
       </HintText>
     </ContentItem.B_30_15>
-    <PartnershipDescription />
+    <PartnershipDescription t={props.t} />
     <PostForm
       action={props.partnerDetailsDeleteFormAction}
       csrfToken={props.csrfToken}
     >
       {props.cumulativeFullAnswers.partners &&
       props.cumulativeFullAnswers.partners.length > 0 ? (
-        <PartnersTable {...props} />
+        <PartnersTable {...props} t={props.t} />
       ) : null}
     </PostForm>
     <ButtonsRow {...props} />
   </FsaLayout>
 );
 
-export default withTranslation('SessionWrapper(PartnerName)')(SessionWrapper(PartnerName));
+export default withTranslation("SessionWrapper(PartnerName)")(
+  SessionWrapper(PartnerName)
+);
 
 PartnerName.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

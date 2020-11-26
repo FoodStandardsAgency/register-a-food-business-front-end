@@ -23,8 +23,9 @@ const Index = (props) => (
 
     <InsetText className="bold">
       {props.t(
-        "During this registration, you may come across a few specialist terms, which we have described below:"
+        "During this registration, you may come across a few specialist terms, which we have described below"
       )}
+      :
     </InsetText>
 
     <ContentItem.B_30_15>
@@ -53,15 +54,15 @@ const Index = (props) => (
         {props.t("Registering Local Authority")}
       </Heading>
       <Paragraph>
-        {`**${props.lcName}**`}
-        {props.t(
-          "is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure, please use this [Food Business Registration](https://www.gov.uk/food-business-registration) link to check using the location or site of your food business."
-        )}
+        {`**${props.lcName}**
+        ${props.t(
+          "is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this Food Business Registration(https://www.gov.uk/food-business-registration) link to check using the location or site of your food business."
+        )}`}
       </Paragraph>
     </ContentItem.B_30_15>
 
     <PostForm action="/continue/index" csrfToken={props.csrfToken}>
-      <ContinueButton type="begin" />
+      <ContinueButton type="begin" t={props.t} />
     </PostForm>
   </FsaLayout>
 );

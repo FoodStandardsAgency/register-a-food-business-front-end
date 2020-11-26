@@ -11,12 +11,13 @@ import {
 } from "../src/components";
 import { Heading, HintText } from "govuk-react";
 import PropTypes from "prop-types";
-import { withTranslation } from '../i18n';
+import { withTranslation } from "../i18n";
 
 const RegistrationSummary = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
+    <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
+      t={props.t}
       validatorErrors={props.allValidationErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -24,10 +25,13 @@ const RegistrationSummary = (props) => (
       <Heading as="h1" size="LARGE">
         {props.t("Check your answers")}
       </Heading>
-      <HintText>{props.t("You must check your answers before you continue")}</HintText>
+      <HintText>
+        {props.t("You must check your answers before you continue")}
+      </HintText>
     </ContentItem.B_30_15>
 
     <SummaryTable
+      t={props.t}
       {...props.transformedData}
       validatorErrors={props.allValidationErrors}
     />
@@ -36,12 +40,14 @@ const RegistrationSummary = (props) => (
       action="/continue/registration-summary"
       csrfToken={props.csrfToken}
     >
-      <ContinueButton />
+      <ContinueButton t={props.t} />
     </PostForm>
   </FsaLayout>
 );
 
-export default withTranslation('SessionWrapper(RegistrationSummary)')(SessionWrapper(RegistrationSummary));
+export default withTranslation("SessionWrapper(RegistrationSummary)")(
+  SessionWrapper(RegistrationSummary)
+);
 
 RegistrationSummary.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

@@ -10,12 +10,13 @@ import {
 } from "../src/components";
 import { Radio, MultiChoice, Fieldset } from "govuk-react";
 import PropTypes from "prop-types";
-import { withTranslation } from '../i18n';
+import { withTranslation } from "../i18n";
 
 const RegistrationRole = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
+    <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
+      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -66,18 +67,22 @@ const RegistrationRole = (props) => (
                 "Representative"
               }
             >
-              {props.t("I represent a person, charity, limited company (Ltd), organisation or trust that operates it")}
+              {props.t(
+                "I represent a person, charity, limited company (Ltd), organisation or trust that operates it"
+              )}
             </Radio>
           </MultiChoice>
         </Fieldset>
       </ContentItem.B_45_30>
 
-      <ContinueButton {...props} />
+      <ContinueButton {...props} t={props.t} />
     </PostForm>
   </FsaLayout>
 );
 
-export default withTranslation('SessionWrapper(RegistrationRole)')(SessionWrapper(RegistrationRole));
+export default withTranslation("SessionWrapper(RegistrationRole)")(
+  SessionWrapper(RegistrationRole)
+);
 
 RegistrationRole.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

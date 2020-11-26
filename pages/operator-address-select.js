@@ -14,8 +14,11 @@ import { withTranslation } from "../i18n";
 
 const OperatorAddressLookup = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
-    <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
+    <BackButton {...props} t={props.t} />
+    <AddressHelp
+      t={props.t}
+      role={props.cumulativeFullAnswers.registration_role}
+    />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
@@ -38,8 +41,9 @@ const OperatorAddressLookup = (props) => (
         </ContentItem.B_30_15>
         <ContentItem.B_20_20>
           <SelectWithHeader
-            label={props.t("Select an address for ")}
-            {...props.cumulativeFullAnswers.operator_postcode_find}
+            label={`${props.t("Select an address for")} ${
+              props.cumulativeFullAnswers.operator_postcode_find
+            }`}
             input={{
               id: "operatorAddressDropdown",
               name: "operator_address_selected",
@@ -75,7 +79,7 @@ const OperatorAddressLookup = (props) => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton {...props} />
+      <ContinueButton {...props} t={props.t} />
     </PostForm>
   </FsaLayout>
 );

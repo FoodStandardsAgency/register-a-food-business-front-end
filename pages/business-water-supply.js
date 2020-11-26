@@ -11,12 +11,13 @@ import {
 } from "../src/components";
 import { Fieldset, Radio, MultiChoice, HintText, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
-import { withTranslation } from '../i18n';
+import { withTranslation } from "../i18n";
 
 const WaterSupply = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
+    <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
+      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -30,14 +31,21 @@ const WaterSupply = (props) => (
           >
             {props.t("What type of water supply does this establishment use?")}
           </Fieldset.Legend>
-          <HiddenTextAccessible summary={props.t("What is an establishment?")}>
+          <HiddenTextAccessible
+            t={props.t}
+            summary={props.t("What is an establishment?")}
+          >
             <Paragraph mb={0}>
-              {props.t("An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.")}
+              {props.t(
+                "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
+              )}
             </Paragraph>
           </HiddenTextAccessible>
           <ContentItem.B_30_15>
             <HintText>
-              {props.t("The water supply is where you get your tap water from. It has a private water supply if it uses water that you take up from the ground by yourself. For example from a well.")}
+              {props.t(
+                "The water supply is where you get your tap water from. It has a private water supply if it uses water that you take up from the ground by yourself. For example from a well."
+              )}
             </HintText>
           </ContentItem.B_30_15>
           <MultiChoice
@@ -87,16 +95,20 @@ const WaterSupply = (props) => (
           summary={props.t("I don't know if I have a private water supply")}
         >
           <span>
-            {props.t("If you are not registered with a water supply company or paying a bill for water, this is an indication that your water supply could be private.")}
+            {props.t(
+              "If you are not registered with a water supply company or paying a bill for water, this is an indication that your water supply could be private."
+            )}
           </span>
         </HiddenTextAccessible>
       </ContentItem.B_30_15>
-      <ContinueButton {...props} />
+      <ContinueButton {...props} t={props.t} />
     </PostForm>
   </FsaLayout>
 );
 
-export default withTranslation('SessionWrapper(WaterSupply)')(SessionWrapper(WaterSupply));
+export default withTranslation("SessionWrapper(WaterSupply)")(
+  SessionWrapper(WaterSupply)
+);
 
 WaterSupply.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

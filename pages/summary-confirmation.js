@@ -30,11 +30,9 @@ const ApplicationComplete = (props) => (
     {props.fsaRegistrationNumber ? (
       <FsaPanel id="panelWithNumber" title="">
         {[
-          {
-            this: props.t(
-              "Your unique food business registration application reference is"
-            )
-          },
+          props.t(
+            "Your unique food business registration application reference is"
+          ),
           <br key={1} />,
           <br key={2} />,
           <span key={3} className="bold" id="fsa-rn">
@@ -124,8 +122,7 @@ const ApplicationComplete = (props) => (
 
     <ContentItem.B_30_15>
       <Paragraph className="receiveConfirmationEmail">
-        {props.t("A copy of this registration has been sent to")}{" "}
-        {`**${
+        {`${props.t("A copy of this registration has been sent to ")}**${
           props.transformedData.operator_email ||
           props.transformedData.contact_representative_email
         }.**`}
@@ -332,6 +329,7 @@ const ApplicationComplete = (props) => (
       {...props.transformedData}
       validatorErrors={props.validatorErrors}
       applicationCompletePage={true}
+      t={props.t}
     />
   </FsaLayout>
 );

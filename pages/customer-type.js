@@ -14,8 +14,9 @@ import { withTranslation } from "../i18n";
 
 const CustomerType = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
+    <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
+      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -55,7 +56,7 @@ const CustomerType = (props) => (
         </MultiChoice>
       </ContentItem.B_45_30>
 
-      <ContinueButton {...props} />
+      <ContinueButton {...props} t={props.t} />
     </PostForm>
   </FsaLayout>
 );

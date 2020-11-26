@@ -10,7 +10,7 @@ import {
 import { Button, Heading, InputField } from "govuk-react";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
-import { withTranslation } from '../i18n';
+import { withTranslation } from "../i18n";
 
 const StyledRow = styled.div`
   display: flex;
@@ -19,8 +19,9 @@ const StyledRow = styled.div`
 
 const PartnerDetails = (props) => (
   <FsaLayout {...props}>
-    <BackButton href={props.partnerDetailsBackUrl} {...props} />
+    <BackButton href={props.partnerDetailsBackUrl} {...props} t={props.t} />
     <ProcessedErrorSummary
+      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -88,7 +89,9 @@ const PartnerDetails = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation('SessionWrapper(PartnerDetails)')(SessionWrapper(PartnerDetails));
+export default withTranslation("SessionWrapper(PartnerDetails)")(
+  SessionWrapper(PartnerDetails)
+);
 
 PartnerDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

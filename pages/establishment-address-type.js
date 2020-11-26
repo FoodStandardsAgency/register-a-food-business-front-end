@@ -15,8 +15,9 @@ import { withTranslation } from "../i18n";
 
 const EstablishmentAddressType = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
+    <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
+      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -30,7 +31,10 @@ const EstablishmentAddressType = (props) => (
           >
             {props.t("Where is this establishment located?")}
           </Fieldset.Legend>
-          <HiddenTextAccessible summary={props.t("What is an establishment?")}>
+          <HiddenTextAccessible
+            t={props.t}
+            summary={props.t("What is an establishment?")}
+          >
             <Paragraph mb={0}>
               {props.t(
                 "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight."
@@ -81,7 +85,7 @@ const EstablishmentAddressType = (props) => (
         </Fieldset>
       </ContentItem.B_45_30>
 
-      <ContinueButton {...props} />
+      <ContinueButton {...props} t={props.t} />
     </PostForm>
   </FsaLayout>
 );

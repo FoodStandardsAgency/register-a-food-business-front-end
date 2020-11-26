@@ -11,12 +11,13 @@ import {
 } from "../src/components";
 import { Heading } from "govuk-react";
 import PropTypes from "prop-types";
-import { withTranslation } from '../i18n';
+import { withTranslation } from "../i18n";
 
 const BusinessType = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
+    <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
+      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -26,15 +27,17 @@ const BusinessType = (props) => (
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
-          <BusinessTypeLookup id="businessTypeLookup" {...props} />
+          <BusinessTypeLookup id="businessTypeLookup" {...props} t={props.t} />
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
-      <ContinueButton {...props} />
+      <ContinueButton {...props} t={props.t} />
     </PostForm>
   </FsaLayout>
 );
 
-export default withTranslation('SessionWrapper(BusinessType)')(SessionWrapper(BusinessType));
+export default withTranslation("SessionWrapper(BusinessType)")(
+  SessionWrapper(BusinessType)
+);
 
 BusinessType.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

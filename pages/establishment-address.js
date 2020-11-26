@@ -11,12 +11,13 @@ import {
 } from "../src/components";
 import { Heading, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
-import { withTranslation } from '../i18n';
+import { withTranslation } from "../i18n";
 
 const EstablishmentAddress = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
+    <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
+      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -24,9 +25,14 @@ const EstablishmentAddress = (props) => (
       {props.t("Establishment address")}
     </Heading>
 
-    <HiddenTextAccessible summary={props.t("What is an establishment?")}>
+    <HiddenTextAccessible
+      t={props.t}
+      summary={props.t("What is an establishment?")}
+    >
       <Paragraph mb={0}>
-        {props.t("An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.")}
+        {props.t(
+          "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
+        )}
       </Paragraph>
     </HiddenTextAccessible>
 
@@ -55,12 +61,14 @@ const EstablishmentAddress = (props) => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <FindAddressButton />
+      <FindAddressButton t={props.t} />
     </PostForm>
   </FsaLayout>
 );
 
-export default withTranslation('SessionWrapper(EstablishmentAddress)')(SessionWrapper(EstablishmentAddress));
+export default withTranslation("SessionWrapper(EstablishmentAddress)")(
+  SessionWrapper(EstablishmentAddress)
+);
 
 EstablishmentAddress.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

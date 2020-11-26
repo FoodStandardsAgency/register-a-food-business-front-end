@@ -17,12 +17,13 @@ import {
   UnorderedList
 } from "govuk-react";
 import PropTypes from "prop-types";
-import { withTranslation } from '../i18n';
+import { withTranslation } from "../i18n";
 
 const OtherDaysIrregular = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
+    <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
+      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -45,28 +46,36 @@ const OtherDaysIrregular = (props) => (
             }}
           >
             <Paragraph mb={3}>
-              {props.t("When will this establishment be open and serving or preparing food?")}
+              {props.t(
+                "When will this establishment be open and serving or preparing food?"
+              )}
             </Paragraph>
             <HintText mb={3}>
               {props.t("For example")}
               <UnorderedList>
                 <ListItemConsistentSize>
-                  {props.t("only serving food during December at Christmas markets")}
+                  {props.t(
+                    "only serving food during December at Christmas markets"
+                  )}
                 </ListItemConsistentSize>
                 <ListItemConsistentSize>
-                  {props.t("open at weekends in June and August between 10:00 and 19:00")}
+                  {props.t(
+                    "open at weekends in June and August between 10:00 and 19:00"
+                  )}
                 </ListItemConsistentSize>
               </UnorderedList>
             </HintText>
           </TextArea>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
-      <ContinueButton {...props} />
+      <ContinueButton {...props} t={props.t} />
     </PostForm>
   </FsaLayout>
 );
 
-export default withTranslation('SessionWrapper(OtherDaysIrregular)')(SessionWrapper(OtherDaysIrregular));
+export default withTranslation("SessionWrapper(OtherDaysIrregular)")(
+  SessionWrapper(OtherDaysIrregular)
+);
 
 OtherDaysIrregular.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

@@ -14,12 +14,13 @@ import { withTranslation } from "../i18n";
 
 const EstablishmentAddressLookup = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
+    <BackButton {...props} t={props.t} />
     <Heading as="h1" size="LARGE">
       {props.t("What is the establishment's address?")}
     </Heading>
 
     <HiddenTextAccessible
+      t={props.t}
       id="hiddenTextEstablishment"
       summary={"What is an establishment?"}
     >
@@ -53,8 +54,9 @@ const EstablishmentAddressLookup = (props) => (
 
         <ContentItem.B_20_20>
           <SelectWithHeader
-            label={props.t("Select an address for")}
-            {...props.cumulativeFullAnswers.establishment_postcode_find}
+            label={`${props.t("Select an address for")} ${
+              props.cumulativeFullAnswers.establishment_postcode_find
+            }`}
             input={{
               id: "establishmentAddressDropdown",
               name: "establishment_address_selected",
@@ -89,7 +91,7 @@ const EstablishmentAddressLookup = (props) => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton {...props} />
+      <ContinueButton {...props} t={props.t} />
     </PostForm>
   </FsaLayout>
 );

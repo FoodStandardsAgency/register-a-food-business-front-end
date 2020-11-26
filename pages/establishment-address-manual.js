@@ -17,6 +17,7 @@ const EstablishmentAddress = (props) => (
   <FsaLayout {...props}>
     <BackButton
       {...props}
+      t={props.t}
       href={
         props.switches["/establishment-address-none-found"]
           ? `/new/${props.council}/establishment-address`
@@ -24,6 +25,7 @@ const EstablishmentAddress = (props) => (
       }
     />
     <ProcessedErrorSummary
+      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -31,7 +33,10 @@ const EstablishmentAddress = (props) => (
       {props.t("What is the establishment's address?")}
     </Heading>
 
-    <HiddenTextAccessible summary={props.t("What is an establishment?")}>
+    <HiddenTextAccessible
+      t={props.t}
+      summary={props.t("What is an establishment?")}
+    >
       <Paragraph mb={0}>
         {props.t(
           "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
@@ -44,11 +49,11 @@ const EstablishmentAddress = (props) => (
         {props.switches["/establishment-address-none-found"] ? (
           <ContentItem.B_30_15>
             <ErrorText id="addressNotFoundByPostcodeMessage">
-              {props.t("No addresses found for the postcode")}{" "}
-              {props.cumulativeFullAnswers.establishment_postcode_find}{" "}
-              {props.t(
-                "Please enter your address manually or go back to try a different postcode.`"
-              )}
+              {`${props.t("No addresses found for the postcode")} "${
+                props.cumulativeFullAnswers.establishment_postcode_find
+              }". ${props.t(
+                "Please enter your address manually or go back to try a different postcode."
+              )}`}
             </ErrorText>
           </ContentItem.B_30_15>
         ) : null}
@@ -142,7 +147,7 @@ const EstablishmentAddress = (props) => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton {...props} />
+      <ContinueButton {...props} t={props.t} />
     </PostForm>
   </FsaLayout>
 );
