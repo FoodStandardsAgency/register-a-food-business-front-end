@@ -27,6 +27,7 @@ const trimAnswers = (cumulativeFullAnswers) => {
  *
  * @param {object} cumulativeFullAnswers An object containing all the answers the user has submitted during the session with duplicates removed
  * @param {object} addressLookups The object returned by the address look-up service based on the postcode the user inputs
+ * @param {string} lcUrl The local councils URL
  *
  * @returns {object} An object containing the set of data in the correct format for the summary page with unnecessary fields deleted
  */
