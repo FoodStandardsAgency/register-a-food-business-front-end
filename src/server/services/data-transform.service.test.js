@@ -874,7 +874,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           };
           it("Should return a import_export_activities value of undefined", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
-            expect(result.import_export_activities).toBe(undefined);
+            expect(result.import_export_activities).toBe(null);
           });
         });
       });
@@ -1255,7 +1255,7 @@ describe("data-transform.service separateBracketsFromBusinessType()", () => {
       goodTypes.forEach((text) => {
         result = separateBracketsFromBusinessType(text);
         expect(result.business_type).toBe(text.trim());
-        expect(result.business_type_search_term).toBe(undefined);
+        expect(result.business_type_search_term).toBe(null);
       });
     });
   });
@@ -1285,7 +1285,7 @@ describe("data-transform.service separateBracketsFromBusinessType()", () => {
       badTypes.forEach((text) => {
         result = separateBracketsFromBusinessType(text);
         expect(result.business_type).toBe(text.trim());
-        expect(result.business_type_search_term).toBe(undefined);
+        expect(result.business_type_search_term).toBe(null);
       });
     });
   });

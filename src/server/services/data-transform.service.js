@@ -318,33 +318,33 @@ const transformAnswersForSubmit = (
     const submitData = Object.assign({}, data, openingDays, openingHours);
 
     establishment_details_keys.forEach((key) => {
-      if (submitData[key] !== undefined) {
+      if (submitData[key] !== null) {
         submitObject.registration.establishment.establishment_details[key] =
           submitData[key];
       }
     });
 
     operator_keys.forEach((key) => {
-      if (submitData[key] !== undefined) {
+      if (submitData[key] !== null) {
         submitObject.registration.establishment.operator[key] = submitData[key];
       }
     });
 
     premise_keys.forEach((key) => {
-      if (submitData[key] !== undefined) {
+      if (submitData[key] !== null) {
         submitObject.registration.establishment.premise[key] = submitData[key];
       }
     });
 
     activities_keys.forEach((key) => {
-      if (submitData[key] !== undefined) {
+      if (submitData[key] !== null) {
         submitObject.registration.establishment.activities[key] =
           submitData[key];
       }
     });
 
     declaration_keys.forEach((key) => {
-      if (submitData[key] !== undefined) {
+      if (submitData[key] !== null) {
         submitObject.registration.declaration[key] = submitData[key];
       }
     });
@@ -490,7 +490,7 @@ const transformAnswersForSummary = (
 };
 
 const transformPartnersForSummary = (partnersObjects) => {
-  let partnersData = {};
+  const partnersData = {};
   if (partnersObjects) {
     partnersData.partners = partnersObjects.map(
       (partner) => partner.partner_name
@@ -518,27 +518,27 @@ const transformPartnersForSummary = (partnersObjects) => {
  * @returns {string} A string displaying the correct answer for import/export activities for the summary page
  */
 const transformBusinessImportExportForSubmit = (
-  directly_import,
-  directly_export,
-  no_import_export
+  directlyImport,
+  directlyExport,
+  noImportExport
 ) => {
-  if (directly_import && directly_export) {
+  if (directlyImport && directlyExport) {
     return importExportEnum.BOTH.key;
-  } else if (directly_import) {
+  } else if (directlyImport) {
     return importExportEnum.IMPORT.key;
-  } else if (directly_export) {
+  } else if (directlyExport) {
     return importExportEnum.EXPORT.key;
-  } else if (no_import_export) {
+  } else if (noImportExport) {
     return importExportEnum.NONE.key;
   } else {
-    return undefined;
+    return null;
   }
 };
 
-const transformBusinessImportExportForSummary = (import_export_activities) => {
-  if (import_export_activities) {
-    return importExportEnum[import_export_activities].value;
-  }
+const transformBusinessImportExportForSummary = (importExportActivities) => {
+  return importExportActivities
+    ? importExportEnum[importExportActivities].value
+    : null;
 };
 
 /**
@@ -553,46 +553,45 @@ const transformBusinessImportExportForSummary = (import_export_activities) => {
  * @param {string} opening_day_sunnday String submitted to cumulative answers when user selects open sunday
  * @param {string} opening_days_start String submitted to cumulative answers when user selects the radio button can either be everyday/some-days/irregular-days
  *
- * @returns {string} A string returning "Every day" or "undefined"
+ * @returns {string} A string returning "Every day" or "null"
  */
 
 const transformOpeningDaysForSummary = (
-  opening_day_monday,
-  opening_day_tuesday,
-  opening_day_wednesday,
-  opening_day_thursday,
-  opening_day_friday,
-  opening_day_saturday,
-  opening_day_sunday,
-  opening_days_irregular
+  openingDayMonday,
+  openingDayTuesday,
+  openingDayWednesday,
+  openingDayThursday,
+  openingDayFriday,
+  openingDaySaturday,
+  openingDaySunday,
+  openingDaysIrregular
 ) => {
-  let opening_days = {};
-  opening_days.opening_day_monday = opening_day_monday ? "Monday" : false;
-  opening_days.opening_day_tuesday = opening_day_tuesday ? "Tuesday" : false;
-  opening_days.opening_day_wednesday = opening_day_wednesday
-    ? "Wednesday"
-    : false;
-  opening_days.opening_day_thursday = opening_day_thursday ? "Thursday" : false;
-  opening_days.opening_day_friday = opening_day_friday ? "Friday" : false;
-  opening_days.opening_day_saturday = opening_day_saturday ? "Saturday" : false;
-  opening_days.opening_day_sunday = opening_day_sunday ? "Sunday" : false;
+  const openingDays = {
+    opening_day_monday: openingDayMonday ? "Monday" : false,
+    opening_day_tuesday: openingDayTuesday ? "Tuesday" : false,
+    opening_day_wednesday: openingDayWednesday ? "Wednesday" : false,
+    opening_day_thursday: openingDayThursday ? "Thursday" : false,
+    opening_day_friday: openingDayFriday ? "Friday" : false,
+    opening_day_saturday: openingDaySaturday ? "Saturday" : false,
+    opening_day_sunday: openingDaySunday ? "Sunday" : false
+  };
   if (
-    opening_days.opening_day_monday &&
-    opening_days.opening_day_tuesday &&
-    opening_days.opening_day_wednesday &&
-    opening_days.opening_day_thursday &&
-    opening_days.opening_day_friday &&
-    opening_days.opening_day_saturday &&
-    opening_days.opening_day_sunday
+    openingDays.opening_day_monday &&
+    openingDays.opening_day_tuesday &&
+    openingDays.opening_day_wednesday &&
+    openingDays.opening_day_thursday &&
+    openingDays.opening_day_friday &&
+    openingDays.opening_day_saturday &&
+    openingDays.opening_day_sunday
   ) {
-    opening_days.opening_days_start = "Every day";
-    opening_days.open_some_days_summary_table = "Every day";
-  } else if (Object.values(opening_days).some((day) => day !== false)) {
-    opening_days.opening_days_start = "Some days";
-  } else if (opening_days_irregular) {
-    opening_days.opening_days_start = "Irregular days";
+    openingDays.opening_days_start = "Every day";
+    openingDays.open_some_days_summary_table = "Every day";
+  } else if (Object.values(openingDays).some((day) => day !== false)) {
+    openingDays.opening_days_start = "Some days";
+  } else if (openingDaysIrregular) {
+    openingDays.opening_days_start = "Irregular days";
   }
-  return opening_days;
+  return openingDays;
 };
 
 /**
@@ -658,7 +657,7 @@ const transformOpeningDaysForSubmit = (
   }
   return days;
 };
-/** Transforms opening hours to undefined so empty fields are not submitted
+/** Transforms opening hours to null so empty fields are not submitted
  *
  * @param {string} opening_hours_monday
  * @param {string} opening_hours_tuesday
@@ -668,7 +667,7 @@ const transformOpeningDaysForSubmit = (
  * @param {string} opening_hours_saturday
  * @param {string} opening_hours_sunday
  *
- * @returns {object} An object containing all monday - sunday opening hours set to either original value or undefined
+ * @returns {object} An object containing all monday - sunday opening hours set to either original value or null
  */
 const transformOpeningHoursForSubmit = (
   opening_hours_monday,
@@ -680,28 +679,32 @@ const transformOpeningHoursForSubmit = (
   opening_hours_sunday
 ) => {
   return {
-    opening_hours_monday: opening_hours_monday
-      ? opening_hours_monday
-      : undefined,
-    opening_hours_tuesday: opening_hours_tuesday
-      ? opening_hours_tuesday
-      : undefined,
+    opening_hours_monday: opening_hours_monday ? opening_hours_monday : null,
+    opening_hours_tuesday: opening_hours_tuesday ? opening_hours_tuesday : null,
     opening_hours_wednesday: opening_hours_wednesday
       ? opening_hours_wednesday
-      : undefined,
+      : null,
     opening_hours_thursday: opening_hours_thursday
       ? opening_hours_thursday
-      : undefined,
-    opening_hours_friday: opening_hours_friday
-      ? opening_hours_friday
-      : undefined,
+      : null,
+    opening_hours_friday: opening_hours_friday ? opening_hours_friday : null,
     opening_hours_saturday: opening_hours_saturday
       ? opening_hours_saturday
-      : undefined,
-    opening_hours_sunday: opening_hours_sunday
-      ? opening_hours_sunday
-      : undefined
+      : null,
+    opening_hours_sunday: opening_hours_sunday ? opening_hours_sunday : null
   };
+};
+
+const tranformCustomerTypeForSubmit = (supplyDirectly, supplyOther) => {
+  if (supplyDirectly && supplyOther) {
+    return customerTypeEnum.BOTH.key;
+  } else if (supplyDirectly) {
+    return customerTypeEnum.END_CONSUMER.key;
+  } else if (supplyOther) {
+    return customerTypeEnum.OTHER_BUSINESSES.key;
+  } else {
+    return null;
+  }
 };
 
 /**
@@ -712,23 +715,8 @@ const transformOpeningHoursForSubmit = (
  *
  * @returns {string} A string with the text to be displayed on the summary table
  */
-
-const tranformCustomerTypeForSubmit = (supply_directly, supply_other) => {
-  if (supply_directly && supply_other) {
-    return customerTypeEnum.BOTH.key;
-  } else if (supply_directly) {
-    return customerTypeEnum.END_CONSUMER.key;
-  } else if (supply_other) {
-    return customerTypeEnum.OTHER_BUSINESSES.key;
-  } else {
-    return undefined;
-  }
-};
-
-const transformCustomerTypeForSummary = (customer_type) => {
-  if (customer_type) {
-    return customerTypeEnum[customer_type].value;
-  }
+const transformCustomerTypeForSummary = (customerType) => {
+  return customerType ? customerTypeEnum[customerType].value : null;
 };
 
 /**
@@ -740,19 +728,19 @@ const transformCustomerTypeForSummary = (customer_type) => {
  * @returns {string} A string with the text to be displayed on the summary table
  */
 
-const combineOperatorTypes = (operator_type, registration_role) => {
+const combineOperatorTypes = (operatorType, registrationRole) => {
   let newOperatorType;
 
-  if (registration_role) {
-    if (registration_role === "Representative" && operator_type) {
-      newOperatorType = operator_type;
-    } else if (registration_role !== "Representative") {
-      newOperatorType = registration_role;
+  if (registrationRole) {
+    if (registrationRole === "Representative" && operatorType) {
+      newOperatorType = operatorType;
+    } else if (registrationRole !== "Representative") {
+      newOperatorType = registrationRole;
     } else {
       throw new Error(`
       data-transform.service operatorTypeTransform():
-      The registration_role value was ${registration_role}.
-      The operator_type value was ${operator_type}.
+      The registration_role value was ${registrationRole}.
+      The operator_type value was ${operatorType}.
       This combination of values is not valid.
       `);
     }
@@ -761,22 +749,18 @@ const combineOperatorTypes = (operator_type, registration_role) => {
   return newOperatorType;
 };
 
-const transformEstablishmentTypeForSummary = (establishment_type) => {
-  if (establishment_type) {
-    return establishmentTypeEnum[establishment_type].value;
-  }
+const transformEstablishmentTypeForSummary = (establishmentType) => {
+  return establishmentType
+    ? establishmentTypeEnum[establishmentType].value
+    : null;
 };
 
-const transformOperatorTypeForSummary = (operator_type) => {
-  if (operator_type) {
-    return operatorTypeEnum[operator_type].value;
-  }
+const transformOperatorTypeForSummary = (operatorType) => {
+  return operatorType ? operatorTypeEnum[operatorType].value : null;
 };
 
-const transformWaterSupplyForSummary = (water_supply) => {
-  if (water_supply) {
-    return waterSupplyEnum[water_supply].value;
-  }
+const transformWaterSupplyForSummary = (waterSupply) => {
+  return waterSupply ? waterSupplyEnum[waterSupply].value : null;
 };
 //Combines the date to be in the correct format to display on summary table
 const combineDate = (day, month, year) => {
@@ -789,7 +773,7 @@ const combineDate = (day, month, year) => {
 //Formats result of business type look up to display it correctly in the summary table
 const separateBracketsFromBusinessType = (text) => {
   let strippedBusinessType = text.trim();
-  let strippedSearchTerm = undefined;
+  let strippedSearchTerm = null;
 
   const indexOfOpeningBracket = text.lastIndexOf("(");
   const indexOfClosingBracket = text.lastIndexOf(")");
@@ -823,20 +807,20 @@ const separateBracketsFromBusinessType = (text) => {
 
 const transformBusinessTypeForSubmit = (displayName) => {
   const businessTypesObject = JSON.parse(JSON.stringify(businessTypeEnum));
-  for (let record in businessTypesObject) {
-    if (businessTypesObject[record].value === displayName) {
-      return businessTypesObject[record].key;
-    }
-  }
+  const businessType = Object.keys(businessTypesObject).filter(
+    (key) => businessTypesObject[key].value === displayName
+  );
+  return businessType.length > 0 ? businessTypesObject[businessType].key : null;
 };
 
 const transformBusinessTypeForSummary = (id) => {
   const businessTypesObject = JSON.parse(JSON.stringify(businessTypeEnum));
-  for (let record in businessTypesObject) {
-    if (businessTypesObject[record].key === id) {
-      return businessTypesObject[record].value;
-    }
-  }
+  const businessType = Object.keys(businessTypesObject).filter(
+    (key) => key === id
+  );
+  return businessType.length > 0
+    ? businessTypesObject[businessType].value
+    : null;
 };
 
 module.exports = {
