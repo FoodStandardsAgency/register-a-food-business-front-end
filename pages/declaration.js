@@ -130,7 +130,7 @@ class Declaration extends React.Component {
               service (optional)
             </Checkbox>
             <Paragraph linkRenderer={NewTabLinkRenderer}>
-              [Details on how we use your data.](/pdfs/feedback)
+              [Details on how we use your data](/pdfs/feedback)
             </Paragraph>
           </ContentItem.B_45_30>
 
