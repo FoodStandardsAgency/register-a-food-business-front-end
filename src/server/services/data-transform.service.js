@@ -318,33 +318,33 @@ const transformAnswersForSubmit = (
     const submitData = Object.assign({}, data, openingDays, openingHours);
 
     establishment_details_keys.forEach((key) => {
-      if (submitData[key] !== null) {
+      if (submitData[key] !== undefined) {
         submitObject.registration.establishment.establishment_details[key] =
           submitData[key];
       }
     });
 
     operator_keys.forEach((key) => {
-      if (submitData[key] !== null) {
+      if (submitData[key] !== undefined) {
         submitObject.registration.establishment.operator[key] = submitData[key];
       }
     });
 
     premise_keys.forEach((key) => {
-      if (submitData[key] !== null) {
+      if (submitData[key] !== undefined) {
         submitObject.registration.establishment.premise[key] = submitData[key];
       }
     });
 
     activities_keys.forEach((key) => {
-      if (submitData[key] !== null) {
+      if (submitData[key] !== undefined) {
         submitObject.registration.establishment.activities[key] =
           submitData[key];
       }
     });
 
     declaration_keys.forEach((key) => {
-      if (submitData[key] !== null) {
+      if (submitData[key] !== undefined) {
         submitObject.registration.declaration[key] = submitData[key];
       }
     });
@@ -679,19 +679,27 @@ const transformOpeningHoursForSubmit = (
   opening_hours_sunday
 ) => {
   return {
-    opening_hours_monday: opening_hours_monday ? opening_hours_monday : null,
-    opening_hours_tuesday: opening_hours_tuesday ? opening_hours_tuesday : null,
+    opening_hours_monday: opening_hours_monday
+      ? opening_hours_monday
+      : undefined,
+    opening_hours_tuesday: opening_hours_tuesday
+      ? opening_hours_tuesday
+      : undefined,
     opening_hours_wednesday: opening_hours_wednesday
       ? opening_hours_wednesday
-      : null,
+      : undefined,
     opening_hours_thursday: opening_hours_thursday
       ? opening_hours_thursday
-      : null,
-    opening_hours_friday: opening_hours_friday ? opening_hours_friday : null,
+      : undefined,
+    opening_hours_friday: opening_hours_friday
+      ? opening_hours_friday
+      : undefined,
     opening_hours_saturday: opening_hours_saturday
       ? opening_hours_saturday
-      : null,
-    opening_hours_sunday: opening_hours_sunday ? opening_hours_sunday : null
+      : undefined,
+    opening_hours_sunday: opening_hours_sunday
+      ? opening_hours_sunday
+      : undefined
   };
 };
 
