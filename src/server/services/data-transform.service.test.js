@@ -1255,7 +1255,7 @@ describe("data-transform.service separateBracketsFromBusinessType()", () => {
       goodTypes.forEach((text) => {
         result = separateBracketsFromBusinessType(text);
         expect(result.business_type).toBe(text.trim());
-        expect(result.business_type_search_term).toBe(null);
+        expect(result.business_type_search_term).toBe(undefined);
       });
     });
   });
@@ -1285,7 +1285,7 @@ describe("data-transform.service separateBracketsFromBusinessType()", () => {
       badTypes.forEach((text) => {
         result = separateBracketsFromBusinessType(text);
         expect(result.business_type).toBe(text.trim());
-        expect(result.business_type_search_term).toBe(null);
+        expect(result.business_type_search_term).toBe(undefined);
       });
     });
   });

@@ -311,9 +311,8 @@ const transformAnswersForSubmit = (
         separatedBusinessTypeSearchTerm.business_type
       );
 
-      data.business_type_search_term = separatedBusinessTypeSearchTerm.business_type_search_term
-        ? separatedBusinessTypeSearchTerm.business_type_search_term
-        : undefined;
+      data.business_type_search_term =
+        separatedBusinessTypeSearchTerm.business_type_search_term;
     }
 
     const submitData = Object.assign({}, data, openingDays, openingHours);
@@ -782,7 +781,7 @@ const combineDate = (day, month, year) => {
 //Formats result of business type look up to display it correctly in the summary table
 const separateBracketsFromBusinessType = (text) => {
   let strippedBusinessType = text.trim();
-  let strippedSearchTerm = null;
+  let strippedSearchTerm = undefined;
 
   const indexOfOpeningBracket = text.lastIndexOf("(");
   const indexOfClosingBracket = text.lastIndexOf(")");
