@@ -22,7 +22,7 @@ describe("<OperatorAddress />", () => {
   describe("when registration role is partnership", () => {
     let wrapper;
     beforeEach(() => {
-      const cumulativeAnswers = { registration_role: "Partnership" };
+      const cumulativeAnswers = { registration_role: "PARTNERSHIP" };
       wrapper = mount(
         <OperatorAddress
           validatorErrors={testValidatorErrors}

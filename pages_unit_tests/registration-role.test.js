@@ -49,8 +49,8 @@ describe("<RegistrationRole />", () => {
   describe("all Radio buttons", () => {
     it("can be selected by default", () => {
       const radioButtonIdsAndValues = {
-        registration_role_sole_trader: "Sole trader",
-        registration_role_partnership: "Partnership",
+        registration_role_sole_trader: "SOLETRADER",
+        registration_role_partnership: "PARTNERSHIP",
         registration_role_representative: "Representative"
       };
 
