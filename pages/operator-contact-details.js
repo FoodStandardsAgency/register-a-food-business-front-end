@@ -9,6 +9,7 @@ import {
   ContactDetailsHelp,
   PostForm
 } from "../src/components";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { Heading, InputField } from "govuk-react";
 import PropTypes from "prop-types";
 
@@ -21,7 +22,8 @@ const OperatorContactDetails = (props) => (
     />
     <Heading as="h1" size="LARGE">
       {`${
-        props.cumulativeFullAnswers.registration_role === "Partnership"
+        props.cumulativeFullAnswers.registration_role ===
+        operatorTypeEnum.PARTNERSHIP.key
           ? "Partnership"
           : "Operator"
       } contact details`}
