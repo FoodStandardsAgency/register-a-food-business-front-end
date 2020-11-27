@@ -311,8 +311,9 @@ const transformAnswersForSubmit = (
         separatedBusinessTypeSearchTerm.business_type
       );
 
-      data.business_type_search_term =
-        separatedBusinessTypeSearchTerm.business_type_search_term;
+      data.business_type_search_term = separatedBusinessTypeSearchTerm.business_type_search_term
+        ? separatedBusinessTypeSearchTerm.business_type_search_term
+        : undefined;
     }
 
     const submitData = Object.assign({}, data, openingDays, openingHours);
@@ -814,21 +815,14 @@ const separateBracketsFromBusinessType = (text) => {
 };
 
 const transformBusinessTypeForSubmit = (displayName) => {
-  const businessTypesObject = JSON.parse(JSON.stringify(businessTypeEnum));
-  const businessType = Object.keys(businessTypesObject).filter(
-    (key) => businessTypesObject[key].value === displayName
+  const businessTypeKey = Object.keys(businessTypeEnum).find(
+    (key) => businessTypeEnum[key].value === displayName
   );
-  return businessType.length > 0 ? businessTypesObject[businessType].key : null;
+  return businessTypeKey ? businessTypeEnum[businessTypeKey].key : null;
 };
 
 const transformBusinessTypeForSummary = (id) => {
-  const businessTypesObject = JSON.parse(JSON.stringify(businessTypeEnum));
-  const businessType = Object.keys(businessTypesObject).filter(
-    (key) => key === id
-  );
-  return businessType.length > 0
-    ? businessTypesObject[businessType].value
-    : null;
+  return businessTypeEnum[id] ? businessTypeEnum[id].value : null;
 };
 
 module.exports = {
