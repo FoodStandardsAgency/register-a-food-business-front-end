@@ -1,6 +1,8 @@
 import { css } from "@emotion/core";
-import { Input, Label } from "govuk-react";
+import ContentItem from "./ContentItem";
+import { Input, Label, UnorderedList, HintText, Paragraph } from "govuk-react";
 import distinctBusinessTypes from "./distinct-business-types.json";
+import ListItemConsistentSize from "./ListItemConsistentSize";
 
 const autocompleteErrorStyling = css`
   border-left: 4px solid #b10e1e;
@@ -29,8 +31,25 @@ const BusinessTypeOptions = () => {
 
 const DataListSection = (props) => (
   <div id="dataListSection">
+    <Paragraph>
+      Search with your own keywords and then select the most fitting business
+      type from the suggestions
+    </Paragraph>
+    <ContentItem.B_30_15>
+      <HintText>
+        For example
+        <UnorderedList>
+          <ListItemConsistentSize>cafe</ListItemConsistentSize>
+          <ListItemConsistentSize>food delivery service</ListItemConsistentSize>
+          <ListItemConsistentSize>commercial bakery</ListItemConsistentSize>
+          <ListItemConsistentSize>
+            meat product manufacturer
+          </ListItemConsistentSize>
+        </UnorderedList>
+      </HintText>
+    </ContentItem.B_30_15>
     <Label style={{ paddingTop: "0px" }}>
-      Search and select the most fitting business type from the suggestions
+      Select business type
       <div aria-label="business type autocomplete, type and then choose from results">
         <Input
           name="business_type"

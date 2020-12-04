@@ -41,7 +41,7 @@ const lineHeight = {
   padding: 0
 };
 
-// 16/09/2020 - comment needed due to cloudflare caching next.js files
+// 01/12/2020 - comment needed due to cloudflare caching next.js files
 class BusinessTypeLookup extends React.Component {
   constructor(props) {
     super(props);
@@ -59,7 +59,7 @@ class BusinessTypeLookup extends React.Component {
     return (
       <div>
         {props.browser === "IE" ? (
-          <DataListSection {...props} />
+          <SelectListSection {...props} />
         ) : (
           <div>
             {this.state && this.state.renderAutoCompleteSection ? (

@@ -2103,10 +2103,10 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
   integrity sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==
 
-"@slice-and-dice/register-a-food-business-validation@^1.18.0":
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/@slice-and-dice/register-a-food-business-validation/-/register-a-food-business-validation-1.18.0.tgz#b00b4a95e5a4de00138d2f7e78896089047cc091"
-  integrity sha512-p+BymljAMtyHaYfv0IkpM6RcQAXLJdZ514L0jDTCOOVW6a3iTUEWlquACga4GpJxIZYWoprguXHiOgIiHMgkXA==
+"@slice-and-dice/register-a-food-business-validation@1.19.0":
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/@slice-and-dice/register-a-food-business-validation/-/register-a-food-business-validation-1.19.0.tgz#98921df191ca5e53d99502a2727935159b59c01e"
+  integrity sha512-9LyOwPomEVbj9n8UbAumkp8nHynW+gX3MzYxtpNrU7cROQd596JPps1ZADlG7VdqDsHCSuT6894AH8Edlb8eMQ==
   dependencies:
     moment "^2.22.2"
     validator "^10.4.0"
@@ -3267,9 +3267,9 @@ bindings@^1.5.0:
     file-uri-to-path "1.0.0"
 
 bl@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/bl/-/bl-2.2.0.tgz#e1a574cdf528e4053019bb800b041c0ac88da493"
-  integrity sha512-wbgvOpqopSr7uq6fJrLH8EsvYMJf9gzfo2jCsL2eTy75qXPukA4pCgHamOQkZtY5vmfVtjB+P3LNlMHW5CEZXA==
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/bl/-/bl-2.2.1.tgz#8c11a7b730655c5d56898cdc871224f40fd901d5"
+  integrity sha512-6Pesp1w0DEX1N550i/uGV/TqucVL4AM/pgThFSN/Qq9si1/DF9aIHs1BxD8V/QU0HoeHO6cQRTAuYnLPKq1e4g==
   dependencies:
     readable-stream "^2.3.5"
     safe-buffer "^5.1.1"
@@ -8506,10 +8506,15 @@ node-cache@^5.1.0:
   dependencies:
     clone "2.x"
 
-node-fetch@2.6.0, node-fetch@^2.6.0:
+node-fetch@2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
+
+node-fetch@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 node-int64@^0.4.0:
   version "0.4.0"
