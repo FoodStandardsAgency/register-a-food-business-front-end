@@ -1,3 +1,6 @@
+const {
+  operatorTypeEnum
+} = require("@slice-and-dice/register-a-food-business-validation");
 const editController = require("./edit.controller");
 
 const testPath = {
@@ -8,7 +11,7 @@ const testPath = {
   "/registration-role": {
     on: true,
     switches: {
-      "Sole trader": {
+      SOLETRADER: {
         "/operator-name": true,
         "/test-page2": true
       },
@@ -71,11 +74,11 @@ describe("Edit controller: editContinue()", () => {
           const editModeFirstPage = "/registration-role";
           const currentPage = "/operator-name";
           const cumulativeFullAnswers = {
-            registration_role: "Sole trader",
+            registration_role: operatorTypeEnum.SOLETRADER.key,
             example_answer: "value"
           };
           const cumulativeEditAnswers = {
-            registration_role: "Sole trader",
+            registration_role: operatorTypeEnum.SOLETRADER.key,
             example_answer: "value"
           };
           const newAnswers = {
@@ -99,7 +102,7 @@ describe("Edit controller: editContinue()", () => {
 
         it("should return a combination of the previous and new answers with trimmed whitespace", () => {
           const expectedAnswers = {
-            registration_role: "Sole trader",
+            registration_role: operatorTypeEnum.SOLETRADER.key,
             example_answer: "value",
             operator_first_name: "Bob Harry",
             operator_last_name: "Smith"
@@ -189,7 +192,7 @@ describe("Edit controller: editContinue()", () => {
             operator_type: "A charity"
           };
           const newAnswers = {
-            registration_role: "Sole trader"
+            registration_role: operatorTypeEnum.SOLETRADER.key
           };
           const switches = {};
 
@@ -209,14 +212,14 @@ describe("Edit controller: editContinue()", () => {
         it("should not return FULL answers that are associated with inactive pages on the path", () => {
           const expectedFullAnswers = {
             example_answer: "value",
-            registration_role: "Sole trader"
+            registration_role: operatorTypeEnum.SOLETRADER.key
           };
           expect(result.cumulativeFullAnswers).toEqual(expectedFullAnswers);
         });
 
         it("should not return EDIT answers that are associated with inactive pages on the path", () => {
           const expectedEditAnswers = {
-            registration_role: "Sole trader"
+            registration_role: operatorTypeEnum.SOLETRADER.key
           };
           expect(result.cumulativeEditAnswers).toEqual(expectedEditAnswers);
         });

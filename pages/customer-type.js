@@ -11,6 +11,7 @@ import {
 import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import { customerTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const CustomerType = (props) => (
   <FsaLayout {...props}>
@@ -37,7 +38,7 @@ const CustomerType = (props) => (
           <Checkbox
             name="supply_other"
             id="customer_type_supply_other"
-            value="It will supply food to other businesses to process, sell or serve"
+            value={customerTypeEnum.OTHER_BUSINESSES.key}
             defaultChecked={props.cumulativeFullAnswers.supply_other}
           >
             {props.t(
@@ -48,7 +49,7 @@ const CustomerType = (props) => (
           <Checkbox
             name="supply_directly"
             id="customer_type_supply_directly"
-            value="It will supply food directly to end consumer"
+            value={customerTypeEnum.END_CONSUMER.key}
             defaultChecked={props.cumulativeFullAnswers.supply_directly}
           >
             {props.t("It will supply food directly to end consumers")}

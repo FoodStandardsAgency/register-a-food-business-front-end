@@ -43,9 +43,9 @@ const submitController = async (
       Object.getOwnPropertyNames(submissionData).length > 0
     ) {
       const transformedData = transformAnswersForSubmit(
-        lcUrl,
         submissionData,
-        addressLookups
+        addressLookups,
+        lcUrl
       );
       const response = await submit(transformedData, regDataVersion, sessionId);
       const res = await response.json();

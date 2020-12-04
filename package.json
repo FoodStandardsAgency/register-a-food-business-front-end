@@ -1,6 +1,6 @@
 {
   "name": "register_a_food_business_front_end",
-  "version": "9.5.0",
+  "version": "10.0.0",
   "engines": {
     "node": ">=12.9"
   },
@@ -39,7 +39,7 @@
     "@emotion/styled": "^10.0.27",
     "@govuk-react/icon-crown": "^0.0.5",
     "@govuk-react/icons": "^0.7.1",
-    "@slice-and-dice/register-a-food-business-validation": "^1.18.0",
+    "@slice-and-dice/register-a-food-business-validation": "1.19.0",
     "accessible-autocomplete": "^2.0.2",
     "applicationinsights": "^1.7.6",
     "applicationinsights-native-metrics": "^0.0.5",
@@ -72,7 +72,7 @@
     "next": "^9.3.5",
     "next-i18next": "^7.0.1",
     "node-cache": "^5.1.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "nodemon": "^2.0.3",
     "prop-types": "^15.7.2",
     "react": "16.13.1",

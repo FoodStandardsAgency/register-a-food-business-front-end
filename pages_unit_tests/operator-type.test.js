@@ -51,9 +51,9 @@ describe("<OperatorType />", () => {
   describe("all Radio buttons", () => {
     it("can be selected by default", () => {
       const radioButtonIdsAndValues = {
-        operator_type_person: "A person",
-        operator_type_company: "A company",
-        operator_type_charity: "A charity"
+        operator_type_person: "PERSON",
+        operator_type_company: "COMPANY",
+        operator_type_charity: "CHARITY"
       };
 
       for (let radioButtonId in radioButtonIdsAndValues) {

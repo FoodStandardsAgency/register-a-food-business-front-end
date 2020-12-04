@@ -3,6 +3,7 @@ import { ContentItem } from "../../src/components";
 import { HintText } from "govuk-react";
 import { PartnershipDescription, OperatorDescription } from "./";
 import { withTranslation } from "../../i18n.js";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const PartnershipHintText = (props) => (
   <ContentItem.B_30_15>
@@ -15,7 +16,7 @@ const PartnershipHintText = (props) => (
 );
 
 const ContactDetailsHelp = (props) => {
-  return props.role === "Partnership" ? (
+  return props.role === operatorTypeEnum.PARTNERSHIP.key ? (
     <React.Fragment>
       <PartnershipHintText t={props.t} />
       <PartnershipDescription t={props.t} />

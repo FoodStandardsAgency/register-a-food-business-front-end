@@ -1,11 +1,20 @@
 import {
   transformAnswersForSubmit,
   transformAnswersForSummary,
+  transformBusinessTypeForSubmit,
   combineDate,
   separateBracketsFromBusinessType,
   trimUprn,
   trimAnswers
 } from "./data-transform.service";
+
+describe("data-transform.service transformBusinessTypeForSubmit", () => {
+  it("given a correct business type value, it should return the correct corresponding key", () => {
+    const businessTypeValue = "Egg producer or packer";
+    const result = transformBusinessTypeForSubmit(businessTypeValue);
+    expect(result).toBe("008");
+  });
+});
 
 describe("data-transform.service trimAnswers()", () => {
   let result;
@@ -60,13 +69,11 @@ describe("data-transform.service transformAnswersForSummary()", () => {
     });
 
     describe("Given that business_type is part of cumulative answers", () => {
-      const businessType = {
-        business_type: "Example (test)"
-      };
+      const businessType = { business_type: "Food ordering service (process)" };
       it("should assign business_type and business_type_search_term to the result", () => {
         result = transformAnswersForSummary(businessType);
-        expect(result.business_type).toBe("Example");
-        expect(result.business_type_search_term).toBe("Test");
+        expect(result.business_type).toBe("Food ordering service");
+        expect(result.business_type_search_term).toBe("Process");
       });
     });
 
@@ -75,7 +82,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         supply_other: "True",
         supply_directly: "True"
       };
-      it("Should return a customer_type value of 'End consumer and other businesses'", () => {
+      it("Should return a customer_type value for the key 'BOTH'", () => {
         result = transformAnswersForSummary(supplyBoth);
         expect(result.customer_type).toBe("End consumer and other businesses");
       });
@@ -111,7 +118,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         supply_other: "True"
       };
 
-      it("Should return a customer_type value of 'Other businesses'", () => {
+      it("Should return a customer_type value of OTHER_BUSINESSES", () => {
         result = transformAnswersForSummary(supplyDirectlyOnly);
         expect(result.customer_type).toBe("Other businesses");
       });
@@ -122,22 +129,22 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         supply_directly: "True"
       };
 
-      it("Should return a customer_type value of 'End consumer'", () => {
+      it("Should return a customer_type value of 'END_CONSUMER'", () => {
         result = transformAnswersForSummary(supplyDirectlyOnly);
         expect(result.customer_type).toBe("End consumer");
       });
     });
 
-    describe("given the registration_role is not Representative and operator_type is not passed", () => {
+    describe("given the registration_role is provided and operator_type is not passed", () => {
       const registrationRoleOnly = {
-        registration_role: "test",
+        registration_role: "PERSON",
         other_data: "example"
       };
 
-      it("the transformed data contains a field called operator_type that equals the passed registration_role data", () => {
+      it("the transformed data contains a field called operator_type which its value corresponds to the passed registration_role id", () => {
         result = transformAnswersForSummary(registrationRoleOnly);
         expect(result.operator_type).toEqual(
-          registrationRoleOnly.registration_role
+          "A person (registered by a representative)"
         );
       });
 
@@ -150,7 +157,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
     describe("given the registration_role is Representative and operator_type is passed", () => {
       const registrationRoleAndOperatorType = {
         registration_role: "Representative",
-        operator_type: "test",
+        operator_type: "COMPANY",
         other_data: "example"
       };
 
@@ -166,35 +173,29 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         expect(result.registration_role).toBe(undefined);
       });
 
-      it("the transformed data contains a field called operator_type that does not equal the original operator_type data", () => {
-        result = transformAnswersForSummary(registrationRoleAndOperatorType);
-        expect(result.operator_type).not.toEqual(
-          registrationRoleAndOperatorType.operator_type
-        );
-      });
-
-      it("the transformed data contains a field called operator_type that contains the original text plus an additional representative description", () => {
-        const operatorTypesArray = ["A person", "A charity", "A company"];
-
-        operatorTypesArray.forEach((operatorType) => {
+      it("the transformed data contains a field called operator_type that contains the corresponding text value", () => {
+        const operatorTypesArrayKeys = ["PERSON", "CHARITY", "COMPANY"];
+        const operatorTypesArrayValues = [
+          "A person (registered by a representative)",
+          "A charity (registered by a representative)",
+          "A company (registered by a representative)"
+        ];
+        let i;
+        for (i = 0; i < operatorTypesArrayKeys.length; i++) {
           const data = {
             registration_role: "Representative",
-            operator_type: operatorType,
+            operator_type: operatorTypesArrayKeys[i],
             other_data: "example"
           };
-
           result = transformAnswersForSummary(data);
-
-          expect(result.operator_type).toBe(
-            `${operatorType} (registered by a representative)`
-          );
-        });
+          expect(result.operator_type).toBe(`${operatorTypesArrayValues[i]}`);
+        }
       });
     });
 
     describe("given that registration_role is Representative but operator_type is not passed", () => {
       const data = {
-        registration_role: "Representative",
+        registration_role: "REPRESENTATIVE",
         other_data: "example"
       };
 
@@ -801,7 +802,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
             directly_export: "True",
             no_import_export: "True"
           };
-          it("Should return a import_export_activities value of 'Directly import and Export'", () => {
+          it("Should return a import_export_activities value of 'BOTH'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
             expect(result.import_export_activities).toBe(
               "Directly import and export"
@@ -813,7 +814,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
             directly_import: "True",
             directly_export: "True"
           };
-          it("Should return a import_export_activities value of 'Directly import and Export'", () => {
+          it("Should return a import_export_activities value of 'BOTH'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
             expect(result.import_export_activities).toBe(
               "Directly import and export"
@@ -825,7 +826,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
             directly_import: "True",
             no_import_export: "True"
           };
-          it("Should return a import_export_activities value of 'Directly import'", () => {
+          it("Should return a import_export_activities value of 'IMPORT'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
             expect(result.import_export_activities).toBe("Directly import");
           });
@@ -835,7 +836,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
             directly_export: "True",
             no_import_export: "True"
           };
-          it("Should return a import_export_activities value of 'Directly export'", () => {
+          it("Should return a import_export_activities value of 'EXPORT'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
             expect(result.import_export_activities).toBe("Directly export");
           });
@@ -844,7 +845,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           const cumulativeFullAnswers = {
             directly_export: "True"
           };
-          it("Should return a import_export_activities value of 'Directly export'", () => {
+          it("Should return a import_export_activities value of 'EXPORT'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
             expect(result.import_export_activities).toBe("Directly export");
           });
@@ -853,7 +854,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           const cumulativeFullAnswers = {
             directly_import: "True"
           };
-          it("Should return a import_export_activities value of 'Directly import'", () => {
+          it("Should return a import_export_activities value of 'IMPORT'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
             expect(result.import_export_activities).toBe("Directly import");
           });
@@ -862,7 +863,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           const cumulativeFullAnswers = {
             no_import_export: "True"
           };
-          it("Should return a import_export_activities value of 'None'", () => {
+          it("Should return a import_export_activities value of 'NONE'", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
             expect(result.import_export_activities).toBe("None");
           });
@@ -873,7 +874,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           };
           it("Should return a import_export_activities value of undefined", () => {
             result = transformAnswersForSummary(cumulativeFullAnswers);
-            expect(result.import_export_activities).toBe(undefined);
+            expect(result.import_export_activities).toBe(null);
           });
         });
       });
@@ -941,9 +942,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
 
   it("turns flat data into structured data, with the Local Council URL", () => {
     result = transformAnswersForSubmit(
-      testLcUrl,
       testCumulativeAnswers,
-      testAddressLookups
+      testAddressLookups,
+      testLcUrl
     );
     expect(
       result.registration.establishment.operator.operator_first_name
@@ -962,9 +963,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
 
     it("it sets all the days to false", () => {
       result = transformAnswersForSubmit(
-        testLcUrl,
         testCumulativeAnswers,
-        testAddressLookups
+        testAddressLookups,
+        testLcUrl
       );
       expect(
         result.registration.establishment.activities.opening_day_monday
@@ -1007,9 +1008,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
 
     it("it sets all the days that exist to true", () => {
       result = transformAnswersForSubmit(
-        testLcUrl,
         testCumulativeAnswers,
-        testAddressLookups
+        testAddressLookups,
+        testLcUrl
       );
       expect(
         result.registration.establishment.activities.opening_day_monday
@@ -1052,9 +1053,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
 
     it("it sets them to undefined", () => {
       result = transformAnswersForSubmit(
-        testLcUrl,
         testCumulativeAnswers,
-        testAddressLookups
+        testAddressLookups,
+        testLcUrl
       );
       expect(
         result.registration.establishment.activities.opening_hours_monday
@@ -1097,9 +1098,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
 
     it("it keeps the original values", () => {
       result = transformAnswersForSubmit(
-        testLcUrl,
         testCumulativeAnswers,
-        testAddressLookups
+        testAddressLookups,
+        testLcUrl
       );
       expect(
         result.registration.establishment.activities.opening_hours_monday
@@ -1136,9 +1137,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
 
     it("it sets all the days to true", () => {
       result = transformAnswersForSubmit(
-        testLcUrl,
         testCumulativeAnswers,
-        testAddressLookups
+        testAddressLookups,
+        testLcUrl
       );
       expect(
         result.registration.establishment.activities.opening_day_monday
@@ -1166,9 +1167,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
 
   it("should only add the data fields it is given", () => {
     result = transformAnswersForSubmit(
-      testLcUrl,
       testCumulativeAnswers,
-      testAddressLookups
+      testAddressLookups,
+      testLcUrl
     );
     expect(
       result.registration.establishment.operator.operator_company_name
@@ -1187,9 +1188,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       establishment_trading_name: "John's Apples"
     };
     result = transformAnswersForSubmit(
-      testLcUrl,
       testCumulativeAnswersDate,
-      testAddressLookups
+      testAddressLookups,
+      testLcUrl
     );
     expect(
       result.registration.establishment.establishment_details
@@ -1199,9 +1200,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
 
   it("should set primary contact for partners", () => {
     result = transformAnswersForSubmit(
-      testLcUrl,
       testCumulativeAnswers,
-      testAddressLookups
+      testAddressLookups,
+      testLcUrl
     );
     expect(result.registration.establishment.operator.partners).toHaveLength(2);
     expect(result.registration.establishment.operator.partners).toEqual(

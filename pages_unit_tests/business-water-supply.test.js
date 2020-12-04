@@ -31,7 +31,7 @@ describe("<WaterSupply />", () => {
 
     it("water_supply_private gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        water_supply: "Private"
+        water_supply: "PRIVATE"
       };
       const wrapper = mount(
         <WaterSupply
@@ -47,7 +47,7 @@ describe("<WaterSupply />", () => {
 
     it("water_supply_public gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        water_supply: "Public"
+        water_supply: "PUBLIC"
       };
       const wrapper = mount(
         <WaterSupply
@@ -63,7 +63,7 @@ describe("<WaterSupply />", () => {
 
     it("water_supply_public_and_private gets given the correct default value", () => {
       const cumulativeFullAnswers = {
-        water_supply: "Public and private"
+        water_supply: "BOTH"
       };
       const wrapper = mount(
         <WaterSupply

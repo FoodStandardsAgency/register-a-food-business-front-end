@@ -7,6 +7,25 @@ import { act } from "react-dom/test-utils"; // ES6
 import { I18nextProvider } from "react-i18next";
 import i18n from "../../i18nForTests.js";
 
+describe("given browser is IE", () => {
+  it("renders DataListSection", async () => {
+    let wrapper;
+
+    await act(async () => {
+      wrapper = mount(
+        <BusinessTypeLookup
+          validatorErrors
+          cumulativeFullAnswers
+          browser="IE"
+        />
+      );
+      wrapper.setState({ renderAutoCompleteSection: true });
+      wrapper.update();
+    });
+
+    expect(wrapper.find(SelectListSection)).toHaveLength(1);
+  });
+});
 describe("given JavaScript is disabled", () => {
   describe("when browser is Safari", () => {
     it("renders SelectListSection", async () => {

@@ -1,4 +1,4 @@
-import businessTypesJSON from "./business-type-transformed.json";
+import businessTypesJSON from "./business-type-transformed-en.json";
 import stemmer from "stemmer";
 
 const findMatches = (query, returnResultsArray) => {

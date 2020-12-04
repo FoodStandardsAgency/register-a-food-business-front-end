@@ -8,6 +8,7 @@ import {
   OnHandleErrorClick,
   PostForm
 } from "../src/components";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { Radio, MultiChoice, Fieldset } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
@@ -40,20 +41,22 @@ const RegistrationRole = (props) => (
           >
             <Radio
               name="registration_role"
-              value="Sole trader"
+              value={operatorTypeEnum.SOLETRADER.key}
               id="registration_role_sole_trader"
               defaultChecked={
-                props.cumulativeFullAnswers.registration_role === "Sole trader"
+                props.cumulativeFullAnswers.registration_role ===
+                operatorTypeEnum.SOLETRADER.key
               }
             >
               {props.t("I operate it as a sole trader")}
             </Radio>
             <Radio
               name="registration_role"
-              value="Partnership"
+              value={operatorTypeEnum.PARTNERSHIP.key}
               id="registration_role_partnership"
               defaultChecked={
-                props.cumulativeFullAnswers.registration_role === "Partnership"
+                props.cumulativeFullAnswers.registration_role ===
+                operatorTypeEnum.PARTNERSHIP.key
               }
             >
               {props.t("I operate it in a partnership")}

@@ -7,7 +7,7 @@ import {
 } from "./BusinessTypeLookupFunctions";
 
 jest.mock("stemmer");
-jest.mock("../components/business-type-transformed.json", () => [
+jest.mock("../components/business-type-transformed-en.json", () => [
   {
     displayName: "Restaurant, cafe, canteen or fast food",
     searchTerm: "fusion"

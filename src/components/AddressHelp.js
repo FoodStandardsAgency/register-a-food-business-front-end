@@ -3,9 +3,10 @@ import { ContentItem } from "../../src/components";
 import { Heading, HintText } from "govuk-react";
 import { PartnershipDescription, OperatorDescription } from "./";
 import { withTranslation } from "../../i18n.js";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const AddressHelp = (props) => {
-  return props.role === "Partnership" ? (
+  return props.role === operatorTypeEnum.PARTNERSHIP.key ? (
     <React.Fragment>
       <Heading as="h1" size="LARGE">
         {props.t("What is the partnership contact's address?")}

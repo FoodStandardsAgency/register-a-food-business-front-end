@@ -1,4 +1,7 @@
 const {
+  operatorTypeEnum
+} = require("@slice-and-dice/register-a-food-business-validation");
+const {
   editPath,
   editPathInEditMode,
   moveAlongPath,
@@ -439,7 +442,7 @@ describe("path.service switchOffCompanyAndCharityDetails()", () => {
 
   describe("given a path and Sole Trader", () => {
     it("returns the original path with '/operator-company-details' and '/operator-charity-details' switched off", () => {
-      const answers = { registration_role: "Sole Trader" };
+      const answers = { registration_role: operatorTypeEnum.SOLETRADER.key };
       const result = switchOffCompanyAndCharityDetails(answers, examplePath);
       expect(result["/operator-company-details"].on).toBe(false);
       expect(result["/operator-charity-details"].on).toBe(false);
@@ -448,7 +451,7 @@ describe("path.service switchOffCompanyAndCharityDetails()", () => {
 
   describe("given a path and Partnership", () => {
     it("returns the original path with '/operator-company-details' and '/operator-charity-details' switched off", () => {
-      const answers = { registration_role: "Partnership" };
+      const answers = { registration_role: operatorTypeEnum.PARTNERSHIP.key };
       const result = switchOffCompanyAndCharityDetails(answers, examplePath);
       expect(result["/operator-company-details"].on).toBe(false);
       expect(result["/operator-charity-details"].on).toBe(false);

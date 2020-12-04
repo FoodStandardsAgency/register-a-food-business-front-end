@@ -9,6 +9,7 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { Heading, InputField, Paragraph, Button } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
@@ -39,7 +40,8 @@ const EstablishmentContactDetails = (props) => (
           id="reuseButton"
         >
           {`Re-use ${
-            props.cumulativeFullAnswers.registration_role === "Partnership"
+            props.cumulativeFullAnswers.registration_role ===
+            operatorTypeEnum.PARTNERSHIP.key
               ? "partnership"
               : "operator"
           } contact details`}
