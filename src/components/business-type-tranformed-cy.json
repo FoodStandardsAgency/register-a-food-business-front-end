@@ -1,0 +1,1849 @@
+[
+  { "displayName": "Fferm ffrwythau a llysiau ", "searchTerm": "ffermwr" },
+  { "displayName": "Fferm ffrwythau a llysiau ", "searchTerm": "tyfwr" },
+  {
+    "displayName": "Fferm ffrwythau a llysiau ",
+    "searchTerm": "amaethyddiaeth"
+  },
+  { "displayName": "Fferm ffrwythau a llysiau ", "searchTerm": "perllan" },
+  { "displayName": "Fferm da byw", "searchTerm": "ffermwr" },
+  { "displayName": "Fferm da byw", "searchTerm": "buwch" },
+  { "displayName": "Fferm da byw", "searchTerm": "mochyn" },
+  { "displayName": "Fferm da byw", "searchTerm": "cyw iâr" },
+  { "displayName": "Fferm da byw", "searchTerm": "gwartheg" },
+  { "displayName": "Fferm da byw", "searchTerm": "dofednod (<i>poultry</i>)" },
+  { "displayName": "Fferm da byw", "searchTerm": "amaethyddiaeth" },
+  { "displayName": "Fferm da byw", "searchTerm": "defaid" },
+  { "displayName": "Fferm da byw", "searchTerm": "byfflo" },
+  { "displayName": "Fferm âr", "searchTerm": "ffermwr" },
+  { "displayName": "Fferm âr", "searchTerm": "cnwd" },
+  { "displayName": "Fferm âr", "searchTerm": "amaethyddiaeth" },
+  { "displayName": "Gwenynwr", "searchTerm": "mêl" },
+  { "displayName": "Gwenynwr", "searchTerm": "ffermwr" },
+  { "displayName": "Gwenynwr", "searchTerm": "cwch gwenyn" },
+  { "displayName": "Gwenynwr", "searchTerm": "ceidwad" },
+  { "displayName": "Gwenynwr", "searchTerm": "gwenynwr (<i>apiarist</i>)" },
+  { "displayName": "Gwneuthurwr mêl", "searchTerm": "gwenyn" },
+  { "displayName": "Gwneuthurwr mêl", "searchTerm": "gweithgynhyrchwr" },
+  { "displayName": "Gwneuthurwr mêl", "searchTerm": "gwneuthurwr mêl" },
+  { "displayName": "Heliwr a thrapiwr", "searchTerm": "bywyd gwyllt" },
+  {
+    "displayName": "Heliwr a thrapiwr",
+    "searchTerm": "anifeiliaid hela (<i>game</i>)"
+  },
+  { "displayName": "Heliwr a thrapiwr", "searchTerm": "gwyllt" },
+  { "displayName": "Heliwr a thrapiwr", "searchTerm": "adar" },
+  { "displayName": "Heliwr a thrapiwr", "searchTerm": "ceirw" },
+  { "displayName": "Prosesydd wyau", "searchTerm": "hwyaden" },
+  { "displayName": "Prosesydd wyau", "searchTerm": "iâr" },
+  { "displayName": "Prosesydd wyau", "searchTerm": "sofliar (<i>quail</i>)" },
+  { "displayName": "Cynhyrchydd neu becynnwr wyau", "searchTerm": "hwyaden" },
+  {
+    "displayName": "Cynhyrchydd neu becynnwr wyau",
+    "searchTerm": "sofliar (<i>quail</i>)"
+  },
+  { "displayName": "Cynhyrchydd neu becynnwr wyau", "searchTerm": "iâr" },
+  { "displayName": "Cwch pysgota", "searchTerm": "pysgotwr" },
+  { "displayName": "Cwch pysgota", "searchTerm": "llong" },
+  { "displayName": "Cwch pysgota", "searchTerm": "llong" },
+  { "displayName": "Cwch pysgota", "searchTerm": "bwyd môr" },
+  { "displayName": "Cwch pysgota", "searchTerm": "pysgod cregyn" },
+  { "displayName": "Cwch pysgota", "searchTerm": "wystrys (<i>oysters</i>)" },
+  { "displayName": "Cwch pysgota", "searchTerm": "cregyn gleision" },
+  {
+    "displayName": "Cwch pysgota",
+    "searchTerm": "cregyn cylchog (<i>clams</i>)"
+  },
+  { "displayName": "Cwch pysgota", "searchTerm": "corgimwch" },
+  { "displayName": "Cwch pysgota", "searchTerm": "cimwch" },
+  { "displayName": "Cwch pysgota", "searchTerm": "cranc" },
+  { "displayName": "Cwch pysgota", "searchTerm": "berdys (<i>shrimp</i>)" },
+  { "displayName": "Cwch pysgota", "searchTerm": "bwyd môr" },
+  {
+    "displayName": "Cwch pysgota",
+    "searchTerm": "cregyn bylchog (<i>scallop</i>)"
+  },
+  { "displayName": "Cwch pysgota", "searchTerm": "treilliwr (<i>trawler</i>)" },
+  { "displayName": "Cwch pysgota", "searchTerm": "genweirio (<i>angling</i>)" },
+  { "displayName": "Fferm bysgod", "searchTerm": "pysgotwr" },
+  { "displayName": "Fferm bysgod", "searchTerm": "fferm bysgod" },
+  { "displayName": "Fferm bysgod", "searchTerm": "bwyd môr" },
+  { "displayName": "Fferm bysgod", "searchTerm": "pysgod cregyn" },
+  { "displayName": "Fferm bysgod", "searchTerm": "wystrys (<i>oysters</i>)" },
+  { "displayName": "Fferm bysgod", "searchTerm": "cregyn gleision" },
+  {
+    "displayName": "Fferm bysgod",
+    "searchTerm": "cregyn cylchog (<i>clams</i>)"
+  },
+  { "displayName": "Fferm bysgod", "searchTerm": "corgimwch" },
+  { "displayName": "Fferm bysgod", "searchTerm": "cimwch" },
+  { "displayName": "Fferm bysgod", "searchTerm": "cranc" },
+  { "displayName": "Fferm bysgod", "searchTerm": "berdys (<i>shrimp</i>)" },
+  { "displayName": "Fferm bysgod", "searchTerm": "bwyd môr" },
+  {
+    "displayName": "Fferm bysgod",
+    "searchTerm": "cregyn bylchog (<i>scallop</i>)"
+  },
+  { "displayName": "Fferm bysgod", "searchTerm": "tilapiaid" },
+  { "displayName": "Fferm bysgod", "searchTerm": "eog" },
+  { "displayName": "Fferm bysgod", "searchTerm": "cerpynnod" },
+  { "displayName": "Fferm bysgod", "searchTerm": "dyframaeth" },
+  {
+    "displayName": "Fferm bysgod",
+    "searchTerm": "marwriaeth (<i>mariculture</i>)"
+  },
+  { "displayName": "Gweithgynhyrchwr cynnyrch cig", "searchTerm": "prosesu" },
+  { "displayName": "Gweithgynhyrchwr cynnyrch cig", "searchTerm": "cadw" },
+  { "displayName": "Gweithgynhyrchwr cynnyrch cig", "searchTerm": "aersychu" },
+  { "displayName": "Gweithgynhyrchwr cynnyrch cig", "searchTerm": "halen" },
+  { "displayName": "Gweithgynhyrchwr cynnyrch cig", "searchTerm": "jerky" },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch cig",
+    "searchTerm": "halltu (<i>cure</i>)"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch cig",
+    "searchTerm": "cig eidion"
+  },
+  { "displayName": "Gweithgynhyrchwr cynnyrch cig", "searchTerm": "porc" },
+  { "displayName": "Gweithgynhyrchwr cynnyrch cig", "searchTerm": "cig dafad" },
+  { "displayName": "Gweithgynhyrchwr cynnyrch cig", "searchTerm": "cig oen" },
+  { "displayName": "Gweithgynhyrchwr cynnyrch cig", "searchTerm": "cyw iâr" },
+  { "displayName": "Gweithgynhyrchwr cynnyrch cig", "searchTerm": "pryfaid" },
+  { "displayName": "Gweithgynhyrchwr cynnyrch cig", "searchTerm": "biltong" },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch cig",
+    "searchTerm": "mwg (<i>smoked</i>)"
+  },
+  { "displayName": "Gweithgynhyrchwr cynnyrch cig", "searchTerm": "sych" },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch cig",
+    "searchTerm": "briwgig (<i>mince</i>)"
+  },
+  { "displayName": "Gweithgynhyrchwr cynnyrch cig", "searchTerm": "ham" },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch cig",
+    "searchTerm": "gwneuthurwr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch cig",
+    "searchTerm": "cynhyrchydd"
+  },
+  { "displayName": "Lladd-dy", "searchTerm": "lladd-dy" },
+  { "displayName": "Lladd-dy", "searchTerm": "lladd" },
+  { "displayName": "Lladd-dy", "searchTerm": "cigydda" },
+  { "displayName": "Lladd-dy", "searchTerm": "halal" },
+  { "displayName": "Lladd-dy", "searchTerm": "torri" },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "prosesu"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "cadw"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "cramenogion (<i>crustecean</i>)"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "cranc"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "cimwch"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "berdys (<i>shrimp</i>)"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "corgimwch"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "cregyn gleision"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "cregyn bylchog (<i>scallop</i>)"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "cregyn cylchog (<i>clams</i>)"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "mwg (<i>smoked</i>)"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "halen"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "sych"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "aersychu"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "heli"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "picl"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "cynhyrchydd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch pysgod a physgod cregyn",
+    "searchTerm": "gwneuthurwr"
+  },
+  { "displayName": "Canolfan buro pysgod cregyn", "searchTerm": "ffatri" },
+  {
+    "displayName": "Canolfan buro pysgod cregyn",
+    "searchTerm": "wystrys (<i>oysters</i>)"
+  },
+  {
+    "displayName": "Canolfan buro pysgod cregyn",
+    "searchTerm": "cregyn gleision"
+  },
+  {
+    "displayName": "Canolfan buro pysgod cregyn",
+    "searchTerm": "cregyn cylchog (<i>clams</i>)"
+  },
+  { "displayName": "Canolfan buro pysgod cregyn", "searchTerm": "corgimwch" },
+  { "displayName": "Canolfan buro pysgod cregyn", "searchTerm": "cimwch" },
+  { "displayName": "Canolfan buro pysgod cregyn", "searchTerm": "cranc" },
+  {
+    "displayName": "Canolfan buro pysgod cregyn",
+    "searchTerm": "berdys (<i>shrimp</i>)"
+  },
+  {
+    "displayName": "Canolfan buro pysgod cregyn",
+    "searchTerm": "cregyn bylchog (<i>scallop</i>)"
+  },
+  {
+    "displayName": "Canolfan buro pysgod cregyn",
+    "searchTerm": "puro"
+  },
+  { "displayName": "Gweithgynhyrchwr cynnyrch tatws", "searchTerm": "prosesu" },
+  { "displayName": "Gweithgynhyrchwr cynnyrch tatws", "searchTerm": "cadw" },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch tatws",
+    "searchTerm": "sglodion"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch tatws",
+    "searchTerm": "creision"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch tatws",
+    "searchTerm": "mewn tun"
+  },
+  { "displayName": "Gweithgynhyrchwr cynnyrch tatws", "searchTerm": "rhewi" },
+  { "displayName": "Gweithgynhyrchwr cynnyrch tatws", "searchTerm": "stwnsh" },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch tatws",
+    "searchTerm": "gwneuthurwr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch tatws",
+    "searchTerm": "cynhyrchydd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr sudd ffrwythau a llysiau",
+    "searchTerm": "yfed"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr sudd ffrwythau a llysiau",
+    "searchTerm": "ffatri"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr sudd ffrwythau a llysiau",
+    "searchTerm": "lassi"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr sudd ffrwythau a llysiau",
+    "searchTerm": "smwddi"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr sudd ffrwythau a llysiau",
+    "searchTerm": "potelu"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr sudd ffrwythau a llysiau",
+    "searchTerm": "blendio"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr sudd ffrwythau a llysiau",
+    "searchTerm": "gwneuthurwr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr sudd ffrwythau a llysiau",
+    "searchTerm": "cynhyrchydd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch ffrwythau a llysiau",
+    "searchTerm": "prosesu"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch ffrwythau a llysiau",
+    "searchTerm": "ffatri"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch ffrwythau a llysiau",
+    "searchTerm": "cadw"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch ffrwythau a llysiau",
+    "searchTerm": "sych"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch ffrwythau a llysiau",
+    "searchTerm": "picl"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch ffrwythau a llysiau",
+    "searchTerm": "jam"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch ffrwythau a llysiau",
+    "searchTerm": "rhewi"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch ffrwythau a llysiau",
+    "searchTerm": "halen"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch ffrwythau a llysiau",
+    "searchTerm": "mewn tun"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch ffrwythau a llysiau",
+    "searchTerm": "menyn pysgnau <i>(peanut butter)</i>"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch ffrwythau a llysiau",
+    "searchTerm": "gwneuthurwr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynnyrch ffrwythau a llysiau",
+    "searchTerm": "cynhyrchydd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr olew a/neu fraster",
+    "searchTerm": "lard"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr olew a/neu fraster",
+    "searchTerm": "menyn"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr olew a/neu fraster",
+    "searchTerm": "ffatri"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr olew a/neu fraster",
+    "searchTerm": "marjarîn"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr olew a/neu fraster",
+    "searchTerm": "siwet"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr olew a/neu fraster",
+    "searchTerm": "llysiau"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr olew a/neu fraster",
+    "searchTerm": "had rêp"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr olew a/neu fraster",
+    "searchTerm": "olewydd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr olew a/neu fraster",
+    "searchTerm": "blodyn yr haul"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr olew a/neu fraster",
+    "searchTerm": "gwneuthurwr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr olew a/neu fraster",
+    "searchTerm": "cynhyrchydd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr llaeth a chaws",
+    "searchTerm": "iogwrt"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr llaeth a chaws",
+    "searchTerm": "prosesu"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr llaeth a chaws",
+    "searchTerm": "ffatri"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr llaeth a chaws",
+    "searchTerm": "fromage"
+  },
+  { "displayName": "Gweithgynhyrchwr llaeth a chaws", "searchTerm": "hufen" },
+  {
+    "displayName": "Gweithgynhyrchwr llaeth a chaws",
+    "searchTerm": "cheddar"
+  },
+  { "displayName": "Gweithgynhyrchwr llaeth a chaws", "searchTerm": "llaeth" },
+  {
+    "displayName": "Gweithgynhyrchwr llaeth a chaws",
+    "searchTerm": "maidd (<i>whey</i>)"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr llaeth a chaws",
+    "searchTerm": "gwneuthurwr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr llaeth a chaws",
+    "searchTerm": "cynhyrchydd"
+  },
+  { "displayName": "Gweithgynhyrchwr hufen iâ", "searchTerm": "hufen ia" },
+  { "displayName": "Gweithgynhyrchwr hufen iâ", "searchTerm": "prosesu" },
+  { "displayName": "Gweithgynhyrchwr hufen iâ", "searchTerm": "ffatri" },
+  { "displayName": "Gweithgynhyrchwr hufen iâ", "searchTerm": "rhewi" },
+  { "displayName": "Gweithgynhyrchwr hufen iâ", "searchTerm": "gelato" },
+  { "displayName": "Gweithgynhyrchwr hufen iâ", "searchTerm": "iogwrt" },
+  { "displayName": "Gweithgynhyrchwr hufen iâ", "searchTerm": "gwneuthurwr" },
+  { "displayName": "Gweithgynhyrchwr hufen iâ", "searchTerm": "cynhyrchydd" },
+  {
+    "displayName": "Popty / becws / siop fara masnachol",
+    "searchTerm": "patisserie"
+  },
+  {
+    "displayName": "Popty / becws / siop fara masnachol",
+    "searchTerm": "cynnyrch crwst (<i>pastry</i>)"
+  },
+  {
+    "displayName": "Popty / becws / siop fara masnachol",
+    "searchTerm": "gweithgynhyrchu"
+  },
+  {
+    "displayName": "Popty / becws / siop fara masnachol",
+    "searchTerm": "cacennau"
+  },
+  {
+    "displayName": "Popty / becws / siop fara masnachol",
+    "searchTerm": "bara"
+  },
+  {
+    "displayName": "Popty / becws / siop fara masnachol",
+    "searchTerm": "gwneuthurwr"
+  },
+  {
+    "displayName": "Popty / becws / siop fara masnachol",
+    "searchTerm": "cynhyrchydd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd neu brydau parod i’w bwyta",
+    "searchTerm": "pryd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd neu brydau parod i’w bwyta",
+    "searchTerm": "pryd parod"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd neu brydau parod i’w bwyta",
+    "searchTerm": "ffatri"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd neu brydau parod i’w bwyta",
+    "searchTerm": "micro-don"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd neu brydau parod i’w bwyta",
+    "searchTerm": "rhewi"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd neu brydau parod i’w bwyta",
+    "searchTerm": "gwneuthurwr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd neu brydau parod i’w bwyta",
+    "searchTerm": "cynhyrchydd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "homogeneiddio"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "fformiwla"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "protein"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "powdr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "glwten"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "seliag"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "lactos"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "babanod"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "atchwanegiad (<i>supplement</i>)"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "maeth"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "meddygol"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "iechyd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "diddyfnu (<i>weaning</i>)"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "gwneuthurwr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr bwyd deietegol neu fwyd babanod",
+    "searchTerm": "cynhyrchydd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynhyrchion bwyd eraill",
+    "searchTerm": "rhew"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynhyrchion bwyd eraill",
+    "searchTerm": "melin"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynhyrchion bwyd eraill",
+    "searchTerm": "prosesu"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynhyrchion bwyd eraill",
+    "searchTerm": "ffatri"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynhyrchion bwyd eraill",
+    "searchTerm": "gwneuthurwr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr cynhyrchion bwyd eraill",
+    "searchTerm": "cynhyrchydd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "bragu"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "micro-fragdy"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "bragdy"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "distyllfa"
+  },
+  { "displayName": "Gweithgynhyrchwr diodydd alcoholig", "searchTerm": "gwin" },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "gwirod (<i>liqour</i>)"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "gwirod (<i>spirit</i>)"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "lager"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "cwrw (<i>ale</i>)"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "cwrw (<i>beer</i>)"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "drafft"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "seidr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "perai (<i>perry</i>)"
+  },
+  { "displayName": "Gweithgynhyrchwr diodydd alcoholig", "searchTerm": "medd" },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "gwindy"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "gwinllan"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "moonshine"
+  },
+  { "displayName": "Gweithgynhyrchwr diodydd alcoholig", "searchTerm": "jin" },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "coctel"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "wisgi"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "fodca"
+  },
+  { "displayName": "Gweithgynhyrchwr diodydd alcoholig", "searchTerm": "rym" },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "crefft"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "gwneuthurwr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd alcoholig",
+    "searchTerm": "cynhyrchydd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd di-alcohol",
+    "searchTerm": "diod meddal"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd di-alcohol",
+    "searchTerm": "soda"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd di-alcohol",
+    "searchTerm": "dŵr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd di-alcohol",
+    "searchTerm": "ffatri"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd di-alcohol",
+    "searchTerm": "pefriog"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd di-alcohol",
+    "searchTerm": "mwynol"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd di-alcohol",
+    "searchTerm": "carbonedig"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd di-alcohol",
+    "searchTerm": "potel"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd di-alcohol",
+    "searchTerm": "lemonêd"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd di-alcohol",
+    "searchTerm": "ffynnon"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd di-alcohol",
+    "searchTerm": "egni"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd di-alcohol",
+    "searchTerm": "gwneuthurwr"
+  },
+  {
+    "displayName": "Gweithgynhyrchwr diodydd di-alcohol",
+    "searchTerm": "cynhyrchydd"
+  },
+  { "displayName": "Pecynnwr dŵr mwynol", "searchTerm": "pefriog" },
+  { "displayName": "Pecynnwr dŵr mwynol", "searchTerm": "carbonedig" },
+  { "displayName": "Pecynnwr dŵr mwynol", "searchTerm": "potel" },
+  { "displayName": "Pecynnwr dŵr mwynol", "searchTerm": "ffynnon" },
+  { "displayName": "Pecynnwr contract", "searchTerm": "pacio mewn tuniau" },
+  { "displayName": "Pecynnwr contract", "searchTerm": "mewn tun" },
+  { "displayName": "Pecynnwr contract", "searchTerm": "lapio llif" },
+  { "displayName": "Pecynnwr contract", "searchTerm": "pacio mewn cartonau" },
+  { "displayName": "Pecynnwr contract", "searchTerm": "potio" },
+  { "displayName": "Pecynnwr contract", "searchTerm": "cymysgu" },
+  { "displayName": "Pecynnwr contract", "searchTerm": "blendio" },
+  { "displayName": "Pecynnwr contract", "searchTerm": "potel" },
+  { "displayName": "Gwasanaeth dosbarthu bwyd", "searchTerm": "pryd ar glud" },
+  { "displayName": "Gwasanaeth dosbarthu bwyd", "searchTerm": "gorchymyn" },
+  { "displayName": "Gwasanaeth archebu bwyd", "searchTerm": "cyflenwi" },
+  { "displayName": "Gwasanaeth archebu bwyd", "searchTerm": "prosesu" },
+  {
+    "displayName": "Gwasanaeth archebu bwyd",
+    "searchTerm": "agregydd (<i>aggregator</i>)"
+  },
+  { "displayName": "Cyfleuster storio bwyd", "searchTerm": "oer" },
+  { "displayName": "Cyfleuster storio bwyd", "searchTerm": "warws" },
+  { "displayName": "Cyfleuster storio bwyd", "searchTerm": "storfa oer" },
+  { "displayName": "Cyfleuster storio bwyd", "searchTerm": "uned" },
+  { "displayName": "Cyfleuster storio bwyd", "searchTerm": "wedi’i oeri" },
+  { "displayName": "Cyfleuster storio bwyd", "searchTerm": "dosbarthwr" },
+  { "displayName": "Brocer bwyd", "searchTerm": "asiant" },
+  { "displayName": "Brocer bwyd", "searchTerm": "trafodwr" },
+  { "displayName": "Brocer bwyd", "searchTerm": "cyfryngwr" },
+  { "displayName": "Brocer bwyd", "searchTerm": "cyfryngwr" },
+  { "displayName": "Brocer bwyd", "searchTerm": "ymgynghorydd" },
+  { "displayName": "Brocer bwyd", "searchTerm": "prynwr" },
+  { "displayName": "Cyfanwerthwr", "searchTerm": "cyflenwr" },
+  { "displayName": "Cyfanwerthwr", "searchTerm": "swmp (<i>bulk</i>)" },
+  { "displayName": "Cyfanwerthwr", "searchTerm": "cynhyrchydd" },
+  { "displayName": "Cyfanwerthwr", "searchTerm": "masnach" },
+  { "displayName": "Cyfanwerthwr", "searchTerm": "groser" },
+  { "displayName": "Cyfanwerthwr", "searchTerm": "dosbarthu" },
+  { "displayName": "Talu a chludo", "searchTerm": "cyfanwerthu" },
+  { "displayName": "Talu a chludo", "searchTerm": "cyflenwr" },
+  { "displayName": "Talu a chludo", "searchTerm": "aelodaeth" },
+  { "displayName": "Talu a chludo", "searchTerm": "warws" },
+  { "displayName": "Talu a chludo", "searchTerm": "swmp (<i>bulk</i>)" },
+  { "displayName": "Cwmni cludo", "searchTerm": "llongau" },
+  { "displayName": "Cwmni cludo", "searchTerm": "cludo" },
+  { "displayName": "Cwmni cludo", "searchTerm": "cludo nwyddau" },
+  { "displayName": "Cwmni cludo", "searchTerm": "llwyth (<i>shipment</i>)" },
+  { "displayName": "Cwmni cludo", "searchTerm": "logisteg" },
+  { "displayName": "Cwmni cludo", "searchTerm": "dosbarthwr" },
+  { "displayName": "Manwerthwr ar-lein", "searchTerm": "rhyngrwyd" },
+  { "displayName": "Manwerthwr ar-lein", "searchTerm": "amazon" },
+  { "displayName": "Manwerthwr ar-lein", "searchTerm": "ebay" },
+  { "displayName": "Manwerthwr ar-lein", "searchTerm": "cyfrifiadur" },
+  { "displayName": "Manwerthwr ar-lein", "searchTerm": "y we" },
+  { "displayName": "Manwerthwr ar-lein", "searchTerm": "o bell" },
+  { "displayName": "Manwerthwr ar-lein", "searchTerm": "gorchymyn" },
+  { "displayName": "Manwerthwr ar-lein", "searchTerm": "siop" },
+  { "displayName": "Manwerthwr ar-lein", "searchTerm": "gwefan" },
+  {
+    "displayName": "Archfarchnad",
+    "searchTerm": "goruwchfarchnad (<i>hypermarket</i>)"
+  },
+  { "displayName": "Archfarchnad", "searchTerm": "groser" },
+  { "displayName": "Archfarchnad", "searchTerm": "marchnad" },
+  { "displayName": "Archfarchnad", "searchTerm": "siop" },
+  { "displayName": "Archfarchnad", "searchTerm": "siop" },
+  { "displayName": "Archfarchnad", "searchTerm": "manwerthu" },
+  {
+    "displayName": "Siop gyfleustra leol neu siop gornel",
+    "searchTerm": "siop gornel"
+  },
+  {
+    "displayName": "Siop gyfleustra leol neu siop gornel",
+    "searchTerm": "siop"
+  },
+  {
+    "displayName": "Siop gyfleustra leol neu siop gornel",
+    "searchTerm": "groser"
+  },
+  {
+    "displayName": "Siop gyfleustra leol neu siop gornel",
+    "searchTerm": "manwerthu"
+  },
+  { "displayName": "Gwerthu wrth giât y fferm", "searchTerm": "wyau" },
+  { "displayName": "Gwerthu wrth giât y fferm", "searchTerm": "tatws" },
+  {
+    "displayName": "Gwerthu wrth giât y fferm",
+    "searchTerm": "gwerthu wrth y giât"
+  },
+  { "displayName": "Gwerthu wrth giât y fferm", "searchTerm": "manwerthu" },
+  { "displayName": "Gwerthu wrth giât y fferm", "searchTerm": "llaeth" },
+  { "displayName": "Gwerthu wrth giât y fferm", "searchTerm": "amrwd" },
+  { "displayName": "Siop fferm", "searchTerm": "manwerthu" },
+  { "displayName": "Siop fferm", "searchTerm": "siop fferm" },
+  { "displayName": "Siop felysion", "searchTerm": "candi" },
+  { "displayName": "Siop felysion", "searchTerm": "pwdin" },
+  {
+    "displayName": "Siop felysion",
+    "searchTerm": "siocledwr"
+  },
+  { "displayName": "Siop felysion", "searchTerm": "siop" },
+  { "displayName": "Siop felysion", "searchTerm": "bonbon" },
+  { "displayName": "Siop felysion", "searchTerm": "manwerthu" },
+  { "displayName": "Cigydd", "searchTerm": "cig" },
+  { "displayName": "Cigydd", "searchTerm": "halal" },
+  { "displayName": "Cigydd", "searchTerm": "manwerthu" },
+  { "displayName": "Cigydd", "searchTerm": "torri" },
+  { "displayName": "Cigydd", "searchTerm": "siop" },
+  { "displayName": "Cigydd", "searchTerm": "siop" },
+  { "displayName": "Gwerthwr pysgod", "searchTerm": "bwyd môr" },
+  { "displayName": "Gwerthwr pysgod", "searchTerm": "gwerthwr" },
+  { "displayName": "Gwerthwr pysgod", "searchTerm": "groser" },
+  { "displayName": "Gwerthwr pysgod", "searchTerm": "manwerthu" },
+  { "displayName": "Gwerthwr pysgod", "searchTerm": "pysgod cregyn" },
+  { "displayName": "Gwerthwr pysgod", "searchTerm": "siop" },
+  { "displayName": "Gwerthwr pysgod", "searchTerm": "siop" },
+  { "displayName": "Gwerthwr llysiau", "searchTerm": "gwerthu ffrwythau" },
+  { "displayName": "Gwerthwr llysiau", "searchTerm": "ffrwythau" },
+  { "displayName": "Gwerthwr llysiau", "searchTerm": "llysiau" },
+  { "displayName": "Gwerthwr llysiau", "searchTerm": "siop" },
+  { "displayName": "Gwerthwr llysiau", "searchTerm": "groser" },
+  { "displayName": "Gwerthwr llysiau", "searchTerm": "manwerthu" },
+  { "displayName": "Gwerthwr llysiau", "searchTerm": "siop" },
+  { "displayName": "Siop bwyd iechyd", "searchTerm": "manwerthu" },
+  { "displayName": "Siop bwyd iechyd", "searchTerm": "fitaminau" },
+  { "displayName": "Siop bwyd iechyd", "searchTerm": "organig" },
+  { "displayName": "Siop bwyd iechyd", "searchTerm": "rhydd rhag" },
+  { "displayName": "Siop bwyd iechyd", "searchTerm": "naturiol" },
+  { "displayName": "Siop bwyd iechyd", "searchTerm": "homeopathig" },
+  { "displayName": "Siop bwyd iechyd", "searchTerm": "daioni" },
+  { "displayName": "Siop bwyd iechyd", "searchTerm": "lles" },
+  { "displayName": "Siop bwyd iechyd", "searchTerm": "maeth" },
+  { "displayName": "Siop bwyd iechyd", "searchTerm": "siop" },
+  {
+    "displayName": "Siop fara/becws",
+    "searchTerm": "cynnyrch crwst (<i>pastry</i>)"
+  },
+  { "displayName": "Siop fara/becws", "searchTerm": "siop" },
+  { "displayName": "Siop fara/becws", "searchTerm": "patisserie" },
+  { "displayName": "Siop fara/becws", "searchTerm": "bara" },
+  { "displayName": "Siop fara/becws", "searchTerm": "manwerthu" },
+  { "displayName": "Siop fara/becws", "searchTerm": "bara" },
+  { "displayName": "Siop fara/becws", "searchTerm": "cacennau" },
+  { "displayName": "Siop fara/becws", "searchTerm": "cwci" },
+  { "displayName": "Siop fara/becws", "searchTerm": "siop" },
+  { "displayName": "Siop Bapur neu Swyddfa'r Post", "searchTerm": "siop" },
+  { "displayName": "Siop Bapur neu Swyddfa'r Post", "searchTerm": "tybaco" },
+  {
+    "displayName": "Siop Bapur neu Swyddfa'r Post",
+    "searchTerm": "stand newyddion"
+  },
+  { "displayName": "Siop Bapur neu Swyddfa'r Post", "searchTerm": "manwerthu" },
+  { "displayName": "Siop Bapur neu Swyddfa'r Post", "searchTerm": "cornel" },
+  { "displayName": "Siop Bapur neu Swyddfa'r Post", "searchTerm": "siop" },
+  {
+    "displayName": "Stondinau marchnad gyda lleoliad parhaol",
+    "searchTerm": "pop up"
+  },
+  {
+    "displayName": "Stondinau marchnad gyda lleoliad parhaol",
+    "searchTerm": "pop up"
+  },
+  {
+    "displayName": "Stondinau marchnad gyda lleoliad parhaol",
+    "searchTerm": "bazar"
+  },
+  { "displayName": "Siop ddiodydd drwyddedig", "searchTerm": "tybaco" },
+  { "displayName": "Siop ddiodydd drwyddedig", "searchTerm": "gwin" },
+  { "displayName": "Siop ddiodydd drwyddedig", "searchTerm": "alcohol" },
+  {
+    "displayName": "Siop ddiodydd drwyddedig",
+    "searchTerm": "cwrw (<i>beer</i>)"
+  },
+  {
+    "displayName": "Siop ddiodydd drwyddedig",
+    "searchTerm": "gwirod (<i>spirits</i>)"
+  },
+  { "displayName": "Siop ddiodydd drwyddedig", "searchTerm": "manwerthu" },
+  { "displayName": "Siop ddiodydd drwyddedig", "searchTerm": "siop" },
+  { "displayName": "Siop ddiodydd drwyddedig", "searchTerm": "siop" },
+  { "displayName": "Gorsaf betrol neu garej", "searchTerm": "manwerthu" },
+  { "displayName": "Gorsaf betrol neu garej", "searchTerm": "nwy" },
+  { "displayName": "Gorsaf betrol neu garej", "searchTerm": "siop" },
+  { "displayName": "Gorsaf betrol neu garej", "searchTerm": "siop" },
+  { "displayName": "Gorsaf betrol neu garej", "searchTerm": "siop" },
+  { "displayName": "Delicatessen", "searchTerm": "ham" },
+  { "displayName": "Delicatessen", "searchTerm": "darnau o gig oer" },
+  { "displayName": "Delicatessen", "searchTerm": "kosher" },
+  { "displayName": "Delicatessen", "searchTerm": "manwerthu" },
+  { "displayName": "Delicatessen", "searchTerm": "charcuterie" },
+  { "displayName": "Delicatessen", "searchTerm": "siop" },
+  { "displayName": "Delicatessen", "searchTerm": "siop" },
+  { "displayName": "Fferyllydd", "searchTerm": "fferyllfa" },
+  { "displayName": "Fferyllydd", "searchTerm": "manwerthu" },
+  { "displayName": "Fferyllydd", "searchTerm": "apothecari" },
+  { "displayName": "Fferyllydd", "searchTerm": "siop" },
+  { "displayName": "Fferyllydd", "searchTerm": "siop" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "siop" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "siop" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "groser" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "marchnad" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "banc bwyd" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "maes chwarae" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "chwarae meddal" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "amgueddfa" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "sw" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "acwariwm" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "elusen" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "llyfrgell" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "campfa" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "swyddfa" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "eglwys" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "mosg" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "synagog" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "neuadd bentref" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "teml" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "cymunedol" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "theatr" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "sinema" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "stadiwm" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "syrcas" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "cyngerdd" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "cerddoriaeth" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "bingo" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "lolfa" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "cae ras" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "trac rasio" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "bowlio" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "parc" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "difyrrwch" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "ffair" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "casino" },
+  { "displayName": "Unrhyw fanwerthwr arall", "searchTerm": "atyniad" },
+  { "displayName": "Peiriant gwerthu", "searchTerm": "diodydd" },
+  { "displayName": "Peiriant gwerthu", "searchTerm": "byrbrydau" },
+  { "displayName": "Peiriant gwerthu", "searchTerm": "losin" },
+  {
+    "displayName": "Peiriant gwerthu",
+    "searchTerm": "cynnyrch wedi'i becynnu ymlaen llaw"
+  },
+  { "displayName": "Peiriant gwerthu", "searchTerm": "ffynnon ddŵr" },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "bistro"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "brunch"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "te prynhawn"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "brecwast"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "swper"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "swper/te"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "diner"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "Bwffe"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "coffi"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "pwdin"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "espresso"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "cyfuniad"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "seimllyd"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "hambyrgyr"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "byrgyr"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "cebab"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "pizza"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "cinio"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "pizzeria"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "maes chwarae"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "brechdan"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "chwarae meddal"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "swshi"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "te"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "sudd"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "amgueddfa"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "sw"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "acwariwm"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "brasserie"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "carferi"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "churreria"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "creperie"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "sgod a sglods"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "gril"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "caffeteria"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "lloches"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "tŷ hanner ffordd"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "carchar"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "canolfan atal"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "sba"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "elusen"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "llyfrgell"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "campfa"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "bwyd cyflym"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "swyddfa"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "eglwys"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "mosg"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "synagog"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "neuadd bentref"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "teml"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "cymunedol"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "gastro-dafarn"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "theatr"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "sinema"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "stadiwm"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "syrcas"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "cyngerdd"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "cerddoriaeth"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "bingo"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "lolfa"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "cae ras"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "trac rasio"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "bowlio"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "parc"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "difyrrwch"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "ffair"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "casino"
+  },
+  {
+    "displayName": "Bwyty, caffi, ffreutur neu fwyty bwyd cyflym",
+    "searchTerm": "atyniad"
+  },
+  {
+    "displayName": "Hostel neu lety gwely a brecwast ",
+    "searchTerm": "Gwely a brecwast"
+  },
+  { "displayName": "Hostel neu lety gwely a brecwast ", "searchTerm": "&amp;" },
+  {
+    "displayName": "Hostel neu lety gwely a brecwast ",
+    "searchTerm": "Gwely a brecwast"
+  },
+  {
+    "displayName": "Hostel neu lety gwely a brecwast ",
+    "searchTerm": "tŷ llety bach"
+  },
+  {
+    "displayName": "Hostel neu lety gwely a brecwast ",
+    "searchTerm": "tafarn"
+  },
+  { "displayName": "Hostel neu lety gwely a brecwast ", "searchTerm": "motel" },
+  {
+    "displayName": "Hostel neu lety gwely a brecwast ",
+    "searchTerm": "llety"
+  },
+  { "displayName": "Hostel neu lety gwely a brecwast ", "searchTerm": "encil" },
+  { "displayName": "Hostel neu lety gwely a brecwast ", "searchTerm": "sba" },
+  {
+    "displayName": "Hostel neu lety gwely a brecwast ",
+    "searchTerm": "airbnb"
+  },
+  { "displayName": "Gwesty", "searchTerm": "tŷ llety bach" },
+  { "displayName": "Gwesty", "searchTerm": "tafarn" },
+  { "displayName": "Gwesty", "searchTerm": "man gwyliau (<i>resort</i>)" },
+  { "displayName": "Gwesty", "searchTerm": "llety" },
+  { "displayName": "Gwesty", "searchTerm": "encil" },
+  { "displayName": "Gwesty", "searchTerm": "sba" },
+  { "displayName": "Gwesty", "searchTerm": "airbnb" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "bar" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "alcohol" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "diodydd" },
+  {
+    "displayName": "Tafarn sy’n gweini prydau ",
+    "searchTerm": "gastro-dafarn"
+  },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "coctel" },
+  {
+    "displayName": "Tafarn sy’n gweini prydau ",
+    "searchTerm": "cwrw (<i>beer</i>)"
+  },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "theatr" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "sinema" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "clwb nos" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "clwb" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "stadiwm" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "cyngerdd" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "cerddoriaeth" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "tendio bar" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "bingo" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "disgo" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "lolfa" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "cae ras" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "trac rasio" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "bowlio" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "parc" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "ffair" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "casino" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "atyniad" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "bar gwin" },
+  { "displayName": "Tafarn sy’n gweini prydau ", "searchTerm": "bragdy" },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "bar"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "alcohol"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "coctel"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "cwrw (<i>beer</i>)"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "theatr"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "sinema"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "clwb nos"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "clwb"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "stadiwm"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "syrcas"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "cyngerdd"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "cerddoriaeth"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "tendio bar"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "bingo"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "disgo"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "lolfa"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "cae ras"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "trac rasio"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "bowlio"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "parc"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "difyrrwch"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "ffair"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "casino"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "atyniad"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "bar gwin"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "bragdy"
+  },
+  {
+    "displayName": "Tafarn sy’n gweini byrbrydau a diodydd yn unig",
+    "searchTerm": "tafarn wlyb"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "tecawê"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "cyflenwi"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "i fynd"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "ciosg"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "gyrru drwodd"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "bwyty"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "bistro"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "brunch"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "te prynhawn"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "brecwast"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "swper"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "swper/te"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "diner"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "Bwffe"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "ffreutur"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "bwyd cyflym"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "coffi"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "pwdin"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "espresso"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "cyfuniad <i>(fusion)</i>"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "seimllyd"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "hambyrgyr"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "byrgyr"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "cebab"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "pizza"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "cinio"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "pizzeria"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "maes chwarae"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "brechdan"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "chwarae meddal"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "swshi"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "te"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "bar sudd"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "amgueddfa"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "sw"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "acwariwm"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "brasserie"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "carferi"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "churreria"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "creperie"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "sgod a sglods"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "gril"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "caffeteria"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "lloches"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "tŷ hanner ffordd"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "carchar"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "canolfan atal"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "sba"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "elusen"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "llyfrgell"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "campfa"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "bwyd cyflym"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "swyddfa"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "eglwys"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "mosg"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "synagog"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "neuadd bentref"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "teml"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "cymunedol"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "gastro-dafarn"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "theatr"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "sinema"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "stadiwm"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "syrcas"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "cyngerdd"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "cerddoriaeth"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "bingo"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "lolfa"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "cae ras"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "trac rasio"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "bowlio"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "parc"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "difyrrwch"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "ffair"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "casino"
+  },
+  {
+    "displayName": "Tecawê lle nad oes bwyd yn cael ei fwyta ar y safle",
+    "searchTerm": "atyniad"
+  },
+  {
+    "displayName": "Cartref nyrsio, cartref gofal neu ganolfan ddydd",
+    "searchTerm": "oedrannus"
+  },
+  {
+    "displayName": "Cartref nyrsio, cartref gofal neu ganolfan ddydd",
+    "searchTerm": "gwarchod"
+  },
+  {
+    "displayName": "Cartref nyrsio, cartref gofal neu ganolfan ddydd",
+    "searchTerm": "oedolion"
+  },
+  {
+    "displayName": "Cartref nyrsio, cartref gofal neu ganolfan ddydd",
+    "searchTerm": "preswyl"
+  },
+  {
+    "displayName": "Cartref nyrsio, cartref gofal neu ganolfan ddydd",
+    "searchTerm": "mewn oed"
+  },
+  {
+    "displayName": "Cartref nyrsio, cartref gofal neu ganolfan ddydd",
+    "searchTerm": "ymddeol"
+  },
+  { "displayName": "Ysbyty", "searchTerm": "Meddyg teulu" },
+  { "displayName": "Ysbyty", "searchTerm": "argyfwng" },
+  { "displayName": "Ysbyty", "searchTerm": "meddygol" },
+  { "displayName": "Ysbyty", "searchTerm": "iechyd" },
+  { "displayName": "Ysbyty", "searchTerm": "clinig" },
+  { "displayName": "Ysbyty", "searchTerm": "clafdy" },
+  { "displayName": "Ysbyty", "searchTerm": "ffreutur" },
+  { "displayName": "Ysbyty", "searchTerm": "hosbis" },
+  { "displayName": "Gwarchodwr plant", "searchTerm": "gwarchodwr" },
+  {
+    "displayName": "Gwarchodwr plant",
+    "searchTerm": "gwarchodwr plant (<i>babysitter</i>)"
+  },
+  { "displayName": "Gwarchodwr plant", "searchTerm": "nani" },
+  {
+    "displayName": "Gofalwr plant, meithrinfa neu grŵp chwarae",
+    "searchTerm": "gofal"
+  },
+  {
+    "displayName": "Gofalwr plant, meithrinfa neu grŵp chwarae",
+    "searchTerm": "gwarchodwr plant (<i>babysitter</i>)"
+  },
+  {
+    "displayName": "Gofalwr plant, meithrinfa neu grŵp chwarae",
+    "searchTerm": "nani"
+  },
+  {
+    "displayName": "Gofalwr plant, meithrinfa neu grŵp chwarae",
+    "searchTerm": "gofal dydd"
+  },
+  {
+    "displayName": "Gofalwr plant, meithrinfa neu grŵp chwarae",
+    "searchTerm": "grŵp chwarae"
+  },
+  {
+    "displayName": "Gofalwr plant, meithrinfa neu grŵp chwarae",
+    "searchTerm": "au pair"
+  },
+  {
+    "displayName": "Gofalwr plant, meithrinfa neu grŵp chwarae",
+    "searchTerm": "clwb brecwast"
+  },
+  { "displayName": "Sefydliad addysgol", "searchTerm": "ysgol" },
+  { "displayName": "Sefydliad addysgol", "searchTerm": "coleg" },
+  { "displayName": "Sefydliad addysgol", "searchTerm": "prifysgol" },
+  { "displayName": "Sefydliad addysgol", "searchTerm": "ffreutur" },
+  { "displayName": "Sefydliad addysgol", "searchTerm": "academi" },
+  { "displayName": "Sefydliad addysgol", "searchTerm": "preswyl" },
+  { "displayName": "Sefydliad addysgol", "searchTerm": "campfa" },
+  { "displayName": "Sefydliad addysgol", "searchTerm": "paratoadol" },
+  { "displayName": "Sefydliad addysgol", "searchTerm": "cyn-ysgol" },
+  { "displayName": "Sefydliad addysgol", "searchTerm": "cynradd" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "symudol" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "marchnad" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "bazar" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "cerbyd bwyd" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "tryc" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "pop up" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "pop up" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "cerbyd" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "stondin" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "car" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "beic" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "hufen ia" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "fan" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "gŵyl" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "manwerthu" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "stryd" },
+  { "displayName": "Manwerthwr symudol", "searchTerm": "gwerthwr" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "symudol" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "marchnad" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "bazar" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "cerbyd bwyd" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "tryc" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "pop up" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "pop up" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "cerbyd" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "stondin" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "car" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "beic" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "hufen ia" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "fan" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "gŵyl" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "digwyddiad" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "parti" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "digwyddiad" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "byrgyr" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "bwyd" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "stand cŵn poeth" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "stryd" },
+  { "displayName": "Arlwywr symudol", "searchTerm": "gwerthwr" },
+  { "displayName": "Sefydliad bwyd symudol", "searchTerm": "trên" },
+  { "displayName": "Sefydliad bwyd symudol", "searchTerm": "locomotif" },
+  {
+    "displayName": "Sefydliad bwyd symudol",
+    "searchTerm": "mordaith (<i>cruise</i>)"
+  },
+  { "displayName": "Sefydliad bwyd symudol", "searchTerm": "cwch" },
+  { "displayName": "Sefydliad bwyd symudol", "searchTerm": "llong" },
+  { "displayName": "Sefydliad bwyd symudol", "searchTerm": "catamaran" },
+  { "displayName": "Sefydliad bwyd symudol", "searchTerm": "awyren" },
+  { "displayName": "Sefydliad bwyd symudol", "searchTerm": "awyren" },
+  { "displayName": "Sefydliad bwyd symudol", "searchTerm": "fferi" },
+  { "displayName": "Sefydliad bwyd symudol", "searchTerm": "cwch hwylio" },
+  { "displayName": "Sefydliad bwyd symudol", "searchTerm": "hyfforddwr" },
+  { "displayName": "Sefydliad bwyd symudol", "searchTerm": "bws" },
+  { "displayName": "Sefydliad bwyd symudol", "searchTerm": "tram" },
+  { "displayName": "Arlwywyr contract", "searchTerm": "swyddfa" },
+  { "displayName": "Arlwywyr contract", "searchTerm": "cinio" },
+  { "displayName": "Arlwywr cartref", "searchTerm": "pobydd" },
+  { "displayName": "Arlwywr cartref", "searchTerm": "cacennau" },
+  { "displayName": "Arlwywr cartref", "searchTerm": "cacennau cupcake" },
+  { "displayName": "Arlwywr cartref", "searchTerm": "cartref" },
+  { "displayName": "Arlwywr cartref", "searchTerm": "domestig" },
+  { "displayName": "Arlwywr cartref", "searchTerm": "cwci" },
+  { "displayName": "Arlwywr cartref", "searchTerm": "fflat" },
+  {
+    "displayName": "Ffatri torri cig neu gigydd masnachol",
+    "searchTerm": "halal"
+  },
+  {
+    "displayName": "Ffatri torri cig neu gigydd masnachol",
+    "searchTerm": "cigyddiaeth"
+  },
+  { "displayName": "Neuadd ocsiwn bwyd", "searchTerm": "arwerthwr" },
+  { "displayName": "Neuadd ocsiwn bwyd", "searchTerm": "bidio" }
+]
