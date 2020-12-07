@@ -62,9 +62,7 @@ const CustomerType = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(CustomerType)")(
-  SessionWrapper(CustomerType)
-);
+export default withTranslation("common")(SessionWrapper(CustomerType));
 
 CustomerType.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

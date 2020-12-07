@@ -115,7 +115,7 @@ const EstablishmentContactDetails = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(EstablishmentContactDetails)")(
+export default withTranslation("common")(
   SessionWrapper(EstablishmentContactDetails)
 );
 

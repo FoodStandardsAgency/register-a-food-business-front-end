@@ -15,4 +15,4 @@ const OperatorDescription = (props) => (
   </HiddenTextAccessible>
 );
 
-export default withTranslation("OperatorDescription")(OperatorDescription);
+export default withTranslation("common")(OperatorDescription);

@@ -138,9 +138,7 @@ const OperatorAddress = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(OperatorAddress)")(
-  SessionWrapper(OperatorAddress)
-);
+export default withTranslation("common")(SessionWrapper(OperatorAddress));
 
 OperatorAddress.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

@@ -96,7 +96,7 @@ const EstablishmentAddressLookup = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(EstablishmentAddressLookup)")(
+export default withTranslation("common")(
   SessionWrapper(EstablishmentAddressLookup)
 );
 

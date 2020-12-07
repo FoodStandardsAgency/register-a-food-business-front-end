@@ -73,9 +73,7 @@ const OtherDaysIrregular = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(OtherDaysIrregular)")(
-  SessionWrapper(OtherDaysIrregular)
-);
+export default withTranslation("common")(SessionWrapper(OtherDaysIrregular));
 
 OtherDaysIrregular.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

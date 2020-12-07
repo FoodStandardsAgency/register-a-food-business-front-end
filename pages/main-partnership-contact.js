@@ -79,9 +79,7 @@ const PrimaryPartner = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(PrimaryPartner)")(
-  SessionWrapper(PrimaryPartner)
-);
+export default withTranslation("common")(SessionWrapper(PrimaryPartner));
 
 PrimaryPartner.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

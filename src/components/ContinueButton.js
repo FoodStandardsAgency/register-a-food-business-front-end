@@ -26,4 +26,4 @@ const ContinueButton = (props) => (
   </StyledButton>
 );
 
-export default withTranslation("ContinueButton")(ContinueButton);
+export default withTranslation("common")(ContinueButton);

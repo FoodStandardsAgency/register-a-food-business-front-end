@@ -152,9 +152,7 @@ const EstablishmentAddress = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(EstablishmentAddress)")(
-  SessionWrapper(EstablishmentAddress)
-);
+export default withTranslation("common")(SessionWrapper(EstablishmentAddress));
 
 EstablishmentAddress.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

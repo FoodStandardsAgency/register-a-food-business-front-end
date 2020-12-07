@@ -109,7 +109,7 @@ const ImportExportActivities = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(ImportExportActivities)")(
+export default withTranslation("common")(
   SessionWrapper(ImportExportActivities)
 );
 

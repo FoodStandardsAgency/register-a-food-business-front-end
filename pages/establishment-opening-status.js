@@ -86,7 +86,7 @@ const EstablishmentOpeningStatus = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(EstablishmentOpeningStatus)")(
+export default withTranslation("common")(
   SessionWrapper(EstablishmentOpeningStatus)
 );
 

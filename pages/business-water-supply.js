@@ -109,9 +109,7 @@ const WaterSupply = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(WaterSupply)")(
-  SessionWrapper(WaterSupply)
-);
+export default withTranslation("common")(SessionWrapper(WaterSupply));
 
 WaterSupply.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

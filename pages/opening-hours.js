@@ -176,9 +176,7 @@ const OpeningHours = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(OpeningHours)")(
-  SessionWrapper(OpeningHours)
-);
+export default withTranslation("common")(SessionWrapper(OpeningHours));
 
 OpeningHours.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

@@ -97,7 +97,7 @@ const OperatorContactDetails = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(OperatorContactDetails)")(
+export default withTranslation("common")(
   SessionWrapper(OperatorContactDetails)
 );
 

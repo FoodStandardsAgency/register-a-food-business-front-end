@@ -138,4 +138,4 @@ class BusinessTypeLookup extends React.Component {
   }
 }
 
-export default withTranslation()(BusinessTypeLookup);
+export default withTranslation("common")(BusinessTypeLookup);

@@ -24,6 +24,4 @@ const BrowserUnsupportedBanner = (props) => (
   </WarningWrapper>
 );
 
-export default withTranslation("BrowserUnsupportedBanner")(
-  BrowserUnsupportedBanner
-);
+export default withTranslation("common")(BrowserUnsupportedBanner);

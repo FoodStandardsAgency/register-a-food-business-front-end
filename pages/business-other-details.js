@@ -49,9 +49,7 @@ const OtherDetails = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(OtherDetails)")(
-  SessionWrapper(OtherDetails)
-);
+export default withTranslation("common")(SessionWrapper(OtherDetails));
 
 OtherDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),

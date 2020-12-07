@@ -84,9 +84,7 @@ const OperatorAddressLookup = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(OperatorAddressLookup)")(
-  SessionWrapper(OperatorAddressLookup)
-);
+export default withTranslation("common")(SessionWrapper(OperatorAddressLookup));
 
 OperatorAddressLookup.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

@@ -61,7 +61,7 @@ const EstablishmentTradingName = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(EstablishmentTradingName)")(
+export default withTranslation("common")(
   SessionWrapper(EstablishmentTradingName)
 );
 

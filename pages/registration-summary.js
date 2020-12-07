@@ -45,9 +45,7 @@ const RegistrationSummary = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(RegistrationSummary)")(
-  SessionWrapper(RegistrationSummary)
-);
+export default withTranslation("common")(SessionWrapper(RegistrationSummary));
 
 RegistrationSummary.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

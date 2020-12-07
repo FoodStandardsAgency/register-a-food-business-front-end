@@ -96,9 +96,7 @@ const OperatorType = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(OperatorType)")(
-  SessionWrapper(OperatorType)
-);
+export default withTranslation("common")(SessionWrapper(OperatorType));
 
 OperatorType.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),

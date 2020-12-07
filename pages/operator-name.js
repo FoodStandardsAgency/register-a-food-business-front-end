@@ -71,9 +71,7 @@ const OperatorName = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(OperatorName)")(
-  SessionWrapper(OperatorName)
-);
+export default withTranslation("common")(SessionWrapper(OperatorName));
 
 OperatorName.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),

@@ -7,13 +7,19 @@ import {
 } from "../src/components";
 import { Heading, Paragraph } from "govuk-react";
 import InsetText from "../src/components/InsetText";
-import { withTranslation } from "../i18n";
+import { i18n, withTranslation } from "../i18n";
 
 const Index = (props) => (
   <FsaLayout {...props}>
+    <button
+      type="button"
+      onClick={() => i18n.changeLanguage(i18n.language === "en" ? "cy" : "en")}
+    >
+      Change Language
+    </button>
     <Heading as="h1">{props.t("Register a food business")}</Heading>
 
-    <ContentItem.B_30_15>
+    <ContentItem.B_30_15 {...props} t={props.t}>
       <Paragraph>
         {props.t(
           "When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least **28 days** before trading or before food operations start."
@@ -67,4 +73,4 @@ const Index = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(Index)")(SessionWrapper(Index));
+export default withTranslation("common")(SessionWrapper(Index));

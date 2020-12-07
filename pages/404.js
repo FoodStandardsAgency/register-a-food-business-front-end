@@ -16,4 +16,4 @@ function Custom404(props) {
     </FsaLayout>
   );
 }
-export default withTranslation("Custom404")(Custom404);
+export default withTranslation("common")(Custom404);

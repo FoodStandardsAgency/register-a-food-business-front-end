@@ -35,9 +35,7 @@ const BusinessType = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(BusinessType)")(
-  SessionWrapper(BusinessType)
-);
+export default withTranslation("common")(SessionWrapper(BusinessType));
 
 BusinessType.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

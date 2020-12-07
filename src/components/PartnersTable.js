@@ -128,7 +128,7 @@ const PartnersTable = (props) => (
   </React.Fragment>
 );
 
-export default withTranslation("PartnersTable")(PartnersTable);
+export default withTranslation("common")(PartnersTable);
 
 PartnersTable.propTypes = {
   partners: PropTypes.array

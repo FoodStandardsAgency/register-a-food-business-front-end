@@ -102,7 +102,7 @@ const OperatorCharityDetails = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(OperatorCharityDetails)")(
+export default withTranslation("common")(
   SessionWrapper(OperatorCharityDetails)
 );
 

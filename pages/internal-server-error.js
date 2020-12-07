@@ -39,4 +39,4 @@ class InternalServerError extends React.Component {
   }
 }
 
-export default withTranslation("InternalServerError")(InternalServerError);
+export default withTranslation("common")(InternalServerError);

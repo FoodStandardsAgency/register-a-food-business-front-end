@@ -12,6 +12,4 @@ const PartnershipDescription = (props) => (
   </HiddenTextAccessible>
 );
 
-export default withTranslation("PartnershipDescription")(
-  PartnershipDescription
-);
+export default withTranslation("common")(PartnershipDescription);

@@ -334,9 +334,7 @@ const ApplicationComplete = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(ApplicationComplete)")(
-  SessionWrapper(ApplicationComplete)
-);
+export default withTranslation("common")(SessionWrapper(ApplicationComplete));
 
 ApplicationComplete.propTypes = {
   fsaRegistrationNumber: PropTypes.string,

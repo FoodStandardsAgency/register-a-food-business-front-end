@@ -139,7 +139,7 @@ const OpeningDate = (props) => {
     </FsaLayout>
   );
 };
-export default withTranslation("OpeningDate")(OpeningDate);
+export default withTranslation("common")(OpeningDate);
 
 OpeningDate.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

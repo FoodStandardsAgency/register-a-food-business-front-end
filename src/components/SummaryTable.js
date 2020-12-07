@@ -1135,7 +1135,7 @@ const SummaryTable = (props) => (
   </React.Fragment>
 );
 
-export default withTranslation("SummaryTable")(SummaryTable);
+export default withTranslation("common")(SummaryTable);
 
 SummaryTable.propTypes = {
   operator_company_name: PropTypes.string,

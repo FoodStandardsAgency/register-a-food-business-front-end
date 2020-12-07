@@ -83,9 +83,7 @@ const RegistrationRole = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(RegistrationRole)")(
-  SessionWrapper(RegistrationRole)
-);
+export default withTranslation("common")(SessionWrapper(RegistrationRole));
 
 RegistrationRole.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

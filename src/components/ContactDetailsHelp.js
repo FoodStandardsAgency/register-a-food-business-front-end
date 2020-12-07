@@ -26,4 +26,4 @@ const ContactDetailsHelp = (props) => {
   );
 };
 
-export default withTranslation("ContactDetailsHelp")(ContactDetailsHelp);
+export default withTranslation("common")(ContactDetailsHelp);

@@ -158,9 +158,7 @@ class Declaration extends React.Component {
   }
 }
 
-export default withTranslation("SessionWrapper(Declaration)")(
-  SessionWrapper(Declaration)
-);
+export default withTranslation("common")(SessionWrapper(Declaration));
 
 Declaration.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

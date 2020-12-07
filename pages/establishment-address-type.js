@@ -91,7 +91,7 @@ const EstablishmentAddressType = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(EstablishmentAddressType)")(
+export default withTranslation("common")(
   SessionWrapper(EstablishmentAddressType)
 );
 

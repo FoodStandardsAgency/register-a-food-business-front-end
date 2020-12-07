@@ -56,4 +56,4 @@ const BackButton = (props) => {
   }
 };
 
-export default withTranslation("BackButton")(BackButton);
+export default withTranslation("common")(BackButton);

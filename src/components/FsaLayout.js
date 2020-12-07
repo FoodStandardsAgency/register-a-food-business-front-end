@@ -42,4 +42,4 @@ const FsaLayout = (props) => (
   </React.Fragment>
 );
 
-export default withTranslation("FsaLayout")(FsaLayout);
+export default withTranslation("common")(FsaLayout);

@@ -121,9 +121,7 @@ const ContactRepresentative = (props) => {
   );
 };
 
-export default withTranslation("SessionWrapper(ContactRepresentative)")(
-  SessionWrapper(ContactRepresentative)
-);
+export default withTranslation("common")(SessionWrapper(ContactRepresentative));
 
 ContactRepresentative.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),

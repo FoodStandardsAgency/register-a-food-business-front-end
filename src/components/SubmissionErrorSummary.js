@@ -22,9 +22,7 @@ const SubmissionErrorSummary = (props) => {
     return null;
   }
 };
-export default withTranslation("SubmissionErrorSummary")(
-  SubmissionErrorSummary
-);
+export default withTranslation("common")(SubmissionErrorSummary);
 
 SubmissionErrorSummary.propTypes = {
   submissionError: PropTypes.objectOf(PropTypes.string)

@@ -90,9 +90,7 @@ const OpeningDaysStart = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(OpeningDaysStart)")(
-  SessionWrapper(OpeningDaysStart)
-);
+export default withTranslation("common")(SessionWrapper(OpeningDaysStart));
 
 OpeningDaysStart.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

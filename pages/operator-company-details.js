@@ -93,9 +93,7 @@ const LimitedCompanyDetails = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("SessionWrapper(LimitedCompanyDetails)")(
-  SessionWrapper(LimitedCompanyDetails)
-);
+export default withTranslation("common")(SessionWrapper(LimitedCompanyDetails));
 
 LimitedCompanyDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),

@@ -37,4 +37,4 @@ const AddressHelp = (props) => {
   );
 };
 
-export default withTranslation("AddressHelp")(AddressHelp);
+export default withTranslation("common")(AddressHelp);

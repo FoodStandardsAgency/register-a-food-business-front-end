@@ -71,4 +71,4 @@ const FsaHeader = (props) => (
   </StyledHeader>
 );
 
-export default withTranslation("FsaHeader")(FsaHeader);
+export default withTranslation("common")(FsaHeader);
