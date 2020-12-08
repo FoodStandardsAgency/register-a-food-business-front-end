@@ -56,11 +56,11 @@ const OpeningDate = (props) => {
                 year: props.cumulativeFullAnswers.year
               }}
               inputNames={{
-                day: props.t("day"),
-                month: props.t("month"),
-                year: props.t("year")
+                day: "day",
+                month: "month",
+                year: "year"
               }}
-              hintText={`For example, ${moment()
+              hintText={`${props.t("For example")}, ${moment()
                 .add(40, "d")
                 .format("DD MM YYYY")}`}
               errorText={props.validatorErrors.establishment_opening_date}
@@ -102,11 +102,11 @@ const OpeningDate = (props) => {
               year: props.cumulativeFullAnswers.year
             }}
             inputNames={{
-              day: props.t("day"),
-              month: props.t("month"),
-              year: props.t("year")
+              day: "day",
+              month: "month",
+              year: "year"
             }}
-            hintText={`For example, ${moment()
+            hintText={`${props.t("For example")}, ${moment()
               .subtract(40, "d")
               .format("DD MM YYYY")}`}
             errorText={props.validatorErrors.establishment_opening_date}

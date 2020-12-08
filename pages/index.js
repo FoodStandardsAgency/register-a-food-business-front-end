@@ -62,7 +62,7 @@ const Index = (props) => (
       <Paragraph>
         {`**${props.lcName}**
         ${props.t(
-          "is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this Food Business Registration(https://www.gov.uk/food-business-registration) link to check using the location or site of your food business."
+          "is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this Food Business Registration(www.gov.uk/food-business-registration) link to check using the location or site of your food business."
         )}`}
       </Paragraph>
     </ContentItem.B_30_15>

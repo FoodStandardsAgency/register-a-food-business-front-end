@@ -22,7 +22,7 @@ const ContinueButton = (props) => (
       ? props.t("Submit")
       : props.editModeFirstPage
       ? props.t("Save and continue")
-      : "Continue"}
+      : props.t("Continue")}
   </StyledButton>
 );
 

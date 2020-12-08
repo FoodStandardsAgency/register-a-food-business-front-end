@@ -40,7 +40,7 @@ const EstablishmentOpeningStatus = (props) => (
           </ContentItem.B_30_15>
           <HiddenTextAccessible
             t={props.t}
-            summary={"What is an establishment?"}
+            summary={props.t("What is an establishment?")}
           >
             <Paragraph mb={0}>
               {props.t(
