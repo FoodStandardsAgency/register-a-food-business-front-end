@@ -6,4 +6,7 @@ module.exports = new NextI18Next({
   otherLanguages: ["cy"],
   localePath: path.resolve("./public/static/locales"),
   keySeparator: false
+
+  shallowRender: true
+
 });
