@@ -631,6 +631,21 @@
     "searchTerm": "producer"
   },
   {
+    "id": "021",
+    "displayName": "Commercial Bakery",
+    "searchTerm": "patisserie"
+  },
+  { "id": "021", "displayName": "Commercial Bakery", "searchTerm": "pastry" },
+  {
+    "id": "021",
+    "displayName": "Commercial Bakery",
+    "searchTerm": "manufacture"
+  },
+  { "id": "021", "displayName": "Commercial Bakery", "searchTerm": "cake" },
+  { "id": "021", "displayName": "Commercial Bakery", "searchTerm": "bread" },
+  { "id": "021", "displayName": "Commercial Bakery", "searchTerm": "maker" },
+  { "id": "021", "displayName": "Commercial Bakery", "searchTerm": "producer" },
+  {
     "id": "022",
     "displayName": "Ready to eat meals or food manufacturer",
     "searchTerm": "dish"
@@ -1705,6 +1720,56 @@
     "displayName": "Restaurant, cafe, canteen, or fast food restaurant",
     "searchTerm": "attraction"
   },
+  {
+    "id": "056",
+    "displayName": "Hostel or bed & breakfast",
+    "searchTerm": "B&B"
+  },
+  {
+    "id": "056",
+    "displayName": "Hostel or bed & breakfast",
+    "searchTerm": "&"
+  },
+  {
+    "id": "056",
+    "displayName": "Hostel or bed & breakfast",
+    "searchTerm": "B and B"
+  },
+  {
+    "id": "056",
+    "displayName": "Hostel or bed & breakfast",
+    "searchTerm": "guesthouse"
+  },
+  {
+    "id": "056",
+    "displayName": "Hostel or bed & breakfast",
+    "searchTerm": "inn"
+  },
+  {
+    "id": "056",
+    "displayName": "Hostel or bed & breakfast",
+    "searchTerm": "motel"
+  },
+  {
+    "id": "056",
+    "displayName": "Hostel or bed & breakfast",
+    "searchTerm": "accomodation"
+  },
+  {
+    "id": "056",
+    "displayName": "Hostel or bed & breakfast",
+    "searchTerm": "retreat"
+  },
+  {
+    "id": "056",
+    "displayName": "Hostel or bed & breakfast",
+    "searchTerm": "spa"
+  },
+  {
+    "id": "056",
+    "displayName": "Hostel or bed & breakfast",
+    "searchTerm": "airbnb"
+  },
   { "id": "057", "displayName": "Hotel", "searchTerm": "guesthouse" },
   { "id": "057", "displayName": "Hotel", "searchTerm": "inn" },
   { "id": "057", "displayName": "Hotel", "searchTerm": "resort" },
@@ -2322,6 +2387,41 @@
   { "id": "063", "displayName": "Childminder", "searchTerm": "minder" },
   { "id": "063", "displayName": "Childminder", "searchTerm": "babysitter" },
   { "id": "063", "displayName": "Childminder", "searchTerm": "nanny" },
+  {
+    "id": "064",
+    "displayName": "Childcare, nursery or play group",
+    "searchTerm": "care"
+  },
+  {
+    "id": "064",
+    "displayName": "Childcare, nursery or play group",
+    "searchTerm": "babysitter"
+  },
+  {
+    "id": "064",
+    "displayName": "Childcare, nursery or play group",
+    "searchTerm": "nanny"
+  },
+  {
+    "id": "064",
+    "displayName": "Childcare, nursery or play group",
+    "searchTerm": "daycare"
+  },
+  {
+    "id": "064",
+    "displayName": "Childcare, nursery or play group",
+    "searchTerm": "playgroup"
+  },
+  {
+    "id": "064",
+    "displayName": "Childcare, nursery or play group",
+    "searchTerm": "au pair"
+  },
+  {
+    "id": "064",
+    "displayName": "Childcare, nursery or play group",
+    "searchTerm": "breakfast club"
+  },
   {
     "id": "065",
     "displayName": "Educational establishment",
