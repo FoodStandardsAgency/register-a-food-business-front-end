@@ -1,9 +1,15 @@
-import businessTypesJSON from "./business-type-transformed-en.json";
+import businessTypesEnJSON from "./business-type-transformed-en.json";
+import businessTypesCyJSON from "./business-type-transformed-cy.json";
+import { i18n } from "../../i18n";
 import stemmer from "stemmer";
 
 const findMatches = (query, returnResultsArray) => {
   const businessTypesArray = Object.values(
-    JSON.parse(JSON.stringify(businessTypesJSON))
+    JSON.parse(
+      JSON.stringify(
+        i18n.language === "en" ? businessTypesEnJSON : businessTypesCyJSON
+      )
+    )
   );
 
   const checkForQueryMatch = (searchableText, query) => {

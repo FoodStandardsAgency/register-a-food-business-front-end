@@ -1,5 +1,6 @@
 const fs = require("fs");
 const fetch = require("node-fetch");
+const transformedBusinessTypeArray_cy = require("./business-type-transformed-cy.json");
 
 // Mapping V2 Business Type strings to V1 strings
 const v1BusinessTypesMapping = {
@@ -9,7 +10,9 @@ const v1BusinessTypesMapping = {
   "Market stall with permanent location": "Market stalls with permanent pitch",
   "Restaurant, cafe, canteen, or fast food restaurant":
     "Restaurant, cafe, canteen or fast food",
-  "Hostel or bed & breakfast": "Hostel or bed and breakfast"
+  "Hostel or bed & breakfast": "Hostel or bed and breakfast ",
+  "Commercial Bakery": "Commercial bakery",
+  "Childcare, nursery or play group": "Childcarer, nursery or play group"
 };
 
 const updateBusinessTypesForAutocomplete = async () => {
@@ -79,6 +82,41 @@ const updateBusinessTypesForAutocomplete = async () => {
         return console.log(err);
       }
       console.log(`SUCCESS: ${en_filename} updated.`);
+    }
+  );
+
+  function getDistinctBusinessTypes(transformedBusinessTypes) {
+    const distinctBusinessTypes = [];
+    transformedBusinessTypes.forEach((businessType) => {
+      distinctBusinessTypes.push(businessType.displayName);
+    });
+    const distinctBusinessTypesUnique = [...new Set(distinctBusinessTypes)];
+    return distinctBusinessTypesUnique;
+  }
+
+  const en__distinct_filename =
+    "./src/components/distinct-business-type-en.json";
+  fs.writeFile(
+    en__distinct_filename,
+    JSON.stringify(getDistinctBusinessTypes(transformedBusinessTypeArray_en)),
+    (err) => {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(`SUCCESS: ${en__distinct_filename} updated`);
+    }
+  );
+
+  const cy__distinct_filename =
+    "./src/components/distinct-business-type-cy.json";
+  fs.writeFile(
+    cy__distinct_filename,
+    JSON.stringify(getDistinctBusinessTypes(transformedBusinessTypeArray_cy)),
+    (err) => {
+      if (err) {
+        return console.log(err);
+      }
+      console.log(`SUCCESS: ${cy__distinct_filename} updated`);
     }
   );
 };
