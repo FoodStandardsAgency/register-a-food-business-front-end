@@ -27,7 +27,7 @@ const OpeningHours = (props) => (
       <ContentItem.B_30_15>
         <HintText>
           {props.t(
-            "Fill in the expected opening times for this establishment using 24 hour clocks. For example, 09:30 to 19:00."
+            "Fill in the expected opening times for this establishment using 24 hour clocks."
           )}
         </HintText>
       </ContentItem.B_30_15>

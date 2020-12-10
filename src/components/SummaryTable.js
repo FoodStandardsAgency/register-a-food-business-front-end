@@ -639,7 +639,7 @@ const EstablishmentDetailsTable = (props) => (
             props.validatorErrors["establishment_type"]
           )}
         >
-          {props.t(" Address type")}
+          {props.t("Address type")}
         </AccessibleRowHeader>
         <AccessibleCell id="establishment_type">
           {props.establishment_type}

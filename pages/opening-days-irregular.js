@@ -60,7 +60,7 @@ const OtherDaysIrregular = (props) => (
                 </ListItemConsistentSize>
                 <ListItemConsistentSize>
                   {props.t(
-                    "open at weekends in June and August between 10:00 and 19:00"
+                    "open at weekends in June and August"
                   )}
                 </ListItemConsistentSize>
               </UnorderedList>
