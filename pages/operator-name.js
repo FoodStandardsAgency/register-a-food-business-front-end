@@ -12,9 +12,11 @@ import {
 import { Heading, InputField } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const OperatorName = (props) => (
   <FsaLayout {...props}>
+    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
       t={props.t}
@@ -43,7 +45,7 @@ const OperatorName = (props) => (
           id="operator_first_name"
           meta={{
             touched: true,
-            error: props.validatorErrors["operator_first_name"]
+            error: `${props.t(props.validatorErrors["operator_first_name"])}`
           }}
         >
           {props.t("First and middle names")}
@@ -60,7 +62,7 @@ const OperatorName = (props) => (
           id="operator_last_name"
           meta={{
             touched: true,
-            error: props.validatorErrors.operator_last_name
+            error: `${props.t(props.validatorErrors.operator_last_name)}`
           }}
         >
           {props.t("Last name")}

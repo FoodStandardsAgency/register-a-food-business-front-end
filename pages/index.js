@@ -6,17 +6,13 @@ import {
   PostForm
 } from "../src/components";
 import { Heading, Paragraph } from "govuk-react";
+import LanguageChangeButton from "../src/components/LanguageChangeButton";
 import InsetText from "../src/components/InsetText";
-import { i18n, withTranslation } from "../i18n";
+import { withTranslation } from "../i18n";
 
 const Index = (props) => (
   <FsaLayout {...props}>
-    <button
-      type="button"
-      onClick={() => i18n.changeLanguage(i18n.language === "en" ? "cy" : "en")}
-    >
-      Change Language
-    </button>
+    <LanguageChangeButton />
     <Heading as="h1">{props.t("Register a food business")}</Heading>
 
     <ContentItem.B_30_15 {...props} t={props.t}>

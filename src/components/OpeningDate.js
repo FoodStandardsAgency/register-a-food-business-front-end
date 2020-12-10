@@ -13,10 +13,12 @@ import { Heading, Paragraph, HintText } from "govuk-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 import { withTranslation } from "../../i18n.js";
+import LanguageChangeButton from "./LanguageChangeButton";
 
 const OpeningDate = (props) => {
   return (
     <FsaLayout {...props}>
+      <LanguageChangeButton />
       <BackButton {...props} t={props.t} />
       <ProcessedErrorSummary
         t={props.t}

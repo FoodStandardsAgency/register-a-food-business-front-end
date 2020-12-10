@@ -18,9 +18,11 @@ import {
 } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const OtherDaysIrregular = (props) => (
   <FsaLayout {...props}>
+    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
       t={props.t}
@@ -42,7 +44,7 @@ const OtherDaysIrregular = (props) => (
             }}
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_days_irregular
+              error: `${props.t(props.validatorErrors.opening_days_irregular)}`
             }}
           >
             <Paragraph mb={3}>

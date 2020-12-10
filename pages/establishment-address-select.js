@@ -11,9 +11,11 @@ import {
 import { Heading, Paragraph, Link } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const EstablishmentAddressLookup = (props) => (
   <FsaLayout {...props}>
+    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <Heading as="h1" size="LARGE">
       {props.t("What is the establishment's address?")}

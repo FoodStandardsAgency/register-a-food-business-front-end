@@ -12,9 +12,11 @@ import {
 import { Heading, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const OperatorCharityDetails = (props) => (
   <FsaLayout {...props}>
+    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
       t={props.t}
@@ -50,7 +52,9 @@ const OperatorCharityDetails = (props) => (
             id="operator_charity_name"
             meta={{
               touched: true,
-              error: props.validatorErrors["operator_charity_name"]
+              error: `${props.t(
+                props.validatorErrors["operator_charity_name"]
+              )}`
             }}
           >
             {props.t("Charity, organisation or trust name")}
@@ -67,7 +71,9 @@ const OperatorCharityDetails = (props) => (
             id="operator_charity_number"
             meta={{
               touched: true,
-              error: props.validatorErrors["operator_charity_number"]
+              error: `${props.t(
+                props.validatorErrors["operator_charity_number"]
+              )}`
             }}
           >
             {props.t("Charity reference number (optional)")}

@@ -11,9 +11,11 @@ import {
 import { Heading, TextArea } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const OtherDetails = (props) => (
   <FsaLayout {...props}>
+    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
       t={props.t}
@@ -35,7 +37,7 @@ const OtherDetails = (props) => (
             }}
             meta={{
               touched: true,
-              error: props.validatorErrors.business_other_details
+              error: `${props.t(props.validatorErrors.business_other_details)}`
             }}
           >
             {props.t(

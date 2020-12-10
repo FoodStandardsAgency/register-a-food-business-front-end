@@ -11,9 +11,11 @@ import {
 import { Heading, InputField } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const LimitedCompanyDetails = (props) => (
   <FsaLayout {...props}>
+    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
@@ -37,7 +39,7 @@ const LimitedCompanyDetails = (props) => (
           id="operator_company_name"
           meta={{
             touched: true,
-            error: props.validatorErrors["operator_company_name"]
+            error: `${props.t(props.validatorErrors["operator_company_name"])}`
           }}
         >
           {props.t("Registered company name")}
@@ -58,7 +60,9 @@ const LimitedCompanyDetails = (props) => (
           id="operator_companies_house_number"
           meta={{
             touched: true,
-            error: props.validatorErrors["operator_companies_house_number"]
+            error: `${props.t(
+              props.validatorErrors["operator_companies_house_number"]
+            )}`
           }}
         >
           {props.t("Companies House number")}

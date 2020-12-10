@@ -13,9 +13,11 @@ import { establishmentTypeEnum } from "@slice-and-dice/register-a-food-business-
 import { Fieldset, Radio, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const EstablishmentAddressType = (props) => (
   <FsaLayout {...props}>
+    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
       t={props.t}
@@ -46,7 +48,7 @@ const EstablishmentAddressType = (props) => (
             label=""
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_type
+              error: `${props.t(props.validatorErrors.establishment_type)}`
             }}
           >
             <Radio

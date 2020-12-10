@@ -11,9 +11,11 @@ import {
 import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const OpeningSomeDays = (props) => (
   <FsaLayout {...props}>
+    <LanguageChangeButton />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <BackButton {...props} t={props.t} />
       <ProcessedErrorSummary
@@ -35,7 +37,7 @@ const OpeningSomeDays = (props) => (
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.opening_days_some
+            error: `${props.t(props.validatorErrors.opening_days_some)}`
           }}
         >
           <Checkbox

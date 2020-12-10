@@ -12,9 +12,11 @@ import {
 import { Heading, InputField, Paragraph, ErrorText } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const EstablishmentAddress = (props) => (
   <FsaLayout {...props}>
+    <LanguageChangeButton />
     <BackButton
       {...props}
       t={props.t}
@@ -69,7 +71,9 @@ const EstablishmentAddress = (props) => (
             id="establishment_address_line_1"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_address_line_1
+              error: `${props.t(
+                props.validatorErrors.establishment_address_line_1
+              )}`
             }}
           >
             {props.t("Address line 1")}
@@ -87,7 +91,9 @@ const EstablishmentAddress = (props) => (
             id="establishment_address_line_2"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_address_line_2
+              error: `${props.t(
+                props.validatorErrors.establishment_address_line_2
+              )}`
             }}
           >
             {props.t("Address line 2 (optional)")}
@@ -105,7 +111,9 @@ const EstablishmentAddress = (props) => (
             id="establishment_address_line_3"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_address_line_3
+              error: `${props.t(
+                props.validatorErrors.establishment_address_line_3
+              )}`
             }}
           >
             {props.t("Address line 3 (optional)")}
@@ -122,7 +130,7 @@ const EstablishmentAddress = (props) => (
             id="establishment_town"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_town
+              error: `${props.t(props.validatorErrors.establishment_town)}`
             }}
           >
             {props.t("Town or city")}
@@ -139,7 +147,7 @@ const EstablishmentAddress = (props) => (
             id="establishment_postcode"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_postcode
+              error: `${props.t(props.validatorErrors.establishment_postcode)}`
             }}
           >
             {props.t("Postcode")}

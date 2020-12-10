@@ -12,10 +12,12 @@ import {
 import { Heading, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const ContactRepresentative = (props) => {
   return (
     <FsaLayout {...props}>
+      <LanguageChangeButton />
       <BackButton {...props} t={props.t} />
       <ProcessedErrorSummary
         t={props.t}
@@ -53,7 +55,9 @@ const ContactRepresentative = (props) => {
               id="contact_representative_name"
               meta={{
                 touched: true,
-                error: props.validatorErrors.contact_representative_name
+                error: `${props.t(
+                  props.validatorErrors.contact_representative_name
+                )}`
               }}
             >
               {props.t("Name of contact")}
@@ -70,7 +74,9 @@ const ContactRepresentative = (props) => {
               id="contact_representative_role"
               meta={{
                 touched: true,
-                error: props.validatorErrors.contact_representative_role
+                error: `${props.t(
+                  props.validatorErrors.contact_representative_role
+                )}`
               }}
             >
               {props.t("Role (optional)")}
@@ -107,7 +113,9 @@ const ContactRepresentative = (props) => {
               )}
               meta={{
                 touched: true,
-                error: props.validatorErrors.contact_representative_email
+                error: `${props.t(
+                  props.validatorErrors.contact_representative_email
+                )}`
               }}
             >
               {props.t("Email address")}

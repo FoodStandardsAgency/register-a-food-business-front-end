@@ -14,6 +14,7 @@ import { Heading, Button, HintText } from "govuk-react";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const StyledRow = styled.div`
   display: flex;
@@ -50,6 +51,7 @@ const ButtonsRow = (props) => (
 
 const PartnerName = (props) => (
   <FsaLayout {...props}>
+    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
       t={props.t}

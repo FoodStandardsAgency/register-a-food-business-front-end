@@ -7,7 +7,7 @@ const ProcessedErrorSummary = (props) => {
   for (let error in props.validatorErrors) {
     errors.push({
       targetName: error,
-      text: props.validatorErrors[error]
+      text: `${props.t(props.validatorErrors[error])}`
     });
   }
   if (Object.keys(props.validatorErrors).length > 0) {

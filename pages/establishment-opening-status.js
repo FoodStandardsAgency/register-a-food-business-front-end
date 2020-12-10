@@ -12,9 +12,11 @@ import {
 import { Radio, MultiChoice, HintText, Paragraph, Fieldset } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const EstablishmentOpeningStatus = (props) => (
   <FsaLayout {...props}>
+    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
       t={props.t}
@@ -52,7 +54,9 @@ const EstablishmentOpeningStatus = (props) => (
             label=""
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_opening_status
+              error: `${props.t(
+                props.validatorErrors.establishment_opening_status
+              )}`
             }}
           >
             <Radio
