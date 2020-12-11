@@ -11,7 +11,6 @@ import {
   PostForm
 } from "../src/components";
 import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
-import LanguageChangeButton from "../src/components/LanguageChangeButton";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -41,7 +40,6 @@ class Declaration extends React.Component {
   render() {
     return (
       <FsaLayout {...this.props}>
-        <LanguageChangeButton />
         <PostForm
           action={this.props.formAction}
           ref="submitRegistration"

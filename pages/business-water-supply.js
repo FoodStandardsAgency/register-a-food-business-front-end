@@ -13,11 +13,9 @@ import { waterSupplyEnum } from "@slice-and-dice/register-a-food-business-valida
 import { Fieldset, Radio, MultiChoice, HintText, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
-import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const WaterSupply = (props) => (
   <FsaLayout {...props}>
-    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
       t={props.t}

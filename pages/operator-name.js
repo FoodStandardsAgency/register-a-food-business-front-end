@@ -12,11 +12,9 @@ import {
 import { Heading, InputField } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
-import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const OperatorName = (props) => (
   <FsaLayout {...props}>
-    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
       t={props.t}

@@ -12,7 +12,6 @@ import {
 import { Fieldset, Radio, MultiChoice, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
-import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const PartnersList = (props) => {
   let list = [];
@@ -38,7 +37,6 @@ const PartnersList = (props) => {
 
 const PrimaryPartner = (props) => (
   <FsaLayout {...props}>
-    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
       t={props.t}

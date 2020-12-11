@@ -11,11 +11,9 @@ import {
 import { Heading, InputField, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
-import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const OpeningHours = (props) => (
   <FsaLayout {...props}>
-    <LanguageChangeButton />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <BackButton {...props} t={props.t} />
       <ProcessedErrorSummary

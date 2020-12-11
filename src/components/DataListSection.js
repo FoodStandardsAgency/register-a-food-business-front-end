@@ -33,18 +33,23 @@ const BusinessTypeOptions = () => {
 const DataListSection = (props) => (
   <div id="dataListSection">
     <Paragraph>
-      Search with your own keywords and then select the most fitting business
-      type from the suggestions
+      {props.t(
+        "Search with your own keywords and then select the most fitting business type from the suggestions"
+      )}
     </Paragraph>
     <ContentItem.B_30_15>
       <HintText>
-        For example
+        {props.t("For example")}
         <UnorderedList>
-          <ListItemConsistentSize>cafe</ListItemConsistentSize>
-          <ListItemConsistentSize>food delivery service</ListItemConsistentSize>
-          <ListItemConsistentSize>commercial bakery</ListItemConsistentSize>
+          <ListItemConsistentSize>{props.t("cafe")}</ListItemConsistentSize>
           <ListItemConsistentSize>
-            meat product manufacturer
+            {props.t("food delivery service")}
+          </ListItemConsistentSize>
+          <ListItemConsistentSize>
+            {props.t("commercial bakery")}
+          </ListItemConsistentSize>
+          <ListItemConsistentSize>
+            {props.t("meat product manufacturer")}
           </ListItemConsistentSize>
         </UnorderedList>
       </HintText>

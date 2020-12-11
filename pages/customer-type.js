@@ -12,11 +12,9 @@ import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 import { customerTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
-import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const CustomerType = (props) => (
   <FsaLayout {...props}>
-    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
       t={props.t}

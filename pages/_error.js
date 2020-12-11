@@ -2,7 +2,6 @@ import React from "react";
 import { FsaLayout } from "../src/components";
 import { Heading, Paragraph, BackLink, Button } from "govuk-react";
 import { withTranslation } from "../i18n";
-import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 class Error extends React.Component {
   static getInitialProps({ req, res, err }) {
@@ -26,7 +25,6 @@ class Error extends React.Component {
       : "/";
     return (
       <FsaLayout {...this.props}>
-        <LanguageChangeButton />
         <BackLink href={backToStartLink}>
           {this.props.t("Back to start")}
         </BackLink>

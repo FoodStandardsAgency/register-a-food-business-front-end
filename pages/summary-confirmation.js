@@ -12,7 +12,6 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import moment from "moment";
 import { withTranslation } from "../i18n";
-import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const FsaPanel = styled(Panel)`
   h2 {
@@ -22,7 +21,6 @@ const FsaPanel = styled(Panel)`
 
 const ApplicationComplete = (props) => (
   <FsaLayout {...props}>
-    <LanguageChangeButton />
     <Heading as="h1" size="LARGE">
       {props.t("Submission complete")}
     </Heading>

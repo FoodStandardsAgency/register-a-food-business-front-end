@@ -18,11 +18,9 @@ import {
 } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
-import LanguageChangeButton from "../src/components/LanguageChangeButton";
 
 const OtherDaysIrregular = (props) => (
   <FsaLayout {...props}>
-    <LanguageChangeButton />
     <BackButton {...props} t={props.t} />
     <ProcessedErrorSummary
       t={props.t}
@@ -61,9 +59,7 @@ const OtherDaysIrregular = (props) => (
                   )}
                 </ListItemConsistentSize>
                 <ListItemConsistentSize>
-                  {props.t(
-                    "open at weekends in June and August"
-                  )}
+                  {props.t("open at weekends in June and August")}
                 </ListItemConsistentSize>
               </UnorderedList>
             </HintText>
