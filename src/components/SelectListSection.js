@@ -1,7 +1,9 @@
 import { css } from "@emotion/core";
 import { Label } from "govuk-react";
 import { SelectInput } from "@govuk-react/select";
-import distinctBusinessTypes from "./distinct-business-types.json";
+import distinctBusinessTypesEn from "./distinct-business-type-en.json";
+import distinctBusinessTypesCy from "./distinct-business-type-cy.json";
+import { i18n } from "../../i18n";
 import { withTranslation } from "../../i18n.js";
 
 const autocompleteErrorStyling = css`
@@ -19,7 +21,10 @@ const style = {
 
 const BusinessTypeOptions = () => {
   let options = [];
-  distinctBusinessTypes.forEach((type) => {
+  (i18n.language === "en"
+    ? distinctBusinessTypesEn
+    : distinctBusinessTypesCy
+  ).forEach((type) => {
     options.push(
       <option key={type} value={type}>
         {type}
