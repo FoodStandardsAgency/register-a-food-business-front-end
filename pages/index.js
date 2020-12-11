@@ -5,14 +5,12 @@ import {
   ContinueButton,
   PostForm
 } from "../src/components";
-import { Heading, Paragraph } from "govuk-react";
-import LanguageChangeButton from "../src/components/LanguageChangeButton";
+import { Heading, Paragraph, Link } from "govuk-react";
 import InsetText from "../src/components/InsetText";
-import { withTranslation } from "../i18n";
+import { withTranslation, i18n } from "../i18n";
 
 const Index = (props) => (
   <FsaLayout {...props}>
-    <LanguageChangeButton />
     <Heading as="h1">{props.t("Register a food business")}</Heading>
 
     <ContentItem.B_30_15 {...props} t={props.t}>
@@ -62,7 +60,17 @@ const Index = (props) => (
         )}`}
       </Paragraph>
     </ContentItem.B_30_15>
-
+    <InsetText>
+      This service is also available in{" "}
+      <Link
+        style={{ textDecorationLine: "underline", cursor: "pointer" }}
+        onClick={() =>
+          i18n.changeLanguage(i18n.language === "en" ? "cy" : "en")
+        }
+      >
+        {i18n.language === "en" ? "Welsh (Cymraeg)" : "Saesneg (English)"}
+      </Link>
+    </InsetText>
     <PostForm action="/continue/index" csrfToken={props.csrfToken}>
       <ContinueButton type="begin" t={props.t} />
     </PostForm>

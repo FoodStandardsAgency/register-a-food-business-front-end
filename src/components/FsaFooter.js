@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Link, ListItem, UnorderedList } from "govuk-react";
-import { withTranslation } from "../../i18n.js";
+import { withTranslation, i18n } from "../../i18n.js";
 
 const fontSizeNormal = "16px";
 const fontSizeSmall = "14px";
@@ -119,6 +119,28 @@ const FsaFooter = (props) => (
                 style={{ color: "#454a4c" }}
               >
                 {props.t("Accessibility")}
+              </FooterLink>
+            </FooterListItem>
+            <FooterListItem>
+              <FooterLink
+                id="languageFooter"
+                onClick={() =>
+                  i18n.changeLanguage(i18n.language === "en" ? "cy" : "en")
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={props.t(
+                  "accessibility statement (opens in a new window)"
+                )}
+                style={{
+                  color: "#454a4c",
+                  textDecorationLine: "underline",
+                  cursor: "pointer"
+                }}
+              >
+                {i18n.language === "en"
+                  ? "Welsh (Cymraeg)"
+                  : "Saesneg (English)"}
               </FooterLink>
             </FooterListItem>
           </FooterUnorderedList>
