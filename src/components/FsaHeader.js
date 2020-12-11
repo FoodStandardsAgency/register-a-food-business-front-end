@@ -50,7 +50,7 @@ const FsaHeader = (props) => (
         <CookieBanner t={props.t} />
       </section>
     )}
-    <FsaTopNav company={Company} t={props.t} />
+    <FsaTopNav company={Company(props)} />
     <HeaderMain>
       <PhaseBanner level="beta">
         {props.t("This is a new service")} -{" "}
