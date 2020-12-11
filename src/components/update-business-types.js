@@ -93,15 +93,15 @@ const updateBusinessTypesForAutocomplete = async () => {
     return distinctBusinessTypesUnique;
   }
 
-  const en__distinct_filename = "./src/components/distinct-business-types.json";
+  const en_distinct_filename = "./src/components/distinct-business-types.json";
   fs.writeFile(
-    en__distinct_filename,
+    en_distinct_filename,
     JSON.stringify(getDistinctBusinessTypes(transformedBusinessTypeArray_en)),
     (err) => {
       if (err) {
         return console.log(err);
       }
-      console.log(`SUCCESS: ${en__distinct_filename} updated`);
+      console.log(`SUCCESS: ${en_distinct_filename} updated`);
     }
   );
 };
