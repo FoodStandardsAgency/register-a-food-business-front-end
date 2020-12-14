@@ -1,16 +1,9 @@
-import businessTypesEnJSON from "./business-type-transformed-en.json";
-import businessTypesCyJSON from "./business-type-transformed-cy.json";
 import { i18n } from "../../i18n";
 import stemmer from "stemmer";
+import { businessTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const findMatches = (query, returnResultsArray) => {
-  const businessTypesArray = Object.values(
-    JSON.parse(
-      JSON.stringify(
-        i18n.language === "en" ? businessTypesEnJSON : businessTypesCyJSON
-      )
-    )
-  );
+  const businessTypesArray = Object.values(businessTypeEnum);
 
   const checkForQueryMatch = (searchableText, query) => {
     const wordArray = searchableText
@@ -39,32 +32,36 @@ const findMatches = (query, returnResultsArray) => {
 
   if (query) {
     displayNameMatchArray = businessTypesArray
-      // remove duplicate entries of the same displayName
-      .filter(
-        (obj, pos, arr) =>
-          arr
-            .map((mapObj) => mapObj["displayName"])
-            .indexOf(obj["displayName"]) === pos
-      )
-      // check for matching words and beginnings of words
-      .filter((entry) => checkForQueryMatch(entry.displayName, query))
+      // check for matching words and beginnings of words in the display value
+      .filter((entry) => checkForQueryMatch(entry.value[i18n.language], query))
       // remove the searchTerm field of each result
       .map((entry) => {
         return {
-          displayName: entry.displayName,
+          value: entry.value[i18n.language],
           searchTerm: undefined
         };
       });
 
-    searchTermMatchArray = businessTypesArray.filter((entry) =>
-      // check for matching words and beginnings of words (including the displayName)
-      checkForQueryMatch(entry.searchTerm, query)
-    );
+    searchTermMatchArray = businessTypesArray
+      .filter((entry) =>
+        // check for matching words and beginnings of words in the search terms
+        entry.searchTerms[i18n.language].some((term) =>
+          checkForQueryMatch(term, query)
+        )
+      )
+      .map((entry) => {
+        return {
+          value: entry.value[i18n.language],
+          searchTerm: entry.searchTerms[i18n.language].find((term) =>
+            checkForQueryMatch(term, query)
+          )
+        };
+      });
 
     resultsArray = displayNameMatchArray.concat(searchTermMatchArray);
 
     // sort the results alphabetically by displayName
-    resultsArray.sort((a, b) => (a.displayName < b.displayName ? -1 : 1));
+    resultsArray.sort((a, b) => (a.value < b.value ? -1 : 1));
   } else {
     resultsArray = [];
   }
@@ -74,7 +71,7 @@ const findMatches = (query, returnResultsArray) => {
 
 const suggestionFunction = (suggestionToBeDisplayed) => {
   return (
-    suggestionToBeDisplayed.displayName +
+    suggestionToBeDisplayed.value +
     (suggestionToBeDisplayed.searchTerm
       ? ` <span class="searchTermResult">(${suggestionToBeDisplayed.searchTerm})</span>`
       : "")
@@ -83,7 +80,7 @@ const suggestionFunction = (suggestionToBeDisplayed) => {
 
 const inputValueFunction = (selectedSuggestion) =>
   selectedSuggestion
-    ? selectedSuggestion.displayName +
+    ? selectedSuggestion.value +
       (selectedSuggestion.searchTerm
         ? " (" + selectedSuggestion.searchTerm + ")"
         : "")

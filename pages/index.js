@@ -65,10 +65,10 @@ const Index = (props) => (
       <Link
         style={{ textDecorationLine: "underline", cursor: "pointer" }}
         onClick={() =>
-          i18n.changeLanguage(i18n.language === "en" ? "cy" : "en")
+          i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
         }
       >
-        {i18n.language === "en" ? "Welsh (Cymraeg)" : "English"}
+        {i18n.language === "cy" ? "English" : "Welsh (Cymraeg)"}
       </Link>
     </InsetText>
     <PostForm action="/continue/index" csrfToken={props.csrfToken}>

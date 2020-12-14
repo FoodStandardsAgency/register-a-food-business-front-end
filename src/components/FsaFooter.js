@@ -125,7 +125,7 @@ const FsaFooter = (props) => (
               <FooterLink
                 id="languageFooter"
                 onClick={() =>
-                  i18n.changeLanguage(i18n.language === "en" ? "cy" : "en")
+                  i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
                 }
                 target="_blank"
                 rel="noopener noreferrer"
@@ -136,7 +136,7 @@ const FsaFooter = (props) => (
                   cursor: "pointer"
                 }}
               >
-                {i18n.language === "en" ? "Cymraeg" : "English"}
+                {i18n.language === "cy" ? "English" : "Cymraeg"}
               </FooterLink>
             </FooterListItem>
           </FooterUnorderedList>
