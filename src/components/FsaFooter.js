@@ -129,18 +129,14 @@ const FsaFooter = (props) => (
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={props.t(
-                  "accessibility statement (opens in a new window)"
-                )}
+                aria-label={props.t("Change the language to English/Welsh")}
                 style={{
                   color: "#454a4c",
                   textDecorationLine: "underline",
                   cursor: "pointer"
                 }}
               >
-                {i18n.language === "en"
-                  ? "Welsh (Cymraeg)"
-                  : "Saesneg (English)"}
+                {i18n.language === "en" ? "Cymraeg" : "English"}
               </FooterLink>
             </FooterListItem>
           </FooterUnorderedList>
