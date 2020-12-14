@@ -40,6 +40,8 @@ const SessionWrapper = (Page) => {
 
     const currentPage = currentPageWithQuery.split("?")[0];
 
+    const language = req && req.language ? req.language : "en";
+
     const partnerDetailsUrl = editModePartnerDetails
       ? "/partnership/partner-details?edit=partner-name"
       : "/partnership/partner-details";
@@ -85,6 +87,7 @@ const SessionWrapper = (Page) => {
       editModeFirstPage,
       formAction,
       csrfToken,
+      language,
       partnerDetailsUrl,
       partnerDetailsDeleteFormAction,
       partnerDetailsContinueFormAction,
