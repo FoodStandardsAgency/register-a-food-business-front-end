@@ -1,8 +1,7 @@
 import { css } from "@emotion/core";
 import { Label } from "govuk-react";
 import { SelectInput } from "@govuk-react/select";
-import distinctBusinessTypesEn from "./distinct-business-type-en.json";
-import distinctBusinessTypesCy from "./distinct-business-type-cy.json";
+import { businessTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { i18n } from "../../i18n";
 import { withTranslation } from "../../i18n.js";
 
@@ -21,9 +20,21 @@ const style = {
 
 const BusinessTypeOptions = () => {
   let options = [];
-  (i18n.language === "en"
-    ? distinctBusinessTypesEn
-    : distinctBusinessTypesCy
+  (i18n.language === "cy"
+    ? [
+        ...new Set(
+          Object.keys(businessTypeEnum).map(
+            (bt) => businessTypeEnum[bt].value.cy
+          )
+        )
+      ]
+    : [
+        ...new Set(
+          Object.keys(businessTypeEnum).map(
+            (bt) => businessTypeEnum[bt].value.en
+          )
+        )
+      ]
   ).forEach((type) => {
     options.push(
       <option key={type} value={type}>

@@ -125,22 +125,24 @@ const FsaFooter = (props) => (
               <FooterLink
                 id="languageFooter"
                 onClick={() =>
-                  i18n.changeLanguage(i18n.language === "en" ? "cy" : "en")
+                  i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={props.t(
-                  "accessibility statement (opens in a new window)"
-                )}
+                aria-label={
+                  i18n.language === "cy"
+                    ? "Saesneg (English)"
+                    : "Welsh (Cymraeg)"
+                }
                 style={{
                   color: "#454a4c",
                   textDecorationLine: "underline",
                   cursor: "pointer"
                 }}
               >
-                {i18n.language === "en"
-                  ? "Welsh (Cymraeg)"
-                  : "Saesneg (English)"}
+                {i18n.language === "cy"
+                  ? "Saesneg (English)"
+                  : "Welsh (Cymraeg)"}
               </FooterLink>
             </FooterListItem>
           </FooterUnorderedList>
