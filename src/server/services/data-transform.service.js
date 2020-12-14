@@ -814,8 +814,10 @@ const separateBracketsFromBusinessType = (text) => {
 };
 
 const transformBusinessTypeForSubmit = (displayName) => {
-  const businessTypeKey = Object.keys(businessTypeEnum).find(
-    (key) => [businessTypeEnum[key].value.en, businessTypeEnum[key].value.cy].includes(displayName)
+  const businessTypeKey = Object.keys(businessTypeEnum).find((key) =>
+    [businessTypeEnum[key].value.en, businessTypeEnum[key].value.cy].includes(
+      displayName
+    )
   );
   return businessTypeKey ? businessTypeEnum[businessTypeKey].key : null;
 };
