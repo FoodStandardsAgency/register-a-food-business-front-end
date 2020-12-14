@@ -23,12 +23,12 @@ const OperatorContactDetails = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      {`${
+      {props.t(`${
         props.cumulativeFullAnswers.registration_role ===
         operatorTypeEnum.PARTNERSHIP.key
           ? "Partnership"
           : "Operator"
-      } contact details`}
+      } contact details`)}
     </Heading>
     <ContactDetailsHelp
       role={props.cumulativeFullAnswers.registration_role}
