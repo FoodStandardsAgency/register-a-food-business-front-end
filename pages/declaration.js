@@ -71,9 +71,13 @@ class Declaration extends React.Component {
               meta={{
                 touched: true,
                 error:
-                  `${props.t(this.props.validatorErrors["declaration1"])}` ||
-                  `${props.t(this.props.validatorErrors["declaration2"])}` ||
-                  `${props.t(this.props.validatorErrors["declaration3"])}`
+                  `${this.props.t(
+                    this.props.validatorErrors["declaration1"]
+                  )}` ||
+                  `${this.props.t(
+                    this.props.validatorErrors["declaration2"]
+                  )}` ||
+                  `${this.props.t(this.props.validatorErrors["declaration3"])}`
               }}
             >
               <Checkbox
