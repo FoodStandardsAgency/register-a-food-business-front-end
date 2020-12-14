@@ -74,11 +74,11 @@ const ApplicationComplete = (props) => (
             {props.lcConfig.hygieneAndStandards.local_council}
           </Heading>
           <Paragraph mb={0}>
-            {`Email: ${props.lcConfig.hygieneAndStandards.local_council_email}`}
+            {`${props.t("Email address")}: ${props.lcConfig.hygieneAndStandards.local_council_email}`}
           </Paragraph>
           {props.lcConfig.hygieneAndStandards.local_council_phone_number ? (
             <Paragraph mb={0} id="hygieneAndStandardsNumber">
-              {`Phone: ${props.lcConfig.hygieneAndStandards.local_council_phone_number}`}
+              {`${props.t("Phone number")}: ${props.lcConfig.hygieneAndStandards.local_council_phone_number}`}
             </Paragraph>
           ) : null}
         </ContentItem.B_30_15>
@@ -89,11 +89,11 @@ const ApplicationComplete = (props) => (
               {props.lcConfig.hygiene.local_council}
             </Heading>
             <Paragraph mb={0}>
-              {`Email: ${props.lcConfig.hygiene.local_council_email}`}
+              {`${props.t("Email address")}: ${props.lcConfig.hygiene.local_council_email}`}
             </Paragraph>
             {props.lcConfig.hygiene.local_council_phone_number ? (
               <Paragraph mb={0} id="hygieneNumber">
-                {`Phone: ${props.lcConfig.hygiene.local_council_phone_number}`}
+                {`${props.t("Phone number")}: ${props.lcConfig.hygiene.local_council_phone_number}`}
               </Paragraph>
             ) : null}
             <HintText>
@@ -105,11 +105,11 @@ const ApplicationComplete = (props) => (
               {props.lcConfig.standards.local_council}
             </Heading>
             <Paragraph mb={0}>
-              {`Email: ${props.lcConfig.standards.local_council_email}`}
+              {`${props.t("Email address")}: ${props.lcConfig.standards.local_council_email}`}
             </Paragraph>
             {props.lcConfig.standards.local_council_phone_number ? (
               <Paragraph mb={0} id="standardsNumber">
-                {`Phone: ${props.lcConfig.standards.local_council_phone_number}`}
+                {`${props.t("Phone number")}: ${props.lcConfig.standards.local_council_phone_number}`}
               </Paragraph>
             ) : null}
             <HintText>

@@ -83,7 +83,7 @@ class Declaration extends React.Component {
               <Checkbox
                 name="declaration1"
                 value="I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief."
-                error={`${props.t(this.props.validatorErrors["declaration1"])}`}
+                error={`${this.props.t(this.props.validatorErrors["declaration1"])}`}
                 defaultChecked={this.props.cumulativeFullAnswers.declaration1}
               >
                 {this.props.t(
@@ -96,7 +96,7 @@ class Declaration extends React.Component {
                 value="I, or the operator, will notify my local authority of any significant
         changes to the business activity, including closure, within 28 days of
         the change happening."
-                error={`${props.t(this.props.validatorErrors["declaration2"])}`}
+                error={`${this.props.t(this.props.validatorErrors["declaration2"])}`}
                 defaultChecked={this.props.cumulativeFullAnswers.declaration2}
               >
                 {this.props.t(
@@ -109,7 +109,7 @@ class Declaration extends React.Component {
                 value="I, or the operator, understands the operator is legally responsible for
         the safety and authenticity of the food being produced or served at this
         establishment."
-                error={`${props.t(this.props.validatorErrors["declaration3"])}`}
+                error={`${this.props.t(this.props.validatorErrors["declaration3"])}`}
                 defaultChecked={this.props.cumulativeFullAnswers.declaration3}
               >
                 {this.props.t(
