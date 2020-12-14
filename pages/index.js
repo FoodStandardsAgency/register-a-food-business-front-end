@@ -61,14 +61,14 @@ const Index = (props) => (
       </Paragraph>
     </ContentItem.B_30_15>
     <InsetText>
-      This service is also available in{" "}
+      {props.t("This service is also available in")}{" "}
       <Link
         style={{ textDecorationLine: "underline", cursor: "pointer" }}
         onClick={() =>
           i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
         }
       >
-        {i18n.language === "cy" ? "Saesneg (English)" : "Welsh (Cymraeg)"}
+        {i18n.language === "cy" ? "English" : "Welsh (Cymraeg)"}
       </Link>
     </InsetText>
     <PostForm action="/continue/index" csrfToken={props.csrfToken}>
