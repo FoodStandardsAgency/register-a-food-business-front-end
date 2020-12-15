@@ -131,7 +131,7 @@ const OperatorDetailsTable = (props) => (
           {props.t("Operator type")}
         </AccessibleRowHeader>
         <AccessibleCell id="operator_type">
-          {props.operator_type}
+          {props.t(props.operator_type)}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
@@ -642,7 +642,7 @@ const EstablishmentDetailsTable = (props) => (
           {props.t("Address type")}
         </AccessibleRowHeader>
         <AccessibleCell id="establishment_type">
-          {props.establishment_type}
+          {props.t(props.establishment_type)}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
@@ -793,15 +793,41 @@ const EstablishmentDetailsTable = (props) => (
         >
           {props.opening_days_irregular || props.open_some_days_summary_table || (
             <div>
-              <div id="opening_day_monday">{props.opening_day_monday}</div>
-              <div id="opening_day_tuesday">{props.opening_day_tuesday}</div>
-              <div id="opening_day_wednesday">
-                {props.opening_day_wednesday}
+              <div id="opening_day_monday">
+                {props.opening_day_monday
+                  ? props.t(props.opening_day_monday)
+                  : props.opening_day_monday}
               </div>
-              <div id="opening_day_thursday">{props.opening_day_thursday}</div>
-              <div id="opening_day_friday">{props.opening_day_friday}</div>
-              <div id="opening_day_saturday">{props.opening_day_saturday}</div>
-              <div id="opening_day_sunday">{props.opening_day_sunday}</div>
+              <div id="opening_day_tuesday">
+                {props.opening_day_tuesday
+                  ? props.t(props.opening_day_tuesday)
+                  : props.opening_day_tuesday}
+              </div>
+              <div id="opening_day_wednesday">
+                {props.opening_day_wednesday
+                  ? props.t(props.opening_day_wednesday)
+                  : props.opening_day_wednesday}
+              </div>
+              <div id="opening_day_thursday">
+                {props.opening_day_thursday
+                  ? props.t(props.opening_day_thursday)
+                  : props.opening_day_thursday}
+              </div>
+              <div id="opening_day_friday">
+                {props.opening_day_friday
+                  ? props.t(props.opening_day_friday)
+                  : props.opening_day_friday}
+              </div>
+              <div id="opening_day_saturday">
+                {props.opening_day_saturday
+                  ? props.t(props.opening_day_saturday)
+                  : props.opening_day_saturday}
+              </div>
+              <div id="opening_day_sunday">
+                {props.opening_day_sunday
+                  ? props.t(props.opening_day_sunday)
+                  : props.opening_day_sunday}
+              </div>
             </div>
           )}
         </AccessibleCell>
@@ -859,31 +885,31 @@ const EstablishmentDetailsTable = (props) => (
           <div>
             <div id="opening_hours_monday">
               {props.opening_hours_monday &&
-                `Monday: ${props.opening_hours_monday}`}
+                `${props.t("Monday")}: ${props.opening_hours_monday}`}
             </div>
             <div id="opening_hours_tuesday">
               {props.opening_hours_tuesday &&
-                `Tuesday: ${props.opening_hours_tuesday}`}
+                `${props.t("Tuesday")}: ${props.opening_hours_tuesday}`}
             </div>
             <div id="opening_hours_wednesday">
               {props.opening_hours_wednesday &&
-                `Wednesday: ${props.opening_hours_wednesday}`}
+                `${props.t("Wednesday")}: ${props.opening_hours_wednesday}`}
             </div>
             <div id="opening_hours_thursday">
               {props.opening_hours_thursday &&
-                `Thursday: ${props.opening_hours_thursday}`}
+                `${props.t("Thursday")}: ${props.opening_hours_thursday}`}
             </div>
             <div id="opening_hours_friday">
               {props.opening_hours_friday &&
-                `Friday: ${props.opening_hours_friday}`}
+                `${props.t("Friday")}: ${props.opening_hours_friday}`}
             </div>
             <div id="opening_hours_saturday">
               {props.opening_hours_saturday &&
-                `Saturday: ${props.opening_hours_saturday}`}
+                `${props.t("Saturday")}: ${props.opening_hours_saturday}`}
             </div>
             <div id="opening_hours_sunday">
               {props.opening_hours_sunday &&
-                `Sunday: ${props.opening_hours_sunday}`}
+                `${props.t("Sunday")}: ${props.opening_hours_sunday}`}
             </div>
           </div>
         </AccessibleCell>
@@ -918,7 +944,9 @@ const EstablishmentDetailsTable = (props) => (
         >
           {props.t("Water supply")}
         </AccessibleRowHeader>
-        <AccessibleCell id="water_supply">{props.water_supply}</AccessibleCell>
+        <AccessibleCell id="water_supply">
+          {props.t(props.water_supply)}
+        </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
             <Link
@@ -949,7 +977,7 @@ const FoodActivitiesTable = (props) => (
           {props.t("Customers")}
         </AccessibleRowHeader>
         <AccessibleCell id="customer_type">
-          {props.customer_type}
+          {props.t(props.customer_type)}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
@@ -1006,7 +1034,7 @@ const FoodActivitiesTable = (props) => (
           {props.t("Import and export")}
         </AccessibleRowHeader>
         <AccessibleCell id="import_export_activities">
-          {props.import_export_activities}
+          {props.t(props.import_export_activities)}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>

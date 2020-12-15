@@ -350,5 +350,22 @@
   "Invalid opening hours on Thursday": "Oriau agor annilys ar ddydd Iau",
   "Invalid opening hours on Friday": "Oriau agor annilys ar ddydd Gwener",
   "Invalid opening hours on Saturday": "Oriau agor annilys ar ddydd Sadwrn",
-  "Invalid opening hours on Sunday": "Oriau agor annilys ar ddydd Sul"
+  "Invalid opening hours on Sunday": "Oriau agor annilys ar ddydd Sul",
+  "Other businesses": "Fusnesau eraill",
+  "End consumer": "Yn uniongyrchol i ddefnyddwyr",
+  "End consumer and other businesses": "Yn uniongyrchol i ddefnyddwyr a fusnesau eraill",
+  "Place of business or commercial premises": "Mewn adeilad masnachol neu gyhoeddus",
+  "Mobile or moveable premises": "Mewn safle symudol",
+  "Home or domestic premises": "Mewn cartref neu safle domestig",
+  "Directly import": "Mewnforio bwyd yn uniongyrchol",
+  "Directly export": "Allforio bwyd yn uniongyrchol",
+  "Directly import and export": "Mewnforio ac allforio",
+  "None": "Dim gweithgareddau mewnforio nac allforio",
+  "Sole trader": "Unig fasnachwr",
+  "A person (registered by a representative)": "Person sy'n berchen ar y busnes bwyd neu sy'n ei weithredu",
+  "A company (registered by a representative)": "Cwmni cyfyngedig sy'n berchen ar y busnes bwyd neu sy'n ei weithredu",
+  "A charity (registered by a representative)": "Elusen, sefydliad neu ymddiriedolaeth sy'n berchen ar y busnes bwyd neu sy'n ei weithredu",
+  "Public": "Dŵr o’r prif gyflenwad",
+  "Private": "Cyflenwad dŵr preifat",
+  "Public and private": "Prif gyflenwad a chyflenwad dŵr preifat"
 }

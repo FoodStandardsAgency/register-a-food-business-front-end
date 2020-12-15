@@ -350,5 +350,22 @@
   "Invalid opening hours on Thursday": "Invalid opening hours on Thursday",
   "Invalid opening hours on Friday": "Invalid opening hours on Friday",
   "Invalid opening hours on Saturday": "Invalid opening hours on Saturday",
-  "Invalid opening hours on Sunday": "Invalid opening hours on Sunday"
+  "Invalid opening hours on Sunday": "Invalid opening hours on Sunday",
+  "Other businesses": "Other businesses",
+  "End consumer": "End consumer",
+  "End consumer and other businesses": "End consumer and other businesses",
+  "Place of business or commercial premises": "Place of business or commercial premises",
+  "Mobile or moveable premises": "Mobile or moveable premises",
+  "Home or domestic premises": "Home or domestic premises",
+  "Directly import": "Directly import",
+  "Directly export": "Directly export",
+  "Directly import and export": "Directly import and export",
+  "None": "None",
+  "Sole trader": "Sole trader",
+  "A person (registered by a representative)": "A person (registered by a representative)",
+  "A company (registered by a representative)": "A company (registered by a representative)",
+  "A charity (registered by a representative)": "A charity (registered by a representative)",
+  "Public": "Public",
+  "Private": "Private",
+  "Public and private": "Public and private"
 }
