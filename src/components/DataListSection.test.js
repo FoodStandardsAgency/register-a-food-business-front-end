@@ -1,4 +1,4 @@
-import BusinessTypeLookup from "../components/BusinessTypeLookup";
+import { BusinessTypeLookup } from "../components/BusinessTypeLookup";
 import DataListSection from "../components/DataListSection";
 import { Paragraph } from "govuk-react";
 import { mount } from "enzyme";
@@ -17,6 +17,7 @@ describe("given JavaScript is disabled", () => {
             validatorErrors
             cumulativeFullAnswers
             browser="Chrome"
+            t={(text) => text}
           />
         );
         wrapper.setState({ renderAutoCompleteSection: false });
