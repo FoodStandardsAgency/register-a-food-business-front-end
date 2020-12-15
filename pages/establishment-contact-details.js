@@ -42,12 +42,14 @@ const EstablishmentContactDetails = (props) => (
           formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
           id="reuseButton"
         >
-          {`Re-use ${
-            props.cumulativeFullAnswers.registration_role ===
-            operatorTypeEnum.PARTNERSHIP.key
-              ? "partnership"
-              : "operator"
-          } contact details`}
+          {props.t(
+            `Re-use ${
+              props.cumulativeFullAnswers.registration_role ===
+              operatorTypeEnum.PARTNERSHIP.key
+                ? "partnership"
+                : "operator"
+            } contact details`
+          )}
         </Button>
 
         <ContentItem.B_30_15>

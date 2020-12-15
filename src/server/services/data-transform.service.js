@@ -125,7 +125,8 @@ const transformAnswersForSubmit = (
       },
       declaration: {}
     },
-    local_council_url: lcUrl
+    local_council_url: lcUrl,
+    language: cumulativeFullAnswers.language
   };
 
   const data = Object.assign({}, cumulativeFullAnswers);
@@ -462,7 +463,8 @@ const transformAnswersForSummary = (
       summaryData.customer_type
     );
     summaryData.business_type = transformBusinessTypeForSummary(
-      summaryData.business_type
+      summaryData.business_type,
+      data.language
     );
     summaryData.import_export_activities = transformBusinessImportExportForSummary(
       summaryData.import_export_activities
@@ -814,14 +816,20 @@ const separateBracketsFromBusinessType = (text) => {
 };
 
 const transformBusinessTypeForSubmit = (displayName) => {
-  const businessTypeKey = Object.keys(businessTypeEnum).find(
-    (key) => [businessTypeEnum[key].value.en, businessTypeEnum[key].value.cy].includes(displayName)
+  const businessTypeKey = Object.keys(businessTypeEnum).find((key) =>
+    [businessTypeEnum[key].value.en, businessTypeEnum[key].value.cy].includes(
+      displayName
+    )
   );
   return businessTypeKey ? businessTypeEnum[businessTypeKey].key : null;
 };
 
-const transformBusinessTypeForSummary = (id) => {
-  return businessTypeEnum[id] ? businessTypeEnum[id].value.en : null;
+const transformBusinessTypeForSummary = (id, language) => {
+  return businessTypeEnum[id]
+    ? language === "cy"
+      ? businessTypeEnum[id].value.cy
+      : businessTypeEnum[id].value.en
+    : null;
 };
 
 module.exports = {
