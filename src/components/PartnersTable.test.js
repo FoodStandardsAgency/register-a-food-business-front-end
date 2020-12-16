@@ -9,7 +9,11 @@ const emptyPartners = { partners: [] };
 
 describe("<PartnersTable />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<PartnersTable cumulativeFullAnswers={partners} />);
+    const wrapper = shallow(
+      <I18nextProvider i18n={i18n}>
+        <PartnersTable cumulativeFullAnswers={partners} />
+      </I18nextProvider>
+    );
     expect(wrapper.length).toBe(1);
   });
 

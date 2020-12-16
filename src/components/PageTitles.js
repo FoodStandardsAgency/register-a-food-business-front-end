@@ -48,7 +48,7 @@ PageTitles.getUrlPageTitle = (url, language) => {
   var urlParts = url.split("/");
   var page = (urlParts[2] ?? urlParts[1]).split("?")[0];
   var title = PageTitles.defaultPageTitle;
-  var translatedTitles = language == "cy" ? cyTitles : enTitles;
+  var translatedTitles = language === "cy" ? cyTitles : enTitles;
 
   if (page && page in PageTitles.pageTitles) {
     title = `${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`;

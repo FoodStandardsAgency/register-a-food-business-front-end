@@ -3,6 +3,7 @@ import { Table, Link } from "govuk-react";
 import PropTypes from "prop-types";
 import * as COLOUR from "govuk-colours";
 import moment from "moment";
+import "moment/locale/cy";
 import styled from "@emotion/styled";
 import ContentItem from "./ContentItem";
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
@@ -115,6 +116,11 @@ const ColumnHeaders = (props) => (
 
 const determineLinkText = (property) => {
   return property ? "Change" : "Enter answer";
+};
+
+const formatDate = (date, language) => {
+  moment.locale(language);
+  return moment(date).format("DD MMM YYYY");
 };
 
 const OperatorDetailsTable = (props) => (
@@ -742,7 +748,7 @@ const EstablishmentDetailsTable = (props) => (
         </AccessibleRowHeader>
         <AccessibleCell id="establishment_opening_date">
           {props.establishment_opening_date
-            ? moment(props.establishment_opening_date).format("DD MMM YYYY")
+            ? formatDate(props.establishment_opening_date, props.language)
             : ""}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
@@ -753,9 +759,8 @@ const EstablishmentDetailsTable = (props) => (
               aria-label={props.t("Change establishment opening date")}
             >
               {determineLinkText(
-                moment(props.establishment_opening_date).format(
-                  "DD MMM YYYY"
-                ) !== "Invalid date" && props.establishment_opening_date
+                formatDate(props.establishment_opening_date, props.language) !==
+                  "Invalid date" && props.establishment_opening_date
               )}
             </Link>
           </AccessibleChangeCell>

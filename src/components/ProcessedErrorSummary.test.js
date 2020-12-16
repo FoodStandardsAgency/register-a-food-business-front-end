@@ -1,5 +1,7 @@
 import ProcessedErrorSummary from "../components/ProcessedErrorSummary";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../../i18nForTests";
 
 const testValidatorErrorsExists = {
   example: "test error",
@@ -11,7 +13,9 @@ const emptyValidatorErrors = {};
 describe("<ProcessedErrorSummary />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(
-      <ProcessedErrorSummary validatorErrors={testValidatorErrorsExists} />
+      <I18nextProvider i18n={i18n}>
+        <ProcessedErrorSummary validatorErrors={testValidatorErrorsExists} />
+      </I18nextProvider>
     );
     expect(wrapper.length).toBe(1);
   });
