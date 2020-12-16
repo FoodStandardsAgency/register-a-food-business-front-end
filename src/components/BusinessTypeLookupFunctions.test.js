@@ -96,7 +96,6 @@ let returnResultsArray;
 describe("Function: findMatches", () => {
   beforeEach(() => {
     stemmer.mockImplementation((word) => word);
-    //i18n.language.mockImplementation(() => "en");
     returnResultsArray = jest.fn();
   });
 

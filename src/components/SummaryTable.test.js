@@ -8,6 +8,8 @@ import {
   importExportEnum,
   establishmentTypeEnum
 } from "@slice-and-dice/register-a-food-business-validation";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../../i18nForTests";
 
 // a complete list of the summary table row IDs
 
@@ -326,7 +328,11 @@ const wrapperApplicationCompleteForPartnership = mount(
 
 describe("<SummaryTable />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<SummaryTable />);
+    const wrapper = shallow(
+      <I18nextProvider i18n={i18n}>
+        <SummaryTable />
+      </I18nextProvider>
+    );
     expect(wrapper.length).toBe(1);
   });
 
