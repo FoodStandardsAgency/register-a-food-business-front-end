@@ -91,7 +91,9 @@ const ContactRepresentative = (props) => {
               id="contact_representative_number"
               meta={{
                 touched: true,
-                error: props.validatorErrors.contact_representative_number
+                error: props.t(
+                  props.validatorErrors.contact_representative_number
+                )
               }}
             >
               {props.t("Phone number")}
@@ -111,9 +113,9 @@ const ContactRepresentative = (props) => {
               )}
               meta={{
                 touched: true,
-                error: `${props.t(
+                error: props.t(
                   props.validatorErrors.contact_representative_email
-                )}`
+                )
               }}
             >
               {props.t("Email address")}
