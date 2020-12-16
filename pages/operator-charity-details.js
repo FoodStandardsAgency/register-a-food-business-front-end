@@ -29,7 +29,7 @@ const OperatorCharityDetails = (props) => (
       t={props.t}
       hiddentextindex={1}
       id="hiddenTextFBO"
-      summary={"What is a food business operator?"}
+      summary={props.t("What is a food business operator?")}
     >
       <Paragraph mb={0}>
         {props.t(
@@ -82,7 +82,7 @@ const OperatorCharityDetails = (props) => (
           t={props.t}
           hiddentextindex={2}
           id="hiddenTextCharityNumbers"
-          summary={"Questions about charity reference numbers"}
+          summary={props.t("Questions about charity reference numbers")}
         >
           <span>
             {props.t(
