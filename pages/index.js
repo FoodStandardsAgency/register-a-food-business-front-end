@@ -67,6 +67,7 @@ const Index = (props) => (
         onClick={() =>
           i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
         }
+        id="changeLanguage"
       >
         {i18n.language === "cy" ? "English" : "Welsh (Cymraeg)"}
       </Link>
