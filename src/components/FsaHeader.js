@@ -47,7 +47,7 @@ const FsaHeader = (props) => (
     {props.acceptAllCookies === "true" ||
     props.acceptAllCookies === "false" ? null : (
       <section aria-label={props.t("cookie banner")}>
-        <CookieBanner t={props.t} />
+        <CookieBanner />
       </section>
     )}
     <FsaTopNav company={Company(props)} />

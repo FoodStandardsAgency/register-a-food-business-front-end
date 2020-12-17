@@ -14,9 +14,8 @@ import { withTranslation } from "../i18n";
 
 const OtherDetails = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -44,7 +43,7 @@ const OtherDetails = (props) => (
           </TextArea>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

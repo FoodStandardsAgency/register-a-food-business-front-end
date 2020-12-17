@@ -15,7 +15,7 @@ import { withTranslation } from "../i18n";
 const OpeningHours = (props) => (
   <FsaLayout {...props}>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
-      <BackButton {...props} t={props.t} />
+      <BackButton {...props} />
       <ProcessedErrorSummary
         t={props.t}
         validatorErrors={props.validatorErrors}
@@ -171,7 +171,7 @@ const OpeningHours = (props) => (
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

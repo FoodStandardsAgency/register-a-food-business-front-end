@@ -37,9 +37,8 @@ const PartnersList = (props) => {
 
 const PrimaryPartner = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -61,7 +60,7 @@ const PrimaryPartner = (props) => (
               )}
             </HintText>
           </ContentItem.B_30_15>
-          <PartnershipDescription t={props.t} />
+          <PartnershipDescription />
           <MultiChoice
             label=""
             meta={{
@@ -74,7 +73,7 @@ const PrimaryPartner = (props) => (
         </Fieldset>
       </ContentItem.B_45_30>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

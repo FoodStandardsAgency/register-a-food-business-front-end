@@ -15,7 +15,7 @@ import { withTranslation } from "../i18n";
 
 const OpeningDaysStart = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
       t={props.t}
       validatorErrors={props.validatorErrors}
@@ -85,7 +85,7 @@ const OpeningDaysStart = (props) => (
         </Paragraph>
       </HiddenTextAccessible>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

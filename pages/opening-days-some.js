@@ -15,9 +15,8 @@ import { withTranslation } from "../i18n";
 const OpeningSomeDays = (props) => (
   <FsaLayout {...props}>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
-      <BackButton {...props} t={props.t} />
+      <BackButton {...props} />
       <ProcessedErrorSummary
-        t={props.t}
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
       />
@@ -96,7 +95,7 @@ const OpeningSomeDays = (props) => (
           </Checkbox>
         </MultiChoice>
       </ContentItem.B_30_15>
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

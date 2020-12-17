@@ -42,7 +42,7 @@ const ButtonsRow = (props) => (
         action={props.partnerDetailsContinueFormAction}
         csrfToken={props.csrfToken}
       >
-        <ContinueButton {...props} t={props.t} />
+        <ContinueButton {...props} />
       </PostForm>
     ) : null}
   </StyledRow>
@@ -50,9 +50,8 @@ const ButtonsRow = (props) => (
 
 const PartnerName = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -66,14 +65,14 @@ const PartnerName = (props) => (
         )}
       </HintText>
     </ContentItem.B_30_15>
-    <PartnershipDescription t={props.t} />
+    <PartnershipDescription />
     <PostForm
       action={props.partnerDetailsDeleteFormAction}
       csrfToken={props.csrfToken}
     >
       {props.cumulativeFullAnswers.partners &&
       props.cumulativeFullAnswers.partners.length > 0 ? (
-        <PartnersTable {...props} t={props.t} />
+        <PartnersTable {...props} />
       ) : null}
     </PostForm>
     <ButtonsRow {...props} />

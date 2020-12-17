@@ -17,7 +17,6 @@ const OperatorAddress = (props) => (
   <FsaLayout {...props}>
     <BackButton
       {...props}
-      t={props.t}
       href={
         props.switches["/operator-address-none-found"]
           ? `/new/${props.council}/operator-address`
@@ -25,14 +24,10 @@ const OperatorAddress = (props) => (
       }
     />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <AddressHelp
-      t={props.t}
-      role={props.cumulativeFullAnswers.registration_role}
-    />
+    <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         {props.switches["/operator-address-none-found"] ? (
@@ -133,7 +128,7 @@ const OperatorAddress = (props) => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

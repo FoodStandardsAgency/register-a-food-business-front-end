@@ -15,9 +15,8 @@ import { withTranslation } from "../i18n";
 
 const EstablishmentOpeningStatus = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -38,10 +37,7 @@ const EstablishmentOpeningStatus = (props) => (
               )}
             </HintText>
           </ContentItem.B_30_15>
-          <HiddenTextAccessible
-            t={props.t}
-            summary={props.t("What is an establishment?")}
-          >
+          <HiddenTextAccessible summary={props.t("What is an establishment?")}>
             <Paragraph mb={0}>
               {props.t(
                 "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
@@ -83,7 +79,7 @@ const EstablishmentOpeningStatus = (props) => (
         </Fieldset>
       </ContentItem.B_45_30>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

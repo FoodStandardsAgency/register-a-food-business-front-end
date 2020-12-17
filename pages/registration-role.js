@@ -15,9 +15,8 @@ import { withTranslation } from "../i18n";
 
 const RegistrationRole = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -78,7 +77,7 @@ const RegistrationRole = (props) => (
         </Fieldset>
       </ContentItem.B_45_30>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

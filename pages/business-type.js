@@ -15,9 +15,8 @@ import { withTranslation } from "../i18n";
 
 const BusinessType = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -30,7 +29,7 @@ const BusinessType = (props) => (
           <BusinessTypeLookup id="businessTypeLookup" {...props} t={props.t} />
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

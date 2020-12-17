@@ -15,9 +15,8 @@ import { withTranslation } from "../i18n";
 
 const RegistrationSummary = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.allValidationErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -31,7 +30,6 @@ const RegistrationSummary = (props) => (
     </ContentItem.B_30_15>
 
     <SummaryTable
-      t={props.t}
       {...props.transformedData}
       validatorErrors={props.allValidationErrors}
     />
@@ -40,7 +38,7 @@ const RegistrationSummary = (props) => (
       action="/continue/registration-summary"
       csrfToken={props.csrfToken}
     >
-      <ContinueButton t={props.t} />
+      <ContinueButton />
     </PostForm>
   </FsaLayout>
 );

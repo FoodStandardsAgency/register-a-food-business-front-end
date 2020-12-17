@@ -14,7 +14,7 @@ import { withTranslation } from "../i18n";
 
 const OperatorAddressLookup = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <AddressHelp
       t={props.t}
       role={props.cumulativeFullAnswers.registration_role}
@@ -79,7 +79,7 @@ const OperatorAddressLookup = (props) => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

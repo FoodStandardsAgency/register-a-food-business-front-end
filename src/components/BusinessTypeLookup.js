@@ -125,9 +125,9 @@ export class BusinessTypeLookup extends React.Component {
             ) : (
               <noscript id="jsDisabledSection">
                 {props.browser === "Safari" ? (
-                  <SelectListSection {...props} t={props.t} />
+                  <SelectListSection {...props} />
                 ) : (
-                  <DataListSection {...props} t={props.t} />
+                  <DataListSection {...props} />
                 )}
               </noscript>
             )}

@@ -16,9 +16,8 @@ import { withTranslation } from "../i18n";
 
 const OperatorType = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -34,7 +33,6 @@ const OperatorType = (props) => (
             {props.t("Who operates this business?")}
           </Fieldset.Legend>
           <HiddenTextAccessible
-            t={props.t}
             summary={props.t("What is a food business operator?")}
           >
             <Paragraph mb={0}>
@@ -91,7 +89,7 @@ const OperatorType = (props) => (
         </Fieldset>
       </ContentItem.B_45_30>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

@@ -17,7 +17,6 @@ const EstablishmentAddress = (props) => (
   <FsaLayout {...props}>
     <BackButton
       {...props}
-      t={props.t}
       href={
         props.switches["/establishment-address-none-found"]
           ? `/new/${props.council}/establishment-address`
@@ -25,7 +24,6 @@ const EstablishmentAddress = (props) => (
       }
     />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -33,10 +31,7 @@ const EstablishmentAddress = (props) => (
       {props.t("What is the establishment's address?")}
     </Heading>
 
-    <HiddenTextAccessible
-      t={props.t}
-      summary={props.t("What is an establishment?")}
-    >
+    <HiddenTextAccessible summary={props.t("What is an establishment?")}>
       <Paragraph mb={0}>
         {props.t(
           "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
@@ -153,7 +148,7 @@ const EstablishmentAddress = (props) => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );
