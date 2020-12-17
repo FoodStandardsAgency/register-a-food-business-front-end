@@ -31,7 +31,7 @@ const SessionWrapper = (Page) => {
     const csrfToken = req.csrfToken();
 
     // Namespaces for i18n translations
-    const namespacesRequired = ['common', 'pageTitles', 'businessTypes'];
+    const namespacesRequired = ["common", "pageTitles", "businessTypes"];
 
     const language = req && req.language ? req.language : "en";
 
