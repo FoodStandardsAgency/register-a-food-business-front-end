@@ -7,7 +7,7 @@ import LabelText from "@govuk-react/label-text";
 import Label from "@govuk-react/label";
 
 import multiInputInput from "multi-input-input";
-import { withTranslation } from "../../i18n.js";
+import { withTranslation, i18n } from "../../i18n.js";
 
 const StyledLabel = styled(Label)(
   {
@@ -29,7 +29,28 @@ class Input extends React.Component {
   renderInput(label, name, key, defaultValue, error) {
     return (
       <StyledLabel year={key === "year"}>
-        <LabelText>{label}</LabelText>
+        <LabelText> {label}</LabelText>
+        <StyledInput
+          name={name}
+          error={error}
+          type="number"
+          defaultValue={defaultValue}
+          value={this.props.value ? this.props.value[key] : undefined}
+          onChange={(e) => this.props.onChange(e, key)}
+          onBlur={(e) => this.props.onBlur(e, key)}
+          onFocus={(e) => this.props.onFocus(e, key)}
+          ref={(input) => {
+            this.inputs[key] = input;
+            this.props.refs(this.inputs);
+          }}
+        />
+      </StyledLabel>
+    );
+  }
+  renderInputWithSpacing(label, name, key, defaultValue, error) {
+    return (
+      <StyledLabel year={key === "year"}>
+        <LabelText> &nbsp;&nbsp;{label}</LabelText>
         <StyledInput
           name={name}
           error={error}
@@ -60,13 +81,22 @@ class Input extends React.Component {
           defaultValues.day,
           error
         )}
-        {this.renderInput(
-          `${this.props.t(labels.month)}`,
-          names.month,
-          "month",
-          defaultValues.month,
-          error
-        )}
+
+        {i18n.language === "en"
+          ? this.renderInput(
+              labels.month,
+              names.month,
+              "month",
+              defaultValues.month,
+              error
+            )
+          : this.renderInputWithSpacing(
+              this.props.t(labels.month),
+              names.month,
+              "month",
+              defaultValues.month,
+              error
+            )}
         {this.renderInput(
           this.props.t(labels.year),
           names.year,
