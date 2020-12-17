@@ -34,10 +34,12 @@ describe("<BackButton />", () => {
         const currentPage = "/page";
 
         const wrapper = mount(
-          <BackButton
-            currentPage={currentPage}
-            editModeFirstPage={editModeFirstPage}
-          />
+          <I18nextProvider i18n={i18n}>
+            <BackButton
+              currentPage={currentPage}
+              editModeFirstPage={editModeFirstPage}
+            />
+          </I18nextProvider>
         );
         const backElement = wrapper.find(`a#back-link`);
         expect(backElement.length).toBe(0);
@@ -51,11 +53,13 @@ describe("<BackButton />", () => {
           const currentPage = "/another";
 
           const wrapper = mount(
-            <BackButton
-              currentPage={currentPage}
-              editModeFirstPage={editModeFirstPage}
-              href="example"
-            />
+            <I18nextProvider i18n={i18n}>
+              <BackButton
+                currentPage={currentPage}
+                editModeFirstPage={editModeFirstPage}
+                href="example"
+              />
+            </I18nextProvider>
           );
           const backElement = wrapper.find(`a#back-link`);
           expect(backElement.props().href).toBe("example");
@@ -67,10 +71,12 @@ describe("<BackButton />", () => {
           const currentPage = "/another";
 
           const wrapper = mount(
-            <BackButton
-              currentPage={currentPage}
-              editModeFirstPage={editModeFirstPage}
-            />
+            <I18nextProvider i18n={i18n}>
+              <BackButton
+                currentPage={currentPage}
+                editModeFirstPage={editModeFirstPage}
+              />
+            </I18nextProvider>
           );
           const backElement = wrapper.find(`a#back-link`);
           expect(backElement.props().href).toBe("/edit/back/another?edit=page");

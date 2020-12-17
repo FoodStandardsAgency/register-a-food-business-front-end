@@ -9,7 +9,11 @@ describe("<BrowserUnsupportedBanner />", () => {
     expect(wrapper.length).toBe(1);
   });
   it("shows warning text", () => {
-    const wrapper = mount(<BrowserUnsupportedBanner />);
+    const wrapper = mount(
+      <I18nextProvider i18n={i18n}>
+        <BrowserUnsupportedBanner />
+      </I18nextProvider>
+    );
     const warningText = wrapper.find("WarningText");
     expect(warningText.length).toBe(1);
   });

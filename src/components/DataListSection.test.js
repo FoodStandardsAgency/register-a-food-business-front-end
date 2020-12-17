@@ -3,8 +3,6 @@ import DataListSection from "../components/DataListSection";
 import { Paragraph } from "govuk-react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils"; // ES6
-import { I18nextProvider } from "react-i18next";
-import i18n from "../../i18nForTests.js";
 
 describe("given JavaScript is disabled", () => {
   describe("when browser is not Safari or IE", () => {

@@ -6,7 +6,6 @@ import {
   ProcessedErrorSummary,
   OnHandleErrorClick,
   HiddenTextAccessible,
-  FsaDateField,
   PostForm
 } from "./index";
 import { Heading, Paragraph, HintText } from "govuk-react";
