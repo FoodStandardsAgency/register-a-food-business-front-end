@@ -369,5 +369,8 @@
   "A charity (registered by a representative)": "A charity (registered by a representative)",
   "Public": "Public",
   "Private": "Private",
-  "Public and private": "Public and private"
+  "Public and private": "Public and private",
+  "Day": "Day",
+  "Month": "Month",
+  "Year": "Year"
 }

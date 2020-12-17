@@ -13,6 +13,7 @@ import { Heading, Paragraph, HintText } from "govuk-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 import { withTranslation } from "../../i18n.js";
+import DateField from "./date-field";
 
 const OpeningDate = (props) => {
   return (
@@ -49,7 +50,8 @@ const OpeningDate = (props) => {
       "Establishment is not trading yet" ? (
         <PostForm action={props.formAction} csrfToken={props.csrfToken}>
           <div>
-            <FsaDateField
+            <DateField
+              {...props}
               defaultValues={{
                 day: props.cumulativeFullAnswers.day,
                 month: props.cumulativeFullAnswers.month,
@@ -71,7 +73,7 @@ const OpeningDate = (props) => {
                   "When is this establishment expected to begin trading?"
                 )}
               </span>
-            </FsaDateField>
+            </DateField>
 
             <ContentItem.B_30_15>
               <HiddenTextAccessible
@@ -95,7 +97,7 @@ const OpeningDate = (props) => {
         </PostForm>
       ) : (
         <PostForm action={props.formAction} csrfToken={props.csrfToken}>
-          <FsaDateField
+          <DateField
             defaultValues={{
               day: props.cumulativeFullAnswers.day,
               month: props.cumulativeFullAnswers.month,
@@ -115,7 +117,7 @@ const OpeningDate = (props) => {
             <span className="bold">
               {props.t("What date did this establishment begin trading?")}
             </span>
-          </FsaDateField>
+          </DateField>
 
           <ContentItem.B_30_15>
             <HiddenTextAccessible

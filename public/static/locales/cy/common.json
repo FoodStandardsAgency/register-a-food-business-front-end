@@ -369,5 +369,8 @@
   "A charity (registered by a representative)": "Elusen, sefydliad neu ymddiriedolaeth sy'n berchen ar y busnes bwyd neu sy'n ei weithredu",
   "Public": "Dŵr o’r prif gyflenwad",
   "Private": "Cyflenwad dŵr preifat",
-  "Public and private": "Prif gyflenwad a chyflenwad dŵr preifat"
+  "Public and private": "Prif gyflenwad a chyflenwad dŵr preifat",
+  "Day": "Diwrnod",
+  "Month": "Mis",
+  "Year": "Blwyddyn"
 }
