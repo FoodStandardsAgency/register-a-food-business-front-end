@@ -1009,7 +1009,7 @@ const FoodActivitiesTable = (props) => (
           {props.t("Business type")}
         </AccessibleRowHeader>
         <AccessibleCell id="business_type">
-          {props.business_type}
+          {props.t(`businessTypes:${props.business_type}`)}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
@@ -1168,7 +1168,7 @@ const SummaryTable = (props) => (
   </React.Fragment>
 );
 
-export default withTranslation("common")(SummaryTable);
+export default withTranslation(["common", "businessTypes"])(SummaryTable);
 
 SummaryTable.propTypes = {
   operator_company_name: PropTypes.string,
