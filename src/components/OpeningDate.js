@@ -111,7 +111,9 @@ const OpeningDate = (props) => {
             hintText={`${props.t("For example")}, ${moment()
               .subtract(40, "d")
               .format("DD MM YYYY")}`}
-            errorText={props.validatorErrors.establishment_opening_date}
+            errorText={props.t(
+              props.validatorErrors.establishment_opening_date
+            )}
             id="establishment_opening_date"
           >
             <span className="bold">
