@@ -748,7 +748,7 @@ const EstablishmentDetailsTable = (props) => (
         </AccessibleRowHeader>
         <AccessibleCell id="establishment_opening_date">
           {props.establishment_opening_date
-            ? formatDate(props.establishment_opening_date, props.language)
+            ? formatDate(props.establishment_opening_date, props.t("en"))
             : ""}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
@@ -759,7 +759,7 @@ const EstablishmentDetailsTable = (props) => (
               aria-label={props.t("Change establishment opening date")}
             >
               {determineLinkText(
-                formatDate(props.establishment_opening_date, props.language) !==
+                formatDate(props.establishment_opening_date, props.t("en")) !==
                   "Invalid date" && props.establishment_opening_date
               )}
             </Link>
