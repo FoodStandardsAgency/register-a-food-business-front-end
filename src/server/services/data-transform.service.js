@@ -463,8 +463,7 @@ const transformAnswersForSummary = (
       summaryData.customer_type
     );
     summaryData.business_type = transformBusinessTypeForSummary(
-      summaryData.business_type,
-      data.language
+      summaryData.business_type
     );
     summaryData.import_export_activities = transformBusinessImportExportForSummary(
       summaryData.import_export_activities
@@ -825,12 +824,8 @@ const transformBusinessTypeForSubmit = (displayName) => {
   return businessTypeKey ? businessTypeEnum[businessTypeKey].key : null;
 };
 
-const transformBusinessTypeForSummary = (id, language) => {
-  return businessTypeEnum[id]
-    ? language === "cy"
-      ? businessTypeEnum[id].value.cy
-      : businessTypeEnum[id].value.en
-    : null;
+const transformBusinessTypeForSummary = (id) => {
+  return businessTypeEnum[id] ? businessTypeEnum[id].value.en : null;
 };
 
 module.exports = {

@@ -80,17 +80,6 @@ describe("data-transform.service transformAnswersForSummary()", () => {
           expect(result.business_type_search_term).toBe("Process");
         });
       });
-      describe("Given that the language is Welsh", () => {
-        const answers = {
-          business_type: "Fferm da byw (ffermwr)",
-          language: "cy"
-        };
-        it("should assign business_type and business_type_search_term to the result in Welsh", () => {
-          result = transformAnswersForSummary(answers);
-          expect(result.business_type).toBe("Fferm da byw");
-          expect(result.business_type_search_term).toBe("Ffermwr");
-        });
-      });
     });
 
     describe("Given that supply_other and supply_directly are part of cumulative answers", () => {
