@@ -13,7 +13,7 @@ const Index = (props) => (
   <FsaLayout {...props}>
     <Heading as="h1">{props.t("Register a food business")}</Heading>
 
-    <ContentItem.B_30_15 {...props} t={props.t}>
+    <ContentItem.B_30_15 {...props}>
       <Paragraph>
         {props.t(
           "When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least **28 days** before trading or before food operations start."
@@ -73,7 +73,7 @@ const Index = (props) => (
       </Link>
     </InsetText>
     <PostForm action="/continue/index" csrfToken={props.csrfToken}>
-      <ContinueButton type="begin" t={props.t} />
+      <ContinueButton type="begin" />
     </PostForm>
   </FsaLayout>
 );

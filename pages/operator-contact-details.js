@@ -16,9 +16,8 @@ import { withTranslation } from "../i18n";
 
 const OperatorContactDetails = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -32,10 +31,7 @@ const OperatorContactDetails = (props) => (
         } contact details`
       )}
     </Heading>
-    <ContactDetailsHelp
-      role={props.cumulativeFullAnswers.registration_role}
-      t={props.t}
-    />
+    <ContactDetailsHelp role={props.cumulativeFullAnswers.registration_role} />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
@@ -96,7 +92,7 @@ const OperatorContactDetails = (props) => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

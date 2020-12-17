@@ -15,9 +15,8 @@ import { withTranslation } from "../i18n";
 
 const OperatorCharityDetails = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -26,7 +25,6 @@ const OperatorCharityDetails = (props) => (
     </Heading>
 
     <HiddenTextAccessible
-      t={props.t}
       hiddentextindex={1}
       id="hiddenTextFBO"
       summary={props.t("What is a food business operator?")}
@@ -79,7 +77,6 @@ const OperatorCharityDetails = (props) => (
         </ContentItem.B_30_15>
 
         <HiddenTextAccessible
-          t={props.t}
           hiddentextindex={2}
           id="hiddenTextCharityNumbers"
           summary={props.t("Questions about charity reference numbers")}
@@ -101,7 +98,7 @@ const OperatorCharityDetails = (props) => (
         </HiddenTextAccessible>
       </ContentItem.B_30_15>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

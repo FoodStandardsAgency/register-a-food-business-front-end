@@ -15,9 +15,8 @@ import { withTranslation } from "../i18n";
 
 const OperatorName = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -25,7 +24,6 @@ const OperatorName = (props) => (
       {props.t("What is the operator's name?")}
     </Heading>
     <HiddenTextAccessible
-      t={props.t}
       summary={props.t("What is a food business operator?")}
     >
       {props.t(
@@ -66,7 +64,7 @@ const OperatorName = (props) => (
           {props.t("Last name")}
         </InputField>
       </ContentItem.B_30_15>
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

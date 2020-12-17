@@ -15,9 +15,8 @@ import { customerTypeEnum } from "@slice-and-dice/register-a-food-business-valid
 
 const CustomerType = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -57,7 +56,7 @@ const CustomerType = (props) => (
         </MultiChoice>
       </ContentItem.B_45_30>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

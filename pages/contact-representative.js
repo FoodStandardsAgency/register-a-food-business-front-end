@@ -16,9 +16,8 @@ import { withTranslation } from "../i18n";
 const ContactRepresentative = (props) => {
   return (
     <FsaLayout {...props}>
-      <BackButton {...props} t={props.t} />
+      <BackButton {...props} />
       <ProcessedErrorSummary
-        t={props.t}
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
       />
@@ -31,7 +30,6 @@ const ContactRepresentative = (props) => {
         )}
       </Paragraph>
       <HiddenTextAccessible
-        t={props.t}
         summary={props.t("What is a food business operator?")}
       >
         <Paragraph mb={0}>
@@ -123,7 +121,7 @@ const ContactRepresentative = (props) => {
           </ContentItem.B_30_15>
         </ContentItem.B_30_15>
 
-        <ContinueButton {...props} t={props.t} />
+        <ContinueButton {...props} />
       </PostForm>
     </FsaLayout>
   );

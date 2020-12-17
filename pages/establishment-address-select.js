@@ -14,13 +14,12 @@ import { withTranslation } from "../i18n";
 
 const EstablishmentAddressLookup = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <Heading as="h1" size="LARGE">
       {props.t("What is the establishment's address?")}
     </Heading>
 
     <HiddenTextAccessible
-      t={props.t}
       id="hiddenTextEstablishment"
       summary={props.t("What is an establishment?")}
     >
@@ -91,7 +90,7 @@ const EstablishmentAddressLookup = (props) => (
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

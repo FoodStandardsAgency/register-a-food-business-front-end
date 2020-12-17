@@ -17,9 +17,8 @@ import DateField from "./date-field";
 const OpeningDate = (props) => {
   return (
     <FsaLayout {...props}>
-      <BackButton {...props} t={props.t} />
+      <BackButton {...props} />
       <ProcessedErrorSummary
-        t={props.t}
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
       />
@@ -34,7 +33,6 @@ const OpeningDate = (props) => {
         </HintText>
       </ContentItem.B_30_15>
       <HiddenTextAccessible
-        t={props.t}
         hiddentextindex={1}
         id="hiddenTextEstablishment"
         summary={props.t("What is an establishment?")}
@@ -76,7 +74,6 @@ const OpeningDate = (props) => {
 
             <ContentItem.B_30_15>
               <HiddenTextAccessible
-                t={props.t}
                 hiddentextindex={2}
                 id="hiddenTextTradingDate"
                 summary={props.t(
@@ -92,7 +89,7 @@ const OpeningDate = (props) => {
             </ContentItem.B_30_15>
           </div>
 
-          <ContinueButton {...props} t={props.t} />
+          <ContinueButton {...props} />
         </PostForm>
       ) : (
         <PostForm action={props.formAction} csrfToken={props.csrfToken}>
@@ -122,7 +119,6 @@ const OpeningDate = (props) => {
 
           <ContentItem.B_30_15>
             <HiddenTextAccessible
-              t={props.t}
               hiddentextindex={3}
               summary={props.t(
                 "I don't know when this establishment began trading"
@@ -136,7 +132,7 @@ const OpeningDate = (props) => {
             </HiddenTextAccessible>
           </ContentItem.B_30_15>
 
-          <ContinueButton {...props} t={props.t} />
+          <ContinueButton {...props} />
         </PostForm>
       )}
     </FsaLayout>

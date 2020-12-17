@@ -23,11 +23,10 @@ import { withTranslation } from "../i18n";
 const ImportExportActivities = (props) => (
   <FsaLayout {...props}>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
-      <BackButton {...props} t={props.t} />
+      <BackButton {...props} />
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
-        t={props.t}
       />
       <Heading as="h1" size="LARGE">
         {props.t(
@@ -78,7 +77,6 @@ const ImportExportActivities = (props) => (
 
       <ContentItem.B_30_15>
         <HiddenTextAccessible
-          t={props.t}
           id="hiddenTextImportExportActivities"
           summary={props.t(
             "More information about import and export activities"
@@ -104,7 +102,7 @@ const ImportExportActivities = (props) => (
         </HiddenTextAccessible>
       </ContentItem.B_30_15>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

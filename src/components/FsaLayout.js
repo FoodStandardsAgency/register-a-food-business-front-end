@@ -29,7 +29,6 @@ const FsaLayout = (props) => (
         <GridColZeroPadding setWidth="two-thirds">
           {!props.isBrowserSupported && props.isBrowserVersionVerified ? (
             <BrowserUnsupportedBanner
-              t={props.t}
               browser={props.browser}
               version={props.browserVersion}
             />
@@ -38,7 +37,7 @@ const FsaLayout = (props) => (
         </GridColZeroPadding>
       </GridRowZeroMargin>
     </Page>
-    <FsaFooter t={props.t} />
+    <FsaFooter />
   </React.Fragment>
 );
 

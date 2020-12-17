@@ -16,9 +16,8 @@ import { withTranslation } from "../i18n";
 
 const WaterSupply = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -104,7 +103,7 @@ const WaterSupply = (props) => (
           </span>
         </HiddenTextAccessible>
       </ContentItem.B_30_15>
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );

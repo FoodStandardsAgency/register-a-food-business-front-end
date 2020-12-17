@@ -14,7 +14,7 @@ import { withTranslation } from "../i18n";
 
 const LimitedCompanyDetails = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} t={props.t} />
+    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       t={props.t}
@@ -90,7 +90,7 @@ const LimitedCompanyDetails = (props) => (
         </HiddenTextAccessible>
       </ContentItem.B_30_15>
 
-      <ContinueButton {...props} t={props.t} />
+      <ContinueButton {...props} />
     </PostForm>
   </FsaLayout>
 );
