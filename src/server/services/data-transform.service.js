@@ -471,7 +471,6 @@ const transformAnswersForSummary = (
     summaryData.water_supply = transformWaterSupplyForSummary(
       summaryData.water_supply
     );
-    summaryData.language = data.language;
 
     logEmitter.emit(
       "functionSuccess",
