@@ -69,7 +69,7 @@ const Index = (props) => (
         }
         id="changeLanguage"
       >
-        {i18n.language === "cy" ? "English" : "Welsh (Cymraeg)"}
+        {i18n.language === "cy" ? "Saesneg (English)" : "Welsh (Cymraeg)"}
       </Link>
     </InsetText>
     <PostForm action="/continue/index" csrfToken={props.csrfToken}>
