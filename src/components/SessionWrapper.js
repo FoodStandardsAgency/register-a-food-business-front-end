@@ -30,9 +30,6 @@ const SessionWrapper = (Page) => {
 
     const csrfToken = req.csrfToken();
 
-    // Namespaces for i18n translations
-    const namespacesRequired = ["common", "pageTitles", "businessTypes"];
-
     const language = req && req.language ? req.language : "en";
 
     const currentPageTitle = PageTitles.getUrlPageTitle(req.url, language);
@@ -91,7 +88,6 @@ const SessionWrapper = (Page) => {
       formAction,
       csrfToken,
       language,
-      namespacesRequired,
       partnerDetailsUrl,
       partnerDetailsDeleteFormAction,
       partnerDetailsContinueFormAction,
