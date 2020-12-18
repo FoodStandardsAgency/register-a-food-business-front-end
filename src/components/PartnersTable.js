@@ -112,7 +112,7 @@ const PartnerRows = (props) => {
 const TableBody = (props) => (
   <React.Fragment>
     <ColumnHeaders t={props.t} />
-    <PartnerRows {...props} t={props.t} />
+    <PartnerRows {...props} />
   </React.Fragment>
 );
 
@@ -122,7 +122,7 @@ const PartnersTable = (props) => (
       <AccessibleTable
         id="partnersTable"
         caption="Partners"
-        body={<TableBody {...props} t={props.t} />}
+        body={<TableBody {...props} />}
       />
     </ContentItem.B_45_30>
   </React.Fragment>

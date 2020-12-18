@@ -17,7 +17,6 @@ const OpeningHours = (props) => (
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <BackButton {...props} />
       <ProcessedErrorSummary
-        t={props.t}
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
       />

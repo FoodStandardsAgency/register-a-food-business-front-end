@@ -19,10 +19,10 @@ const ContactDetailsHelp = (props) => {
   return props.role === operatorTypeEnum.PARTNERSHIP.key ? (
     <React.Fragment>
       <PartnershipHintText t={props.t} />
-      <PartnershipDescription t={props.t} />
+      <PartnershipDescription />
     </React.Fragment>
   ) : (
-    <OperatorDescription t={props.t} />
+    <OperatorDescription />
   );
 };
 

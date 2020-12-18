@@ -41,17 +41,12 @@ const BackButton = (props) => {
           href={props.href}
           currentPage={props.currentPage}
           editQuery={editQuery}
-          t={props.t}
         />
       );
     }
   } else {
     return (
-      <NormalBackButton
-        href={props.href}
-        currentPage={props.currentPage}
-        t={props.t}
-      />
+      <NormalBackButton href={props.href} currentPage={props.currentPage} />
     );
   }
 };

@@ -17,7 +17,6 @@ const OpeningDaysStart = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <ProcessedErrorSummary
-      t={props.t}
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
@@ -75,7 +74,6 @@ const OpeningDaysStart = (props) => (
         </Fieldset>
       </ContentItem.B_30_15>
       <HiddenTextAccessible
-        t={props.t}
         summary={props.t("I don't know what days to select")}
       >
         <Paragraph mb={0}>

@@ -15,10 +15,7 @@ import { withTranslation } from "../i18n";
 const OperatorAddressLookup = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <AddressHelp
-      t={props.t}
-      role={props.cumulativeFullAnswers.registration_role}
-    />
+    <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>

@@ -341,7 +341,6 @@ const ApplicationComplete = (props) => (
       {...props.transformedData}
       validatorErrors={props.validatorErrors}
       applicationCompletePage={true}
-      t={props.t}
     />
   </FsaLayout>
 );

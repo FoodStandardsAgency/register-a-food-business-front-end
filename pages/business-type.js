@@ -26,7 +26,7 @@ const BusinessType = (props) => (
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
-          <BusinessTypeLookup id="businessTypeLookup" {...props} t={props.t} />
+          <BusinessTypeLookup id="businessTypeLookup" {...props} />
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
       <ContinueButton {...props} />

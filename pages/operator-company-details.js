@@ -15,10 +15,7 @@ import { withTranslation } from "../i18n";
 const LimitedCompanyDetails = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
-    <ProcessedErrorSummary
-      validatorErrors={props.validatorErrors}
-      t={props.t}
-    />
+    <ProcessedErrorSummary validatorErrors={props.validatorErrors} />
     <Heading as="h1" size="LARGE">
       {props.t("Company details")}
     </Heading>
@@ -69,7 +66,6 @@ const LimitedCompanyDetails = (props) => (
 
       <ContentItem.B_30_15>
         <HiddenTextAccessible
-          t={props.t}
           summary={props.t("I don't know my Companies House number")}
         >
           {/* TODO JMB: replace the span with a paragraph once it's possible to pass an array or similar to Paragraph for the link */}

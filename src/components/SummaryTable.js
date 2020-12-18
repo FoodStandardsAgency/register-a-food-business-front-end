@@ -1146,14 +1146,14 @@ const SummaryTable = (props) => (
       <AccessibleTable
         id="establishmentDetailsTable"
         caption={props.t("Establishment details")}
-        body={<EstablishmentDetailsTable {...props} t={props.t} />}
+        body={<EstablishmentDetailsTable {...props} />}
       />
     </ContentItem.B_45_30>
     <ContentItem.B_45_30>
       <AccessibleTable
         id="foodActivitiesTable"
         caption={props.t("Activities")}
-        body={<FoodActivitiesTable {...props} t={props.t} />}
+        body={<FoodActivitiesTable {...props} />}
       />
     </ContentItem.B_45_30>
     {props.applicationCompletePage ? (
@@ -1161,7 +1161,7 @@ const SummaryTable = (props) => (
         <AccessibleTable
           id="declarationTable"
           caption={props.t("Declaration")}
-          body={<DeclarationTable {...props} t={props.t} />}
+          body={<DeclarationTable {...props} />}
         />
       </ContentItem.B_45_30>
     ) : null}
