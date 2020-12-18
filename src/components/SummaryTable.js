@@ -115,7 +115,7 @@ const ColumnHeaders = (props) => (
 );
 
 const determineLinkText = (property) => {
-  return property ? "Change" : "Enter answer";
+  return property ? props.t("Change") : props.t("Enter answer");
 };
 
 const formatDate = (date, language) => {
@@ -144,7 +144,7 @@ const OperatorDetailsTable = (props) => (
             <Link
               id="changeOperatorTypeRow"
               href="/edit/registration-role"
-              aria-label="Change operator type"
+              aria-label={props.t("Change operator type")}
             >
               {determineLinkText(props.operator_type)}
             </Link>
