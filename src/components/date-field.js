@@ -126,11 +126,11 @@ DateField.propTypes = {
     month: PropTypes.string,
     year: PropTypes.string
   }),
-  defaultValues: {
+  defaultValues: PropTypes.shape({
     day: PropTypes.any,
     month: PropTypes.any,
     year: PropTypes.any
-  },
+  }),
   /**
    * Properties that are sent to the input, matching final form and redux form input type
    */
