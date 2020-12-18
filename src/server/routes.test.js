@@ -37,12 +37,12 @@ describe("Function: routes", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-  
+
   it("Should call get", () => {
-    process.env.NODE_ENV = "production"
+    process.env.NODE_ENV = "production";
     results = routes();
-    expect(results.get).toBeCalled()
-  })
+    expect(results.get).toBeCalled();
+  });
 
   it("Should call use", () => {
     expect(result.use).toBeCalled();

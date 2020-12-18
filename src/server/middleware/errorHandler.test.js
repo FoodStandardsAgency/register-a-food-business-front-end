@@ -19,7 +19,6 @@ describe("errorHandler", () => {
     expect(app.render).toHaveBeenCalled();
   });
 
-  
   describe("when err and res are not defined", () => {
     error.mockImplementation();
     it("should emit statusCode: null", () => {
@@ -27,20 +26,18 @@ describe("errorHandler", () => {
 
       expect(error).toHaveBeenNthCalledWith(3, "no error");
       expect(error).toHaveBeenNthCalledWith(4, "statusCode: undefined");
-      error.mockReset()
+      error.mockReset();
     });
   });
-  
-  
+
   describe("when res and the statusCode are defined", () => {
     error.mockImplementation();
-    it("should emit res.statusCode",() => {
-      let err = ""
-      let req = {}
-      let res = {statusCode: 4}
-      errorHandler( err, req, res )
+    it("should emit res.statusCode", () => {
+      let err = "";
+      let req = {};
+      let res = { statusCode: 4 };
+      errorHandler(err, req, res);
       expect(error).toHaveBeenNthCalledWith(2, "statusCode: 4");
-    })
-
-  })
+    });
+  });
 });
