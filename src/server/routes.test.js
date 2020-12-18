@@ -40,8 +40,8 @@ describe("Function: routes", () => {
 
   it("Should call get", () => {
     process.env.NODE_ENV = "production";
-    results = routes();
-    expect(results.get).toBeCalled();
+    result = routes();
+    expect(result.get).toBeCalled();
   });
 
   it("Should call use", () => {
