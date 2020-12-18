@@ -820,11 +820,11 @@ const transformBusinessTypeForSubmit = (displayName) => {
       displayName
     )
   );
-  return businessTypeKey ? businessTypeEnum[businessTypeKey].key : null;
+  return businessTypeKey ? businessTypeEnum[businessTypeKey].key : "";
 };
 
 const transformBusinessTypeForSummary = (id) => {
-  return businessTypeEnum[id] ? businessTypeEnum[id].value.en : null;
+  return businessTypeEnum[id] ? businessTypeEnum[id].value.en : "";
 };
 
 module.exports = {
