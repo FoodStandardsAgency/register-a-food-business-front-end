@@ -45,14 +45,12 @@ class Declaration extends React.Component {
           ref="submitRegistration"
           csrfToken={this.props.csrfToken}
         >
-          <BackButton {...this.props} t={this.props.t} />
+          <BackButton {...this.props} />
           <ProcessedErrorSummary
-            t={this.props.t}
             validatorErrors={this.props.validatorErrors}
             onHandleErrorClick={OnHandleErrorClick}
           />
           <SubmissionErrorSummary
-            t={this.props.t}
             submissionErrors={this.props.submissionError}
           />
           <Heading as="h1" size="LARGE">
@@ -153,13 +151,9 @@ class Declaration extends React.Component {
           </ContentItem.B_45_30>
 
           {this.state.submitClicked === true ? (
-            <ContinueButton disabled type="submit" t={this.props.t} />
+            <ContinueButton disabled type="submit" />
           ) : (
-            <ContinueButton
-              onClick={this.clickSubmitButton}
-              type="submit"
-              t={this.props.t}
-            />
+            <ContinueButton onClick={this.clickSubmitButton} type="submit" />
           )}
         </PostForm>
       </FsaLayout>
