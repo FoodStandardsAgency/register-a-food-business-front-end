@@ -21,11 +21,13 @@ describe("<OperatorType />", () => {
 
   it("renders 3 radio buttons with correct error props and default values", () => {
     const wrapper = mount(
-      <OperatorType
-        validatorErrors={testValidatorErrors}
-        cumulativeFullAnswers={testCumulativeAnswers}
-        switches={testSwitches}
-      />
+      <I18nextProvider i18n={i18n}>
+        <OperatorType
+          validatorErrors={testValidatorErrors}
+          cumulativeFullAnswers={testCumulativeAnswers}
+          switches={testSwitches}
+        />
+      </I18nextProvider>
     );
     const operatorTypeRadio = wrapper.find("Radio");
     expect(operatorTypeRadio.length).toBe(3);
@@ -37,11 +39,13 @@ describe("<OperatorType />", () => {
         operator_type: "test error"
       };
       const wrapper = mount(
-        <OperatorType
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorType
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const operatorType = wrapper.find("MultiChoice");
       expect(operatorType.props().meta.error).toBe("test error");

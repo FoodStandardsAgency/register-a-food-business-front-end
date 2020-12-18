@@ -22,11 +22,13 @@ describe("<EstablishmentTradingName />", () => {
   describe("establishment trading name input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <EstablishmentTradingName
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentTradingName
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const establishmentTradingName = wrapper.find(
         "InputField#establishment_trading_name"
@@ -39,11 +41,13 @@ describe("<EstablishmentTradingName />", () => {
         establishment_trading_name: "test error"
       };
       const wrapper = mount(
-        <EstablishmentTradingName
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentTradingName
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const establishmentTradingName = wrapper.find(
         "InputField#establishment_trading_name"
@@ -56,11 +60,13 @@ describe("<EstablishmentTradingName />", () => {
         establishment_trading_name: "default"
       };
       const wrapper = mount(
-        <EstablishmentTradingName
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentTradingName
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const establishmentTradingName = wrapper.find(
         "InputField#establishment_trading_name"

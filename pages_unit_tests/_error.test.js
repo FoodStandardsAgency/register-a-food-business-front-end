@@ -65,21 +65,29 @@ describe("<Error />", () => {
 
     it("has a back to start button with correct link when council set", () => {
       const wrapper = mount(
-        <Error statusCode="404" council="council" referrer="referrer" />
+        <I18nextProvider i18n={i18n}>
+          <Error statusCode="404" council="council" referrer="referrer" />
+        </I18nextProvider>
       );
       const backLink = wrapper.find("BackLink");
       expect(backLink.props().href).toBe("/new/council");
     });
 
     it("has a back to start button with correct link when council not set", () => {
-      const wrapper = mount(<Error statusCode="404" referrer="referrer" />);
+      const wrapper = mount(
+        <I18nextProvider i18n={i18n}>
+          <Error statusCode="404" referrer="referrer" />
+        </I18nextProvider>
+      );
       const backLink = wrapper.find("BackLink");
       expect(backLink.props().href).toBe("/");
     });
     describe("when referrer is known", () => {
       it("has a back button with correct link", () => {
         const wrapper = mount(
-          <Error statusCode="404" council="council" referrer="referrer" />
+          <I18nextProvider i18n={i18n}>
+            <Error statusCode="404" council="council" referrer="referrer" />
+          </I18nextProvider>
         );
         const form = wrapper.find("form#unknown-error-form");
         expect(form.props().action).toBe("referrer");
@@ -87,7 +95,11 @@ describe("<Error />", () => {
     });
     describe("when referrer is not known", () => {
       it("has a back button with correct link", () => {
-        const wrapper = mount(<Error statusCode="404" council="council" />);
+        const wrapper = mount(
+          <I18nextProvider i18n={i18n}>
+            <Error statusCode="404" council="council" />
+          </I18nextProvider>
+        );
         const form = wrapper.find("form#unknown-error-form");
         expect(form.length).toBe(0);
       });

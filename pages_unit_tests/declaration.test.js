@@ -24,13 +24,15 @@ describe("<Declaration />", () => {
   it("displays a disabled button when submission button has been clicked", () => {
     const wrapper = mount(
       shallow(
-        <Declaration
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-          submissionError={[]}
-          refs={submitRegistration}
-        />
+        <I18nextProvider i18n={i18n}>
+          <Declaration
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+            submissionError={[]}
+            refs={submitRegistration}
+          />
+        </I18nextProvider>
       ).get(0)
     );
     expect(wrapper.find("ContinueButton").prop("disabled")).toBe(undefined);

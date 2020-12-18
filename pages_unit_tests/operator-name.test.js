@@ -22,11 +22,13 @@ describe("<OperatorName />", () => {
   describe("operator first name input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <OperatorName
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorName
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const operatorFirstName = wrapper.find("InputField#operator_first_name");
       expect(operatorFirstName.length).toBe(1);
@@ -37,11 +39,13 @@ describe("<OperatorName />", () => {
         operator_first_name: "test error"
       };
       const wrapper = mount(
-        <OperatorName
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorName
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const operatorFirstName = wrapper.find("InputField#operator_first_name");
       expect(operatorFirstName.props().meta.error).toBe("test error");

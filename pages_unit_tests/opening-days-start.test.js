@@ -21,11 +21,13 @@ describe("<OpeningDaysStart />", () => {
 
   it("renders 3 radio buttons with correct error props and default values", () => {
     const wrapper = mount(
-      <OpeningDaysStart
-        validatorErrors={testValidatorErrors}
-        cumulativeFullAnswers={testCumulativeAnswers}
-        switches={testSwitches}
-      />
+      <I18nextProvider i18n={i18n}>
+        <OpeningDaysStart
+          validatorErrors={testValidatorErrors}
+          cumulativeFullAnswers={testCumulativeAnswers}
+          switches={testSwitches}
+        />
+      </I18nextProvider>
     );
     const openingDaysStartRadio = wrapper.find("Radio");
     expect(openingDaysStartRadio.length).toBe(3);
@@ -37,11 +39,13 @@ describe("<OpeningDaysStart />", () => {
         opening_days_start: "test error"
       };
       const wrapper = mount(
-        <OpeningDaysStart
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OpeningDaysStart
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const openingDaysStart = wrapper.find("MultiChoice");
       expect(openingDaysStart.props().meta.error).toBe("test error");
@@ -62,11 +66,13 @@ describe("<OpeningDaysStart />", () => {
         };
 
         const wrapper = mount(
-          <OpeningDaysStart
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
+          <I18nextProvider i18n={i18n}>
+            <OpeningDaysStart
+              validatorErrors={testValidatorErrors}
+              cumulativeFullAnswers={cumulativeFullAnswers}
+              switches={testSwitches}
+            />
+          </I18nextProvider>
         );
 
         const openingDaysStartRadio = wrapper.find(`Radio#${radioButtonId}`);

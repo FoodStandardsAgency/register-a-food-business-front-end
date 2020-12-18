@@ -21,11 +21,13 @@ describe("<EstablishmentOpeningDateProactive />", () => {
 
   it("renders OpeningDate component with correct error props and cumulative answers", () => {
     const wrapper = mount(
-      <EstablishmentOpeningDateProactive
-        validatorErrors={testValidatorErrors}
-        cumulativeFullAnswers={testCumulativeAnswers}
-        switches={testSwitches}
-      />
+      <I18nextProvider i18n={i18n}>
+        <EstablishmentOpeningDateProactive
+          validatorErrors={testValidatorErrors}
+          cumulativeFullAnswers={testCumulativeAnswers}
+          switches={testSwitches}
+        />
+      </I18nextProvider>
     );
     const openingDateProactive = wrapper.find("OpeningDate");
     expect(openingDateProactive.length).toBe(1);

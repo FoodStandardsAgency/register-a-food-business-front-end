@@ -22,11 +22,13 @@ describe("<ContactRepresentative />", () => {
   describe("Contact representative name input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <ContactRepresentative
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ContactRepresentative
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const contactRepresentativeName = wrapper.find(
         "InputField#contact_representative_name"
@@ -39,11 +41,13 @@ describe("<ContactRepresentative />", () => {
         contact_representative_name: "test error"
       };
       const wrapper = mount(
-        <ContactRepresentative
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ContactRepresentative
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const contactRepresentativeName = wrapper.find(
         "InputField#contact_representative_name"
@@ -56,11 +60,13 @@ describe("<ContactRepresentative />", () => {
         contact_representative_name: "default"
       };
       const wrapper = mount(
-        <ContactRepresentative
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ContactRepresentative
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const contactRepresentativeName = wrapper.find(
         "InputField#contact_representative_name"
@@ -74,11 +80,13 @@ describe("<ContactRepresentative />", () => {
   describe("Contact representative role input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <ContactRepresentative
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ContactRepresentative
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const contactRepresentativeRole = wrapper.find(
         "InputField#contact_representative_role"
@@ -91,11 +99,13 @@ describe("<ContactRepresentative />", () => {
         contact_representative_role: "test error"
       };
       const wrapper = mount(
-        <ContactRepresentative
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ContactRepresentative
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const contactRepresentativeRole = wrapper.find(
         "InputField#contact_representative_role"
@@ -108,11 +118,13 @@ describe("<ContactRepresentative />", () => {
         contact_representative_role: "default"
       };
       const wrapper = mount(
-        <ContactRepresentative
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ContactRepresentative
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const contactRepresentativeRole = wrapper.find(
         "InputField#contact_representative_role"
@@ -126,11 +138,13 @@ describe("<ContactRepresentative />", () => {
   describe("Contact representative email input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <ContactRepresentative
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ContactRepresentative
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const contactRepresentativeEmail = wrapper.find(
         "InputField#contact_representative_email"
@@ -143,11 +157,13 @@ describe("<ContactRepresentative />", () => {
         contact_representative_email: "test error"
       };
       const wrapper = mount(
-        <ContactRepresentative
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ContactRepresentative
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const contactRepresentativeEmail = wrapper.find(
         "InputField#contact_representative_email"
@@ -160,11 +176,13 @@ describe("<ContactRepresentative />", () => {
         contact_representative_email: "default"
       };
       const wrapper = mount(
-        <ContactRepresentative
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ContactRepresentative
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const contactRepresentativeEmail = wrapper.find(
         "InputField#contact_representative_email"
@@ -178,11 +196,13 @@ describe("<ContactRepresentative />", () => {
   describe("Contact representative phone number input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <ContactRepresentative
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ContactRepresentative
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const contactRepresentativeNumber = wrapper.find(
         "InputField#contact_representative_number"
@@ -195,11 +215,13 @@ describe("<ContactRepresentative />", () => {
         contact_representative_number: "test error"
       };
       const wrapper = mount(
-        <ContactRepresentative
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ContactRepresentative
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const contactRepresentativeNumber = wrapper.find(
         "InputField#contact_representative_number"
@@ -212,11 +234,13 @@ describe("<ContactRepresentative />", () => {
         contact_representative_number: "default"
       };
       const wrapper = mount(
-        <ContactRepresentative
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ContactRepresentative
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const contactRepresentativeNumber = wrapper.find(
         "InputField#contact_representative_number"

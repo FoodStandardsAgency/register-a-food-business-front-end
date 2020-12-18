@@ -20,11 +20,13 @@ describe("<OperatorAddressLookup />", () => {
   describe("Operator postcode display", () => {
     it("renders even when the addressLookups key is not found", () => {
       const wrapper = mount(
-        <OperatorAddressLookup
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddressLookup
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+            addressLookups={testAddressLookup}
+          />
+        </I18nextProvider>
       );
       const operatorPostcode = wrapper.find(
         "Paragraph.operatorPostcodeDisplay"
@@ -37,11 +39,13 @@ describe("<OperatorAddressLookup />", () => {
         operator_postcode_find: "default"
       };
       const wrapper = mount(
-        <OperatorAddressLookup
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddressLookup
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+            addressLookups={testAddressLookup}
+          />
+        </I18nextProvider>
       );
       const operatorPostcode = wrapper.find(
         "Paragraph.operatorPostcodeDisplay"
@@ -87,11 +91,13 @@ describe("<OperatorAddressLookup />", () => {
       };
 
       const wrapper = mount(
-        <OperatorAddressLookup
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-          addressLookups={exampleAddressLookup}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddressLookup
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+            addressLookups={exampleAddressLookup}
+          />
+        </I18nextProvider>
       );
 
       const operatorAddressSelect = wrapper.find(
