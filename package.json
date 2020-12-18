@@ -15,7 +15,7 @@
     "local:debug": "nodemon --inspect src/server/server.js",
     "local:debug:prod": "NODE_ENV=production nodemon --inspect src/server/server.js",
     "version": "NODE_ENV=production node -v",
-    "test": "jest ./src ./pages_unit_tests",
+    "test": "jest ./src ./pages --coverage",
     "test:ci": "export TEST_TYPE=unit && jest ./src ./pages --coverage --maxWorkers=4",
     "test:watch": "jest ./src --watch",
     "test:debug": "node --inspect=127.0.0.1:9225 node_modules/.bin/jest --runInBand",
