@@ -41,7 +41,7 @@ const OpeningHours = (props) => (
             id="opening_hours_monday"
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.opening_hours_monday)}`
+              error: props.t(props.validatorErrors.opening_hours_monday)
             }}
           >
             <Heading as="h4" mb={1} size="MEDIUM">
@@ -81,7 +81,7 @@ const OpeningHours = (props) => (
             id="opening_hours_wednesday"
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.opening_hours_wednesday)}`
+              error: props.t(props.validatorErrors.opening_hours_wednesday)
             }}
           >
             <Heading as="h4" mb={1} size="MEDIUM">
@@ -101,7 +101,7 @@ const OpeningHours = (props) => (
             id="opening_hours_thursday"
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.opening_hours_thursday)}`
+              error: props.t(props.validatorErrors.opening_hours_thursday)
             }}
           >
             <Heading as="h4" mb={1} size="MEDIUM">
@@ -141,7 +141,7 @@ const OpeningHours = (props) => (
             id="opening_hours_saturday"
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.opening_hours_saturday)}`
+              error: props.t(props.validatorErrors.opening_hours_saturday)
             }}
           >
             <Heading as="h4" mb={1} size="MEDIUM">
@@ -161,7 +161,7 @@ const OpeningHours = (props) => (
             id="opening_hours_sunday"
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.opening_hours_sunday)}`
+              error: props.t(props.validatorErrors.opening_hours_sunday)
             }}
           >
             <Heading as="h4" mb={1} size="MEDIUM">

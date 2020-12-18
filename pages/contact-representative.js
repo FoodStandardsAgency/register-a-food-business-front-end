@@ -51,9 +51,9 @@ const ContactRepresentative = (props) => {
               id="contact_representative_name"
               meta={{
                 touched: true,
-                error: `${props.t(
+                error: props.t(
                   props.validatorErrors.contact_representative_name
-                )}`
+                )
               }}
             >
               {props.t("Name of contact")}
@@ -70,9 +70,9 @@ const ContactRepresentative = (props) => {
               id="contact_representative_role"
               meta={{
                 touched: true,
-                error: `${props.t(
+                error: props.t(
                   props.validatorErrors.contact_representative_role
-                )}`
+                )
               }}
             >
               {props.t("Role (optional)")}

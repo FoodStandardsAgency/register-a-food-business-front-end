@@ -41,7 +41,7 @@ const OtherDaysIrregular = (props) => (
             }}
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.opening_days_irregular)}`
+              error: props.t(props.validatorErrors.opening_days_irregular)
             }}
           >
             <Paragraph mb={3}>

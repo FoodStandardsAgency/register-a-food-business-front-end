@@ -45,7 +45,7 @@ const ImportExportActivities = (props) => (
           label=""
           meta={{
             touched: true,
-            error: `${props.t(props.validatorErrors.import_export_activities)}`
+            error: props.t(props.validatorErrors.import_export_activities)
           }}
         >
           <Checkbox

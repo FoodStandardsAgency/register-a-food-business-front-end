@@ -52,7 +52,7 @@ const OperatorAddress = (props) => (
             id="operator_address_line_1"
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.operator_address_line_1)}`
+              error: props.t(props.validatorErrors.operator_address_line_1)
             }}
           >
             {props.t("Address line 1")}
@@ -69,7 +69,7 @@ const OperatorAddress = (props) => (
             id="operator_address_line_2"
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.operator_address_line_2)}`
+              error: props.t(props.validatorErrors.operator_address_line_2)
             }}
           >
             {props.t("Address line 2 (optional)")}
@@ -86,7 +86,7 @@ const OperatorAddress = (props) => (
             id="operator_address_line_3"
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.operator_address_line_3)}`
+              error: props.t(props.validatorErrors.operator_address_line_3)
             }}
           >
             {props.t("Address line 3 (optional)")}
@@ -103,7 +103,7 @@ const OperatorAddress = (props) => (
             id="operator_town"
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.operator_town)}`
+              error: props.t(props.validatorErrors.operator_town)
             }}
           >
             {props.t("Town or city")}
@@ -120,7 +120,7 @@ const OperatorAddress = (props) => (
             id="operator_postcode"
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.operator_postcode)}`
+              error: props.t(props.validatorErrors.operator_postcode)
             }}
           >
             {props.t("Postcode")}

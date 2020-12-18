@@ -45,7 +45,7 @@ const OperatorType = (props) => (
             label=""
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.operator_type)}`
+              error: props.t(props.validatorErrors.operator_type)
             }}
           >
             <Radio

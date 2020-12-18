@@ -49,9 +49,7 @@ const EstablishmentAddress = (props) => (
             id="establishment_postcode_find"
             meta={{
               touched: true,
-              error: `${props.t(
-                props.validatorErrors.establishment_postcode_find
-              )}`
+              error: props.t(props.validatorErrors.establishment_postcode_find)
             }}
           >
             {props.t("Postcode")}

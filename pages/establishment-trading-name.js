@@ -47,9 +47,9 @@ const EstablishmentTradingName = (props) => (
             )}
             meta={{
               touched: true,
-              error: `${props.t(
+              error: props.t(
                 props.validatorErrors["establishment_trading_name"]
-              )}`
+              )
             }}
           >
             {props.t("What is the trading name of this establishment?")}

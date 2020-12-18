@@ -48,9 +48,7 @@ const EstablishmentOpeningStatus = (props) => (
             label=""
             meta={{
               touched: true,
-              error: `${props.t(
-                props.validatorErrors.establishment_opening_status
-              )}`
+              error: props.t(props.validatorErrors.establishment_opening_status)
             }}
           >
             <Radio

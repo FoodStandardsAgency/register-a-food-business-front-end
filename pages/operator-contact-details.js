@@ -44,7 +44,7 @@ const OperatorContactDetails = (props) => (
             id="operator_primary_number"
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.operator_primary_number)}`
+              error: props.t(props.validatorErrors.operator_primary_number)
             }}
           >
             {props.t("Main phone number")}
@@ -62,9 +62,7 @@ const OperatorContactDetails = (props) => (
             id="operator_secondary_number"
             meta={{
               touched: true,
-              error: `${props.t(
-                props.validatorErrors.operator_secondary_number
-              )}`
+              error: props.t(props.validatorErrors.operator_secondary_number)
             }}
           >
             {props.t("Secondary phone number (optional)")}
@@ -84,7 +82,7 @@ const OperatorContactDetails = (props) => (
             )}
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.operator_email)}`
+              error: props.t(props.validatorErrors.operator_email)
             }}
           >
             {props.t("Email address")}

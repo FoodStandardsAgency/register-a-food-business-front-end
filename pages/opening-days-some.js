@@ -34,7 +34,7 @@ const OpeningSomeDays = (props) => (
           label=""
           meta={{
             touched: true,
-            error: `${props.t(props.validatorErrors.opening_days_some)}`
+            error: props.t(props.validatorErrors.opening_days_some)
           }}
         >
           <Checkbox

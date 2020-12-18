@@ -65,7 +65,7 @@ const PrimaryPartner = (props) => (
             label=""
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.partner_is_primary)}`
+              error: props.t(props.validatorErrors.partner_is_primary)
             }}
           >
             <PartnersList {...props} />

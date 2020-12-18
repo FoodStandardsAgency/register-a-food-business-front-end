@@ -61,9 +61,9 @@ const EstablishmentContactDetails = (props) => (
             id="establishment_primary_number"
             meta={{
               touched: true,
-              error: `${props.t(
+              error: props.t(
                 props.validatorErrors["establishment_primary_number"]
-              )}`
+              )
             }}
           >
             {props.t("Main phone number")}
@@ -82,9 +82,9 @@ const EstablishmentContactDetails = (props) => (
             id="establishment_secondary_number"
             meta={{
               touched: true,
-              error: `${props.t(
+              error: props.t(
                 props.validatorErrors["establishment_secondary_number"]
-              )}`
+              )
             }}
           >
             {props.t("Secondary phone number (optional)")}
@@ -107,7 +107,7 @@ const EstablishmentContactDetails = (props) => (
             )}
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.establishment_email)}`
+              error: props.t(props.validatorErrors.establishment_email)
             }}
           >
             {props.t("Email address")}

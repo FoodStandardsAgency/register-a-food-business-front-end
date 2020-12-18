@@ -49,7 +49,7 @@ const WaterSupply = (props) => (
             label=""
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.water_supply)}`
+              error: props.t(props.validatorErrors.water_supply)
             }}
           >
             <Radio

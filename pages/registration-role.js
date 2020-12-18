@@ -35,7 +35,7 @@ const RegistrationRole = (props) => (
             label=""
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.registration_role)}`
+              error: props.t(props.validatorErrors.registration_role)
             }}
           >
             <Radio

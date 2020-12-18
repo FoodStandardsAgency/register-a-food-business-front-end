@@ -53,7 +53,7 @@ const PartnerDetails = (props) => (
             id="partner_name"
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors["partnerName"])}`
+              error: props.t(props.validatorErrors["partnerName"])
             }}
           >
             {props.t("Full name")}

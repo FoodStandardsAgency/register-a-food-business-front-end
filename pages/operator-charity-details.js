@@ -48,9 +48,7 @@ const OperatorCharityDetails = (props) => (
             id="operator_charity_name"
             meta={{
               touched: true,
-              error: `${props.t(
-                props.validatorErrors["operator_charity_name"]
-              )}`
+              error: props.t(props.validatorErrors["operator_charity_name"])
             }}
           >
             {props.t("Charity, organisation or trust name")}
@@ -67,9 +65,7 @@ const OperatorCharityDetails = (props) => (
             id="operator_charity_number"
             meta={{
               touched: true,
-              error: `${props.t(
-                props.validatorErrors["operator_charity_number"]
-              )}`
+              error: props.t(props.validatorErrors["operator_charity_number"])
             }}
           >
             {props.t("Charity reference number (optional)")}

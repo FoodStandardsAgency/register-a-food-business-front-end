@@ -37,7 +37,7 @@ const OperatorAddress = (props) => (
             id="operatorPostcodeFindComponent"
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.operator_postcode_find)}`
+              error: props.t(props.validatorErrors.operator_postcode_find)
             }}
           >
             {props.t("Postcode")}

@@ -31,7 +31,7 @@ const CustomerType = (props) => (
           label=""
           meta={{
             touched: true,
-            error: `${props.t(props.validatorErrors.customer_type)}`
+            error: props.t(props.validatorErrors.customer_type)
           }}
         >
           <Checkbox

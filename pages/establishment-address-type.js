@@ -42,7 +42,7 @@ const EstablishmentAddressType = (props) => (
             label=""
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.establishment_type)}`
+              error: props.t(props.validatorErrors.establishment_type)
             }}
           >
             <Radio

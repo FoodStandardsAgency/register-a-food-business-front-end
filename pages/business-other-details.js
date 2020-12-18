@@ -34,7 +34,7 @@ const OtherDetails = (props) => (
             }}
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.business_other_details)}`
+              error: props.t(props.validatorErrors.business_other_details)
             }}
           >
             {props.t(

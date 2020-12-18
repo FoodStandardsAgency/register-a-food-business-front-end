@@ -41,7 +41,7 @@ const OperatorName = (props) => (
           id="operator_first_name"
           meta={{
             touched: true,
-            error: `${props.t(props.validatorErrors["operator_first_name"])}`
+            error: props.t(props.validatorErrors["operator_first_name"])
           }}
         >
           {props.t("First and middle names")}
@@ -58,7 +58,7 @@ const OperatorName = (props) => (
           id="operator_last_name"
           meta={{
             touched: true,
-            error: `${props.t(props.validatorErrors.operator_last_name)}`
+            error: props.t(props.validatorErrors.operator_last_name)
           }}
         >
           {props.t("Last name")}

@@ -34,7 +34,7 @@ const LimitedCompanyDetails = (props) => (
           id="operator_company_name"
           meta={{
             touched: true,
-            error: `${props.t(props.validatorErrors["operator_company_name"])}`
+            error: props.t(props.validatorErrors["operator_company_name"])
           }}
         >
           {props.t("Registered company name")}
@@ -55,9 +55,9 @@ const LimitedCompanyDetails = (props) => (
           id="operator_companies_house_number"
           meta={{
             touched: true,
-            error: `${props.t(
+            error: props.t(
               props.validatorErrors["operator_companies_house_number"]
-            )}`
+            )
           }}
         >
           {props.t("Companies House number")}

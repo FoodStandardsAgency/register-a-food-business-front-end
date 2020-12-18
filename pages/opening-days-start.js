@@ -36,7 +36,7 @@ const OpeningDaysStart = (props) => (
             label=""
             meta={{
               touched: true,
-              error: `${props.t(props.validatorErrors.opening_days_start)}`
+              error: props.t(props.validatorErrors.opening_days_start)
             }}
           >
             <Radio
