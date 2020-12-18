@@ -1,19 +1,20 @@
 import { ErrorSummary } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../../i18n.js";
 
 const ProcessedErrorSummary = (props) => {
   const errors = [];
   for (let error in props.validatorErrors) {
     errors.push({
       targetName: error,
-      text: props.validatorErrors[error]
+      text: props.t(props.validatorErrors[error])
     });
   }
   if (Object.keys(props.validatorErrors).length > 0) {
     return (
       <ErrorSummary
         id="errorSummary"
-        heading="There is a problem"
+        heading={props.t("There is a problem")}
         onHandleErrorClick={props.onHandleErrorClick}
         errors={errors}
       />
@@ -22,7 +23,7 @@ const ProcessedErrorSummary = (props) => {
     return null;
   }
 };
-export default ProcessedErrorSummary;
+export default withTranslation("common")(ProcessedErrorSummary);
 
 ProcessedErrorSummary.propTypes = {
   validatorErrors: PropTypes.objectOf(PropTypes.string)

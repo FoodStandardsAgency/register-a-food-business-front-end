@@ -1,5 +1,7 @@
 import EstablishmentOpeningStatus from "../pages/establishment-opening-status";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 const testValidatorErrors = {
   example: "test error"
@@ -19,11 +21,13 @@ describe("<EstablishmentOpeningStatus />", () => {
 
   it("renders 2 radio buttons with correct error props and default values", () => {
     const wrapper = mount(
-      <EstablishmentOpeningStatus
-        validatorErrors={testValidatorErrors}
-        cumulativeFullAnswers={testCumulativeAnswers}
-        switches={testSwitches}
-      />
+      <I18nextProvider i18n={i18n}>
+        <EstablishmentOpeningStatus
+          validatorErrors={testValidatorErrors}
+          cumulativeFullAnswers={testCumulativeAnswers}
+          switches={testSwitches}
+        />
+      </I18nextProvider>
     );
     const establishmentTypeRadio = wrapper.find("Radio");
     expect(establishmentTypeRadio.length).toBe(2);
@@ -35,11 +39,13 @@ describe("<EstablishmentOpeningStatus />", () => {
         establishment_opening_status: "test error"
       };
       const wrapper = mount(
-        <EstablishmentOpeningStatus
-          validatorErrors={actualValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentOpeningStatus
+            validatorErrors={actualValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const establishmentTypeMultiChoice = wrapper.find("MultiChoice");
       expect(establishmentTypeMultiChoice.props().meta.error).toBe(
@@ -63,11 +69,13 @@ describe("<EstablishmentOpeningStatus />", () => {
         };
 
         const wrapper = mount(
-          <EstablishmentOpeningStatus
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
+          <I18nextProvider i18n={i18n}>
+            <EstablishmentOpeningStatus
+              validatorErrors={testValidatorErrors}
+              cumulativeFullAnswers={cumulativeFullAnswers}
+              switches={testSwitches}
+            />
+          </I18nextProvider>
         );
 
         const establishmentTypeRadio = wrapper.find(`Radio#${radioButtonId}`);

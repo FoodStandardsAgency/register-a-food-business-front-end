@@ -69,11 +69,16 @@ describe("data-transform.service transformAnswersForSummary()", () => {
     });
 
     describe("Given that business_type is part of cumulative answers", () => {
-      const businessType = { business_type: "Food ordering service (process)" };
-      it("should assign business_type and business_type_search_term to the result", () => {
-        result = transformAnswersForSummary(businessType);
-        expect(result.business_type).toBe("Food ordering service");
-        expect(result.business_type_search_term).toBe("Process");
+      describe("Given that the language is English", () => {
+        const answers = {
+          business_type: "Food ordering service (process)",
+          language: "en"
+        };
+        it("should assign business_type and business_type_search_term to the result in English", () => {
+          result = transformAnswersForSummary(answers);
+          expect(result.business_type).toBe("Food ordering service");
+          expect(result.business_type_search_term).toBe("Process");
+        });
       });
     });
 

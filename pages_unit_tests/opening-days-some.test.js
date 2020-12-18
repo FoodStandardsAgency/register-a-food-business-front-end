@@ -1,5 +1,7 @@
 import OpeningSomeDays from "../pages/opening-days-some";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 const testValidatorErrors = {
   example: "test error"
@@ -20,11 +22,13 @@ describe("<OpeningSomeDays />", () => {
   describe("renders 7 checkboxes with correct error props and default values", () => {
     it("renders 7 checkboxes", () => {
       const wrapper = mount(
-        <OpeningSomeDays
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OpeningSomeDays
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const customerTypeCheckBox = wrapper.find("Checkbox");
       expect(customerTypeCheckBox.length).toBe(7);
@@ -35,11 +39,13 @@ describe("<OpeningSomeDays />", () => {
         opening_day_monday: "default"
       };
       const wrapper = mount(
-        <OpeningSomeDays
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OpeningSomeDays
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const OpeningSomeDaysCheckBox = wrapper.find(
         "Checkbox#opening_day_monday"

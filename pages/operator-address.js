@@ -11,6 +11,7 @@ import {
 } from "../src/components";
 import { InputField } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const OperatorAddress = (props) => (
   <FsaLayout {...props}>
@@ -36,10 +37,10 @@ const OperatorAddress = (props) => (
             id="operatorPostcodeFindComponent"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_postcode_find
+              error: props.t(props.validatorErrors.operator_postcode_find)
             }}
           >
-            Postcode
+            {props.t("Postcode")}
           </InputField>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
@@ -49,7 +50,7 @@ const OperatorAddress = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(OperatorAddress);
+export default withTranslation("common")(SessionWrapper(OperatorAddress));
 
 OperatorAddress.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

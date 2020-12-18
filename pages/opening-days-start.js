@@ -11,6 +11,7 @@ import {
 } from "../src/components";
 import { Fieldset, Radio, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const OpeningDaysStart = (props) => (
   <FsaLayout {...props}>
@@ -27,14 +28,15 @@ const OpeningDaysStart = (props) => (
             isPageHeading
             style={{ marginBottom: "30px" }}
           >
-            What days will this establishment be open and producing or serving
-            food?
+            {props.t(
+              "What days will this establishment be open and producing or serving food?"
+            )}
           </Fieldset.Legend>
           <MultiChoice
             label=""
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_days_start
+              error: props.t(props.validatorErrors.opening_days_start)
             }}
           >
             <Radio
@@ -45,7 +47,7 @@ const OpeningDaysStart = (props) => (
                 props.cumulativeFullAnswers.opening_days_start === "Every day"
               }
             >
-              Every day
+              {props.t("Every day")}
             </Radio>
             <Radio
               name="opening_days_start"
@@ -55,7 +57,7 @@ const OpeningDaysStart = (props) => (
                 props.cumulativeFullAnswers.opening_days_start === "Some days"
               }
             >
-              Some days a week
+              {props.t("Some days a week")}
             </Radio>
             <Radio
               name="opening_days_start"
@@ -66,17 +68,18 @@ const OpeningDaysStart = (props) => (
                 "Irregular days"
               }
             >
-              Irregular days or seasonal
+              {props.t("Irregular days or seasonal")}
             </Radio>
           </MultiChoice>
         </Fieldset>
       </ContentItem.B_30_15>
-      <HiddenTextAccessible summary={"I don't know what days to select"}>
+      <HiddenTextAccessible
+        summary={props.t("I don't know what days to select")}
+      >
         <Paragraph mb={0}>
-          The food business will have irregular opening days if it isn't open
-          the same days every week. This could include seasonal establishments
-          such as summer ice-cream vendors. It can also include establishments
-          which only open for events such as football matches.
+          {props.t(
+            "The food business will have irregular opening days if it isn't open the same days every week. This could include seasonal establishments such as summer ice-cream vendors. It can also include establishments which only open for events such as football matches."
+          )}
         </Paragraph>
       </HiddenTextAccessible>
 
@@ -85,7 +88,7 @@ const OpeningDaysStart = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(OpeningDaysStart);
+export default withTranslation("common")(SessionWrapper(OpeningDaysStart));
 
 OpeningDaysStart.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

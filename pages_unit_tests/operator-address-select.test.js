@@ -1,5 +1,7 @@
 import OperatorAddressLookup from "../pages/operator-address-select";
 import { mount, shallow } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 const testCumulativeAnswers = {
   example: "test answer"
@@ -18,11 +20,14 @@ describe("<OperatorAddressLookup />", () => {
   describe("Operator postcode display", () => {
     it("renders even when the addressLookups key is not found", () => {
       const wrapper = mount(
-        <OperatorAddressLookup
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddressLookup
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+            addressLookups={testAddressLookup}
+            editModeFirstPage="test"
+          />
+        </I18nextProvider>
       );
       const operatorPostcode = wrapper.find(
         "Paragraph.operatorPostcodeDisplay"
@@ -35,11 +40,13 @@ describe("<OperatorAddressLookup />", () => {
         operator_postcode_find: "default"
       };
       const wrapper = mount(
-        <OperatorAddressLookup
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddressLookup
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+            addressLookups={testAddressLookup}
+          />
+        </I18nextProvider>
       );
       const operatorPostcode = wrapper.find(
         "Paragraph.operatorPostcodeDisplay"
@@ -85,11 +92,13 @@ describe("<OperatorAddressLookup />", () => {
       };
 
       const wrapper = mount(
-        <OperatorAddressLookup
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-          addressLookups={exampleAddressLookup}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddressLookup
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+            addressLookups={exampleAddressLookup}
+          />
+        </I18nextProvider>
       );
 
       const operatorAddressSelect = wrapper.find(

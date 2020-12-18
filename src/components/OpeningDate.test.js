@@ -1,5 +1,7 @@
 import OpeningDate from "../components/OpeningDate";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../../i18nForTests";
 
 describe("<OpeningDate />", () => {
   const testValidatorErrors = {
@@ -34,12 +36,14 @@ describe("<OpeningDate />", () => {
         year: "2050"
       };
       wrapper = mount(
-        <OpeningDate
-          currentPage="establishment-opening-date-proactive"
-          cumulativeFullAnswers={cumulativeAnswersProactive}
-          validatorErrors={testValidatorErrors}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OpeningDate
+            currentPage="establishment-opening-date-proactive"
+            cumulativeFullAnswers={cumulativeAnswersProactive}
+            validatorErrors={testValidatorErrors}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
     });
 
@@ -74,12 +78,14 @@ describe("<OpeningDate />", () => {
         year: "1998"
       };
       wrapper = mount(
-        <OpeningDate
-          currentPage="establishment-opening-date-retroactive"
-          cumulativeFullAnswers={cumulativeAnswersRetroactive}
-          validatorErrors={testValidatorErrors}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OpeningDate
+            currentPage="establishment-opening-date-retroactive"
+            cumulativeFullAnswers={cumulativeAnswersRetroactive}
+            validatorErrors={testValidatorErrors}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
     });
 

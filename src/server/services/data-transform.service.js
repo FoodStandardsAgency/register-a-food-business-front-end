@@ -125,7 +125,8 @@ const transformAnswersForSubmit = (
       },
       declaration: {}
     },
-    local_council_url: lcUrl
+    local_council_url: lcUrl,
+    language: cumulativeFullAnswers ? cumulativeFullAnswers.language : ""
   };
 
   const data = Object.assign({}, cumulativeFullAnswers);
@@ -537,7 +538,7 @@ const transformBusinessImportExportForSubmit = (
 
 const transformBusinessImportExportForSummary = (importExportActivities) => {
   return importExportActivities
-    ? importExportEnum[importExportActivities].value
+    ? importExportEnum[importExportActivities].value.en
     : null;
 };
 
@@ -724,7 +725,7 @@ const tranformCustomerTypeForSubmit = (supplyDirectly, supplyOther) => {
  * @returns {string} A string with the text to be displayed on the summary table
  */
 const transformCustomerTypeForSummary = (customerType) => {
-  return customerType ? customerTypeEnum[customerType].value : null;
+  return customerType ? customerTypeEnum[customerType].value.en : null;
 };
 
 /**
@@ -759,16 +760,16 @@ const combineOperatorTypes = (operatorType, registrationRole) => {
 
 const transformEstablishmentTypeForSummary = (establishmentType) => {
   return establishmentType
-    ? establishmentTypeEnum[establishmentType].value
+    ? establishmentTypeEnum[establishmentType].value.en
     : null;
 };
 
 const transformOperatorTypeForSummary = (operatorType) => {
-  return operatorType ? operatorTypeEnum[operatorType].value : null;
+  return operatorType ? operatorTypeEnum[operatorType].value.en : null;
 };
 
 const transformWaterSupplyForSummary = (waterSupply) => {
-  return waterSupply ? waterSupplyEnum[waterSupply].value : null;
+  return waterSupply ? waterSupplyEnum[waterSupply].value.en : null;
 };
 //Combines the date to be in the correct format to display on summary table
 const combineDate = (day, month, year) => {
@@ -814,14 +815,16 @@ const separateBracketsFromBusinessType = (text) => {
 };
 
 const transformBusinessTypeForSubmit = (displayName) => {
-  const businessTypeKey = Object.keys(businessTypeEnum).find(
-    (key) => businessTypeEnum[key].value === displayName
+  const businessTypeKey = Object.keys(businessTypeEnum).find((key) =>
+    [businessTypeEnum[key].value.en, businessTypeEnum[key].value.cy].includes(
+      displayName
+    )
   );
-  return businessTypeKey ? businessTypeEnum[businessTypeKey].key : null;
+  return businessTypeKey ? businessTypeEnum[businessTypeKey].key : "";
 };
 
 const transformBusinessTypeForSummary = (id) => {
-  return businessTypeEnum[id] ? businessTypeEnum[id].value : null;
+  return businessTypeEnum[id] ? businessTypeEnum[id].value.en : "";
 };
 
 module.exports = {

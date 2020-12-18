@@ -30,7 +30,9 @@ const SessionWrapper = (Page) => {
 
     const csrfToken = req.csrfToken();
 
-    const currentPageTitle = PageTitles.getUrlPageTitle(req.url);
+    const language = req && req.language ? req.language : "en";
+
+    const currentPageTitle = PageTitles.getUrlPageTitle(req.url, language);
 
     const currentPageWithQuery = `/${req.url.split("/")[2]}`;
 
@@ -85,6 +87,7 @@ const SessionWrapper = (Page) => {
       editModeFirstPage,
       formAction,
       csrfToken,
+      language,
       partnerDetailsUrl,
       partnerDetailsDeleteFormAction,
       partnerDetailsContinueFormAction,

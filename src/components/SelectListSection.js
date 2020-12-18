@@ -1,7 +1,9 @@
 import { css } from "@emotion/core";
 import { Label } from "govuk-react";
 import { SelectInput } from "@govuk-react/select";
-import distinctBusinessTypes from "./distinct-business-types.json";
+import { businessTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
+import { i18n } from "../../i18n";
+import { withTranslation } from "../../i18n.js";
 
 const autocompleteErrorStyling = css`
   border-left: 4px solid #b10e1e;
@@ -18,7 +20,22 @@ const style = {
 
 const BusinessTypeOptions = () => {
   let options = [];
-  distinctBusinessTypes.forEach((type) => {
+  (i18n.language === "cy"
+    ? [
+        ...new Set(
+          Object.keys(businessTypeEnum).map(
+            (bt) => businessTypeEnum[bt].value.cy
+          )
+        )
+      ]
+    : [
+        ...new Set(
+          Object.keys(businessTypeEnum).map(
+            (bt) => businessTypeEnum[bt].value.en
+          )
+        )
+      ]
+  ).forEach((type) => {
     options.push(
       <option key={type} value={type}>
         {type}
@@ -31,8 +48,12 @@ const BusinessTypeOptions = () => {
 const SelectListSection = (props) => (
   <div id="selectListSection">
     <Label style={{ paddingTop: "0px" }}>
-      Select the most fitting business type from the suggestions
-      <div aria-label="business type select, click and choose from dropdown">
+      {props.t("Select the most fitting business type from the suggestions")}
+      <div
+        aria-label={props.t(
+          "business type select, click and choose from dropdown"
+        )}
+      >
         <SelectInput
           name="business_type"
           style={style}
@@ -49,4 +70,4 @@ const SelectListSection = (props) => (
   </div>
 );
 
-export default SelectListSection;
+export default withTranslation("common")(SelectListSection);

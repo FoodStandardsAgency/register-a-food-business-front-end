@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Paragraph, Button, Link } from "govuk-react";
+import { withTranslation } from "../../i18n.js";
 
 const fontSize = "16px";
 
@@ -113,14 +114,13 @@ const BannerLink = styled(Link)`
   }
 `;
 
-const CookieBanner = () => (
+const CookieBanner = (props) => (
   <Banner id="cookieBanner">
     <BannerBody>
       <BannerParagraph mb={2}>
-        Register a food business uses a cookie to create the registration. We
-        also use optional cookies to analyse how the service is performing. We
-        do not share any information with advertisers or social media platforms.
-        We do not store any information about you in the cookie.
+        {props.t(
+          "Register a food business uses a cookie to create the registration. We also use optional cookies to analyse how the service is performing. We do not share any information with advertisers or social media platforms. We do not store any information about you in the cookie."
+        )}
       </BannerParagraph>
       <BannerRow>
         <BannerLinkContainer>
@@ -128,29 +128,31 @@ const CookieBanner = () => (
             id="cookieInfo"
             href="https://www.gov.uk/help/cookies"
             target="_blank"
-            aria-label="find out more about cookies (opens in new window)"
+            aria-label={props.t(
+              "find out more about cookies (opens in new window)"
+            )}
           >
-            Find out more about cookies
+            {props.t("Find out more about cookies")}
           </BannerLink>
           <BannerLink
             id="cookiePolicy"
             href="https://www.food.gov.uk/cookie-policy"
             target="_blank"
-            aria-label="read our cookie policy (opens in new window)"
+            aria-label={props.t("read our cookie policy (opens in new window)")}
           >
-            Read our cookie policy
+            {props.t("Read our cookie policy")}
           </BannerLink>
         </BannerLinkContainer>
 
         <BannerActionContainer>
           <form action="/setcookie/acceptAllCookies/false" method="get">
             <RejectCookiesButton id="cookieReject" type="submit">
-              I do not accept optional cookies
+              {props.t("I do not accept optional cookies")}
             </RejectCookiesButton>
           </form>
           <form action="/setcookie/acceptAllCookies/true" method="get">
             <CookieButton id="cookieAccept" type="submit">
-              I accept cookies
+              {props.t("I accept cookies")}
             </CookieButton>
           </form>
         </BannerActionContainer>
@@ -159,4 +161,4 @@ const CookieBanner = () => (
   </Banner>
 );
 
-export default CookieBanner;
+export default withTranslation("common")(CookieBanner);

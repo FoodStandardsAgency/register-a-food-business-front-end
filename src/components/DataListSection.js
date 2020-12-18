@@ -1,7 +1,9 @@
 import { css } from "@emotion/core";
 import ContentItem from "./ContentItem";
 import { Input, Label, UnorderedList, HintText, Paragraph } from "govuk-react";
-import distinctBusinessTypes from "./distinct-business-types.json";
+import { businessTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
+import { i18n } from "../../i18n";
+import { withTranslation } from "../../i18n.js";
 import ListItemConsistentSize from "./ListItemConsistentSize";
 
 const autocompleteErrorStyling = css`
@@ -19,7 +21,22 @@ const style = {
 
 const BusinessTypeOptions = () => {
   let options = [];
-  distinctBusinessTypes.forEach((type) => {
+  (i18n.language === "cy"
+    ? [
+        ...new Set(
+          Object.keys(businessTypeEnum).map(
+            (bt) => businessTypeEnum[bt].value.cy
+          )
+        )
+      ]
+    : [
+        ...new Set(
+          Object.keys(businessTypeEnum).map(
+            (bt) => businessTypeEnum[bt].value.en
+          )
+        )
+      ]
+  ).forEach((type) => {
     options.push(
       <option key={type} value={type}>
         {type}
@@ -32,25 +49,33 @@ const BusinessTypeOptions = () => {
 const DataListSection = (props) => (
   <div id="dataListSection">
     <Paragraph>
-      Search with your own keywords and then select the most fitting business
-      type from the suggestions
+      {props.t(
+        "Search with your own keywords and then select the most fitting business type from the suggestions"
+      )}
     </Paragraph>
     <ContentItem.B_30_15>
       <HintText>
-        For example
+        {props.t("For example")}
         <UnorderedList>
-          <ListItemConsistentSize>cafe</ListItemConsistentSize>
-          <ListItemConsistentSize>food delivery service</ListItemConsistentSize>
-          <ListItemConsistentSize>commercial bakery</ListItemConsistentSize>
+          <ListItemConsistentSize>{props.t("cafe")}</ListItemConsistentSize>
           <ListItemConsistentSize>
-            meat product manufacturer
+            {props.t("food delivery service")}
+          </ListItemConsistentSize>
+          <ListItemConsistentSize>
+            {props.t("commercial bakery")}
+          </ListItemConsistentSize>
+          <ListItemConsistentSize>
+            {props.t("meat product manufacturer")}
           </ListItemConsistentSize>
         </UnorderedList>
       </HintText>
     </ContentItem.B_30_15>
     <Label style={{ paddingTop: "0px" }}>
-      Select business type
-      <div aria-label="business type autocomplete, type and then choose from results">
+      <div
+        aria-label={props.t(
+          "business type autocomplete, type and then choose from results"
+        )}
+      >
         <Input
           name="business_type"
           className={
@@ -69,4 +94,4 @@ const DataListSection = (props) => (
   </div>
 );
 
-export default DataListSection;
+export default withTranslation("common")(DataListSection);

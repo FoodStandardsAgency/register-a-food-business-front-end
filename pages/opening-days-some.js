@@ -10,6 +10,7 @@ import {
 } from "../src/components";
 import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const OpeningSomeDays = (props) => (
   <FsaLayout {...props}>
@@ -20,18 +21,20 @@ const OpeningSomeDays = (props) => (
         onHandleErrorClick={OnHandleErrorClick}
       />
       <Heading as="h1" size="LARGE">
-        Opening days
+        {props.t("Opening days")}
       </Heading>
       <Paragraph>
-        What days will this establishment be producing or serving food?
+        {props.t(
+          "What days will this establishment be producing or serving food?"
+        )}
       </Paragraph>
-      <Paragraph>Select all that apply</Paragraph>
+      <Paragraph>{props.t("Select all that apply")}</Paragraph>
       <ContentItem.B_30_15>
         <MultiChoice
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.opening_days_some
+            error: props.t(props.validatorErrors.opening_days_some)
           }}
         >
           <Checkbox
@@ -40,7 +43,7 @@ const OpeningSomeDays = (props) => (
             value="Monday"
             defaultChecked={props.cumulativeFullAnswers.opening_day_monday}
           >
-            Monday
+            {props.t("Monday")}
           </Checkbox>
           <Checkbox
             name="opening_day_tuesday"
@@ -48,7 +51,7 @@ const OpeningSomeDays = (props) => (
             value="Tuesday"
             defaultChecked={props.cumulativeFullAnswers.opening_day_tuesday}
           >
-            Tuesday
+            {props.t("Tuesday")}
           </Checkbox>
           <Checkbox
             name="opening_day_wednesday"
@@ -56,7 +59,7 @@ const OpeningSomeDays = (props) => (
             value="Wednesday"
             defaultChecked={props.cumulativeFullAnswers.opening_day_wednesday}
           >
-            Wednesday
+            {props.t("Wednesday")}
           </Checkbox>
           <Checkbox
             name="opening_day_thursday"
@@ -64,7 +67,7 @@ const OpeningSomeDays = (props) => (
             value="Thursday"
             defaultChecked={props.cumulativeFullAnswers.opening_day_thursday}
           >
-            Thursday
+            {props.t("Thursday")}
           </Checkbox>
           <Checkbox
             name="opening_day_friday"
@@ -72,7 +75,7 @@ const OpeningSomeDays = (props) => (
             value="Friday"
             defaultChecked={props.cumulativeFullAnswers.opening_day_friday}
           >
-            Friday
+            {props.t("Friday")}
           </Checkbox>
           <Checkbox
             name="opening_day_saturday"
@@ -80,7 +83,7 @@ const OpeningSomeDays = (props) => (
             value="Saturday"
             defaultChecked={props.cumulativeFullAnswers.opening_day_saturday}
           >
-            Saturday
+            {props.t("Saturday")}
           </Checkbox>
           <Checkbox
             name="opening_day_sunday"
@@ -88,7 +91,7 @@ const OpeningSomeDays = (props) => (
             value="Sunday"
             defaultChecked={props.cumulativeFullAnswers.opening_day_sunday}
           >
-            Sunday
+            {props.t("Sunday")}
           </Checkbox>
         </MultiChoice>
       </ContentItem.B_30_15>
@@ -97,7 +100,7 @@ const OpeningSomeDays = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(OpeningSomeDays);
+export default withTranslation("common")(SessionWrapper(OpeningSomeDays));
 
 OpeningSomeDays.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

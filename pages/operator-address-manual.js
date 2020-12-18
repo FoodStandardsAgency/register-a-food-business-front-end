@@ -11,6 +11,7 @@ import {
 } from "../src/components";
 import { InputField, ErrorText } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const OperatorAddress = (props) => (
   <FsaLayout {...props}>
@@ -32,8 +33,11 @@ const OperatorAddress = (props) => (
         {props.switches["/operator-address-none-found"] ? (
           <ContentItem.B_30_15>
             <ErrorText id="addressNotFoundByPostcodeMessage">
-              {`No addresses found for the postcode "${props.cumulativeFullAnswers.operator_postcode_find}". Please enter your address manually or go back to try a
-              different postcode.`}
+              {`${props.t("No addresses found for the postcode")} "${
+                props.cumulativeFullAnswers.operator_postcode_find
+              }". ${props.t(
+                "Please enter your address manually or go back to try a different postcode."
+              )}`}
             </ErrorText>
           </ContentItem.B_30_15>
         ) : null}
@@ -48,10 +52,10 @@ const OperatorAddress = (props) => (
             id="operator_address_line_1"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_address_line_1
+              error: props.t(props.validatorErrors.operator_address_line_1)
             }}
           >
-            Address line 1
+            {props.t("Address line 1")}
           </InputField>
         </ContentItem.B_30_15>
 
@@ -65,10 +69,10 @@ const OperatorAddress = (props) => (
             id="operator_address_line_2"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_address_line_2
+              error: props.t(props.validatorErrors.operator_address_line_2)
             }}
           >
-            Address line 2 (optional)
+            {props.t("Address line 2 (optional)")}
           </InputField>
         </ContentItem.B_30_15>
 
@@ -82,10 +86,10 @@ const OperatorAddress = (props) => (
             id="operator_address_line_3"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_address_line_3
+              error: props.t(props.validatorErrors.operator_address_line_3)
             }}
           >
-            Address line 3 (optional)
+            {props.t("Address line 3 (optional)")}
           </InputField>
         </ContentItem.B_30_15>
 
@@ -99,10 +103,10 @@ const OperatorAddress = (props) => (
             id="operator_town"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_town
+              error: props.t(props.validatorErrors.operator_town)
             }}
           >
-            Town or city
+            {props.t("Town or city")}
           </InputField>
         </ContentItem.B_30_15>
 
@@ -116,10 +120,10 @@ const OperatorAddress = (props) => (
             id="operator_postcode"
             meta={{
               touched: true,
-              error: props.validatorErrors.operator_postcode
+              error: props.t(props.validatorErrors.operator_postcode)
             }}
           >
-            Postcode
+            {props.t("Postcode")}
           </InputField>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
@@ -129,7 +133,7 @@ const OperatorAddress = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(OperatorAddress);
+export default withTranslation("common")(SessionWrapper(OperatorAddress));
 
 OperatorAddress.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

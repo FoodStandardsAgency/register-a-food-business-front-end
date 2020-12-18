@@ -11,6 +11,7 @@ import {
 } from "../src/components";
 import { Fieldset, Radio, MultiChoice, HintText } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const PartnersList = (props) => {
   let list = [];
@@ -50,12 +51,13 @@ const PrimaryPartner = (props) => (
             isPageHeading
             style={{ marginBottom: "30px" }}
           >
-            Who is the main point of contact?
+            {props.t("Who is the main point of contact?")}
           </Fieldset.Legend>
           <ContentItem.B_30_15>
             <HintText>
-              Please select the partner who will be the main point of contact
-              for this business
+              {props.t(
+                "Please select the partner who will be the main point of contact for this business"
+              )}
             </HintText>
           </ContentItem.B_30_15>
           <PartnershipDescription />
@@ -63,7 +65,7 @@ const PrimaryPartner = (props) => (
             label=""
             meta={{
               touched: true,
-              error: props.validatorErrors.partner_is_primary
+              error: props.t(props.validatorErrors.partner_is_primary)
             }}
           >
             <PartnersList {...props} />
@@ -76,7 +78,7 @@ const PrimaryPartner = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(PrimaryPartner);
+export default withTranslation("common")(SessionWrapper(PrimaryPartner));
 
 PrimaryPartner.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
