@@ -54,9 +54,6 @@ PageTitles.getUrlPageTitle = (url, language) => {
     title = `${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`;
   }
 
-  // Translate server side to prevent title flicking as client side renders.
-  // Note: EN translations have welsh keys to allow client side translation
-  //       back to english after server renders welsh
   return translatedTitles[title] || title;
 };
 
