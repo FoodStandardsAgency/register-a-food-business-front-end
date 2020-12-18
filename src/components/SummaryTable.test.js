@@ -1,5 +1,13 @@
 import SummaryTable from "../components/SummaryTable";
 import { shallow, mount } from "enzyme";
+import {
+  operatorTypeEnum,
+  customerTypeEnum,
+  businessTypeEnum,
+  waterSupplyEnum,
+  importExportEnum,
+  establishmentTypeEnum
+} from "@slice-and-dice/register-a-food-business-validation";
 
 // a complete list of the summary table row IDs
 
@@ -82,7 +90,7 @@ const allTableRowsForIrregularDays = mandatoryTableRows.concat(
 
 // the complete set of possible mandatory answer fields with example data
 const testMandatoryAnswers = {
-  operator_type: "Sole trader",
+  operator_type: operatorTypeEnum.SOLETRADER.key,
   establishment_address_line_1: "Address line 1",
   establishment_town: "Town",
   establishment_postcode: "AA11 1AA",
@@ -95,8 +103,8 @@ const testMandatoryAnswers = {
   operator_company_name: "Company name",
   operator_companies_house_number: "AA123456",
   operator_charity_name: "Charity name",
-  customer_type: "End consumer and Other buisnesses",
-  import_export_activities: "None",
+  customer_type: customerTypeEnum.BOTH.key,
+  import_export_activities: importExportEnum.NONE.key,
   operator_primary_number: "1234567",
   operator_email: "operator@email.com",
   establishment_primary_number: "12345678",
@@ -105,17 +113,17 @@ const testMandatoryAnswers = {
   contact_representative_number: "123456789",
   contact_representative_name: "Jill",
   establishment_opening_date: "2018-12-06",
-  establishment_type: "Mobile or moveable premise",
-  business_type: "Livestock farm",
+  establishment_type: establishmentTypeEnum.MOBILE.key,
+  business_type: businessTypeEnum["003"].key,
   business_other_details: "This is the best business in the world",
   opening_days_some: "Monday",
   opening_day_monday: "Monday",
-  water_supply: "Private",
+  water_supply: waterSupplyEnum.PRIVATE.key,
   validatorErrors: {}
 };
 
 const testMandatoryAnswersForPartnership = {
-  operator_type: "Partnership",
+  operator_type: operatorTypeEnum.PARTNERSHIP.key,
   establishment_address_line_1: "Example address line 1",
   establishment_postcode: "AA11 1AA",
   operator_address_line_1: "Example address line 1",
@@ -126,8 +134,8 @@ const testMandatoryAnswersForPartnership = {
   operator_company_name: "Company name",
   operator_companies_house_number: "AA123456",
   operator_charity_name: "Charity name",
-  customer_type: "End consumer and Other buisnesses",
-  import_export_activities: "None",
+  customer_type: customerTypeEnum.BOTH.key,
+  import_export_activities: importExportEnum.NONE.key,
   operator_primary_number: "1234567",
   operator_email: "operator@email.com",
   establishment_primary_number: "12345678",
@@ -136,17 +144,17 @@ const testMandatoryAnswersForPartnership = {
   contact_representative_number: "123456789",
   contact_representative_name: "Jill",
   establishment_opening_date: "2018-12-06",
-  establishment_type: "Mobile or moveable premise",
-  business_type: "Livestock farm",
+  establishment_type: establishmentTypeEnum.MOBILE.key,
+  business_type: businessTypeEnum["003"].key,
   business_other_details: "This is the best business in the world",
   opening_days_some: "Monday",
   opening_day_monday: "Monday",
-  water_supply: "Private",
+  water_supply: waterSupplyEnum.PRIVATE.key,
   validatorErrors: {}
 };
 
 const testMandatoryAnswersForIrregularDays = {
-  operator_type: "Sole trader",
+  operator_type: operatorTypeEnum.SOLETRADER.key,
   establishment_address_line_1: "Address line 1",
   establishment_postcode: "AA11 1AA",
   operator_address_line_1: "Address line 1",
@@ -157,8 +165,8 @@ const testMandatoryAnswersForIrregularDays = {
   operator_company_name: "Company name",
   operator_companies_house_number: "AA123456",
   operator_charity_name: "Charity name",
-  customer_type: "End consumer and Other buisnesses",
-  import_export_activities: "None",
+  customer_type: customerTypeEnum.BOTH.key,
+  import_export_activities: importExportEnum.NONE.key,
   operator_primary_number: "1234567",
   operator_email: "operator@email.com",
   establishment_primary_number: "12345678",
@@ -167,11 +175,11 @@ const testMandatoryAnswersForIrregularDays = {
   contact_representative_number: "123456789",
   contact_representative_name: "Jill",
   establishment_opening_date: "2018-12-06",
-  establishment_type: "Mobile or moveable premise",
-  business_type: "Livestock farm",
+  establishment_type: establishmentTypeEnum.MOBILE.key,
+  business_type: businessTypeEnum["003"].key,
   business_other_details: "This is the best business in the world",
   opening_days_irregular: "Open on the 29th Feb",
-  water_supply: "Private",
+  water_supply: waterSupplyEnum.PRIVATE.key,
   validatorErrors: {}
 };
 

@@ -237,7 +237,7 @@ const ApplicationComplete = (props) => (
           </ContentItem.B_20_20>
 
           <ContentItem.B_20_20>
-            or contact the Business Support Helpline on 0300 456 3565
+            or contact the Business Support Helpline on 0800 998 1098
           </ContentItem.B_20_20>
         </ContentItem.B_30_15>
       )}

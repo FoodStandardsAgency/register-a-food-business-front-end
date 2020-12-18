@@ -19,7 +19,7 @@ describe("<OperatorContactDetails />", () => {
 
   describe("when registration role is partnership", () => {
     it("renders with correct hint text", () => {
-      const cumulativeAnswers = { registration_role: "Partnership" };
+      const cumulativeAnswers = { registration_role: "PARTNERSHIP" };
       const wrapper = mount(
         <OperatorContactDetails
           validatorErrors={testValidatorErrors}

@@ -39,8 +39,6 @@ describe("<BusinessTypeLookup />", () => {
       const appliedClassNameErrors = wrapperErrors
         .find("#autocompleteContainer")
         .prop("className");
-      console.log(appliedClassNameErrors)
-      console.log(appliedClassNameNoErrors)
       expect(appliedClassNameNoErrors).not.toEqual(appliedClassNameErrors);
     });
   });
