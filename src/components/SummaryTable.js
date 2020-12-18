@@ -146,7 +146,7 @@ const OperatorDetailsTable = (props) => (
               href="/edit/registration-role"
               aria-label={props.t("Change operator type")}
             >
-              {determineLinkText(props.operator_type)}
+              {determineLinkText(props.operator_type, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -176,7 +176,7 @@ const OperatorDetailsTable = (props) => (
               href="/edit/operator-company-details"
               aria-label={props.t("Change operator company name")}
             >
-              {determineLinkText(props.operator_company_name)}
+              {determineLinkText(props.operator_company_name, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -206,7 +206,7 @@ const OperatorDetailsTable = (props) => (
               href="/edit/operator-company-details"
               aria-label={props.t("Change operator companies house")}
             >
-              {determineLinkText(props.operator_companies_house_number)}
+              {determineLinkText(props.operator_companies_house_number, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -236,7 +236,7 @@ const OperatorDetailsTable = (props) => (
               href="/edit/operator-charity-details"
               aria-label={props.t("Change operator charity name")}
             >
-              {determineLinkText(props.operator_charity_name)}
+              {determineLinkText(props.operator_charity_name, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -266,7 +266,7 @@ const OperatorDetailsTable = (props) => (
               href="/edit/operator-charity-details"
               aria-label={props.t("Change operator charity number")}
             >
-              {determineLinkText(props.operator_charity_number)}
+              {determineLinkText(props.operator_charity_number, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -301,7 +301,8 @@ const OperatorDetailsTable = (props) => (
               aria-label={props.t("Change operator name")}
             >
               {determineLinkText(
-                props.operator_first_name && props.operator_last_name
+                props.operator_first_name && props.operator_last_name,
+                props
               )}
             </Link>
           </AccessibleChangeCell>
@@ -359,7 +360,8 @@ const OperatorDetailsTable = (props) => (
               {determineLinkText(
                 props.operator_address_line_1 &&
                   props.operator_town &&
-                  props.operator_postcode
+                  props.operator_postcode,
+                props
               )}
             </Link>
           </AccessibleChangeCell>
@@ -397,7 +399,7 @@ const OperatorDetailsTable = (props) => (
               href="/edit/operator-contact-details"
               aria-label={props.t("Change operator contact details")}
             >
-              {determineLinkText(props.operator_primary_number)}
+              {determineLinkText(props.operator_primary_number, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -424,7 +426,7 @@ const OperatorDetailsTable = (props) => (
               href="/edit/operator-contact-details"
               aria-label={props.t("Change operator email")}
             >
-              {determineLinkText(props.operator_email)}
+              {determineLinkText(props.operator_email, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -537,7 +539,7 @@ const OperatorDetailsTable = (props) => (
               href="/edit/contact-representative"
               aria-label={props.t("Change contact representative")}
             >
-              {determineLinkText(props.contact_representative_name)}
+              {determineLinkText(props.contact_representative_name, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -572,7 +574,7 @@ const EstablishmentDetailsTable = (props) => (
               href="/edit/establishment-trading-name"
               aria-label={props.t("Change establishment trading name")}
             >
-              {determineLinkText(props.establishment_trading_name)}
+              {determineLinkText(props.establishment_trading_name, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -627,7 +629,8 @@ const EstablishmentDetailsTable = (props) => (
               {determineLinkText(
                 props.establishment_address_line_1 &&
                   props.establishment_town &&
-                  props.establishment_postcode
+                  props.establishment_postcode,
+                props
               )}
             </Link>
           </AccessibleChangeCell>
@@ -657,7 +660,7 @@ const EstablishmentDetailsTable = (props) => (
               href="/edit/establishment-address-type"
               aria-label={props.t("Change establishment address type")}
             >
-              {determineLinkText(props.establishment_type)}
+              {determineLinkText(props.establishment_type, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -694,7 +697,7 @@ const EstablishmentDetailsTable = (props) => (
               href="/edit/establishment-contact-details"
               aria-label={props.t("Change establishment contact details")}
             >
-              {determineLinkText(props.establishment_primary_number)}
+              {determineLinkText(props.establishment_primary_number, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -724,7 +727,7 @@ const EstablishmentDetailsTable = (props) => (
               href="/edit/establishment-contact-details"
               aria-label={props.t("Change establishment email")}
             >
-              {determineLinkText(props.establishment_email)}
+              {determineLinkText(props.establishment_email, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -760,7 +763,8 @@ const EstablishmentDetailsTable = (props) => (
             >
               {determineLinkText(
                 formatDate(props.establishment_opening_date, props.t("en")) !==
-                  "Invalid date" && props.establishment_opening_date
+                  "Invalid date" && props.establishment_opening_date,
+                props
               )}
             </Link>
           </AccessibleChangeCell>
@@ -852,7 +856,8 @@ const EstablishmentDetailsTable = (props) => (
                   props.opening_day_thursday ||
                   props.opening_day_friday ||
                   props.opening_day_saturday ||
-                  props.opening_day_sunday
+                  props.opening_day_sunday,
+                props
               )}
             </Link>
           </AccessibleChangeCell>
@@ -932,7 +937,8 @@ const EstablishmentDetailsTable = (props) => (
                   props.opening_hours_thursday ||
                   props.opening_hours_friday ||
                   props.opening_hours_saturday ||
-                  props.opening_hours_sunday
+                  props.opening_hours_sunday,
+                props
               )}
             </Link>
           </AccessibleChangeCell>
@@ -959,7 +965,7 @@ const EstablishmentDetailsTable = (props) => (
               href="/edit/business-water-supply"
               aria-label={props.t("Change water supply")}
             >
-              {determineLinkText(props.water_supply)}
+              {determineLinkText(props.water_supply, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -991,7 +997,7 @@ const FoodActivitiesTable = (props) => (
               href="/edit/customer-type"
               aria-label={props.t("Change activities customer type")}
             >
-              {determineLinkText(props.customer_type)}
+              {determineLinkText(props.customer_type, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -1018,7 +1024,7 @@ const FoodActivitiesTable = (props) => (
               href="/edit/business-type"
               aria-label={props.t("Change business type")}
             >
-              {determineLinkText(props.business_type)}
+              {determineLinkText(props.business_type, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -1048,7 +1054,7 @@ const FoodActivitiesTable = (props) => (
               href="/edit/business-import-export"
               aria-label={props.t("Change business activities import export")}
             >
-              {determineLinkText(props.import_export_activities)}
+              {determineLinkText(props.import_export_activities, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -1078,7 +1084,7 @@ const FoodActivitiesTable = (props) => (
               href="/edit/business-other-details"
               aria-label={props.t("Change business other details")}
             >
-              {determineLinkText(props.business_other_details)}
+              {determineLinkText(props.business_other_details, props)}
             </Link>
           </AccessibleChangeCell>
         )}
