@@ -25,6 +25,7 @@ describe("<OperatorAddressLookup />", () => {
             cumulativeFullAnswers={testCumulativeAnswers}
             switches={testSwitches}
             addressLookups={testAddressLookup}
+            editModeFirstPage="test"
           />
         </I18nextProvider>
       );
