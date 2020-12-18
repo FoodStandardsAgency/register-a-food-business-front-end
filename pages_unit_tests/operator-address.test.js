@@ -26,11 +26,13 @@ describe("<OperatorAddress />", () => {
     beforeEach(() => {
       const cumulativeAnswers = { registration_role: "PARTNERSHIP" };
       wrapper = mount(
-        <OperatorAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddress
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
     });
 
@@ -58,11 +60,13 @@ describe("<OperatorAddress />", () => {
   describe("Operator postcode input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddress
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const operatorPostcode = wrapper.find(
         "InputField#operatorPostcodeFindComponent"

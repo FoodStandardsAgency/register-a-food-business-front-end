@@ -16,11 +16,13 @@ describe("<BusinessType />", () => {
   it("renders a BusinessTypeLookup component and passes through the props", async () => {
     await act(async () => {
       wrapper = mount(
-        <BusinessType
-          validatorErrors={{}}
-          cumulativeFullAnswers={{}}
-          exampleProp="testing"
-        />
+        <I18nextProvider i18n={i18n}>
+          <BusinessType
+            validatorErrors={{}}
+            cumulativeFullAnswers={{}}
+            exampleProp="testing"
+          />
+        </I18nextProvider>
       );
     });
 

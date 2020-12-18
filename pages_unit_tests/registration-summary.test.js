@@ -35,11 +35,13 @@ describe("<RegistrationSummary />", () => {
 
     it("renders", () => {
       const wrapper = mount(
-        <RegistrationSummary
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          allValidationErrors={{}}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <RegistrationSummary
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            allValidationErrors={{}}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const summaryTable = wrapper.find("SummaryTable");
       expect(summaryTable.length).toBe(1);

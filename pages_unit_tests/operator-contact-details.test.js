@@ -23,11 +23,13 @@ describe("<OperatorContactDetails />", () => {
     it("renders with correct hint text", () => {
       const cumulativeAnswers = { registration_role: "PARTNERSHIP" };
       const wrapper = mount(
-        <OperatorContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorContactDetails
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const hintText = wrapper.find(HintText);
       expect(hintText.first().props().children).toBe(
@@ -39,11 +41,13 @@ describe("<OperatorContactDetails />", () => {
   describe("operator primary phone number input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <OperatorContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorContactDetails
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const operatorPrimaryContact = wrapper.find(
         "InputField#operator_primary_number"
@@ -56,11 +60,13 @@ describe("<OperatorContactDetails />", () => {
         operator_primary_number: "test error"
       };
       const wrapper = mount(
-        <OperatorContactDetails
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorContactDetails
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const operatorPrimaryContact = wrapper.find(
         "InputField#operator_primary_number"

@@ -11,13 +11,19 @@ describe("<Index />", () => {
 
   it("renders a BrowserUnsupportedBanner component if the browser is not supported", () => {
     const wrapper = mount(
-      <Index isBrowserSupported={false} isBrowserVersionVerified={true} />
+      <I18nextProvider i18n={i18n}>
+        <Index isBrowserSupported={false} isBrowserVersionVerified={true} />
+      </I18nextProvider>
     );
     const BrowserUnsupportedBanner = wrapper.find("BrowserUnsupportedBanner");
     expect(BrowserUnsupportedBanner.length).toBe(1);
   });
   it("does not render a BrowserUnsupportedBanner component if the browser is supported", () => {
-    const wrapper = mount(<Index isBrowserSupported={true} />);
+    const wrapper = mount(
+      <I18nextProvider i18n={i18n}>
+        <Index isBrowserSupported={true} />
+      </I18nextProvider>
+    );
     const BrowserUnsupportedBanner = wrapper.find("BrowserUnsupportedBanner");
     expect(BrowserUnsupportedBanner.length).toBe(0);
   });

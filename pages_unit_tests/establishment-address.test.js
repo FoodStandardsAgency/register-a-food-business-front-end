@@ -22,11 +22,13 @@ describe("<EstablishmentAddress />", () => {
   describe("Establishment postcode field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <EstablishmentAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentAddress
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const establishmentPostcode = wrapper.find(
         "InputField#establishment_postcode_find"
@@ -39,11 +41,13 @@ describe("<EstablishmentAddress />", () => {
         establishment_postcode_find: "test error"
       };
       const wrapper = mount(
-        <EstablishmentAddress
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentAddress
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const establishmentPostcode = wrapper.find(
         "InputField#establishment_postcode_find"

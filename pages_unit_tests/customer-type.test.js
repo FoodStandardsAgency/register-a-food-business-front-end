@@ -22,11 +22,13 @@ describe("<CustomerType />", () => {
   describe("renders 2 checkboxes with correct error props and default values", () => {
     it("renders 2 checkboxes", () => {
       const wrapper = mount(
-        <CustomerType
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <CustomerType
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const customerTypeCheckBox = wrapper.find("Checkbox");
       expect(customerTypeCheckBox.length).toBe(2);
@@ -37,11 +39,13 @@ describe("<CustomerType />", () => {
         supply_directly: "default"
       };
       const wrapper = mount(
-        <CustomerType
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <CustomerType
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const customerTypeCheckBox = wrapper.find(
         "Checkbox#customer_type_supply_directly"
@@ -54,11 +58,13 @@ describe("<CustomerType />", () => {
         supply_other: "default"
       };
       const wrapper = mount(
-        <CustomerType
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <CustomerType
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const customerTypeCheckBox = wrapper.find(
         "Checkbox#customer_type_supply_other"
@@ -73,11 +79,13 @@ describe("<CustomerType />", () => {
         customer_type: "test error"
       };
       const wrapper = mount(
-        <CustomerType
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <CustomerType
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const customerType = wrapper.find("MultiChoice");
       expect(customerType.props().meta.error).toBe("test error");

@@ -22,11 +22,13 @@ describe("<OperatorCharityDetails />", () => {
   describe("charity name input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <OperatorCharityDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorCharityDetails
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const operatorCharityName = wrapper.find(
         "InputField#operator_charity_name"
@@ -39,11 +41,13 @@ describe("<OperatorCharityDetails />", () => {
         operator_charity_name: "test error"
       };
       const wrapper = mount(
-        <OperatorCharityDetails
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorCharityDetails
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const operatorCharityName = wrapper.find(
         "InputField#operator_charity_name"
