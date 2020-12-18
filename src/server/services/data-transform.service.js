@@ -126,7 +126,7 @@ const transformAnswersForSubmit = (
       declaration: {}
     },
     local_council_url: lcUrl,
-    language: cumulativeFullAnswers.language
+    language: cumulativeFullAnswers ? cumulativeFullAnswers.language : ""
   };
 
   const data = Object.assign({}, cumulativeFullAnswers);
