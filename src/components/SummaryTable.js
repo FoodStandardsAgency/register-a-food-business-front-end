@@ -114,7 +114,7 @@ const ColumnHeaders = (props) => (
   </InvisibleRow>
 );
 
-const determineLinkText = (property) => {
+const determineLinkText = (property, props) => {
   return property ? props.t("Change") : props.t("Enter answer");
 };
 
