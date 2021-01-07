@@ -13,7 +13,8 @@ const {
 } = require("./data-transform.service");
 const { MAX_PARTNERS } = require("../config");
 const {
-  validatePartners
+  validatePartners,
+  validatePartnersAreUnique
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const errorMessages = {
@@ -68,7 +69,7 @@ const errorMessages = {
   opening_days_irregular: "Please describe when this establishment is open",
   opening_days_some: "Please select which days this establishment is open",
   partner_name: "Not a valid name",
-  partners: `Please define between 2-${MAX_PARTNERS} partners`,
+  partners: `Invalid partner names. Please define between 2-${MAX_PARTNERS} partners, ensuring that each is unique.`,
   main_partnership_contact:
     "You must select the main partnership contact before continuing",
   main_partnership_contact_deleted:
@@ -204,7 +205,10 @@ const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
   };
   pages.forEach((page) => {
     if (page === "/partner-name") {
-      if (!validatePartners(cumulativeFullAnswers.partners)) {
+      if (
+        !validatePartners(cumulativeFullAnswers.partners) ||
+        !validatePartnersAreUnique(cumulativeFullAnswers.partners)
+      ) {
         Object.assign(result.errors, {
           partners: errorMessages.partners
         });

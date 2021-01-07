@@ -23,6 +23,7 @@ const {
   validateBusinessOtherDetails,
   validateOpeningDaysIrregular,
   validatePartners,
+  validatePartnersAreUnique,
   validatePartnerName,
   validateOpeningHours,
   validateMandatoryString
@@ -88,6 +89,10 @@ const schema = {
       partners: {
         type: "array",
         validation: validatePartners
+      },
+      partners: {
+        type: "array",
+        validation: validatePartnersAreUnique
       }
     }
   },
