@@ -167,7 +167,7 @@ const ApplicationComplete = (props) => (
 
       {props.country === "wales" ? (
         <Heading as="h3" mb={2} size="SMALL">
-          {props.t("English")}
+          English
         </Heading>
       ) : null}
 
@@ -178,9 +178,7 @@ const ApplicationComplete = (props) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          {props.t(
-            "Guidance on food hygiene and how to run a safe food business"
-          )}
+          Guidance on food hygiene and how to run a safe food business
         </Link>
       </ContentItem.B_20_20>
       <ContentItem.B_20_20>
@@ -190,7 +188,7 @@ const ApplicationComplete = (props) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          {props.t("How to achieve a high food hygiene rating (FHRS score)")}
+          How to achieve a high food hygiene rating (FHRS score)
         </Link>
       </ContentItem.B_20_20>
 
@@ -202,7 +200,7 @@ const ApplicationComplete = (props) => (
             target="_blank"
             rel="noopener noreferrer"
           >
-            {props.t("Safe catering")}
+            Safe catering
           </Link>
         </ContentItem.B_20_20>
       ) : null}
@@ -214,9 +212,8 @@ const ApplicationComplete = (props) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          {props.t(
-            "Information on the food safety management system safer food, better business"
-          )}
+          Information on the food safety management system safer food, better
+          business
         </Link>
       </ContentItem.B_20_20>
 
@@ -227,7 +224,7 @@ const ApplicationComplete = (props) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          {props.t("Food labelling and allergens guidance")}
+          Food labelling and allergens guidance
         </Link>
       </ContentItem.B_20_20>
 
@@ -243,7 +240,7 @@ const ApplicationComplete = (props) => (
             target="_blank"
             rel="noopener noreferrer"
           >
-            {props.t("Business support")} -
+            Business support -
             {props.country === "wales" ? ` Wales` : " Northern Ireland"}
           </Link>
         </ContentItem.B_20_20>
@@ -256,14 +253,12 @@ const ApplicationComplete = (props) => (
               target="_blank"
               rel="noopener noreferrer"
             >
-              {props.t("Business support & helpline")}
+              Business support & helpline
             </Link>
           </ContentItem.B_20_20>
 
           <ContentItem.B_20_20>
-            {props.t(
-              "or contact the Business Support Helpline on 0800 998 1098"
-            )}
+            or contact the Business Support Helpline on 0800 998 1098
           </ContentItem.B_20_20>
         </ContentItem.B_30_15>
       )}
