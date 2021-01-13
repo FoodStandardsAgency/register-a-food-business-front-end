@@ -1,12 +1,11 @@
 import EstablishmentAddressLookup from "../pages/establishment-address-select";
 import { mount, shallow } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 const testCumulativeAnswers = {
   example: "test answer"
- // editModeFirstPage: "registration-role"
 };
-
-const testEditModeFirstPage = "/registration-role"
 
 const testSwitches = {};
 
@@ -18,67 +17,16 @@ describe("<EstablishmentAddressLookup />", () => {
     expect(wrapper.length).toBe(1);
   });
 
-  describe("Cant find address link", () => {
-    it("Displays the correct href when editModeFirstPage is true", () => {
-      const wrapper = mount(
-        <EstablishmentAddressLookup
-        cumulativeFullAnswers={testCumulativeAnswers}
-        editModeFirstPage = {testEditModeFirstPage}
-        switches={testSwitches}
-        addressLookups={testAddressLookup}
-        />
-      );
-      const establishmentAddressLink = wrapper.find('a#cantFindAddressLink');
-      expect(establishmentAddressLink.prop('href')).toContain('/establishment-address-manual?edit=establishment-address-manual');
-    });
-    it("Displays the correct href when editModeFirstPage is false", () => {
-      const wrapper = mount(
-        <EstablishmentAddressLookup
-        cumulativeFullAnswers={testCumulativeAnswers}
-        switches={testSwitches}
-        addressLookups={testAddressLookup}
-        />
-      );
-      const establishmentAddressLink = wrapper.find('a#cantFindAddressLink');
-      expect(establishmentAddressLink.prop('href')).toContain('/establishment-address-manual');
-    });
-  })
-
   describe("Establishment postcode display", () => {
-    it("displays the correct href when editModeFirstPage is true", () => {
-      const wrapper = mount(
-        <EstablishmentAddressLookup
-        cumulativeFullAnswers={testCumulativeAnswers}
-        editModeFirstPage = {testEditModeFirstPage}
-        switches={testSwitches}
-        addressLookups={testAddressLookup}
-        />
-      );
-      const establishmentLink = wrapper.find('a#changeEstablishmentPostcode');
-      expect(establishmentLink.prop('href')).toBe('/establishment-address?edit=establishment-address');
-    });
-    
-    it("displays the correct href when editModeFirstPage is false", () => {
-      const wrapper = mount(
-        <EstablishmentAddressLookup
-        cumulativeFullAnswers={testCumulativeAnswers}
-        switches={testSwitches}
-        addressLookups={testAddressLookup}
-        />
-      );
-      const establishmentLink = wrapper.find('a#changeEstablishmentPostcode');
-      expect(establishmentLink.prop('href')).toBe('/establishment-address');
-    });
-
-
-
     it("renders even when the addressLookups key is not found", () => {
       const wrapper = mount(
-        <EstablishmentAddressLookup
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentAddressLookup
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+            addressLookups={testAddressLookup}
+          />
+        </I18nextProvider>
       );
       const establishmentPostcode = wrapper.find(
         "Paragraph.establishmentPostcodeDisplay"
@@ -92,11 +40,14 @@ describe("<EstablishmentAddressLookup />", () => {
       };
 
       const wrapper = mount(
-        <EstablishmentAddressLookup
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentAddressLookup
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+            addressLookups={testAddressLookup}
+            editModeFirstPage="test"
+          />
+        </I18nextProvider>
       );
 
       const establishmentPostcode = wrapper.find(

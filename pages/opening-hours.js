@@ -10,6 +10,7 @@ import {
 } from "../src/components";
 import { Heading, InputField, HintText } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const OpeningHours = (props) => (
   <FsaLayout {...props}>
@@ -20,12 +21,13 @@ const OpeningHours = (props) => (
         onHandleErrorClick={OnHandleErrorClick}
       />
       <Heading as="h1" size="LARGE">
-        Opening hours
+        {props.t("Opening hours")}
       </Heading>
       <ContentItem.B_30_15>
         <HintText>
-          Fill in the expected opening times for this establishment using 24
-          hour clocks. For example, 09:30 to 19:00.
+          {props.t(
+            "Fill in the expected opening times for this establishment using 24 hour clocks."
+          )}
         </HintText>
       </ContentItem.B_30_15>
       {props.cumulativeFullAnswers.opening_days_start === "Every day" ||
@@ -39,11 +41,11 @@ const OpeningHours = (props) => (
             id="opening_hours_monday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_monday
+              error: props.t(props.validatorErrors.opening_hours_monday)
             }}
           >
             <Heading as="h4" mb={1} size="MEDIUM">
-              Monday
+              {props.t("Monday")}
             </Heading>
           </InputField>
         </ContentItem.B_20_20>
@@ -59,11 +61,11 @@ const OpeningHours = (props) => (
             id="opening_hours_tuesday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_tuesday
+              error: props.t(props.validatorErrors.opening_hours_tuesday)
             }}
           >
             <Heading as="h4" mb={1} size="MEDIUM">
-              Tuesday
+              {props.t("Tuesday")}
             </Heading>
           </InputField>
         </ContentItem.B_20_20>
@@ -79,11 +81,11 @@ const OpeningHours = (props) => (
             id="opening_hours_wednesday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_wednesday
+              error: props.t(props.validatorErrors.opening_hours_wednesday)
             }}
           >
             <Heading as="h4" mb={1} size="MEDIUM">
-              Wednesday
+              {props.t("Wednesday")}
             </Heading>
           </InputField>
         </ContentItem.B_20_20>
@@ -99,11 +101,11 @@ const OpeningHours = (props) => (
             id="opening_hours_thursday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_thursday
+              error: props.t(props.validatorErrors.opening_hours_thursday)
             }}
           >
             <Heading as="h4" mb={1} size="MEDIUM">
-              Thursday
+              {props.t("Thursday")}
             </Heading>
           </InputField>
         </ContentItem.B_20_20>
@@ -119,11 +121,11 @@ const OpeningHours = (props) => (
             id="opening_hours_friday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_friday
+              error: props.t(props.validatorErrors.opening_hours_friday)
             }}
           >
             <Heading as="h4" mb={1} size="MEDIUM">
-              Friday
+              {props.t("Friday")}
             </Heading>
           </InputField>
         </ContentItem.B_20_20>
@@ -139,11 +141,11 @@ const OpeningHours = (props) => (
             id="opening_hours_saturday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_saturday
+              error: props.t(props.validatorErrors.opening_hours_saturday)
             }}
           >
             <Heading as="h4" mb={1} size="MEDIUM">
-              Saturday
+              {props.t("Saturday")}
             </Heading>
           </InputField>
         </ContentItem.B_20_20>
@@ -159,11 +161,11 @@ const OpeningHours = (props) => (
             id="opening_hours_sunday"
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_hours_sunday
+              error: props.t(props.validatorErrors.opening_hours_sunday)
             }}
           >
             <Heading as="h4" mb={1} size="MEDIUM">
-              Sunday
+              {props.t("Sunday")}
             </Heading>
           </InputField>
         </ContentItem.B_20_20>
@@ -173,7 +175,7 @@ const OpeningHours = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(OpeningHours);
+export default withTranslation("common")(SessionWrapper(OpeningHours));
 
 OpeningHours.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

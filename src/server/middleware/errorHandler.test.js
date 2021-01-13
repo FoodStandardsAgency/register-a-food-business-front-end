@@ -13,7 +13,7 @@ const { error } = require("winston");
 
 describe("errorHandler", () => {
   app.render.mockImplementation();
-  it("should call app.render", () => {
+  it("should call Next", () => {
     errorHandler();
 
     expect(app.render).toHaveBeenCalled();

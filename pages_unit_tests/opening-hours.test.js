@@ -1,5 +1,7 @@
 import OpeningHours from "../pages/opening-hours";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 const testValidatorErrors = {
   example: "test error"
@@ -24,10 +26,12 @@ describe("<OpeningHours />", () => {
   describe("renders input fields for days the establishment is open with correct error props and default values", () => {
     it("does not render any input field when closed", () => {
       const wrapper = mount(
-        <OpeningHours
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={{}}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OpeningHours
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={{}}
+          />
+        </I18nextProvider>
       );
       const inputFields = wrapper.find("InputField");
       expect(inputFields.length).toBe(0);
@@ -35,10 +39,12 @@ describe("<OpeningHours />", () => {
 
     it("renders all input fields if open every day", () => {
       const wrapper = mount(
-        <OpeningHours
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={{ opening_days_start: "Every day" }}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OpeningHours
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={{ opening_days_start: "Every day" }}
+          />
+        </I18nextProvider>
       );
       const inputFields = wrapper.find("InputField");
       expect(inputFields.length).toBe(7);
@@ -46,10 +52,12 @@ describe("<OpeningHours />", () => {
 
     it("renders Monday input field when open", () => {
       const wrapper = mount(
-        <OpeningHours
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={{ opening_day_monday: "Monday" }}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OpeningHours
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={{ opening_day_monday: "Monday" }}
+          />
+        </I18nextProvider>
       );
       const inputFields = wrapper.find("InputField");
       expect(inputFields.length).toBe(1);

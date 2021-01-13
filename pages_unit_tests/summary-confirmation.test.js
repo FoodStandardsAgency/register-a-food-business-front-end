@@ -1,5 +1,7 @@
 import ApplicationComplete from "../pages/summary-confirmation";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 jest.mock("../src/server/services/data-transform.service");
 
 const cumulativeFullAnswers = {
@@ -58,13 +60,15 @@ describe("<ApplicationComplete />", () => {
   describe("SummaryTable component", () => {
     it("renders", () => {
       const wrapper = mount(
-        <ApplicationComplete
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          validatorErrors={{}}
-          applicationCompletePage={true}
-          lcConfig={lcConfigCombined}
-          transformedData={transformedData}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ApplicationComplete
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            validatorErrors={{}}
+            applicationCompletePage={true}
+            lcConfig={lcConfigCombined}
+            transformedData={transformedData}
+          />
+        </I18nextProvider>
       );
       const summaryTable = wrapper.find("SummaryTable");
       expect(summaryTable.length).toBe(1);
@@ -74,28 +78,32 @@ describe("<ApplicationComplete />", () => {
   describe("When given fsaRegistrationNumber", () => {
     it("The panel renders the number when defined", () => {
       const wrapper = mount(
-        <ApplicationComplete
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          validatorErrors={{}}
-          applicationCompletePage={true}
-          fsaRegistrationNumber="12345"
-          lcConfig={lcConfigCombined}
-          transformedData={transformedData}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ApplicationComplete
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            validatorErrors={{}}
+            applicationCompletePage={true}
+            fsaRegistrationNumber="12345"
+            lcConfig={lcConfigCombined}
+            transformedData={transformedData}
+          />
+        </I18nextProvider>
       );
       const panel = wrapper.find("Panel#panelWithNumber");
       expect(panel.length).toBe(1);
     });
     it("The panel renders 'Awaiting registration application reference' text when not defined", () => {
       const wrapper = mount(
-        <ApplicationComplete
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          validatorErrors={{}}
-          applicationCompletePage={true}
-          fsaRegistrationNumber={undefined}
-          lcConfig={lcConfigCombined}
-          transformedData={transformedData}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ApplicationComplete
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            validatorErrors={{}}
+            applicationCompletePage={true}
+            fsaRegistrationNumber={undefined}
+            lcConfig={lcConfigCombined}
+            transformedData={transformedData}
+          />
+        </I18nextProvider>
       );
       const panel = wrapper.find("Panel#panelWithText");
       expect(panel.length).toBe(1);
@@ -105,13 +113,15 @@ describe("<ApplicationComplete />", () => {
   describe("When given a split lcConfig", () => {
     it("The panel renders two sets of LC info", () => {
       const wrapper = mount(
-        <ApplicationComplete
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          validatorErrors={{}}
-          applicationCompletePage={true}
-          lcConfig={lcConfigSplit}
-          transformedData={transformedData}
-        />
+        <I18nextProvider i18n={i18n}>
+          <ApplicationComplete
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            validatorErrors={{}}
+            applicationCompletePage={true}
+            lcConfig={lcConfigSplit}
+            transformedData={transformedData}
+          />
+        </I18nextProvider>
       );
       const text = wrapper.find("#sentToCouncilsSection").text();
       expect(text.includes("Hygiene council name")).toBe(true);

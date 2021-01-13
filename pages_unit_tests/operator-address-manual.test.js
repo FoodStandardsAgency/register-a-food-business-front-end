@@ -1,5 +1,7 @@
 import OperatorAddress from "../pages/operator-address-manual";
 import { mount, shallow } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 const testValidatorErrors = {
   example: "test error"
@@ -20,11 +22,13 @@ describe("<OperatorAddress />", () => {
   describe("Operator first line input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddress
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const operator_address_line_1 = wrapper.find(
         "InputField#operator_address_line_1"
@@ -37,11 +41,13 @@ describe("<OperatorAddress />", () => {
         operator_address_line_1: "test error"
       };
       const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddress
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const operatorFirstLine = wrapper.find(
         "InputField#operator_address_line_1"

@@ -3,6 +3,7 @@ import { Table, Link, Button } from "govuk-react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import ContentItem from "./ContentItem";
+import { withTranslation } from "../../i18n.js";
 
 const AccessibleChangeCell = (props) => (
   <Table.Cell role="cell" className="partnersTableChangeCell" {...props}>
@@ -55,16 +56,16 @@ const InvisibleRow = styled(Table.Row)`
   }
 `;
 
-const ColumnHeaders = () => (
+const ColumnHeaders = (props) => (
   <InvisibleRow>
     <Table.CellHeader scope="col" role="columnheader">
-      Partner name
+      {props.t("Partner name")}
     </Table.CellHeader>
     <Table.CellHeader scope="col" role="columnheader">
-      Edit
+      {props.t("Edit")}
     </Table.CellHeader>
     <Table.CellHeader scope="col" role="columnheader">
-      Remove
+      {props.t("Remove")}
     </Table.CellHeader>
   </InvisibleRow>
 );
@@ -85,9 +86,9 @@ const PartnerRows = (props) => {
             href={`${props.partnerDetailsUrl}${
               hasGETParams ? "&" : "?"
             }id=${i}`}
-            aria-label="Change partner name"
+            aria-label={props.t("Change partner name")}
           >
-            Change
+            {props.t("Change")}
           </Link>
         </AccessibleChangeCell>
         <AccessibleChangeCell>
@@ -98,7 +99,7 @@ const PartnerRows = (props) => {
               value={i}
               id={`deletePartnerButton${i}`}
             >
-              Delete partner
+              {props.t("Delete partner")}
             </Button>
           </ContentItem.B_30_15>
         </AccessibleChangeCell>
@@ -110,7 +111,7 @@ const PartnerRows = (props) => {
 
 const TableBody = (props) => (
   <React.Fragment>
-    <ColumnHeaders />
+    <ColumnHeaders t={props.t} />
     <PartnerRows {...props} />
   </React.Fragment>
 );
@@ -127,7 +128,7 @@ const PartnersTable = (props) => (
   </React.Fragment>
 );
 
-export default PartnersTable;
+export default withTranslation("common")(PartnersTable);
 
 PartnersTable.propTypes = {
   partners: PropTypes.array

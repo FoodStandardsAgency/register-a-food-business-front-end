@@ -11,6 +11,7 @@ import {
 } from "../src/components";
 import { Heading, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const OperatorCharityDetails = (props) => (
   <FsaLayout {...props}>
@@ -20,18 +21,18 @@ const OperatorCharityDetails = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      Details of the operating charity, organisation or trust
+      {props.t("Details of the operating charity, organisation or trust")}
     </Heading>
 
     <HiddenTextAccessible
       hiddentextindex={1}
       id="hiddenTextFBO"
-      summary={"What is a food business operator?"}
+      summary={props.t("What is a food business operator?")}
     >
       <Paragraph mb={0}>
-        The operator is the person or people, charity or company who makes the
-        decisions about the food business. They decide what it serves and how it
-        operates.
+        {props.t(
+          "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
+        )}
       </Paragraph>
     </HiddenTextAccessible>
 
@@ -47,10 +48,10 @@ const OperatorCharityDetails = (props) => (
             id="operator_charity_name"
             meta={{
               touched: true,
-              error: props.validatorErrors["operator_charity_name"]
+              error: props.t(props.validatorErrors["operator_charity_name"])
             }}
           >
-            Charity, organisation or trust name
+            {props.t("Charity, organisation or trust name")}
           </InputField>
         </ContentItem.B_30_15>
 
@@ -64,29 +65,29 @@ const OperatorCharityDetails = (props) => (
             id="operator_charity_number"
             meta={{
               touched: true,
-              error: props.validatorErrors["operator_charity_number"]
+              error: props.t(props.validatorErrors["operator_charity_number"])
             }}
           >
-            Charity reference number (optional)
+            {props.t("Charity reference number (optional)")}
           </InputField>
         </ContentItem.B_30_15>
 
         <HiddenTextAccessible
           hiddentextindex={2}
           id="hiddenTextCharityNumbers"
-          summary={"Questions about charity reference numbers"}
+          summary={props.t("Questions about charity reference numbers")}
         >
           <span>
-            Charities that are registered with the Charities Commission will
-            have a charity reference number. You can find your charity reference
-            number by visiting the{" "}
+            {props.t(
+              "Charities that are registered with the Charities Commission will have a charity reference number. You can find your charity reference number by visiting the"
+            )}{" "}
             <a
               href="http://apps.charitycommission.gov.uk/Showcharity/RegisterOfCharities/registerhomepage.aspx"
               target="_blank"
               rel="noopener noreferrer"
               id="link-charity-commission"
             >
-              Charity Commission website (opens in new window)
+              {props.t("Charity Commission website (opens in new window)")}
             </a>
             .
           </span>
@@ -98,7 +99,9 @@ const OperatorCharityDetails = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(OperatorCharityDetails);
+export default withTranslation("common")(
+  SessionWrapper(OperatorCharityDetails)
+);
 
 OperatorCharityDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),

@@ -1,5 +1,7 @@
 import EstablishmentContactDetails from "../pages/establishment-contact-details";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const testValidatorErrors = {
@@ -24,11 +26,13 @@ describe("<EstablishmentContactDetails />", () => {
   describe("establishmentprimary phone number input field", () => {
     it("renders", () => {
       const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentContactDetails
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const establishmentPrimaryContact = wrapper.find(
         "InputField#establishment_primary_number"
@@ -41,11 +45,13 @@ describe("<EstablishmentContactDetails />", () => {
         establishment_primary_number: "test error"
       };
       const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentContactDetails
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const establishmentPrimaryContact = wrapper.find(
         "InputField#establishment_primary_number"
@@ -64,11 +70,13 @@ describe("<EstablishmentContactDetails />", () => {
       };
 
       const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentContactDetails
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const establishmentSecondaryNumber = wrapper.find(
         "InputField#establishment_primary_number"

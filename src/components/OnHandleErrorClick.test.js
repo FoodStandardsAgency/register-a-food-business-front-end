@@ -12,10 +12,4 @@ describe("On Handle Error Click function", () => {
     expect(document.getElementsByName).toHaveBeenCalledWith(targetName);
     expect(scrollIntoView).toHaveBeenCalled();
   });
-  it("Uses target name props to run the getElementsByName function", () => {
-    const targetNames = "establishment_opening_status";
-    OnHandleErrorClick(targetNames);
-    expect(document.getElementsByName).toHaveBeenCalledWith(targetNames);
-    expect(scrollIntoView).toHaveBeenCalled();
-  });
 });

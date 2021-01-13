@@ -1,4 +1,4 @@
-import BusinessTypeLookup from "../components/BusinessTypeLookup";
+import { BusinessTypeLookup } from "../components/BusinessTypeLookup";
 import { Paragraph } from "govuk-react";
 import { shallow, mount } from "enzyme";
 import { act } from "react-dom/test-utils"; // ES6
@@ -8,7 +8,11 @@ describe("<BusinessTypeLookup />", () => {
     let wrapper;
     await act(async () => {
       wrapper = shallow(
-        <BusinessTypeLookup validatorErrors cumulativeFullAnswers />
+        <BusinessTypeLookup
+          validatorErrors
+          cumulativeFullAnswers
+          t={(text) => text}
+        />
       );
     });
     expect(wrapper.length).toBe(1);
@@ -19,7 +23,11 @@ describe("<BusinessTypeLookup />", () => {
       let wrapperNoErrors;
       await act(async () => {
         wrapperNoErrors = shallow(
-          <BusinessTypeLookup validatorErrors={{}} cumulativeFullAnswers />
+          <BusinessTypeLookup
+            validatorErrors={{}}
+            cumulativeFullAnswers
+            t={(text) => text}
+          />
         );
       });
       const appliedClassNameNoErrors = wrapperNoErrors
@@ -32,6 +40,7 @@ describe("<BusinessTypeLookup />", () => {
           <BusinessTypeLookup
             validatorErrors={{ business_type: "An error" }}
             cumulativeFullAnswers
+            t={(text) => text}
           />
         );
       });
@@ -47,7 +56,11 @@ describe("<BusinessTypeLookup />", () => {
     beforeEach(async () => {
       await act(async () => {
         wrapper = mount(
-          <BusinessTypeLookup validatorErrors cumulativeFullAnswers />
+          <BusinessTypeLookup
+            validatorErrors
+            cumulativeFullAnswers
+            t={(text) => text}
+          />
         );
         wrapper.setState({ renderAutoCompleteSection: true });
         wrapper.update();

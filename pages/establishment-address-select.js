@@ -10,22 +10,23 @@ import {
 } from "../src/components";
 import { Heading, Paragraph, Link } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const EstablishmentAddressLookup = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <Heading as="h1" size="LARGE">
-      What is the establishment's address?
+      {props.t("What is the establishment's address?")}
     </Heading>
 
     <HiddenTextAccessible
       id="hiddenTextEstablishment"
-      summary={"What is an establishment?"}
+      summary={props.t("What is an establishment?")}
     >
       <Paragraph mb={0}>
-        An establishment is the location of your food business. If it is a
-        mobile food business, please use the location where it is normally
-        stored overnight.
+        {props.t(
+          "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight."
+        )}
       </Paragraph>
     </HiddenTextAccessible>
 
@@ -33,7 +34,7 @@ const EstablishmentAddressLookup = (props) => (
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Heading as="h2" size="MEDIUM">
-            Postcode
+            {props.t("Postcode")}
           </Heading>
           <Paragraph className="establishmentPostcodeDisplay" mb={0}>
             {props.cumulativeFullAnswers.establishment_postcode_find}
@@ -46,13 +47,15 @@ const EstablishmentAddressLookup = (props) => (
                 : "/establishment-address"
             }
           >
-            Change postcode
+            {props.t("Change postcode")}
           </Link>
         </ContentItem.B_30_15>
 
         <ContentItem.B_20_20>
           <SelectWithHeader
-            label={`Select an address for ${props.cumulativeFullAnswers.establishment_postcode_find}`}
+            label={`${props.t("Select an address for")} ${
+              props.cumulativeFullAnswers.establishment_postcode_find
+            }`}
             input={{
               id: "establishmentAddressDropdown",
               name: "establishment_address_selected",
@@ -69,7 +72,7 @@ const EstablishmentAddressLookup = (props) => (
                 )
               )
             ) : (
-              <option>No addresses found</option>
+              <option>{props.t("No addresses found")}</option>
             )}
           </SelectWithHeader>
         </ContentItem.B_20_20>
@@ -82,7 +85,7 @@ const EstablishmentAddressLookup = (props) => (
                 : `/new/${props.council}/establishment-address-manual`
             }
           >
-            I can't find my address in the list
+            {props.t("I can't find my address in the list")}
           </Link>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
@@ -92,7 +95,9 @@ const EstablishmentAddressLookup = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(EstablishmentAddressLookup);
+export default withTranslation("common")(
+  SessionWrapper(EstablishmentAddressLookup)
+);
 
 EstablishmentAddressLookup.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

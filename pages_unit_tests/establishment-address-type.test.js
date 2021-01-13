@@ -1,5 +1,7 @@
 import EstablishmentAddressType from "../pages/establishment-address-type";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 const testValidatorErrors = {
   example: "test error"
@@ -19,11 +21,13 @@ describe("<EstablishmentAddressType />", () => {
 
   it("renders 3 radio buttons with correct error props and default values", () => {
     const wrapper = mount(
-      <EstablishmentAddressType
-        validatorErrors={testValidatorErrors}
-        cumulativeFullAnswers={testCumulativeAnswers}
-        switches={testSwitches}
-      />
+      <I18nextProvider i18n={i18n}>
+        <EstablishmentAddressType
+          validatorErrors={testValidatorErrors}
+          cumulativeFullAnswers={testCumulativeAnswers}
+          switches={testSwitches}
+        />
+      </I18nextProvider>
     );
     const establishmentAddressTypeRadio = wrapper.find("Radio");
     expect(establishmentAddressTypeRadio.length).toBe(3);
@@ -35,11 +39,13 @@ describe("<EstablishmentAddressType />", () => {
         establishment_type: "test error"
       };
       const wrapper = mount(
-        <EstablishmentAddressType
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentAddressType
+            validatorErrors={validatorErrors}
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const establishmentAddressType = wrapper.find("MultiChoice");
       expect(establishmentAddressType.props().meta.error).toBe("test error");
@@ -49,8 +55,7 @@ describe("<EstablishmentAddressType />", () => {
   describe("all Radio buttons", () => {
     it("can be selected by default", () => {
       const radioButtonIdsAndValues = {
-        establishment_type_business_commercial:
-          "COMMERCIAL",
+        establishment_type_business_commercial: "COMMERCIAL",
         establishment_type_mobile_moveable: "MOBILE",
         establishment_type_home_domestic: "DOMESTIC"
       };

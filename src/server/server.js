@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 const cls = require("cls-hooked");
 const appInsights = require("applicationinsights");
 const morgan = require("morgan");

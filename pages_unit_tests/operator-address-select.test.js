@@ -1,11 +1,11 @@
 import OperatorAddressLookup from "../pages/operator-address-select";
 import { mount, shallow } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 const testCumulativeAnswers = {
   example: "test answer"
 };
-
-const testEditModeFirstPage = "/registration-role"
 
 const testSwitches = {};
 
@@ -17,48 +17,17 @@ describe("<OperatorAddressLookup />", () => {
     expect(wrapper.length).toBe(1);
   });
 
-
-
-  describe("Cant find address link", () => {
-    it("Displays the correct href when editModeFirstPage is true", () => {
-      const cumulativeFullAnswers = {
-        operator_postcode_find: "default"
-      };
-      const wrapper = mount(
-        <OperatorAddressLookup
-        cumulativeFullAnswers={testCumulativeAnswers}
-        editModeFirstPage = {testEditModeFirstPage}
-        switches={testSwitches}
-        addressLookups={testAddressLookup}
-        />
-      );
-      const operatorAddressLink = wrapper.find('a#cantFindAddressLink');
-      expect(operatorAddressLink.prop('href')).toContain('/operator-address-manual?edit=operator-address-manual');
-    });
-    it("Displays the correct href when editModeFirstPage is false", () => {
-      const cumulativeFullAnswers = {
-        operator_postcode_find: "default"
-      };
-      const wrapper = mount(
-        <OperatorAddressLookup
-        cumulativeFullAnswers={testCumulativeAnswers}
-        switches={testSwitches}
-        addressLookups={testAddressLookup}
-        />
-      );
-      const operatorAddressLink= wrapper.find('a#cantFindAddressLink');
-      expect(operatorAddressLink.prop('href')).toContain('/operator-address-manual');
-    });
-  })
-
   describe("Operator postcode display", () => {
     it("renders even when the addressLookups key is not found", () => {
       const wrapper = mount(
-        <OperatorAddressLookup
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddressLookup
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+            addressLookups={testAddressLookup}
+            editModeFirstPage="test"
+          />
+        </I18nextProvider>
       );
       const operatorPostcode = wrapper.find(
         "Paragraph.operatorPostcodeDisplay"
@@ -66,49 +35,18 @@ describe("<OperatorAddressLookup />", () => {
       expect(operatorPostcode.length).toBe(1);
     });
 
-    it('displays the correct href when editModeFirstPage is true', () => {
-      const cumulativeFullAnswers = {
-        operator_postcode_find: "default"
-      };
-      const wrapper = mount(
-        <OperatorAddressLookup
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          editModeFirstPage = {testEditModeFirstPage}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
-      );
-      const operatorLink = wrapper.find("a#changeOperatorPostcode")
-      expect(operatorLink.prop('href')).toBe("/operator-address?edit=operator-address")
-    })
-
-    it('displays the correct href when editModeFirstPage is false', () => {
-      const cumulativeFullAnswers = {
-        operator_postcode_find: "default"
-      };
-      const wrapper = mount(
-        <OperatorAddressLookup
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
-      );
-      const operatorLink = wrapper.find("a#changeOperatorPostcode")
-      expect(operatorLink.prop('href')).toBe("/operator-address")
-    })
-
-    
-
     it("gets given the correct default value", () => {
       const cumulativeFullAnswers = {
         operator_postcode_find: "default"
       };
       const wrapper = mount(
-        <OperatorAddressLookup
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddressLookup
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+            addressLookups={testAddressLookup}
+          />
+        </I18nextProvider>
       );
       const operatorPostcode = wrapper.find(
         "Paragraph.operatorPostcodeDisplay"
@@ -154,11 +92,13 @@ describe("<OperatorAddressLookup />", () => {
       };
 
       const wrapper = mount(
-        <OperatorAddressLookup
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-          addressLookups={exampleAddressLookup}
-        />
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddressLookup
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+            addressLookups={exampleAddressLookup}
+          />
+        </I18nextProvider>
       );
 
       const operatorAddressSelect = wrapper.find(

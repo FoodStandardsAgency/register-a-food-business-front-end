@@ -1,5 +1,7 @@
 import InternalServerError from "../pages/internal-server-error";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 const req = {};
 req.session = {};
@@ -46,29 +48,37 @@ describe("<Error />", () => {
 
   it("has a back to start button with correct link when council set", () => {
     const wrapper = mount(
-      <InternalServerError
-        statusCode="500"
-        council="council"
-        referrer="referrer"
-      />
+      <I18nextProvider i18n={i18n}>
+        <InternalServerError
+          statusCode="500"
+          council="council"
+          referrer="referrer"
+        />
+      </I18nextProvider>
     );
     const backLink = wrapper.find("BackLink");
     expect(backLink.props().href).toBe("/new/council");
   });
 
   it("has a back to start button with correct link when council not set", () => {
-    const wrapper = mount(<InternalServerError statusCode="500" />);
+    const wrapper = mount(
+      <I18nextProvider i18n={i18n}>
+        <InternalServerError statusCode="500" />
+      </I18nextProvider>
+    );
     const backLink = wrapper.find("BackLink");
     expect(backLink.props().href).toBe("/");
   });
 
   it("has a to food.gov.uk button with correct link", () => {
     const wrapper = mount(
-      <InternalServerError
-        statusCode="500"
-        council="council"
-        referrer="referrer"
-      />
+      <I18nextProvider i18n={i18n}>
+        <InternalServerError
+          statusCode="500"
+          council="council"
+          referrer="referrer"
+        />
+      </I18nextProvider>
     );
     const form = wrapper.find("form#server-error-form");
     expect(form.props().action).toBe(

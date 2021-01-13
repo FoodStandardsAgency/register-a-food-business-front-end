@@ -28,7 +28,8 @@ const comprehensiveReqSessionObject = {
     isBrowserVersionVerified: true,
     country: "wales",
     lcName: "cardiff county",
-    csrfToken: "csrfToken"
+    csrfToken: "csrfToken",
+    language: "en"
   },
   csrfToken: function () {
     return "csrfToken";
@@ -88,7 +89,7 @@ describe("<SessionWrapper />", () => {
 
       it("returns empty values of a valid type for each possible item as part of the initial props, and passes those to the resulting child component", () => {
         for (let dataItem in comprehensiveReqSessionObject.session) {
-          if (dataItem === "csrfToken") {
+          if (dataItem === "csrfToken" || "language") {
             continue;
           }
 

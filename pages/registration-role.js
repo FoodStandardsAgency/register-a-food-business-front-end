@@ -11,6 +11,7 @@ import {
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { Radio, MultiChoice, Fieldset } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const RegistrationRole = (props) => (
   <FsaLayout {...props}>
@@ -28,13 +29,13 @@ const RegistrationRole = (props) => (
             isPageHeading
             style={{ marginBottom: "30px" }}
           >
-            What is your role in this food business?
+            {props.t("What is your role in this food business?")}
           </Fieldset.Legend>
           <MultiChoice
             label=""
             meta={{
               touched: true,
-              error: props.validatorErrors.registration_role
+              error: props.t(props.validatorErrors.registration_role)
             }}
           >
             <Radio
@@ -46,7 +47,7 @@ const RegistrationRole = (props) => (
                 operatorTypeEnum.SOLETRADER.key
               }
             >
-              I operate it as a sole trader
+              {props.t("I operate it as a sole trader")}
             </Radio>
             <Radio
               name="registration_role"
@@ -57,7 +58,7 @@ const RegistrationRole = (props) => (
                 operatorTypeEnum.PARTNERSHIP.key
               }
             >
-              I operate it in a partnership
+              {props.t("I operate it in a partnership")}
             </Radio>
             <Radio
               name="registration_role"
@@ -68,8 +69,9 @@ const RegistrationRole = (props) => (
                 "Representative"
               }
             >
-              I represent a person, charity, limited company (Ltd), organisation
-              or trust that operates it
+              {props.t(
+                "I represent a person, charity, limited company (Ltd), organisation or trust that operates it"
+              )}
             </Radio>
           </MultiChoice>
         </Fieldset>
@@ -80,7 +82,7 @@ const RegistrationRole = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(RegistrationRole);
+export default withTranslation("common")(SessionWrapper(RegistrationRole));
 
 RegistrationRole.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

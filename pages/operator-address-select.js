@@ -10,6 +10,7 @@ import {
 } from "../src/components";
 import { Heading, Paragraph, Link } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const OperatorAddressLookup = (props) => (
   <FsaLayout {...props}>
@@ -19,7 +20,7 @@ const OperatorAddressLookup = (props) => (
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Heading as="h2" size="MEDIUM">
-            Postcode
+            {props.t("Postcode")}
           </Heading>
           <Paragraph className="operatorPostcodeDisplay" mb={0}>
             {props.cumulativeFullAnswers.operator_postcode_find}
@@ -32,12 +33,14 @@ const OperatorAddressLookup = (props) => (
                 : "/operator-address"
             }
           >
-            Change postcode
+            {props.t("Change postcode")}
           </Link>
         </ContentItem.B_30_15>
         <ContentItem.B_20_20>
           <SelectWithHeader
-            label={`Select an address for ${props.cumulativeFullAnswers.operator_postcode_find}`}
+            label={`${props.t("Select an address for")} ${
+              props.cumulativeFullAnswers.operator_postcode_find
+            }`}
             input={{
               id: "operatorAddressDropdown",
               name: "operator_address_selected",
@@ -54,7 +57,7 @@ const OperatorAddressLookup = (props) => (
                 )
               )
             ) : (
-              <option>No addresses found</option>
+              <option>{props.t("No addresses found")}</option>
             )}
           </SelectWithHeader>
         </ContentItem.B_20_20>
@@ -68,7 +71,7 @@ const OperatorAddressLookup = (props) => (
                 : `/new/${props.council}/operator-address-manual`
             }
           >
-            I can't find my address in the list
+            {props.t("I can't find my address in the list")}
           </Link>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
@@ -78,7 +81,7 @@ const OperatorAddressLookup = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(OperatorAddressLookup);
+export default withTranslation("common")(SessionWrapper(OperatorAddressLookup));
 
 OperatorAddressLookup.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
