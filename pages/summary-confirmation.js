@@ -163,7 +163,6 @@ const ApplicationComplete = (props) => (
       <Heading as="h2" size="LARGE">
         {props.t("Find out here what you can do to prepare:")}
       </Heading>
-      <HintText mb={3}>{props.t("All links open in a new window")}</HintText>
 
       {props.country === "wales" ? (
         <Heading as="h3" mb={2} size="SMALL">
@@ -179,7 +178,7 @@ const ApplicationComplete = (props) => (
           rel="noopener noreferrer"
         >
           {props.t(
-            "Guidance on food hygiene and how to run a safe food business"
+            "Guidance on food hygiene and how to run a safe food business (opens in a new window)"
           )}
         </Link>
       </ContentItem.B_20_20>
@@ -190,7 +189,9 @@ const ApplicationComplete = (props) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          {props.t("How to achieve a high food hygiene rating (FHRS score)")}
+          {props.t(
+            "How to achieve a high food hygiene rating (FHRS score) (opens in a new window)"
+          )}
         </Link>
       </ContentItem.B_20_20>
 
@@ -202,7 +203,7 @@ const ApplicationComplete = (props) => (
             target="_blank"
             rel="noopener noreferrer"
           >
-            {props.t("Safe catering")}
+            {props.t("Safe catering (opens in a new window)")}
           </Link>
         </ContentItem.B_20_20>
       ) : null}
@@ -215,7 +216,7 @@ const ApplicationComplete = (props) => (
           rel="noopener noreferrer"
         >
           {props.t(
-            "Information on the food safety management system safer food, better business"
+            "Information on the food safety management system safer food, better business (opens in a new window)"
           )}
         </Link>
       </ContentItem.B_20_20>
@@ -227,7 +228,9 @@ const ApplicationComplete = (props) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          {props.t("Food labelling and allergens guidance")}
+          {props.t(
+            "Food labelling and allergens guidance (opens in a new window)"
+          )}
         </Link>
       </ContentItem.B_20_20>
 
@@ -244,7 +247,8 @@ const ApplicationComplete = (props) => (
             rel="noopener noreferrer"
           >
             {props.t("Business support")} -
-            {props.country === "wales" ? ` Wales` : " Northern Ireland"}
+            {props.country === "wales" ? " Wales" : " Northern Ireland"}
+            {props.t(" (opens in a new window)")}
           </Link>
         </ContentItem.B_20_20>
       ) : (
@@ -256,7 +260,7 @@ const ApplicationComplete = (props) => (
               target="_blank"
               rel="noopener noreferrer"
             >
-              {props.t("Business support & helpline")}
+              {props.t("Business support & helpline (opens in a new window)")}
             </Link>
           </ContentItem.B_20_20>
 
@@ -281,7 +285,7 @@ const ApplicationComplete = (props) => (
               rel="noopener noreferrer"
             >
               I gael cyngor cyffredinol ar hylendid bwyd a sut i redeg busnes
-              bwyd diogel
+              bwyd diogel (agor mewn ffenestr newydd)
             </Link>
           </ContentItem.B_20_20>
 
@@ -293,7 +297,7 @@ const ApplicationComplete = (props) => (
               rel="noopener noreferrer"
             >
               I gael gwybodaeth am sut i gael sgôr uchel o dan y Cynllun Sgorio
-              Hylendid Bwyd
+              Hylendid Bwyd (agor mewn ffenestr newydd)
             </Link>
           </ContentItem.B_20_20>
 
@@ -305,7 +309,7 @@ const ApplicationComplete = (props) => (
               rel="noopener noreferrer"
             >
               I gael gwybodaeth am y system rheoli diogelwch bwyd, Bwyd mwy
-              Diogel, Busnes Gwell
+              Diogel, Busnes Gwell (agor mewn ffenestr newydd)
             </Link>
           </ContentItem.B_20_20>
 
@@ -316,7 +320,8 @@ const ApplicationComplete = (props) => (
               target="_blank"
               rel="noopener noreferrer"
             >
-              I gael canllawiau ar labelu bwyd ac alergenau
+              I gael canllawiau ar labelu bwyd ac alergenau (agor mewn ffenestr
+              newydd)
             </Link>
           </ContentItem.B_20_20>
 
@@ -327,7 +332,7 @@ const ApplicationComplete = (props) => (
               target="_blank"
               rel="noopener noreferrer"
             >
-              I gael cyngor busnes cyffredinol
+              I gael cyngor busnes cyffredinol (agor mewn ffenestr newydd)
             </Link>
           </ContentItem.B_20_20>
         </ContentItem.B_30_15>

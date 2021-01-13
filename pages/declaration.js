@@ -135,7 +135,7 @@ class Declaration extends React.Component {
             </Checkbox>
             <Paragraph linkRenderer={NewTabLinkRenderer}>
               {this.props.t(
-                "[Details on how we use your data](/pdfs/feedback)"
+                "[How we will use your data (feedback pdf opens in new window)](/pdfs/feedback)"
               )}
             </Paragraph>
           </ContentItem.B_45_30>
