@@ -24,13 +24,6 @@ const EstablishmentContactDetails = (props) => (
     <Heading as="h1" size="LARGE">
       {props.t("Establishment contact details")}
     </Heading>
-    <HiddenTextAccessible summary={props.t("What is an establishment?")}>
-      <Paragraph mb={0}>
-        {props.t(
-          "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
-        )}
-      </Paragraph>
-    </HiddenTextAccessible>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <Button
