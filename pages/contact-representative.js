@@ -22,7 +22,7 @@ const ContactRepresentative = (props) => {
         onHandleErrorClick={OnHandleErrorClick}
       />
       <Heading as="h1" size="LARGE">
-        {props.t("Operator contact details")}
+        {props.t("Contact Details")}
       </Heading>
       <Paragraph>
         {props.t(
