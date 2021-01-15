@@ -237,7 +237,7 @@
   "Establishment Address": "Establishment Address",
   "Establishment Address Type": "Establishment Address Type",
   "Establishment Contact Details": "Establishment Contact Details",
-  "Opening Date": "Opening Date",
+  "Opening Date": "Opening date",
   "Opening Status": "Opening Status",
   "Trading Name": "Trading Name",
   "Point of Contact": "Point of Contact",
@@ -377,5 +377,9 @@
   "This service is also available in": "This service is also available in",
   "en": "en",
   "Enter answer": "Enter answer",
-  "Accepted": "Accepted"
+  "Accepted": "Accepted",
+  "Establishment postcode": "Establishment postcode",
+  "Expected opening date": "Expected opening date",
+  "Opening periods": "Opening periods",
+  "Operator postcode": "Operator postcode"
 }

@@ -377,5 +377,9 @@
   "This service is also available in": "Mae’r gwasanaeth hwn ar gael hefyd yn",
   "en": "cy",
   "Enter answer": "Nodwch yr ateb",
-  "Accepted": "Derbyniwyd"
+  "Accepted": "Derbyniwyd",
+  "Establishment postcode": "Cod post sefydliad",
+  "Expected opening date": "Dyddiad agor disgwyliedig",
+  "Opening periods": "Cyfnodau agor",
+  "Operator postcode": "Cod post gweithredwr"
 }
