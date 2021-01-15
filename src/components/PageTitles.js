@@ -11,10 +11,10 @@ const PageTitles = {
     "business-type": "What kind of food business are you registering?",
     "business-water-supply":
       "What type of water supply does this establishment use?",
-    "contact-representative": "Operator contact details",
+    "contact-representative": "Contact details",
     "customer-type": "Who will this establishment supply food to?",
     declaration: "Declaration",
-    "establishment-address": "Establishment Postcode",
+    "establishment-address": "Establishment postcode",
     "establishment-address-manual": "What is the establishment's address?",
     "establishment-address-select": "Establishment Address",
     "establishment-address-type": "Where is this establishment located?",
@@ -29,7 +29,7 @@ const PageTitles = {
     "opening-days-start":
       "What days will this establishment be open and producing or serving food?",
     "opening-hours": "Opening hours",
-    "operator-address": "Operator Postcode",
+    "operator-address": "Operator postcode",
     "operator-address-manual": "What is the operator's address?",
     "operator-address-select": "Operator address",
     "operator-charity-details":
@@ -38,7 +38,7 @@ const PageTitles = {
     "operator-contact-details": "Operator contact details",
     "operator-name": "What is the operator's name?",
     "operator-type": "Who operates this business?",
-    "partner-details": "Partner Details",
+    "partner-details": "Partner details",
     "partner-name": "What are the partners' names?",
     "registration-role": "What is your role in this food business?",
     "registration-summary": "Check your answers",
