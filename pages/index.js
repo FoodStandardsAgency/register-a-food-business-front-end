@@ -54,7 +54,7 @@ const Index = (props) => (
         {props.t("Registering Local Authority")}
       </Heading>
       <Paragraph>
-        {`**${props.lcName}**
+        {`**${props.t(`localAuthorities:${props.lcName}`)}**
         ${props.t(
           "is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this Food Business Registration(www.gov.uk/food-business-registration) link to check using the location or site of your food business."
         )}`}
@@ -78,4 +78,6 @@ const Index = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("common")(SessionWrapper(Index));
+export default withTranslation(["common", "localAuthorities"])(
+  SessionWrapper(Index)
+);
