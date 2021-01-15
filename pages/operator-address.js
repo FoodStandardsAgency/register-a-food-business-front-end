@@ -20,7 +20,10 @@ const OperatorAddress = (props) => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
+    <AddressHelp
+      role={props.cumulativeFullAnswers.registration_role}
+      header={props.t("Operator postcode")}
+    />
     <PostForm
       action="/findaddress/operator-address"
       csrfToken={props.csrfToken}

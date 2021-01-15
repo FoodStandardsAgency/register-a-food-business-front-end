@@ -23,7 +23,7 @@ const AddressHelp = (props) => {
   ) : (
     <React.Fragment>
       <Heading as="h1" size="LARGE">
-        {props.t("What is the operator's address?")}
+        {props.header}
       </Heading>
       <ContentItem.B_30_15>
         <HintText>

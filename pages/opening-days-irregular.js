@@ -27,7 +27,7 @@ const OtherDaysIrregular = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      {props.t("Opening days")}
+      {props.t("Opening periods")}
     </Heading>
 
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
