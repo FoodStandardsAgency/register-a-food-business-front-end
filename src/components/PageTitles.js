@@ -29,13 +29,13 @@ const PageTitles = {
     "opening-days-start":
       "What days will this establishment be open and producing or serving food?",
     "opening-hours": "Opening hours",
-    "operator-address": "Operator postcode",
+    "operator-address": "Postcode select",
     "operator-address-manual": "What is the operator's address?",
-    "operator-address-select": "Operator address",
+    "operator-address-select": "Address select",
     "operator-charity-details":
       "Details of the operating charity, organisation or trust",
     "operator-company-details": "Company details",
-    "operator-contact-details": "Operator contact details",
+    "operator-contact-details": "Contact information",
     "operator-name": "What is the operator's name?",
     "operator-type": "Who operates this business?",
     "partner-details": "Partner details",

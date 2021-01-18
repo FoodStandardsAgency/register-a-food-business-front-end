@@ -17,7 +17,7 @@ const OperatorAddressLookup = (props) => (
     <BackButton {...props} />
     <AddressHelp
       role={props.cumulativeFullAnswers.registration_role}
-      header={props.t("Operator address")}
+      header={props.t("Address select")}
     />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>

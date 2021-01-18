@@ -22,14 +22,7 @@ const OperatorContactDetails = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      {props.t(
-        `${
-          props.cumulativeFullAnswers.registration_role ===
-          operatorTypeEnum.PARTNERSHIP.key
-            ? "Partnership"
-            : "Operator"
-        } contact details`
-      )}
+      {props.t("Contact information")}
     </Heading>
     <ContactDetailsHelp role={props.cumulativeFullAnswers.registration_role} />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>

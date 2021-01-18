@@ -22,7 +22,7 @@ const OperatorAddress = (props) => (
     />
     <AddressHelp
       role={props.cumulativeFullAnswers.registration_role}
-      header={props.t("Operator postcode")}
+      header={props.t("Postcode select")}
     />
     <PostForm
       action="/findaddress/operator-address"
