@@ -38,9 +38,7 @@ describe("<OperatorAddress />", () => {
 
     it("renders correct header", () => {
       const header = wrapper.find(Heading);
-      expect(header.at(1).props().children).toBe(
-        "What is the partnership contact's address?"
-      );
+      expect(header.at(1).props().children).toBe("Postcode select");
     });
 
     it("renders correct hint text", () => {
