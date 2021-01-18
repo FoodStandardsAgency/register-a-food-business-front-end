@@ -13,7 +13,8 @@ const ContinueButton = (props) => (
     disabled={props.disabled}
     id="continue-button"
     type="submit"
-    icon={props.type === "begin" ? <ButtonArrow /> : null}
+    aria-hidden="true"
+    focusable="false"
     start={props.type === "begin"}
   >
     {props.type === "begin"
