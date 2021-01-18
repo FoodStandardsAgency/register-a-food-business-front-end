@@ -11,7 +11,6 @@ const {
   separateBracketsFromBusinessType,
   transformBusinessTypeForSubmit
 } = require("./data-transform.service");
-const { MAX_PARTNERS } = require("../config");
 const {
   validatePartners
 } = require("@slice-and-dice/register-a-food-business-validation");
@@ -68,7 +67,7 @@ const errorMessages = {
   opening_days_irregular: "Please describe when this establishment is open",
   opening_days_some: "Please select which days this establishment is open",
   partner_name: "Not a valid name",
-  partners: `Please define between 2-${MAX_PARTNERS} partners`,
+  partners: `You have entered an invalid number of partners or a duplicate partner name. Please define between 2-5 partners, using initials or middle name to ensure that each entry is unique.`,
   main_partnership_contact:
     "You must select the main partnership contact before continuing",
   main_partnership_contact_deleted:

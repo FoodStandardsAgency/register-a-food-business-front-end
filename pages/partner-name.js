@@ -34,6 +34,11 @@ const ButtonsRow = (props) => (
             {props.t("Add partner")}
           </Button>
         </a>
+        <HintText>
+          {props.t(
+            "Please use initials or middle names as necessary to ensure each partner name is unique."
+          )}
+        </HintText>
       </ContentItem.B_30_15>
     ) : null}
     {props.cumulativeFullAnswers.partners &&

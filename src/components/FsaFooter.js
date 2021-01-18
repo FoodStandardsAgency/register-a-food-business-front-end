@@ -72,7 +72,11 @@ const FsaFooter = (props) => (
             <FooterListItem>
               <FooterLink
                 id="cookiePolicyFooter"
-                href="https://www.food.gov.uk/cookie-policy"
+                href={
+                  i18n.language === "cy"
+                    ? "https://www.food.gov.uk/cy/polisi-cwcis"
+                    : "https://www.food.gov.uk/cookie-policy"
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={props.t("cookie policy (opens in a new window)")}
@@ -84,7 +88,11 @@ const FsaFooter = (props) => (
             <FooterListItem>
               <FooterLink
                 id="privacyPolicyFooter"
-                href="https://www.food.gov.uk/about-us/register-a-food-business-privacy-notice"
+                href={
+                  i18n.language === "cy"
+                    ? "https://www.food.gov.uk/cy/amdanom-ni/hysbysiad-preifatrwydd-cofrestru-busnes-bwyd"
+                    : "https://www.food.gov.uk/about-us/register-a-food-business-privacy-notice"
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={props.t("privacy policy (opens in a new window)")}
@@ -110,7 +118,11 @@ const FsaFooter = (props) => (
             <FooterListItem>
               <FooterLink
                 id="accessibilityFooter"
-                href="https://www.food.gov.uk/accessibility-rafb"
+                href={
+                  i18n.language === "cy"
+                    ? "https://www.food.gov.uk/cy/arall/datganiad-hygyrchedd-ar-gyfer-y-gwasanaeth-cofrestru-busnesau-bwyd"
+                    : "https://www.food.gov.uk/accessibility-rafb"
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={props.t(
