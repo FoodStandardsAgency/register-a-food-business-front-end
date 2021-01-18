@@ -30,7 +30,7 @@ describe("<OpeningDate />", () => {
 
     beforeEach(() => {
       const cumulativeAnswersProactive = {
-        establishment_opening_status: "Establishment is not trading yet",
+        establishment_opening_status: "Establishment due to trade",
         day: "01",
         month: "01",
         year: "2050"
