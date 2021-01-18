@@ -44,7 +44,7 @@ const OpeningDate = (props) => {
         </Paragraph>
       </HiddenTextAccessible>
       {props.cumulativeFullAnswers.establishment_opening_status ===
-      "Establishment is not trading yet" ? (
+      "Establishment due to trade" ? (
         <PostForm action={props.formAction} csrfToken={props.csrfToken}>
           <div>
             <DateField

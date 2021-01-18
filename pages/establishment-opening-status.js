@@ -64,11 +64,11 @@ const EstablishmentOpeningStatus = (props) => (
             </Radio>
             <Radio
               name="establishment_opening_status"
-              value="Establishment is not trading yet"
+              value="Establishment due to trade"
               id="establishment_opening_status_not_trading"
               defaultChecked={
                 props.cumulativeFullAnswers.establishment_opening_status ===
-                "Establishment is not trading yet"
+                "Establishment due to trade"
               }
             >
               {props.t("No, it is not trading yet")}

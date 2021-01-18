@@ -59,8 +59,7 @@ describe("<EstablishmentOpeningStatus />", () => {
       const radioButtonIdsAndValues = {
         establishment_opening_status_already_trading:
           "Establishment is already trading",
-        establishment_opening_status_not_trading:
-          "Establishment is not trading yet"
+        establishment_opening_status_not_trading: "Establishment due to trade"
       };
 
       for (let radioButtonId in radioButtonIdsAndValues) {
