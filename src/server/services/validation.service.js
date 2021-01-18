@@ -12,8 +12,7 @@ const {
   transformBusinessTypeForSubmit
 } = require("./data-transform.service");
 const {
-  validatePartners,
-  validatePartnersAreUnique
+  validatePartners
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const errorMessages = {
@@ -204,10 +203,7 @@ const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
   };
   pages.forEach((page) => {
     if (page === "/partner-name") {
-      if (
-        !validatePartners(cumulativeFullAnswers.partners) ||
-        !validatePartnersAreUnique(cumulativeFullAnswers.partners)
-      ) {
+      if (!validatePartners(cumulativeFullAnswers.partners)) {
         Object.assign(result.errors, {
           partners: errorMessages.partners
         });
