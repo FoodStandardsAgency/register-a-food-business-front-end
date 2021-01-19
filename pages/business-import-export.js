@@ -90,7 +90,9 @@ const ImportExportActivities = (props) => (
             <br />
             {props.t("Find out more by visiting the")}{" "}
             <a
-              href="https://www.food.gov.uk/business-guidance/imports-exports"
+              href={
+                props.t("links:import/export-link")
+              }
               target="_blank"
               rel="noopener noreferrer"
               id="link-fsa-website"
@@ -107,7 +109,7 @@ const ImportExportActivities = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("common")(
+export default withTranslation(["common", "links"])(
   SessionWrapper(ImportExportActivities)
 );
 

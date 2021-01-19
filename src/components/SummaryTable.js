@@ -800,7 +800,7 @@ const EstablishmentDetailsTable = (props) => (
               : "opening_days_some"
           }`}
         >
-          {props.opening_days_irregular || props.open_some_days_summary_table || (
+          {props.t(props.opening_days_irregular) || props.t(props.open_some_days_summary_table) || (
             <div>
               <div id="opening_day_monday">
                 {props.opening_day_monday
