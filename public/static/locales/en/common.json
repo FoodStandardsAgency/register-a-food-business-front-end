@@ -379,5 +379,6 @@
   "Enter answer": "Enter answer",
   "Accepted": "Accepted",
   "You have entered an invalid number of partners or a duplicate partner name. Please define between 2-5 partners, using initials or middle name to ensure that each entry is unique.": "You have entered an invalid number of partners or a duplicate partner name. Please define between 2-5 partners, using initials or middle name to ensure that each entry is unique.",
-  "Please use initials or middle names as necessary to ensure each partner name is unique.": "Please use initials or middle names as necessary to ensure each partner name is unique."
+  "Please use initials or middle names as necessary to ensure each partner name is unique.": "Please use initials or middle names as necessary to ensure each partner name is unique.",
+  "is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this [Food Business Registration link where you can check for your correct local authority](www.gov.uk/food-business-registration) using the location or site of your food business.": "is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this [Food Business Registration link where you can check for your correct local authority](https:www.gov.uk/food-business-registration) using the location or site of your food business."
 }
