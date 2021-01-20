@@ -58,6 +58,28 @@ describe("given JavaScript is disabled", () => {
           );
         });
       });
+
+      it("check that className is different with and without an error", async () => {
+        const wrapperNoErrors = wrapper.find(SelectInput).prop("className");
+
+        let wrapperWithErrors;
+
+        await act(async () => {
+          wrapperWithErrors = mount(
+            <SelectListSection
+              validatorErrors={{ business_type: "An error" }}
+              cumulativeFullAnswers
+              browser="Safari"
+            />
+          );
+        });
+        const wrapperErrors = wrapperWithErrors
+          .find(SelectInput)
+          .prop("className");
+
+        expect(wrapperNoErrors).not.toBe(wrapperErrors);
+      });
+
       it("should render Label with appropriate text", () => {
         expect(
           wrapper

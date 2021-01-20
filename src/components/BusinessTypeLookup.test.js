@@ -48,7 +48,6 @@ describe("<BusinessTypeLookup />", () => {
       const appliedClassNameErrors = wrapperErrors
         .find("#autocompleteContainer")
         .prop("className");
-
       expect(appliedClassNameNoErrors).not.toEqual(appliedClassNameErrors);
     });
   });
