@@ -72,9 +72,7 @@ const FsaFooter = (props) => (
             <FooterListItem>
               <FooterLink
                 id="cookiePolicyFooter"
-                href={
-                  props.t("links:cookies-link")
-                }
+                href={props.t("links:cookies-link")}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={props.t("cookie policy (opens in a new window)")}
@@ -86,9 +84,7 @@ const FsaFooter = (props) => (
             <FooterListItem>
               <FooterLink
                 id="privacyPolicyFooter"
-                href={
-                  props.t("links:privacy-link")
-                }
+                href={props.t("links:privacy-link")}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={props.t("privacy policy (opens in a new window)")}
@@ -114,9 +110,7 @@ const FsaFooter = (props) => (
             <FooterListItem>
               <FooterLink
                 id="accessibilityFooter"
-                href={
-                  props.t("links:accessibility-link")
-                }
+                href={props.t("links:accessibility-link")}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={props.t(
