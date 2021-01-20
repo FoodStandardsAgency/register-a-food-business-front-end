@@ -32,7 +32,12 @@ const SessionWrapper = (Page) => {
 
     const language = req && req.language ? req.language : "en";
 
-    const currentPageTitle = PageTitles.getUrlPageTitle(req.url, language);
+    const currentPageTitle = PageTitles.getUrlPageTitle(
+      req.url,
+      language,
+      req.session.validatorErrors,
+      req.session.allValidationErrors
+    );
 
     const currentPageWithQuery = `/${req.url.split("/")[2]}`;
 

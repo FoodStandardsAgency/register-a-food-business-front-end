@@ -1,5 +1,9 @@
+import validator from "validator";
+
 const enTitles = require("../../public/static/locales/en/pageTitles.json");
 const cyTitles = require("../../public/static/locales/cy/pageTitles.json");
+const enErrorTitles = require("../../public/static/locales/en/errorPageTitles.json");
+const cyErrorTitles = require("../../public/static/locales/cy/errorPageTitles.json");
 
 const PageTitles = {
   prefix: "Register a Food Business",
@@ -44,16 +48,43 @@ const PageTitles = {
   defaultPageTitle: "Register a Food Business"
 };
 
-PageTitles.getUrlPageTitle = (url, language) => {
+PageTitles.getUrlPageTitle = (
+  url,
+  language,
+  validatorErrors,
+  allValidationErrors
+) => {
+  var allValidationErrorLength =
+    typeof allValidationErrors === "object"
+      ? Object.keys(allValidationErrors).length
+      : 0;
+  var validatorErrorLength =
+    typeof validatorErrors === "object"
+      ? Object.keys(validatorErrors).length
+      : 0;
+
+  var errorLength =
+    allValidationErrorLength > validatorErrorLength
+      ? allValidationErrorLength
+      : validatorErrorLength;
   var urlParts = url.split("/");
   var page = (urlParts[2] ?? urlParts[1]).split("?")[0];
   var title = PageTitles.defaultPageTitle;
-  var translatedTitles = language === "cy" ? cyTitles : enTitles;
+  var translatedTitles =
+    language === "cy"
+      ? errorLength > 0
+        ? cyErrorTitles
+        : cyTitles
+      : errorLength
+      ? enErrorTitles
+      : enTitles;
 
   if (page && page in PageTitles.pageTitles) {
-    title = `${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`;
+    title =
+      errorLength > 0
+        ? `Error: ${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`
+        : `${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`;
   }
-
   return translatedTitles[title] || title;
 };
 
