@@ -21,45 +21,46 @@ const errorMessages = {
   declaration3: "Error You must tick all the declarations before continuing",
   registration_role: "Error You must select a role before continuing",
   operator_type: "Error You must select an operator type before continuing",
-  operator_first_name: "Error Not a valid first name",
-  operator_last_name: "Error Not a valid last name",
-  operator_town: "Error Not a valid town name",
-  operator_address_line_1: "Error Not a valid first line of address",
-  operator_address_line_2: "Error Not a valid second line of address",
-  operator_address_line_3: "Error Not a valid third line of address",
-  operator_postcode: "Error Not a valid postcode",
+  operator_first_name: "Error Enter a valid first name",
+  operator_last_name: "Error Enter a valid last name",
+  operator_town: "Error Enter a valid town name",
+  operator_address_line_1: "Error Enter a valid first line of address",
+  operator_address_line_2: "Error Enter a valid second line of address",
+  operator_address_line_3: "Error Enter a valid third line of address",
+  operator_postcode: "Error Enter a valid postcode",
   operator_postcode_find: "Error Not a valid postcode",
-  establishment_trading_name: "Error Not a valid establishment trading name",
-  operator_primary_number: "Error Not a valid operator phone number",
-  operator_secondary_number: "Error Not a valid operator phone number",
-  operator_email: "Error Not a valid operator email address",
-  contact_representative_name: "Error Not a valid representative name",
-  contact_representative_role: "Error Not a valid representative role",
+  establishment_trading_name: "Error Enter a valid establishment trading name",
+  operator_primary_number: "Error Enter a valid operator phone number",
+  operator_secondary_number: "Error Enter a valid operator phone number",
+  operator_email: "Error Enter a valid operator email address",
+  contact_representative_name: "Error Enter a valid representative name",
+  contact_representative_role: "Error Enter a valid representative role",
   contact_representative_number:
-    "Error Not a valid representative phone number",
+    "Error Enter a valid representative phone number",
   contact_representative_email:
-    "Error Not a valid representative email address",
-  operator_company_name: "Error Not a valid company name",
+    "Error Enter a valid representative email address",
+  operator_company_name: "Error Enter a valid company name",
   operator_companies_house_number:
-    "Error Not a valid Companies House reference number",
+    "Error Enter a valid Companies House reference number",
   operator_charity_name:
-    "Error Not a valid charity, organisation or trust name",
-  operator_charity_number: "Error Not a valid charity number",
-  establishment_primary_number: "Error Not a valid establishment phone number",
+    "Error Enter a valid charity, organisation or trust name",
+  operator_charity_number: "Error Enter a valid charity number",
+  establishment_primary_number:
+    "Error Enter a valid establishment phone number",
   establishment_secondary_number:
-    "Error Not a valid establishment phone number",
-  establishment_email: "Error Not a valid establishment email address",
+    "Error Enter a valid establishment phone number",
+  establishment_email: "Error Enter a valid establishment email address",
   establishment_type:
     "Error You must select an establishment address type before continuing",
-  establishment_town: "Error Not a valid town name",
-  establishment_address_line_1: "Error Not a valid first line of address",
-  establishment_address_line_2: "Error Not a valid second line of address",
-  establishment_address_line_3: "Error Not a valid third line of address",
-  establishment_postcode: "Error Not a valid postcode",
+  establishment_town: "Error Enter a valid town name",
+  establishment_address_line_1: "Error Enter a valid first line of address",
+  establishment_address_line_2: "Error Enter a valid second line of address",
+  establishment_address_line_3: "Error Enter a valid third line of address",
+  establishment_postcode: "Error Enter a valid postcode",
   establishment_postcode_find: "Error Not a valid postcode",
   establishment_opening_status:
     "Error You must select a trading status before continuing",
-  establishment_opening_date: "Error Not a valid opening date",
+  establishment_opening_date: "Error Enter a valid opening date",
   customer_type: "Error You must select a customer type before continuing",
   import_export_activities:
     "Error You must select a valid import or export option(s) before continuing",
@@ -73,19 +74,26 @@ const errorMessages = {
     "Error Please describe when this establishment is open",
   opening_days_some:
     "Error Please select which days this establishment is open",
-  partner_name: "Error Not a valid name",
+  partner_name: "Error Enter a valid partner name",
   partners: `Error You have entered an invalid number of partners or a duplicate partner name. Please define between 2-5 partners, using initials or middle name to ensure that each entry is unique.`,
   main_partnership_contact:
     "Error You must select the main partnership contact before continuing",
   main_partnership_contact_deleted:
     "Error Main partnership contact is not in the list of partners",
-  opening_hours_monday: "Error Invalid opening hours on Monday",
-  opening_hours_tuesday: "Error Invalid opening hours on Tuesday",
-  opening_hours_wednesday: "Error Invalid opening hours on Wednesday",
-  opening_hours_thursday: "Error Invalid opening hours on Thursday",
-  opening_hours_friday: "Error Invalid opening hours on Friday",
-  opening_hours_saturday: "Error Invalid opening hours on Saturday",
-  opening_hours_sunday: "Error Invalid opening hours on Sunday"
+  opening_hours_monday:
+    "Error Enter the establishment opening hours for Monday using 24 hour clocks",
+  opening_hours_tuesday:
+    "Error Enter the establishment opening hours for Tuesday using 24 hour clocks",
+  opening_hours_wednesday:
+    "Error Enter the establishment opening hours for Wednesday using 24 hour clocks",
+  opening_hours_thursday:
+    "Error Enter the establishment opening hours for Thursday using 24 hour clocks",
+  opening_hours_friday:
+    "Error Enter the establishment opening hours for Friday using 24 hour clocks",
+  opening_hours_saturday:
+    "Error Enter the establishment opening hours for Saturday using 24 hour clocks",
+  opening_hours_sunday:
+    "Error Enter the establishment opening hours for Sunday using 24 hour clocks"
 };
 
 const validator = new Validator();
