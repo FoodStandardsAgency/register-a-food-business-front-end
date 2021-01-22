@@ -41,7 +41,7 @@ const CustomerType = (props) => (
             defaultChecked={props.cumulativeFullAnswers.supply_other}
           >
             {props.t(
-              "It will supply food to other businesses to process, sell or serve"
+              "The establishment will supply food to other businesses to process, sell or serve"
             )}
           </Checkbox>
 
@@ -51,7 +51,9 @@ const CustomerType = (props) => (
             value={customerTypeEnum.END_CONSUMER.key}
             defaultChecked={props.cumulativeFullAnswers.supply_directly}
           >
-            {props.t("It will supply food directly to end consumers")}
+            {props.t(
+              "The establishment will supply food directly to end consumers"
+            )}
           </Checkbox>
         </MultiChoice>
       </ContentItem.B_45_30>
