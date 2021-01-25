@@ -21,7 +21,9 @@ const EstablishmentAddress = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      {props.t("Establishment address")}
+      <label for="establishment_postcode_find">
+        {props.t("Establishment address")}
+      </label>
     </Heading>
 
     <HiddenTextAccessible summary={props.t("What is an establishment?")}>

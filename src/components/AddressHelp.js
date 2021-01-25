@@ -9,7 +9,9 @@ const AddressHelp = (props) => {
   return props.role === operatorTypeEnum.PARTNERSHIP.key ? (
     <React.Fragment>
       <Heading as="h1" size="LARGE">
-        {props.t("What is the partnership contact's address?")}
+        <label for={props.id}>
+          {props.t("What is the partnership contact's address?")}
+        </label>
       </Heading>
       <ContentItem.B_30_15>
         <HintText>
@@ -23,8 +25,11 @@ const AddressHelp = (props) => {
   ) : (
     <React.Fragment>
       <Heading as="h1" size="LARGE">
-        {props.t("What is the operator's address?")}
+        <label for={props.id}>
+          {props.t("What is the operator's address?")}
+        </label>
       </Heading>
+
       <ContentItem.B_30_15>
         <HintText>
           {props.t(
