@@ -21,7 +21,7 @@ const EstablishmentAddress = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      {props.t("Establishment postcode")}
+      {props.t("What is the establishment's postcode?")}
     </Heading>
 
     <HiddenTextAccessible summary={props.t("What is an establishment?")}>

@@ -14,7 +14,7 @@ const PageTitles = {
     "contact-representative": "Contact details",
     "customer-type": "Who will this establishment supply food to?",
     declaration: "Declaration",
-    "establishment-address": "Establishment postcode",
+    "establishment-address": "What is the establishment's postcode?",
     "establishment-address-manual": "What is the establishment's address?",
     "establishment-address-select": "Establishment Address",
     "establishment-address-type": "Where is this establishment located?",
