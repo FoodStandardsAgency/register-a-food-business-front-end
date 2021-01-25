@@ -38,7 +38,7 @@ describe("<OperatorAddress />", () => {
 
     it("renders correct header", () => {
       const header = wrapper.find(Heading);
-      expect(header.at(1).props().children).toBe(
+      expect(header.at(1).text()).toBe(
         "What is the partnership contact's address?"
       );
     });
