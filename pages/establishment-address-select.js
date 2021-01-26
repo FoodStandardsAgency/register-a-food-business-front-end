@@ -34,7 +34,7 @@ const EstablishmentAddressLookup = (props) => (
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Heading as="h2" size="MEDIUM">
-            {props.t("Postcode")}
+            {props.t("Postcode you have entered")}
           </Heading>
           <Paragraph className="establishmentPostcodeDisplay" mb={0}>
             {props.cumulativeFullAnswers.establishment_postcode_find}

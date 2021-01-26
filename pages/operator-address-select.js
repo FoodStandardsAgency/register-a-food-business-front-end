@@ -23,7 +23,7 @@ const OperatorAddressLookup = (props) => (
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Heading as="h2" size="MEDIUM">
-            {props.t("Postcode")}
+            {props.t("Postcode you have entered")}
           </Heading>
           <Paragraph className="operatorPostcodeDisplay" mb={0}>
             {props.cumulativeFullAnswers.operator_postcode_find}

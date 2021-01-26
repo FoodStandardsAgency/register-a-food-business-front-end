@@ -386,5 +386,6 @@
   "Contact information": "Contact information",
   "You have entered an invalid number of partners or a duplicate partner name. Please define between 2-5 partners, using initials or middle name to ensure that each entry is unique.": "You have entered an invalid number of partners or a duplicate partner name. Please define between 2-5 partners, using initials or middle name to ensure that each entry is unique.",
   "Please use initials or middle names as necessary to ensure each partner name is unique.": "Please use initials or middle names as necessary to ensure each partner name is unique.",
-  "What is the establishment's postcode?": "What is the establishment's postcode?"
+  "What is the establishment's postcode?": "What is the establishment's postcode?",
+  "Postcode you have entered": "Postcode you have entered"
 }
