@@ -70,7 +70,7 @@ const ApplicationComplete = (props) => (
       </Heading>
       {props.lcConfig.hygieneAndStandards ? (
         <ContentItem.B_30_15 id="hygieneAndStandardsCouncil">
-          <Heading as="h4" mb={1}>
+          <Heading as="h2" mb={1}>
             {props.t(
               `localAuthorities:${props.lcConfig.hygieneAndStandards.local_council}`
             )}
@@ -113,7 +113,7 @@ const ApplicationComplete = (props) => (
             </HintText>
           </ContentItem.B_30_15>
           <ContentItem.B_30_15 id="standardsCouncil">
-            <Heading as="h4" mb={1}>
+            <Heading as="h2" mb={1}>
               {props.t(
                 `localAuthorities:${props.lcConfig.standards.local_council}`
               )}
@@ -166,7 +166,7 @@ const ApplicationComplete = (props) => (
     </ContentItem.B_30_15>
 
     <ContentItem.B_30_15>
-      <Heading as="h2" size="LARGE">
+      <Heading as="h3" size="LARGE">
         {props.t("Find out here what you can do to prepare")}
       </Heading>
       <HintText mb={3}>{props.t("All links open in a new window")}</HintText>
@@ -276,7 +276,7 @@ const ApplicationComplete = (props) => (
 
       {props.country === "wales" ? (
         <ContentItem.B_30_15>
-          <Heading as="h3" mb={2} size="SMALL">
+          <Heading as="h2" mb={2} size="SMALL">
             Cymru
           </Heading>
           <ContentItem.B_20_20>

@@ -8,7 +8,7 @@ import {
   OnHandleErrorClick,
   PostForm
 } from "../src/components";
-import { Heading, InputField, HintText } from "govuk-react";
+import { Heading, InputField, HintText, Label } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -44,9 +44,12 @@ const OpeningHours = (props) => (
               error: props.t(props.validatorErrors.opening_hours_monday)
             }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
+            <Label
+              class="govuk-label govuk-label—1"
+              style={{ fontWeight: "bold", fontSize: "24px" }}
+            >
               {props.t("Monday")}
-            </Heading>
+            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -64,9 +67,12 @@ const OpeningHours = (props) => (
               error: props.t(props.validatorErrors.opening_hours_tuesday)
             }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
+            <Label
+              class="govuk-label govuk-label—1"
+              style={{ fontWeight: "bold", fontSize: "24px" }}
+            >
               {props.t("Tuesday")}
-            </Heading>
+            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -84,9 +90,12 @@ const OpeningHours = (props) => (
               error: props.t(props.validatorErrors.opening_hours_wednesday)
             }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
+            <Label
+              class="govuk-label govuk-label—1"
+              style={{ fontWeight: "bold", fontSize: "24px" }}
+            >
               {props.t("Wednesday")}
-            </Heading>
+            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -104,9 +113,12 @@ const OpeningHours = (props) => (
               error: props.t(props.validatorErrors.opening_hours_thursday)
             }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
+            <Label
+              class="govuk-label govuk-label—1"
+              style={{ fontWeight: "bold", fontSize: "24px" }}
+            >
               {props.t("Thursday")}
-            </Heading>
+            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -124,9 +136,12 @@ const OpeningHours = (props) => (
               error: props.t(props.validatorErrors.opening_hours_friday)
             }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
+            <Label
+              class="govuk-label govuk-label—1"
+              style={{ fontWeight: "bold", fontSize: "24px" }}
+            >
               {props.t("Friday")}
-            </Heading>
+            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -144,9 +159,12 @@ const OpeningHours = (props) => (
               error: props.t(props.validatorErrors.opening_hours_saturday)
             }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
+            <Label
+              class="govuk-label govuk-label—1"
+              style={{ fontWeight: "bold", fontSize: "24px" }}
+            >
               {props.t("Saturday")}
-            </Heading>
+            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -164,9 +182,12 @@ const OpeningHours = (props) => (
               error: props.t(props.validatorErrors.opening_hours_sunday)
             }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
+            <Label
+              class="govuk-label govuk-label—1"
+              style={{ fontWeight: "bold", fontSize: "24px" }}
+            >
               {props.t("Sunday")}
-            </Heading>
+            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}

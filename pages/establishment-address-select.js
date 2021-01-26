@@ -36,19 +36,25 @@ const EstablishmentAddressLookup = (props) => (
           <Heading as="h2" size="MEDIUM">
             {props.t("Postcode")}
           </Heading>
-          <Paragraph className="establishmentPostcodeDisplay" mb={0}>
-            {props.cumulativeFullAnswers.establishment_postcode_find}
-          </Paragraph>
-          <Link
-            id="changeEstablishmentPostcode"
-            href={
-              props.editModeFirstPage
-                ? "/establishment-address?edit=establishment-address"
-                : "/establishment-address"
-            }
-          >
-            {props.t("Change postcode")}
-          </Link>
+          <d1>
+            <dt>
+              <Paragraph className="establishmentPostcodeDisplay" mb={0}>
+                {props.cumulativeFullAnswers.establishment_postcode_find}
+              </Paragraph>
+            </dt>
+            <dd>
+              <Link
+                id="changeEstablishmentPostcode"
+                href={
+                  props.editModeFirstPage
+                    ? "/establishment-address?edit=establishment-address"
+                    : "/establishment-address"
+                }
+              >
+                {props.t("Change postcode")}
+              </Link>
+            </dd>
+          </d1>
         </ContentItem.B_30_15>
 
         <ContentItem.B_20_20>

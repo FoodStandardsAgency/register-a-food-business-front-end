@@ -22,25 +22,33 @@ const OperatorAddressLookup = (props) => (
           <Heading as="h2" size="MEDIUM">
             {props.t("Postcode")}
           </Heading>
-          <Paragraph className="operatorPostcodeDisplay" mb={0}>
-            {props.cumulativeFullAnswers.operator_postcode_find}
-          </Paragraph>
-          <Link
-            id="changeOperatorPostcode"
-            href={
-              props.editModeFirstPage
-                ? "/operator-address?edit=operator-address"
-                : "/operator-address"
-            }
-          >
-            {props.t("Change postcode")}
-          </Link>
+          <d1>
+            <dt>
+              <Paragraph className="operatorPostcodeDisplay" mb={0}>
+                {props.cumulativeFullAnswers.operator_postcode_find}
+              </Paragraph>
+            </dt>
+            <dd>
+              <Link
+                id="changeOperatorPostcode"
+                href={
+                  props.editModeFirstPage
+                    ? "/operator-address?edit=operator-address"
+                    : "/operator-address"
+                }
+              >
+                {props.t("Change postcode")}
+              </Link>
+            </dd>
+          </d1>
         </ContentItem.B_30_15>
         <ContentItem.B_20_20>
-          <SelectWithHeader
-            label={`${props.t("Select an address for")} ${
+          <Heading as="h2" size="MEDIUM" class="govuk-label govuk-label—l">
+            {`${props.t("Select an address for")} ${
               props.cumulativeFullAnswers.operator_postcode_find
             }`}
+          </Heading>
+          <SelectWithHeader
             input={{
               id: "operatorAddressDropdown",
               name: "operator_address_selected",

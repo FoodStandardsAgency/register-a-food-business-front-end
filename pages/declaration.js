@@ -113,7 +113,7 @@ class Declaration extends React.Component {
             </MultiChoice>
           </ContentItem.B_45_30>
 
-          <Heading as="h1" size="LARGE">
+          <Heading as="h2" size="LARGE">
             {this.props.t("Feedback")}
           </Heading>
 
