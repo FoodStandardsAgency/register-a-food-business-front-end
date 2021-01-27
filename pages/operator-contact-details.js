@@ -22,7 +22,7 @@ const OperatorContactDetails = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-    {props.t(
+      {props.t(
         `${
           props.cumulativeFullAnswers.registration_role ===
           operatorTypeEnum.PARTNERSHIP.key
