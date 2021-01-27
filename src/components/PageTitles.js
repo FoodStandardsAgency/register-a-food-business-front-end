@@ -49,7 +49,7 @@ const PageTitles = {
     "operator-charity-details": () =>
       "Details of the operating charity, organisation or trust",
     "operator-company-details": () => "Company details",
-    "operator-contact-details": () => "Contact information",
+    "operator-contact-details": (role) => role === operatorTypeEnum.PARTNERSHIP.key ? "Partnership contact details" : "Operator contact details",
     "operator-name": () => "What is the operator's name?",
     "operator-type": () => "Who operates this business?",
     "partner-details": () => "Partner details",
