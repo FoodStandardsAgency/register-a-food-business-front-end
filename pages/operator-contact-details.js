@@ -9,7 +9,6 @@ import {
   ContactDetailsHelp,
   PostForm
 } from "../src/components";
-import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { Heading, InputField } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";

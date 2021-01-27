@@ -35,7 +35,9 @@ const SessionWrapper = (Page) => {
     const currentPageTitle = PageTitles.getUrlPageTitle(
       req.url,
       language,
-      req && req.session && req.session.cumulativeFullAnswers ? req.session.cumulativeFullAnswers : {}
+      req && req.session && req.session.cumulativeFullAnswers
+        ? req.session.cumulativeFullAnswers
+        : {}
     );
 
     const currentPageWithQuery = `/${req.url.split("/")[2]}`;
