@@ -10,9 +10,50 @@ import {
   PostForm
 } from "../src/components";
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
-import { Heading, InputField, Paragraph, Button } from "govuk-react";
+import {
+  Heading,
+  InputField,
+  Paragraph,
+  Button,
+  MultiChoice,
+  InsetText,
+  Radio,
+  Table,
+  Fieldset
+} from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import styled from "@emotion/styled";
+
+const GridRow = styled(Table.Row)`
+  display: grid;
+  ${(props) =>
+    props.acPage
+      ? "grid-template-columns: 1fr 1fr;"
+      : "grid-template-columns: 1fr 1fr 70px;"};
+`;
+
+const TableCellBold = styled(Table.Cell)`
+  font-weight: bold;
+`;
+
+const AccessibleTableRow = (props) => (
+  <GridRow role="row" {...props}>
+    {props.children}
+  </GridRow>
+);
+
+const AccessibleRowHeader = (props) => (
+  <Table.CellHeader scope="row" role="rowheader" {...props}>
+    {props.children}
+  </Table.CellHeader>
+);
+
+const AccessibleCell = (props) => (
+  <TableCellBold role="cell" className="summaryTableDataCell" {...props}>
+    {props.children}
+  </TableCellBold>
+);
 
 const EstablishmentContactDetails = (props) => (
   <FsaLayout {...props}>
@@ -32,11 +73,112 @@ const EstablishmentContactDetails = (props) => (
       </Paragraph>
     </HiddenTextAccessible>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
+      <InsetText>
+        <ContentItem.B_30_15>
+          <AccessibleTableRow>
+            <AccessibleRowHeader style={{ color: "grey" }}>
+              {props.t(
+                `${
+                  props.cumulativeFullAnswers.registration_role ===
+                  operatorTypeEnum.PARTNERSHIP.key
+                    ? "Partnership"
+                    : "Operator"
+                } contact details`
+              )}
+            </AccessibleRowHeader>
+          </AccessibleTableRow>
+          <AccessibleTableRow>
+            <AccessibleRowHeader style={{ color: "grey" }}>
+              {props.t("Main phone number")}
+            </AccessibleRowHeader>
+            <AccessibleCell style={{ color: "grey" }}>
+              <div id="establishment_primary_number">
+                {props.cumulativeFullAnswers.establishment_primary_number
+                  ? props.cumulativeFullAnswers.establishment_primary_number
+                  : props.cumulativeFullAnswers.contact_representative_number}
+              </div>
+            </AccessibleCell>
+          </AccessibleTableRow>
+
+          {props.cumulativeFullAnswers.operator_secondary_number ? (
+            <AccessibleTableRow>
+              <AccessibleRowHeader style={{ color: "grey" }}>
+                {props.t("Secondary phone number")}
+              </AccessibleRowHeader>
+              <AccessibleCell style={{ color: "grey" }}>
+                <div id="establishment_secondary_number">
+                  {props.cumulativeFullAnswers.operator_secondary_number}
+                </div>
+              </AccessibleCell>
+            </AccessibleTableRow>
+          ) : null}
+          <AccessibleTableRow>
+            <AccessibleRowHeader style={{ color: "grey" }}>
+              {props.t("Email address")}
+            </AccessibleRowHeader>
+            <AccessibleCell style={{ color: "grey" }}>
+              <div id="establishment_email_address">
+                {props.cumulativeFullAnswers.operator_email
+                  ? props.cumulativeFullAnswers.operator_email
+                  : props.cumulativeFullAnswers.contact_representative_email}
+              </div>
+            </AccessibleCell>
+          </AccessibleTableRow>
+          <Fieldset>
+            <Fieldset.Legend style={{ color: "grey", fontWeight: "bold" }}>
+              {props.t(
+                `Do you want to re-use these ${
+                  props.cumulativeFullAnswers.registration_role ===
+                  operatorTypeEnum.PARTNERSHIP.key
+                    ? "partnership"
+                    : "operator"
+                } contact details?`
+              )}
+            </Fieldset.Legend>
+            <MultiChoice
+              label=""
+              meta={{
+                touched: true,
+                error: props.t(props.validatorErrors.registration_role) //change
+              }}
+            >
+              <div style={{ color: "grey" }}>
+                <Radio
+                  type="submit"
+                  onsubmit="return false"
+                  formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
+                  //name="contact_details"
+                  style={{ color: "grey" }}
+                  id="reuseButton"
+                  //onClick={(true)}
+                  defaultChecked={true}
+                  inline
+                  //checked
+                >
+                  {props.t("Yes")}
+                </Radio>
+                <Radio
+                  //name="contact_details"
+                  //value={operatorTypeEnum.SOLETRADER.key}
+                  type="submit"
+                  //formAction="/new/cardiff/establishment-contact-details"
+                  style={{ color: "grey" }}
+                  id="registration_role_sole_trader"
+                  dfaultChecked={true}
+                  inline
+                >
+                  {props.t("No")}
+                </Radio>
+              </div>
+            </MultiChoice>
+          </Fieldset>
+        </ContentItem.B_30_15>
+      </InsetText>
       <ContentItem.B_30_15>
         <Button
-          type="submit"
-          formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
-          id="reuseButton"
+        //type="submit"
+        //formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
+        //id="reuseButton"
         >
           {props.t(
             `Re-use ${
