@@ -12,6 +12,7 @@ import {
 import { InputField, ErrorText } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const OperatorAddress = (props) => (
   <FsaLayout {...props}>
@@ -29,7 +30,12 @@ const OperatorAddress = (props) => (
     />
     <AddressHelp
       role={props.cumulativeFullAnswers.registration_role}
-      header={props.t("What is the operator's address?")}
+      header={props.t(
+        props.cumulativeFullAnswers.registration_role ===
+          operatorTypeEnum.PARTNERSHIP.key
+          ? "What is the partnership contact's address?"
+          : "What is the operator's address?"
+      )}
     />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>

@@ -11,13 +11,19 @@ import {
 import { Heading, Paragraph, Link } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const OperatorAddressLookup = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <AddressHelp
       role={props.cumulativeFullAnswers.registration_role}
-      header={props.t("Address select")}
+      header={props.t(
+        props.cumulativeFullAnswers.registration_role ===
+          operatorTypeEnum.PARTNERSHIP.key
+          ? "Which is the partnership contact's address from the list?"
+          : "Which is the operator's address from the list?"
+      )}
     />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
