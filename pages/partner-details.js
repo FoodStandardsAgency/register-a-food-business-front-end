@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   PostForm
@@ -18,8 +17,7 @@ const StyledRow = styled.div`
 `;
 
 const PartnerDetails = (props) => (
-  <FsaLayout {...props}>
-    <BackButton href={props.partnerDetailsBackUrl} {...props} />
+  <FsaLayout {...props} href={props.partnerDetailsBackUrl}>
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}

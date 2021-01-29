@@ -10,7 +10,7 @@ import InsetText from "../src/components/InsetText";
 import { withTranslation, i18n } from "../i18n";
 
 const Index = (props) => (
-  <FsaLayout {...props}>
+  <FsaLayout {...props} hideBack="true">
     <Heading as="h1">{props.t("Register a food business")}</Heading>
 
     <ContentItem.B_30_15 {...props}>

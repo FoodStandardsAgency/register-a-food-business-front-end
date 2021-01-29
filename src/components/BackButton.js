@@ -4,6 +4,14 @@ import { withTranslation } from "../../i18n.js";
 
 const HiddenBackButton = () => <ContentItem.B_30_15 />;
 
+const BackToStartButton = (props) => (
+  <ContentItem.B_30_15>
+    <BackLink href={props.href ? props.href : "/"} id="back-link">
+      {props.t("Back to start")}
+    </BackLink>
+  </ContentItem.B_30_15>
+);
+
 const NormalBackButton = (props) => (
   <ContentItem.B_30_15>
     <BackLink
@@ -31,6 +39,13 @@ const EditModeBackButton = (props) => (
 );
 
 const BackButton = (props) => {
+  if (props.hideBack) {
+    return <HiddenBackButton />;
+  }
+  if (props.backToStart) {
+    const backToStartLink = props.council ? `/new/${props.council}` : "/";
+    return <BackToStartButton href={backToStartLink} t={props.t} />;
+  }
   if (props.editModeFirstPage) {
     if (props.editModeFirstPage === props.currentPage) {
       return <HiddenBackButton />;

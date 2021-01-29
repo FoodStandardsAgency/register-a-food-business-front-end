@@ -1,7 +1,6 @@
 import {
   FsaLayout,
   SessionWrapper,
-  BackButton,
   ContinueButton,
   ContentItem,
   ProcessedErrorSummary,
@@ -21,7 +20,6 @@ import { withTranslation } from "../i18n";
 
 const OtherDaysIrregular = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}

@@ -20,7 +20,7 @@ const FsaPanel = styled(Panel)`
 `;
 
 const ApplicationComplete = (props) => (
-  <FsaLayout {...props}>
+  <FsaLayout {...props} hideBack="true">
     <Heading as="h1" size="LARGE">
       {props.t("Submission complete")}
     </Heading>
