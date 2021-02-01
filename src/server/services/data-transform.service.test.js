@@ -944,10 +944,12 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     main_partnership_contact: "John"
   };
   const testAddressLookups = {};
+  const testLanguage = "en";
 
   it("turns flat data into structured data, with the Local Council URL", () => {
     result = transformAnswersForSubmit(
       testCumulativeAnswers,
+      testLanguage,
       testAddressLookups,
       testLcUrl
     );
@@ -969,6 +971,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     it("it sets all the days to false", () => {
       result = transformAnswersForSubmit(
         testCumulativeAnswers,
+        testLanguage,
         testAddressLookups,
         testLcUrl
       );
@@ -1014,6 +1017,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     it("it sets all the days that exist to true", () => {
       result = transformAnswersForSubmit(
         testCumulativeAnswers,
+        testLanguage,
         testAddressLookups,
         testLcUrl
       );
@@ -1059,6 +1063,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     it("it sets them to undefined", () => {
       result = transformAnswersForSubmit(
         testCumulativeAnswers,
+        testLanguage,
         testAddressLookups,
         testLcUrl
       );
@@ -1104,6 +1109,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     it("it keeps the original values", () => {
       result = transformAnswersForSubmit(
         testCumulativeAnswers,
+        testLanguage,
         testAddressLookups,
         testLcUrl
       );
@@ -1143,6 +1149,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     it("it sets all the days to true", () => {
       result = transformAnswersForSubmit(
         testCumulativeAnswers,
+        testLanguage,
         testAddressLookups,
         testLcUrl
       );
@@ -1173,6 +1180,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
   it("should only add the data fields it is given", () => {
     result = transformAnswersForSubmit(
       testCumulativeAnswers,
+      testLanguage,
       testAddressLookups,
       testLcUrl
     );
@@ -1194,6 +1202,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     };
     result = transformAnswersForSubmit(
       testCumulativeAnswersDate,
+      testLanguage,
       testAddressLookups,
       testLcUrl
     );
@@ -1206,6 +1215,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
   it("should set primary contact for partners", () => {
     result = transformAnswersForSubmit(
       testCumulativeAnswers,
+      testLanguage,
       testAddressLookups,
       testLcUrl
     );

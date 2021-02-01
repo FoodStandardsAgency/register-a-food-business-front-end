@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   FindAddressButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -15,7 +14,6 @@ import { withTranslation } from "../i18n";
 
 const EstablishmentAddress = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}

@@ -4,6 +4,7 @@ import Main from "@govuk-react/main";
 import PhaseBanner from "@govuk-react/phase-banner";
 import styled from "@emotion/styled";
 import CookieBanner from "./CookieBanner";
+import BackAndLanguageBar from "./BackAndLanguageBar";
 import { withTranslation } from "../../i18n.js";
 
 const AnchorTag = asTopNavAnchor("a");
@@ -68,6 +69,7 @@ const FsaHeader = (props) => (
         {props.t("will help us improve it")}
       </PhaseBanner>
     </HeaderMain>
+    <BackAndLanguageBar {...props} />
   </StyledHeader>
 );
 

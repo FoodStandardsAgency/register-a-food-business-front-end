@@ -39,7 +39,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <html lang="en">
+      <html lang="en" translate="no">
         <Head>
           {this.props.styles}
 
@@ -63,6 +63,7 @@ class MyDocument extends Document {
             content="width=device-width, initial-scale=1.0"
             charSet="UTF-8"
           />
+          <meta name="google" content="notranslate" />
           <meta name="format-detection" content="telephone=no" />
           <style
             data-emotion-css={this.props.ids.join(" ")}

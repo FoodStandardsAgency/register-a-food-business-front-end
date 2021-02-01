@@ -14,13 +14,15 @@ const testSubmissionData = { some: "data" };
 const testAddressLookups = {};
 const testRegDataVersion = "1.0.0";
 const testSessionId = "S35S10NI6";
+const testLanguage = "en";
 
 const submitArgs = [
   testLcUrl,
   testSubmissionData,
   testAddressLookups,
   testRegDataVersion,
-  testSessionId
+  testSessionId,
+  testLanguage
 ];
 
 let response;
@@ -40,7 +42,8 @@ describe("Function: submitController: ", () => {
           {},
           testAddressLookups,
           testRegDataVersion,
-          testSessionId
+          testSessionId,
+          testLanguage
         );
       } catch (err) {
         response = err;

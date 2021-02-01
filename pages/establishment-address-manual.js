@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -14,15 +13,14 @@ import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const EstablishmentAddress = (props) => (
-  <FsaLayout {...props}>
-    <BackButton
-      {...props}
-      href={
-        props.switches["/establishment-address-none-found"]
-          ? `/new/${props.council}/establishment-address`
-          : `/new/${props.council}/establishment-address-select`
-      }
-    />
+  <FsaLayout
+    {...props}
+    backHref={
+      props.switches["/establishment-address-none-found"]
+        ? `/new/${props.council}/establishment-address`
+        : `/new/${props.council}/establishment-address-select`
+    }
+  >
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}

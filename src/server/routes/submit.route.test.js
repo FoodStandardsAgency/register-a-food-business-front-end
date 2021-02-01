@@ -48,6 +48,7 @@ describe("Submit route: ", () => {
             cumulativeFullAnswers: {
               some: "answers"
             },
+            language: "en",
             council: "cardiff",
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },
@@ -71,7 +72,8 @@ describe("Submit route: ", () => {
           },
           ["1"],
           "1.0.0",
-          "S3S510NI6"
+          "S3S510NI6",
+          "en"
         );
       });
 
@@ -109,6 +111,7 @@ describe("Submit route: ", () => {
             cumulativeFullAnswers: {
               some: "answers"
             },
+            language: "en",
             council: "cardiff",
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },
@@ -147,6 +150,7 @@ describe("Submit route: ", () => {
             cumulativeFullAnswers: {
               some: "answers"
             },
+            language: "en",
             council: "cardiff",
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },

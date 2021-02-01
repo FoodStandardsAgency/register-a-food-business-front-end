@@ -72,11 +72,7 @@ const FsaFooter = (props) => (
             <FooterListItem>
               <FooterLink
                 id="cookiePolicyFooter"
-                href={
-                  i18n.language === "cy"
-                    ? "https://www.food.gov.uk/cy/polisi-cwcis"
-                    : "https://www.food.gov.uk/cookie-policy"
-                }
+                href={props.t("links:cookies-link")}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={props.t("cookie policy (opens in a new window)")}
@@ -88,11 +84,7 @@ const FsaFooter = (props) => (
             <FooterListItem>
               <FooterLink
                 id="privacyPolicyFooter"
-                href={
-                  i18n.language === "cy"
-                    ? "https://www.food.gov.uk/cy/amdanom-ni/hysbysiad-preifatrwydd-cofrestru-busnes-bwyd"
-                    : "https://www.food.gov.uk/about-us/register-a-food-business-privacy-notice"
-                }
+                href={props.t("links:privacy-link")}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={props.t("privacy policy (opens in a new window)")}
@@ -104,7 +96,7 @@ const FsaFooter = (props) => (
             <FooterListItem>
               <FooterLink
                 id="feedbackFooter"
-                href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
+                href={props.t("links:feedback-form")}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={props.t(
@@ -118,11 +110,7 @@ const FsaFooter = (props) => (
             <FooterListItem>
               <FooterLink
                 id="accessibilityFooter"
-                href={
-                  i18n.language === "cy"
-                    ? "https://www.food.gov.uk/cy/arall/datganiad-hygyrchedd-ar-gyfer-y-gwasanaeth-cofrestru-busnesau-bwyd"
-                    : "https://www.food.gov.uk/accessibility-rafb"
-                }
+                href={props.t("links:accessibility-link")}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={props.t(
@@ -158,4 +146,4 @@ const FsaFooter = (props) => (
   </Footer>
 );
 
-export default withTranslation("common")(FsaFooter);
+export default withTranslation(["common", "links"])(FsaFooter);
