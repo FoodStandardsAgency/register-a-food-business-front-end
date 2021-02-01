@@ -17,7 +17,7 @@ const StyledRow = styled.div`
 `;
 
 const PartnerDetails = (props) => (
-  <FsaLayout {...props} href={props.partnerDetailsBackUrl}>
+  <FsaLayout {...props} backHref={props.partnerDetailsBackUrl}>
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}

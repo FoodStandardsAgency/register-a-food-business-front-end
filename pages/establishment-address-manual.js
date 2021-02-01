@@ -15,7 +15,7 @@ import { withTranslation } from "../i18n";
 const EstablishmentAddress = (props) => (
   <FsaLayout
     {...props}
-    href={
+    backHref={
       props.switches["/establishment-address-none-found"]
         ? `/new/${props.council}/establishment-address`
         : `/new/${props.council}/establishment-address-select`

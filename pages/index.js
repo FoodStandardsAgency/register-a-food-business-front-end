@@ -7,7 +7,7 @@ import {
 } from "../src/components";
 import { Heading, Paragraph, Link } from "govuk-react";
 import InsetText from "../src/components/InsetText";
-import { withTranslation, i18n } from "../i18n";
+import { withTranslation } from "../i18n";
 
 const Index = (props) => (
   <FsaLayout {...props} hideBack="true">
@@ -60,18 +60,6 @@ const Index = (props) => (
         )}`}
       </Paragraph>
     </ContentItem.B_30_15>
-    <InsetText>
-      {props.t("This service is also available in")}{" "}
-      <Link
-        style={{ textDecorationLine: "underline", cursor: "pointer" }}
-        onClick={() =>
-          i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
-        }
-        id="changeLanguage"
-      >
-        {i18n.language === "cy" ? "Saesneg (English)" : "Welsh (Cymraeg)"}
-      </Link>
-    </InsetText>
     <PostForm action="/continue/index" csrfToken={props.csrfToken}>
       <ContinueButton type="begin" />
     </PostForm>

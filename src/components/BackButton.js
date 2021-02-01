@@ -53,7 +53,7 @@ const BackButton = (props) => {
       const editQuery = `edit=${props.editModeFirstPage.split("/")[1]}`;
       return (
         <EditModeBackButton
-          href={props.href}
+          href={props.backHref}
           currentPage={props.currentPage}
           editQuery={editQuery}
           t={props.t}
@@ -63,7 +63,7 @@ const BackButton = (props) => {
   } else {
     return (
       <NormalBackButton
-        href={props.href}
+        href={props.backHref}
         currentPage={props.currentPage}
         t={props.t}
       />
