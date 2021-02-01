@@ -121,6 +121,24 @@ const FsaFooter = (props) => (
                 {props.t("Accessibility")}
               </FooterLink>
             </FooterListItem>
+            <FooterListItem>
+              <FooterLink
+                id="languageFooter"
+                onClick={() =>
+                  i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={props.t("Change the language to English/Welsh")}
+                style={{
+                  color: "#454a4c",
+                  textDecorationLine: "underline",
+                  cursor: "pointer"
+                }}
+              >
+                {i18n.language === "cy" ? "English" : "Cymraeg"}
+              </FooterLink>
+            </FooterListItem>
           </FooterUnorderedList>
         </FooterLinkContainer>
       </FooterContent>
