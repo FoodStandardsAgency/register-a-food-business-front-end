@@ -50,7 +50,7 @@ const BackAndLanguageBar = (props) => (
     </BackLinkContainer>
     <LanguageLinkContainer>
       <LanguageLink
-        id="languageEnFooter"
+        id="languageEnHeader"
         onClick={() => i18n.changeLanguage("en")}
         target="_blank"
         rel="noopener noreferrer"
@@ -65,7 +65,7 @@ const BackAndLanguageBar = (props) => (
       </LanguageLink>
       |
       <LanguageLink
-        id="languageCyFooter"
+        id="languageCyHeader"
         onClick={() => i18n.changeLanguage("cy")}
         target="_blank"
         rel="noopener noreferrer"
