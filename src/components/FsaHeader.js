@@ -8,7 +8,6 @@ import BackAndLanguageBar from "./BackAndLanguageBar";
 import { withTranslation } from "../../i18n.js";
 
 const AnchorTag = asTopNavAnchor("a");
-const feedbackLink = "https://goo.gl/forms/WB5adxvWQdDIfVvs2";
 
 const FsaTopNav = styled(TopNav)`
   div:nth-of-type(1) {
@@ -57,7 +56,7 @@ const FsaHeader = (props) => (
         {props.t("This is a new service")} -{" "}
         <AnchorTag
           id="feedbackLink"
-          href={feedbackLink}
+          href={props.t("links:feedback-form")}
           target="_blank"
           aria-label={props.t("your feedback (opens in new window)")}
           style={{
@@ -73,4 +72,4 @@ const FsaHeader = (props) => (
   </StyledHeader>
 );
 
-export default withTranslation("common")(FsaHeader);
+export default withTranslation(["common", "links"])(FsaHeader);
