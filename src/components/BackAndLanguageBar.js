@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import { withTranslation, i18n } from "../../i18n.js";
+import { withTranslation } from "../../i18n.js";
 import { Link } from "govuk-react";
 import { BackButton } from "./index";
 
 const LanguageLink = styled(Link)`
-  color: #0b0c0c;
+  color: #0b0c0c !important;
   margin: 15px;
   font-size: 14px;
   line-height: 1.25;
@@ -13,7 +13,7 @@ const LanguageLink = styled(Link)`
     font-size: 16px;
   }
   &:visited {
-    color: #0b0c0c;
+    color: #0b0c0c !important;
   }
   &:hover {
     color: #171819;
@@ -44,17 +44,16 @@ const LanguageLinkContainer = styled("div")`
 `;
 
 const BackAndLanguageBar = (props) => (
-  <StyledContainer role="banner">
+  <StyledContainer>
     <BackLinkContainer>
       <BackButton {...props} />
     </BackLinkContainer>
     <LanguageLinkContainer>
       <LanguageLink
         id="languageEnHeader"
-        onClick={() => i18n.changeLanguage("en")}
-        target="_blank"
+        href="?lang=en"
         rel="noopener noreferrer"
-        aria-label={props.t("Change the language to English")}
+        aria-label={"Change the language to English"}
         style={{
           textDecorationLine: props.t("styles:enLangLink-underline"),
           fontWeight: props.t("styles:enLangLink-fontWeight"),
@@ -66,10 +65,9 @@ const BackAndLanguageBar = (props) => (
       |
       <LanguageLink
         id="languageCyHeader"
-        onClick={() => i18n.changeLanguage("cy")}
-        target="_blank"
+        href="?lang=cy"
         rel="noopener noreferrer"
-        aria-label={props.t("Change the language to Welsh")}
+        aria-label="Newid yr iaith i'r Gymraeg"
         style={{
           textDecorationLine: props.t("styles:cyLangLink-underline"),
           fontWeight: props.t("styles:cyLangLink-fontWeight"),

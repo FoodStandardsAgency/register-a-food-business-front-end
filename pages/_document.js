@@ -39,7 +39,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <html lang="en" translate="no">
+      <html translate="no">
         <Head>
           {this.props.styles}
 

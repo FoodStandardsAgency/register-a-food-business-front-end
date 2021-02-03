@@ -5,7 +5,7 @@ import {
   ContinueButton,
   PostForm
 } from "../src/components";
-import { Heading, Paragraph, Link } from "govuk-react";
+import { Heading, Paragraph } from "govuk-react";
 import InsetText from "../src/components/InsetText";
 import { withTranslation } from "../i18n";
 

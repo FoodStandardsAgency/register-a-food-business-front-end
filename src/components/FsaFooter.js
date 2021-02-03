@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Link, ListItem, UnorderedList } from "govuk-react";
-import { withTranslation, i18n } from "../../i18n.js";
+import { withTranslation } from "../../i18n.js";
 
 const fontSizeNormal = "16px";
 const fontSizeSmall = "14px";
@@ -124,10 +124,7 @@ const FsaFooter = (props) => (
             <FooterListItem>
               <FooterLink
                 id="languageFooter"
-                onClick={() =>
-                  i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
-                }
-                target="_blank"
+                href={props.t("links:change-language")}
                 rel="noopener noreferrer"
                 aria-label={props.t("Change the language to English/Welsh")}
                 style={{
@@ -136,7 +133,7 @@ const FsaFooter = (props) => (
                   cursor: "pointer"
                 }}
               >
-                {i18n.language === "cy" ? "English" : "Cymraeg"}
+                {props.t("links:change-language-text")}
               </FooterLink>
             </FooterListItem>
           </FooterUnorderedList>
