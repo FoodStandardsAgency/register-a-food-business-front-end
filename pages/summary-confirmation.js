@@ -19,6 +19,11 @@ const FsaPanel = styled(Panel)`
   }
 `;
 
+const formatDate = (date, language) => {
+  moment.locale(language);
+  return moment(date).format("DD MMM YYYY");
+};
+
 const ApplicationComplete = (props) => (
   <FsaLayout {...props} hideBack="true">
     <Heading as="h1" size="LARGE">
@@ -60,7 +65,7 @@ const ApplicationComplete = (props) => (
         {props.t("Submitted on")}
       </Heading>
       <Paragraph mb={0}>
-        {moment(props.submissionDate).format("DD MMM YYYY")}
+        {formatDate(props.submissionDate, props.t("en"))}
       </Paragraph>
     </ContentItem.B_30_15>
 
