@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import { withTranslation } from "../../i18n.js";
+import { withTranslation, i18n } from "../../i18n.js";
 import { Link } from "govuk-react";
 import { BackButton } from "./index";
+import React, { useState, useEffect } from "react";
 
 const LanguageLink = styled(Link)`
   color: #0b0c0c !important;
@@ -43,41 +44,81 @@ const LanguageLinkContainer = styled("div")`
   }
 `;
 
-const BackAndLanguageBar = (props) => (
-  <StyledContainer>
-    <BackLinkContainer>
-      <BackButton {...props} />
-    </BackLinkContainer>
-    <LanguageLinkContainer>
-      <LanguageLink
-        id="languageEnHeader"
-        href="?lang=en"
-        rel="noopener noreferrer"
-        aria-label={"Change the language to English"}
-        style={{
-          textDecorationLine: props.t("styles:enLangLink-underline"),
-          fontWeight: props.t("styles:enLangLink-fontWeight"),
-          cursor: props.t("styles:enLangLink-cursor")
-        }}
-      >
-        English
-      </LanguageLink>
-      |
-      <LanguageLink
-        id="languageCyHeader"
-        href="?lang=cy"
-        rel="noopener noreferrer"
-        aria-label="Newid yr iaith i'r Gymraeg"
-        style={{
-          textDecorationLine: props.t("styles:cyLangLink-underline"),
-          fontWeight: props.t("styles:cyLangLink-fontWeight"),
-          cursor: props.t("styles:cyLangLink-cursor")
-        }}
-      >
-        Cymraeg
-      </LanguageLink>
-    </LanguageLinkContainer>
-  </StyledContainer>
-);
+const BackAndLanguageBar = (props) => {
+  const [jsEnabled, setJsEnabled] = useState(false);
+
+  useEffect(() => {
+    setJsEnabled(true);
+  }, []);
+
+  return (
+    <StyledContainer>
+      <BackLinkContainer>
+        <BackButton {...props} />
+      </BackLinkContainer>
+      {jsEnabled ? (
+        <LanguageLinkContainer>
+          <LanguageLink
+            id="languageEnHeader"
+            onClick={() => i18n.changeLanguage("en")}
+            rel="noopener noreferrer"
+            aria-label={"Change the language to English"}
+            style={{
+              textDecorationLine: props.t("styles:enLangLink-underline"),
+              fontWeight: props.t("styles:enLangLink-fontWeight"),
+              cursor: props.t("styles:enLangLink-cursor")
+            }}
+          >
+            English
+          </LanguageLink>
+          |
+          <LanguageLink
+            id="languageCyHeader"
+            onClick={() => i18n.changeLanguage("cy")}
+            rel="noopener noreferrer"
+            aria-label="Newid yr iaith i'r Gymraeg"
+            style={{
+              textDecorationLine: props.t("styles:cyLangLink-underline"),
+              fontWeight: props.t("styles:cyLangLink-fontWeight"),
+              cursor: props.t("styles:cyLangLink-cursor")
+            }}
+          >
+            Cymraeg
+          </LanguageLink>
+        </LanguageLinkContainer>
+      ) : (
+        <LanguageLinkContainer>
+          <LanguageLink
+            id="languageEnHeader"
+            href="?lang=en"
+            rel="noopener noreferrer"
+            aria-label={"Change the language to English"}
+            style={{
+              textDecorationLine: props.t("styles:enLangLink-underline"),
+              fontWeight: props.t("styles:enLangLink-fontWeight"),
+              cursor: props.t("styles:enLangLink-cursor")
+            }}
+          >
+            English
+          </LanguageLink>
+          |
+          <LanguageLink
+            id="languageCyHeader"
+            href="?lang=cy"
+            rel="noopener noreferrer"
+            aria-label="Newid yr iaith i'r Gymraeg"
+            style={{
+              textDecorationLine: props.t("styles:cyLangLink-underline"),
+              fontWeight: props.t("styles:cyLangLink-fontWeight"),
+              cursor: props.t("styles:cyLangLink-cursor")
+            }}
+          >
+            Cymraeg
+          </LanguageLink>
+        </LanguageLinkContainer>
+      )}
+    </StyledContainer>
+  );
+};
 
 export default withTranslation(["common", "styles"])(BackAndLanguageBar);

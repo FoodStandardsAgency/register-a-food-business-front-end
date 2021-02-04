@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Link, ListItem, UnorderedList } from "govuk-react";
-import { withTranslation } from "../../i18n.js";
+import { withTranslation, i18n } from "../../i18n.js";
+import React, { useState, useEffect } from "react";
 
 const fontSizeNormal = "16px";
 const fontSizeSmall = "14px";
@@ -63,84 +64,112 @@ const FooterUnorderedList = styled(UnorderedList)`
   padding-left: 0px;
 `;
 
-const FsaFooter = (props) => (
-  <Footer id="fsaFooter" role="contentinfo">
-    <FooterBody>
-      <FooterContent>
-        <FooterLinkContainer>
-          <FooterUnorderedList>
-            <FooterListItem>
-              <FooterLink
-                id="cookiePolicyFooter"
-                href={props.t("links:cookies-link")}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={props.t("cookie policy (opens in a new window)")}
-                style={{ color: "#454a4c" }}
-              >
-                {props.t("Cookies")}
-              </FooterLink>
-            </FooterListItem>
-            <FooterListItem>
-              <FooterLink
-                id="privacyPolicyFooter"
-                href={props.t("links:privacy-link")}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={props.t("privacy policy (opens in a new window)")}
-                style={{ color: "#454a4c" }}
-              >
-                {props.t("Privacy")}
-              </FooterLink>
-            </FooterListItem>
-            <FooterListItem>
-              <FooterLink
-                id="feedbackFooter"
-                href={props.t("links:feedback-form")}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={props.t(
-                  "give us feedback on the service (opens in a new window)"
-                )}
-                style={{ color: "#454a4c" }}
-              >
-                {props.t("Feedback")}
-              </FooterLink>
-            </FooterListItem>
-            <FooterListItem>
-              <FooterLink
-                id="accessibilityFooter"
-                href={props.t("links:accessibility-link")}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={props.t(
-                  "accessibility statement (opens in a new window)"
-                )}
-                style={{ color: "#454a4c" }}
-              >
-                {props.t("Accessibility")}
-              </FooterLink>
-            </FooterListItem>
-            <FooterListItem>
-              <FooterLink
-                id="languageFooter"
-                href={props.t("links:change-language")}
-                rel="noopener noreferrer"
-                aria-label={props.t("Change the language to English/Welsh")}
-                style={{
-                  color: "#454a4c",
-                  textDecorationLine: "underline",
-                  cursor: "pointer"
-                }}
-              >
-                {props.t("links:change-language-text")}
-              </FooterLink>
-            </FooterListItem>
-          </FooterUnorderedList>
-        </FooterLinkContainer>
-      </FooterContent>
-    </FooterBody>
-  </Footer>
-);
+const FsaFooter = (props) => {
+  const [jsEnabled, setJsEnabled] = useState(false);
+
+  useEffect(() => {
+    setJsEnabled(true);
+  }, []);
+
+  return (
+    <Footer id="fsaFooter" role="contentinfo">
+      <FooterBody>
+        <FooterContent>
+          <FooterLinkContainer>
+            <FooterUnorderedList>
+              <FooterListItem>
+                <FooterLink
+                  id="cookiePolicyFooter"
+                  href={props.t("links:cookies-link")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={props.t("cookie policy (opens in a new window)")}
+                  style={{ color: "#454a4c" }}
+                >
+                  {props.t("Cookies")}
+                </FooterLink>
+              </FooterListItem>
+              <FooterListItem>
+                <FooterLink
+                  id="privacyPolicyFooter"
+                  href={props.t("links:privacy-link")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={props.t("privacy policy (opens in a new window)")}
+                  style={{ color: "#454a4c" }}
+                >
+                  {props.t("Privacy")}
+                </FooterLink>
+              </FooterListItem>
+              <FooterListItem>
+                <FooterLink
+                  id="feedbackFooter"
+                  href={props.t("links:feedback-form")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={props.t(
+                    "give us feedback on the service (opens in a new window)"
+                  )}
+                  style={{ color: "#454a4c" }}
+                >
+                  {props.t("Feedback")}
+                </FooterLink>
+              </FooterListItem>
+              <FooterListItem>
+                <FooterLink
+                  id="accessibilityFooter"
+                  href={props.t("links:accessibility-link")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={props.t(
+                    "accessibility statement (opens in a new window)"
+                  )}
+                  style={{ color: "#454a4c" }}
+                >
+                  {props.t("Accessibility")}
+                </FooterLink>
+              </FooterListItem>
+              {jsEnabled ? (
+                <FooterListItem>
+                  <FooterLink
+                    id="languageFooter"
+                    onClick={() =>
+                      i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
+                    }
+                    rel="noopener noreferrer"
+                    aria-label={props.t("Change the language to English/Welsh")}
+                    style={{
+                      color: "#454a4c",
+                      textDecorationLine: "underline",
+                      cursor: "pointer"
+                    }}
+                  >
+                    {props.t("links:Change Language")}
+                  </FooterLink>
+                </FooterListItem>
+              ) : (
+                <FooterListItem>
+                  <FooterLink
+                    id="languageFooter"
+                    href={props.t("links:change-language")}
+                    rel="noopener noreferrer"
+                    aria-label={props.t("Change the language to English/Welsh")}
+                    style={{
+                      color: "#454a4c",
+                      textDecorationLine: "underline",
+                      cursor: "pointer"
+                    }}
+                  >
+                    {props.t("links:Change Language")}
+                  </FooterLink>
+                </FooterListItem>
+              )}
+            </FooterUnorderedList>
+          </FooterLinkContainer>
+        </FooterContent>
+      </FooterBody>
+    </Footer>
+  );
+};
 
 export default withTranslation(["common", "links"])(FsaFooter);
