@@ -76,9 +76,7 @@ const ApplicationComplete = (props) => (
       {props.lcConfig.hygieneAndStandards ? (
         <ContentItem.B_30_15 id="hygieneAndStandardsCouncil">
           <Heading as="h4" mb={1}>
-            {props.t(
-              `localAuthorities:${props.lcConfig.hygieneAndStandards.local_council}`
-            )}
+            {props.t(props.lcConfig.hygieneAndStandards.local_council)}
           </Heading>
           <Paragraph mb={0}>
             {`${props.t("Email address")}: ${
@@ -97,9 +95,7 @@ const ApplicationComplete = (props) => (
         <div>
           <ContentItem.B_30_15 id="hygieneCouncil">
             <Heading as="h4" mb={1}>
-              {props.t(
-                `localAuthorities:${props.lcConfig.hygiene.local_council}`
-              )}
+              {props.t(props.lcConfig.hygiene.local_council)}
             </Heading>
             <Paragraph mb={0}>
               {`${props.t("Email address")}: ${
@@ -119,9 +115,7 @@ const ApplicationComplete = (props) => (
           </ContentItem.B_30_15>
           <ContentItem.B_30_15 id="standardsCouncil">
             <Heading as="h4" mb={1}>
-              {props.t(
-                `localAuthorities:${props.lcConfig.standards.local_council}`
-              )}
+              {props.t(props.lcConfig.standards.local_council)}
             </Heading>
             <Paragraph mb={0}>
               {`${props.t("Email address")}: ${
@@ -356,9 +350,7 @@ const ApplicationComplete = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation(["common", "localAuthorities"])(
-  SessionWrapper(ApplicationComplete)
-);
+export default withTranslation("common")(SessionWrapper(ApplicationComplete));
 
 ApplicationComplete.propTypes = {
   fsaRegistrationNumber: PropTypes.string,

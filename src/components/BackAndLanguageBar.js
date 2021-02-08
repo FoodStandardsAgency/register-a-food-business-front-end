@@ -64,9 +64,9 @@ const BackAndLanguageBar = (props) => {
             rel="noopener noreferrer"
             aria-label={"Change the language to English"}
             style={{
-              textDecorationLine: props.t("styles:enLangLink-underline"),
-              fontWeight: props.t("styles:enLangLink-fontWeight"),
-              cursor: props.t("styles:enLangLink-cursor")
+              textDecorationLine: props.t("enLangLink-underline"),
+              fontWeight: props.t("enLangLink-fontWeight"),
+              cursor: props.t("enLangLink-cursor")
             }}
           >
             English
@@ -78,9 +78,9 @@ const BackAndLanguageBar = (props) => {
             rel="noopener noreferrer"
             aria-label="Newid yr iaith i'r Gymraeg"
             style={{
-              textDecorationLine: props.t("styles:cyLangLink-underline"),
-              fontWeight: props.t("styles:cyLangLink-fontWeight"),
-              cursor: props.t("styles:cyLangLink-cursor")
+              textDecorationLine: props.t("cyLangLink-underline"),
+              fontWeight: props.t("cyLangLink-fontWeight"),
+              cursor: props.t("cyLangLink-cursor")
             }}
           >
             Cymraeg
@@ -94,9 +94,9 @@ const BackAndLanguageBar = (props) => {
             rel="noopener noreferrer"
             aria-label={"Change the language to English"}
             style={{
-              textDecorationLine: props.t("styles:enLangLink-underline"),
-              fontWeight: props.t("styles:enLangLink-fontWeight"),
-              cursor: props.t("styles:enLangLink-cursor")
+              textDecorationLine: props.t("enLangLink-underline"),
+              fontWeight: props.t("enLangLink-fontWeight"),
+              cursor: props.t("enLangLink-cursor")
             }}
           >
             English
@@ -108,9 +108,9 @@ const BackAndLanguageBar = (props) => {
             rel="noopener noreferrer"
             aria-label="Newid yr iaith i'r Gymraeg"
             style={{
-              textDecorationLine: props.t("styles:cyLangLink-underline"),
-              fontWeight: props.t("styles:cyLangLink-fontWeight"),
-              cursor: props.t("styles:cyLangLink-cursor")
+              textDecorationLine: props.t("cyLangLink-underline"),
+              fontWeight: props.t("cyLangLink-fontWeight"),
+              cursor: props.t("cyLangLink-cursor")
             }}
           >
             Cymraeg
@@ -121,4 +121,4 @@ const BackAndLanguageBar = (props) => {
   );
 };
 
-export default withTranslation(["common", "styles"])(BackAndLanguageBar);
+export default withTranslation("common")(BackAndLanguageBar);

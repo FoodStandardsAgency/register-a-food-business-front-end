@@ -88,7 +88,7 @@ const ImportExportActivities = (props) => (
             <br />
             {props.t("Find out more by visiting the")}{" "}
             <a
-              href={props.t("links:import/export-link")}
+              href={props.t("import/export-link")}
               target="_blank"
               rel="noopener noreferrer"
               id="link-fsa-website"
@@ -105,7 +105,7 @@ const ImportExportActivities = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation(["common", "links"])(
+export default withTranslation("common")(
   SessionWrapper(ImportExportActivities)
 );
 

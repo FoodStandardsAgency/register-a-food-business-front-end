@@ -56,7 +56,7 @@ const FsaHeader = (props) => (
         {props.t("This is a new service")} -{" "}
         <AnchorTag
           id="feedbackLink"
-          href={props.t("links:feedback-form")}
+          href={props.t("feedback-form")}
           target="_blank"
           aria-label={props.t("your feedback (opens in new window)")}
           style={{
@@ -72,4 +72,4 @@ const FsaHeader = (props) => (
   </StyledHeader>
 );
 
-export default withTranslation(["common", "links"])(FsaHeader);
+export default withTranslation("common")(FsaHeader);

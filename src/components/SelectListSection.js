@@ -22,7 +22,7 @@ const BusinessTypeOptions = (props) => {
   [
     ...new Set(
       Object.keys(businessTypeEnum).map((bt) =>
-        props.t(`businessTypes:${businessTypeEnum[bt].value.en}`)
+        props.t(businessTypeEnum[bt].value.en)
       )
     )
   ].forEach((type) => {
@@ -60,4 +60,4 @@ const SelectListSection = (props) => (
   </div>
 );
 
-export default withTranslation(["common", "businessTypes"])(SelectListSection);
+export default withTranslation("common")(SelectListSection);

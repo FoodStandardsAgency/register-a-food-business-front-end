@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 
 function MyApp({ Component, pageProps }) {
-  const { t, i18n } = useTranslation("pageTitles");
+  const { t, i18n } = useTranslation("common");
   return (
     <>
       <Helmet htmlAttributes={{ lang: i18n.language }}>

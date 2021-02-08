@@ -23,7 +23,7 @@ const BusinessTypeOptions = (props) => {
   [
     ...new Set(
       Object.keys(businessTypeEnum).map((bt) =>
-        props.t(`businessTypes:${businessTypeEnum[bt].value.en}`)
+        props.t(businessTypeEnum[bt].value.en)
       )
     )
   ].forEach((type) => {
@@ -85,4 +85,4 @@ const DataListSection = (props) => (
   </div>
 );
 
-export default withTranslation(["common", "businessTypes"])(DataListSection);
+export default withTranslation("common")(DataListSection);
