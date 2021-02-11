@@ -1,5 +1,7 @@
 import OperatorAddress from "../pages/operator-address-manual";
 import { mount, shallow } from "enzyme";
+import { HintText, Heading } from "govuk-react";
+import { Paragraph } from "govuk-react";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18nForTests";
 
@@ -17,6 +19,40 @@ describe("<OperatorAddress />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<OperatorAddress />);
     expect(wrapper.length).toBe(1);
+  });
+  describe("when registration role is partnership", () => {
+    let wrapper;
+    beforeEach(() => {
+      const cumulativeAnswers = { registration_role: "PARTNERSHIP" };
+      wrapper = mount(
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddress
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
+      );
+    });
+
+    it("renders correct header", () => {
+      const header = wrapper.find(Heading);
+      expect(header.at(1).props().children).toBe("What is the partnership contact's address?");
+    });
+
+    it("renders correct hint text", () => {
+      const hintText = wrapper.find(HintText);
+      expect(hintText.first().props().children).toBe(
+        "Partnership address is the contact address for the partner who is the main point of contact."
+      );
+    });
+
+    it("renders correct hidden text", () => {
+      const hiddenText = wrapper.find(Paragraph);
+      expect(hiddenText.at(1).props().children).toBe(
+        "In a partnership, you and your partner (or partners) personally share responsibility for your food business"
+      );
+    });
   });
 
   describe("Operator first line input field", () => {
