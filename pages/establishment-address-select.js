@@ -16,7 +16,7 @@ const EstablishmentAddressLookup = (props) => (
   <FsaLayout {...props}>
     <BackButton {...props} />
     <Heading as="h1" size="LARGE">
-      {props.t("Establishment address")}
+      {props.t("Which is the establishment's address from the list?")}
     </Heading>
 
     <HiddenTextAccessible
