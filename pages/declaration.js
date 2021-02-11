@@ -3,7 +3,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   SubmissionErrorSummary,
@@ -11,8 +10,8 @@ import {
   PostForm
 } from "../src/components";
 import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
-
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const NewTabLinkRenderer = ({ href, children }) => (
   <a href={href} target="_blank" rel="noopener noreferrer">
@@ -45,7 +44,6 @@ class Declaration extends React.Component {
           ref="submitRegistration"
           csrfToken={this.props.csrfToken}
         >
-          <BackButton {...this.props} />
           <ProcessedErrorSummary
             validatorErrors={this.props.validatorErrors}
             onHandleErrorClick={OnHandleErrorClick}
@@ -54,11 +52,13 @@ class Declaration extends React.Component {
             submissionErrors={this.props.submissionError}
           />
           <Heading as="h1" size="LARGE">
-            Declaration
+            {this.props.t("Declaration")}
           </Heading>
 
           <Paragraph>
-            Review these statements and tick all three boxes to agree.
+            {this.props.t(
+              "Review these statements and tick all three boxes to agree."
+            )}
           </Paragraph>
 
           <ContentItem.B_45_30>
@@ -67,57 +67,54 @@ class Declaration extends React.Component {
               meta={{
                 touched: true,
                 error:
-                  this.props.validatorErrors["declaration1"] ||
-                  this.props.validatorErrors["declaration2"] ||
-                  this.props.validatorErrors["declaration3"]
+                  this.props.t(this.props.validatorErrors["declaration1"]) ||
+                  this.props.t(this.props.validatorErrors["declaration2"]) ||
+                  this.props.t(this.props.validatorErrors["declaration3"])
               }}
             >
               <Checkbox
                 name="declaration1"
-                value="I declare that the information I have given on this form is correct and
-        complete to the best of my knowledge and belief."
-                error={this.props.validatorErrors["declaration1"]}
+                value="I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief."
+                error={this.props.t(this.props.validatorErrors["declaration1"])}
                 defaultChecked={this.props.cumulativeFullAnswers.declaration1}
               >
-                I declare that the information I have given on this form is
-                correct and complete to the best of my knowledge and belief.
+                {this.props.t(
+                  "I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief."
+                )}
               </Checkbox>
 
               <Checkbox
                 name="declaration2"
-                value="I, or the operator, will notify my local authority of any significant
-        changes to the business activity, including closure, within 28 days of
-        the change happening."
-                error={this.props.validatorErrors["declaration2"]}
+                value="The operator will notify their local council of any significant changes to the business activity, including closure, within 28 days of the change happening."
+                error={this.props.t(this.props.validatorErrors["declaration2"])}
                 defaultChecked={this.props.cumulativeFullAnswers.declaration2}
               >
-                The operator will notify their local council of any significant
-                changes to the business activity, including closure, within 28
-                days of the change happening.
+                {this.props.t(
+                  "The operator will notify their local council of any significant changes to the business activity, including closure, within 28 days of the change happening."
+                )}
               </Checkbox>
 
               <Checkbox
                 name="declaration3"
-                value="I, or the operator, understands the operator is legally responsible for
-        the safety and authenticity of the food being produced or served at this
-        establishment."
-                error={this.props.validatorErrors["declaration3"]}
+                value="The operator understands they are legally responsible for the safety and authenticity of the food being produced or served at this establishment."
+                error={this.props.t(this.props.validatorErrors["declaration3"])}
                 defaultChecked={this.props.cumulativeFullAnswers.declaration3}
               >
-                The operator understands they are legally responsible for the
-                safety and authenticity of the food being produced or served at
-                this establishment.
+                {this.props.t(
+                  "The operator understands they are legally responsible for the safety and authenticity of the food being produced or served at this establishment."
+                )}
               </Checkbox>
             </MultiChoice>
           </ContentItem.B_45_30>
 
           <Heading as="h1" size="LARGE">
-            Feedback
+            {this.props.t("Feedback")}
           </Heading>
 
           <Paragraph>
-            Congratulations, you've almost finished. We want to provide you with
-            the best experience possible and value your feedback.
+            {this.props.t(
+              "Congratulations, you've almost finished. We want to provide you with the best experience possible and value your feedback."
+            )}
           </Paragraph>
 
           <ContentItem.B_45_30>
@@ -126,11 +123,14 @@ class Declaration extends React.Component {
               value="I agree to be contacted to provide feedback to help develop this service"
               defaultChecked={this.props.cumulativeFullAnswers.feedback1}
             >
-              I agree to be contacted to provide feedback to help develop this
-              service (optional)
+              {this.props.t(
+                "I agree to be contacted to provide feedback to help develop this service (optional)"
+              )}
             </Checkbox>
             <Paragraph linkRenderer={NewTabLinkRenderer}>
-              [Details on how we use your data](/pdfs/feedback)
+              {this.props.t(
+                "[Details on how we use your data](/pdfs/feedback)"
+              )}
             </Paragraph>
           </ContentItem.B_45_30>
 
@@ -145,7 +145,7 @@ class Declaration extends React.Component {
   }
 }
 
-export default SessionWrapper(Declaration);
+export default withTranslation("common")(SessionWrapper(Declaration));
 
 Declaration.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

@@ -8,9 +8,11 @@ import BrowserUnsupportedBanner from "./BrowserUnsupportedBanner";
 import AccessibleAutocompleteCSS from "./AccessibleAutocompleteCSS";
 import NormalizeCSS from "./NormalizeCSS";
 import { Global } from "@emotion/core";
+import { withTranslation } from "../../i18n.js";
 
 const GridRowZeroMargin = styled(GridRow)`
   margin: 0px;
+  padding-top: 0px;
 `;
 const GridColZeroPadding = styled(GridCol)`
   ${MEDIA_QUERIES.LARGESCREEN} {
@@ -40,4 +42,4 @@ const FsaLayout = (props) => (
   </React.Fragment>
 );
 
-export default FsaLayout;
+export default withTranslation("common")(FsaLayout);

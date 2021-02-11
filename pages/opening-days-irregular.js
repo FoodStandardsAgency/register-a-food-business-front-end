@@ -1,7 +1,6 @@
 import {
   FsaLayout,
   SessionWrapper,
-  BackButton,
   ContinueButton,
   ContentItem,
   ProcessedErrorSummary,
@@ -17,16 +16,16 @@ import {
   UnorderedList
 } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const OtherDaysIrregular = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      Opening days
+      {props.t("Opening days")}
     </Heading>
 
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
@@ -40,21 +39,24 @@ const OtherDaysIrregular = (props) => (
             }}
             meta={{
               touched: true,
-              error: props.validatorErrors.opening_days_irregular
+              error: props.t(props.validatorErrors.opening_days_irregular)
             }}
           >
             <Paragraph mb={3}>
-              When will this establishment be open and serving or preparing
-              food?
+              {props.t(
+                "When will this establishment be open and serving or preparing food?"
+              )}
             </Paragraph>
             <HintText mb={3}>
-              For example
+              {props.t("For example")}
               <UnorderedList>
                 <ListItemConsistentSize>
-                  only serving food during December at Christmas markets
+                  {props.t(
+                    "only serving food during December at Christmas markets"
+                  )}
                 </ListItemConsistentSize>
                 <ListItemConsistentSize>
-                  open at weekends in June and August between 10:00 and 19:00
+                  {props.t("open at weekends in June and August")}
                 </ListItemConsistentSize>
               </UnorderedList>
             </HintText>
@@ -66,7 +68,7 @@ const OtherDaysIrregular = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(OtherDaysIrregular);
+export default withTranslation("common")(SessionWrapper(OtherDaysIrregular));
 
 OtherDaysIrregular.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

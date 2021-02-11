@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -10,19 +9,19 @@ import {
 } from "../src/components";
 import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 import { customerTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const CustomerType = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      Who will this establishment supply food to?
+      {props.t("Who will this establishment supply food to?")}
     </Heading>
-    <Paragraph>Select all that apply</Paragraph>
+    <Paragraph>{props.t("Select all that apply")}</Paragraph>
 
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_45_30>
@@ -30,7 +29,7 @@ const CustomerType = (props) => (
           label=""
           meta={{
             touched: true,
-            error: props.validatorErrors.customer_type
+            error: props.t(props.validatorErrors.customer_type)
           }}
         >
           <Checkbox
@@ -39,7 +38,9 @@ const CustomerType = (props) => (
             value={customerTypeEnum.OTHER_BUSINESSES.key}
             defaultChecked={props.cumulativeFullAnswers.supply_other}
           >
-            It will supply food to other businesses to process, sell or serve
+            {props.t(
+              "It will supply food to other businesses to process, sell or serve"
+            )}
           </Checkbox>
 
           <Checkbox
@@ -48,7 +49,7 @@ const CustomerType = (props) => (
             value={customerTypeEnum.END_CONSUMER.key}
             defaultChecked={props.cumulativeFullAnswers.supply_directly}
           >
-            It will supply food directly to end consumers
+            {props.t("It will supply food directly to end consumers")}
           </Checkbox>
         </MultiChoice>
       </ContentItem.B_45_30>
@@ -58,7 +59,7 @@ const CustomerType = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(CustomerType);
+export default withTranslation("common")(SessionWrapper(CustomerType));
 
 CustomerType.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

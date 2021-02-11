@@ -7,36 +7,44 @@ import {
 } from "./BusinessTypeLookupFunctions";
 
 jest.mock("stemmer");
-jest.mock("../components/business-type-transformed-en.json", () => [
-  {
-    displayName: "Restaurant, cafe, canteen or fast food",
-    searchTerm: "fusion"
-  },
-  {
-    displayName: "Livestock farm",
-    searchTerm: "cow"
-  },
-  {
-    displayName: "Take away with no food consumed on site",
-    searchTerm: "fusion"
-  },
-  {
-    displayName: "Online retailer",
-    searchTerm: "computer"
-  },
-  {
-    displayName: "Online retailer",
-    searchTerm: "example"
-  },
-  {
-    displayName: "Butcher",
-    searchTerm: "retail"
-  }
-]);
+jest.mock("../../i18n", () => {
+  return { i18n: { language: "en" } };
+});
+jest.mock("@slice-and-dice/register-a-food-business-validation", () => {
+  return {
+    businessTypeEnum: [
+      {
+        key: "001",
+        value: { en: "Restaurant, cafe, canteen, or fast food restaurant" },
+        searchTerms: { en: ["fusion"] }
+      },
+      {
+        key: "002",
+        value: { en: "Livestock farm" },
+        searchTerms: { en: ["cow"] }
+      },
+      {
+        key: "003",
+        value: { en: "Take away with no food consumed on site" },
+        searchTerms: { en: ["fusion"] }
+      },
+      {
+        key: "004",
+        value: { en: "Online retailer" },
+        searchTerms: { en: ["computer", "example"] }
+      },
+      {
+        key: "005",
+        value: { en: "Butcher" },
+        searchTerms: { en: ["retail"] }
+      }
+    ]
+  };
+});
 
 describe("Function: inputValueFunction", () => {
   describe("Given that selectedSuggestion exists", () => {
-    const selectedSuggestion = { displayName: "Food" };
+    const selectedSuggestion = { value: "Food" };
     it("returns the value of displayName", () => {
       expect(inputValueFunction(selectedSuggestion)).toBe("Food");
     });
@@ -44,7 +52,7 @@ describe("Function: inputValueFunction", () => {
 
   describe("Given that selectedSuggestion exists and a searchTerm is provided", () => {
     const selectedSuggestion = {
-      displayName: "Food",
+      value: "Food",
       searchTerm: "eating"
     };
     it("returns the value of displayName and searchTerm in brackets", () => {
@@ -61,7 +69,7 @@ describe("Given that selectedSuggestion doesn't exist", () => {
 
 describe("Function: suggestionFunction", () => {
   describe("Given that selectedSuggestion.searchTerm exists", () => {
-    const selectedSuggestion = { displayName: "Food", searchTerm: "Diner" };
+    const selectedSuggestion = { value: "Food", searchTerm: "Diner" };
     it("returns the value of displayName + searchTerm", () => {
       expect(suggestionFunction(selectedSuggestion).includes("Food")).toBe(
         true
@@ -74,7 +82,7 @@ describe("Function: suggestionFunction", () => {
 
   describe("Given that selectedSuggestion.searchTerm doesn't exist", () => {
     const selectedSuggestion = {
-      displayName: "Food",
+      value: "Food",
       searchTerm: undefined
     };
     it("returns the value of displayName", () => {
@@ -97,7 +105,7 @@ describe("Function: findMatches", () => {
         findMatches("cow", returnResultsArray);
         expect(returnResultsArray).toHaveBeenLastCalledWith([
           {
-            displayName: "Livestock farm",
+            value: "Livestock farm",
             searchTerm: "cow"
           }
         ]);
@@ -111,7 +119,7 @@ describe("Function: findMatches", () => {
         findMatches("cows", returnResultsArray);
         expect(returnResultsArray).toHaveBeenLastCalledWith([
           {
-            displayName: "Livestock farm",
+            value: "Livestock farm",
             searchTerm: "cow"
           }
         ]);
@@ -123,11 +131,11 @@ describe("Function: findMatches", () => {
         findMatches("fusion", returnResultsArray);
         expect(returnResultsArray).toHaveBeenLastCalledWith([
           {
-            displayName: "Restaurant, cafe, canteen or fast food",
+            value: "Restaurant, cafe, canteen, or fast food restaurant",
             searchTerm: "fusion"
           },
           {
-            displayName: "Take away with no food consumed on site",
+            value: "Take away with no food consumed on site",
             searchTerm: "fusion"
           }
         ]);
@@ -143,11 +151,11 @@ describe("Function: findMatches", () => {
         findMatches("retailer", returnResultsArray);
         expect(returnResultsArray).toHaveBeenLastCalledWith([
           {
-            displayName: "Butcher",
+            value: "Butcher",
             searchTerm: "retail"
           },
           {
-            displayName: "Online retailer",
+            value: "Online retailer",
             searchTerm: undefined
           }
         ]);

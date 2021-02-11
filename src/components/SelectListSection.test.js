@@ -1,4 +1,4 @@
-import BusinessTypeLookup from "../components/BusinessTypeLookup";
+import { BusinessTypeLookup } from "../components/BusinessTypeLookup";
 import SelectListSection from "../components/SelectListSection";
 import { Label } from "govuk-react";
 import { SelectInput } from "@govuk-react/select";
@@ -15,6 +15,7 @@ describe("given browser is IE", () => {
           validatorErrors
           cumulativeFullAnswers
           browser="IE"
+          t={(text) => text}
         />
       );
       wrapper.setState({ renderAutoCompleteSection: true });
@@ -34,6 +35,7 @@ describe("given JavaScript is disabled", () => {
             validatorErrors
             cumulativeFullAnswers
             browser="Safari"
+            t={(text) => text}
           />
         );
         wrapper.setState({ renderAutoCompleteSection: false });

@@ -1,7 +1,6 @@
 import {
   FsaLayout,
   SessionWrapper,
-  BackButton,
   ContinueButton,
   ContentItem,
   ProcessedErrorSummary,
@@ -10,16 +9,16 @@ import {
 } from "../src/components";
 import { Heading, TextArea } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const OtherDetails = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      Other details
+      {props.t("Other details")}
     </Heading>
 
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
@@ -33,11 +32,12 @@ const OtherDetails = (props) => (
             }}
             meta={{
               touched: true,
-              error: props.validatorErrors.business_other_details
+              error: props.t(props.validatorErrors.business_other_details)
             }}
           >
-            Is there anything else you need to tell us about this establishment?
-            (optional)
+            {props.t(
+              "Is there anything else you need to tell us about this establishment? (optional)"
+            )}
           </TextArea>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
@@ -46,7 +46,7 @@ const OtherDetails = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(OtherDetails);
+export default withTranslation("common")(SessionWrapper(OtherDetails));
 
 OtherDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),

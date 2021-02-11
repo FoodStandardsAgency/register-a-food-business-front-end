@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   PostForm
@@ -10,6 +9,7 @@ import {
 import { Button, Heading, InputField } from "govuk-react";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const StyledRow = styled.div`
   display: flex;
@@ -17,19 +17,21 @@ const StyledRow = styled.div`
 `;
 
 const PartnerDetails = (props) => (
-  <FsaLayout {...props}>
-    <BackButton href={props.partnerDetailsBackUrl} {...props} />
+  <FsaLayout {...props} backHref={props.partnerDetailsBackUrl}>
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      {props.cumulativeFullAnswers.partners[
-        props.cumulativeFullAnswers.targetPartner
-      ]
-        ? "Edit "
-        : "Add "}
-      partner's name
+      {props.t(
+        `${
+          props.cumulativeFullAnswers.partners[
+            props.cumulativeFullAnswers.targetPartner
+          ]
+            ? "Edit "
+            : "Add "
+        }partner's name`
+      )}
     </Heading>
     <PostForm
       action={props.partnerDetailsSaveFormAction}
@@ -49,10 +51,10 @@ const PartnerDetails = (props) => (
             id="partner_name"
             meta={{
               touched: true,
-              error: props.validatorErrors["partnerName"]
+              error: props.t(props.validatorErrors["partnerName"])
             }}
           >
-            Full name
+            {props.t("Full name")}
           </InputField>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
@@ -64,12 +66,15 @@ const PartnerDetails = (props) => (
             id="continue-button"
             type="submit"
           >
-            {props.cumulativeFullAnswers.partners[
-              props.cumulativeFullAnswers.targetPartner
-            ]
-              ? "Save"
-              : "Add"}{" "}
-            partner
+            {props.t(
+              `${
+                props.cumulativeFullAnswers.partners[
+                  props.cumulativeFullAnswers.targetPartner
+                ]
+                  ? "Save"
+                  : "Add"
+              } partner`
+            )}
           </Button>
         </ContentItem.B_30_15>
         <ContentItem.B_30_15>
@@ -78,7 +83,7 @@ const PartnerDetails = (props) => (
             style={{ textDecoration: "none" }}
           >
             <Button type="button" id="cancelButton">
-              Cancel
+              {props.t("Cancel")}
             </Button>
           </a>
         </ContentItem.B_30_15>
@@ -87,7 +92,7 @@ const PartnerDetails = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(PartnerDetails);
+export default withTranslation("common")(SessionWrapper(PartnerDetails));
 
 PartnerDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

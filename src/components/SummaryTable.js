@@ -3,6 +3,7 @@ import { Table, Link } from "govuk-react";
 import PropTypes from "prop-types";
 import * as COLOUR from "govuk-colours";
 import moment from "moment";
+import "moment/locale/cy";
 import styled from "@emotion/styled";
 import ContentItem from "./ContentItem";
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
@@ -13,6 +14,7 @@ import {
   MEDIA_QUERIES,
   NTA_LIGHT
 } from "@govuk-react/constants";
+import { withTranslation } from "../../i18n.js";
 
 const StyledTableRow = styled("div")({
   fontFamily: NTA_LIGHT,
@@ -98,27 +100,32 @@ const InvisibleRow = styled(Table.Row)`
   }
 `;
 
-const ColumnHeaders = () => (
+const ColumnHeaders = (props) => (
   <InvisibleRow>
     <Table.CellHeader scope="col" role="columnheader">
-      The question
+      {props.t("The question")}
     </Table.CellHeader>
     <Table.CellHeader scope="col" role="columnheader">
-      Your answer
+      {props.t("Your answer")}
     </Table.CellHeader>
     <Table.CellHeader scope="col" role="columnheader">
-      Change your answer
+      {props.t("Change your answer")}
     </Table.CellHeader>
   </InvisibleRow>
 );
 
-const determineLinkText = (property) => {
-  return property ? "Change" : "Enter answer";
+const determineLinkText = (property, props) => {
+  return property ? props.t("Change") : props.t("Enter answer");
+};
+
+const formatDate = (date, language) => {
+  moment.locale(language);
+  return moment(date).format("DD MMM YYYY");
 };
 
 const OperatorDetailsTable = (props) => (
   <React.Fragment>
-    <ColumnHeaders />
+    <ColumnHeaders t={props.t} />
     {props.operator_type || props.validatorErrors["operator_type"] ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
@@ -127,19 +134,19 @@ const OperatorDetailsTable = (props) => (
         <AccessibleRowHeader
           {...applyRowHeaderStyling(props.validatorErrors["operator_type"])}
         >
-          Operator type
+          {props.t("Operator type")}
         </AccessibleRowHeader>
         <AccessibleCell id="operator_type">
-          {props.operator_type}
+          {props.t(props.operator_type)}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
             <Link
               id="changeOperatorTypeRow"
               href="/edit/registration-role"
-              aria-label="Change operator type"
+              aria-label={props.t("Change operator type")}
             >
-              {determineLinkText(props.operator_type)}
+              {determineLinkText(props.operator_type, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -157,7 +164,7 @@ const OperatorDetailsTable = (props) => (
             props.validatorErrors["operator_company_name"]
           )}
         >
-          Company name
+          {props.t("Company name")}
         </AccessibleRowHeader>
         <AccessibleCell id="operator_company_name">
           {props.operator_company_name}
@@ -167,9 +174,9 @@ const OperatorDetailsTable = (props) => (
             <Link
               id="changeOperatorCompanyNameRow"
               href="/edit/operator-company-details"
-              aria-label="Change operator company name"
+              aria-label={props.t("Change operator company name")}
             >
-              {determineLinkText(props.operator_company_name)}
+              {determineLinkText(props.operator_company_name, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -187,7 +194,7 @@ const OperatorDetailsTable = (props) => (
             props.validatorErrors["operator_companies_house_number"]
           )}
         >
-          Companies House number
+          {props.t("Companies House number")}
         </AccessibleRowHeader>
         <AccessibleCell id="operator_companies_house_number">
           {props.operator_companies_house_number}
@@ -197,9 +204,9 @@ const OperatorDetailsTable = (props) => (
             <Link
               id="changeOperatorCompaniesHouseRow"
               href="/edit/operator-company-details"
-              aria-label="Change operator companies house"
+              aria-label={props.t("Change operator companies house")}
             >
-              {determineLinkText(props.operator_companies_house_number)}
+              {determineLinkText(props.operator_companies_house_number, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -217,7 +224,7 @@ const OperatorDetailsTable = (props) => (
             props.validatorErrors["operator_charity_name"]
           )}
         >
-          Charity name
+          {props.t("Charity name")}
         </AccessibleRowHeader>
         <AccessibleCell id="operator_charity_name">
           {props.operator_charity_name}
@@ -227,9 +234,9 @@ const OperatorDetailsTable = (props) => (
             <Link
               id="changeOperatorCharityNameRow"
               href="/edit/operator-charity-details"
-              aria-label="Change operator charity name"
+              aria-label={props.t("Change operator charity name")}
             >
-              {determineLinkText(props.operator_charity_name)}
+              {determineLinkText(props.operator_charity_name, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -247,7 +254,7 @@ const OperatorDetailsTable = (props) => (
             props.validatorErrors["operator_charity_number"]
           )}
         >
-          Charity number
+          {props.t(" Charity number")}
         </AccessibleRowHeader>
         <AccessibleCell id="operator_charity_number">
           {props.operator_charity_number}
@@ -257,9 +264,9 @@ const OperatorDetailsTable = (props) => (
             <Link
               id="changeOperatorCharityNumberRow"
               href="/edit/operator-charity-details"
-              aria-label="Change operator charity number"
+              aria-label={props.t("Change operator charity number")}
             >
-              {determineLinkText(props.operator_charity_number)}
+              {determineLinkText(props.operator_charity_number, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -280,7 +287,7 @@ const OperatorDetailsTable = (props) => (
               props.validatorErrors["operator_last_name"]
           )}
         >
-          Name
+          {props.t("Name")}
         </AccessibleRowHeader>
         <AccessibleCell>
           <span id="operator_first_name">{props.operator_first_name}</span>{" "}
@@ -291,10 +298,11 @@ const OperatorDetailsTable = (props) => (
             <Link
               id="changeOperatorNameRow"
               href="/edit/operator-name"
-              aria-label="Change operator name"
+              aria-label={props.t("Change operator name")}
             >
               {determineLinkText(
-                props.operator_first_name && props.operator_last_name
+                props.operator_first_name && props.operator_last_name,
+                props
               )}
             </Link>
           </AccessibleChangeCell>
@@ -324,9 +332,9 @@ const OperatorDetailsTable = (props) => (
               props.validatorErrors["operator_postcode_find"]
           )}
         >
-          {props.operator_type === operatorTypeEnum.PARTNERSHIP.key
-            ? "Partnership contact address"
-            : "Operator address"}
+          {props.operator_type === props.t(operatorTypeEnum.PARTNERSHIP.key)
+            ? props.t("Partnership contact address")
+            : props.t("Operator address")}
         </AccessibleRowHeader>
         <AccessibleCell>
           <div id="operator_address_line_1">
@@ -347,12 +355,13 @@ const OperatorDetailsTable = (props) => (
             <Link
               id="changeOperatorAddressRow"
               href="/edit/operator-address"
-              aria-label="Change operator address"
+              aria-label={props.t("Change operator address")}
             >
               {determineLinkText(
                 props.operator_address_line_1 &&
                   props.operator_town &&
-                  props.operator_postcode
+                  props.operator_postcode,
+                props
               )}
             </Link>
           </AccessibleChangeCell>
@@ -373,7 +382,7 @@ const OperatorDetailsTable = (props) => (
               props.validatorErrors["operator_secondary_number"]
           )}
         >
-          Phone number
+          {props.t("Phone number")}
         </AccessibleRowHeader>
         <AccessibleCell>
           <div id="operator_primary_number">
@@ -388,9 +397,9 @@ const OperatorDetailsTable = (props) => (
             <Link
               id="changeOperatorContactDetailsRow"
               href="/edit/operator-contact-details"
-              aria-label="Change operator contact details"
+              aria-label={props.t("Change operator contact details")}
             >
-              {determineLinkText(props.operator_primary_number)}
+              {determineLinkText(props.operator_primary_number, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -405,7 +414,7 @@ const OperatorDetailsTable = (props) => (
         <AccessibleRowHeader
           {...applyRowHeaderStyling(props.validatorErrors["operator_email"])}
         >
-          Email address
+          {props.t("Email address")}
         </AccessibleRowHeader>
         <AccessibleCell id="operator_email">
           {props.operator_email}
@@ -415,9 +424,9 @@ const OperatorDetailsTable = (props) => (
             <Link
               id="changeOperatorEmailRow"
               href="/edit/operator-contact-details"
-              aria-label="Change operator email"
+              aria-label={props.t("Change operator email")}
             >
-              {determineLinkText(props.operator_email)}
+              {determineLinkText(props.operator_email, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -435,7 +444,7 @@ const OperatorDetailsTable = (props) => (
               props.validatorErrors["main_partnership_contact"]
             )}
           >
-            Main partnership contact
+            {props.t("Main partnership contact")}
           </AccessibleRowHeader>
           <AccessibleCell id="main_partnership_contact">
             {props.main_partnership_contact}
@@ -445,9 +454,9 @@ const OperatorDetailsTable = (props) => (
               <Link
                 id="changeMainPartnershipContactRow"
                 href="/edit/main-partnership-contact"
-                aria-label="Change main partnership contact"
+                aria-label={props.t("Change main partnership contact")}
               >
-                Change
+                {props.t("Change")}
               </Link>
             </AccessibleChangeCell>
           )}
@@ -459,7 +468,7 @@ const OperatorDetailsTable = (props) => (
           <AccessibleRowHeader
             {...applyRowHeaderStyling(props.validatorErrors["partners"])}
           >
-            Partners
+            {props.t("Partners")}
           </AccessibleRowHeader>
           <AccessibleCell id="partners">
             {props.partners.map((partner, index) => {
@@ -471,9 +480,9 @@ const OperatorDetailsTable = (props) => (
               <Link
                 id="changeOperatorPartnersRow"
                 href="/edit/partner-name"
-                aria-label="Change partner details"
+                aria-label={props.t("Change partner details")}
               >
-                Change
+                {props.t("Change")}
               </Link>
             </AccessibleChangeCell>
           )}
@@ -501,7 +510,7 @@ const OperatorDetailsTable = (props) => (
               props.validatorErrors["contact_representative_email"]
           )}
         >
-          Designated contact
+          {props.t("Designated contact")}
         </AccessibleRowHeader>
         <AccessibleCell>
           <StyledTableRow>
@@ -528,9 +537,9 @@ const OperatorDetailsTable = (props) => (
             <Link
               id="changeContactRepresentativeRow"
               href="/edit/contact-representative"
-              aria-label="Change contact representative"
+              aria-label={props.t("Change contact representative")}
             >
-              {determineLinkText(props.contact_representative_name)}
+              {determineLinkText(props.contact_representative_name, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -541,7 +550,7 @@ const OperatorDetailsTable = (props) => (
 
 const EstablishmentDetailsTable = (props) => (
   <React.Fragment>
-    <ColumnHeaders />
+    <ColumnHeaders t={props.t} />
     {props.establishment_trading_name ||
     props.validatorErrors["establishment_trading_name"] ? (
       <AccessibleTableRow
@@ -553,7 +562,7 @@ const EstablishmentDetailsTable = (props) => (
             props.validatorErrors["establishment_trading_name"]
           )}
         >
-          Trading name
+          {props.t("Trading name")}
         </AccessibleRowHeader>
         <AccessibleCell id="establishment_trading_name">
           {props.establishment_trading_name}
@@ -563,9 +572,9 @@ const EstablishmentDetailsTable = (props) => (
             <Link
               id="changeEstablishmentTradingNameRow"
               href="/edit/establishment-trading-name"
-              aria-label="Change establishment trading name"
+              aria-label={props.t("Change establishment trading name")}
             >
-              {determineLinkText(props.establishment_trading_name)}
+              {determineLinkText(props.establishment_trading_name, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -594,7 +603,7 @@ const EstablishmentDetailsTable = (props) => (
               props.validatorErrors["establishment_postcode_find"]
           )}
         >
-          Establishment address
+          {props.t("Establishment address")}
         </AccessibleRowHeader>
         <AccessibleCell>
           <div id="establishment_address_line_1">
@@ -615,12 +624,13 @@ const EstablishmentDetailsTable = (props) => (
             <Link
               id="changeEstablishmentAddressRow"
               href="/edit/establishment-address"
-              aria-label="Change establishment address"
+              aria-label={props.t("Change establishment address")}
             >
               {determineLinkText(
                 props.establishment_address_line_1 &&
                   props.establishment_town &&
-                  props.establishment_postcode
+                  props.establishment_postcode,
+                props
               )}
             </Link>
           </AccessibleChangeCell>
@@ -638,19 +648,19 @@ const EstablishmentDetailsTable = (props) => (
             props.validatorErrors["establishment_type"]
           )}
         >
-          Address type
+          {props.t("Address type")}
         </AccessibleRowHeader>
         <AccessibleCell id="establishment_type">
-          {props.establishment_type}
+          {props.t(props.establishment_type)}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
             <Link
               id="changeEstablishmentAddressTypeRow"
               href="/edit/establishment-address-type"
-              aria-label="Change establishment address type"
+              aria-label={props.t("Change establishment address type")}
             >
-              {determineLinkText(props.establishment_type)}
+              {determineLinkText(props.establishment_type, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -670,7 +680,7 @@ const EstablishmentDetailsTable = (props) => (
               props.validatorErrors["establishment_secondary_number"]
           )}
         >
-          Phone number
+          {props.t("Phone number")}
         </AccessibleRowHeader>
         <AccessibleCell>
           <div id="establishment_primary_number">
@@ -685,9 +695,9 @@ const EstablishmentDetailsTable = (props) => (
             <Link
               id="changeEstablishmentContactDetailsRow"
               href="/edit/establishment-contact-details"
-              aria-label="Change establishment contact details"
+              aria-label={props.t("Change establishment contact details")}
             >
-              {determineLinkText(props.establishment_primary_number)}
+              {determineLinkText(props.establishment_primary_number, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -705,7 +715,7 @@ const EstablishmentDetailsTable = (props) => (
             props.validatorErrors["establishment_email"]
           )}
         >
-          Email address
+          {props.t("Email address")}
         </AccessibleRowHeader>
         <AccessibleCell id="establishment_email">
           {props.establishment_email}
@@ -715,9 +725,9 @@ const EstablishmentDetailsTable = (props) => (
             <Link
               id="changeEstablishmentEmailRow"
               href="/edit/establishment-contact-details"
-              aria-label="Change establishment email"
+              aria-label={props.t("Change establishment email")}
             >
-              {determineLinkText(props.establishment_email)}
+              {determineLinkText(props.establishment_email, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -737,11 +747,11 @@ const EstablishmentDetailsTable = (props) => (
               props.validatorErrors["establishment_opening_date"]
           )}
         >
-          Trading date
+          {props.t("Trading date")}
         </AccessibleRowHeader>
         <AccessibleCell id="establishment_opening_date">
           {props.establishment_opening_date
-            ? moment(props.establishment_opening_date).format("DD MMM YYYY")
+            ? formatDate(props.establishment_opening_date, props.t("en"))
             : ""}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
@@ -749,12 +759,12 @@ const EstablishmentDetailsTable = (props) => (
             <Link
               id="changeEstablishmentOpeningDateRow"
               href="/edit/establishment-opening-status"
-              aria-label="Change establishment opening date"
+              aria-label={props.t("Change establishment opening date")}
             >
               {determineLinkText(
-                moment(props.establishment_opening_date).format(
-                  "DD MMM YYYY"
-                ) !== "Invalid date" && props.establishment_opening_date
+                formatDate(props.establishment_opening_date, props.t("en")) !==
+                  "Invalid date" && props.establishment_opening_date,
+                props
               )}
             </Link>
           </AccessibleChangeCell>
@@ -779,7 +789,7 @@ const EstablishmentDetailsTable = (props) => (
               props.validatorErrors["opening_days_some"]
           )}
         >
-          Opening days
+          {props.t("Opening days")}
         </AccessibleRowHeader>
         <AccessibleCell
           id={`${
@@ -790,26 +800,53 @@ const EstablishmentDetailsTable = (props) => (
               : "opening_days_some"
           }`}
         >
-          {props.opening_days_irregular || props.open_some_days_summary_table || (
-            <div>
-              <div id="opening_day_monday">{props.opening_day_monday}</div>
-              <div id="opening_day_tuesday">{props.opening_day_tuesday}</div>
-              <div id="opening_day_wednesday">
-                {props.opening_day_wednesday}
+          {props.t(props.opening_days_irregular) ||
+            props.t(props.open_some_days_summary_table) || (
+              <div>
+                <div id="opening_day_monday">
+                  {props.opening_day_monday
+                    ? props.t(props.opening_day_monday)
+                    : props.opening_day_monday}
+                </div>
+                <div id="opening_day_tuesday">
+                  {props.opening_day_tuesday
+                    ? props.t(props.opening_day_tuesday)
+                    : props.opening_day_tuesday}
+                </div>
+                <div id="opening_day_wednesday">
+                  {props.opening_day_wednesday
+                    ? props.t(props.opening_day_wednesday)
+                    : props.opening_day_wednesday}
+                </div>
+                <div id="opening_day_thursday">
+                  {props.opening_day_thursday
+                    ? props.t(props.opening_day_thursday)
+                    : props.opening_day_thursday}
+                </div>
+                <div id="opening_day_friday">
+                  {props.opening_day_friday
+                    ? props.t(props.opening_day_friday)
+                    : props.opening_day_friday}
+                </div>
+                <div id="opening_day_saturday">
+                  {props.opening_day_saturday
+                    ? props.t(props.opening_day_saturday)
+                    : props.opening_day_saturday}
+                </div>
+                <div id="opening_day_sunday">
+                  {props.opening_day_sunday
+                    ? props.t(props.opening_day_sunday)
+                    : props.opening_day_sunday}
+                </div>
               </div>
-              <div id="opening_day_thursday">{props.opening_day_thursday}</div>
-              <div id="opening_day_friday">{props.opening_day_friday}</div>
-              <div id="opening_day_saturday">{props.opening_day_saturday}</div>
-              <div id="opening_day_sunday">{props.opening_day_sunday}</div>
-            </div>
-          )}
+            )}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
             <Link
               id="changeEstablishmentOpeningDaysRow"
               href="/edit/opening-days-start"
-              aria-label="Change establishment opening days"
+              aria-label={props.t("Change establishment opening days")}
             >
               {determineLinkText(
                 props.opening_days_irregular ||
@@ -820,7 +857,8 @@ const EstablishmentDetailsTable = (props) => (
                   props.opening_day_thursday ||
                   props.opening_day_friday ||
                   props.opening_day_saturday ||
-                  props.opening_day_sunday
+                  props.opening_day_sunday,
+                props
               )}
             </Link>
           </AccessibleChangeCell>
@@ -852,37 +890,37 @@ const EstablishmentDetailsTable = (props) => (
               props.validatorErrors["opening_hours_sunday"]
           )}
         >
-          Opening hours
+          {props.t("Opening hours")}
         </AccessibleRowHeader>
         <AccessibleCell>
           <div>
             <div id="opening_hours_monday">
               {props.opening_hours_monday &&
-                `Monday: ${props.opening_hours_monday}`}
+                `${props.t("Monday")}: ${props.opening_hours_monday}`}
             </div>
             <div id="opening_hours_tuesday">
               {props.opening_hours_tuesday &&
-                `Tuesday: ${props.opening_hours_tuesday}`}
+                `${props.t("Tuesday")}: ${props.opening_hours_tuesday}`}
             </div>
             <div id="opening_hours_wednesday">
               {props.opening_hours_wednesday &&
-                `Wednesday: ${props.opening_hours_wednesday}`}
+                `${props.t("Wednesday")}: ${props.opening_hours_wednesday}`}
             </div>
             <div id="opening_hours_thursday">
               {props.opening_hours_thursday &&
-                `Thursday: ${props.opening_hours_thursday}`}
+                `${props.t("Thursday")}: ${props.opening_hours_thursday}`}
             </div>
             <div id="opening_hours_friday">
               {props.opening_hours_friday &&
-                `Friday: ${props.opening_hours_friday}`}
+                `${props.t("Friday")}: ${props.opening_hours_friday}`}
             </div>
             <div id="opening_hours_saturday">
               {props.opening_hours_saturday &&
-                `Saturday: ${props.opening_hours_saturday}`}
+                `${props.t("Saturday")}: ${props.opening_hours_saturday}`}
             </div>
             <div id="opening_hours_sunday">
               {props.opening_hours_sunday &&
-                `Sunday: ${props.opening_hours_sunday}`}
+                `${props.t("Sunday")}: ${props.opening_hours_sunday}`}
             </div>
           </div>
         </AccessibleCell>
@@ -891,7 +929,7 @@ const EstablishmentDetailsTable = (props) => (
             <Link
               id="changeEstablishmentOpeningHoursRow"
               href="/edit/opening-hours"
-              aria-label="Change establishment opening hours"
+              aria-label={props.t("Change establishment opening hours")}
             >
               {determineLinkText(
                 props.opening_hours_monday ||
@@ -900,7 +938,8 @@ const EstablishmentDetailsTable = (props) => (
                   props.opening_hours_thursday ||
                   props.opening_hours_friday ||
                   props.opening_hours_saturday ||
-                  props.opening_hours_sunday
+                  props.opening_hours_sunday,
+                props
               )}
             </Link>
           </AccessibleChangeCell>
@@ -915,17 +954,19 @@ const EstablishmentDetailsTable = (props) => (
         <AccessibleRowHeader
           {...applyRowHeaderStyling(props.validatorErrors["water_supply"])}
         >
-          Water supply
+          {props.t("Water supply")}
         </AccessibleRowHeader>
-        <AccessibleCell id="water_supply">{props.water_supply}</AccessibleCell>
+        <AccessibleCell id="water_supply">
+          {props.t(props.water_supply)}
+        </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
             <Link
               id="changeWaterSupplyRow"
               href="/edit/business-water-supply"
-              aria-label="Change water supply"
+              aria-label={props.t("Change water supply")}
             >
-              {determineLinkText(props.water_supply)}
+              {determineLinkText(props.water_supply, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -936,7 +977,7 @@ const EstablishmentDetailsTable = (props) => (
 
 const FoodActivitiesTable = (props) => (
   <React.Fragment>
-    <ColumnHeaders />
+    <ColumnHeaders t={props.t} />
     {props.customer_type || props.validatorErrors["customer_type"] ? (
       <AccessibleTableRow
         acPage={props.applicationCompletePage}
@@ -945,19 +986,19 @@ const FoodActivitiesTable = (props) => (
         <AccessibleRowHeader
           {...applyRowHeaderStyling(props.validatorErrors["customer_type"])}
         >
-          Customers
+          {props.t("Customers")}
         </AccessibleRowHeader>
         <AccessibleCell id="customer_type">
-          {props.customer_type}
+          {props.t(props.customer_type)}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
             <Link
               id="changeActivitiesCustomersRow"
               href="/edit/customer-type"
-              aria-label="Change activities customer type"
+              aria-label={props.t("Change activities customer type")}
             >
-              {determineLinkText(props.customer_type)}
+              {determineLinkText(props.customer_type, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -972,19 +1013,19 @@ const FoodActivitiesTable = (props) => (
         <AccessibleRowHeader
           {...applyRowHeaderStyling(props.validatorErrors["business_type"])}
         >
-          Business type
+          {props.t("Business type")}
         </AccessibleRowHeader>
         <AccessibleCell id="business_type">
-          {props.business_type}
+          {props.t(props.business_type)}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
             <Link
               id="changeBusinessTypeRow"
               href="/edit/business-type"
-              aria-label="Change business type"
+              aria-label={props.t("Change business type")}
             >
-              {determineLinkText(props.business_type)}
+              {determineLinkText(props.business_type, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -1002,19 +1043,19 @@ const FoodActivitiesTable = (props) => (
             props.validatorErrors["import_export_activities"]
           )}
         >
-          Import and export
+          {props.t("Import and export")}
         </AccessibleRowHeader>
         <AccessibleCell id="import_export_activities">
-          {props.import_export_activities}
+          {props.t(props.import_export_activities)}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
             <Link
               id="changeActivitiesBusinessImportExportRow"
               href="/edit/business-import-export"
-              aria-label="Change business activities import export"
+              aria-label={props.t("Change business activities import export")}
             >
-              {determineLinkText(props.import_export_activities)}
+              {determineLinkText(props.import_export_activities, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -1032,7 +1073,7 @@ const FoodActivitiesTable = (props) => (
             props.validatorErrors["business_other_details"]
           )}
         >
-          Additional details
+          {props.t("Additional details")}
         </AccessibleRowHeader>
         <AccessibleCell id="business_other_details">
           {props.business_other_details}
@@ -1042,9 +1083,9 @@ const FoodActivitiesTable = (props) => (
             <Link
               id="changeBusinessOtherDetailsRow"
               href="/edit/business-other-details"
-              aria-label="Change business other details"
+              aria-label={props.t("Change business other details")}
             >
-              {determineLinkText(props.business_other_details)}
+              {determineLinkText(props.business_other_details, props)}
             </Link>
           </AccessibleChangeCell>
         )}
@@ -1055,7 +1096,7 @@ const FoodActivitiesTable = (props) => (
 
 const DeclarationTable = (props) => (
   <React.Fragment>
-    <ColumnHeaders />
+    <ColumnHeaders t={props.t} />
     <AccessibleTableRow
       acPage={props.applicationCompletePage}
       id="declaration1Row"
@@ -1063,7 +1104,7 @@ const DeclarationTable = (props) => (
       <AccessibleRowHeader>
         <span id="declaration1">{props.declaration1}</span>
       </AccessibleRowHeader>
-      <AccessibleCell>Accepted</AccessibleCell>
+      <AccessibleCell>{props.t("Accepted")}</AccessibleCell>
     </AccessibleTableRow>
 
     <AccessibleTableRow
@@ -1073,7 +1114,7 @@ const DeclarationTable = (props) => (
       <AccessibleRowHeader>
         <span id="declaration2">{props.declaration2}</span>
       </AccessibleRowHeader>
-      <AccessibleCell>Accepted</AccessibleCell>
+      <AccessibleCell>{props.t("Accepted")}</AccessibleCell>
     </AccessibleTableRow>
 
     <AccessibleTableRow
@@ -1083,7 +1124,7 @@ const DeclarationTable = (props) => (
       <AccessibleRowHeader>
         <span id="declaration3">{props.declaration3}</span>
       </AccessibleRowHeader>
-      <AccessibleCell>Accepted</AccessibleCell>
+      <AccessibleCell>{props.t("Accepted")}</AccessibleCell>
     </AccessibleTableRow>
     {props.feedback1 ? (
       <AccessibleTableRow
@@ -1093,7 +1134,7 @@ const DeclarationTable = (props) => (
         <AccessibleRowHeader>
           <span id="feedback1">{props.feedback1}</span>
         </AccessibleRowHeader>
-        <AccessibleCell>Accepted</AccessibleCell>
+        <AccessibleCell>{props.t("Accepted")}</AccessibleCell>
       </AccessibleTableRow>
     ) : null}
   </React.Fragment>
@@ -1104,21 +1145,21 @@ const SummaryTable = (props) => (
     <ContentItem.B_45_30>
       <AccessibleTable
         id="operatorDetailsTable"
-        caption="Operator details"
+        caption={props.t("Operator details")}
         body={<OperatorDetailsTable {...props} />}
       />
     </ContentItem.B_45_30>
     <ContentItem.B_45_30>
       <AccessibleTable
         id="establishmentDetailsTable"
-        caption="Establishment details"
+        caption={props.t("Establishment details")}
         body={<EstablishmentDetailsTable {...props} />}
       />
     </ContentItem.B_45_30>
     <ContentItem.B_45_30>
       <AccessibleTable
         id="foodActivitiesTable"
-        caption="Activities"
+        caption={props.t("Activities")}
         body={<FoodActivitiesTable {...props} />}
       />
     </ContentItem.B_45_30>
@@ -1126,7 +1167,7 @@ const SummaryTable = (props) => (
       <ContentItem.B_45_30>
         <AccessibleTable
           id="declarationTable"
-          caption="Declaration"
+          caption={props.t("Declaration")}
           body={<DeclarationTable {...props} />}
         />
       </ContentItem.B_45_30>
@@ -1134,7 +1175,7 @@ const SummaryTable = (props) => (
   </React.Fragment>
 );
 
-export default SummaryTable;
+export default withTranslation("common")(SummaryTable);
 
 SummaryTable.propTypes = {
   operator_company_name: PropTypes.string,

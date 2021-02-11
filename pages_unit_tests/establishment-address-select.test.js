@@ -1,5 +1,7 @@
 import EstablishmentAddressLookup from "../pages/establishment-address-select";
 import { mount, shallow } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 const testCumulativeAnswers = {
   example: "test answer"
@@ -18,11 +20,13 @@ describe("<EstablishmentAddressLookup />", () => {
   describe("Establishment postcode display", () => {
     it("renders even when the addressLookups key is not found", () => {
       const wrapper = mount(
-        <EstablishmentAddressLookup
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentAddressLookup
+            cumulativeFullAnswers={testCumulativeAnswers}
+            switches={testSwitches}
+            addressLookups={testAddressLookup}
+          />
+        </I18nextProvider>
       );
       const establishmentPostcode = wrapper.find(
         "Paragraph.establishmentPostcodeDisplay"
@@ -36,11 +40,14 @@ describe("<EstablishmentAddressLookup />", () => {
       };
 
       const wrapper = mount(
-        <EstablishmentAddressLookup
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-          addressLookups={testAddressLookup}
-        />
+        <I18nextProvider i18n={i18n}>
+          <EstablishmentAddressLookup
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            switches={testSwitches}
+            addressLookups={testAddressLookup}
+            editModeFirstPage="test"
+          />
+        </I18nextProvider>
       );
 
       const establishmentPostcode = wrapper.find(

@@ -4,9 +4,10 @@ import Main from "@govuk-react/main";
 import PhaseBanner from "@govuk-react/phase-banner";
 import styled from "@emotion/styled";
 import CookieBanner from "./CookieBanner";
+import BackAndLanguageBar from "./BackAndLanguageBar";
+import { withTranslation } from "../../i18n.js";
 
 const AnchorTag = asTopNavAnchor("a");
-const feedbackLink = "https://goo.gl/forms/WB5adxvWQdDIfVvs2";
 
 const FsaTopNav = styled(TopNav)`
   div:nth-of-type(1) {
@@ -18,11 +19,11 @@ const FsaTopNav = styled(TopNav)`
   }
 `;
 
-const Company = (
+const Company = (props) => (
   <AnchorTag
     href="https://www.food.gov.uk"
     target="_blank"
-    aria-label="food.gov.uk website (opens in new window)"
+    aria-label={props.t("food.gov.uk website (opens in new window)")}
     style={{
       color: "rgb(255, 255, 255)",
       textDecorationSkipInk: "none",
@@ -32,7 +33,7 @@ const Company = (
       borderBottom: "1px solid transparent"
     }}
   >
-    Register a Food Business
+    {props.t("Register a Food Business")}
   </AnchorTag>
 );
 
@@ -45,29 +46,30 @@ const FsaHeader = (props) => (
   <StyledHeader role="banner">
     {props.acceptAllCookies === "true" ||
     props.acceptAllCookies === "false" ? null : (
-      <section aria-label="cookie banner">
+      <section aria-label={props.t("cookie banner")}>
         <CookieBanner />
       </section>
     )}
-    <FsaTopNav company={Company} />
+    <FsaTopNav company={Company(props)} />
     <HeaderMain>
       <PhaseBanner level="beta">
-        This is a new service -{" "}
+        {props.t("This is a new service")} -{" "}
         <AnchorTag
           id="feedbackLink"
-          href={feedbackLink}
+          href={props.t("feedback-form")}
           target="_blank"
-          aria-label="your feedback (opens in new window)"
+          aria-label={props.t("your feedback (opens in new window)")}
           style={{
             color: "rgb(0, 94, 165)"
           }}
         >
-          your feedback
+          {props.t("your feedback")}
         </AnchorTag>{" "}
-        will help us improve it
+        {props.t("will help us improve it")}
       </PhaseBanner>
     </HeaderMain>
+    <BackAndLanguageBar {...props} />
   </StyledHeader>
 );
 
-export default FsaHeader;
+export default withTranslation("common")(FsaHeader);

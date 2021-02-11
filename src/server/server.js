@@ -2,6 +2,7 @@ const cls = require("cls-hooked");
 const appInsights = require("applicationinsights");
 const morgan = require("morgan");
 const packageJson = require("../../package.json");
+const nextI18next = require("../../i18n");
 
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
@@ -120,6 +121,9 @@ app.prepare().then(async () => {
   server.use(errorHandler);
 
   server.use(morgan("combined", { stream: logger.stream }));
+
+  // Wait for i18n to initialise before continuing
+  await nextI18next.initPromise;
 
   server.all("*", (req, res) => {
     handle(req, res);

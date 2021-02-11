@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -12,10 +11,10 @@ import {
 import { establishmentTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { Fieldset, Radio, MultiChoice, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const EstablishmentAddressType = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -28,20 +27,20 @@ const EstablishmentAddressType = (props) => (
             isPageHeading
             style={{ marginBottom: "30px" }}
           >
-            Where is this establishment located?
+            {props.t("Where is this establishment located?")}
           </Fieldset.Legend>
-          <HiddenTextAccessible summary={"What is an establishment?"}>
+          <HiddenTextAccessible summary={props.t("What is an establishment?")}>
             <Paragraph mb={0}>
-              An establishment is the location of your food business. If it is a
-              mobile food business, please use the location where it is normally
-              stored overnight.
+              {props.t(
+                "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight."
+              )}
             </Paragraph>
           </HiddenTextAccessible>
           <MultiChoice
             label=""
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_type
+              error: props.t(props.validatorErrors.establishment_type)
             }}
           >
             <Radio
@@ -53,7 +52,7 @@ const EstablishmentAddressType = (props) => (
                 establishmentTypeEnum.MOBILE.key
               }
             >
-              In a mobile or moveable premises
+              {props.t("In a mobile or moveable premises")}
             </Radio>
             <Radio
               name="establishment_type"
@@ -64,7 +63,7 @@ const EstablishmentAddressType = (props) => (
                 establishmentTypeEnum.DOMESTIC.key
               }
             >
-              In a home or domestic premises
+              {props.t("In a home or domestic premises")}
             </Radio>
             <Radio
               name="establishment_type"
@@ -75,7 +74,7 @@ const EstablishmentAddressType = (props) => (
                 establishmentTypeEnum.COMMERCIAL.key
               }
             >
-              In a commercial or public premises
+              {props.t("In a commercial or public premises")}
             </Radio>
           </MultiChoice>
         </Fieldset>
@@ -86,7 +85,9 @@ const EstablishmentAddressType = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(EstablishmentAddressType);
+export default withTranslation("common")(
+  SessionWrapper(EstablishmentAddressType)
+);
 
 EstablishmentAddressType.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

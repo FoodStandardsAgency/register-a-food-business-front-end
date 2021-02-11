@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -12,22 +11,22 @@ import {
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { Heading, InputField, Paragraph, Button } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const EstablishmentContactDetails = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      Establishment contact details
+      {props.t("Establishment contact details")}
     </Heading>
-    <HiddenTextAccessible summary={"What is an establishment?"}>
+    <HiddenTextAccessible summary={props.t("What is an establishment?")}>
       <Paragraph mb={0}>
-        An establishment is the location of your food business, and the food
-        activities taking place there. If it is a mobile food business, please
-        use the location where it is normally stored overnight.
+        {props.t(
+          "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
+        )}
       </Paragraph>
     </HiddenTextAccessible>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
@@ -37,12 +36,14 @@ const EstablishmentContactDetails = (props) => (
           formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
           id="reuseButton"
         >
-          {`Re-use ${
-            props.cumulativeFullAnswers.registration_role ===
-            operatorTypeEnum.PARTNERSHIP.key
-              ? "partnership"
-              : "operator"
-          } contact details`}
+          {props.t(
+            `Re-use ${
+              props.cumulativeFullAnswers.registration_role ===
+              operatorTypeEnum.PARTNERSHIP.key
+                ? "partnership"
+                : "operator"
+            } contact details`
+          )}
         </Button>
 
         <ContentItem.B_30_15>
@@ -58,10 +59,12 @@ const EstablishmentContactDetails = (props) => (
             id="establishment_primary_number"
             meta={{
               touched: true,
-              error: props.validatorErrors["establishment_primary_number"]
+              error: props.t(
+                props.validatorErrors["establishment_primary_number"]
+              )
             }}
           >
-            Main phone number
+            {props.t("Main phone number")}
           </InputField>
         </ContentItem.B_30_15>
 
@@ -77,10 +80,12 @@ const EstablishmentContactDetails = (props) => (
             id="establishment_secondary_number"
             meta={{
               touched: true,
-              error: props.validatorErrors["establishment_secondary_number"]
+              error: props.t(
+                props.validatorErrors["establishment_secondary_number"]
+              )
             }}
           >
-            Secondary phone number (optional)
+            {props.t("Secondary phone number (optional)")}
           </InputField>
         </ContentItem.B_30_15>
 
@@ -95,15 +100,15 @@ const EstablishmentContactDetails = (props) => (
               autoComplete: "email"
             }}
             id="establishment_email"
-            hint={[
+            hint={props.t(
               "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
-            ]}
+            )}
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_email
+              error: props.t(props.validatorErrors.establishment_email)
             }}
           >
-            Email address
+            {props.t("Email address")}
           </InputField>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
@@ -113,7 +118,9 @@ const EstablishmentContactDetails = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(EstablishmentContactDetails);
+export default withTranslation("common")(
+  SessionWrapper(EstablishmentContactDetails)
+);
 
 EstablishmentContactDetails.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

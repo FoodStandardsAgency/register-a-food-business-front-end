@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   FindAddressButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -11,23 +10,23 @@ import {
 } from "../src/components";
 import { Heading, InputField, Paragraph } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const EstablishmentAddress = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      Establishment address
+      {props.t("Establishment address")}
     </Heading>
 
-    <HiddenTextAccessible summary={"What is an establishment?"}>
+    <HiddenTextAccessible summary={props.t("What is an establishment?")}>
       <Paragraph mb={0}>
-        An establishment is the location of your food business, and the food
-        activities taking place there. If it is a mobile food business, please
-        use the location where it is normally stored overnight.
+        {props.t(
+          "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
+        )}
       </Paragraph>
     </HiddenTextAccessible>
 
@@ -48,10 +47,10 @@ const EstablishmentAddress = (props) => (
             id="establishment_postcode_find"
             meta={{
               touched: true,
-              error: props.validatorErrors.establishment_postcode_find
+              error: props.t(props.validatorErrors.establishment_postcode_find)
             }}
           >
-            Postcode
+            {props.t("Postcode")}
           </InputField>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
@@ -61,7 +60,7 @@ const EstablishmentAddress = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(EstablishmentAddress);
+export default withTranslation("common")(SessionWrapper(EstablishmentAddress));
 
 EstablishmentAddress.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(

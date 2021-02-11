@@ -1,6 +1,7 @@
 import { Button } from "govuk-react";
 import { ButtonArrow } from "@govuk-react/icons";
 import styled from "@emotion/styled";
+import { withTranslation } from "../../i18n.js";
 
 const StyledButton = styled(Button)`
   margin-bottom: 18px;
@@ -16,13 +17,13 @@ const ContinueButton = (props) => (
     start={props.type === "begin"}
   >
     {props.type === "begin"
-      ? "Begin registration"
+      ? props.t("Begin registration")
       : props.type === "submit"
-      ? "Submit"
+      ? props.t("Submit")
       : props.editModeFirstPage
-      ? "Save and continue"
-      : "Continue"}
+      ? props.t("Save and continue")
+      : props.t("Continue")}
   </StyledButton>
 );
 
-export default ContinueButton;
+export default withTranslation("common")(ContinueButton);

@@ -1,5 +1,7 @@
 import PartnersTable from "../components/PartnersTable.js";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../../i18nForTests";
 
 const partners = { partners: ["one", "two"] };
 
@@ -7,7 +9,11 @@ const emptyPartners = { partners: [] };
 
 describe("<PartnersTable />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<PartnersTable cumulativeFullAnswers={partners} />);
+    const wrapper = shallow(
+      <I18nextProvider i18n={i18n}>
+        <PartnersTable cumulativeFullAnswers={partners} />
+      </I18nextProvider>
+    );
     expect(wrapper.length).toBe(1);
   });
 

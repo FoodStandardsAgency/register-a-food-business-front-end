@@ -44,12 +44,13 @@ const PageTitles = {
 PageTitles.getUrlPageTitle = (url) => {
   var urlParts = url.split("/");
   var page = (urlParts[2] ?? urlParts[1]).split("?")[0];
+  var title = PageTitles.defaultPageTitle;
 
   if (page && page in PageTitles.pageTitles) {
-    return `${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`;
+    title = `${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`;
   }
 
-  return PageTitles.defaultPageTitle;
+  return title;
 };
 
 export default PageTitles;

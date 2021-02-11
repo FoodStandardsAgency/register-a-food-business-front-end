@@ -1,6 +1,8 @@
 import RegistrationSummary from "../pages/registration-summary";
 import { shallow, mount } from "enzyme";
 import { transformAnswersForSummary } from "../src/server/services/data-transform.service";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 jest.mock("../src/server/services/data-transform.service");
 
 const cumulativeFullAnswers = {
@@ -33,11 +35,13 @@ describe("<RegistrationSummary />", () => {
 
     it("renders", () => {
       const wrapper = mount(
-        <RegistrationSummary
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          allValidationErrors={{}}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <RegistrationSummary
+            cumulativeFullAnswers={cumulativeFullAnswers}
+            allValidationErrors={{}}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const summaryTable = wrapper.find("SummaryTable");
       expect(summaryTable.length).toBe(1);

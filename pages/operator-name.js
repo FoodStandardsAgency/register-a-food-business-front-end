@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -11,21 +10,23 @@ import {
 } from "../src/components";
 import { Heading, InputField } from "govuk-react";
 import PropTypes from "prop-types";
+import { withTranslation } from "../i18n";
 
 const OperatorName = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      What is the operator's name?
+      {props.t("What is the operator's name?")}
     </Heading>
-    <HiddenTextAccessible summary={"What is a food business operator?"}>
-      The operator is the person or people, charity or company who makes the
-      decisions about the food business. They decide what it serves and how it
-      operates.
+    <HiddenTextAccessible
+      summary={props.t("What is a food business operator?")}
+    >
+      {props.t(
+        "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
+      )}
     </HiddenTextAccessible>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
@@ -38,10 +39,10 @@ const OperatorName = (props) => (
           id="operator_first_name"
           meta={{
             touched: true,
-            error: props.validatorErrors["operator_first_name"]
+            error: props.t(props.validatorErrors["operator_first_name"])
           }}
         >
-          First and middle names
+          {props.t("First and middle names")}
         </InputField>
       </ContentItem.B_30_15>
 
@@ -55,10 +56,10 @@ const OperatorName = (props) => (
           id="operator_last_name"
           meta={{
             touched: true,
-            error: props.validatorErrors.operator_last_name
+            error: props.t(props.validatorErrors.operator_last_name)
           }}
         >
-          Last name
+          {props.t("Last name")}
         </InputField>
       </ContentItem.B_30_15>
       <ContinueButton {...props} />
@@ -66,7 +67,7 @@ const OperatorName = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(OperatorName);
+export default withTranslation("common")(SessionWrapper(OperatorName));
 
 OperatorName.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(PropTypes.string),

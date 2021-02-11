@@ -1,5 +1,7 @@
 import BackButton from "../components/BackButton";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../../i18nForTests.js";
 
 describe("<BackButton />", () => {
   it("renders without crashing", () => {
@@ -32,10 +34,12 @@ describe("<BackButton />", () => {
         const currentPage = "/page";
 
         const wrapper = mount(
-          <BackButton
-            currentPage={currentPage}
-            editModeFirstPage={editModeFirstPage}
-          />
+          <I18nextProvider i18n={i18n}>
+            <BackButton
+              currentPage={currentPage}
+              editModeFirstPage={editModeFirstPage}
+            />
+          </I18nextProvider>
         );
         const backElement = wrapper.find(`a#back-link`);
         expect(backElement.length).toBe(0);
@@ -49,11 +53,13 @@ describe("<BackButton />", () => {
           const currentPage = "/another";
 
           const wrapper = mount(
-            <BackButton
-              currentPage={currentPage}
-              editModeFirstPage={editModeFirstPage}
-              href="example"
-            />
+            <I18nextProvider i18n={i18n}>
+              <BackButton
+                currentPage={currentPage}
+                editModeFirstPage={editModeFirstPage}
+                backHref="example"
+              />
+            </I18nextProvider>
           );
           const backElement = wrapper.find(`a#back-link`);
           expect(backElement.props().href).toBe("example");
@@ -65,10 +71,12 @@ describe("<BackButton />", () => {
           const currentPage = "/another";
 
           const wrapper = mount(
-            <BackButton
-              currentPage={currentPage}
-              editModeFirstPage={editModeFirstPage}
-            />
+            <I18nextProvider i18n={i18n}>
+              <BackButton
+                currentPage={currentPage}
+                editModeFirstPage={editModeFirstPage}
+              />
+            </I18nextProvider>
           );
           const backElement = wrapper.find(`a#back-link`);
           expect(backElement.props().href).toBe("/edit/back/another?edit=page");
@@ -80,7 +88,7 @@ describe("<BackButton />", () => {
   describe("given that editModeFirstPage is NOT truthy", () => {
     describe("given that props.href IS truthy", () => {
       it("should display the back button with the passed href URL", () => {
-        const wrapper = mount(<BackButton href="example" />);
+        const wrapper = mount(<BackButton backHref="example" />);
         const backElement = wrapper.find(`a#back-link`);
         expect(backElement.props().href).toBe("example");
       });

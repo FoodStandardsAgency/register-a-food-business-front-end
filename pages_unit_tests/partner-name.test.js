@@ -1,5 +1,7 @@
 import PartnerName from "../pages/partner-name";
 import { shallow, mount } from "enzyme";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18nForTests";
 
 const testSwitches = {};
 
@@ -12,12 +14,14 @@ describe("<PartnerName />", () => {
   describe("when partners array is not defined", () => {
     it("does not render PartnersTable", () => {
       const wrapper = mount(
-        <PartnerName
-          partnerDetailsUrl="/partnership/partner-details"
-          validatorErrors={{ error: "" }}
-          cumulativeFullAnswers={{}}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <PartnerName
+            partnerDetailsUrl="/partnership/partner-details"
+            validatorErrors={{ error: "" }}
+            cumulativeFullAnswers={{}}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const partnersTable = wrapper.find("PartnersTable");
       expect(partnersTable.length).toBe(0);
@@ -36,12 +40,14 @@ describe("<PartnerName />", () => {
   describe("when partners array is defined and has no items", () => {
     it("does not render PartnersTable", () => {
       const wrapper = mount(
-        <PartnerName
-          partnerDetailsUrl="/partnership/partner-details"
-          validatorErrors={{ error: "" }}
-          cumulativeFullAnswers={{ partners: [] }}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <PartnerName
+            partnerDetailsUrl="/partnership/partner-details"
+            validatorErrors={{ error: "" }}
+            cumulativeFullAnswers={{ partners: [] }}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const partnersTable = wrapper.find("PartnersTable");
       expect(partnersTable.length).toBe(0);
@@ -60,12 +66,14 @@ describe("<PartnerName />", () => {
   describe("when partners array has one item", () => {
     it("renders PartnersTable with that item", () => {
       const wrapper = mount(
-        <PartnerName
-          partnerDetailsUrl="/partnership/partner-details"
-          validatorErrors={{ error: "" }}
-          cumulativeFullAnswers={{ partners: ["one"] }}
-          switches={testSwitches}
-        />
+        <I18nextProvider i18n={i18n}>
+          <PartnerName
+            partnerDetailsUrl="/partnership/partner-details"
+            validatorErrors={{ error: "" }}
+            cumulativeFullAnswers={{ partners: ["one"] }}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
       );
       const partnersTable = wrapper.find("PartnersTable");
       expect(partnersTable.length).toBe(1);

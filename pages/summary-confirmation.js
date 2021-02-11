@@ -11,6 +11,7 @@ import {
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import moment from "moment";
+import { withTranslation } from "../i18n";
 
 const FsaPanel = styled(Panel)`
   h2 {
@@ -18,18 +19,25 @@ const FsaPanel = styled(Panel)`
   }
 `;
 
+const formatDate = (date, language) => {
+  moment.locale(language);
+  return moment(date).format("DD MMM YYYY");
+};
+
 const ApplicationComplete = (props) => (
-  <FsaLayout {...props}>
+  <FsaLayout {...props} hideBack="true">
     <Heading as="h1" size="LARGE">
-      Submission complete
+      {props.t("Submission complete")}
     </Heading>
     <Paragraph>
-      Thank you for submitting your food business registration.
+      {props.t("Thank you for submitting your food business registration.")}
     </Paragraph>
     {props.fsaRegistrationNumber ? (
       <FsaPanel id="panelWithNumber" title="">
         {[
-          "Your unique food business registration application reference is",
+          props.t(
+            "Your unique food business registration application reference is"
+          ),
           <br key={1} />,
           <br key={2} />,
           <span key={3} className="bold" id="fsa-rn">
@@ -40,41 +48,46 @@ const ApplicationComplete = (props) => (
     ) : (
       <FsaPanel
         id="panelWithText"
-        panelTitle="Registration submitted"
-        panelBody={"Awaiting registration application reference"}
+        panelTitle={props.t("Registration submitted")}
+        panelBody={props.t("Awaiting registration application reference")}
       />
     )}
     <InsetText>
       <Paragraph mb={0}>
-        Please keep note of this registration application reference for your
-        records.
+        {props.t(
+          "Please keep note of this registration application reference for your records."
+        )}
       </Paragraph>
     </InsetText>
 
     <ContentItem.B_30_15>
       <Heading as="h2" size="MEDIUM" mb={1}>
-        Submitted on
+        {props.t("Submitted on")}
       </Heading>
       <Paragraph mb={0}>
-        {moment(props.submissionDate).format("DD MMM YYYY")}
+        {formatDate(props.submissionDate, props.t("en"))}
       </Paragraph>
     </ContentItem.B_30_15>
 
     <div id="sentToCouncilsSection">
       <Heading as="h2" size="MEDIUM" mb={2}>
-        Your registration has been sent to:
+        {props.t("Your registration has been sent to")}
       </Heading>
       {props.lcConfig.hygieneAndStandards ? (
         <ContentItem.B_30_15 id="hygieneAndStandardsCouncil">
           <Heading as="h4" mb={1}>
-            {props.lcConfig.hygieneAndStandards.local_council}
+            {props.t(props.lcConfig.hygieneAndStandards.local_council)}
           </Heading>
           <Paragraph mb={0}>
-            {`Email: ${props.lcConfig.hygieneAndStandards.local_council_email}`}
+            {`${props.t("Email address")}: ${
+              props.lcConfig.hygieneAndStandards.local_council_email
+            }`}
           </Paragraph>
           {props.lcConfig.hygieneAndStandards.local_council_phone_number ? (
             <Paragraph mb={0} id="hygieneAndStandardsNumber">
-              {`Phone: ${props.lcConfig.hygieneAndStandards.local_council_phone_number}`}
+              {`${props.t("Phone number")}: ${
+                props.lcConfig.hygieneAndStandards.local_council_phone_number
+              }`}
             </Paragraph>
           ) : null}
         </ContentItem.B_30_15>
@@ -82,31 +95,43 @@ const ApplicationComplete = (props) => (
         <div>
           <ContentItem.B_30_15 id="hygieneCouncil">
             <Heading as="h4" mb={1}>
-              {props.lcConfig.hygiene.local_council}
+              {props.t(props.lcConfig.hygiene.local_council)}
             </Heading>
             <Paragraph mb={0}>
-              {`Email: ${props.lcConfig.hygiene.local_council_email}`}
+              {`${props.t("Email address")}: ${
+                props.lcConfig.hygiene.local_council_email
+              }`}
             </Paragraph>
             {props.lcConfig.hygiene.local_council_phone_number ? (
               <Paragraph mb={0} id="hygieneNumber">
-                {`Phone: ${props.lcConfig.hygiene.local_council_phone_number}`}
+                {`${props.t("Phone number")}: ${
+                  props.lcConfig.hygiene.local_council_phone_number
+                }`}
               </Paragraph>
             ) : null}
-            <HintText>Responsible local council for food hygiene</HintText>
+            <HintText>
+              {props.t("Responsible local council for food hygiene")}
+            </HintText>
           </ContentItem.B_30_15>
           <ContentItem.B_30_15 id="standardsCouncil">
             <Heading as="h4" mb={1}>
-              {props.lcConfig.standards.local_council}
+              {props.t(props.lcConfig.standards.local_council)}
             </Heading>
             <Paragraph mb={0}>
-              {`Email: ${props.lcConfig.standards.local_council_email}`}
+              {`${props.t("Email address")}: ${
+                props.lcConfig.standards.local_council_email
+              }`}
             </Paragraph>
             {props.lcConfig.standards.local_council_phone_number ? (
               <Paragraph mb={0} id="standardsNumber">
-                {`Phone: ${props.lcConfig.standards.local_council_phone_number}`}
+                {`${props.t("Phone number")}: ${
+                  props.lcConfig.standards.local_council_phone_number
+                }`}
               </Paragraph>
             ) : null}
-            <HintText>Responsible local council for food standards</HintText>
+            <HintText>
+              {props.t("Responsible local council for food standards")}
+            </HintText>
           </ContentItem.B_30_15>
         </div>
       ) : null}
@@ -114,7 +139,7 @@ const ApplicationComplete = (props) => (
 
     <ContentItem.B_30_15>
       <Paragraph className="receiveConfirmationEmail">
-        {`A copy of this registration has been sent to **${
+        {`${props.t("A copy of this registration has been sent to ")}**${
           props.transformedData.operator_email ||
           props.transformedData.contact_representative_email
         }.**`}
@@ -122,31 +147,32 @@ const ApplicationComplete = (props) => (
     </ContentItem.B_30_15>
 
     <Heading as="h2" size="LARGE">
-      What's next?
+      {props.t("What's next?")}
     </Heading>
     <InsetText>
       <Paragraph mb={0}>
-        **You may receive an unannounced food inspection from your local council
-        soon after you start trading.**
+        {props.t(
+          "**You may receive an unannounced food inspection from your local council soon after you start trading.**"
+        )}
       </Paragraph>
     </InsetText>
     <ContentItem.B_30_15>
       <Paragraph>
-        The council may contact you before the inspection to discuss how your
-        business operates or to offer advice. Meanwhile, there are some things
-        you can do to help prepare for the opening of your business.
+        {props.t(
+          "The council may contact you before the inspection to discuss how your business operates or to offer advice. Meanwhile, there are some things you can do to help prepare for the opening of your business."
+        )}
       </Paragraph>
     </ContentItem.B_30_15>
 
     <ContentItem.B_30_15>
       <Heading as="h2" size="LARGE">
-        Find out here what you can do to prepare:
+        {props.t("Find out here what you can do to prepare")}
       </Heading>
-      <HintText mb={3}>All links open in a new window</HintText>
+      <HintText mb={3}>{props.t("All links open in a new window")}</HintText>
 
       {props.country === "wales" ? (
         <Heading as="h3" mb={2} size="SMALL">
-          English
+          {props.t("English")}
         </Heading>
       ) : null}
 
@@ -157,7 +183,9 @@ const ApplicationComplete = (props) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          Guidance on food hygiene and how to run a safe food business
+          {props.t(
+            "Guidance on food hygiene and how to run a safe food business"
+          )}
         </Link>
       </ContentItem.B_20_20>
       <ContentItem.B_20_20>
@@ -167,7 +195,7 @@ const ApplicationComplete = (props) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          How to achieve a high food hygiene rating (FHRS score)
+          {props.t("How to achieve a high food hygiene rating (FHRS score)")}
         </Link>
       </ContentItem.B_20_20>
 
@@ -179,7 +207,7 @@ const ApplicationComplete = (props) => (
             target="_blank"
             rel="noopener noreferrer"
           >
-            Safe catering
+            {props.t("Safe catering")}
           </Link>
         </ContentItem.B_20_20>
       ) : null}
@@ -191,8 +219,9 @@ const ApplicationComplete = (props) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          Information on the food safety management system safer food, better
-          business
+          {props.t(
+            "Information on the food safety management system safer food, better business"
+          )}
         </Link>
       </ContentItem.B_20_20>
 
@@ -203,7 +232,7 @@ const ApplicationComplete = (props) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          Food labelling and allergens guidance
+          {props.t("Food labelling and allergens guidance")}
         </Link>
       </ContentItem.B_20_20>
 
@@ -219,7 +248,7 @@ const ApplicationComplete = (props) => (
             target="_blank"
             rel="noopener noreferrer"
           >
-            Business support -
+            {props.t("Business support")} -
             {props.country === "wales" ? ` Wales` : " Northern Ireland"}
           </Link>
         </ContentItem.B_20_20>
@@ -232,12 +261,14 @@ const ApplicationComplete = (props) => (
               target="_blank"
               rel="noopener noreferrer"
             >
-              Business support & helpline
+              {props.t("Business support & helpline")}
             </Link>
           </ContentItem.B_20_20>
 
           <ContentItem.B_20_20>
-            or contact the Business Support Helpline on 0800 998 1098
+            {props.t(
+              "or contact the Business Support Helpline on 0800 998 1098"
+            )}
           </ContentItem.B_20_20>
         </ContentItem.B_30_15>
       )}
@@ -309,7 +340,7 @@ const ApplicationComplete = (props) => (
     </ContentItem.B_30_15>
 
     <Heading as="h2" mb={5} size="LARGE">
-      Your registration details:
+      {props.t("Your registration details")}
     </Heading>
     <SummaryTable
       {...props.transformedData}
@@ -319,7 +350,7 @@ const ApplicationComplete = (props) => (
   </FsaLayout>
 );
 
-export default SessionWrapper(ApplicationComplete);
+export default withTranslation("common")(SessionWrapper(ApplicationComplete));
 
 ApplicationComplete.propTypes = {
   fsaRegistrationNumber: PropTypes.string,

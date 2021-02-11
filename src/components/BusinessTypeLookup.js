@@ -17,6 +17,7 @@ import {
   Label
 } from "govuk-react";
 import ListItemConsistentSize from "./ListItemConsistentSize";
+import { withTranslation } from "../../i18n.js";
 
 // dynamic import used because Autocomplete component from AlphaGov uses the document object on import.
 // Therefore it must be imported on the client side not on the server side.
@@ -41,8 +42,8 @@ const lineHeight = {
   padding: 0
 };
 
-// 15/12/2020 - comment needed due to cloudflare caching next.js files
-class BusinessTypeLookup extends React.Component {
+// 08/02/2021 - comment needed due to cloudflare caching next.js files
+export class BusinessTypeLookup extends React.Component {
   constructor(props) {
     super(props);
     this.state = { renderAutoCompleteSection: false };
@@ -65,28 +66,31 @@ class BusinessTypeLookup extends React.Component {
             {this.state && this.state.renderAutoCompleteSection ? (
               <div id="autocompleteSection">
                 <Paragraph>
-                  Search with your own keywords and then select the most fitting
-                  business type from the suggestions
+                  {props.t(
+                    "Search with your own keywords and then select the most fitting business type from the suggestions"
+                  )}
                 </Paragraph>
                 <ContentItem.B_30_15>
                   <HintText>
-                    For example
+                    {props.t("For example")}
                     <UnorderedList>
-                      <ListItemConsistentSize>cafe</ListItemConsistentSize>
                       <ListItemConsistentSize>
-                        food delivery service
+                        {props.t("cafe")}
                       </ListItemConsistentSize>
                       <ListItemConsistentSize>
-                        commercial bakery
+                        {props.t("food delivery service")}
                       </ListItemConsistentSize>
                       <ListItemConsistentSize>
-                        meat product manufacturer
+                        {props.t("commercial bakery")}
+                      </ListItemConsistentSize>
+                      <ListItemConsistentSize>
+                        {props.t("meat product manufacturer")}
                       </ListItemConsistentSize>
                     </UnorderedList>
                   </HintText>
                 </ContentItem.B_30_15>
                 <Label>
-                  Select business type
+                  {props.t("Select business type")}
                   <div
                     id="autocompleteContainer"
                     className={
@@ -97,10 +101,14 @@ class BusinessTypeLookup extends React.Component {
                   >
                     {props.validatorErrors.business_type ? (
                       <ErrorText style={lineHeight}>
-                        {props.validatorErrors.business_type}
+                        {props.t(props.validatorErrors.business_type)}
                       </ErrorText>
                     ) : null}
-                    <div aria-label="business type autocomplete, type and then choose from results">
+                    <div
+                      aria-label={props.t(
+                        "business type autocomplete, type and then choose from results"
+                      )}
+                    >
                       <Autocomplete
                         source={findMatches}
                         templates={templates}
@@ -130,4 +138,4 @@ class BusinessTypeLookup extends React.Component {
   }
 }
 
-export default BusinessTypeLookup;
+export default withTranslation("common")(BusinessTypeLookup);
