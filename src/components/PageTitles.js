@@ -14,7 +14,7 @@ const PageTitles = {
     "business-type": () => "What kind of food business are you registering?",
     "business-water-supply": () =>
       "What type of water supply does this establishment use?",
-    "contact-representative": () => "Contact details",
+    "contact-representative": () => "Contact representative details",
     "customer-type": () => "Who will this establishment supply food to?",
     declaration: () => "Declaration",
     "establishment-address": () => "What is the establishment's postcode?",
