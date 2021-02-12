@@ -74,7 +74,7 @@ const EstablishmentContactDetails = (props) => (
     </HiddenTextAccessible>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <InsetText>
-        <ContentItem.B_30_15>
+        <ContentItem.B_40_30>
           <AccessibleTableRow>
             <AccessibleRowHeader style={{ color: "grey" }}>
               {props.t(
@@ -144,35 +144,44 @@ const EstablishmentContactDetails = (props) => (
             >
               <div style={{ color: "grey" }}>
                 <Radio
-                  type="submit"
-                  onsubmit="return false"
-                  formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
+                  name="reuse_details"
+                  //type="update"
+                  //onsubmit="checked"
+                  //formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
                   //name="contact_details"
-                  style={{ color: "grey" }}
-                  id="reuseButton"
+                  id="reuse_details_yes"
+                  value="Re-use details"
                   //onClick={(true)}
-                  defaultChecked={true}
+                  /*defaultChecked={
+                    props.cumulativeFullAnswers.reuse_details ===
+                    "Re-use details"
+                  }*/
                   inline
                   //checked
                 >
                   {props.t("Yes")}
                 </Radio>
                 <Radio
+                  name="reuse_details"
                   //name="contact_details"
                   //value={operatorTypeEnum.SOLETRADER.key}
-                  type="submit"
+                  //type="submit"
                   //formAction="/new/cardiff/establishment-contact-details"
-                  style={{ color: "grey" }}
-                  id="registration_role_sole_trader"
-                  dfaultChecked={true}
+                  id="reuse_details_no"
+                  value="New details"
+                  /*defaultChecked={
+                    props.cumulativeFullAnswers.reuse_details === "New details"
+                  }*/
+                  //checked
                   inline
                 >
                   {props.t("No")}
+                  {console.log(props.cumulativeFullAnswers.reuse_details)}
                 </Radio>
               </div>
             </MultiChoice>
           </Fieldset>
-        </ContentItem.B_30_15>
+        </ContentItem.B_40_30>
       </InsetText>
       <ContentItem.B_30_15>
         <Button
