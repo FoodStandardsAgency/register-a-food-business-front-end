@@ -54,6 +54,10 @@ describe("<ContinueButton />", () => {
       const GovUkButton = wrapper.find("#continue-button").at(0);
       expect(GovUkButton.props().start).toBe(true);
     });
+    it("contains a <ButtonArrow> component", () => {
+      const buttonArrow = wrapper.find("ButtonArrow");
+      expect(buttonArrow.length).toBe(1);
+    });
   });
 
   describe("given that edit mode is true", () => {
