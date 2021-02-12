@@ -54,6 +54,40 @@ describe("<OperatorAddress />", () => {
       );
     });
   });
+  describe("when registration role is not partnership", () => {
+    let wrapper;
+    beforeEach(() => {
+      const cumulativeAnswers = { registration_role: "TEST" };
+      wrapper = mount(
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddress
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
+      );
+    });
+
+    it("renders correct header", () => {
+      const header = wrapper.find(Heading);
+      expect(header.at(1).props().children).toBe("What is the operator's address?");
+    });
+
+    it("renders correct hint text", () => {
+      const hintText = wrapper.find(HintText);
+      expect(hintText.first().props().children).toBe(
+        "Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company."
+      );
+    });
+
+    it("renders correct hidden text", () => {
+      const hiddenText = wrapper.find(Paragraph);
+      expect(hiddenText.at(1).props().children).toBe(
+        "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
+      );
+    });
+  });
 
   describe("Operator first line input field", () => {
     it("renders", () => {
