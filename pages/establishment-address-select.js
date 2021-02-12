@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   SelectWithHeader,
   HiddenTextAccessible,
@@ -14,7 +13,6 @@ import { withTranslation } from "../i18n";
 
 const EstablishmentAddressLookup = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <Heading as="h1" size="LARGE">
       {props.t("What is the establishment's address?")}
     </Heading>

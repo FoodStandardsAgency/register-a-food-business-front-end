@@ -2,7 +2,6 @@ import { css } from "@emotion/core";
 import { Label } from "govuk-react";
 import { SelectInput } from "@govuk-react/select";
 import { businessTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
-import { i18n } from "../../i18n";
 import { withTranslation } from "../../i18n.js";
 
 const autocompleteErrorStyling = css`
@@ -18,24 +17,15 @@ const style = {
   marginTop: "20px"
 };
 
-const BusinessTypeOptions = () => {
+const BusinessTypeOptions = (props) => {
   let options = [];
-  (i18n.language === "cy"
-    ? [
-        ...new Set(
-          Object.keys(businessTypeEnum).map(
-            (bt) => businessTypeEnum[bt].value.cy
-          )
-        )
-      ]
-    : [
-        ...new Set(
-          Object.keys(businessTypeEnum).map(
-            (bt) => businessTypeEnum[bt].value.en
-          )
-        )
-      ]
-  ).forEach((type) => {
+  [
+    ...new Set(
+      Object.keys(businessTypeEnum).map((bt) =>
+        props.t(businessTypeEnum[bt].value.en)
+      )
+    )
+  ].forEach((type) => {
     options.push(
       <option key={type} value={type}>
         {type}
@@ -63,7 +53,7 @@ const SelectListSection = (props) => (
               : null
           }
         >
-          <BusinessTypeOptions />
+          <BusinessTypeOptions {...props} />
         </SelectInput>
       </div>
     </Label>

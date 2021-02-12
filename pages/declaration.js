@@ -3,7 +3,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   SubmissionErrorSummary,
@@ -45,7 +44,6 @@ class Declaration extends React.Component {
           ref="submitRegistration"
           csrfToken={this.props.csrfToken}
         >
-          <BackButton {...this.props} />
           <ProcessedErrorSummary
             validatorErrors={this.props.validatorErrors}
             onHandleErrorClick={OnHandleErrorClick}

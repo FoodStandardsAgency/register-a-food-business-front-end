@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -15,7 +14,6 @@ import { withTranslation } from "../i18n";
 const OpeningHours = (props) => (
   <FsaLayout {...props}>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
-      <BackButton {...props} />
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}

@@ -1,7 +1,6 @@
 import {
   FsaLayout,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -17,7 +16,6 @@ import DateField from "./date-field";
 const OpeningDate = (props) => {
   return (
     <FsaLayout {...props}>
-      <BackButton {...props} />
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
