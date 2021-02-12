@@ -20,7 +20,8 @@ const PageTitles = {
     "establishment-address": () => "What is the establishment's postcode?",
     "establishment-address-manual": () =>
       "What is the establishment's address?",
-    "establishment-address-select": () => "Which is the establishment's address from the list?",
+    "establishment-address-select": () =>
+      "Which is the establishment's address from the list?",
     "establishment-address-type": () => "Where is this establishment located?",
     "establishment-contact-details": () => "Establishment contact details",
     "establishment-opening-date-proactive": () => "Expected opening date",
