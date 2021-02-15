@@ -45,7 +45,7 @@ const OpeningHours = (props) => (
             }}
           >
             <Label
-              class="govuk-label govuk-label—1"
+              class="govuk-label govuk-label—l"
               style={{ fontWeight: "bold", fontSize: "24px" }}
             >
               {props.t("Monday")}
@@ -68,7 +68,7 @@ const OpeningHours = (props) => (
             }}
           >
             <Label
-              class="govuk-label govuk-label—1"
+              class="govuk-label govuk-label—l"
               style={{ fontWeight: "bold", fontSize: "24px" }}
             >
               {props.t("Tuesday")}
@@ -91,7 +91,7 @@ const OpeningHours = (props) => (
             }}
           >
             <Label
-              class="govuk-label govuk-label—1"
+              class="govuk-label govuk-label—l"
               style={{ fontWeight: "bold", fontSize: "24px" }}
             >
               {props.t("Wednesday")}
@@ -114,7 +114,7 @@ const OpeningHours = (props) => (
             }}
           >
             <Label
-              class="govuk-label govuk-label—1"
+              class="govuk-label govuk-label—l"
               style={{ fontWeight: "bold", fontSize: "24px" }}
             >
               {props.t("Thursday")}
@@ -137,7 +137,7 @@ const OpeningHours = (props) => (
             }}
           >
             <Label
-              class="govuk-label govuk-label—1"
+              class="govuk-label govuk-label—l"
               style={{ fontWeight: "bold", fontSize: "24px" }}
             >
               {props.t("Friday")}
@@ -160,7 +160,7 @@ const OpeningHours = (props) => (
             }}
           >
             <Label
-              class="govuk-label govuk-label—1"
+              class="govuk-label govuk-label—l"
               style={{ fontWeight: "bold", fontSize: "24px" }}
             >
               {props.t("Saturday")}
@@ -183,7 +183,7 @@ const OpeningHours = (props) => (
             }}
           >
             <Label
-              class="govuk-label govuk-label—1"
+              class="govuk-label govuk-label—l"
               style={{ fontWeight: "bold", fontSize: "24px" }}
             >
               {props.t("Sunday")}
