@@ -10,7 +10,7 @@ const AddressHelp = (props) => {
     props.id ? (
       <React.Fragment>
         <Heading as="h1" size="LARGE">
-          <label for={props.id}>
+          <label class="govuk-label govuk-label--l" for={props.id}>
             {props.t("What is the partnership contact's address?")}
           </label>
         </Heading>

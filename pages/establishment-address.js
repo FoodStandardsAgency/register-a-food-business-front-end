@@ -21,7 +21,7 @@ const EstablishmentAddress = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      <label for="establishment_postcode_find">
+      <label class="govuk-label govuk-label--l" for="establishment_postcode_find">
         {props.t("Establishment address")}
       </label>
     </Heading>
