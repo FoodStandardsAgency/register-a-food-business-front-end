@@ -8,7 +8,7 @@ import {
   OnHandleErrorClick,
   PostForm
 } from "../src/components";
-import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
+import { Heading, Checkbox, MultiChoice, Paragraph, Fieldset } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 import { customerTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
@@ -20,9 +20,12 @@ const CustomerType = (props) => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
+    <Fieldset>
+    <Fieldset.Legend>
     <Heading as="h1" size="LARGE">
       {props.t("Who will this establishment supply food to?")}
     </Heading>
+    </Fieldset.Legend>
     <Paragraph>{props.t("Select all that apply")}</Paragraph>
 
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
@@ -60,6 +63,7 @@ const CustomerType = (props) => (
 
       <ContinueButton {...props} />
     </PostForm>
+    </Fieldset>
   </FsaLayout>
 );
 
