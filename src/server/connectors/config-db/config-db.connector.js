@@ -4,7 +4,7 @@
 
 const mongodb = require("mongodb");
 const { configVersionCollectionDouble } = require("./config-db.double");
-const { CONFIGDB_URL } = require("../../config");
+const { COSMOSDB_URL } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { statusEmitter } = require("../../services/statusEmitter.service");
 
@@ -40,7 +40,7 @@ const establishConnectionToMongo = async () => {
         if (client && client.topology !== undefined) {
           client.close();
         }
-        client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
+        client = await mongodb.MongoClient.connect(COSMOSDB_URL, {
           useNewUrlParser: true,
           useUnifiedTopology: true
         });
@@ -55,9 +55,9 @@ const establishConnectionToMongo = async () => {
       }
     }
 
-    configDB = client.db("register_a_food_business_config");
+    configDB = client.db("config");
     configVersionCollection = configDB.collection("configVersion");
-    lcConfigCollection = configDB.collection("lcConfig");
+    lcConfigCollection = configDB.collection("localAuthorities");
     logEmitter.emit(
       "functionSuccess",
       "config-db.connector",
