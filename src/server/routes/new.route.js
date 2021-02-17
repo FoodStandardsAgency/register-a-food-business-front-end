@@ -16,7 +16,7 @@ const {
   getLocalCouncils,
   getCouncilData
 } = require("../connectors/config-db/config-db.connector");
-const { REGISTRATION_DATA_VERSION } = require("../config");
+const { REGISTRATION_DATA_VERSION, MAINTENANCE_MODE } = require("../config");
 const { Cache } = require("../services/cache.service");
 const { getBrowserInfo } = require("../services/browser-support.service");
 
@@ -62,7 +62,7 @@ const newRouter = () => {
             "Session regenerated. Rendering page: /index"
           );
 
-          app.render(req, res, `/index`);
+          app.render(req, res, MAINTENANCE_MODE ? `/maintenance` : `/index`);
         });
       } else {
         // Save council to session if not yet there
