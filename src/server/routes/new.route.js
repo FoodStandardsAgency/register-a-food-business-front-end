@@ -16,7 +16,10 @@ const {
   getLocalCouncils,
   getCouncilData
 } = require("../connectors/config-db/config-db.connector");
-const { REGISTRATION_DATA_VERSION, MAINTENANCE_MODE } = require("../config");
+const {
+  REGISTRATION_DATA_VERSION,
+  MAINTENANCE_MODE_BLOCK_NEW
+} = require("../config");
 const { Cache } = require("../services/cache.service");
 const { getBrowserInfo } = require("../services/browser-support.service");
 
@@ -55,14 +58,23 @@ const newRouter = () => {
           );
           Object.assign(req.session, { country }, { lcName: local_council });
 
-          logEmitter.emit(
-            "functionSuccessWith",
-            "Routes",
-            "/new route",
-            "Session regenerated. Rendering page: /index"
-          );
-
-          app.render(req, res, MAINTENANCE_MODE ? `/maintenance` : `/index`);
+          if (MAINTENANCE_MODE_BLOCK_NEW === "true") {
+            logEmitter.emit(
+              "functionSuccessWith",
+              "Routes",
+              "/new route",
+              "Maintenance Mode (Block New Users) Active. Rendering page: /maintenance"
+            );
+            app.render(req, res, `/maintenance`);
+          } else {
+            logEmitter.emit(
+              "functionSuccessWith",
+              "Routes",
+              "/new route",
+              "Session regenerated. Rendering page: /index"
+            );
+            app.render(req, res, `/index`);
+          }
         });
       } else {
         // Save council to session if not yet there

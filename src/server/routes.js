@@ -1,4 +1,7 @@
 const { Router } = require("express");
+const { app } = require("./server");
+const { logEmitter } = require("./services/logging.service");
+const { MAINTENANCE_MODE_BLOCK_ALL } = require("./config");
 
 const {
   backRouter,
@@ -25,19 +28,31 @@ module.exports = () => {
     });
   }
 
-  router.use("/back", backRouter());
-  router.use("/cleansession", cleansessionRouter());
-  router.use("/continue", continueRouter());
-  router.use("/edit", editRouter());
-  router.use("/findaddress", findAddressRouter());
-  router.use("/new", newRouter());
-  router.use("/qa", qaRouter());
-  router.use("/submit", submitRouter());
-  router.use("/switches", switchesRouter());
-  router.use("/setcookie", setCookieRouter());
-  router.use("/status", statusRouter());
-  router.use("/partnership", partnerDetailsRouter());
-  router.use("/pdfs", pdfsRouter());
+  if (MAINTENANCE_MODE_BLOCK_ALL === "true") {
+    router.get("*", (req, res) => {
+      logEmitter.emit(
+        "functionSuccessWith",
+        "Routes",
+        "/* route",
+        "Maintenance Mode (Block All Users) Active. Rendering page: /maintenance"
+      );
+      app.render(req, res, "/maintenance");
+    });
+  } else {
+    router.use("/back", backRouter());
+    router.use("/cleansession", cleansessionRouter());
+    router.use("/continue", continueRouter());
+    router.use("/edit", editRouter());
+    router.use("/findaddress", findAddressRouter());
+    router.use("/new", newRouter());
+    router.use("/qa", qaRouter());
+    router.use("/submit", submitRouter());
+    router.use("/switches", switchesRouter());
+    router.use("/setcookie", setCookieRouter());
+    router.use("/status", statusRouter());
+    router.use("/partnership", partnerDetailsRouter());
+    router.use("/pdfs", pdfsRouter());
+  }
 
   return router;
 };
