@@ -60,6 +60,7 @@ const BackAndLanguageBar = (props) => {
         <LanguageLinkContainer>
           <LanguageLink
             id="languageEnHeader"
+            href="#english"
             onClick={() => i18n.changeLanguage("en")}
             rel="noopener noreferrer"
             aria-label={"Change the language to English"}
@@ -74,6 +75,7 @@ const BackAndLanguageBar = (props) => {
           |
           <LanguageLink
             id="languageCyHeader"
+            href="#cymraeg"
             onClick={() => i18n.changeLanguage("cy")}
             rel="noopener noreferrer"
             aria-label="Newid yr iaith i'r Gymraeg"

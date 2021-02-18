@@ -133,11 +133,12 @@ const FsaFooter = (props) => {
                 <FooterListItem>
                   <FooterLink
                     id="languageFooter"
+                    href="#language"
                     onClick={() =>
                       i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
                     }
                     rel="noopener noreferrer"
-                    aria-label={props.t("Change the language to English/Welsh")}
+                    aria-label={props.t("Change Language")}
                     style={{
                       color: "#454a4c",
                       textDecorationLine: "underline",
@@ -153,7 +154,7 @@ const FsaFooter = (props) => {
                     id="languageFooter"
                     href={props.t("change-language")}
                     rel="noopener noreferrer"
-                    aria-label={props.t("Change the language to English/Welsh")}
+                    aria-label={props.t("Change Language")}
                     style={{
                       color: "#454a4c",
                       textDecorationLine: "underline",
