@@ -18,7 +18,8 @@ const {
 } = require("../connectors/config-db/config-db.connector");
 const {
   REGISTRATION_DATA_VERSION,
-  MAINTENANCE_MODE_BLOCK_NEW
+  MAINTENANCE_MODE_BLOCK_NEW,
+  MAINTENANCE_MODE_BLOCK_ALL
 } = require("../config");
 const { Cache } = require("../services/cache.service");
 const { getBrowserInfo } = require("../services/browser-support.service");
@@ -34,6 +35,18 @@ const allowedCouncilsCache = Cache(
 
 const newRouter = () => {
   const router = Router();
+
+  if (MAINTENANCE_MODE_BLOCK_ALL === "true") {
+    router.get("*", (req, res) => {
+      logEmitter.emit(
+        "functionSuccessWith",
+        "Routes",
+        "/* route",
+        "Maintenance Mode (Block All Users) Active. Rendering page: /maintenance"
+      );
+      app.render(req, res, "/maintenance");
+    });
+  }
 
   router.get("/:lc/:page?", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/new route");

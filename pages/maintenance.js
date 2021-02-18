@@ -2,7 +2,7 @@ import { FsaLayout, SessionWrapper, ContentItem } from "../src/components";
 import { Heading, Paragraph } from "govuk-react";
 import { withTranslation } from "../i18n";
 
-const Index = (props) => (
+const Maintenance = (props) => (
   <FsaLayout {...props} hideBack="true">
     <Heading as="h1">{props.t("Register a food business")}</Heading>
 
@@ -16,4 +16,4 @@ const Index = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation("common")(SessionWrapper(Index));
+export default withTranslation("common")(SessionWrapper(Maintenance));
