@@ -32,6 +32,7 @@ const OperatorType = (props) => (
           </Fieldset.Legend>
           <HiddenTextAccessible
             summary={props.t("What is a food business operator?")}
+            {...props}
           >
             <Paragraph mb={0}>
               {props.t(

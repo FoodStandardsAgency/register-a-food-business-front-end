@@ -29,7 +29,10 @@ const EstablishmentAddressType = (props) => (
           >
             {props.t("Where is this establishment located?")}
           </Fieldset.Legend>
-          <HiddenTextAccessible summary={props.t("What is an establishment?")}>
+          <HiddenTextAccessible
+            summary={props.t("What is an establishment?")}
+            {...props}
+          >
             <Paragraph mb={0}>
               {props.t(
                 "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight."

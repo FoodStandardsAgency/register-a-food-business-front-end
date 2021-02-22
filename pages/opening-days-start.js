@@ -73,6 +73,7 @@ const OpeningDaysStart = (props) => (
       </ContentItem.B_30_15>
       <HiddenTextAccessible
         summary={props.t("I don't know what days to select")}
+        {...props}
       >
         <Paragraph mb={0}>
           {props.t(

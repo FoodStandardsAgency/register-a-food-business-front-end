@@ -20,6 +20,7 @@ const EstablishmentAddressLookup = (props) => (
     <HiddenTextAccessible
       id="hiddenTextEstablishment"
       summary={props.t("What is an establishment?")}
+      {...props}
     >
       <Paragraph mb={0}>
         {props.t(
