@@ -93,8 +93,8 @@ const EstablishmentContactDetails = (props) => (
             </AccessibleRowHeader>
             <AccessibleCell style={{ color: "grey" }}>
               <div id="establishment_primary_number">
-                {props.cumulativeFullAnswers.establishment_primary_number
-                  ? props.cumulativeFullAnswers.establishment_primary_number
+                {props.cumulativeFullAnswers.operator_primary_number
+                  ? props.cumulativeFullAnswers.operator_primary_number
                   : props.cumulativeFullAnswers.contact_representative_number}
               </div>
             </AccessibleCell>
