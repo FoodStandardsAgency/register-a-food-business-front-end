@@ -17,6 +17,7 @@ const ProcessedErrorSummary = (props) => {
         heading={props.t("There is a problem")}
         onHandleErrorClick={props.onHandleErrorClick}
         errors={errors}
+        role="alert"
       />
     );
   } else {
