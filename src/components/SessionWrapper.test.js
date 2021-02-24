@@ -15,6 +15,7 @@ const comprehensiveReqSessionObject = {
     cumulativeFullAnswers: { example: "answer" },
     transformedData: { transformed: "data" },
     validatorErrors: { fieldName: "error" },
+    allValidationErrors: { fieldName: "error",fieldName: "error" },
     switches: { switchName: true },
     fsaRegistrationNumber: "1234567890",
     submissionDate: "01 Jan 2018",
