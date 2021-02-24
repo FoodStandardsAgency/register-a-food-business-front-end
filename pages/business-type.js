@@ -1,7 +1,6 @@
 import {
   FsaLayout,
   SessionWrapper,
-  BackButton,
   ContinueButton,
   BusinessTypeLookup,
   ContentItem,
@@ -15,7 +14,6 @@ import { withTranslation } from "../i18n";
 
 const BusinessType = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}

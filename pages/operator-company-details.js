@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   HiddenTextAccessible,
@@ -14,7 +13,6 @@ import { withTranslation } from "../i18n";
 
 const LimitedCompanyDetails = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary validatorErrors={props.validatorErrors} />
     <Heading as="h1" size="LARGE">
       {props.t("Company details")}
