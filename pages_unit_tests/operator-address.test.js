@@ -49,13 +49,6 @@ describe("<OperatorAddress />", () => {
         "Partnership address is the contact address for the partner who is the main point of contact."
       );
     });
-
-    it("renders correct hidden text", () => {
-      const hiddenText = wrapper.find(Paragraph);
-      expect(hiddenText.at(1).props().children).toBe(
-        "In a partnership, you and your partner (or partners) personally share responsibility for your food business"
-      );
-    });
   });
   describe("Operator postcode input field", () => {
     it("renders", () => {

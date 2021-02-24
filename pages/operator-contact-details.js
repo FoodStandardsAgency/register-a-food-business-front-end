@@ -29,7 +29,10 @@ const OperatorContactDetails = (props) => (
         } contact details`
       )}
     </Heading>
-    <ContactDetailsHelp role={props.cumulativeFullAnswers.registration_role} />
+    <ContactDetailsHelp
+      role={props.cumulativeFullAnswers.registration_role}
+      {...props}
+    />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>

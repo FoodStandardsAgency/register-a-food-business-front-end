@@ -34,6 +34,7 @@ const OpeningDate = (props) => {
         hiddentextindex={1}
         id="hiddenTextEstablishment"
         summary={props.t("What is an establishment?")}
+        {...props}
       >
         <Paragraph mb={0}>
           {props.t(
@@ -77,6 +78,7 @@ const OpeningDate = (props) => {
                 summary={props.t(
                   "I don't know when this establishment will begin trading"
                 )}
+                {...props}
               >
                 <Paragraph mb={0}>
                   {props.t(
@@ -121,6 +123,7 @@ const OpeningDate = (props) => {
               summary={props.t(
                 "I don't know when this establishment began trading"
               )}
+              {...props}
             >
               <Paragraph mb={0}>
                 {props.t(

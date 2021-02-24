@@ -29,7 +29,10 @@ const WaterSupply = (props) => (
           >
             {props.t("What type of water supply does this establishment use?")}
           </Fieldset.Legend>
-          <HiddenTextAccessible summary={props.t("What is an establishment?")}>
+          <HiddenTextAccessible
+            summary={props.t("What is an establishment?")}
+            {...props}
+          >
             <Paragraph mb={0}>
               {props.t(
                 "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
@@ -90,6 +93,7 @@ const WaterSupply = (props) => (
         <HiddenTextAccessible
           id="hiddenTextWaterSupply"
           summary={props.t("I don't know if I have a private water supply")}
+          {...props}
         >
           <span>
             {props.t(

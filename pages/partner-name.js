@@ -68,7 +68,7 @@ const PartnerName = (props) => (
         )}
       </HintText>
     </ContentItem.B_30_15>
-    <PartnershipDescription />
+    <PartnershipDescription {...props} />
     <PostForm
       action={props.partnerDetailsDeleteFormAction}
       csrfToken={props.csrfToken}

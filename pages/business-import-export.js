@@ -79,6 +79,7 @@ const ImportExportActivities = (props) => (
           summary={props.t(
             "More information about import and export activities"
           )}
+          {...props}
         >
           <span>
             {props.t(
