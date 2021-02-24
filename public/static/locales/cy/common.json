@@ -378,5 +378,7 @@
   "Enter answer": "Nodwch yr ateb",
   "Accepted": "Derbyniwyd",
   "Error You have entered an invalid number of partners or a duplicate partner name. Please define between 2-5 partners, using initials or middle name to ensure that each entry is unique.": "Gwall: Rydych chi wedi nodi nifer annilys o bartneriaid neu enw partner dyblyg. Diffiniwch rhwng 2 a 5 partner, gan ddefnyddio llythrennau cyntaf eu henwau neu enw canol i sicrhau bod pob cofnod yn unigryw.",
-  "Please use initials or middle names as necessary to ensure each partner name is unique.": "Defnyddiwch lythrennau cyntaf enwau neu enwau canol i sicrhau bod enw pob partner yn unigryw."
+  "Please use initials or middle names as necessary to ensure each partner name is unique.": "Defnyddiwch lythrennau cyntaf enwau neu enwau canol i sicrhau bod enw pob partner yn unigryw.",
+  "Error Enter a valid first name": "Gwall: Rhowch enw cyntaf dilys",
+  "Error Enter a valid last name": "Gwall: Rhowch enw olaf dilys"
 }

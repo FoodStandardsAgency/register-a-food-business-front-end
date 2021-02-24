@@ -43,5 +43,7 @@
   "Error Invalid opening hours on Friday": "Oriau agor annilys ar ddydd Gwener",
   "Error Invalid opening hours on Saturday": "Oriau agor annilys ar ddydd Sadwrn",
   "Error Invalid opening hours on Sunday": "Oriau agor annilys ar ddydd Sul",
-  "Error You have entered an invalid number of partners or a duplicate partner name. Please define between 2-5 partners, using initials or middle name to ensure that each entry is unique.": "Rydych chi wedi nodi nifer annilys o bartneriaid neu enw partner dyblyg. Diffiniwch rhwng 2 a 5 partner, gan ddefnyddio llythrennau cyntaf eu henwau neu enw canol i sicrhau bod pob cofnod yn unigryw."
+  "Error You have entered an invalid number of partners or a duplicate partner name. Please define between 2-5 partners, using initials or middle name to ensure that each entry is unique.": "Rydych chi wedi nodi nifer annilys o bartneriaid neu enw partner dyblyg. Diffiniwch rhwng 2 a 5 partner, gan ddefnyddio llythrennau cyntaf eu henwau neu enw canol i sicrhau bod pob cofnod yn unigryw.",
+  "Error Enter a valid first name": "Rhowch enw cyntaf dilys",
+  "Error Enter a valid last name": "Rhowch enw olaf dilys"
 }
