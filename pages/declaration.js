@@ -3,7 +3,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   SubmissionErrorSummary,
@@ -45,7 +44,6 @@ class Declaration extends React.Component {
           ref="submitRegistration"
           csrfToken={this.props.csrfToken}
         >
-          <BackButton {...this.props} />
           <ProcessedErrorSummary
             validatorErrors={this.props.validatorErrors}
             onHandleErrorClick={OnHandleErrorClick}
@@ -87,9 +85,7 @@ class Declaration extends React.Component {
 
               <Checkbox
                 name="declaration2"
-                value="I, or the operator, will notify my local authority of any significant
-        changes to the business activity, including closure, within 28 days of
-        the change happening."
+                value="The operator will notify their local council of any significant changes to the business activity, including closure, within 28 days of the change happening."
                 error={this.props.t(this.props.validatorErrors["declaration2"])}
                 defaultChecked={this.props.cumulativeFullAnswers.declaration2}
               >
@@ -100,9 +96,7 @@ class Declaration extends React.Component {
 
               <Checkbox
                 name="declaration3"
-                value="I, or the operator, understands the operator is legally responsible for
-        the safety and authenticity of the food being produced or served at this
-        establishment."
+                value="The operator understands they are legally responsible for the safety and authenticity of the food being produced or served at this establishment."
                 error={this.props.t(this.props.validatorErrors["declaration3"])}
                 defaultChecked={this.props.cumulativeFullAnswers.declaration3}
               >

@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   SummaryTable,
   ProcessedErrorSummary,
@@ -15,7 +14,6 @@ import { withTranslation } from "../i18n";
 
 const RegistrationSummary = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.allValidationErrors}
       onHandleErrorClick={OnHandleErrorClick}

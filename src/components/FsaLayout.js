@@ -12,6 +12,7 @@ import { withTranslation } from "../../i18n.js";
 
 const GridRowZeroMargin = styled(GridRow)`
   margin: 0px;
+  padding-top: 0px;
 `;
 const GridColZeroPadding = styled(GridCol)`
   ${MEDIA_QUERIES.LARGESCREEN} {

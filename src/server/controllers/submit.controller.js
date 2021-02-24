@@ -17,6 +17,7 @@ const {
  * @param {object} submissionData An object containing all registration data in the correct format for submission
  * @param {object} addressLookups An object containing the address lookup response(s)
  * @param {string} regDataVersion The version number of the registration data schema being used in this registration
+ * @param {string} language The language selected at the point of submission of this registration
  *
  * @returns {object} Values for the router to store/update in the session and the page to redirect to.
  */
@@ -25,7 +26,8 @@ const submitController = async (
   submissionData,
   addressLookups,
   regDataVersion,
-  sessionId
+  sessionId,
+  language
 ) => {
   const controllerResponse = {
     redirectRoute: null,
@@ -44,6 +46,7 @@ const submitController = async (
     ) {
       const transformedData = transformAnswersForSubmit(
         submissionData,
+        language,
         addressLookups,
         lcUrl
       );

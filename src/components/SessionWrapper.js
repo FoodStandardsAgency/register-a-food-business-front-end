@@ -30,7 +30,8 @@ const SessionWrapper = (Page) => {
 
     const csrfToken = req.csrfToken();
 
-    const language = req && req.language ? req.language : "en";
+    const language =
+      req && req.body && req.body.language ? req.body.language : "en";
 
     const currentPageTitle = PageTitles.getUrlPageTitle(
       req.url,

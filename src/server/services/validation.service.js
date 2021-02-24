@@ -8,8 +8,8 @@ const { logEmitter } = require("./logging.service");
 const schema = require("./schema");
 const {
   combineDate,
-  separateBracketsFromBusinessType,
-  transformBusinessTypeForSubmit
+  transformBusinessTypeForSubmit,
+  separateBracketsFromBusinessType
 } = require("./data-transform.service");
 const {
   validatePartners
@@ -137,7 +137,7 @@ const validate = (page, answers) => {
 
       if (page === "/business-type") {
         if (answers.business_type) {
-          let businessTypeNoBrackets = separateBracketsFromBusinessType(
+          const businessTypeNoBrackets = separateBracketsFromBusinessType(
             answers.business_type
           ).business_type;
           answersToValidate.business_type = transformBusinessTypeForSubmit(
