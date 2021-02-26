@@ -58,7 +58,7 @@ const PrimaryPartner = (props) => (
               )}
             </HintText>
           </ContentItem.B_30_15>
-          <PartnershipDescription />
+          <PartnershipDescription {...props} />
           <MultiChoice
             label=""
             meta={{
