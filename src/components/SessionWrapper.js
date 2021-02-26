@@ -35,7 +35,6 @@ const SessionWrapper = (Page) => {
 
     const currentPageTitle = PageTitles.getUrlPageTitle(
       req.url,
-      language,
       req.session.validatorErrors,
       req.session.allValidationErrors
     );
