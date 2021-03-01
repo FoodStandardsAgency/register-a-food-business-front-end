@@ -67,4 +67,14 @@ const clearCosmosConnection = () => {
   DB = undefined;
 };
 
-module.exports = { establishConnectionToCosmos, clearCosmosConnection };
+const closeCosmosConnection = () => {
+  client && client.close();
+  client = undefined;
+  DB = undefined;
+};
+
+module.exports = {
+  establishConnectionToCosmos,
+  clearCosmosConnection,
+  closeCosmosConnection
+};
