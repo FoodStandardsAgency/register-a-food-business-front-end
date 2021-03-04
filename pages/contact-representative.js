@@ -29,6 +29,7 @@ const ContactRepresentative = (props) => {
       </Paragraph>
       <HiddenTextAccessible
         summary={props.t("What is a food business operator?")}
+        {...props}
       >
         <Paragraph mb={0}>
           {props.t(

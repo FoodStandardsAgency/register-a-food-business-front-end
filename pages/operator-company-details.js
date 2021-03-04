@@ -65,6 +65,7 @@ const LimitedCompanyDetails = (props) => (
       <ContentItem.B_30_15>
         <HiddenTextAccessible
           summary={props.t("I don't know my Companies House number")}
+          {...props}
         >
           {/* TODO JMB: replace the span with a paragraph once it's possible to pass an array or similar to Paragraph for the link */}
           <span>
