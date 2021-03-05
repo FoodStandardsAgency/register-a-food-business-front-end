@@ -6,7 +6,7 @@ import {
   OnHandleErrorClick,
   PostForm
 } from "../src/components";
-import { Button, Heading, InputField } from "govuk-react";
+import { Button, Heading, InputField } from "@slice-and-dice/govuk-react";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";

@@ -1,4 +1,4 @@
-import { Button } from "govuk-react";
+import { Button } from "@slice-and-dice/govuk-react";
 import { withTranslation } from "../../i18n.js";
 
 const FindAddressButton = (props) => (

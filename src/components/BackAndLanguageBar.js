@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { withTranslation, i18n } from "../../i18n.js";
-import { Link } from "govuk-react";
+import { Link } from "@slice-and-dice/govuk-react";
 import { BackButton } from "./index";
 import React, { useState, useEffect } from "react";
 

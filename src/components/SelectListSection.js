@@ -1,6 +1,5 @@
 import { css } from "@emotion/core";
-import { Label } from "govuk-react";
-import { SelectInput } from "@govuk-react/select";
+import { Label, Select as SelectInput } from "@slice-and-dice/govuk-react";
 import { businessTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { withTranslation } from "../../i18n.js";
 

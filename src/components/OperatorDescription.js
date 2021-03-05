@@ -1,5 +1,5 @@
 import { HiddenTextAccessible } from "../../src/components";
-import { Paragraph } from "govuk-react";
+import { Paragraph } from "@slice-and-dice/govuk-react";
 import { withTranslation } from "../../i18n.js";
 
 const OperatorDescription = (props) => (

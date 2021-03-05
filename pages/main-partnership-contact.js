@@ -8,7 +8,7 @@ import {
   PartnershipDescription,
   PostForm
 } from "../src/components";
-import { Fieldset, Radio, MultiChoice, HintText } from "govuk-react";
+import { Fieldset, Radio, MultiChoice, HintText } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 

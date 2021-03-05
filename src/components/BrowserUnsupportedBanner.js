@@ -1,4 +1,4 @@
-import { WarningText } from "govuk-react";
+import { WarningText } from "@slice-and-dice/govuk-react";
 import styled from "@emotion/styled";
 import { withTranslation } from "../../i18n.js";
 

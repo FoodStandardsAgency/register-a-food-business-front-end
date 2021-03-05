@@ -8,7 +8,7 @@ import {
   AddressHelp,
   PostForm
 } from "../src/components";
-import { InputField } from "govuk-react";
+import { InputField } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 

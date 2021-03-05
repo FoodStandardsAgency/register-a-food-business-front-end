@@ -1,5 +1,5 @@
 import FsaHeader from "./FsaHeader";
-import { GridRow, GridCol, Page } from "govuk-react";
+import { GridRow, GridCol, Page } from "@slice-and-dice/govuk-react";
 import FsaFooter from "./FsaFooter";
 import styled from "@emotion/styled";
 import React from "react";

@@ -15,7 +15,7 @@ import {
   MultiChoice,
   Paragraph,
   HintText
-} from "govuk-react";
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 

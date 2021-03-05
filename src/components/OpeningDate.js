@@ -7,7 +7,7 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "./index";
-import { Heading, Paragraph, HintText } from "govuk-react";
+import { Heading, Paragraph, HintText } from "@slice-and-dice/govuk-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 import { withTranslation } from "../../i18n.js";
