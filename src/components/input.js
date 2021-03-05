@@ -2,7 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { Input as StyledInput,LabelText ,Label } from "@slice-and-dice/govuk-react";
+import {
+  Input as StyledInput,
+  LabelText,
+  Label
+} from "@slice-and-dice/govuk-react";
 import multiInputInput from "multi-input-input";
 import { withTranslation, i18n } from "../../i18n.js";
 

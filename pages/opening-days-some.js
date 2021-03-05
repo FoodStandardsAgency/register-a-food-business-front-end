@@ -7,7 +7,12 @@ import {
   OnHandleErrorClick,
   PostForm
 } from "../src/components";
-import { Heading, Checkbox, MultiChoice, Paragraph } from "@slice-and-dice/govuk-react";
+import {
+  Heading,
+  Checkbox,
+  MultiChoice,
+  Paragraph
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 

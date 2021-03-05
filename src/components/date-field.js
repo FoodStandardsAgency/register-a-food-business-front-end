@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { ERROR_COLOUR } from "govuk-colours";
 import { SPACING } from "@govuk-react/constants";
-import {LabelText, ErrorText, HintText} from "@slice-and-dice/govuk-react";
+import { LabelText, ErrorText, HintText } from "@slice-and-dice/govuk-react";
 import { spacing } from "@govuk-react/lib";
 import Input from "./input";
 
