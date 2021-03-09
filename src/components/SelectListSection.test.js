@@ -84,6 +84,7 @@ describe("given JavaScript is disabled", () => {
         expect(
           wrapper
             .find(Label)
+            .at(0)
             .text()
             .includes(
               "Select the most fitting business type from the suggestions"
