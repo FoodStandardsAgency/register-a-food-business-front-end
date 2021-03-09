@@ -42,7 +42,9 @@ const PageTitles = {
 };
 
 PageTitles.getUrlPageTitle = (url, validatorErrors, allValidationErrors) => {
-  var isError = Object.keys(allValidationErrors).length > 0 || Object.keys(validatorErrors).length > 0
+  var isError =
+    Object.keys(allValidationErrors).length > 0 ||
+    Object.keys(validatorErrors).length > 0;
   var urlParts = url.split("/");
   var page = (urlParts[2] ?? urlParts[1]).split("?")[0];
   var title =
