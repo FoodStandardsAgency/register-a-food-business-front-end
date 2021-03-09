@@ -35,20 +35,15 @@ const errorMessages = {
   operator_email: "Enter a valid operator email address",
   contact_representative_name: "Enter a valid representative name",
   contact_representative_role: "Enter a valid representative role",
-  contact_representative_number:
-    "Enter a valid representative phone number",
-  contact_representative_email:
-    "Enter a valid representative email address",
+  contact_representative_number: "Enter a valid representative phone number",
+  contact_representative_email: "Enter a valid representative email address",
   operator_company_name: "Enter a valid company name",
   operator_companies_house_number:
     "Enter a valid Companies House reference number",
-  operator_charity_name:
-    "Enter a valid charity, organisation or trust name",
+  operator_charity_name: "Enter a valid charity, organisation or trust name",
   operator_charity_number: "Enter a valid charity number",
-  establishment_primary_number:
-    "Enter a valid establishment phone number",
-  establishment_secondary_number:
-    "Enter a valid establishment phone number",
+  establishment_primary_number: "Enter a valid establishment phone number",
+  establishment_secondary_number: "Enter a valid establishment phone number",
   establishment_email: "Enter a valid establishment email address",
   establishment_type:
     "You must select an establishment address type before continuing",
@@ -68,12 +63,9 @@ const errorMessages = {
   water_supply: "You must select a water supply type before continuing",
   business_other_details:
     "Your message is too long. Please shorten it to less than 1500 characters",
-  opening_days_start:
-    "Please select which days this establishment is open",
-  opening_days_irregular:
-    "Please describe when this establishment is open",
-  opening_days_some:
-    "Please select which days this establishment is open",
+  opening_days_start: "Please select which days this establishment is open",
+  opening_days_irregular: "Please describe when this establishment is open",
+  opening_days_some: "Please select which days this establishment is open",
   partner_name: "Enter a valid partner name",
   partners: `You have entered an invalid number of partners or a duplicate partner name. Please define between 2-5 partners, using initials or middle name to ensure that each entry is unique.`,
   main_partnership_contact:
