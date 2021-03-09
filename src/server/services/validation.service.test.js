@@ -77,7 +77,7 @@ describe("validator.service validate()", () => {
       });
 
       expect(result.errors.customer_type).toBe(
-        "Error You must select a customer type before continuing"
+        "You must select a customer type before continuing"
       );
     });
   });
@@ -95,7 +95,7 @@ describe("validator.service validate()", () => {
       });
 
       expect(result.errors.opening_days_some).toBe(
-        "Error Please select which days this establishment is open"
+        "Please select which days this establishment is open"
       );
     });
   });
@@ -109,7 +109,7 @@ describe("validator.service validate()", () => {
       });
 
       expect(result.errors.import_export_activities).toBe(
-        "Error You must select a valid import or export option(s) before continuing"
+        "You must select a valid import or export option(s) before continuing"
       );
     });
     it("should return the business-import-export error when contradicting options are selected", () => {
@@ -120,7 +120,7 @@ describe("validator.service validate()", () => {
       });
 
       expect(result.errors.import_export_activities).toBe(
-        "Error You must select a valid import or export option(s) before continuing"
+        "You must select a valid import or export option(s) before continuing"
       );
     });
     it("should not return an error if only 'no_import/export' option is selected", () => {
@@ -203,7 +203,7 @@ describe("validator.service validate()", () => {
         opening_day_friday: "yes"
       });
       expect(result.errors.opening_hours_tuesday).toBe(
-        "Error Enter the establishment opening hours for Tuesday using 24 hour clocks"
+        "Enter the establishment opening hours for Tuesday using 24 hour clocks"
       );
       expect(Object.keys(result.errors).length).toBe(1);
     });

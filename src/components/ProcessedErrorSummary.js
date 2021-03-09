@@ -24,7 +24,7 @@ const ProcessedErrorSummary = (props) => {
     return null;
   }
 };
-export default withTranslation("ErrorSummary")(ProcessedErrorSummary);
+export default withTranslation("common")(ProcessedErrorSummary);
 
 ProcessedErrorSummary.propTypes = {
   validatorErrors: PropTypes.objectOf(PropTypes.string)

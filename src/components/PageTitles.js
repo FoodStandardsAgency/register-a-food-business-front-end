@@ -42,28 +42,17 @@ const PageTitles = {
 };
 
 PageTitles.getUrlPageTitle = (url, validatorErrors, allValidationErrors) => {
-  var allValidationErrorLength =
-    typeof allValidationErrors === "object"
-      ? Object.keys(allValidationErrors).length
-      : 0;
-  var validatorErrorLength =
-    typeof validatorErrors === "object"
-      ? Object.keys(validatorErrors).length
-      : 0;
-  var errorLength =
-    allValidationErrorLength > validatorErrorLength
-      ? allValidationErrorLength
-      : validatorErrorLength;
+  var isError = Object.keys(allValidationErrors).length > 0 || Object.keys(validatorErrors).length > 0
   var urlParts = url.split("/");
   var page = (urlParts[2] ?? urlParts[1]).split("?")[0];
   var title =
-    errorLength > 0
+    isError === true
       ? `Error ${PageTitles.defaultPageTitle}`
       : PageTitles.defaultPageTitle;
 
   if (page && page in PageTitles.pageTitles) {
     title =
-      errorLength > 0
+      isError === true
         ? `Error ${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`
         : `${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`;
   }
