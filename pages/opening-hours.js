@@ -43,13 +43,9 @@ const OpeningHours = (props) => (
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_monday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Label
-              class="govuk-label govuk-label—l"
-              style={{ fontWeight: "bold", fontSize: "24px" }}
-            >
               {props.t("Monday")}
-            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -66,13 +62,9 @@ const OpeningHours = (props) => (
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_tuesday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Label
-              class="govuk-label govuk-label—l"
-              style={{ fontWeight: "bold", fontSize: "24px" }}
-            >
               {props.t("Tuesday")}
-            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -89,13 +81,9 @@ const OpeningHours = (props) => (
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_wednesday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Label
-              class="govuk-label govuk-label—l"
-              style={{ fontWeight: "bold", fontSize: "24px" }}
-            >
               {props.t("Wednesday")}
-            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -112,13 +100,9 @@ const OpeningHours = (props) => (
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_thursday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Label
-              class="govuk-label govuk-label—l"
-              style={{ fontWeight: "bold", fontSize: "24px" }}
-            >
               {props.t("Thursday")}
-            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -135,13 +119,9 @@ const OpeningHours = (props) => (
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_friday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Label
-              class="govuk-label govuk-label—l"
-              style={{ fontWeight: "bold", fontSize: "24px" }}
-            >
               {props.t("Friday")}
-            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -158,13 +138,9 @@ const OpeningHours = (props) => (
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_saturday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Label
-              class="govuk-label govuk-label—l"
-              style={{ fontWeight: "bold", fontSize: "24px" }}
-            >
               {props.t("Saturday")}
-            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -181,13 +157,9 @@ const OpeningHours = (props) => (
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_sunday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Label
-              class="govuk-label govuk-label—l"
-              style={{ fontWeight: "bold", fontSize: "24px" }}
-            >
               {props.t("Sunday")}
-            </Label>
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
