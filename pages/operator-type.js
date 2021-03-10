@@ -42,7 +42,7 @@ const OperatorType = (props) => (
           </HiddenTextAccessible>
           <MultiChoice
             label=""
-            language = {props.t("en")}
+            language={props.t("en")}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.operator_type)

@@ -47,7 +47,7 @@ const EstablishmentOpeningStatus = (props) => (
           </HiddenTextAccessible>
           <MultiChoice
             label=""
-            language = {props.t("en")}
+            language={props.t("en")}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.establishment_opening_status)

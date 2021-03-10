@@ -27,7 +27,7 @@ const CustomerType = (props) => (
       <ContentItem.B_45_30>
         <MultiChoice
           label=""
-          language = {props.t("en")}
+          language={props.t("en")}
           meta={{
             touched: true,
             error: props.t(props.validatorErrors.customer_type)

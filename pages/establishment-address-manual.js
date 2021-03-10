@@ -62,7 +62,7 @@ const EstablishmentAddress = (props) => (
                 props.cumulativeFullAnswers.establishment_address_line_1,
               autoComplete: "address-line1"
             }}
-            language = {props.t("en")}
+            language={props.t("en")}
             id="establishment_address_line_1"
             meta={{
               touched: true,
@@ -81,7 +81,7 @@ const EstablishmentAddress = (props) => (
                 props.cumulativeFullAnswers.establishment_address_line_2,
               autoComplete: "address-line2"
             }}
-            language = {props.t("en")}
+            language={props.t("en")}
             id="establishment_address_line_2"
             meta={{
               touched: true,
@@ -100,7 +100,7 @@ const EstablishmentAddress = (props) => (
                 props.cumulativeFullAnswers.establishment_address_line_3,
               autoComplete: "address-line3"
             }}
-            language = {props.t("en")}
+            language={props.t("en")}
             id="establishment_address_line_3"
             meta={{
               touched: true,
@@ -118,7 +118,7 @@ const EstablishmentAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.establishment_town,
               autoComplete: "locality"
             }}
-            language = {props.t("en")}
+            language={props.t("en")}
             id="establishment_town"
             meta={{
               touched: true,
@@ -136,7 +136,7 @@ const EstablishmentAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.establishment_postcode,
               autoComplete: "postal-code"
             }}
-            language = {props.t("en")}
+            language={props.t("en")}
             id="establishment_postcode"
             meta={{
               touched: true,

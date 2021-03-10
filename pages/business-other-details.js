@@ -30,7 +30,7 @@ const OtherDetails = (props) => (
               defaultValue: props.cumulativeFullAnswers.business_other_details,
               id: "business_other_details"
             }}
-            language = {props.t("en")}
+            language={props.t("en")}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.business_other_details)

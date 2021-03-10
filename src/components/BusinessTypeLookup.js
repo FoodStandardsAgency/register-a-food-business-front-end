@@ -101,7 +101,8 @@ export class BusinessTypeLookup extends React.Component {
                     }
                   >
                     {props.validatorErrors.business_type ? (
-                      <ErrorText style={lineHeight}><VisuallyHidden>{props.t('Error')}:</VisuallyHidden>
+                      <ErrorText style={lineHeight}>
+                        <VisuallyHidden>{props.t("Error")}:</VisuallyHidden>
                         {props.t(props.validatorErrors.business_type)}
                       </ErrorText>
                     ) : null}

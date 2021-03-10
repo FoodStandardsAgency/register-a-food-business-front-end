@@ -8,7 +8,7 @@ import ErrorText from "@govuk-react/error-text";
 import HintText from "@govuk-react/hint-text";
 import { spacing } from "@govuk-react/lib";
 import Input from "./input";
-import VisuallyHidden from '@govuk-react/visually-hidden';
+import VisuallyHidden from "@govuk-react/visually-hidden";
 
 const StyledContainer = styled("div")(
   {
@@ -82,7 +82,15 @@ const DateField = ({
   <StyledContainer {...props} errorText={errorText}>
     <LabelText errorText={errorText}>{children}</LabelText>
     {hintText && <HintText>{hintText}</HintText>}
-    {errorText && <ErrorText errorText={errorText}><VisuallyHidden> {language === 'cy'? 'Gwall: ' : 'Error: '}</VisuallyHidden>{errorText}</ErrorText>}
+    {errorText && (
+      <ErrorText errorText={errorText}>
+        <VisuallyHidden>
+          {" "}
+          {language === "cy" ? "Gwall: " : "Error: "}
+        </VisuallyHidden>
+        {errorText}
+      </ErrorText>
+    )}
     <Input
       names={inputNames}
       // TODO: defaultValues should be a prop on input

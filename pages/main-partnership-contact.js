@@ -61,7 +61,7 @@ const PrimaryPartner = (props) => (
           <PartnershipDescription {...props} />
           <MultiChoice
             label=""
-            language = {props.t("en")}
+            language={props.t("en")}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.partner_is_primary)

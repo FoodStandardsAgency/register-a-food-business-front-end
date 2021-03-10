@@ -58,7 +58,7 @@ const OpeningDate = (props) => {
                 month: "month",
                 year: "year"
               }}
-              language = {props.t("en")}
+              language={props.t("en")}
               hintText={`${props.t("For example")}, ${moment()
                 .add(40, "d")
                 .format("DD MM YYYY")}`}
