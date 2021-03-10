@@ -1,5 +1,5 @@
 import { Button } from "@slice-and-dice/govuk-react";
-import { ButtonArrow } from "@govuk-react/icons";
+import { ButtonArrow } from "@slice-and-dice/govuk-react-icons";
 import styled from "@emotion/styled";
 import { withTranslation } from "../../i18n.js";
 

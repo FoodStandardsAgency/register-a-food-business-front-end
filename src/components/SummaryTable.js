@@ -13,7 +13,7 @@ import {
   LINE_HEIGHT,
   MEDIA_QUERIES,
   NTA_LIGHT
-} from "@govuk-react/constants";
+} from "@slice-and-dice/govuk-react-constants";
 import { withTranslation } from "../../i18n.js";
 
 const StyledTableRow = styled("div")({

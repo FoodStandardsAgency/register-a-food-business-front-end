@@ -3,7 +3,7 @@ import { GridRow, GridCol, Page } from "@slice-and-dice/govuk-react";
 import FsaFooter from "./FsaFooter";
 import styled from "@emotion/styled";
 import React from "react";
-import { MEDIA_QUERIES } from "@govuk-react/constants";
+import { MEDIA_QUERIES } from "@slice-and-dice/govuk-react-constants";
 import BrowserUnsupportedBanner from "./BrowserUnsupportedBanner";
 import AccessibleAutocompleteCSS from "./AccessibleAutocompleteCSS";
 import NormalizeCSS from "./NormalizeCSS";
