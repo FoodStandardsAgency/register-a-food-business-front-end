@@ -51,8 +51,8 @@ const EstablishmentAddressLookup = (props) => (
                 id="changeEstablishmentPostcode"
                 href={
                   props.editModeFirstPage
-                    ? "/establishment-address?edit=establishment-address"
-                    : "/establishment-address"
+                    ? `/new/${props.council}/establishment-address?edit=establishment-address`
+                    : `/new/${props.council}/establishment-address`
                 }
               >
                 {props.t("Change postcode")}

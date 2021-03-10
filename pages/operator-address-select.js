@@ -36,8 +36,8 @@ const OperatorAddressLookup = (props) => (
                 id="changeOperatorPostcode"
                 href={
                   props.editModeFirstPage
-                    ? "/operator-address?edit=operator-address"
-                    : "/operator-address"
+                    ? `/new/${props.council}/operator-address?edit=operator-address`
+                    : `/new/${props.council}/operator-address`
                 }
               >
                 {props.t("Change postcode")}
