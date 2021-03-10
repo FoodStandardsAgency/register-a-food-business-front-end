@@ -1,5 +1,5 @@
 import { Button } from "@slice-and-dice/govuk-react";
-import { ButtonArrow } from "@govuk-react/icons";
+import { ButtonArrow } from "@slice-and-dice/govuk-react-icons";
 import styled from "@emotion/styled";
 import { withTranslation } from "../../i18n.js";
 
@@ -13,7 +13,11 @@ const ContinueButton = (props) => (
     disabled={props.disabled}
     id="continue-button"
     type="submit"
-    icon={props.type === "begin" ? <ButtonArrow /> : null}
+    icon={
+      props.type === "begin" ? (
+        <ButtonArrow aria-hidden="true" focusable="false" />
+      ) : null
+    }
     start={props.type === "begin"}
   >
     {props.type === "begin"

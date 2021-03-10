@@ -1,4 +1,4 @@
-import {TopNav, Main, PhaseBanner} from "@slice-and-dice/govuk-react";
+import { TopNav, Main, PhaseBanner } from "@slice-and-dice/govuk-react";
 import asTopNavAnchor from "../hoc/asTopNavAnchor";
 import styled from "@emotion/styled";
 import CookieBanner from "./CookieBanner";

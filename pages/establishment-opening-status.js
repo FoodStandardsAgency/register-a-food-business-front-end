@@ -8,7 +8,13 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Radio, MultiChoice, HintText, Paragraph, Fieldset } from "@slice-and-dice/govuk-react";
+import {
+  Radio,
+  MultiChoice,
+  HintText,
+  Paragraph,
+  Fieldset
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
