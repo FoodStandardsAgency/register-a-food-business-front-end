@@ -7,7 +7,7 @@ import {
   InsetText,
   Link,
   HintText
-} from "govuk-react";
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import moment from "moment";

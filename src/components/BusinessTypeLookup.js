@@ -16,7 +16,7 @@ import {
   Paragraph,
   Label,
   VisuallyHidden
-} from "govuk-react";
+} from "@slice-and-dice/govuk-react";
 import ListItemConsistentSize from "./ListItemConsistentSize";
 import { withTranslation } from "../../i18n.js";
 

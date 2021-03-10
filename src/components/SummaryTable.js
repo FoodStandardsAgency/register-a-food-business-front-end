@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Link } from "govuk-react";
+import { Table, Link } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import * as COLOUR from "govuk-colours";
 import moment from "moment";

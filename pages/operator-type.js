@@ -9,7 +9,7 @@ import {
   PostForm
 } from "../src/components";
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
-import { Radio, MultiChoice, Paragraph, Fieldset } from "govuk-react";
+import { Radio, MultiChoice, Paragraph, Fieldset } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 

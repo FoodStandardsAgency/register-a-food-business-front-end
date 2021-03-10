@@ -9,7 +9,7 @@ import {
   PostForm
 } from "../src/components";
 import { waterSupplyEnum } from "@slice-and-dice/register-a-food-business-validation";
-import { Fieldset, Radio, MultiChoice, HintText, Paragraph } from "govuk-react";
+import { Fieldset, Radio, MultiChoice, HintText, Paragraph } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 

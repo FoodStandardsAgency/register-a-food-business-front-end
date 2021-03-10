@@ -1,7 +1,7 @@
 import { BusinessTypeLookup } from "../components/BusinessTypeLookup";
 import SelectListSection from "../components/SelectListSection";
-import { Label } from "govuk-react";
-import { SelectInput } from "@govuk-react/select";
+import { Label } from "@slice-and-dice/govuk-react";
+import { Select as SelectInput } from "@slice-and-dice/govuk-react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils"; // ES6
 

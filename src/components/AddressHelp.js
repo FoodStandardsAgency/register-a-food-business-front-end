@@ -1,6 +1,6 @@
 import React from "react";
 import { ContentItem } from "../../src/components";
-import { Heading, HintText } from "govuk-react";
+import { Heading, HintText } from "@slice-and-dice/govuk-react";
 import { withTranslation } from "../../i18n.js";
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 

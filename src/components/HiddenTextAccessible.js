@@ -1,4 +1,4 @@
-import { Details } from "govuk-react";
+import { Details } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { withTranslation } from "../../i18n.js";
