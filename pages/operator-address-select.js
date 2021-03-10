@@ -22,7 +22,7 @@ const OperatorAddressLookup = (props) => (
           <Heading as="h2" size="MEDIUM">
             {props.t("Postcode")}
           </Heading>
-          <d1>
+          <dl>
             <dt>
               <Paragraph className="operatorPostcodeDisplay" mb={0}>
                 {props.cumulativeFullAnswers.operator_postcode_find}
@@ -40,7 +40,7 @@ const OperatorAddressLookup = (props) => (
                 {props.t("Change postcode")}
               </Link>
             </dd>
-          </d1>
+          </dl>
         </ContentItem.B_30_15>
         <ContentItem.B_20_20>
           <Heading as="h2" size="MEDIUM" class="govuk-label govuk-label—l">
