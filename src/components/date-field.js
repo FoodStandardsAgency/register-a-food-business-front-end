@@ -2,11 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { ERROR_COLOUR } from "govuk-colours";
-import { SPACING } from "@govuk-react/constants";
-import LabelText from "@govuk-react/label-text";
-import ErrorText from "@govuk-react/error-text";
-import HintText from "@govuk-react/hint-text";
-import { spacing } from "@govuk-react/lib";
+import { SPACING } from "@slice-and-dice/govuk-react-constants";
+import { LabelText, ErrorText, HintText } from "@slice-and-dice/govuk-react";
+import { spacing } from "@slice-and-dice/govuk-react-lib";
 import Input from "./input";
 
 const StyledContainer = styled("div")(

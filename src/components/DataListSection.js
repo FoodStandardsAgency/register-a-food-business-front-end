@@ -1,6 +1,12 @@
 import { css } from "@emotion/core";
 import ContentItem from "./ContentItem";
-import { Input, Label, UnorderedList, HintText, Paragraph } from "govuk-react";
+import {
+  Input,
+  Label,
+  UnorderedList,
+  HintText,
+  Paragraph
+} from "@slice-and-dice/govuk-react";
 import { businessTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { withTranslation } from "../../i18n.js";
 import ListItemConsistentSize from "./ListItemConsistentSize";

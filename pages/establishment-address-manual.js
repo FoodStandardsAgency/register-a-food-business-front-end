@@ -8,7 +8,12 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Heading, InputField, Paragraph, ErrorText } from "govuk-react";
+import {
+  Heading,
+  InputField,
+  Paragraph,
+  ErrorText
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 

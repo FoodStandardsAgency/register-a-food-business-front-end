@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Link, ListItem, UnorderedList } from "govuk-react";
+import { Link, ListItem, UnorderedList } from "@slice-and-dice/govuk-react";
 import { withTranslation, i18n } from "../../i18n.js";
 import React, { useState, useEffect } from "react";
 

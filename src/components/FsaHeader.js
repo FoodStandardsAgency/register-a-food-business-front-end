@@ -1,7 +1,5 @@
-import TopNav from "@govuk-react/top-nav";
+import { TopNav, Main, PhaseBanner } from "@slice-and-dice/govuk-react";
 import asTopNavAnchor from "../hoc/asTopNavAnchor";
-import Main from "@govuk-react/main";
-import PhaseBanner from "@govuk-react/phase-banner";
 import styled from "@emotion/styled";
 import CookieBanner from "./CookieBanner";
 import BackAndLanguageBar from "./BackAndLanguageBar";

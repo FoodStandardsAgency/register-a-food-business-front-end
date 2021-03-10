@@ -1,4 +1,4 @@
-import { BackLink } from "govuk-react";
+import { BackLink } from "@slice-and-dice/govuk-react";
 import ContentItem from "./ContentItem";
 import { withTranslation } from "../../i18n.js";
 

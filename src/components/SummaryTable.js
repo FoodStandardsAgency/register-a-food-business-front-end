@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Link } from "govuk-react";
+import { Table, Link } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import * as COLOUR from "govuk-colours";
 import moment from "moment";
@@ -13,7 +13,7 @@ import {
   LINE_HEIGHT,
   MEDIA_QUERIES,
   NTA_LIGHT
-} from "@govuk-react/constants";
+} from "@slice-and-dice/govuk-react-constants";
 import { withTranslation } from "../../i18n.js";
 
 const StyledTableRow = styled("div")({
