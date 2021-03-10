@@ -48,6 +48,7 @@ const ContactRepresentative = (props) => {
                 autoComplete: "off"
               }}
               id="contact_representative_name"
+              language = {props.t("en")}
               meta={{
                 touched: true,
                 error: props.t(
@@ -66,6 +67,7 @@ const ContactRepresentative = (props) => {
                   props.cumulativeFullAnswers.contact_representative_role,
                 autoComplete: "off"
               }}
+              language = {props.t("en")}
               id="contact_representative_role"
               meta={{
                 touched: true,
@@ -85,6 +87,7 @@ const ContactRepresentative = (props) => {
                   props.cumulativeFullAnswers.contact_representative_number,
                 autoComplete: "tel"
               }}
+              language = {props.t("en")}
               id="contact_representative_number"
               meta={{
                 touched: true,
@@ -104,6 +107,7 @@ const ContactRepresentative = (props) => {
                   props.cumulativeFullAnswers.contact_representative_email,
                 autoComplete: "email"
               }}
+              language = {props.t("en")}
               id="contact_representative_email"
               hint={props.t(
                 "We will use your email to keep you informed of any policy or legal changes that could affect your food business."

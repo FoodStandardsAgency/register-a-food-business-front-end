@@ -47,6 +47,7 @@ const OperatorAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_address_line_1,
               autoComplete: "address-line1"
             }}
+            language = {props.t("en")}
             id="operator_address_line_1"
             meta={{
               touched: true,
@@ -64,6 +65,7 @@ const OperatorAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_address_line_2,
               autoComplete: "address-line2"
             }}
+            language = {props.t("en")}
             id="operator_address_line_2"
             meta={{
               touched: true,
@@ -81,6 +83,7 @@ const OperatorAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_address_line_3,
               autoComplete: "address-line3"
             }}
+            language = {props.t("en")}
             id="operator_address_line_3"
             meta={{
               touched: true,
@@ -98,6 +101,7 @@ const OperatorAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_town,
               autoComplete: "locality"
             }}
+            language = {props.t("en")}
             id="operator_town"
             meta={{
               touched: true,
@@ -115,6 +119,7 @@ const OperatorAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_postcode,
               autoComplete: "postal-code"
             }}
+            language = {props.t("en")}
             id="operator_postcode"
             meta={{
               touched: true,

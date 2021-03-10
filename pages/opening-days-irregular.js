@@ -37,6 +37,7 @@ const OtherDaysIrregular = (props) => (
               defaultValue: props.cumulativeFullAnswers.opening_days_irregular,
               id: "opening_days_irregular"
             }}
+            language = {props.t("en")}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.opening_days_irregular)

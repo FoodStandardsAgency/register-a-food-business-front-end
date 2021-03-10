@@ -30,6 +30,7 @@ const OpeningSomeDays = (props) => (
       <ContentItem.B_30_15>
         <MultiChoice
           label=""
+          language = {props.t("en")}
           meta={{
             touched: true,
             error: props.t(props.validatorErrors.opening_days_some)

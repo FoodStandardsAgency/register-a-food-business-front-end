@@ -54,6 +54,7 @@ const OperatorName = (props) => (
             defaultValue: props.cumulativeFullAnswers.operator_last_name,
             autoComplete: "family-name"
           }}
+          language = {props.t("en")}
           id="operator_last_name"
           meta={{
             touched: true,

@@ -32,6 +32,7 @@ const OpeningDaysStart = (props) => (
           </Fieldset.Legend>
           <MultiChoice
             label=""
+            language = {props.t("en")}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.opening_days_start)

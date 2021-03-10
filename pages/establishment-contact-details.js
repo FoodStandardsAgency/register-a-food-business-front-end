@@ -102,6 +102,7 @@ const EstablishmentContactDetails = (props) => (
                 : props.cumulativeFullAnswers.establishment_email,
               autoComplete: "email"
             }}
+            language = {props.t("en")}
             id="establishment_email"
             hint={props.t(
               "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
