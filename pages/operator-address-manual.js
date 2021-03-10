@@ -2,27 +2,25 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   AddressHelp,
   PostForm
 } from "../src/components";
-import { InputField, ErrorText } from "govuk-react";
+import { InputField, ErrorText } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const OperatorAddress = (props) => (
-  <FsaLayout {...props}>
-    <BackButton
-      {...props}
-      href={
-        props.switches["/operator-address-none-found"]
-          ? `/new/${props.council}/operator-address`
-          : `/new/${props.council}/operator-address-select`
-      }
-    />
+  <FsaLayout
+    {...props}
+    backHref={
+      props.switches["/operator-address-none-found"]
+        ? `/new/${props.council}/operator-address`
+        : `/new/${props.council}/operator-address-select`
+    }
+  >
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}

@@ -1,4 +1,4 @@
-import { ErrorSummary } from "govuk-react";
+import { ErrorSummary } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../../i18n.js";
 

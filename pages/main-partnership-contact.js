@@ -2,14 +2,18 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   PartnershipDescription,
   PostForm
 } from "../src/components";
-import { Fieldset, Radio, MultiChoice, HintText } from "govuk-react";
+import {
+  Fieldset,
+  Radio,
+  MultiChoice,
+  HintText
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -37,7 +41,6 @@ const PartnersList = (props) => {
 
 const PrimaryPartner = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -60,7 +63,7 @@ const PrimaryPartner = (props) => (
               )}
             </HintText>
           </ContentItem.B_30_15>
-          <PartnershipDescription />
+          <PartnershipDescription {...props} />
           <MultiChoice
             label=""
             meta={{

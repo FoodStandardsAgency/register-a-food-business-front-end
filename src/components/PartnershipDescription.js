@@ -1,9 +1,9 @@
 import { HiddenTextAccessible } from "./";
-import { Paragraph } from "govuk-react";
+import { Paragraph } from "@slice-and-dice/govuk-react";
 import { withTranslation } from "../../i18n.js";
 
 const PartnershipDescription = (props) => (
-  <HiddenTextAccessible summary={props.t("What is a partnership?")}>
+  <HiddenTextAccessible summary={props.t("What is a partnership?")} {...props}>
     <Paragraph mb={0}>
       {props.t(
         "In a partnership, you and your partner (or partners) personally share responsibility for your food business"

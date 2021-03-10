@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -16,14 +15,13 @@ import {
   MultiChoice,
   Paragraph,
   HintText
-} from "govuk-react";
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const ImportExportActivities = (props) => (
   <FsaLayout {...props}>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
-      <BackButton {...props} />
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
@@ -81,6 +79,7 @@ const ImportExportActivities = (props) => (
           summary={props.t(
             "More information about import and export activities"
           )}
+          {...props}
         >
           <span>
             {props.t(
@@ -90,7 +89,7 @@ const ImportExportActivities = (props) => (
             <br />
             {props.t("Find out more by visiting the")}{" "}
             <a
-              href="https://www.food.gov.uk/business-guidance/imports-exports"
+              href={props.t("import/export-link")}
               target="_blank"
               rel="noopener noreferrer"
               id="link-fsa-website"

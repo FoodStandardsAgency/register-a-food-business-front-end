@@ -2,13 +2,12 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   SelectWithHeader,
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Heading, Paragraph, Link } from "govuk-react";
+import { Heading, Paragraph, Link } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 import styled from "@emotion/styled";
@@ -19,7 +18,6 @@ const StyledDd = styled.dd`
 
 const EstablishmentAddressLookup = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <Heading as="h1" size="LARGE">
       {props.t("What is the establishment's address?")}
     </Heading>
@@ -27,6 +25,7 @@ const EstablishmentAddressLookup = (props) => (
     <HiddenTextAccessible
       id="hiddenTextEstablishment"
       summary={props.t("What is an establishment?")}
+      {...props}
     >
       <Paragraph mb={0}>
         {props.t(

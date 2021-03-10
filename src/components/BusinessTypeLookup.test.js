@@ -1,5 +1,5 @@
 import { BusinessTypeLookup } from "../components/BusinessTypeLookup";
-import { Paragraph } from "govuk-react";
+import { Paragraph } from "@slice-and-dice/govuk-react";
 import { shallow, mount } from "enzyme";
 import { act } from "react-dom/test-utils"; // ES6
 

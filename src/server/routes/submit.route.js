@@ -37,7 +37,8 @@ const submitRouter = () => {
           req.session.cumulativeFullAnswers,
           req.session.addressLookups,
           req.session.pathConfig._id,
-          req.session.id
+          req.session.id,
+          req.session.language
         );
 
         req.session.submissionDate = controllerResponse.submissionDate;
