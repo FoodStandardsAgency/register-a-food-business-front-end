@@ -8,7 +8,7 @@ import {
   OnHandleErrorClick,
   PostForm
 } from "../src/components";
-import { Heading, InputField, HintText, Label } from "govuk-react";
+import { Heading, InputField, HintText } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -45,7 +45,7 @@ const OpeningHours = (props) => (
             }}
             style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-              {props.t("Monday")}
+            {props.t("Monday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -64,7 +64,7 @@ const OpeningHours = (props) => (
             }}
             style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-              {props.t("Tuesday")}
+            {props.t("Tuesday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -83,7 +83,7 @@ const OpeningHours = (props) => (
             }}
             style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-              {props.t("Wednesday")}
+            {props.t("Wednesday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -102,7 +102,7 @@ const OpeningHours = (props) => (
             }}
             style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-              {props.t("Thursday")}
+            {props.t("Thursday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -121,7 +121,7 @@ const OpeningHours = (props) => (
             }}
             style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-              {props.t("Friday")}
+            {props.t("Friday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -140,7 +140,7 @@ const OpeningHours = (props) => (
             }}
             style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-              {props.t("Saturday")}
+            {props.t("Saturday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -159,7 +159,7 @@ const OpeningHours = (props) => (
             }}
             style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-              {props.t("Sunday")}
+            {props.t("Sunday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}

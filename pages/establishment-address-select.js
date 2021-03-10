@@ -11,6 +11,11 @@ import {
 import { Heading, Paragraph, Link } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import styled from "@emotion/styled";
+
+const StyledDd = styled.dd`
+  margin-inline-start: 0px;
+`;
 
 const EstablishmentAddressLookup = (props) => (
   <FsaLayout {...props}>
@@ -42,7 +47,7 @@ const EstablishmentAddressLookup = (props) => (
                 {props.cumulativeFullAnswers.establishment_postcode_find}
               </Paragraph>
             </dt>
-            <dd>
+            <StyledDd>
               <Link
                 id="changeEstablishmentPostcode"
                 href={
@@ -53,15 +58,17 @@ const EstablishmentAddressLookup = (props) => (
               >
                 {props.t("Change postcode")}
               </Link>
-            </dd>
+            </StyledDd>
           </dl>
         </ContentItem.B_30_15>
 
         <ContentItem.B_20_20>
-          <SelectWithHeader
-            label={`${props.t("Select an address for")} ${
+          <Heading as="h2" size="MEDIUM" class="govuk-label govuk-label—l">
+            {`${props.t("Select an address for")} ${
               props.cumulativeFullAnswers.establishment_postcode_find
             }`}
+          </Heading>
+          <SelectWithHeader
             input={{
               id: "establishmentAddressDropdown",
               name: "establishment_address_selected",

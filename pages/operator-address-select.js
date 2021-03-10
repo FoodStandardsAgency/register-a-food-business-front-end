@@ -11,6 +11,11 @@ import {
 import { Heading, Paragraph, Link } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import styled from "@emotion/styled";
+
+const StyledDd = styled.dd`
+  margin-inline-start: 0px;
+`;
 
 const OperatorAddressLookup = (props) => (
   <FsaLayout {...props}>
@@ -28,7 +33,7 @@ const OperatorAddressLookup = (props) => (
                 {props.cumulativeFullAnswers.operator_postcode_find}
               </Paragraph>
             </dt>
-            <dd>
+            <StyledDd>
               <Link
                 id="changeOperatorPostcode"
                 href={
@@ -39,7 +44,7 @@ const OperatorAddressLookup = (props) => (
               >
                 {props.t("Change postcode")}
               </Link>
-            </dd>
+            </StyledDd>
           </dl>
         </ContentItem.B_30_15>
         <ContentItem.B_20_20>
