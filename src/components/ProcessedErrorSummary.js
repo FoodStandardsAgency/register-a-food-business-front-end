@@ -19,6 +19,7 @@ const ProcessedErrorSummary = (props) => {
         errors={errors}
         role="alert"
         tabIndex={-1}
+        href={`#${props.id}`}
       />
     );
   } else {
