@@ -18,6 +18,7 @@ const ProcessedErrorSummary = (props) => {
         onHandleErrorClick={props.onHandleErrorClick}
         errors={errors}
         role="alert"
+        tabIndex={-1}
       />
     );
   } else {
