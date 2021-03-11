@@ -31,7 +31,7 @@ const RegistrationRole = (props) => (
           </Fieldset.Legend>
           <MultiChoice
             label=""
-            language={props.t("en")}
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.registration_role)

@@ -36,7 +36,7 @@ const OpeningHours = (props) => (
               name: "opening_hours_monday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_monday
             }}
-            language={props.t("en")}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_monday"
             meta={{
               touched: true,
@@ -57,7 +57,7 @@ const OpeningHours = (props) => (
               name: "opening_hours_tuesday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_tuesday
             }}
-            language={props.t("en")}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_tuesday"
             meta={{
               touched: true,
@@ -78,7 +78,7 @@ const OpeningHours = (props) => (
               name: "opening_hours_wednesday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_wednesday
             }}
-            language={props.t("en")}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_wednesday"
             meta={{
               touched: true,
@@ -99,7 +99,7 @@ const OpeningHours = (props) => (
               name: "opening_hours_thursday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_thursday
             }}
-            language={props.t("en")}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_thursday"
             meta={{
               touched: true,
@@ -120,7 +120,7 @@ const OpeningHours = (props) => (
               name: "opening_hours_friday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_friday
             }}
-            language={props.t("en")}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_friday"
             meta={{
               touched: true,
@@ -141,7 +141,7 @@ const OpeningHours = (props) => (
               name: "opening_hours_saturday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_saturday
             }}
-            language={props.t("en")}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_saturday"
             meta={{
               touched: true,
@@ -162,7 +162,7 @@ const OpeningHours = (props) => (
               name: "opening_hours_sunday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_sunday
             }}
-            language={props.t("en")}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_sunday"
             meta={{
               touched: true,
