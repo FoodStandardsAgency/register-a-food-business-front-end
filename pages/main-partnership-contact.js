@@ -44,6 +44,7 @@ const PrimaryPartner = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
+      id = 'main_partnership'
     />
 
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
@@ -53,6 +54,7 @@ const PrimaryPartner = (props) => (
             size="LARGE"
             isPageHeading
             style={{ marginBottom: "30px" }}
+            id = 'main_partnership'
           >
             {props.t("Who is the main point of contact?")}
           </Fieldset.Legend>

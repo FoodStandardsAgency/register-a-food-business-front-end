@@ -22,6 +22,7 @@ const OpeningDaysStart = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
+      id="opening_days_start_everyday"
     />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>

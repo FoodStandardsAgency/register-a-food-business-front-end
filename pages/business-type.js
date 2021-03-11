@@ -17,6 +17,7 @@ const BusinessType = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
+      id="businessTypeLookup"
     />
     <Heading as="h1" size="LARGE">
       {props.t("What kind of food business are you registering?")}

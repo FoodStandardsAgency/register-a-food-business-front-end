@@ -21,6 +21,7 @@ const PartnerDetails = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
+      id="partner_name"
     />
     <Heading as="h1" size="LARGE">
       {props.t(

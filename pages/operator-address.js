@@ -17,6 +17,7 @@ const OperatorAddress = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
+      id="operatorPostcodeFindComponent"
     />
     <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
     <PostForm

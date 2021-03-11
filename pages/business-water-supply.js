@@ -24,6 +24,7 @@ const WaterSupply = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
+      id="water_supply_public"
     />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_45_30>

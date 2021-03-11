@@ -17,6 +17,7 @@ const RegistrationRole = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
+      id="registration_role_sole_trader"
     />
 
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>

@@ -57,6 +57,7 @@ const PartnerName = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
+      id="addPartnerLink"
     />
     <Heading as="h1" size="LARGE">
       {props.t("What are the partners' names?")}

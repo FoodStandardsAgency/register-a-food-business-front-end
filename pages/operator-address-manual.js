@@ -24,6 +24,7 @@ const OperatorAddress = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
+      id="operator_address_line_1"
     />
     <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>

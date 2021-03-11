@@ -18,6 +18,7 @@ const ContactRepresentative = (props) => {
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
+        id="contact_representative_name"
       />
       <Heading as="h1" size="LARGE">
         {props.t("Operator contact details")}

@@ -19,6 +19,7 @@ const OpeningDate = (props) => {
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
+        id="hiddenTextEstablishment"
       />
       <Heading as="h1" size="LARGE">
         {props.t("Trading date")}
