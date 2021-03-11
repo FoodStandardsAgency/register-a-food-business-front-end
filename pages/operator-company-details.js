@@ -13,7 +13,10 @@ import { withTranslation } from "../i18n";
 
 const LimitedCompanyDetails = (props) => (
   <FsaLayout {...props}>
-    <ProcessedErrorSummary validatorErrors={props.validatorErrors} id="operator_company_name" />
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      id="operator_company_name"
+    />
     <Heading as="h1" size="LARGE">
       {props.t("Company details")}
     </Heading>
