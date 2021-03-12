@@ -2,7 +2,7 @@ import { PageTitles } from "../components";
 
 const testValidatorErrors = {};
 
-const testValidatorErrorsPopulated = {test: 'test'};
+const testValidatorErrorsPopulated = { test: "test" };
 
 const testAllValidationErrors = {};
 
@@ -50,7 +50,9 @@ describe("PageTitles", () => {
       testValidatorErrorsPopulated,
       testAllValidationErrors
     );
-    expect(title).toBe(`Error ${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`);
+    expect(title).toBe(
+      `Error ${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`
+    );
   });
 
   it("returns the relevant page title with prefix for URL", () => {
