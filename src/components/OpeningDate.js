@@ -11,7 +11,7 @@ import { Heading, Paragraph, HintText } from "@slice-and-dice/govuk-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 import { withTranslation } from "../../i18n.js";
-import DateField from "./date-field";
+import DateField from "@slice-and-dice/govuk-react-date-field";
 
 const OpeningDate = (props) => {
   return (
@@ -52,6 +52,11 @@ const OpeningDate = (props) => {
                 day: props.cumulativeFullAnswers.day,
                 month: props.cumulativeFullAnswers.month,
                 year: props.cumulativeFullAnswers.year
+              }}
+              labels={{
+                day: props.t("Day"),
+                month: props.t("Month"),
+                year: props.t("Year")
               }}
               inputNames={{
                 day: "day",
@@ -98,6 +103,11 @@ const OpeningDate = (props) => {
               day: props.cumulativeFullAnswers.day,
               month: props.cumulativeFullAnswers.month,
               year: props.cumulativeFullAnswers.year
+            }}
+            labels={{
+              day: props.t("Day"),
+              month: props.t("Month"),
+              year: props.t("Year")
             }}
             inputNames={{
               day: "day",
