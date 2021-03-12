@@ -15,11 +15,8 @@ import {
   InputField,
   Paragraph,
   Button,
-  MultiChoice,
   InsetText,
-  Radio,
-  Table,
-  Fieldset
+  Table
 } from "govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
@@ -56,223 +53,164 @@ const AccessibleCell = (props) => (
 );
 
 const EstablishmentContactDetails = (props) => (
-  <FsaLayout {...props}>
-    <BackButton {...props} />
-    <ProcessedErrorSummary
-      validatorErrors={props.validatorErrors}
-      onHandleErrorClick={OnHandleErrorClick}
-    />
-    <Heading as="h1" size="LARGE">
-      {props.t("Establishment contact details")}
-    </Heading>
-    <HiddenTextAccessible summary={props.t("What is an establishment?")}>
-      <Paragraph mb={0}>
-        {props.t(
-          "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
-        )}
-      </Paragraph>
-    </HiddenTextAccessible>
-    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
-      <InsetText>
-        
-          <AccessibleTableRow>
-            <AccessibleRowHeader style={{ color: "grey" }}>
-              {props.t(
-                `${
-                  props.cumulativeFullAnswers.registration_role ===
-                  operatorTypeEnum.PARTNERSHIP.key
-                    ? "Partnership"
-                    : "Operator"
-                } contact details`
-              )}
-            </AccessibleRowHeader>
-          </AccessibleTableRow>
-          <AccessibleTableRow>
-            <AccessibleRowHeader style={{ color: "grey" }}>
-              {props.t("Main phone number")}
-            </AccessibleRowHeader>
-            <AccessibleCell style={{ color: "grey" }}>
-              <div id="establishment_primary_number">
-                {props.cumulativeFullAnswers.operator_primary_number
-                  ? props.cumulativeFullAnswers.operator_primary_number
-                  : props.cumulativeFullAnswers.contact_representative_number}
-              </div>
-            </AccessibleCell>
-          </AccessibleTableRow>
-
-          {props.cumulativeFullAnswers.operator_secondary_number ? (
+    <FsaLayout {...props}>
+      <BackButton {...props} />
+      <ProcessedErrorSummary
+        validatorErrors={props.validatorErrors}
+        onHandleErrorClick={OnHandleErrorClick}
+      />
+      <Heading as="h1" size="LARGE">
+        {props.t("Establishment contact details")}
+      </Heading>
+      <HiddenTextAccessible summary={props.t("What is an establishment?")}>
+        <Paragraph mb={0}>
+          {props.t(
+            "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
+          )}
+        </Paragraph>
+      </HiddenTextAccessible>
+      <PostForm action={props.formAction} csrfToken={props.csrfToken}>
+        <InsetText>
+          <ContentItem.B_30_15>
             <AccessibleTableRow>
               <AccessibleRowHeader style={{ color: "grey" }}>
-                {props.t("Secondary phone number")}
+                {props.t(
+                  `${
+                    props.cumulativeFullAnswers.registration_role ===
+                    operatorTypeEnum.PARTNERSHIP.key
+                      ? "Partnership"
+                      : "Operator"
+                  } contact details`
+                )}
+              </AccessibleRowHeader>
+            </AccessibleTableRow>
+            <AccessibleTableRow>
+              <AccessibleRowHeader style={{ color: "grey" }}>
+                {props.t("Main phone number")}
               </AccessibleRowHeader>
               <AccessibleCell style={{ color: "grey" }}>
-                <div id="establishment_secondary_number">
-                  {props.cumulativeFullAnswers.operator_secondary_number}
+                <div id="operator_primary_number">
+                  {props.cumulativeFullAnswers.operator_primary_number
+                    ? props.cumulativeFullAnswers.operator_primary_number
+                    : props.cumulativeFullAnswers.contact_representative_number}
                 </div>
               </AccessibleCell>
             </AccessibleTableRow>
-          ) : null}
-          <AccessibleTableRow>
-            <AccessibleRowHeader style={{ color: "grey" }}>
-              {props.t("Email address")}
-            </AccessibleRowHeader>
-            <AccessibleCell style={{ color: "grey" }}>
-              <div id="establishment_email_address">
-                {props.cumulativeFullAnswers.operator_email
-                  ? props.cumulativeFullAnswers.operator_email
-                  : props.cumulativeFullAnswers.contact_representative_email}
-              </div>
-            </AccessibleCell>
-          </AccessibleTableRow>
-          <Fieldset>
-            <Fieldset.Legend style={{ color: "grey", fontWeight: "bold" }}>
-              {props.t(
-                `Do you want to re-use these ${
-                  props.cumulativeFullAnswers.registration_role ===
-                  operatorTypeEnum.PARTNERSHIP.key
-                    ? "partnership"
-                    : "operator"
-                } contact details?`
-              )}
-            </Fieldset.Legend>
-            <MultiChoice
-              label=""
+
+            {props.cumulativeFullAnswers.operator_secondary_number ? (
+              <AccessibleTableRow>
+                <AccessibleRowHeader style={{ color: "grey" }}>
+                  {props.t("Secondary phone number")}
+                </AccessibleRowHeader>
+                <AccessibleCell style={{ color: "grey" }}>
+                  <div id="operator_secondary_number">
+                    {props.cumulativeFullAnswers.operator_secondary_number}
+                  </div>
+                </AccessibleCell>
+              </AccessibleTableRow>
+            ) : null}
+
+            <AccessibleTableRow>
+              <AccessibleRowHeader style={{ color: "grey" }}>
+                {props.t("Email address")}
+              </AccessibleRowHeader>
+              <AccessibleCell style={{ color: "grey" }}>
+                <div id="operator_email_address">
+                  {props.cumulativeFullAnswers.operator_email
+                    ? props.cumulativeFullAnswers.operator_email
+                    : props.cumulativeFullAnswers.contact_representative_email}
+                </div>
+              </AccessibleCell>
+            </AccessibleTableRow>
+          </ContentItem.B_30_15>
+          <Button
+            type="submit"
+            formAction="/switches/reuseOperatorContactDetails/on/establishment-contact-details#establishment_primary_number"
+            id="reuseButton"
+          >
+            {props.t(
+              `Re-use ${
+                props.cumulativeFullAnswers.registration_role ===
+                operatorTypeEnum.PARTNERSHIP.key
+                  ? "partnership"
+                  : "operator"
+              } contact details`
+            )}
+          </Button>
+        </InsetText>
+        
+        <ContentItem.B_30_15>
+          <ContentItem.B_30_15>
+            <InputField
+              input={{
+                name: "establishment_primary_number",
+                defaultValue: props.switches.reuseOperatorContactDetails
+                  ? props.cumulativeFullAnswers.operator_primary_number ||
+                    props.cumulativeFullAnswers.contact_representative_number
+                  : props.cumulativeFullAnswers.establishment_primary_number,
+                autoComplete: "tel"
+              }}
+              id="establishment_primary_number"
               meta={{
                 touched: true,
-                error: props.t(props.validatorErrors.registration_role) //change
+                error: props.t(
+                  props.validatorErrors["establishment_primary_number"]
+                )
               }}
             >
-              <div style={{ color: "grey" }}>
-                <Radio
-                  name="reuse_details"
-                  //type="update"
-                  //onsubmit="checked"
-                  formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
-                  type="submit"
-                  //name="contact_details"
-                  id="reuse_details_yes"
-                  value="Re-use details"
-                  //onClick={(true)}
-                  
-                  
-                  checked={
-                    props.cumulativeFullAnswers.reuse_details ===
-                    "Re-use details"
-                  }
-                  inline
-                  //checked
-                >
-                  {props.t("Yes")}
-                </Radio>
-                <Radio
-                  name="reuse_details"
-                  //name="contact_details"
-                  //value={operatorTypeEnum.SOLETRADER.key}
-                  type="submit"
-                  //formAction="/new/cardiff/establishment-contact-details"
-                  id="reuse_details_no"
-                  value="New details"
-                  checked={
-                    props.cumulativeFullAnswers.reuse_details === "New details"
-                  }
-                  //checked
-                  inline
-                >
-                  {props.t("No")}
-                  {console.log(props.cumulativeFullAnswers.reuse_details)}
-                </Radio>
-              </div>
-            </MultiChoice>
-          </Fieldset>
-        
-      </InsetText>
-      <ContentItem.B_30_15>
-        <Button
-        //type="submit"
-        //formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
-        //id="reuseButton"
-        >
-          {props.t(
-            `Re-use ${
-              props.cumulativeFullAnswers.registration_role ===
-              operatorTypeEnum.PARTNERSHIP.key
-                ? "partnership"
-                : "operator"
-            } contact details`
-          )}
-        </Button>
+              {props.t("Establishment main phone number")}
+            </InputField>
+          </ContentItem.B_30_15>
 
-        <ContentItem.B_30_15>
-          <InputField
-            input={{
-              name: "establishment_primary_number",
-              defaultValue: props.switches.reuseOperatorContactDetails
-                ? props.cumulativeFullAnswers.operator_primary_number ||
-                  props.cumulativeFullAnswers.contact_representative_number
-                : props.cumulativeFullAnswers.establishment_primary_number,
-              autoComplete: "tel"
-            }}
-            id="establishment_primary_number"
-            meta={{
-              touched: true,
-              error: props.t(
-                props.validatorErrors["establishment_primary_number"]
-              )
-            }}
-          >
-            {props.t("Main phone number")}
-          </InputField>
+          <ContentItem.B_30_15>
+            <InputField
+              input={{
+                name: "establishment_secondary_number",
+                defaultValue: props.switches.reuseOperatorContactDetails
+                  ? props.cumulativeFullAnswers.operator_secondary_number
+                  : props.cumulativeFullAnswers.establishment_secondary_number,
+                autoComplete: "off"
+              }}
+              id="establishment_secondary_number"
+              meta={{
+                touched: true,
+                error: props.t(
+                  props.validatorErrors["establishment_secondary_number"]
+                )
+              }}
+            >
+              {props.t("Establishment secondary phone number (optional)")}
+            </InputField>
+          </ContentItem.B_30_15>
+
+          <ContentItem.B_30_15>
+            <InputField
+              input={{
+                name: "establishment_email",
+                defaultValue: props.switches.reuseOperatorContactDetails
+                  ? props.cumulativeFullAnswers.operator_email ||
+                    props.cumulativeFullAnswers.contact_representative_email
+                  : props.cumulativeFullAnswers.establishment_email,
+                autoComplete: "email"
+              }}
+              id="establishment_email"
+              hint={props.t(
+                "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
+              )}
+              meta={{
+                touched: true,
+                error: props.t(props.validatorErrors.establishment_email)
+              }}
+            >
+              {props.t("Establishment email address")}
+            </InputField>
+          </ContentItem.B_30_15>
         </ContentItem.B_30_15>
 
-        <ContentItem.B_30_15>
-          <InputField
-            input={{
-              name: "establishment_secondary_number",
-              defaultValue: props.switches.reuseOperatorContactDetails
-                ? props.cumulativeFullAnswers.operator_secondary_number
-                : props.cumulativeFullAnswers.establishment_secondary_number,
-              autoComplete: "off"
-            }}
-            id="establishment_secondary_number"
-            meta={{
-              touched: true,
-              error: props.t(
-                props.validatorErrors["establishment_secondary_number"]
-              )
-            }}
-          >
-            {props.t("Secondary phone number (optional)")}
-          </InputField>
-        </ContentItem.B_30_15>
-
-        <ContentItem.B_30_15>
-          <InputField
-            input={{
-              name: "establishment_email",
-              defaultValue: props.switches.reuseOperatorContactDetails
-                ? props.cumulativeFullAnswers.operator_email ||
-                  props.cumulativeFullAnswers.contact_representative_email
-                : props.cumulativeFullAnswers.establishment_email,
-              autoComplete: "email"
-            }}
-            id="establishment_email"
-            hint={props.t(
-              "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
-            )}
-            meta={{
-              touched: true,
-              error: props.t(props.validatorErrors.establishment_email)
-            }}
-          >
-            {props.t("Email address")}
-          </InputField>
-        </ContentItem.B_30_15>
-      </ContentItem.B_30_15>
-
-      <ContinueButton {...props} />
-    </PostForm>
-  </FsaLayout>
-);
+        <ContinueButton {...props} />
+      </PostForm>
+    </FsaLayout>
+  );
 
 export default withTranslation("common")(
   SessionWrapper(EstablishmentContactDetails)
