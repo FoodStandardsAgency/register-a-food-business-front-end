@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { InsetText } from "govuk-react";
+import { InsetText } from "@slice-and-dice/govuk-react";
 
 const StyledInsetText = styled(InsetText)`
   margin: 0px;

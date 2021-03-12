@@ -54,6 +54,7 @@ describe("data-transform.service trimAnswers()", () => {
 describe("data-transform.service transformAnswersForSubmit()", () => {
   let result;
   const testLcUrl = "some-council-url";
+  const testLanguage = "en";
 
   const testCumulativeAnswers = {
     operator_first_name: "John",
@@ -74,6 +75,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     it("turns flat data into structured data, with the Local Council URL", () => {
       result = transformAnswersForSubmit(
         testCumulativeAnswers,
+        testLanguage,
         testAddressLookups,
         testLcUrl
       );
@@ -81,7 +83,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         result.registration.establishment.operator.operator_first_name
       ).toBeDefined();
 
-      expect(result.local_council_url).toBe("some-council-url");
+      expect(result.local_council_url).toBe(testLcUrl);
     });
 
     describe("operator_type", () => {
@@ -94,6 +96,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("the transformed data contains a field called operator_type that equals the passed registration_role enum", () => {
           result = transformAnswersForSubmit(
             registrationRoleOnly,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -107,6 +110,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("the transformed data does not contain a field called registration_role", () => {
           result = transformAnswersForSubmit(
             registrationRoleOnly,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -126,6 +130,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("the result contains a field called operator_type that equals the operatorTypeEnum using the passed operator_type as the key", () => {
           result = transformAnswersForSubmit(
             registrationRoleAndOperatorType,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -145,7 +150,12 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
 
         it("throws an error", () => {
           expect(() =>
-            transformAnswersForSubmit(data, testAddressLookups, testLcUrl)
+            transformAnswersForSubmit(
+              data,
+              testLanguage,
+              testAddressLookups,
+              testLcUrl
+            )
           ).toThrow(Error);
         });
       });
@@ -158,6 +168,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       it("should assign business_type enum key and business_type_search_term to the result", () => {
         result = transformAnswersForSubmit(
           answers,
+          testLanguage,
           testAddressLookups,
           testLcUrl
         );
@@ -176,6 +187,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should assign an empty string to the result", () => {
           result = transformAnswersForSubmit(
             answers,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -195,6 +207,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should return customerTypeEnum key: BOTH", () => {
           result = transformAnswersForSubmit(
             supplyBoth,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -211,6 +224,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should return customerTypeEnum key: OTHER_BUSINESSES", () => {
           result = transformAnswersForSubmit(
             supplyDirectlyOnly,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -228,6 +242,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should return customerTypeEnum key: END_CONSUMER", () => {
           result = transformAnswersForSubmit(
             supplyDirectlyOnly,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -242,6 +257,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should return customer_type: null", () => {
           result = transformAnswersForSubmit(
             noCustomerType,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -264,6 +280,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should set import_export_activities to the importExportEnum key: BOTH", () => {
           result = transformAnswersForSubmit(
             cumulativeFullAnswers,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -281,6 +298,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should set import_export_activities to the importExportEnum key: BOTH", () => {
           result = transformAnswersForSubmit(
             cumulativeFullAnswers,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -298,6 +316,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should set import_export_activities to the importExportEnum key: IMPORT", () => {
           result = transformAnswersForSubmit(
             cumulativeFullAnswers,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -315,6 +334,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should set import_export_activities to the importExportEnum key: EXPORT", () => {
           result = transformAnswersForSubmit(
             cumulativeFullAnswers,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -331,6 +351,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should set import_export_activities to the importExportEnum key: EXPORT", () => {
           result = transformAnswersForSubmit(
             cumulativeFullAnswers,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -347,6 +368,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should set import_export_activities to the importExportEnum key: IMPORT", () => {
           result = transformAnswersForSubmit(
             cumulativeFullAnswers,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -363,6 +385,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should set import_export_activities to the importExportEnum key: NONE", () => {
           result = transformAnswersForSubmit(
             cumulativeFullAnswers,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -381,6 +404,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should return a import_export_activities value of null", () => {
           result = transformAnswersForSubmit(
             cumulativeFullAnswers,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -400,6 +424,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should set every day to true", () => {
           result = transformAnswersForSubmit(
             everyDay,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -436,6 +461,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should set any day passed through to true and the rest to false", () => {
           result = transformAnswersForSubmit(
             someDays,
+            testLanguage,
             testAddressLookups,
             testLcUrl
           );
@@ -479,6 +505,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       it("sets them to undefined", () => {
         result = transformAnswersForSubmit(
           emptyHours,
+          testLanguage,
           testAddressLookups,
           testLcUrl
         );
@@ -521,6 +548,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       it("it keeps the original values", () => {
         result = transformAnswersForSubmit(
           truthyHours,
+          testLanguage,
           testAddressLookups,
           testLcUrl
         );
@@ -665,6 +693,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("uses addressLine1 instead of premise as operator_first_line", () => {
           const response = transformAnswersForSubmit(
             cumulativeAnswersOpAddSelected,
+            testLanguage,
             testAddressLookupsNoPremise
           );
           expect(
@@ -723,6 +752,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("uses addressLine1 instead of premise as establishment_address_line_1", () => {
           const response = transformAnswersForSubmit(
             cumulativeAnswersEstAddSelected,
+            testLanguage,
             testAddressLookupsNoPremise
           );
           expect(
@@ -748,6 +778,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       it("returns correctly formatted operator address fields that match the second entry in the address lookup results", () => {
         const response = transformAnswersForSubmit(
           cumulativeAnswersOpAddSelected,
+          testLanguage,
           testAddressLookups
         );
         expect(response.registration.establishment.operator).toMatchObject(
@@ -770,6 +801,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("returns the original manual address data and deletes the operator_address_selected value", () => {
           const response = transformAnswersForSubmit(
             cumulativeAnswersOpAddSelectedWithManual,
+            testLanguage,
             testAddressLookups
           );
           expect(response.registration.establishment.operator).toMatchObject(
@@ -795,6 +827,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       it("returns correctly formatted establishment address fields that match the first entry in the address lookup results", () => {
         const response = transformAnswersForSubmit(
           cumulativeAnswersEstAddSelected,
+          testLanguage,
           testAddressLookups
         );
         expect(response.registration.establishment.premise).toMatchObject(
@@ -817,6 +850,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("returns the original manual address data and deletes the establishment_address_selected value", () => {
           const response = transformAnswersForSubmit(
             cumulativeAnswersEstAddSelectedWithManual,
+            testLanguage,
             testAddressLookups
           );
           expect(response.registration.establishment.premise).toMatchObject(
@@ -852,6 +886,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("returns the response with the organisation included as address line 1", () => {
           const response = transformAnswersForSubmit(
             cumulativeAnswersEstAddSelected,
+            testLanguage,
             testAddressLookupData
           );
           expect(
@@ -891,6 +926,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("returns the response with the organisation included in address line 1", () => {
           const response = transformAnswersForSubmit(
             cumulativeAnswersEstAddSelected,
+            testLanguage,
             testAddressLookupData
           );
           expect(
@@ -930,6 +966,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("returns the response with the no changes to the address lines", () => {
           const response = transformAnswersForSubmit(
             cumulativeAnswersEstAddSelected,
+            testLanguage,
             testAddressLookupData
           );
           expect(
@@ -969,6 +1006,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("returns the response with the no changes to the address lines", () => {
           const response = transformAnswersForSubmit(
             cumulativeAnswersEstAddSelected,
+            testLanguage,
             testAddressLookupData
           );
           expect(
@@ -1010,6 +1048,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("returns the response with the organisation included as address line 1", () => {
           const response = transformAnswersForSubmit(
             cumulativeAnswersEstAddSelected,
+            testLanguage,
             testAddressLookupData
           );
           expect(
@@ -1052,6 +1091,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("returns the response with the organisation included in address line 1", () => {
           const response = transformAnswersForSubmit(
             cumulativeAnswersEstAddSelected,
+            testLanguage,
             testAddressLookupData
           );
           expect(
@@ -1095,6 +1135,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       it("returns the response with the no changes to the address lines", () => {
         const response = transformAnswersForSubmit(
           cumulativeAnswersEstAddSelected,
+          testLanguage,
           testAddressLookupData
         );
         expect(
@@ -1137,6 +1178,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       it("returns the response with the no changes to the address lines", () => {
         const response = transformAnswersForSubmit(
           cumulativeAnswersEstAddSelected,
+          testLanguage,
           testAddressLookupData
         );
         expect(
@@ -1158,6 +1200,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
   it("should only add the data fields it is given", () => {
     result = transformAnswersForSubmit(
       testLcUrl,
+      testLanguage,
       testCumulativeAnswers,
       testAddressLookups
     );
@@ -1169,6 +1212,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
   it("should set primary contact for partners", () => {
     result = transformAnswersForSubmit(
       testCumulativeAnswers,
+      testLanguage,
       testAddressLookups,
       testLcUrl
     );

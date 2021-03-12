@@ -1,4 +1,4 @@
-import { BREAKPOINTS } from "@govuk-react/constants";
+import { BREAKPOINTS } from "@slice-and-dice/govuk-react-constants";
 import styled from "@emotion/styled";
 
 const ContentItem = {};

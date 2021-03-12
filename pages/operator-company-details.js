@@ -2,19 +2,17 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Heading, InputField } from "govuk-react";
+import { Heading, InputField } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const LimitedCompanyDetails = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary validatorErrors={props.validatorErrors} />
     <Heading as="h1" size="LARGE">
       {props.t("Company details")}
@@ -67,6 +65,7 @@ const LimitedCompanyDetails = (props) => (
       <ContentItem.B_30_15>
         <HiddenTextAccessible
           summary={props.t("I don't know my Companies House number")}
+          {...props}
         >
           {/* TODO JMB: replace the span with a paragraph once it's possible to pass an array or similar to Paragraph for the link */}
           <span>

@@ -1,17 +1,19 @@
 import React from "react";
-import Head from "next/head";
 import App from "next/app";
 import { PageTitles } from "../src/components";
 import { appWithTranslation } from "../i18n";
+import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 
 function MyApp({ Component, pageProps }) {
+  const { t, i18n } = useTranslation("common");
   return (
     <>
-      <Head>
+      <Helmet htmlAttributes={{ lang: i18n.language }}>
         <title>
-          {pageProps.currentPageTitle || PageTitles.defaultPageTitle}
+          {t(pageProps.currentPageTitle || PageTitles.defaultPageTitle)}
         </title>
-      </Head>
+      </Helmet>
       <Component {...pageProps} />
     </>
   );

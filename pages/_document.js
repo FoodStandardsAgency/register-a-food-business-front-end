@@ -1,4 +1,4 @@
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 import { CacheProvider } from "@emotion/core";
 import createEmotionServer from "create-emotion-server";
 import createCache from "@emotion/cache";
@@ -39,7 +39,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <html lang="en">
+      <Html translate="no">
         <Head>
           {this.props.styles}
 
@@ -63,6 +63,7 @@ class MyDocument extends Document {
             content="width=device-width, initial-scale=1.0"
             charSet="UTF-8"
           />
+          <meta name="google" content="notranslate" />
           <meta name="format-detection" content="telephone=no" />
           <style
             data-emotion-css={this.props.ids.join(" ")}
@@ -73,7 +74,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

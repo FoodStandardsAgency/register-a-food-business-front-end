@@ -15,7 +15,7 @@ import {
   UnorderedList,
   Paragraph,
   Label
-} from "govuk-react";
+} from "@slice-and-dice/govuk-react";
 import ListItemConsistentSize from "./ListItemConsistentSize";
 import { withTranslation } from "../../i18n.js";
 
@@ -42,7 +42,7 @@ const lineHeight = {
   padding: 0
 };
 
-// 01/12/2020 - comment needed due to cloudflare caching next.js files
+// 05/02/2021 - comment needed due to cloudflare caching next.js files
 export class BusinessTypeLookup extends React.Component {
   constructor(props) {
     super(props);
