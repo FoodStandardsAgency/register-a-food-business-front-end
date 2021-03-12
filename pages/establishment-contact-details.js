@@ -13,10 +13,43 @@ import {
   Heading,
   InputField,
   Paragraph,
-  Button
+  Button,
+  InsetText,
+  Table
 } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import styled from "@emotion/styled";
+
+const GridRow = styled(Table.Row)`
+  display: grid;
+  ${(props) =>
+    props.acPage
+      ? "grid-template-columns: 1fr 1fr;"
+      : "grid-template-columns: 1fr 1fr 70px;"};
+`;
+
+const TableCellBold = styled(Table.Cell)`
+  font-weight: bold;
+`;
+
+const AccessibleTableRow = (props) => (
+  <GridRow role="row" {...props}>
+    {props.children}
+  </GridRow>
+);
+
+const AccessibleRowHeader = (props) => (
+  <Table.CellHeader scope="row" role="rowheader" {...props}>
+    {props.children}
+  </Table.CellHeader>
+);
+
+const AccessibleCell = (props) => (
+  <TableCellBold role="cell" className="summaryTableDataCell" {...props}>
+    {props.children}
+  </TableCellBold>
+);
 
 const EstablishmentContactDetails = (props) => (
   <FsaLayout {...props}>
@@ -38,10 +71,62 @@ const EstablishmentContactDetails = (props) => (
       </Paragraph>
     </HiddenTextAccessible>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
-      <ContentItem.B_30_15>
+      <InsetText>
+        <ContentItem.B_30_15>
+          <AccessibleTableRow>
+            <AccessibleRowHeader style={{ color: "grey" }}>
+              {props.t(
+                `${
+                  props.cumulativeFullAnswers.registration_role ===
+                  operatorTypeEnum.PARTNERSHIP.key
+                    ? "Partnership"
+                    : "Operator"
+                } contact details`
+              )}
+            </AccessibleRowHeader>
+          </AccessibleTableRow>
+          <AccessibleTableRow>
+            <AccessibleRowHeader style={{ color: "grey" }}>
+              {props.t("Main phone number")}
+            </AccessibleRowHeader>
+            <AccessibleCell style={{ color: "grey" }}>
+              <div id="operator_primary_number">
+                {props.cumulativeFullAnswers.operator_primary_number
+                  ? props.cumulativeFullAnswers.operator_primary_number
+                  : props.cumulativeFullAnswers.contact_representative_number}
+              </div>
+            </AccessibleCell>
+          </AccessibleTableRow>
+
+          {props.cumulativeFullAnswers.operator_secondary_number ? (
+            <AccessibleTableRow>
+              <AccessibleRowHeader style={{ color: "grey" }}>
+                {props.t("Secondary phone number")}
+              </AccessibleRowHeader>
+              <AccessibleCell style={{ color: "grey" }}>
+                <div id="operator_secondary_number">
+                  {props.cumulativeFullAnswers.operator_secondary_number}
+                </div>
+              </AccessibleCell>
+            </AccessibleTableRow>
+          ) : null}
+
+          <AccessibleTableRow>
+            <AccessibleRowHeader style={{ color: "grey" }}>
+              {props.t("Email address")}
+            </AccessibleRowHeader>
+            <AccessibleCell style={{ color: "grey" }}>
+              <div id="operator_email_address">
+                {props.cumulativeFullAnswers.operator_email
+                  ? props.cumulativeFullAnswers.operator_email
+                  : props.cumulativeFullAnswers.contact_representative_email}
+              </div>
+            </AccessibleCell>
+          </AccessibleTableRow>
+        </ContentItem.B_30_15>
         <Button
           type="submit"
-          formAction="/switches/reuseOperatorContactDetails/toggle/establishment-contact-details"
+          formAction="/switches/reuseOperatorContactDetails/on/establishment-contact-details#establishment_primary_number"
           id="reuseButton"
         >
           {props.t(
@@ -53,7 +138,9 @@ const EstablishmentContactDetails = (props) => (
             } contact details`
           )}
         </Button>
+      </InsetText>
 
+      <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <InputField
             input={{
@@ -72,7 +159,7 @@ const EstablishmentContactDetails = (props) => (
               )
             }}
           >
-            {props.t("Main phone number")}
+            {props.t("Establishment main phone number")}
           </InputField>
         </ContentItem.B_30_15>
 
@@ -93,7 +180,7 @@ const EstablishmentContactDetails = (props) => (
               )
             }}
           >
-            {props.t("Secondary phone number (optional)")}
+            {props.t("Establishment secondary phone number (optional)")}
           </InputField>
         </ContentItem.B_30_15>
 
@@ -116,7 +203,7 @@ const EstablishmentContactDetails = (props) => (
               error: props.t(props.validatorErrors.establishment_email)
             }}
           >
-            {props.t("Email address")}
+            {props.t("Establishment email address")}
           </InputField>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
