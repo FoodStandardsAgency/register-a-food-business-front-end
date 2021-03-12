@@ -49,6 +49,7 @@ const PartnerDetails = (props) => (
                   props.cumulativeFullAnswers.targetPartner
                 ]
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="partner_name"
             meta={{
               touched: true,

@@ -65,6 +65,7 @@ const EstablishmentContactDetails = (props) => (
                 : props.cumulativeFullAnswers.establishment_primary_number,
               autoComplete: "tel"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="establishment_primary_number"
             meta={{
               touched: true,
@@ -86,6 +87,7 @@ const EstablishmentContactDetails = (props) => (
                 : props.cumulativeFullAnswers.establishment_secondary_number,
               autoComplete: "off"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="establishment_secondary_number"
             meta={{
               touched: true,

@@ -29,6 +29,7 @@ const LimitedCompanyDetails = (props) => (
             defaultValue: props.cumulativeFullAnswers.operator_company_name,
             autoComplete: "organization"
           }}
+          errorPrefix={`${props.t("Error")}: `}
           hint={props.t(
             "The name of the registered company that is acting as the operator of this food business."
           )}
@@ -50,6 +51,7 @@ const LimitedCompanyDetails = (props) => (
               props.cumulativeFullAnswers.operator_companies_house_number,
             autoComplete: "off"
           }}
+          errorPrefix={`${props.t("Error")}: `}
           hint={props.t(
             "Every registered company will have a Companies House reference number."
           )}

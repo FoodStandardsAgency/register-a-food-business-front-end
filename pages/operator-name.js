@@ -38,6 +38,7 @@ const OperatorName = (props) => (
             defaultValue: props.cumulativeFullAnswers.operator_first_name,
             autoComplete: "given-name"
           }}
+          errorPrefix={`${props.t("Error")}: `}
           id="operator_first_name"
           meta={{
             touched: true,
