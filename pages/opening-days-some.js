@@ -24,8 +24,12 @@ const OpeningSomeDays = (props) => (
         onHandleErrorClick={OnHandleErrorClick}
       />
       <Fieldset>
-        <Fieldset.Legend size="LARGE" isPageHeading style={{ marginBottom: "30px" }}>
-            {props.t("Opening days")}
+        <Fieldset.Legend
+          size="LARGE"
+          isPageHeading
+          style={{ marginBottom: "30px" }}
+        >
+          {props.t("Opening days")}
         </Fieldset.Legend>
         <Paragraph>
           {props.t(
