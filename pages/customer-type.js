@@ -2,20 +2,23 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   PostForm
 } from "../src/components";
-import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
+import {
+  Heading,
+  Checkbox,
+  MultiChoice,
+  Paragraph
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 import { customerTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const CustomerType = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}

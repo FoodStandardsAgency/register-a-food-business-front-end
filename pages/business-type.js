@@ -1,7 +1,6 @@
 import {
   FsaLayout,
   SessionWrapper,
-  BackButton,
   ContinueButton,
   BusinessTypeLookup,
   ContentItem,
@@ -9,13 +8,12 @@ import {
   OnHandleErrorClick,
   PostForm
 } from "../src/components";
-import { Heading } from "govuk-react";
+import { Heading } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const BusinessType = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}

@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -17,7 +16,7 @@ import {
   Button,
   InsetText,
   Table
-} from "govuk-react";
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 import styled from "@emotion/styled";
@@ -53,22 +52,24 @@ const AccessibleCell = (props) => (
 );
 
 const EstablishmentContactDetails = (props) => (
-    <FsaLayout {...props}>
-      <BackButton {...props} />
-      <ProcessedErrorSummary
-        validatorErrors={props.validatorErrors}
-        onHandleErrorClick={OnHandleErrorClick}
-      />
-      <Heading as="h1" size="LARGE">
-        {props.t("Establishment contact details")}
-      </Heading>
-      <HiddenTextAccessible summary={props.t("What is an establishment?")}>
-        <Paragraph mb={0}>
-          {props.t(
-            "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
-          )}
-        </Paragraph>
-      </HiddenTextAccessible>
+  <FsaLayout {...props}>
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
+    <Heading as="h1" size="LARGE">
+      {props.t("Establishment contact details")}
+    </Heading>
+    <HiddenTextAccessible
+      summary={props.t("What is an establishment?")}
+      {...props}
+    >
+      <Paragraph mb={0}>
+        {props.t(
+          "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
+        )}
+      </Paragraph>
+    </HiddenTextAccessible>
       <PostForm action={props.formAction} csrfToken={props.csrfToken}>
         <InsetText>
           <ContentItem.B_30_15>

@@ -2,21 +2,19 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Heading, InputField, Paragraph } from "govuk-react";
+import { Heading, InputField, Paragraph } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const ContactRepresentative = (props) => {
   return (
     <FsaLayout {...props}>
-      <BackButton {...props} />
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
@@ -31,6 +29,7 @@ const ContactRepresentative = (props) => {
       </Paragraph>
       <HiddenTextAccessible
         summary={props.t("What is a food business operator?")}
+        {...props}
       >
         <Paragraph mb={0}>
           {props.t(
