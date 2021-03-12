@@ -17,7 +17,7 @@ const OperatorName = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
-      id="operator_first_name"
+      id={props.validatorErrors.operator_first_name ? "operator_first_name" : "operator_last_name"}
     />
     <Heading as="h1" size="LARGE">
       {props.t("What is the operator's name?")}
