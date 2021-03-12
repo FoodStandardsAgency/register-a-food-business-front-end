@@ -1,6 +1,5 @@
 import SessionWrapper from "../components/SessionWrapper";
 import renderer from "react-test-renderer";
-import { PageTitles } from "../components";
 
 const ExampleComponent = () => (
   <div>
@@ -122,8 +121,6 @@ describe("<SessionWrapper />", () => {
           const reqObjectWithEditQuery = {
             query: { edit: "some-page" },
             url: "/",
-            session: { validatorErrors: {} },
-            session: { allValidationErrors: {} },
             csrfToken: function () {
               return "csrfToken";
             }
@@ -143,8 +140,6 @@ describe("<SessionWrapper />", () => {
           const reqObjectWithoutEditQuery = {
             query: { some_other_query: "value" },
             url: "/",
-            session: { validatorErrors: {} },
-            session: { allValidationErrors: {} },
             csrfToken: function () {
               return "csrfToken";
             }
@@ -167,8 +162,6 @@ describe("<SessionWrapper />", () => {
             const reqObjectWithUrlAndEdit = {
               url: "/west-dorset/operator-name",
               query: { edit: "some-edit-page" },
-              session: { validatorErrors: {} },
-              session: { allValidationErrors: {} },
               csrfToken: function () {
                 return "csrfToken";
               }
@@ -190,8 +183,6 @@ describe("<SessionWrapper />", () => {
             const reqObjectWithUrlWithoutEdit = {
               url: "/west-dorset/operator-name",
               query: {},
-              session: { validatorErrors: {} },
-              session: { allValidationErrors: {} },
               csrfToken: function () {
                 return "csrfToken";
               }
@@ -212,8 +203,6 @@ describe("<SessionWrapper />", () => {
           const reqObjectWithUrlAndEdit = {
             url: "/west-dorset/another-page",
             query: { edit: "some-edit-page" },
-            session: { validatorErrors: {} },
-            session: { allValidationErrors: {} },
             csrfToken: function () {
               return "csrfToken";
             }
@@ -235,8 +224,6 @@ describe("<SessionWrapper />", () => {
           const reqObjectWithAcceptCookies = {
             url: "/",
             cookies: { acceptAllCookies: true },
-            session: { validatorErrors: {} },
-            session: { allValidationErrors: {} },
             csrfToken: function () {
               return "csrfToken";
             }
@@ -256,8 +243,6 @@ describe("<SessionWrapper />", () => {
           const reqObjectWithoutAcceptCookies = {
             url: "/",
             cookies: { some_other_cookie: true },
-            session: { validatorErrors: {} },
-            session: { allValidationErrors: {} },
             csrfToken: function () {
               return "csrfToken";
             }
