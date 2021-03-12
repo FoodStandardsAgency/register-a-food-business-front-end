@@ -17,7 +17,6 @@ const OpeningHours = (props) => (
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
-        id="opening_hours_monday"
       />
       <Heading as="h1" size="LARGE">
         {props.t("Opening hours")}

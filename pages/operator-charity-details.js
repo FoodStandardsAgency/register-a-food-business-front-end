@@ -17,7 +17,6 @@ const OperatorCharityDetails = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
-      id="operator_charity_name"
     />
     <Heading as="h1" size="LARGE">
       {props.t("Details of the operating charity, organisation or trust")}

@@ -44,7 +44,6 @@ const PrimaryPartner = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
-      id="main_partnership"
     />
 
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>

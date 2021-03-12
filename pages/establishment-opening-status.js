@@ -23,7 +23,6 @@ const EstablishmentOpeningStatus = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
-      id="establishment_opening_status_already_trading"
     />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_45_30>

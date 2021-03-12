@@ -52,7 +52,6 @@ class Declaration extends React.Component {
           <ProcessedErrorSummary
             validatorErrors={this.props.validatorErrors}
             onHandleErrorClick={OnHandleErrorClick}
-            id="declaration_1"
           />
           <SubmissionErrorSummary
             submissionErrors={this.props.submissionError}

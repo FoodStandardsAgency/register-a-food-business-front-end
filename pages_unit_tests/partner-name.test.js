@@ -30,7 +30,7 @@ describe("<PartnerName />", () => {
       expect(partnerRows.length).toBe(0);
 
       const addPartner = wrapper.find("#addPartnerLink");
-      expect(addPartner.at(2).props().href).toBe("/partnership/partner-details");
+      expect(addPartner.props().href).toBe("/partnership/partner-details");
 
       const ContinueButton = wrapper.find("ContinueButton");
       expect(ContinueButton.length).toBe(0);
@@ -56,7 +56,7 @@ describe("<PartnerName />", () => {
       expect(partnerRows.length).toBe(0);
 
       const addPartner = wrapper.find("#addPartnerLink");
-      expect(addPartner.at(2).props().href).toBe("/partnership/partner-details");
+      expect(addPartner.props().href).toBe("/partnership/partner-details");
 
       const ContinueButton = wrapper.find("ContinueButton");
       expect(ContinueButton.length).toBe(0);
@@ -82,7 +82,7 @@ describe("<PartnerName />", () => {
       expect(partnerRows.length).toBe(1);
 
       const addPartner = wrapper.find("#addPartnerLink");
-      expect(addPartner.at(2).props().href).toBe("/partnership/partner-details");
+      expect(addPartner.props().href).toBe("/partnership/partner-details");
 
       const ContinueButton = wrapper.find("ContinueButton");
       expect(ContinueButton.length).toBe(0);
@@ -106,7 +106,7 @@ describe("<PartnerName />", () => {
       expect(partnerRows.length).toBe(2);
 
       const addPartner = wrapper.find("#addPartnerLink");
-      expect(addPartner.at(2).props().href).toBe("/partnership/partner-details");
+      expect(addPartner.props().href).toBe("/partnership/partner-details");
 
       const ContinueButton = wrapper.find("ContinueButton");
       expect(ContinueButton.length).toBe(1);

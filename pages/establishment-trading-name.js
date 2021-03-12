@@ -17,7 +17,6 @@ const EstablishmentTradingName = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
-      id="establishment_trading_name"
     />
     <Heading as="h1" size="LARGE">
       {props.t("Trading name")}

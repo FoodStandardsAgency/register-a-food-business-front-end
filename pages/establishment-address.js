@@ -17,7 +17,6 @@ const EstablishmentAddress = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
-      id="establishment_postcode_find"
     />
     <Heading as="h1" size="LARGE">
       {props.t("Establishment address")}

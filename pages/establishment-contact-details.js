@@ -23,7 +23,6 @@ const EstablishmentContactDetails = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
-      id="establishment_primary_number"
     />
     <Heading as="h1" size="LARGE">
       {props.t("Establishment contact details")}

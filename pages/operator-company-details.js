@@ -4,6 +4,7 @@ import {
   ContentItem,
   ContinueButton,
   ProcessedErrorSummary,
+  OnHandleErrorClick,
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
@@ -15,7 +16,7 @@ const LimitedCompanyDetails = (props) => (
   <FsaLayout {...props}>
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
-      id="operator_company_name"
+      onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
       {props.t("Company details")}

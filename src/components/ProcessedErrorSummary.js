@@ -19,7 +19,7 @@ const ProcessedErrorSummary = (props) => {
         errors={errors}
         role="alert"
         tabIndex={-1}
-        href={`#${props.id}`}
+        href="#go-to-error" // dummy href to ensure screen readers detect link
       />
     );
   } else {

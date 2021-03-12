@@ -25,7 +25,6 @@ const ImportExportActivities = (props) => (
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
-        id="import_export_activities_directly_import"
       />
       <Heading as="h1" size="LARGE">
         {props.t(

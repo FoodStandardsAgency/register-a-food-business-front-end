@@ -23,7 +23,6 @@ const OperatorType = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
-      id="operator_type_person"
     />
 
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>

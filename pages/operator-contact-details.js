@@ -18,7 +18,6 @@ const OperatorContactDetails = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
-      id="operator_primary_number"
     />
     <Heading as="h1" size="LARGE">
       {props.t(

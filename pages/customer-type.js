@@ -22,7 +22,6 @@ const CustomerType = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
-      id="customer_type_supply_other"
     />
     <Heading as="h1" size="LARGE">
       {props.t("Who will this establishment supply food to?")}

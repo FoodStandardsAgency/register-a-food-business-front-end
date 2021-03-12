@@ -16,7 +16,6 @@ const OtherDetails = (props) => (
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
-      id="business_other_details"
     />
     <Heading as="h1" size="LARGE">
       {props.t("Other details")}
