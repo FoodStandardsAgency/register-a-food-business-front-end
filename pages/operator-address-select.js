@@ -46,7 +46,7 @@ const OperatorAddressLookup = (props) => (
           </dl>
         </ContentItem.B_30_15>
         <ContentItem.B_20_20>
-          <Heading as="h2" size="MEDIUM" class="govuk-label govuk-label—l">
+          <Heading as="h2" size="MEDIUM" className="govuk-label govuk-label—l">
             {`${props.t("Select an address for")} ${
               props.cumulativeFullAnswers.operator_postcode_find
             }`}
