@@ -275,7 +275,7 @@ describe("<ApplicationComplete />", () => {
       );
       const businessGuidanceLink = wrapper.find("a#businessGuidanceLink");
       expect(businessGuidanceLink.text()).toBe(
-        "Business support - Wales (opens in a new window)"
+        "Business support - Wales(opens in a new window)"
       );
     });
   });
@@ -294,10 +294,10 @@ describe("<ApplicationComplete />", () => {
       const businessGuidanceLink = wrapper.find("a#businessGuidanceLink");
       const safeCateringLink = wrapper.find("a#safeCateringLink");
       expect(businessGuidanceLink.text()).toBe(
-        "Business support - Northern Ireland (opens in a new window)"
+        "Business support - Northern Ireland(opens in a new window)"
       );
       expect(safeCateringLink.text()).toBe(
-        "Safe catering (opens in a new window)"
+        "Safe catering(opens in a new window)"
       );
     });
   });
@@ -317,7 +317,7 @@ describe("<ApplicationComplete />", () => {
         "a#businessSupportHelplineEnglishLink"
       );
       expect(businessSupportLink.text()).toBe(
-        "Business support & helpline (opens in a new window)"
+        "Business support & helpline(opens in a new window)"
       );
     });
   });
