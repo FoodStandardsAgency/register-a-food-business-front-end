@@ -4,6 +4,7 @@ const FsaLogoEnglish = () => (
     class="header__logo block-link"
     aria-label={"Food Standards Agency website (opens in new window)"}
     target="_blank"
+    rel="noopener noreferrer"
   >
     <svg
       role="presentation"

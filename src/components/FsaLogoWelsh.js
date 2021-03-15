@@ -4,6 +4,7 @@ const FsaLogoWelsh = () => (
     class="header__logo block-link"
     aria-label={"gwefan yr Asiantaeth Safonau Bwyd (agor mewn ffenestr newydd)"}
     target="_blank"
+    rel="noopener noreferrer"
   >
     <div class="svg" aria-hidden="true">
       <svg
