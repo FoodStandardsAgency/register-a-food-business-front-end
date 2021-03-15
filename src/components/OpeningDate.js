@@ -7,11 +7,10 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "./index";
-import { Heading, Paragraph, HintText } from "@slice-and-dice/govuk-react";
+import { Heading, Paragraph, HintText, DateField } from "@slice-and-dice/govuk-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 import { withTranslation } from "../../i18n.js";
-import DateField from "@slice-and-dice/govuk-react-date-field";
 
 const OpeningDate = (props) => {
   return (
