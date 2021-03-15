@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -12,16 +11,15 @@ import {
   Heading,
   Checkbox,
   MultiChoice,
-  Paragraph,
-  Fieldset
-} from "govuk-react";
+  Fieldset,
+  Paragraph
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 import { customerTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const CustomerType = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -38,6 +36,7 @@ const CustomerType = (props) => (
         <ContentItem.B_45_30>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.customer_type)

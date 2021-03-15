@@ -1,7 +1,6 @@
 import React from "react";
 import { ContentItem } from "../../src/components";
-import { Heading, HintText } from "govuk-react";
-import { PartnershipDescription, OperatorDescription } from "./";
+import { Heading, HintText } from "@slice-and-dice/govuk-react";
 import { withTranslation } from "../../i18n.js";
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
@@ -24,7 +23,6 @@ const AddressHelp = (props) => {
           )}
         </HintText>
       </ContentItem.B_30_15>
-      <PartnershipDescription />
     </React.Fragment>
   ) : (
     <React.Fragment>
@@ -45,7 +43,6 @@ const AddressHelp = (props) => {
           )}
         </HintText>
       </ContentItem.B_30_15>
-      <OperatorDescription />
     </React.Fragment>
   );
 };

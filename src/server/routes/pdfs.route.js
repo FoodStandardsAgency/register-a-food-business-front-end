@@ -15,7 +15,9 @@ const pdfsRouter = () => {
     let file = path.join(
       __dirname,
       "..",
-      "/static/pdfs/feedback-declaration.pdf"
+      req.query.language === "cy"
+        ? "/static/pdfs/RAFB-Privacy-Notice-Cymraeg.pdf"
+        : "/static/pdfs/feedback-declaration.pdf"
     );
     res.sendFile(file);
     logEmitter.emit("functionSuccessWith", "Routes", "/pdfs/feedback", file);

@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Link } from "govuk-react";
+import { Table, Link } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import * as COLOUR from "govuk-colours";
 import moment from "moment";
@@ -13,7 +13,7 @@ import {
   LINE_HEIGHT,
   MEDIA_QUERIES,
   NTA_LIGHT
-} from "@govuk-react/constants";
+} from "@slice-and-dice/govuk-react-constants";
 import { withTranslation } from "../../i18n.js";
 
 const StyledTableRow = styled("div")({
@@ -800,45 +800,46 @@ const EstablishmentDetailsTable = (props) => (
               : "opening_days_some"
           }`}
         >
-          {props.opening_days_irregular || props.open_some_days_summary_table || (
-            <div>
-              <div id="opening_day_monday">
-                {props.opening_day_monday
-                  ? props.t(props.opening_day_monday)
-                  : props.opening_day_monday}
+          {props.t(props.opening_days_irregular) ||
+            props.t(props.open_some_days_summary_table) || (
+              <div>
+                <div id="opening_day_monday">
+                  {props.opening_day_monday
+                    ? props.t(props.opening_day_monday)
+                    : props.opening_day_monday}
+                </div>
+                <div id="opening_day_tuesday">
+                  {props.opening_day_tuesday
+                    ? props.t(props.opening_day_tuesday)
+                    : props.opening_day_tuesday}
+                </div>
+                <div id="opening_day_wednesday">
+                  {props.opening_day_wednesday
+                    ? props.t(props.opening_day_wednesday)
+                    : props.opening_day_wednesday}
+                </div>
+                <div id="opening_day_thursday">
+                  {props.opening_day_thursday
+                    ? props.t(props.opening_day_thursday)
+                    : props.opening_day_thursday}
+                </div>
+                <div id="opening_day_friday">
+                  {props.opening_day_friday
+                    ? props.t(props.opening_day_friday)
+                    : props.opening_day_friday}
+                </div>
+                <div id="opening_day_saturday">
+                  {props.opening_day_saturday
+                    ? props.t(props.opening_day_saturday)
+                    : props.opening_day_saturday}
+                </div>
+                <div id="opening_day_sunday">
+                  {props.opening_day_sunday
+                    ? props.t(props.opening_day_sunday)
+                    : props.opening_day_sunday}
+                </div>
               </div>
-              <div id="opening_day_tuesday">
-                {props.opening_day_tuesday
-                  ? props.t(props.opening_day_tuesday)
-                  : props.opening_day_tuesday}
-              </div>
-              <div id="opening_day_wednesday">
-                {props.opening_day_wednesday
-                  ? props.t(props.opening_day_wednesday)
-                  : props.opening_day_wednesday}
-              </div>
-              <div id="opening_day_thursday">
-                {props.opening_day_thursday
-                  ? props.t(props.opening_day_thursday)
-                  : props.opening_day_thursday}
-              </div>
-              <div id="opening_day_friday">
-                {props.opening_day_friday
-                  ? props.t(props.opening_day_friday)
-                  : props.opening_day_friday}
-              </div>
-              <div id="opening_day_saturday">
-                {props.opening_day_saturday
-                  ? props.t(props.opening_day_saturday)
-                  : props.opening_day_saturday}
-              </div>
-              <div id="opening_day_sunday">
-                {props.opening_day_sunday
-                  ? props.t(props.opening_day_sunday)
-                  : props.opening_day_sunday}
-              </div>
-            </div>
-          )}
+            )}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
@@ -1015,7 +1016,7 @@ const FoodActivitiesTable = (props) => (
           {props.t("Business type")}
         </AccessibleRowHeader>
         <AccessibleCell id="business_type">
-          {props.t(`businessTypes:${props.business_type}`)}
+          {props.t(props.business_type)}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
@@ -1174,7 +1175,7 @@ const SummaryTable = (props) => (
   </React.Fragment>
 );
 
-export default withTranslation(["common", "businessTypes"])(SummaryTable);
+export default withTranslation("common")(SummaryTable);
 
 SummaryTable.propTypes = {
   operator_company_name: PropTypes.string,

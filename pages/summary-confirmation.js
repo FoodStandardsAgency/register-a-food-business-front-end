@@ -6,8 +6,9 @@ import {
   Paragraph,
   InsetText,
   Link,
-  HintText
-} from "govuk-react";
+  HintText,
+  VisuallyHidden
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import moment from "moment";
@@ -19,8 +20,13 @@ const FsaPanel = styled(Panel)`
   }
 `;
 
+const formatDate = (date, language) => {
+  moment.locale(language);
+  return moment(date).format("DD MMM YYYY");
+};
+
 const ApplicationComplete = (props) => (
-  <FsaLayout {...props}>
+  <FsaLayout {...props} hideBack="true">
     <Heading as="h1" size="LARGE">
       {props.t("Submission complete")}
     </Heading>
@@ -60,7 +66,7 @@ const ApplicationComplete = (props) => (
         {props.t("Submitted on")}
       </Heading>
       <Paragraph mb={0}>
-        {moment(props.submissionDate).format("DD MMM YYYY")}
+        {formatDate(props.submissionDate, props.t("en"))}
       </Paragraph>
     </ContentItem.B_30_15>
 
@@ -70,10 +76,8 @@ const ApplicationComplete = (props) => (
       </Heading>
       {props.lcConfig.hygieneAndStandards ? (
         <ContentItem.B_30_15 id="hygieneAndStandardsCouncil">
-          <Heading as="h4" mb={1}>
-            {props.t(
-              `localAuthorities:${props.lcConfig.hygieneAndStandards.local_council}`
-            )}
+          <Heading as="h2" mb={1}>
+            {props.t(props.lcConfig.hygieneAndStandards.local_council)}
           </Heading>
           <Paragraph mb={0}>
             {`${props.t("Email address")}: ${
@@ -92,9 +96,7 @@ const ApplicationComplete = (props) => (
         <div>
           <ContentItem.B_30_15 id="hygieneCouncil">
             <Heading as="h4" mb={1}>
-              {props.t(
-                `localAuthorities:${props.lcConfig.hygiene.local_council}`
-              )}
+              {props.t(props.lcConfig.hygiene.local_council)}
             </Heading>
             <Paragraph mb={0}>
               {`${props.t("Email address")}: ${
@@ -113,10 +115,8 @@ const ApplicationComplete = (props) => (
             </HintText>
           </ContentItem.B_30_15>
           <ContentItem.B_30_15 id="standardsCouncil">
-            <Heading as="h4" mb={1}>
-              {props.t(
-                `localAuthorities:${props.lcConfig.standards.local_council}`
-              )}
+            <Heading as="h2" mb={1}>
+              {props.t(props.lcConfig.standards.local_council)}
             </Heading>
             <Paragraph mb={0}>
               {`${props.t("Email address")}: ${
@@ -166,7 +166,7 @@ const ApplicationComplete = (props) => (
     </ContentItem.B_30_15>
 
     <ContentItem.B_30_15>
-      <Heading as="h2" size="LARGE">
+      <Heading as="h3" size="LARGE">
         {props.t("Find out here what you can do to prepare")}
       </Heading>
       <HintText mb={3}>{props.t("All links open in a new window")}</HintText>
@@ -187,6 +187,7 @@ const ApplicationComplete = (props) => (
           {props.t(
             "Guidance on food hygiene and how to run a safe food business"
           )}
+          <VisuallyHidden>{props.t("(opens in a new window)")}</VisuallyHidden>
         </Link>
       </ContentItem.B_20_20>
       <ContentItem.B_20_20>
@@ -197,6 +198,7 @@ const ApplicationComplete = (props) => (
           rel="noopener noreferrer"
         >
           {props.t("How to achieve a high food hygiene rating (FHRS score)")}
+          <VisuallyHidden>{props.t("(opens in a new window)")}</VisuallyHidden>
         </Link>
       </ContentItem.B_20_20>
 
@@ -209,6 +211,9 @@ const ApplicationComplete = (props) => (
             rel="noopener noreferrer"
           >
             {props.t("Safe catering")}
+            <VisuallyHidden>
+              {props.t("(opens in a new window)")}
+            </VisuallyHidden>
           </Link>
         </ContentItem.B_20_20>
       ) : null}
@@ -223,6 +228,7 @@ const ApplicationComplete = (props) => (
           {props.t(
             "Information on the food safety management system safer food, better business"
           )}
+          <VisuallyHidden>{props.t("(opens in a new window)")}</VisuallyHidden>
         </Link>
       </ContentItem.B_20_20>
 
@@ -234,6 +240,7 @@ const ApplicationComplete = (props) => (
           rel="noopener noreferrer"
         >
           {props.t("Food labelling and allergens guidance")}
+          <VisuallyHidden>{props.t("(opens in a new window)")}</VisuallyHidden>
         </Link>
       </ContentItem.B_20_20>
 
@@ -250,7 +257,10 @@ const ApplicationComplete = (props) => (
             rel="noopener noreferrer"
           >
             {props.t("Business support")} -
-            {props.country === "wales" ? ` Wales` : " Northern Ireland"}
+            {props.country === "wales" ? " Wales" : " Northern Ireland"}
+            <VisuallyHidden>
+              {props.t("(opens in a new window)")}
+            </VisuallyHidden>
           </Link>
         </ContentItem.B_20_20>
       ) : (
@@ -263,6 +273,9 @@ const ApplicationComplete = (props) => (
               rel="noopener noreferrer"
             >
               {props.t("Business support & helpline")}
+              <VisuallyHidden>
+                {props.t("(opens in a new window)")}
+              </VisuallyHidden>
             </Link>
           </ContentItem.B_20_20>
 
@@ -276,7 +289,7 @@ const ApplicationComplete = (props) => (
 
       {props.country === "wales" ? (
         <ContentItem.B_30_15>
-          <Heading as="h3" mb={2} size="SMALL">
+          <Heading as="h2" mb={2} size="SMALL">
             Cymru
           </Heading>
           <ContentItem.B_20_20>
@@ -288,6 +301,7 @@ const ApplicationComplete = (props) => (
             >
               I gael cyngor cyffredinol ar hylendid bwyd a sut i redeg busnes
               bwyd diogel
+              <VisuallyHidden>"(agor mewn ffenestr newydd)"</VisuallyHidden>
             </Link>
           </ContentItem.B_20_20>
 
@@ -300,6 +314,7 @@ const ApplicationComplete = (props) => (
             >
               I gael gwybodaeth am sut i gael sgôr uchel o dan y Cynllun Sgorio
               Hylendid Bwyd
+              <VisuallyHidden>"(agor mewn ffenestr newydd)"</VisuallyHidden>
             </Link>
           </ContentItem.B_20_20>
 
@@ -312,6 +327,7 @@ const ApplicationComplete = (props) => (
             >
               I gael gwybodaeth am y system rheoli diogelwch bwyd, Bwyd mwy
               Diogel, Busnes Gwell
+              <VisuallyHidden>"(agor mewn ffenestr newydd)"</VisuallyHidden>
             </Link>
           </ContentItem.B_20_20>
 
@@ -323,6 +339,7 @@ const ApplicationComplete = (props) => (
               rel="noopener noreferrer"
             >
               I gael canllawiau ar labelu bwyd ac alergenau
+              <VisuallyHidden>"(agor mewn ffenestr newydd)"</VisuallyHidden>
             </Link>
           </ContentItem.B_20_20>
 
@@ -334,6 +351,7 @@ const ApplicationComplete = (props) => (
               rel="noopener noreferrer"
             >
               I gael cyngor busnes cyffredinol
+              <VisuallyHidden>"(agor mewn ffenestr newydd)"</VisuallyHidden>
             </Link>
           </ContentItem.B_20_20>
         </ContentItem.B_30_15>
@@ -351,9 +369,7 @@ const ApplicationComplete = (props) => (
   </FsaLayout>
 );
 
-export default withTranslation(["common", "localAuthorities"])(
-  SessionWrapper(ApplicationComplete)
-);
+export default withTranslation("common")(SessionWrapper(ApplicationComplete));
 
 ApplicationComplete.propTypes = {
   fsaRegistrationNumber: PropTypes.string,

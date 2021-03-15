@@ -1,20 +1,18 @@
 import {
   FsaLayout,
   SessionWrapper,
-  BackButton,
   ContinueButton,
   ContentItem,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   PostForm
 } from "../src/components";
-import { Heading, TextArea } from "govuk-react";
+import { Heading, TextArea } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const OtherDetails = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -32,6 +30,7 @@ const OtherDetails = (props) => (
               defaultValue: props.cumulativeFullAnswers.business_other_details,
               id: "business_other_details"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.business_other_details)

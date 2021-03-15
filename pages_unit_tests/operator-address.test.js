@@ -1,7 +1,7 @@
 import OperatorAddress from "../pages/operator-address";
 import { mount, shallow } from "enzyme";
-import { HintText, Heading } from "govuk-react";
-import { Paragraph } from "govuk-react";
+import { HintText, Heading } from "@slice-and-dice/govuk-react";
+import { Paragraph } from "@slice-and-dice/govuk-react";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18nForTests";
 
@@ -47,13 +47,6 @@ describe("<OperatorAddress />", () => {
       const hintText = wrapper.find(HintText);
       expect(hintText.first().props().children).toBe(
         "Partnership address is the contact address for the partner who is the main point of contact."
-      );
-    });
-
-    it("renders correct hidden text", () => {
-      const hiddenText = wrapper.find(Paragraph);
-      expect(hiddenText.at(1).props().children).toBe(
-        "In a partnership, you and your partner (or partners) personally share responsibility for your food business"
       );
     });
   });

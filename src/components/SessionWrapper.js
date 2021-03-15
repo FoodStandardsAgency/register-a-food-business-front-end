@@ -30,9 +30,8 @@ const SessionWrapper = (Page) => {
 
     const csrfToken = req.csrfToken();
 
-    const language = req && req.language ? req.language : "en";
-
-    const currentPageTitle = PageTitles.getUrlPageTitle(req.url, language);
+    const language =
+      req && req.body && req.body.language ? req.body.language : "en";
 
     const currentPageWithQuery = `/${req.url.split("/")[2]}`;
 
@@ -74,6 +73,12 @@ const SessionWrapper = (Page) => {
         ? { ...req.session.allValidationErrors }
         : {};
     delete allValidationErrorsCleaned["undefined"];
+
+    const currentPageTitle = PageTitles.getUrlPageTitle(
+      req.url,
+      validatorErrorsCleaned,
+      allValidationErrorsCleaned
+    );
 
     /************************************************************************************
     Declaration of initialProps object, containing the above variables, plus others.
