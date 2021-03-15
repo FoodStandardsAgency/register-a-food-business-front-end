@@ -53,7 +53,7 @@ const EstablishmentAddress = (props) => (
               autoComplete: "postal-code"
             }}
             errorPrefix={`${props.t("Error")}: `}
-            id="establishment_postcode_find"
+            id="establishmentPostcodeFindComponent"
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.establishment_postcode_find)

@@ -28,7 +28,7 @@ const AddressHelp = (props) => {
     <React.Fragment>
       <Heading as="h1" size="LARGE">
         {props.id ? (
-          <label for={props.id}>
+          <label class="govuk-label govuk-label--l" for={props.id}>
             {props.t("What is the operator's address?")}
           </label>
         ) : (

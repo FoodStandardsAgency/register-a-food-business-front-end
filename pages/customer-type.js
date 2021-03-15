@@ -8,7 +8,6 @@ import {
   PostForm
 } from "../src/components";
 import {
-  Heading,
   Checkbox,
   MultiChoice,
   Fieldset,
@@ -24,15 +23,17 @@ const CustomerType = (props) => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <Fieldset>
-      <Fieldset.Legend>
-        <Heading as="h1" size="LARGE">
+    <PostForm action={props.formAction} csrfToken={props.csrfToken}>
+      <Fieldset>
+        <Fieldset.Legend
+          size="LARGE"
+          isPageHeading
+          style={{ marginBottom: "30px" }}
+        >
           {props.t("Who will this establishment supply food to?")}
-        </Heading>
-      </Fieldset.Legend>
-      <Paragraph>{props.t("Select all that apply")}</Paragraph>
+        </Fieldset.Legend>
+        <Paragraph>{props.t("Select all that apply")}</Paragraph>
 
-      <PostForm action={props.formAction} csrfToken={props.csrfToken}>
         <ContentItem.B_45_30>
           <MultiChoice
             label=""
@@ -65,10 +66,10 @@ const CustomerType = (props) => (
             </Checkbox>
           </MultiChoice>
         </ContentItem.B_45_30>
+      </Fieldset>
 
-        <ContinueButton {...props} />
-      </PostForm>
-    </Fieldset>
+      <ContinueButton {...props} />
+    </PostForm>
   </FsaLayout>
 );
 
