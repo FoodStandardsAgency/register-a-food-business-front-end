@@ -7,58 +7,35 @@ import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-valid
 
 const AddressHelp = (props) => {
   return props.role === operatorTypeEnum.PARTNERSHIP.key ? (
-    props.id ? (
-      <React.Fragment>
-        <Heading as="h1" size="LARGE">
+    <React.Fragment>
+      <Heading as="h1" size="LARGE">
+        {props.id ? (
           <label class="govuk-label govuk-label--l" for={props.id}>
             {props.t("What is the partnership contact's address?")}
           </label>
-        </Heading>
-        <ContentItem.B_30_15>
-          <HintText>
-            {props.t(
-              "Partnership address is the contact address for the partner who is the main point of contact."
-            )}
-          </HintText>
-        </ContentItem.B_30_15>
-        <PartnershipDescription />
-      </React.Fragment>
-    ) : (
-      <React.Fragment>
-        <Heading as="h1" size="LARGE">
-          {props.t("What is the partnership contact's address?")}
-        </Heading>
-        <ContentItem.B_30_15>
-          <HintText>
-            {props.t(
-              "Partnership address is the contact address for the partner who is the main point of contact."
-            )}
-          </HintText>
-        </ContentItem.B_30_15>
-        <PartnershipDescription />
-      </React.Fragment>
-    )
-  ) : props.id ? (
-    <React.Fragment>
-      <Heading as="h1" size="LARGE">
-        <label for={props.id}>
-          {props.t("What is the operator's address?")}
-        </label>
+        ) : (
+          props.t("What is the partnership contact's address?")
+        )}
       </Heading>
-
       <ContentItem.B_30_15>
         <HintText>
           {props.t(
-            "Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company."
+            "Partnership address is the contact address for the partner who is the main point of contact."
           )}
         </HintText>
       </ContentItem.B_30_15>
-      <OperatorDescription />
+      <PartnershipDescription />
     </React.Fragment>
   ) : (
     <React.Fragment>
       <Heading as="h1" size="LARGE">
-        {props.t("What is the operator's address?")}
+        {props.id ? (
+          <label for={props.id}>
+            {props.t("What is the operator's address?")}
+          </label>
+        ) : (
+          props.t("What is the operator's address?")
+        )}
       </Heading>
 
       <ContentItem.B_30_15>
