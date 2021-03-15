@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -10,13 +9,12 @@ import {
   PostForm
 } from "../src/components";
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
-import { Heading, InputField } from "govuk-react";
+import { Heading, InputField } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const OperatorContactDetails = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -31,7 +29,10 @@ const OperatorContactDetails = (props) => (
         } contact details`
       )}
     </Heading>
-    <ContactDetailsHelp role={props.cumulativeFullAnswers.registration_role} />
+    <ContactDetailsHelp
+      role={props.cumulativeFullAnswers.registration_role}
+      {...props}
+    />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
@@ -41,6 +42,7 @@ const OperatorContactDetails = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_primary_number,
               autoComplete: "tel"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operator_primary_number"
             meta={{
               touched: true,
@@ -59,6 +61,7 @@ const OperatorContactDetails = (props) => (
                 props.cumulativeFullAnswers.operator_secondary_number,
               autoComplete: "off"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operator_secondary_number"
             meta={{
               touched: true,
@@ -76,6 +79,7 @@ const OperatorContactDetails = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_email,
               autoComplete: "email"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operator_email"
             hint={props.t(
               "We will use your email to keep you informed of any policy or legal changes that could affect your food business."

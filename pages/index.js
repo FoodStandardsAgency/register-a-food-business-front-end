@@ -5,12 +5,12 @@ import {
   ContinueButton,
   PostForm
 } from "../src/components";
-import { Heading, Paragraph, Link } from "govuk-react";
+import { Heading, Paragraph } from "@slice-and-dice/govuk-react";
 import InsetText from "../src/components/InsetText";
-import { withTranslation, i18n } from "../i18n";
+import { withTranslation } from "../i18n";
 
 const Index = (props) => (
-  <FsaLayout {...props}>
+  <FsaLayout {...props} hideBack="true">
     <Heading as="h1">{props.t("Register a food business")}</Heading>
 
     <ContentItem.B_30_15 {...props}>
@@ -54,30 +54,16 @@ const Index = (props) => (
         {props.t("Registering Local Authority")}
       </Heading>
       <Paragraph>
-        {`**${props.t(`localAuthorities:${props.lcName}`)}**
+        {`**${props.t(props.lcName)}**
         ${props.t(
-          "is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this Food Business Registration(www.gov.uk/food-business-registration) link to check using the location or site of your food business."
+          "is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this [Food Business Registration](www.gov.uk/food-business-registration) link to check using the location or site of your food business."
         )}`}
       </Paragraph>
     </ContentItem.B_30_15>
-    <InsetText>
-      {props.t("This service is also available in")}{" "}
-      <Link
-        style={{ textDecorationLine: "underline", cursor: "pointer" }}
-        onClick={() =>
-          i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
-        }
-        id="changeLanguage"
-      >
-        {i18n.language === "cy" ? "Saesneg (English)" : "Welsh (Cymraeg)"}
-      </Link>
-    </InsetText>
     <PostForm action="/continue/index" csrfToken={props.csrfToken}>
       <ContinueButton type="begin" />
     </PostForm>
   </FsaLayout>
 );
 
-export default withTranslation(["common", "localAuthorities"])(
-  SessionWrapper(Index)
-);
+export default withTranslation("common")(SessionWrapper(Index));

@@ -1,7 +1,6 @@
 import {
   FsaLayout,
   SessionWrapper,
-  BackButton,
   ContinueButton,
   ContentItem,
   ProcessedErrorSummary,
@@ -15,13 +14,12 @@ import {
   HintText,
   Paragraph,
   UnorderedList
-} from "govuk-react";
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const OtherDaysIrregular = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -39,6 +37,7 @@ const OtherDaysIrregular = (props) => (
               defaultValue: props.cumulativeFullAnswers.opening_days_irregular,
               id: "opening_days_irregular"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.opening_days_irregular)

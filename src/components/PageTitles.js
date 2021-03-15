@@ -1,5 +1,3 @@
-const enTitles = require("../../public/static/locales/en/pageTitles.json");
-const cyTitles = require("../../public/static/locales/cy/pageTitles.json");
 const {
   operatorTypeEnum
 } = require("@slice-and-dice/register-a-food-business-validation");
@@ -66,19 +64,33 @@ const PageTitles = {
   defaultPageTitle: "Register a Food Business"
 };
 
-PageTitles.getUrlPageTitle = (url, language, cumulativeFullAnswers) => {
+PageTitles.getUrlPageTitle = (
+  url,
+  validatorErrors,
+  allValidationErrors,
+  cumulativeFullAnswers
+) => {
+  var isError =
+    Object.keys(allValidationErrors).length > 0 ||
+    Object.keys(validatorErrors).length > 0;
   var urlParts = url.split("/");
   var page = (urlParts[2] ?? urlParts[1]).split("?")[0];
-  var title = PageTitles.defaultPageTitle;
-  var translatedTitles = language === "cy" ? cyTitles : enTitles;
+  var title =
+    isError === true
+      ? `Error ${PageTitles.defaultPageTitle}`
+      : PageTitles.defaultPageTitle;
 
   if (page && page in PageTitles.pageTitles) {
-    title = `${PageTitles.prefix} - ${PageTitles.pageTitles[page](
-      cumulativeFullAnswers.registration_role
-    )}`;
+    title =
+      isError === true
+        ? `Error ${PageTitles.prefix} - ${PageTitles.pageTitles[page](
+            cumulativeFullAnswers.registration_role
+          )}`
+        : `${PageTitles.prefix} - ${PageTitles.pageTitles[page](
+            cumulativeFullAnswers.registration_role
+          )}`;
   }
-
-  return translatedTitles[title] || title;
+  return title;
 };
 
 export default PageTitles;

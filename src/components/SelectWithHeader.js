@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Select } from "govuk-react";
+import { Select } from "@slice-and-dice/govuk-react";
 
 const SelectWithHeader = styled(Select)`
   span {

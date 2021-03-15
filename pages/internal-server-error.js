@@ -1,6 +1,6 @@
 import React from "react";
 import { FsaLayout } from "../src/components";
-import { Heading, Paragraph, BackLink, Button } from "govuk-react";
+import { Heading, Paragraph, Button } from "@slice-and-dice/govuk-react";
 import { withTranslation } from "../i18n";
 
 class InternalServerError extends React.Component {
@@ -11,14 +11,8 @@ class InternalServerError extends React.Component {
   }
 
   render() {
-    const backToStartLink = this.props.council
-      ? `/new/${this.props.council}`
-      : "/";
     return (
-      <FsaLayout {...this.props}>
-        <BackLink href={backToStartLink}>
-          {this.props.t("Back to start")}
-        </BackLink>
+      <FsaLayout {...this.props} backToStart="true">
         <Heading as="h1">
           {this.props.t("This service is currently unavailable")}
         </Heading>

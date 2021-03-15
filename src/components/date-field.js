@@ -2,11 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { ERROR_COLOUR } from "govuk-colours";
-import { SPACING } from "@govuk-react/constants";
-import LabelText from "@govuk-react/label-text";
-import ErrorText from "@govuk-react/error-text";
-import HintText from "@govuk-react/hint-text";
-import { spacing } from "@govuk-react/lib";
+import { SPACING } from "@slice-and-dice/govuk-react-constants";
+import {
+  LabelText,
+  ErrorText,
+  HintText,
+  VisuallyHidden
+} from "@slice-and-dice/govuk-react";
+import { spacing } from "@slice-and-dice/govuk-react-lib";
 import Input from "./input";
 
 const StyledContainer = styled("div")(
@@ -71,6 +74,7 @@ const StyledContainer = styled("div")(
 const DateField = ({
   children,
   errorText,
+  language,
   hintText,
   inputNames,
   defaultValues,
@@ -80,7 +84,15 @@ const DateField = ({
   <StyledContainer {...props} errorText={errorText}>
     <LabelText errorText={errorText}>{children}</LabelText>
     {hintText && <HintText>{hintText}</HintText>}
-    {errorText && <ErrorText errorText={errorText}>{errorText}</ErrorText>}
+    {errorText && (
+      <ErrorText errorText={errorText}>
+        <VisuallyHidden>
+          {" "}
+          {language === "cy" ? "Gwall: " : "Error: "}
+        </VisuallyHidden>
+        {errorText}
+      </ErrorText>
+    )}
     <Input
       names={inputNames}
       // TODO: defaultValues should be a prop on input

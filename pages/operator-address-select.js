@@ -2,20 +2,23 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   SelectWithHeader,
   AddressHelp,
   PostForm
 } from "../src/components";
-import { Heading, Paragraph, Link } from "govuk-react";
+import { Heading, Paragraph, Link } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
+import styled from "@emotion/styled";
+
+const StyledDd = styled.dd`
+  margin-inline-start: 0px;
+`;
 
 const OperatorAddressLookup = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <AddressHelp
       role={props.cumulativeFullAnswers.registration_role}
       header={props.t(
@@ -31,25 +34,33 @@ const OperatorAddressLookup = (props) => (
           <Heading as="h2" size="MEDIUM">
             {props.t("Postcode you have entered")}
           </Heading>
-          <Paragraph className="operatorPostcodeDisplay" mb={0}>
-            {props.cumulativeFullAnswers.operator_postcode_find}
-          </Paragraph>
-          <Link
-            id="changeOperatorPostcode"
-            href={
-              props.editModeFirstPage
-                ? "/operator-address?edit=operator-address"
-                : "/operator-address"
-            }
-          >
-            {props.t("Change postcode")}
-          </Link>
+          <dl>
+            <dt>
+              <Paragraph className="operatorPostcodeDisplay" mb={0}>
+                {props.cumulativeFullAnswers.operator_postcode_find}
+              </Paragraph>
+            </dt>
+            <StyledDd>
+              <Link
+                id="changeOperatorPostcode"
+                href={
+                  props.editModeFirstPage
+                    ? `/new/${props.council}/operator-address?edit=operator-address`
+                    : `/new/${props.council}/operator-address`
+                }
+              >
+                {props.t("Change postcode")}
+              </Link>
+            </StyledDd>
+          </dl>
         </ContentItem.B_30_15>
         <ContentItem.B_20_20>
-          <SelectWithHeader
-            label={`${props.t("Select an address for")} ${
+          <Heading as="h2" size="MEDIUM" className="govuk-label govuk-label—l">
+            {`${props.t("Select an address for")} ${
               props.cumulativeFullAnswers.operator_postcode_find
             }`}
+          </Heading>
+          <SelectWithHeader
             input={{
               id: "operatorAddressDropdown",
               name: "operator_address_selected",

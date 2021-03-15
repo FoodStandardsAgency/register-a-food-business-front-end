@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -10,7 +9,7 @@ import {
   PartnershipDescription,
   PostForm
 } from "../src/components";
-import { Heading, Button, HintText } from "govuk-react";
+import { Heading, Button, HintText } from "@slice-and-dice/govuk-react";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
@@ -55,7 +54,6 @@ const ButtonsRow = (props) => (
 
 const PartnerName = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -70,7 +68,7 @@ const PartnerName = (props) => (
         )}
       </HintText>
     </ContentItem.B_30_15>
-    <PartnershipDescription />
+    <PartnershipDescription {...props} />
     <PostForm
       action={props.partnerDetailsDeleteFormAction}
       csrfToken={props.csrfToken}

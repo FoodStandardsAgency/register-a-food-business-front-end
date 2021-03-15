@@ -1,6 +1,6 @@
 import { BusinessTypeLookup } from "../components/BusinessTypeLookup";
 import DataListSection from "../components/DataListSection";
-import { Paragraph } from "govuk-react";
+import { Paragraph } from "@slice-and-dice/govuk-react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils"; // ES6
 

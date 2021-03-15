@@ -1,14 +1,13 @@
 import {
   FsaLayout,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   HiddenTextAccessible,
   PostForm
 } from "./index";
-import { Heading, Paragraph, HintText } from "govuk-react";
+import { Heading, Paragraph, HintText } from "@slice-and-dice/govuk-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 import { withTranslation } from "../../i18n.js";
@@ -17,7 +16,6 @@ import DateField from "./date-field";
 const OpeningDate = (props) => {
   return (
     <FsaLayout {...props}>
-      <BackButton {...props} />
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
@@ -39,6 +37,7 @@ const OpeningDate = (props) => {
         hiddentextindex={1}
         id="hiddenTextEstablishment"
         summary={props.t("What is an establishment?")}
+        {...props}
       >
         <Paragraph mb={0}>
           {props.t(
@@ -62,6 +61,7 @@ const OpeningDate = (props) => {
                 month: "month",
                 year: "year"
               }}
+              errorPrefix={`${props.t("Error")}: `}
               hintText={`${props.t("For example")}, ${moment()
                 .add(40, "d")
                 .format("DD MM YYYY")}`}
@@ -82,6 +82,7 @@ const OpeningDate = (props) => {
                 summary={props.t(
                   "I don't know when this establishment will begin trading"
                 )}
+                {...props}
               >
                 <Paragraph mb={0}>
                   {props.t(
@@ -126,6 +127,7 @@ const OpeningDate = (props) => {
               summary={props.t(
                 "I don't know when this establishment began trading"
               )}
+              {...props}
             >
               <Paragraph mb={0}>
                 {props.t(

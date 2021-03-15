@@ -57,7 +57,7 @@ describe("<BackButton />", () => {
               <BackButton
                 currentPage={currentPage}
                 editModeFirstPage={editModeFirstPage}
-                href="example"
+                backHref="example"
               />
             </I18nextProvider>
           );
@@ -88,7 +88,7 @@ describe("<BackButton />", () => {
   describe("given that editModeFirstPage is NOT truthy", () => {
     describe("given that props.href IS truthy", () => {
       it("should display the back button with the passed href URL", () => {
-        const wrapper = mount(<BackButton href="example" />);
+        const wrapper = mount(<BackButton backHref="example" />);
         const backElement = wrapper.find(`a#back-link`);
         expect(backElement.props().href).toBe("example");
       });
