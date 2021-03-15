@@ -14,7 +14,7 @@ const HiddenTextAccessible = (props) => {
       {props.browser === "IE" || props.browser === "Edge" ? (
         <StyledDiv>
           <InsetText aria-label={props.t("Additional information")}>
-            <p class="bold">{props.summary}</p>
+            <p className="bold">{props.summary}</p>
             <p>{props.children}</p>
           </InsetText>
         </StyledDiv>

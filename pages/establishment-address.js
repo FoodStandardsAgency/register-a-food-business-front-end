@@ -20,10 +20,10 @@ const EstablishmentAddress = (props) => (
     />
     <Heading as="h1" size="LARGE">
       <label
-        class="govuk-label govuk-label--l"
-        for="establishment_postcode_find"
+        className="govuk-label govuk-label--l"
+        htmlFor="establishment_postcode_find"
       >
-        {props.t("Establishment address")}
+        {props.t("What is the establishment's postcode?")}
       </label>
     </Heading>
 

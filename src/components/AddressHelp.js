@@ -9,11 +9,11 @@ const AddressHelp = (props) => {
     <React.Fragment>
       <Heading as="h1" size="LARGE">
         {props.id ? (
-          <label class="govuk-label govuk-label--l" for={props.id}>
-            {props.t("What is the partnership contact's address?")}
+          <label className="govuk-label govuk-label--l" htmlFor={props.id}>
+            {props.header}
           </label>
         ) : (
-          props.t("What is the partnership contact's address?")
+          props.header
         )}
       </Heading>
       <ContentItem.B_30_15>
@@ -28,11 +28,11 @@ const AddressHelp = (props) => {
     <React.Fragment>
       <Heading as="h1" size="LARGE">
         {props.id ? (
-          <label class="govuk-label govuk-label--l" for={props.id}>
-            {props.t("What is the operator's address?")}
+          <label className="govuk-label govuk-label--l" htmlFor={props.id}>
+            {props.header}
           </label>
         ) : (
-          props.t("What is the operator's address?")
+          props.header
         )}
       </Heading>
 

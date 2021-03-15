@@ -1,12 +1,12 @@
 const FsaLogoWelsh = () => (
   <a
     href="https://www.food.gov.uk/cy"
-    class="header__logo block-link"
+    className="header__logo block-link"
     aria-label={"gwefan yr Asiantaeth Safonau Bwyd (agor mewn ffenestr newydd)"}
     target="_blank"
     rel="noopener noreferrer"
   >
-    <div class="svg" aria-hidden="true">
+    <div className="svg" aria-hidden="true">
       <svg
         role="presentation"
         focusable="false"

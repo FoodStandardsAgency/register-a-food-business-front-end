@@ -21,7 +21,10 @@ const OpeningDate = (props) => {
         onHandleErrorClick={OnHandleErrorClick}
       />
       <Heading as="h1" size="LARGE">
-        {props.t("Trading date")}
+        {props.cumulativeFullAnswers.establishment_opening_status ===
+        "Establishment due to trade"
+          ? props.t("Expected opening date")
+          : props.t("Opening Date")}
       </Heading>
       <ContentItem.B_30_15>
         <HintText>

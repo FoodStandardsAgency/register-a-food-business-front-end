@@ -11,6 +11,7 @@ import {
 import { InputField, ErrorText } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const OperatorAddress = (props) => (
   <FsaLayout
@@ -25,7 +26,15 @@ const OperatorAddress = (props) => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
+    <AddressHelp
+      role={props.cumulativeFullAnswers.registration_role}
+      header={props.t(
+        props.cumulativeFullAnswers.registration_role ===
+          operatorTypeEnum.PARTNERSHIP.key
+          ? "What is the partnership contact's address?"
+          : "What is the operator's address?"
+      )}
+    />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         {props.switches["/operator-address-none-found"] ? (

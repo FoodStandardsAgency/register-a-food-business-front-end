@@ -30,6 +30,11 @@ const SessionWrapper = (Page) => {
 
     const csrfToken = req.csrfToken();
 
+    const cumulativeFullAnswers =
+      req && req.session && req.session.cumulativeFullAnswers
+        ? req.session.cumulativeFullAnswers
+        : {};
+
     const language =
       req && req.body && req.body.language ? req.body.language : "en";
 
@@ -77,7 +82,8 @@ const SessionWrapper = (Page) => {
     const currentPageTitle = PageTitles.getUrlPageTitle(
       req.url,
       validatorErrorsCleaned,
-      allValidationErrorsCleaned
+      allValidationErrorsCleaned,
+      cumulativeFullAnswers
     );
 
     /************************************************************************************
@@ -100,10 +106,7 @@ const SessionWrapper = (Page) => {
       partnerDetailsBackUrl,
       currentPage,
       currentPageTitle,
-      cumulativeFullAnswers:
-        req && req.session && req.session.cumulativeFullAnswers
-          ? req.session.cumulativeFullAnswers
-          : {},
+      cumulativeFullAnswers,
       transformedData:
         req && req.session && req.session.transformedData
           ? req.session.transformedData

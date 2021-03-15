@@ -11,6 +11,7 @@ import {
 import { InputField } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const OperatorAddress = (props) => (
   <FsaLayout {...props}>
@@ -20,6 +21,12 @@ const OperatorAddress = (props) => (
     />
     <AddressHelp
       role={props.cumulativeFullAnswers.registration_role}
+      header={props.t(
+        props.cumulativeFullAnswers.registration_role ===
+          operatorTypeEnum.PARTNERSHIP.key
+          ? "What is the partnership contact's postcode?"
+          : "What is the operator's postcode?"
+      )}
       id={"operator_postcode_find"}
     />
     <PostForm

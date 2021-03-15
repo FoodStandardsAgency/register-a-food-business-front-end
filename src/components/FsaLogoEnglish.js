@@ -1,7 +1,7 @@
 const FsaLogoEnglish = () => (
   <a
     href="https://www.food.gov.uk"
-    class="header__logo block-link"
+    className="header__logo block-link"
     aria-label={"Food Standards Agency website (opens in new window)"}
     target="_blank"
     rel="noopener noreferrer"
@@ -13,7 +13,7 @@ const FsaLogoEnglish = () => (
       width="123.75px"
       height="82.5px"
     >
-      <g fill="none" fill-rule="evenodd">
+      <g fill="none" fillRule="evenodd">
         <path
           d="M171.366 57.383c.126-.482.48-.74.922-.71h1.204c.216.003.392.02.549.1a.474.474 0 0 1 .266.44c.002.16-.044.293-.126.486l-4.735 13.303-.603 1.739c-.549 1.51-1.182 2.983-1.677 3.914-.547 1.03-1.282 1.525-2.354 1.525h-.304c-.267-.002-.48-.022-.656-.165-.178-.151-.214-.371-.214-.609V76.32c0-.442.202-.86.645-.863h.257c.22-.014.27-.036.448-.34.279-.451.585-1.12.876-1.934l.625-1.72-5.442-13.632c-.114-.262-.162-.393-.162-.558a.538.538 0 0 1 .242-.47c.155-.096.337-.126.543-.128h1.577c.501-.019.886.223 1.034.67l3.859 10.228 3.226-10.187"
           fill="#006F51"
