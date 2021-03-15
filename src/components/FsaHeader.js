@@ -21,7 +21,7 @@ const FsaTopNav = styled(TopNav)`
 
 const Company = (props) => (
   <>
-    {i18n.language === "en" ? <FsaLogoEnglish /> : <FsaLogoWelsh />}
+    {i18n.language === "cy" ? <FsaLogoWelsh /> : <FsaLogoEnglish />}
 
     <AnchorTag
       style={{
