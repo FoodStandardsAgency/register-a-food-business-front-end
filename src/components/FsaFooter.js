@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import { Link, ListItem, UnorderedList } from "govuk-react";
+import { Link, ListItem, UnorderedList } from "@slice-and-dice/govuk-react";
 import { withTranslation, i18n } from "../../i18n.js";
+import React, { useState, useEffect } from "react";
 
 const fontSizeNormal = "16px";
 const fontSizeSmall = "14px";
@@ -63,87 +64,113 @@ const FooterUnorderedList = styled(UnorderedList)`
   padding-left: 0px;
 `;
 
-const FsaFooter = (props) => (
-  <Footer id="fsaFooter" role="contentinfo">
-    <FooterBody>
-      <FooterContent>
-        <FooterLinkContainer>
-          <FooterUnorderedList>
-            <FooterListItem>
-              <FooterLink
-                id="cookiePolicyFooter"
-                href="https://www.food.gov.uk/cookie-policy"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={props.t("cookie policy (opens in a new window)")}
-                style={{ color: "#454a4c" }}
-              >
-                {props.t("Cookies")}
-              </FooterLink>
-            </FooterListItem>
-            <FooterListItem>
-              <FooterLink
-                id="privacyPolicyFooter"
-                href="https://www.food.gov.uk/about-us/register-a-food-business-privacy-notice"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={props.t("privacy policy (opens in a new window)")}
-                style={{ color: "#454a4c" }}
-              >
-                {props.t("Privacy")}
-              </FooterLink>
-            </FooterListItem>
-            <FooterListItem>
-              <FooterLink
-                id="feedbackFooter"
-                href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={props.t(
-                  "give us feedback on the service (opens in a new window)"
-                )}
-                style={{ color: "#454a4c" }}
-              >
-                {props.t("Feedback")}
-              </FooterLink>
-            </FooterListItem>
-            <FooterListItem>
-              <FooterLink
-                id="accessibilityFooter"
-                href="https://www.food.gov.uk/accessibility-rafb"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={props.t(
-                  "accessibility statement (opens in a new window)"
-                )}
-                style={{ color: "#454a4c" }}
-              >
-                {props.t("Accessibility")}
-              </FooterLink>
-            </FooterListItem>
-            <FooterListItem>
-              <FooterLink
-                id="languageFooter"
-                onClick={() =>
-                  i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={props.t("Change the language to English/Welsh")}
-                style={{
-                  color: "#454a4c",
-                  textDecorationLine: "underline",
-                  cursor: "pointer"
-                }}
-              >
-                {i18n.language === "cy" ? "English" : "Cymraeg"}
-              </FooterLink>
-            </FooterListItem>
-          </FooterUnorderedList>
-        </FooterLinkContainer>
-      </FooterContent>
-    </FooterBody>
-  </Footer>
-);
+const FsaFooter = (props) => {
+  const [jsEnabled, setJsEnabled] = useState(false);
+
+  useEffect(() => {
+    setJsEnabled(true);
+  }, []);
+
+  return (
+    <Footer id="fsaFooter" role="contentinfo">
+      <FooterBody>
+        <FooterContent>
+          <FooterLinkContainer>
+            <FooterUnorderedList>
+              <FooterListItem>
+                <FooterLink
+                  id="cookiePolicyFooter"
+                  href={props.t("cookies-link")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={props.t("cookie policy (opens in a new window)")}
+                  style={{ color: "#454a4c" }}
+                >
+                  {props.t("Cookies")}
+                </FooterLink>
+              </FooterListItem>
+              <FooterListItem>
+                <FooterLink
+                  id="privacyPolicyFooter"
+                  href={props.t("privacy-link")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={props.t("privacy policy (opens in a new window)")}
+                  style={{ color: "#454a4c" }}
+                >
+                  {props.t("Privacy")}
+                </FooterLink>
+              </FooterListItem>
+              <FooterListItem>
+                <FooterLink
+                  id="feedbackFooter"
+                  href={props.t("feedback-form")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={props.t(
+                    "give us feedback on the service (opens in a new window)"
+                  )}
+                  style={{ color: "#454a4c" }}
+                >
+                  {props.t("Feedback")}
+                </FooterLink>
+              </FooterListItem>
+              <FooterListItem>
+                <FooterLink
+                  id="accessibilityFooter"
+                  href={props.t("accessibility-link")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={props.t(
+                    "accessibility statement (opens in a new window)"
+                  )}
+                  style={{ color: "#454a4c" }}
+                >
+                  {props.t("Accessibility")}
+                </FooterLink>
+              </FooterListItem>
+              {jsEnabled ? (
+                <FooterListItem>
+                  <FooterLink
+                    id="languageFooter"
+                    href="#language"
+                    onClick={() =>
+                      i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
+                    }
+                    rel="noopener noreferrer"
+                    aria-label={props.t("Change Language")}
+                    style={{
+                      color: "#454a4c",
+                      textDecorationLine: "underline",
+                      cursor: "pointer"
+                    }}
+                  >
+                    {props.t("Change Language")}
+                  </FooterLink>
+                </FooterListItem>
+              ) : (
+                <FooterListItem>
+                  <FooterLink
+                    id="languageFooter"
+                    href={props.t("change-language")}
+                    rel="noopener noreferrer"
+                    aria-label={props.t("Change Language")}
+                    style={{
+                      color: "#454a4c",
+                      textDecorationLine: "underline",
+                      cursor: "pointer"
+                    }}
+                  >
+                    {props.t("Change Language")}
+                  </FooterLink>
+                </FooterListItem>
+              )}
+            </FooterUnorderedList>
+          </FooterLinkContainer>
+        </FooterContent>
+      </FooterBody>
+    </Footer>
+  );
+};
 
 export default withTranslation("common")(FsaFooter);

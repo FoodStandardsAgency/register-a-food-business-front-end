@@ -3,14 +3,18 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   SubmissionErrorSummary,
   OnHandleErrorClick,
   PostForm
 } from "../src/components";
-import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
+import {
+  Heading,
+  Checkbox,
+  MultiChoice,
+  Paragraph
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -45,7 +49,6 @@ class Declaration extends React.Component {
           ref="submitRegistration"
           csrfToken={this.props.csrfToken}
         >
-          <BackButton {...this.props} />
           <ProcessedErrorSummary
             validatorErrors={this.props.validatorErrors}
             onHandleErrorClick={OnHandleErrorClick}
@@ -79,6 +82,7 @@ class Declaration extends React.Component {
                 value="I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief."
                 error={this.props.t(this.props.validatorErrors["declaration1"])}
                 defaultChecked={this.props.cumulativeFullAnswers.declaration1}
+                id="declaration_1"
               >
                 {this.props.t(
                   "I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief."
@@ -87,9 +91,7 @@ class Declaration extends React.Component {
 
               <Checkbox
                 name="declaration2"
-                value="I, or the operator, will notify my local authority of any significant
-        changes to the business activity, including closure, within 28 days of
-        the change happening."
+                value="The operator will notify their local council of any significant changes to the business activity, including closure, within 28 days of the change happening."
                 error={this.props.t(this.props.validatorErrors["declaration2"])}
                 defaultChecked={this.props.cumulativeFullAnswers.declaration2}
               >
@@ -100,9 +102,7 @@ class Declaration extends React.Component {
 
               <Checkbox
                 name="declaration3"
-                value="I, or the operator, understands the operator is legally responsible for
-        the safety and authenticity of the food being produced or served at this
-        establishment."
+                value="The operator understands they are legally responsible for the safety and authenticity of the food being produced or served at this establishment."
                 error={this.props.t(this.props.validatorErrors["declaration3"])}
                 defaultChecked={this.props.cumulativeFullAnswers.declaration3}
               >
@@ -113,7 +113,7 @@ class Declaration extends React.Component {
             </MultiChoice>
           </ContentItem.B_45_30>
 
-          <Heading as="h1" size="LARGE">
+          <Heading as="h2" size="LARGE">
             {this.props.t("Feedback")}
           </Heading>
 
@@ -135,7 +135,7 @@ class Declaration extends React.Component {
             </Checkbox>
             <Paragraph linkRenderer={NewTabLinkRenderer}>
               {this.props.t(
-                "[Details on how we use your data](/pdfs/feedback)"
+                "[How we will use your data (PDF opens in new window)](/pdfs/feedback)"
               )}
             </Paragraph>
           </ContentItem.B_45_30>

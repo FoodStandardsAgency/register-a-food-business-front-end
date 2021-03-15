@@ -8,10 +8,9 @@ const { logEmitter } = require("./logging.service");
 const schema = require("./schema");
 const {
   combineDate,
-  separateBracketsFromBusinessType,
-  transformBusinessTypeForSubmit
+  transformBusinessTypeForSubmit,
+  separateBracketsFromBusinessType
 } = require("./data-transform.service");
-const { MAX_PARTNERS } = require("../config");
 const {
   validatePartners
 } = require("@slice-and-dice/register-a-food-business-validation");
@@ -22,41 +21,41 @@ const errorMessages = {
   declaration3: "You must tick all the declarations before continuing",
   registration_role: "You must select a role before continuing",
   operator_type: "You must select an operator type before continuing",
-  operator_first_name: "Not a valid first name",
-  operator_last_name: "Not a valid last name",
-  operator_town: "Not a valid town name",
-  operator_address_line_1: "Not a valid first line of address",
-  operator_address_line_2: "Not a valid second line of address",
-  operator_address_line_3: "Not a valid third line of address",
-  operator_postcode: "Not a valid postcode",
+  operator_first_name: "Enter a valid first name",
+  operator_last_name: "Enter a valid last name",
+  operator_town: "Enter a valid town name",
+  operator_address_line_1: "Enter a valid first line of address",
+  operator_address_line_2: "Enter a valid second line of address",
+  operator_address_line_3: "Enter a valid third line of address",
+  operator_postcode: "Enter a valid postcode",
   operator_postcode_find: "Not a valid postcode",
-  establishment_trading_name: "Not a valid establishment trading name",
-  operator_primary_number: "Not a valid operator phone number",
-  operator_secondary_number: "Not a valid operator phone number",
-  operator_email: "Not a valid operator email address",
-  contact_representative_name: "Not a valid representative name",
-  contact_representative_role: "Not a valid representative role",
-  contact_representative_number: "Not a valid representative phone number",
-  contact_representative_email: "Not a valid representative email address",
-  operator_company_name: "Not a valid company name",
+  establishment_trading_name: "Enter a valid establishment trading name",
+  operator_primary_number: "Enter a valid operator phone number",
+  operator_secondary_number: "Enter a valid operator phone number",
+  operator_email: "Enter a valid operator email address",
+  contact_representative_name: "Enter a valid representative name",
+  contact_representative_role: "Enter a valid representative role",
+  contact_representative_number: "Enter a valid representative phone number",
+  contact_representative_email: "Enter a valid representative email address",
+  operator_company_name: "Enter a valid company name",
   operator_companies_house_number:
-    "Not a valid Companies House reference number",
-  operator_charity_name: "Not a valid charity, organisation or trust name",
-  operator_charity_number: "Not a valid charity number",
-  establishment_primary_number: "Not a valid establishment phone number",
-  establishment_secondary_number: "Not a valid establishment phone number",
-  establishment_email: "Not a valid establishment email address",
+    "Enter a valid Companies House reference number",
+  operator_charity_name: "Enter a valid charity, organisation or trust name",
+  operator_charity_number: "Enter a valid charity number",
+  establishment_primary_number: "Enter a valid establishment phone number",
+  establishment_secondary_number: "Enter a valid establishment phone number",
+  establishment_email: "Enter a valid establishment email address",
   establishment_type:
     "You must select an establishment address type before continuing",
-  establishment_town: "Not a valid town name",
-  establishment_address_line_1: "Not a valid first line of address",
-  establishment_address_line_2: "Not a valid second line of address",
-  establishment_address_line_3: "Not a valid third line of address",
-  establishment_postcode: "Not a valid postcode",
+  establishment_town: "Enter a valid town name",
+  establishment_address_line_1: "Enter a valid first line of address",
+  establishment_address_line_2: "Enter a valid second line of address",
+  establishment_address_line_3: "Enter a valid third line of address",
+  establishment_postcode: "Enter a valid postcode",
   establishment_postcode_find: "Not a valid postcode",
   establishment_opening_status:
     "You must select a trading status before continuing",
-  establishment_opening_date: "Not a valid opening date",
+  establishment_opening_date: "Enter a valid opening date",
   customer_type: "You must select a customer type before continuing",
   import_export_activities:
     "You must select a valid import or export option(s) before continuing",
@@ -67,19 +66,26 @@ const errorMessages = {
   opening_days_start: "Please select which days this establishment is open",
   opening_days_irregular: "Please describe when this establishment is open",
   opening_days_some: "Please select which days this establishment is open",
-  partner_name: "Not a valid name",
-  partners: `Please define between 2-${MAX_PARTNERS} partners`,
+  partner_name: "Enter a valid partner name",
+  partners: `You have entered an invalid number of partners or a duplicate partner name. Please define between 2-5 partners, using initials or middle name to ensure that each entry is unique.`,
   main_partnership_contact:
     "You must select the main partnership contact before continuing",
   main_partnership_contact_deleted:
     "Main partnership contact is not in the list of partners",
-  opening_hours_monday: "Invalid opening hours on Monday",
-  opening_hours_tuesday: "Invalid opening hours on Tuesday",
-  opening_hours_wednesday: "Invalid opening hours on Wednesday",
-  opening_hours_thursday: "Invalid opening hours on Thursday",
-  opening_hours_friday: "Invalid opening hours on Friday",
-  opening_hours_saturday: "Invalid opening hours on Saturday",
-  opening_hours_sunday: "Invalid opening hours on Sunday"
+  opening_hours_monday:
+    "Enter the establishment opening hours for Monday using 24 hour clocks",
+  opening_hours_tuesday:
+    "Enter the establishment opening hours for Tuesday using 24 hour clocks",
+  opening_hours_wednesday:
+    "Enter the establishment opening hours for Wednesday using 24 hour clocks",
+  opening_hours_thursday:
+    "Enter the establishment opening hours for Thursday using 24 hour clocks",
+  opening_hours_friday:
+    "Enter the establishment opening hours for Friday using 24 hour clocks",
+  opening_hours_saturday:
+    "Enter the establishment opening hours for Saturday using 24 hour clocks",
+  opening_hours_sunday:
+    "Enter the establishment opening hours for Sunday using 24 hour clocks"
 };
 
 const validator = new Validator();
@@ -123,7 +129,7 @@ const validate = (page, answers) => {
 
       if (page === "/business-type") {
         if (answers.business_type) {
-          let businessTypeNoBrackets = separateBracketsFromBusinessType(
+          const businessTypeNoBrackets = separateBracketsFromBusinessType(
             answers.business_type
           ).business_type;
           answersToValidate.business_type = transformBusinessTypeForSubmit(

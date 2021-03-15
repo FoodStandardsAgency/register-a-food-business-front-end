@@ -2,7 +2,6 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
@@ -10,13 +9,18 @@ import {
   PostForm
 } from "../src/components";
 import { waterSupplyEnum } from "@slice-and-dice/register-a-food-business-validation";
-import { Fieldset, Radio, MultiChoice, HintText, Paragraph } from "govuk-react";
+import {
+  Fieldset,
+  Radio,
+  MultiChoice,
+  HintText,
+  Paragraph
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const WaterSupply = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -31,6 +35,16 @@ const WaterSupply = (props) => (
           >
             {props.t("What type of water supply does this establishment use?")}
           </Fieldset.Legend>
+          <HiddenTextAccessible
+            summary={props.t("What is an establishment?")}
+            {...props}
+          >
+            <Paragraph mb={0}>
+              {props.t(
+                "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
+              )}
+            </Paragraph>
+          </HiddenTextAccessible>
           <ContentItem.B_30_15>
             <HintText>
               {props.t(
@@ -40,6 +54,7 @@ const WaterSupply = (props) => (
           </ContentItem.B_30_15>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.water_supply)
@@ -85,6 +100,7 @@ const WaterSupply = (props) => (
         <HiddenTextAccessible
           id="hiddenTextWaterSupply"
           summary={props.t("I don't know if I have a private water supply")}
+          {...props}
         >
           <span>
             {props.t(
