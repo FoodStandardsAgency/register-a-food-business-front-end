@@ -30,10 +30,10 @@ const Company = (props) => (
         fontWeight: 700,
         lineHeight: 1,
         textDecoration: "none",
-        borderBottom: "1px solid transparent"
+        borderBottom: "1px solid transparent",
+        marginLeft: "20px"
       }}
     >
-      &nbsp;&nbsp;&nbsp;
       {props.t("Register a Food Business")}
     </AnchorTag>
   </>
