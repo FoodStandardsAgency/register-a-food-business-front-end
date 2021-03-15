@@ -36,15 +36,15 @@ const OpeningHours = (props) => (
               name: "opening_hours_monday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_monday
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_monday"
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_monday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
-              {props.t("Monday")}
-            </Heading>
+            {props.t("Monday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -56,15 +56,15 @@ const OpeningHours = (props) => (
               name: "opening_hours_tuesday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_tuesday
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_tuesday"
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_tuesday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
-              {props.t("Tuesday")}
-            </Heading>
+            {props.t("Tuesday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -76,15 +76,15 @@ const OpeningHours = (props) => (
               name: "opening_hours_wednesday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_wednesday
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_wednesday"
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_wednesday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
-              {props.t("Wednesday")}
-            </Heading>
+            {props.t("Wednesday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -96,15 +96,15 @@ const OpeningHours = (props) => (
               name: "opening_hours_thursday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_thursday
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_thursday"
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_thursday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
-              {props.t("Thursday")}
-            </Heading>
+            {props.t("Thursday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -116,15 +116,15 @@ const OpeningHours = (props) => (
               name: "opening_hours_friday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_friday
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_friday"
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_friday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
-              {props.t("Friday")}
-            </Heading>
+            {props.t("Friday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -136,15 +136,15 @@ const OpeningHours = (props) => (
               name: "opening_hours_saturday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_saturday
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_saturday"
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_saturday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
-              {props.t("Saturday")}
-            </Heading>
+            {props.t("Saturday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}
@@ -156,15 +156,15 @@ const OpeningHours = (props) => (
               name: "opening_hours_sunday",
               defaultValue: props.cumulativeFullAnswers.opening_hours_sunday
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="opening_hours_sunday"
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.opening_hours_sunday)
             }}
+            style={{ fontWeight: "bold", fontSize: "24px" }}
           >
-            <Heading as="h4" mb={1} size="MEDIUM">
-              {props.t("Sunday")}
-            </Heading>
+            {props.t("Sunday")}
           </InputField>
         </ContentItem.B_20_20>
       ) : null}

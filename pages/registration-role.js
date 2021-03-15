@@ -31,6 +31,7 @@ const RegistrationRole = (props) => (
           </Fieldset.Legend>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.registration_role)

@@ -47,6 +47,7 @@ const EstablishmentAddress = (props) => (
                 props.cumulativeFullAnswers.establishment_postcode_find,
               autoComplete: "postal-code"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="establishment_postcode_find"
             meta={{
               touched: true,

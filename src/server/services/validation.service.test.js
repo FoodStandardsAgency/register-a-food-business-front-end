@@ -203,7 +203,7 @@ describe("validator.service validate()", () => {
         opening_day_friday: "yes"
       });
       expect(result.errors.opening_hours_tuesday).toBe(
-        "Invalid opening hours on Tuesday"
+        "Enter the establishment opening hours for Tuesday using 24 hour clocks"
       );
       expect(Object.keys(result.errors).length).toBe(1);
     });

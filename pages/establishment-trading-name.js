@@ -46,6 +46,7 @@ const EstablishmentTradingName = (props) => (
             hint={props.t(
               "A trading name is what your customers will call your business."
             )}
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(

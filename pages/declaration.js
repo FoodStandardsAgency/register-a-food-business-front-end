@@ -82,6 +82,7 @@ class Declaration extends React.Component {
                 value="I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief."
                 error={this.props.t(this.props.validatorErrors["declaration1"])}
                 defaultChecked={this.props.cumulativeFullAnswers.declaration1}
+                id="declaration_1"
               >
                 {this.props.t(
                   "I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief."
@@ -112,7 +113,7 @@ class Declaration extends React.Component {
             </MultiChoice>
           </ContentItem.B_45_30>
 
-          <Heading as="h1" size="LARGE">
+          <Heading as="h2" size="LARGE">
             {this.props.t("Feedback")}
           </Heading>
 

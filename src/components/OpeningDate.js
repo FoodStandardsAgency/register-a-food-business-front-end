@@ -113,6 +113,7 @@ const OpeningDate = (props) => {
                 month: "month",
                 year: "year"
               }}
+              errorPrefix={`${props.t("Error")}: `}
               hintText={`${props.t("For example")}, ${moment()
                 .subtract(40, "d")
                 .format("DD MM YYYY")}`}
