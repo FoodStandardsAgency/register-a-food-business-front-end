@@ -1,17 +1,18 @@
 import { PageTitles } from "../components";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const testValidatorErrors = {};
-
 const testValidatorErrorsPopulated = { test: "test" };
-
 const testAllValidationErrors = {};
+const cumulativeFullAnswers = {};
 
 describe("PageTitles", () => {
   it("returns the default error title when URL not recognised when validator errors is populated", () => {
     const title = PageTitles.getUrlPageTitle(
       "not/recognised",
       testValidatorErrorsPopulated,
-      testAllValidationErrors
+      testAllValidationErrors,
+      cumulativeFullAnswers
     );
     expect(title).toBe(`Error ${PageTitles.defaultPageTitle}`);
   });
@@ -20,7 +21,8 @@ describe("PageTitles", () => {
     const title = PageTitles.getUrlPageTitle(
       "not/recognised",
       testValidatorErrors,
-      testAllValidationErrors
+      testAllValidationErrors,
+      cumulativeFullAnswers
     );
     expect(title).toBe(PageTitles.defaultPageTitle);
   });
@@ -29,7 +31,8 @@ describe("PageTitles", () => {
     const title = PageTitles.getUrlPageTitle(
       "/",
       testValidatorErrorsPopulated,
-      testAllValidationErrors
+      testAllValidationErrors,
+      cumulativeFullAnswers
     );
     expect(title).toBe(`Error ${PageTitles.defaultPageTitle}`);
   });
@@ -38,7 +41,8 @@ describe("PageTitles", () => {
     const title = PageTitles.getUrlPageTitle(
       "/",
       testValidatorErrors,
-      testAllValidationErrors
+      testAllValidationErrors,
+      cumulativeFullAnswers
     );
     expect(title).toBe(PageTitles.defaultPageTitle);
   });
@@ -48,10 +52,11 @@ describe("PageTitles", () => {
     const title = PageTitles.getUrlPageTitle(
       `new/council/${page}`,
       testValidatorErrorsPopulated,
-      testAllValidationErrors
+      testAllValidationErrors,
+      cumulativeFullAnswers
     );
     expect(title).toBe(
-      `Error ${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`
+      `Error Register a Food Business - What kind of food business are you registering?`
     );
   });
 
@@ -60,8 +65,44 @@ describe("PageTitles", () => {
     const title = PageTitles.getUrlPageTitle(
       `new/council/${page}`,
       testValidatorErrors,
-      testAllValidationErrors
+      testAllValidationErrors,
+      cumulativeFullAnswers
     );
-    expect(title).toBe(`${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`);
+    expect(title).toBe(
+      "Register a Food Business - What kind of food business are you registering?"
+    );
+  });
+
+  describe("registration role dependent page titles", () => {
+    it("returns partnership variation of operator-address page title when registration role is partnership", () => {
+      const page = "operator-address";
+      const cumulativeFullAnswers = {
+        registration_role: operatorTypeEnum.PARTNERSHIP.key
+      };
+      const title = PageTitles.getUrlPageTitle(
+        `new/council/${page}`,
+        testValidatorErrors,
+        testAllValidationErrors,
+        cumulativeFullAnswers
+      );
+      expect(title).toBe(
+        "Register a Food Business - What is the partnership contact's postcode?"
+      );
+    });
+    it("returns operator variation of operator-address page title when registration role is not partnership", () => {
+      const page = "operator-address";
+      const cumulativeFullAnswers = {
+        registration_role: operatorTypeEnum.SOLETRADER.key
+      };
+      const title = PageTitles.getUrlPageTitle(
+        `new/council/${page}`,
+        testValidatorErrors,
+        testAllValidationErrors,
+        cumulativeFullAnswers
+      );
+      expect(title).toBe(
+        "Register a Food Business - What is the operator's postcode?"
+      );
+    });
   });
 });
