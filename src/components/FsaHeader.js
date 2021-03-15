@@ -1,15 +1,13 @@
-import TopNav from "@govuk-react/top-nav";
+import { TopNav, Main, PhaseBanner } from "@slice-and-dice/govuk-react";
 import asTopNavAnchor from "../hoc/asTopNavAnchor";
-import Main from "@govuk-react/main";
-import PhaseBanner from "@govuk-react/phase-banner";
 import styled from "@emotion/styled";
 import CookieBanner from "./CookieBanner";
 import FsaLogoEnglish from "./FsaLogoEnglish";
 import FsaLogoWelsh from "./FsaLogoWelsh";
 import { withTranslation, i18n } from "../../i18n.js";
+import BackAndLanguageBar from "./BackAndLanguageBar";
 
 const AnchorTag = asTopNavAnchor("a");
-const feedbackLink = "https://goo.gl/forms/WB5adxvWQdDIfVvs2";
 
 const FsaTopNav = styled(TopNav)`
   div:nth-of-type(1) {
@@ -60,7 +58,7 @@ const FsaHeader = (props) => (
         {props.t("This is a new service")} -{" "}
         <AnchorTag
           id="feedbackLink"
-          href={feedbackLink}
+          href={props.t("feedback-form")}
           target="_blank"
           aria-label={props.t("your feedback (opens in new window)")}
           style={{
@@ -72,6 +70,7 @@ const FsaHeader = (props) => (
         {props.t("will help us improve it")}
       </PhaseBanner>
     </HeaderMain>
+    <BackAndLanguageBar {...props} />
   </StyledHeader>
 );
 

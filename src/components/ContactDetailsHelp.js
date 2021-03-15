@@ -1,7 +1,7 @@
 import React from "react";
 import { ContentItem } from "../../src/components";
-import { HintText } from "govuk-react";
-import { PartnershipDescription, OperatorDescription } from "./";
+import { HintText } from "@slice-and-dice/govuk-react";
+import { OperatorDescription } from "./";
 import { withTranslation } from "../../i18n.js";
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
@@ -19,10 +19,9 @@ const ContactDetailsHelp = (props) => {
   return props.role === operatorTypeEnum.PARTNERSHIP.key ? (
     <React.Fragment>
       <PartnershipHintText t={props.t} />
-      <PartnershipDescription />
     </React.Fragment>
   ) : (
-    <OperatorDescription />
+    <OperatorDescription {...props} />
   );
 };
 

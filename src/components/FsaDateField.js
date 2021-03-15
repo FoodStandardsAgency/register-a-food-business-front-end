@@ -1,4 +1,4 @@
-import { DateField } from "govuk-react";
+import { DateField } from "@slice-and-dice/govuk-react";
 import styled from "@emotion/styled";
 
 const FsaDateField = styled(DateField)`

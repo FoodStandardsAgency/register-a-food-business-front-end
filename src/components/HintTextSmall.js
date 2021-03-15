@@ -1,5 +1,8 @@
-import { HintText } from "govuk-react";
-import { FONT_SIZE, MEDIA_QUERIES } from "@govuk-react/constants";
+import { HintText } from "@slice-and-dice/govuk-react";
+import {
+  FONT_SIZE,
+  MEDIA_QUERIES
+} from "@slice-and-dice/govuk-react-constants";
 import styled from "@emotion/styled";
 
 const HintTextSmall = styled(HintText)({

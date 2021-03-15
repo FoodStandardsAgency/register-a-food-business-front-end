@@ -2,20 +2,18 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   FindAddressButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   AddressHelp,
   PostForm
 } from "../src/components";
-import { InputField } from "govuk-react";
+import { InputField } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const OperatorAddress = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -34,6 +32,7 @@ const OperatorAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_postcode_find,
               autoComplete: "postal-code"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operatorPostcodeFindComponent"
             meta={{
               touched: true,

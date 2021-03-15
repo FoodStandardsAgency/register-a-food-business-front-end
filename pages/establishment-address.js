@@ -2,20 +2,18 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   FindAddressButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Heading, InputField, Paragraph } from "govuk-react";
+import { Heading, InputField, Paragraph } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const EstablishmentAddress = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -24,7 +22,10 @@ const EstablishmentAddress = (props) => (
       {props.t("Establishment address")}
     </Heading>
 
-    <HiddenTextAccessible summary={props.t("What is an establishment?")}>
+    <HiddenTextAccessible
+      summary={props.t("What is an establishment?")}
+      {...props}
+    >
       <Paragraph mb={0}>
         {props.t(
           "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
@@ -46,6 +47,7 @@ const EstablishmentAddress = (props) => (
                 props.cumulativeFullAnswers.establishment_postcode_find,
               autoComplete: "postal-code"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="establishment_postcode_find"
             meta={{
               touched: true,

@@ -2,20 +2,23 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Fieldset, Radio, MultiChoice, Paragraph } from "govuk-react";
+import {
+  Fieldset,
+  Radio,
+  MultiChoice,
+  Paragraph
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const OpeningDaysStart = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
@@ -34,6 +37,7 @@ const OpeningDaysStart = (props) => (
           </Fieldset.Legend>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.opening_days_start)
@@ -75,6 +79,7 @@ const OpeningDaysStart = (props) => (
       </ContentItem.B_30_15>
       <HiddenTextAccessible
         summary={props.t("I don't know what days to select")}
+        {...props}
       >
         <Paragraph mb={0}>
           {props.t(
