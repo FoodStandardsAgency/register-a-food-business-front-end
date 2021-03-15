@@ -2,8 +2,7 @@ import OperatorAddressLookup from "../pages/operator-address-select";
 import { mount, shallow } from "enzyme";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18nForTests";
-import { Paragraph } from "govuk-react";
-import { HintText, Heading } from "govuk-react";
+import { HintText, Heading, Paragraph } from "@slice-and-dice/govuk-react";
 
 const testCumulativeAnswers = {
   example: "test answer"
@@ -83,13 +82,6 @@ describe("<OperatorAddressLookup />", () => {
         "Partnership address is the contact address for the partner who is the main point of contact."
       );
     });
-
-    it("renders correct hidden text", () => {
-      const hiddenText = wrapper.find(Paragraph);
-      expect(hiddenText.at(1).props().children).toBe(
-        "In a partnership, you and your partner (or partners) personally share responsibility for your food business"
-      );
-    });
   });
   describe("when registration role is not partnership", () => {
     let wrapper;
@@ -115,13 +107,6 @@ describe("<OperatorAddressLookup />", () => {
       const hintText = wrapper.find(HintText);
       expect(hintText.first().props().children).toBe(
         "Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company."
-      );
-    });
-
-    it("renders correct hidden text", () => {
-      const hiddenText = wrapper.find(Paragraph);
-      expect(hiddenText.at(1).props().children).toBe(
-        "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
       );
     });
   });

@@ -38,7 +38,7 @@ const EstablishmentAddressLookup = (props) => (
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Heading as="h2" size="MEDIUM">
-            {props.t("What is the establishment's postcode?")}
+            {props.t("Postcode you have entered")}
           </Heading>
           <dl>
             <dt>

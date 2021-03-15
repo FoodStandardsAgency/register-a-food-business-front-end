@@ -2,13 +2,11 @@ import { PageTitles } from "../components";
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const testValidatorErrors = {};
-
 const testValidatorErrorsPopulated = { test: "test" };
-
 const testAllValidationErrors = {};
+const cumulativeFullAnswers = {};
 
 describe("PageTitles", () => {
-  const cumulativeFullAnswers = {};
   it("returns the default error title when URL not recognised when validator errors is populated", () => {
     const title = PageTitles.getUrlPageTitle(
       "not/recognised",
@@ -54,10 +52,11 @@ describe("PageTitles", () => {
     const title = PageTitles.getUrlPageTitle(
       `new/council/${page}`,
       testValidatorErrorsPopulated,
-      testAllValidationErrors
+      testAllValidationErrors,
+      cumulativeFullAnswers
     );
     expect(title).toBe(
-      `Error ${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`
+      `Error Register a Food Business - What kind of food business are you registering?`
     );
   });
 
@@ -70,9 +69,7 @@ describe("PageTitles", () => {
       cumulativeFullAnswers
     );
     expect(title).toBe(
-      `${PageTitles.prefix} - ${PageTitles.pageTitles[page](
-        cumulativeFullAnswers
-      )}`
+      "Register a Food Business - What kind of food business are you registering?"
     );
   });
 
