@@ -46,6 +46,7 @@ const EstablishmentAddressType = (props) => (
           </HiddenTextAccessible>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.establishment_type)

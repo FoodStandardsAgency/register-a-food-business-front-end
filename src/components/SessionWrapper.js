@@ -33,8 +33,6 @@ const SessionWrapper = (Page) => {
     const language =
       req && req.body && req.body.language ? req.body.language : "en";
 
-    const currentPageTitle = PageTitles.getUrlPageTitle(req.url);
-
     const currentPageWithQuery = `/${req.url.split("/")[2]}`;
 
     const formAction = editModeFirstPage
@@ -75,6 +73,12 @@ const SessionWrapper = (Page) => {
         ? { ...req.session.allValidationErrors }
         : {};
     delete allValidationErrorsCleaned["undefined"];
+
+    const currentPageTitle = PageTitles.getUrlPageTitle(
+      req.url,
+      validatorErrorsCleaned,
+      allValidationErrorsCleaned
+    );
 
     /************************************************************************************
     Declaration of initialProps object, containing the above variables, plus others.

@@ -17,6 +17,9 @@ const ProcessedErrorSummary = (props) => {
         heading={props.t("There is a problem")}
         onHandleErrorClick={props.onHandleErrorClick}
         errors={errors}
+        role="alert"
+        tabIndex={-1}
+        href="#go-to-error" // dummy href to ensure screen readers detect link
       />
     );
   } else {

@@ -44,6 +44,7 @@ const OperatorCharityDetails = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_charity_name,
               autoComplete: "off"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operator_charity_name"
             meta={{
               touched: true,
@@ -62,6 +63,7 @@ const OperatorCharityDetails = (props) => (
               autoComplete: "off"
             }}
             id="operator_charity_number"
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors["operator_charity_number"])

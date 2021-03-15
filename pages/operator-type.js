@@ -47,6 +47,7 @@ const OperatorType = (props) => (
           </HiddenTextAccessible>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.operator_type)

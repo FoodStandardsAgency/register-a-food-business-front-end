@@ -41,15 +41,23 @@ const PageTitles = {
   defaultPageTitle: "Register a Food Business"
 };
 
-PageTitles.getUrlPageTitle = (url) => {
+PageTitles.getUrlPageTitle = (url, validatorErrors, allValidationErrors) => {
+  var isError =
+    Object.keys(allValidationErrors).length > 0 ||
+    Object.keys(validatorErrors).length > 0;
   var urlParts = url.split("/");
   var page = (urlParts[2] ?? urlParts[1]).split("?")[0];
-  var title = PageTitles.defaultPageTitle;
+  var title =
+    isError === true
+      ? `Error ${PageTitles.defaultPageTitle}`
+      : PageTitles.defaultPageTitle;
 
   if (page && page in PageTitles.pageTitles) {
-    title = `${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`;
+    title =
+      isError === true
+        ? `Error ${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`
+        : `${PageTitles.prefix} - ${PageTitles.pageTitles[page]}`;
   }
-
   return title;
 };
 
