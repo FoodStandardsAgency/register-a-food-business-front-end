@@ -53,6 +53,7 @@ const PrimaryPartner = (props) => (
             size="LARGE"
             isPageHeading
             style={{ marginBottom: "30px" }}
+            id="main_partnership"
           >
             {props.t("Who is the main point of contact?")}
           </Fieldset.Legend>
@@ -66,6 +67,7 @@ const PrimaryPartner = (props) => (
           <PartnershipDescription {...props} />
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.partner_is_primary)

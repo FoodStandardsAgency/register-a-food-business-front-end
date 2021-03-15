@@ -32,6 +32,7 @@ const OperatorAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_postcode_find,
               autoComplete: "postal-code"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operatorPostcodeFindComponent"
             meta={{
               touched: true,

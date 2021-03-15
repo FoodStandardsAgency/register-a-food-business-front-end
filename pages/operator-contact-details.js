@@ -42,6 +42,7 @@ const OperatorContactDetails = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_primary_number,
               autoComplete: "tel"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operator_primary_number"
             meta={{
               touched: true,
@@ -60,6 +61,7 @@ const OperatorContactDetails = (props) => (
                 props.cumulativeFullAnswers.operator_secondary_number,
               autoComplete: "off"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operator_secondary_number"
             meta={{
               touched: true,
@@ -77,6 +79,7 @@ const OperatorContactDetails = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_email,
               autoComplete: "email"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operator_email"
             hint={props.t(
               "We will use your email to keep you informed of any policy or legal changes that could affect your food business."

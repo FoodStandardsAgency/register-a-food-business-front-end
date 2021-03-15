@@ -37,6 +37,7 @@ const OpeningDaysStart = (props) => (
           </Fieldset.Legend>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.opening_days_start)

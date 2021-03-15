@@ -151,6 +151,7 @@ const EstablishmentContactDetails = (props) => (
                 : props.cumulativeFullAnswers.establishment_primary_number,
               autoComplete: "tel"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="establishment_primary_number"
             meta={{
               touched: true,
@@ -172,6 +173,7 @@ const EstablishmentContactDetails = (props) => (
                 : props.cumulativeFullAnswers.establishment_secondary_number,
               autoComplete: "off"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="establishment_secondary_number"
             meta={{
               touched: true,
@@ -194,6 +196,7 @@ const EstablishmentContactDetails = (props) => (
                 : props.cumulativeFullAnswers.establishment_email,
               autoComplete: "email"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="establishment_email"
             hint={props.t(
               "We will use your email to keep you informed of any policy or legal changes that could affect your food business."

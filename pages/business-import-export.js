@@ -41,6 +41,7 @@ const ImportExportActivities = (props) => (
       <ContentItem.B_30_15>
         <MultiChoice
           label=""
+          errorPrefix={`${props.t("Error")}: `}
           meta={{
             touched: true,
             error: props.t(props.validatorErrors.import_export_activities)
