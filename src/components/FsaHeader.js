@@ -2,8 +2,10 @@ import { TopNav, Main, PhaseBanner } from "@slice-and-dice/govuk-react";
 import asTopNavAnchor from "../hoc/asTopNavAnchor";
 import styled from "@emotion/styled";
 import CookieBanner from "./CookieBanner";
+import FsaLogoEnglish from "./FsaLogoEnglish";
+import FsaLogoWelsh from "./FsaLogoWelsh";
+import { withTranslation, i18n } from "../../i18n.js";
 import BackAndLanguageBar from "./BackAndLanguageBar";
-import { withTranslation } from "../../i18n.js";
 
 const AnchorTag = asTopNavAnchor("a");
 
@@ -18,21 +20,23 @@ const FsaTopNav = styled(TopNav)`
 `;
 
 const Company = (props) => (
-  <AnchorTag
-    href="https://www.food.gov.uk"
-    target="_blank"
-    aria-label={props.t("food.gov.uk website (opens in new window)")}
-    style={{
-      color: "rgb(255, 255, 255)",
-      textDecorationSkipInk: "none",
-      fontWeight: 700,
-      lineHeight: 1,
-      textDecoration: "none",
-      borderBottom: "1px solid transparent"
-    }}
-  >
-    {props.t("Register a Food Business")}
-  </AnchorTag>
+  <>
+    {i18n.language === "cy" ? <FsaLogoWelsh /> : <FsaLogoEnglish />}
+
+    <AnchorTag
+      style={{
+        color: "rgb(255, 255, 255)",
+        textDecorationSkipInk: "none",
+        fontWeight: 700,
+        lineHeight: 1,
+        textDecoration: "none",
+        borderBottom: "1px solid transparent",
+        marginLeft: "20px"
+      }}
+    >
+      {props.t("Register a Food Business")}
+    </AnchorTag>
+  </>
 );
 
 const StyledHeader = styled("div")({});

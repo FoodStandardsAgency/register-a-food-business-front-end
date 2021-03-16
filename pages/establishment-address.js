@@ -19,7 +19,12 @@ const EstablishmentAddress = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      {props.t("Establishment address")}
+      <label
+        className="govuk-label govuk-label--l"
+        htmlFor="establishment_postcode_find"
+      >
+        {props.t("What is the establishment's postcode?")}
+      </label>
     </Heading>
 
     <HiddenTextAccessible
@@ -48,7 +53,7 @@ const EstablishmentAddress = (props) => (
               autoComplete: "postal-code"
             }}
             errorPrefix={`${props.t("Error")}: `}
-            id="establishment_postcode_find"
+            id="establishmentPostcodeFindComponent"
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.establishment_postcode_find)

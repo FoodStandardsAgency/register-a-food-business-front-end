@@ -10,6 +10,7 @@ import {
 import { Heading, Paragraph, Link } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import styled from "@emotion/styled";
 
 const StyledDd = styled.dd`
@@ -18,12 +19,20 @@ const StyledDd = styled.dd`
 
 const OperatorAddressLookup = (props) => (
   <FsaLayout {...props}>
-    <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
+    <AddressHelp
+      role={props.cumulativeFullAnswers.registration_role}
+      header={props.t(
+        props.cumulativeFullAnswers.registration_role ===
+          operatorTypeEnum.PARTNERSHIP.key
+          ? "Which is the partnership contact's address from the list?"
+          : "Which is the operator's address from the list?"
+      )}
+    />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Heading as="h2" size="MEDIUM">
-            {props.t("Postcode")}
+            {props.t("Postcode you have entered")}
           </Heading>
           <dl>
             <dt>

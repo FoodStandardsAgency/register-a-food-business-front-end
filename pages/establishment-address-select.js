@@ -19,7 +19,7 @@ const StyledDd = styled.dd`
 const EstablishmentAddressLookup = (props) => (
   <FsaLayout {...props}>
     <Heading as="h1" size="LARGE">
-      {props.t("What is the establishment's address?")}
+      {props.t("Which is the establishment's address from the list?")}
     </Heading>
 
     <HiddenTextAccessible
@@ -38,7 +38,7 @@ const EstablishmentAddressLookup = (props) => (
       <ContentItem.B_30_15>
         <ContentItem.B_30_15>
           <Heading as="h2" size="MEDIUM">
-            {props.t("Postcode")}
+            {props.t("Postcode you have entered")}
           </Heading>
           <dl>
             <dt>
