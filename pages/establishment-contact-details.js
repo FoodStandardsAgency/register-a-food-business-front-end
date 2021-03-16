@@ -72,7 +72,7 @@ const EstablishmentContactDetails = (props) => (
     </HiddenTextAccessible>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <InsetText>
-        <ContentItem.B_30_15>
+        <Table>
           <AccessibleTableRow>
             <AccessibleRowHeader style={{ color: "grey" }}>
               {props.t(
@@ -123,7 +123,7 @@ const EstablishmentContactDetails = (props) => (
               </div>
             </AccessibleCell>
           </AccessibleTableRow>
-        </ContentItem.B_30_15>
+        </Table>
         <Button
           type="submit"
           formAction="/switches/reuseOperatorContactDetails/on/establishment-contact-details#establishment_primary_number"

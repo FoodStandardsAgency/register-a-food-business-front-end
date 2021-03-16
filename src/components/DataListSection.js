@@ -33,7 +33,7 @@ const BusinessTypeOptions = (props) => {
       )
     )
   ].forEach((type) => {
-    options.push(<option value={type}></option>);
+    options.push(<option key={type} value={type}></option>);
   });
 
   return options;
