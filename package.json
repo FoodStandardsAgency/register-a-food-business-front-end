@@ -40,7 +40,7 @@
     "@govuk-react/icon-crown": "^0.0.5",
     "@slice-and-dice/govuk-react-icons": "^0.7.3",
     "@slice-and-dice/govuk-react": "^0.7.18",
-    "@slice-and-dice/register-a-food-business-validation": "1.21.6",
+    "@slice-and-dice/register-a-food-business-validation": "1.22.2",
     "accessible-autocomplete": "^2.0.3",
     "applicationinsights": "^1.7.6",
     "applicationinsights-native-metrics": "^0.0.5",
