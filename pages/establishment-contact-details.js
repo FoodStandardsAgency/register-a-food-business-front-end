@@ -208,9 +208,7 @@ const EstablishmentContactDetails = (props) => (
             id="establishment_web_address"
             meta={{
               touched: true,
-              error: props.t(
-                props.validatorErrors["establishment_web_address"]
-              )
+              error: props.t(props.validatorErrors["establishment_web_address"])
             }}
           >
             {props.t("Web address (optional)")}

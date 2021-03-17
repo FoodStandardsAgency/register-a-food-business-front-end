@@ -748,7 +748,7 @@ const EstablishmentDetailsTable = (props) => (
           {props.t("Web address")}
         </AccessibleRowHeader>
         <AccessibleCell id="establishment_web_address">
-            {props.establishment_web_address}
+          {props.establishment_web_address}
         </AccessibleCell>
         {props.applicationCompletePage ? null : (
           <AccessibleChangeCell>
