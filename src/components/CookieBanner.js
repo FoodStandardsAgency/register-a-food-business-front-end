@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Paragraph, Button, Link } from "govuk-react";
+import { Paragraph, Button, Link } from "@slice-and-dice/govuk-react";
 import { withTranslation } from "../../i18n.js";
 
 const fontSize = "16px";

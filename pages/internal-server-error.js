@@ -1,6 +1,6 @@
 import React from "react";
 import { FsaLayout } from "../src/components";
-import { Heading, Paragraph, Button } from "govuk-react";
+import { Heading, Paragraph, Button } from "@slice-and-dice/govuk-react";
 import { withTranslation } from "../i18n";
 
 class InternalServerError extends React.Component {

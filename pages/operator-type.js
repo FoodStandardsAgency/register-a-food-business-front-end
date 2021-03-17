@@ -9,7 +9,12 @@ import {
   PostForm
 } from "../src/components";
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
-import { Radio, MultiChoice, Paragraph, Fieldset } from "govuk-react";
+import {
+  Radio,
+  MultiChoice,
+  Paragraph,
+  Fieldset
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -32,6 +37,7 @@ const OperatorType = (props) => (
           </Fieldset.Legend>
           <HiddenTextAccessible
             summary={props.t("What is a food business operator?")}
+            {...props}
           >
             <Paragraph mb={0}>
               {props.t(
@@ -41,6 +47,7 @@ const OperatorType = (props) => (
           </HiddenTextAccessible>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.operator_type)

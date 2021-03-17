@@ -8,9 +8,10 @@ import {
   AddressHelp,
   PostForm
 } from "../src/components";
-import { InputField } from "govuk-react";
+import { InputField } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const OperatorAddress = (props) => (
   <FsaLayout {...props}>
@@ -18,7 +19,16 @@ const OperatorAddress = (props) => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
+    <AddressHelp
+      role={props.cumulativeFullAnswers.registration_role}
+      header={props.t(
+        props.cumulativeFullAnswers.registration_role ===
+          operatorTypeEnum.PARTNERSHIP.key
+          ? "What is the partnership contact's postcode?"
+          : "What is the operator's postcode?"
+      )}
+      id={"operator_postcode_find"}
+    />
     <PostForm
       action="/findaddress/operator-address"
       csrfToken={props.csrfToken}
@@ -32,6 +42,7 @@ const OperatorAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_postcode_find,
               autoComplete: "postal-code"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operatorPostcodeFindComponent"
             meta={{
               touched: true,

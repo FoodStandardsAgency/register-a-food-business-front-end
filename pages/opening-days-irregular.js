@@ -14,7 +14,7 @@ import {
   HintText,
   Paragraph,
   UnorderedList
-} from "govuk-react";
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -25,7 +25,7 @@ const OtherDaysIrregular = (props) => (
       onHandleErrorClick={OnHandleErrorClick}
     />
     <Heading as="h1" size="LARGE">
-      {props.t("Opening days")}
+      {props.t("Opening periods")}
     </Heading>
 
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
@@ -37,6 +37,7 @@ const OtherDaysIrregular = (props) => (
               defaultValue: props.cumulativeFullAnswers.opening_days_irregular,
               id: "opening_days_irregular"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.opening_days_irregular)

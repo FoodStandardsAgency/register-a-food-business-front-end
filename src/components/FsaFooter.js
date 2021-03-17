@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Link, ListItem, UnorderedList } from "govuk-react";
+import { Link, ListItem, UnorderedList } from "@slice-and-dice/govuk-react";
 import { withTranslation, i18n } from "../../i18n.js";
 import React, { useState, useEffect } from "react";
 
@@ -133,11 +133,12 @@ const FsaFooter = (props) => {
                 <FooterListItem>
                   <FooterLink
                     id="languageFooter"
+                    href="#language"
                     onClick={() =>
                       i18n.changeLanguage(i18n.language === "cy" ? "en" : "cy")
                     }
                     rel="noopener noreferrer"
-                    aria-label={props.t("Change the language to English/Welsh")}
+                    aria-label={props.t("Change Language")}
                     style={{
                       color: "#454a4c",
                       textDecorationLine: "underline",
@@ -153,7 +154,7 @@ const FsaFooter = (props) => {
                     id="languageFooter"
                     href={props.t("change-language")}
                     rel="noopener noreferrer"
-                    aria-label={props.t("Change the language to English/Welsh")}
+                    aria-label={props.t("Change Language")}
                     style={{
                       color: "#454a4c",
                       textDecorationLine: "underline",
