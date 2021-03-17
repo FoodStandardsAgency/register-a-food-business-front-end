@@ -734,6 +734,36 @@ const EstablishmentDetailsTable = (props) => (
       </AccessibleTableRow>
     ) : null}
 
+    {props.establishment_web_address ||
+    props.validatorErrors["establishment_web_address"] ? (
+      <AccessibleTableRow
+        acPage={props.applicationCompletePage}
+        id="establishmentWebAddressRow"
+      >
+        <AccessibleRowHeader
+          {...applyRowHeaderStyling(
+            props.validatorErrors["establishment_web_address"]
+          )}
+        >
+          {props.t("Web address")}
+        </AccessibleRowHeader>
+        <AccessibleCell id="establishment_web_address">
+            {props.establishment_web_address}
+        </AccessibleCell>
+        {props.applicationCompletePage ? null : (
+          <AccessibleChangeCell>
+            <Link
+              id="ChangeEstablishmentWebAddressRow"
+              href="/edit/establishment-contact-details"
+              aria-label={props.t("Change establishment web address")}
+            >
+              {determineLinkText(props.establishment_web_address, props)}
+            </Link>
+          </AccessibleChangeCell>
+        )}
+      </AccessibleTableRow>
+    ) : null}
+
     {props.establishment_opening_date ||
     props.validatorErrors["establishment_opening_status"] ||
     props.validatorErrors["establishment_opening_date"] ? (

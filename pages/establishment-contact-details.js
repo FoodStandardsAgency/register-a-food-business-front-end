@@ -60,16 +60,6 @@ const EstablishmentContactDetails = (props) => (
     <Heading as="h1" size="LARGE">
       {props.t("Establishment contact details")}
     </Heading>
-    <HiddenTextAccessible
-      summary={props.t("What is an establishment?")}
-      {...props}
-    >
-      <Paragraph mb={0}>
-        {props.t(
-          "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
-        )}
-      </Paragraph>
-    </HiddenTextAccessible>
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <InsetText>
         <Table>
@@ -198,15 +188,32 @@ const EstablishmentContactDetails = (props) => (
             }}
             errorPrefix={`${props.t("Error")}: `}
             id="establishment_email"
-            hint={props.t(
-              "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
-            )}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.establishment_email)
             }}
           >
             {props.t("Establishment email address")}
+          </InputField>
+        </ContentItem.B_30_15>
+
+        <ContentItem.B_30_15>
+          <InputField
+            input={{
+              name: "establishment_web_address",
+              defaultValue: props.cumulativeFullAnswers.web_address,
+              autoComplete: "off"
+            }}
+            errorPrefix={`${props.t("Error")}: `}
+            id="establishment_web_address"
+            meta={{
+              touched: true,
+              error: props.t(
+                props.validatorErrors["establishment_web_address"]
+              )
+            }}
+          >
+            {props.t("Web address (optional)")}
           </InputField>
         </ContentItem.B_30_15>
       </ContentItem.B_30_15>
