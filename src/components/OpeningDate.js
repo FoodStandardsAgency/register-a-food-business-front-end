@@ -38,18 +38,6 @@ const OpeningDate = (props) => {
           )}
         </HintText>
       </ContentItem.B_30_15>
-      <HiddenTextAccessible
-        hiddentextindex={1}
-        id="hiddenTextEstablishment"
-        summary={props.t("What is an establishment?")}
-        {...props}
-      >
-        <Paragraph mb={0}>
-          {props.t(
-            "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
-          )}
-        </Paragraph>
-      </HiddenTextAccessible>
       {props.cumulativeFullAnswers.establishment_opening_status ===
       "Establishment due to trade" ? (
         <PostForm action={props.formAction} csrfToken={props.csrfToken}>
