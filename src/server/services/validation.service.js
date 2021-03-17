@@ -56,6 +56,7 @@ const errorMessages = {
   establishment_opening_status:
     "You must select a trading status before continuing",
   establishment_opening_date: "Enter a valid opening date",
+  establishment_web_address: "Enter a valid establishment web address",
   customer_type: "You must select a customer type before continuing",
   import_export_activities:
     "You must select a valid import or export option(s) before continuing",
