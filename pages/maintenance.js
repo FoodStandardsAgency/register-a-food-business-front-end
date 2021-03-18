@@ -1,5 +1,5 @@
 import { FsaLayout, SessionWrapper, ContentItem } from "../src/components";
-import { Heading, Paragraph } from "govuk-react";
+import { Heading, Paragraph } from "@slice-and-dice/govuk-react";
 import { withTranslation } from "../i18n";
 
 const Maintenance = (props) => (
