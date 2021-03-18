@@ -28,7 +28,7 @@ const getPathConfigByVersion = async (version) => {
     try {
       configVersionCollection = await establishConnectionToCosmos(
         "config",
-        "configVersion"
+        "version"
       );
 
       const configVersionRecord = await configVersionCollection.findOne({
