@@ -201,7 +201,7 @@ const EstablishmentContactDetails = (props) => (
           <InputField
             input={{
               name: "establishment_web_address",
-              defaultValue: props.cumulativeFullAnswers.web_address,
+              defaultValue: props.cumulativeFullAnswers.establishment_web_address,
               autoComplete: "off"
             }}
             errorPrefix={`${props.t("Error")}: `}
