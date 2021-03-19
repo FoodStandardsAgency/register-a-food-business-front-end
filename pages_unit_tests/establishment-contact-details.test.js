@@ -271,4 +271,38 @@ describe("<EstablishmentContactDetails />", () => {
       );
     });
   });
+  describe("establishment web address contact details input field", () => {
+    it("renders", () => {
+      const wrapper = mount(
+        <EstablishmentContactDetails
+          validatorErrors={testValidatorErrors}
+          cumulativeFullAnswers={testCumulativeAnswers}
+          switches={testSwitches}
+        />
+      );
+      const establishmentWebsite = wrapper.find(
+        "InputField#establishment_web_address"
+      );
+      expect(establishmentWebsite.length).toBe(1);
+    });
+
+    it("gets given the correct error prop", () => {
+      const validatorErrors = {
+        establishment_web_address: "test error"
+      };
+      const wrapper = mount(
+        <EstablishmentContactDetails
+          validatorErrors={validatorErrors}
+          cumulativeFullAnswers={testCumulativeAnswers}
+          switches={testSwitches}
+        />
+      );
+      const establishmentWebsite = wrapper.find(
+        "InputField#establishment_web_address"
+      );
+      expect(establishmentWebsite.props().meta.error).toBe(
+        "test error"
+      );
+    });
+  });
 });
