@@ -1,7 +1,7 @@
 import OperatorAddress from "../pages/operator-address";
 import { mount, shallow } from "enzyme";
-import { HintText, Heading } from "govuk-react";
-import { Paragraph } from "govuk-react";
+import { HintText, Heading } from "@slice-and-dice/govuk-react";
+import { Paragraph } from "@slice-and-dice/govuk-react";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18nForTests";
 
@@ -38,8 +38,8 @@ describe("<OperatorAddress />", () => {
 
     it("renders correct header", () => {
       const header = wrapper.find(Heading);
-      expect(header.at(1).props().children).toBe(
-        "What is the partnership contact's address?"
+      expect(header.at(1).text()).toBe(
+        "What is the partnership contact's postcode?"
       );
     });
 
@@ -47,6 +47,33 @@ describe("<OperatorAddress />", () => {
       const hintText = wrapper.find(HintText);
       expect(hintText.first().props().children).toBe(
         "Partnership address is the contact address for the partner who is the main point of contact."
+      );
+    });
+  });
+  describe("when registration role is not partnership", () => {
+    let wrapper;
+    beforeEach(() => {
+      const cumulativeAnswers = { registration_role: "TEST" };
+      wrapper = mount(
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddress
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
+      );
+    });
+
+    it("renders correct header", () => {
+      const header = wrapper.find(Heading);
+      expect(header.at(1).text()).toBe("What is the operator's postcode?");
+    });
+
+    it("renders correct hint text", () => {
+      const hintText = wrapper.find(HintText);
+      expect(hintText.first().props().children).toBe(
+        "Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company."
       );
     });
   });

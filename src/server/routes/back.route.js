@@ -18,6 +18,7 @@ const backRouter = () => {
       req.session.cumulativeFullAnswers,
       req.session.pathConfig.path
     );
+    req.session.validatorErrors = [];
     logEmitter.emit(
       "functionSuccessWith",
       "Routes",

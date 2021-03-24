@@ -9,7 +9,13 @@ import {
   PostForm
 } from "../src/components";
 import { waterSupplyEnum } from "@slice-and-dice/register-a-food-business-validation";
-import { Fieldset, Radio, MultiChoice, HintText, Paragraph } from "govuk-react";
+import {
+  Fieldset,
+  Radio,
+  MultiChoice,
+  HintText,
+  Paragraph
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -48,6 +54,7 @@ const WaterSupply = (props) => (
           </ContentItem.B_30_15>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.water_supply)

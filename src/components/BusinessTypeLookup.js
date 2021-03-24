@@ -1,5 +1,4 @@
 import React from "react";
-import dynamic from "next/dynamic";
 import ContentItem from "./ContentItem";
 import DataListSection from "./DataListSection";
 import SelectListSection from "./SelectListSection";
@@ -14,15 +13,12 @@ import {
   HintText,
   UnorderedList,
   Paragraph,
-  Label
-} from "govuk-react";
+  Label,
+  VisuallyHidden
+} from "@slice-and-dice/govuk-react";
 import ListItemConsistentSize from "./ListItemConsistentSize";
 import { withTranslation } from "../../i18n.js";
-
-// dynamic import used because Autocomplete component from AlphaGov uses the document object on import.
-// Therefore it must be imported on the client side not on the server side.
-// TODO JMB: contribute back to the AlphaGov repository to avoid or delay reliance on the document object.
-const Autocomplete = dynamic(import("accessible-autocomplete/react"));
+import Autocomplete from "accessible-autocomplete/react";
 
 const autocompleteErrorStyling = css`
   border-left: 4px solid #b10e1e;
@@ -101,6 +97,7 @@ export class BusinessTypeLookup extends React.Component {
                   >
                     {props.validatorErrors.business_type ? (
                       <ErrorText style={lineHeight}>
+                        <VisuallyHidden>{props.t("Error")}:</VisuallyHidden>
                         {props.t(props.validatorErrors.business_type)}
                       </ErrorText>
                     ) : null}

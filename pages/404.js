@@ -1,6 +1,6 @@
 import React from "react";
 import { FsaLayout } from "../src/components";
-import { Heading, Paragraph } from "govuk-react";
+import { Heading, Paragraph } from "@slice-and-dice/govuk-react";
 import { withTranslation } from "../i18n";
 
 function Custom404(props) {

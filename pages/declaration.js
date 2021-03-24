@@ -9,7 +9,12 @@ import {
   OnHandleErrorClick,
   PostForm
 } from "../src/components";
-import { Heading, Checkbox, MultiChoice, Paragraph } from "govuk-react";
+import {
+  Heading,
+  Checkbox,
+  MultiChoice,
+  Paragraph
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -77,6 +82,7 @@ class Declaration extends React.Component {
                 value="I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief."
                 error={this.props.t(this.props.validatorErrors["declaration1"])}
                 defaultChecked={this.props.cumulativeFullAnswers.declaration1}
+                id="declaration_1"
               >
                 {this.props.t(
                   "I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief."
@@ -107,7 +113,7 @@ class Declaration extends React.Component {
             </MultiChoice>
           </ContentItem.B_45_30>
 
-          <Heading as="h1" size="LARGE">
+          <Heading as="h2" size="LARGE">
             {this.props.t("Feedback")}
           </Heading>
 
@@ -129,7 +135,7 @@ class Declaration extends React.Component {
             </Checkbox>
             <Paragraph linkRenderer={NewTabLinkRenderer}>
               {this.props.t(
-                "[Details on how we use your data](/pdfs/feedback)"
+                "[How we will use your data (PDF opens in new window)](/pdfs/feedback)"
               )}
             </Paragraph>
           </ContentItem.B_45_30>

@@ -8,7 +8,13 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Radio, MultiChoice, HintText, Paragraph, Fieldset } from "govuk-react";
+import {
+  Radio,
+  MultiChoice,
+  HintText,
+  Paragraph,
+  Fieldset
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -47,6 +53,7 @@ const EstablishmentOpeningStatus = (props) => (
           </HiddenTextAccessible>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.establishment_opening_status)

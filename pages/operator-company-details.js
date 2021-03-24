@@ -4,16 +4,20 @@ import {
   ContentItem,
   ContinueButton,
   ProcessedErrorSummary,
+  OnHandleErrorClick,
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Heading, InputField } from "govuk-react";
+import { Heading, InputField } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const LimitedCompanyDetails = (props) => (
   <FsaLayout {...props}>
-    <ProcessedErrorSummary validatorErrors={props.validatorErrors} />
+    <ProcessedErrorSummary
+      validatorErrors={props.validatorErrors}
+      onHandleErrorClick={OnHandleErrorClick}
+    />
     <Heading as="h1" size="LARGE">
       {props.t("Company details")}
     </Heading>
@@ -26,6 +30,7 @@ const LimitedCompanyDetails = (props) => (
             defaultValue: props.cumulativeFullAnswers.operator_company_name,
             autoComplete: "organization"
           }}
+          errorPrefix={`${props.t("Error")}: `}
           hint={props.t(
             "The name of the registered company that is acting as the operator of this food business."
           )}
@@ -47,6 +52,7 @@ const LimitedCompanyDetails = (props) => (
               props.cumulativeFullAnswers.operator_companies_house_number,
             autoComplete: "off"
           }}
+          errorPrefix={`${props.t("Error")}: `}
           hint={props.t(
             "Every registered company will have a Companies House reference number."
           )}

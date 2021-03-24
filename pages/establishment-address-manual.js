@@ -8,7 +8,12 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Heading, InputField, Paragraph, ErrorText } from "govuk-react";
+import {
+  Heading,
+  InputField,
+  Paragraph,
+  ErrorText
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -62,6 +67,7 @@ const EstablishmentAddress = (props) => (
                 props.cumulativeFullAnswers.establishment_address_line_1,
               autoComplete: "address-line1"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="establishment_address_line_1"
             meta={{
               touched: true,
@@ -80,6 +86,7 @@ const EstablishmentAddress = (props) => (
                 props.cumulativeFullAnswers.establishment_address_line_2,
               autoComplete: "address-line2"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="establishment_address_line_2"
             meta={{
               touched: true,
@@ -98,6 +105,7 @@ const EstablishmentAddress = (props) => (
                 props.cumulativeFullAnswers.establishment_address_line_3,
               autoComplete: "address-line3"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="establishment_address_line_3"
             meta={{
               touched: true,
@@ -115,6 +123,7 @@ const EstablishmentAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.establishment_town,
               autoComplete: "locality"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="establishment_town"
             meta={{
               touched: true,
@@ -132,6 +141,7 @@ const EstablishmentAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.establishment_postcode,
               autoComplete: "postal-code"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="establishment_postcode"
             meta={{
               touched: true,

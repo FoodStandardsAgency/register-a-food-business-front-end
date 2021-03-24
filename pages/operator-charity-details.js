@@ -8,7 +8,7 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Heading, InputField, Paragraph } from "govuk-react";
+import { Heading, InputField, Paragraph } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -44,6 +44,7 @@ const OperatorCharityDetails = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_charity_name,
               autoComplete: "off"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operator_charity_name"
             meta={{
               touched: true,
@@ -62,6 +63,7 @@ const OperatorCharityDetails = (props) => (
               autoComplete: "off"
             }}
             id="operator_charity_number"
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors["operator_charity_number"])

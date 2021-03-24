@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { BREAKPOINTS, FONT_SIZE } from "@govuk-react/constants";
-import { ListItem } from "govuk-react";
+import { BREAKPOINTS, FONT_SIZE } from "@slice-and-dice/govuk-react-constants";
+import { ListItem } from "@slice-and-dice/govuk-react";
 
 const MediaQueryMobile = `@media only screen and (max-width: ${BREAKPOINTS.LARGESCREEN})`;
 

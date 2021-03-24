@@ -15,7 +15,7 @@ import {
   MultiChoice,
   Paragraph,
   HintText
-} from "govuk-react";
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -41,6 +41,7 @@ const ImportExportActivities = (props) => (
       <ContentItem.B_30_15>
         <MultiChoice
           label=""
+          errorPrefix={`${props.t("Error")}: `}
           meta={{
             touched: true,
             error: props.t(props.validatorErrors.import_export_activities)

@@ -9,7 +9,12 @@ import {
   PostForm
 } from "../src/components";
 import { establishmentTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
-import { Fieldset, Radio, MultiChoice, Paragraph } from "govuk-react";
+import {
+  Fieldset,
+  Radio,
+  MultiChoice,
+  Paragraph
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -41,6 +46,7 @@ const EstablishmentAddressType = (props) => (
           </HiddenTextAccessible>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.establishment_type)
