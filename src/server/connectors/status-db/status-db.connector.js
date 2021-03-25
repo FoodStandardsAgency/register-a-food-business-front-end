@@ -2,66 +2,10 @@
  * Updates and stores status variables
  * @module connectors/status
  */
-const mongodb = require("mongodb");
-const { statusCollectionDouble } = require("./status-db.double");
-const { CONFIGDB_URL } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
+const { establishConnectionToCosmos } = require("../cosmos.client");
 
-let client;
-let statusDB;
 let statusCollection;
-
-/**
- * Sets up a connection to the status collection in the config database.
- * The client, configDB and statusCollection variables are accessible to other functions in this connector.
- */
-const establishConnectionToMongo = async () => {
-  if (process.env.DOUBLE_MODE === "true") {
-    logEmitter.emit(
-      "doubleMode",
-      "status-db.connector",
-      "establishConnectionToMongo"
-    );
-
-    statusCollection = statusCollectionDouble;
-  } else {
-    logEmitter.emit(
-      "functionCall",
-      "status-db.connector",
-      "establishConnectionToMongo"
-    );
-
-    // If no connection or connection is not valid after downtime
-    if (!client || !client.topology || !client.topology.isConnected()) {
-      try {
-        if (client && client.topology !== undefined) {
-          client.close();
-        }
-        client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true
-        });
-      } catch (err) {
-        logEmitter.emit(
-          "functionFail",
-          "status-db.connector",
-          "establishConnectionToMongo",
-          err
-        );
-        throw err;
-      }
-    }
-
-    statusDB = client.db("register_a_food_business_status");
-    statusCollection = statusDB.collection("status");
-
-    logEmitter.emit(
-      "functionSuccess",
-      "status-db.connector",
-      "establishConnectionToMongo"
-    );
-  }
-};
 
 /**
  * Fetches all available status values
@@ -71,7 +15,7 @@ const establishConnectionToMongo = async () => {
 const getStoredStatus = async () => {
   logEmitter.emit("functionCall", "status-db.connector", "getStoredStatus");
   try {
-    await establishConnectionToMongo();
+    statusCollection = await establishConnectionToCosmos("status", "status");
     const storedStatus = await statusCollection.findOne({
       _id: "frontEndStatus"
     });
@@ -108,7 +52,7 @@ const getStoredStatus = async () => {
 const updateStoredStatus = async (statusName, newStatus) => {
   logEmitter.emit("functionCall", "status-db.connector", "updateStoredStatus");
   try {
-    await establishConnectionToMongo();
+    statusCollection = await establishConnectionToCosmos("status", "status");
     await statusCollection.updateOne(
       { _id: "frontEndStatus" },
       { $set: { [statusName]: newStatus } }
@@ -136,8 +80,4 @@ const updateStoredStatus = async (statusName, newStatus) => {
   }
 };
 
-const clearMongoConnection = () => {
-  client = undefined;
-};
-
-module.exports = { getStoredStatus, updateStoredStatus, clearMongoConnection };
+module.exports = { getStoredStatus, updateStoredStatus };

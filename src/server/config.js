@@ -5,7 +5,6 @@ module.exports = {
   SUBMIT_URL:
     process.env.SUBMIT_URL ||
     "http://localhost:4000/api/registration/createNewRegistration",
-  MONGODB_URL: process.env.MONGODB_URL,
   ADDRESS_API_URL_BASE:
     "https://ws.postcoder.com/pcw/" +
     (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
@@ -19,7 +18,7 @@ module.exports = {
   ADDRESS_API_URL_QUERY_STANDARD: "format=json&lines=3",
   API_SECRET: process.env.API_SECRET,
   CLIENT_NAME: process.env.CLIENT_NAME,
-  CONFIGDB_URL: process.env.CONFIGDB_URL,
+  COSMOSDB_URL: process.env.COSMOSDB_URL,
   REGISTRATION_DATA_VERSION: process.env.REGISTRATION_DATA_VERSION,
   MAINTENANCE_MODE_BLOCK_NEW: process.env.MAINTENANCE_MODE_BLOCK_NEW,
   MAINTENANCE_MODE_BLOCK_ALL: process.env.MAINTENANCE_MODE_BLOCK_ALL,
