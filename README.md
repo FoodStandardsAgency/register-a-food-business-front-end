@@ -26,6 +26,7 @@ The following contribution guides are available:
 * [Edit mode](./docs/contribution-guidelines/edit-mode.md)
 * [Transforming user data for the summary page](./docs/contribution-guidelines/transforming-data-summary-page.md)
 * [Transforming user data for submission](./docs/contribution-guidelines/transforming-data-submission.md)
+* [Maintenance mode](./docs/contribution-guidelines/maintenance-mode.md)
 
 #### Client-side JavaScript
 
