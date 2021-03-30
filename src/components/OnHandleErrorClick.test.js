@@ -2,7 +2,7 @@ import OnHandleErrorClick from "../components/OnHandleErrorClick";
 
 const scrollIntoView = jest.fn();
 document.getElementsByName = jest.fn(() => {
-  return [{ scrollIntoView: scrollIntoView, focus:focus }];
+  return [{ scrollIntoView: scrollIntoView, focus: focus }];
 });
 
 describe("On Handle Error Click function", () => {
