@@ -68,6 +68,10 @@ const clsMiddleware = (req, res, next) => {
 
 app.prepare().then(async () => {
   let server = express();
+  console.log(`Console log COOKIE SECRET: ${process.env.COOKIE_SECRET}`);
+  console.log(`Console log COOKIE SECURE: ${process.env.COOKIE_SECURE}`);
+  logger.info(`Logger info COOKIE SECRET: ${process.env.COOKIE_SECRET}`);
+  logger.info(`Logger info COOKIE SECURE: ${process.env.COOKIE_SECURE}`);
 
   let store = null;
   if (COSMOSDB_URL) {
