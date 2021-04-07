@@ -3,6 +3,7 @@ const appInsights = require("applicationinsights");
 const morgan = require("morgan");
 const packageJson = require("../../package.json");
 const nextI18next = require("../../i18n");
+const getRandomValues = require("get-random-values");
 
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
@@ -28,7 +29,7 @@ function byteToHex(byte) {
 //   len - must be an even number (default: 40)
 function generateId(len = 40) {
   var arr = new Uint8Array(len / 2);
-  window.crypto.getRandomValues(arr);
+  getRandomValues(arr);
   return Array.from(arr, byteToHex).join("");
 }
 const port = parseInt(process.env.PORT, 10) || 3000;
