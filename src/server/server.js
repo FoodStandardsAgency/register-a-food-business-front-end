@@ -80,7 +80,7 @@ app.prepare().then(async () => {
     store = new MongoStore({
       url: COSMOSDB_URL,
       dbName: "front-end-cache",
-      autoRemove: 'interval',
+      autoRemove: "interval",
       autoRemoveInterval: 60
     });
     logger.info("Server: successfully set up database connection");
