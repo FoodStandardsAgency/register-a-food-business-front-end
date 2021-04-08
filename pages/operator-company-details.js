@@ -54,7 +54,7 @@ const LimitedCompanyDetails = (props) => (
           }}
           errorPrefix={`${props.t("Error")}: `}
           hint={props.t(
-            "Every registered company will have a Companies House reference number."
+            "Every registered company will have a Companies House reference number which will usually look like this Eight numbers (e.g. 12345678) or two letters followed by 6 numbers (e.g. AB123456)"
           )}
           id="operator_companies_house_number"
           meta={{

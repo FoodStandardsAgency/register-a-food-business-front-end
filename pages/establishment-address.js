@@ -58,6 +58,7 @@ const EstablishmentAddress = (props) => (
               touched: true,
               error: props.t(props.validatorErrors.establishment_postcode_find)
             }}
+            hint={props.t("For example, SW1H 9EX")}
           >
             {props.t("Postcode")}
           </InputField>

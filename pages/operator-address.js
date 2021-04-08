@@ -48,6 +48,7 @@ const OperatorAddress = (props) => (
               touched: true,
               error: props.t(props.validatorErrors.operator_postcode_find)
             }}
+            hint={props.t("For example, SW1H 9EX")}
           >
             {props.t("Postcode")}
           </InputField>

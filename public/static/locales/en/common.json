@@ -125,7 +125,7 @@
   "Company details": "Company details",
   "The name of the registered company that is acting as the operator of this food business.": "The name of the registered company that is acting as the operator of this food business.",
   "Registered company name": "Registered company name",
-  "Every registered company will have a Companies House reference number.": "Every registered company will have a Companies House reference number.",
+  "Every registered company will have a Companies House reference number which will usually look like this Eight numbers (e.g. 12345678) or two letters followed by 6 numbers (e.g. AB123456)":"Every registered company will have a Companies House reference number which will usually look like this: Eight numbers (e.g. 12345678) or two letters followed by 6 numbers (e.g. AB123456)",
   "Companies House number": "Companies House number",
   "I don't know my Companies House number": "I don't know my Companies House number",
   "Every limited company has to be registered with Companies House, and will have a company reference number. You can find your company reference number by visiting the": "Every limited company has to be registered with Companies House, and will have a company reference number. You can find your company reference number by visiting the",
@@ -388,6 +388,7 @@
   "Enter answer": "Enter answer",
   "Accepted": "Accepted",
   "This service is currently undergoing maintenance.  Please try again later.": "This service is currently undergoing maintenance.  Please try again later.",
+  "For example, SW1H 9EX": "For example, SW1H 9EX",
 
   "Establishment postcode": "Establishment postcode",
   "Expected opening date": "Expected opening date",
