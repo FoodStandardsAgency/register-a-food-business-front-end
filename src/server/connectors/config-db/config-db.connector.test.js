@@ -3,9 +3,9 @@ const {
   getPathConfigByVersion,
   getLocalCouncils,
   clearPathConfigCache,
-  clearMongoConnection,
   getCouncilData
 } = require("./config-db.connector");
+const { clearCosmosConnection } = require("../cosmos.client");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
 const { configVersionCollectionDouble } = require("./config-db.double");
 
@@ -16,7 +16,7 @@ jest.mock("../../services/statusEmitter.service");
 describe("Function: getPathConfigByVersion", () => {
   let result;
   beforeEach(async () => {
-    clearMongoConnection();
+    clearCosmosConnection();
     clearPathConfigCache();
   });
   describe("given the request has not yet been run during this process (empty cache)", () => {
@@ -250,7 +250,7 @@ describe("Function: getPathConfigByVersion", () => {
 describe("Function: getLocalCouncils", () => {
   let result;
   beforeEach(async () => {
-    clearMongoConnection();
+    clearCosmosConnection();
   });
   describe("given the request throws an error", () => {
     beforeEach(async () => {
@@ -370,7 +370,7 @@ describe("Function: getLocalCouncils", () => {
 describe("Function: getCouncilData", () => {
   let result;
   beforeEach(async () => {
-    clearMongoConnection();
+    clearCosmosConnection();
   });
   describe("given the request throws an error", () => {
     beforeEach(async () => {

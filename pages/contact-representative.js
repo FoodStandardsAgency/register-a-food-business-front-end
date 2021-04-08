@@ -2,27 +2,25 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Heading, InputField, Paragraph } from "govuk-react";
+import { Heading, InputField, Paragraph } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const ContactRepresentative = (props) => {
   return (
     <FsaLayout {...props}>
-      <BackButton {...props} />
       <ProcessedErrorSummary
         validatorErrors={props.validatorErrors}
         onHandleErrorClick={OnHandleErrorClick}
       />
       <Heading as="h1" size="LARGE">
-        {props.t("Operator contact details")}
+        {props.t("Contact representative details")}
       </Heading>
       <Paragraph>
         {props.t(
@@ -31,6 +29,7 @@ const ContactRepresentative = (props) => {
       </Paragraph>
       <HiddenTextAccessible
         summary={props.t("What is a food business operator?")}
+        {...props}
       >
         <Paragraph mb={0}>
           {props.t(
@@ -49,6 +48,7 @@ const ContactRepresentative = (props) => {
                 autoComplete: "off"
               }}
               id="contact_representative_name"
+              errorPrefix={`${props.t("Error")}: `}
               meta={{
                 touched: true,
                 error: props.t(
@@ -67,6 +67,7 @@ const ContactRepresentative = (props) => {
                   props.cumulativeFullAnswers.contact_representative_role,
                 autoComplete: "off"
               }}
+              errorPrefix={`${props.t("Error")}: `}
               id="contact_representative_role"
               meta={{
                 touched: true,
@@ -86,6 +87,7 @@ const ContactRepresentative = (props) => {
                   props.cumulativeFullAnswers.contact_representative_number,
                 autoComplete: "tel"
               }}
+              errorPrefix={`${props.t("Error")}: `}
               id="contact_representative_number"
               meta={{
                 touched: true,
@@ -105,6 +107,7 @@ const ContactRepresentative = (props) => {
                   props.cumulativeFullAnswers.contact_representative_email,
                 autoComplete: "email"
               }}
+              errorPrefix={`${props.t("Error")}: `}
               id="contact_representative_email"
               hint={props.t(
                 "We will use your email to keep you informed of any policy or legal changes that could affect your food business."

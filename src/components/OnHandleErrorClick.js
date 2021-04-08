@@ -5,11 +5,13 @@ const OnHandleErrorClick = (targetName) => {
       document.getElementById(targetName) ||
       document.getElementById("establishment_opening_date");
     targetTradingDate.scrollIntoView();
+    targetTradingDate.focus({ preventScroll: true });
   } else {
     let targetElement =
       document.getElementsByName(targetName)[0] ||
       document.getElementById(targetName);
     targetElement.scrollIntoView();
+    targetElement.focus({ preventScroll: true });
   }
 };
 

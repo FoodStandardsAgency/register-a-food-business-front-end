@@ -16,7 +16,11 @@ const {
   getLocalCouncils,
   getCouncilData
 } = require("../connectors/config-db/config-db.connector");
-const { REGISTRATION_DATA_VERSION } = require("../config");
+const {
+  REGISTRATION_DATA_VERSION,
+  MAINTENANCE_MODE_BLOCK_NEW,
+  MAINTENANCE_MODE_BLOCK_ALL
+} = require("../config");
 const { Cache } = require("../services/cache.service");
 const { getBrowserInfo } = require("../services/browser-support.service");
 
@@ -31,6 +35,18 @@ const allowedCouncilsCache = Cache(
 
 const newRouter = () => {
   const router = Router();
+
+  if (MAINTENANCE_MODE_BLOCK_ALL === "true") {
+    router.get("*", (req, res) => {
+      logEmitter.emit(
+        "functionSuccessWith",
+        "Routes",
+        "/* route",
+        "Maintenance Mode (Block All Users) Active. Rendering page: /maintenance"
+      );
+      app.render(req, res, "/maintenance");
+    });
+  }
 
   router.get("/:lc/:page?", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/new route");
@@ -55,14 +71,23 @@ const newRouter = () => {
           );
           Object.assign(req.session, { country }, { lcName: local_council });
 
-          logEmitter.emit(
-            "functionSuccessWith",
-            "Routes",
-            "/new route",
-            "Session regenerated. Rendering page: /index"
-          );
-
-          app.render(req, res, `/index`);
+          if (MAINTENANCE_MODE_BLOCK_NEW === "true") {
+            logEmitter.emit(
+              "functionSuccessWith",
+              "Routes",
+              "/new route",
+              "Maintenance Mode (Block New Users) Active. Rendering page: /maintenance"
+            );
+            app.render(req, res, `/maintenance`);
+          } else {
+            logEmitter.emit(
+              "functionSuccessWith",
+              "Routes",
+              "/new route",
+              "Session regenerated. Rendering page: /index"
+            );
+            app.render(req, res, `/index`);
+          }
         });
       } else {
         // Save council to session if not yet there

@@ -274,7 +274,9 @@ describe("<ApplicationComplete />", () => {
         />
       );
       const businessGuidanceLink = wrapper.find("a#businessGuidanceLink");
-      expect(businessGuidanceLink.text()).toBe("Business support - Wales");
+      expect(businessGuidanceLink.text()).toBe(
+        "Business support - Wales(opens in a new window)"
+      );
     });
   });
   describe("When council is Northern Irish", () => {
@@ -292,9 +294,11 @@ describe("<ApplicationComplete />", () => {
       const businessGuidanceLink = wrapper.find("a#businessGuidanceLink");
       const safeCateringLink = wrapper.find("a#safeCateringLink");
       expect(businessGuidanceLink.text()).toBe(
-        "Business support - Northern Ireland"
+        "Business support - Northern Ireland(opens in a new window)"
       );
-      expect(safeCateringLink.text()).toBe("Safe catering");
+      expect(safeCateringLink.text()).toBe(
+        "Safe catering(opens in a new window)"
+      );
     });
   });
   describe("When council is English", () => {
@@ -312,7 +316,9 @@ describe("<ApplicationComplete />", () => {
       const businessSupportLink = wrapper.find(
         "a#businessSupportHelplineEnglishLink"
       );
-      expect(businessSupportLink.text()).toBe("Business support & helpline");
+      expect(businessSupportLink.text()).toBe(
+        "Business support & helpline(opens in a new window)"
+      );
     });
   });
 });

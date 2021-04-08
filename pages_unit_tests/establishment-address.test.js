@@ -31,7 +31,7 @@ describe("<EstablishmentAddress />", () => {
         </I18nextProvider>
       );
       const establishmentPostcode = wrapper.find(
-        "InputField#establishment_postcode_find"
+        "InputField#establishmentPostcodeFindComponent"
       );
       expect(establishmentPostcode.length).toBe(1);
     });
@@ -50,7 +50,7 @@ describe("<EstablishmentAddress />", () => {
         </I18nextProvider>
       );
       const establishmentPostcode = wrapper.find(
-        "InputField#establishment_postcode_find"
+        "InputField#establishmentPostcodeFindComponent"
       );
       expect(establishmentPostcode.props().meta.error).toBe("test error");
     });
@@ -67,7 +67,7 @@ describe("<EstablishmentAddress />", () => {
         />
       );
       const establishmentPostcode = wrapper.find(
-        "InputField#establishment_postcode_find"
+        "InputField#establishmentPostcodeFindComponent"
       );
       expect(establishmentPostcode.props().input.defaultValue).toBe("default");
     });

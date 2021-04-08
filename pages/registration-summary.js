@@ -2,20 +2,18 @@ import {
   FsaLayout,
   SessionWrapper,
   ContentItem,
-  BackButton,
   ContinueButton,
   SummaryTable,
   ProcessedErrorSummary,
   OnHandleErrorClick,
   PostForm
 } from "../src/components";
-import { Heading, HintText } from "govuk-react";
+import { Heading, HintText } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
 const RegistrationSummary = (props) => (
   <FsaLayout {...props}>
-    <BackButton {...props} />
     <ProcessedErrorSummary
       validatorErrors={props.allValidationErrors}
       onHandleErrorClick={OnHandleErrorClick}

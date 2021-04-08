@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Link, Button } from "govuk-react";
+import { Table, Link, Button } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import ContentItem from "./ContentItem";

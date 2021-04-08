@@ -1,8 +1,13 @@
 import { css } from "@emotion/core";
 import ContentItem from "./ContentItem";
-import { Input, Label, UnorderedList, HintText, Paragraph } from "govuk-react";
+import {
+  Input,
+  Label,
+  UnorderedList,
+  HintText,
+  Paragraph
+} from "@slice-and-dice/govuk-react";
 import { businessTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
-import { i18n } from "../../i18n";
 import { withTranslation } from "../../i18n.js";
 import ListItemConsistentSize from "./ListItemConsistentSize";
 
@@ -19,30 +24,18 @@ const style = {
   marginTop: "20px"
 };
 
-const BusinessTypeOptions = () => {
+const BusinessTypeOptions = (props) => {
   let options = [];
-  (i18n.language === "cy"
-    ? [
-        ...new Set(
-          Object.keys(businessTypeEnum).map(
-            (bt) => businessTypeEnum[bt].value.cy
-          )
-        )
-      ]
-    : [
-        ...new Set(
-          Object.keys(businessTypeEnum).map(
-            (bt) => businessTypeEnum[bt].value.en
-          )
-        )
-      ]
-  ).forEach((type) => {
-    options.push(
-      <option key={type} value={type}>
-        {type}
-      </option>
-    );
+  [
+    ...new Set(
+      Object.keys(businessTypeEnum).map((bt) =>
+        props.t(businessTypeEnum[bt].value.en)
+      )
+    )
+  ].forEach((type) => {
+    options.push(<option key={type} value={type}></option>);
   });
+
   return options;
 };
 
@@ -87,7 +80,7 @@ const DataListSection = (props) => (
           list="business-types"
         />
         <datalist id="business-types">
-          <BusinessTypeOptions />
+          <BusinessTypeOptions {...props} />
         </datalist>
       </div>
     </Label>

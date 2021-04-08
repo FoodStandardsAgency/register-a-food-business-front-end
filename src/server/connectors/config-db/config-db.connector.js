@@ -1,70 +1,14 @@
 /**
  * @module connectors/config-db
  */
-
-const mongodb = require("mongodb");
-const { configVersionCollectionDouble } = require("./config-db.double");
-const { CONFIGDB_URL } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { statusEmitter } = require("../../services/statusEmitter.service");
+const { establishConnectionToCosmos } = require("../cosmos.client");
 
-let client;
-let configDB;
 let configVersionCollection;
 let lcConfigCollection;
 
 let pathConfig = null;
-
-/**
- * Sets up a connection to the configVersion collection in the config database.
- * The client, configDB and configVersionCollection variables are accessible to other functions in this connector.
- */
-const establishConnectionToMongo = async () => {
-  if (process.env.DOUBLE_MODE === "true") {
-    logEmitter.emit(
-      "doubleMode",
-      "config-db.connector",
-      "establishConnectionToMongo"
-    );
-    configVersionCollection = configVersionCollectionDouble;
-  } else {
-    logEmitter.emit(
-      "functionCall",
-      "config-db.connector",
-      "establishConnectionToMongo"
-    );
-
-    // If no connection or connection is not valid after downtime
-    if (!client || !client.topology || !client.topology.isConnected()) {
-      try {
-        if (client && client.topology !== undefined) {
-          client.close();
-        }
-        client = await mongodb.MongoClient.connect(CONFIGDB_URL, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true
-        });
-      } catch (err) {
-        logEmitter.emit(
-          "functionFail",
-          "config-db.connector",
-          "establishConnectionToMongo",
-          err
-        );
-        throw err;
-      }
-    }
-
-    configDB = client.db("register_a_food_business_config");
-    configVersionCollection = configDB.collection("configVersion");
-    lcConfigCollection = configDB.collection("lcConfig");
-    logEmitter.emit(
-      "functionSuccess",
-      "config-db.connector",
-      "establishConnectionToMongo"
-    );
-  }
-};
 
 /**
  * Fetches the path configuration (including pages, switches etc) from the config database
@@ -82,7 +26,10 @@ const getPathConfigByVersion = async (version) => {
 
   if (pathConfig === null) {
     try {
-      await establishConnectionToMongo();
+      configVersionCollection = await establishConnectionToCosmos(
+        "config",
+        "configVersion"
+      );
 
       const configVersionRecord = await configVersionCollection.findOne({
         _id: version
@@ -149,7 +96,10 @@ const getLocalCouncils = async () => {
   logEmitter.emit("functionCall", "config-db.connector", "getLocalCouncils");
 
   try {
-    await establishConnectionToMongo();
+    lcConfigCollection = await establishConnectionToCosmos(
+      "config",
+      "localAuthorities"
+    );
 
     localCouncilUrls = await lcConfigCollection
       .find({
@@ -215,7 +165,10 @@ const getCouncilData = async (council) => {
 
   let councilRecord = null;
   try {
-    await establishConnectionToMongo();
+    lcConfigCollection = await establishConnectionToCosmos(
+      "config",
+      "localAuthorities"
+    );
 
     councilRecord = await lcConfigCollection.findOne({
       local_council_url: council
@@ -272,14 +225,9 @@ const clearPathConfigCache = () => {
   return pathConfig;
 };
 
-const clearMongoConnection = () => {
-  client = undefined;
-};
-
 module.exports = {
   getPathConfigByVersion,
   clearPathConfigCache,
-  clearMongoConnection,
   getLocalCouncils,
   getCouncilData
 };
