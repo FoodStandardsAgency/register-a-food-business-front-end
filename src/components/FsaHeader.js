@@ -2,9 +2,7 @@ import { TopNav, Main, PhaseBanner } from "@slice-and-dice/govuk-react";
 import asTopNavAnchor from "../hoc/asTopNavAnchor";
 import styled from "@emotion/styled";
 import CookieBanner from "./CookieBanner";
-import FsaLogoEnglish from "./FsaLogoEnglish";
-import FsaLogoWelsh from "./FsaLogoWelsh";
-import { withTranslation, i18n } from "../../i18n.js";
+import { withTranslation } from "../../i18n.js";
 import BackAndLanguageBar from "./BackAndLanguageBar";
 
 const AnchorTag = asTopNavAnchor("a");
@@ -21,8 +19,6 @@ const FsaTopNav = styled(TopNav)`
 
 const Company = (props) => (
   <>
-    {i18n.language === "cy" ? <FsaLogoWelsh /> : <FsaLogoEnglish />}
-
     <AnchorTag
       style={{
         color: "rgb(255, 255, 255)",
