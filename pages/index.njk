@@ -1,0 +1,80 @@
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+{% from "govuk/components/skip-link/macro.njk" import govukSkipLink %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/footer/macro.njk" import govukFooter %}
+{% from "govuk/components/paragraph/macro.njk" import govukParagraph %}
+
+
+{% block head %}
+  <!--[if !IE 8]><!-->
+    {# <link href="/govuk-frontend/govuk/all.css" rel="stylesheet"> #}
+    <link href="app.css" rel="stylesheet" type="text/css">
+  <!--<![endif]-->
+
+  {# For Internet Explorer 8, you need to compile specific stylesheet #}
+  {# see https://frontend.design-system.service.gov.uk/supporting-ie8/#support-internet-explorer-8 #}
+  <!--[if IE 8]>
+    <link href="/govuk-frontend/all-ie8.css" rel="stylesheet">
+  <![endif]-->
+
+  {# For older browsers to allow them to recognise HTML5 elements such as `<header>` #}
+  <!--[if lt IE 9]>
+    <script src="/html5-shiv/html5shiv.js"></script>
+  <![endif]-->
+{% endblock %}
+
+{# {% extends "layout.njk" %} #}
+<body>
+<script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+{% block header %}
+  {{ govukHeader ({
+    homepageUrl: "/custom-url"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {{ govukBackLink({
+    href: "#",
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ govukParagraph({
+    text: "When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least **28 days** before trading or before food operations start."
+  }) }}
+
+
+
+
+{# {% block title %}{{ __('home.title') }}{% endblock %} #}
+
+  <h1>{{ c }}</h1>
+  <p>{{ __('home.p') }}</p>
+  <p>{{ 'server.date' | t(templateData) | safe }}</p>
+  <a href="?lang=en">{{ 'lng.english' | t }}</a>
+  <a href="?lang=fr">{{ __('lng.french') }}</a>
+  <a href="?lang=de">{{ __('lng.german') }}</a>
+  <a href="?lang=ru">{{ __('lng.rus') }}</a>
+{% endblock %}
+
+{% block bodyEnd %}
+  {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
+  <script src="scripts/govuk.js" type="text/javascript"></script>
+  <script>
+    window.GOVUKFrontend.initAll()
+  </script>
+{% endblock %}
+
+
+</body>
