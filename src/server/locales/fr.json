@@ -1,8 +1,7 @@
 {
-	"home.title": "C'est la page d'accueil",
-	"home.p": "Choisissez la langue",
-	"lng.english": "Anglaise",
-	"lng.french": "Française",
-	"lng.german": "Allemande",
-	"lng.rus": "Russe"
+	"Register a food business": "Cofrestru Busnesau Bwyd",
+	"lng.french": "lng.french",
+	"lng.german": "lng.german",
+	"lng.rus": "lng.rus",
+	"home.p": "home.p"
 }

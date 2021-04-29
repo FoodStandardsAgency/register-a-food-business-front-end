@@ -5,5 +5,9 @@
 	"lng.french": "French",
 	"lng.german": "German",
 	"lng.rus": "Russian",
-	"server.date": "<small>Server time: {{ date }}</small>"
+	"server.date": "<small>Server time: {{ date }}</small>",
+	"Index test": "Index test",
+	"Register a food business": "Register a food business",
+	"When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least **28 days** before trading or before food operations start.": "When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least **28 days** before trading or before food operations start.",
+	"When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least <b>28 days</b> before trading or before food operations start.": "When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least <b>28 days</b> before trading or before food operations start."
 }

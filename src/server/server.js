@@ -2,7 +2,21 @@ const cls = require("cls-hooked");
 const appInsights = require("applicationinsights");
 const morgan = require("morgan");
 const packageJson = require("../../package.json");
-const nextI18next = require("../../i18n");
+const i18n = require('i18n');
+const nunjucks = require('nunjucks');
+var sassMiddleware = require('node-sass-middleware');
+var path = require('path');
+
+i18n.configure({
+  // setup some locales - other locales default to en silently
+  locales: ['en', 'cy'],
+  queryParameter: "lang",
+  // sets a custom cookie name to parse locale settings from
+  cookie: 'lang_cookie_name',
+
+  // where to store json files - defaults to './locales'
+  directory: __dirname + '/../../public/static/locales'
+});
 
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
@@ -35,7 +49,6 @@ const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 
 const express = require("express");
-const next = require("next");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const bodyParser = require("body-parser");
@@ -44,8 +57,7 @@ const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const csurf = require("csurf");
 
-const app = next({ dev });
-const handle = app.getRequestHandler();
+const app = module.exports = express();
 
 module.exports = { app };
 const routes = require("./routes");
@@ -66,76 +78,99 @@ const clsMiddleware = (req, res, next) => {
   });
 };
 
-app.prepare().then(async () => {
-  let server = express();
-
-  let store = null;
-  if (COSMOSDB_URL) {
-    logger.info("Server: setting session cache to database");
-    store = new MongoStore({
-      url: COSMOSDB_URL,
-      dbName: "front-end-cache"
-    });
-    logger.info("Server: successfully set up database connection");
-  } else {
-    logger.info("Server: setting session cache to memory");
-  }
-
-  let sessionOptions = {
-    secret: process.env.COOKIE_SECRET
-      ? process.env.COOKIE_SECRET
-      : generateId(),
-    resave: true,
-    saveUninitialized: false,
-    cookie: {
-      // Session cookie set to expire after 24 hours
-      maxAge: 86400000,
-      httpOnly: true
-    },
-    store: store
-  };
-
-  if (process.env.COOKIE_SECURE === "true") {
-    sessionOptions.cookie.secure = true;
-  }
-  let limiter = rateLimit({
-    max: process.env.RATE_LIMIT // limit each IP to x requests per minute
+let store = null;
+if (COSMOSDB_URL) {
+  logger.info("Server: setting session cache to database");
+  store = new MongoStore({
+    url: COSMOSDB_URL,
+    dbName: "front-end-cache"
   });
+  logger.info("Server: successfully set up database connection");
+} else {
+  logger.info("Server: setting session cache to memory");
+}
 
-  const sixtyDaysInSeconds = 5184000;
-  server.set("trust proxy", 1);
-  server.enable("trust proxy");
-  server.use(clsMiddleware);
-  server.use(limiter);
-  server.use(session(sessionOptions));
-  server.use(cookieParser());
-  server.use(bodyParser.json());
-  server.use(bodyParser.urlencoded({ extended: true }));
-  server.use(
-    helmet.hsts({
-      maxAge: sixtyDaysInSeconds
-    })
+let sessionOptions = {
+  secret: process.env.COOKIE_SECRET
+    ? process.env.COOKIE_SECRET
+    : generateId(),
+  resave: true,
+  saveUninitialized: false,
+  cookie: {
+    // Session cookie set to expire after 24 hours
+    maxAge: 86400000,
+    httpOnly: true
+  },
+  store: store
+};
+
+if (process.env.COOKIE_SECURE === "true") {
+  sessionOptions.cookie.secure = true;
+}
+let limiter = rateLimit({
+  max: process.env.RATE_LIMIT // limit each IP to x requests per minute
+});
+
+app.engine('html', nunjucks.render);
+app.set('view engine', 'njk');
+
+const sixtyDaysInSeconds = 5184000;
+app.set("trust proxy", 1);
+app.enable("trust proxy");
+app.use(clsMiddleware);
+app.use(limiter);
+app.use(session(sessionOptions));
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  helmet.hsts({
+    maxAge: sixtyDaysInSeconds
+  })
+);
+// TODO: app.use(csurf());
+
+app.use(routes());
+app.use(errorHandler);
+
+// i18n init parses req for language headers, cookies, etc.
+app.use(i18n.init);
+
+// configure nunjucks environment
+const env = nunjucks.configure(["node_modules/govuk-frontend/", 'pages', 'components'], {
+  express: app //integrate nunjucks into express
+});
+env.addGlobal("__", i18n.__);
+env.addFilter("t", i18n.__);
+
+app.use(morgan("combined", { stream: logger.stream }));
+
+app.use(
+  sassMiddleware({
+      src: __dirname + '/sass', //where the sass files are 
+      dest: __dirname + '/css', //where css should go
+      debug: true
+  })
+);
+
+app.use('/assets', express.static(path.join(__dirname, '/../../node_modules/govuk-frontend/govuk/assets')))
+app.use('/pdfs', express.static(__dirname + '/static/pdfs'))
+app.use('/css', express.static(__dirname + '/css'));
+app.use('/scripts', express.static(path.join(__dirname, '/../../scripts')));
+
+// const routes = require("routes");
+// const router = Router();
+// router.use("*", routes)
+
+// app.all("*", (req, res) => {
+//   handle(req, res);
+// });
+
+app.listen(port, (err) => {
+  if (err) throw err;
+  logger.info(
+    `App running in ${COSMOSDB_URL} ${
+      dev ? "DEVELOPMENT" : "PRODUCTION"
+    } mode on http://localhost:${port}`
   );
-  server.use(csurf());
-
-  server.use(routes());
-  server.use(errorHandler);
-
-  server.use(morgan("combined", { stream: logger.stream }));
-
-  // Wait for i18n to initialise before continuing
-  await nextI18next.initPromise;
-
-  server.all("*", (req, res) => {
-    handle(req, res);
-  });
-
-  server.listen(port, (err) => {
-    if (err) throw err;
-    logger.info(
-      `App running in ${COSMOSDB_URL} ${
-        dev ? "DEVELOPMENT" : "PRODUCTION"
-      } mode on http://localhost:${port}`
-    );
-  });
 });

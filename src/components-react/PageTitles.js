@@ -74,7 +74,7 @@ PageTitles.getUrlPageTitle = (
     Object.keys(allValidationErrors).length > 0 ||
     Object.keys(validatorErrors).length > 0;
   var urlParts = url.split("/");
-  var page = (urlParts[2] ?? urlParts[1]).split("?")[0];
+  var page = urlParts[2].split("?")[0]; // TODO : var page = (urlParts[2] ?? urlParts[1]).split("?")[0];
   var title =
     isError === true
       ? `Error ${PageTitles.defaultPageTitle}`
@@ -93,4 +93,4 @@ PageTitles.getUrlPageTitle = (
   return title;
 };
 
-export default PageTitles;
+module.exports = { PageTitles };

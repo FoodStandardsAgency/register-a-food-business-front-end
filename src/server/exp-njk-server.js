@@ -9,13 +9,13 @@ var path = require('path');
 
 i18n.configure({
   // setup some locales - other locales default to en silently
-  locales: ['en', 'fr', 'de', 'ru'],
+  locales: ['en', 'cy'],
   queryParameter: "lang",
   // sets a custom cookie name to parse locale settings from
   cookie: 'lang_cookie_name',
 
   // where to store json files - defaults to './locales'
-  directory: __dirname + '/locales'
+  directory: __dirname + '/../../public/static/locales'
 });
 
 // set default express engine and extension
@@ -30,7 +30,7 @@ app.use(i18n.init);
 
 
 // configure nunjucks environment
-const env = nunjucks.configure(["node_modules/govuk-frontend/", 'pages', 'src/components'], {
+const env = nunjucks.configure(["node_modules/govuk-frontend/", 'pages', 'components'], {
   express: app //integrate nunjucks into express
 });
 env.addGlobal("__", i18n.__);
@@ -56,10 +56,26 @@ app.use('/scripts', express.static(path.join(__dirname, '/../../scripts')));
 
 // serving homepage
 app.get('/', function (req, res) {
-  const templateData = {
-    date: new Date()
+  const props = {
+    date: new Date(),
+    language: i18n.getLocale(req),
+    csrf: "test",
+    currentPage: "index"
   };
-    res.render('index', {templateData});
+    res.render('index', {props});
+//sass.renderSync('index', {templateData})
+});
+
+app.post('/continue/index', function (req, res) {
+  const props = {
+    language: i18n.getLocale(req),
+    csrf: "test",
+    currentPage: "registration-role",
+    cumulativeFullAnswers: {
+      registration_role: "SOLETRADER"
+    }
+  };
+    res.render('registration-role', {props});
 //sass.renderSync('index', {templateData})
 });
 

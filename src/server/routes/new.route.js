@@ -1,11 +1,13 @@
 /**
- * The new router stores the local council string in the session and renders the requested page using Next.js.
+ * The new router stores the local council string in the session and renders the requested page.
  * Routes: /new/:lc, /new/:lc/:page
  * @module routers/new
  */
 const { app } = require("../server");
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
+
+const i18n = require('i18n');
 
 const { LC_CACHE_TIME_TO_LIVE } = require("../config");
 const {
@@ -23,6 +25,7 @@ const {
 } = require("../config");
 const { Cache } = require("../services/cache.service");
 const { getBrowserInfo } = require("../services/browser-support.service");
+const PropsGenerator  = require("../propsGenerator")
 
 let allowedCouncils = null;
 
@@ -78,7 +81,8 @@ const newRouter = () => {
               "/new route",
               "Maintenance Mode (Block New Users) Active. Rendering page: /maintenance"
             );
-            app.render(req, res, `/maintenance`);
+            // app.render(req, res, `/maintenance`);
+            res.render('maintenance');
           } else {
             logEmitter.emit(
               "functionSuccessWith",
@@ -86,7 +90,15 @@ const newRouter = () => {
               "/new route",
               "Session regenerated. Rendering page: /index"
             );
-            app.render(req, res, `/index`);
+
+            var props = PropsGenerator(req);
+            //app.render(req, res, `/index`);
+            // const props = {
+            //   language: i18n.getLocale(req),
+            //   csrf: "test",
+            //   currentPage: "index"
+            // };
+              res.render('index', {props});
           }
         });
       } else {
@@ -141,7 +153,13 @@ const newRouter = () => {
             `Rendering page: ${page}`
           );
 
-          app.render(req, res, `/${page}`);
+          //app.render(req, res, `/${page}`);
+          const props = {
+            language: i18n.getLocale(req),
+            csrf: "test",
+            currentPage: "index"
+          };
+            res.render(`${page}`, {props});
         }
       }
     } else {
