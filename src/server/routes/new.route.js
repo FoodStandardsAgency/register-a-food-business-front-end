@@ -7,8 +7,6 @@ const { app } = require("../server");
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 
-const i18n = require('i18n');
-
 const { LC_CACHE_TIME_TO_LIVE } = require("../config");
 const {
   transformAnswersForSummary
@@ -47,7 +45,7 @@ const newRouter = () => {
         "/* route",
         "Maintenance Mode (Block All Users) Active. Rendering page: /maintenance"
       );
-      app.render(req, res, "/maintenance");
+      res.render("maintenance");
     });
   }
 
@@ -93,12 +91,7 @@ const newRouter = () => {
 
             var props = PropsGenerator(req);
             //app.render(req, res, `/index`);
-            // const props = {
-            //   language: i18n.getLocale(req),
-            //   csrf: "test",
-            //   currentPage: "index"
-            // };
-              res.render('index', {props});
+            res.render('index', { props: PropsGenerator(req) });
           }
         });
       } else {
@@ -142,7 +135,7 @@ const newRouter = () => {
               `Rendering page: ${page}`
             );
 
-            app.render(req, res, `/${page}`);
+            res.render(`${page}`, { props: PropsGenerator(req) });
           });
           // For all other scenarios, render the requested page.
         } else {
@@ -153,13 +146,7 @@ const newRouter = () => {
             `Rendering page: ${page}`
           );
 
-          //app.render(req, res, `/${page}`);
-          const props = {
-            language: i18n.getLocale(req),
-            csrf: "test",
-            currentPage: "index"
-          };
-            res.render(`${page}`, {props});
+          res.render(`${page}`, { props: PropsGenerator(req) });
         }
       }
     } else {
@@ -169,7 +156,7 @@ const newRouter = () => {
         "/new route",
         `Unsupported council: "${req.params.lc}". Rendering error page.`
       );
-      app.render(req, res, "/unsupported-council");
+      res.render("unsupported-council");
     }
   });
 

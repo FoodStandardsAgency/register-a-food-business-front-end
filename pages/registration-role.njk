@@ -9,7 +9,7 @@
 
 {{ props.currentPageWithQuery }}
 
-{% call postForm("/continue/" + props.currentPage, props.csrf, props.language) -%}
+{% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
   
   {{ govukRadios({
   idPrefix: "registration_role",

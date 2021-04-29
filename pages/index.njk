@@ -26,7 +26,7 @@
   <h1 class="govuk-heading-m">Registering Local Authority</h1>
 <p class="govuk-body"><b>City of Cardiff Council</b> is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this Food Business Registration link to check using the location or site of your food business.</p>
 
-{% call postForm("/continue/index", props.csrf, props.language) -%}
+{% call postForm("/continue/index", props.csrfToken, props.language) -%}
   {{ govukButton({
     text: "Begin Registration",
     isStartButton: true

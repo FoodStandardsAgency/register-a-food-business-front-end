@@ -55,6 +55,7 @@ i18n.configure({
   queryParameter: "lang",
   // sets a custom cookie name to parse locale settings from
   cookie: 'lang',
+  order: ['querystring', 'cookie', 'header'],
 
   // where to store json files - defaults to './locales'
   directory: __dirname + '/../../public/static/locales'
@@ -128,11 +129,10 @@ app.use(
     maxAge: sixtyDaysInSeconds
   })
 );
-// TODO: app.use(csurf());
+app.use(csurf());
 
 // i18n init parses req for language headers, cookies, etc.
 app.use(i18n.init);
-
 
 // configure nunjucks environment
 const env = nunjucks.configure(["node_modules/govuk-frontend/", 'pages', 'components'], {
