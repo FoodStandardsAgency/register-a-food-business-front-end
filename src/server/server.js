@@ -7,17 +7,6 @@ const nunjucks = require('nunjucks');
 var sassMiddleware = require('node-sass-middleware');
 var path = require('path');
 
-i18n.configure({
-  // setup some locales - other locales default to en silently
-  locales: ['en', 'cy'],
-  queryParameter: "lang",
-  // sets a custom cookie name to parse locale settings from
-  cookie: 'lang_cookie_name',
-
-  // where to store json files - defaults to './locales'
-  directory: __dirname + '/../../public/static/locales'
-});
-
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
   process.env["APPINSIGHTS_INSTRUMENTATIONKEY"] !== ""
@@ -59,7 +48,18 @@ const csurf = require("csurf");
 
 const app = module.exports = express();
 
-module.exports = { app };
+i18n.configure({
+  // setup some locales - other locales default to en silently
+  locales: ['en', 'cy'],
+  defaultLocale: 'en',
+  queryParameter: "lang",
+  // sets a custom cookie name to parse locale settings from
+  cookie: 'lang',
+
+  // where to store json files - defaults to './locales'
+  directory: __dirname + '/../../public/static/locales'
+});
+
 const routes = require("./routes");
 const { errorHandler } = require("./middleware/errorHandler");
 
@@ -130,11 +130,9 @@ app.use(
 );
 // TODO: app.use(csurf());
 
-app.use(routes());
-app.use(errorHandler);
-
 // i18n init parses req for language headers, cookies, etc.
 app.use(i18n.init);
+
 
 // configure nunjucks environment
 const env = nunjucks.configure(["node_modules/govuk-frontend/", 'pages', 'components'], {
@@ -158,13 +156,16 @@ app.use('/pdfs', express.static(__dirname + '/static/pdfs'))
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/scripts', express.static(path.join(__dirname, '/../../scripts')));
 
-// const routes = require("routes");
-// const router = Router();
-// router.use("*", routes)
+// Set language cookie - TODO: Does i18next do this for you?  Need to check user accepted cookies?
+app.all("*", (req, res, next) => {
+  if (req && req.query && req.query.lang) {
+    res.cookie("lang", req.query.lang);
+  }
+  next();
+ });
 
-// app.all("*", (req, res) => {
-//   handle(req, res);
-// });
+ app.use(routes());
+ app.use(errorHandler);
 
 app.listen(port, (err) => {
   if (err) throw err;
