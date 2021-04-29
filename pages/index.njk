@@ -4,13 +4,12 @@
 {% from "govuk/components/header/macro.njk" import govukHeader %}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "govuk/components/footer/macro.njk" import govukFooter %}
-{% from "govuk/components/paragraph/macro.njk" import govukParagraph %}
 
 
 {% block head %}
   <!--[if !IE 8]><!-->
     {# <link href="/govuk-frontend/govuk/all.css" rel="stylesheet"> #}
-    <link href="app.css" rel="stylesheet" type="text/css">
+    <link href="/css/app.css" rel="stylesheet" type="text/css">
   <!--<![endif]-->
 
   {# For Internet Explorer 8, you need to compile specific stylesheet #}
@@ -50,9 +49,7 @@
 
 {% block content %}
 
-  {{ govukParagraph({
-    text: "When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least **28 days** before trading or before food operations start."
-  }) }}
+ 
 
 
 

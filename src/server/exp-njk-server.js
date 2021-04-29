@@ -51,7 +51,7 @@ app.use(
 // app.use('/assets', express.static('/node_modules/govuk-frontend/govuk/assets'))
 app.use('/assets', express.static(path.join(__dirname, '/../../node_modules/govuk-frontend/govuk/assets')))
 app.use('/pdfs', express.static(__dirname + '/static/pdfs'))
-app.use(express.static(__dirname + 'css'));
+app.use('/css', express.static(__dirname + '/css'));
 app.use('/scripts', express.static(path.join(__dirname, '/../../scripts')));
 
 // serving homepage
