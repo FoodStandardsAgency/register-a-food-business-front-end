@@ -23,7 +23,7 @@ const {
 } = require("../config");
 const { Cache } = require("../services/cache.service");
 const { getBrowserInfo } = require("../services/browser-support.service");
-const PropsGenerator  = require("../propsGenerator")
+const PropsGenerator = require("../propsGenerator");
 
 let allowedCouncils = null;
 
@@ -80,7 +80,7 @@ const newRouter = () => {
               "Maintenance Mode (Block New Users) Active. Rendering page: /maintenance"
             );
             // app.render(req, res, `/maintenance`);
-            res.render('maintenance');
+            res.render("maintenance");
           } else {
             logEmitter.emit(
               "functionSuccessWith",
@@ -91,7 +91,7 @@ const newRouter = () => {
 
             var props = PropsGenerator(req);
             //app.render(req, res, `/index`);
-            res.render('index', { props: PropsGenerator(req) });
+            res.render("index", { props: PropsGenerator(req) });
           }
         });
       } else {

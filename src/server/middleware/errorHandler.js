@@ -7,8 +7,8 @@ const errorHandler = (err, req, res, next) => {
   var props = {
     statusCode: res ? res.statusCode : err ? err.statusCode : null,
     err: err
-  }
-  res.render("internal-server-error", {props});
+  };
+  res.render("internal-server-error", { props });
 };
 
 module.exports = { errorHandler };
