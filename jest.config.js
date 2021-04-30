@@ -1,7 +1,6 @@
 module.exports = {
   moduleFileExtensions: ['njk', 'ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  //setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
-  //setupFiles: ["<rootDir>/jest.setup.js"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   reporters: [
     "default",
     ["jest-junit", { outputName: `./reports/TEST-${process.env.TEST_TYPE}.xml` }]

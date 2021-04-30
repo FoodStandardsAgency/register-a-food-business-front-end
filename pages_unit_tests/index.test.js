@@ -1,13 +1,20 @@
 const index = require("../pages/index.njk");
-const { render } = require("../testHelpers")
+const { axe, renderPage } = require("../testHelpers")
 
 describe("Index", () => {
   it("renders without crashing", () => {
-    const $ = render("index", "testString: 'test'");
+    const $ = renderPage("index", "language: 'en'");
     
     const $mainHeading = $('#main-heading')
     expect($mainHeading.get(0).tagName).toEqual('h1')
   });
+
+  it('passes accessibility tests', async () => {
+    const $ = renderPage('index', "language: 'en'")
+
+    const results = await axe($.html())
+    expect(results).toHaveNoViolations()
+  })
 
   // it("renders a BrowserUnsupportedBanner component if the browser is not supported", () => {
   //   const wrapper = mount(
