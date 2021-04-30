@@ -1,6 +1,6 @@
 {
   "name": "register_a_food_business_front_end",
-  "version": "11.0.0",
+  "version": "12.0.0",
   "engines": {
     "node": ">=12.9"
   },
@@ -38,8 +38,8 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@govuk-react/icon-crown": "^0.0.5",
-    "@slice-and-dice/govuk-react-icons": "^0.7.3",
     "@slice-and-dice/govuk-react": "^0.7.18",
+    "@slice-and-dice/govuk-react-icons": "^0.7.3",
     "@slice-and-dice/register-a-food-business-validation": "1.21.6",
     "accessible-autocomplete": "^2.0.3",
     "applicationinsights": "^1.7.6",
@@ -57,6 +57,7 @@
     "express-rate-limit": "^5.1.1",
     "express-session": "^1.17.0",
     "express-useragent": "^1.0.13",
+    "get-random-values": "^1.2.2",
     "helmet": "^3.22.1",
     "http-proxy-agent": "^4.0.1",
     "https-proxy-agent": "^5.0.0",
@@ -67,7 +68,7 @@
     "jsonschema": "^1.2.6",
     "moment": "2.24.0",
     "moment-locales-webpack-plugin": "^1.2.0",
-    "mongodb": "^3.5.6",
+    "mongodb": "^3.6.6",
     "morgan": "^1.10.0",
     "next": "^10.0.0",
     "next-i18next": "^7.0.1",

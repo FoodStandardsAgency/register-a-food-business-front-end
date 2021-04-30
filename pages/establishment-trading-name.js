@@ -5,10 +5,9 @@ import {
   ContinueButton,
   ProcessedErrorSummary,
   OnHandleErrorClick,
-  HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Heading, InputField, Paragraph } from "@slice-and-dice/govuk-react";
+import { Heading, InputField } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
