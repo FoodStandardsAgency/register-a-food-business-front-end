@@ -7,7 +7,6 @@
   "scripts": {
     "start-njk": "node ./src/server/exp-njk-server.js",
     "dev": "node ./src/server/server.js",
-    "build": "next build",
     "start": "NODE_ENV=production node ./src/server/server.js",
     "debug": "node --inspect src/server/server.js",
     "debug:prod": "NODE_ENV=production node --inspect src/server/server.js",
@@ -16,6 +15,7 @@
     "local:debug": "nodemon --inspect src/server/server.js",
     "local:debug:prod": "NODE_ENV=production nodemon --inspect src/server/server.js",
     "version": "NODE_ENV=production node -v",
+    "testdev": "jest index",
     "test": "jest ./src ./pages --coverage",
     "test:ci": "export TEST_TYPE=unit && jest ./src ./pages --coverage --maxWorkers=4",
     "test:watch": "jest ./src --watch",
@@ -25,7 +25,7 @@
     "test:securityallWizard": "snyk wizard",
     "test:securityWizard": "snyk wizard --severity-threshold=medium",
     "test:security": "snyk auth && snyk test --severity-threshold=medium",
-    "lint": "eslint ./src ./pages",
+    "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src ./pages",
     "format:verify": "prettier --list-different src/ pages docs/ tests/  '!./src/__tests__/__snapshots__/**/*' '!./**/*.pdf'",
     "format": "prettier --write './src/**/*' './pages/**/*' './public/static/locales/**/*' './docs/**/*' './tests/**/*' '!./**/*.pdf' '!./src/__tests__/__snapshots__/**/*'",
@@ -38,13 +38,11 @@
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
-    "@govuk-react/icon-crown": "^0.0.5",
-    "@slice-and-dice/govuk-react": "^0.7.18",
-    "@slice-and-dice/govuk-react-icons": "^0.7.3",
     "@slice-and-dice/register-a-food-business-validation": "1.21.6",
     "accessible-autocomplete": "^2.0.3",
     "applicationinsights": "^1.7.6",
     "applicationinsights-native-metrics": "^0.0.5",
+    "cheerio": "^1.0.0-rc.6",
     "cls-hooked": "^4.2.2",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
@@ -63,17 +61,16 @@
     "http-proxy-agent": "^4.0.1",
     "https-proxy-agent": "^5.0.0",
     "i18n": "^0.13.2",
-    "i18next": "^19.8.3",
+    "i18next": "^20.2.2",
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-http-backend": "^1.0.21",
+    "i18next-http-middleware": "^3.1.1",
     "jest-junit": "^10.0.0",
     "jsonschema": "^1.2.6",
     "moment": "2.24.0",
     "moment-locales-webpack-plugin": "^1.2.0",
     "mongodb": "^3.5.6",
     "morgan": "^1.10.0",
-    "next": "^10.0.0",
-    "next-i18next": "^7.0.1",
     "node-cache": "^5.1.0",
     "node-fetch": "^2.6.1",
     "node-sass": "^5.0.0",
@@ -81,13 +78,6 @@
     "nodemon": "^2.0.3",
     "nunjucks": "^3.2.3",
     "prop-types": "^15.7.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-helmet": "^6.1.0",
-    "react-hooks": "^1.0.1",
-    "react-i18next": "^11.7.3",
-    "react-is": "^16.13.1",
-    "react-markdown": "^5.0.0",
     "sass": "^1.32.11",
     "stemmer": "^1.0.5",
     "styled-components": "^5.1.0",
@@ -127,6 +117,7 @@
     "jest": "^24.9.0",
     "jest-emotion": "^9.2.11",
     "jest-next-dynamic": "^1.0.1",
+    "jest-nunjucks": "^1.0.0",
     "jsdoc": "^3.6.4",
     "prettier": "^2.0.5",
     "react-test-renderer": "^16.13.1",
@@ -212,5 +203,10 @@
       "src"
     ],
     "ext": "js json"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.njk$": "jest-nunjucks"
+    }
   }
 }
