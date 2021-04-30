@@ -8,7 +8,12 @@ import {
   PartnershipDescription,
   PostForm
 } from "../src/components";
-import { Fieldset, Radio, MultiChoice, HintText } from "govuk-react";
+import {
+  Fieldset,
+  Radio,
+  MultiChoice,
+  HintText
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -48,6 +53,7 @@ const PrimaryPartner = (props) => (
             size="LARGE"
             isPageHeading
             style={{ marginBottom: "30px" }}
+            id="main_partnership"
           >
             {props.t("Who is the main point of contact?")}
           </Fieldset.Legend>
@@ -58,9 +64,10 @@ const PrimaryPartner = (props) => (
               )}
             </HintText>
           </ContentItem.B_30_15>
-          <PartnershipDescription />
+          <PartnershipDescription {...props} />
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.partner_is_primary)

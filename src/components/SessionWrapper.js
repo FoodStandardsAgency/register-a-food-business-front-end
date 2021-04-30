@@ -30,10 +30,13 @@ const SessionWrapper = (Page) => {
 
     const csrfToken = req.csrfToken();
 
+    const cumulativeFullAnswers =
+      req && req.session && req.session.cumulativeFullAnswers
+        ? req.session.cumulativeFullAnswers
+        : {};
+
     const language =
       req && req.body && req.body.language ? req.body.language : "en";
-
-    const currentPageTitle = PageTitles.getUrlPageTitle(req.url);
 
     const currentPageWithQuery = `/${req.url.split("/")[2]}`;
 
@@ -76,6 +79,13 @@ const SessionWrapper = (Page) => {
         : {};
     delete allValidationErrorsCleaned["undefined"];
 
+    const currentPageTitle = PageTitles.getUrlPageTitle(
+      req.url,
+      validatorErrorsCleaned,
+      allValidationErrorsCleaned,
+      cumulativeFullAnswers
+    );
+
     /************************************************************************************
     Declaration of initialProps object, containing the above variables, plus others.
     This object will ultimately be passed to the Page component.
@@ -96,10 +106,7 @@ const SessionWrapper = (Page) => {
       partnerDetailsBackUrl,
       currentPage,
       currentPageTitle,
-      cumulativeFullAnswers:
-        req && req.session && req.session.cumulativeFullAnswers
-          ? req.session.cumulativeFullAnswers
-          : {},
+      cumulativeFullAnswers,
       transformedData:
         req && req.session && req.session.transformedData
           ? req.session.transformedData

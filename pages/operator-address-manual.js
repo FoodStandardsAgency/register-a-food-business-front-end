@@ -8,9 +8,10 @@ import {
   AddressHelp,
   PostForm
 } from "../src/components";
-import { InputField, ErrorText } from "govuk-react";
+import { InputField, ErrorText } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
+import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 
 const OperatorAddress = (props) => (
   <FsaLayout
@@ -25,7 +26,15 @@ const OperatorAddress = (props) => (
       validatorErrors={props.validatorErrors}
       onHandleErrorClick={OnHandleErrorClick}
     />
-    <AddressHelp role={props.cumulativeFullAnswers.registration_role} />
+    <AddressHelp
+      role={props.cumulativeFullAnswers.registration_role}
+      header={props.t(
+        props.cumulativeFullAnswers.registration_role ===
+          operatorTypeEnum.PARTNERSHIP.key
+          ? "What is the partnership contact's address?"
+          : "What is the operator's address?"
+      )}
+    />
     <PostForm action={props.formAction} csrfToken={props.csrfToken}>
       <ContentItem.B_30_15>
         {props.switches["/operator-address-none-found"] ? (
@@ -47,6 +56,7 @@ const OperatorAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_address_line_1,
               autoComplete: "address-line1"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operator_address_line_1"
             meta={{
               touched: true,
@@ -64,6 +74,7 @@ const OperatorAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_address_line_2,
               autoComplete: "address-line2"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operator_address_line_2"
             meta={{
               touched: true,
@@ -81,6 +92,7 @@ const OperatorAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_address_line_3,
               autoComplete: "address-line3"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operator_address_line_3"
             meta={{
               touched: true,
@@ -98,6 +110,7 @@ const OperatorAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_town,
               autoComplete: "locality"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operator_town"
             meta={{
               touched: true,
@@ -115,6 +128,7 @@ const OperatorAddress = (props) => (
               defaultValue: props.cumulativeFullAnswers.operator_postcode,
               autoComplete: "postal-code"
             }}
+            errorPrefix={`${props.t("Error")}: `}
             id="operator_postcode"
             meta={{
               touched: true,

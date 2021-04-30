@@ -8,7 +8,7 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Heading, InputField } from "govuk-react";
+import { Heading, InputField } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -23,6 +23,7 @@ const OperatorName = (props) => (
     </Heading>
     <HiddenTextAccessible
       summary={props.t("What is a food business operator?")}
+      {...props}
     >
       {props.t(
         "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
@@ -36,6 +37,7 @@ const OperatorName = (props) => (
             defaultValue: props.cumulativeFullAnswers.operator_first_name,
             autoComplete: "given-name"
           }}
+          errorPrefix={`${props.t("Error")}: `}
           id="operator_first_name"
           meta={{
             touched: true,
@@ -53,6 +55,7 @@ const OperatorName = (props) => (
             defaultValue: props.cumulativeFullAnswers.operator_last_name,
             autoComplete: "family-name"
           }}
+          errorPrefix={`${props.t("Error")}: `}
           id="operator_last_name"
           meta={{
             touched: true,

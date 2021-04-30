@@ -1,8 +1,8 @@
 const {
   getStoredStatus,
-  updateStoredStatus,
-  clearMongoConnection
+  updateStoredStatus
 } = require("./status-db.connector");
+const { clearCosmosConnection } = require("../cosmos.client");
 const storedStatusMock = require("../../../__mocks__/storedStatusMock.json");
 const mongodb = require("mongodb");
 const { statusCollectionDouble } = require("./status-db.double");
@@ -121,7 +121,7 @@ describe("Function: getStoredStatus", () => {
     let result1, result2;
     beforeEach(async () => {
       process.env.DOUBLE_MODE = false;
-      clearMongoConnection();
+      clearCosmosConnection();
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
@@ -152,7 +152,7 @@ describe("Function: updateStoredStatus", () => {
   let result;
 
   beforeEach(async () => {
-    clearMongoConnection();
+    clearCosmosConnection();
     mongodb.MongoClient.connect.mockImplementation(() => ({
       db: () => ({
         collection: () => ({

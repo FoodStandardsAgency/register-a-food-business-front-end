@@ -1,5 +1,6 @@
 import OperatorAddress from "../pages/operator-address-manual";
 import { mount, shallow } from "enzyme";
+import { HintText, Heading, Paragraph } from "@slice-and-dice/govuk-react";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18nForTests";
 
@@ -17,6 +18,60 @@ describe("<OperatorAddress />", () => {
   it("renders without crashing", () => {
     const wrapper = shallow(<OperatorAddress />);
     expect(wrapper.length).toBe(1);
+  });
+  describe("when registration role is partnership", () => {
+    let wrapper;
+    beforeEach(() => {
+      const cumulativeAnswers = { registration_role: "PARTNERSHIP" };
+      wrapper = mount(
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddress
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
+      );
+    });
+
+    it("renders correct header", () => {
+      const header = wrapper.find(Heading);
+      expect(header.at(1).props().children).toBe("What is the partnership contact's address?");
+    });
+
+    it("renders correct hint text", () => {
+      const hintText = wrapper.find(HintText);
+      expect(hintText.first().props().children).toBe(
+        "Partnership address is the contact address for the partner who is the main point of contact."
+      );
+    });
+  });
+  describe("when registration role is not partnership", () => {
+    let wrapper;
+    beforeEach(() => {
+      const cumulativeAnswers = { registration_role: "TEST" };
+      wrapper = mount(
+        <I18nextProvider i18n={i18n}>
+          <OperatorAddress
+            validatorErrors={testValidatorErrors}
+            cumulativeFullAnswers={cumulativeAnswers}
+            switches={testSwitches}
+          />
+        </I18nextProvider>
+      );
+    });
+
+    it("renders correct header", () => {
+      const header = wrapper.find(Heading);
+      expect(header.at(1).props().children).toBe("What is the operator's address?");
+    });
+
+    it("renders correct hint text", () => {
+      const hintText = wrapper.find(HintText);
+      expect(hintText.first().props().children).toBe(
+        "Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company."
+      );
+    });
   });
 
   describe("Operator first line input field", () => {

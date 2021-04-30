@@ -8,7 +8,7 @@ import {
   PostForm
 } from "../src/components";
 import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
-import { Radio, MultiChoice, Fieldset } from "govuk-react";
+import { Radio, MultiChoice, Fieldset } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -31,6 +31,7 @@ const RegistrationRole = (props) => (
           </Fieldset.Legend>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.registration_role)

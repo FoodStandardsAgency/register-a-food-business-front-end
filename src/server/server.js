@@ -3,6 +3,7 @@ const appInsights = require("applicationinsights");
 const morgan = require("morgan");
 const packageJson = require("../../package.json");
 const nextI18next = require("../../i18n");
+const getRandomValues = require("get-random-values");
 
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
@@ -18,7 +19,7 @@ const { logger } = require("./services/winston");
 
 require("dotenv").config();
 
-const { MONGODB_URL } = require("./config");
+const { COSMOSDB_URL } = require("./config");
 
 function byteToHex(byte) {
   return ("0" + byte.toString(16)).slice(-2);
@@ -28,7 +29,7 @@ function byteToHex(byte) {
 //   len - must be an even number (default: 40)
 function generateId(len = 40) {
   var arr = new Uint8Array(len / 2);
-  window.crypto.getRandomValues(arr);
+  getRandomValues(arr);
   return Array.from(arr, byteToHex).join("");
 }
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -70,10 +71,13 @@ app.prepare().then(async () => {
   let server = express();
 
   let store = null;
-  if (MONGODB_URL) {
+  if (COSMOSDB_URL) {
     logger.info("Server: setting session cache to database");
     store = new MongoStore({
-      url: MONGODB_URL
+      url: COSMOSDB_URL,
+      dbName: "front-end-cache",
+      autoRemove: "interval",
+      autoRemoveInterval: 60
     });
     logger.info("Server: successfully set up database connection");
   } else {
@@ -132,7 +136,7 @@ app.prepare().then(async () => {
   server.listen(port, (err) => {
     if (err) throw err;
     logger.info(
-      `App running in ${MONGODB_URL} ${
+      `App running in ${COSMOSDB_URL} ${
         dev ? "DEVELOPMENT" : "PRODUCTION"
       } mode on http://localhost:${port}`
     );

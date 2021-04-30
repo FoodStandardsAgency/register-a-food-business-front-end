@@ -8,7 +8,13 @@ import {
   HiddenTextAccessible,
   PostForm
 } from "../src/components";
-import { Radio, MultiChoice, HintText, Paragraph, Fieldset } from "govuk-react";
+import {
+  Radio,
+  MultiChoice,
+  HintText,
+  Paragraph,
+  Fieldset
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -35,7 +41,10 @@ const EstablishmentOpeningStatus = (props) => (
               )}
             </HintText>
           </ContentItem.B_30_15>
-          <HiddenTextAccessible summary={props.t("What is an establishment?")}>
+          <HiddenTextAccessible
+            summary={props.t("What is an establishment?")}
+            {...props}
+          >
             <Paragraph mb={0}>
               {props.t(
                 "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
@@ -44,6 +53,7 @@ const EstablishmentOpeningStatus = (props) => (
           </HiddenTextAccessible>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.establishment_opening_status)

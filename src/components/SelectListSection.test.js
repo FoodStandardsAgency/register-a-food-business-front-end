@@ -1,7 +1,7 @@
 import { BusinessTypeLookup } from "../components/BusinessTypeLookup";
 import SelectListSection from "../components/SelectListSection";
-import { Label } from "govuk-react";
-import { SelectInput } from "@govuk-react/select";
+import { Label } from "@slice-and-dice/govuk-react";
+import { Select as SelectInput } from "@slice-and-dice/govuk-react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils"; // ES6
 
@@ -58,10 +58,33 @@ describe("given JavaScript is disabled", () => {
           );
         });
       });
+
+      it("check that className is different with and without an error", async () => {
+        const wrapperNoErrors = wrapper.find(SelectInput).prop("className");
+
+        let wrapperWithErrors;
+
+        await act(async () => {
+          wrapperWithErrors = mount(
+            <SelectListSection
+              validatorErrors={{ business_type: "An error" }}
+              cumulativeFullAnswers
+              browser="Safari"
+            />
+          );
+        });
+        const wrapperErrors = wrapperWithErrors
+          .find(SelectInput)
+          .prop("className");
+
+        expect(wrapperNoErrors).not.toBe(wrapperErrors);
+      });
+
       it("should render Label with appropriate text", () => {
         expect(
           wrapper
             .find(Label)
+            .at(0)
             .text()
             .includes(
               "Select the most fitting business type from the suggestions"

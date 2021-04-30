@@ -9,7 +9,12 @@ import {
   PostForm
 } from "../src/components";
 import { establishmentTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
-import { Fieldset, Radio, MultiChoice, Paragraph } from "govuk-react";
+import {
+  Fieldset,
+  Radio,
+  MultiChoice,
+  Paragraph
+} from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
 import { withTranslation } from "../i18n";
 
@@ -29,7 +34,10 @@ const EstablishmentAddressType = (props) => (
           >
             {props.t("Where is this establishment located?")}
           </Fieldset.Legend>
-          <HiddenTextAccessible summary={props.t("What is an establishment?")}>
+          <HiddenTextAccessible
+            summary={props.t("What is an establishment?")}
+            {...props}
+          >
             <Paragraph mb={0}>
               {props.t(
                 "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight."
@@ -38,6 +46,7 @@ const EstablishmentAddressType = (props) => (
           </HiddenTextAccessible>
           <MultiChoice
             label=""
+            errorPrefix={`${props.t("Error")}: `}
             meta={{
               touched: true,
               error: props.t(props.validatorErrors.establishment_type)
