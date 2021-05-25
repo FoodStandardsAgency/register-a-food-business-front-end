@@ -39,6 +39,7 @@
     "@emotion/styled": "^10.0.27",
     "@govuk-react/icon-crown": "^0.0.5",
     "@slice-and-dice/govuk-react": "^0.7.18",
+    "@slice-and-dice/govuk-react-select": "^0.7.5",
     "@slice-and-dice/govuk-react-icons": "^0.7.3",
     "@slice-and-dice/register-a-food-business-validation": "1.21.6",
     "accessible-autocomplete": "^2.0.3",

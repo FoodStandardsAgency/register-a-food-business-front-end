@@ -1,5 +1,6 @@
 import { css } from "@emotion/core";
-import { Label, Select as SelectInput } from "@slice-and-dice/govuk-react";
+import { Label } from "@slice-and-dice/govuk-react";
+import { SelectInput } from "@slice-and-dice/govuk-react-select";
 import { businessTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
 import { withTranslation } from "../../i18n.js";
 
@@ -26,7 +27,7 @@ const BusinessTypeOptions = (props) => {
     )
   ].forEach((type) => {
     options.push(
-      <option key={type} value={type}>
+      <option key={type} value={type} selected={type==props.cumulativeFullAnswers.business_type ? "selected" : ""}>
         {type}
       </option>
     );
