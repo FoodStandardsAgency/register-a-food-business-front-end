@@ -27,7 +27,13 @@ const BusinessTypeOptions = (props) => {
     )
   ].forEach((type) => {
     options.push(
-      <option key={type} value={type} selected={type==props.cumulativeFullAnswers.business_type ? "selected" : ""}>
+      <option
+        key={type}
+        value={type}
+        selected={
+          type === props.cumulativeFullAnswers.business_type ? "selected" : ""
+        }
+      >
         {type}
       </option>
     );
