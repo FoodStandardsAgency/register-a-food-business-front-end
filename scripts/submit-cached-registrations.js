@@ -73,6 +73,15 @@ const checkIfRegistrationInDB = async (data, feCache) => {
             "establishment.establishment_details.establishment_primary_number":
               data.registration.establishment.establishment_details
                 .establishment_primary_number
+          },
+          {
+            "establishment.premise.establishment_postcode":
+              data.registration.establishment.premise.establishment_postcode
+          },
+          {
+            "establishment.establishment_details.establishment_opening_date":
+              data.registration.establishment.establishment_details
+                .establishment_opening_date
           }
         ]
       })
@@ -134,7 +143,9 @@ const submitCachedRegistrations = async () => {
         );
         const res = await sendRequest(data);
         logEmitter.emit("info", `${JSON.stringify(res)}`);
-        fsarns.push(res["fsa-rn"]);
+        if (res["fsa-rn"]) {
+          fsarns.push(res["fsa-rn"]);
+        }
       }
     });
 
