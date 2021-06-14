@@ -86,6 +86,9 @@ const checkIfRegistrationInDB = async (data, feCache) => {
         ]
       })
       .toArray();
+    if (foundRegistrations.length > 0) {
+      logEmitter.emit("info", `FSA-RN: ${foundRegistrations[0]["fsa-rn"]}`);
+    }
     return foundRegistrations.length > 0 ? true : false;
   } catch (err) {
     logEmitter.emit("info", `Failed to check for registration in db: ${err}`);
