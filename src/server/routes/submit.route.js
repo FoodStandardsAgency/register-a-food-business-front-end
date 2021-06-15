@@ -58,8 +58,14 @@ const submitRouter = () => {
         );
         if (controllerResponse.redirectRoute === "back") {
           req.session.submissionError = controllerResponse.submissionError;
+          req.session.save((err) => {
+            if (err) {
+              logEmitter.emit("functionFail", "Routes", "/submit route", err);
+              throw err;
+            }
           res.redirect("back");
-        }
+          });
+        } else {
         req.session.save((err) => {
           if (err) {
             logEmitter.emit("functionFail", "Routes", "/submit route", err);
@@ -70,6 +76,7 @@ const submitRouter = () => {
           );
         });
       }
+    }
     }
   });
 
