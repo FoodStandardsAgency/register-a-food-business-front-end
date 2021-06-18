@@ -51,9 +51,9 @@ const submitController = async (
         lcUrl
       );
       const response = await submit(transformedData, regDataVersion, sessionId);
-      const res = await response.json();
 
       if (response.status === 200) {
+        const res = await response.json();
         controllerResponse.redirectRoute = "/summary-confirmation";
         controllerResponse.submissionDate = res.reg_submission_date;
         controllerResponse.fsaRegistrationNumber = res["fsa-rn"];
@@ -62,9 +62,16 @@ const submitController = async (
         controllerResponse.submissionSucceeded = true;
         statusEmitter.emit("incrementCount", "submissionsSucceeded");
         statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
+      } else if(response.code = "ENOTFOUND") {
+        controllerResponse.redirectRoute = "/internal-server-error";
+        controllerResponse.submissionSucceeded = false;
+        logEmitter.emit("info", `Registration submission failed - ${JSON.stringify(response)}`)
+        statusEmitter.emit("incrementCount", "submissionsFailed");
+        statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
       } else {
         controllerResponse.submissionError = [];
         if (response.status === 400) {
+          const res = await response.json();
           for (let userMessage of res.userMessages) {
             controllerResponse.submissionError.push(userMessage.message);
           }
