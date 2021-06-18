@@ -62,10 +62,13 @@ const submitController = async (
         controllerResponse.submissionSucceeded = true;
         statusEmitter.emit("incrementCount", "submissionsSucceeded");
         statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
-      } else if(response.code = "ENOTFOUND") {
+      } else if ((response.code = "ENOTFOUND")) {
         controllerResponse.redirectRoute = "/internal-server-error";
         controllerResponse.submissionSucceeded = false;
-        logEmitter.emit("info", `Registration submission failed - ${JSON.stringify(response)}`)
+        logEmitter.emit(
+          "info",
+          `Registration submission failed - ${JSON.stringify(response)}`
+        );
         statusEmitter.emit("incrementCount", "submissionsFailed");
         statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
       } else {

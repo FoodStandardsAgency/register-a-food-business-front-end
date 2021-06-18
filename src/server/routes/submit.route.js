@@ -63,20 +63,20 @@ const submitRouter = () => {
               logEmitter.emit("functionFail", "Routes", "/submit route", err);
               throw err;
             }
-          res.redirect("back");
+            res.redirect("back");
           });
         } else {
-        req.session.save((err) => {
-          if (err) {
-            logEmitter.emit("functionFail", "Routes", "/submit route", err);
-            throw err;
-          }
-          res.redirect(
-            `/new/${req.session.council}${controllerResponse.redirectRoute}`
-          );
-        });
+          req.session.save((err) => {
+            if (err) {
+              logEmitter.emit("functionFail", "Routes", "/submit route", err);
+              throw err;
+            }
+            res.redirect(
+              `/new/${req.session.council}${controllerResponse.redirectRoute}`
+            );
+          });
+        }
       }
-    }
     }
   });
 
