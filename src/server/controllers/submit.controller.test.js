@@ -57,6 +57,19 @@ describe("Function: submitController: ", () => {
     });
   });
 
+  describe("When submut returns an ENOTFOUND error", () => {
+    beforeEach(async () => {
+      submit.mockImplementation(() => ({
+        code: "ENOTFOUND"
+      }));
+      response = await submitController(...submitArgs);
+    });
+
+    it("should set redirectRoute to internal-server-error", () => {
+      expect(response.redirectRoute).toBe("/internal-server-error");
+    });
+  });
+
   describe("When submit returns an error", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({

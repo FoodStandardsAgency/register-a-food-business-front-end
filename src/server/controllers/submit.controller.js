@@ -62,7 +62,7 @@ const submitController = async (
         controllerResponse.submissionSucceeded = true;
         statusEmitter.emit("incrementCount", "submissionsSucceeded");
         statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
-      } else if ((response.code = "ENOTFOUND")) {
+      } else if (response.code === "ENOTFOUND") {
         controllerResponse.redirectRoute = "/internal-server-error";
         controllerResponse.submissionSucceeded = false;
         logEmitter.emit(
