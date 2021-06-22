@@ -25,17 +25,33 @@ module.exports = () => {
     });
   }
 
-  if (process.env.ENVIRONMENT_DESCRIPTION && process.env.ENVIRONMENT_DESCRIPTION === "production") {
-    router.all("https://prod-register-a-food-business.azurewebsites.net/new/:council/:page", (req, res) => {
-        res.redirect(`https://register.food.gov.uk/new/${req.params.council}/${req.params.page}`)
-    });
-  };
+  if (
+    process.env.ENVIRONMENT_DESCRIPTION &&
+    process.env.ENVIRONMENT_DESCRIPTION === "production"
+  ) {
+    router.all(
+      "https://prod-register-a-food-business.azurewebsites.net/new/:council/:page",
+      (req, res) => {
+        res.redirect(
+          `https://register.food.gov.uk/new/${req.params.council}/${req.params.page}`
+        );
+      }
+    );
+  }
 
-  if (process.env.ENVIRONMENT_DESCRIPTION && process.env.ENVIRONMENT_DESCRIPTION === ("onboarding" || "staging")) {
-    router.all(`https://${process.env.ENVIRONMENT_DESCRIPTION}-register-a-food-business.azurewebsites.net/new/:council/:page`, (req, res) => {
-      res.redirect(`https://${process.env.ENVIRONMENT_DESCRIPTION}-register.food.gov.uk/new/${req.params.council}/${req.params.page}`)
-    });
-  };
+  if (
+    process.env.ENVIRONMENT_DESCRIPTION &&
+    process.env.ENVIRONMENT_DESCRIPTION === ("onboarding" || "staging")
+  ) {
+    router.all(
+      `https://${process.env.ENVIRONMENT_DESCRIPTION}-register-a-food-business.azurewebsites.net/new/:council/:page`,
+      (req, res) => {
+        res.redirect(
+          `https://${process.env.ENVIRONMENT_DESCRIPTION}-register.food.gov.uk/new/${req.params.council}/${req.params.page}`
+        );
+      }
+    );
+  }
 
   router.use("/back", backRouter());
   router.use("/cleansession", cleansessionRouter());
