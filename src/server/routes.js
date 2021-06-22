@@ -30,11 +30,9 @@ module.exports = () => {
     process.env.ENVIRONMENT_DESCRIPTION === "production"
   ) {
     router.all(
-      "https://prod-register-a-food-business.azurewebsites.net/new/:council/:page",
+      "/prod-register-a-food-business.azurewebsites.net",
       (req, res) => {
-        res.redirect(
-          `https://register.food.gov.uk/new/${req.params.council}/${req.params.page}`
-        );
+        res.redirect(301, `https://register.food.gov.uk${req.path}`);
       }
     );
   }
@@ -44,10 +42,11 @@ module.exports = () => {
     process.env.ENVIRONMENT_DESCRIPTION === ("onboarding" || "staging")
   ) {
     router.all(
-      `https://${process.env.ENVIRONMENT_DESCRIPTION}-register-a-food-business.azurewebsites.net/new/:council/:page`,
+      `/${process.env.ENVIRONMENT_DESCRIPTION}-register-a-food-business.azurewebsites.net`,
       (req, res) => {
         res.redirect(
-          `https://${process.env.ENVIRONMENT_DESCRIPTION}-register.food.gov.uk/new/${req.params.council}/${req.params.page}`
+          301,
+          `https://${process.env.ENVIRONMENT_DESCRIPTION}-register.food.gov.uk${req.path}`
         );
       }
     );
