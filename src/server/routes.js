@@ -25,33 +25,6 @@ module.exports = () => {
     });
   }
 
-  if (
-    process.env.ENVIRONMENT_DESCRIPTION &&
-    process.env.ENVIRONMENT_DESCRIPTION === "production"
-  ) {
-    router.all(
-      "prod-register-a-food-business.azurewebsites.net/*",
-      (req, res) => {
-        res.redirect(301, `https://register.food.gov.uk${req.path}`);
-      }
-    );
-  }
-
-  if (
-    process.env.ENVIRONMENT_DESCRIPTION &&
-    process.env.ENVIRONMENT_DESCRIPTION === ("onboarding" || "staging")
-  ) {
-    router.all(
-      `${process.env.ENVIRONMENT_DESCRIPTION}-register-a-food-business.azurewebsites.net/*`,
-      (req, res) => {
-        res.redirect(
-          301,
-          `https://${process.env.ENVIRONMENT_DESCRIPTION}-register.food.gov.uk${req.path}`
-        );
-      }
-    );
-  }
-
   router.use("/back", backRouter());
   router.use("/cleansession", cleansessionRouter());
   router.use("/continue", continueRouter());
