@@ -30,7 +30,7 @@ module.exports = () => {
     process.env.ENVIRONMENT_DESCRIPTION === "production"
   ) {
     router.all(
-      "/prod-register-a-food-business.azurewebsites.net",
+      "prod-register-a-food-business.azurewebsites.net/*",
       (req, res) => {
         res.redirect(301, `https://register.food.gov.uk${req.path}`);
       }
@@ -42,7 +42,7 @@ module.exports = () => {
     process.env.ENVIRONMENT_DESCRIPTION === ("onboarding" || "staging")
   ) {
     router.all(
-      `/${process.env.ENVIRONMENT_DESCRIPTION}-register-a-food-business.azurewebsites.net`,
+      `${process.env.ENVIRONMENT_DESCRIPTION}-register-a-food-business.azurewebsites.net/*`,
       (req, res) => {
         res.redirect(
           301,
