@@ -8,6 +8,11 @@
 # production
 .next
 
+# temporary data files
+session-data/*
+# exception
+!session-data/README.md
+
 # misc
 .DS_Store
 .env
