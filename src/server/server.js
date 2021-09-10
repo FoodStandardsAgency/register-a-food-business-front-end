@@ -78,7 +78,7 @@ app.prepare().then(async () => {
       dbName: "front-end-cache",
       ttl: 21 * 24 * 60 * 60 * 1000, //milliseconds
       autoRemove: "interval",
-      autoRemoveInterval: 10 //minutes
+      autoRemoveInterval: 30240 //minutes
     });
     logger.info("Server: successfully set up database connection");
   } else {
