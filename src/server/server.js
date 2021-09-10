@@ -76,8 +76,9 @@ app.prepare().then(async () => {
     store = new MongoStore({
       url: COSMOSDB_URL,
       dbName: "front-end-cache",
+      ttl: 21 * 24 * 60 * 60 * 1000, //milliseconds
       autoRemove: "interval",
-      autoRemoveInterval: 302040 //21 days in minutes
+      autoRemoveInterval: 10 //minutes
     });
     logger.info("Server: successfully set up database connection");
   } else {
