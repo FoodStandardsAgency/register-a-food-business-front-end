@@ -69,18 +69,8 @@ const clsMiddleware = (req, res, next) => {
 
 const forceDomain = (req, res, next) => {
   let host = req.hostname;
-  switch (host) {
-    case "prod-register-a-food-business.azurewebsites.net":
-      res.redirect(301, `https://register.food.gov.uk${req.path}`);
-      break;
-    case "staging-register-a-food-business.azurewebsites.net":
-      res.redirect(301, `https://staging-register.food.gov.uk${req.path}`);
-      break;
-    case "onboarding-register-a-food-business.azurewebsites.net":
-      res.redirect(301, `https://onboarding-register.food.gov.uk${req.path}`);
-      break;
-    default:
-      break;
+  if (process.env.FOOD_GOV_URL && host.includes("azurewebsites")) {
+    res.redirect(301, `${process.env.FOOD_GOV_URL}${req.path}`);
   }
 
   return next();
