@@ -67,6 +67,15 @@ const clsMiddleware = (req, res, next) => {
   });
 };
 
+const forceDomain = (req, res, next) => {
+  let host = req.hostname;
+  if (process.env.FOOD_GOV_URL && host.includes("azurewebsites")) {
+    res.redirect(301, `${process.env.FOOD_GOV_URL}${req.path}`);
+  }
+
+  return next();
+};
+
 app.prepare().then(async () => {
   let server = express();
 
@@ -110,6 +119,7 @@ app.prepare().then(async () => {
   server.set("trust proxy", 1);
   server.enable("trust proxy");
   server.use(clsMiddleware);
+  server.use(forceDomain);
   server.use(limiter);
   server.use(session(sessionOptions));
   server.use(cookieParser());
