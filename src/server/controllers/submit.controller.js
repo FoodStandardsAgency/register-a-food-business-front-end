@@ -51,41 +51,51 @@ const submitController = async (
         lcUrl
       );
       const response = await submit(transformedData, regDataVersion, sessionId);
-
-      if (response.status === 200) {
+      if (response.status) {
         const res = await response.json();
-        controllerResponse.redirectRoute = "/summary-confirmation";
-        controllerResponse.submissionDate = res.reg_submission_date;
-        controllerResponse.fsaRegistrationNumber = res["fsa-rn"];
-        controllerResponse.emailFbo = res.email_fbo;
-        controllerResponse.lcConfig = res.lc_config;
-        controllerResponse.submissionSucceeded = true;
-        statusEmitter.emit("incrementCount", "submissionsSucceeded");
-        statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
-      } else if (response.code === "ENOTFOUND") {
+        if (response.status === 200 && res["fsa-rn"]) {
+          controllerResponse.redirectRoute = "/summary-confirmation";
+          controllerResponse.submissionDate = res.reg_submission_date;
+          controllerResponse.fsaRegistrationNumber = res["fsa-rn"];
+          controllerResponse.emailFbo = res.email_fbo;
+          controllerResponse.lcConfig = res.lc_config;
+          controllerResponse.submissionSucceeded = true;
+          statusEmitter.emit("incrementCount", "submissionsSucceeded");
+          statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
+        } else {
+          controllerResponse.submissionError = [];
+          if (response.status === 400) {
+            for (let userMessage of res.userMessages) {
+              controllerResponse.submissionError.push(userMessage.message);
+            }
+            controllerResponse.redirectRoute = "/registration-summary";
+            logEmitter.emit(
+              "info",
+              `Registration submission failed - validation error - ${response.status + ": " + response.statusText}`
+            );
+          }
+          if (controllerResponse.submissionError.length < 1) {
+            controllerResponse.submissionError.push(
+              response.status + ": " + response.statusText
+            );
+            controllerResponse.redirectRoute = "/internal-server-error";
+            logEmitter.emit(
+              "info",
+              `Registration submission failed - ${response.status + ": " + response.statusText}`
+            );
+          }
+          
+          controllerResponse.submissionSucceeded = false;
+          statusEmitter.emit("incrementCount", "submissionsFailed");
+          statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
+        }
+      } else {
         controllerResponse.redirectRoute = "/internal-server-error";
         controllerResponse.submissionSucceeded = false;
         logEmitter.emit(
           "info",
-          `Registration submission failed - ${JSON.stringify(response)}`
+          `Registration submission failed - no status code returned - ${JSON.stringify(response)}`
         );
-        statusEmitter.emit("incrementCount", "submissionsFailed");
-        statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
-      } else {
-        controllerResponse.submissionError = [];
-        if (response.status === 400) {
-          const res = await response.json();
-          for (let userMessage of res.userMessages) {
-            controllerResponse.submissionError.push(userMessage.message);
-          }
-        }
-        if (controllerResponse.submissionError.length < 1) {
-          controllerResponse.submissionError.push(
-            response.status + ": " + response.statusText
-          );
-        }
-        controllerResponse.redirectRoute = "back";
-        controllerResponse.submissionSucceeded = false;
         statusEmitter.emit("incrementCount", "submissionsFailed");
         statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
       }

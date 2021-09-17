@@ -11,72 +11,79 @@ const submitController = require("../controllers/submit.controller");
 const submitRouter = () => {
   const router = Router();
 
-  router.get("", async (req, res) => {
+  router.get("", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/submit route");
 
-    if (req.session.submissionSucceeded) {
-      logEmitter.emit(
-        "functionSuccessWith",
-        "Routes",
-        "/submit route",
-        "/summary-confirmation"
-      );
-      res.redirect(`/new/${req.session.council}/summary-confirmation`);
-    } else {
-      if (!req.session.submissionPending) {
-        req.session.submissionPending = true;
-        req.session.save((err) => {
-          if (err) {
-            logEmitter.emit("functionFail", "Routes", "/submit route", err);
-            throw err;
-          }
-        });
-
-        const controllerResponse = await submitController(
-          req.session.council,
-          req.session.cumulativeFullAnswers,
-          req.session.addressLookups,
-          req.session.pathConfig._id,
-          req.session.id,
-          req.session.language
-        );
-
-        req.session.submissionDate = controllerResponse.submissionDate;
-        req.session.fsaRegistrationNumber =
-          controllerResponse.fsaRegistrationNumber;
-        req.session.emailFbo = controllerResponse.emailFbo;
-        req.session.lcConfig = controllerResponse.lcConfig;
-        req.session.submissionSucceeded =
-          controllerResponse.submissionSucceeded;
-        req.session.submissionPending = false;
-
+    try {
+      if (req.session.submissionSucceeded) {
         logEmitter.emit(
           "functionSuccessWith",
           "Routes",
           "/submit route",
-          controllerResponse.redirectRoute
+          "/summary-confirmation"
         );
-        if (controllerResponse.redirectRoute === "back") {
-          req.session.submissionError = controllerResponse.submissionError;
+        res.redirect(`/new/${req.session.council}/summary-confirmation`);
+      } else {
+        if (!req.session.submissionPending) {
+          req.session.submissionPending = true;
           req.session.save((err) => {
             if (err) {
               logEmitter.emit("functionFail", "Routes", "/submit route", err);
               throw err;
             }
-            res.redirect("back");
           });
-        } else {
-          req.session.save((err) => {
-            if (err) {
-              logEmitter.emit("functionFail", "Routes", "/submit route", err);
-              throw err;
-            }
-            res.redirect(
-              `/new/${req.session.council}${controllerResponse.redirectRoute}`
-            );
-          });
+
+          const controllerResponse = await submitController(
+            req.session.council,
+            req.session.cumulativeFullAnswers,
+            req.session.addressLookups,
+            req.session.pathConfig._id,
+            req.session.id,
+            req.session.language
+          );
+
+          req.session.submissionDate = controllerResponse.submissionDate;
+          req.session.fsaRegistrationNumber =
+            controllerResponse.fsaRegistrationNumber;
+          req.session.emailFbo = controllerResponse.emailFbo;
+          req.session.lcConfig = controllerResponse.lcConfig;
+          req.session.submissionSucceeded =
+            controllerResponse.submissionSucceeded;
+          req.session.submissionPending = false;
+
+          logEmitter.emit(
+            "functionSuccessWith",
+            "Routes",
+            "/submit route",
+            controllerResponse.redirectRoute
+          );
+          if (controllerResponse.redirectRoute === "/registration-summary") {
+            req.session.submissionError = controllerResponse.submissionError;
+            req.session.save((err) => {
+              if (err) {
+                logEmitter.emit("functionFail", "Routes", "/submit route", err);
+                throw err;
+              }
+              res.redirect("/registration-summary");
+            });
+          } else {
+            req.session.save((err) => {
+              req.session.submissionError = controllerResponse.submissionError;
+              if (err) {
+                logEmitter.emit("functionFail", "Routes", "/submit route", err);
+                throw err;
+              }
+              res.redirect(
+                `/new/${req.session.council}${controllerResponse.redirectRoute}`
+              );
+            });
+          }
         }
       }
+    } catch (err) {
+      logEmitter.emit("functionFail", "Routes", "/submit route", err);
+      res.redirect("/internal-server-error");
+      next(err)
     }
   });
 

@@ -57,7 +57,20 @@ describe("Function: submitController: ", () => {
     });
   });
 
-  describe("When submut returns an ENOTFOUND error", () => {
+  describe("When submit returns an no status", () => {
+    beforeEach(async () => {
+      submit.mockImplementation(() => ({
+        code: "ENOTFOUND"
+      }));
+      response = await submitController(...submitArgs);
+    });
+
+    it("should set redirectRoute to internal-server-error", () => {
+      expect(response.redirectRoute).toBe("/internal-server-error");
+    });
+  });
+
+  describe("When submit returns an no status", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({
         code: "ENOTFOUND"
@@ -74,13 +87,19 @@ describe("Function: submitController: ", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({
         status: 500,
+        statusText: "internal-server-error",
         json: () => ({ reg_submission_date: "10 Jul 2018" })
       }));
       response = await submitController(...submitArgs);
     });
 
-    it("Should set redirectRoute to back", () => {
-      expect(response.redirectRoute).toBe("back");
+    it("should set redirectRoute to internal-server-error", () => {
+      expect(response.redirectRoute).toBe("/internal-server-error");
+    });
+
+    it("Should have caught correct error messages", () => {
+      expect(response.submissionError.length).toBe(1);
+      expect(response.submissionError[0]).toBe("500: internal-server-error");
     });
   });
 
@@ -93,13 +112,27 @@ describe("Function: submitController: ", () => {
       response = await submitController(...submitArgs);
     });
 
-    it("Should set redirectRoute to back", () => {
-      expect(response.redirectRoute).toBe("back");
+    it("Should set redirectRoute to registration-summary", () => {
+      expect(response.redirectRoute).toBe("/registration-summary");
     });
 
     it("Should have caught correct error messages", () => {
       expect(response.submissionError.length).toBe(1);
       expect(response.submissionError[0]).toBe("Error 123");
+    });
+  });
+
+  describe("When submit returns a 200 but no fsa-rn", () => {
+    beforeEach(async () => {
+      submit.mockImplementation(() => ({
+        status: 200,
+        json: () => ({})
+      }));
+      response = await submitController(...submitArgs);
+    });
+
+    it("Should set redirectRoute to interal-server-error", () => {
+      expect(response.redirectRoute).toBe("/internal-server-error");
     });
   });
 
