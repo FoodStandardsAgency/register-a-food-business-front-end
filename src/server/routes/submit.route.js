@@ -11,10 +11,9 @@ const submitController = require("../controllers/submit.controller");
 const submitRouter = () => {
   const router = Router();
 
-  router.get("", async (req, res, next) => {
+  router.get("", async (req, res) => {
     logEmitter.emit("functionCall", "Routes", "/submit route");
 
-    try {
       if (req.session.submissionSucceeded) {
         logEmitter.emit(
           "functionSuccessWith",
@@ -80,11 +79,6 @@ const submitRouter = () => {
           }
         }
       }
-    } catch (err) {
-      logEmitter.emit("functionFail", "Routes", "/submit route", err);
-      res.redirect("/internal-server-error");
-      next(err);
-    }
   });
 
   return router;

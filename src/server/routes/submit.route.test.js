@@ -92,12 +92,12 @@ describe("Submit route: ", () => {
       });
     });
 
-    describe("When redirect route is back", () => {
+    describe("When redirect route is registration-summary", () => {
       let res, req;
 
       beforeEach(() => {
         submitController.mockImplementation(() => ({
-          redirectRoute: "back",
+          redirectRoute: "/registration-summary",
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
           emailFbo: { recipient: "fbo@example.com", success: true },
@@ -127,7 +127,7 @@ describe("Submit route: ", () => {
       });
 
       it("Should set redirect to response", () => {
-        expect(res.redirect).toBeCalledWith("back");
+        expect(res.redirect).toBeCalledWith("/registration-summary");
       });
     });
 
