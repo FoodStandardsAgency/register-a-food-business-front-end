@@ -71,7 +71,9 @@ const submitController = async (
             controllerResponse.redirectRoute = "/registration-summary";
             logEmitter.emit(
               "info",
-              `Registration submission failed - validation error - ${response.status + ": " + response.statusText}`
+              `Registration submission failed - validation error - ${
+                response.status + ": " + response.statusText
+              }`
             );
           }
           if (controllerResponse.submissionError.length < 1) {
@@ -81,10 +83,12 @@ const submitController = async (
             controllerResponse.redirectRoute = "/internal-server-error";
             logEmitter.emit(
               "info",
-              `Registration submission failed - ${response.status + ": " + response.statusText}`
+              `Registration submission failed - ${
+                response.status + ": " + response.statusText
+              }`
             );
           }
-          
+
           controllerResponse.submissionSucceeded = false;
           statusEmitter.emit("incrementCount", "submissionsFailed");
           statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
@@ -94,7 +98,9 @@ const submitController = async (
         controllerResponse.submissionSucceeded = false;
         logEmitter.emit(
           "info",
-          `Registration submission failed - no status code returned - ${JSON.stringify(response)}`
+          `Registration submission failed - no status code returned - ${JSON.stringify(
+            response
+          )}`
         );
         statusEmitter.emit("incrementCount", "submissionsFailed");
         statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);

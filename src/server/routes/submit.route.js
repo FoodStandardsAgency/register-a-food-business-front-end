@@ -83,7 +83,7 @@ const submitRouter = () => {
     } catch (err) {
       logEmitter.emit("functionFail", "Routes", "/submit route", err);
       res.redirect("/internal-server-error");
-      next(err)
+      next(err);
     }
   });
 
