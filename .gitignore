@@ -9,9 +9,9 @@
 .next
 
 # temporary data files
-session-data/*
+production-data/*
 # exception
-!session-data/README.md
+!production-data/README.md
 
 # misc
 .DS_Store
