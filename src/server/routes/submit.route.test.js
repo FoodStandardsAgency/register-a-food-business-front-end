@@ -29,7 +29,7 @@ describe("Submit route: ", () => {
   });
 
   describe("GET to /submit", () => {
-    describe("When redirect route is not back", () => {
+    describe("When redirect route is not registration summary", () => {
       let res, req;
 
       beforeEach(() => {
@@ -38,7 +38,10 @@ describe("Submit route: ", () => {
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
           emailFbo: { recipient: "fbo@example.com", success: true },
-          lcConfig: lcConfig
+          lcConfig: lcConfig,
+          allValidationErrors: {
+            some: "error"
+          }
         }));
 
         handler = router.get.mock.calls[0][1];
@@ -51,7 +54,7 @@ describe("Submit route: ", () => {
             language: "en",
             council: "cardiff",
             addressLookups: ["1"],
-            pathConfig: { _id: "1.0.0" },
+            pathConfig: { _id: "1.0.0", path: { some: "path" } },
             id: "S3S510NI6",
             save: (cb) => {
               cb();
@@ -73,7 +76,10 @@ describe("Submit route: ", () => {
           ["1"],
           "1.0.0",
           "S3S510NI6",
-          "en"
+          "en",
+          {
+            some: "path"
+          }
         );
       });
 
@@ -92,16 +98,14 @@ describe("Submit route: ", () => {
       });
     });
 
-    describe("When redirect route is back", () => {
+    describe("When redirect route is registration-summary", () => {
       let res, req;
 
       beforeEach(() => {
         submitController.mockImplementation(() => ({
-          redirectRoute: "back",
-          submissionDate: "date",
-          fsaRegistrationNumber: "12345678",
-          emailFbo: { recipient: "fbo@example.com", success: true },
-          lcConfig: lcConfig
+          redirectRoute: "/registration-summary",
+          submissionError: { some: "error" },
+          allValidationErrors: { some: "errors" }
         }));
 
         handler = router.get.mock.calls[0][1];
@@ -114,7 +118,7 @@ describe("Submit route: ", () => {
             language: "en",
             council: "cardiff",
             addressLookups: ["1"],
-            pathConfig: { _id: "1.0.0" },
+            pathConfig: { _id: "1.0.0", path: { some: "path" } },
             save: (cb) => {
               cb();
             }
@@ -126,8 +130,15 @@ describe("Submit route: ", () => {
         handler(req, res);
       });
 
+      it("Should update session with submissionError and allValidationErrors", () => {
+        expect(req.session.submissionError).toEqual({ some: "error" });
+        expect(req.session.allValidationErrors).toEqual({ some: "errors" });
+      });
+
       it("Should set redirect to response", () => {
-        expect(res.redirect).toBeCalledWith("back");
+        expect(res.redirect).toBeCalledWith(
+          "/new/cardiff/registration-summary"
+        );
       });
     });
 
