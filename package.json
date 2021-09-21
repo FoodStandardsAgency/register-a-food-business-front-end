@@ -1,6 +1,6 @@
 {
   "name": "register_a_food_business_front_end",
-  "version": "11.0.0",
+  "version": "13.0.0",
   "engines": {
     "node": ">=12.9"
   },
@@ -57,6 +57,7 @@
     "express-session": "^1.17.0",
     "express-useragent": "^1.0.13",
     "govuk-frontend": "^3.11.0",
+    "get-random-values": "^1.2.2",
     "helmet": "^3.22.1",
     "http-proxy-agent": "^4.0.1",
     "https-proxy-agent": "^5.0.0",
@@ -69,7 +70,7 @@
     "jsonschema": "^1.2.6",
     "moment": "2.24.0",
     "moment-locales-webpack-plugin": "^1.2.0",
-    "mongodb": "^3.5.6",
+    "mongodb": "^3.6.6",
     "morgan": "^1.10.0",
     "node-cache": "^5.1.0",
     "node-fetch": "^2.6.1",
@@ -132,9 +133,7 @@
   "babel": {
     "env": {
       "test": {
-        "plugins": [
-          "dynamic-import-node"
-        ]
+        "plugins": ["dynamic-import-node"]
       }
     },
     "plugins": [
@@ -182,27 +181,16 @@
         2,
         {
           "props": true,
-          "ignorePropertyModificationsFor": [
-            "req"
-          ]
+          "ignorePropertyModificationsFor": ["req"]
         }
       ]
     },
-    "plugins": [
-      "emotion",
-      "prettier"
-    ]
+    "plugins": ["emotion", "prettier"]
   },
   "nodemonConfig": {
     "verbose": true,
-    "ignore": [
-      "node_modules",
-      ".next"
-    ],
-    "watch": [
-      "pages",
-      "src"
-    ],
+    "ignore": ["node_modules", ".next"],
+    "watch": ["pages", "src"],
     "ext": "js json"
   },
   "jest": {

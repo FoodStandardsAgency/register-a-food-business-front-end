@@ -6,6 +6,7 @@ const i18n = require("i18n");
 const nunjucks = require("nunjucks");
 var sassMiddleware = require("node-sass-middleware");
 var path = require("path");
+const getRandomValues = require("get-random-values");
 
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
@@ -31,7 +32,7 @@ function byteToHex(byte) {
 //   len - must be an even number (default: 40)
 function generateId(len = 40) {
   var arr = new Uint8Array(len / 2);
-  window.crypto.getRandomValues(arr);
+  getRandomValues(arr);
   return Array.from(arr, byteToHex).join("");
 }
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -58,7 +59,7 @@ i18n.configure({
   order: ["querystring", "cookie", "header"],
 
   // where to store json files - defaults to './locales'
-  directory: __dirname + "/../../public/static/locales"
+  directory: __dirname + "/../../public/static/locales",
 });
 
 const routes = require("./routes");
@@ -84,12 +85,21 @@ if (COSMOSDB_URL) {
   logger.info("Server: setting session cache to database");
   store = new MongoStore({
     url: COSMOSDB_URL,
-    dbName: "front-end-cache"
+    dbName: "front-end-cache",
   });
   logger.info("Server: successfully set up database connection");
 } else {
   logger.info("Server: setting session cache to memory");
 }
+
+const forceDomain = (req, res, next) => {
+  let host = req.hostname;
+  if (process.env.FOOD_GOV_URL && host.includes("azurewebsites")) {
+    res.redirect(301, `${process.env.FOOD_GOV_URL}${req.path}`);
+  }
+
+  return next();
+};
 
 let sessionOptions = {
   secret: process.env.COOKIE_SECRET ? process.env.COOKIE_SECRET : generateId(),
@@ -98,16 +108,16 @@ let sessionOptions = {
   cookie: {
     // Session cookie set to expire after 24 hours
     maxAge: 86400000,
-    httpOnly: true
+    httpOnly: true,
   },
-  store: store
+  store: store,
 };
 
 if (process.env.COOKIE_SECURE === "true") {
   sessionOptions.cookie.secure = true;
 }
 let limiter = rateLimit({
-  max: process.env.RATE_LIMIT // limit each IP to x requests per minute
+  max: process.env.RATE_LIMIT, // limit each IP to x requests per minute
 });
 
 app.engine("html", nunjucks.render);
@@ -117,6 +127,7 @@ const sixtyDaysInSeconds = 5184000;
 app.set("trust proxy", 1);
 app.enable("trust proxy");
 app.use(clsMiddleware);
+app.use(forceDomain);
 app.use(limiter);
 app.use(session(sessionOptions));
 app.use(cookieParser());
@@ -124,7 +135,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   helmet.hsts({
-    maxAge: sixtyDaysInSeconds
+    maxAge: sixtyDaysInSeconds,
   })
 );
 app.use(csurf());
@@ -136,7 +147,7 @@ app.use(i18n.init);
 const env = nunjucks.configure(
   ["node_modules/govuk-frontend/", "pages", "components"],
   {
-    express: app //integrate nunjucks into express
+    express: app, //integrate nunjucks into express
   }
 );
 env.addGlobal("__", i18n.__);
@@ -148,7 +159,7 @@ app.use(
   sassMiddleware({
     src: __dirname + "/sass", //where the sass files are
     dest: __dirname + "/css", //where css should go
-    debug: true
+    debug: true,
   })
 );
 
