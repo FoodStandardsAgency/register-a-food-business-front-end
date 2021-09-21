@@ -72,20 +72,7 @@ describe("Function: submitController: ", () => {
     });
   });
 
-  describe("When submit returns an no status", () => {
-    beforeEach(async () => {
-      submit.mockImplementation(() => ({
-        code: "ENOTFOUND"
-      }));
-      response = await submitController(...submitArgs);
-    });
-
-    it("should set redirectRoute to internal-server-error", () => {
-      expect(response.redirectRoute).toBe("/internal-server-error");
-    });
-  });
-
-  describe("When submit returns an no status", () => {
+  describe("When submit returns a no status", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({
         code: "ENOTFOUND"
