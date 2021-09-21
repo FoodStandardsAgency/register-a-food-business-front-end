@@ -8,6 +8,8 @@ const { statusEmitter } = require("../services/statusEmitter.service");
 const {
   transformAnswersForSubmit
 } = require("../services/data-transform.service");
+const { editPath } = require("../services/path.service");
+const { revalidateAllAnswers } = require("../services/validation.service");
 
 /**
  * Returns an object containing the redirect route (e.g. the final page), the submission date,
@@ -27,7 +29,8 @@ const submitController = async (
   addressLookups,
   regDataVersion,
   sessionId,
-  language
+  language,
+  pathFromSession
 ) => {
   const controllerResponse = {
     redirectRoute: null,
@@ -65,10 +68,23 @@ const submitController = async (
         } else {
           controllerResponse.submissionError = [];
           if (response.status === 400) {
+            controllerResponse.allValidationErrors = {};
             for (let userMessage of res.userMessages) {
               controllerResponse.submissionError.push(userMessage.message);
             }
             controllerResponse.redirectRoute = "/registration-summary";
+            const path = editPath(
+              submissionData,
+              controllerResponse.redirectRoute,
+              pathFromSession
+            );
+            const activePath = Object.keys(path).filter((entry) => {
+              return path[entry].on === true && entry !== "/declaration";
+            });
+            Object.assign(
+              controllerResponse.allValidationErrors,
+              revalidateAllAnswers(activePath, submissionData).errors
+            );
             logEmitter.emit(
               "info",
               `Registration submission failed - validation error - ${
