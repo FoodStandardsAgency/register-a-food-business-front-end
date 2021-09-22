@@ -1,0 +1,56 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+{% extends "layout.njk" %}
+
+{% block content %}
+
+{{ props.currentPageWithQuery }}
+
+{% call postForm("/findaddress/" + props.currentPage, props.csrfToken, props.language) -%}
+
+{% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+    {% call govukFieldset({
+    legend: {
+        text: "What is the partnership contact's postcode?",
+        classes: "govuk-fieldset__legend--l",
+        isPageHeading: true
+    }
+    }) %}
+    {% endcall %}
+{% else %}
+    {% call govukFieldset({
+        legend: {
+            text: "What is the operator's postcode?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+        }
+        }) %}
+        {% endcall %}
+{% endif %}
+
+{{ govukDetails({
+  summaryText: "What is a food business operator?",
+  text: "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
+}) }}
+
+{{ govukInput({
+    "label": {
+      "text": "Postcode"
+    },
+    "id": "operator_postcode_find",
+    "name": "operator_postcode_find",
+    "classes": "govuk-label--l",
+    "autoComplete": "postal-code"
+}) }}
+
+ {{ govukButton({
+    text: "Find address"
+  }) }}  
+
+{% endcall %}
+
+{% endblock %}
