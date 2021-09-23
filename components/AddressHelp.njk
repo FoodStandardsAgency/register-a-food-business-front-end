@@ -1,0 +1,20 @@
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+
+{% macro addressHelpForm(role) %}
+
+{% if role === "PARTNERSHIP" %}
+    {% call govukInsetText({
+        text: "Partnership address is the contact address for the partner who is the main point of contact.",
+        classes: "govuk-fieldset__legend--l"
+    }) %}
+    {% endcall %}
+{% else %}
+    {% call govukInsetText({
+            text: "Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company.",
+            classes: "govuk-fieldset__legend--l"
+        }) %}
+    {% endcall %}
+{% endif %}
+
+{% endmacro %}

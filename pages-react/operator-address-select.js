@@ -5,7 +5,7 @@ import {
   ContinueButton,
   SelectWithHeader,
   AddressHelp,
-  PostForm
+  PostForm,
 } from "../src/components";
 import { Heading, Paragraph, Link } from "@slice-and-dice/govuk-react";
 import PropTypes from "prop-types";
@@ -65,7 +65,7 @@ const OperatorAddressLookup = (props) => (
               id: "operatorAddressDropdown",
               name: "operator_address_selected",
               defaultValue:
-                props.cumulativeFullAnswers.operator_address_selected || 0
+                props.cumulativeFullAnswers.operator_address_selected || 0,
             }}
           >
             {props.addressLookups.operator_postcode_find ? (
@@ -106,5 +106,5 @@ export default withTranslation("common")(SessionWrapper(OperatorAddressLookup));
 OperatorAddressLookup.propTypes = {
   cumulativeFullAnswers: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
-  )
+  ),
 };
