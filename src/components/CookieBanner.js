@@ -136,7 +136,7 @@ const CookieBanner = (props) => (
           </BannerLink>
           <BannerLink
             id="cookiePolicy"
-            href={props.t("cookies-link")}
+            href="https://www.food.gov.uk/cookie-policy"
             target="_blank"
             aria-label={props.t("read our cookie policy (opens in new window)")}
           >
