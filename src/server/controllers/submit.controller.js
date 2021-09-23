@@ -8,6 +8,8 @@ const { statusEmitter } = require("../services/statusEmitter.service");
 const {
   transformAnswersForSubmit
 } = require("../services/data-transform.service");
+const { editPath } = require("../services/path.service");
+const { revalidateAllAnswers } = require("../services/validation.service");
 
 /**
  * Returns an object containing the redirect route (e.g. the final page), the submission date,
@@ -27,7 +29,8 @@ const submitController = async (
   addressLookups,
   regDataVersion,
   sessionId,
-  language
+  language,
+  pathFromSession
 ) => {
   const controllerResponse = {
     redirectRoute: null,
@@ -51,31 +54,70 @@ const submitController = async (
         lcUrl
       );
       const response = await submit(transformedData, regDataVersion, sessionId);
-      const res = await response.json();
-
-      if (response.status === 200) {
-        controllerResponse.redirectRoute = "/summary-confirmation";
-        controllerResponse.submissionDate = res.reg_submission_date;
-        controllerResponse.fsaRegistrationNumber = res["fsa-rn"];
-        controllerResponse.emailFbo = res.email_fbo;
-        controllerResponse.lcConfig = res.lc_config;
-        controllerResponse.submissionSucceeded = true;
-        statusEmitter.emit("incrementCount", "submissionsSucceeded");
-        statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
-      } else {
-        controllerResponse.submissionError = [];
-        if (response.status === 400) {
-          for (let userMessage of res.userMessages) {
-            controllerResponse.submissionError.push(userMessage.message);
+      if (response.status) {
+        const res = await response.json();
+        if (response.status === 200 && res["fsa-rn"]) {
+          controllerResponse.redirectRoute = "/summary-confirmation";
+          controllerResponse.submissionDate = res.reg_submission_date;
+          controllerResponse.fsaRegistrationNumber = res["fsa-rn"];
+          controllerResponse.emailFbo = res.email_fbo;
+          controllerResponse.lcConfig = res.lc_config;
+          controllerResponse.submissionSucceeded = true;
+          statusEmitter.emit("incrementCount", "submissionsSucceeded");
+          statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
+        } else {
+          controllerResponse.submissionError = [];
+          if (response.status === 400) {
+            controllerResponse.allValidationErrors = {};
+            for (let userMessage of res.userMessages) {
+              controllerResponse.submissionError.push(userMessage.message);
+            }
+            controllerResponse.redirectRoute = "/registration-summary";
+            const path = editPath(
+              submissionData,
+              controllerResponse.redirectRoute,
+              pathFromSession
+            );
+            const activePath = Object.keys(path).filter((entry) => {
+              return path[entry].on === true && entry !== "/declaration";
+            });
+            Object.assign(
+              controllerResponse.allValidationErrors,
+              revalidateAllAnswers(activePath, submissionData).errors
+            );
+            logEmitter.emit(
+              "info",
+              `Registration submission failed - validation error - ${
+                response.status + ": " + response.statusText
+              }`
+            );
           }
+          if (controllerResponse.submissionError.length < 1) {
+            controllerResponse.submissionError.push(
+              response.status + ": " + response.statusText
+            );
+            controllerResponse.redirectRoute = "/internal-server-error";
+            logEmitter.emit(
+              "info",
+              `Registration submission failed - ${
+                response.status + ": " + response.statusText
+              }`
+            );
+          }
+
+          controllerResponse.submissionSucceeded = false;
+          statusEmitter.emit("incrementCount", "submissionsFailed");
+          statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
         }
-        if (controllerResponse.submissionError.length < 1) {
-          controllerResponse.submissionError.push(
-            response.status + ": " + response.statusText
-          );
-        }
-        controllerResponse.redirectRoute = "back";
+      } else {
+        controllerResponse.redirectRoute = "/internal-server-error";
         controllerResponse.submissionSucceeded = false;
+        logEmitter.emit(
+          "info",
+          `Registration submission failed - no status code returned - ${JSON.stringify(
+            response
+          )}`
+        );
         statusEmitter.emit("incrementCount", "submissionsFailed");
         statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
       }

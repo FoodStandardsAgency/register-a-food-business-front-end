@@ -1,6 +1,6 @@
 {
   "name": "register_a_food_business_front_end",
-  "version": "13.0.0",
+  "version": "13.1.0",
   "engines": {
     "node": ">=12.9"
   },
@@ -24,6 +24,7 @@
     "test:securityallWizard": "snyk wizard",
     "test:securityWizard": "snyk wizard --severity-threshold=medium",
     "test:security": "snyk auth && snyk test --severity-threshold=medium",
+    "submit-cached-registrations": "node ./scripts/submit-cached-registrations",
     "lint": "eslint ./src ./pages",
     "lint:fix": "eslint --fix ./src ./pages",
     "format:verify": "prettier --list-different src/ pages docs/ tests/  '!./src/__tests__/__snapshots__/**/*' '!./**/*.pdf'",
