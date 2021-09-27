@@ -4,6 +4,10 @@
 {% extends "layout.njk" %}
 {% block content %}
 
+{{ props.currentPageWithQuery }}
+
+{% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+
 <h1 id="main-heading" class="govuk-heading-l">Trading name</h1>
 
 {{ govukInput({
