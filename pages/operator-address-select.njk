@@ -74,7 +74,21 @@
   ]
 }) }}
 
-<h2 class= "gov-uk-heading-2">Select an address for  {{props.cumulativeFullAnswers.operator_postcode_find}}</h2>
+<h2 class= "govuk-heading-2">Select an address for  {{props.cumulativeFullAnswers.operator_postcode_find}}</h2>
+
+{{ govukSelect({
+  id: "operatorAddressDropdown",
+  name: "operator_address_selected",
+  label: {
+    text: ""
+  },
+  items: [
+    {
+      value: props.addressLookups.operator_postcode_find
+
+    }
+  ]
+}) }}
 
   {{ govukButton({
       text: "Continue"
