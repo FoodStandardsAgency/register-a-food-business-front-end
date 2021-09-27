@@ -1,0 +1,31 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+
+{% extends "layout.njk" %}
+{% block content %}
+
+{{ props.currentPageWithQuery }}
+
+{% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+
+<h1 id="main-heading" class="govuk-heading-l">Trading name</h1>
+
+{{ govukInput({
+  label: {
+    text: "What is the trading name of this establishment?"
+  },
+  hint: {
+    text: "A trading name is what your customers will call your business."
+  },
+  id: "establishment_trading_name",
+  name: "establishment_trading_name"
+}) }}
+
+ {{ govukButton({
+      text: "Continue"
+    }) }}
+    
+{% endcall %}
+
+{%endblock%}
