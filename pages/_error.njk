@@ -1,0 +1,14 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% extends "layout.njk" %}
+{% block content %}
+
+<h1 id="main-heading" class="govuk-heading-l">{{ __("Page Not Found")}}</h1>
+
+<p class="govuk-body">Please contact your Local Council if you need to speak to someone about your food business registration urgently.</p>
+
+{{ govukButton({
+      text: "Return to previous page",
+      href: "/new/council"
+    }) }}
+
+{% endblock %}
