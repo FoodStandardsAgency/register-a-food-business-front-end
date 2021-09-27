@@ -5,6 +5,10 @@
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/select/macro.njk" import govukSelect %}
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+
+
 
 {% extends "layout.njk" %}
 
@@ -39,18 +43,42 @@
 
   {% endcall%}
 
-  {% call govukFieldset({
-    legend: {
-      text: "Postcode you have entered",
-      classes: "govuk-fieldset__legend--l"
+
+{# {% set editModeFirstPage %}
+{% if props.editModeFirstPage %}
+{{ `/new/${{props.council}}/operator-address?edit=operator-address` }}  
+{% else %}
+{{ `/new/${{props.council}}/operator-address`}}
+{% endif %}
+{% endset %} #}
+
+{{ govukSummaryList({
+  classes: 'govuk-summary-list--no-border',
+  rows: [
+    {
+      key: {
+        text: "Postcode you have entered"
+      },
+      value: {
+        text: props.cumulativeFullAnswers.operator_postcode_find
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change postcode"
+          }
+        ]
+      }
     }
-  }) %}
+  ]
+}) }}
+
+<h2 class= "gov-uk-heading-2">Select an address for  {{props.cumulativeFullAnswers.operator_postcode_find}}</h2>
 
   {{ govukButton({
       text: "Continue"
     }) }}
-
-  {% endcall %}
 
   {% endcall %}
 
