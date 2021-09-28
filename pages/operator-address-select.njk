@@ -44,13 +44,11 @@
   {% endcall%}
 
 
-{# {% set editModeFirstPage %}
 {% if props.editModeFirstPage %}
-{{ `/new/${{props.council}}/operator-address?edit=operator-address` }}  
+{% set editModeFirstPage = "/new/" + props.council + "/operator-address?edit=operator-address" %}
 {% else %}
-{{ `/new/${{props.council}}/operator-address`}}
+{% set editModeFirstPage = "/new/" + props.council + "/operator-address" %}
 {% endif %}
-{% endset %} #}
 
 {{ govukSummaryList({
   classes: 'govuk-summary-list--no-border',
@@ -65,7 +63,7 @@
       actions: {
         items: [
           {
-            href: "#",
+            href: editModeFirstPage,
             text: "Change postcode"
           }
         ]
@@ -84,7 +82,8 @@
   },
   items: [
     {
-      value: props.addressLookups.operator_postcode_find
+      value: props.addressLookups.operator_postcode_find,
+      text: ""
 
     }
   ]
