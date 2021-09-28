@@ -3,6 +3,7 @@
 {% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "../components/PostForm.njk" import postForm %}
 
 {% extends "layout.njk" %}
@@ -11,7 +12,26 @@
 
 {{ props.currentPageWithQuery }}
 
+<form novalidate>
  {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+
+ {{ govukErrorSummary({
+  "titleText": "There is a problem",
+  "errorList": [
+    {
+      "text": props.validatorErrors.operator_primary_number,
+      "href": "#operator_primary_number"
+    },
+    {
+        "text": props.validatorErrors.operator_secondary_number,
+        "href": "#operator_secondary_number"
+    },
+    {
+      "text": props.validatorErrors.operator_email,
+      "href": "#operator_email"
+    }
+  ]
+}) }}
 
  {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
     {% call govukFieldset({
@@ -43,6 +63,9 @@
     "label": {
       "text": "Main phone number"
     },
+    "errorMessage": {
+    "text":  props.validatorErrors.operator_primary_number
+    },
     "id": "operator_primary_number",
     "name": "operator_primary_number",
     "classes": "govuk-label--l",
@@ -53,6 +76,9 @@
     "label": {
       "text": "Secondary phone number (optional)"
     },
+    "errorMessage": {
+    "text":  props.validatorErrors.operator_secondary_number
+    },
     "id": "operator_secondary_number",
     "name": "operator_secondary_number",
     "classes": "govuk-label--l",
@@ -62,6 +88,12 @@
 {{ govukInput({
     "label": {
       "text": "Email address"
+    },
+    "hint": {
+    "text": "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
+    },
+    "errorMessage": {
+    "text": props.validatorErrors.operator_email
     },
     "id": "operator_email",
     "name": "operator_email",
@@ -75,4 +107,5 @@
 
  {% endcall%}
 
+</form>
  {% endblock%}
