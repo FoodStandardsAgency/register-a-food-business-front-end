@@ -6,6 +6,20 @@
 
 {% extends "layout.njk" %}
 
+{% block beforeContent %}
+
+{% if props.switches["/operator-address-none-found"] %}
+{% set backlink = "/new/" + props.council + "/operator-address" %}
+{% else %}
+{% set backlink = "/new/" + props.council + "/operator-address-select" %}
+{% endif%}
+
+{{ govukBackLink({
+    href: backlink,
+    text: "Back"
+  }) }}
+{% endblock%}
+
 {% block content %}
 
 {{ props.currentPageWithQuery }}
