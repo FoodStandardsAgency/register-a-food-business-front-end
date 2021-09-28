@@ -1,85 +1,41 @@
-import EstablishmentOpeningStatus from "../pages/establishment-opening-status";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const establishmentTradingName = require("../pages/establishment-opening-status.njk");
+const { axe, renderPage } = require("../testHelpers")
 
-const testValidatorErrors = {
-  example: "test error"
-};
-
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-
-const testSwitches = {};
-
-describe("<EstablishmentOpeningStatus />", () => {
+describe("Establishment-Opening-Status", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<EstablishmentOpeningStatus />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("establishment-opening-status", "language: 'en'");
+    
+    const $mainHeading = $('#main-heading')
+    expect($mainHeading.get(0).tagName).toEqual('h1')
   });
 
-  it("renders 2 radio buttons with correct error props and default values", () => {
-    const wrapper = mount(
-      <I18nextProvider i18n={i18n}>
-        <EstablishmentOpeningStatus
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      </I18nextProvider>
-    );
-    const establishmentTypeRadio = wrapper.find("Radio");
-    expect(establishmentTypeRadio.length).toBe(2);
-  });
+  it('passes accessibility tests', async () => {
+    const $ = renderPage('establishment-opening-status', "language: 'en'")
 
-  describe("top-level MultiChoice element", () => {
-    it("renders the correct error", () => {
-      const actualValidatorErrors = {
-        establishment_opening_status: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <EstablishmentOpeningStatus
-            validatorErrors={actualValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const establishmentTypeMultiChoice = wrapper.find("MultiChoice");
-      expect(establishmentTypeMultiChoice.props().meta.error).toBe(
-        "test error"
-      );
-    });
-  });
+    const results = await axe($.html())
+    expect(results).toHaveNoViolations()
+  })
 
-  describe("all Radio buttons", () => {
-    it("can be selected by default", () => {
-      const radioButtonIdsAndValues = {
-        establishment_opening_status_already_trading:
-          "Establishment is already trading",
-        establishment_opening_status_not_trading: "Establishment due to trade"
-      };
+  it('Heading text correct', async () => {
+    const $ = renderPage('establishment-opening-status', "language: 'en'")
 
-      for (let radioButtonId in radioButtonIdsAndValues) {
-        const cumulativeFullAnswers = {
-          establishment_opening_status: radioButtonIdsAndValues[radioButtonId]
-        };
-
-        const wrapper = mount(
-          <I18nextProvider i18n={i18n}>
-            <EstablishmentOpeningStatus
-              validatorErrors={testValidatorErrors}
-              cumulativeFullAnswers={cumulativeFullAnswers}
-              switches={testSwitches}
-            />
-          </I18nextProvider>
-        );
-
-        const establishmentTypeRadio = wrapper.find(`Radio#${radioButtonId}`);
-        expect(establishmentTypeRadio.props().defaultChecked).toBe(true);
-      }
-    });
-  });
+    const $mainHeading = $('#main-heading')
+    expect($mainHeading.get(0).children[0].data).toBe("Is this establishment already trading?")
 });
+
+  describe('Radio boxes have correct value', () =>{
+    it('Already trading radio has correct value', async () => {
+      const $ = renderPage('establishment-opening-status', "language: 'en'")
+      const $mainHeadingTrading = $('#establishment_opening_status_already_trading')
+      expect($mainHeadingTrading.get(0).attribs.value).toBe("Establishment is already trading")
+    });
+    it('Not trading radio has correct value', async () => {
+      const $ = renderPage('establishment-opening-status', "language: 'en'")
+      const $mainHeadingNotTrading = $('#establishment_opening_status_not_trading')
+      expect($mainHeadingNotTrading.get(0).attribs.value).toBe("Establishment due to trade")
+    });
+  })
+})
+
+
+

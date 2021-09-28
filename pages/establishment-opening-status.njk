@@ -1,0 +1,47 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+{% extends "layout.njk" %}
+
+{% block content %}
+
+{{ props.currentPageWithQuery }}
+
+{% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+  
+  <h1 id="main-heading" class="govuk-heading-l">{{ __("Is this establishment already trading?")}}</h1>
+  <p style="color:#505a5f">It is trading if it is already producing or serving food, or if the new operator has already taken control</p>
+  
+  {{ govukDetails({
+  summaryText: __("What is an establishment?"),
+  href: "#",
+  text: __( "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.")
+  }) }}
+
+  {{ govukRadios({
+  idPrefix: "establishment_type",
+  name: "establishment_type",
+  items: [
+    {
+      value: "Establishment is already trading",
+      text: "Yes, it is already trading",
+      id: "establishment_opening_status_already_trading",
+      checked: props.cumulativeFullAnswers.establishment_opening_status === "Establishment is already trading"
+    },
+    {
+      value: "Establishment due to trade",
+      text: "No, it is not trading yet",
+      id: "establishment_opening_status_not_trading",
+      checked: props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade"
+    }
+  ]
+}) }}
+  
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+{%- endcall %}
+
+{% endblock %}
