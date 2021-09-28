@@ -1,83 +1,46 @@
-import EstablishmentAddressType from "../pages/establishment-address-type";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const establishmentTradingName = require("../pages/establishment-address-type.njk");
+const { axe, renderPage } = require("../testHelpers")
 
-const testValidatorErrors = {
-  example: "test error"
-};
-
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-
-const testSwitches = {};
-
-describe("<EstablishmentAddressType />", () => {
+describe("Establishment-Address-Type", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<EstablishmentAddressType />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("establishment-address-type", "language: 'en'");
+    
+    const $mainHeading = $('#main-heading')
+    expect($mainHeading.get(0).tagName).toEqual('h1')
   });
 
-  it("renders 3 radio buttons with correct error props and default values", () => {
-    const wrapper = mount(
-      <I18nextProvider i18n={i18n}>
-        <EstablishmentAddressType
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      </I18nextProvider>
-    );
-    const establishmentAddressTypeRadio = wrapper.find("Radio");
-    expect(establishmentAddressTypeRadio.length).toBe(3);
-  });
+  it('passes accessibility tests', async () => {
+    const $ = renderPage('establishment-address-type', "language: 'en'")
 
-  describe("top-level MultiChoice element", () => {
-    it("renders the correct error", () => {
-      const validatorErrors = {
-        establishment_type: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <EstablishmentAddressType
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const establishmentAddressType = wrapper.find("MultiChoice");
-      expect(establishmentAddressType.props().meta.error).toBe("test error");
-    });
-  });
+    const results = await axe($.html())
+    expect(results).toHaveNoViolations()
+  })
 
-  describe("all Radio buttons", () => {
-    it("can be selected by default", () => {
-      const radioButtonIdsAndValues = {
-        establishment_type_business_commercial: "COMMERCIAL",
-        establishment_type_mobile_moveable: "MOBILE",
-        establishment_type_home_domestic: "DOMESTIC"
-      };
+  it('Heading text correct', async () => {
+    const $ = renderPage('establishment-address-type', "language: 'en'")
 
-      for (let radioButtonId in radioButtonIdsAndValues) {
-        const cumulativeFullAnswers = {
-          establishment_type: radioButtonIdsAndValues[radioButtonId]
-        };
-
-        const wrapper = mount(
-          <EstablishmentAddressType
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
-        );
-
-        const establishmentAddressTypeRadio = wrapper.find(
-          `Radio#${radioButtonId}`
-        );
-        expect(establishmentAddressTypeRadio.props().defaultChecked).toBe(true);
-      }
-    });
-  });
+    const $mainHeading = $('#main-heading')
+    expect($mainHeading.get(0).children[0].data).toBe("Where is this establishment located?")
 });
+
+  describe('Radio boxes have correct value', () =>{
+    it('Mobile radio has correct value', async () => {
+      const $ = renderPage('establishment-address-type', "language: 'en'")
+      const $mainHeadingMobile = $('#establishment_type_mobile_moveable')
+      expect($mainHeadingMobile.get(0).attribs.value).toBe("MOBILE")
+    });
+    it('Domestic radio has correct value', async () => {
+      const $ = renderPage('establishment-address-type', "language: 'en'")
+      const $mainHeadingDomestic = $('#establishment_type_home_domestic')
+      expect($mainHeadingDomestic.get(0).attribs.value).toBe("DOMESTIC")
+    });
+    it('Commercial radio has correct value', async () => {
+      const $ = renderPage('establishment-address-type', "language: 'en'")
+      const $mainHeadingCommercial = $('#establishment_type_business_commercial')
+      expect($mainHeadingCommercial.get(0).attribs.value).toBe("COMMERCIAL")
+    });
+  })
+})
+
+
+
