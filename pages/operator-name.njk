@@ -4,67 +4,63 @@
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "govuk/components/details/macro.njk" import govukDetails %}
-
 {% extends "layout.njk" %}
-
 {% block content %}
-
-{{ props.currentPageWithQuery }}
-
-{% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-
-{{ govukErrorSummary({
-  "titleText": "There is a problem",
-  "errorList": [
-    {
-      "text": "Enter a valid first name",
-      "href": "#operator_first_name"
-    },
-    {
-      "text": "Enter a valid last name",
-      "href": "#operator_last_name"
-    }
-  ]
-}) }}
-
-{% call govukFieldset({
-  legend: {
-    text: "What is the operator's name?",
-    classes: "govuk-fieldset__legend--l",
-    isPageHeading: true
-  }
-}) %}
-
-{{ govukDetails({
-  summaryText: "What is a food business operator?",
-  text: "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
-}) }}
-
-{{ govukInput({
-    "label": {
-      "text": "First and middle names"
-    },
-    "id": "operator_first_name",
-    "name": "operator_first_name",
-    "classes": "govuk-label--l",
-    "autoComplete": "given-name"
-}) }}
-
-{{ govukInput({
-    "label": {
-      "text": "Last name"
-    },
-    "id": "operator_last_name",
-    "name": "operator_last_name",
-    "classes": "govuk-label--l",
-    "autoComplete": "family-name"
-}) }}
-
-{% endcall %}
-
- {{ govukButton({
-    text: "Continue"
-  }) }}  
-{%- endcall %}
-
+  {{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form novalidate>
+        {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+        {{ govukErrorSummary({
+          "titleText": "There is a problem",
+          "errorList": [
+            {
+              "text": "Enter a valid first name",
+              "href": "#operator_first_name"
+            },
+            {
+              "text": "Enter a valid last name",
+              "href": "#operator_last_name"
+            }
+          ]
+        }) }}
+        {% call govukFieldset({
+        describedBy: "operators_name",
+          legend: {
+            id: "operatorsname",
+            text: "What is the operator's name?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }  
+        }) %}
+        {{ govukDetails({
+          summaryText: "What is a food business operator?",
+          text: "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
+        }) }}
+        {{ govukInput({
+            "label": {
+              "text": "First and middle names"
+            },
+            "id": "operator_first_name",
+            "name": "operator_first_name",
+            "classes": "govuk-label--l",
+            "autoComplete": "given-name"
+        }) }}
+        {{ govukInput({
+            "label": {
+              "text": "Last name"
+            },
+            "id": "operator_last_name",
+            "name": "operator_last_name",
+            "classes": "govuk-label--l",
+            "autoComplete": "family-name"
+        }) }}
+        {% endcall %}
+        {{ govukButton({
+      text: "Continue"
+    }) }}
+        {%- endcall %}
+      </form>
+    </div>
+  </div>
 {% endblock %}
