@@ -1,0 +1,106 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/AddressHelp.njk" import addressHelpForm %}
+
+{% extends "layout.njk" %}
+
+{% block beforeContent %}
+
+{% if props.switches["/establishment-address-none-found"] %}
+{% set backlink = "/new/" + props.council + "/establishment-address" %}
+{% else %}
+{% set backlink = "/new/" + props.council + "/establishment-address-select" %}
+{% endif%}
+
+{{ govukBackLink({
+    href: backlink,
+    text: "Back"
+  }) }}
+{% endblock%}
+
+{% block content %}
+
+{{ props.currentPageWithQuery }}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form novalidate>
+
+      {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+
+        {% call govukFieldset({
+        legend: {
+        text: "What is the establishment's address?",
+        classes: "govuk-fieldset__legend--l",
+        isPageHeading: true
+                }
+        }) %}
+        {% endcall%}
+
+        {% call govukInsetText({
+                text: "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.",
+                classes: "govuk-fieldset__legend--l"
+            }) %}
+        {% endcall %}
+
+        {{ govukInput({
+            "label": {
+            "text": "Address line 1"
+            },
+            "id": "establishment_address_line_1",
+            "name": "operator_address_line_1",
+            "classes": "govuk-label--l",
+            "autoComplete": "address-line1"
+        }) }}
+
+        {{ govukInput({
+            "label": {
+            "text": "Address line 2 (optional)"
+            },
+            "id": "establishment_address_line_2",
+            "name": "establishment_address_line_2",
+            "classes": "govuk-label--l",
+            "autoComplete": "address-line2"
+        }) }}
+
+        {{ govukInput({
+            "label": {
+            "text": "Address line 3 (optional)"
+            },
+            "id": "establishment_address_line_3",
+            "name": "establishment_address_line_3",
+            "classes": "govuk-label--l",
+            "autoComplete": "address-line3"
+        }) }}
+
+        {{ govukInput({
+            "label": {
+            "text": "Town or city"
+            },
+            "id": "establishment_town",
+            "name": "establishment_town",
+            "classes": "govuk-label--l",
+            "autoComplete": "locality"
+        }) }}
+
+        {{ govukInput({
+            "label": {
+            "text": "Postcode"
+            },
+            "id": "establishment_postcode",
+            "name": "establishment_postcode",
+            "classes": "govuk-label--l",
+            "autoComplete": "postal-code"
+        }) }}
+
+        {{ govukButton({
+            text: "Continue"
+          }) }}
+      {% endcall %}
+    </form>
+  </div>
+</div>
+{% endblock%}

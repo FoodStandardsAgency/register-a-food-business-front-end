@@ -9,103 +9,105 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-
 {{ props.currentPageWithQuery }}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+  <form novalidate>
+  {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
-<form novalidate>
- {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+  {{ govukErrorSummary({
+    "titleText": "There is a problem",
+    "errorList": [
+      {
+        "text": props.validatorErrors.operator_primary_number,
+        "href": "#operator_primary_number"
+      },
+      {
+          "text": props.validatorErrors.operator_secondary_number,
+          "href": "#operator_secondary_number"
+      },
+      {
+        "text": props.validatorErrors.operator_email,
+        "href": "#operator_email"
+      }
+    ]
+  }) }}
 
- {{ govukErrorSummary({
-  "titleText": "There is a problem",
-  "errorList": [
-    {
-      "text": props.validatorErrors.operator_primary_number,
-      "href": "#operator_primary_number"
-    },
-    {
-        "text": props.validatorErrors.operator_secondary_number,
-        "href": "#operator_secondary_number"
-    },
-    {
-      "text": props.validatorErrors.operator_email,
-      "href": "#operator_email"
-    }
-  ]
-}) }}
-
- {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
-    {% call govukFieldset({
-    legend: {
-      text: "Partnership contact details",
-      classes: "govuk-fieldset__legend--l",
-      isPageHeading: true
-            }
-    }) %}
-    {% endcall%}
-  {% else %}
-    {% call govukFieldset({
+  {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+      {% call govukFieldset({
       legend: {
-        text: "Operator contact details",
+        text: "Partnership contact details",
         classes: "govuk-fieldset__legend--l",
         isPageHeading: true
               }
-        }) %}
-    {% endcall%}
+      }) %}
+      {% endcall%}
+    {% else %}
+      {% call govukFieldset({
+        legend: {
+          text: "Operator contact details",
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+                }
+          }) %}
+      {% endcall%}
 
-  {% endif %}
+    {% endif %}
 
-{{ govukDetails({
-  summaryText: "What is a food business operator?",
-  text: "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
-}) }}
+  {{ govukDetails({
+    summaryText: "What is a food business operator?",
+    text: "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
+  }) }}
 
-{{ govukInput({
-    "label": {
-      "text": "Main phone number"
-    },
-    "errorMessage": {
-    "text":  props.validatorErrors.operator_primary_number
-    },
-    "id": "operator_primary_number",
-    "name": "operator_primary_number",
-    "classes": "govuk-label--l",
-    "autoComplete": "tel"
-}) }}
+  {{ govukInput({
+      "label": {
+        "text": "Main phone number"
+      },
+      "errorMessage": {
+      "text":  props.validatorErrors.operator_primary_number
+      },
+      "id": "operator_primary_number",
+      "name": "operator_primary_number",
+      "classes": "govuk-label--l",
+      "autoComplete": "tel"
+  }) }}
 
-{{ govukInput({
-    "label": {
-      "text": "Secondary phone number (optional)"
-    },
-    "errorMessage": {
-    "text":  props.validatorErrors.operator_secondary_number
-    },
-    "id": "operator_secondary_number",
-    "name": "operator_secondary_number",
-    "classes": "govuk-label--l",
-    "autoComplete": "off"
-}) }}
+  {{ govukInput({
+      "label": {
+        "text": "Secondary phone number (optional)"
+      },
+      "errorMessage": {
+      "text":  props.validatorErrors.operator_secondary_number
+      },
+      "id": "operator_secondary_number",
+      "name": "operator_secondary_number",
+      "classes": "govuk-label--l",
+      "autoComplete": "off"
+  }) }}
 
-{{ govukInput({
-    "label": {
-      "text": "Email address"
-    },
-    "hint": {
-    "text": "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
-    },
-    "errorMessage": {
-    "text": props.validatorErrors.operator_email
-    },
-    "id": "operator_email",
-    "name": "operator_email",
-    "classes": "govuk-label--l",
-    "autoComplete": "email"
-}) }}
+  {{ govukInput({
+      "label": {
+        "text": "Email address"
+      },
+      "hint": {
+      "text": "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
+      },
+      "errorMessage": {
+      "text": props.validatorErrors.operator_email
+      },
+      "id": "operator_email",
+      "name": "operator_email",
+      "classes": "govuk-label--l",
+      "autoComplete": "email"
+  }) }}
 
-  {{ govukButton({
-      text: "Continue"
-    }) }}
+    {{ govukButton({
+        text: "Continue"
+      }) }}
 
- {% endcall%}
+  {% endcall%}
 
-</form>
+  </form>
+</div>
+</div>
  {% endblock%}

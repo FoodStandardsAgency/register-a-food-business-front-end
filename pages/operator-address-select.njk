@@ -8,91 +8,94 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/select/macro.njk" import govukSelect %}
 
-
-
 {% extends "layout.njk" %}
 
 {% block content %}
 
-  {{ props.currentPageWithQuery }}
+{{ props.currentPageWithQuery }}
+  
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <form novalidate>
 
-  {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+      {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
-  {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
-    {% call govukFieldset({
-    legend: {
-      text: "Which is the partnership contact's address from the list?",
-      classes: "govuk-fieldset__legend--l",
-      isPageHeading: true
-            }
-    }) %}
-    {% endcall%}
-  {% else %}
-    {% call govukFieldset({
-      legend: {
-        text: "Which is the operator's address from the list?",
-        classes: "govuk-fieldset__legend--l",
-        isPageHeading: true
-              }
+      {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+        {% call govukFieldset({
+        legend: {
+          text: "Which is the partnership contact's address from the list?",
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+                }
         }) %}
-    {% endcall%}
+        {% endcall%}
+      {% else %}
+        {% call govukFieldset({
+          legend: {
+            text: "Which is the operator's address from the list?",
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+                  }
+            }) %}
+        {% endcall%}
 
-  {% endif %}
+      {% endif %}
 
-  {% call addressHelpForm(props.cumulativeFullAnswers.registration_role) %}
+      {% call addressHelpForm(props.cumulativeFullAnswers.registration_role) %}
 
-  {% endcall%}
+      {% endcall%}
 
-
-{% if props.editModeFirstPage %}
-{% set editModeFirstPage = "/new/" + props.council + "/operator-address?edit=operator-address" %}
-{% else %}
-{% set editModeFirstPage = "/new/" + props.council + "/operator-address" %}
-{% endif %}
-
-{{ govukSummaryList({
-  classes: 'govuk-summary-list--no-border',
-  rows: [
-    {
-      key: {
-        text: "Postcode you have entered"
-      },
-      value: {
-        text: props.cumulativeFullAnswers.operator_postcode_find
-      },
-      actions: {
-        items: [
+      {% if props.editModeFirstPage %}
+      {% set editModeFirstPage = "/new/" + props.council + "/operator-address?edit=operator-address" %}
+      {% else %}
+      {% set editModeFirstPage = "/new/" + props.council + "/operator-address" %}
+      {% endif %}
+      
+      {{ govukSummaryList({
+        classes: 'govuk-summary-list--no-border',
+        rows: [
           {
-            href: editModeFirstPage,
-            text: "Change postcode"
+            key: {
+              text: "Postcode you have entered"
+            },
+            value: {
+              text: props.cumulativeFullAnswers.operator_postcode_find
+            },
+            actions: {
+              items: [
+                {
+                  href: editModeFirstPage,
+                  text: "Change postcode"
+                }
+              ]
+            }
           }
         ]
-      }
-    }
-  ]
-}) }}
+      }) }}
 
-<h2 class= "govuk-heading-2">Select an address for  {{props.cumulativeFullAnswers.operator_postcode_find}}</h2>
+      <h2 class= "govuk-heading-2">Select an address for  {{props.cumulativeFullAnswers.operator_postcode_find}}</h2>
 
-{{ govukSelect({
-  id: "operatorAddressDropdown",
-  name: "operator_address_selected",
-  label: {
-    text: ""
-  },
-  items: [
-    {
-      value: props.addressLookups.operator_postcode_find,
-      text: ""
+      {{ govukSelect({
+        id: "operatorAddressDropdown",
+        name: "operator_address_selected",
+        label: {
+          text: ""
+        },
+        items: [
+          {
+            value: props.addressLookups.operator_postcode_find,
+            text: ""
 
-    }
-  ]
-}) }}
+          }
+        ]
+      }) }}
 
-  {{ govukButton({
-      text: "Continue"
-    }) }}
+      {{ govukButton({
+          text: "Continue"
+        }) }}
 
-  {% endcall %}
-
+      {% endcall %}
+   </form>
+  </div>
+</div>
 {% endblock %}
