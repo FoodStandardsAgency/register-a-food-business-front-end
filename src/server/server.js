@@ -8,6 +8,8 @@ var sassMiddleware = require("node-sass-middleware");
 var path = require("path");
 const getRandomValues = require("get-random-values");
 
+const dateFilter = require('nunjucks-date-filter');
+
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
   process.env["APPINSIGHTS_INSTRUMENTATIONKEY"] !== ""
@@ -150,6 +152,7 @@ const env = nunjucks.configure(
     express: app, //integrate nunjucks into express
   }
 );
+env.addFilter('date', dateFilter);
 env.addGlobal("__", i18n.__);
 env.addFilter("t", i18n.__);
 
