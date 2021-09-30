@@ -8,29 +8,19 @@
 {% block content %}
 {{ props.currentPageWithQuery }}
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">  
-        {% call postForm("/findaddress/" + props.currentPage, props.csrfToken, props.language) -%}
-        {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+  <div class="govuk-grid-column-two-thirds">
+        {% call postForm("findaddress/establishment-address", props.csrfToken, props.language) -%}
+        
             {% call govukFieldset({
                     legend: {
-                        text: "What is the partnership contact's postcode?",
+                        text: "What is the establishment's postcode?",
                         classes: "govuk-fieldset__legend--l",
                         isPageHeading: true
                     }
                     }) %}
             {% endcall %}
-        {% else %}
-            {% call govukFieldset({
-                    legend: {
-                        text: "What is the operator's postcode?",
-                        classes: "govuk-fieldset__legend--l",
-                        isPageHeading: true
-                    }
-                    }) %}
-            {% endcall %}
-        {% endif %}
         {% call govukInsetText({
-                text: "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.",
+                text: "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.",
                 classes: "govuk-fieldset__legend--l"
             }) %}
         {% endcall %}
@@ -38,8 +28,8 @@
                     "label": {
                     "text": "Postcode"
                     },
-                    "id": "operator_postcode_find",
-                    "name": "operator_postcode_find",
+                    "id": "establishment_postcode_find",
+                    "name": "establishment_postcode_find",
                     "classes": "govuk-input--width-10",
                     "autoComplete": "postal-code"
                 }) }}

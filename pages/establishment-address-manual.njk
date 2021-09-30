@@ -27,7 +27,6 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form novalidate>
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
@@ -93,14 +92,15 @@
             "id": "establishment_postcode",
             "name": "establishment_postcode",
             "classes": "govuk-label--l",
-            "autoComplete": "postal-code"
+            "autoComplete": "postal-code",
+            "value": props.cumulativeFullAnswers.establishment_postcode,
+            "errorMessage": props.validatorErrors.establishment_postcode
         }) }}
 
         {{ govukButton({
             text: "Continue"
           }) }}
       {% endcall %}
-    </form>
   </div>
 </div>
 {% endblock%}

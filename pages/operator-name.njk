@@ -9,7 +9,6 @@
   {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form novalidate>
         {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
         {{ govukErrorSummary({
           "titleText": "There is a problem",
@@ -57,10 +56,9 @@
         }) }}
         {% endcall %}
         {{ govukButton({
-      text: "Continue"
-    }) }}
-        {%- endcall %}
-      </form>
+          text: "Continue"
+        }) }}
+        {%- endcall %} 
     </div>
   </div>
 {% endblock %}

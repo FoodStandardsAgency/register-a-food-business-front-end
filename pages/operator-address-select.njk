@@ -16,7 +16,6 @@
   
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <form novalidate>
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
@@ -95,7 +94,6 @@
         }) }}
 
       {% endcall %}
-   </form>
   </div>
 </div>
 {% endblock %}
