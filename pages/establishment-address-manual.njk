@@ -1,7 +1,7 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/AddressHelp.njk" import addressHelpForm %}
 
@@ -39,11 +39,10 @@
         }) %}
         {% endcall%}
 
-        {% call govukInsetText({
-                text: "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.",
-                classes: "govuk-fieldset__legend--l"
-            }) %}
-        {% endcall %}
+        {{ govukDetails({
+          summaryText: "What is an establishment?",
+          text: "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
+        }) }}
 
         {{ govukInput({
             "label": {
