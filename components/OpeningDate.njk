@@ -1,0 +1,112 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+
+
+{% macro establishmentDueToTrade() %}
+
+{{ govukDateInput({
+  id: "establishment_opening_date",
+  namePrefix: "establishment_opening_date",
+  fieldset: {
+    legend: {
+      text: "When is this establishment expected to begin trading?",
+      isPageHeading: true,
+      classes: "govuk-label--s"
+    }
+  },
+  hint: {
+    text: ['For example, ', creation_date | date("add", 40, "days") | date("DD MM YYYY")] | join
+  },
+  items: [
+    {
+      name: "day",
+      classes: "govuk-input--width-2",
+      defaultValue: props.cumulativeFullAnswers.day
+    },
+    {
+      name: "month",
+      classes: "govuk-input--width-2",
+      defaultValue: props.cumulativeFullAnswers.month
+    },
+    {
+      name: "year",
+      classes: "govuk-input--width-4",
+      defaultValue: props.cumulativeFullAnswers.year
+    }
+  ]
+}) }}
+
+ {{ govukDetails({
+  summaryText: __("I don't know when this establishment will begin trading"),
+  href: "#",
+  text: __("Food businesses are required to register at least 28 days before they begin trading. If you are not sure when this business will open, it may be too early to register. You can also use an estimated date.")
+  }) }}
+
+{% endmacro %}
+
+{% macro establishmentTrading() %}
+
+{{ govukDateInput({
+  id: "establishment_opening_date",
+  namePrefix: "establishment_opening_date",
+  fieldset: {
+    legend: {
+      text: "What date did this establishment begin trading?",
+      classes: "govuk-label--s"
+    }
+  },
+  hint: {
+    text: ['For example, ', creation_date | date("subtract", 40, "days") | date("DD MM YYYY")] | join
+  },
+  items: [
+    {
+      name: "day",
+      classes: "govuk-input--width-2",
+      defaultValue: props.cumulativeFullAnswers.day
+    },
+    {
+      name: "month",
+      classes: "govuk-input--width-2",
+      defaultValue: props.cumulativeFullAnswers.month
+    },
+    {
+      name: "year",
+      classes: "govuk-input--width-4",
+      defaultValue: props.cumulativeFullAnswers.year
+    }
+  ]
+}) }}
+
+{{ govukDetails({
+  summaryText: __("I don't know when this establishment will begin trading"),
+  href: "#",
+  text: __("Food businesses are required to register at least 28 days before they begin trading. If you are not sure when this business will open, it may be too early to register. You can also use an estimated date.")
+  }) }}
+
+{% endmacro %}
+
+
+{% extends "layout.njk" %}
+
+
+{% block content %}
+
+{{ props.currentPageWithQuery }}
+
+{% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+  
+  <h1 id="main-heading" class="govuk-heading-l">{{ __("Expected opening date") if props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade" else __("Opening Date") }}</h1>
+  <p style="color:#505a5f">Establishments begin trading when they first start serving or manufacturing food for customers.</p>
+  
+   {{ establishmentDueToTrade() if props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade" else establishmentTrading() }}
+
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+{%- endcall %}
+
+{% endblock %}

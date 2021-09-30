@@ -121,6 +121,7 @@
     "jest-next-dynamic": "^1.0.1",
     "jest-nunjucks": "^1.0.0",
     "jsdoc": "^3.6.4",
+    "nunjucks-date-filter": "^0.1.1",
     "prettier": "^2.0.5",
     "react-test-renderer": "^16.13.1",
     "regenerator-runtime": "^0.13.5",
@@ -133,7 +134,9 @@
   "babel": {
     "env": {
       "test": {
-        "plugins": ["dynamic-import-node"]
+        "plugins": [
+          "dynamic-import-node"
+        ]
       }
     },
     "plugins": [
@@ -181,16 +184,27 @@
         2,
         {
           "props": true,
-          "ignorePropertyModificationsFor": ["req"]
+          "ignorePropertyModificationsFor": [
+            "req"
+          ]
         }
       ]
     },
-    "plugins": ["emotion", "prettier"]
+    "plugins": [
+      "emotion",
+      "prettier"
+    ]
   },
   "nodemonConfig": {
     "verbose": true,
-    "ignore": ["node_modules", ".next"],
-    "watch": ["pages", "src"],
+    "ignore": [
+      "node_modules",
+      ".next"
+    ],
+    "watch": [
+      "pages",
+      "src"
+    ],
     "ext": "js json"
   },
   "jest": {
