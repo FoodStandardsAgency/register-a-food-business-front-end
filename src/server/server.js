@@ -7,7 +7,6 @@ const nunjucks = require("nunjucks");
 var sassMiddleware = require("node-sass-middleware");
 var path = require("path");
 const getRandomValues = require("get-random-values");
-
 const dateFilter = require('nunjucks-date-filter');
 
 if (
