@@ -4,6 +4,7 @@
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 
 {% from "../components/PostForm.njk" import postForm %}
 
@@ -56,16 +57,20 @@
 {{ props.currentPageWithQuery }}
 
 {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-  
 
-<h1 id="main-heading" class="govuk-heading-l">{{ __("Establishment contact details")}}</h1>
+{% call govukFieldset({
+  legend: {
+    text: "Establishment contact details",
+    classes: "govuk-fieldset__legend--l",
+    isPageHeading: true
+  }
+}) %}
 
 {{ govukDetails({
   summaryText: __("What is an establishment?"),
   href: "#",
   text: __("An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.")
 }) }}
-
 
 {{ govukInsetText({
   text: table(props)
@@ -108,6 +113,7 @@
   id: "establishment_web_address",
   name: "establishment_web_address"
   }) }}
+  {% endcall %}
 
 {{ govukButton({
       text: "Continue"
