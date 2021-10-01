@@ -1,10 +1,8 @@
-const OperatorName = require("../pages/operator-name.njk");
 const { axe, renderPage } = require("../testHelpers");
 
 describe("Page heading title should be 'What is the operator's name ?'", () => {
   it("renders without crashing", () => {
-    const $ = renderPage("operator-name", "language: 'en'");
-    const test = expect.stringContaining("What is the operator's name ?");
+    expect.stringContaining("What is the operator's name ?");
   });
 
   it("It should pass accessibility tests", async () => {
