@@ -4,6 +4,7 @@
 {% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/AddressHelp.njk" import addressHelpForm %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% extends "layout.njk" %}
 
@@ -30,6 +31,26 @@
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
+      <div class="error-summary" role="alert" tabindex="-1" aria-labelledby="error-summary-heading">
+            {{ govukErrorSummary({
+            "titleText": "There is a problem",
+            "errorList": [
+                {
+                "text": props.validatorErrors.establishment_address_line_1,
+                "href": "#establishment_address_line_1"
+                },
+                {
+                "text": props.validatorErrors.establishment_town,
+                "href": "#establishment_town"
+                },
+                {
+                "text": props.validatorErrors.establishment_postcode,
+                "href": "#establishment_postcode"
+                }
+            ]
+            }) }}
+         </div>
+
         {% call govukFieldset({
         legend: {
         text: "What is the establishment's address?",
@@ -49,9 +70,10 @@
             "text": "Address line 1"
             },
             "id": "establishment_address_line_1",
-            "name": "operator_address_line_1",
+            "name": "establishment_address_line_1",
             "classes": "govuk-label--l",
-            "autoComplete": "address-line1"
+            "autoComplete": "address-line1",
+            "errorMessage": props.validatorErrors.establishment_address_line_1
         }) }}
 
         {{ govukInput({
@@ -61,7 +83,8 @@
             "id": "establishment_address_line_2",
             "name": "establishment_address_line_2",
             "classes": "govuk-label--l",
-            "autoComplete": "address-line2"
+            "autoComplete": "address-line2",
+            "errorMessage": props.validatorErrors.establishment_address_line_2
         }) }}
 
         {{ govukInput({
@@ -71,7 +94,8 @@
             "id": "establishment_address_line_3",
             "name": "establishment_address_line_3",
             "classes": "govuk-label--l",
-            "autoComplete": "address-line3"
+            "autoComplete": "address-line3",
+            "errorMessage": props.validatorErrors.establishment_address_line_3
         }) }}
 
         {{ govukInput({
@@ -81,7 +105,8 @@
             "id": "establishment_town",
             "name": "establishment_town",
             "classes": "govuk-label--l",
-            "autoComplete": "locality"
+            "autoComplete": "locality",
+            "errorMessage": props.validatorErrors.establishment_town
         }) }}
 
         {{ govukInput({

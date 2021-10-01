@@ -3,14 +3,26 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% extends "layout.njk" %}
 {% block content %}
 {{ props.currentPageWithQuery }}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-        {% call postForm("findaddress/establishment-address", props.csrfToken, props.language) -%}
+        {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
         
+        <div class="error-summary" role="alert" tabindex="-1" aria-labelledby="error-summary-heading">
+            {{ govukErrorSummary({
+            "titleText": "There is a problem",
+            "errorList": [
+                {
+                "text": props.validatorErrors.establishment_postcode_find,
+                "href": "#establishment_postcode_find"
+                }
+            ]
+            }) }}
+         </div>
             {% call govukFieldset({
                     legend: {
                         text: "What is the establishment's postcode?",
@@ -30,7 +42,8 @@
                         "id": "establishment_postcode_find",
                         "name": "establishment_postcode_find",
                         "classes": "govuk-input--width-10",
-                        "autoComplete": "postal-code"
+                        "autoComplete": "postal-code",
+                        "errorMessage": props.validatorErrors.establishment_postcode_find
                     }) }}
             {{ govukButton({
                 text: "Find address"

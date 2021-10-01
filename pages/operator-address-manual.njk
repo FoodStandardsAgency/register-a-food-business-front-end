@@ -3,6 +3,7 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/AddressHelp.njk" import addressHelpForm %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% extends "layout.njk" %}
 
@@ -28,6 +29,26 @@
   <div class="govuk-grid-column-two-thirds">
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+
+      <div class="error-summary" role="alert" tabindex="-1" aria-labelledby="error-summary-heading">
+            {{ govukErrorSummary({
+            "titleText": "There is a problem",
+            "errorList": [
+                {
+                "text": props.validatorErrors.operator_address_line_1,
+                "href": "#operator_address_line_1"
+                },
+                {
+                "text": props.validatorErrors.operator_town,
+                "href": "#operator_town"
+                },
+                {
+                "text": props.validatorErrors.operator_postcode,
+                "href": "#operator_postcode"
+                }
+            ]
+            }) }}
+         </div>
 
         {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
           {% call govukFieldset({
@@ -61,7 +82,9 @@
               "id": "operator_address_line_1",
               "name": "operator_address_line_1",
               "classes": "govuk-label--l",
-              "autoComplete": "address-line1"
+              "autoComplete": "address-line1",
+               "errorMessage": props.validatorErrors.operator_address_line_1
+              
           }) }}
 
           {{ govukInput({
@@ -91,7 +114,8 @@
               "id": "operator_town",
               "name": "operator_town",
               "classes": "govuk-label--l",
-              "autoComplete": "locality"
+              "autoComplete": "locality",
+              "errorMessage": props.validatorErrors.operator_town
           }) }}
 
           {{ govukInput({
@@ -101,7 +125,8 @@
               "id": "operator_postcode",
               "name": "operator_postcode",
               "classes": "govuk-label--l",
-              "autoComplete": "postal-code"
+              "autoComplete": "postal-code",
+              "errorMessage": props.validatorErrors.operator_postcode
           }) }}
 
         {{ govukButton({
