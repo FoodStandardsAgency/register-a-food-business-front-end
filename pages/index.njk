@@ -21,14 +21,14 @@
   }) }}</b>
   <h1 class="govuk-heading-m">{{__("Food business operator") }}</h1>
 <p class="govuk-body">The operator is the person, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.</p>
-  <h1 class="govuk-heading-m">Establishment</h1>
-<p class="govuk-body">The establishment is the location or site of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.</p>
-  <h1 class="govuk-heading-m">Registering Local Authority</h1>
-<p class="govuk-body"><b>City of Cardiff Council</b> is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this Food Business Registration link to check using the location or site of your food business.</p>
+  <h1 class="govuk-heading-m">{{__("Establishment") }}</h1>
+<p class="govuk-body">{{__("The establishment is the location or site of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.") }}</p>
+  <h1 class="govuk-heading-m">{{__("Registering Local Authority") }}</h1>
+<p class="govuk-body"><p class="govuk-body"><b>City of Cardiff Council</b> is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this Food Business Registration link to check using the location or site of your food business.</p>
 
 {% call postForm("/continue/index", props.csrfToken, props.language) -%}
   {{ govukButton({
-    text: "Begin Registration",
+    text:  __("Begin registration"),
     isStartButton: true
   }) }}
 {%- endcall %}

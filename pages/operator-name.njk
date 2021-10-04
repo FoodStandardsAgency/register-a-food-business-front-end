@@ -13,14 +13,14 @@
         {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
         <div class="error-summary" role="alert" tabindex="-1" aria-labelledby="error-summary-heading">
         {{ govukErrorSummary({
-          "titleText": "There is a problem",
+          "titleText": __("There is a problem"),
           "errorList": [
             {
-              "text": "Enter a valid first name",
+              "text": __("Enter a valid first name"),
               "href": "#operator_first_name"
             },
             {
-              "text": "Enter a valid last name",
+              "text": __("Enter a valid last name"),
               "href": "#operator_last_name"
             }
           ]
@@ -30,38 +30,38 @@
         {% call govukFieldset({
         describedBy: "operators_name",
           legend: {
-            text: "What is the operator's name?",
+            text: __("What is the operator's name?"),
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
           }  
         }) %}
         {{ govukDetails({
-          summaryText: "What is a food business operator?",
-          text: "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
+          summaryText: __("What is the operator's name?"),
+          text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.")
         }) }}
         {{ govukInput({
             "label": {
-              "text": "First and middle names"
+              "text": __("First and middle names")
             },
             "id": "operator_first_name",
             "name": "operator_first_name",
             "classes": "govuk-label--l",
             "autoComplete": "given-name",
-            "errorMessage": props.validatorErrors.operator_first_name
+            "errorMessage": __(props.validatorErrors.operator_first_name)
         }) }}
         {{ govukInput({
             "label": {
-              "text": "Last name"
+              "text": __("Last name")
             },
             "id": "operator_last_name",
             "name": "operator_last_name",
             "classes": "govuk-label--l",
             "autoComplete": "family-name",
-            "errorMessage": props.validatorErrors.operator_last_name
+            "errorMessage": __(props.validatorErrors.operator_last_name)
         }) }}
         {% endcall %}
         {{ govukButton({
-          text: "Continue"
+          text: __("Continue")
         }) }}      
         {%- endcall %} 
     </div>
