@@ -17,8 +17,9 @@
 
 {{ govukBackLink({
     href: backlink,
-    text: "Back"
+    text: __("Back")
   }) }}
+  {{ super() }}
 {% endblock%}
 
 {% block content %}
@@ -32,18 +33,18 @@
 
       <div class="error-summary" role="alert" tabindex="-1" aria-labelledby="error-summary-heading">
             {{ govukErrorSummary({
-            "titleText": "There is a problem",
+            "titleText": __("There is a problem"),
             "errorList": [
                 {
-                "text": props.validatorErrors.operator_address_line_1,
+                "text": __(props.validatorErrors.operator_address_line_1),
                 "href": "#operator_address_line_1"
                 },
                 {
-                "text": props.validatorErrors.operator_town,
+                "text": __(props.validatorErrors.operator_town),
                 "href": "#operator_town"
                 },
                 {
-                "text": props.validatorErrors.operator_postcode,
+                "text": __(props.validatorErrors.operator_postcode),
                 "href": "#operator_postcode"
                 }
             ]
@@ -53,7 +54,7 @@
         {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
           {% call govukFieldset({
           legend: {
-            text: "What is the partnership contact's address?",
+            text: __("What is the partnership contact's address?"),
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
                   }
@@ -62,7 +63,7 @@
         {% else %}
           {% call govukFieldset({
             legend: {
-            text: "What is the operator's address?",
+            text: __("What is the operator's address?"),
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
                   }
@@ -77,19 +78,19 @@
 
           {{ govukInput({
               "label": {
-                "text": "Address line 1"
+                "text": __("Address line 1")
               },
               "id": "operator_address_line_1",
               "name": "operator_address_line_1",
               "classes": "govuk-label--l",
               "autoComplete": "address-line1",
-               "errorMessage": props.validatorErrors.operator_address_line_1
+               "errorMessage": __(props.validatorErrors.operator_address_line_1)
               
           }) }}
 
           {{ govukInput({
               "label": {
-                "text": "Address line 2 (optional)"
+                "text": __("Address line 2 (optional)")
               },
               "id": "operator_address_line_2",
               "name": "operator_address_line_2",
@@ -99,7 +100,7 @@
 
           {{ govukInput({
               "label": {
-                "text": "Address line 3 (optional)"
+                "text": __("Address line 3 (optional)")
               },
               "id": "operator_address_line_3",
               "name": "operator_address_line_3",
@@ -109,28 +110,28 @@
 
           {{ govukInput({
               "label": {
-                "text": "Town or city"
+                "text": __("Town or city")
               },
               "id": "operator_town",
               "name": "operator_town",
               "classes": "govuk-label--l",
               "autoComplete": "locality",
-              "errorMessage": props.validatorErrors.operator_town
+              "errorMessage": __(props.validatorErrors.operator_town)
           }) }}
 
           {{ govukInput({
               "label": {
-                "text": "Postcode"
+                "text": __("Postcode")
               },
               "id": "operator_postcode",
               "name": "operator_postcode",
               "classes": "govuk-label--l",
               "autoComplete": "postal-code",
-              "errorMessage": props.validatorErrors.operator_postcode
+              "errorMessage": __(props.validatorErrors.operator_postcode)
           }) }}
 
         {{ govukButton({
-            text: "Continue"
+            text: __("Continue")
           }) }}
       {% endcall %}
   </div>
