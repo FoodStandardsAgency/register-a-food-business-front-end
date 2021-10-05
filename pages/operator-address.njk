@@ -14,7 +14,7 @@
             {% call postForm("/findaddress" + props.currentPage, props.csrfToken, props.language) -%}
             {% if props.validatorErrors | length %}
                 {{ govukErrorSummary({
-            titleText: "There is a problem",
+              titleText: __("There is a problem"),
             errorList: props.validatorErrorsArray
         }) }}
             {% endif %}
@@ -51,8 +51,8 @@
                     "name": "operator_postcode_find",
                     "classes": "govuk-input--width-10",
                     "autoComplete": "postal-code",
-                     "value": props.cumulativeFullAnswers.operator_postcode_find,
-                    "errorMessage": { "text": props.validatorErrors.operator_postcode_find } if props.validatorErrors.operator_postcode_find
+                    "value": props.cumulativeFullAnswers.operator_postcode_find,
+                    "errorMessage": { "text": __(props.validatorErrors.operator_postcode_find) } if props.validatorErrors.operator_postcode_find
                 }) }}
             {{ govukButton({
             text: __("Find address")

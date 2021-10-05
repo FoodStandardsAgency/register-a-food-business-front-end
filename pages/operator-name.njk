@@ -13,7 +13,7 @@
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
       {% if props.validatorErrors | length %}
         {{ govukErrorSummary({
-            titleText: "There is a problem",
+            titleText: __("There is a problem"),
             errorList: props.validatorErrorsArray
         }) }}
       {% endif %}
@@ -39,7 +39,7 @@
             "classes": "govuk-label--l",
             "autoComplete": "given-name",
             "value": props.cumulativeFullAnswers.operator_first_name,
-           "errorMessage": { "text": props.validatorErrors.operator_first_name } if props.validatorErrors.operator_first_name
+           "errorMessage": { "text": __(props.validatorErrors.operator_first_name) } if props.validatorErrors.operator_first_name
         }) }}
       {{ govukInput({
             "label": {
@@ -50,7 +50,7 @@
             "classes": "govuk-label--l",
             "autoComplete": "family-name",
             "value": props.cumulativeFullAnswers.operator_last_name,
-            "errorMessage": { "text": props.validatorErrors.operator_last_name } if props.validatorErrors.operator_last_name
+            "errorMessage": { "text": __(props.validatorErrors.operator_last_name) } if props.validatorErrors.operator_last_name
         }) }}
       {% endcall %}
       {{ govukButton({
