@@ -14,18 +14,18 @@
   {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
   {{ govukErrorSummary({
-    "titleText": "There is a problem",
+    "titleText": __("There is a problem"),
     "errorList": [
       {
-        "text": props.validatorErrors.operator_primary_number,
+        "text": __(props.validatorErrors.operator_primary_number),
         "href": "#operator_primary_number"
       },
       {
-          "text": props.validatorErrors.operator_secondary_number,
+          "text": __(props.validatorErrors.operator_secondary_number),
           "href": "#operator_secondary_number"
       },
       {
-        "text": props.validatorErrors.operator_email,
+        "text": __(props.validatorErrors.operator_email),
         "href": "#operator_email"
       }
     ]
@@ -34,7 +34,7 @@
   {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
       {% call govukFieldset({
       legend: {
-        text: "Partnership contact details",
+        text: __("Partnership contact details"),
         classes: "govuk-fieldset__legend--l",
         isPageHeading: true
               }
@@ -43,7 +43,7 @@
     {% else %}
       {% call govukFieldset({
         legend: {
-          text: "Operator contact details",
+          text: __("Operator contact details"),
           classes: "govuk-fieldset__legend--l",
           isPageHeading: true
                 }
@@ -53,16 +53,16 @@
     {% endif %}
 
   {{ govukDetails({
-    summaryText: "What is a food business operator?",
-    text: "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
+    summaryText: __("What is a food business operator?"),
+    text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.")
   }) }}
 
   {{ govukInput({
       "label": {
-        "text": "Main phone number"
+        "text": __("Main phone number")
       },
       "errorMessage": {
-      "text":  props.validatorErrors.operator_primary_number
+      "text":  __(props.validatorErrors.operator_primary_number)
       },
       "id": "operator_primary_number",
       "name": "operator_primary_number",
@@ -72,10 +72,10 @@
 
   {{ govukInput({
       "label": {
-        "text": "Secondary phone number (optional)"
+        "text": __("Secondary phone number (optional)")
       },
       "errorMessage": {
-      "text":  props.validatorErrors.operator_secondary_number
+      "text":  __(props.validatorErrors.operator_secondary_number)
       },
       "id": "operator_secondary_number",
       "name": "operator_secondary_number",
@@ -85,13 +85,13 @@
 
   {{ govukInput({
       "label": {
-        "text": "Email address"
+        "text": __("Email address")
       },
       "hint": {
-      "text": "We will use your email to keep you informed of any policy or legal changes that could affect your food business."
+      "text": __("We will use your email to keep you informed of any policy or legal changes that could affect your food business.")
       },
       "errorMessage": {
-      "text": props.validatorErrors.operator_email
+      "text": __(props.validatorErrors.operator_email)
       },
       "id": "operator_email",
       "name": "operator_email",
@@ -100,7 +100,7 @@
   }) }}
 
     {{ govukButton({
-        text: "Continue"
+        text: __("Continue")
       }) }}
 
   {% endcall%}
