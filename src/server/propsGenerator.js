@@ -106,7 +106,7 @@ module.exports = (req) => {
     validatorErrors: validatorErrorsCleaned,
     validatorErrorsArray: Object.entries(validatorErrorsCleaned).map(
       ([k, v]) => ({
-        text: v,
+        text: i18n.__({ phrase: v, locale: language }),
         href: "#" + k
       })
     ),
