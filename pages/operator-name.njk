@@ -9,16 +9,16 @@
   {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      
-        {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-      {% if props.validatorErrors|length %}
+
+      {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+      {% if props.validatorErrors | length %}
         {{ govukErrorSummary({
             titleText: "There is a problem",
             errorList: props.validatorErrorsArray
         }) }}
-      {% endif %}  
-      
-        {% call govukFieldset({
+      {% endif %}
+
+      {% call govukFieldset({
         describedBy: "operators_name",
           legend: {
             text: __("What is the operator's name?"),
@@ -26,11 +26,11 @@
             isPageHeading: true
           }  
         }) %}
-        {{ govukDetails({
+      {{ govukDetails({
           summaryText: __("What is the operator's name?"),
           text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.")
         }) }}
-        {{ govukInput({
+      {{ govukInput({
             "label": {
               "text": __("First and middle names")
             },
@@ -41,7 +41,7 @@
             "value": props.cumulativeFullAnswers.operator_first_name,
            "errorMessage": { "text": props.validatorErrors.operator_first_name } if props.validatorErrors.operator_first_name
         }) }}
-        {{ govukInput({
+      {{ govukInput({
             "label": {
               "text": __("Last name")
             },
@@ -52,11 +52,11 @@
             "value": props.cumulativeFullAnswers.operator_last_name,
             "errorMessage": { "text": props.validatorErrors.operator_last_name } if props.validatorErrors.operator_last_name
         }) }}
-        {% endcall %}
-        {{ govukButton({
+      {% endcall %}
+      {{ govukButton({
           text: __("Continue")
-        }) }}      
-        {%- endcall %} 
+        }) }}
+      {%- endcall %}
     </div>
   </div>
 {% endblock %}
