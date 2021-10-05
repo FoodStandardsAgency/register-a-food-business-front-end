@@ -14,10 +14,10 @@
         
         <div class="error-summary" role="alert" tabindex="-1" aria-labelledby="error-summary-heading">
             {{ govukErrorSummary({
-            "titleText": "There is a problem",
+            "titleText": __("There is a problem"),
             "errorList": [
                 {
-                "text": props.validatorErrors.establishment_postcode_find,
+                "text": __(props.validatorErrors.establishment_postcode_find),
                 "href": "#establishment_postcode_find"
                 }
             ]
@@ -25,28 +25,28 @@
          </div>
             {% call govukFieldset({
                     legend: {
-                        text: "What is the establishment's postcode?",
+                        text: __("What is the establishment's postcode?"),
                         classes: "govuk-fieldset__legend--l",
                         isPageHeading: true
                     }
                     }) %}
             {% endcall %}
             {{ govukDetails({
-                summaryText: "What is an establishment?",
-                text: "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
+                summaryText: __("What is an establishment?"),
+                text: __("An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.")
                 }) }}
             {{ govukInput({
                         "label": {
-                        "text": "Postcode"
+                        "text": __("Postcode")
                         },
                         "id": "establishment_postcode_find",
                         "name": "establishment_postcode_find",
                         "classes": "govuk-input--width-10",
                         "autoComplete": "postal-code",
-                        "errorMessage": props.validatorErrors.establishment_postcode_find
+                        "errorMessage": __(props.validatorErrors.establishment_postcode_find)
                     }) }}
             {{ govukButton({
-                text: "Find address"
+                text: __("Find address")
             }) }}
         {% endcall %}
  </div>
