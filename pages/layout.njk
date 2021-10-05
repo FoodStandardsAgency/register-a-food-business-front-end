@@ -35,7 +35,7 @@
 <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 {% block header %}
   {{ govukHeader ({
-    serviceName: "Register a Food Business"
+    serviceName: __("Register a Food Business")
   }) }}
 {% endblock %}
 {% block beforeContent %}
@@ -47,7 +47,7 @@
   }) }} 
   {{ govukBackLink({
     href: "",
-    text: "Back"
+    text: __("Back")
   }) }}
   <a href="{{ __('change-language') }}">{{ __('Change Language') | t }}</a>
 {% endblock %}
