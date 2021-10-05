@@ -13,6 +13,14 @@
     <div class="govuk-grid-column-full">
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+
+      {% if props.validatorErrors | length %}
+                {{ govukErrorSummary({
+                titleText: __("There is a problem"),
+                errorList: props.validatorErrorsArray
+            }) }}
+        {% endif %}
+
       {% call govukFieldset({
           legend: {
             text: __("What kind of food business are you registering?"),
