@@ -11,19 +11,13 @@
     <div class="govuk-grid-column-two-thirds">
       
         {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-            {{ govukErrorSummary({
-              "titleText": __("There is a problem"),
-              "errorList": [
-                {
-                  "text": __("Enter a valid first name"),
-                  "href": "#operator_first_name"
-                },
-                {
-                  "text": __("Enter a valid last name"),
-                  "href": "#operator_last_name"
-                }
-              ]
-            }) }}     
+      {% if props.validatorErrors|length %}
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: props.validatorErrorsArray
+        }) }}
+      {% endif %}  
+      
         {% call govukFieldset({
         describedBy: "operators_name",
           legend: {
@@ -44,7 +38,8 @@
             "name": "operator_first_name",
             "classes": "govuk-label--l",
             "autoComplete": "given-name",
-            "errorMessage": __(props.validatorErrors.operator_first_name)
+            "value": props.cumulativeFullAnswers.operator_first_name,
+           "errorMessage": { "text": props.validatorErrors.operator_first_name } if props.validatorErrors.operator_first_name
         }) }}
         {{ govukInput({
             "label": {
@@ -54,7 +49,8 @@
             "name": "operator_last_name",
             "classes": "govuk-label--l",
             "autoComplete": "family-name",
-            "errorMessage": __(props.validatorErrors.operator_last_name)
+            "value": props.cumulativeFullAnswers.operator_last_name,
+            "errorMessage": { "text": props.validatorErrors.operator_last_name } if props.validatorErrors.operator_last_name
         }) }}
         {% endcall %}
         {{ govukButton({
