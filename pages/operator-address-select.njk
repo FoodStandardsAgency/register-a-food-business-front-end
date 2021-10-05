@@ -22,27 +22,35 @@
       {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
         {% call govukFieldset({
         legend: {
-          text: "Which is the partnership contact's address from the list?",
+          text: __("Which is the partnership contact's address from the list?"),
           classes: "govuk-fieldset__legend--l",
           isPageHeading: true
                 }
         }) %}
         {% endcall%}
+
+        {% call govukInsetText({
+          text: __("Partnership address is the contact address for the partner who is the main point of contact."),
+          classes: "govuk-fieldset__legend--l"
+        }) %}
+        {% endcall %}
+
       {% else %}
         {% call govukFieldset({
           legend: {
-            text: "Which is the operator's address from the list?",
+            text: __("Which is the operator's address from the list?"),
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
                   }
-            }) %}
+        }) %}
         {% endcall%}
+        {% call govukInsetText({
+            text: __('Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company.'),
+            classes: "govuk-fieldset__legend--l"
+        }) %}
+        {% endcall %}
 
       {% endif %}
-
-      {% call addressHelpForm(props.cumulativeFullAnswers.registration_role) %}
-
-      {% endcall%}
 
       {% if props.editModeFirstPage %}
       {% set editModeFirstPage = "/new/" + props.council + "/operator-address?edit=operator-address" %}
@@ -55,16 +63,16 @@
         rows: [
           {
             key: {
-              text: "Postcode you have entered"
+              text: __("Postcode you have entered")
             },
             value: {
-              text: props.cumulativeFullAnswers.operator_postcode_find
+              text: __(props.cumulativeFullAnswers.operator_postcode_find)
             },
             actions: {
               items: [
                 {
                   href: editModeFirstPage,
-                  text: "Change postcode"
+                  text: __("Change postcode")
                 }
               ]
             }
@@ -72,7 +80,7 @@
         ]
       }) }}
 
-      <h2 class= "govuk-heading-2">Select an address for  {{props.cumulativeFullAnswers.operator_postcode_find}}</h2>
+      <h2 class= "govuk-heading-2">{{__("Select an address for") }} {{props.cumulativeFullAnswers.operator_postcode_find}}</h2>
 
       {{ govukSelect({
         id: "operatorAddressDropdown",
