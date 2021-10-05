@@ -20,6 +20,7 @@
     href: backlink,
     text: __("Back")
   }) }}
+  {{ super() }}
 {% endblock%}
 
 {% block content %}
@@ -31,25 +32,12 @@
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
-      <div class="error-summary" role="alert" tabindex="-1" aria-labelledby="error-summary-heading">
-            {{ govukErrorSummary({
-            "titleText": __("There is a problem"),
-            "errorList": [
-                {
-                "text": __(props.validatorErrors.establishment_address_line_1),
-                "href": "#establishment_address_line_1"
-                },
-                {
-                "text": __(props.validatorErrors.establishment_town),
-                "href": "#establishment_town"
-                },
-                {
-                "text": __(props.validatorErrors.establishment_postcode),
-                "href": "#establishment_postcode"
-                }
-            ]
+        {% if props.validatorErrors | length %}
+                {{ govukErrorSummary({
+                titleText: __("There is a problem"),
+                errorList: props.validatorErrorsArray
             }) }}
-         </div>
+        {% endif %}
 
         {% call govukFieldset({
         legend: {
