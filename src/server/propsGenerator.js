@@ -104,12 +104,6 @@ module.exports = (req) => {
         ? req.session.transformedData
         : {},
     validatorErrors: validatorErrorsCleaned,
-    validatorErrorsArray: Object.entries(validatorErrorsCleaned).map(
-      ([k, v]) => ({
-        text: i18n.__({ phrase: v, locale: language }),
-        href: "#" + k
-      })
-    ),
     allValidationErrors: allValidationErrorsCleaned,
     switches:
       req && req.session && req.session.switches ? req.session.switches : {},
