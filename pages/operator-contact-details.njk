@@ -13,23 +13,12 @@
   <div class="govuk-grid-column-two-thirds">
   {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
-  {{ govukErrorSummary({
-    "titleText": __("There is a problem"),
-    "errorList": [
-      {
-        "text": __(props.validatorErrors.operator_primary_number),
-        "href": "#operator_primary_number"
-      },
-      {
-          "text": __(props.validatorErrors.operator_secondary_number),
-          "href": "#operator_secondary_number"
-      },
-      {
-        "text": __(props.validatorErrors.operator_email),
-        "href": "#operator_email"
-      }
-    ]
-  }) }}
+  {% if props.validatorErrors | length %}
+      {{ govukErrorSummary({
+          titleText: __("There is a problem"),
+          errorList: props.validatorErrorsArray
+        }) }}
+  {% endif %}
 
   {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
       {% call govukFieldset({

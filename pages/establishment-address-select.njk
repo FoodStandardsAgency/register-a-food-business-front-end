@@ -16,6 +16,13 @@
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
+        {% if props.validatorErrors | length %}
+                {{ govukErrorSummary({
+                titleText: __("There is a problem"),
+                errorList: props.validatorErrorsArray
+            }) }}
+        {% endif %}
+
         {% call govukFieldset({
           legend: {
             text: __("What is an establishment?"),
@@ -80,6 +87,14 @@
           }
         ]
       }) }}
+
+        {% if props.editModeFirstPage %}
+            {% set editModeFirstPage = "/new/" + props.council + "/establishment-address-manual?edit=establishment-address-manual" %}
+        {% else %}
+            {% set editModeFirstPage = "/new/" + props.council + "/establishment-address-manual" %}
+        {% endif %}
+
+      <a href = {{editModeFirstPage}} >{{__("I can't find my address in the list") }} </a>
       {% endcall%}
    </div>
 </div>

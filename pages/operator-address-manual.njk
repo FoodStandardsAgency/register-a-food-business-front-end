@@ -32,25 +32,12 @@
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
-      <div class="error-summary" role="alert" tabindex="-1" aria-labelledby="error-summary-heading">
-            {{ govukErrorSummary({
-            "titleText": __("There is a problem"),
-            "errorList": [
-                {
-                "text": __(props.validatorErrors.operator_address_line_1),
-                "href": "#operator_address_line_1"
-                },
-                {
-                "text": __(props.validatorErrors.operator_town),
-                "href": "#operator_town"
-                },
-                {
-                "text": __(props.validatorErrors.operator_postcode),
-                "href": "#operator_postcode"
-                }
-            ]
-            }) }}
-         </div>
+        {% if props.validatorErrors | length %}
+                  {{ govukErrorSummary({
+                titleText: __("There is a problem"),
+              errorList: props.validatorErrorsArray
+          }) }}
+        {% endif %}
 
         {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
           {% call govukFieldset({

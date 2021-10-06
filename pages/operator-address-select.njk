@@ -19,14 +19,22 @@
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
+      {% if props.validatorErrors | length %}
+        {{ govukErrorSummary({
+            titleText: __("There is a problem"),
+            errorList: props.validatorErrorsArray
+        }) }}
+      {% endif %}
+      
+
       {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
         {% call govukFieldset({
-        legend: {
-          text: __("Which is the partnership contact's address from the list?"),
-          classes: "govuk-fieldset__legend--l",
-          isPageHeading: true
-                }
-        }) %}
+          legend: {
+            text: __("Which is the partnership contact's address from the list?"),
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+                  }
+          }) %}
         {% endcall%}
 
         {% call govukInsetText({
@@ -34,7 +42,6 @@
           classes: "govuk-fieldset__legend--l"
         }) %}
         {% endcall %}
-
       {% else %}
         {% call govukFieldset({
           legend: {
@@ -42,14 +49,13 @@
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
                   }
-        }) %}
+          }) %}
         {% endcall%}
         {% call govukInsetText({
             text: __('Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company.'),
             classes: "govuk-fieldset__legend--l"
         }) %}
         {% endcall %}
-
       {% endif %}
 
       {% if props.editModeFirstPage %}
