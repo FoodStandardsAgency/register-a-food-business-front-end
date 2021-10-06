@@ -7,7 +7,7 @@ const nunjucks = require("nunjucks");
 var sassMiddleware = require("node-sass-middleware");
 var path = require("path");
 const getRandomValues = require("get-random-values");
-const dateFilter = require('nunjucks-date-filter');
+const dateFilter = require("nunjucks-date-filter");
 
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
@@ -60,7 +60,7 @@ i18n.configure({
   order: ["querystring", "cookie", "header"],
 
   // where to store json files - defaults to './locales'
-  directory: __dirname + "/../../public/static/locales",
+  directory: __dirname + "/../../public/static/locales"
 });
 
 const routes = require("./routes");
@@ -86,7 +86,7 @@ if (COSMOSDB_URL) {
   logger.info("Server: setting session cache to database");
   store = new MongoStore({
     url: COSMOSDB_URL,
-    dbName: "front-end-cache",
+    dbName: "front-end-cache"
   });
   logger.info("Server: successfully set up database connection");
 } else {
@@ -109,16 +109,16 @@ let sessionOptions = {
   cookie: {
     // Session cookie set to expire after 24 hours
     maxAge: 86400000,
-    httpOnly: true,
+    httpOnly: true
   },
-  store: store,
+  store: store
 };
 
 if (process.env.COOKIE_SECURE === "true") {
   sessionOptions.cookie.secure = true;
 }
 let limiter = rateLimit({
-  max: process.env.RATE_LIMIT, // limit each IP to x requests per minute
+  max: process.env.RATE_LIMIT // limit each IP to x requests per minute
 });
 
 app.engine("html", nunjucks.render);
@@ -136,7 +136,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   helmet.hsts({
-    maxAge: sixtyDaysInSeconds,
+    maxAge: sixtyDaysInSeconds
   })
 );
 app.use(csurf());
@@ -148,12 +148,18 @@ app.use(i18n.init);
 const env = nunjucks.configure(
   ["node_modules/govuk-frontend/", "pages", "components"],
   {
-    express: app, //integrate nunjucks into express
+    express: app //integrate nunjucks into express
   }
 );
-env.addFilter('date', dateFilter);
+env.addFilter("date", dateFilter);
 env.addGlobal("__", i18n.__);
 env.addFilter("t", i18n.__);
+env.addFilter("addressSelectItems", (findResults) =>
+  findResults.map((address, index) => ({
+    value: address.index,
+    text: address.summaryline
+  }))
+);
 
 app.use(morgan("combined", { stream: logger.stream }));
 
@@ -161,7 +167,7 @@ app.use(
   sassMiddleware({
     src: __dirname + "/sass", //where the sass files are
     dest: __dirname + "/css", //where css should go
-    debug: true,
+    debug: true
   })
 );
 
