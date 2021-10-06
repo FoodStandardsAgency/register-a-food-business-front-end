@@ -1,5 +1,6 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
@@ -11,51 +12,46 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-      {% if props.validatorErrors | length %}
-        {{ govukErrorSummary({
-            titleText: __("There is a problem"),
-            errorList: props.validatorErrorsArray
-        }) }}
-      {% endif %}
+      {{ processedErrorSummary(props.validatorErrors) }}
 
       {% call govukFieldset({
-        describedBy: "operators_name",
-          legend: {
-            text: __("What is the operator's name?"),
-            classes: "govuk-fieldset__legend--l",
-            isPageHeading: true
-          }  
-        }) %}
+          describedBy: "operators_name",
+            legend: {
+              text: __("What is the operator's name?"),
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true
+            }  
+          }) %}
       {{ govukDetails({
-          summaryText: __("What is the operator's name?"),
-          text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.")
-        }) }}
+                summaryText: __("What is the operator's name?"),
+                text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.")
+              }) }}
       {{ govukInput({
-            "label": {
-              "text": __("First and middle names")
-            },
-            "id": "operator_first_name",
-            "name": "operator_first_name",
-            "classes": "govuk-label--l",
-            "autoComplete": "given-name",
-            "value": props.cumulativeFullAnswers.operator_first_name,
-           "errorMessage": { "text": __(props.validatorErrors.operator_first_name) } if props.validatorErrors.operator_first_name
-        }) }}
+                "label": {
+                  "text": __("First and middle names")
+                },
+                "id": "operator_first_name",
+                "name": "operator_first_name",
+                "classes": "govuk-label--l",
+                "autoComplete": "given-name",
+                "value": props.cumulativeFullAnswers.operator_first_name,
+              "errorMessage": { "text": __(props.validatorErrors.operator_first_name) } if props.validatorErrors.operator_first_name
+            }) }}
       {{ govukInput({
-            "label": {
-              "text": __("Last name")
-            },
-            "id": "operator_last_name",
-            "name": "operator_last_name",
-            "classes": "govuk-label--l",
-            "autoComplete": "family-name",
-            "value": props.cumulativeFullAnswers.operator_last_name,
-            "errorMessage": { "text": __(props.validatorErrors.operator_last_name) } if props.validatorErrors.operator_last_name
-        }) }}
+                "label": {
+                  "text": __("Last name")
+                },
+                "id": "operator_last_name",
+                "name": "operator_last_name",
+                "classes": "govuk-label--l",
+                "autoComplete": "family-name",
+                "value": props.cumulativeFullAnswers.operator_last_name,
+                "errorMessage": { "text": __(props.validatorErrors.operator_last_name) } if props.validatorErrors.operator_last_name
+            }) }}
       {% endcall %}
       {{ govukButton({
-          text: __("Continue")
-        }) }}
+            text: __("Continue")
+          }) }}
       {%- endcall %}
     </div>
   </div>
