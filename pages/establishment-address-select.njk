@@ -1,9 +1,11 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "../components/PostForm.njk" import postForm %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/select/macro.njk" import govukSelect %}
 {% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 
 {% extends "layout.njk" %}
 
@@ -15,13 +17,7 @@
   <div class="govuk-grid-column-full">
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-
-        {% if props.validatorErrors | length %}
-                {{ govukErrorSummary({
-                titleText: __("There is a problem"),
-                errorList: props.validatorErrorsArray
-            }) }}
-        {% endif %}
+       {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
         {% call govukFieldset({
           legend: {

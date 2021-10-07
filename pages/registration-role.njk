@@ -1,6 +1,7 @@
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 
 {% extends "layout.njk" %}
 
@@ -10,6 +11,7 @@
 {{ props.currentPageWithQuery }}
 
 {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+{{ processedErrorSummary(props.validatorErrors, props.language) }}
   
   {{ govukRadios({
   idPrefix: "registration_role",

@@ -1,5 +1,4 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "../components/PostForm.njk" import postForm %}
 {% from "../components/AddressHelp.njk" import addressHelpForm %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
@@ -8,14 +7,16 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/select/macro.njk" import govukSelect %}
 
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+
 {% extends "layout.njk" %}
 
 {% block beforeContent %}
   
   {{ govukBackLink({
     href: "/new/" + props.council + "/operator-address", 
-    text: __("Back"),
-    {{ super() }}
+    text: __("Back")
   }) }}
   
 {% endblock %}
@@ -29,14 +30,8 @@
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
-      {% if props.validatorErrors | length %}
-        {{ govukErrorSummary({
-            titleText: __("There is a problem"),
-            errorList: props.validatorErrorsArray
-        }) }}
-      {% endif %}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
       
-
       {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
         {% call govukFieldset({
           legend: {

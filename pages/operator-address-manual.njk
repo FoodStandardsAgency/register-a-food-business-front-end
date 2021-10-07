@@ -1,10 +1,10 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "../components/PostForm.njk" import postForm %}
-{% from "../components/AddressHelp.njk" import addressHelpForm %}
-{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 
 {% extends "layout.njk" %}
 
@@ -31,13 +31,7 @@
   <div class="govuk-grid-column-two-thirds">
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-
-        {% if props.validatorErrors | length %}
-                  {{ govukErrorSummary({
-                titleText: __("There is a problem"),
-              errorList: props.validatorErrorsArray
-          }) }}
-        {% endif %}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
         {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
           {% call govukFieldset({

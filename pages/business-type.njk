@@ -2,6 +2,7 @@
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 
 {% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 
 {% extends "layout.njk" %}
 
@@ -14,12 +15,7 @@
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
-      {% if props.validatorErrors | length %}
-                {{ govukErrorSummary({
-                titleText: __("There is a problem"),
-                errorList: props.validatorErrorsArray
-            }) }}
-        {% endif %}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
       {% call govukFieldset({
           legend: {
