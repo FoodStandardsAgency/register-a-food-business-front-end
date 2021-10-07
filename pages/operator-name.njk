@@ -12,7 +12,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-      {{ processedErrorSummary(props.validatorErrors) }}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
       {% call govukFieldset({
           describedBy: "operators_name",

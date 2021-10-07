@@ -160,9 +160,9 @@ env.addFilter("addressSelectItems", (findResults) =>
     text: address.summaryline
   }))
 );
-env.addFilter("selectValidationErrors", (validationErrors) =>
+env.addFilter("selectValidationErrors", (validationErrors, language) =>
   Object.entries(validationErrors).map(([k, v]) => ({
-    text: i18n.__(v),
+    text: i18n.__({ phrase: v, locale: language }),
     href: "#" + k
   }))
 );
