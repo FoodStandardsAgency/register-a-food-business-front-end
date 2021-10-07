@@ -160,6 +160,12 @@ env.addFilter("addressSelectItems", (findResults) =>
     text: address.summaryline
   }))
 );
+env.addFilter("selectValidationErrors", (validationErrors) =>
+  Object.entries(validationErrors).map(([k, v]) => ({
+    text: i18n.__(v),
+    href: "#" + k
+  }))
+);
 
 app.use(morgan("combined", { stream: logger.stream }));
 
