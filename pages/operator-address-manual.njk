@@ -11,9 +11,9 @@
 {% block beforeContent %}
 
 {% if props.switches["/operator-address-none-found"] %}
-{% set backlink = "/new/" + props.council + "/operator-address" %}
+  {% set backlink = "/new/" + props.council + "/operator-address" %}
 {% else %}
-{% set backlink = "/new/" + props.council + "/operator-address-select" %}
+  {% set backlink = "/new/" + props.council + "/operator-address-select" %}
 {% endif%}
 
 {{ govukBackLink({

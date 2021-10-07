@@ -11,14 +11,14 @@
 {% block beforeContent %}
 
 {% if props.switches["/establishment-address-none-found"] %}
-{% set backlink = "/new/" + props.council + "/establishment-address" %}
+    {% set backlink = "/new/" + props.council + "/establishment-address" %}
 {% else %}
-{% set backlink = "/new/" + props.council + "/establishment-address-select" %}
+    {% set backlink = "/new/" + props.council + "/establishment-address-select" %}
 {% endif%}
 
 {{ govukBackLink({
     href: backlink,
-    text: __("Back")
+    text: "Back"
   }) }}
   {{ super() }}
 {% endblock%}
