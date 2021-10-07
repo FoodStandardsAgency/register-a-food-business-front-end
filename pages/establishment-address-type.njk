@@ -2,51 +2,63 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "govuk/components/details/macro.njk" import govukDetails %}
-
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% extends "layout.njk" %}
-
 {% block content %}
-
 {{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-{% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-  
-  <h1 id="main-heading" class="govuk-heading-l">{{ __("Where is this establishment located?")}}</h1>
+      {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
-  {{ govukDetails({
-  summaryText: __("What is an establishment?"),
-  href: "#",
-  text: __( "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.")
-  }) }}
+      {% call govukFieldset({
+            legend: {
+              text: __("Where is this establishment located?"),
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true
+                    }
+            }) %}
 
-  {{ govukRadios({
-  idPrefix: "establishment_type",
-  name: "establishment_type",
-  items: [
-    {
-      value: "MOBILE",
-      text: "In a mobile or moveable premises",
-      id: "establishment_type_mobile_moveable",
-      checked: props.cumulativeFullAnswers.establishment_type === "MOBILE"
-    },
-    {
-      value: "DOMESTIC",
-      text: "In a home or domestic premises",
-      id: "establishment_type_home_domestic",
-      checked: props.cumulativeFullAnswers.establishment_type === "DOMESTIC"
-    },
-    {
-      value: "COMMERCIAL",
-      text: "In a commercial or public premises",
-      id: "establishment_type_business_commercial",
-      checked: props.cumulativeFullAnswers.establishment_type ==="COMMERCIAL"
-    }
-  ]
-}) }}
-  
-  {{ govukButton({
-    text: "Continue"
-  }) }}
-{%- endcall %}
+      {{ govukDetails({
+      summaryText: __("What is an establishment?"),
+      href: "#",
+      text: __("An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.")
+      }) }}
 
+      {{ govukRadios({
+      idPrefix: "establishment_type",
+      name: "establishment_type",
+      items: [
+        {
+          value: "MOBILE",
+          text: __("In a mobile or moveable premises"),
+          id: "establishment_type_mobile_moveable",
+          checked: props.cumulativeFullAnswers.establishment_type === "MOBILE"
+        },
+        {
+          value: "DOMESTIC",
+          text: __("In a home or domestic premises"),
+          id: "establishment_type_home_domestic",
+          checked: props.cumulativeFullAnswers.establishment_type === "DOMESTIC"
+        },
+        {
+          value: "COMMERCIAL",
+          text: __("In a commercial or public premises"),
+          id: "establishment_type_business_commercial",
+          checked: props.cumulativeFullAnswers.establishment_type ==="COMMERCIAL"
+        }
+      ],
+      errorMessage: {
+        text: __(props.validatorErrors.establishment_type)} if props.validatorErrors.establishment_type
+      }) }}
+      {% endcall%}
+      {{ govukButton({
+            text: __("Continue")
+          }) }}
+      {%- endcall %}
+    </div>
+  </div>
 {% endblock %}

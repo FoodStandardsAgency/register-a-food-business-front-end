@@ -2,137 +2,132 @@
 {% from "../components/PostForm.njk" import postForm %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
-
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 
 {% macro openHoursMonday() %}
-
 {{ govukInput({
   label: {
     text: "Monday"
   },
   id: "opening_hours_monday",
   name: "opening_hours_monday",
-  value: props.cumulativeFullAnswers.opening_hours_monday
+  value: props.cumulativeFullAnswers.opening_hours_monday,
+  errorMessage: { text: __(props.validatorErrors.opening_hours_monday) } if props.validatorErrors.opening_hours_monday
 }) }}
-
 {% endmacro %}
 
 {% macro openHoursTuesday() %}
-
 {{ govukInput({
   label: {
     text: "Tuesday"
   },
   id: "opening_hours_tuesday",
   name: "opening_hours_tuesday",
-  value: props.cumulativeFullAnswers.opening_hours_tuesday
+  value: props.cumulativeFullAnswers.opening_hours_tuesday,
+  errorMessage: { text: __(props.validatorErrors.opening_hours_tuesday) } if props.validatorErrors.opening_hours_tuesday
 }) }}
-
 {% endmacro %}
 
 {% macro openHoursWednesday() %}
-
 {{ govukInput({
   label: {
     text: "Wednesday"
   },
   id: "opening_hours_wednesday",
   name: "opening_hours_wednesday",
-  value: props.cumulativeFullAnswers.opening_hours_wednesday
+  value: props.cumulativeFullAnswers.opening_hours_wednesday,
+  errorMessage: { text: __(props.validatorErrors.opening_hours_wednesday) } if props.validatorErrors.opening_hours_wednesday
 }) }}
-
 {% endmacro %}
 
 {% macro openHoursThursday() %}
-
 {{ govukInput({
   label: {
     text: "Thursday"
   },
   id: "opening_hours_thursday",
   name: "opening_hours_thursday",
-  value: props.cumulativeFullAnswers.opening_hours_thursday
+  value: props.cumulativeFullAnswers.opening_hours_thursday,
+  errorMessage: { text: __(props.validatorErrors.opening_hours_thursday) } if props.validatorErrors.opening_hours_thursday
 }) }}
-
-{% endmacro %}
-
-{% macro openHoursThursday() %}
-
-{{ govukInput({
-  label: {
-    text: "Thursday"
-  },
-  id: "opening_hours_thursday",
-  name: "opening_hours_thursday",
-  value: props.cumulativeFullAnswers.opening_hours_thursday
-}) }}
-
 {% endmacro %}
 
 {% macro openHoursFriday() %}
-
 {{ govukInput({
   label: {
     text: "Friday"
   },
   id: "opening_hours_friday",
   name: "opening_hours_friday",
-  value: props.cumulativeFullAnswers.opening_hours_friday
+  value: props.cumulativeFullAnswers.opening_hours_friday,
+  errorMessage: { text: __(props.validatorErrors.opening_hours_friday) } if props.validatorErrors.opening_hours_friday
 }) }}
-
 {% endmacro %}
 
 {% macro openHoursSaturday() %}
-
 {{ govukInput({
   label: {
     text: "Saturday"
   },
   id: "opening_hours_saturday",
   name: "opening_hours_saturday",
-  value: props.cumulativeFullAnswers.opening_hours_saturday
+  value: props.cumulativeFullAnswers.opening_hours_saturday,
+  errorMessage: { text: __(props.validatorErrors.opening_hours_saturday) } if props.validatorErrors.opening_hours_saturday
 }) }}
-
 {% endmacro %}
 
 {% macro openHoursSunday() %}
-
 {{ govukInput({
   label: {
     text: "Sunday"
   },
   id: "opening_hours_sunday",
   name: "opening_hours_sunday",
-  value: props.cumulativeFullAnswers.opening_hours_sunday
+  value: props.cumulativeFullAnswers.opening_hours_sunday,
+  errorMessage: { text: __(props.validatorErrors.opening_hours_sunday) } if props.validatorErrors.opening_hours_sunday
 }) }}
-
 {% endmacro %}
 
 {% extends "layout.njk" %}
-
 {% block content %}
+  {{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
-{{ props.currentPageWithQuery }}
+      {% call govukFieldset({
+              describedBy: "opening_hours",
+                legend: {
+                  text: __("Opening hours"),
+                  classes: "govuk-fieldset__legend--l",
+                  isPageHeading: true
+                }  
+              }) %}
 
-{% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-  
-  <h1 id="main-heading" class="govuk-heading-l">{{ __("Opening hours")}}</h1>
-  <p style="color:#505a5f">Fill in the expected opening times for this establishment using 24 hour clocks.</p>
- 
+      <p id="hint">Fill in the expected opening times for this establishment using 24 hour clocks.</p>
 
-{{ openHoursMonday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_monday }}
-{{ openHoursTuesday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_tuesday }}
-{{ openHoursWednesday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_wednesday }}
-{{ openHoursThursday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_thursday }}
-{{ openHoursFriday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_friday }}  
-{{ openHoursSaturday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_saturday }}
-{{ openHoursSunday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_sunday }}
+      {{ openHoursMonday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_monday }}
+      {{ openHoursTuesday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_tuesday }}
+      {{ openHoursWednesday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_wednesday }}
+      {{ openHoursThursday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_thursday }}
+      {{ openHoursFriday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_friday }}  
+      {{ openHoursSaturday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_saturday }}
+      {{ openHoursSunday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_sunday }}
 
-
-{{ govukButton({
-      text: "Continue"
-    }) }}
-
-  {%- endcall %}
-
+      {% endcall %}
+      {{ govukButton({
+            text: "Continue"
+          }) }}
+      {%- endcall %}
+    </div>
+  </div>
+  <style>
+    #hint {
+      color:#6F777B;
+      font-size: 19px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
 {% endblock %}
