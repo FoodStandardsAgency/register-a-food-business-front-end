@@ -16,11 +16,26 @@ describe("Establishment-Address-Type", () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('Heading text correct', async () => {
-    const $ = renderPage('establishment-address-type', "language: 'en'")
+  it('renders 3 radio buttons with correct error props and default values', async () => {
+    const testValidatorErrors = {
+      example: "test error"
+    };
+    
+    const $ = renderPage('establishment-address-type', `language: 'en', validatorErrors:${testValidatorErrors}`)
 
-    const $mainHeading = $('#main-heading')
-    expect($mainHeading.get(0).children[0].data).toBe("Where is this establishment located?")
+    const $establishmentAddressTypeRadio = $('Radio')
+    expect($establishmentAddressTypeRadio._root[0].children[1].children.length).toBe(3)
+});
+
+it('renders the correct error', async () => {
+  const testValidatorErrors = {
+    example: "test error"
+  };
+  
+  const $ = renderPage('establishment-address-type', `language: 'en', validatorErrors:${testValidatorErrors}`)
+
+  // const $establishmentAddressTypeRadio = $('Radio')
+  // expect($.props().meta.error).toBe(3)
 });
 
   describe('Radio boxes have correct value', () =>{
