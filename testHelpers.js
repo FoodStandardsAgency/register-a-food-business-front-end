@@ -53,9 +53,7 @@ function renderPage(pageName, params) {
     );
   }
 
-  const pageParams = JSON.stringify(params, null, 2);
-
-  const output = nunjucks.render(pageName + ".njk", pageParams);
+  const output = nunjucks.render(pageName + ".njk", { props: params });
   return cheerio.load(output);
 }
 
