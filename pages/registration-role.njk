@@ -5,14 +5,10 @@
 
 {% extends "layout.njk" %}
 
-
 {% block content %}
+  {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+  {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
-{{ props.currentPageWithQuery }}
-
-{% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-{{ processedErrorSummary(props.validatorErrors, props.language) }}
-  
   {{ govukRadios({
   idPrefix: "registration_role",
   name: "registration_role",
@@ -41,10 +37,10 @@
     }
   ]
 }) }}
-  
+
   {{ govukButton({
     text: "Continue"
   }) }}
-{%- endcall %}
+  {%- endcall %}
 
 {% endblock %}

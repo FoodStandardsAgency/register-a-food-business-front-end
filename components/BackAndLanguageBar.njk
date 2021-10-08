@@ -1,0 +1,6 @@
+{% from "BackButton.njk" import backButton %}
+
+{% macro backAndLanguageBar(props) %}
+  {{ backButton(props) }}
+  <a href="{{ __('change-language') }}">{{ __('Change Language') | t }}</a>
+{% endmacro %}

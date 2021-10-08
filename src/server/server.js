@@ -152,7 +152,9 @@ const env = nunjucks.configure(
   }
 );
 env.addFilter("date", dateFilter);
-env.addGlobal("__", i18n.__);
+env.addGlobal("__", (phrase) => {
+  return i18n.__(phrase);
+});
 env.addFilter("t", i18n.__);
 env.addFilter("addressSelectItems", (findResults) =>
   findResults.map((address, index) => ({
@@ -166,7 +168,16 @@ env.addFilter("selectValidationErrors", (validationErrors, language) =>
     href: "#" + k
   }))
 );
+env.addGlobal("mergeObjects", (orig, additionalProps) => ({
+  ...orig,
+  ...additionalProps
+}));
 
+const setLanguage = function (req, res, next) {
+  req.body && req.body.language && i18n.setLocale(req.body.language);
+  next();
+};
+app.use(setLanguage);
 app.use(morgan("combined", { stream: logger.stream }));
 
 app.use(

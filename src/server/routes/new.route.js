@@ -90,8 +90,7 @@ const newRouter = () => {
             );
 
             var props = PropsGenerator(req);
-            //app.render(req, res, `/index`);
-            res.render("index", { props: PropsGenerator(req) });
+            res.render("index", { props });
           }
         });
       } else {
