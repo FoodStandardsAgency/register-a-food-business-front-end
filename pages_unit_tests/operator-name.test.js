@@ -1,4 +1,4 @@
-const { axe, renderPage } = require("../testHelpers");
+const { axe, renderPage, renderComponent } = require("../testHelpers");
 
 describe("Page heading title should be 'What is the operator's name ?'", () => {
   it("renders without crashing", () => {
@@ -16,6 +16,12 @@ describe("Page heading title should be 'What is the operator's name ?'", () => {
       const $ = renderPage("operator-name", "language: 'en'");
       const $firstname = $("#operator_first_name");
       expect($firstname.get(0).attribs.name).toBe("operator_first_name");
+    });
+
+    it("gets given the correct error prop when first name is set", () => {
+      const $ = renderPage("operator-name", "language: 'en'");
+      const $firstname = $("#operator_first_name");
+      //const $ = renderComponent("operator-name", props.validatorErrors, true);
     });
   });
 
