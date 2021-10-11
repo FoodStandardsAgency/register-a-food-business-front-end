@@ -47,7 +47,8 @@
             "name": "establishment_address_line_1",
             "classes": "govuk-label--l",
             "autoComplete": "address-line1",
-            "errorMessage": __(props.validatorErrors.establishment_address_line_1)
+            "value":  props.cumulativeFullAnswers.establishment_address_line_1,
+            "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_1) } if props.validatorErrors.establishment_address_line_1
         }) }}
 
         {{ govukInput({
@@ -58,7 +59,7 @@
             "name": "establishment_address_line_2",
             "classes": "govuk-label--l",
             "autoComplete": "address-line2",
-            "errorMessage": __(props.validatorErrors.establishment_address_line_2)
+            "value": props.cumulativeFullAnswers.establishment_address_line_2
         }) }}
 
         {{ govukInput({
@@ -69,7 +70,7 @@
             "name": "establishment_address_line_3",
             "classes": "govuk-label--l",
             "autoComplete": "address-line3",
-            "errorMessage": __(props.validatorErrors.establishment_address_line_3)
+            "value": props.cumulativeFullAnswers.establishment_address_line_3
         }) }}
 
         {{ govukInput({
@@ -80,7 +81,8 @@
             "name": "establishment_town",
             "classes": "govuk-label--l",
             "autoComplete": "locality",
-            "errorMessage": __(props.validatorErrors.establishment_town)
+            "value": props.cumulativeFullAnswers.establishment_town,
+            "errorMessage": { "text": __(props.validatorErrors.establishment_town) } if props.validatorErrors.establishment_town
         }) }}
 
         {{ govukInput({
@@ -92,7 +94,7 @@
             "classes": "govuk-label--l",
             "autoComplete": "postal-code",
             "value": props.cumulativeFullAnswers.establishment_postcode,
-            "errorMessage": __(props.validatorErrors.establishment_postcode)
+            "errorMessage": { "text": __(props.validatorErrors.establishment_postcode) } if props.validatorErrors.establishment_postcode
         }) }}
 
         {{ govukButton({
