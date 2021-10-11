@@ -44,26 +44,26 @@
       "label": {
         "text": __("Main phone number")
       },
-      "errorMessage": {
-      "text":  __(props.validatorErrors.operator_primary_number)
-      },
       "id": "operator_primary_number",
       "name": "operator_primary_number",
+      "value": cumulativeFullAnswers.operator_primary_number,
       "classes": "govuk-label--l",
-      "autoComplete": "tel"
-  }) }}
+      "autoComplete": "tel",
+       "errorMessage": {
+      "text":  __(props.validatorErrors.operator_primary_number) } if props.validatorErrors.operator_primary_number       
+   }) }}
 
   {{ govukInput({
       "label": {
         "text": __("Secondary phone number (optional)")
       },
-      "errorMessage": {
-      "text":  __(props.validatorErrors.operator_secondary_number)
-      },
       "id": "operator_secondary_number",
       "name": "operator_secondary_number",
+      "value": props.cumulativeFullAnswers.operator_secondary_number,
       "classes": "govuk-label--l",
-      "autoComplete": "off"
+      "autoComplete": "off",
+      "errorMessage": {
+      "text":  __(props.validatorErrors.operator_secondary_number) } if props.validatorErrors.operator_secondary_number 
   }) }}
 
   {{ govukInput({
@@ -73,13 +73,13 @@
       "hint": {
       "text": __("We will use your email to keep you informed of any policy or legal changes that could affect your food business.")
       },
-      "errorMessage": {
-      "text": __(props.validatorErrors.operator_email)
-      },
       "id": "operator_email",
       "name": "operator_email",
+      "value": props.cumulativeFullAnswers.operator_email,
       "classes": "govuk-label--l",
-      "autoComplete": "email"
+      "autoComplete": "email",
+      "errorMessage": {
+      "text": __(props.validatorErrors.operator_email) } if props.validatorErrors.operator_email
   }) }}
 
     {{ govukButton({
