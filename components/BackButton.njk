@@ -8,7 +8,7 @@
             href: props.href if props.href else "/",
             text: __("Back to start")
         }) }}
-    {% elif prodp.editModeFirstPage %}
+    {% elif props.editModeFirstPage %}
         {{ govukBackLink({
             href: props.href,
             text: __("Back")

@@ -14,16 +14,16 @@
 {% set props = mergeObjects(props, {hideback: true}) %}
 
 {% block content %}
-  <h1 id="main-heading" class="govuk-heading-l">{{ __("Register a food business")}}</h1>
+  <h1 id="main-heading" class="govuk-heading-l">{{ __("Register a Food Business")}}</h1>
 
-  <p class="govuk-body">{{__("When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least ") }}
-    <b>{{__("28 days") }}</b>
+  <p class="govuk-body">{{__("When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least") }}
+    <b>{{ __("28 days") }}</b>
     {{__("before trading or before food operations start.") }}</p>
   <b>{{ govukInsetText({
   text: __("During this registration, you may come across a few specialist terms, which we have described below") + ":"
   }) }}</b>
   <h1 class="govuk-heading-m">{{__("Food business operator") }}</h1>
-  <p class="govuk-body">The operator is the person, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.</p>
+  <p class="govuk-body">{{__("The operator is the person, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.") }}</p>
   <h1 class="govuk-heading-m">{{__("Establishment") }}</h1>
   <p class="govuk-body">{{__("The establishment is the location or site of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.") }}</p>
   <h1 class="govuk-heading-m">{{__("Registering Local Authority") }}</h1>
