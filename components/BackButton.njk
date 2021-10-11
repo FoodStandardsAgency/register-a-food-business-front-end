@@ -16,7 +16,7 @@
     {% else %}
         {{ govukBackLink({
             href: props.backHref if props.href else ("/back" + props.currentPage),
-            text: __({ phrase: "Back", locale: props.language })
+            text: __("Back")
         }) }}
     {% endif %}
 
