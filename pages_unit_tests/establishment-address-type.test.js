@@ -1,12 +1,14 @@
 const { axe, renderPage } = require("../testHelpers");
 
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: { establishment_type: "DOMESTIC" },
+  language: "en"
+};
+
 describe("Establishment-Address-Type", () => {
   it("renders without crashing", () => {
-    const $ = renderPage("establishment-address-type", {
-      validatorErrors: {},
-      cumulativeFullAnswers: { establishment_type: "DOMESTIC" },
-      language: "en"
-    });
+    const $ = renderPage("establishment-address-type", props);
 
     const $mainHeading = $("h1");
     expect($mainHeading.text().trim()).toEqual(
@@ -15,22 +17,14 @@ describe("Establishment-Address-Type", () => {
   });
 
   it("passes accessibility tests", async () => {
-    const $ = renderPage("establishment-address-type", {
-      validatorErrors: {},
-      cumulativeFullAnswers: { establishment_type: "DOMESTIC" },
-      language: "en"
-    });
+    const $ = renderPage("establishment-address-type", props);
 
     const results = await axe($.html());
     expect(results).toHaveNoViolations();
   });
 
   it("renders 3 radio buttons", async () => {
-    const $ = renderPage("establishment-address-type", {
-      validatorErrors: {},
-      cumulativeFullAnswers: { establishment_type: "DOMESTIC" },
-      language: "en"
-    });
+    const $ = renderPage("establishment-address-type", props);
 
     const $establishmentAddressTypeRadio = $(":radio");
     expect($establishmentAddressTypeRadio.length).toBe(3);
@@ -38,21 +32,26 @@ describe("Establishment-Address-Type", () => {
 
   describe("Radio boxes have correct value", () => {
     it("renders the Mobile radio button with the correct value", () => {
-      const $ = renderPage("establishment-address-type", "language: 'en'");
+      const $ = renderPage("establishment-address-type", props);
       const $mainHeadingMobile = $("#establishment_type_mobile_moveable");
       expect($mainHeadingMobile.get(0).attribs.value).toBe("MOBILE");
     });
     it("renders the Domestic radio button with the correct value", () => {
-      const $ = renderPage("establishment-address-type", "language: 'en'");
+      const $ = renderPage("establishment-address-type", props);
       const $mainHeadingDomestic = $("#establishment_type_home_domestic");
       expect($mainHeadingDomestic.get(0).attribs.value).toBe("DOMESTIC");
     });
     it("renders the Commercial radio button with the correct value", () => {
-      const $ = renderPage("establishment-address-type", "language: 'en'");
+      const $ = renderPage("establishment-address-type", props);
       const $mainHeadingCommercial = $(
         "#establishment_type_business_commercial"
       );
       expect($mainHeadingCommercial.get(0).attribs.value).toBe("COMMERCIAL");
+    });
+    it("select the correct radio button based on session data", () => {
+      const $ = renderPage("establishment-address-type", props);
+      const $selected = $("input:checked");
+      expect($selected.get(0).attribs.value).toBe("DOMESTIC");
     });
   });
 
