@@ -7,7 +7,7 @@
 {% macro openHoursMonday() %}
 {{ govukInput({
   label: {
-    text: "Monday"
+    text: __("Monday")
   },
   id: "opening_hours_monday",
   name: "opening_hours_monday",
@@ -19,7 +19,7 @@
 {% macro openHoursTuesday() %}
 {{ govukInput({
   label: {
-    text: "Tuesday"
+    text: __("Tuesday")
   },
   id: "opening_hours_tuesday",
   name: "opening_hours_tuesday",
@@ -31,7 +31,7 @@
 {% macro openHoursWednesday() %}
 {{ govukInput({
   label: {
-    text: "Wednesday"
+    text: __("Wednesday")
   },
   id: "opening_hours_wednesday",
   name: "opening_hours_wednesday",
@@ -43,7 +43,7 @@
 {% macro openHoursThursday() %}
 {{ govukInput({
   label: {
-    text: "Thursday"
+    text: __("Thursday")
   },
   id: "opening_hours_thursday",
   name: "opening_hours_thursday",
@@ -55,7 +55,7 @@
 {% macro openHoursFriday() %}
 {{ govukInput({
   label: {
-    text: "Friday"
+    text: __("Friday")
   },
   id: "opening_hours_friday",
   name: "opening_hours_friday",
@@ -67,7 +67,7 @@
 {% macro openHoursSaturday() %}
 {{ govukInput({
   label: {
-    text: "Saturday"
+    text: __("Saturday")
   },
   id: "opening_hours_saturday",
   name: "opening_hours_saturday",
@@ -79,7 +79,7 @@
 {% macro openHoursSunday() %}
 {{ govukInput({
   label: {
-    text: "Sunday"
+    text: __("Sunday")
   },
   id: "opening_hours_sunday",
   name: "opening_hours_sunday",
@@ -106,7 +106,7 @@
                 }  
               }) %}
 
-      <p id="hint">Fill in the expected opening times for this establishment using 24 hour clocks.</p>
+      <p id="hint">{{__("Fill in the expected opening times for this establishment using 24 hour clocks.")}}</p>
 
       {{ openHoursMonday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_monday }}
       {{ openHoursTuesday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_tuesday }}
@@ -118,7 +118,7 @@
 
       {% endcall %}
       {{ govukButton({
-            text: "Continue"
+            text: __("Continue")
           }) }}
       {%- endcall %}
     </div>
