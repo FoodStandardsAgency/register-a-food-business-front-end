@@ -8,24 +8,15 @@
 
 {% extends "layout.njk" %}
 
-{% block beforeContent %}
-
 {% if props.switches["/establishment-address-none-found"] %}
     {% set backlink = "/new/" + props.council + "/establishment-address" %}
 {% else %}
     {% set backlink = "/new/" + props.council + "/establishment-address-select" %}
 {% endif%}
 
-{{ govukBackLink({
-    href: backlink,
-    text: "Back"
-  }) }}
-  {{ super() }}
-{% endblock%}
+{% set props = mergeObjects(props, { backHref: backlink }) %}
 
 {% block content %}
-
-{{ props.currentPageWithQuery }}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
