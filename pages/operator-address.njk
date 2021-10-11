@@ -8,8 +8,8 @@
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 
 {% extends "layout.njk" %}
+
 {% block content %}
-    {{ props.currentPageWithQuery }}
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
          {% call postForm("/findaddress" + props.currentPage, props.csrfToken, props.language) -%}
