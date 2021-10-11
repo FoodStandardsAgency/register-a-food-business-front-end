@@ -3,7 +3,7 @@
 {% macro processedErrorSummary(validatorErrors, language) %}
   {% if validatorErrors | length %}
     {{ govukErrorSummary({
-        titleText: __({ phrase: "There is a problem", locale: language }),
+        titleText: __("There is a problem"),
         errorList: validatorErrors | selectValidationErrors(language)
     }) }}
   {% endif %}
