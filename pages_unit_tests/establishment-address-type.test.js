@@ -1,4 +1,4 @@
-const { axe, renderPage } = require("../testHelpers");
+const { axe, renderPage, getRadioButtons, getErrorSummaryLinks, getMainHeading } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
@@ -10,7 +10,7 @@ describe("Establishment-Address-Type", () => {
   it("renders without crashing", () => {
     const $ = renderPage("establishment-address-type", props);
 
-    const $mainHeading = $("h1");
+    const $mainHeading = getMainHeading($);
     expect($mainHeading.text().trim()).toEqual(
       "Where is this establishment located?"
     );
@@ -26,8 +26,8 @@ describe("Establishment-Address-Type", () => {
   it("renders 3 radio buttons", async () => {
     const $ = renderPage("establishment-address-type", props);
 
-    const $establishmentAddressTypeRadio = $(":radio");
-    expect($establishmentAddressTypeRadio.length).toBe(3);
+    const $establishmentAddressTypeRadios = getRadioButtons($);
+    expect($establishmentAddressTypeRadios.length).toBe(3);
   });
 
   describe("Radio boxes have correct value", () => {
@@ -55,16 +55,31 @@ describe("Establishment-Address-Type", () => {
     });
   });
 
-  it("renders the correct error", async () => {
-    const $ = renderPage("establishment-address-type", {
-      language: "cy",
-      validatorErrors: {
-        establishment_type: "test error"
-      }
+  describe("Error messages displayed", () => {
+    it("renders the correct summary error", async () => {
+      const $ = renderPage("establishment-address-type", {
+        language: "cy",
+        validatorErrors: {
+          establishment_type: "test error"
+        }
+      });
+
+      const $pageErrors = getErrorSummaryLinks($);
+      expect($pageErrors.length).toBe(1);
+      expect($pageErrors.contents().get(0).data).toBe("test error");
     });
 
-    const $pageErrors = $(".govuk-error-summary__list a");
-    expect($pageErrors.length).toBe(1);
-    expect($pageErrors.contents().get(0).data).toBe("test error");
+    it("renders the correct error", async () => {
+      const $ = renderPage("establishment-address-type", {
+        language: "cy",
+        validatorErrors: {
+          establishment_type: "test error"
+        }
+      });
+
+      const $radioError = $("#establishment_type-error");
+      expect($radioError.length).toBe(1);
+      expect($radioError.contents().get(2).data.trim()).toBe("test error");
+    });
   });
 });

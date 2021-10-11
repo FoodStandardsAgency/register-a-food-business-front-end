@@ -85,4 +85,19 @@ function renderComponent(pageName, params, children = false) {
   return cheerio.load(output);
 }
 
-module.exports = { axe, renderPage, renderComponent };
+function getRadioButtons($){
+  const radioButtonsList = $(":radio");
+  return radioButtonsList;
+}
+
+function getErrorSummaryLinks($){
+  const errorLinks = $(".govuk-error-summary__list a");
+  return errorLinks;
+}
+
+function getMainHeading($){
+  const mainHeading = $("h1");
+  return mainHeading;
+}
+
+module.exports = { axe, renderPage, renderComponent, getRadioButtons, getErrorSummaryLinks, getMainHeading };
