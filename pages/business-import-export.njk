@@ -9,8 +9,6 @@
 
 {% block content %}
 
- {{ props.currentPageWithQuery }}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
@@ -53,21 +51,34 @@
         ]
         }) }}
 
-        {{ govukDetails({
-                summaryText: __("More information about import and export activities"),
-                text:  __("If a food business is directly importing or exporting food outside of the UK, there are some extra requirements for the business to follow.")
-        }) }}
+       
 
         <br> 
         <br>
         {% set busImpExpLink = __("import/export-link") %}
-     
-        <a href = {{ busImpExpLink }}
-            target="_blank"
-            rel="noopener noreferrer"
-            id="link-fsa-website" >{{__("Find out more by visiting the ") }} {{__("Food Standards Agency website") }}
-        </a>     
+        {% set busImpExpText = __("If a food business is directly importing or exporting food outside of the UK, there are some extra requirements for the business to follow.") %}
+
+        {% set detailsSummaryText %}
+        <span>
+        {{ busImpExpText }}
+
         <br>
+        {{__("Find out more by visiting the") }}
+            <a href = {{ busImpExpLink }} 
+                target="_blank"
+                rel="noopener noreferrer"
+                id="link-fsa-website" >  {{__("Food Standards Agency website (opens in new window)") }}
+            </a>
+        </span> 
+        {% endset %}
+        
+
+         {{ govukDetails({
+            summaryText: __("More information about import and export activities"),
+            html:  detailsSummaryText 
+            })
+        }}
+                
         <br>
         {{ govukButton({
             text: __("Continue")
