@@ -7,10 +7,8 @@
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 
-
-
 {% macro establishmentDueToTrade() %}
-{{ govukDateInput({
+  {{ govukDateInput({
   id: "establishment_opening_date",
   namePrefix: "establishment_opening_date",
   fieldset: {
@@ -46,9 +44,8 @@
 {% endmacro %}
 
 {% macro establishmentTrading() %}
-{{ govukDateInput({
+  {{ govukDateInput({
   id: "establishment_opening_date",
-  namePrefix: "establishment_opening_date",
   fieldset: {
     legend: {
       text: __("What date did this establishment begin trading?"),
@@ -62,17 +59,17 @@
     {
       name: "day",
       classes: "govuk-input--width-2",
-      defaultValue: props.cumulativeFullAnswers.day
+      value: props.cumulativeFullAnswers.day
     },
     {
       name: "month",
       classes: "govuk-input--width-2",
-      defaultValue: props.cumulativeFullAnswers.month
+      value: props.cumulativeFullAnswers.month
     },
     {
       name: "year",
       classes: "govuk-input--width-4",
-      defaultValue: props.cumulativeFullAnswers.year
+      value: props.cumulativeFullAnswers.year
     }
   ],
   errorMessage: {
@@ -80,42 +77,40 @@
 }) }}
 {% endmacro %}
 
-
 {% extends "layout.njk" %}
 {% block content %}
   {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-    {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-    {{ processedErrorSummary(props.validatorErrors, props.language) }}
-
-    {% call govukFieldset({
+      {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {% call govukFieldset({
         legend: {
           text: __("Expected opening date") if props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade" else __("Opening Date"),
           classes: "govuk-fieldset__legend--l",
           isPageHeading: true
                 }
     }) %}
-          
-    <p id= "hint">{{__("Establishments begin trading when they first start serving or manufacturing food for customers.")}}</p>
-    
-    {{ establishmentDueToTrade() if props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade" else establishmentTrading() }}
 
-    {{ govukDetails({
+      <p id= "hint">{{__("Establishments begin trading when they first start serving or manufacturing food for customers.")}}</p>
+
+      {{ establishmentDueToTrade() if props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade" else establishmentTrading() }}
+
+      {{ govukDetails({
     summaryText: __("I don't know when this establishment will begin trading"),
     text: __("Food businesses are required to register at least 28 days before they begin trading. If you are not sure when this business will open, it may be too early to register. You can also use an estimated date.")
     }) }}
-    {% endcall%}
-    {{ govukButton({
+      {% endcall%}
+      {{ govukButton({
       text: "Continue"
     }) }}
-  {%- endcall %}
+      {%- endcall %}
     </div>
   </div>
   <style>
     #hint {
-      color:#6F777B;
+      color: #6F777B;
       font-size: 19px;
       font-family: Arial, Helvetica, sans-serif;
     }
