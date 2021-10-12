@@ -85,19 +85,24 @@ function renderComponent(pageName, params, children = false) {
   return cheerio.load(output);
 }
 
-function getRadioButtons($){
-  const radioButtonsList = $(":radio");
-  return radioButtonsList;
-}
+const getPageDetails = {
+  getRadioButtons: function ($) {
+    const radioButtonsList = $(":radio");
+    return radioButtonsList;
+  },
+  getMainHeading: function ($) {
+    const mainHeading = $("h1");
+    return mainHeading;
+  },
+  getErrorSummaryLinks: function ($) {
+    const errorLinks = $(".govuk-error-summary__list a");
+    return errorLinks;
+  }
+};
 
-function getErrorSummaryLinks($){
-  const errorLinks = $(".govuk-error-summary__list a");
-  return errorLinks;
-}
-
-function getMainHeading($){
-  const mainHeading = $("h1");
-  return mainHeading;
-}
-
-module.exports = { axe, renderPage, renderComponent, getRadioButtons, getErrorSummaryLinks, getMainHeading };
+module.exports = {
+  axe,
+  renderPage,
+  renderComponent,
+  getPageDetails
+};

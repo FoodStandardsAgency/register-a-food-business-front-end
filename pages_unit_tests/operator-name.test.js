@@ -1,35 +1,55 @@
-const { axe, renderPage, renderComponent } = require("../testHelpers");
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-describe("Page heading title should be 'What is the operator's name ?'", () => {
-  it("renders without crashing", () => {
-    expect.stringContaining("What is the operator's name ?");
-  });
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: {
+    operator_first_name: "test name",
+    operator_last_name: "test lastname"
+  },
+  language: "en"
+};
 
+describe("Operator-Name", () => {
   it("It should pass accessibility tests", async () => {
     const $ = renderPage("operator-name", "language: 'en'");
     const results = await axe($.html());
     expect(results).toHaveNoViolations();
   });
 
-  describe("It should have operator first name input field", () => {
-    it("renders", () => {
-      const $ = renderPage("operator-name", "language: 'en'");
+  it("renders without crashing", () => {
+    const $ = renderPage("operator-name", props);
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual("What is the operator's name?");
+  });
+
+  describe("It should have correct input fields and value", () => {
+    it("renders operator first name correctly", () => {
+      const $ = renderPage("operator-name", props);
       const $firstname = $("#operator_first_name");
       expect($firstname.get(0).attribs.name).toBe("operator_first_name");
+      expect($firstname.get(0).attribs.value).toBe("test name");
     });
 
-    it("gets given the correct error prop when first name is set", () => {
-      const $ = renderPage("operator-name", "language: 'en'");
-      const $firstname = $("#operator_first_name");
-      //const $ = renderComponent("operator-name", props.validatorErrors, true);
+    it("renders operator last name correctly", () => {
+      const $ = renderPage("operator-name", props);
+      const $lastname = $("#operator_last_name");
+      expect($lastname.get(0).attribs.name).toBe("operator_last_name");
+      expect($lastname.get(0).attribs.value).toBe("test lastname");
     });
   });
 
-  describe("It should have operator last name input field", () => {
-    it("renders", () => {
-      const $ = renderPage("operator-name", "language: 'en'");
-      const $firstname = $("#operator_last_name");
-      expect($firstname.get(0).attribs.name).toBe("operator_last_name");
+  it("renders the correct error", async () => {
+    const $ = renderPage("operator-name", {
+      language: "en",
+      validatorErrors: {
+        operator_first_name: "Enter a valid first name",
+        operator_last_name: "Enter a valid last name"
+      }
     });
+
+    const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+    expect($pageErrors.length).toBe(2);
+    expect($pageErrors.contents().get(0).data).toBe("Enter a valid first name");
+    expect($pageErrors.contents().get(1).data).toBe("Enter a valid last name");
   });
 });
