@@ -11,7 +11,7 @@ const props = {
 
 describe("Operator-Name", () => {
   it("It should pass accessibility tests", async () => {
-    const $ = renderPage("operator-name", "language: 'en'");
+    const $ = renderPage("operator-name", props);
     const results = await axe($.html());
     expect(results).toHaveNoViolations();
   });

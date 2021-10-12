@@ -1,131 +1,71 @@
-import OperatorAddress from "../pages/operator-address";
-import { mount, shallow } from "enzyme";
-import { HintText, Heading } from "@slice-and-dice/govuk-react";
-import { Paragraph } from "@slice-and-dice/govuk-react";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: {
+    operator_postcode_find: "SE1 9AS",
+    registration_role: "PARTNERSHIP"
+  },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
+describe("Operator-address", () => {
+  it("It should pass accessibility tests", async () => {
+    const $ = renderPage("operator-address", props);
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
 
-const testSwitches = {};
-
-describe("<OperatorAddress />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<OperatorAddress />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("operator-address", props);
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual(
+      "What is the partnership contact's postcode?"
+    );
   });
 
-  describe("when registration role is partnership", () => {
-    let wrapper;
-    beforeEach(() => {
-      const cumulativeAnswers = { registration_role: "PARTNERSHIP" };
-      wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorAddress
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-    });
+  it("renders correct Inset text", () => {
+    const $ = renderPage("operator-address", props);
+    const $insetText = getPageDetails.getInsetText($);
+    expect($insetText.trim()).toEqual(
+      "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
+    );
+  });
 
+  describe("It should have correct input fields and value", () => {
+    it("renders operator postcode field correctly", () => {
+      const $ = renderPage("operator-address", props);
+      const $postcode = $("#operator_postcode_find");
+      expect($postcode.get(0).attribs.name).toBe("operator_postcode_find");
+      expect($postcode.get(0).attribs.value).toBe("SE1 9AS");
+    });
+  });
+
+  describe("when registration role is not a partnership", () => {
     it("renders correct header", () => {
-      const header = wrapper.find(Heading);
-      expect(header.at(1).text()).toBe(
-        "What is the partnership contact's postcode?"
-      );
-    });
-
-    it("renders correct hint text", () => {
-      const hintText = wrapper.find(HintText);
-      expect(hintText.first().props().children).toBe(
-        "Partnership address is the contact address for the partner who is the main point of contact."
-      );
-    });
-  });
-  describe("when registration role is not partnership", () => {
-    let wrapper;
-    beforeEach(() => {
-      const cumulativeAnswers = { registration_role: "TEST" };
-      wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorAddress
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-    });
-
-    it("renders correct header", () => {
-      const header = wrapper.find(Heading);
-      expect(header.at(1).text()).toBe("What is the operator's postcode?");
-    });
-
-    it("renders correct hint text", () => {
-      const hintText = wrapper.find(HintText);
-      expect(hintText.first().props().children).toBe(
-        "Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company."
+      const $ = renderPage("operator-address", {
+        language: "en",
+        cumulativeFullAnswers: {
+          registration_role: "Test"
+        }
+      });
+      const $mainHeading = getPageDetails.getMainHeading($);
+      expect($mainHeading.text().trim()).toEqual(
+        "What is the operator's postcode?"
       );
     });
   });
-  describe("Operator postcode input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorAddress
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const operatorPostcode = wrapper.find(
-        "InputField#operatorPostcodeFindComponent"
-      );
-      expect(operatorPostcode.length).toBe(1);
+
+  it("renders the correct error", async () => {
+    const $ = renderPage("operator-address", {
+      language: "en",
+      validatorErrors: {
+        operator_postcode_find: "Not a valid postcode"
+      }
     });
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_postcode_find: "test error"
-      };
-      const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorPostcode = wrapper.find(
-        "InputField#operatorPostcodeFindComponent"
-      );
-      expect(operatorPostcode.props().meta.error).toBe("test error");
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_postcode_find: "default"
-      };
-      const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorPostcode = wrapper.find(
-        "InputField#operatorPostcodeFindComponent"
-      );
-      expect(operatorPostcode.props().input.defaultValue).toBe("default");
-    });
+    const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+    expect($pageErrors.length).toBe(1);
+    expect($pageErrors.contents().get(0).data).toBe("Not a valid postcode");
   });
 });

@@ -94,6 +94,10 @@ const getPageDetails = {
     const mainHeading = $("h1");
     return mainHeading;
   },
+  getInsetText: function ($) {
+    const insetText = $(".govuk-inset-text").contents().get(0).data;
+    return insetText;
+  },
   getErrorSummaryLinks: function ($) {
     const errorLinks = $(".govuk-error-summary__list a");
     return errorLinks;
