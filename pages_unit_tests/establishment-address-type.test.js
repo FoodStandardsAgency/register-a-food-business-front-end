@@ -1,4 +1,4 @@
-const { axe, renderPage, getRadioButtons, getErrorSummaryLinks, getMainHeading } = require("../testHelpers");
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
@@ -10,7 +10,7 @@ describe("Establishment-Address-Type", () => {
   it("renders without crashing", () => {
     const $ = renderPage("establishment-address-type", props);
 
-    const $mainHeading = getMainHeading($);
+    const $mainHeading = getPageDetails.getMainHeading($);
     expect($mainHeading.text().trim()).toEqual(
       "Where is this establishment located?"
     );
@@ -26,7 +26,7 @@ describe("Establishment-Address-Type", () => {
   it("renders 3 radio buttons", async () => {
     const $ = renderPage("establishment-address-type", props);
 
-    const $establishmentAddressTypeRadios = getRadioButtons($);
+    const $establishmentAddressTypeRadios = getPageDetails.getRadioButtons($);
     expect($establishmentAddressTypeRadios.length).toBe(3);
   });
 
@@ -64,7 +64,7 @@ describe("Establishment-Address-Type", () => {
         }
       });
 
-      const $pageErrors = getErrorSummaryLinks($);
+      const $pageErrors = getPageDetails.getErrorSummaryLinks($);
       expect($pageErrors.length).toBe(1);
       expect($pageErrors.contents().get(0).data).toBe("test error");
     });
