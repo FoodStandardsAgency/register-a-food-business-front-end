@@ -12,7 +12,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-      {{ processedErrorSummary(props.validatorErrors) }}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
       {% call govukFieldset({
               describedBy: "establishment_trading_name",
@@ -24,15 +24,16 @@
               }) %}
 
       {{ govukInput({
-        label: {
-          text: __("What is the trading name of this establishment?")
+        "label": {
+          "text": __("What is the trading name of this establishment?")
         },
-        hint: {
-          text: __("A trading name is what your customers will call your business.")
+        "hint": {
+          "text": __("A trading name is what your customers will call your business.")
         },
-        id: "establishment_trading_name",
-        name: "establishment_trading_name",
-        errormessage:  { "text": __(props.validatorErrors.establishment_trading_name) } if props.validatorErrors.establishment_trading_name
+        "id": "establishment_trading_name",
+        "value": props.cumulativeFullAnswers.establishment_trading_name,
+        "name": "establishment_trading_name",
+        "errorMessage":  { "text": __(props.validatorErrors.establishment_trading_name) } if props.validatorErrors.establishment_trading_name
       }) }}
       {% endcall%}
       {{ govukButton({
