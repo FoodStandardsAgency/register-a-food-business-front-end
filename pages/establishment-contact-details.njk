@@ -23,9 +23,17 @@
         text: __("Main phone number")
       },
       {
-        text:  props.cumulativeFullAnswers.operator_primary_number if props.cumulativeFullAnswers.operator_primary_number else props.cumulativeFullAnswers.contact_representative_number
+        text: props.cumulativeFullAnswers.operator_primary_number if props.cumulativeFullAnswers.operator_primary_number else props.cumulativeFullAnswers.contact_representative_number
       }
     ],
+    [
+      {
+        text: __("Secondary phone number")
+      },
+      {
+        text: props.cumulativeFullAnswers.operator_secondary_number 
+      }
+    ] if props.cumulativeFullAnswers.operator_secondary_number,
     [
       {
         text: __("Email address")
