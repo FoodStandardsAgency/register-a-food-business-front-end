@@ -40,16 +40,16 @@ describe("Operator-Name", () => {
 
   it("renders the correct error", async () => {
     const $ = renderPage("operator-name", {
-      language: "cy",
+      language: "en",
       validatorErrors: {
-        operator_first_name: "test name",
-        operator_last_name: "test lastname"
+        operator_first_name: "Enter a valid first name",
+        operator_last_name: "Enter a valid last name"
       }
     });
 
     const $pageErrors = getPageDetails.getErrorSummaryLinks($);
     expect($pageErrors.length).toBe(2);
-    expect($pageErrors.contents().get(0).data).toBe("test name1");
-    expect($pageErrors.contents().get(1).data).toBe("test name2");
+    expect($pageErrors.contents().get(0).data).toBe("Enter a valid first name");
+    expect($pageErrors.contents().get(1).data).toBe("Enter a valid last name");
   });
 });
