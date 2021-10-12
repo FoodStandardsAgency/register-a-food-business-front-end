@@ -29,24 +29,29 @@
         hint: {
             text: "Select all that apply."
         },
+        errorMessage: {
+             text: __(props.validatorErrors.import_export_activities) } if props.validatorErrors.import_export_activities,
         items: [
             {
             id:  "import_export_activities_directly_export",
             name: "directly_import",
             value: "IMPORT",
-            text: __("Directly import food")
+            text: __("Directly import food"),
+            checked: props.cumulativeFullAnswers.directly_import
             },
             {
             id: "import_export_activities_directly_export",
             name: "directly_export",
             value: "EXPORT",
-            text:  __("Directly export food")
+            text:  __("Directly export food"),
+            checked: props.cumulativeFullAnswers.directly_export
             },
             {
             id: "import_export_activities_none",
             name: "no_import_export",
             value: "NONE",
-            text: "Farm or agricultural waste"
+            text: "Farm or agricultural waste",
+            checked: props.cumulativeFullAnswers.no_import_export
             }
         ]
         }) }}
