@@ -60,9 +60,9 @@ describe("Establishment-Trading-Name", () => {
           }
         });
 
-        const $radioError = $("#establishment_trading_name-error");
-        expect($radioError.length).toBe(1);
-        expect($radioError.contents().get(2).data.trim()).toBe("test error");
+        const $inputError = $("#establishment_trading_name-error");
+        expect($inputError.length).toBe(1);
+        expect($inputError.contents().get(2).data.trim()).toBe("test error");
       });
     });
   });
