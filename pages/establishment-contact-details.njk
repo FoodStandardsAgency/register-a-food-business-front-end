@@ -48,8 +48,7 @@
 {{
   govukButton({
       text: __("Re-use partnership contact details") if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" else __("Re-use operator contact details"),
-      type: "submit",
-      formAction: "/switches/reuseOperatorContactDetails/on/establishment-contact-details#establishment_primary_number",
+      attributes: {formAction: "/switches/reuseOperatorContactDetails/on/establishment-contact-details#establishment_primary_number"},
       id: "reuseButton"
     }) 
 }}

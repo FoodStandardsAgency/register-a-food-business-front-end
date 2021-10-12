@@ -1,274 +1,245 @@
-import EstablishmentContactDetails from "../pages/establishment-contact-details";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
-import { operatorTypeEnum } from "@slice-and-dice/register-a-food-business-validation";
+const { axe, renderPage, getPageDetails } = require("../testHelpers")
 
-const testValidatorErrors = {
-  example: "test error"
+const cumulativeFullAnswers = {
+  operator_primary_number: "operator primary number",
+  establishment_primary_number: "establishment primary number",
+  registration_role: "PARTNERSHIP"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer",
-  registration_role: operatorTypeEnum.SOLETRADER.key
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: cumulativeFullAnswers,
+  language: "en"
 };
 
-const testSwitches = {
-  example: true
-};
-
-describe("<EstablishmentContactDetails />", () => {
+describe("Establishment-Contact-Details", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<EstablishmentContactDetails />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("establishment-contact-details", props);
+    
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual(
+      "Establishment contact details"
+    );
   });
 
-  describe("establishmentprimary phone number input field", () => {
+  it('passes accessibility tests', async () => {
+    const $ = renderPage('establishment-contact-details', props)
+
+    const results = await axe($.html())
+    expect(results).toHaveNoViolations()
+  })
+
+  describe("establishment primary phone number input field", () => {
     it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <EstablishmentContactDetails
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const establishmentPrimaryContact = wrapper.find(
-        "InputField#establishment_primary_number"
-      );
-      expect(establishmentPrimaryContact.length).toBe(1);
+      const $ = renderPage('establishment-contact-details', props)
+
+      const $establishmentPrimaryContact = $('#establishment_primary_number')
+      expect($establishmentPrimaryContact.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        establishment_primary_number: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <EstablishmentContactDetails
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const establishmentPrimaryContact = wrapper.find(
-        "InputField#establishment_primary_number"
-      );
-      expect(establishmentPrimaryContact.props().meta.error).toBe("test error");
+
+      const $ = renderPage("establishment-contact-details", {
+        language: "cy",
+        validatorErrors: {
+          establishment_primary_number: "test error"
+        }
+      });
+
+      const $establishmentPrimaryContactError = $("#establishment_primary_number-error");
+      expect($establishmentPrimaryContactError.length).toBe(1);
+      expect($establishmentPrimaryContactError.contents().get(2).data.trim()).toBe("test error");
     });
 
     it("gets given the correct default value when reuseOperatorContactDetails switch is true ", () => {
-      const testSwitches = {
-        reuseOperatorContactDetails: true
-      };
-      const cumulativeFullAnswers = {
-        operator_primary_number: "operator primary number",
-        establishment_primary_number: "establishment primary number",
-        registration_role: operatorTypeEnum.PARTNERSHIP.key
-      };
+      
+      const $ = renderPage("establishment-contact-details", {
+        language: "cy",
+        validatorErrors: {
+          establishment_primary_number: "test error"
+        },
+        switches: {
+          reuseOperatorContactDetails: true
+        },
+        cumulativeFullAnswers: {
+          operator_primary_number: "operator primary number",
+          establishment_primary_number: "establishment primary number",
+          registration_role: "PARTNERSHIP"
+        }
+      });
 
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <EstablishmentContactDetails
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const establishmentSecondaryNumber = wrapper.find(
-        "InputField#establishment_primary_number"
-      );
-      expect(establishmentSecondaryNumber.props().input.defaultValue).toBe(
-        "operator primary number"
-      );
+      const $establishmentPrimaryContactInput = $('#establishment_primary_number')
+      expect($establishmentPrimaryContactInput.get(0).attribs.value).toBe(
+        "operator primary number")
     });
 
     it("gets given the correct default value reuseOperatorContactDetails switch is false", () => {
-      const testSwitches = {
-        reuseOperatorContactDetails: false
-      };
-      const cumulativeFullAnswers = {
-        establishment_primary_number: "establishment primary number",
-        operator_primary_number: "operator primary number",
-        registration_role: operatorTypeEnum.PARTNERSHIP.key
-      };
+      const $ = renderPage("establishment-contact-details", {
+        language: "cy",
+        validatorErrors: {
+          establishment_primary_number: "test error"
+        },
+        switches: {
+          reuseOperatorContactDetails: false
+        },
+        cumulativeFullAnswers: {
+          operator_primary_number: "operator primary number",
+          establishment_primary_number: "establishment primary number",
+          registration_role: "PARTNERSHIP"
+        }
+      });
 
-      const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const establishmentSecondaryNumber = wrapper.find(
-        "InputField#establishment_primary_number"
-      );
-      expect(establishmentSecondaryNumber.props().input.defaultValue).toBe(
-        "establishment primary number"
-      );
+      const $establishmentPrimaryContactInput = $('#establishment_primary_number')
+      expect($establishmentPrimaryContactInput.get(0).attribs.value).toBe(
+        "establishment primary number")
     });
   });
+
 
   describe("establishment secondary contact details input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const establishmentSecondaryContact = wrapper.find(
-        "InputField#establishment_secondary_number"
-      );
-      expect(establishmentSecondaryContact.length).toBe(1);
-    });
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        establishment_secondary_number: "test error"
-      };
-      const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const establishmentSecondaryContact = wrapper.find(
-        "InputField#establishment_secondary_number"
-      );
-      expect(establishmentSecondaryContact.props().meta.error).toBe(
-        "test error"
-      );
+    it("renders", () => {
+      const $ = renderPage('establishment-contact-details', props)
+
+      const $establishmentSecondaryContact = $('#establishment_secondary_number')
+      expect($establishmentSecondaryContact.length).toBe(1);
     });
 
     it("gets given the correct default value when reuseOperatorContactDetails switch is true ", () => {
-      const testSwitches = {
-        reuseOperatorContactDetails: true
-      };
-      const cumulativeFullAnswers = {
-        operator_secondary_number: "operator secondary number",
-        establishment_secondary_number: "establishment secondary number",
-        registration_role: operatorTypeEnum.PARTNERSHIP.key
-      };
+      
+      const $ = renderPage("establishment-contact-details", {
+        language: "cy",
+        validatorErrors: {
+          establishment_secondary_number: "test error"
+        },
+        switches: {
+          reuseOperatorContactDetails: true
+        },
+        cumulativeFullAnswers: {
+          operator_secondary_number: "operator secondary number",
+          establishment_secondary_number: "establishment 7secondary number",
+          registration_role: "PARTNERSHIP"
+        }
+      });
 
-      const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const establishmentSecondaryNumber = wrapper.find(
-        "InputField#establishment_secondary_number"
-      );
-      expect(establishmentSecondaryNumber.props().input.defaultValue).toBe(
-        "operator secondary number"
-      );
+      const $establishmentSecondaryContactInput = $('#establishment_secondary_number')
+      expect($establishmentSecondaryContactInput.get(0).attribs.value).toBe(
+        "operator secondary number")
     });
 
     it("gets given the correct default value reuseOperatorContactDetails switch is false", () => {
-      const testSwitches = {
-        reuseOperatorContactDetails: false
-      };
-      const cumulativeFullAnswers = {
-        establishment_secondary_number: "establishment secondary number",
-        operator_secondary_number: "operator secondary number",
-        registration_role: operatorTypeEnum.PARTNERSHIP.key
-      };
+      const $ = renderPage("establishment-contact-details", {
+        language: "cy",
+        validatorErrors: {
+          establishment_secondary_number: "test error"
+        },
+        switches: {
+          reuseOperatorContactDetails: false
+        },
+        cumulativeFullAnswers: {
+          operator_secondary_number: "operator secondary number",
+          establishment_secondary_number: "establishment secondary number",
+          registration_role: "PARTNERSHIP"
+        }
+      });
 
-      const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const establishmentSecondaryNumber = wrapper.find(
-        "InputField#establishment_secondary_number"
-      );
-      expect(establishmentSecondaryNumber.props().input.defaultValue).toBe(
-        "establishment secondary number"
-      );
+      const $establishmentSecondaryContactInput = $('#establishment_secondary_number')
+      expect($establishmentSecondaryContactInput.get(0).attribs.value).toBe(
+        "establishment secondary number")
     });
   });
 
   describe("establishment email input field", () => {
     it("renders", () => {
-      const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const establishmentEmail = wrapper.find("InputField#establishment_email");
-      expect(establishmentEmail.length).toBe(1);
+      const $ = renderPage('establishment-contact-details', props)
+
+      const $establishmentEmail = $('#establishment_email')
+      expect($establishmentEmail.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        establishment_email: "test error"
-      };
-      const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const establishmentEmail = wrapper.find("InputField#establishment_email");
-      expect(establishmentEmail.props().meta.error).toBe("test error");
+
+      const $ = renderPage("establishment-contact-details", {
+        language: "cy",
+        validatorErrors: {
+          establishment_email: "test error"
+        }
+      });
+
+      const $establishmentEmailError = $("#establishment_email-error");
+      expect($establishmentEmailError.length).toBe(1);
+      expect($establishmentEmailError.contents().get(2).data.trim()).toBe("test error");
     });
 
     it("gets given the correct default value when reuseOperatorContactDetails switch is true ", () => {
-      const testSwitches = {
-        reuseOperatorContactDetails: true
-      };
-      const cumulativeFullAnswers = {
-        operator_email: "operator email",
-        establishment_email: "establishment email",
-        registration_role: operatorTypeEnum.PARTNERSHIP.key
-      };
+      
+      const $ = renderPage("establishment-contact-details", {
+        language: "cy",
+        validatorErrors: {
+          establishment_email: "test error"
+        },
+        switches: {
+          reuseOperatorContactDetails: true
+        },
+        cumulativeFullAnswers: {
+          establishment_email: "establishment email",
+          operator_email: "operator email",
+          registration_role: "PARTNERSHIP"
+        }
+      });
 
-      const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const establishmentEmail = wrapper.find("InputField#establishment_email");
-      expect(establishmentEmail.props().input.defaultValue).toBe(
-        "operator email"
-      );
+      const $establishmentEmailInput = $('#establishment_email')
+      expect($establishmentEmailInput.get(0).attribs.value).toBe(
+        "operator email")
     });
 
     it("gets given the correct default value reuseOperatorContactDetails switch is false", () => {
-      const testSwitches = {
-        reuseOperatorContactDetails: false
-      };
-      const cumulativeFullAnswers = {
-        establishment_email: "establishment email",
-        operator_email: "operator email",
-        registration_role: operatorTypeEnum.PARTNERSHIP.key
-      };
+      const $ = renderPage("establishment-contact-details", {
+        language: "cy",
+        validatorErrors: {
+          establishment_email: "test error"
+        },
+        switches: {
+          reuseOperatorContactDetails: false
+        },
+        cumulativeFullAnswers: {
+          establishment_email: "establishment email",
+          operator_email: "operator email",
+          registration_role: "PARTNERSHIP"
+        }
+      });
 
-      const wrapper = mount(
-        <EstablishmentContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const establishmentEmail = wrapper.find("InputField#establishment_email");
-      expect(establishmentEmail.props().input.defaultValue).toBe(
-        "establishment email"
-      );
+      const $establishmentEmailInput = $('#establishment_email')
+      expect($establishmentEmailInput.get(0).attribs.value).toBe(
+        "establishment email")
     });
   });
-});
+
+  describe("establishment web address input field", () => {
+    it("renders", () => {
+      const $ = renderPage('establishment-contact-details', props)
+
+      const $establishmentEmail = $('#establishment_web_address')
+      expect($establishmentEmail.length).toBe(1);
+    });
+  });
+
+  describe("Error messages displayed", () => {
+    it("renders the correct summary error", async () => {
+      const $ = renderPage("establishment-contact-details", {
+        language: "cy",
+        validatorErrors: {
+          establishment_primary_number: "test error",
+          establishment_email: "test error 2"
+        }
+      });
+
+      const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+      expect($pageErrors.length).toBe(2);
+      expect($pageErrors.contents().get(0).data).toBe("test error");
+      expect($pageErrors.contents().get(1).data).toBe("test error 2");
+    });
+  });
+})
+
+
