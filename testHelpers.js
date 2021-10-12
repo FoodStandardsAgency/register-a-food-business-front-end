@@ -85,11 +85,6 @@ function renderComponent(pageName, params, children = false) {
   return cheerio.load(output);
 }
 
-function getRadioButtons($) {
-  const radioButtonsList = $(":radio");
-  return radioButtonsList;
-}
-
 const getPageDetails = {
   getRadioButtons: function ($) {
     const radioButtonsList = $(":radio");
