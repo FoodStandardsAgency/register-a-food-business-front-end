@@ -90,13 +90,21 @@ const getPageDetails = {
     const radioButtonsList = $(":radio");
     return radioButtonsList;
   },
+  getInputLabelText: function ($, index) {
+    const inputLabelText = $(".govuk-label").contents().get(index).data.trim();
+    return inputLabelText;
+  },
   getMainHeading: function ($) {
     const mainHeading = $("h1");
     return mainHeading;
   },
   getInsetText: function ($) {
     const insetText = $(".govuk-inset-text").contents().get(0).data;
-    return insetText;
+    return insetText.trim();
+  },
+  getDetailsText: function ($) {
+    const detailsText = $(".govuk-details__text").contents().get(0).data;
+    return detailsText.trim();
   },
   getErrorSummaryLinks: function ($) {
     const errorLinks = $(".govuk-error-summary__list a");
