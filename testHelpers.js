@@ -104,6 +104,5 @@ module.exports = {
   axe,
   renderPage,
   renderComponent,
-  getRadioButtons,
   getPageDetails
 };
