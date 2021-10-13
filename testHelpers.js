@@ -40,6 +40,11 @@ env.addFilter("selectValidationErrors", (validationErrors, language) =>
   }))
 );
 
+env.addGlobal("mergeObjects", (orig, additionalProps) => ({
+  ...orig,
+  ...additionalProps
+}));
+
 /**
  * Render a page for testing
  * @param {string} pageName
