@@ -9,6 +9,7 @@ const props = {
     operator_postcode: "SE1 9AS",
     establishment_postcode_find: "SE1 9AS"
   },
+  council: "cardiff",
   language: "en"
 };
 
@@ -33,6 +34,12 @@ describe("operator-address-manual", () => {
     expect($insetText).toEqual(
       "Partnership address is the contact address for the partner who is the main point of contact."
     );
+  });
+
+  it("renders correct backlink href", async () => {
+    const $ = renderPage("operator-address-manual", props);
+    const $backlink = getPageDetails.getBacklinkHref($);
+    expect($backlink).toEqual("/new/cardiff/operator-address-select");
   });
 
   describe("It should have correct label together with input field and value", () => {

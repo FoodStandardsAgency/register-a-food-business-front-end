@@ -111,6 +111,10 @@ const getPageDetails = {
     const detailsText = $(".govuk-details__text").contents().get(0).data;
     return detailsText.trim();
   },
+  getBacklinkHref: function ($) {
+    const backlink = $(".govuk-back-link").get(0).attribs.href.trim();
+    return backlink;
+  },
   getErrorSummaryLinks: function ($) {
     const errorLinks = $(".govuk-error-summary__list a");
     return errorLinks;
