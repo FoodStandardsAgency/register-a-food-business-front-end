@@ -20,6 +20,24 @@ describe("operator-address-manual", () => {
     expect(results).toHaveNoViolations();
   });
 
+  it("renders correct backlink href when truthy switch of /operator-address-none-found", async () => {
+    const $ = renderPage("operator-address-manual", {
+      switches: { "/operator-address-none-found": true },
+      council: "cardiff"
+    });
+    const $backlink = getPageDetails.getBacklinkHref($);
+    expect($backlink).toEqual("/new/cardiff/operator-address");
+  });
+
+  it("renders correct backlink href when falsy switch of /operator-address-none-found", async () => {
+    const $ = renderPage("operator-address-manual", {
+      switches: { "/operator-address-none-found": false },
+      council: "cardiff"
+    });
+    const $backlink = getPageDetails.getBacklinkHref($);
+    expect($backlink).toEqual("/new/cardiff/operator-address-select");
+  });
+
   it("renders without crashing", () => {
     const $ = renderPage("operator-address-manual", props);
     const $mainHeading = getPageDetails.getMainHeading($);
@@ -34,12 +52,6 @@ describe("operator-address-manual", () => {
     expect($insetText).toEqual(
       "Partnership address is the contact address for the partner who is the main point of contact."
     );
-  });
-
-  it("renders correct backlink href", async () => {
-    const $ = renderPage("operator-address-manual", props);
-    const $backlink = getPageDetails.getBacklinkHref($);
-    expect($backlink).toEqual("/new/cardiff/operator-address-select");
   });
 
   describe("It should have correct label together with input field and value", () => {
