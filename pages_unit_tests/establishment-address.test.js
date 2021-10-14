@@ -1,75 +1,61 @@
-import EstablishmentAddress from "../pages/establishment-address";
-import { mount, shallow } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: {
+    establishment_postcode_find: "SE1 9AS"
+  },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-
-const testSwitches = {};
-
-describe("<EstablishmentAddress />", () => {
-  it("renders without crashing", () => {
-    const wrapper = shallow(<EstablishmentAddress />);
-    expect(wrapper.length).toBe(1);
+describe("establishment-address", () => {
+  it("It should pass accessibility tests", async () => {
+    const $ = renderPage("establishment-address", props);
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
   });
 
-  describe("Establishment postcode field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <EstablishmentAddress
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const establishmentPostcode = wrapper.find(
-        "InputField#establishmentPostcodeFindComponent"
-      );
-      expect(establishmentPostcode.length).toBe(1);
+  it("renders without crashing", () => {
+    const $ = renderPage("establishment-address", props);
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual(
+      "What is the establishment's postcode?"
+    );
+  });
+
+  it("renders correct details text", () => {
+    const $ = renderPage("establishment-address", props);
+    const $detailText = getPageDetails.getDetailsText($);
+    expect($detailText).toEqual(
+      "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
+    );
+  });
+
+  describe("It should have correct label together with input field and value", () => {
+    it("renders establishment postcode field correctly", () => {
+      const $ = renderPage("establishment-address", props);
+      const $postcode = $("#establishment_postcode_find");
+      expect($postcode.get(0).attribs.name).toBe("establishment_postcode_find");
+      expect($postcode.get(0).attribs.value).toBe("SE1 9AS");
     });
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        establishment_postcode_find: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <EstablishmentAddress
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const establishmentPostcode = wrapper.find(
-        "InputField#establishmentPostcodeFindComponent"
-      );
-      expect(establishmentPostcode.props().meta.error).toBe("test error");
+    it("renders establishment postcode lablel correctly", () => {
+      const $ = renderPage("establishment-address", props);
+      const $inputLabelText = getPageDetails.getInputLabelText($, 0);
+      expect($inputLabelText).toEqual("Postcode");
+    });
+  });
+
+  it("renders the correct error", async () => {
+    const $ = renderPage("establishment-address", {
+      language: "en",
+      validatorErrors: {
+        establishment_postcode_find: "Not a valid postcode"
+      }
     });
 
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        establishment_postcode_find: "default"
-      };
-      const wrapper = mount(
-        <EstablishmentAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const establishmentPostcode = wrapper.find(
-        "InputField#establishmentPostcodeFindComponent"
-      );
-      expect(establishmentPostcode.props().input.defaultValue).toBe("default");
-    });
+    const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+    expect($pageErrors.length).toBe(1);
+    expect($pageErrors.contents().get(0).data).toBe("Not a valid postcode");
   });
 });

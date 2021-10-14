@@ -27,7 +27,7 @@ describe("Operator-address", () => {
   it("renders correct Inset text", () => {
     const $ = renderPage("operator-address", props);
     const $insetText = getPageDetails.getInsetText($);
-    expect($insetText.trim()).toEqual(
+    expect($insetText).toEqual(
       "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
     );
   });
