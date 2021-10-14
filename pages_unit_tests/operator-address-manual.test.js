@@ -107,7 +107,7 @@ describe("operator-address-manual", () => {
     });
   });
 
-  it("renders the correct error", async () => {
+  it("renders the correct errors", async () => {
     const $ = renderPage("operator-address-manual", {
       language: "en",
       validatorErrors: {
