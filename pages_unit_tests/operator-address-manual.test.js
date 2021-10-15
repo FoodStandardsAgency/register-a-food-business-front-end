@@ -13,9 +13,10 @@ const props = {
   language: "en"
 };
 
+const $ = renderPage("operator-address-manual", props);
+
 describe("operator-address-manual", () => {
   it("It should pass accessibility tests", async () => {
-    const $ = renderPage("operator-address-manual", props);
     const results = await axe($.html());
     expect(results).toHaveNoViolations();
   });
@@ -39,7 +40,6 @@ describe("operator-address-manual", () => {
   });
 
   it("renders without crashing", () => {
-    const $ = renderPage("operator-address-manual", props);
     const $mainHeading = getPageDetails.getMainHeading($);
     expect($mainHeading.text().trim()).toEqual(
       "What is the partnership contact's address?"
@@ -47,7 +47,6 @@ describe("operator-address-manual", () => {
   });
 
   it("renders correct inset text", () => {
-    const $ = renderPage("operator-address-manual", props);
     const $insetText = getPageDetails.getInsetText($);
     expect($insetText).toEqual(
       "Partnership address is the contact address for the partner who is the main point of contact."
@@ -56,8 +55,6 @@ describe("operator-address-manual", () => {
 
   describe("It should have correct label together with input field and value", () => {
     it("renders operator manual address fields correctly", () => {
-      const $ = renderPage("operator-address-manual", props);
-
       const $postcode = $("#operator_postcode");
       expect($postcode.get(0).attribs.name).toBe("operator_postcode");
       expect($postcode.get(0).attribs.value).toBe("SE1 9AS");
@@ -72,8 +69,6 @@ describe("operator-address-manual", () => {
     });
 
     it("renders operator manual address labels correctly", () => {
-      const $ = renderPage("operator-address-manual", props);
-
       const $inputLabelTextAdd1 = getPageDetails.getInputLabelText($, 0);
       expect($inputLabelTextAdd1).toEqual("Address line 1");
 

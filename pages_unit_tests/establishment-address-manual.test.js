@@ -12,9 +12,10 @@ const props = {
   language: "en"
 };
 
+const $ = renderPage("establishment-address-manual", props);
+
 describe("operator-address-manual", () => {
   it("It should pass accessibility tests", async () => {
-    const $ = renderPage("establishment-address-manual", props);
     const results = await axe($.html());
     expect(results).toHaveNoViolations();
   });
@@ -38,7 +39,6 @@ describe("operator-address-manual", () => {
   });
 
   it("renders without crashing", () => {
-    const $ = renderPage("establishment-address-manual", props);
     const $mainHeading = getPageDetails.getMainHeading($);
     expect($mainHeading.text().trim()).toEqual(
       "What is the establishment's address?"
@@ -46,7 +46,6 @@ describe("operator-address-manual", () => {
   });
 
   it("renders correct inset text", () => {
-    const $ = renderPage("establishment-address-manual", props);
     const $detailsText = getPageDetails.getDetailsText($);
     expect($detailsText).toEqual(
       "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
@@ -55,8 +54,6 @@ describe("operator-address-manual", () => {
 
   describe("It should have correct label together with input field and value", () => {
     it("renders operator manual address fields correctly", () => {
-      const $ = renderPage("establishment-address-manual", props);
-
       const $postcode = $("#establishment_postcode");
       expect($postcode.get(0).attribs.name).toBe("establishment_postcode");
       expect($postcode.get(0).attribs.value).toBe("SE1 9AS");
@@ -73,8 +70,6 @@ describe("operator-address-manual", () => {
     });
 
     it("renders operator manual address labels correctly", () => {
-      const $ = renderPage("establishment-address-manual", props);
-
       const $inputLabelTextAdd1 = getPageDetails.getInputLabelText($, 0);
       expect($inputLabelTextAdd1).toEqual("Address line 1");
 
