@@ -1,190 +1,118 @@
-import OperatorContactDetails from "../pages/operator-contact-details";
-import { shallow, mount } from "enzyme";
-import { HintText } from "@slice-and-dice/govuk-react";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: {
+    registration_role: "PARTNERSHIP",
+    operator_primary_number: "12345678978",
+    operator_secondary_number: "999999999123",
+    operator_email: "test123@123.com"
+  },
+  council: "cardiff",
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-const testSwitches = {};
+const $ = renderPage("operator-contact-details", props);
 
-describe("<OperatorContactDetails />", () => {
+describe("operator-contact-details", () => {
+  it("It should pass accessibility tests", async () => {
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
+
+  /*  it("renders correct backlink href when truthy switch of /operator-address-none-found", async () => {
+    const $ = renderPage("operator-contact-details", {
+      switches: { "/operator-address-none-found": true },
+      council: "cardiff"
+    });
+    const $backlink = getPageDetails.getBacklinkHref($);
+    expect($backlink).toEqual("/new/cardiff/operator-address");
+  }); */
+
+  /*   it("renders correct backlink href when falsy switch of /operator-address-none-found", async () => {
+    const $ = renderPage("operator-contact-details", {
+      switches: { "/operator-address-none-found": false },
+      council: "cardiff"
+    });
+    const $backlink = getPageDetails.getBacklinkHref($);
+    expect($backlink).toEqual("/new/cardiff/operator-address-select");
+  }); */
+
   it("renders without crashing", () => {
-    const wrapper = shallow(<OperatorContactDetails />);
-    expect(wrapper.length).toBe(1);
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual("Partnership contact details");
   });
 
-  describe("when registration role is partnership", () => {
-    it("renders with correct hint text", () => {
-      const cumulativeAnswers = { registration_role: "PARTNERSHIP" };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorContactDetails
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const hintText = wrapper.find(HintText);
-      expect(hintText.first().props().children).toBe(
-        "Contact details for the main point of contact for this business"
-      );
-    });
+  it("renders correct inset text", () => {
+    const $detailsText = getPageDetails.getDetailsText($);
+    expect($detailsText).toEqual(
+      "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
+    );
   });
 
-  describe("operator primary phone number input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorContactDetails
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
+  describe("It should have correct label together with input field and value", () => {
+    it("renders operator contact details fields correctly", () => {
+      const $primaryNumber = $("#operator_primary_number");
+      expect($primaryNumber.get(0).attribs.name).toBe(
+        "operator_primary_number"
       );
-      const operatorPrimaryContact = wrapper.find(
-        "InputField#operator_primary_number"
+      //expect($primaryNumber.get(0).attribs.value).toBe("12345678978"); TODO no value property
+
+      const $secondaryNumber = $("#operator_secondary_number");
+      expect($secondaryNumber.get(0).attribs.name).toBe(
+        "operator_secondary_number"
       );
-      expect(operatorPrimaryContact.length).toBe(1);
+      expect($secondaryNumber.get(0).attribs.value).toBe("999999999123");
+
+      const $email = $("#operator_email");
+      expect($email.get(0).attribs.name).toBe("operator_email");
+      expect($email.get(0).attribs.value).toBe("test123@123.com");
     });
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_primary_number: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorContactDetails
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const operatorPrimaryContact = wrapper.find(
-        "InputField#operator_primary_number"
-      );
-      expect(operatorPrimaryContact.props().meta.error).toBe("test error");
-    });
+    it("renders operator contact detail labels correctly", () => {
+      const $inputLabelTextMainNumber = getPageDetails.getInputLabelText($, 0);
+      expect($inputLabelTextMainNumber).toEqual("Main phone number");
 
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_primary_number: "default"
-      };
-      const wrapper = mount(
-        <OperatorContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
+      const $inputLabelTextSecondaryNumber = getPageDetails.getInputLabelText(
+        $,
+        1
       );
-      const operatorPrimaryContact = wrapper.find(
-        "InputField#operator_primary_number"
+      expect($inputLabelTextSecondaryNumber).toEqual(
+        "Secondary phone number (optional)"
       );
-      expect(operatorPrimaryContact.props().input.defaultValue).toBe("default");
+
+      const $inputLabelTextEmail = getPageDetails.getInputLabelText($, 2);
+      expect($inputLabelTextEmail).toEqual("Email address");
     });
   });
 
-  describe("operator secondary contact details input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <OperatorContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorSecondaryContact = wrapper.find(
-        "InputField#operator_secondary_number"
-      );
-      expect(operatorSecondaryContact.length).toBe(1);
-    });
-
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_secondary_number: "test error"
-      };
-      const wrapper = mount(
-        <OperatorContactDetails
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorSecondaryContact = wrapper.find(
-        "InputField#operator_secondary_number"
-      );
-      expect(operatorSecondaryContact.props().meta.error).toBe("test error");
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_secondary_number: "default"
-      };
-      const wrapper = mount(
-        <OperatorContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorSecondaryContact = wrapper.find(
-        "InputField#operator_secondary_number"
-      );
-      expect(operatorSecondaryContact.props().input.defaultValue).toBe(
-        "default"
-      );
+  describe("when registration role is not a partnership", () => {
+    it("renders correct header", () => {
+      const $ = renderPage("operator-contact-details", {
+        language: "en",
+        cumulativeFullAnswers: {
+          registration_role: "Test"
+        }
+      });
+      const $mainHeading = getPageDetails.getMainHeading($);
+      expect($mainHeading.text().trim()).toEqual("Operator contact details");
     });
   });
 
-  describe("operator email input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <OperatorContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorEmail = wrapper.find("InputField#operator_email");
-      expect(operatorEmail.length).toBe(1);
+  it("renders the correct errors", async () => {
+    const $ = renderPage("operator-contact-details", {
+      language: "en",
+      validatorErrors: {
+        operator_primary_number: "Enter a valid primary number",
+        operator_email: "Enter a valid email"
+      }
     });
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_email: "test error"
-      };
-      const wrapper = mount(
-        <OperatorContactDetails
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorEmail = wrapper.find("InputField#operator_email");
-      expect(operatorEmail.props().meta.error).toBe("test error");
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_email: "default"
-      };
-      const wrapper = mount(
-        <OperatorContactDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorEmail = wrapper.find("InputField#operator_email");
-      expect(operatorEmail.props().input.defaultValue).toBe("default");
-    });
+    const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+    expect($pageErrors.length).toBe(2);
+    expect($pageErrors.contents().get(0).data).toBe(
+      "Enter a valid primary number"
+    );
+    expect($pageErrors.contents().get(1).data).toBe("Enter a valid email");
   });
 });
