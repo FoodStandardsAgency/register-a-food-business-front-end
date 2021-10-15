@@ -20,24 +20,6 @@ describe("operator-contact-details", () => {
     expect(results).toHaveNoViolations();
   });
 
-  /*  it("renders correct backlink href when truthy switch of /operator-address-none-found", async () => {
-    const $ = renderPage("operator-contact-details", {
-      switches: { "/operator-address-none-found": true },
-      council: "cardiff"
-    });
-    const $backlink = getPageDetails.getBacklinkHref($);
-    expect($backlink).toEqual("/new/cardiff/operator-address");
-  }); */
-
-  /*   it("renders correct backlink href when falsy switch of /operator-address-none-found", async () => {
-    const $ = renderPage("operator-contact-details", {
-      switches: { "/operator-address-none-found": false },
-      council: "cardiff"
-    });
-    const $backlink = getPageDetails.getBacklinkHref($);
-    expect($backlink).toEqual("/new/cardiff/operator-address-select");
-  }); */
-
   it("renders without crashing", () => {
     const $mainHeading = getPageDetails.getMainHeading($);
     expect($mainHeading.text().trim()).toEqual("Partnership contact details");
