@@ -9,15 +9,15 @@ const props = {
   language: "en"
 };
 
+const $ = renderPage("operator-address", props);
+
 describe("Operator-address", () => {
   it("It should pass accessibility tests", async () => {
-    const $ = renderPage("operator-address", props);
     const results = await axe($.html());
     expect(results).toHaveNoViolations();
   });
 
   it("renders without crashing", () => {
-    const $ = renderPage("operator-address", props);
     const $mainHeading = getPageDetails.getMainHeading($);
     expect($mainHeading.text().trim()).toEqual(
       "What is the partnership contact's postcode?"
@@ -25,7 +25,6 @@ describe("Operator-address", () => {
   });
 
   it("renders correct Inset text", () => {
-    const $ = renderPage("operator-address", props);
     const $insetText = getPageDetails.getInsetText($);
     expect($insetText).toEqual(
       "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
@@ -34,7 +33,6 @@ describe("Operator-address", () => {
 
   describe("It should have correct input fields and value", () => {
     it("renders operator postcode field correctly", () => {
-      const $ = renderPage("operator-address", props);
       const $postcode = $("#operator_postcode_find");
       expect($postcode.get(0).attribs.name).toBe("operator_postcode_find");
       expect($postcode.get(0).attribs.value).toBe("SE1 9AS");
@@ -67,5 +65,10 @@ describe("Operator-address", () => {
     const $pageErrors = getPageDetails.getErrorSummaryLinks($);
     expect($pageErrors.length).toBe(1);
     expect($pageErrors.contents().get(0).data).toBe("Not a valid postcode");
+  });
+
+  it("renders the correct text on button", () => {
+    const $buttonText = getPageDetails.getButtonText($);
+    expect($buttonText).toEqual("Find address");
   });
 });
