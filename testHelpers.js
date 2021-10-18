@@ -40,6 +40,13 @@ env.addFilter("selectValidationErrors", (validationErrors, language) =>
   }))
 );
 
+env.addFilter("addressSelectItems", (findResults) =>
+  findResults.map((address, index) => ({
+    value: index,
+    text: address.summaryline
+  }))
+);
+
 env.addGlobal("mergeObjects", (orig, additionalProps) => ({
   ...orig,
   ...additionalProps
@@ -102,6 +109,10 @@ const getPageDetails = {
   getMainHeading: function ($) {
     const mainHeading = $("h1");
     return mainHeading;
+  },
+  getH2Heading: function ($) {
+    const h2Heading = $(".govuk-heading-2").text().trim();
+    return h2Heading;
   },
   getInsetText: function ($) {
     const insetText = $(".govuk-inset-text").contents().get(0).data;

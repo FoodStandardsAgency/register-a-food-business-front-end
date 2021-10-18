@@ -38,7 +38,7 @@ describe("operator-contact-details", () => {
       expect($primaryNumber.get(0).attribs.name).toBe(
         "operator_primary_number"
       );
-      //expect($primaryNumber.get(0).attribs.value).toBe("12345678978"); TODO no value property
+      expect($primaryNumber.get(0).attribs.value).toBe("12345678978");
 
       const $secondaryNumber = $("#operator_secondary_number");
       expect($secondaryNumber.get(0).attribs.name).toBe(

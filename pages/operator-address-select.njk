@@ -1,5 +1,4 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "../components/AddressHelp.njk" import addressHelpForm %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/select/macro.njk" import govukSelect %}
@@ -80,18 +79,15 @@
         ]
       }) }}
 
-      <h2 class= "govuk-heading-2">{{__("Select an address for") }}
-        {{props.cumulativeFullAnswers.operator_postcode_find}}</h2>
-
       {{ govukSelect({
         id: "operatorAddressDropdown",
         name: "operator_address_selected",
         label: {
-          text: ""
+          text: __("Select an address for ") + props.cumulativeFullAnswers.operator_postcode_find
         },
         items: props.addressLookups.operator_postcode_find | addressSelectItems
       }) }}
-
+      
       {% if props.editModeFirstPage %}
         {% set editModeFirstPage = "/new/" + props.council + "/operator-address-manual?edit=operator-address-manual" %}
       {% else %}
