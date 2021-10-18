@@ -161,9 +161,11 @@ describe("operator-address-select", () => {
         addressLookups: exampleAddressLookup
       });
 
-      const $operatorAddressSelect = $("#operatorAddressDropdown");
-      expect($operatorAddressSelect.length).toBe(1);
-      expect($operatorAddressSelect.get(0).children[0].data.trim()).toEqual(
+      const $operatorAddressSelected = $("#operatorAddressDropdown");
+      const $operatorAddressSelectItems = $("#operatorAddressDropdown option");
+      expect($operatorAddressSelectItems.length).toBe(2);
+      expect($operatorAddressSelected.length).toBe(1);
+      expect($operatorAddressSelectItems.contents().get(0).data.trim()).toEqual(
         "Allies Computing Ltd, Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
       );
     });
