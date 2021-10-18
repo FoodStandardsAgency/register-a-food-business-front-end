@@ -122,6 +122,10 @@ const getPageDetails = {
   getErrorSummaryLinks: function ($) {
     const errorLinks = $(".govuk-error-summary__list a");
     return errorLinks;
+  },
+  getCheckboxes: function($){
+    const checkboxList = $(":checkbox");
+    return checkboxList;
   }
 };
 
