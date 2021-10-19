@@ -157,7 +157,7 @@ env.addGlobal("__", (phrase) => {
 });
 env.addFilter("addressSelectItems", (findResults) =>
   findResults.map((address, index) => ({
-    value: address.index,
+    value: index,
     text: address.summaryline
   }))
 );

@@ -19,7 +19,7 @@
 
         {% call govukFieldset({
           legend: {
-            text: __("What is an establishment?"),
+            text: __("Which is the establishment's address from the list?"),
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
                   }
@@ -59,19 +59,12 @@
         ]
       }) }}
 
-      <h2 class= "govuk-heading-2">{{__("Select an address for") }} {{props.cumulativeFullAnswers.establishment_postcode_find}}</h2>
-
-      {% if props.addressLookups.establishment_postcode_find %}
-            
-      {% else %}
-            
-      {% endif %}
 
       {{ govukSelect({
-        id: "operatorAddressDropdown",
-        name: "operator_address_selected",
+        id: "establishmentAddressDropdown",
+        name: "establishment_address_selected",
         label: {
-          text: ""
+          text: __("Select an address for ") + props.cumulativeFullAnswers.establishment_postcode_find
         },
         items: props.addressLookups.operator_postcode_find | addressSelectItems
       }) }}
