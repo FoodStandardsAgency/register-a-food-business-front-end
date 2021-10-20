@@ -1,6 +1,16 @@
 {% from "BackButton.njk" import backButton %}
 
 {% macro backAndLanguageBar(props) %}
-  {{ backButton(props) }}
-  <a href="{{ __('change-language') }}">{{ __('Change Language')}}</a>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ backButton(props) }} 
+  </div>   
+  <div class="govuk-grid-column-one-third">
+  <p>
+    <a href="?lang=en">English</a>
+    |
+    <a href="?lang=cy">Cymraeg</a> 
+  </p> 
+  </div>
+</div>
 {% endmacro %}
