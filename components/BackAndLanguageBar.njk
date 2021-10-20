@@ -1,48 +1,36 @@
 {% from "BackButton.njk" import backButton %}
 
 {% macro backAndLanguageBar(props) %}
-  {{ backButton(props) }}
-  <div>
-  <a href="?lang=en" 
-     class="govuk-link" 
-     id="languageEnHeader"
-     rel="noopener noreferrer"
-     aria-label="Change the language to English"
-     style = 'cursor:{{__("enLangLink-cursor")}}; 
-              text-decoration:{{__("enLangLink-underline")}}; 
-              font-weight:{{__("enLangLink-fontWeight")}};'
-     > 
-     English 
-     </a>
-  |
-  <a href="?lang=cy"
-     class="govuk-link" 
-     id="languageCyHeader" 
-     rel="noopener noreferrer"
-     aria-label="Newid yr iaith i'r Gymraeg"
-     style = 'cursor:{{__("cyLangLink-cursor")}}; 
-              text-decoration:{{__("cyLangLink-underline")}}; 
-              font-weight:{{__("cyLangLink-fontWeight")}};'
-     > 
-     Cymraeg 
-     </a>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    {{ backButton(props) }}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <p>
+        <a href="?lang=en" 
+          class="govuk-link" 
+          id="languageEnHeader"
+          rel="noopener noreferrer"
+          aria-label="Change the language to English"
+          style = 'cursor:{{__("enLangLink-cursor")}}; 
+                    text-decoration:{{__("enLangLink-underline")}}; 
+                    font-weight:{{__("enLangLink-fontWeight")}};'
+          > 
+          English 
+          </a>
+        |
+        <a href="?lang=cy"
+          class="govuk-link" 
+          id="languageCyHeader" 
+          rel="noopener noreferrer"
+          aria-label="Newid yr iaith i'r Gymraeg"
+          style = 'cursor:{{__("cyLangLink-cursor")}}; 
+                    text-decoration:{{__("cyLangLink-underline")}}; 
+                    font-weight:{{__("cyLangLink-fontWeight")}};'
+          > 
+          Cymraeg 
+          </a>
+      </p>
+    </div>
   </div>
-  <style>
-    #languageCyHeader, #languageEnHeader {
-      color: #0b0c0c !important;
-      margin: 15px;
-      font-size: 14px;
-      line-height: 1.25;
-      @media (min-width: 641px) {
-        display: inline-block;
-        font-size: 16px;
-      }
-      &:visited {
-        color: #0b0c0c !important;
-      }
-      &:hover {
-        color: #171819;
-      }
-        }
-  </style>
 {% endmacro %}
