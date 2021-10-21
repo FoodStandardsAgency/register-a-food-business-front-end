@@ -6,43 +6,47 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-  {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-  {{ processedErrorSummary(props.validatorErrors, props.language) }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
-  {{ govukRadios({
-  idPrefix: "registration_role",
-  name: "registration_role",
-  fieldset: {
-    legend: {
-      text: __("What is your role in this food business?"),
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--l"
-    }
-  },
-  items: [
-    {
-      value: "SOLETRADER",
-      text: __("I operate it as a sole trader"),
-      checked: props.cumulativeFullAnswers.registration_role === "SOLETRADER"
-    },
-    {
-      value: "PARTNERSHIP",
-      text: __("I operate it in a partnership"),
-      checked: props.cumulativeFullAnswers.registration_role === "PARTNERSHIP"
-    },
-    {
-      value: "Representative",
-      text: __("I represent a person, charity, limited company (Ltd), organisation or trust that operates it"),
-      checked: props.cumulativeFullAnswers.registration_role === "Representative"
-    }
-  ],
-  errorMessage: {
-        text: __(props.validatorErrors.registration_role)} if props.validatorErrors.registration_role
+      {{ govukRadios({
+      idPrefix: "registration_role",
+      name: "registration_role",
+      fieldset: {
+        legend: {
+          text: __("What is your role in this food business?"),
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "SOLETRADER",
+          text: __("I operate it as a sole trader"),
+          checked: props.cumulativeFullAnswers.registration_role === "SOLETRADER"
+        },
+        {
+          value: "PARTNERSHIP",
+          text: __("I operate it in a partnership"),
+          checked: props.cumulativeFullAnswers.registration_role === "PARTNERSHIP"
+        },
+        {
+          value: "Representative",
+          text: __("I represent a person, charity, limited company (Ltd), organisation or trust that operates it"),
+          checked: props.cumulativeFullAnswers.registration_role === "Representative"
+        }
+      ],
+      errorMessage: {
+            text: __(props.validatorErrors.registration_role)} if props.validatorErrors.registration_role
+          }) }}
+
+      {{ govukButton({
+        text: __("Continue")
       }) }}
-
-  {{ govukButton({
-    text: __("Continue")
-  }) }}
-  {%- endcall %}
+      {%- endcall %}
+    </div>
+  </div>
 
 {% endblock %}
