@@ -33,9 +33,9 @@
         tag: {
           text: "beta"
         },
-        html: 'This is a new service – your <a class="govuk-link" 
-          href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform">
-          feedback</a> will help us to improve it.'
+        html: __('This is a new service') + ' – ' + '<a class="govuk-link" aria-label="' + __('your feedback (opens in new window)') + '"' + 
+          'href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform">' +
+          __('your feedback') + '</a> ' + __('will help us improve it') + '.'
       }) }}
       {{ backAndLanguageBar(props) }}
     {% endblock %}
