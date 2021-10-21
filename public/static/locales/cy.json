@@ -588,5 +588,8 @@
   "cyLangLink-underline": "none",
   "cyLangLink-fontWeight": "bold",
   "cyLangLink-cursor": "default",
-  "home.p": "home.p"
+  "home.p": "home.p",
+  "is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this ": "yw'r awdurdod lleol y bydd eich cofrestriad yn cael ei anfon ato. Ai hwn yw'r awdurdod lleol cywir ar gyfer eich busnes? Os ydych chi'n ansicr, defnyddiwch y ddolen ",
+  "Food Business Registration": "Cofrestru Busnesau Bwyd",
+  " link to check using the location or site of your food business.": " i wirio gan ddefnyddio lleoliad neu safle eich busnes bwyd."
 }
