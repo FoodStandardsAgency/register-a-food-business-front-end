@@ -4,40 +4,40 @@
 {% macro fsaHeader(props) %}
     {% if props.acceptAllCookies !== "true" and props.acceptAllCookies !== "false" %}
         {% set html %}
-        <p class="govuk-body">Register a food business uses a cookie to create the registration. We also 
-        use optional cookies to analyse how the service is performing.</p>
-        <p class="govuk-body">We do not share any information with advertisers or social media platforms. 
-        We do not store any information about you in the cookie.</p>
+        <p class="govuk-body">{{ __('Register a food business uses a cookie to create the registration. We also use optional cookies to analyse how the service is performing.') }}</p>
+        <p class="govuk-body">{{ __('We do not share any information with advertisers or social media platforms. We do not store any information about you in the cookie.') }}</p>
         {% endset %}
 
         {{ govukCookieBanner({
-        ariaLabel: "Cookies on RaFB",
+        ariaLabel: __("Cookies on RaFB"),
         messages: [
             {
-            headingText: "Cookies on RaFB",
+            headingText: __("Cookies on RaFB"),
             html: html,
             actions: [
                 {
-                    text: "I accept cookies",
+                    text: __("I accept cookies"),
                     type: "button",
                     name: "cookies",
                     value: "accept",
                     href: "/setcookie/acceptAllCookies/true"
                 },
                 {
-                    text: "Reject optional cookies",
+                    text: __("Reject optional cookies"),
                     type: "submit",
                     name: "cookies",
                     value: "reject",
                     href: "/setcookie/acceptAllCookies/false"
                 },
                 {
-                    text: "Find out more about cookies",
-                    href: "https://www.gov.uk/help/cookies"
+                    text: __("Find out more about cookies"),
+                    href: "https://www.gov.uk/help/cookies",
+                    attributes: { target:"_blank", rel:"noopener noreferrer" }
                 },
                 {
-                    text: "Read our cookie policy",
-                    href: "https://www.food.gov.uk/cookie-policy"
+                    text: __("Read our cookie policy"),
+                    href: "https://www.food.gov.uk/cookie-policy",
+                    attributes: { target:"_blank", rel:"noopener noreferrer" }
                 }
             ]
             }
