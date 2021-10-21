@@ -5,7 +5,7 @@
     {% if params.serviceName or params.navigation  %}
     <div class="govuk-header__content">
     {% if params.serviceName %}
-    <a href="{{ params.serviceUrl }}" class="govuk-header__link govuk-header__link--service-name">
+    <a class="govuk-header__link--service-name">
       {{ params.serviceName }}
     </a>
     {% endif %}
@@ -16,13 +16,7 @@
         {% for item in params.navigation %}
           {% if item.text or item.html %}
             <li class="govuk-header__navigation-item{{ ' govuk-header__navigation-item--active' if item.active }}">
-              {% if item.href %}
-                <a class="govuk-header__link" href="{{ item.href }}"{% for attribute, value in item.attributes %} {{attribute}}="{{value}}"{% endfor %}>
-              {% endif %}
                 {{ item.html | safe if item.html else item.text }}
-              {% if item.href %}
-                </a>
-              {% endif %}
             </li>
           {% endif %}
         {% endfor %}
