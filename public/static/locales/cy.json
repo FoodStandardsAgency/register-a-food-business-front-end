@@ -191,7 +191,7 @@
   "Which is the operator's address from the list?": "Cofrestru Busnesau Bwyd - Pa un yw cyfeiriad y gweithredwr o'r rhestr?",
   "Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company.": "Cyfeiriad y gweithredwr yw cyfeiriad cyswllt y gweithredwr. Er enghraifft cyfeiriad cartref ar gyfer unig fasnachwr neu gyfeiriad pencadlys ar gyfer cwmni cyfyngedig.",
   "Back": "Yn ôl",
-  "Your web browser": "Mae eich porwr gwe...wedi dyddio. Efallai na fyddwch yn gallu cwblhau'r cofrestriad. Ewch ati i ddiweddaru eich porwr i sicrhau gwell diogelwch, cyflymder a'r profiad gorau ar y wefan hon.",
+  "Your web browser": "Mae eich porwr gwe",
   "is out of date. You may not be able to complete the registration. Update your browser for more security, speed and the best experience on this site.": "wedi dyddio. Efallai na fyddwch yn gallu cwblhau'r cofrestriad. Ewch ati i ddiweddaru eich porwr i sicrhau gwell diogelwch, cyflymder a'r profiad gorau ar y wefan hon.",
   "Search with your own keywords and then select the most fitting business type from the suggestions": "Chwiliwch gyda'ch geiriau allweddol eich hun ac yna dewiswch y math busnes mwyaf addas o'r awgrymiadau",
   "cafe": "caffi",
@@ -592,5 +592,8 @@
   "home.p": "home.p",
   "is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this ": "yw'r awdurdod lleol y bydd eich cofrestriad yn cael ei anfon ato. Ai hwn yw'r awdurdod lleol cywir ar gyfer eich busnes? Os ydych chi'n ansicr, defnyddiwch y ddolen ",
   "Food Business Registration": "Cofrestru Busnesau Bwyd",
-  " link to check using the location or site of your food business.": " i wirio gan ddefnyddio lleoliad neu safle eich busnes bwyd."
+  "Cookies on RaFB": "Cookies on RaFB",
+  "Reject optional cookies": "Reject optional cookies",
+  "Secondary phone number": "Ail rif ffôn",
+  "Web address (optional)": "Cyfeiriad gwe (dewisol)",
 }

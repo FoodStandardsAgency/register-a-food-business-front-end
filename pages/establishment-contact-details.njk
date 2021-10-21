@@ -10,12 +10,12 @@
 {% from "../components/PostForm.njk" import postForm %}
 
 {% macro table(props) %}
-{{ govukTable({
+  {{ govukTable({
   captionClasses: "govuk-table__caption--l",
   rows: [
     [
       {
-        text: __("Partnership contact details") if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" else "Operator contact details"
+        text: __("Partnership contact details") if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" else __("Operator contact details")
       }
     ],
     [
@@ -45,24 +45,24 @@
   ]
 }) }}
 
-{{
+  {{
   govukButton({
       text: __("Re-use partnership contact details") if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" else __("Re-use operator contact details"),
       attributes: {formAction: "/switches/reuseOperatorContactDetails/on/establishment-contact-details#establishment_primary_number"},
       id: "reuseButton"
     }) 
 }}
-{%endmacro%}
+  {%endmacro%}
 
-{% extends "layout.njk" %}
-{% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  {% extends "layout.njk" %}
+  {% block content %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
-      {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
-      {{ processedErrorSummary(props.validatorErrors, props.language) }}
-  
-      {% call govukFieldset({
+        {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+        {{ processedErrorSummary(props.validatorErrors, props.language) }}
+
+        {% call govukFieldset({
         legend: {
           text: __("Establishment contact details"),
           classes: "govuk-fieldset__legend--l",
@@ -71,16 +71,16 @@
         }
       }) %}
 
-      {{ govukDetails({
+        {{ govukDetails({
         summaryText: __("What is an establishment?"),
         text: __("An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.")
       }) }}
 
-      {{ govukInsetText({
+        {{ govukInsetText({
         text: table(props)
       }) }}
 
-      {{ govukInput({
+        {{ govukInput({
         "label": {
           "text": __("Establishment main phone number")
         },
@@ -91,7 +91,7 @@
         
       }) }}
 
-      {{ govukInput({
+        {{ govukInput({
         "label": {
           "text": __("Establishment secondary phone number (optional)")
         },
@@ -100,7 +100,7 @@
         "value": __(props.cumulativeFullAnswers.operator_secondary_number) if props.switches.reuseOperatorContactDetails else __(props.cumulativeFullAnswers.establishment_secondary_number)
       }) }}
 
-      {{ govukInput({
+        {{ govukInput({
         "label": {
           "text": __("Establishment email address")
         },
@@ -114,7 +114,7 @@
         "text": __(props.validatorErrors.establishment_email)} if props.validatorErrors.establishment_email
       }) }}
 
-      {{ govukInput({
+        {{ govukInput({
         "label": {
           "text": __("Web address (optional)")
         },
@@ -122,11 +122,11 @@
         "name": "establishment_web_address"
         }) }}
 
-      {% endcall %}
-      {{ govukButton({
+        {% endcall %}
+        {{ govukButton({
             text: __("Continue")
           }) }}
-      {%- endcall %}
+        {%- endcall %}
+      </div>
     </div>
-  </div>
-{% endblock %}
+  {% endblock %}
