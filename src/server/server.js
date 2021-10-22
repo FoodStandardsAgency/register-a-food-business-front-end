@@ -95,15 +95,20 @@ if (COSMOSDB_URL) {
 
 const forceDomain = (req, res, next) => {
   let host = req.hostname;
-  if (process.env.FOOD_GOV_URL && host.includes("azurewebsites")) {
-    res.redirect(301, `${process.env.FOOD_GOV_URL}${req.path}`);
+  if (
+    process.env.FOOD_GOV_URL &&
+    host.includes("register-a-food-business.azurewebsites")
+  ) {
+    res.redirect(301, `${process.env.FOOD_GOV_URL}${req.originalUrl}`);
   }
 
   return next();
 };
 
 let sessionOptions = {
-  secret: process.env.COOKIE_SECRET ? process.env.COOKIE_SECRET : generateId(),
+  secret: process.env.COOKIE_SECRET
+    ? process.env.COOKIE_SECRET
+    : generateId(),
   resave: true,
   saveUninitialized: false,
   cookie: {
@@ -113,6 +118,7 @@ let sessionOptions = {
   },
   store: store
 };
+
 
 if (process.env.COOKIE_SECURE === "true") {
   sessionOptions.cookie.secure = true;
