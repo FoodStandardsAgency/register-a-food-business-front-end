@@ -50,9 +50,6 @@ steps:
       testRunTitle: Integration tests
       mergeTestResults: false
 
-  - script: yarn build
-    displayName: "Yarn build"
-
   - task: SonarCloudPrepare@1
     inputs:
       SonarCloud: 'Sonarcloud'
