@@ -27,8 +27,8 @@
     "test:security": "snyk auth && snyk test --severity-threshold=medium",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src ./pages",
-    "format:verify": "prettier --list-different src/ pages docs/ tests/  '!./src/__tests__/__snapshots__/**/*' '!./**/*.pdf'",
-    "format": "prettier --write './src/**/*' './pages/**/*' './public/static/locales/**/*' './docs/**/*' './tests/**/*' '!./**/*.pdf' '!./src/__tests__/__snapshots__/**/*'",
+    "format:verify": "prettier --list-different src/ docs/ tests/  '!./src/__tests__/__snapshots__/**/*' '!./**/*.pdf'",
+    "format": "prettier --write './src/**/*' './public/static/locales/**/*' './docs/**/*' './tests/**/*' '!./**/*.pdf' '!./src/__tests__/__snapshots__/**/*'",
     "jsdoc": "rm -rf ./docs/jsdoc && jsdoc -r ./src -d ./docs/jsdoc",
     "updateBusinessTypes": "node ./src/components/update-business-types.js && yarn format"
   },
