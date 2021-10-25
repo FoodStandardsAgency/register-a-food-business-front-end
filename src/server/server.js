@@ -106,9 +106,7 @@ const forceDomain = (req, res, next) => {
 };
 
 let sessionOptions = {
-  secret: process.env.COOKIE_SECRET
-    ? process.env.COOKIE_SECRET
-    : generateId(),
+  secret: process.env.COOKIE_SECRET ? process.env.COOKIE_SECRET : generateId(),
   resave: true,
   saveUninitialized: false,
   cookie: {
@@ -118,7 +116,6 @@ let sessionOptions = {
   },
   store: store
 };
-
 
 if (process.env.COOKIE_SECURE === "true") {
   sessionOptions.cookie.secure = true;
