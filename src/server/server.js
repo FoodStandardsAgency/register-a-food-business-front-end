@@ -86,7 +86,9 @@ if (COSMOSDB_URL) {
   logger.info("Server: setting session cache to database");
   store = new MongoStore({
     url: COSMOSDB_URL,
-    dbName: "front-end-cache"
+    dbName: "front-end-cache",
+    autoRemove: "interval",
+    autoRemoveInterval: 1440 // In minutes
   });
   logger.info("Server: successfully set up database connection");
 } else {
