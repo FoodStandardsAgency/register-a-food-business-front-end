@@ -29,6 +29,12 @@
   }
 }
 
+#hint {
+  color:#6F777B;
+  font-size: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 #languageCyHeader,
 #languageEnHeader {
   color: #0b0c0c !important;
