@@ -1,0 +1,100 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+
+{% extends "layout.njk" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language, "submitRegistration") -%}
+
+        {{ processedErrorSummary(props.validatorErrors, props.language) }}
+
+        {{ govukCheckboxes({
+        idPrefix: "declaration",
+        name: "declaration",
+        fieldset: {
+            legend: {
+            text: __("Declaration"),
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+            }
+        },
+        hint: {
+            text: __("Review these statements and tick all three boxes to agree.")
+        },
+        errorMessage: {
+             text: __(props.validatorErrors.declaration1 or props.validatorErrors.declaration2 or props.validatorErrors.declaration3) } if props.validatorErrors.declaration1 or props.validatorErrors.declaration2 or props.validatorErrors.declaration3,
+        items: [
+            {
+            id: "declaration_1",
+            name: "declaration1",
+            value: "I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief.",
+            text: __("I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief."),
+            checked: props.cumulativeFullAnswers.declaration1
+            },
+            {
+            id: "declaration_2",
+            name: "declaration2",
+            value: "The operator will notify their local council of any significant changes to the business activity, including closure, within 28 days of the change happening.",
+            text: __("The operator will notify their local council of any significant changes to the business activity, including closure, within 28 days of the change happening."),
+            checked: props.cumulativeFullAnswers.declaration2
+            },
+            {
+            id: "declaration_3",
+            name: "declaration3",
+            value: "The operator understands they are legally responsible for the safety and authenticity of the food being produced or served at this establishment.",
+            text: __("The operator understands they are legally responsible for the safety and authenticity of the food being produced or served at this establishment."),
+            checked: props.cumulativeFullAnswers.declaration3
+            }
+        ]
+        }) }}
+
+        <div>
+        {{ govukCheckboxes({
+        idPrefix: "feedback",
+        name: "feedback",
+        fieldset: {
+            legend: {
+            text: __("Feedback"),
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--l"
+            }
+        },
+        hint: {
+            text: __("Congratulations, you've almost finished. We want to provide you with the best experience possible and value your feedback.")
+        },
+        items: [
+            {
+            id: "feedback_1",
+            name: "feedback1",
+            value: "I agree to be contacted to provide feedback to help develop this service",
+            text: __("I agree to be contacted to provide feedback to help develop this service (optional)"),
+            checked: props.cumulativeFullAnswers.feedback1
+            }
+        ]
+        }) }}
+        <a
+            href="http://apps.charitycommission.gov.uk/Showcharity/RegisterOfCharities/registerhomepage.aspx"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="hint"
+        >
+            {{__("How we will use your data (opens in new window)")}}
+        </a>
+        </div>
+        <br/>
+        <br/>
+        {{ govukButton({
+            text: __("Submit")
+        }) }}
+    {% endcall %}
+
+    </div>
+  </div>
+{% endblock %}
