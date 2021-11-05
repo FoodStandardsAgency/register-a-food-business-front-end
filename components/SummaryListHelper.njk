@@ -1,0 +1,28 @@
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% macro summaryListHelper(keyText, valueText, href, property) %}
+
+    {{ govukSummaryList({
+        rows: 
+        [
+        {
+        key: { 
+        text:  keyText
+        },
+        value: {
+        text: valueText
+        },
+        actions: 
+        {
+        items: 
+            [
+            {
+            href: href,
+            text: __("Change") if property else __("Enter answer")
+            }
+            ]
+        }               
+        }
+        ]
+    }) }}
+{% endmacro %}
