@@ -3,7 +3,7 @@
 
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
-{% from "../components/SummaryListHelper.njk" import summaryListHelper %}
+{% from "../components/SummaryListHelper.njk" import summaryListHelper, summaryListHelperHtml %}
 
 {% extends "layout.njk" %}
 
@@ -17,52 +17,61 @@
      {% call postForm("/continue" + props.transformedData.currentPage, props.transformedData.csrfToken, props.transformedData.language) -%}
 
 
-        {{ processedErrorSummary(props.transformedData.validatorErrors, props.language) }}
+       {{ processedErrorSummary(props.transformedData.validatorErrors, props.language) }}
 
-        <h1 class="govuk-heading-l">{{__("Check your answers") }}</h1>
+       <h1 class="govuk-heading-l">{{__("Check your answers") }}</h1>
 
-        {{ govukInsetText({
+       {{ govukInsetText({
             text: __("You must check your answers before you continue")
-        }) }}
+       }) }}
 
-        <h2 class="govuk-heading-m">{{__("Operator details") }}</h2>
+       <h2 class="govuk-heading-m">{{__("Operator details") }}</h2>
 
 
-        {% if propsData.applicationCompletePage == null %}
-          {% if propsData.validatorErrors.operator_type or propsData.operator_type %}
-            {{ summaryListHelper(__("Operator type"), propsData.operator_type, "/edit/registration-role",propsData.operator_type) }}
-          {% endif %}
-        {% endif %} 
-
-        {% if propsData.applicationCompletePage == null %} 
-          {% if propsData.validatorErrors.operator_company_name or propsData.operator_company_name %}
-            {{ summaryListHelper(__("Company name"), propsData.operator_company_name , "/edit/operator-company-details", propsData.operator_company_name) }}
-          {% endif %}
-        {% endif %} 
-
-        {% if propsData.applicationCompletePage == null %} 
-          {% if propsData.validatorErrors.companies_house_number or propsData.companies_house_number %}
-            {{ summaryListHelper(__("Companies House number"), propsData.companies_house_number, "/edit/operator-company-details", propsData.companies_house_number) }}
-          {% endif %}
-        {% endif %} 
-
-         {% if propsData.applicationCompletePage == null %}
-          {% if propsData.validatorErrors.operator_charity_name or propsData.operator_charity_name %}
-            {{ summaryListHelper(__("Charity name"), propsData.operator_charity_name, "/edit/operator-charity-details", propsData.operator_charity_name) }}
-          {% endif %}
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.operator_type or propsData.operator_type %}
+           {{ summaryListHelper(__("Operator type"), propsData.operator_type, "/edit/registration-role",propsData.operator_type) }}
          {% endif %}
+       {% endif %} 
 
-         {% if propsData.applicationCompletePage == null %}
-          {% if propsData.validatorErrors.operator_charity_number or propsData.operator_charity_number %}
-            {{ summaryListHelper(__("Charity number"), propsData.operator_charity_number, "/edit/operator-charity-details", propsData.operator_charity_number) }}
-          {% endif %}
+       {% if propsData.applicationCompletePage == null %} 
+         {% if propsData.validatorErrors.operator_company_name or propsData.operator_company_name %}
+           {{ summaryListHelper(__("Company name"), propsData.operator_company_name , "/edit/operator-company-details", propsData.operator_company_name) }}
          {% endif %}
+       {% endif %} 
 
-         {% if propsData.applicationCompletePage == null %}
-          {% if propsData.validatorErrors.operator_first_name or propsData.operator_first_name %}
-            {{ summaryListHelper(__("Name"), propsData.operator_first_name + " " + propsData.operator_last_name, "/edit/operator-name", propsData.operator_first_name and propsData.operator_last_name) }}
-          {% endif %}
-        {% endif %}
+       {% if propsData.applicationCompletePage == null %} 
+         {% if propsData.validatorErrors.companies_house_number or propsData.companies_house_number %}
+           {{ summaryListHelper(__("Companies House number"), propsData.companies_house_number, "/edit/operator-company-details", propsData.companies_house_number) }}
+         {% endif %}
+       {% endif %} 
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.operator_charity_name or propsData.operator_charity_name %}
+           {{ summaryListHelper(__("Charity name"), propsData.operator_charity_name, "/edit/operator-charity-details", propsData.operator_charity_name) }}
+         {% endif %}
+       {% endif %}
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.operator_charity_number or propsData.operator_charity_number %}
+           {{ summaryListHelper(__("Charity number"), propsData.operator_charity_number, "/edit/operator-charity-details", propsData.operator_charity_number) }}
+         {% endif %}
+       {% endif %}
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.operator_first_name or propsData.operator_first_name %}
+           {{ summaryListHelper(__("Name"), propsData.operator_first_name + " " + propsData.operator_last_name, "/edit/operator-name", propsData.operator_first_name and propsData.operator_last_name) }}
+         {% endif %}
+       {% endif %}
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.operator_address_line_1 or propsData.validatorErrors.operator_address_line_2 or propsData.validatorErrors.operator_address_line_3 or 
+               propsData.validatorErrors.operator.operator_town or propsData.validatorErrors.operator.operator_postcode or propsData.validatorErrors.operator_postcode_find or 
+               propsData.operator_address_line_1 or propsData.operator_address_line_2 or propsData.operator_address_line_3 or propsData.operator_town or propsData.operator_postcode or propsData.operator_postcode_find %}
+               {% set htmlValue = propsData.operator_address_line_1 + "<br>" + propsData.operator_address_line_2 + "<br>" + propsData.operator_address_line_3 + "<br>" + propsData.operator_town + "<br>" + propsData.operator_postcode %}
+           {{ summaryListHelperHtml(__("Partnership contact address") if  propsData.operator_type === "PARTNERSHIP" else __("Operator address"), htmlValue, "/edit/operator-address", propsData.operator_address_line_1 and propsData.operator_town and propsData.operator_postcode) }}
+         {% endif %}
+       {% endif %}
 
     {% endcall %}
     </div>

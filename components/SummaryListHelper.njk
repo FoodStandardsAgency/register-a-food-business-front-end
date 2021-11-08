@@ -26,3 +26,30 @@
         ]
     }) }}
 {% endmacro %}
+
+{% macro summaryListHelperHtml(keyText, valueHtml, href, property) %}
+
+    {{ govukSummaryList({
+        rows: 
+        [
+        {
+        key: { 
+        text:  keyText
+        },
+        value: {
+        html: valueHtml
+        },
+        actions: 
+        {
+        items: 
+            [
+            {
+            href: href,
+            text: __("Change") if property else __("Enter answer")
+            }
+            ]
+        }               
+        }
+        ]
+    }) }}
+{% endmacro %}
