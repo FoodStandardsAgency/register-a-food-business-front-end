@@ -97,12 +97,28 @@
          {% endif %}
        {% endif %}
 
-         {% if propsData.applicationCompletePage == null %}
+       {% if propsData.applicationCompletePage == null %}
          {% if propsData.validatorErrors.contact_representative_name or propsData.validatorErrors.contact_representative_role or propsData.validatorErrors.contact_representative_number or propsData.validatorErrors.contact_representative_email 
             or propsData.contact_representative_name or propsData.contact_representative_role or propsData.contact_representative_number or propsData.contact_representative_email  %}
             {% set contactRepRole = "\u2000\u2022" + propsData.contact_representative_role if propsData.contact_representative_role else null %}
             {% set htmlValue = propsData.contact_representative_name + "<br>" + contactRepRole + "<br>" + prosData.contact_representative_number + "<br>" + prosData.contact_representative_email %}
            {{ summaryListHelperHtml(__("Designated contact"), htmlValue, "/edit/contact-representative", propsData.contact_representative_name) }}
+         {% endif %}
+       {% endif %}
+
+       <h2 class="govuk-heading-m">{{__("Establishment details") }}</h2>
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.establishment_trading_name or propsData.establishment_trading_name %}
+           {{ summaryListHelper(__("Trading name"), propsData.establishment_trading_name, "/edit/establishment-trading-name", propsData.establishment_trading_name) }}
+         {% endif %}
+       {% endif %}
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.establishment_address_line_1 or propsData.establishment_postcode_find or propsData.validatorErrors.establishment_address_line_1 or propsData.validatorErrors.establishment_address_line_2 
+            or  propsData.validatorErrors.establishment_address_line_3 or propsData.validatorErrors.establishment_town or  propsData.validatorErrors.establishment_postcode or propsData.validatorErrors.establishment_postcode_find %}
+            {% set htmlValue = propsData.establishment_address_line_1 + "<br>" + propsData.establishment_address_line_2 + "<br>" + propsData.establishment_address_line_3 + "<br>" + propsData.establishment_town + "<br>" + propsData.establishment_postcode %}
+           {{ summaryListHelperHtml(("Establishment address"), htmlValue, "/edit/establishment-address", propsData.establishment_address_line_1 and propsData.establishment_town and propsData.establishment_postcode ) }}
          {% endif %}
        {% endif %}
 
