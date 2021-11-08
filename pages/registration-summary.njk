@@ -14,10 +14,10 @@
 
     {% set propsData = props.transformedData %}
      
-     {% call postForm("/continue" + props.transformedData.currentPage, props.transformedData.csrfToken, props.transformedData.language) -%}
+     {% call postForm("/continue" + propsData.currentPage, propsData.csrfToken, propsData.language) -%}
 
 
-       {{ processedErrorSummary(props.transformedData.validatorErrors, props.language) }}
+       {{ processedErrorSummary(propsData.validatorErrors, propsData.language) }}
 
        <h1 class="govuk-heading-l">{{__("Check your answers") }}</h1>
 
@@ -70,6 +70,39 @@
                propsData.operator_address_line_1 or propsData.operator_address_line_2 or propsData.operator_address_line_3 or propsData.operator_town or propsData.operator_postcode or propsData.operator_postcode_find %}
                {% set htmlValue = propsData.operator_address_line_1 + "<br>" + propsData.operator_address_line_2 + "<br>" + propsData.operator_address_line_3 + "<br>" + propsData.operator_town + "<br>" + propsData.operator_postcode %}
            {{ summaryListHelperHtml(__("Partnership contact address") if  propsData.operator_type === "PARTNERSHIP" else __("Operator address"), htmlValue, "/edit/operator-address", propsData.operator_address_line_1 and propsData.operator_town and propsData.operator_postcode) }}
+         {% endif %}
+       {% endif %}
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.operator_primary_number or propsData.validatorErrors.operator_secondary_number or propsData.operator_primary_number %}
+           {{ summaryListHelperHtml(("Phone number"), propsData.operator_primary_number + "<br>" + propsData.operator_secondary_number, "/edit/operator-contact-details", propsData.operator_primary_number ) }}
+         {% endif %}
+       {% endif %}
+
+         {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.operator_email or propsData.operator_email %}
+           {{ summaryListHelper(__("Email address"), propsData.operator_email, "/edit/operator-contact-details", propsData.operator_email) }}
+         {% endif %}
+       {% endif %}
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.main_partnership_contact or propsData.main_partnership_contact %}
+           {{ summaryListHelper(__("Main partnership contact"), propsData.main_partnership_contact, "/edit/main-partnership-contact", propsData.main_partnership_contact) }}
+         {% endif %}
+       {% endif %}
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.partners or propsData.partners %}
+           {{ summaryListHelper(__("Partners"), propsData.partners, "/edit/partner-name", propsData.partners) }}
+         {% endif %}
+       {% endif %}
+
+         {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.contact_representative_name or propsData.validatorErrors.contact_representative_role or propsData.validatorErrors.contact_representative_number or propsData.validatorErrors.contact_representative_email 
+            or propsData.contact_representative_name or propsData.contact_representative_role or propsData.contact_representative_number or propsData.contact_representative_email  %}
+            {% set contactRepRole = "\u2000\u2022" + propsData.contact_representative_role if propsData.contact_representative_role else null %}
+            {% set htmlValue = propsData.contact_representative_name + "<br>" + contactRepRole + "<br>" + prosData.contact_representative_number + "<br>" + prosData.contact_representative_email %}
+           {{ summaryListHelperHtml(__("Designated contact"), htmlValue, "/edit/contact-representative", propsData.contact_representative_name) }}
          {% endif %}
        {% endif %}
 
