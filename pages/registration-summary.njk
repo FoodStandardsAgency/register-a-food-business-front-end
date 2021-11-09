@@ -79,7 +79,7 @@
          {% endif %}
        {% endif %}
 
-         {% if propsData.applicationCompletePage == null %}
+       {% if propsData.applicationCompletePage == null %}
          {% if propsData.validatorErrors.operator_email or propsData.operator_email %}
            {{ summaryListHelper(__("Email address"), propsData.operator_email, "/edit/operator-contact-details", propsData.operator_email) }}
          {% endif %}
@@ -119,6 +119,32 @@
             or  propsData.validatorErrors.establishment_address_line_3 or propsData.validatorErrors.establishment_town or  propsData.validatorErrors.establishment_postcode or propsData.validatorErrors.establishment_postcode_find %}
             {% set htmlValue = propsData.establishment_address_line_1 + "<br>" + propsData.establishment_address_line_2 + "<br>" + propsData.establishment_address_line_3 + "<br>" + propsData.establishment_town + "<br>" + propsData.establishment_postcode %}
            {{ summaryListHelperHtml(("Establishment address"), htmlValue, "/edit/establishment-address", propsData.establishment_address_line_1 and propsData.establishment_town and propsData.establishment_postcode ) }}
+         {% endif %}
+       {% endif %}
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.establishment_type or propsData.establishment_type %}
+           {{ summaryListHelper(__("Address type"), propsData.establishment_type, "/edit/establishment-address-type", propsData.establishment_type) }}
+         {% endif %}
+       {% endif %}
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.establishment_primary_number or propsData.validatorErrors.establishment_secondary_number or propsData.establishment_primary_number %}
+           {{ summaryListHelperHtml(("Phone number"), propsData.establishment_primary_number + "<br>" + propsData.establishment_secondary_number, "/edit/establishment-contact-details", propsData.establishment_primary_number ) }}
+         {% endif %}
+       {% endif %}
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.validatorErrors.establishment_email or propsData.establishment_email %}
+           {{ summaryListHelper(__("Email address"), propsData.establishment_email, "/edit/establishment-contact-details", propsData.establishment_email) }}
+         {% endif %}
+       {% endif %}
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if propsData.establishment_opening_date or propsData.validatorErrors.establishment_opening_status or propsData.validatorErrors.establishment_opening_date %}
+           {% set htmlValue = propsData.establishment_opening_date | date("DD MMM YYYY")  if propsData.establishment_opening_date else "" %}
+           {% set formattedDate = propsData.establishment_opening_date | date("DD MMM YYYY")  %}
+           {{ summaryListHelper(("Trading date"), htmlValue, "/edit/establishment-opening-status", formattedDate, formattedDate if not "Invalid date" and propsData.establishment_opening_date ) }}
          {% endif %}
        {% endif %}
 
