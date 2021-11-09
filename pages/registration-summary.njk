@@ -148,6 +148,32 @@
          {% endif %}
        {% endif %}
 
+        {% if propsData.applicationCompletePage == null %}
+         {% if propsData.opening_days_start or propsData.opening_days_some or propsData.opening_days_irregular or propsData.validatorErrors.opening_days_start or propsData.validatorErrors.opening_days_some or propsData.validatorErrors.opening_days_irregular  %}
+             {% set mon = propsData.opening_day_monday  if propsData.opening_day_monday%}
+             {% set tues = propsData.opening_day_tuesday  if prosData.opening_day_tuesday %}
+             {% set wed = propsData.opening_day_wednesday  if prosData.opening_day_wednesday %}
+             {% set thur = propsData.opening_day_thursday  if prosData.opening_day_thursday %}
+             {% set fri = propsData.opening_day_friday  if prosData.opening_day_friday %}
+             {% set sat = propsData.opening_day_saturday  if prosData.opening_day_saturday %}
+             {% set sun = propsData.opening_day_sunday  if prosData.opening_day_sunday %}
+
+            {% set html %}
+            <div>
+                <div id = "opening_day_monday">{{mon}}<div>
+                <div id = "opening_day_tuesday">{{tues}}<div>
+                <div id = "opening_day_wednesday">{{wed}}<div>
+                <div id = "opening_day_thursday">{{thur}}<div>
+                <div id = "opening_day_friday">{{fri}}<div>
+                <div id = "opening_day_saturday">{{sat}}<div>
+                <div id = "opening_day_sunday">{{sun}}<div>
+             </div> 
+            {% endset %}
+           {{ summaryListHelperHtml(("Opening days"), html, "/edit/opening-days-start", propsData.opening_days_irregular or propsData.open_some_days_summary_table or propsData.opening_day_monday 
+           or prosData.opening_day_tuesday or prosData.opening_day_wednesday or prosData.opening_day_thursday or prosData.opening_day_friday or prosData.opening_day_saturday or prosData.opening_day_sunday ) }}
+         {% endif %}
+       {% endif %}
+
     {% endcall %}
     </div>
 
