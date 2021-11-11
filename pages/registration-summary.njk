@@ -14,10 +14,10 @@
 
     {% set propsData = props.transformedData %}
      
-     {% call postForm("/continue" + propsData.currentPage, propsData.csrfToken, propsData.language) -%}
+     {% call postForm("/continue" + currentPage, csrfToken, language) -%}
 
 
-       {{ processedErrorSummary(propsData.validatorErrors, propsData.language) }}
+       {{ processedErrorSummary(validatorErrors, language) }}
 
        <h1 class="govuk-heading-l">{{__("Check your answers") }}</h1>
 
@@ -75,7 +75,7 @@
 
        {% if propsData.applicationCompletePage == null %}
          {% if propsData.validatorErrors.operator_primary_number or propsData.validatorErrors.operator_secondary_number or propsData.operator_primary_number %}
-           {{ summaryListHelperHtml(("Phone number"), propsData.operator_primary_number + "<br>" + propsData.operator_secondary_number, "/edit/operator-contact-details", propsData.operator_primary_number ) }}
+           {{ summaryListHelperHtml(__("Phone number"), propsData.operator_primary_number + "<br>" + propsData.operator_secondary_number, "/edit/operator-contact-details", propsData.operator_primary_number ) }}
          {% endif %}
        {% endif %}
 
@@ -118,7 +118,7 @@
          {% if propsData.establishment_address_line_1 or propsData.establishment_postcode_find or propsData.validatorErrors.establishment_address_line_1 or propsData.validatorErrors.establishment_address_line_2 
             or  propsData.validatorErrors.establishment_address_line_3 or propsData.validatorErrors.establishment_town or  propsData.validatorErrors.establishment_postcode or propsData.validatorErrors.establishment_postcode_find %}
             {% set htmlValue = propsData.establishment_address_line_1 + "<br>" + propsData.establishment_address_line_2 + "<br>" + propsData.establishment_address_line_3 + "<br>" + propsData.establishment_town + "<br>" + propsData.establishment_postcode %}
-           {{ summaryListHelperHtml(("Establishment address"), htmlValue, "/edit/establishment-address", propsData.establishment_address_line_1 and propsData.establishment_town and propsData.establishment_postcode ) }}
+           {{ summaryListHelperHtml(__("Establishment address"), htmlValue, "/edit/establishment-address", propsData.establishment_address_line_1 and propsData.establishment_town and propsData.establishment_postcode ) }}
          {% endif %}
        {% endif %}
 
@@ -130,7 +130,7 @@
 
        {% if propsData.applicationCompletePage == null %}
          {% if propsData.validatorErrors.establishment_primary_number or propsData.validatorErrors.establishment_secondary_number or propsData.establishment_primary_number %}
-           {{ summaryListHelperHtml(("Phone number"), propsData.establishment_primary_number + "<br>" + propsData.establishment_secondary_number, "/edit/establishment-contact-details", propsData.establishment_primary_number ) }}
+           {{ summaryListHelperHtml(__("Phone number"), propsData.establishment_primary_number + "<br>" + propsData.establishment_secondary_number, "/edit/establishment-contact-details", propsData.establishment_primary_number ) }}
          {% endif %}
        {% endif %}
 
@@ -144,32 +144,25 @@
          {% if propsData.establishment_opening_date or propsData.validatorErrors.establishment_opening_status or propsData.validatorErrors.establishment_opening_date %}
            {% set htmlValue = propsData.establishment_opening_date | date("DD MMM YYYY")  if propsData.establishment_opening_date else "" %}
            {% set formattedDate = propsData.establishment_opening_date | date("DD MMM YYYY")  %}
-           {{ summaryListHelper(("Trading date"), htmlValue, "/edit/establishment-opening-status", formattedDate, formattedDate if not "Invalid date" and propsData.establishment_opening_date ) }}
+           {{ summaryListHelper(__("Trading date"), htmlValue, "/edit/establishment-opening-status", formattedDate, formattedDate if not "Invalid date" and propsData.establishment_opening_date ) }}
          {% endif %}
        {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
          {% if propsData.opening_days_start or propsData.opening_days_some or propsData.opening_days_irregular or propsData.validatorErrors.opening_days_start or propsData.validatorErrors.opening_days_some or propsData.validatorErrors.opening_days_irregular  %}
-             {% set mon = propsData.opening_day_monday  if propsData.opening_day_monday%}
-             {% set tues = propsData.opening_day_tuesday  if prosData.opening_day_tuesday %}
-             {% set wed = propsData.opening_day_wednesday  if prosData.opening_day_wednesday %}
-             {% set thur = propsData.opening_day_thursday  if prosData.opening_day_thursday %}
-             {% set fri = propsData.opening_day_friday  if prosData.opening_day_friday %}
-             {% set sat = propsData.opening_day_saturday  if prosData.opening_day_saturday %}
-             {% set sun = propsData.opening_day_sunday  if prosData.opening_day_sunday %}
-
+      
             {% set html %}
             <div>
-                <div id = "opening_day_monday">{{mon}}<div>
-                <div id = "opening_day_tuesday">{{tues}}<div>
-                <div id = "opening_day_wednesday">{{wed}}<div>
-                <div id = "opening_day_thursday">{{thur}}<div>
-                <div id = "opening_day_friday">{{fri}}<div>
-                <div id = "opening_day_saturday">{{sat}}<div>
-                <div id = "opening_day_sunday">{{sun}}<div>
+                <div id = "opening_day_monday">{{ propsData.opening_day_monday}} <div>
+                <div id = "opening_day_tuesday">{{propsData.opening_day_tuesday}}<div>
+                <div id = "opening_day_wednesday">{{prosData.opening_day_wednesday}}<div>
+                <div id = "opening_day_thursday">{{prosData.opening_day_thursday}}<div>
+                <div id = "opening_day_friday">{{prosData.opening_day_friday}}<div>
+                <div id = "opening_day_saturday">{{prosData.opening_day_saturday}}<div>
+                <div id = "opening_day_sunday">{{prosData.opening_day_sunday}}<div>
              </div> 
             {% endset %}
-           {{ summaryListHelperHtml(("Opening days"), html, "/edit/opening-days-start", propsData.opening_days_irregular or propsData.open_some_days_summary_table or propsData.opening_day_monday 
+           {{ summaryListHelperHtml(__("Opening days"), html, "/edit/opening-days-start", propsData.opening_days_irregular or propsData.open_some_days_summary_table or propsData.opening_day_monday 
            or prosData.opening_day_tuesday or prosData.opening_day_wednesday or prosData.opening_day_thursday or prosData.opening_day_friday or prosData.opening_day_saturday or prosData.opening_day_sunday ) }}
          {% endif %}
        {% endif %}
