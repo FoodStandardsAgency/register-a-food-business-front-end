@@ -5,8 +5,10 @@
 {% from "govuk/components/table/macro.njk" import govukTable %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
-{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% from "../components/EstablishmentDetails.njk" import establishmentHiddenDetails %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% from "../components/PostForm.njk" import postForm %}
 
 {% macro table(props) %}
@@ -71,10 +73,7 @@
         }
       }) %}
 
-        {{ govukDetails({
-        summaryText: __("What is an establishment?"),
-        text: __("An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.")
-      }) }}
+        {{ establishmentHiddenDetails() }}
 
         {{ govukInsetText({
         text: table(props)
