@@ -169,7 +169,7 @@
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}        
-          {% if propsData.opening_days_start  or propsData.opening_days_some or validatorErrors.opening_hours_monday or validatorErrors.opening_hours_tuesday 
+          {% if (propsData.opening_days_start and propsData.opening_days_start !== "Irregular days") or propsData.opening_days_some or validatorErrors.opening_hours_monday or validatorErrors.opening_hours_tuesday 
               or validatorErrors.opening_hours_wednesday or validatorErrors.opening_hours_thursday or validatorErrors.opening_hours_friday or validatorErrors.opening_hours_saturday or validatorErrors.opening_hours_sunday  %}
 
               {% set html %}
