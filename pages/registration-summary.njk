@@ -195,6 +195,27 @@
          {% endif %}
        {% endif %}
 
+       <h2 class="govuk-heading-m">{{__("Activities") }}</h2>
+
+        {% if propsData.applicationCompletePage == null %}
+         {% if validatorErrors.customer_type or propsData.customer_type %}
+           {{ summaryListHelper(__("Customers"), propsData.customer_type, "/edit/customer-type", propsData.customer_type) }}
+         {% endif %}
+       {% endif %}
+
+       {% if propsData.applicationCompletePage == null %}
+         {% if validatorErrors.import_export_activities or propsData.import_export_activities %}
+           {{ summaryListHelper(__("Import and export"), propsData.import_export_activities, "/edit/business-import-export", propsData.import_export_activities) }}
+         {% endif %}
+       {% endif %}
+
+        {% if propsData.applicationCompletePage == null %}
+         {% if validatorErrors.business_other_details or propsData.business_other_details %}
+           {{ summaryListHelper(__("Additional details"), propsData.customer_type, "/edit/business-other-details", propsData.business_other_details) }}
+         {% endif %}
+       {% endif %}
+
+
     {% endcall %}
     </div>
 
