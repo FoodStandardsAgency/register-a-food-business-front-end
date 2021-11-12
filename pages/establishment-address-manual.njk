@@ -5,6 +5,7 @@
 
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% from "../components/EstablishmentDetails.njk" import establishmentHiddenDetails %}
 
 {% extends "layout.njk" %}
 
@@ -34,10 +35,7 @@
         }) %}
         {% endcall%}
 
-        {{ govukDetails({
-          summaryText: __("What is an establishment?"),
-          text: __("An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight.")
-        }) }}
+        {{ establishmentHiddenDetails() }}
 
         {{ govukInput({
             "label": {

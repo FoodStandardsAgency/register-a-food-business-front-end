@@ -41,6 +41,12 @@
   errorMessage: {
     text: __(props.validatorErrors.establishment_opening_date)} if props.validatorErrors.establishment_opening_date
 }) }}
+
+{{ govukDetails({
+    summaryText: __("I don't know when this establishment will begin trading"),
+    text: __("Food businesses are required to register at least 28 days before they begin trading, that includes food or drink sold online. If you are not sure when this business will open, it may be too early to register. You can also use an estimated date.")
+    }) }}
+
 {% endmacro %}
 
 {% macro establishmentTrading() %}
@@ -75,6 +81,12 @@
   errorMessage: {
     text: __(props.validatorErrors.establishment_opening_date)} if props.validatorErrors.establishment_opening_date
 }) }}
+
+{{ govukDetails({
+    summaryText: __("I don't know when this establishment began trading"),
+    text: __("Trading begins the day your business started to serve or make food or drink. Alternatively, it can be the day you took over the business as an operator. If you do not remember the exact date, use an estimated date.")
+    }) }}
+
 {% endmacro %}
 
 {% extends "layout.njk" %}
@@ -93,14 +105,10 @@
                 }
     }) %}
 
-      <p id= "hint">{{__("Establishments begin trading when they first start serving or manufacturing food for customers.")}}</p>
+      <p id= "hint">{{__("Establishments begin trading when they first start serving or manufacturing food or drink for customers or supplying food or drink online.")}}</p>
 
       {{ establishmentDueToTrade() if props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade" else establishmentTrading() }}
 
-      {{ govukDetails({
-    summaryText: __("I don't know when this establishment will begin trading"),
-    text: __("Food businesses are required to register at least 28 days before they begin trading. If you are not sure when this business will open, it may be too early to register. You can also use an estimated date.")
-    }) }}
       {% endcall%}
       {{ govukButton({
       text: __("Continue")
