@@ -189,6 +189,12 @@
           {% endif %}
         {% endif %}
 
+        {% if propsData.applicationCompletePage == null %}
+         {% if validatorErrors.water_supply or propsData.water_supply %}
+           {{ summaryListHelper(__("Water supply"), propsData.water_supply, "/edit/business-water-supply", propsData.water_supply) }}
+         {% endif %}
+       {% endif %}
+
     {% endcall %}
     </div>
 
