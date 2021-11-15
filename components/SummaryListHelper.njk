@@ -53,3 +53,20 @@
         ]
     }) }}
 {% endmacro %}
+
+{% macro summaryListDeclarationHelper(keyhtml, valueText) %}
+
+    {{ govukSummaryList({
+        rows: 
+        [
+        {
+        key: { 
+        html:  keyhtml
+        },
+        value: {
+        text: valueText
+        }          
+        }
+        ]
+    }) }}
+{% endmacro %}
