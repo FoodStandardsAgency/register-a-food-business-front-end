@@ -203,6 +203,12 @@
          {% endif %}
        {% endif %}
 
+        {% if propsData.applicationCompletePage == null %}
+         {% if validatorErrors.business_type or propsData.business_type %}
+           {{ summaryListHelper(__("Business type"), propsData.business_type, "/edit/business-type", propsData.business_type) }}
+         {% endif %}
+       {% endif %}
+
        {% if propsData.applicationCompletePage == null %}
          {% if validatorErrors.import_export_activities or propsData.import_export_activities %}
            {{ summaryListHelper(__("Import and export"), propsData.import_export_activities, "/edit/business-import-export", propsData.import_export_activities) }}
@@ -214,6 +220,8 @@
            {{ summaryListHelper(__("Additional details"), propsData.customer_type, "/edit/business-other-details", propsData.business_other_details) }}
          {% endif %}
        {% endif %}
+
+       <h2 class="govuk-heading-m">{{__("Declaration") }}</h2>
 
 
     {% endcall %}
