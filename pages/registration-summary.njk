@@ -14,7 +14,7 @@
 
     {% set propsData = props.transformedData %}
      
-     {% call postForm("/continue" + currentPage, csrfToken, language) -%}
+     {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
 
        {{ processedErrorSummary(validatorErrors, language) }}
@@ -221,7 +221,7 @@
          {% endif %}
        {% endif %}
 
-       {% if propsData.applicationCompletePage == null %}
+       {% if propsData.applicationCompletePage %}
         <h2 class="govuk-heading-m">{{__("Declaration") }}</h2>
          
         {% set html %}
@@ -243,6 +243,10 @@
         {{ summaryListDeclarationHelper(html, "Accepted" ) }}
        
        {% endif%}
+
+       {{ govukButton({
+        text: __("Continue")
+      }) }}
 
     {% endcall %}
     </div>
