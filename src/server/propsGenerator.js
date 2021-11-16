@@ -70,13 +70,12 @@ module.exports = (req) => {
       : {};
   delete allValidationErrorsCleaned["undefined"];
 
-  const currentPageTitle = "RAFB";
-  // const currentPageTitle = PageTitles.getUrlPageTitle(
-  //   req.url,
-  //   validatorErrorsCleaned,
-  //   allValidationErrorsCleaned,
-  //   cumulativeFullAnswers
-  // );
+  const currentPageTitle = PageTitles.getUrlPageTitle(
+    req.url,
+    validatorErrorsCleaned,
+    allValidationErrorsCleaned,
+    cumulativeFullAnswers
+  );
 
   /************************************************************************************
     Declaration of initialProps object, containing the above variables, plus others.
