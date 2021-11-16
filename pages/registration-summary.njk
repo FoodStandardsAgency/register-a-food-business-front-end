@@ -14,12 +14,12 @@
 
     {% set propsData = props.transformedData %}
 
-    {% set validatorErrors= props.allValidationErrors %}
+    {% set validatorErrors = props.allValidationErrors %}
      
      {% call postForm("/continue/registration-summary", props.csrfToken, props.language) -%}
 
 
-       {{ processedErrorSummary(props.allValidationErrors, language) }}
+       {{ processedErrorSummary(validatorErrors, language) }}
 
        <h1 class="govuk-heading-l">{{__("Check your answers") }}</h1>
 
