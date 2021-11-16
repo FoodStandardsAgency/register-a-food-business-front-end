@@ -13,8 +13,10 @@
     <div class="govuk-grid-column-two-thirds">
 
     {% set propsData = props.transformedData %}
+
+    {% set validatorErrors= props.allValidationErrors %}
      
-     {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+     {% call postForm("/continue/registration-summary", props.csrfToken, props.language) -%}
 
 
        {{ processedErrorSummary(validatorErrors, language) }}
