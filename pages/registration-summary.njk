@@ -17,7 +17,7 @@
      {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
 
 
-       {{ processedErrorSummary(validatorErrors, language) }}
+       {{ processedErrorSummary(props.allValidationErrors, language) }}
 
        <h1 class="govuk-heading-l">{{__("Check your answers") }}</h1>
 
