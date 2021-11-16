@@ -1,0 +1,73 @@
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+
+{% from "../components/PostForm.njk" import postForm %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% extends "layout.njk" %}
+{% set props = mergeObjects(props, {hideback: true}) %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     <h1 class="govuk-heading-l">{{__("Submission complete") }}</h1>
+     <br>
+     <br>
+     <h2 class="govuk-heading-m">{{__("Thank you for submitting your food business registration.") }}</h2>
+     
+     {% set html %}
+      {% if props.fsaRegistrationNumber %}
+           <span id = "fsa-rn" >
+           <br>
+           <br>
+           {{props.fsaRegistrationNumber.split("-").join(" - ")}}
+       {% else %}
+          <span id = "panelWithText" >
+           <br>
+           {{__("Awaiting registration application reference")}}
+       {%endif %}
+     {% endset %}
+
+     {{ govukPanel({
+      headingLevel: 2,
+      titleText: __("Your unique food business registration application reference is") if props.fsaRegistrationNumber else __("Registration submitted"),
+      html: html
+     }) }}
+
+     {{ govukInsetText({
+      text: __("Please keep note of this registration application reference for your records.")
+     }) }}
+    
+
+     {% set formattedDate = props.submissionDate | date("DD MMM YYYY")  %}
+      <h2 class="govuk-heading-m">{{__("Submitted on") }}</h2>
+      <p>{{ formattedDate if not "Invalid date"}}</p>
+  
+    
+     {% set html %}
+      {% if props.lcConfig.hygieneAndStandards %}
+        <h2 class="govuk-heading-m">{{props.lcConfig.hygieneAndStandards.local_council}}</h2>
+        <p>{{__("Email address: ")}} + {{props.lcConfig.hygieneAndStandards.local_council_email}}</p>
+
+        <p>{{ __("Phone number: ") + props.lcConfig.hygieneAndStandards.local_council_phone_number  if props.lcConfig.hygieneAndStandards.local_council_phone_number }} </p>
+      {% else %}
+        {% if props.lcConfig.hygiene and props.lcConfig.standards %}
+          <div>
+            <h4 class="govuk-heading-s">{{ props.lcConfig.hygiene.local_council }} </h4>
+            <p>{{__("Email address: ")}} + {{ props.lcConfig.hygiene.local_council_email}}</p>
+            <p>{{ __("Phone number: ") + props.lcConfig.hygiene.local_council_phone_number  if props.lcConfig.hygiene.local_council_phone_number }} </p>
+          </div>
+        {% endif%}
+      {% endif%}
+      
+     {% endset %}
+
+     <div id = "sentToCouncilsSection">
+       <h2 class="govuk-heading-m">{{__("Your registration has been sent to") }}</h2> 
+      {{html}}
+     </div>
+
+    </div>
+ </div>
+{% endblock %}
