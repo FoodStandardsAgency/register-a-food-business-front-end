@@ -16,7 +16,7 @@
         {# {% call postForm("/continue/registration-summary", props.csrfToken, props.language) -%} #}
 
 
-        {{ processedErrorSummary(validatorErrors, language) }}
+        {# {{ processedErrorSummary(validatorErrors, language) }} #}
 
         <h1 class="govuk-heading-l">{{__("Check your answers") }}</h1>
 
@@ -29,37 +29,37 @@
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.operator_type or propsData.operator_type %}
-            {{ summaryListHelper(__("Operator type"), propsData.operator_type, "/edit/registration-role",propsData.operator_type) }}
+            {{ summaryListHelper(__("Operator type"), propsData.operator_type, false) }}
             {% endif %}
         {% endif %} 
 
         {% if propsData.applicationCompletePage == null %} 
             {% if validatorErrors.operator_company_name or propsData.operator_company_name %}
-            {{ summaryListHelper(__("Company name"), propsData.operator_company_name , "/edit/operator-company-details", propsData.operator_company_name) }}
+            {{ summaryListHelper(__("Company name"), propsData.operator_company_name, false ) }}
             {% endif %}
         {% endif %} 
 
         {% if propsData.applicationCompletePage == null %} 
             {% if validatorErrors.companies_house_number or propsData.companies_house_number %}
-            {{ summaryListHelper(__("Companies House number"), propsData.companies_house_number, "/edit/operator-company-details", propsData.companies_house_number) }}
+            {{ summaryListHelper(__("Companies House number"), propsData.companies_house_number, false ) }}
             {% endif %}
         {% endif %} 
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.operator_charity_name or propsData.operator_charity_name %}
-            {{ summaryListHelper(__("Charity name"), propsData.operator_charity_name, "/edit/operator-charity-details", propsData.operator_charity_name) }}
+            {{ summaryListHelper(__("Charity name"), propsData.operator_charity_name, false ) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.operator_charity_number or propsData.operator_charity_number %}
-            {{ summaryListHelper(__("Charity number"), propsData.operator_charity_number, "/edit/operator-charity-details", propsData.operator_charity_number) }}
+            {{ summaryListHelper(__("Charity number"), propsData.operator_charity_number, false) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.operator_first_name or propsData.operator_first_name %}
-            {{ summaryListHelper(__("Name"), propsData.operator_first_name + " " + propsData.operator_last_name, "/edit/operator-name", propsData.operator_first_name and propsData.operator_last_name) }}
+            {{ summaryListHelper(__("Name"), propsData.operator_first_name + " " + propsData.operator_last_name, false ) }}
             {% endif %}
         {% endif %}
 
@@ -68,31 +68,31 @@
                 validatorErrors.operator.operator_town or validatorErrors.operator.operator_postcode or validatorErrors.operator_postcode_find or 
                 propsData.operator_address_line_1 or propsData.operator_address_line_2 or propsData.operator_address_line_3 or propsData.operator_town or propsData.operator_postcode or propsData.operator_postcode_find %}
                 {% set htmlValue = propsData.operator_address_line_1 + "<br>" + propsData.operator_address_line_2 + "<br>" + propsData.operator_address_line_3 + "<br>" + propsData.operator_town + "<br>" + propsData.operator_postcode %}
-            {{ summaryListHelperHtml(__("Partnership contact address") if  propsData.operator_type === "PARTNERSHIP" else __("Operator address"), htmlValue, "/edit/operator-address", propsData.operator_address_line_1 and propsData.operator_town and propsData.operator_postcode) }}
+            {{ summaryListHelperHtml(__("Partnership contact address") if  propsData.operator_type === "PARTNERSHIP" else __("Operator address"), htmlValue, false) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.operator_primary_number or validatorErrors.operator_secondary_number or propsData.operator_primary_number %}
-            {{ summaryListHelperHtml(__("Phone number"), propsData.operator_primary_number + "<br>" + propsData.operator_secondary_number, "/edit/operator-contact-details", propsData.operator_primary_number ) }}
+            {{ summaryListHelperHtml(__("Phone number"), propsData.operator_primary_number + "<br>" + propsData.operator_secondary_number, false ) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.operator_email or propsData.operator_email %}
-            {{ summaryListHelper(__("Email address"), propsData.operator_email, "/edit/operator-contact-details", propsData.operator_email) }}
+            {{ summaryListHelper(__("Email address"), propsData.operator_email, false) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.main_partnership_contact or propsData.main_partnership_contact %}
-            {{ summaryListHelper(__("Main partnership contact"), propsData.main_partnership_contact, "/edit/main-partnership-contact", propsData.main_partnership_contact) }}
+            {{ summaryListHelper(__("Main partnership contact"), propsData.main_partnership_contact, false) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.partners or propsData.partners %}
-            {{ summaryListHelper(__("Partners"), propsData.partners, "/edit/partner-name", propsData.partners) }}
+            {{ summaryListHelper(__("Partners"), propsData.partners, false) }}
             {% endif %}
         {% endif %}
 
@@ -101,7 +101,7 @@
                 or propsData.contact_representative_name or propsData.contact_representative_role or propsData.contact_representative_number or propsData.contact_representative_email  %}
                 {% set contactRepRole = "\u2000\u2022" + propsData.contact_representative_role if propsData.contact_representative_role else null %}
                 {% set htmlValue = propsData.contact_representative_name + "<br>" + contactRepRole + "<br>" + prosData.contact_representative_number + "<br>" + prosData.contact_representative_email %}
-            {{ summaryListHelperHtml(__("Designated contact"), htmlValue, "/edit/contact-representative", propsData.contact_representative_name) }}
+            {{ summaryListHelperHtml(__("Designated contact"), htmlValue, false) }}
             {% endif %}
         {% endif %}
 
@@ -109,7 +109,7 @@
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.establishment_trading_name or propsData.establishment_trading_name %}
-            {{ summaryListHelper(__("Trading name"), propsData.establishment_trading_name, "/edit/establishment-trading-name", propsData.establishment_trading_name) }}
+            {{ summaryListHelper(__("Trading name"), propsData.establishment_trading_name, false) }}
             {% endif %}
         {% endif %}
 
@@ -117,25 +117,25 @@
             {% if propsData.establishment_address_line_1 or propsData.establishment_postcode_find or validatorErrors.establishment_address_line_1 or validatorErrors.establishment_address_line_2 
                 or  validatorErrors.establishment_address_line_3 or validatorErrors.establishment_town or  validatorErrors.establishment_postcode or validatorErrors.establishment_postcode_find %}
                 {% set htmlValue = propsData.establishment_address_line_1 + "<br>" + propsData.establishment_address_line_2 + "<br>" + propsData.establishment_address_line_3 + "<br>" + propsData.establishment_town + "<br>" + propsData.establishment_postcode %}
-            {{ summaryListHelperHtml(__("Establishment address"), htmlValue, "/edit/establishment-address", propsData.establishment_address_line_1 and propsData.establishment_town and propsData.establishment_postcode ) }}
+            {{ summaryListHelperHtml(__("Establishment address"), htmlValue, false ) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.establishment_type or propsData.establishment_type %}
-            {{ summaryListHelper(__("Address type"), propsData.establishment_type, "/edit/establishment-address-type", propsData.establishment_type) }}
+            {{ summaryListHelper(__("Address type"), propsData.establishment_type, false) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.establishment_primary_number or validatorErrors.establishment_secondary_number or propsData.establishment_primary_number %}
-            {{ summaryListHelperHtml(__("Phone number"), propsData.establishment_primary_number + "<br>" + propsData.establishment_secondary_number, "/edit/establishment-contact-details", propsData.establishment_primary_number ) }}
+            {{ summaryListHelperHtml(__("Phone number"), propsData.establishment_primary_number + "<br>" + propsData.establishment_secondary_number, false ) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.establishment_email or propsData.establishment_email %}
-            {{ summaryListHelper(__("Email address"), propsData.establishment_email, "/edit/establishment-contact-details", propsData.establishment_email) }}
+            {{ summaryListHelper(__("Email address"), propsData.establishment_email, false) }}
             {% endif %}
         {% endif %}
 
@@ -143,7 +143,7 @@
             {% if propsData.establishment_opening_date or validatorErrors.establishment_opening_status or validatorErrors.establishment_opening_date %}
             {% set htmlValue = propsData.establishment_opening_date | date("DD MMM YYYY")  if propsData.establishment_opening_date else "" %}
             {% set formattedDate = propsData.establishment_opening_date | date("DD MMM YYYY")  %}
-            {{ summaryListHelper(__("Trading date"), htmlValue, "/edit/establishment-opening-status", formattedDate, formattedDate if not "Invalid date" and propsData.establishment_opening_date ) }}
+            {{ summaryListHelper(__("Trading date"), htmlValue, false) }}
             {% endif %}
         {% endif %}
 
@@ -162,8 +162,7 @@
                 </div> 
                 {% endset %}
 
-            {{ summaryListHelperHtml(__("Opening days"), html, "/edit/opening-days-start", propsData.opening_days_irregular or propsData.open_some_days_summary_table or propsData.opening_day_monday 
-            or prosData.opening_day_tuesday or prosData.opening_day_wednesday or prosData.opening_day_thursday or prosData.opening_day_friday or prosData.opening_day_saturday or prosData.opening_day_sunday ) }}
+            {{ summaryListHelperHtml(__("Opening days"), html, false ) }}
             {% endif %}
         {% endif %}
 
@@ -183,14 +182,13 @@
                 </div> 
                 {% endset %}
 
-            {{ summaryListHelperHtml(__("Opening hours"), html, "/edit/opening-hours", propsData.opening_hours_monday or propsData.opening_hours_tuesday or propsData.opening_hours_wednesday 
-            or prosData.opening_hours_thursday or prosData.opening_hours_friday or prosData.opening_hours_saturday or prosData.opening_hours_sunday ) }}
+            {{ summaryListHelperHtml(__("Opening hours"), html, false ) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.water_supply or propsData.water_supply %}
-                {{ summaryListHelper(__("Water supply"), propsData.water_supply, "/edit/business-water-supply", propsData.water_supply) }}
+                {{ summaryListHelper(__("Water supply"), propsData.water_supply, false) }}
             {% endif %}
         {% endif %}
 
@@ -198,25 +196,25 @@
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.customer_type or propsData.customer_type %}
-                {{ summaryListHelper(__("Customers"), propsData.customer_type, "/edit/customer-type", propsData.customer_type) }}
+                {{ summaryListHelper(__("Customers"), propsData.customer_type, false) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.business_type or propsData.business_type %}
-            {{ summaryListHelper(__("Business type"), propsData.business_type, "/edit/business-type", propsData.business_type) }}
+            {{ summaryListHelper(__("Business type"), propsData.business_type, false) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.import_export_activities or propsData.import_export_activities %}
-            {{ summaryListHelper(__("Import and export"), propsData.import_export_activities, "/edit/business-import-export", propsData.import_export_activities) }}
+            {{ summaryListHelper(__("Import and export"), propsData.import_export_activities, false) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.business_other_details or propsData.business_other_details %}
-            {{ summaryListHelper(__("Additional details"), propsData.business_other_details, "/edit/business-other-details", propsData.business_other_details) }}
+            {{ summaryListHelper(__("Additional details"), propsData.business_other_details, false) }}
             {% endif %}
         {% endif %}
         

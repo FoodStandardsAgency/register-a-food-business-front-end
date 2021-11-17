@@ -2,6 +2,16 @@
 
 {% macro summaryListHelper(keyText, valueText, href, property) %}
 
+ {% if property %}
+    {% set hrefText = __("Change") %}
+ {% else %}
+  {% if not property %}
+    {% set hrefText = null %}
+  {% else %}
+    {% set hrefText = __("Enter answer") %}   
+  {% endif %}       
+ {% endif %}
+
     {{ govukSummaryList({
         rows: 
         [
@@ -18,7 +28,7 @@
             [
             {
             href: href,
-            text: __("Change") if property else __("Enter answer")
+            text: hrefText
             }
             ]
         }               
@@ -28,6 +38,16 @@
 {% endmacro %}
 
 {% macro summaryListHelperHtml(keyText, valueHtml, href, property) %}
+
+{% if property %}
+    {% set hrefText = __("Change") %}
+ {% else %}
+  {% if not property %}
+    {% set hrefText = null %}
+  {% else %}
+    {% set hrefText = __("Enter answer") %}   
+  {% endif %}       
+ {% endif %}
 
     {{ govukSummaryList({
         rows: 
@@ -45,7 +65,7 @@
             [
             {
             href: href,
-            text: __("Change") if property else __("Enter answer")
+            text: hrefText
             }
             ]
         }               
