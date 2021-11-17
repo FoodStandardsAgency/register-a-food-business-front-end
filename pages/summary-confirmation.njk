@@ -2,6 +2,7 @@
 
 {% from "../components/PostForm.njk" import postForm %}
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "../components/SummaryTable.njk" import summaryTable %}
 
 {% extends "layout.njk" %}
 {% set props = mergeObjects(props, {hideback: true}) %}
@@ -39,39 +40,32 @@
       text: __("Please keep note of this registration application reference for your records.")
      }) }}
     
-
      {% set formattedDate = props.submissionDate | date("DD MMM YYYY")  %}
       <h2 class="govuk-heading-m">{{__("Submitted on") }}</h2>
       <p class="govuk-body">{{ formattedDate if not "Invalid date"}}</p>
   
-    
-     {% set html %}
-      {% if props.lcConfig.hygieneAndStandards %}
+     <div id = "sentToCouncilsSection">
+       <h2 class="govuk-heading-m">{{__("Your registration has been sent to") }}</h2> 
+       {% if props.lcConfig.hygieneAndStandards %}
         <h2 class="govuk-heading-m" id= "hygieneAndStandardsCouncil">{{props.lcConfig.hygieneAndStandards.local_council}}</h2>
-        <p class="govuk-body">{{__("Email address: ")}} + {{props.lcConfig.hygieneAndStandards.local_council_email}}</p>
+        <p class="govuk-body">{{__("Email address: ")}}  {{props.lcConfig.hygieneAndStandards.local_council_email}}</p>
 
         <p class="govuk-body">{{ __("Phone number: ") + props.lcConfig.hygieneAndStandards.local_council_phone_number  if props.lcConfig.hygieneAndStandards.local_council_phone_number }} </p>
-      {% else %}
+       {% else %}
         {% if props.lcConfig.hygiene and props.lcConfig.standards %}
           <div>
             <h4 class="govuk-heading-s" id="hygieneCouncil">{{ props.lcConfig.hygiene.local_council }} </h4>
-            <p class="govuk-body">{{__("Email address: ")}} + {{ props.lcConfig.hygiene.local_council_email}}</p>
+            <p class="govuk-body">{{__("Email address: ")}}  {{ props.lcConfig.hygiene.local_council_email}}</p>
             <p class="govuk-body" id= "hygieneNumber">{{ __("Phone number: ") + props.lcConfig.hygiene.local_council_phone_number  if props.lcConfig.hygiene.local_council_phone_number }} </p>
             <span>{{ __("Responsible local council for food hygiene")}} </span>
 
             <h2 class="govuk-heading-m" id= "standardsCouncil">{{props.lcConfig.standards.local_council}}</h2>
-            <p class="govuk-body">{{__("Email address: ")}} + {{props.lcConfig.standards.local_council_email}}</p>
+            <p class="govuk-body">{{__("Email address: ")}}  {{props.lcConfig.standards.local_council_email}}</p>
             <p class="govuk-body" id="standardsNumber">{{ __("Phone number: ") + props.lcConfig.standards.local_council_phone_number  if props.lcConfig.standards.local_council_phone_number }} </p>
             <span>{{ __("Responsible local council for food standards")}} </span>
           </div>
         {% endif%}
-      {% endif%}
-      
-     {% endset %}
-
-     <div id = "sentToCouncilsSection">
-       <h2 class="govuk-heading-m">{{__("Your registration has been sent to") }}</h2> 
-      {{html}}
+       {% endif%}
      </div>
      <div className="receiveConfirmationEmail" id="receiveConfirmationEmail-id">
       <p class="govuk-body">{{ __("A copy of this registration has been sent to ") if  props.transformedData.operator_email or props.transformedData.contact_representative_email }} </p>
@@ -86,8 +80,111 @@
        </p>
 
        <h3 class="govuk-heading-m">{{__("Find out here what you can do to prepare") }}</h3>
-       <span> {{ __("All links open in a new window")}}
+        <span> {{ __("All links open in a new window")}}
+        <br>
+        <br>
        </span>
+
+       <h3 class="govuk-heading-s">{{__("English") if props.country === "wales" }}</h3>
+       <a id="foodSafetyLink" href="https://www.food.gov.uk/business-guidance" 
+          target="_blank"
+          rel="noopener noreferrer">{{__("Guidance on food hygiene and how to run a safe food business")}}
+       </a>
+      <br>
+      <br>
+       <a id="fhrsScoreLink" href="https://www.food.gov.uk/business-guidance/food-hygiene-ratings-for-businesses" 
+          target="_blank"
+          rel="noopener noreferrer">{{__("How to achieve a high food hygiene rating (FHRS score)")}}
+       </a>
+       <br>
+       <br>
+       {% if props.country === "northern-ireland" %}
+        <a id= "safeCateringLink" href="https://www.food.gov.uk/business-guidance/safe-catering" 
+            target="_blank"
+            rel="noopener noreferrer">{{__("Safe catering")}}
+        </a>
+        <br>
+        <br>
+       {% endif %}
+
+       <a id = "safetyManagementLink" href="https://www.food.gov.uk/business-guidance/safer-food-better-business" 
+            target="_blank"
+            rel="noopener noreferrer">{{__("Information on the food safety management system safer food, better business")}}
+       </a>
+       <br>
+       <br>
+       <a id = "foodLabellingLink" href="https://www.food.gov.uk/business-guidance/industry-specific-advice/labelling-and-allergens" 
+            target="_blank"
+            rel="noopener noreferrer">{{__("Food labelling and allergens guidance")}}
+       </a>
+       <br>
+       <br>
+
+       {% if props.country === "wales" or props.country === "northern-ireland" %}
+         {% if props.country === "northern-ireland" %}
+          <a id= "businessGuidanceLink" href ="https://www.nibusinessinfo.co.uk/"
+              target="_blank" 
+              rel="noopener noreferrer">{{__("Business support Northern Ireland")}}
+          </a>
+         {% else %}
+          <a id= "businessGuidanceLink" href ="https://www.businesswales.gov.wales/starting-up"
+              target="_blank" 
+              rel="noopener noreferrer">{{__("Business support Wales")}}
+          </a>
+         <br>
+         <br>
+        {% endif %}
+       {% else %}
+           <a id= "businessSupportHelplineEnglishLink" href ="https://www.gov.uk/business-support-helpline"
+            target="_blank" 
+            rel="noopener noreferrer">{{__("Business support & helpline")}}
+          </a>
+          <br>
+          <p> {{__("or contact the Business Support Helpline on 0800 998 1098")}}</p>
+          <br>
+          <br>
+       {% endif %}
+
+       {% if props.country === "wales" %}
+          <h2 class="govuk-heading-m">{{__("Cymru") }}</h2>
+           <a id= "businessGuidanceWelshLink" href ="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau" 
+              target="_blank"
+              rel="noopener noreferrer">{{("I gael cyngor cyffredinol ar hylendid bwyd a sut i redeg busnes
+              bwyd diogel")}}
+          </a>
+          <br>
+          <br>
+          <a id= "foodHygieneRatingsWelshLink" href ="https://www.food.gov.uk/cy/business-guidance/sgoriau-hylendid-bwyd-ar-gyfer-busnesau" 
+              target="_blank"
+              rel="noopener noreferrer">{{("I gael gwybodaeth am sut i gael sgôr uchel o dan y Cynllun Sgorio
+              Hylendid Bwyd")}}
+          </a>
+          <br>
+          <br>
+          <a id= "saferFoodBetterBusinessWelshLink" href ="https://www.food.gov.uk/cy/business-guidance/bwyd-mwy-diogel-busnes-gwell" 
+              target="_blank"
+              rel="noopener noreferrer">{{("I gael gwybodaeth am y system rheoli diogelwch bwyd, Bwyd mwy
+              Diogel, Busnes Gwell")}}
+          </a>
+          <br>
+          <br>
+          <a id= "labellingAndAllergensWelshLink" href ="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau/cyngor-penodol-ar-gyfer-y-diwydiant/labelu-ac-alergenau" 
+              target="_blank"
+              rel="noopener noreferrer">{{("I gael canllawiau ar labelu bwyd ac alergenau")}}
+          </a>
+           <br>
+          <br>
+          <a id= "businessStartUpGuidanceWelshLink" href ="https://businesswales.gov.wales/starting-up/cy" 
+              target="_blank"
+              rel="noopener noreferrer">{{("I gael cyngor busnes cyffredinol")}}
+          </a>
+
+       {% endif %}
+      <br>
+      <br>
+      <h2 class="govuk-heading-m">{{__("Your registration details") }}</h2>
+      {%set applicationCompletePage = true%}
+      {{ summaryTable(props) }}
 
     </div>
  </div>
