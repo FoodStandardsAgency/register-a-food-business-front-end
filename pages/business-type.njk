@@ -1,5 +1,8 @@
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
 
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
@@ -44,6 +47,36 @@
             </ul>
           {% endfor %}
         </div>
+
+        {{ govukSelect({
+          id: "businessTypeLookup",
+          name: "business_type",
+          label: {
+            text: "Select business type"
+          },
+          items: [
+            {
+              value: "Beekeeper (keeper)",
+              text: "Beekeeper (keeper)"
+            },
+            {
+              value: "Abattoir (halal)",
+              text: "Abattoir (halal)"
+            },
+            {
+              value: "Cash and carry (supplier)",
+              text: "Cash and carry (supplier)"
+            },
+            {
+              value: "Alcoholic drinks manufacturer",
+              text: "Alcoholic drinks manufacturer"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+                text: __("Continue")
+            }) }}
 
         {%endcall%}
       </div>
