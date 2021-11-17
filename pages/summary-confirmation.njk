@@ -183,7 +183,9 @@
       <br>
       <br>
       <h2 class="govuk-heading-m">{{__("Your registration details") }}</h2>
-     
+      {%set applicationCompletePage = true%}
+      {{ summaryTable(props) }}
+
     </div>
  </div>
 {% endblock %}
