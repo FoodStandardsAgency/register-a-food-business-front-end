@@ -42,21 +42,27 @@
 
      {% set formattedDate = props.submissionDate | date("DD MMM YYYY")  %}
       <h2 class="govuk-heading-m">{{__("Submitted on") }}</h2>
-      <p>{{ formattedDate if not "Invalid date"}}</p>
+      <p class="govuk-body">{{ formattedDate if not "Invalid date"}}</p>
   
     
      {% set html %}
       {% if props.lcConfig.hygieneAndStandards %}
-        <h2 class="govuk-heading-m">{{props.lcConfig.hygieneAndStandards.local_council}}</h2>
-        <p>{{__("Email address: ")}} + {{props.lcConfig.hygieneAndStandards.local_council_email}}</p>
+        <h2 class="govuk-heading-m" id= "hygieneAndStandardsCouncil">{{props.lcConfig.hygieneAndStandards.local_council}}</h2>
+        <p class="govuk-body">{{__("Email address: ")}} + {{props.lcConfig.hygieneAndStandards.local_council_email}}</p>
 
-        <p>{{ __("Phone number: ") + props.lcConfig.hygieneAndStandards.local_council_phone_number  if props.lcConfig.hygieneAndStandards.local_council_phone_number }} </p>
+        <p class="govuk-body">{{ __("Phone number: ") + props.lcConfig.hygieneAndStandards.local_council_phone_number  if props.lcConfig.hygieneAndStandards.local_council_phone_number }} </p>
       {% else %}
         {% if props.lcConfig.hygiene and props.lcConfig.standards %}
           <div>
-            <h4 class="govuk-heading-s">{{ props.lcConfig.hygiene.local_council }} </h4>
-            <p>{{__("Email address: ")}} + {{ props.lcConfig.hygiene.local_council_email}}</p>
-            <p>{{ __("Phone number: ") + props.lcConfig.hygiene.local_council_phone_number  if props.lcConfig.hygiene.local_council_phone_number }} </p>
+            <h4 class="govuk-heading-s" id="hygieneCouncil">{{ props.lcConfig.hygiene.local_council }} </h4>
+            <p class="govuk-body">{{__("Email address: ")}} + {{ props.lcConfig.hygiene.local_council_email}}</p>
+            <p class="govuk-body" id= "hygieneNumber">{{ __("Phone number: ") + props.lcConfig.hygiene.local_council_phone_number  if props.lcConfig.hygiene.local_council_phone_number }} </p>
+            <span>{{ __("Responsible local council for food hygiene")}} </span>
+
+            <h2 class="govuk-heading-m" id= "standardsCouncil">{{props.lcConfig.standards.local_council}}</h2>
+            <p class="govuk-body">{{__("Email address: ")}} + {{props.lcConfig.standards.local_council_email}}</p>
+            <p class="govuk-body" id="standardsNumber">{{ __("Phone number: ") + props.lcConfig.standards.local_council_phone_number  if props.lcConfig.standards.local_council_phone_number }} </p>
+            <span>{{ __("Responsible local council for food standards")}} </span>
           </div>
         {% endif%}
       {% endif%}
@@ -67,6 +73,21 @@
        <h2 class="govuk-heading-m">{{__("Your registration has been sent to") }}</h2> 
       {{html}}
      </div>
+     <div className="receiveConfirmationEmail" id="receiveConfirmationEmail-id">
+      <p class="govuk-body">{{ __("A copy of this registration has been sent to ") if  props.transformedData.operator_email or props.transformedData.contact_representative_email }} </p>
+     </div>
+       <h2 class="govuk-heading-m">{{__("What's next?") }}</h2>
+       {{ govukInsetText({
+        text: __("You may receive an unannounced food inspection from your local council soon after you start trading.")
+       }) }}
+
+       <p class="govuk-body">
+          {{ __("The council may contact you before the inspection to discuss how your business operates or to offer advice. Meanwhile, there are some things you can do to help prepare for the opening of your business.") }}
+       </p>
+
+       <h3 class="govuk-heading-m">{{__("Find out here what you can do to prepare") }}</h3>
+       <span> {{ __("All links open in a new window")}}
+       </span>
 
     </div>
  </div>
