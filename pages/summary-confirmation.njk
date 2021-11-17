@@ -86,8 +86,107 @@
        </p>
 
        <h3 class="govuk-heading-m">{{__("Find out here what you can do to prepare") }}</h3>
-       <span> {{ __("All links open in a new window")}}
+        <span> {{ __("All links open in a new window")}}
+        <br>
+        <br>
        </span>
+
+       <h3 class="govuk-heading-s">{{__("English") if props.country === "wales" }}</h3>
+       <a id="foodSafetyLink" href="https://www.food.gov.uk/business-guidance" 
+          target="_blank"
+          rel="noopener noreferrer">{{__("Guidance on food hygiene and how to run a safe food business")}}
+       </a>
+      <br>
+      <br>
+       <a id="fhrsScoreLink" href="https://www.food.gov.uk/business-guidance/food-hygiene-ratings-for-businesses" 
+          target="_blank"
+          rel="noopener noreferrer">{{__("How to achieve a high food hygiene rating (FHRS score)")}}
+       </a>
+       <br>
+       <br>
+       {% if props.country === "northern-ireland" %}
+        <a id= "safeCateringLink" href="https://www.food.gov.uk/business-guidance/safe-catering" 
+            target="_blank"
+            rel="noopener noreferrer">{{__("Safe catering")}}
+        </a>
+        <br>
+        <br>
+       {% endif %}
+
+       <a id = "safetyManagementLink" href="https://www.food.gov.uk/business-guidance/safer-food-better-business" 
+            target="_blank"
+            rel="noopener noreferrer">{{__("Information on the food safety management system safer food, better business")}}
+       </a>
+       <br>
+       <br>
+       <a id = "foodLabellingLink" href="https://www.food.gov.uk/business-guidance/industry-specific-advice/labelling-and-allergens" 
+            target="_blank"
+            rel="noopener noreferrer">{{__("Food labelling and allergens guidance")}}
+       </a>
+       <br>
+       <br>
+
+       {% if props.country === "wales" or props.country === "northern-ireland" %}
+         {% if props.country === "northern-ireland" %}
+          <a id= "businessGuidanceLink" href ="https://www.nibusinessinfo.co.uk/"
+              target="_blank" 
+              rel="noopener noreferrer">{{__("Business support Northern Ireland")}}
+          </a>
+         {% else %}
+          <a id= "businessGuidanceLink" href ="https://www.businesswales.gov.wales/starting-up"
+              target="_blank" 
+              rel="noopener noreferrer">{{__("Business support Wales")}}
+          </a>
+         <br>
+         <br>
+        {% endif %}
+       {% else %}
+           <a id= "businessSupportHelplineEnglishLink" href ="https://www.gov.uk/business-support-helpline"
+            target="_blank" 
+            rel="noopener noreferrer">{{__("Business support & helpline")}}
+          </a>
+          <br>
+          <p> {{__("or contact the Business Support Helpline on 0800 998 1098")}}</p>
+          <br>
+          <br>
+       {% endif %}
+
+       {% if props.country === "wales" %}
+          <h2 class="govuk-heading-m">{{__("Cymru") }}</h2>
+           <a id= "businessGuidanceWelshLink" href ="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau" 
+              target="_blank"
+              rel="noopener noreferrer">{{("I gael cyngor cyffredinol ar hylendid bwyd a sut i redeg busnes
+              bwyd diogel")}}
+          </a>
+          <br>
+          <br>
+          <a id= "foodHygieneRatingsWelshLink" href ="https://www.food.gov.uk/cy/business-guidance/sgoriau-hylendid-bwyd-ar-gyfer-busnesau" 
+              target="_blank"
+              rel="noopener noreferrer">{{("I gael gwybodaeth am sut i gael sgôr uchel o dan y Cynllun Sgorio
+              Hylendid Bwyd")}}
+          </a>
+          <br>
+          <br>
+          <a id= "saferFoodBetterBusinessWelshLink" href ="https://www.food.gov.uk/cy/business-guidance/bwyd-mwy-diogel-busnes-gwell" 
+              target="_blank"
+              rel="noopener noreferrer">{{("I gael gwybodaeth am y system rheoli diogelwch bwyd, Bwyd mwy
+              Diogel, Busnes Gwell")}}
+          </a>
+          <br>
+          <br>
+          <a id= "labellingAndAllergensWelshLink" href ="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau/cyngor-penodol-ar-gyfer-y-diwydiant/labelu-ac-alergenau" 
+              target="_blank"
+              rel="noopener noreferrer">{{("I gael canllawiau ar labelu bwyd ac alergenau")}}
+          </a>
+           <br>
+          <br>
+          <a id= "businessStartUpGuidanceWelshLink" href ="https://businesswales.gov.wales/starting-up/cy" 
+              target="_blank"
+              rel="noopener noreferrer">{{("I gael cyngor busnes cyffredinol")}}
+          </a>
+
+       {% endif %}
+
 
     </div>
  </div>
