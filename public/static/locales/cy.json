@@ -166,7 +166,7 @@
   "Responsible local council for food standards": "Cyngor lleol sy’n gyfrifol am safonau bwyd",
   "A copy of this registration has been sent to ": "Anfonwyd copi o'r cofrestriad hwn at ",
   "What's next?": "Beth fydd yn digwydd nesaf?",
-  "**You may receive an unannounced food inspection from your local council soon after you start trading.**": "**Efallai y byddwch chi’n cael arolygiad bwyd dirybudd gan eich cyngor lleol yn fuan ar ôl i chi ddechrau masnachu.**",
+  "You may receive an unannounced food inspection from your local council soon after you start trading.": "Efallai y byddwch chi’n cael arolygiad bwyd dirybudd gan eich cyngor lleol yn fuan ar ôl i chi ddechrau masnachu.",
   "The council may contact you before the inspection to discuss how your business operates or to offer advice. Meanwhile, there are some things you can do to help prepare for the opening of your business.": "Efallai y bydd y cyngor yn cysylltu â chi cyn yr arolygiad i drafod sut mae'ch busnes yn gweithredu neu i gynnig cyngor. Yn y cyfamser, mae ambell beth y gallwch chi eu gwneud er mwyn paratoi ar gyfer agor eich busnes.",
   "Find out here what you can do to prepare": "Dyma ragor o wybodaeth am beth allwch chi ei wneud i baratoi:",
   "All links open in a new window": "Mae'r holl ddolenni'n agor mewn ffenestr newydd",
@@ -595,5 +595,9 @@
   "Cookies on RaFB": "Cookies on RaFB",
   "Reject optional cookies": "Reject optional cookies",
   "Secondary phone number": "Ail rif ffôn",
-  "Web address (optional)": "Cyfeiriad gwe (dewisol)"
+  "Web address (optional)": "Cyfeiriad gwe (dewisol)",
+  "Email address:": "Cyfeiriad e-bost:",
+  "Phone number:": "Rhif ffôn:",
+  "Business support Wales": "Cymorth busnes - Wales",
+  "Cymru": "Cymru"
 }

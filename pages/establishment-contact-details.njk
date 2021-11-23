@@ -85,7 +85,7 @@
         },
         "id": "establishment_primary_number",
         "name": "establishment_primary_number",
-        "value": __(props.cumulativeFullAnswers.operator_primary_number) or __(props.cumulativeFullAnswers.contact_representative_number) if props.switches.reuseOperatorContactDetails else __(props.cumulativeFullAnswers.establishment_primary_number),
+        "value": (props.cumulativeFullAnswers.operator_primary_number) or (props.cumulativeFullAnswers.contact_representative_number) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_primary_number),
         "errorMessage": { "text": __(props.validatorErrors.establishment_primary_number)} if props.validatorErrors.establishment_primary_number
         
       }) }}
@@ -96,7 +96,7 @@
         },
         "id": "establishment_secondary_number",
         "name": "establishment_secondary_number",
-        "value": __(props.cumulativeFullAnswers.operator_secondary_number) if props.switches.reuseOperatorContactDetails else __(props.cumulativeFullAnswers.establishment_secondary_number)
+        "value": (props.cumulativeFullAnswers.operator_secondary_number) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_secondary_number)
       }) }}
 
         {{ govukInput({
@@ -108,7 +108,7 @@
         },
         "id": "establishment_email",
         "name": "establishment_email",
-        "value": __(props.cumulativeFullAnswers.operator_email) or __(props.cumulativeFullAnswers.contact_representative_email) if props.switches.reuseOperatorContactDetails else __(props.cumulativeFullAnswers.establishment_email),
+        "value": (props.cumulativeFullAnswers.operator_email) or (props.cumulativeFullAnswers.contact_representative_email) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_email),
         "errorMessage": {
         "text": __(props.validatorErrors.establishment_email)} if props.validatorErrors.establishment_email
       }) }}
