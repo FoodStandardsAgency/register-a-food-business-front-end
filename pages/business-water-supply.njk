@@ -38,16 +38,19 @@
             items: 
             [
                 {
+                id: "water_supply_public",
                 value: "PUBLIC",
                 text: __("Mains water supply (most common supply)"),
                 checked: props.cumulativeFullAnswers.water_supply === "PUBLIC"
                 },
                 {
+                id: "water_supply_private",
                 value: "PRIVATE",
                 text: __("Private water supply"),
                 checked: props.cumulativeFullAnswers.water_supply=== "PRIVATE"
                 },
                 {
+                id: "water_supply_both",
                 value: "BOTH",
                 text: __("Both mains and private water supplies"),
                 checked: props.cumulativeFullAnswers.water_supply === "BOTH"

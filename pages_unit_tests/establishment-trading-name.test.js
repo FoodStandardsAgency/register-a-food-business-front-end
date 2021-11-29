@@ -24,7 +24,6 @@ describe("Establishment-Trading-Name", () => {
   describe("establishment trading name input field", () => {
     it('renders', async () => {
       const $ = renderPage('establishment-trading-name', props)
-
       const $inputBox = $('#establishment_trading_name')
       expect($inputBox.length).toBe(1)
     });

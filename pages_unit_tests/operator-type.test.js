@@ -1,81 +1,83 @@
-import OperatorType from "../pages/operator-type";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: { operator_type: "COMPANY" },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-
-const testSwitches = {};
-
-describe("<OperatorType />", () => {
+describe("operator-type", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<OperatorType />);
-    expect(wrapper.length).toBe(1);
-  });
+    const $ = renderPage("operator-type", props);
 
-  it("renders 3 radio buttons with correct error props and default values", () => {
-    const wrapper = mount(
-      <I18nextProvider i18n={i18n}>
-        <OperatorType
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      </I18nextProvider>
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual(
+      "Who operates this business?"
     );
-    const operatorTypeRadio = wrapper.find("Radio");
-    expect(operatorTypeRadio.length).toBe(3);
   });
 
-  describe("top-level MultiChoice element", () => {
-    it("renders the correct error", () => {
-      const validatorErrors = {
-        operator_type: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorType
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const operatorType = wrapper.find("MultiChoice");
-      expect(operatorType.props().meta.error).toBe("test error");
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("operator-type", props);
+
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
+
+  it("renders 3 radio buttons", async () => {
+    const $ = renderPage("operator-type", props);
+
+    const $registrationRoleRadios = getPageDetails.getRadioButtons($);
+    expect($registrationRoleRadios.length).toBe(3);
+  });
+
+  describe("Radio boxes have correct value", () => {
+    it("renders the Person radio button with the correct value", () => {
+      const $ = renderPage("operator-type", props);
+      const $mainHeadingPerson = $("#operator_type_person"); 
+      expect($mainHeadingPerson.get(0).attribs.value).toBe("PERSON");
+    });
+    it("renders the Company radio button with the correct value", () => {
+      const $ = renderPage("operator-type", props);
+      const $mainHeadingCompany = $("#operator_type_company");
+      expect($mainHeadingCompany.get(0).attribs.value).toBe("COMPANY");
+    });
+    it("renders the Representative radio button with the correct value", () => {
+      const $ = renderPage("operator-type", props);
+      const $mainHeadingCharity = $("#operator_type_charity");
+      expect($mainHeadingCharity.get(0).attribs.value).toBe("CHARITY");
+    });
+    it("select the correct radio button based on session data", () => {
+      const $ = renderPage("operator-type", props);
+      const $selected = $("input:checked");
+      expect($selected.get(0).attribs.value).toBe("COMPANY");
     });
   });
 
-  describe("all Radio buttons", () => {
-    it("can be selected by default", () => {
-      const radioButtonIdsAndValues = {
-        operator_type_person: "PERSON",
-        operator_type_company: "COMPANY",
-        operator_type_charity: "CHARITY"
-      };
+  describe("Error messages displayed", () => {
+    it("renders the correct summary error", async () => {
+      const $ = renderPage("operator-type", {
+        language: "cy",
+        validatorErrors: {
+          operator_type: "test error"
+        }
+      });
 
-      for (let radioButtonId in radioButtonIdsAndValues) {
-        const cumulativeFullAnswers = {
-          operator_type: radioButtonIdsAndValues[radioButtonId]
-        };
+      const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+      expect($pageErrors.length).toBe(1);
+      expect($pageErrors.contents().get(0).data).toBe("test error");
+    });
 
-        const wrapper = mount(
-          <OperatorType
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
-        );
+    it("renders the correct error", async () => {
+      const $ = renderPage("operator-type", {
+        language: "cy",
+        validatorErrors: {
+          operator_type: "test error"
+        }
+      });
 
-        const operatorTypeRadio = wrapper.find(`Radio#${radioButtonId}`);
-        expect(operatorTypeRadio.props().defaultChecked).toBe(true);
-      }
+      const $radioError = $("#operator_type-error");
+      expect($radioError.length).toBe(1);
+      expect($radioError.contents().get(2).data.trim()).toBe("test error");
     });
   });
 });

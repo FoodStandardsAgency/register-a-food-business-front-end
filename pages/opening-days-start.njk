@@ -4,6 +4,7 @@
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% extends "layout.njk" %}
+
 {% block content %}
   {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
@@ -13,6 +14,7 @@
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
       {{ govukRadios({
+      
         idPrefix: "opening_days_start",
         name: "opening_days_start",
         fieldset: {

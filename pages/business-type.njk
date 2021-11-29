@@ -56,8 +56,10 @@
           },
           items: [
             {
+            id: "business_type_beekeeper",
               value: "Beekeeper (keeper)",
-              text: "Beekeeper (keeper)"
+              text: "Beekeeper (keeper)", 
+              selected: props.cumulativeFullAnswers.businessTypeLookup === "Beekeeper (keeper)"
             },
             {
               value: "Abattoir (halal)",

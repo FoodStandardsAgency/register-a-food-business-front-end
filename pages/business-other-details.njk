@@ -19,6 +19,7 @@
             name: "business_other_details",
             id: "business_other_details",
             value: props.cumulativeFullAnswers.business_other_details,
+            "errorMessage": { "text": __(props.validatorErrors.business_other_details) } if props.validatorErrors.business_other_details,
             label: {
                 text: __("Other details"),
                 classes: "govuk-label--l",

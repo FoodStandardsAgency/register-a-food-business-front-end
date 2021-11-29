@@ -1,83 +1,84 @@
-import RegistrationRole from "../pages/registration-role";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: { registration_role: "PARTNERSHIP" },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-
-const testSwitches = {};
-
-describe("<RegistrationRole />", () => {
+describe("registration-role", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<RegistrationRole />);
-    expect(wrapper.length).toBe(1);
-  });
+    const $ = renderPage("registration-role", props);
 
-  it("renders 3 radio buttons with correct error props and default values", () => {
-    const wrapper = mount(
-      <I18nextProvider i18n={i18n}>
-        <RegistrationRole
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      </I18nextProvider>
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual(
+      "What is your role in this food business?"
     );
-    const registrationRoleRadio = wrapper.find("Radio");
-    expect(registrationRoleRadio.length).toBe(3);
   });
 
-  describe("top-level MultiChoice element", () => {
-    it("renders the correct error", () => {
-      const validatorErrors = {
-        registration_role: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <RegistrationRole
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const registrationRole = wrapper.find("MultiChoice");
-      expect(registrationRole.props().meta.error).toBe("test error");
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("registration-role", props);
+
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
+
+  it("renders 3 radio buttons", async () => {
+    const $ = renderPage("registration-role", props);
+
+    const $registrationRoleRadios = getPageDetails.getRadioButtons($);
+    expect($registrationRoleRadios.length).toBe(3);
+  });
+
+  describe("Radio boxes have correct value", () => {
+    it("renders the Soletrader radio button with the correct value", () => {
+      const $ = renderPage("registration-role", props);
+      const $mainHeadingSoletrader = $("#registration_role_sole_trader"); 
+      expect($mainHeadingSoletrader.get(0).attribs.value).toBe("SOLETRADER");
+    });
+    it("renders the Partnership radio button with the correct value", () => {
+      const $ = renderPage("registration-role", props);
+      const $mainHeadingPartnership = $("#registration_role_partnership");
+      expect($mainHeadingPartnership.get(0).attribs.value).toBe("PARTNERSHIP");
+    });
+    it("renders the Representative radio button with the correct value", () => {
+      const $ = renderPage("registration-role", props);
+      const $mainHeadingRepresentative = $("#registration_role_representative");
+      expect($mainHeadingRepresentative.get(0).attribs.value).toBe("Representative");
+    });
+    it("select the correct radio button based on session data", () => {
+      const $ = renderPage("registration-role", props);
+      const $selected = $("input:checked");
+      expect($selected.get(0).attribs.value).toBe("PARTNERSHIP");
     });
   });
 
-  describe("all Radio buttons", () => {
-    it("can be selected by default", () => {
-      const radioButtonIdsAndValues = {
-        registration_role_sole_trader: "SOLETRADER",
-        registration_role_partnership: "PARTNERSHIP",
-        registration_role_representative: "Representative"
-      };
+  describe("Error messages displayed", () => {
+    it("renders the correct summary error", async () => {
+      const $ = renderPage("registration-role", {
+        language: "cy",
+        validatorErrors: {
+          registration_role: "test error"
+        }
+      });
 
-      for (let radioButtonId in radioButtonIdsAndValues) {
-        const cumulativeFullAnswers = {
-          registration_role: radioButtonIdsAndValues[radioButtonId]
-        };
+      const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+      expect($pageErrors.length).toBe(1);
+      expect($pageErrors.contents().get(0).data).toBe("test error");
+      expect($pageErrors.get(0).attribs.href).toBe("#registration_role");
+    });
 
-        const wrapper = mount(
-          <I18nextProvider i18n={i18n}>
-            <RegistrationRole
-              validatorErrors={testValidatorErrors}
-              cumulativeFullAnswers={cumulativeFullAnswers}
-              switches={testSwitches}
-            />
-          </I18nextProvider>
-        );
+    it("renders the correct error", async () => {
+      const $ = renderPage("registration-role", {
+        language: "cy",
+        validatorErrors: {
+          registration_role: "test error"
+        }
+      });
 
-        const registrationRoleRadio = wrapper.find(`Radio#${radioButtonId}`);
-        expect(registrationRoleRadio.props().defaultChecked).toBe(true);
-      }
+      const $radioError = $("#registration_role-error");
+      expect($radioError.length).toBe(1);
+      expect($radioError.contents().get(2).data.trim()).toBe("test error");
     });
   });
 });

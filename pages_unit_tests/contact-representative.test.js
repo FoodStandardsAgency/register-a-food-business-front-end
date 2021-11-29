@@ -1,253 +1,120 @@
-import ContactRepresentative from "../pages/contact-representative";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers")
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: {contact_representative_name: "default", contact_representative_role: "default", contact_representative_number: "default", contact_representative_email: "default" },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
 
-const testSwitches = {};
-
-describe("<ContactRepresentative />", () => {
+describe("contact-representative", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<ContactRepresentative />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("contact-representative", props);
+    
+    const $mainHeading = getPageDetails.getMainHeading($)
+    expect($mainHeading.text().trim()).toEqual('Contact representative details')
   });
 
-  describe("Contact representative name input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <ContactRepresentative
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const contactRepresentativeName = wrapper.find(
-        "InputField#contact_representative_name"
-      );
-      expect(contactRepresentativeName.length).toBe(1);
-    });
+  it('passes accessibility tests', async () => {
+    const $ = renderPage('contact-representative', props)
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        contact_representative_name: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <ContactRepresentative
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const contactRepresentativeName = wrapper.find(
-        "InputField#contact_representative_name"
-      );
-      expect(contactRepresentativeName.props().meta.error).toBe("test error");
+    const results = await axe($.html())
+    expect(results).toHaveNoViolations()
+  })
+
+  describe("contact representative name input field", () => {
+    it('renders', async () => {
+      const $ = renderPage('contact-representative', props)
+      const $inputBox = $('#contact_representative_name')
+      expect($inputBox.length).toBe(1)
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        contact_representative_name: "default"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <ContactRepresentative
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const contactRepresentativeName = wrapper.find(
-        "InputField#contact_representative_name"
-      );
-      expect(contactRepresentativeName.props().input.defaultValue).toBe(
+      const $ = renderPage('contact-representative', props)
+      
+      const $inputBox = $('#contact_representative_name')
+      expect($inputBox.get(0).attribs.value).toBe(
         "default"
       );
+      });
+
+      describe("contact representative input field", () => {
+        it('renders', async () => {
+          const $ = renderPage('contact-representative', props)
+          const $inputBox = $('#contact_representative_role')
+          expect($inputBox.length).toBe(1)
+        });
+    
+        it("gets given the correct default value", () => {
+          const $ = renderPage('contact-representative', props)
+          
+          const $inputBox = $('#contact_representative_role')
+          expect($inputBox.get(0).attribs.value).toBe(
+            "default"
+          );
+          });
+
+          describe("contact representative input field", () => {
+            it('renders', async () => {
+              const $ = renderPage('contact-representative', props)
+              const $inputBox = $('#contact_representative_number')
+              expect($inputBox.length).toBe(1)
+            });
+        
+            it("gets given the correct default value", () => {
+              const $ = renderPage('contact-representative', props)
+              
+              const $inputBox = $('#contact_representative_number')
+              expect($inputBox.get(0).attribs.value).toBe(
+                "default"
+              );
+              });
+
+              describe("contact representative input field", () => {
+                it('renders', async () => {
+                  const $ = renderPage('contact-representative', props)
+                  const $inputBox = $('#contact_representative_email')
+                  expect($inputBox.length).toBe(1)
+                });
+            
+                it("gets given the correct default value", () => {
+                  const $ = renderPage('contact-representative', props)
+                  
+                  const $inputBox = $('#contact_representative_email')
+                  expect($inputBox.get(0).attribs.value).toBe(
+                    "default"
+                  );
+                  });
+
+    describe("Error messages displayed", () => {
+      it("renders the correct summary error", async () => {
+        const $ = renderPage("contact-representative", {
+          language: "cy",
+          validatorErrors: {
+            contact_representative_name: "test error"
+          }
+        });
+
+        const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+        expect($pageErrors.length).toBe(1);
+        expect($pageErrors.contents().get(0).data).toBe("test error");
+      });
+
+      it("renders the correct error", async () => {
+        const $ = renderPage("contact-representative", {
+          language: "cy",
+          validatorErrors: {
+            contact_representative_name: "test error"
+          }
+        });
+
+        const $inputError = $("#contact_representative_name-error");
+        expect($inputError.length).toBe(1);
+        expect($inputError.contents().get(2).data.trim()).toBe("test error");
+      });
     });
   });
-
-  describe("Contact representative role input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <ContactRepresentative
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const contactRepresentativeRole = wrapper.find(
-        "InputField#contact_representative_role"
-      );
-      expect(contactRepresentativeRole.length).toBe(1);
-    });
-
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        contact_representative_role: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <ContactRepresentative
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const contactRepresentativeRole = wrapper.find(
-        "InputField#contact_representative_role"
-      );
-      expect(contactRepresentativeRole.props().meta.error).toBe("test error");
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        contact_representative_role: "default"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <ContactRepresentative
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const contactRepresentativeRole = wrapper.find(
-        "InputField#contact_representative_role"
-      );
-      expect(contactRepresentativeRole.props().input.defaultValue).toBe(
-        "default"
-      );
-    });
-  });
-
-  describe("Contact representative email input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <ContactRepresentative
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const contactRepresentativeEmail = wrapper.find(
-        "InputField#contact_representative_email"
-      );
-      expect(contactRepresentativeEmail.length).toBe(1);
-    });
-
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        contact_representative_email: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <ContactRepresentative
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const contactRepresentativeEmail = wrapper.find(
-        "InputField#contact_representative_email"
-      );
-      expect(contactRepresentativeEmail.props().meta.error).toBe("test error");
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        contact_representative_email: "default"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <ContactRepresentative
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const contactRepresentativeEmail = wrapper.find(
-        "InputField#contact_representative_email"
-      );
-      expect(contactRepresentativeEmail.props().input.defaultValue).toBe(
-        "default"
-      );
-    });
-  });
-
-  describe("Contact representative phone number input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <ContactRepresentative
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const contactRepresentativeNumber = wrapper.find(
-        "InputField#contact_representative_number"
-      );
-      expect(contactRepresentativeNumber.length).toBe(1);
-    });
-
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        contact_representative_number: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <ContactRepresentative
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const contactRepresentativeNumber = wrapper.find(
-        "InputField#contact_representative_number"
-      );
-      expect(contactRepresentativeNumber.props().meta.error).toBe("test error");
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        contact_representative_number: "default"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <ContactRepresentative
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const contactRepresentativeNumber = wrapper.find(
-        "InputField#contact_representative_number"
-      );
-      expect(contactRepresentativeNumber.props().input.defaultValue).toBe(
-        "default"
-      );
-    });
-  });
-});
+})
+})
+})
+})

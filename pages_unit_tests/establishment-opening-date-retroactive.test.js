@@ -1,41 +1,71 @@
-import EstablishmentOpeningDateRetroactive from "../pages/establishment-opening-date-retroactive";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: { day: "01", month: "01", year: "1111" },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-
-const testSwitches = {};
-
-describe("<EstablishmentOpeningDateRetroactive />", () => {
+describe("establishment-opening-date-retroactive", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<EstablishmentOpeningDateRetroactive />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("establishment-opening-date-retroactive", props);
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual(
+      "Opening Date"
+    );
   });
 
-  it("renders OpeningDate component with correct error props and cumulative answers", () => {
-    const wrapper = mount(
-      <I18nextProvider i18n={i18n}>
-        <EstablishmentOpeningDateRetroactive
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      </I18nextProvider>
-    );
-    const openingDateProactive = wrapper.find("OpeningDate");
-    expect(openingDateProactive.length).toBe(1);
-    expect(openingDateProactive.props().cumulativeFullAnswers.example).toBe(
-      "test answer"
-    );
-    expect(openingDateProactive.props().validatorErrors.example).toBe(
-      "test error"
-    );
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("establishment-opening-date-retroactive", props);
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
   });
+
+  describe("opening days irregular input field", () => {
+    it("check that day is correct", async () => {
+      const $ = renderPage('establishment-opening-date-retroactive', props);
+      const $textArea = $('#day');
+      expect($textArea.get(0).attribs.value).toBe("01");
+    });
+
+    it("check that month is correct", async () => {
+        const $ = renderPage('establishment-opening-date-retroactive', props);
+        const $textArea = $('#month');
+        expect($textArea.get(0).attribs.value).toBe("01");
+      });
+
+      it("check that year is correct", async () => {
+        const $ = renderPage('establishment-opening-date-retroactive', props);
+        const $textArea = $('#year');
+        expect($textArea.get(0).attribs.value).toBe("1111");
+      });
+      
+    describe("Error messages displayed", () => {
+        it("renders the correct summary error", async () => {
+          const $ = renderPage("establishment-opening-date-retroactive", {
+            language: "cy",
+            validatorErrors: {
+                establishment_opening_date: "test error"
+            }
+          });
+  
+          const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+          expect($pageErrors.length).toBe(1);
+          expect($pageErrors.contents().get(0).data).toBe("test error");
+        });
+  
+        it("renders the correct error", async () => {
+          const $ = renderPage("establishment-opening-date-retroactive", {
+            language: "cy",
+            validatorErrors: {
+                establishment_opening_date: "test error"
+            }
+          });
+  
+          const $inputError = $("#establishment_opening_date-error");
+          expect($inputError.length).toBe(1);
+          expect($inputError.contents().get(2).data.trim()).toBe("test error");
+});
+});
+});
 });

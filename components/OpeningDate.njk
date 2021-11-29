@@ -18,24 +18,24 @@
       classes: "govuk-label--s"
     }
   },
-  hint: {
-    text: ['For example, ', creation_date | date("add", 40, "days") | date("DD MM YYYY")] | join
+    hint: {
+    text: ['For example, ', creation_date | date("subtract", 40, "days") | date("DD MM YYYY")] | join
   },
   items: [
     {
       name: "day",
       classes: "govuk-input--width-2",
-      defaultValue: props.cumulativeFullAnswers.day
+      value: props.cumulativeFullAnswers.day
     },
     {
       name: "month",
       classes: "govuk-input--width-2",
-      defaultValue: props.cumulativeFullAnswers.month
+      value: props.cumulativeFullAnswers.month
     },
     {
       name: "year",
       classes: "govuk-input--width-4",
-      defaultValue: props.cumulativeFullAnswers.year
+      value: props.cumulativeFullAnswers.year
     }
   ],
   errorMessage: {
@@ -58,21 +58,24 @@
       classes: "govuk-label--s"
     }
   },
-  hint: {
+    hint: {
     text: ['For example, ', creation_date | date("subtract", 40, "days") | date("DD MM YYYY")] | join
   },
   items: [
     {
+      id: "day",
       name: "day",
       classes: "govuk-input--width-2",
       value: props.cumulativeFullAnswers.day
     },
     {
+     id: "month",
       name: "month",
       classes: "govuk-input--width-2",
       value: props.cumulativeFullAnswers.month
     },
     {
+     id: "year",
       name: "year",
       classes: "govuk-input--width-4",
       value: props.cumulativeFullAnswers.year

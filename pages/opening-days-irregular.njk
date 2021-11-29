@@ -14,6 +14,7 @@
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
       {% call govukFieldset({
+      describedBy: "opening-days-irregular",
         legend: {
           text: __("Opening periods"),
           classes: "govuk-fieldset__legend--l",
@@ -22,23 +23,21 @@
         }) %}
         
         {{ govukTextarea({
-          name: "opening_days_irregular",
-          id: "opening_days_irregular",
-          value: props.cumulativeFullAnswers.opening_days_irregular,
-          label: {
-            text: __("When will this establishment be open and serving or preparing food?")
+        "label": {
+          "text": __("When will this establishment be open and serving or preparing food?")
           },
-          hint: {
-            text: __("For example") +": " + __("only serving food during December at Christmas markets") + " " + __("or") + " " + __("open at weekends in June and August")
-          },
-          errorMessage: {
-            text: __(props.validatorErrors.opening_days_irregular)} if props.validatorErrors.opening_days_irregular
+        "id": "opening_days_irregular",
+        "value": props.cumulativeFullAnswers.opening_days_irregular,
+        "name": props.cumulativeFullAnswers.opening_days_irregular,
+        "errorMessage": {
+        "text": __(props.validatorErrors.opening_days_irregular)} if props.validatorErrors.opening_days_irregular
         }) }}
 
+      {% endcall%}
       {{ govukButton({
               text: __("Continue")
             }) }}
-      {% endcall%}
+      
       {%- endcall %}
     </div>
   </div>

@@ -62,7 +62,9 @@
         },
         "id": "operator_charity_number",
         "name": "operator_charity_number",
-        "value": props.cumulativeFullAnswers.operator_charity_number
+        "value": props.cumulativeFullAnswers.operator_charity_number,
+        "errorMessage": { "text": __(props.validatorErrors.operator_charity_number)} if props.validatorErrors.operator_charity_number
+        
       }) }}
 
       {{ govukDetails({

@@ -2,6 +2,7 @@ const cheerio = require("cheerio");
 const nunjucks = require("nunjucks");
 const i18n = require("i18n");
 const { configureAxe } = require("jest-axe");
+const dateFilter = require("nunjucks-date-filter");
 
 // For accessibility testing
 const axe = configureAxe({
@@ -46,6 +47,8 @@ env.addFilter("addressSelectItems", (findResults) =>
     text: address.summaryline
   }))
 );
+
+env.addFilter("date", dateFilter);
 
 env.addGlobal("mergeObjects", (orig, additionalProps) => ({
   ...orig,
@@ -137,6 +140,10 @@ const getPageDetails = {
   getCheckboxes: function($){
     const checkboxList = $(":checkbox");
     return checkboxList;
+  },
+  getSelectionBox: function($){
+    const selected = $(":selected");
+    return selected;
   }
 };
 

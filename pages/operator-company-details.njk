@@ -5,6 +5,8 @@
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "../components/PostForm.njk" import postForm %}
 
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+
 {% macro hiddenTextCompaniesHouseNo() %}
 <span>
             {{__(

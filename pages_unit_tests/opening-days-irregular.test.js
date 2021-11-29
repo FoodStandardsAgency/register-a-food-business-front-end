@@ -1,71 +1,65 @@
-import OpeningDaysIrregular from "../pages/opening-days-irregular";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers")
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: { opening_days_irregular: "default" },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-
-const testSwitches = {};
-
-describe("<OpeningDaysIrregular />", () => {
+describe("opening-days-irregular", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<OpeningDaysIrregular />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("opening-days-irregular", props);
+    
+    const $mainHeading = getPageDetails.getMainHeading($)
+    expect($mainHeading.text().trim()).toEqual('Opening periods')
   });
 
-  describe("Opening Days Irregular input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OpeningDaysIrregular
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const openingDaysIrregular = wrapper.find("TextArea");
-      expect(openingDaysIrregular.length).toBe(1);
-    });
+  it('passes accessibility tests', async () => {
+    const $ = renderPage('opening-days-irregular', props)
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        opening_days_irregular: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OpeningDaysIrregular
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const openingDaysIrregular = wrapper.find("TextArea");
-      expect(openingDaysIrregular.props().meta.error).toBe("test error");
+    const results = await axe($.html())
+    expect(results).toHaveNoViolations()
+  })
+
+  describe("opening days irregular input field", () => {
+    it("renders", async () => {
+      const $ = renderPage('opening-days-irregular', props);
+      const $textArea = $('#opening_days_irregular');
+      expect($textArea.length).toBe(1);
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        opening_days_irregular: "default"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OpeningDaysIrregular
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const openingDaysIrregular = wrapper.find("TextArea");
-      expect(openingDaysIrregular.props().input.defaultValue).toBe("default");
+      const $ = renderPage('opening-days-irregular', props);
+      const $textArea = $('#opening_days_irregular');
+      expect($textArea.get(0).attribs.name).toBe("default");
+      });
+
+    describe("Error messages displayed", () => {
+      it("renders the correct summary error", async () => {
+        const $ = renderPage("opening-days-irregular", {
+          language: "cy",
+          validatorErrors: {
+            establishment_trading_name: "test error"
+          }
+        });
+
+        const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+        expect($pageErrors.length).toBe(1);
+        expect($pageErrors.contents().get(0).data).toBe("test error");
+      });
+
+      it("renders the correct error", async () => {
+        const $ = renderPage("opening-days-irregular", {
+          language: "cy",
+          validatorErrors: {
+            opening_days_irregular: "test error"
+          }
+        });
+
+        const $inputError = $("#opening_days_irregular-error");
+        expect($inputError.length).toBe(1);
+        expect($inputError.contents().get(2).data.trim()).toBe("test error");
+      });
     });
   });
-});
+})
