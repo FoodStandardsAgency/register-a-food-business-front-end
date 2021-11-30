@@ -36,6 +36,7 @@
     "styled-components": "^5.1.0"
   },
   "dependencies": {
+    "@ons/design-system": "^44.1.2",
     "@slice-and-dice/register-a-food-business-validation": "1.21.6",
     "accessible-autocomplete": "^2.0.3",
     "applicationinsights": "^1.7.6",
@@ -52,8 +53,9 @@
     "express-rate-limit": "^5.1.1",
     "express-session": "^1.17.0",
     "express-useragent": "^1.0.13",
-    "govuk-frontend": "^3.11.0",
+    "fuse.js": "^6.4.6",
     "get-random-values": "^1.2.2",
+    "govuk-frontend": "^3.11.0",
     "helmet": "^3.22.1",
     "http-proxy-agent": "^4.0.1",
     "https-proxy-agent": "^5.0.0",
