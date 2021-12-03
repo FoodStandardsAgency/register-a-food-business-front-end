@@ -8,6 +8,7 @@ var sassMiddleware = require("node-sass-middleware");
 var path = require("path");
 const getRandomValues = require("get-random-values");
 const dateFilter = require("nunjucks-date-filter");
+const fs = require("fs");
 
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
@@ -151,7 +152,12 @@ app.use(i18n.init);
 
 // configure nunjucks environment
 const env = nunjucks.configure(
-  ["node_modules/govuk-frontend/", "pages", "components"],
+  [
+    "node_modules/govuk-frontend/",
+    "node_modules/@ons/design-system/",
+    "pages",
+    "components"
+  ],
   {
     express: app //integrate nunjucks into express
   }
@@ -205,6 +211,12 @@ app.use(
 app.use("/pdfs", express.static(__dirname + "/static/pdfs"));
 app.use("/css", express.static(__dirname + "/css"));
 app.use("/scripts", express.static(path.join(__dirname, "/../../scripts")));
+
+app.use("/data", express.static(__dirname + "/data"), function (req, res) {
+  // Optional 404 handler
+  res.status(404);
+  res.json({ error: { code: 404 } });
+});
 
 // Set language cookie - TODO: Does i18next do this for you?  Need to check user accepted cookies?
 app.all("*", (req, res, next) => {

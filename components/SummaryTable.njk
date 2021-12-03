@@ -189,7 +189,7 @@
         {% endif %}
 
         <h2 class="govuk-heading-m">{{__("Activities") }}</h2>
-
+        
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.customer_type or propsData.customer_type %}
                 {{ summaryListHelper(__("Customers"), propsData.customer_type, false) }}
@@ -214,7 +214,7 @@
             {% endif %}
         {% endif %}
         
-        {% if propsData.applicationCompletePage %}
+        {% if props.applicationCompletePage %}
             <h2 class="govuk-heading-m">{{__("Declaration") }}</h2>
             
             {% set html %}
