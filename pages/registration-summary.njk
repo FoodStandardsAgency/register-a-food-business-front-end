@@ -29,10 +29,9 @@
 
        <h2 class="govuk-heading-m">{{__("Operator details") }}</h2>
 
-
        {% if propsData.applicationCompletePage == null %}
          {% if validatorErrors.operator_type or propsData.operator_type %}
-           {{ summaryListHelper(__("Operator type"), propsData.operator_type, "/edit/registration-role",propsData.operator_type) }}
+           {{ summaryListHelper(__("Operator type"), propsData.operator_type, "/edit/registration-role", propsData.operator_type, "operator_type_test") }}
          {% endif %}
        {% endif %} 
 
