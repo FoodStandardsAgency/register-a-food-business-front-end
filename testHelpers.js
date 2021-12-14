@@ -117,6 +117,10 @@ const getPageDetails = {
     const h2Heading = $(".govuk-heading-2").text().trim();
     return h2Heading;
   },
+  getAreaHeading: function ($) {
+    const AreaHeading = $("h2");
+    return AreaHeading;
+  },
   getInsetText: function ($) {
     const insetText = $(".govuk-inset-text").contents().get(0).data;
     return insetText.trim();
