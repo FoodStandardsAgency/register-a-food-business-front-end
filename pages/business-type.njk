@@ -26,7 +26,7 @@
 {% macro businessTypeSelect(props) %}
     {% set businessTypesArray = [] %}
       {% for businessType in props.businessTypes %}
-        {% set businessTypesArray = (businessTypesArray.push({value: businessType, text: __(businessType)}), businessTypesArray) %}
+        {% set businessTypesArray = (businessTypesArray.push({value: __(businessType), text: __(businessType)}), businessTypesArray) %}
       {% endfor %}
 
     {{ govukSelect({
@@ -91,7 +91,7 @@
         <noscript>
           {% set businessTypesArray = [] %}
               {% for businessType in props.businessTypes %}
-                {% set businessTypesArray = (businessTypesArray.push({value: businessType, text: __(businessType)}), businessTypesArray) %}
+                {% set businessTypesArray = (businessTypesArray.push({value: __(businessType), text: __(businessType)}), businessTypesArray) %}
               {% endfor %}
 
           {{ govukSelect({
