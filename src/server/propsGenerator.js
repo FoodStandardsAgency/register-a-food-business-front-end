@@ -1,5 +1,6 @@
 const { PageTitles } = require("../components-react/PageTitles");
 const i18n = require("i18n");
+const { businessTypeEnum } = require("@slice-and-dice/register-a-food-business-validation");
 
 module.exports = (req) => {
   /************************************************************************************
@@ -7,6 +8,8 @@ module.exports = (req) => {
     ************************************************************************************/
   const editModeFirstPage =
     req && req.query && req.query.edit ? `/${req.query.edit}` : undefined;
+
+  const businessTypes = Object.keys(businessTypeEnum).map((bt) => businessTypeEnum[bt].value.en)
 
   const editModePartnerDetails =
     req &&
@@ -86,6 +89,7 @@ module.exports = (req) => {
     ************************************************************************************/
   const initialProps = {
     acceptAllCookies,
+    businessTypes,
     editModeFirstPage,
     formAction,
     csrfToken,

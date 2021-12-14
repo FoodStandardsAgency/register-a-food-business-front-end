@@ -3,110 +3,109 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/select/macro.njk" import govukSelect %}
-{% from  "components/autosuggest/_macro.njk" import onsAutosuggest %}
 
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 
+{% macro businessTypeAutoComplete() %}
+  <label for="my-autocomplete" >
+    {{__("Select business type")}}
+    <div id="autocompleteContainer" name="business_type">
+      {% if props.validatorErrors.business_type %}
+        <span id="business_type-error" class="govuk-error-message">
+          {{__(props.validatorErrors.business_type)}}
+        </span>
+      {% else %}
+        {{ null }}
+      {% endif %}
+    </div>
+  </label>
+{%endmacro%}
+
+
+{% macro businessTypeSelect(props) %}
+    {% set businessTypesArray = [] %}
+      {% for businessType in props.businessTypes %}
+        {% set businessTypesArray = (businessTypesArray.push({value: businessType, text: __(businessType)}), businessTypesArray) %}
+      {% endfor %}
+
+    {{ govukSelect({
+      id: "businessTypeLookup",
+      name: "business_type",
+      label: {
+        text: __("Select business type")
+      },
+      items:businessTypesArray
+    }) }}
+{%endmacro%}
+
 {% extends "layout.njk" %}
+  {% block head %}
+    <link href="/css/app.css" rel="stylesheet" type="text/css">
+    <link href="/auto-complete/accessible-autocomplete.min.css" rel="stylesheet" type="text/css">
+  {% endblock %}
 
-{% block content %}
+  {% block content %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+        {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+        {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
-      {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+        {% call govukFieldset({
+            legend: {
+              text: __("What kind of food business are you registering?"),
+              classes: "govuk-fieldset__legend--l",
+              isPageHeading: true
+                    }
+          }) %}
 
-      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+        {% call govukInsetText({
+            text: __("Search with your own keywords and then select the most fitting business type from the suggestions"),
+            classes: "govuk-fieldset__legend--l"
+          }) %}
+        {% endcall %}
 
-      {% call govukFieldset({
-          legend: {
-            text: __("What kind of food business are you registering?"),
-            classes: "govuk-fieldset__legend--l",
-            isPageHeading: true
-                  }
-        }) %}
-      {% endcall%}
-      {% call govukInsetText({
-          text: __("Search with your own keywords and then select the most fitting business type from the suggestions"),
-          classes: "govuk-fieldset__legend--l"
-        }) %}
-      {% endcall %}
-
-      {% set businesstype = [__("cafe"), __("food delivery service"), __("commercial bakery"), __("meat product manufacturer")] %}
-      {% set exampleHeading = __("For Example") %}
-      <div class = "govuk-label">
-        <label>
-         {{ exampleHeading }}
-        </label>
-        {% for items in businesstype | slice(4) %}
-          <ul>
-            {% for item in items %}
-              <li>
-                {{ item }}</li>
-              {% endfor%}
-            </ul>
-          {% endfor %}
+        {% set businesstype = [__("cafe"), __("food delivery service"), __("commercial bakery"), __("meat product manufacturer")] %}
+        {% set exampleHeading = __("For Example") %}
+        <div class = "govuk-label">
+          <label>
+          {{ exampleHeading }}
+          </label>
+          {% for items in businesstype | slice(4) %}
+            <ul>
+              {% for item in items %}
+                <li>
+                  {{ item }}</li>
+                {% endfor%}
+              </ul>
+            {% endfor %}
+          {{ businessTypeSelect(props) if props.browser === "IE" else businessTypeAutoComplete() }}
         </div>
 
-        {{ govukSelect({
-          id: "businessTypeLookup",
-          name: "business_type",
-          label: {
-            text: __("Select business type")
-          },
-          items: [
-            {
-            id: "business_type_beekeeper",
-              value: "Beekeeper (keeper)",
-              text: "Beekeeper (keeper)", 
-              selected: props.cumulativeFullAnswers.businessTypeLookup === "Beekeeper (keeper)"
-            },
-            {
-              value: "Abattoir (halal)",
-              text: "Abattoir (halal)"
-            },
-            {
-              value: "Cash and carry (supplier)",
-              text: "Cash and carry (supplier)"
-            },
-            {
-              value: "Alcoholic drinks manufacturer",
-              text: "Alcoholic drinks manufacturer"
-            }
-          ]
-        }) }}
-      <div class="ons-grid ons-grid--gutterless">
-        <div class="ons-grid__col ons-col-8@m">
-              {{ onsAutosuggest({
-                      "id": "country-of-birth",
-                      "label": {
-                          "text": "Current name of country",
-                          "description": "Enter your own answer or select from suggestions",
-                          "id": "country-of-birth-label"
-                      },
-                      "autocomplete": "off",
-                      "instructions": "Use up and down keys to navigate suggestions once you\'ve typed more than two characters. Use the enter key to select a suggestion. Touch device users, explore by touch or with swipe gestures.",
-                      "ariaYouHaveSelected": "You have selected",
-                      "ariaMinChars": "Enter 3 or more characters for suggestions.",
-                      "ariaResultsLabel": "Country suggestions",
-                      "ariaOneResult": "There is one suggestion available.",
-                      "ariaNResults": "There are {n} suggestions available.",
-                      "ariaLimitedResults": "Results have been limited to 10 suggestions. Type more characters to improve your search",
-                      "moreResults": "Continue entering to improve suggestions",
-                      "resultsTitle": "Suggestions",
-                      "resultsTitleId": "country-of-birth-suggestions",
-                      "autosuggestData": "",
-                      "noResults": "No suggestions found. You can enter your own answer",
-                      "typeMore": "Continue entering to get suggestions"
-              }) }}                                                                             
-        </div>
-      </div>
-        {{ govukButton({
-                text: __("Continue")
+        <script> 
+          var language = "{{ props.language }}" 
+          var business_type_default = "{{ props.cumulativeFullAnswers.business_type }}"
+        </script>
+        <script src="/auto-complete/bundle.js"></script>
+        <noscript>
+          {% set businessTypesArray = [] %}
+              {% for businessType in props.businessTypes %}
+                {% set businessTypesArray = (businessTypesArray.push({value: businessType, text: __(businessType)}), businessTypesArray) %}
+              {% endfor %}
+
+          {{ govukSelect({
+              id: "businessTypeLookup",
+              name: "business_type",
+              items:businessTypesArray
             }) }}
-
-        {%endcall%}
+        </noscript>
       </div>
     </div>
-    {% endblock%}
+    {% endcall%}
+      {{ govukButton({
+                text: __("Continue")
+            }) }}
+  {%endcall%}
+
+{% endblock%}
