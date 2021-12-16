@@ -209,6 +209,7 @@ app.use(
   )
 );
 app.use("/pdfs", express.static(__dirname + "/static/pdfs"));
+app.use("/auto-complete", express.static(__dirname + "/static/auto-complete"));
 app.use("/css", express.static(__dirname + "/css"));
 app.use("/scripts", express.static(path.join(__dirname, "/../../scripts")));
 
