@@ -35,6 +35,13 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+#select-link {
+  font-family: nta, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: rgb(29, 112, 184);
+  font-size: 19px;
+}
+
 #languageCyHeader,
 #languageEnHeader {
   color: #0b0c0c !important;
