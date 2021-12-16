@@ -10,29 +10,30 @@
 {% macro establishmentDueToTrade() %}
   {{ govukDateInput({
   id: "establishment_opening_date",
-  namePrefix: "establishment_opening_date",
   fieldset: {
     legend: {
       text: __("When is this establishment expected to begin trading?"),
-      isPageHeading: true,
       classes: "govuk-label--s"
     }
   },
     hint: {
-    text: ['For example, ', creation_date | date("subtract", 40, "days") | date("DD MM YYYY")] | join
+    text: ['For example, ', creation_date | date("add", 40, "days") | date("DD MM YYYY")] | join
   },
   items: [
     {
+      id: "day",
       name: "day",
       classes: "govuk-input--width-2",
       value: props.cumulativeFullAnswers.day
     },
     {
+     id: "month",
       name: "month",
       classes: "govuk-input--width-2",
       value: props.cumulativeFullAnswers.month
     },
     {
+     id: "year",
       name: "year",
       classes: "govuk-input--width-4",
       value: props.cumulativeFullAnswers.year
