@@ -26,6 +26,8 @@ const initializePartners = (session) => {
   return session.cumulativeFullAnswers.partners || [];
 };
 
+const PropsGenerator = require("../propsGenerator");
+
 const partnerDetailsRouter = () => {
   const router = Router();
 
@@ -104,7 +106,8 @@ const partnerDetailsRouter = () => {
         );
         throw err;
       }
-      app.render(req, res, `/partner-details`);
+      var props = PropsGenerator(req);
+      res.render(`partner-details`, { props });
     });
   });
 
