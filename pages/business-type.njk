@@ -60,25 +60,20 @@
                     }
           }) %}
 
-        {% call govukInsetText({
-            text: __("Search with your own keywords and then select the most fitting business type from the suggestions"),
-            classes: "govuk-fieldset__legend--l"
-          }) %}
-        {% endcall %}
+        <p class="govuk-body">{{__("Search with your own keywords and then select the most fitting business type from the suggestions")}}</p>
 
         {% set businesstype = [__("cafe"), __("food delivery service"), __("commercial bakery"), __("meat product manufacturer")] %}
         {% set exampleHeading = __("For Example") %}
         <div class = "govuk-label">
-          <label>
+          <label id="hint">
           {{ exampleHeading }}
           </label>
           {% for items in businesstype | slice(4) %}
             <ul>
               {% for item in items %}
-                <li>
-                  {{ item }}</li>
-                {% endfor%}
-              </ul>
+                <li>{{ item }}</li>
+              {% endfor%}
+            </ul>
             {% endfor %}
           {{ businessTypeSelect(props) if props.browser === "IE" else businessTypeAutoComplete() }}
         </div>
