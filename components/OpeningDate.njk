@@ -17,7 +17,7 @@
     }
   },
     hint: {
-    text: ['For example, ', creation_date | date("add", 40, "days") | date("DD MM YYYY")] | join
+    text: [__('For example') + ", ", creation_date | date("add", 40, "days") | date("DD MM YYYY")] | join
   },
   items: [
     {
@@ -60,7 +60,7 @@
     }
   },
     hint: {
-    text: ['For example, ', creation_date | date("subtract", 40, "days") | date("DD MM YYYY")] | join
+    text: [__('For example') + ", ", creation_date | date("subtract", 40, "days") | date("DD MM YYYY")] | join
   },
   items: [
     {
@@ -109,7 +109,7 @@
                 }
     }) %}
 
-      <p id= "hint">{{__("Establishments begin trading when they first start serving or manufacturing food or drink for customers or supplying food or drink online.")}}</p>
+      <p id="changed-name-hint" class="govuk-hint">{{__("Establishments begin trading when they first start serving or manufacturing food or drink for customers or supplying food or drink online.")}}</p>
 
       {{ establishmentDueToTrade() if props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade" else establishmentTrading() }}
 

@@ -106,7 +106,7 @@
                 }  
               }) %}
 
-      <p id="hint">{{__("Fill in the expected opening times for this establishment using 24 hour clocks.")}}</p>
+      <p id="changed-name-hint" class="govuk-hint">{{__("Fill in the expected opening times for this establishment using 24 hour clocks.")}}</p>
 
       {{ openHoursMonday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_monday }}
       {{ openHoursTuesday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_tuesday }}

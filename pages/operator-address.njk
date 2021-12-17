@@ -23,6 +23,7 @@
                         isPageHeading: true
                     }
                     }) %}
+                    <p id="changed-name-hint" class="govuk-hint">{{__("Partnership address is the contact address for the partner who is the main point of contact.")}}</p>
                 {% endcall %}
             {% else %}
                 {% call govukFieldset({
@@ -32,13 +33,9 @@
                         isPageHeading: true
                     }
                     }) %}
+                    <p id="changed-name-hint" class="govuk-hint">{{__("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.")}}</p>
                 {% endcall %}
             {% endif %}
-            {% call govukInsetText({
-                text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."),
-                classes: "govuk-fieldset__legend--l"
-            }) %}
-            {% endcall %}
             {{ govukInput({
                     "label": {
                     "text": __("Postcode")

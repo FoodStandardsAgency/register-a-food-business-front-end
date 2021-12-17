@@ -13,7 +13,7 @@
       {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
       {% call govukFieldset({
         legend: {
-          text: "Opening days",
+          text: __("Opening days"),
           classes: "govuk-fieldset__legend--l",
           isPageHeading: true
         }

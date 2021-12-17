@@ -63,10 +63,9 @@
         <p class="govuk-body">{{__("Search with your own keywords and then select the most fitting business type from the suggestions")}}</p>
 
         {% set businesstype = [__("cafe"), __("food delivery service"), __("commercial bakery"), __("meat product manufacturer")] %}
-        {% set exampleHeading = __("For Example") %}
         <div class = "govuk-label">
-          <label id="hint">
-          {{ exampleHeading }}
+          <label id="changed-name-hint" class="govuk-hint">
+          {{ __("For example") }}
           </label>
           {% for items in businesstype | slice(4) %}
             <ul>
