@@ -30,3 +30,6 @@ yarn-error.log*
 /docs/jsdoc
 
 junit.xml
+
+# generated
+/src/server/css/app.css

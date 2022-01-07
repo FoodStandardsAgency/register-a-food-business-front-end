@@ -196,8 +196,8 @@ app.use(morgan("combined", { stream: logger.stream }));
 
 app.use(
   sassMiddleware({
-    src: __dirname + "/sass", //where the sass files are
-    dest: __dirname + "/css", //where css should go
+    src: __dirname, //where the sass files are
+    dest: __dirname, //where css should go
     debug: true
   })
 );
