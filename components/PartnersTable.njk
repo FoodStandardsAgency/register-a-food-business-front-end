@@ -3,7 +3,13 @@
 {% macro partnersTable(props) %}
 
 <div> {{partnersRows}} </div>
-{% set hasGETParams = true if props.partnerDetailsUrl else false %}
+{% set partnerDetailsUrlContainsQuestionMark = false %}
+{% for character in props.partnerDetailsUrl %}
+    {% if character==='?' %}
+        {% set partnerDetailsUrlContainsQuestionMark = true if props.partnerDetailsUrl %}
+    {% endif %}
+{% endfor %}
+{% set hasGETParams = true if (props.partnerDetailsUrl and partnerDetailsUrlContainsQuestionMark) else false %}
     {{ changeLink }}
     {% set count = 0 %}
     {{ ID }}
@@ -20,10 +26,10 @@
   <tbody class="govuk-table__body">
     {% for partner in props.cumulativeFullAnswers.partners %}
       {% set ID = "partner" + count + "RowChange" %}
-      {% set changeLink = (props.partnerDetailsUrl + "?id=" + count) if hasGETParams else (props.partnerDetailsUrl + "?id=" + count)  %} 
+      {% set changeLink = (props.partnerDetailsUrl + "&id=" + count) if hasGETParams else (props.partnerDetailsUrl + "?id=" + count)  %} 
       <tr class="govuk-table__row" id = "partnerRow{{count}}" key = "partnerRow{{count}}">
           <td class="govuk-table__cell" id = "partner{{count}}">{{ partner }}</td>
-          <td class="govuk-table__cell"><a id="{{ID}}" class="govuk-body" href="{{changeLink}}" aria-label="{{__('Change partner name')}}">{{ __('Change') }}</a></td>
+          <td class="govuk-table__cell"><a id="{{ID}}" class="govuk-link" href="{{changeLink}}" aria-label="{{__('Change partner name')}}">{{ __('Change') }}</a></td>
           <td class="govuk-table__cell"><button class="govuk-button" data-module="govuk-button" type="submit" name="index" value="{{count}}" id="deletePartnerButton{{count}}">
             {{__("Delete partner")}}
           </button> </td>

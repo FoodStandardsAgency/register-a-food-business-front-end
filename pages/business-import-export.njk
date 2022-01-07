@@ -65,12 +65,13 @@
         {% set busImpExpText = __("If a food business is directly importing or exporting food outside of the UK, there are some extra requirements for the business to follow.") %}
 
         {% set detailsSummaryText %}
-        <span>
+        <p class="govuk-body">
         {{ busImpExpText }}
-
-        <br>
-        {{__("Find out more by visiting the") }}
-            <a href = {{ busImpExpLink }} 
+        </p> 
+        <span style="margin-top:-20px" class="govuk-body"> 
+            {{__("Find out more by visiting the") }}
+            <a href = {{ busImpExpLink }}
+                class="govuk-link"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="link-fsa-website" >  {{__("Food Standards Agency website (opens in new window)") }}
