@@ -32,7 +32,7 @@
         <p class="govuk-body">
           <b>{{__("City of Cardiff Council") }}</b>
           {{__("is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this ") }}
-          <a href=www.gov.uk/food-business-registration>{{__("Food Business Registration") }}</a>{{__(" link to check using the location or site of your food business.") }}</p>
+          <a class="govuk-link" href=www.gov.uk/food-business-registration>{{__("Food Business Registration") }}</a>{{__(" link to check using the location or site of your food business.") }}</p>
 
         {% call postForm("/continue/index", props.csrfToken, props.language) -%}
         {{ govukButton({
