@@ -214,27 +214,29 @@
             {% endif %}
         {% endif %}
         
-        {% if props.applicationCompletePage %}
             <h2 class="govuk-heading-m">{{__("Declaration") }}</h2>
-            
-            {% set html %}
-            <span id = "declaration1" >
-            {% endset %}
+            {% if props.cumulativeFullAnswers.declaration1 %}
+                {% set html %}
+                <span id = "declaration1" > {{props.declaration1}}</span>
+                {% endset %}
 
             {{ summaryListDeclarationHelper(html, "Accepted" ) }}
+            {% endif%}
 
-            {% set html %}
-            <span id = "declaration2" >
-            {% endset %}
+            {% if props.cumulativeFullAnswers.declaration2 %}
+                {% set html %}
+                <span id = "declaration2" >{{props.declaration2}}</span>
+                {% endset %}
 
-            {{ summaryListDeclarationHelper(html, "Accepted" ) }}
+                {{ summaryListDeclarationHelper(html, "Accepted" ) }}
+            {% endif%}
 
-            {% set html %}
-            <span id = "declaration3" >
-            {% endset %}
+            {% if props.cumulativeFullAnswers.declaration2 %}
+                {% set html %}
+                <span id = "declaration3" > {{props.declaration3}}</span>
+                {% endset %}
 
-            {{ summaryListDeclarationHelper(html, "Accepted" ) }}
-        
-        {% endif%}
+                {{ summaryListDeclarationHelper(html, "Accepted" ) }}
+            {% endif%}
 
 {% endmacro %}
