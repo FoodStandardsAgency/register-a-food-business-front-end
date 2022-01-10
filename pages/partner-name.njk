@@ -25,7 +25,7 @@
 {% macro continueButton(props) %}
   {% call postForm(props.partnerDetailsContinueFormAction, props.csrfToken, props.language) -%}
     {{ govukButton({
-      text: __("Continue")
+      text: __("Save and continue") if props.editModeFirstPage else __("Continue")
     }) }}
   {%- endcall %}
 {% endmacro %}

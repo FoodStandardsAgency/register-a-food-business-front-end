@@ -10,7 +10,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {% call govukFieldset({
         legend: {
           text: __("Opening days"),
@@ -83,7 +83,7 @@
         }) }}
 
         {{ govukButton({
-              text: __("Continue")
+              text: __("Save and continue") if props.editModeFirstPage else __("Continue")
             }) }}
       {% endcall%}
       {%- endcall %}

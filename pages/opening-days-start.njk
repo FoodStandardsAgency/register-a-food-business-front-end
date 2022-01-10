@@ -10,7 +10,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% call postForm("/continue" + props.currentPage, props.csrfToken, props.language) -%}
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
       {{ govukRadios({
@@ -55,7 +55,7 @@
       }) }}
 
       {{ govukButton({
-            text: __("Continue")
+            text: __("Save and continue") if props.editModeFirstPage else __("Continue")
           }) }}
       {%- endcall %}
     </div>
