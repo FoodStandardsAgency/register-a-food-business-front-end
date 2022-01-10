@@ -11,31 +11,31 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-  
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
-       {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
-        {% call govukFieldset({
+      {% call govukFieldset({
           legend: {
             text: __("Which is the establishment's address from the list?"),
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
                   }
             }) %}
-        {% endcall%}
+      {% endcall%}
 
-        {{ establishmentHiddenDetails() }}
+      {{ establishmentHiddenDetails() }}
 
-        {% if props.editModeFirstPage %}
-            {% set editModeFirstPage = "/new/" + props.council + "/establishment-address?edit=establishment-address" %}
-        {% else %}
-            {% set editModeFirstPage = "/new/" + props.council + "/establishment-address" %}
-        {% endif %}
+      {% if props.editModeFirstPage %}
+        {% set editModeFirstPage = "/new/" + props.council + "/establishment-address?edit=establishment-address" %}
+      {% else %}
+        {% set editModeFirstPage = "/new/" + props.council + "/establishment-address" %}
+      {% endif %}
 
-         {{ govukSummaryList({
+      {{ govukSummaryList({
         classes: 'govuk-summary-list--no-border',
         rows: [
           {
@@ -57,7 +57,6 @@
         ]
       }) }}
 
-
       {{ govukSelect({
         id: "establishmentAddressDropdown",
         name: "establishment_address_selected",
@@ -68,14 +67,15 @@
       }) }}
 
       {% if props.editModeFirstPage %}
-          {% set editModeFirstPage = "/new/" + props.council + "/establishment-address-manual?edit=establishment-address-manual" %}
+        {% set editModeFirstPage = "/new/" + props.council + "/establishment-address-manual?edit=establishment-address-manual" %}
       {% else %}
-          {% set editModeFirstPage = "/new/" + props.council + "/establishment-address-manual" %}
+        {% set editModeFirstPage = "/new/" + props.council + "/establishment-address-manual" %}
       {% endif %}
-      
+
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
-          <a href = {{editModeFirstPage}} class="govuk-link" id="cantFindAddressLink">{{__("I can't find my address in the list") }} </a>
+          <a href = {{editModeFirstPage}} style="font-size: 19px" class="govuk-link" id="cantFindAddressLink">{{__("I can't find my address in the list") }}
+          </a>
         </div>
       </div>
       <br>
@@ -87,6 +87,6 @@
         </div>
       </div>
       {% endcall%}
-   </div>
-</div>
+    </div>
+  </div>
 {% endblock %}
