@@ -13,11 +13,15 @@
             href: props.href,
             text: __("Back")
         }) }}
+    {% elif props.partnerDetailsBackUrl %}
+        {{ govukBackLink({
+            href: props.partnerDetailsBackUrl,
+            text: __("Back")
+        }) }}    
     {% else %}
         {{ govukBackLink({
             href: props.backHref if props.backHref else ("/back" + props.currentPage),
             text: __("Back")
         }) }}
     {% endif %}
-
 {% endmacro %}
