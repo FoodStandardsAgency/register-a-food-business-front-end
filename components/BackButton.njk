@@ -12,7 +12,12 @@
         {{ govukBackLink({
             href: props.href,
             text: __("Back")
-        }) }} 
+        }) }}
+    {% elif props.fullCurrentPage == "/partner-details" %}
+        {{ govukBackLink({
+            href: props.partnerDetailsBackUrl,
+            text: __("Back")
+        }) }}    
     {% else %}
         {{ govukBackLink({
             href: props.backHref if props.backHref else ("/back" + props.currentPage),

@@ -34,6 +34,8 @@ module.exports = (req) => {
 
   const currentPageWithQuery = `/${req.url.split("/")[2]}`;
 
+  const fullCurrentPage= req.url;
+
   const formAction = editModeFirstPage
     ? `/edit/continue${currentPageWithQuery}`
     : `/continue${currentPageWithQuery}`;
@@ -99,6 +101,7 @@ module.exports = (req) => {
     partnerDetailsContinueFormAction,
     partnerDetailsSaveFormAction,
     partnerDetailsBackUrl,
+    fullCurrentPage,
     currentPage,
     currentPageTitle,
     cumulativeFullAnswers,
