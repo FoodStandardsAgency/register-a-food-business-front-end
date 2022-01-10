@@ -1,4 +1,4 @@
-const { PageTitles } = require("../components-react/PageTitles");
+const { PageTitles } = require("../../pages/PageTitles");
 const i18n = require("i18n");
 const {
   businessTypeEnum
