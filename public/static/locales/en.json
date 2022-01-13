@@ -345,6 +345,7 @@
   "Enter a valid charity number": "Enter a valid charity number",
   "Enter a valid establishment phone number": "Enter a valid establishment phone number",
   "Enter a valid establishment email address": "Enter a valid establishment email address",
+  "Enter a valid establishment web address": "Enter a valid establishment web address",
   "You must select an establishment address type before continuing": "You must select an establishment address type before continuing",
   "You must select a trading status before continuing": "You must select a trading status before continuing",
   "Enter a valid opening date": "Enter a valid opening date",
