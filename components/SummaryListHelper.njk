@@ -2,17 +2,13 @@
 
 {% macro summaryListHelper(keyText, valueText, href, property, id) %}
 
- {% if property %}
+  {% if property %}
     {% set hrefText = __("Change") %}
- {% else %}
-  {% if not property %}
-    {% set hrefText = null %}
   {% else %}
-    {% set hrefText = __("Enter answer") %}   
-  {% endif %}       
- {% endif %}
+    {% set hrefText = __("Enter answer") %}
+  {% endif %}
 
-    {{ govukSummaryList({
+  {{ govukSummaryList({
         rows: 
         [
         {
@@ -43,17 +39,13 @@
 
 {% macro summaryListHelperHtml(keyText, valueHtml, href, property) %}
 
-{% if property %}
+  {% if property %}
     {% set hrefText = __("Change") %}
- {% else %}
-  {% if not property %}
-    {% set hrefText = null %}
   {% else %}
-    {% set hrefText = __("Enter answer") %}   
-  {% endif %}       
- {% endif %}
+    {% set hrefText = __("Enter answer") %}
+  {% endif %}
 
-    {{ govukSummaryList({
+  {{ govukSummaryList({
         rows: 
         [
         {
@@ -80,7 +72,7 @@
 
 {% macro summaryListDeclarationHelper(keyhtml, valueText) %}
 
-    {{ govukSummaryList({
+  {{ govukSummaryList({
         rows: 
         [
         {
