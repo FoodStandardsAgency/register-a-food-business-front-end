@@ -8,14 +8,14 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
 
-    {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+            {% call postForm(props.formAction, props.csrfToken, props.language) -%}
 
-        {{ processedErrorSummary(props.validatorErrors, props.language) }}
+            {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
-        {{ govukCheckboxes({
+            {{ govukCheckboxes({
         idPrefix: "declaration",
         name: "declaration",
         fieldset: {
@@ -55,8 +55,8 @@
         ]
         }) }}
 
-        <div>
-        {{ govukCheckboxes({
+            <div>
+                {{ govukCheckboxes({
         idPrefix: "feedback",
         name: "feedback",
         fieldset: {
@@ -79,23 +79,24 @@
             }
         ]
         }) }}
-        <a
+                <a
             href= '{{__("DeclarationLink")}}'
             target="_blank"
+            style="font-size: 19px"
             rel="noopener noreferrer"
             id="changed-name-hint" 
             class="govuk-link"
         >
-            {{__("How we will use your data (opens in new window)")}}
-         </a>
-        </div>
-        <br/>
-        <br/>
-        {{ govukButton({
+                    {{__("How we will use your data (opens in new window)")}}
+                </a>
+            </div>
+            <br/>
+            <br/>
+            {{ govukButton({
             text: __("Submit")
         }) }}
-    {% endcall %}
+            {% endcall %}
 
+        </div>
     </div>
-  </div>
 {% endblock %}
