@@ -118,7 +118,9 @@
           "text": __("Web address (optional)")
         },
         "id": "establishment_web_address",
-        "name": "establishment_web_address"
+        "name": "establishment_web_address",
+        "errorMessage": {
+        "text": __(props.validatorErrors.establishment_web_address)} if props.validatorErrors.establishment_web_address
         }) }}
 
         {% endcall %}

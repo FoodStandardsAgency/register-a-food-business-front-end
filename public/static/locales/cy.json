@@ -345,6 +345,7 @@
   "Enter a valid charity number": "Ddim yn rhif elusen dilys",
   "Enter a valid establishment phone number": "Ddim yn rhif ffôn sefydliad dilys",
   "Enter a valid establishment email address": "Ddim yn gyfeiriad e-bost sefydliad dilys",
+  "Enter a valid establishment web address": "Ddim yn gyfeiriad gwe sefydliad dilys",
   "You must select an establishment address type before continuing": "Rhaid i chi ddewis math o gyfeiriad sefydliad cyn parhau",
   "You must select a trading status before continuing": "Rhaid i chi ddewis statws masnachu cyn parhau",
   "Enter a valid opening date": "Ddim yn ddyddiad agor dilys",
@@ -600,5 +601,6 @@
   "Phone number:": "Rhif ffôn:",
   "Business support Wales": "Cymorth busnes - Wales",
   "Cymru": "Cymru",
-  "DeclarationLink": "https://www.food.gov.uk/cy/canllawiau-busnes/hysbysiad-preifatrwydd-ar-gyfer-adborth-cofrestru-busnesau-bwyd-gan-weithredwyr-busnesau-bwyd"
+  "DeclarationLink": "https://www.food.gov.uk/cy/canllawiau-busnes/hysbysiad-preifatrwydd-ar-gyfer-adborth-cofrestru-busnesau-bwyd-gan-weithredwyr-busnesau-bwyd",
+  "Web address": "Cyfeiriad gwe"
 }

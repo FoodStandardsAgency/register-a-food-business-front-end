@@ -136,6 +136,12 @@
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
+            {% if validatorErrors.establishment_web_address or propsData.establishment_web_address %}
+            {{ summaryListHelperHtml(__("Web address"), propsData.establishment_web_address, false) }}
+            {% endif %}
+        {% endif %}
+
+        {% if propsData.applicationCompletePage == null %}
             {% if propsData.establishment_opening_date or validatorErrors.establishment_opening_status or validatorErrors.establishment_opening_date %}
             {% set htmlValue = propsData.establishment_opening_date | date("DD MMM YYYY")  if propsData.establishment_opening_date else "" %}
             {% set formattedDate = propsData.establishment_opening_date | date("DD MMM YYYY")  %}
