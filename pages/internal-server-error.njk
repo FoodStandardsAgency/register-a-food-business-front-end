@@ -4,6 +4,7 @@
 
 {% extends "layout.njk" %}
 
+{% set props = mergeObjects(props, {backToStart: true}) %}
 
 {% block content %}
 

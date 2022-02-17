@@ -15,6 +15,8 @@ const {
   partnerDetailsRouter,
   pdfsRouter
 } = require("./routes/index");
+const { logEmitter } = require("./services/logging.service");
+const PropsGenerator = require("./propsGenerator");
 
 module.exports = () => {
   const router = Router();
@@ -38,6 +40,15 @@ module.exports = () => {
   router.use("/status", statusRouter());
   router.use("/partnership", partnerDetailsRouter());
   router.use("/pdfs", pdfsRouter());
+
+  // Error Handling
+  router.use((err, req, res, next) => {
+    logEmitter.emit(
+      "error",
+      "Routing error occured: " + err
+    );
+    res.render(`_error`, { props: PropsGenerator(req) })
+  })
 
   return router;
 };

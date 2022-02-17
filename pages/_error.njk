@@ -2,6 +2,8 @@
 
 {% extends "layout.njk" %}
 
+{% set props = mergeObjects(props, {backToStart: true}) %}
+
 {% block content %}
 {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">

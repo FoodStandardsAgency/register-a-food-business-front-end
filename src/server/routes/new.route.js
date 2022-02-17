@@ -79,7 +79,6 @@ const newRouter = () => {
               "/new route",
               "Maintenance Mode (Block New Users) Active. Rendering page: /maintenance"
             );
-            // app.render(req, res, `/maintenance`);
             res.render("maintenance");
           } else {
             logEmitter.emit(

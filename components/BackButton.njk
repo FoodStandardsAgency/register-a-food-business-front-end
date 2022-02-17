@@ -1,11 +1,11 @@
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 
 {% macro backButton(props) %}
-    {% if props.hideback %}
+    {% if props.hideback or not props.council %}
 
     {% elif props.backToStart %}
         {{ govukBackLink({
-            href: props.href if props.href else "/",
+            href: props.href if props.href else "/new/" + props.council,
             text: __("Back to start")
         }) }}
     {% elif props.editModeFirstPage %}
