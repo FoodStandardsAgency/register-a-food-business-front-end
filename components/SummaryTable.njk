@@ -25,7 +25,7 @@
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.operator_type or propsData.operator_type %}
-            {{ summaryListHelperWithoutEdit(__("Operator type"), propsData.operator_type, false) }}
+            {{ summaryListHelperWithoutEdit(__("Operator type"), __(propsData.operator_type), false) }}
             {% endif %}
         {% endif %} 
 
@@ -36,8 +36,8 @@
         {% endif %} 
 
         {% if propsData.applicationCompletePage == null %} 
-            {% if validatorErrors.companies_house_number or propsData.companies_house_number %}
-            {{ summaryListHelperWithoutEdit(__("Companies House number"), propsData.companies_house_number, false ) }}
+            {% if validatorErrors.companies_house_number or propsData.operator_companies_house_number %}
+            {{ summaryListHelperWithoutEdit(__("Companies House number"), propsData.operator_companies_house_number, false ) }}
             {% endif %}
         {% endif %} 
 
@@ -95,8 +95,11 @@
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.contact_representative_name or validatorErrors.contact_representative_role or validatorErrors.contact_representative_number or validatorErrors.contact_representative_email 
                 or propsData.contact_representative_name or propsData.contact_representative_role or propsData.contact_representative_number or propsData.contact_representative_email  %}
-                {% set contactRepRole = "\u2000\u2022" + propsData.contact_representative_role if propsData.contact_representative_role else null %}
-                {% set htmlValue = propsData.contact_representative_name + "<br>" + contactRepRole + "<br>" + prosData.contact_representative_number + "<br>" + prosData.contact_representative_email %}
+                    {% set contactRepRole = propsData.contact_representative_role if propsData.contact_representative_role else "" %}
+                    {% set htmlValue = (propsData.contact_representative_name if propsData.contact_representative_name else "") + "<br>" 
+                            + (propsData.contact_representative_role if propsData.contact_representative_role else "") + "<br>" 
+                            + (propsData.contact_representative_number if propsData.contact_representative_number else "") + "<br>" 
+                            + (propsData.contact_representative_email if propsData.contact_representative_email else "") %}
             {{ summaryListHelperHtmlWithoutEdit(__("Designated contact"), htmlValue, false) }}
             {% endif %}
         {% endif %}
@@ -119,7 +122,7 @@
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.establishment_type or propsData.establishment_type %}
-            {{ summaryListHelperWithoutEdit(__("Address type"), propsData.establishment_type, false) }}
+            {{ summaryListHelperWithoutEdit(__("Address type"), __(propsData.establishment_type), false) }}
             {% endif %}
         {% endif %}
 
@@ -155,13 +158,13 @@
                 {% set html %}
                     {% if propsData.opening_days_irregular == null %}
                         <div>
-                            <div id = "opening_day_monday">{{ propsData.opening_day_monday if propsData.opening_day_monday }} <div>
-                            <div id = "opening_day_tuesday">{{propsData.opening_day_tuesday if propsData.opening_day_tuesday }}<div>
-                            <div id = "opening_day_wednesday">{{propsData.opening_day_wednesday if propsData.opening_day_wednesday }}<div>
-                            <div id = "opening_day_thursday">{{propsData.opening_day_thursday if propsData.opening_day_thursday }}<div>
-                            <div id = "opening_day_friday">{{propsData.opening_day_friday if propsData.opening_day_friday }}<div>
-                            <div id = "opening_day_saturday">{{propsData.opening_day_saturday if propsData.opening_day_saturday }}<div>
-                            <div id = "opening_day_sunday">{{propsData.opening_day_sunday if propsData.opening_day_sunday }}<div>
+                            <div id = "opening_day_monday">{{__(propsData.opening_day_monday) if propsData.opening_day_monday }} <div>
+                            <div id = "opening_day_tuesday">{{__(propsData.opening_day_tuesday) if propsData.opening_day_tuesday }}<div>
+                            <div id = "opening_day_wednesday">{{__(propsData.opening_day_wednesday) if propsData.opening_day_wednesday }}<div>
+                            <div id = "opening_day_thursday">{{__(propsData.opening_day_thursday) if propsData.opening_day_thursday }}<div>
+                            <div id = "opening_day_friday">{{__(propsData.opening_day_friday) if propsData.opening_day_friday }}<div>
+                            <div id = "opening_day_saturday">{{__(propsData.opening_day_saturday) if propsData.opening_day_saturday }}<div>
+                            <div id = "opening_day_sunday">{{__(propsData.opening_day_sunday) if propsData.opening_day_sunday }}<div>
                         </div> 
                     {% else %}
                         {{propsData.opening_days_irregular}}
@@ -178,13 +181,13 @@
 
                 {% set html %}
                 <div>
-                    <div id = "opening_hours_monday">{{ "Monday: " + propsData.opening_hours_monday if propsData.opening_hours_monday }} <div>
-                    <div id = "opening_hours_tuesday">{{ "Tuesday: " + propsData.opening_hours_tuesday if propsData.opening_hours_tuesday }}<div>
-                    <div id = "opening_hours_wednesday">{{ "Wednesday: " + propsData.opening_hours_wednesday if propsData.opening_hours_wednesday }}<div>
-                    <div id = "opening_hours_thursday">{{ "Thursday: " + propsData.opening_hours_thursday if propsData.opening_hours_thursday }}<div>
-                    <div id = "opening_hours_friday">{{ "Friday:" + propsData.opening_hours_friday if propsData.opening_hours_friday }}<div>
-                    <div id = "opening_hours_saturday">{{ "Saturday: " + propsData.opening_hours_saturday if propsData.opening_hours_saturday }}<div>
-                    <div id = "opening_hours_sunday">{{ "Sunday: " + propsData.opening_hours_sunday if propsData.opening_hours_sunday }}<div>
+                    <div id = "opening_hours_monday">{{ __("Monday") + ": " + propsData.opening_hours_monday if propsData.opening_hours_monday }} <div>
+                    <div id = "opening_hours_tuesday">{{ __("Tuesday") + ": " + propsData.opening_hours_tuesday if propsData.opening_hours_tuesday }}<div>
+                    <div id = "opening_hours_wednesday">{{ __("Wednesday") + ": " + propsData.opening_hours_wednesday if propsData.opening_hours_wednesday }}<div>
+                    <div id = "opening_hours_thursday">{{ __("Thursday") + ": " + propsData.opening_hours_thursday if propsData.opening_hours_thursday }}<div>
+                    <div id = "opening_hours_friday">{{ __("Friday") + ":" + propsData.opening_hours_friday if propsData.opening_hours_friday }}<div>
+                    <div id = "opening_hours_saturday">{{ __("Saturday") + ": " + propsData.opening_hours_saturday if propsData.opening_hours_saturday }}<div>
+                    <div id = "opening_hours_sunday">{{ __("Sunday") + ": " + propsData.opening_hours_sunday if propsData.opening_hours_sunday }}<div>
                 </div> 
                 {% endset %}
 
@@ -194,7 +197,7 @@
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.water_supply or propsData.water_supply %}
-                {{ summaryListHelperWithoutEdit(__("Water supply"), propsData.water_supply, false) }}
+                {{ summaryListHelperWithoutEdit(__("Water supply"), __(propsData.water_supply), false) }}
             {% endif %}
         {% endif %}
 
@@ -202,19 +205,19 @@
         
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.customer_type or propsData.customer_type %}
-                {{ summaryListHelperWithoutEdit(__("Customers"), propsData.customer_type, false) }}
+                {{ summaryListHelperWithoutEdit(__("Customers"), __(propsData.customer_type), false) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.business_type or propsData.business_type %}
-            {{ summaryListHelperWithoutEdit(__("Business type"), propsData.business_type, false) }}
+            {{ summaryListHelperWithoutEdit(__("Business type"), __(propsData.business_type), false) }}
             {% endif %}
         {% endif %}
 
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.import_export_activities or propsData.import_export_activities %}
-            {{ summaryListHelperWithoutEdit(__("Import and export"), propsData.import_export_activities, false) }}
+            {{ summaryListHelperWithoutEdit(__("Import and export"), __(propsData.import_export_activities), false) }}
             {% endif %}
         {% endif %}
 
@@ -224,29 +227,29 @@
             {% endif %}
         {% endif %}
         
-            <h2 class="govuk-heading-m">{{__("Declaration") }}</h2>
-            {% if props.cumulativeFullAnswers.declaration1 %}
-                {% set html %}
-                <span id = "declaration1" > {{props.declaration1}}</span>
-                {% endset %}
+        <h2 class="govuk-heading-m">{{__("Declaration") }}</h2>
+        {% if props.cumulativeFullAnswers.declaration1 %}
+            {% set html %}
+            <span id = "declaration1" > {{props.declaration1}}</span>
+            {% endset %}
 
-            {{ summaryListDeclarationHelper(html, "Accepted" ) }}
-            {% endif%}
+            {{ summaryListDeclarationHelper(html, __("Accepted") ) }}
+        {% endif%}
 
-            {% if props.cumulativeFullAnswers.declaration2 %}
-                {% set html %}
-                <span id = "declaration2" >{{props.declaration2}}</span>
-                {% endset %}
+        {% if props.cumulativeFullAnswers.declaration2 %}
+            {% set html %}
+            <span id = "declaration2" >{{props.declaration2}}</span>
+            {% endset %}
 
-                {{ summaryListDeclarationHelper(html, "Accepted" ) }}
-            {% endif%}
+            {{ summaryListDeclarationHelper(html, __("Accepted") ) }}
+        {% endif%}
 
-            {% if props.cumulativeFullAnswers.declaration2 %}
-                {% set html %}
-                <span id = "declaration3" > {{props.declaration3}}</span>
-                {% endset %}
+        {% if props.cumulativeFullAnswers.declaration2 %}
+            {% set html %}
+            <span id = "declaration3" > {{props.declaration3}}</span>
+            {% endset %}
 
-                {{ summaryListDeclarationHelper(html, "Accepted" ) }}
-            {% endif%}
+            {{ summaryListDeclarationHelper(html, __("Accepted") ) }}
+        {% endif%}
 
 {% endmacro %}
