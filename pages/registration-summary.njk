@@ -151,13 +151,17 @@ summaryListDeclarationHelper %}
       {% if propsData.applicationCompletePage == null %}
         {% set html %}
         <div>
-          <div id = "opening_day_monday">{{ propsData.opening_day_monday if propsData.opening_day_monday }}</div>
-          <div id = "opening_day_tuesday">{{propsData.opening_day_tuesday if propsData.opening_day_tuesday }}</div>
-          <div id = "opening_day_wednesday">{{propsData.opening_day_wednesday if propsData.opening_day_wednesday }}</div>
-          <div id = "opening_day_thursday">{{propsData.opening_day_thursday if propsData.opening_day_thursday }}</div>
-          <div id = "opening_day_friday">{{propsData.opening_day_friday if propsData.opening_day_friday }}</div>
-          <div id = "opening_day_saturday">{{propsData.opening_day_saturday if propsData.opening_day_saturday }}</div>
-          <div id = "opening_day_sunday">{{propsData.opening_day_sunday if propsData.opening_day_sunday }}</div>
+          {% if propsData.opening_days_irregular == null %}
+            <div id = "opening_day_monday">{{ propsData.opening_day_monday if propsData.opening_day_monday }}</div>
+            <div id = "opening_day_tuesday">{{propsData.opening_day_tuesday if propsData.opening_day_tuesday }}</div>
+            <div id = "opening_day_wednesday">{{propsData.opening_day_wednesday if propsData.opening_day_wednesday }}</div>
+            <div id = "opening_day_thursday">{{propsData.opening_day_thursday if propsData.opening_day_thursday }}</div>
+            <div id = "opening_day_friday">{{propsData.opening_day_friday if propsData.opening_day_friday }}</div>
+            <div id = "opening_day_saturday">{{propsData.opening_day_saturday if propsData.opening_day_saturday }}</div>
+            <div id = "opening_day_sunday">{{propsData.opening_day_sunday if propsData.opening_day_sunday }}</div>
+          {% else %}
+            {{propsData.opening_days_irregular}}
+          {% endif %}
         </div>
         {% endset %}
 
@@ -166,20 +170,22 @@ summaryListDeclarationHelper %}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
-        {% set html %}
-        <div>
-          <div id = "opening_hours_monday">{{ "Monday: " + propsData.opening_hours_monday if propsData.opening_hours_monday }}</div>
-          <div id = "opening_hours_tuesday">{{ "Tuesday: " + propsData.opening_hours_tuesday if propsData.opening_hours_tuesday }}</div>
-          <div id = "opening_hours_wednesday">{{ "Wednesday: " + propsData.opening_hours_wednesday if propsData.opening_hours_wednesday }}</div>
-          <div id = "opening_hours_thursday">{{ "Thursday: " + propsData.opening_hours_thursday if propsData.opening_hours_thursday }}</div>
-          <div id = "opening_hours_friday">{{ "Friday:" + propsData.opening_hours_friday if propsData.opening_hours_friday }}</div>
-          <div id = "opening_hours_saturday">{{ "Saturday: " + propsData.opening_hours_saturday if propsData.opening_hours_saturday }}</div>
-          <div id = "opening_hours_sunday">{{ "Sunday: " + propsData.opening_hours_sunday if propsData.opening_hours_sunday }}</div>
-        </div>
-        {% endset %}
+        {% if propsData.opening_days_irregular == null %}
+          {% set html %}
+          <div>
+            <div id = "opening_hours_monday">{{ "Monday: " + propsData.opening_hours_monday if propsData.opening_hours_monday }}</div>
+            <div id = "opening_hours_tuesday">{{ "Tuesday: " + propsData.opening_hours_tuesday if propsData.opening_hours_tuesday }}</div>
+            <div id = "opening_hours_wednesday">{{ "Wednesday: " + propsData.opening_hours_wednesday if propsData.opening_hours_wednesday }}</div>
+            <div id = "opening_hours_thursday">{{ "Thursday: " + propsData.opening_hours_thursday if propsData.opening_hours_thursday }}</div>
+            <div id = "opening_hours_friday">{{ "Friday:" + propsData.opening_hours_friday if propsData.opening_hours_friday }}</div>
+            <div id = "opening_hours_saturday">{{ "Saturday: " + propsData.opening_hours_saturday if propsData.opening_hours_saturday }}</div>
+            <div id = "opening_hours_sunday">{{ "Sunday: " + propsData.opening_hours_sunday if propsData.opening_hours_sunday }}</div>
+          </div>
+          {% endset %}
 
-        {{ summaryListHelperHtml(__("Opening hours"), html, "/edit/opening-hours", propsData.opening_hours_monday or propsData.opening_hours_tuesday or propsData.opening_hours_wednesday 
-          or prosData.opening_hours_thursday or prosData.opening_hours_friday or prosData.opening_hours_saturday or prosData.opening_hours_sunday ) }}
+          {{ summaryListHelperHtml(__("Opening hours"), html, "/edit/opening-hours", propsData.opening_hours_monday or propsData.opening_hours_tuesday or propsData.opening_hours_wednesday 
+            or prosData.opening_hours_thursday or prosData.opening_hours_friday or prosData.opening_hours_saturday or prosData.opening_hours_sunday ) }}
+        {% endif %}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
