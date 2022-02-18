@@ -98,7 +98,7 @@ const submitController = async (
             );
             controllerResponse.redirectRoute = "/internal-server-error";
             logEmitter.emit(
-              "info",
+              "error",
               `Registration submission failed - ${
                 response.status + ": " + response.statusText
               }`
@@ -113,7 +113,7 @@ const submitController = async (
         controllerResponse.redirectRoute = "/internal-server-error";
         controllerResponse.submissionSucceeded = false;
         logEmitter.emit(
-          "info",
+          "error",
           `Registration submission failed - no status code returned - ${JSON.stringify(
             response
           )}`

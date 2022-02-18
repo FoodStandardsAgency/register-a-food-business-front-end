@@ -41,14 +41,5 @@ module.exports = () => {
   router.use("/partnership", partnerDetailsRouter());
   router.use("/pdfs", pdfsRouter());
 
-  // Error Handling
-  router.use((err, req, res, next) => {
-    logEmitter.emit(
-      "error",
-      "Routing error occured: " + err
-    );
-    res.render(`_error`, { props: PropsGenerator(req) })
-  })
-
   return router;
 };
