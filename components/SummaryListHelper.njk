@@ -1,5 +1,21 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
+{% macro summaryListHelperWithoutEdit(keyText, valueText, href, property, id) %}
+    {{ govukSummaryList({
+        rows: 
+        [
+        {
+        key: { 
+        text:  keyText
+        },
+        value: {
+        text: valueText
+        }          
+        }
+        ]
+    }) }}
+{% endmacro %}
+
 {% macro summaryListHelper(keyText, valueText, href, property, id) %}
 
   {% if property %}
@@ -35,6 +51,22 @@
         }
         ]
     }) }}
+{% endmacro %}
+
+{% macro summaryListHelperHtmlWithoutEdit(keyText, valueHtml, href, property) %}
+  {{ govukSummaryList({
+      rows: 
+      [
+      {
+      key: { 
+      text:  keyText
+      },
+      value: {
+      html: valueHtml
+      }            
+      }
+      ]
+  }) }}
 {% endmacro %}
 
 {% macro summaryListHelperHtml(keyText, valueHtml, href, property) %}

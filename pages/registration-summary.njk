@@ -206,7 +206,7 @@ summaryListDeclarationHelper %}
         {{ summaryListHelper(__("Import and export"), propsData.import_export_activities, "/edit/business-import-export", propsData.import_export_activities) }}
       {% endif %}
 
-      {% if propsData.applicationCompletePage %}
+      {% if propsData.applicationCompletePage == null %}
         {{ summaryListHelper(__("Additional details"), propsData.business_other_details, "/edit/business-other-details", propsData.business_other_details) }}
       {% endif %}
 
