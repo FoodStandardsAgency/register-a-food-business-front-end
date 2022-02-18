@@ -17,7 +17,7 @@
     }
   },
     hint: {
-    text: [__('For example') + ", ", creation_date | date("add", 40, "days") | date("DD MM YYYY")] | join
+    text: [__('For example') + ", ", creation_date | date(props.language, "DD MM YYYY", "add", 40, "days")] | join
   },
   items: [
     {
@@ -60,7 +60,7 @@
     }
   },
     hint: {
-    text: [__('For example') + ", ", creation_date | date("subtract", 40, "days") | date("DD MM YYYY")] | join
+    text: [__('For example') + ", ", creation_date | date(props.language, "DD MM YYYY", "subtract", 40, "days")] | join
   },
   items: [
     {

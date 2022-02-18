@@ -146,8 +146,7 @@
 
         {% if propsData.applicationCompletePage == null %}
             {% if propsData.establishment_opening_date or validatorErrors.establishment_opening_status or validatorErrors.establishment_opening_date %}
-            {% set htmlValue = propsData.establishment_opening_date | date("DD MMM YYYY")  if propsData.establishment_opening_date else "" %}
-            {% set formattedDate = propsData.establishment_opening_date | date("DD MMM YYYY")  %}
+            {% set htmlValue = propsData.establishment_opening_date | date(props.language, "DD MMM YYYY")  if propsData.establishment_opening_date else "" %}
             {{ summaryListHelperWithoutEdit(__("Trading date"), htmlValue, false) }}
             {% endif %}
         {% endif %}

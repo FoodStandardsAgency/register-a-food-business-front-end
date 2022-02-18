@@ -38,7 +38,7 @@
       text: __("Please keep note of this registration application reference for your records.")
      }) }}
     
-     {% set formattedDate =  creation_date | date("DD MMMM YYYY")   %}
+    {% set formattedDate =  creation_date | date(props.language, "DD MMMM YYYY") %}
       <h2 class="govuk-heading-m">{{__("Submitted on") }}</h2>
       <p class="govuk-body" style="margin-top:-20px">{{ formattedDate }}</p>
   
