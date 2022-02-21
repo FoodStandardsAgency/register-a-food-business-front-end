@@ -57,7 +57,8 @@
             "name": "establishment_address_line_2",
             "classes": "govuk-label--l",
             "autoComplete": "address-line2",
-            "value": props.cumulativeFullAnswers.establishment_address_line_2
+            "value": props.cumulativeFullAnswers.establishment_address_line_2,
+            "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_2) } if props.validatorErrors.establishment_address_line_2
         }) }}
 
         {{ govukInput({
@@ -68,7 +69,8 @@
             "name": "establishment_address_line_3",
             "classes": "govuk-label--l",
             "autoComplete": "address-line3",
-            "value": props.cumulativeFullAnswers.establishment_address_line_3
+            "value": props.cumulativeFullAnswers.establishment_address_line_3,
+            "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_3) } if props.validatorErrors.establishment_address_line_3
         }) }}
 
         {{ govukInput({
