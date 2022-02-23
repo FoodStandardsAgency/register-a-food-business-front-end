@@ -76,7 +76,8 @@
               "name": "operator_address_line_2",
               "classes": "govuk-label--l",
               "autoComplete": "address-line2",
-              "value": props.cumulativeFullAnswers.operator_address_line_2
+              "value": props.cumulativeFullAnswers.operator_address_line_2,
+              "errorMessage": { "text": __(props.validatorErrors.operator_address_line_2) } if props.validatorErrors.operator_address_line_2
           }) }}
 
           {{ govukInput({
@@ -87,7 +88,8 @@
               "name": "operator_address_line_3",
               "classes": "govuk-label--l",
               "autoComplete": "address-line3",
-              "value": props.cumulativeFullAnswers.operator_address_line_3
+              "value": props.cumulativeFullAnswers.operator_address_line_3,
+              "errorMessage": { "text": __(props.validatorErrors.operator_address_line_3) } if props.validatorErrors.operator_address_line_3
           }) }}
 
           {{ govukInput({
