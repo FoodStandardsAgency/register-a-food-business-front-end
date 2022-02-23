@@ -96,7 +96,8 @@
         },
         "id": "establishment_secondary_number",
         "name": "establishment_secondary_number",
-        "value": (props.cumulativeFullAnswers.operator_secondary_number) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_secondary_number)
+        "value": (props.cumulativeFullAnswers.operator_secondary_number) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_secondary_number),
+        "errorMessage": { "text": __(props.validatorErrors.establishment_secondary_number)} if props.validatorErrors.establishment_secondary_number
       }) }}
 
         {{ govukInput({
