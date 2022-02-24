@@ -127,7 +127,7 @@
 	"Company details": "Company details",
 	"The name of the registered company that is acting as the operator of this food business.": "The name of the registered company that is acting as the operator of this food business.",
 	"Registered company name": "Registered company name",
-	"Every registered company will have a Companies House reference number.": "Every registered company will have a Companies House reference number.",
+	"Every registered company will have a Companies House reference number which will usually be either eight numbers (e.g. 12345678) or two letters followed by six numbers (e.g. AB123456)": "Every registered company will have a Companies House reference number which will usually be either eight numbers (e.g. 12345678) or two letters followed by six numbers (e.g. AB123456)",
 	"Companies House number": "Companies House number",
 	"I don't know my Companies House number": "I don't know my Companies House number",
 	"Every limited company has to be registered with Companies House, and will have a company reference number. You can find your company reference number by visiting the": "Every limited company has to be registered with Companies House, and will have a company reference number. You can find your company reference number by visiting the",
@@ -606,5 +606,6 @@
 	"Edit": "Edit",
 	"Remove": "Remove",
 	"How we will use your data (opens in new window)": "How we will use your data (opens in new window)",
-	"You may receive an unannounced food inspection from your local council soon after you start trading.": "You may receive an unannounced food inspection from your local council soon after you start trading."
+	"You may receive an unannounced food inspection from your local council soon after you start trading.": "You may receive an unannounced food inspection from your local council soon after you start trading.",
+	"For example, SW1H 9EX": "For example, SW1H 9EX"
 }
