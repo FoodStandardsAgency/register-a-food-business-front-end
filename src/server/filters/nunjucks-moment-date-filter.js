@@ -6,21 +6,23 @@ let defaultLocale = "en";
 function getFilter(dateString, locale, format, ...args) {
   let [operation = null, arg1 = null, arg2 = null] = args;
 
-  if (!format) format = defaultFormat;
-  if (!locale) locale = defaultLocale;
+  let requiredFormat = format;
+  let requiredLocale = locale;
+  if (!requiredFormat) requiredFormat = defaultFormat;
+  if (!requiredLocale) requiredLocale = defaultLocale;
 
   moment.locale(locale);
 
   if (operation) {
-    if (operation == "add" && arg1 && arg2) {
-      return moment(dateString).add(arg1, arg2).format(format);
+    if (operation === "add" && arg1 && arg2) {
+      return moment(dateString).add(arg1, arg2).format(requiredFormat);
     }
-    if (operation == "subtract" && arg1 && arg2) {
-      return moment(dateString).subtract(arg1, arg2).format(format);
+    if (operation === "subtract" && arg1 && arg2) {
+      return moment(dateString).subtract(arg1, arg2).format(requiredFormat);
     }
   }
 
-  return moment(dateString).format(format);
+  return moment(dateString).format(requiredFormat);
 }
 
 module.exports = getFilter;

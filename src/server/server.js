@@ -8,7 +8,6 @@ var sassMiddleware = require("node-sass-middleware");
 var path = require("path");
 const getRandomValues = require("get-random-values");
 const dateFilter = require("./filters/nunjucks-moment-date-filter.js");
-const fs = require("fs");
 
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&

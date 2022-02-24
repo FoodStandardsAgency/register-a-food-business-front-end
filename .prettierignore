@@ -1,7 +1,7 @@
 /src/components-react/crown.svg
 /src/server/static/pdfs/feedback-declaration.pdf
 /src/server/static/pdfs/RAFB Privacy Notice Cymraeg.pdf
-/src/server/static/auto-complete/bundle.js
+/src/server/static/*
 .DS_Store
 /docs
 *.njk
