@@ -73,8 +73,6 @@
         }
       }) %}
 
-        {{ establishmentHiddenDetails() }}
-
         {{ govukInsetText({
         text: table(props)
       }) }}
@@ -103,9 +101,6 @@
         {{ govukInput({
         "label": {
           "text": __("Establishment email address")
-        },
-        "hint": {
-          "text": __("We will use your email to keep you informed of any policy or legal changes that could affect your food business.")
         },
         "id": "establishment_email",
         "name": "establishment_email",
