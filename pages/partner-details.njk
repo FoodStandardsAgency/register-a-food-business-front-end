@@ -16,20 +16,21 @@
       {% call postForm(props.partnerDetailsSaveFormAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
-      {{ govukInput({
-        label: {
+      {{ govukInput({ 
+            label: {
             text: __("Edit partner's name") if props.cumulativeFullAnswers.partners[props.cumulativeFullAnswers.targetPartner] else __("Add partner's name"),
             classes: "govuk-label--l",
             isPageHeading: true
-        },
-        id: "partner_name",
-        name: "partner_name",
-        hint: {
-            text: __("Full name")
-        },
-        value: props.cumulativeFullAnswers.partners[
-                  props.cumulativeFullAnswers.targetPartner
-                ]
+                  },
+            id: "partner_name",
+            name: "partner_name",
+            hint: {
+                text: __("Full name")
+             },
+            value: props.cumulativeFullAnswers.partners[
+            props.cumulativeFullAnswers.targetPartner
+            ],
+            "errorMessage": { "text": __(props.validatorErrors.partner_name) } if props.validatorErrors.partner_name
         }) }}
 
         <div class="govuk-grid-row">
