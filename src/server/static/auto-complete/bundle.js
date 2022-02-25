@@ -2401,6 +2401,7 @@
         const validateOpeningHours = require("./validationFunctions/validateOpeningHours");
         const validateMandatoryString = require("./validationFunctions/validateMandatoryString");
         const validateFsaReferenceNumber = require("./validationFunctions/validateFsaRn");
+        const validateWebAddress = require("./validationFunctions/validateWebAddress");
         const { businessTypeEnum } = require("./enums/businessTypeEnum.js");
         const { operatorTypeEnum } = require("./enums/operatorTypeEnum.js");
         const {
@@ -2443,6 +2444,7 @@
           validateOpeningHours,
           validateMandatoryString,
           validateFsaReferenceNumber,
+          validateWebAddress,
           businessTypeEnum,
           operatorTypeEnum,
           establishmentTypeEnum,
@@ -2489,7 +2491,8 @@
         "./validationFunctions/validatePhoneNumberOptional": 115,
         "./validationFunctions/validatePostCode": 116,
         "./validationFunctions/validateRadioButtons": 117,
-        "./validationFunctions/validateWaterSupply": 118
+        "./validationFunctions/validateWaterSupply": 118,
+        "./validationFunctions/validateWebAddress": 119
       }
     ],
     8: [
@@ -14248,6 +14251,42 @@
     ],
     119: [
       function (require, module, exports) {
+        /**
+         * Function for validating the web address optional string
+         * @module functions/validateWebAddress
+         */
+        const { isURL, trim, isEmpty } = require("validator");
+
+        /**
+         * Runs custom validation on the string web address. It will be true if the input is less than 256 characters. It will be true if the input is a valid web address compliant with the validator npm package. Empty string will return true as the field is optional.
+         *
+         * @param {string} webAddress The text string of the web address the user supplies
+         *
+         * @returns {boolean} It will return true if the string is valid and false if it is not valid
+         */
+
+        const validateWebAddress = (webAddress) => {
+          if (typeof webAddress === "string") {
+            if (webAddress.length <= 255) {
+              const noWhiteSpaceWebAddress = trim(webAddress);
+              if (isEmpty(webAddress)) {
+                return true;
+              }
+              if (isEmpty(noWhiteSpaceWebAddress)) {
+                return false;
+              }
+              return isURL(noWhiteSpaceWebAddress);
+            }
+            return false;
+          }
+        };
+
+        module.exports = validateWebAddress;
+      },
+      { validator: 9 }
+    ],
+    120: [
+      function (require, module, exports) {
         var stemmer = require("./stemmer");
 
         exports = module.exports = require("./langs/english");
@@ -14255,9 +14294,9 @@
         exports.among = stemmer.among;
         exports.except = stemmer.except;
       },
-      { "./langs/english": 120, "./stemmer": 121 }
+      { "./langs/english": 121, "./stemmer": 122 }
     ],
-    120: [
+    121: [
       function (require, module, exports) {
         var stemmer = require("../stemmer"),
           alphabet = "abcdefghijklmnopqrstuvwxyz",
@@ -14491,9 +14530,9 @@
           return r1 >= l && shortv(word, l - 2);
         }
       },
-      { "../stemmer": 121 }
+      { "../stemmer": 122 }
     ],
-    121: [
+    122: [
       function (require, module, exports) {
         var stemmer = {},
           cache = {};
@@ -14552,7 +14591,7 @@
       },
       {}
     ],
-    122: [
+    123: [
       function (require, module, exports) {
         var stemmer = require("stem-porter");
 
@@ -14594,9 +14633,9 @@
             if (query) {
               displayNameMatchArray = businessTypesArray
                 // check for matching words and beginnings of words in the display value
-                .filter((entry) => {
-                  checkForQueryMatch(entry.value[window.language], query);
-                })
+                .filter((entry) =>
+                  checkForQueryMatch(entry.value[window.language], query)
+                )
                 // remove the searchTerm field of each result
                 .map((entry) => {
                   return {
@@ -14655,10 +14694,10 @@
       },
       {
         "@slice-and-dice/register-a-food-business-validation": 7,
-        "stem-porter": 119
+        "stem-porter": 120
       }
     ],
-    123: [
+    124: [
       function (require, module, exports) {
         (function webpackUniversalModuleDefinition(e, t) {
           "object" == typeof exports && "object" == typeof module
@@ -16913,7 +16952,7 @@
       },
       {}
     ],
-    124: [
+    125: [
       function (require, module, exports) {
         var businessTypeFunctions = require("./BusinessTypeLookupFunctions.js");
 
@@ -16937,11 +16976,11 @@
         });
       },
       {
-        "./BusinessTypeLookupFunctions.js": 122,
-        "./accessible-autocomplete.min.js": 123
+        "./BusinessTypeLookupFunctions.js": 123,
+        "./accessible-autocomplete.min.js": 124
       }
     ]
   },
   {},
-  [122, 124]
+  [123, 125]
 );

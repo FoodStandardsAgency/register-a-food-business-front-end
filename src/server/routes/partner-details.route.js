@@ -4,8 +4,6 @@
  * Routes: /partner-details/:originator
  * @module routers/partner-details
  */
-const { app } = require("../server.js");
-
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const {

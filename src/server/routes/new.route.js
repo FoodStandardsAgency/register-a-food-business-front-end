@@ -3,7 +3,6 @@
  * Routes: /new/:lc, /new/:lc/:page
  * @module routers/new
  */
-const { app } = require("../server");
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 

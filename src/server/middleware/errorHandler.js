@@ -1,4 +1,3 @@
-const { app } = require("../server");
 const { error } = require("winston");
 const PropsGenerator = require("../propsGenerator");
 
