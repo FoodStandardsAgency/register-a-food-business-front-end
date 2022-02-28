@@ -24,33 +24,22 @@
     {% set hrefText = __("Enter answer") %}
   {% endif %}
 
-  {{ govukSummaryList({
-        rows: 
-        [
-        {
-        key: { 
-        text:  keyText
-        },
-        value: {
-        text: valueText
-        },
-        id:
-        {
-        text: id
-        },
-        actions: 
-        {
-        items: 
-            [
-            {
-            href: href,
-            text: hrefText
-            }
-            ]
-        }               
-        }
-        ]
-    }) }}
+  <dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        {{ keyText }}
+      </dt>
+      <dd class="govuk-summary-list__value" id={{id}}>
+        {{ valueText }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a class="govuk-link" href={{href}}>
+          {{ hrefText }}
+        </a>
+      </dd>
+    </div>
+  </dl>
+
 {% endmacro %}
 
 {% macro summaryListHelperHtmlWithoutEdit(keyText, valueHtml, href, property) %}
