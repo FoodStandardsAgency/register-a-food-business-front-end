@@ -148,6 +148,10 @@ const getPageDetails = {
   getSelectionBox: function($){
     const selected = $(":selected");
     return selected;
+  },
+  getHintText: function ($) {
+    const insetText = $(".govuk-hint").contents().get(0).data;
+    return insetText.trim();
   }
 };
 

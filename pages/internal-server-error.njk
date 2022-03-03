@@ -16,13 +16,9 @@
       <p class="govuk-body">{{__("Sorry about that, we seem to be experiencing some difficulties.")}}</p>
       <p class="govuk-body">{{__("Please try again later.")}}</p>
 
-      {% call 
-        govukButton({
-        text: __("Return to food.gov.uk"),
-        href: "https://www.food.gov.uk/business-guidance/register-a-food-business"
-        }) 
-        %}
-      {% endcall%}
+      <button class="govuk-button" data-module="govuk-button" href="https://www.food.gov.uk/business-guidance/register-a-food-business" id="server-error-form">
+        {{__("Return to food.gov.uk")}}
+      </button>
     </div>
   </div>
 

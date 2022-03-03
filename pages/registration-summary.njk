@@ -58,7 +58,7 @@ summaryListDeclarationHelper %}
 
       {% if propsData.applicationCompletePage == null %}
         {% set html %}
-        <div>
+        <div id="operator-name">
           {% if props.cumulativeFullAnswers.registration_role === "SOLETRADER" or props.cumulativeFullAnswers.operator_type === "PERSON" %}
             <span id = "operator_first_name">{{(propsData.operator_first_name if propsData.operator_first_name else "") }}</span>
             <span id = "operator_last_name">{{(propsData.operator_last_name if propsData.operator_last_name else "") }}</span>
