@@ -1,140 +1,88 @@
-import PartnerName from "../pages/partner-name";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const testSwitches = {};
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: { },
+  language: "en"
+};
 
-describe("<PartnerName />", () => {
+const propsWith5PartnersArray = {
+  validatorErrors: {},
+  cumulativeFullAnswers: { partners: ["one", "two", "three", "four", "five"] },
+  language: "en"
+};
+
+const propsWith2PartnersArray = {
+  validatorErrors: {},
+  cumulativeFullAnswers: { partners: ["one", "two"] },
+  language: "en"
+};
+
+describe("partner-name", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<PartnerName />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("partner-name", props);
+
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual(
+      "What are the partners' names?"
+    );
+  });
+
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("partner-name", propsWith5PartnersArray);
+
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
   });
 
   describe("when partners array is not defined", () => {
-    it("does not render PartnersTable", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <PartnerName
-            partnerDetailsUrl="/partnership/partner-details"
-            validatorErrors={{ error: "" }}
-            cumulativeFullAnswers={{}}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const partnersTable = wrapper.find("PartnersTable");
-      expect(partnersTable.length).toBe(0);
+    it("does not render PartnersTable but renders add partner button", () => {
+      let $answer;
+      const $ = renderPage("partner-name", props);
 
-      const partnerRows = wrapper.find("AccessibleTableRow");
-      expect(partnerRows.length).toBe(0);
+      $answer = $(".govuk-table"); 
+      expect($answer.length).toBe(0);
 
-      const addPartner = wrapper.find("#addPartnerLink");
-      expect(addPartner.props().href).toBe("/partnership/partner-details");
+      $answer = $(".govuk-table__body"); 
+      expect($answer.length).toBe(0);
 
-      const ContinueButton = wrapper.find("ContinueButton");
-      expect(ContinueButton.length).toBe(0);
+      $answer = $("#addPartnerButton"); 
+      expect($answer.length).toBe(1);
+
     });
   });
 
-  describe("when partners array is defined and has no items", () => {
-    it("does not render PartnersTable", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <PartnerName
-            partnerDetailsUrl="/partnership/partner-details"
-            validatorErrors={{ error: "" }}
-            cumulativeFullAnswers={{ partners: [] }}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const partnersTable = wrapper.find("PartnersTable");
-      expect(partnersTable.length).toBe(0);
+  describe("when 5 partners are defined", () => {
+    it("Renders PartnersTable but not add partner button", () => {
+      let $answer;
+      const $ = renderPage("partner-name", propsWith5PartnersArray);
 
-      const partnerRows = wrapper.find("AccessibleTableRow");
-      expect(partnerRows.length).toBe(0);
+      $answer = $(".govuk-table"); 
+      expect($answer.length).toBe(1);
 
-      const addPartner = wrapper.find("#addPartnerLink");
-      expect(addPartner.props().href).toBe("/partnership/partner-details");
+      $answer = $(".govuk-table__body"); 
+      expect($answer.length).toBe(1);
 
-      const ContinueButton = wrapper.find("ContinueButton");
-      expect(ContinueButton.length).toBe(0);
+      $answer = $("#addPartnerButton"); 
+      expect($answer.length).toBe(0);
+      
     });
   });
 
-  describe("when partners array has one item", () => {
-    it("renders PartnersTable with that item", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <PartnerName
-            partnerDetailsUrl="/partnership/partner-details"
-            validatorErrors={{ error: "" }}
-            cumulativeFullAnswers={{ partners: ["one"] }}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const partnersTable = wrapper.find("PartnersTable");
-      expect(partnersTable.length).toBe(1);
+  describe("when 2 partners are defined", () => {
+    it("renders the partner table and button", () => {
+      let $answer;
+      const $ = renderPage("partner-name", propsWith2PartnersArray);
 
-      const partnerRows = wrapper.find("AccessibleTableRow");
-      expect(partnerRows.length).toBe(1);
+      $answer = $(".govuk-table"); 
+      expect($answer.length).toBe(1);
 
-      const addPartner = wrapper.find("#addPartnerLink");
-      expect(addPartner.props().href).toBe("/partnership/partner-details");
+      $answer = $(".govuk-table__body"); 
+      expect($answer.length).toBe(1);
 
-      const ContinueButton = wrapper.find("ContinueButton");
-      expect(ContinueButton.length).toBe(0);
-    });
-  });
-
-  describe("when partners array has two items", () => {
-    it("renders PartnersTable with those items", () => {
-      const wrapper = mount(
-        <PartnerName
-          partnerDetailsUrl="/partnership/partner-details"
-          validatorErrors={{ error: "" }}
-          cumulativeFullAnswers={{ partners: ["one", "two"] }}
-          switches={testSwitches}
-        />
-      );
-      const partnersTable = wrapper.find("PartnersTable");
-      expect(partnersTable.length).toBe(1);
-
-      const partnerRows = wrapper.find("AccessibleTableRow");
-      expect(partnerRows.length).toBe(2);
-
-      const addPartner = wrapper.find("#addPartnerLink");
-      expect(addPartner.props().href).toBe("/partnership/partner-details");
-
-      const ContinueButton = wrapper.find("ContinueButton");
-      expect(ContinueButton.length).toBe(1);
-    });
-  });
-
-  describe("when partners array has five items", () => {
-    it("renders PartnersTable with those items", () => {
-      const wrapper = mount(
-        <PartnerName
-          validatorErrors={{ error: "" }}
-          cumulativeFullAnswers={{
-            partners: ["one", "two", "three", "four", "five"]
-          }}
-          switches={testSwitches}
-        />
-      );
-      const partnersTable = wrapper.find("PartnersTable");
-      expect(partnersTable.length).toBe(1);
-
-      const partnerRows = wrapper.find("AccessibleTableRow");
-      expect(partnerRows.length).toBe(5);
-
-      const addPartner = wrapper.find("#addPartnerButton");
-      expect(addPartner.length).toBe(0);
-
-      const ContinueButton = wrapper.find("ContinueButton");
-      expect(ContinueButton.length).toBe(1);
+      $answer = $("#addPartnerButton"); 
+      expect($answer.length).toBe(1);
+      
     });
   });
 });

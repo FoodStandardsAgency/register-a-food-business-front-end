@@ -1,130 +1,71 @@
-import OperatorCompanyDetails from "../pages/operator-company-details";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: {
+    operator_company_name: "Test",
+    operator_companies_house_number: "12345678"
+  },
+  council: "cardiff",
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-const testSwitches = {};
+const $ = renderPage("operator-company-details", props);
 
-describe("<OperatorCompanyDetails />", () => {
+describe("operator-company-details", () => {
+  it("It should pass accessibility tests", async () => {
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
+
   it("renders without crashing", () => {
-    const wrapper = shallow(<OperatorCompanyDetails />);
-    expect(wrapper.length).toBe(1);
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual("Company details");
   });
 
-  describe("company name input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorCompanyDetails
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
+  describe("It should have correct label together with input field and value", () => {
+    it("renders operator company details fields correctly", () => {
+      const $companyName = $("#operator_company_name");
+      expect($companyName.get(0).attribs.name).toBe(
+        "operator_company_name"
       );
-      const operatorCompanyName = wrapper.find(
-        "InputField#operator_company_name"
+      expect($companyName.get(0).attribs.value).toBe("Test");
+
+      const $companiesHouseNumber = $("#operator_companies_house_number");
+      expect($companiesHouseNumber.get(0).attribs.name).toBe(
+        "operator_companies_house_number"
       );
-      expect(operatorCompanyName.length).toBe(1);
+      expect($companiesHouseNumber.get(0).attribs.value).toBe("12345678");
     });
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_company_name: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorCompanyDetails
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const operatorCompanyName = wrapper.find(
-        "InputField#operator_company_name"
-      );
-      expect(operatorCompanyName.props().meta.error).toBe("test error");
-    });
+    it("renders operator contact detail labels correctly", () => {
+      const $inputLabelTextcompanyName = getPageDetails.getInputLabelText($, 0);
+      expect($inputLabelTextcompanyName).toEqual("Registered company name");
 
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_company_name: "default"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorCompanyDetails
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
+      const $inputLabelTextcompaniesHouseNumber = getPageDetails.getInputLabelText(
+        $,
+        1
       );
-      const operatorCompanyName = wrapper.find(
-        "InputField#operator_company_name"
+      expect($inputLabelTextcompaniesHouseNumber).toEqual(
+        "Companies House number"
       );
-      expect(operatorCompanyName.props().input.defaultValue).toBe("default");
     });
   });
 
-  describe("Companies House reference number input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <OperatorCompanyDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorCompaniesHouseNumber = wrapper.find(
-        "InputField#operator_companies_house_number"
-      );
-      expect(operatorCompaniesHouseNumber.length).toBe(1);
+  it("renders the correct errors", async () => {
+    const $ = renderPage("operator-company-details", {
+      language: "en",
+      validatorErrors: {
+        operator_company_name: "Test",
+        operator_companies_house_number: "Test1"
+      }
     });
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_companies_house_number: "test error"
-      };
-      const wrapper = mount(
-        <OperatorCompanyDetails
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorCompaniesHouseNumber = wrapper.find(
-        "InputField#operator_companies_house_number"
-      );
-      expect(operatorCompaniesHouseNumber.props().meta.error).toBe(
-        "test error"
-      );
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_companies_house_number: "default"
-      };
-      const wrapper = mount(
-        <OperatorCompanyDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorCompaniesHouseNumber = wrapper.find(
-        "InputField#operator_companies_house_number"
-      );
-      expect(operatorCompaniesHouseNumber.props().input.defaultValue).toBe(
-        "default"
-      );
-    });
+    const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+    expect($pageErrors.length).toBe(2);
+    expect($pageErrors.contents().get(0).data).toBe(
+      "Test"
+    );
+    expect($pageErrors.contents().get(1).data).toBe("Test1");
   });
 });

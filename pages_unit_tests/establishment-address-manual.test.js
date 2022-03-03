@@ -48,7 +48,7 @@ describe("operator-address-manual", () => {
   it("renders correct inset text", () => {
     const $detailsText = getPageDetails.getDetailsText($);
     expect($detailsText).toEqual(
-      "An establishment is the location of your food business, and the food activities taking place there. If it is a mobile food business, please use the location where it is normally stored overnight."
+      "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight."
     );
   });
 

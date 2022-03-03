@@ -29,43 +29,43 @@ describe("establishment-opening-date-retroactive", () => {
     });
 
     it("check that month is correct", async () => {
-        const $ = renderPage('establishment-opening-date-retroactive', props);
-        const $textArea = $('#month');
-        expect($textArea.get(0).attribs.value).toBe("01");
-      });
+      const $ = renderPage('establishment-opening-date-retroactive', props);
+      const $textArea = $('#month');
+      expect($textArea.get(0).attribs.value).toBe("01");
+    });
 
-      it("check that year is correct", async () => {
-        const $ = renderPage('establishment-opening-date-retroactive', props);
-        const $textArea = $('#year');
-        expect($textArea.get(0).attribs.value).toBe("1111");
-      });
+    it("check that year is correct", async () => {
+      const $ = renderPage('establishment-opening-date-retroactive', props);
+      const $textArea = $('#year');
+      expect($textArea.get(0).attribs.value).toBe("1111");
+    });
       
     describe("Error messages displayed", () => {
-        it("renders the correct summary error", async () => {
-          const $ = renderPage("establishment-opening-date-retroactive", {
-            language: "cy",
-            validatorErrors: {
-                establishment_opening_date: "test error"
-            }
-          });
-  
-          const $pageErrors = getPageDetails.getErrorSummaryLinks($);
-          expect($pageErrors.length).toBe(1);
-          expect($pageErrors.contents().get(0).data).toBe("test error");
+      it("renders the correct summary error", async () => {
+        const $ = renderPage("establishment-opening-date-retroactive", {
+          language: "cy",
+          validatorErrors: {
+              establishment_opening_date: "test error"
+          }
         });
+
+        const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+        expect($pageErrors.length).toBe(1);
+        expect($pageErrors.contents().get(0).data).toBe("test error");
+      });
   
-        it("renders the correct error", async () => {
-          const $ = renderPage("establishment-opening-date-retroactive", {
-            language: "cy",
-            validatorErrors: {
-                establishment_opening_date: "test error"
-            }
-          });
-  
-          const $inputError = $("#establishment_opening_date-error");
-          expect($inputError.length).toBe(1);
-          expect($inputError.contents().get(2).data.trim()).toBe("test error");
-});
-});
-});
+      it("renders the correct error", async () => {
+        const $ = renderPage("establishment-opening-date-retroactive", {
+          language: "cy",
+          validatorErrors: {
+              establishment_opening_date: "test error"
+          }
+        });
+
+        const $inputError = $("#establishment_opening_date-error");
+        expect($inputError.length).toBe(1);
+        expect($inputError.contents().get(2).data.trim()).toBe("test error");
+      });
+    });
+  });
 });

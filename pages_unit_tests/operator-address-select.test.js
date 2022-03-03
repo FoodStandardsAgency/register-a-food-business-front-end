@@ -132,7 +132,7 @@ describe("operator-address-select", () => {
         addressLookups: exampleAddressLookup
       });
       const $postCodeNotFindlink = $(".govuk-grid-column-full a")
-        .get(1)
+        .get(0)
         .attribs.href.trim();
       expect($postCodeNotFindlink).toEqual(
         "/new/cardiff/operator-address-manual?edit=operator-address-manual"
@@ -146,7 +146,7 @@ describe("operator-address-select", () => {
         addressLookups: exampleAddressLookup
       });
       const $postCodeNotFindlink = $(".govuk-grid-column-full a")
-        .get(1)
+        .get(0)
         .attribs.href.trim();
       expect($postCodeNotFindlink).toEqual(
         "/new/cardiff/operator-address-manual"

@@ -9,6 +9,7 @@ const props = {
   language: "en"
 };
 
+
 const $ = renderPage("operator-address", props);
 
 describe("Operator-address", () => {
@@ -25,9 +26,9 @@ describe("Operator-address", () => {
   });
 
   it("renders correct Inset text", () => {
-    const $insetText = getPageDetails.getInsetText($);
+    const $insetText = getPageDetails.getHintText($);
     expect($insetText).toEqual(
-      "The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates."
+      "Partnership address is the contact address for the partner who is the main point of contact."
     );
   });
 

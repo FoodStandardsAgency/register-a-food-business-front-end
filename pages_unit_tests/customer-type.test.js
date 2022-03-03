@@ -2,7 +2,7 @@ const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
-  cumulativeFullAnswers: { customer_end: "END_CONSUMER" },
+  cumulativeFullAnswers: { supply_directly: "END_CONSUMER" },
   language: "en"
 };
 

@@ -31,7 +31,7 @@ describe("opening-days-irregular", () => {
     it("gets given the correct default value", () => {
       const $ = renderPage('opening-days-irregular', props);
       const $textArea = $('#opening_days_irregular');
-      expect($textArea.get(0).attribs.name).toBe("default");
+      expect($textArea.get(0).children[0].data).toBe("default");
       });
 
     describe("Error messages displayed", () => {

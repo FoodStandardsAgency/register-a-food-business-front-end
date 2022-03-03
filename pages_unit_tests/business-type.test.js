@@ -2,7 +2,7 @@ const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
-  cumulativeFullAnswers: { businessTypeLookup: "Beekeeper (keeper)" },
+  cumulativeFullAnswers: { business_type: "Vending machine (sweets)" },
   language: "en"
 };
 
@@ -21,21 +21,6 @@ describe("business-type", () => {
 
     const results = await axe($.html());
     expect(results).toHaveNoViolations();
-  });
-
-  it("picks up selection", async () => {
-    const $ = renderPage("business-type", props);
-
-    const $businessTypeDropdown = getPageDetails.getSelectionBox($);
-    expect($businessTypeDropdown.length).toBe(1);
-  });
-
-  describe("Radio boxes have correct value", () => {
-        it("renders the Soletrader radio button with the correct value", () => {
-      const $ = renderPage("business-type", props);
-      const $businessType = $("#business_type_beekeeper"); 
-      expect($businessType.get(0).attribs.value).toBe("Beekeeper (keeper)");
-    });
   });
 
   describe("Error messages displayed", () => {
@@ -61,9 +46,9 @@ describe("business-type", () => {
         }
       });
 
-      const $radioError = $("#business_type-error");
-      expect($radioError.length).toBe(1);
-      expect($radioError.contents().get(2).data.trim()).toBe("test error");
+      const $inputError = $("#business_type-error");
+      expect($inputError.length).toBe(1);
+      expect($inputError.contents()[0].data.trim()).toBe("test error");
     });
   });
 });

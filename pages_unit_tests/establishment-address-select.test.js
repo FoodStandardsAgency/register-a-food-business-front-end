@@ -96,14 +96,14 @@ describe("establishment-address-select", () => {
       );
     });
 
-    it("renders correct href link when 'I can't find my address in the list' is truthy and switch of props.editModeFirstPage", async () => {
+    it("renders correct href link when 'I can't find my address in the list' is truthy and switch off props.editModeFirstPage", async () => {
       const $ = renderPage("establishment-address-select", {
         editModeFirstPage: true,
         council: "cardiff",
         addressLookups: exampleAddressLookup
       });
       const $postCodeNotFindlink = $(".govuk-grid-column-full a")
-        .get(1)
+        .get(0)
         .attribs.href.trim();
       expect($postCodeNotFindlink).toEqual(
         "/new/cardiff/establishment-address-manual?edit=establishment-address-manual"
@@ -117,7 +117,7 @@ describe("establishment-address-select", () => {
         addressLookups: exampleAddressLookup
       });
       const $postCodeNotFindlink = $(".govuk-grid-column-full a")
-        .get(1)
+        .get(0)
         .attribs.href.trim();
       expect($postCodeNotFindlink).toEqual(
         "/new/cardiff/establishment-address-manual"
