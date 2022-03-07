@@ -121,8 +121,7 @@ const cleanSwitches = (cumulativeFullAnswers, switches) => {
       const establishmentContactDetails = [
         cumulativeFullAnswers.establishment_primary_number,
         cumulativeFullAnswers.establishment_secondary_number,
-        cumulativeFullAnswers.establishment_email,
-        cumulativeFullAnswers.establishment_web_address
+        cumulativeFullAnswers.establishment_email
       ];
 
       const operatorEstablishmentDetailsAreDifferent =

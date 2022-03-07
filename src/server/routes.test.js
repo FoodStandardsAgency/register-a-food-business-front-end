@@ -11,7 +11,6 @@ jest.mock("./server", () => ({
   }
 }));
 
-jest.mock("next");
 jest.mock("./routes/index");
 
 const {

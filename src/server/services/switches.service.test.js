@@ -1,4 +1,4 @@
-import { changeSwitch } from "./switches.service";
+const changeSwitch = require("./switches.service");
 
 describe("switches.service changeSwitch()", () => {
   describe("given an invalid action", () => {
@@ -14,7 +14,7 @@ describe("switches.service changeSwitch()", () => {
 
         it("Should set the switch to true", () => {
           existingSwitchStates.forEach((switchState) => {
-            const response = changeSwitch("on", switchState);
+            const response = changeSwitch.changeSwitch("on", switchState);
             expect(response).toEqual(true);
           });
         });
@@ -27,7 +27,7 @@ describe("switches.service changeSwitch()", () => {
 
         it("Should set the switch to false", () => {
           existingSwitchStates.forEach((switchState) => {
-            const response = changeSwitch("off", switchState);
+            const response = changeSwitch.changeSwitch("off", switchState);
             expect(response).toEqual(false);
           });
         });
@@ -40,7 +40,7 @@ describe("switches.service changeSwitch()", () => {
 
         it("Should set the switch to the opposite of what it was", () => {
           existingSwitchStates.forEach((switchState) => {
-            const response = changeSwitch("toggle", switchState);
+            const response = changeSwitch.changeSwitch("toggle", switchState);
             expect(response).toEqual(!switchState);
           });
         });
@@ -51,21 +51,21 @@ describe("switches.service changeSwitch()", () => {
   describe("given a valid action but no existing switch state", () => {
     describe("given an 'on' action", () => {
       it("Should set the switch to true", () => {
-        const response = changeSwitch("on");
+        const response = changeSwitch.changeSwitch("on");
         expect(response).toEqual(true);
       });
     });
 
     describe("given an 'off' action", () => {
       it("Should set the switch to false", () => {
-        const response = changeSwitch("off");
+        const response = changeSwitch.changeSwitch("off");
         expect(response).toEqual(false);
       });
     });
 
     describe("given a 'toggle' action", () => {
       it("Should set the switch to true", () => {
-        const response = changeSwitch("toggle");
+        const response = changeSwitch.changeSwitch("toggle");
         expect(response).toEqual(true);
       });
     });
@@ -73,9 +73,9 @@ describe("switches.service changeSwitch()", () => {
 
   describe("given missing or invalid arguments", () => {
     it("Should throw an error", () => {
-      expect(() => changeSwitch(undefined, true)).toThrow(Error);
-      expect(() => changeSwitch("on", "hello")).toThrow(Error);
-      expect(() => changeSwitch()).toThrow(Error);
+      expect(() => changeSwitch.changeSwitch(undefined, true)).toThrow(Error);
+      expect(() => changeSwitch.changeSwitch("on", "hello")).toThrow(Error);
+      expect(() => changeSwitch.changeSwitch()).toThrow(Error);
     });
   });
 });
