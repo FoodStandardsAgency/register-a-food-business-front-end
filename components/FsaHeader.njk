@@ -1,0 +1,50 @@
+{% from "../components/CustomFsaHeader.njk" import govukCustomHeader %}
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+
+{% macro fsaHeader(props) %}
+    {% if props.acceptAllCookies !== "true" and props.acceptAllCookies !== "false" %}
+        {% set html %}
+        <p class="govuk-body">{{ __('Register a food business uses a cookie to create the registration. We also use optional cookies to analyse how the service is performing.') }}</p>
+        <p class="govuk-body">{{ __('We do not share any information with advertisers or social media platforms. We do not store any information about you in the cookie.') }}</p>
+        {% endset %}
+
+        {{ govukCookieBanner({
+        ariaLabel: __("Cookies on RAFB"),
+        messages: [
+            {
+            headingText: __("Cookies on RAFB"),
+            html: html,
+            actions: [
+                {
+                    text: __("I accept cookies"),
+                    type: "button",
+                    name: "cookies",
+                    value: "accept",
+                    href: "/setcookie/acceptAllCookies/true"
+                },
+                {
+                    text: __("Reject optional cookies"),
+                    type: "submit",
+                    name: "cookies",
+                    value: "reject",
+                    href: "/setcookie/acceptAllCookies/false"
+                },
+                {
+                    text: __("Find out more about cookies"),
+                    href: "https://www.gov.uk/help/cookies",
+                    attributes: { target:"_blank", rel:"noopener noreferrer" }
+                },
+                {
+                    text: __("Read our cookie policy"),
+                    href: "https://www.food.gov.uk/cookie-policy",
+                    attributes: { target:"_blank", rel:"noopener noreferrer" }
+                }
+            ]
+            }
+        ]
+        }) }}
+    {% endif %}
+    {{ govukCustomHeader ({
+        serviceName: __("Register a Food Business")
+    }) }}
+{% endmacro %}

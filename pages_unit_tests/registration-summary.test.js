@@ -1,50 +1,67 @@
-import RegistrationSummary from "../pages/registration-summary";
-import { shallow, mount } from "enzyme";
-import { transformAnswersForSummary } from "../src/server/services/data-transform.service";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
-jest.mock("../src/server/services/data-transform.service");
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const cumulativeFullAnswers = {
-  establishment_address_line_1: "Example address line 1"
+const props = {
+  validatorErrors: {},
+  transformedData: {establishment_address_line_1: "Example address line 1"},
+  language: "en"
 };
 
-const testSwitches = {};
-
-describe("<RegistrationSummary />", () => {
+describe("registration-summary", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<RegistrationSummary />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("registration-summary", props);
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual(
+      "Check your answers"
+    );
+  });
+
+  it("renders without crashing", () => {
+    const $ = renderPage("registration-summary", props);
+    const $AreaHeading = getPageDetails.getAreaHeading($);
+    expect($AreaHeading[1].children[0].data).toEqual(
+      "Operator details"
+    );
+  });
+
+  it("renders without crashing", () => {
+    const $ = renderPage("registration-summary", props);
+    const $AreaHeading = getPageDetails.getAreaHeading($);
+    expect($AreaHeading[2].children[0].data).toEqual(
+      "Establishment details"
+    );
+  });
+
+  it("renders without crashing", () => {
+    const $ = renderPage("registration-summary", props);
+    const $AreaHeading = getPageDetails.getAreaHeading($);
+    expect($AreaHeading[3].children[0].data).toEqual(
+      "Activities"
+    );
+  });
+
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("registration-summary", props);
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
   });
 
   it("gets given props", () => {
-    const wrapper = mount(
-      <RegistrationSummary
-        cumulativeFullAnswers={cumulativeFullAnswers}
-        allValidationErrors={{}}
-        switches={testSwitches}
-      />
-    );
-    const establishmentFirstLine = wrapper.props().cumulativeFullAnswers
-      .establishment_address_line_1;
-    expect(establishmentFirstLine).toBe("Example address line 1");
+    const $ = renderPage("registration-summary", props);
+    const $answer = $("#establishment_address_line_1" ); 
+    expect($answer.get(0).children[0].data.trim()).toBe("Example address line 1");
   });
 
-  describe("SummaryTable component", () => {
-    transformAnswersForSummary.mockImplementation(() => ({ test: "answer" }));
+  describe("Error messages displayed", () => {
+    it("renders the correct summary error", async () => {
+      const $ = renderPage("registration-summary", {
+        language: "cy",
+        allValidationErrors: {
+          operator_companies_house_number: "test error"
+        }
+      });
 
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <RegistrationSummary
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            allValidationErrors={{}}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const summaryTable = wrapper.find("SummaryTable");
-      expect(summaryTable.length).toBe(1);
+      const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+      expect($pageErrors.length).toBe(1);
     });
   });
 });

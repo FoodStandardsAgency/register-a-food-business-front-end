@@ -1,0 +1,48 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% from "../components/EstablishmentDetails.njk" import establishmentHiddenDetails %}
+
+
+{% extends "layout.njk" %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% call postForm("/findaddress" + props.currentPage, props.csrfToken, props.language) -%}
+        {{ processedErrorSummary(props.validatorErrors, props.language) }}
+        
+        {% call govukFieldset({
+                legend: {
+                    text: __("What is the establishment's postcode?"),
+                    classes: "govuk-fieldset__legend--l",
+                    isPageHeading: true
+                }
+                }) %}
+        {% endcall %}
+        {{ establishmentHiddenDetails() }}
+        {{ govukInput({
+                    "label": {
+                    "text": __("Postcode")
+                    },
+                    "hint": {
+                    "text": __("For example, SW1H 9EX")
+                    },
+                    "id": "establishment_postcode_find",
+                    "name": "establishment_postcode_find",
+                    "classes": "govuk-input--width-10",
+                    "autoComplete": "postal-code",
+                    "value": props.cumulativeFullAnswers.establishment_postcode_find,
+                    "errorMessage":  { "text": __(props.validatorErrors.establishment_postcode_find) } if props.validatorErrors.establishment_postcode_find
+                }) }}
+        {{ govukButton({
+            text: __("Find address")
+        }) }}
+    {% endcall %}
+ </div>
+</div>
+{% endblock %}

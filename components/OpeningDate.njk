@@ -1,0 +1,123 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% macro establishmentDueToTrade() %}
+  {{ govukDateInput({
+  id: "establishment_opening_date",
+  fieldset: {
+    legend: {
+      text: __("When is this establishment expected to begin trading?"),
+      classes: "govuk-label--s"
+    }
+  },
+    hint: {
+    text: [__('For example') + ", ", creation_date | date(props.language, "DD MM YYYY", "add", 40, "days")] | join
+  },
+  items: [
+    {
+      id: "day",
+      name: "day",
+      classes: "govuk-input--width-2",
+      value: props.cumulativeFullAnswers.day
+    },
+    {
+     id: "month",
+      name: "month",
+      classes: "govuk-input--width-2",
+      value: props.cumulativeFullAnswers.month
+    },
+    {
+     id: "year",
+      name: "year",
+      classes: "govuk-input--width-4",
+      value: props.cumulativeFullAnswers.year
+    }
+  ],
+  errorMessage: {
+    text: __(props.validatorErrors.establishment_opening_date)} if props.validatorErrors.establishment_opening_date
+}) }}
+
+{{ govukDetails({
+    summaryText: __("I don't know when this establishment will begin trading"),
+    text: __("Food businesses are required to register at least 28 days before they begin trading, that includes food or drink sold online. If you are not sure when this business will open, it may be too early to register. You can also use an estimated date.")
+    }) }}
+
+{% endmacro %}
+
+{% macro establishmentTrading() %}
+  {{ govukDateInput({
+  id: "establishment_opening_date",
+  fieldset: {
+    legend: {
+      text: __("What date did this establishment begin trading?"),
+      classes: "govuk-label--s"
+    }
+  },
+    hint: {
+    text: [__('For example') + ", ", creation_date | date(props.language, "DD MM YYYY", "subtract", 40, "days")] | join
+  },
+  items: [
+    {
+      id: "day",
+      name: "day",
+      classes: "govuk-input--width-2",
+      value: props.cumulativeFullAnswers.day
+    },
+    {
+     id: "month",
+      name: "month",
+      classes: "govuk-input--width-2",
+      value: props.cumulativeFullAnswers.month
+    },
+    {
+     id: "year",
+      name: "year",
+      classes: "govuk-input--width-4",
+      value: props.cumulativeFullAnswers.year
+    }
+  ],
+  errorMessage: {
+    text: __(props.validatorErrors.establishment_opening_date)} if props.validatorErrors.establishment_opening_date
+}) }}
+
+{{ govukDetails({
+    summaryText: __("I don't know when this establishment began trading"),
+    text: __("Trading begins the day your business started to serve or make food or drink. Alternatively, it can be the day you took over the business as an operator. If you do not remember the exact date, use an estimated date.")
+    }) }}
+
+{% endmacro %}
+
+{% extends "layout.njk" %}
+{% block content %}
+  {{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {% call govukFieldset({
+        legend: {
+          text: __("Expected opening date") if props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade" else __("Opening Date"),
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+                }
+    }) %}
+
+      <p id="changed-name-hint" class="govuk-hint">{{__("Establishments begin trading when they first start serving or manufacturing food or drink for customers or supplying food or drink online.")}}</p>
+
+      {{ establishmentDueToTrade() if props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade" else establishmentTrading() }}
+
+      {% endcall%}
+      {{ govukButton({
+      text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+    }) }}
+      {%- endcall %}
+    </div>
+  </div>
+{% endblock %}

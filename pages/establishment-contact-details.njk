@@ -1,0 +1,130 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% from "../components/EstablishmentDetails.njk" import establishmentHiddenDetails %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% from "../components/PostForm.njk" import postForm %}
+
+{% macro table(props) %}
+  {{ govukTable({
+  captionClasses: "govuk-table__caption--l",
+  rows: [
+    [
+      {
+        text: __("Partnership contact details") if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" else __("Operator contact details")
+      }
+    ],
+    [
+      {
+        text: __("Main phone number")
+      },
+      {
+        text: props.cumulativeFullAnswers.operator_primary_number if props.cumulativeFullAnswers.operator_primary_number else props.cumulativeFullAnswers.contact_representative_number
+      }
+    ],
+    [
+      {
+        text: __("Secondary phone number")
+      },
+      {
+        text: props.cumulativeFullAnswers.operator_secondary_number 
+      }
+    ] if props.cumulativeFullAnswers.operator_secondary_number,
+    [
+      {
+        text: __("Email address")
+      },
+      {
+        text: props.cumulativeFullAnswers.operator_email if props.cumulativeFullAnswers.operator_email else props.cumulativeFullAnswers.contact_representative_email
+      }
+    ]
+  ]
+}) }}
+
+  {{
+  govukButton({
+      text: __("Re-use partnership contact details") if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" else __("Re-use operator contact details"),
+      attributes: {formAction: "/switches/reuseOperatorContactDetails/on/establishment-contact-details#establishment_primary_number"},
+      id: "reuseButton"
+    }) 
+}}
+  {%endmacro%}
+
+  {% extends "layout.njk" %}
+  {% block content %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+        {{ processedErrorSummary(props.validatorErrors, props.language) }}
+
+        {% call govukFieldset({
+        legend: {
+          text: __("Establishment contact details"),
+          classes: "govuk-fieldset__legend--l",
+          id: "main-heading",
+          isPageHeading: true
+        }
+      }) %}
+
+        {{ govukInsetText({
+        text: table(props)
+      }) }}
+
+        {{ govukInput({
+        "label": {
+          "text": __("Establishment main phone number")
+        },
+        "id": "establishment_primary_number",
+        "name": "establishment_primary_number",
+        "value": (props.cumulativeFullAnswers.operator_primary_number) or (props.cumulativeFullAnswers.contact_representative_number) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_primary_number),
+        "errorMessage": { "text": __(props.validatorErrors.establishment_primary_number)} if props.validatorErrors.establishment_primary_number
+        
+      }) }}
+
+        {{ govukInput({
+        "label": {
+          "text": __("Establishment secondary phone number (optional)")
+        },
+        "id": "establishment_secondary_number",
+        "name": "establishment_secondary_number",
+        "value": (props.cumulativeFullAnswers.operator_secondary_number) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_secondary_number),
+        "errorMessage": { "text": __(props.validatorErrors.establishment_secondary_number)} if props.validatorErrors.establishment_secondary_number
+      }) }}
+
+        {{ govukInput({
+        "label": {
+          "text": __("Establishment email address")
+        },
+        "id": "establishment_email",
+        "name": "establishment_email",
+        "value": (props.cumulativeFullAnswers.operator_email) or (props.cumulativeFullAnswers.contact_representative_email) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_email),
+        "errorMessage": {
+        "text": __(props.validatorErrors.establishment_email)} if props.validatorErrors.establishment_email
+      }) }}
+
+        {{ govukInput({
+        "label": {
+          "text": __("Web address (optional)")
+        },
+        "id": "establishment_web_address",
+        "name": "establishment_web_address",
+        "value": (props.cumulativeFullAnswers.establishment_web_address),
+        "errorMessage": {
+        "text": __(props.validatorErrors.establishment_web_address)} if props.validatorErrors.establishment_web_address
+        }) }}
+
+        {% endcall %}
+        {{ govukButton({
+            text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+          }) }}
+        {%- endcall %}
+      </div>
+    </div>
+  {% endblock %}

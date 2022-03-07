@@ -1,85 +1,79 @@
-import EstablishmentOpeningStatus from "../pages/establishment-opening-status";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers")
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: { establishment_opening_status : "Establishment is already trading" },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-
-const testSwitches = {};
-
-describe("<EstablishmentOpeningStatus />", () => {
+describe("Establishment-Opening-Status", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<EstablishmentOpeningStatus />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("establishment-opening-status", props);
+    
+    const $mainHeading = getPageDetails.getMainHeading($)
+    expect($mainHeading.text().trim()).toEqual('Is this establishment already trading?')
   });
 
-  it("renders 2 radio buttons with correct error props and default values", () => {
-    const wrapper = mount(
-      <I18nextProvider i18n={i18n}>
-        <EstablishmentOpeningStatus
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      </I18nextProvider>
-    );
-    const establishmentTypeRadio = wrapper.find("Radio");
-    expect(establishmentTypeRadio.length).toBe(2);
+  it('passes accessibility tests', async () => {
+    const $ = renderPage("establishment-opening-status", props);
+
+    const results = await axe($.html())
+    expect(results).toHaveNoViolations()
+  })
+
+  it("renders 3 radio buttons", async () => {
+    const $ = renderPage("establishment-opening-status", props);
+
+    const $establishmentOpeningStatusRadios = getPageDetails.getRadioButtons($);
+    expect($establishmentOpeningStatusRadios.length).toBe(2);
   });
 
-  describe("top-level MultiChoice element", () => {
-    it("renders the correct error", () => {
-      const actualValidatorErrors = {
-        establishment_opening_status: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <EstablishmentOpeningStatus
-            validatorErrors={actualValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const establishmentTypeMultiChoice = wrapper.find("MultiChoice");
-      expect(establishmentTypeMultiChoice.props().meta.error).toBe(
-        "test error"
-      );
+  describe("Radio boxes have correct value", () => {
+    it("renders the Establishment is already trading radio button with the correct value", () => {
+      const $ = renderPage("establishment-opening-status", props);
+      const $mainHeadingMobile = $("#establishment_opening_status_already_trading");
+      expect($mainHeadingMobile.get(0).attribs.value).toBe("Establishment is already trading");
+    });
+    it("renders the Establishment due to trade radio button with the correct value", () => {
+      const $ = renderPage("establishment-opening-status", props);
+      const $mainHeadingDomestic = $("#establishment_opening_status_not_trading");
+      expect($mainHeadingDomestic.get(0).attribs.value).toBe("Establishment due to trade");
+    });
+    it("select the correct radio button based on session data", () => {
+      const $ = renderPage("establishment-opening-status", props);
+      const $selected = $("input:checked");
+      expect($selected.get(0).attribs.value).toBe("Establishment is already trading");
     });
   });
 
-  describe("all Radio buttons", () => {
-    it("can be selected by default", () => {
-      const radioButtonIdsAndValues = {
-        establishment_opening_status_already_trading:
-          "Establishment is already trading",
-        establishment_opening_status_not_trading: "Establishment due to trade"
-      };
+  describe("Error messages displayed", () => {
+    it("renders the correct summary error", async () => {
+      const $ = renderPage("establishment-opening-status", {
+        language: "cy",
+        validatorErrors: {
+          establishment_opening_status: "test error"
+        }
+      });
 
-      for (let radioButtonId in radioButtonIdsAndValues) {
-        const cumulativeFullAnswers = {
-          establishment_opening_status: radioButtonIdsAndValues[radioButtonId]
-        };
+      const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+      expect($pageErrors.length).toBe(1);
+      expect($pageErrors.contents().get(0).data).toBe("test error");
+    });
 
-        const wrapper = mount(
-          <I18nextProvider i18n={i18n}>
-            <EstablishmentOpeningStatus
-              validatorErrors={testValidatorErrors}
-              cumulativeFullAnswers={cumulativeFullAnswers}
-              switches={testSwitches}
-            />
-          </I18nextProvider>
-        );
+    it("renders the correct error", async () => {
+      const $ = renderPage("establishment-opening-status", {
+        language: "cy",
+        validatorErrors: {
+          establishment_opening_status: "test error"
+        }
+      });
 
-        const establishmentTypeRadio = wrapper.find(`Radio#${radioButtonId}`);
-        expect(establishmentTypeRadio.props().defaultChecked).toBe(true);
-      }
+      const $radioError = $("#establishment_opening_status-error");
+      expect($radioError.length).toBe(1);
+      expect($radioError.contents().get(2).data.trim()).toBe("test error");
     });
   });
-});
+})
+
+
+

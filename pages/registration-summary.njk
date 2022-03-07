@@ -1,0 +1,283 @@
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% from "../components/SummaryListHelper.njk" import summaryListHelper,
+summaryListHelperHtml,
+summaryListDeclarationHelper %}
+
+{% extends "layout.njk" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set propsData = props.transformedData %}
+
+      {% set validatorErrors = props.allValidationErrors %}
+
+      {% call postForm("/continue/registration-summary", props.csrfToken, props.language) -%}
+
+      {{ processedErrorSummary(validatorErrors, language) }}
+
+      <h1 class="govuk-heading-l">{{__("Check your answers") }}</h1>
+
+      <p id="changed-name-hint" class="govuk-hint">{{__("You must check your answers before you continue")}}</p>
+
+      <h2 class="govuk-heading-m">{{__("Operator details") }}</h2>
+
+      {% if propsData.applicationCompletePage == null %}
+        {{ summaryListHelper(__("Operator type"), __(propsData.operator_type), "/edit/registration-role", propsData.operator_type, "operator_type") }}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% if props.cumulativeFullAnswers.operator_type === "COMPANY" %}
+          {{ summaryListHelper(__("Company name"), propsData.operator_company_name , "/edit/operator-company-details", propsData.operator_company_name, "operator_company_name") }}
+        {% endif %}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% if props.cumulativeFullAnswers.operator_type === "COMPANY" %}
+          {{ summaryListHelper(__("Companies House number"), propsData.operator_companies_house_number, "/edit/operator-company-details", propsData.operator_companies_house_number, "operator_companies_house_number") }}
+        {% endif %}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% if props.cumulativeFullAnswers.operator_type === "CHARITY" %}
+          {{ summaryListHelper(__("Charity name"), propsData.operator_charity_name, "/edit/operator-charity-details", propsData.operator_charity_name, "operator_charity_name") }}
+        {% endif %}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% if props.cumulativeFullAnswers.operator_type === "CHARITY" %}
+          {{ summaryListHelper(__("Charity number"), propsData.operator_charity_number, "/edit/operator-charity-details", propsData.operator_charity_number, "operator_charity_number") }}
+        {% endif %}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% set html %}
+        <div id="operator-name">
+          {% if props.cumulativeFullAnswers.registration_role === "SOLETRADER" or props.cumulativeFullAnswers.operator_type === "PERSON" %}
+            <span id = "operator_first_name">{{(propsData.operator_first_name if propsData.operator_first_name else "") }}</span>
+            <span id = "operator_last_name">{{(propsData.operator_last_name if propsData.operator_last_name else "") }}</span>
+          {% endif %}
+        </div>
+        {% endset %}
+
+        {{ summaryListHelperHtml(__("Name"), html, "/edit/operator-name", propsData.operator_first_name and propsData.operator_last_name ) }}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+          {{ summaryListHelper(__("Partners"), propsData.partners, "/edit/partner-name", propsData.partners, "partners") }}
+        {% endif %}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+          {{ summaryListHelper(__("Main partnership contact"), propsData.main_partnership_contact, "/edit/main-partnership-contact", propsData.main_partnership_contact, "main_partnership_contact") }}
+        {% endif %}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% set html %}
+        <div>
+            <div id = "operator_address_line_1">{{propsData.operator_address_line_1 if propsData.operator_address_line_1 else "" }}</div>
+            <div id = "operator_address_line_2">{{propsData.operator_address_line_2 if propsData.operator_address_line_2 else "" }}</div>
+            <div id = "operator_address_line_3">{{propsData.operator_address_line_3 if propsData.operator_address_line_3 else "" }}</div>
+            <div id = "operator_town">{{propsData.operator_town if propsData.operator_town else "" }}</div>
+            <div id = "operator_postcode">{{propsData.operator_postcode if propsData.operator_postcode else "" }}</div>
+        </div>
+        {% endset %}
+
+        {{ summaryListHelperHtml(__("Partnership contact address") if propsData.operator_type === "Partnership" else __("Operator address"), html, "/edit/operator-address", propsData.operator_address_line_1 and propsData.operator_town and propsData.operator_postcode ) }}
+      {% endif %}
+      
+      {% if propsData.applicationCompletePage == null %}
+        {% if props.cumulativeFullAnswers.registration_role === "SOLETRADER" 
+            or props.cumulativeFullAnswers.operator_type === "PERSON"
+            or props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+          {% set html %}
+          <div>
+            <div id = "operator_primary_number">{{ propsData.operator_primary_number if propsData.operator_primary_number else "" }}</div>
+            <div id = "operator_secondary_number">{{ propsData.operator_secondary_number if propsData.operator_secondary_number else "" }}</div>
+          </div>
+          {% endset %}
+
+          {{ summaryListHelperHtml(__("Phone number"), html, "/edit/operator-contact-details", propsData.operator_primary_number ) }}
+        {% endif %}
+      {% endif %}
+      
+      {% if propsData.applicationCompletePage == null %}
+        {% if props.cumulativeFullAnswers.registration_role === "SOLETRADER" 
+            or props.cumulativeFullAnswers.operator_type === "PERSON"
+            or props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+          {{ summaryListHelper(__("Email address"), propsData.operator_email, "/edit/operator-contact-details", propsData.operator_email, "operator_email") }}
+        {% endif %}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% if props.cumulativeFullAnswers.operator_type === "COMPANY" or props.cumulativeFullAnswers.operator_type === "CHARITY" %}
+          {% set contactRepRole = propsData.contact_representative_role if propsData.contact_representative_role else "" %}
+          {% set htmlValue = (propsData.contact_representative_name if propsData.contact_representative_name else "") + "<br>" 
+                            + (propsData.contact_representative_role if propsData.contact_representative_role else "") + "<br>" 
+                            + (propsData.contact_representative_number if propsData.contact_representative_number else "") + "<br>" 
+                            + (propsData.contact_representative_email if propsData.contact_representative_email else "") %}
+          {{ summaryListHelperHtml(__("Designated contact"), htmlValue, "/edit/contact-representative", propsData.contact_representative_name, "contact_representative_name") }}
+        {% endif %}
+      {% endif %}
+
+      <h2 class="govuk-heading-m">{{__("Establishment details") }}</h2>
+
+      {% if propsData.applicationCompletePage == null %}
+        {{ summaryListHelper(__("Trading name"), propsData.establishment_trading_name, "/edit/establishment-trading-name", propsData.establishment_trading_name, "establishment_trading_name" ) }}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% set html %}
+        <div>
+            <div id = "establishment_address_line_1">{{propsData.establishment_address_line_1 if propsData.establishment_address_line_1 else ""}}</div>
+            <div id = "establishment_address_line_2">{{propsData.establishment_address_line_2 if propsData.establishment_address_line_2 else ""}}</div>
+            <div id = "establishment_address_line_3">{{propsData.establishment_address_line_3 if propsData.establishment_address_line_3 else ""}}</div>
+            <div id = "establishment_town">{{propsData.establishment_town if propsData.establishment_town else ""}}</div>
+            <div id = "establishment_postcode">{{propsData.establishment_postcode if propsData.establishment_postcode else ""}}</div>
+        </div>
+        {% endset %}
+
+        {{ summaryListHelperHtml(__("Establishment address"), html, "/edit/establishment-address", propsData.establishment_address_line_1 and propsData.establishment_town and propsData.establishment_postcode ) }}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {{ summaryListHelper(__("Address type"), __(propsData.establishment_type), "/edit/establishment-address-type", propsData.establishment_type, "establishment_type") }}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {{ summaryListHelperHtml(__("Phone number"), (propsData.establishment_primary_number if propsData.establishment_primary_number else "") + "<br>" + (propsData.establishment_secondary_number if propsData.establishment_secondary_number else ""), "/edit/establishment-contact-details", propsData.establishment_primary_number ) }}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+          {% set html %}
+          <div>
+            <div id = "establishment_primary_number">{{ propsData.establishment_primary_number if propsData.establishment_primary_number else "" }}</div>
+            <div id = "establishment_secondary_number">{{ propsData.establishment_secondary_number if propsData.establishment_secondary_number else "" }}</div>
+          </div>
+          {% endset %}
+
+          {{ summaryListHelperHtml(__("Phone number"), html, "/edit/establishment-contact-details", propsData.establishment_primary_number ) }}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {{ summaryListHelper(__("Email address"), propsData.establishment_email, "/edit/establishment-contact-details", propsData.establishment_email, "establishment_email") }}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% if propsData.establishment_web_address %}
+          {{ summaryListHelperHtml(__("Web address"), propsData.establishment_web_address, "/edit/establishment-contact-details", propsData.establishment_web_address, "establishment_web_address" ) }}
+        {% endif %}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% set htmlValue = propsData.establishment_opening_date | date(props.language, "DD MMM YYYY") if propsData.establishment_opening_date else 
+            "" %}
+        {% set formattedDate = propsData.establishment_opening_date | date(props.language, "DD MMM YYYY") %}
+        {{ summaryListHelper(__("Trading date"), htmlValue, "/edit/establishment-opening-status", formattedDate, formattedDate if not "Invalid date" and propsData.establishment_opening_date, "establishment_opening_date" ) }}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% set html %}
+        <div>
+          {% if propsData.opening_days_irregular == null %}
+            <div id = "opening_day_monday">{{__(propsData.opening_day_monday) if propsData.opening_day_monday }}</div>
+            <div id = "opening_day_tuesday">{{__(propsData.opening_day_tuesday) if propsData.opening_day_tuesday }}</div>
+            <div id = "opening_day_wednesday">{{__(propsData.opening_day_wednesday) if propsData.opening_day_wednesday }}</div>
+            <div id = "opening_day_thursday">{{__(propsData.opening_day_thursday) if propsData.opening_day_thursday }}</div>
+            <div id = "opening_day_friday">{{__(propsData.opening_day_friday) if propsData.opening_day_friday }}</div>
+            <div id = "opening_day_saturday">{{__(propsData.opening_day_saturday) if propsData.opening_day_saturday }}</div>
+            <div id = "opening_day_sunday">{{__(propsData.opening_day_sunday) if propsData.opening_day_sunday }}</div>
+          {% else %}
+            {{propsData.opening_days_irregular}}
+          {% endif %}
+        </div>
+        {% endset %}
+
+        {{ summaryListHelperHtml(__("Opening days"), html, "/edit/opening-days-start", propsData.opening_days_irregular or propsData.open_some_days_summary_table or propsData.opening_day_monday 
+          or prosData.opening_day_tuesday or prosData.opening_day_wednesday or prosData.opening_day_thursday or prosData.opening_day_friday or prosData.opening_day_saturday or prosData.opening_day_sunday ) }}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% if propsData.opening_days_irregular == null %}
+          {% set html %}
+          <div>
+            <div id = "opening_hours_monday">{{ __("Monday") + ": " + propsData.opening_hours_monday if propsData.opening_hours_monday }}</div>
+            <div id = "opening_hours_tuesday">{{ __("Tuesday") + ": " + propsData.opening_hours_tuesday if propsData.opening_hours_tuesday }}</div>
+            <div id = "opening_hours_wednesday">{{ __("Wednesday") + ": " + propsData.opening_hours_wednesday if propsData.opening_hours_wednesday }}</div>
+            <div id = "opening_hours_thursday">{{ __("Thursday") + ": " + propsData.opening_hours_thursday if propsData.opening_hours_thursday }}</div>
+            <div id = "opening_hours_friday">{{ __("Friday") + ":" + propsData.opening_hours_friday if propsData.opening_hours_friday }}</div>
+            <div id = "opening_hours_saturday">{{ __("Saturday") + ": " + propsData.opening_hours_saturday if propsData.opening_hours_saturday }}</div>
+            <div id = "opening_hours_sunday">{{ __("Sunday") + ": " + propsData.opening_hours_sunday if propsData.opening_hours_sunday }}</div>
+          </div>
+          {% endset %}
+
+          {{ summaryListHelperHtml(__("Opening hours"), html, "/edit/opening-hours", propsData.opening_hours_monday or propsData.opening_hours_tuesday or propsData.opening_hours_wednesday 
+            or prosData.opening_hours_thursday or prosData.opening_hours_friday or prosData.opening_hours_saturday or prosData.opening_hours_sunday ) }}
+        {% endif %}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {{ summaryListHelper(__("Water supply"), __(propsData.water_supply), "/edit/business-water-supply", propsData.water_supply, "water_supply") }}
+      {% endif %}
+
+      <h2 class="govuk-heading-m">{{__("Activities") }}</h2>
+
+      {% if propsData.applicationCompletePage == null %}
+        {{ summaryListHelper(__("Customers"), __(propsData.customer_type), "/edit/customer-type", propsData.customer_type, "customer_type") }}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {{ summaryListHelper(__("Business type"), __(propsData.business_type), "/edit/business-type", propsData.business_type, "business_type") }}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {{ summaryListHelper(__("Import and export"), __(propsData.import_export_activities), "/edit/business-import-export", propsData.import_export_activities, "import_export_activities") }}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage == null %}
+        {% if propsData.business_other_details %}
+          {{ summaryListHelper(__("Additional details"), propsData.business_other_details, "/edit/business-other-details", propsData.business_other_details, "business_other_details") }}
+        {% endif %}
+      {% endif %}
+
+      {% if propsData.applicationCompletePage %}
+        <h2 class="govuk-heading-m">{{__("Declaration") }}</h2>
+
+        {% set html %}
+        <span id = "declaration1" >
+          {% endset %}
+
+          {{ summaryListDeclarationHelper(html, __("Accepted") ) }}
+
+          {% set html %}
+          <span id = "declaration2" >
+            {% endset %}
+
+            {{ summaryListDeclarationHelper(html, __("Accepted") ) }}
+
+            {% set html %}
+            <span id = "declaration3" >
+              {% endset %}
+
+              {{ summaryListDeclarationHelper(html, __("Accepted") ) }}
+
+              {% endif%}
+
+              {{ govukButton({
+        text: __("Continue")
+      }) }}
+
+              {% endcall %}
+            </div>
+
+          </div>
+        {% endblock %}

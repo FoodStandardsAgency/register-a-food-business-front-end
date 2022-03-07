@@ -1,0 +1,86 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+
+{% macro hiddenTextCompaniesHouseNo() %}
+<span>
+            {{__(
+              "Every limited company has to be registered with Companies House, and will have a company reference number. You can find your company reference number by visiting the"
+            )}}{{" "}}
+            <a
+              href="https://beta.companieshouse.gov.uk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              id="link-companies-house"
+              class="govuk-link"
+            >
+              {{__("Companies House website (opens in new window)")}}
+            </a>
+            .
+          </span>
+{%endmacro%}
+
+{% extends "layout.njk" %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+  
+      {% call govukFieldset({
+        legend: {
+          text: __("Company details"),
+          classes: "govuk-fieldset__legend--l",
+          id: "main-heading",
+          isPageHeading: true
+        }
+      }) %}
+
+      {{ govukInput({
+        "label": {
+          "text": __("Registered company name")
+        },
+        "id": "operator_company_name",
+        "name": "operator_company_name",
+        "value":  props.cumulativeFullAnswers.operator_company_name,
+        "hint": {
+            "text": __("The name of the registered company that is acting as the operator of this food business.")
+        },
+        "errorMessage": { "text": __(props.validatorErrors.operator_company_name)} if props.validatorErrors.operator_company_name
+        
+      }) }}
+
+      {{ govukInput({
+        "label": {
+          "text": __("Companies House number")
+        },
+        "id": "operator_companies_house_number",
+        "name": "operator_companies_house_number",
+        "value":  props.cumulativeFullAnswers.operator_companies_house_number,
+        "hint": {
+            "text": __("Every registered company will have a Companies House reference number which will usually be either eight numbers (e.g. 12345678) or two letters followed by six numbers (e.g. AB123456)")
+        },
+        "errorMessage": { "text": __(props.validatorErrors.operator_companies_house_number)} if props.validatorErrors.operator_companies_house_number
+        
+      }) }}
+
+      {{ govukDetails({
+        summaryText: __("I don't know my Companies House number"),
+        html: hiddenTextCompaniesHouseNo()
+      }) }}
+
+      {% endcall %}
+      {{ govukButton({
+            text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+          }) }}
+      {%- endcall %}
+    </div>
+  </div>
+{% endblock %}

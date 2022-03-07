@@ -1,0 +1,97 @@
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+
+{% extends "layout.njk" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+
+        {{ processedErrorSummary(props.validatorErrors, props.language) }}
+
+        {{ govukCheckboxes({
+            idPrefix: "business_import_export",
+            name: "business_import_export",
+            fieldset: {
+                legend: {
+                text: __("Will this food business import or export any food from outside the UK?"),
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+                }
+            },
+        hint: {
+            text: __("Select all that apply")
+        },
+        
+        items: [
+            {
+            id:  "import_export_activities_directly_import",
+            name: "directly_import",
+            value: "IMPORT",
+            text: __("Directly import food"),
+            checked: props.cumulativeFullAnswers.directly_import
+            },
+            {
+            id: "import_export_activities_directly_export",
+            name: "directly_export",
+            value: "EXPORT",
+            text:  __("Directly export food"),
+            checked: props.cumulativeFullAnswers.directly_export
+            },
+            {
+            id: "import_export_activities_none",
+            name: "no_import_export",
+            value: "NONE",
+            text: __("No import or export activities"),
+            checked: props.cumulativeFullAnswers.no_import_export
+            }
+        ],
+        errorMessage: {
+             text: __(props.validatorErrors.business_import_export) } if props.validatorErrors.business_import_export
+        }) }}
+
+       
+
+        <br> 
+        <br>
+        {% set busImpExpLink = __("import/export-link") %}
+        {% set busImpExpText = __("If a food business is directly importing or exporting food outside of the UK, there are some extra requirements for the business to follow.") %}
+
+        {% set detailsSummaryText %}
+        <p class="govuk-body">
+        {{ busImpExpText }}
+        </p> 
+        <span style="margin-top:-20px" class="govuk-body"> 
+            {{__("Find out more by visiting the") }}
+            <a href = {{ busImpExpLink }}
+                class="govuk-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                id="link-fsa-website" >  {{__("Food Standards Agency website (opens in new window)") }}
+            </a>
+        </span> 
+        {% endset %}
+        
+
+         {{ govukDetails({
+            summaryText: __("More information about import and export activities"),
+            html:  detailsSummaryText 
+            })
+        }}
+                
+        <br>
+        {{ govukButton({
+            text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+        }) }}
+     
+      {% endcall%}
+</div>
+</div>
+{% endblock%}

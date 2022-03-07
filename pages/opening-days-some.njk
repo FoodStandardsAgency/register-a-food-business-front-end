@@ -1,0 +1,92 @@
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% extends "layout.njk" %}
+
+{% block content %}
+{{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {% call govukFieldset({
+        legend: {
+          text: __("Opening days"),
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+        }
+        }) %}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+
+        {{ govukCheckboxes({
+        idPrefix: "opening_days_some",
+        name: "opening_days_some",
+        fieldset: {
+            legend: {
+            text: __("What days will this establishment be producing or serving food?"),
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+            }
+        },
+        hint: {
+            text: __("Select all that apply")
+        },
+        errorMessage: {
+            text: __(props.validatorErrors.opening_days_some)} if props.validatorErrors.opening_days_some
+        ,
+        items: [
+            {
+            value: "Monday",
+            id: "opening_day_monday",
+            name: "opening_day_monday",
+            text: __("Monday")
+            },
+            {
+            value: "Tuesday",
+            id: "opening_day_tuesday",
+            name: "opening_day_tuesday",
+            text: __("Tuesday")
+            },
+            {
+            value: "Wednesday",
+            id: "opening_day_wednesday",
+            name: "opening_day_wednesday",
+            text: __("Wednesday")
+            },
+            {
+            value: "Thursday",
+            id: "opening_day_thursday",
+            name: "opening_day_thursday",
+            text: __("Thursday")
+            },
+            {
+            value: "Friday",
+            id: "opening_day_friday",
+            name: "opening_day_friday",
+            text: __("Friday")
+            },
+            {
+            value: "Saturday",
+            id: "opening_day_saturday",
+            name: "opening_day_saturday",
+            text: __("Saturday")
+            },
+            {
+            value: "Sunday",
+            id: "opening_day_sunday",
+            name: "opening_day_sunday",
+            text: __("Sunday")
+            }
+        ]
+        }) }}
+
+        {{ govukButton({
+              text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+            }) }}
+      {% endcall%}
+      {%- endcall %}
+    </div>
+  </div>
+{% endblock %}

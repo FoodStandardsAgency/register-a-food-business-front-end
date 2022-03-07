@@ -1,0 +1,63 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% extends "layout.njk" %}
+
+{% block content %}
+  {{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+
+      {{ govukRadios({
+      
+        idPrefix: "opening_days_start",
+        name: "opening_days_start",
+        fieldset: {
+          legend: {
+            text: __("What days will this establishment be open and producing or serving food?"),
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Every day",
+            text: __("Every day"),
+            id: "opening_days_start_everyday",
+            checked: props.cumulativeFullAnswers.opening_days_start === "Every day"
+          },
+          {
+            value: "Some days",
+            text: __("Some days a week"),
+            id: "opening_days_start_some_days",
+            checked: props.cumulativeFullAnswers.opening_days_start === "Some days"
+          },
+          {
+            value: "Irregular days",
+            text: __("Irregular days or seasonal"),
+            id: "opening_days_start_irregular_days",
+            checked: props.cumulativeFullAnswers.opening_days_start === "Irregular days"
+          }
+        ],
+        errorMessage: {
+      text: __(props.validatorErrors.opening_days_start)} if props.validatorErrors.opening_days_start
+      }) }}
+
+      {{ govukDetails({
+        summaryText: __("I don't know what days to select"),
+        href: "#",
+        text: __("The food business will have irregular opening days if it isn't open the same days every week. This could include seasonal establishments such as summer ice-cream vendors. It can also include establishments which only open for events such as football matches.")
+      }) }}
+
+      {{ govukButton({
+            text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+          }) }}
+      {%- endcall %}
+    </div>
+  </div>
+{% endblock %}

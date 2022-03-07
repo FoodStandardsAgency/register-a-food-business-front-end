@@ -1,0 +1,111 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+
+{% extends "layout.njk" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+
+      {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+        {% call govukFieldset({
+          legend: {
+            text: __("Which is the partnership contact's address from the list?"),
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+                  }
+          }) %}
+        {% endcall%}
+
+        {% call govukInsetText({
+          text: __("Partnership address is the contact address for the partner who is the main point of contact."),
+          classes: "govuk-fieldset__legend--l"
+        }) %}
+        {% endcall %}
+      {% else %}
+        {% call govukFieldset({
+          legend: {
+            text: __("Which is the operator's address from the list?"),
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+                  }
+          }) %}
+        {% endcall%}
+        {% call govukInsetText({
+            text: __('Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company.'),
+            classes: "govuk-fieldset__legend--l"
+        }) %}
+        {% endcall %}
+      {% endif %}
+
+      {% if props.editModeFirstPage %}
+        {% set editModeFirstPage = "/new/" + props.council + "/operator-address?edit=operator-address" %}
+      {% else %}
+        {% set editModeFirstPage = "/new/" + props.council + "/operator-address" %}
+      {% endif %}
+
+      {{ govukSummaryList({
+        classes: 'govuk-summary-list--no-border',
+        rows: [
+          {
+            key: {
+              text: __("Postcode you have entered")
+            },
+            value: {
+              text: (props.cumulativeFullAnswers.operator_postcode_find)
+            },
+            actions: {
+              items: [
+                {
+                  href: editModeFirstPage,
+                  text: __("Change postcode")
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukSelect({
+        id: "operatorAddressDropdown",
+        name: "operator_address_selected",
+        label: {
+          text: __("Select an address for ") + props.cumulativeFullAnswers.operator_postcode_find
+        },
+        items: props.addressLookups.operator_postcode_find | addressSelectItems
+      }) }}
+
+      {% if props.editModeFirstPage %}
+        {% set editModeFirstPage = "/new/" + props.council + "/operator-address-manual?edit=operator-address-manual" %}
+      {% else %}
+        {% set editModeFirstPage = "/new/" + props.council + "/operator-address-manual" %}
+      {% endif %}
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+          <a href={{editModeFirstPage}} style="font-size: 19px" class="govuk-link" id="cantFindAddressLink">{{__("I can't find my address in the list") }}
+          </a>
+        </div>
+      </div>
+      <br>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+          {{ govukButton({
+              text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+          }) }}
+        </div>
+      </div>
+      {% endcall %}
+    </div>
+  </div>
+{% endblock %}

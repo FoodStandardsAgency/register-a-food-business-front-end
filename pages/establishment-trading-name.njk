@@ -1,0 +1,45 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% from "../components/PostForm.njk" import postForm %}
+{% extends "layout.njk" %}
+
+{% block content %}
+{{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+
+      {% call govukFieldset({
+              describedBy: "establishment_trading_name",
+                legend: {
+                  text: __("Trading name"),
+                  classes: "govuk-fieldset__legend--l",
+                  isPageHeading: true
+                }  
+              }) %}
+
+      {{ govukInput({
+        "label": {
+          "text": __("What is the trading name of this establishment?")
+        },
+        "hint": {
+          "text": __("A trading name is what your customers will call your business.")
+        },
+        "id": "establishment_trading_name",
+        "value": props.cumulativeFullAnswers.establishment_trading_name,
+        "name": "establishment_trading_name",
+        "errorMessage":  { "text": __(props.validatorErrors.establishment_trading_name) } if props.validatorErrors.establishment_trading_name
+      }) }}
+      {% endcall%}
+      {{ govukButton({
+            text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+          }) }}
+      {% endcall %}
+    </div>
+  </div>
+{%endblock%}

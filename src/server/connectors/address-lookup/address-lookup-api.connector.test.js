@@ -1,14 +1,14 @@
-import { Validator } from "jsonschema";
-import { getAddressesByPostcode } from "./address-lookup-api.connector";
-import fetch from "node-fetch";
-// import largeAddressResponseJSON from "./largeAddressResponseMock.json";
-import smallAddressResponseJSON from "./smallAddressResponseMock.json";
-import regularIntegrationResponse from "./regularIntegrationResponse.json";
-import addressSchema from "./addressSchema";
-import { addressLookupDouble } from "./address-lookup-api.double";
-
 jest.mock("node-fetch");
 jest.mock("./address-lookup-api.double");
+
+const { Validator } = require("jsonschema");
+const { getAddressesByPostcode } = require("./address-lookup-api.connector");
+const fetch = require("node-fetch");
+// const largeAddressResponseJSON = require("./largeAddressResponseMock.json";
+const smallAddressResponseJSON = require("./smallAddressResponseMock.json");
+const regularIntegrationResponse = require("./regularIntegrationResponse.json");
+const addressSchema = require("./addressSchema");
+const { addressLookupDouble } = require("./address-lookup-api.double");
 
 const v = new Validator();
 

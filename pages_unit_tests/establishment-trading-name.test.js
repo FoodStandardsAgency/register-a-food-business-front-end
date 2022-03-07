@@ -1,79 +1,71 @@
-import EstablishmentTradingName from "../pages/establishment-trading-name";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers")
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: { establishment_trading_name: "default" },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-
-const testSwitches = {};
-
-describe("<EstablishmentTradingName />", () => {
+describe("Establishment-Trading-Name", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<EstablishmentTradingName />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("establishment-trading-name", props);
+    
+    const $mainHeading = getPageDetails.getMainHeading($)
+    expect($mainHeading.text().trim()).toEqual('Trading name')
   });
 
-  describe("establishment trading name input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <EstablishmentTradingName
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const establishmentTradingName = wrapper.find(
-        "InputField#establishment_trading_name"
-      );
-      expect(establishmentTradingName.length).toBe(1);
-    });
+  it('passes accessibility tests', async () => {
+    const $ = renderPage('establishment-trading-name', props)
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        establishment_trading_name: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <EstablishmentTradingName
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const establishmentTradingName = wrapper.find(
-        "InputField#establishment_trading_name"
-      );
-      expect(establishmentTradingName.props().meta.error).toBe("test error");
+    const results = await axe($.html())
+    expect(results).toHaveNoViolations()
+  })
+
+  describe("establishment trading name input field", () => {
+    it('renders', async () => {
+      const $ = renderPage('establishment-trading-name', props)
+      const $inputBox = $('#establishment_trading_name')
+      expect($inputBox.length).toBe(1)
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        establishment_trading_name: "default"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <EstablishmentTradingName
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const establishmentTradingName = wrapper.find(
-        "InputField#establishment_trading_name"
-      );
-      expect(establishmentTradingName.props().input.defaultValue).toBe(
+      const $ = renderPage('establishment-trading-name', props)
+      
+      const $inputBox = $('#establishment_trading_name')
+      expect($inputBox.get(0).attribs.value).toBe(
         "default"
       );
+      });
+
+    describe("Error messages displayed", () => {
+      it("renders the correct summary error", async () => {
+        const $ = renderPage("establishment-trading-name", {
+          language: "cy",
+          validatorErrors: {
+            establishment_trading_name: "test error"
+          }
+        });
+
+        const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+        expect($pageErrors.length).toBe(1);
+        expect($pageErrors.contents().get(0).data).toBe("test error");
+      });
+
+      it("renders the correct error", async () => {
+        const $ = renderPage("establishment-trading-name", {
+          language: "cy",
+          validatorErrors: {
+            establishment_trading_name: "test error"
+          }
+        });
+
+        const $inputError = $("#establishment_trading_name-error");
+        expect($inputError.length).toBe(1);
+        expect($inputError.contents().get(2).data.trim()).toBe("test error");
+      });
     });
   });
-});
+})
+
+
+

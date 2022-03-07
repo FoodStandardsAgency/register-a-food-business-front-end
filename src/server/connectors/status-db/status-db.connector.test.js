@@ -1,3 +1,6 @@
+jest.mock("./status-db.double");
+jest.mock("mongodb");
+
 const {
   getStoredStatus,
   updateStoredStatus
@@ -6,9 +9,6 @@ const { clearCosmosConnection } = require("../cosmos.client");
 const storedStatusMock = require("../../../__mocks__/storedStatusMock.json");
 const mongodb = require("mongodb");
 const { statusCollectionDouble } = require("./status-db.double");
-jest.mock("./status-db.double");
-
-jest.mock("mongodb");
 
 describe("Function: getStoredStatus", () => {
   let result;

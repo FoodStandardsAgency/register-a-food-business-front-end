@@ -2,8 +2,12 @@ const cls = require("cls-hooked");
 const appInsights = require("applicationinsights");
 const morgan = require("morgan");
 const packageJson = require("../../package.json");
-const nextI18next = require("../../i18n");
+const i18n = require("i18n");
+const nunjucks = require("nunjucks");
+var sassMiddleware = require("node-sass-middleware");
+var path = require("path");
 const getRandomValues = require("get-random-values");
+const dateFilter = require("./filters/nunjucks-moment-date-filter.js");
 
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
@@ -36,7 +40,6 @@ const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 
 const express = require("express");
-const next = require("next");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const bodyParser = require("body-parser");
@@ -45,10 +48,21 @@ const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const csurf = require("csurf");
 
-const app = next({ dev });
-const handle = app.getRequestHandler();
+const app = (module.exports = express());
 
-module.exports = { app };
+i18n.configure({
+  // setup some locales - other locales default to en silently
+  locales: ["en", "cy"],
+  defaultLocale: "en",
+  queryParameter: "lang",
+  // sets a custom cookie name to parse locale settings from
+  cookie: "lang",
+  order: ["querystring", "cookie", "header"],
+
+  // where to store json files - defaults to './locales'
+  directory: __dirname + "/../../public/static/locales"
+});
+
 const routes = require("./routes");
 const { errorHandler } = require("./middleware/errorHandler");
 
@@ -67,6 +81,20 @@ const clsMiddleware = (req, res, next) => {
   });
 };
 
+let store = null;
+if (COSMOSDB_URL) {
+  logger.info("Server: setting session cache to database");
+  store = new MongoStore({
+    url: COSMOSDB_URL,
+    dbName: "front-end-cache",
+    autoRemove: "interval",
+    autoRemoveInterval: 1440 // In minutes
+  });
+  logger.info("Server: successfully set up database connection");
+} else {
+  logger.info("Server: setting session cache to memory");
+}
+
 const forceDomain = (req, res, next) => {
   let host = req.hostname;
   if (
@@ -79,79 +107,133 @@ const forceDomain = (req, res, next) => {
   return next();
 };
 
-app.prepare().then(async () => {
-  let server = express();
+let sessionOptions = {
+  secret: process.env.COOKIE_SECRET ? process.env.COOKIE_SECRET : generateId(),
+  resave: true,
+  saveUninitialized: false,
+  cookie: {
+    // Session cookie set to expire after 24 hours
+    maxAge: 86400000,
+    httpOnly: true
+  },
+  store: store
+};
 
-  let store = null;
-  if (COSMOSDB_URL) {
-    logger.info("Server: setting session cache to database");
-    store = new MongoStore({
-      url: COSMOSDB_URL,
-      dbName: "front-end-cache",
-      autoRemove: "interval",
-      autoRemoveInterval: 60
-    });
-    logger.info("Server: successfully set up database connection");
-  } else {
-    logger.info("Server: setting session cache to memory");
+if (process.env.COOKIE_SECURE === "true") {
+  sessionOptions.cookie.secure = true;
+}
+let limiter = rateLimit({
+  max: process.env.RATE_LIMIT // limit each IP to x requests per minute
+});
+
+app.engine("html", nunjucks.render);
+app.set("view engine", "njk");
+
+const sixtyDaysInSeconds = 5184000;
+app.set("trust proxy", 1);
+app.enable("trust proxy");
+app.use(clsMiddleware);
+app.use(forceDomain);
+app.use(limiter);
+app.use(session(sessionOptions));
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  helmet.hsts({
+    maxAge: sixtyDaysInSeconds
+  })
+);
+app.use(csurf());
+
+// i18n init parses req for language headers, cookies, etc.
+app.use(i18n.init);
+
+// configure nunjucks environment
+const env = nunjucks.configure(
+  [
+    "node_modules/govuk-frontend/",
+    "node_modules/@ons/design-system/",
+    "pages",
+    "components"
+  ],
+  {
+    express: app //integrate nunjucks into express
   }
+);
+env.addFilter("date", dateFilter);
+env.addGlobal("__", (phrase) => {
+  return i18n.__(phrase);
+});
+env.addFilter("addressSelectItems", (findResults) =>
+  findResults.map((address, index) => ({
+    value: index,
+    text: address.summaryline
+  }))
+);
+env.addFilter("selectValidationErrors", (validationErrors, language) =>
+  Object.entries(validationErrors).map(([k, v]) => ({
+    text: i18n.__({ phrase: v, locale: language }),
+    href: "#" + k
+  }))
+);
+env.addGlobal("mergeObjects", (orig, additionalProps) => ({
+  ...orig,
+  ...additionalProps
+}));
 
-  let sessionOptions = {
-    secret: process.env.COOKIE_SECRET
-      ? process.env.COOKIE_SECRET
-      : generateId(),
-    resave: true,
-    saveUninitialized: false,
-    cookie: {
-      // Session cookie set to expire after 24 hours
-      maxAge: 86400000,
-      httpOnly: true
-    },
-    store: store
-  };
-
-  if (process.env.COOKIE_SECURE === "true") {
-    sessionOptions.cookie.secure = true;
+const setLanguage = function (req, res, next) {
+  if (req.body && req.body.language) {
+    i18n.setLocale(req.body.language);
+  } else if (req.query.lang) {
+    i18n.setLocale(req.query.lang);
   }
-  let limiter = rateLimit({
-    max: process.env.RATE_LIMIT // limit each IP to x requests per minute
-  });
+  next();
+};
+app.use(setLanguage);
+app.use(morgan("combined", { stream: logger.stream }));
 
-  const sixtyDaysInSeconds = 5184000;
-  server.set("trust proxy", 1);
-  server.enable("trust proxy");
-  server.use(clsMiddleware);
-  server.use(forceDomain);
-  server.use(limiter);
-  server.use(session(sessionOptions));
-  server.use(cookieParser());
-  server.use(bodyParser.json());
-  server.use(bodyParser.urlencoded({ extended: true }));
-  server.use(
-    helmet.hsts({
-      maxAge: sixtyDaysInSeconds
-    })
+app.use(
+  sassMiddleware({
+    src: __dirname, //where the sass files are
+    dest: __dirname, //where css should go
+    debug: true
+  })
+);
+
+app.use(
+  "/assets",
+  express.static(
+    path.join(__dirname, "/../../node_modules/govuk-frontend/govuk/assets")
+  )
+);
+app.use("/pdfs", express.static(__dirname + "/static/pdfs"));
+app.use("/auto-complete", express.static(__dirname + "/static/auto-complete"));
+app.use("/css", express.static(__dirname + "/css"));
+app.use("/scripts", express.static(path.join(__dirname, "/../../scripts")));
+
+app.use("/data", express.static(__dirname + "/data"), function (req, res) {
+  // Optional 404 handler
+  res.status(404);
+  res.json({ error: { code: 404 } });
+});
+
+// Set language cookie - TODO: Does i18next do this for you?  Need to check user accepted cookies?
+app.all("*", (req, res, next) => {
+  if (req && req.query && req.query.lang) {
+    res.cookie("lang", req.query.lang);
+  }
+  next();
+});
+
+app.use(routes());
+app.use(errorHandler);
+
+app.listen(port, (err) => {
+  if (err) throw err;
+  logger.info(
+    `App running in ${COSMOSDB_URL} ${
+      dev ? "DEVELOPMENT" : "PRODUCTION"
+    } mode on http://localhost:${port}`
   );
-  server.use(csurf());
-
-  server.use(routes());
-  server.use(errorHandler);
-
-  server.use(morgan("combined", { stream: logger.stream }));
-
-  // Wait for i18n to initialise before continuing
-  await nextI18next.initPromise;
-
-  server.all("*", (req, res) => {
-    handle(req, res);
-  });
-
-  server.listen(port, (err) => {
-    if (err) throw err;
-    logger.info(
-      `App running in ${COSMOSDB_URL} ${
-        dev ? "DEVELOPMENT" : "PRODUCTION"
-      } mode on http://localhost:${port}`
-    );
-  });
 });

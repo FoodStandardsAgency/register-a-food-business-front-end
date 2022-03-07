@@ -1,0 +1,59 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+
+{% extends "layout.njk" %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+         {% call postForm("/findaddress" + props.currentPage, props.csrfToken, props.language) -%}
+            {{ processedErrorSummary(props.validatorErrors, props.language) }}
+
+            {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+                {% call govukFieldset({
+                    legend: {
+                        text: __("What is the partnership contact's postcode?"),
+                        classes: "govuk-fieldset__legend--l",
+                        isPageHeading: true
+                    }
+                    }) %}
+                    <p id="changed-name-hint" class="govuk-hint">{{__("Partnership address is the contact address for the partner who is the main point of contact.")}}</p>
+                {% endcall %}
+            {% else %}
+                {% call govukFieldset({
+                    legend: {
+                        text: __("What is the operator's postcode?"),
+                        classes: "govuk-fieldset__legend--l",
+                        isPageHeading: true
+                    }
+                    }) %}
+                    <p id="changed-name-hint" class="govuk-hint">{{__("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.")}}</p>
+                {% endcall %}
+            {% endif %}
+            {{ govukInput({
+                    "label": {
+                    "text": __("Postcode")
+                    },
+                    "hint": {
+                    "text": __("For example, SW1H 9EX")
+                    },
+                    "id": "operator_postcode_find",
+                    "name": "operator_postcode_find",
+                    "classes": "govuk-input--width-10",
+                    "autoComplete": "postal-code",
+                    "value": props.cumulativeFullAnswers.operator_postcode_find,
+                    "errorMessage": { "text": __(props.validatorErrors.operator_postcode_find) } if props.validatorErrors.operator_postcode_find
+                }) }}
+            {{ govukButton({
+                text: __("Find address")
+            }) }}
+            {% endcall %}
+        </div>
+    </div>
+{% endblock %}

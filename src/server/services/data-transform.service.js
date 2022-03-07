@@ -49,6 +49,7 @@ const transformAnswersForSubmit = (
     "establishment_primary_number",
     "establishment_secondary_number",
     "establishment_email",
+    "establishment_web_address",
     "establishment_opening_date"
   ];
   const operator_keys = [

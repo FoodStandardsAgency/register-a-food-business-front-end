@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 pool:
-  vmImage: "Ubuntu 16.04"
+  vmImage: "ubuntu-18.04"
 
 steps:
   - task: NodeTool@0
@@ -49,9 +49,6 @@ steps:
       testResultsFile: ./reports/TEST-integration.xml
       testRunTitle: Integration tests
       mergeTestResults: false
-
-  - script: yarn build
-    displayName: "Yarn build"
 
   - task: SonarCloudPrepare@1
     inputs:

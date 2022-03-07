@@ -1,108 +1,83 @@
-import WaterSupply from "../pages/business-water-supply";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: { water_supply: "PRIVATE" },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-
-describe("<WaterSupply />", () => {
+describe("business-water-supply", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<WaterSupply />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("business-water-supply", props);
+
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual(
+      "What type of water supply does this establishment use?"
+    );
   });
 
-  describe("renders 3 radio buttons with correct error props and default values", () => {
-    it("renders 3 radio buttons", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <WaterSupply
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-          />
-        </I18nextProvider>
-      );
-      const waterSupplyRadios = wrapper.find("Radio");
-      expect(waterSupplyRadios.length).toBe(3);
-    });
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("business-water-supply", props);
 
-    it("water_supply_private gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        water_supply: "PRIVATE"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <WaterSupply
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-          />
-        </I18nextProvider>
-      );
-      const privateWaterSupplyRadioButton = wrapper.find(
-        "Radio#water_supply_private"
-      );
-      expect(privateWaterSupplyRadioButton.props().defaultChecked).toBe(true);
-    });
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
 
-    it("water_supply_public gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        water_supply: "PUBLIC"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <WaterSupply
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-          />
-        </I18nextProvider>
-      );
-      const publicWaterSupplyRadioButton = wrapper.find(
-        "Radio#water_supply_public"
-      );
-      expect(publicWaterSupplyRadioButton.props().defaultChecked).toBe(true);
-    });
+  it("renders 3 radio buttons", async () => {
+    const $ = renderPage("business-water-supply", props);
 
-    it("water_supply_public_and_private gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        water_supply: "BOTH"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <WaterSupply
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-          />
-        </I18nextProvider>
-      );
-      const publicAndPrivateWaterSupplyRadioButton = wrapper.find(
-        "Radio#water_supply_public_and_private"
-      );
-      expect(
-        publicAndPrivateWaterSupplyRadioButton.props().defaultChecked
-      ).toBe(true);
+    const $watersupplyRadios = getPageDetails.getRadioButtons($);
+    expect($watersupplyRadios.length).toBe(3);
+  });
+
+  describe("Radio boxes have correct value", () => {
+    it("renders the Soletrader radio button with the correct value", () => {
+      const $ = renderPage("business-water-supply", props);
+      const $radioPublic = $("#water_supply_public"); 
+      expect($radioPublic.get(0).attribs.value).toBe("PUBLIC");
+    });
+    it("renders the Partnership radio button with the correct value", () => {
+      const $ = renderPage("business-water-supply", props);
+      const $radioPrivate = $("#water_supply_private");
+      expect($radioPrivate.get(0).attribs.value).toBe("PRIVATE");
+    });
+    it("renders the Representative radio button with the correct value", () => {
+      const $ = renderPage("business-water-supply", props);
+      const $radioBoth = $("#water_supply_both");
+      expect($radioBoth.get(0).attribs.value).toBe("BOTH");
+    });
+    it("select the correct radio button based on session data", () => {
+      const $ = renderPage("business-water-supply", props);
+      const $selected = $("input:checked");
+      expect($selected.get(0).attribs.value).toBe("PRIVATE");
     });
   });
 
-  describe("top-level MultiChoice element", () => {
-    it("renders the correct error", () => {
-      const validatorErrors = {
-        water_supply: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <WaterSupply
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-          />
-        </I18nextProvider>
-      );
-      const waterSupplyMultiChoice = wrapper.find("MultiChoice");
-      expect(waterSupplyMultiChoice.props().meta.error).toBe("test error");
+  describe("Error messages displayed", () => {
+    it("renders the correct summary error", async () => {
+      const $ = renderPage("business-water-supply", {
+        language: "cy",
+        validatorErrors: {
+          water_supply: "test error"
+        }
+      });
+
+      const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+      expect($pageErrors.length).toBe(1);
+      expect($pageErrors.contents().get(0).data).toBe("test error");
+    });
+
+    it("renders the correct error", async () => {
+      const $ = renderPage("business-water-supply", {
+        language: "cy",
+        validatorErrors: {
+          water_supply: "test error"
+        }
+      });
+
+      const $radioError = $("#water_supply-error");
+      expect($radioError.length).toBe(1);
+      expect($radioError.contents().get(2).data.trim()).toBe("test error");
     });
   });
 });
