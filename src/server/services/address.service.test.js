@@ -1,9 +1,11 @@
 jest.mock("../connectors/address-lookup/address-lookup-api.connector");
 jest.mock("../services/statusEmitter.service");
 
-const {Validator} = require("jsonschema");
+const { Validator } = require("jsonschema");
 const { getUkAddressesByPostcode } = require("./address.service");
-const { getAddressesByPostcode } = require("../connectors/address-lookup/address-lookup-api.connector");
+const {
+  getAddressesByPostcode
+} = require("../connectors/address-lookup/address-lookup-api.connector");
 const smallAddressResponseJSON = require("../connectors/address-lookup/smallAddressResponseMock.json");
 const addressSchema = require("../connectors/address-lookup/addressSchema.js");
 
@@ -38,7 +40,9 @@ describe("address.service getUkAddressesByPostcode()", () => {
 
   describe("given the connector throws an error", () => {
     beforeEach(async () => {
-      getAddressesByPostcode.mockImplementation(() => {throw new Error("Some error");});
+      getAddressesByPostcode.mockImplementation(() => {
+        throw new Error("Some error");
+      });
 
       try {
         response = await getUkAddressesByPostcode("NR14 7PZ");

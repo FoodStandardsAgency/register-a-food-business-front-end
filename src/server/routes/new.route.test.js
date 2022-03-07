@@ -13,7 +13,6 @@ jest.mock("../server", () => ({
 jest.mock("../connectors/config-db/config-db.connector");
 jest.mock("../services/browser-support.service");
 
-const { app } = require("../server");
 const { newRouter } = require("./new.route");
 const {
   transformAnswersForSummary

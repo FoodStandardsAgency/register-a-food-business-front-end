@@ -47,7 +47,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           csrfToken: jest.fn(),
-          url:"test/test",
+          url: "test/test",
           get: (value) => "www.test.com/new/thepage?display=true",
           body: "body",
           query: {}
@@ -101,7 +101,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           csrfToken: jest.fn(),
-          url:"test/test",
+          url: "test/test",
           get: (value) => "www.test.com/new/thepage?display=true",
           header: {
             Referrer: "www.test.com/new/thepage?display=true"
@@ -143,7 +143,7 @@ describe("Partner Details Route: ", () => {
           }
         },
         csrfToken: jest.fn(),
-        url:"test/test",
+        url: "test/test",
         body: "body",
         params: {
           targetPartner: "exampleTargetPartner",
@@ -208,7 +208,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           csrfToken: jest.fn(),
-          url:"test/test",
+          url: "test/test",
           get: (value) => "www.test.com/new/thepage?display=true",
           header: {
             Referrer: "www.test.com/new/thepage?display=true"
@@ -255,7 +255,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           csrfToken: jest.fn(),
-          url:"test/test",
+          url: "test/test",
           query: {
             id: "1"
           }
@@ -296,7 +296,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           csrfToken: jest.fn(),
-          url:"test/test",
+          url: "test/test",
           query: {}
         };
 
@@ -335,7 +335,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           csrfToken: jest.fn(),
-          url:"test/test",
+          url: "test/test",
           query: {}
         };
 
@@ -369,7 +369,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           csrfToken: jest.fn(),
-          url:"test/test",
+          url: "test/test",
           query: {
             id: "1"
           }
@@ -419,7 +419,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           csrfToken: jest.fn(),
-          url:"test/test",
+          url: "test/test",
           get: (value) => "www.test.com/new/thepage?display=true",
           body: {
             example: "property"
@@ -469,7 +469,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           csrfToken: jest.fn(),
-          url:"test/test",
+          url: "test/test",
           get: (value) => "www.test.com/new/thepage?display=true",
           body: {
             example: "property"
@@ -525,7 +525,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           csrfToken: jest.fn(),
-          url:"test/test",
+          url: "test/test",
           get: (value) => "www.test.com/new/thepage?display=true",
           body: {
             example: "property"
@@ -580,7 +580,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           csrfToken: jest.fn(),
-          url:"test/test",
+          url: "test/test",
           get: (value) => "www.test.com/new/thepage?display=true",
           body: {
             example: "property to ignore"
@@ -632,7 +632,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           csrfToken: jest.fn(),
-          url:"test/test",
+          url: "test/test",
           get: (value) => "www.test.com/new/thepage?display=true",
           body: {
             example: "property"
@@ -690,7 +690,7 @@ describe("Partner Details Route: ", () => {
             }
           },
           csrfToken: jest.fn(),
-          url:"test/test",
+          url: "test/test",
           get: () => "www.test.com/new/thepage?display=true",
           body: {
             example: "property"
