@@ -1,20 +1,20 @@
-import {
+const {
   transformAnswersForSubmit,
   transformAnswersForSummary,
   combineDate,
   separateBracketsFromBusinessType,
   trimUprn,
   trimAnswers
-} from "./data-transform.service";
+} = require("./data-transform.service");
 
-import {
+const {
   operatorTypeEnum,
   establishmentTypeEnum,
   customerTypeEnum,
   importExportEnum,
   waterSupplyEnum,
   businessTypeEnum
-} from "@slice-and-dice/register-a-food-business-validation";
+} = require("@slice-and-dice/register-a-food-business-validation");
 
 describe("data-transform.service trimAnswers()", () => {
   let result;
