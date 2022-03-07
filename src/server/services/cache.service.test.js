@@ -1,7 +1,6 @@
+jest.mock("./logging.service");
 const { Cache } = require("./cache.service");
 const { logEmitter } = require("./logging.service");
-
-jest.mock("./logging.service");
 
 describe("cache.service get()", () => {
   const obj1 = { a: 123, 123: "a" };
