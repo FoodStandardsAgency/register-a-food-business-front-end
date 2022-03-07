@@ -1,11 +1,11 @@
-import { Validator } from "jsonschema";
-import { getUkAddressesByPostcode } from "./address.service";
-import { getAddressesByPostcode } from "../connectors/address-lookup/address-lookup-api.connector";
-import smallAddressResponseJSON from "../connectors/address-lookup/smallAddressResponseMock.json";
-import addressSchema from "../connectors/address-lookup/addressSchema.js";
-
 jest.mock("../connectors/address-lookup/address-lookup-api.connector");
 jest.mock("../services/statusEmitter.service");
+
+const {Validator} = require("jsonschema");
+const { getUkAddressesByPostcode } = require("./address.service");
+const { getAddressesByPostcode } = require("../connectors/address-lookup/address-lookup-api.connector");
+const smallAddressResponseJSON = require("../connectors/address-lookup/smallAddressResponseMock.json");
+const addressSchema = require("../connectors/address-lookup/addressSchema.js");
 
 const v = new Validator();
 
@@ -38,9 +38,7 @@ describe("address.service getUkAddressesByPostcode()", () => {
 
   describe("given the connector throws an error", () => {
     beforeEach(async () => {
-      getAddressesByPostcode.mockImplementation(() => {
-        throw new Error("Some error");
-      });
+      getAddressesByPostcode.mockImplementation(() => {throw new Error("Some error");});
 
       try {
         response = await getUkAddressesByPostcode("NR14 7PZ");
