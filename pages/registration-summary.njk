@@ -59,14 +59,13 @@ summaryListDeclarationHelper %}
       {% if propsData.applicationCompletePage == null %}
         {% set html %}
         <div id="operator-name">
-          {% if props.cumulativeFullAnswers.registration_role === "SOLETRADER" or props.cumulativeFullAnswers.operator_type === "PERSON" %}
-            <span id = "operator_first_name">{{(propsData.operator_first_name if propsData.operator_first_name else "") }}</span>
-            <span id = "operator_last_name">{{(propsData.operator_last_name if propsData.operator_last_name else "") }}</span>
-          {% endif %}
+          <span id = "operator_first_name">{{(propsData.operator_first_name if propsData.operator_first_name else "") }}</span>
+          <span id = "operator_last_name">{{(propsData.operator_last_name if propsData.operator_last_name else "") }}</span>
         </div>
         {% endset %}
-
-        {{ summaryListHelperHtml(__("Name"), html, "/edit/operator-name", propsData.operator_first_name and propsData.operator_last_name ) }}
+        {% if props.cumulativeFullAnswers.registration_role === "SOLETRADER" or props.cumulativeFullAnswers.operator_type === "PERSON" %}
+          {{ summaryListHelperHtml(__("Name"), html, "/edit/operator-name", propsData.operator_first_name and propsData.operator_last_name ) }}
+        {% endif %}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
@@ -84,21 +83,21 @@ summaryListDeclarationHelper %}
       {% if propsData.applicationCompletePage == null %}
         {% set html %}
         <div>
-            <div id = "operator_address_line_1">{{propsData.operator_address_line_1 if propsData.operator_address_line_1 else "" }}</div>
-            <div id = "operator_address_line_2">{{propsData.operator_address_line_2 if propsData.operator_address_line_2 else "" }}</div>
-            <div id = "operator_address_line_3">{{propsData.operator_address_line_3 if propsData.operator_address_line_3 else "" }}</div>
-            <div id = "operator_town">{{propsData.operator_town if propsData.operator_town else "" }}</div>
-            <div id = "operator_postcode">{{propsData.operator_postcode if propsData.operator_postcode else "" }}</div>
+          <div id = "operator_address_line_1">{{propsData.operator_address_line_1 if propsData.operator_address_line_1 else "" }}</div>
+          <div id = "operator_address_line_2">{{propsData.operator_address_line_2 if propsData.operator_address_line_2 else "" }}</div>
+          <div id = "operator_address_line_3">{{propsData.operator_address_line_3 if propsData.operator_address_line_3 else "" }}</div>
+          <div id = "operator_town">{{propsData.operator_town if propsData.operator_town else "" }}</div>
+          <div id = "operator_postcode">{{propsData.operator_postcode if propsData.operator_postcode else "" }}</div>
         </div>
         {% endset %}
 
         {{ summaryListHelperHtml(__("Partnership contact address") if propsData.operator_type === "Partnership" else __("Operator address"), html, "/edit/operator-address", propsData.operator_address_line_1 and propsData.operator_town and propsData.operator_postcode ) }}
       {% endif %}
-      
+
       {% if propsData.applicationCompletePage == null %}
-        {% if props.cumulativeFullAnswers.registration_role === "SOLETRADER" 
-            or props.cumulativeFullAnswers.operator_type === "PERSON"
-            or props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+        {% if props.cumulativeFullAnswers.registration_role === "SOLETRADER"
+        or props.cumulativeFullAnswers.operator_type === "PERSON"
+        or props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
           {% set html %}
           <div>
             <div id = "operator_primary_number">{{ propsData.operator_primary_number if propsData.operator_primary_number else "" }}</div>
@@ -109,22 +108,28 @@ summaryListDeclarationHelper %}
           {{ summaryListHelperHtml(__("Phone number"), html, "/edit/operator-contact-details", propsData.operator_primary_number ) }}
         {% endif %}
       {% endif %}
-      
+
       {% if propsData.applicationCompletePage == null %}
-        {% if props.cumulativeFullAnswers.registration_role === "SOLETRADER" 
-            or props.cumulativeFullAnswers.operator_type === "PERSON"
-            or props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+        {% if props.cumulativeFullAnswers.registration_role === "SOLETRADER"
+        or props.cumulativeFullAnswers.operator_type === "PERSON"
+        or props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
           {{ summaryListHelper(__("Email address"), propsData.operator_email, "/edit/operator-contact-details", propsData.operator_email, "operator_email") }}
         {% endif %}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
         {% if props.cumulativeFullAnswers.operator_type === "COMPANY" or props.cumulativeFullAnswers.operator_type === "CHARITY" %}
-          {% set contactRepRole = propsData.contact_representative_role if propsData.contact_representative_role else "" %}
-          {% set htmlValue = (propsData.contact_representative_name if propsData.contact_representative_name else "") + "<br>" 
-                            + (propsData.contact_representative_role if propsData.contact_representative_role else "") + "<br>" 
-                            + (propsData.contact_representative_number if propsData.contact_representative_number else "") + "<br>" 
-                            + (propsData.contact_representative_email if propsData.contact_representative_email else "") %}
+          {% set contactRepRole = propsData.contact_representative_role if propsData.contact_representative_role else 
+            "" %}
+          {% set htmlValue = (propsData.contact_representative_name if propsData.contact_representative_name else 
+            "") + "<br>" + (
+            propsData.contact_representative_role if propsData.contact_representative_role else 
+              "") + "<br>" + (
+              propsData.contact_representative_number if propsData.contact_representative_number else 
+                "") + "<br>" + (
+                propsData.contact_representative_email if propsData.contact_representative_email else 
+                  ""
+                ) %}
           {{ summaryListHelperHtml(__("Designated contact"), htmlValue, "/edit/contact-representative", propsData.contact_representative_name, "contact_representative_name") }}
         {% endif %}
       {% endif %}
@@ -138,11 +143,11 @@ summaryListDeclarationHelper %}
       {% if propsData.applicationCompletePage == null %}
         {% set html %}
         <div>
-            <div id = "establishment_address_line_1">{{propsData.establishment_address_line_1 if propsData.establishment_address_line_1 else ""}}</div>
-            <div id = "establishment_address_line_2">{{propsData.establishment_address_line_2 if propsData.establishment_address_line_2 else ""}}</div>
-            <div id = "establishment_address_line_3">{{propsData.establishment_address_line_3 if propsData.establishment_address_line_3 else ""}}</div>
-            <div id = "establishment_town">{{propsData.establishment_town if propsData.establishment_town else ""}}</div>
-            <div id = "establishment_postcode">{{propsData.establishment_postcode if propsData.establishment_postcode else ""}}</div>
+          <div id = "establishment_address_line_1">{{propsData.establishment_address_line_1 if propsData.establishment_address_line_1 else ""}}</div>
+          <div id = "establishment_address_line_2">{{propsData.establishment_address_line_2 if propsData.establishment_address_line_2 else ""}}</div>
+          <div id = "establishment_address_line_3">{{propsData.establishment_address_line_3 if propsData.establishment_address_line_3 else ""}}</div>
+          <div id = "establishment_town">{{propsData.establishment_town if propsData.establishment_town else ""}}</div>
+          <div id = "establishment_postcode">{{propsData.establishment_postcode if propsData.establishment_postcode else ""}}</div>
         </div>
         {% endset %}
 
@@ -158,14 +163,14 @@ summaryListDeclarationHelper %}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
-          {% set html %}
-          <div>
-            <div id = "establishment_primary_number">{{ propsData.establishment_primary_number if propsData.establishment_primary_number else "" }}</div>
-            <div id = "establishment_secondary_number">{{ propsData.establishment_secondary_number if propsData.establishment_secondary_number else "" }}</div>
-          </div>
-          {% endset %}
+        {% set html %}
+        <div>
+          <div id = "establishment_primary_number">{{ propsData.establishment_primary_number if propsData.establishment_primary_number else "" }}</div>
+          <div id = "establishment_secondary_number">{{ propsData.establishment_secondary_number if propsData.establishment_secondary_number else "" }}</div>
+        </div>
+        {% endset %}
 
-          {{ summaryListHelperHtml(__("Phone number"), html, "/edit/establishment-contact-details", propsData.establishment_primary_number ) }}
+        {{ summaryListHelperHtml(__("Phone number"), html, "/edit/establishment-contact-details", propsData.establishment_primary_number ) }}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
@@ -179,8 +184,8 @@ summaryListDeclarationHelper %}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
-        {% set htmlValue = propsData.establishment_opening_date | date(props.language, "DD MMM YYYY") if propsData.establishment_opening_date else 
-            "" %}
+        {% set htmlValue = propsData.establishment_opening_date | date(props.language, "DD MMM YYYY")if propsData.establishment_opening_date else 
+          "" %}
         {% set formattedDate = propsData.establishment_opening_date | date(props.language, "DD MMM YYYY") %}
         {{ summaryListHelper(__("Trading date"), htmlValue, "/edit/establishment-opening-status", formattedDate, formattedDate if not "Invalid date" and propsData.establishment_opening_date, "establishment_opening_date" ) }}
       {% endif %}

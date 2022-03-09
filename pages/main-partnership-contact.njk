@@ -4,59 +4,59 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-  {{ props.currentPageWithQuery }}
+    {{ props.currentPageWithQuery }}
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
             {% call postForm(props.formAction, props.csrfToken, props.language) -%}
             {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
-                <div class="govuk-form-group">
+            <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l" id="main_partnership">
-                    <h1 class="govuk-fieldset__heading" >
-                        {{__("Who is the main point of contact?")}}
-                    </h1>
+                        <h1 class="govuk-fieldset__heading" >
+                            {{__("Who is the main point of contact?")}}
+                        </h1>
                     </legend>
                     <div id="changed-name-hint" class="govuk-hint">
-                    {{__("Please select the partner who will be the main point of contact for this business")}}
+                        {{__("Please select the partner who will be the main point of contact for this business")}}
                     </div>
                     <details class="govuk-details" data-module="govuk-details">
-                    <summary class="govuk-details__summary">
-                        <span class="govuk-details__summary-text">
-                            {{__("What is a partnership?")}}
-                        </span>
-                    </summary>
-                    <div class="govuk-details__text">
-                        {{__("In a partnership, you and your partner (or partners) personally share responsibility for your food business")}}
-                    </div>
+                        <summary class="govuk-details__summary">
+                            <span class="govuk-details__summary-text">
+                                {{__("What is a partnership?")}}
+                            </span>
+                        </summary>
+                        <div class="govuk-details__text">
+                            {{__("In a partnership, you and your partner (or partners) personally share responsibility for your food business")}}
+                        </div>
                     </details>
                     <div class="govuk-radios" data-module="govuk-radios">
-                    {% if props.validatorErrors.partner_is_primary %}
-                        <span id="partner-error" class="govuk-error-message">
-                        {{__(props.validatorErrors.partner_is_primary)}}
-                        </span>
-                    {% endif %}
-                    {{ defaultChecked }}
-                    {% set count = 0 %}
-                    {% for partner in props.cumulativeFullAnswers.partners %}
-                        {% set defaultChecked = props.cumulativeFullAnswers.main_partnership_contact == partner  %}
+                        {% if props.validatorErrors.partner_is_primary %}
+                            <span id="partner-error" class="govuk-error-message">
+                                {{__(props.validatorErrors.partner_is_primary)}}
+                            </span>
+                        {% endif %}
+                        {% set count = 0 %}
+                        {% for partner in props.cumulativeFullAnswers.partners %}
+                            {% set defaultChecked = props.cumulativeFullAnswers.main_partnership_contact == partner %}
                             <div class="govuk-radios__item">
-                                <input class="govuk-radios__input" name="main_partnership_contact" id="partner-{{count}}" value={{partner}} type="radio" key={{partner}} checked={{defaultChecked}}>
+                                <input class="govuk-radios__input" name="main_partnership_contact" id="partner-{{count}}" 
+                                value="{{partner}}" type="radio" key="{{partner}}" {{"checked" if defaultChecked }}/>
                                 <label class="govuk-label govuk-radios__label" for="partner-{{count}}">
-                                {{ partner }}
+                                    {{ partner }}
                                 </label>
                             </div>
-                        {% set count = count + 1 %}
-                    {% endfor %}
+                            {% set count = count + 1 %}
+                        {% endfor %}
                     </div>
 
                 </fieldset>
-                </div>
+            </div>
 
-                {{ govukButton({
+            {{ govukButton({
                     text: __("Save and continue") if props.editModeFirstPage else __("Continue")
                 }) }}
-          {%- endcall %}
+            {%- endcall %}
         </div>
-   </div>
+    </div>
 {% endblock %}
