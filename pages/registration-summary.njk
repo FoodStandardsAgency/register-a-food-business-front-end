@@ -29,7 +29,7 @@ summaryListDeclarationHelper %}
       <h2 class="govuk-heading-m">{{__("Operator details") }}</h2>
 
       {% if propsData.applicationCompletePage == null %}
-        {{ summaryListHelper(__("Operator type"), __(propsData.operator_type), "/edit/registration-role", propsData.operator_type, "operator_type") }}
+        {{ summaryListHelper(__("Operator type"), __(propsData.operator_type) if propsData.operator_type, "/edit/registration-role", propsData.operator_type, "operator_type") }}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
@@ -155,7 +155,7 @@ summaryListDeclarationHelper %}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
-        {{ summaryListHelper(__("Address type"), __(propsData.establishment_type), "/edit/establishment-address-type", propsData.establishment_type, "establishment_type") }}
+        {{ summaryListHelper(__("Address type"), __(propsData.establishment_type) if propsData.establishment_type, "/edit/establishment-address-type", propsData.establishment_type, "establishment_type") }}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
@@ -186,7 +186,7 @@ summaryListDeclarationHelper %}
       {% if propsData.applicationCompletePage == null %}
         {% set htmlValue = propsData.establishment_opening_date | date(props.language, "DD MMM YYYY")if propsData.establishment_opening_date else 
           "" %}
-        {% set formattedDate = propsData.establishment_opening_date | date(props.language, "DD MMM YYYY") %}
+        {% set formattedDate = (propsData.establishment_opening_date | date(props.language, "DD MMM YYYY"))if propsData.establishment_opening_date %}
         {{ summaryListHelper(__("Trading date"), htmlValue, "/edit/establishment-opening-status", formattedDate, formattedDate if not "Invalid date" and propsData.establishment_opening_date, "establishment_opening_date" ) }}
       {% endif %}
 
@@ -231,21 +231,21 @@ summaryListDeclarationHelper %}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
-        {{ summaryListHelper(__("Water supply"), __(propsData.water_supply), "/edit/business-water-supply", propsData.water_supply, "water_supply") }}
+        {{ summaryListHelper(__("Water supply"), __(propsData.water_supply) if propsData.water_supply, "/edit/business-water-supply", propsData.water_supply, "water_supply") }}
       {% endif %}
 
       <h2 class="govuk-heading-m">{{__("Activities") }}</h2>
 
       {% if propsData.applicationCompletePage == null %}
-        {{ summaryListHelper(__("Customers"), __(propsData.customer_type), "/edit/customer-type", propsData.customer_type, "customer_type") }}
+        {{ summaryListHelper(__("Customers"), __(propsData.customer_type) if propsData.customer_type, "/edit/customer-type", propsData.customer_type, "customer_type") }}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
-        {{ summaryListHelper(__("Business type"), __(propsData.business_type), "/edit/business-type", propsData.business_type, "business_type") }}
+        {{ summaryListHelper(__("Business type"), __(propsData.business_type) if propsData.business_type, "/edit/business-type", propsData.business_type, "business_type") }}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
-        {{ summaryListHelper(__("Import and export"), __(propsData.import_export_activities), "/edit/business-import-export", propsData.import_export_activities, "import_export_activities") }}
+        {{ summaryListHelper(__("Import and export"), __(propsData.import_export_activities) if propsData.import_export_activities, "/edit/business-import-export", propsData.import_export_activities, "import_export_activities") }}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
