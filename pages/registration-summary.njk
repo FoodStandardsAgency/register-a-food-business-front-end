@@ -158,9 +158,9 @@ summaryListDeclarationHelper %}
         {{ summaryListHelper(__("Address type"), __(propsData.establishment_type) if propsData.establishment_type, "/edit/establishment-address-type", propsData.establishment_type, "establishment_type") }}
       {% endif %}
 
-      {% if propsData.applicationCompletePage == null %}
+      {# {% if propsData.applicationCompletePage == null %}
         {{ summaryListHelperHtml(__("Phone number"), (propsData.establishment_primary_number if propsData.establishment_primary_number else "") + "<br>" + (propsData.establishment_secondary_number if propsData.establishment_secondary_number else ""), "/edit/establishment-contact-details", propsData.establishment_primary_number ) }}
-      {% endif %}
+      {% endif %} #}
 
       {% if propsData.applicationCompletePage == null %}
         {% set html %}
