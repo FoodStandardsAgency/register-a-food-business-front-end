@@ -121,15 +121,15 @@ summaryListDeclarationHelper %}
         {% if props.cumulativeFullAnswers.operator_type === "COMPANY" or props.cumulativeFullAnswers.operator_type === "CHARITY" %}
           {% set contactRepRole = propsData.contact_representative_role if propsData.contact_representative_role else 
             "" %}
-          {% set htmlValue = (propsData.contact_representative_name if propsData.contact_representative_name else 
+          {% set htmlValue = "<div id=designated_contact>" + (
+          propsData.contact_representative_name if propsData.contact_representative_name else 
             "") + "<br>" + (
             propsData.contact_representative_role if propsData.contact_representative_role else 
               "") + "<br>" + (
               propsData.contact_representative_number if propsData.contact_representative_number else 
                 "") + "<br>" + (
                 propsData.contact_representative_email if propsData.contact_representative_email else 
-                  ""
-                ) %}
+                  "") + "</div>" %}
           {{ summaryListHelperHtml(__("Designated contact"), htmlValue, "/edit/contact-representative", propsData.contact_representative_name, "contact_representative_name") }}
         {% endif %}
       {% endif %}
