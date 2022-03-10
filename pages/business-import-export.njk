@@ -9,14 +9,14 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
 
-      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+            {% call postForm(props.formAction, props.csrfToken, props.language) -%}
 
-        {{ processedErrorSummary(props.validatorErrors, props.language) }}
+            {{ processedErrorSummary(props.validatorErrors, props.language) }}
 
-        {{ govukCheckboxes({
+            {{ govukCheckboxes({
             idPrefix: "business_import_export",
             name: "business_import_export",
             fieldset: {
@@ -54,44 +54,42 @@
             }
         ],
         errorMessage: {
-             text: __(props.validatorErrors.business_import_export) } if props.validatorErrors.business_import_export
+             text: __(props.validatorErrors.import_export_activities) } if not (props.validatorErrors.directly_import or props.validatorErrors.directly_export or props.validatorErrors.no_import_export)
         }) }}
 
-       
+            <br>
+            <br>
+            {% set busImpExpLink = __("import/export-link") %}
+            {% set busImpExpText = __("If a food business is directly importing or exporting food outside of the UK, there are some extra requirements for the business to follow.") %}
 
-        <br> 
-        <br>
-        {% set busImpExpLink = __("import/export-link") %}
-        {% set busImpExpText = __("If a food business is directly importing or exporting food outside of the UK, there are some extra requirements for the business to follow.") %}
-
-        {% set detailsSummaryText %}
-        <p class="govuk-body">
-        {{ busImpExpText }}
-        </p> 
-        <span style="margin-top:-20px" class="govuk-body"> 
-            {{__("Find out more by visiting the") }}
-            <a href = {{ busImpExpLink }}
+            {% set detailsSummaryText %}
+            <p class="govuk-body">
+                {{ busImpExpText }}
+            </p>
+            <span style="margin-top:-20px" class="govuk-body">
+                {{__("Find out more by visiting the") }}
+                <a href = {{ busImpExpLink }}
                 class="govuk-link"
                 target="_blank"
                 rel="noopener noreferrer"
-                id="link-fsa-website" >  {{__("Food Standards Agency website (opens in new window)") }}
-            </a>
-        </span> 
-        {% endset %}
-        
+                id="link-fsa-website" >
+                    {{__("Food Standards Agency website (opens in new window)") }}
+                </a>
+            </span>
+            {% endset %}
 
-         {{ govukDetails({
+            {{ govukDetails({
             summaryText: __("More information about import and export activities"),
             html:  detailsSummaryText 
             })
         }}
-                
-        <br>
-        {{ govukButton({
+
+            <br>
+            {{ govukButton({
             text: __("Save and continue") if props.editModeFirstPage else __("Continue")
         }) }}
-     
-      {% endcall%}
-</div>
-</div>
-{% endblock%}
+
+            {% endcall%}
+        </div>
+    </div>
+    {% endblock%}
