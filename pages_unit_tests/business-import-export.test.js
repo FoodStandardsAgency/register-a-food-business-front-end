@@ -33,7 +33,7 @@ describe("business-import-export", () => {
       const $mainHeadingImport = $("#import_export_activities_directly_import");
       expect($mainHeadingImport.get(0).attribs.value).toBe("IMPORT");
     });
-    
+
     it("renders the Export radio button with the correct value", () => {
       const $ = renderPage("business-import-export", props);
       const $mainHeadingExport = $("#import_export_activities_directly_export");
@@ -56,7 +56,7 @@ describe("business-import-export", () => {
       const $ = renderPage("business-import-export", {
         language: "cy",
         validatorErrors: {
-          business_import_export: "test error"
+          import_export_activities: "test error"
         }
       });
 
@@ -69,7 +69,7 @@ describe("business-import-export", () => {
       const $ = renderPage("business-import-export", {
         language: "cy",
         validatorErrors: {
-          business_import_export: "test error"
+          import_export_activities: "test error"
         }
       });
 
