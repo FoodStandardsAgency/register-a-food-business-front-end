@@ -187,7 +187,7 @@ summaryListDeclarationHelper %}
         {% set htmlValue = propsData.establishment_opening_date | date(props.language, "DD MMM YYYY")if propsData.establishment_opening_date else 
           "" %}
         {% set formattedDate = (propsData.establishment_opening_date | date(props.language, "DD MMM YYYY"))if propsData.establishment_opening_date %}
-        {{ summaryListHelper(__("Trading date"), htmlValue, "/edit/establishment-opening-status", formattedDate, formattedDate if not "Invalid date" and propsData.establishment_opening_date, "establishment_opening_date" ) }}
+        {{ summaryListHelper(__("Trading date"), htmlValue, "/edit/establishment-opening-status", formattedDate if propsData.establishment_opening_date, "establishment_opening_date" ) }}
       {% endif %}
 
       {% if propsData.applicationCompletePage == null %}
