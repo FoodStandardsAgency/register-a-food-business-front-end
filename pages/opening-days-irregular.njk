@@ -4,15 +4,12 @@
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% extends "layout.njk" %}
-
 {% block content %}
-{{ props.currentPageWithQuery }}
+  {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
-
       {% call govukFieldset({
       describedBy: "opening-days-irregular",
         legend: {
@@ -21,23 +18,30 @@
           isPageHeading: true
         }
         }) %}
-        
-        {{ govukTextarea({
-        "label": {
-          "text": __("When will this establishment be open and serving or preparing food?")
-          },
+      {% set html %}
+      <p class="govuk-body">{{ __("When will this establishment be open and serving or preparing food?") }}</p>
+      <div class="govuk-label">
+        <label class="govuk-hint">
+          {{ __("For example") }}
+        </label>
+        <ul style="margin-block-start: 0; margin-block-end: 1em">
+          <li>{{ __("only serving food during December at Christmas markets") }}</li>
+          <li>{{ __("open at weekends in June and August between 10:00 and 19:00") }}</li>
+        </ul>
+      </div>
+      {% endset %}
+      {{ govukTextarea({
+        "label": { "html": html },
         "id": "opening_days_irregular",
         "value": props.cumulativeFullAnswers.opening_days_irregular,
         "name": "opening_days_irregular",
         "errorMessage": {
         "text": __(props.validatorErrors.opening_days_irregular)} if props.validatorErrors.opening_days_irregular
         }) }}
-
-      {% endcall%}
+      {% endcall %}
       {{ govukButton({
               text: __("Save and continue") if props.editModeFirstPage else __("Continue")
             }) }}
-      
       {%- endcall %}
     </div>
   </div>

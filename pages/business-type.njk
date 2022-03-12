@@ -1,52 +1,44 @@
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
-
 {% from "../components/DataList.njk" import govukDataList %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
-
 {% macro businessTypeAutoComplete() %}
-  <label for="my-autocomplete" >
+  <label for="my-autocomplete">
     <div id="autocompleteContainer" name="business_type">
       {% if props.validatorErrors.business_type %}
         <span id="business_type-error" class="govuk-error-message">
-          {{__(props.validatorErrors.business_type)}}
+          {{ __(props.validatorErrors.business_type) }}
         </span>
       {% else %}
         {{ null }}
       {% endif %}
     </div>
   </label>
-  {%endmacro%}
-
-  {% macro businessTypeSelect(props) %}
-    {% set businessTypesArray = [] %}
-    {% for businessType in props.businessTypes %}
-      {% set businessTypesArray = (businessTypesArray.push({value: __(businessType), text: __(businessType)}), businessTypesArray) %}
-    {% endfor %}
-
-    {{ govukDataList({
+{% endmacro %}
+{% macro businessTypeSelect(props) %}
+  {% set businessTypesArray = [] %}
+  {% for businessType in props.businessTypes %}
+    {% set businessTypesArray = (businessTypesArray.push({value: __(businessType), text: __(businessType)}), businessTypesArray) %}
+  {% endfor %}
+  {{ govukDataList({
       id: "businessTypeLookup",
       name: "business_type",
       value: props.cumulativeFullAnswers.business_type,
       items:businessTypesArray
     }) }}
-    {%endmacro%}
-
-    {% extends "layout.njk" %}
-    {% block head %}
-      <link href="/css/app.css" rel="stylesheet" type="text/css">
-      <link href="/auto-complete/accessible-autocomplete.min.css" rel="stylesheet" type="text/css">
+{% endmacro %}
+{% extends "layout.njk" %}
+{% block head %}
+  <link href="/css/app.css" rel="stylesheet" type="text/css">
+    <link href="/auto-complete/accessible-autocomplete.min.css" rel="stylesheet" type="text/css">
     {% endblock %}
-
     {% block content %}
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-
           {% call postForm(props.formAction, props.csrfToken, props.language) -%}
           {{ processedErrorSummary(props.validatorErrors, props.language) }}
-
           {% call govukFieldset({
             legend: {
               text: __("What kind of food business are you registering?"),
@@ -54,48 +46,43 @@
               isPageHeading: true
                     }
           }) %}
-
-          <p class="govuk-body">{{__("Search with your own keywords and then select the most fitting business type from the suggestions")}}</p>
-
-          {% set businesstype = [__("cafe"), __("food delivery service"), __("commercial bakery"), __("meat product manufacturer")] %}
-          <div class = "govuk-label">
+          <p class="govuk-body">{{ __("Search with your own keywords and then select the most fitting business type from the suggestions") }}</p>
+          {% set businesstype = [__("cafe"), __("food delivery service"), __("commercial bakery"), __("meat product manufacturer"), __("home caterer")] %}
+          <div class="govuk-label">
             <label id="changed-name-hint" class="govuk-hint">
               {{ __("For example") }}
             </label>
-            {% for items in businesstype | slice(4) %}
-              <ul>
+            {% for items in businesstype | slice(5) %}
+              <ul style="margin-block-start: 0.5em; margin-block-end: 0.5em">
                 {% for item in items %}
                   <li>{{ item }}</li>
-                  {% endfor%}
-                </ul>
-              {% endfor %}
-              {{ businessTypeSelect(props) if props.browser === "IE" else businessTypeAutoComplete() }}
-            </div>
-
-            <script>
-              var language = "{{ props.language }}"
-              var business_type_default = "{{ props.cumulativeFullAnswers.business_type }}"
-            </script>
-            <script src="/auto-complete/bundle.js"></script>
-            <noscript>
-              {% set businessTypesArray = [] %}
-              {% for businessType in props.businessTypes %}
-                {% set businessTypesArray = (businessTypesArray.push({value: __(businessType), text: __(businessType)}), businessTypesArray) %}
-              {% endfor %}
-
-              {{ govukDataList({
+                {% endfor %}
+              </ul>
+            {% endfor %}
+            {{ businessTypeSelect(props) if props.browser === "IE" else businessTypeAutoComplete() }}
+          </div>
+          <script>
+            var language = "{{ props.language }}"
+            var business_type_default = "{{ props.cumulativeFullAnswers.business_type }}"
+          </script>
+          <script src="/auto-complete/bundle.js"></script>
+          <noscript>
+            {% set businessTypesArray = [] %}
+            {% for businessType in props.businessTypes %}
+              {% set businessTypesArray = (businessTypesArray.push({value: __(businessType), text: __(businessType)}), businessTypesArray) %}
+            {% endfor %}
+            {{ govukDataList({
               id: "businessTypeLookup",
               name: "business_type",
               value: props.cumulativeFullAnswers.business_type,
               items:businessTypesArray
             }) }}
-            </noscript>
-          </div>
+          </noscript>
         </div>
-        {% endcall%}
-        {{ govukButton({
+      </div>
+      {% endcall %}
+      {{ govukButton({
           text: __("Save and continue") if props.editModeFirstPage else __("Continue")
       }) }}
-        {%endcall%}
-
-        {% endblock%}
+      {% endcall %}
+    {% endblock %}
