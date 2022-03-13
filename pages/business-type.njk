@@ -6,7 +6,7 @@
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% macro businessTypeAutoComplete() %}
   <label for="my-autocomplete">
-    <div id="autocompleteContainer" name="business_type">
+    <div id="autocompleteContainer" name="business_type" style="margin-top: 1em; margin-bottom: 2em;">
       {% if props.validatorErrors.business_type %}
         <span id="business_type-error" class="govuk-error-message">
           {{ __(props.validatorErrors.business_type) }}
@@ -53,7 +53,7 @@
               {{ __("For example") }}
             </label>
             {% for items in businesstype | slice(5) %}
-              <ul style="margin-block-start: 0.5em; margin-block-end: 0.5em">
+              <ul style="margin-top:0; margin-bottom:0">
                 {% for item in items %}
                   <li>{{ item }}</li>
                 {% endfor %}
@@ -67,16 +67,7 @@
           </script>
           <script src="/auto-complete/bundle.js"></script>
           <noscript>
-            {% set businessTypesArray = [] %}
-            {% for businessType in props.businessTypes %}
-              {% set businessTypesArray = (businessTypesArray.push({value: __(businessType), text: __(businessType)}), businessTypesArray) %}
-            {% endfor %}
-            {{ govukDataList({
-              id: "businessTypeLookup",
-              name: "business_type",
-              value: props.cumulativeFullAnswers.business_type,
-              items:businessTypesArray
-            }) }}
+            {{ businessTypeSelect(props) }}
           </noscript>
         </div>
       </div>

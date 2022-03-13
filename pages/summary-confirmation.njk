@@ -11,7 +11,7 @@
       <p class="govuk-body">{{ __("Thank you for submitting your food business registration.") }}</p>
       {% set html %}
       {% if props.fsaRegistrationNumber %}
-        <span id="fsa-rn">
+        <span id="fsa-rn" style="line-height: 0.9">
           {{ props.fsaRegistrationNumber.split("-").join(" - ") }}
         </span>
       {% else %}

@@ -187,6 +187,8 @@ const setLanguage = function (req, res, next) {
     i18n.setLocale(req.body.language);
   } else if (req.query.lang) {
     i18n.setLocale(req.query.lang);
+  } else {
+    i18n.setLocale("en");
   }
   next();
 };
