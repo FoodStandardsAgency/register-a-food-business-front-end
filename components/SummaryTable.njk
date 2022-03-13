@@ -8,7 +8,7 @@
     {# {% set propsData.applicationCompletePage = true %} #}
     {% set validatorErrors = props.allValidationErrors %}
     <fieldset class="govuk-fieldset">
-        <h2 class="govuk-heading-m">{{ __("Operator details") }}</h2>
+        <h2 id="operator-details" class="govuk-heading-m">{{ __("Operator details") }}</h2>
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.operator_type or propsData.operator_type %}
                 {{ summaryListHelperWithoutEdit(__("Operator type"), __(propsData.operator_type), false) }}
@@ -78,7 +78,7 @@
                 {{ summaryListHelperHtmlWithoutEdit(__("Designated contact"), htmlValue, false) }}
             {% endif %}
         {% endif %}
-        <h2 class="govuk-heading-m">{{ __("Establishment details") }}</h2>
+        <h2 id="establishment-details" class="govuk-heading-m">{{ __("Establishment details") }}</h2>
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.establishment_trading_name or propsData.establishment_trading_name %}
                 {{ summaryListHelperWithoutEdit(__("Trading name"), propsData.establishment_trading_name, false) }}
@@ -159,7 +159,7 @@
                 {{ summaryListHelperWithoutEdit(__("Water supply"), __(propsData.water_supply), false) }}
             {% endif %}
         {% endif %}
-        <h2 class="govuk-heading-m">{{ __("Activities") }}</h2>
+        <h2 id="activity-details" class="govuk-heading-m">{{ __("Activities") }}</h2>
         {% if propsData.applicationCompletePage == null %}
             {% if validatorErrors.customer_type or propsData.customer_type %}
                 {{ summaryListHelperWithoutEdit(__("Customers"), __(propsData.customer_type), false) }}
@@ -180,7 +180,7 @@
                 {{ summaryListHelperWithoutEdit(__("Additional details"), propsData.business_other_details, false) }}
             {% endif %}
         {% endif %}
-        <h2 class="govuk-heading-m">{{ __("Declaration") }}</h2>
+        <h2 id="declaration-details" class="govuk-heading-m">{{ __("Declaration") }}</h2>
         {% if props.cumulativeFullAnswers.declaration1 %}
             {% set html %}
             <span id="declaration1">
