@@ -184,11 +184,11 @@ env.addGlobal("mergeObjects", (orig, additionalProps) => ({
 
 const setLanguage = function (req, res, next) {
   if (req.body && req.body.language) {
-    i18n.setLocale(req.body.language);
+    i18n.setLocale(req, req.body.language);
   } else if (req.query.lang) {
-    i18n.setLocale(req.query.lang);
+    i18n.setLocale(req, req.query.lang);
   } else if (!i18n.getLocale()) {
-    i18n.setLocale("en");
+    i18n.setLocale(req, "en");
   }
   next();
 };
