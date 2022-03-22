@@ -73,16 +73,29 @@
      <div className="receiveConfirmationEmail" id="receiveConfirmationEmail-id">
       <p class="govuk-body">{{ __("A copy of this registration has been sent to ") + props.transformedData.operator_email if props.transformedData.operator_email else __("A copy of this registration has been sent to ") + props.transformedData.contact_representative_email }} </p>
      </div>
-       <h2 class="govuk-heading-m">{{__("What's next?") }}</h2>
+       <h2 class="govuk-heading-m">{{__("What happens next?") }}</h2>
        {{ govukInsetText({
         text: __("You may receive an unannounced food inspection from your local council soon after you start trading.")
        }) }}
 
        <p class="govuk-body">
-          {{ __("The council may contact you before the inspection to discuss how your business operates or to offer advice. Meanwhile, there are some things you can do to help prepare for the opening of your business.") }}
+          {{ __("The council may contact you before the inspection to discuss how your business operates or to offer advice.") }}
        </p>
 
-       <h3 class="govuk-heading-m">{{__("Find out here what you can do to prepare") }}</h3>
+       <p class="govuk-body">
+          {{ __("If you have any questions or need to update any information, please contact the council directly using the contact details above.") }}
+       </p>
+
+       <p class="govuk-body">
+         <strong>{{ __("Note") }}</strong>
+          {{ __("Councils are responsible for issuing ") }}
+          <a class="govuk-link" href='{{__("FHRS Link")}}'> {{__("Food Hygiene ratings ")}}</a>
+          {{__("(FHRS) following inspection, and upload details onto ")}} 
+          <a class="govuk-link" href='{{__("Food UK Link")}}'> {{__("food.gov.uk. ")}}</a>
+          {{__("Any questions around FHRS should be directed to the council not the FSA")}}
+       </p>
+
+       <h3 class="govuk-heading-m">{{__("What can I do to prepare?") }}</h3>
        <p class="govuk-body" style="margin-top:-20px">
           {{ __("All links open in a new window")}}
        </p>
@@ -90,7 +103,7 @@
       {% if props.language === "en" %}
         <a class="govuk-link" id="foodSafetyLink" href="https://www.food.gov.uk/business-guidance" 
             target="_blank"
-            rel="noopener noreferrer">{{__("Guidance on food hygiene and how to run a safe food business")}}
+            rel="noopener noreferrer">{{__("Guidance for new food businesses")}}
         </a>
         <br>
         <br>
