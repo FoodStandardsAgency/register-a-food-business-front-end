@@ -61,35 +61,34 @@
         <p class="govuk-body">{{ __("Submitted on") + ": " }}
           {{ formattedDate }}</p>
       </div>
-     <div className="receiveConfirmationEmail" id="receiveConfirmationEmail-id">
-      <p class="govuk-body">{{ __("A copy of this registration has been sent to ") + props.transformedData.operator_email if props.transformedData.operator_email else __("A copy of this registration has been sent to ") + props.transformedData.contact_representative_email }} </p>
-     </div>
-       <h2 class="govuk-heading-m">{{__("What happens next?") }}</h2>
-       {{ govukInsetText({
+      <div className="receiveConfirmationEmail" id="receiveConfirmationEmail-id">
+        <p class="govuk-body">{{ __("A copy of this registration has been sent to ") + props.transformedData.operator_email if props.transformedData.operator_email else __("A copy of this registration has been sent to ") + props.transformedData.contact_representative_email }}
+        </p>
+      </div>
+      <h2 class="govuk-heading-m">{{ __("What happens next?") }}</h2>
+      {{ govukInsetText({
         text: __("You may receive an unannounced food inspection from your local council soon after you start trading.")
        }) }}
-
-       <p class="govuk-body">
-          {{ __("The council may contact you before the inspection to discuss how your business operates or to offer advice.") }}
-       </p>
-
-       <p class="govuk-body">
-          {{ __("If you have any questions or need to update any information, please contact the council directly using the contact details above.") }}
-       </p>
-
-       <p class="govuk-body">
-         <strong>{{ __("Note") }}</strong>
-          {{ __("Councils are responsible for issuing ") }}
-          <a class="govuk-link" href='{{__("FHRS Link")}}'> {{__("Food Hygiene ratings ")}}</a>
-          {{__("(FHRS) following inspection, and upload details onto ")}} 
-          <a class="govuk-link" href='{{__("Food UK Link")}}'> {{__("food.gov.uk. ")}}</a>
-          {{__("Any questions around FHRS should be directed to the council not the FSA")}}
-       </p>
-
-       <h3 class="govuk-heading-m">{{__("What can I do to prepare?") }}</h3>
-       <p class="govuk-body" style="margin-top:-20px">
-          {{ __("All links open in a new window")}}
-       </p>
+      <p class="govuk-body">
+        {{ __("The council may contact you before the inspection to discuss how your business operates or to offer advice.") }}
+      </p>
+      <p class="govuk-body">
+        {{ __("If you have any questions or need to update any information, please contact the council directly using the contact details above.") }}
+      </p>
+      <p class="govuk-body">
+        <strong>{{ __("Note") }}</strong>
+        {{ __("Councils are responsible for issuing ") }}
+        <a class="govuk-link" href='{{ __("FHRS Link") }}'>
+          {{ __("Food Hygiene ratings ") }}</a>
+        {{ __("(FHRS) following inspection, and upload details onto ") }}
+        <a class="govuk-link" href='{{ __("Food UK Link") }}'>
+          {{ __("food.gov.uk. ") }}</a>
+        {{ __("Any questions around FHRS should be directed to the council not the FSA") }}
+      </p>
+      <h3 class="govuk-heading-m">{{ __("What can I do to prepare?") }}</h3>
+      <p class="govuk-body">
+        {{ __("All links open in a new window") }}
+      </p>
       {% if props.language === "en" %}
         <p>
           <a
@@ -97,138 +96,139 @@
             id="foodSafetyLink"
             href="https://www.food.gov.uk/business-guidance"
             target="_blank"
-            rel="noopener noreferrer">{{__("Guidance for new food businesses")}}
-        </a>
-        <br>
-        <br>
-        <a class="govuk-link" id="fhrsScoreLink" href="https://www.food.gov.uk/business-guidance/food-hygiene-ratings-for-businesses" 
-            target="_blank"
-            rel="noopener noreferrer">{{ __("How to achieve a high food hygiene rating (FHRS score)") }}
+            rel="noopener noreferrer">{{ __("Guidance for new food businesses") }}
           </a>
-        </p>
-        {% if props.country === "northern-ireland" %}
-          <p>
-            <a
-              class="govuk-link"
-              id="safeCateringLink"
-              href="https://www.food.gov.uk/business-guidance/safe-catering"
-              target="_blank"
-              rel="noopener noreferrer">{{ __("Safe catering") }}
-            </a>
-          </p>
-        {% endif %}
-        <p>
-          <a
-            class="govuk-link"
-            id="safetyManagementLink"
-            href="https://www.food.gov.uk/business-guidance/safer-food-better-business"
-            target="_blank"
-            rel="noopener noreferrer">{{ __("Information on the food safety management system safer food, better business") }}
-          </a>
-        </p>
-        <p>
-          <a
-            class="govuk-link"
-            id="foodLabellingLink"
-            href="https://www.food.gov.uk/business-guidance/industry-specific-advice/labelling-and-allergens"
-            target="_blank"
-            rel="noopener noreferrer">{{ __("Food labelling and allergens guidance") }}
-          </a>
-        </p>
-      {% endif %}
-      {% if props.language === "cy" %}
-        <h2 class="govuk-heading-m" style="margin-top:-40px"></h2>
-        <p>
-          <a
-            class="govuk-link"
-            id="businessGuidanceLink"
-            href="https://www.businesswales.gov.wales/starting-up"
-            target="_blank"
-            rel="noopener noreferrer">{{ __("Business support Wales") }}
-          </a>
-        </p>
-      {% endif %}
-      {% if props.country === "northern-ireland" and props.language === "en" %}
-        <p>
-          <a
-            class="govuk-link"
-            id="businessGuidanceLink"
-            href="https://www.nibusinessinfo.co.uk/"
-            target="_blank"
-            rel="noopener noreferrer">{{ __("Business support Northern Ireland") }}
-          </a>
-        </p>
-      {% else %}
-        {% if props.country === "england" and props.language === "en" %}
-          <p>
-            <a
-              class="govuk-link"
-              id="businessSupportHelplineEnglishLink"
-              href="https://www.gov.uk/business-support-helpline"
-              target="_blank"
-              rel="noopener noreferrer">{{ __("Business support & helpline") }}
-            </a>
-          </p>
-          <p class="govuk-body-s">or contact the Business Support Helpline on 0800 998 1098</p>
-        {% endif %}
-      {% endif %}
-      {% if props.language === "cy" %}
-        <h2 class="govuk-heading-m" style="margin-top:-20px"></h2>
-        <p>
-          <a
-            class="govuk-link"
-            style="margin-top:-20px"
-            id="businessGuidanceWelshLink"
-            href="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau"
-            target="_blank"
-            rel="noopener noreferrer">{{ ("I gael cyngor cyffredinol ar hylendid bwyd a sut i redeg busnes
+          <br>
+            <br>
+              <a
+                class="govuk-link"
+                id="fhrsScoreLink"
+                href="https://www.food.gov.uk/business-guidance/food-hygiene-ratings-for-businesses"
+                target="_blank"
+                rel="noopener noreferrer">{{ __("How to achieve a high food hygiene rating (FHRS score)") }}
+              </a>
+            </p>
+            {% if props.country === "northern-ireland" %}
+              <p>
+                <a
+                  class="govuk-link"
+                  id="safeCateringLink"
+                  href="https://www.food.gov.uk/business-guidance/safe-catering"
+                  target="_blank"
+                  rel="noopener noreferrer">{{ __("Safe catering") }}
+                </a>
+              </p>
+            {% endif %}
+            <p>
+              <a
+                class="govuk-link"
+                id="safetyManagementLink"
+                href="https://www.food.gov.uk/business-guidance/safer-food-better-business"
+                target="_blank"
+                rel="noopener noreferrer">{{ __("Information on the food safety management system safer food, better business") }}
+              </a>
+            </p>
+            <p>
+              <a
+                class="govuk-link"
+                id="foodLabellingLink"
+                href="https://www.food.gov.uk/business-guidance/industry-specific-advice/labelling-and-allergens"
+                target="_blank"
+                rel="noopener noreferrer">{{ __("Food labelling and allergens guidance") }}
+              </a>
+            </p>
+          {% endif %}
+          {% if props.language === "cy" %}
+            <p>
+              <a
+                class="govuk-link"
+                id="businessGuidanceLink"
+                href="https://www.businesswales.gov.wales/starting-up"
+                target="_blank"
+                rel="noopener noreferrer">{{ __("Business support Wales") }}
+              </a>
+            </p>
+          {% endif %}
+          {% if props.country === "northern-ireland" and props.language === "en" %}
+            <p>
+              <a
+                class="govuk-link"
+                id="businessGuidanceLink"
+                href="https://www.nibusinessinfo.co.uk/"
+                target="_blank"
+                rel="noopener noreferrer">{{ __("Business support Northern Ireland") }}
+              </a>
+            </p>
+          {% else %}
+            {% if props.country === "england" and props.language === "en" %}
+              <p>
+                <a
+                  class="govuk-link"
+                  id="businessSupportHelplineEnglishLink"
+                  href="https://www.gov.uk/business-support-helpline"
+                  target="_blank"
+                  rel="noopener noreferrer">{{ __("Business support & helpline") }}
+                </a>
+              </p>
+              <p class="govuk-body-s">or contact the Business Support Helpline on 0800 998 1098</p>
+            {% endif %}
+          {% endif %}
+          {% if props.language === "cy" %}
+            <p>
+              <a
+                class="govuk-link"
+                style="margin-top:-20px"
+                id="businessGuidanceWelshLink"
+                href="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau"
+                target="_blank"
+                rel="noopener noreferrer">{{ ("I gael cyngor cyffredinol ar hylendid bwyd a sut i redeg busnes
               bwyd diogel") }}
-          </a>
-        </p>
-        <p>
-          <a
-            class="govuk-link"
-            id="foodHygieneRatingsWelshLink"
-            href="https://www.food.gov.uk/cy/business-guidance/sgoriau-hylendid-bwyd-ar-gyfer-busnesau"
-            target="_blank"
-            rel="noopener noreferrer">{{ ("I gael gwybodaeth am sut i gael sgôr uchel o dan y Cynllun Sgorio
+              </a>
+            </p>
+            <p>
+              <a
+                class="govuk-link"
+                id="foodHygieneRatingsWelshLink"
+                href="https://www.food.gov.uk/cy/business-guidance/sgoriau-hylendid-bwyd-ar-gyfer-busnesau"
+                target="_blank"
+                rel="noopener noreferrer">{{ ("I gael gwybodaeth am sut i gael sgôr uchel o dan y Cynllun Sgorio
               Hylendid Bwyd") }}
-          </a>
-        </p>
-        <p>
-          <a
-            class="govuk-link"
-            id="saferFoodBetterBusinessWelshLink"
-            href="https://www.food.gov.uk/cy/business-guidance/bwyd-mwy-diogel-busnes-gwell"
-            target="_blank"
-            rel="noopener noreferrer">{{ ("I gael gwybodaeth am y system rheoli diogelwch bwyd, Bwyd mwy
+              </a>
+            </p>
+            <p>
+              <a
+                class="govuk-link"
+                id="saferFoodBetterBusinessWelshLink"
+                href="https://www.food.gov.uk/cy/business-guidance/bwyd-mwy-diogel-busnes-gwell"
+                target="_blank"
+                rel="noopener noreferrer">{{ ("I gael gwybodaeth am y system rheoli diogelwch bwyd, Bwyd mwy
               Diogel, Busnes Gwell") }}
-          </a>
-        </p>
-        <p>
-          <a
-            class="govuk-link"
-            id="labellingAndAllergensWelshLink"
-            href="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau/cyngor-penodol-ar-gyfer-y-diwydiant/labelu-ac-alergenau"
-            target="_blank"
-            rel="noopener noreferrer">{{ ("I gael canllawiau ar labelu bwyd ac alergenau") }}
-          </a>
-        </p>
-        <p>
-          <a
-            class="govuk-link"
-            id="businessStartUpGuidanceWelshLink"
-            href="https://businesswales.gov.wales/starting-up/cy"
-            target="_blank"
-            rel="noopener noreferrer">{{ ("I gael cyngor busnes cyffredinol") }}
-          </a>
-        </p>
-      {% endif %}
-      <p>
-        <h2 class="govuk-heading-l">{{ __("Your registration details") }}</h2>
-        {% set applicationCompletePage = true %}
-        {{ summaryTable(props) }}
-      </p>
-    </div>
-  </div>
-{% endblock %}
+              </a>
+            </p>
+            <p>
+              <a
+                class="govuk-link"
+                id="labellingAndAllergensWelshLink"
+                href="https://www.food.gov.uk/cy/canllawiau-ar-gyfer-busnesau/cyngor-penodol-ar-gyfer-y-diwydiant/labelu-ac-alergenau"
+                target="_blank"
+                rel="noopener noreferrer">{{ ("I gael canllawiau ar labelu bwyd ac alergenau") }}
+              </a>
+            </p>
+            <p>
+              <a
+                class="govuk-link"
+                id="businessStartUpGuidanceWelshLink"
+                href="https://businesswales.gov.wales/starting-up/cy"
+                target="_blank"
+                rel="noopener noreferrer">{{ ("I gael cyngor busnes cyffredinol") }}
+              </a>
+            </p>
+          {% endif %}
+          <p>
+            <h2 class="govuk-heading-l">{{ __("Your registration details") }}</h2>
+            {% set applicationCompletePage = true %}
+            {{ summaryTable(props) }}
+          </p>
+        </div>
+      </div>
+    {% endblock %}
