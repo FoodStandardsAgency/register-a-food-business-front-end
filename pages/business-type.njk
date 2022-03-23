@@ -56,31 +56,10 @@
               <ul style="margin-top:0; margin-bottom:0">
                 {% for item in items %}
                   <li>{{ item }}</li>
-                {% endfor%}
+                {% endfor %}
               </ul>
-              {% endfor %}
-              {{ businessTypeSelect(props) if props.browser === "IE" else businessTypeAutoComplete() }}
-            </div>
-
-            <script>
-              var language = "{{ props.language }}"
-              var business_type_default = "{{ props.cumulativeFullAnswers.business_type }}"
-            </script>
-            <script src="/auto-complete/bundle.js"></script>
-            <script>document.getElementById("my-autocomplete").removeAttribute("aria-describedby");</script>
-            <noscript>
-              {% set businessTypesArray = [] %}
-              {% for businessType in props.businessTypes %}
-                {% set businessTypesArray = (businessTypesArray.push({value: __(businessType), text: __(businessType)}), businessTypesArray) %}
-              {% endfor %}
-
-              {{ govukDataList({
-              id: "businessTypeLookup",
-              name: "business_type",
-              value: props.cumulativeFullAnswers.business_type,
-              items:businessTypesArray
-            }) }}
-            </noscript>
+            {% endfor %}
+            {{ businessTypeSelect(props) if props.browser === "IE" else businessTypeAutoComplete() }}
           </div>
           <script>
             var language = "{{ props.language }}"
