@@ -88,7 +88,6 @@
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
       {% call govukFieldset({
-              describedBy: "opening_hours",
                 legend: {
                   text: __("Opening hours"),
                   classes: "govuk-fieldset__legend--l",
