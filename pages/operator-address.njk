@@ -3,18 +3,14 @@
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
-
 {% extends "layout.njk" %}
-
 {% block content %}
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-         {% call postForm("/findaddress" + props.currentPage, props.csrfToken, props.language) -%}
+            {% call postForm("/findaddress" + props.currentPage, props.csrfToken, props.language) -%}
             {{ processedErrorSummary(props.validatorErrors, props.language) }}
-
             {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
                 {% call govukFieldset({
                     legend: {
@@ -23,7 +19,7 @@
                         isPageHeading: true
                     }
                     }) %}
-                    <p id="changed-name-hint" class="govuk-hint">{{__("Partnership address is the contact address for the partner who is the main point of contact.")}}</p>
+                <p id="changed-name-hint" class="govuk-hint">{{ __("Partnership address is the contact address for the partner who is the main point of contact.") }}</p>
                 {% endcall %}
             {% else %}
                 {% call govukFieldset({
@@ -33,7 +29,7 @@
                         isPageHeading: true
                     }
                     }) %}
-                    <p id="changed-name-hint" class="govuk-hint">{{__("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.")}}</p>
+                <p id="changed-name-hint" class="govuk-hint">{{ __("Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company.") }}</p>
                 {% endcall %}
             {% endif %}
             {{ govukInput({

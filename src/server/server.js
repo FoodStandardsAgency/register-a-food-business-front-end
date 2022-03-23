@@ -95,15 +95,15 @@ if (COSMOSDB_URL) {
   logger.info("Server: setting session cache to memory");
 }
 
-const forceDomain = (req, res, next) => {
+const forceDomainOrSchema = (req, res, next) => {
   let host = req.hostname;
-  if (
-    process.env.FOOD_GOV_URL &&
-    host.includes("register-a-food-business.azurewebsites")
-  ) {
-    res.redirect(301, `${process.env.FOOD_GOV_URL}${req.originalUrl}`);
+  if (host.includes("register-a-food-business.azurewebsites")) {
+    if (process.env.FOOD_GOV_URL) {
+      res.redirect(301, `${process.env.FOOD_GOV_URL}${req.originalUrl}`);
+    } else if (!req.secure) {
+      res.redirect("https://" + req.headers.host + req.url);
+    }
   }
-
   return next();
 };
 
@@ -133,7 +133,7 @@ const sixtyDaysInSeconds = 5184000;
 app.set("trust proxy", 1);
 app.enable("trust proxy");
 app.use(clsMiddleware);
-app.use(forceDomain);
+app.use(forceDomainOrSchema);
 app.use(limiter);
 app.use(session(sessionOptions));
 app.use(cookieParser());
@@ -184,9 +184,11 @@ env.addGlobal("mergeObjects", (orig, additionalProps) => ({
 
 const setLanguage = function (req, res, next) {
   if (req.body && req.body.language) {
-    i18n.setLocale(req.body.language);
+    i18n.setLocale(req, req.body.language);
   } else if (req.query.lang) {
-    i18n.setLocale(req.query.lang);
+    i18n.setLocale(req, req.query.lang);
+  } else if (!i18n.getLocale()) {
+    i18n.setLocale(req, "en");
   }
   next();
 };
