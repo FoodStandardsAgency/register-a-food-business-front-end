@@ -5,33 +5,30 @@
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "govuk/components/details/macro.njk" import govukDetails %}
-
 {% extends "layout.njk" %}
-
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
-
       {% call govukFieldset({
           describedBy: "operators_name",
             legend: {
-              text: __("Contact representative details"),
+              text: __("Contact representative details", props.language),
               classes: "govuk-fieldset__legend--l",
               isPageHeading: true
             }  
           }) %}
-          <p class="govuk-body"> {{__("Please give us the details of the person at this company or charity we should speak to about food hygiene and safety.") }}
-          </p>
+      <p class="govuk-body">
+        {{ __("Please give us the details of the person at this company or charity we should speak to about food hygiene and safety.", props.language) }}
+      </p>
       {{ govukDetails({
-                summaryText: __("What is a food business operator?"),
-                text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.")
+                summaryText: __("What is a food business operator?", props.language),
+                text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.", props.language)
               }) }}
       {{ govukInput({
                 "label": {
-                  "text": __("Name of contact")
+                  "text": __("Name of contact", props.language)
                 },
                 "id": "contact_representative_name",
                 "name": "contact_representative_name",
@@ -42,7 +39,7 @@
       }) }}
       {{ govukInput({
                 "label": {
-                  "text": __("Role (optional)")
+                  "text": __("Role (optional)", props.language)
                 },
                 "id": "contact_representative_role",
                 "name": "contact_representative_role",
@@ -53,7 +50,7 @@
       }) }}
       {{ govukInput({
                 "label": {
-                    "text": __("Phone number")
+                    "text": __("Phone number", props.language)
                 },
                 "id": "contact_representative_number",
                 "name": "contact_representative_number",
@@ -65,10 +62,10 @@
       }) }}
       {{ govukInput({
                 "label": {
-                    "text": __("Email address")
+                    "text": __("Email address", props.language)
                 },
                 "hint": {
-                "text": __("We will use your email to keep you informed of any policy or legal changes that could affect your food business.")
+                "text": __("We will use your email to keep you informed of any policy or legal changes that could affect your food business.", props.language)
                 },
                 "id": "contact_representative_email",
                 "name": "contact_representative_email",
@@ -80,7 +77,7 @@
       }) }}
       {% endcall %}
       {{ govukButton({
-            text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
           }) }}
       {%- endcall %}
     </div>

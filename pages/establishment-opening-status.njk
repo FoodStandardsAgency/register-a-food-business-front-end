@@ -4,44 +4,37 @@
 {% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
-
 {% from "../components/EstablishmentDetails.njk" import establishmentHiddenDetails %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
-
 {% extends "layout.njk" %}
 {% block content %}
   {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-    {% call postForm(props.formAction, props.csrfToken, props.language) -%}
-    {{ processedErrorSummary(props.validatorErrors, props.language) }}
-
-    {% call govukFieldset({
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {% call govukFieldset({
             legend: {
-              text: __("Is this establishment already trading?"),
+              text: __("Is this establishment already trading?", props.language),
               classes: "govuk-fieldset__legend--l",
               isPageHeading: true
                     }
             }) %}
-
-    <p id="changed-name-hint" class="govuk-hint">{{__("It is trading if it is already producing or serving food, or if the new operator has already taken control")}}</p>
-  
-    {{ establishmentHiddenDetails() }}
-
-    {{ govukRadios({
+      <p id="changed-name-hint" class="govuk-hint">{{ __("It is trading if it is already producing or serving food, or if the new operator has already taken control", props.language) }}</p>
+      {{ establishmentHiddenDetails(props) }}
+      {{ govukRadios({
     idPrefix: "establishment_opening_status",
     name: "establishment_opening_status",
     items: [
       {
         value: "Establishment is already trading",
-        text: __("Yes, it is already trading"),
+        text: __("Yes, it is already trading", props.language),
         id: "establishment_opening_status_already_trading",
         checked: props.cumulativeFullAnswers.establishment_opening_status === "Establishment is already trading"
       },
       {
         value: "Establishment due to trade",
-        text: __("No, it is not trading yet"),
+        text: __("No, it is not trading yet", props.language),
         id: "establishment_opening_status_not_trading",
         checked: props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade"
       }
@@ -49,13 +42,11 @@
     errorMessage: {
         text: __(props.validatorErrors.establishment_opening_status)} if props.validatorErrors.establishment_opening_status
       }) }}
-
-    {% endcall%}
-    {{ govukButton({
-      text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+      {% endcall %}
+      {{ govukButton({
+      text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
     }) }}
-    {%- endcall %}
+      {%- endcall %}
     </div>
   </div>
-
 {% endblock %}

@@ -4,45 +4,38 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
-
 {% extends "layout.njk" %}
-
 {% block content %}
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-  {% call postForm(props.formAction, props.csrfToken, props.language) -%}
-  {{ processedErrorSummary(props.validatorErrors, props.language) }}
-
-  {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
-      {% call govukFieldset({
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+        {% call govukFieldset({
       legend: {
-        text: __("Partnership contact details"),
+        text: __("Partnership contact details", props.language),
         classes: "govuk-fieldset__legend--l",
         isPageHeading: true
               }
       }) %}
-      {% endcall%}
-    {% else %}
-      {% call govukFieldset({
+        {% endcall %}
+      {% else %}
+        {% call govukFieldset({
         legend: {
-          text: __("Operator contact details"),
+          text: __("Operator contact details", props.language),
           classes: "govuk-fieldset__legend--l",
           isPageHeading: true
                 }
           }) %}
-      {% endcall%}
-
-    {% endif %}
-
-  {{ govukDetails({
-    summaryText: __("What is a food business operator?"),
-    text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.")
+        {% endcall %}
+      {% endif %}
+      {{ govukDetails({
+    summaryText: __("What is a food business operator?", props.language),
+    text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.", props.language)
   }) }}
-
-  {{ govukInput({
+      {{ govukInput({
       "label": {
-        "text": __("Main phone number")
+        "text": __("Main phone number", props.language)
       },
       "id": "operator_primary_number",
       "name": "operator_primary_number",
@@ -52,10 +45,9 @@
        "errorMessage": {
       "text":  __(props.validatorErrors.operator_primary_number) } if props.validatorErrors.operator_primary_number       
    }) }}
-
-  {{ govukInput({
+      {{ govukInput({
       "label": {
-        "text": __("Secondary phone number (optional)")
+        "text": __("Secondary phone number (optional)", props.language)
       },
       "id": "operator_secondary_number",
       "name": "operator_secondary_number",
@@ -65,13 +57,12 @@
       "errorMessage": {
       "text":  __(props.validatorErrors.operator_secondary_number) } if props.validatorErrors.operator_secondary_number 
   }) }}
-
-  {{ govukInput({
+      {{ govukInput({
       "label": {
-        "text": __("Email address")
+        "text": __("Email address", props.language)
       },
       "hint": {
-      "text": __("We will use your email to keep you informed of any policy or legal changes that could affect your food business.")
+      "text": __("We will use your email to keep you informed of any policy or legal changes that could affect your food business.", props.language)
       },
       "id": "operator_email",
       "name": "operator_email",
@@ -81,12 +72,10 @@
       "errorMessage": {
       "text": __(props.validatorErrors.operator_email) } if props.validatorErrors.operator_email
   }) }}
-
-    {{ govukButton({
-        text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+      {{ govukButton({
+        text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
       }) }}
-
-  {% endcall%}
-</div>
-</div>
- {% endblock%}
+      {% endcall %}
+    </div>
+  </div>
+{% endblock %}

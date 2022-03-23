@@ -162,8 +162,8 @@ const env = nunjucks.configure(
   }
 );
 env.addFilter("date", dateFilter);
-env.addGlobal("__", (phrase) => {
-  return i18n.__(phrase);
+env.addGlobal("__", (phrase, locale) => {
+  return i18n.__({ phrase, locale });
 });
 env.addFilter("addressSelectItems", (findResults) =>
   findResults.map((address, index) => ({

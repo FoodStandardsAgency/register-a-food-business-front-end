@@ -13,20 +13,20 @@
       {% call govukFieldset({
       describedBy: "opening_days_irregular",
         legend: {
-          text: __("Opening periods"),
+          text: __("Opening periods", props.language),
           classes: "govuk-fieldset__legend--l",
           isPageHeading: true
         }
         }) %}
       {% set html %}
-      <p class="govuk-body">{{ __("When will this establishment be open and serving or preparing food?") }}</p>
+      <p class="govuk-body">{{ __("When will this establishment be open and serving or preparing food?", props.language) }}</p>
       <div class="govuk-label">
         <label class="govuk-hint">
-          {{ __("For example") }}
+          {{ __("For example", props.language) }}
         </label>
         <ul style="margin-block-start: 0; margin-block-end: 1em">
-          <li>{{ __("only serving food during December at Christmas markets") }}</li>
-          <li>{{ __("open at weekends in June and August between 10:00 and 19:00") }}</li>
+          <li>{{ __("only serving food during December at Christmas markets", props.language) }}</li>
+          <li>{{ __("open at weekends in June and August between 10:00 and 19:00", props.language) }}</li>
         </ul>
       </div>
       {% endset %}
@@ -40,7 +40,7 @@
         }) }}
       {% endcall %}
       {{ govukButton({
-              text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+              text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
             }) }}
       {%- endcall %}
     </div>

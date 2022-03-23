@@ -4,27 +4,24 @@
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% extends "layout.njk" %}
-
 {% block content %}
-{{ props.currentPageWithQuery }}
+  {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
-
-        {{ govukCheckboxes({
+      {{ govukCheckboxes({
         idPrefix: "customer_type",
         name: "customer_type",
         fieldset: {
             legend: {
-            text: __("Who will this establishment supply food to?"),
+            text: __("Who will this establishment supply food to?", props.language),
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
             }
         },
         hint: {
-            text: __("Select all that apply")
+            text: __("Select all that apply", props.language)
         },
         errorMessage: {
             text: __(props.validatorErrors.customer_type)} if props.validatorErrors.customer_type
@@ -35,20 +32,19 @@
             id: "customer_type_supply_other",
             checked: props.cumulativeFullAnswers.supply_other,
             name: "supply_other",
-            text: __("The establishment will supply food to other businesses to process, sell or serve")
+            text: __("The establishment will supply food to other businesses to process, sell or serve", props.language)
             },
             {
             value: "END_CONSUMER",
             id: "customer_type_supply_directly",
             checked: props.cumulativeFullAnswers.supply_directly,
             name: "supply_directly",
-            text: __("The establishment will supply food directly to end consumers")
+            text: __("The establishment will supply food directly to end consumers", props.language)
             }
         ]
         }) }}
-
-        {{ govukButton({
-              text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+      {{ govukButton({
+              text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
             }) }}
       {%- endcall %}
     </div>

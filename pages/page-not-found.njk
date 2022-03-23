@@ -1,27 +1,20 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
-
 {% extends "layout.njk" %}
-
 {% set props = mergeObjects(props, {backToStart: true}) %}
-
 {% block content %}
-{{ props.currentPageWithQuery }}
+  {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      <h1 id="main-heading" class="govuk-heading-l">{{ __("Page Not Found")}}</h1>
-      <p class="govuk-body">{{__("Please contact your Local Council if you need to speak to someone about your food business registration urgently.")}}</p>
-
+      <h1 id="main-heading" class="govuk-heading-l">{{ __("Page Not Found", props.language) }}</h1>
+      <p class="govuk-body">{{ __("Please contact your Local Council if you need to speak to someone about your food business registration urgently.", props.language) }}</p>
       {% if props.referrer %}
-          {% call 
+        {% call 
           govukButton({
             text: "Return to previous page",
             href: "/new/council"
-          }) 
-          %}
-          {% endcall%}
+          }) %}
+        {% endcall %}
       {% endif %}
     </div>
   </div>
-
 {% endblock %}

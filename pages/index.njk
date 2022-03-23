@@ -12,27 +12,27 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 id="main-heading" class="govuk-heading-l">{{ __("Register a Food Business") }}</h1>
-      <p class="govuk-body">{{ __("When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least") }}
-        <b>{{ __("28 days") }}</b>
-        {{ __("before trading or before food operations start.") }}</p>
+      <h1 id="main-heading" class="govuk-heading-l">{{ __("Register a Food Business", props.language) }}</h1>
+      <p class="govuk-body">{{ __("When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least", props.language) }}
+        <b>{{ __("28 days", props.language) }}</b>
+        {{ __("before trading or before food operations start.", props.language) }}</p>
       <b>{{ govukInsetText({
-      text: __("During this registration, you may come across a few specialist terms, which we have described below") + ":"
+      text: __("During this registration, you may come across a few specialist terms, which we have described below", props.language) + ":"
       }) }}</b>
-      <h2 class="govuk-heading-m">{{ __("Food business operator") }}</h2>
-      <p class="govuk-body">{{ __("The operator is the person, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.") }}</p>
-      <h2 class="govuk-heading-m">{{ __("Establishment") }}</h2>
-      <p class="govuk-body">{{ __("The establishment is the location or site of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.") }}</p>
-      <h2 class="govuk-heading-m">{{ __("Registering Local Authority") }}</h2>
+      <h2 class="govuk-heading-m">{{ __("Food business operator", props.language) }}</h2>
+      <p class="govuk-body">{{ __("The operator is the person, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.", props.language) }}</p>
+      <h2 class="govuk-heading-m">{{ __("Establishment", props.language) }}</h2>
+      <p class="govuk-body">{{ __("The establishment is the location or site of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.", props.language) }}</p>
+      <h2 class="govuk-heading-m">{{ __("Registering Local Authority", props.language) }}</h2>
       <p class="govuk-body">
         <p class="govuk-body">
           <b>{{ props.lcName }}</b>
-          {{ __("is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this ") }}
-          <a class="govuk-link" href="www.gov.uk/food-business-registration">{{ __("Food Business Registration") }}</a>
-          {{ __(" link to check using the location or site of your food business.") }}</p>
+          {{ __("is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this ", props.language) }}
+          <a class="govuk-link" href="www.gov.uk/food-business-registration">{{ __("Food Business Registration", props.language) }}</a>
+          {{ __(" link to check using the location or site of your food business.", props.language) }}</p>
         {% call postForm("/continue/index", props.csrfToken, props.language) -%}
         {{ govukButton({
-        text:  __("Begin registration"),
+        text:  __("Begin registration", props.language),
         isStartButton: true
       }) }}
         {%- endcall %}

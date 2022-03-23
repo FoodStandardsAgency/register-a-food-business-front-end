@@ -2,44 +2,33 @@
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/details/macro.njk" import govukDetails %}
-
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% from "../components/EstablishmentDetails.njk" import establishmentHiddenDetails %}
-
 {% extends "layout.njk" %}
-
 {% if props.switches["/establishment-address-none-found"] %}
-    {% set backlink = "/new/" + props.council + "/establishment-address" %}
+  {% set backlink = "/new/" + props.council + "/establishment-address" %}
 {% else %}
-    {% set backlink = "/new/" + props.council + "/establishment-address-select" %}
-{% endif%}
-
+  {% set backlink = "/new/" + props.council + "/establishment-address-select" %}
+{% endif %}
 {% set props = mergeObjects(props, { backHref: backlink }) %}
-
 {% block content %}
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
-
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
-
-        {% call govukFieldset({
+      {% call govukFieldset({
         legend: {
-        text: __("What is the establishment's address?"),
+        text: __("What is the establishment's address?", props.language),
         classes: "govuk-fieldset__legend--l",
         isPageHeading: true
                 }
         }) %}
-        {% endcall%}
-
-        {{ establishmentHiddenDetails() }}
-
-        {{ govukInput({
+      {% endcall %}
+      {{ establishmentHiddenDetails(props) }}
+      {{ govukInput({
             "label": {
-            "text": __("Address line 1")
+            "text": __("Address line 1", props.language)
             },
             "id": "establishment_address_line_1",
             "name": "establishment_address_line_1",
@@ -48,10 +37,9 @@
             "value":  props.cumulativeFullAnswers.establishment_address_line_1,
             "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_1) } if props.validatorErrors.establishment_address_line_1
         }) }}
-
-        {{ govukInput({
+      {{ govukInput({
             "label": {
-            "text": __("Address line 2 (optional)")
+            "text": __("Address line 2 (optional)", props.language)
             },
             "id": "establishment_address_line_2",
             "name": "establishment_address_line_2",
@@ -60,10 +48,9 @@
             "value": props.cumulativeFullAnswers.establishment_address_line_2,
             "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_2) } if props.validatorErrors.establishment_address_line_2
         }) }}
-
-        {{ govukInput({
+      {{ govukInput({
             "label": {
-            "text": __("Address line 3 (optional)")
+            "text": __("Address line 3 (optional)", props.language)
             },
             "id": "establishment_address_line_3",
             "name": "establishment_address_line_3",
@@ -72,10 +59,9 @@
             "value": props.cumulativeFullAnswers.establishment_address_line_3,
             "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_3) } if props.validatorErrors.establishment_address_line_3
         }) }}
-
-        {{ govukInput({
+      {{ govukInput({
             "label": {
-            "text": __("Town or city")
+            "text": __("Town or city", props.language)
             },
             "id": "establishment_town",
             "name": "establishment_town",
@@ -84,10 +70,9 @@
             "value": props.cumulativeFullAnswers.establishment_town,
             "errorMessage": { "text": __(props.validatorErrors.establishment_town) } if props.validatorErrors.establishment_town
         }) }}
-
-        {{ govukInput({
+      {{ govukInput({
             "label": {
-            "text": __("Postcode")
+            "text": __("Postcode", props.language)
             },
             "id": "establishment_postcode",
             "name": "establishment_postcode",
@@ -96,11 +81,10 @@
             "value": props.cumulativeFullAnswers.establishment_postcode,
             "errorMessage": { "text": __(props.validatorErrors.establishment_postcode) } if props.validatorErrors.establishment_postcode
         }) }}
-
-        {{ govukButton({
-            text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+      {{ govukButton({
+            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
           }) }}
       {% endcall %}
+    </div>
   </div>
-</div>
-{% endblock%}
+{% endblock %}

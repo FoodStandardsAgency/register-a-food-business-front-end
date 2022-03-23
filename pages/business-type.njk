@@ -41,16 +41,16 @@
           {{ processedErrorSummary(props.validatorErrors, props.language) }}
           {% call govukFieldset({
             legend: {
-              text: __("What kind of food business are you registering?"),
+              text: __("What kind of food business are you registering?", props.language),
               classes: "govuk-fieldset__legend--l",
               isPageHeading: true
                     }
           }) %}
-          <p class="govuk-body">{{ __("Search with your own keywords and then select the most fitting business type from the suggestions") }}</p>
-          {% set businesstype = [__("cafe"), __("food delivery service"), __("commercial bakery"), __("meat product manufacturer"), __("home caterer")] %}
+          <p class="govuk-body">{{ __("Search with your own keywords and then select the most fitting business type from the suggestions", props.language) }}</p>
+          {% set businesstype = [__("cafe", props.language), __("food delivery service", props.language), __("commercial bakery", props.language), __("meat product manufacturer", props.language), __("home caterer", props.language)] %}
           <div class="govuk-label">
             <label id="changed-name-hint" class="govuk-hint">
-              {{ __("For example") }}
+              {{ __("For example", props.language) }}
             </label>
             {% for items in businesstype | slice(5) %}
               <ul style="margin-top:0; margin-bottom:0">
@@ -73,7 +73,7 @@
       </div>
       {% endcall %}
       {{ govukButton({
-          text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+          text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
       }) }}
       {% endcall %}
     {% endblock %}

@@ -1,7 +1,6 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
 {% macro summaryListHelperWithoutEdit(keyText, valueText, href, property, id) %}
-    {{ govukSummaryList({
+  {{ govukSummaryList({
         rows: 
         [
         {
@@ -15,33 +14,28 @@
         ]
     }) }}
 {% endmacro %}
-
-{% macro summaryListHelper(keyText, valueText, href, property, id) %}
-
+{% macro summaryListHelper(keyText, valueText, href, property, id, props) %}
   {% if property %}
-    {% set hrefText = __("Change") %}
+    {% set hrefText = __("Change", props.language) %}
   {% else %}
-    {% set hrefText = __("Enter answer") %}
+    {% set hrefText = __("Enter answer", props.language) %}
   {% endif %}
-
   <dl class="govuk-summary-list">
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
         {{ keyText }}
       </dt>
-      <dd class="govuk-summary-list__value" id={{id}}>
+      <dd class="govuk-summary-list__value" id={{ id }}>
         {{ valueText }}
       </dd>
       <dd class="govuk-summary-list__actions">
-        <a class="govuk-link" href={{href}}>
+        <a class="govuk-link" href={{ href }}>
           {{ hrefText }}
         </a>
       </dd>
     </div>
   </dl>
-
 {% endmacro %}
-
 {% macro summaryListHelperHtmlWithoutEdit(keyText, valueHtml, href, property) %}
   {{ govukSummaryList({
       rows: 
@@ -57,15 +51,12 @@
       ]
   }) }}
 {% endmacro %}
-
-{% macro summaryListHelperHtml(keyText, valueHtml, href, property) %}
-
+{% macro summaryListHelperHtml(keyText, valueHtml, href, property, props) %}
   {% if property %}
-    {% set hrefText = __("Change") %}
+    {% set hrefText = __("Change", props.language) %}
   {% else %}
-    {% set hrefText = __("Enter answer") %}
+    {% set hrefText = __("Enter answer", props.language) %}
   {% endif %}
-
   {{ govukSummaryList({
         rows: 
         [
@@ -90,9 +81,7 @@
         ]
     }) }}
 {% endmacro %}
-
 {% macro summaryListDeclarationHelper(keyhtml, valueText) %}
-
   {{ govukSummaryList({
         rows: 
         [

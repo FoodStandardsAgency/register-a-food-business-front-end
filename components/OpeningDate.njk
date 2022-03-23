@@ -6,12 +6,12 @@
 {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
-{% macro establishmentDueToTrade() %}
+{% macro establishmentDueToTrade(props) %}
   {{ govukDateInput({
   id: "establishment_opening_date",
   fieldset: {
     legend: {
-      text: __("When is this establishment expected to begin trading?"),
+      text: __("When is this establishment expected to begin trading?", props.language),
       classes: "govuk-label--s"
     }
   },
@@ -45,8 +45,8 @@
     text: __(props.validatorErrors.establishment_opening_date)} if props.validatorErrors.establishment_opening_date
 }) }}
   {{ govukDetails({
-    summaryText: __("I don't know when this establishment will begin trading"),
-    text: __("Food businesses are required to register at least 28 days before they begin trading, that includes food or drink sold online. If you are not sure when this business will open, it may be too early to register. You can also use an estimated date.")
+    summaryText: __("I don't know when this establishment will begin trading", props.language),
+    text: __("Food businesses are required to register at least 28 days before they begin trading, that includes food or drink sold online. If you are not sure when this business will open, it may be too early to register. You can also use an estimated date.", props.language)
     }) }}
 {% endmacro %}
 {% macro establishmentTrading() %}
@@ -54,7 +54,7 @@
   id: "establishment_opening_date",
   fieldset: {
     legend: {
-      text: __("What date did this establishment begin trading?"),
+      text: __("What date did this establishment begin trading?", props.language),
       classes: "govuk-label--s"
     }
   },
@@ -88,8 +88,8 @@
     text: __(props.validatorErrors.establishment_opening_date)} if props.validatorErrors.establishment_opening_date
 }) }}
   {{ govukDetails({
-    summaryText: __("I don't know when this establishment began trading"),
-    text: __("Trading begins the day your business started to serve or make food or drink. Alternatively, it can be the day you took over the business as an operator. If you do not remember the exact date, use an estimated date.")
+    summaryText: __("I don't know when this establishment began trading", props.language),
+    text: __("Trading begins the day your business started to serve or make food or drink. Alternatively, it can be the day you took over the business as an operator. If you do not remember the exact date, use an estimated date.", props.language)
     }) }}
 {% endmacro %}
 {% extends "layout.njk" %}
@@ -101,16 +101,16 @@
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
       {% call govukFieldset({
         legend: {
-          text: __("Expected opening date") if props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade" else __("Opening Date"),
+          text: __("Expected opening date", props.language) if props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade" else __("Opening Date", props.language),
           classes: "govuk-fieldset__legend--l",
           isPageHeading: true
                 }
     }) %}
-      <p id="changed-name-hint" class="govuk-hint">{{ __("Establishments begin trading when they first start serving or manufacturing food or drink for customers or supplying food or drink online.") }}</p>
-      {{ establishmentDueToTrade() if props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade" else establishmentTrading() }}
+      <p id="changed-name-hint" class="govuk-hint">{{ __("Establishments begin trading when they first start serving or manufacturing food or drink for customers or supplying food or drink online.", props.language) }}</p>
+      {{ establishmentDueToTrade(props) if props.cumulativeFullAnswers.establishment_opening_status === "Establishment due to trade" else establishmentTrading() }}
       {% endcall %}
       {{ govukButton({
-      text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+      text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
     }) }}
       {%- endcall %}
     </div>

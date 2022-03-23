@@ -6,7 +6,7 @@
 {% macro openHoursMonday() %}
   {{ govukInput({
   label: {
-    text: __("Monday")
+    text: __("Monday", props.language)
   },
   id: "opening_hours_monday",
   name: "opening_hours_monday",
@@ -17,7 +17,7 @@
 {% macro openHoursTuesday() %}
   {{ govukInput({
   label: {
-    text: __("Tuesday")
+    text: __("Tuesday", props.language)
   },
   id: "opening_hours_tuesday",
   name: "opening_hours_tuesday",
@@ -28,7 +28,7 @@
 {% macro openHoursWednesday() %}
   {{ govukInput({
   label: {
-    text: __("Wednesday")
+    text: __("Wednesday", props.language)
   },
   id: "opening_hours_wednesday",
   name: "opening_hours_wednesday",
@@ -39,7 +39,7 @@
 {% macro openHoursThursday() %}
   {{ govukInput({
   label: {
-    text: __("Thursday")
+    text: __("Thursday", props.language)
   },
   id: "opening_hours_thursday",
   name: "opening_hours_thursday",
@@ -50,7 +50,7 @@
 {% macro openHoursFriday() %}
   {{ govukInput({
   label: {
-    text: __("Friday")
+    text: __("Friday", props.language)
   },
   id: "opening_hours_friday",
   name: "opening_hours_friday",
@@ -61,7 +61,7 @@
 {% macro openHoursSaturday() %}
   {{ govukInput({
   label: {
-    text: __("Saturday")
+    text: __("Saturday", props.language)
   },
   id: "opening_hours_saturday",
   name: "opening_hours_saturday",
@@ -72,7 +72,7 @@
 {% macro openHoursSunday() %}
   {{ govukInput({
   label: {
-    text: __("Sunday")
+    text: __("Sunday", props.language)
   },
   id: "opening_hours_sunday",
   name: "opening_hours_sunday",
@@ -89,12 +89,12 @@
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
       {% call govukFieldset({
                 legend: {
-                  text: __("Opening hours"),
+                  text: __("Opening hours", props.language),
                   classes: "govuk-fieldset__legend--l",
                   isPageHeading: true
                 }  
               }) %}
-      <p id="changed-name-hint" class="govuk-hint">{{ __("Fill in the expected opening times for this establishment using 24 hour clocks.") }}</p>
+      <p id="changed-name-hint" class="govuk-hint">{{ __("Fill in the expected opening times for this establishment using 24 hour clocks.", props.language) }}</p>
       {{ openHoursMonday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_monday }}
       {{ openHoursTuesday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_tuesday }}
       {{ openHoursWednesday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_wednesday }}
@@ -104,7 +104,7 @@
       {{ openHoursSunday() if props.cumulativeFullAnswers.opening_days_start === "Every day" or props.cumulativeFullAnswers.opening_day_sunday }}
       {% endcall %}
       {{ govukButton({
-            text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
           }) }}
       {%- endcall %}
     </div>

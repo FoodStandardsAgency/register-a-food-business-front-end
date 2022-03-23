@@ -14,7 +14,7 @@
   captionClasses: "govuk-table__caption--l",
   head: [
       {
-        text: __("Partnership contact details") if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" else __("Operator contact details")
+        text: __("Partnership contact details", props.language) if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" else __("Operator contact details", props.language)
       },
       {
         text: ""
@@ -23,7 +23,7 @@
   rows: [
     [
       {
-        text: __("Main phone number")
+        text: __("Main phone number", props.language)
       },
       {
         text: props.cumulativeFullAnswers.operator_primary_number if props.cumulativeFullAnswers.operator_primary_number else props.cumulativeFullAnswers.contact_representative_number
@@ -31,7 +31,7 @@
     ],
     [
       {
-        text: __("Secondary phone number")
+        text: __("Secondary phone number", props.language)
       },
       {
         text: props.cumulativeFullAnswers.operator_secondary_number 
@@ -39,7 +39,7 @@
     ] if props.cumulativeFullAnswers.operator_secondary_number,
     [
       {
-        text: __("Email address")
+        text: __("Email address", props.language)
       },
       {
         text: props.cumulativeFullAnswers.operator_email if props.cumulativeFullAnswers.operator_email else props.cumulativeFullAnswers.contact_representative_email
@@ -48,7 +48,7 @@
   ]
 }) }}
   {{ govukButton({
-      text: __("Re-use partnership contact details") if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" else __("Re-use operator contact details"),
+      text: __("Re-use partnership contact details", props.language) if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" else __("Re-use operator contact details", props.language),
       attributes: {formAction: "/switches/reuseOperatorContactDetails/on/establishment-contact-details#establishment_primary_number"},
       id: "reuseButton"
     }) }}
@@ -61,7 +61,7 @@
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
       {% call govukFieldset({
         legend: {
-          text: __("Establishment contact details"),
+          text: __("Establishment contact details", props.language),
           classes: "govuk-fieldset__legend--l",
           id: "main-heading",
           isPageHeading: true
@@ -72,7 +72,7 @@
       }) }}
       {{ govukInput({
         "label": {
-          "text": __("Establishment main phone number")
+          "text": __("Establishment main phone number", props.language)
         },
         "id": "establishment_primary_number",
         "name": "establishment_primary_number",
@@ -82,7 +82,7 @@
       }) }}
       {{ govukInput({
         "label": {
-          "text": __("Establishment secondary phone number (optional)")
+          "text": __("Establishment secondary phone number (optional)", props.language)
         },
         "id": "establishment_secondary_number",
         "name": "establishment_secondary_number",
@@ -91,7 +91,7 @@
       }) }}
       {{ govukInput({
         "label": {
-          "text": __("Establishment email address")
+          "text": __("Establishment email address", props.language)
         },
         "id": "establishment_email",
         "name": "establishment_email",
@@ -101,7 +101,7 @@
       }) }}
       {{ govukInput({
         "label": {
-          "text": __("Web address (optional)")
+          "text": __("Web address (optional)", props.language)
         },
         "id": "establishment_web_address",
         "name": "establishment_web_address",
@@ -111,7 +111,7 @@
         }) }}
       {% endcall %}
       {{ govukButton({
-            text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
           }) }}
       {%- endcall %}
     </div>

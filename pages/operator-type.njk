@@ -5,29 +5,25 @@
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% extends "layout.njk" %}
-
 {% block content %}
   {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
-
       {% call govukFieldset({
             legend: {
-              text: __("Who operates this business?"),
+              text: __("Who operates this business?", props.language),
               classes: "govuk-fieldset__legend--l",
               isPageHeading: true
             }  
           }) %}
-        <div>&nbsp;</div>
+      <div>&nbsp;</div>
       {{ govukDetails({
-        summaryText: __("What is a food business operator?"),
+        summaryText: __("What is a food business operator?", props.language),
         href: "#",
-        text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.")
+        text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.", props.language)
       }) }}
-
       {{ govukRadios({
         idPrefix: "operator_type",
         name: "operator_type",
@@ -35,21 +31,21 @@
           {
             value: "PERSON",
             name: "operator_type",
-            text: __("The food business is owned or operated by a person"),
+            text: __("The food business is owned or operated by a person", props.language),
             id: "operator_type_person",
             checked: props.cumulativeFullAnswers.operator_type === "PERSON"
           },
           {
             value: "COMPANY",
             name: "operator_type",
-            text: __("The food business is owned or operated by a limited company"),
+            text: __("The food business is owned or operated by a limited company", props.language),
             id: "operator_type_company",
             checked: props.cumulativeFullAnswers.operator_type === "COMPANY"
           },
           {
             value: "CHARITY",
             name: "operator_type",
-            text: __("The food business is owned or operated by a charity, organisation or trust"),
+            text: __("The food business is owned or operated by a charity, organisation or trust", props.language),
             id: "operator_type_charity",
             checked: props.cumulativeFullAnswers.operator_type === "CHARITY"
           }
@@ -58,12 +54,10 @@
       text: __(props.validatorErrors.operator_type)} if props.validatorErrors.operator_type
       }) }}
       {%- endcall %}
-
       {{ govukButton({
-            text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
           }) }}
       {%- endcall %}
-      
     </div>
   </div>
 {% endblock %}

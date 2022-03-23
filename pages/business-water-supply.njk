@@ -1,72 +1,61 @@
-
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
-
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
-
 {% extends "layout.njk" %}
-
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
-
-        {{ processedErrorSummary(props.validatorErrors, props.language) }}
-
-        {% call govukFieldset({
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {% call govukFieldset({
             legend: {
-            text: __("What type of water supply does this establishment use?"),
+            text: __("What type of water supply does this establishment use?", props.language),
             classes: "govuk-fieldset__legend--l",
             id: "main-heading",
             isPageHeading: true
             }
         }) %}
-        {% endcall%}
-        
-        {{ govukRadios({
+      {% endcall %}
+      {{ govukRadios({
             idPrefix: "water_supply",
             name: "water_supply",
             hint: 
             {
-                text: __("The water supply is where you get your tap water from. It has a private water supply if it uses water that you take up from the ground by yourself. For example from a well.")
+                text: __("The water supply is where you get your tap water from. It has a private water supply if it uses water that you take up from the ground by yourself. For example from a well.", props.language)
             },
             items: 
             [
                 {
                 id: "water_supply_public",
                 value: "PUBLIC",
-                text: __("Mains water supply (most common supply)"),
+                text: __("Mains water supply (most common supply)", props.language),
                 checked: props.cumulativeFullAnswers.water_supply === "PUBLIC"
                 },
                 {
                 id: "water_supply_private",
                 value: "PRIVATE",
-                text: __("Private water supply"),
+                text: __("Private water supply", props.language),
                 checked: props.cumulativeFullAnswers.water_supply=== "PRIVATE"
                 },
                 {
                 id: "water_supply_both",
                 value: "BOTH",
-                text: __("Both mains and private water supplies"),
+                text: __("Both mains and private water supplies", props.language),
                 checked: props.cumulativeFullAnswers.water_supply === "BOTH"
                 }
             ],
             errorMessage: {
                 text: __(props.validatorErrors.water_supply)} if props.validatorErrors.water_supply
             }) }}
-
-        {{ govukDetails({
-            summaryText: __("I don't know if I have a private water supply"),
-            text: __("If you are not registered with a water supply company or paying a bill for water, this is an indication that your water supply could be private.")
+      {{ govukDetails({
+            summaryText: __("I don't know if I have a private water supply", props.language),
+            text: __("If you are not registered with a water supply company or paying a bill for water, this is an indication that your water supply could be private.", props.language)
         }) }}
-
-        {{ govukButton({
-            text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+      {{ govukButton({
+            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
         }) }}
       {% endcall %}
     </div>

@@ -14,14 +14,14 @@
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
       {{ govukInput({ 
             label: {
-            text: __("Edit partner's name") if props.cumulativeFullAnswers.partners[props.cumulativeFullAnswers.targetPartner] else __("Add partner's name"),
+            text: __("Edit partner's name", props.language) if props.cumulativeFullAnswers.partners[props.cumulativeFullAnswers.targetPartner] else __("Add partner's name", props.language),
             classes: "govuk-label--l",
             isPageHeading: true
                   },
             id: "partner_name",
             name: "partner_name",
             hint: {
-                text: __("Full name")
+                text: __("Full name", props.language)
              },
             value: props.cumulativeFullAnswers.partners[
             props.cumulativeFullAnswers.targetPartner
@@ -37,7 +37,7 @@
         <div class="govuk-grid-column-one-quarter" style="float:right; text-align: right">
           <a href={{ props.partnerDetailsBackUrl }} class="govuk-link">
             <button class="govuk-button" type="button" data-module="govuk-button" id="cancelButton">
-              {{ __("Cancel") }}
+              {{ __("Cancel", props.language) }}
             </button>
           </a>
         </div>

@@ -5,80 +5,70 @@
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
-
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
-
 {% macro hiddenTextCompaniesHouseNo() %}
-<span>
-            {{__(
+  <span>
+    {{ __(
               "Every limited company has to be registered with Companies House, and will have a company reference number. You can find your company reference number by visiting the"
-            )}}{{" "}}
-            <a
-              href="https://beta.companieshouse.gov.uk/"
-              target="_blank"
-              rel="noopener noreferrer"
-              id="link-companies-house"
-              class="govuk-link"
-            >
-              {{__("Companies House website (opens in new window)")}}
-            </a>
-            .
-          </span>
-{%endmacro%}
-
+            ) }}{{ " " }}
+    <a
+      href="https://beta.companieshouse.gov.uk/"
+      target="_blank"
+      rel="noopener noreferrer"
+      id="link-companies-house"
+      class="govuk-link">
+      {{ __("Companies House website (opens in new window)", props.language) }}
+    </a>
+    .
+  </span>
+{% endmacro %}
 {% extends "layout.njk" %}
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
-  
       {% call govukFieldset({
         legend: {
-          text: __("Company details"),
+          text: __("Company details", props.language),
           classes: "govuk-fieldset__legend--l",
           id: "main-heading",
           isPageHeading: true
         }
       }) %}
-
       {{ govukInput({
         "label": {
-          "text": __("Registered company name")
+          "text": __("Registered company name", props.language)
         },
         "id": "operator_company_name",
         "name": "operator_company_name",
         "value":  props.cumulativeFullAnswers.operator_company_name,
         "hint": {
-            "text": __("The name of the registered company that is acting as the operator of this food business.")
+            "text": __("The name of the registered company that is acting as the operator of this food business.", props.language)
         },
         "errorMessage": { "text": __(props.validatorErrors.operator_company_name)} if props.validatorErrors.operator_company_name
         
       }) }}
-
       {{ govukInput({
         "label": {
-          "text": __("Companies House number")
+          "text": __("Companies House number", props.language)
         },
         "id": "operator_companies_house_number",
         "name": "operator_companies_house_number",
         "value":  props.cumulativeFullAnswers.operator_companies_house_number,
         "hint": {
-            "text": __("Every registered company will have a Companies House reference number which will usually be either eight numbers (e.g. 12345678) or two letters followed by six numbers (e.g. AB123456)")
+            "text": __("Every registered company will have a Companies House reference number which will usually be either eight numbers (e.g. 12345678) or two letters followed by six numbers (e.g. AB123456)", props.language)
         },
         "errorMessage": { "text": __(props.validatorErrors.operator_companies_house_number)} if props.validatorErrors.operator_companies_house_number
         
       }) }}
-
       {{ govukDetails({
-        summaryText: __("I don't know my Companies House number"),
+        summaryText: __("I don't know my Companies House number", props.language),
         html: hiddenTextCompaniesHouseNo()
       }) }}
-
       {% endcall %}
       {{ govukButton({
-            text: __("Save and continue") if props.editModeFirstPage else __("Continue")
+            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
           }) }}
       {%- endcall %}
     </div>

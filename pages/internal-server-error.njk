@@ -1,25 +1,22 @@
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "../components/PostForm.njk" import postForm %}
-
 {% extends "layout.njk" %}
-
 {% set props = mergeObjects(props, {backToStart: true}) %}
-
 {% block content %}
-
-{{ props.currentPageWithQuery }}
+  {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-    
-      <h1 id="main-heading" class="govuk-heading-l">{{ __("This service is currently unavailable")}}</h1>
-      <p class="govuk-body">{{__("Sorry about that, we seem to be experiencing some difficulties.")}}</p>
-      <p class="govuk-body">{{__("Please try again later.")}}</p>
-
-      <button class="govuk-button" data-module="govuk-button" href="https://www.food.gov.uk/business-guidance/register-a-food-business" id="server-error-form">
-        {{__("Return to food.gov.uk")}}
+      <h1 id="main-heading" class="govuk-heading-l">{{ __("This service is currently unavailable", props.language) }}</h1>
+      <p class="govuk-body">{{ __("Sorry about that, we seem to be experiencing some difficulties.", props.language) }}</p>
+      <p class="govuk-body">{{ __("Please try again later.", props.language) }}</p>
+      <button
+        class="govuk-button"
+        data-module="govuk-button"
+        href="https://www.food.gov.uk/business-guidance/register-a-food-business"
+        id="server-error-form">
+        {{ __("Return to food.gov.uk", props.language) }}
       </button>
     </div>
   </div>
-
 {% endblock %}
