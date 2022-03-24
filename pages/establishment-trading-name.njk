@@ -29,7 +29,7 @@
         "id": "establishment_trading_name",
         "value": props.cumulativeFullAnswers.establishment_trading_name,
         "name": "establishment_trading_name",
-        "errorMessage":  { "text": __(props.validatorErrors.establishment_trading_name) } if props.validatorErrors.establishment_trading_name
+        "errorMessage":  { "text": __(props.validatorErrors.establishment_trading_name, props.language) } if props.validatorErrors.establishment_trading_name
       }) }}
       {% endcall %}
       {{ govukButton({

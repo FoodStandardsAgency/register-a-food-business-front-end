@@ -11,7 +11,7 @@
     <h2 id="operator-details" class="govuk-heading-m">{{ __("Operator details", props.language) }}</h2>
     {% if propsData.applicationCompletePage == null %}
       {% if validatorErrors.operator_type or propsData.operator_type %}
-        {{ summaryListHelperWithoutEdit(__("Operator type", props.language), __(propsData.operator_type), false) }}
+        {{ summaryListHelperWithoutEdit(__("Operator type", props.language), __(propsData.operator_type, props.language), false) }}
       {% endif %}
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
@@ -93,7 +93,7 @@
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
       {% if validatorErrors.establishment_type or propsData.establishment_type %}
-        {{ summaryListHelperWithoutEdit(__("Address type", props.language), __(propsData.establishment_type), false) }}
+        {{ summaryListHelperWithoutEdit(__("Address type", props.language), __(propsData.establishment_type, props.language), false) }}
       {% endif %}
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
@@ -122,13 +122,13 @@
         {% set html %}
         {% if propsData.opening_days_irregular == null %}
           <div>
-            <div id="opening_day_monday">{{ __(propsData.opening_day_monday) if propsData.opening_day_monday }}</div>
-            <div id="opening_day_tuesday">{{ __(propsData.opening_day_tuesday) if propsData.opening_day_tuesday }}</div>
-            <div id="opening_day_wednesday">{{ __(propsData.opening_day_wednesday) if propsData.opening_day_wednesday }}</div>
-            <div id="opening_day_thursday">{{ __(propsData.opening_day_thursday) if propsData.opening_day_thursday }}</div>
-            <div id="opening_day_friday">{{ __(propsData.opening_day_friday) if propsData.opening_day_friday }}</div>
-            <div id="opening_day_saturday">{{ __(propsData.opening_day_saturday) if propsData.opening_day_saturday }}</div>
-            <div id="opening_day_sunday">{{ __(propsData.opening_day_sunday) if propsData.opening_day_sunday }}</div>
+            <div id="opening_day_monday">{{ __(propsData.opening_day_monday, props.language) if propsData.opening_day_monday }}</div>
+            <div id="opening_day_tuesday">{{ __(propsData.opening_day_tuesday, props.language) if propsData.opening_day_tuesday }}</div>
+            <div id="opening_day_wednesday">{{ __(propsData.opening_day_wednesday, props.language) if propsData.opening_day_wednesday }}</div>
+            <div id="opening_day_thursday">{{ __(propsData.opening_day_thursday, props.language) if propsData.opening_day_thursday }}</div>
+            <div id="opening_day_friday">{{ __(propsData.opening_day_friday, props.language) if propsData.opening_day_friday }}</div>
+            <div id="opening_day_saturday">{{ __(propsData.opening_day_saturday, props.language) if propsData.opening_day_saturday }}</div>
+            <div id="opening_day_sunday">{{ __(propsData.opening_day_sunday, props.language) if propsData.opening_day_sunday }}</div>
           </div>
         {% else %}
           {{ propsData.opening_days_irregular }}
@@ -156,23 +156,23 @@
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
       {% if validatorErrors.water_supply or propsData.water_supply %}
-        {{ summaryListHelperWithoutEdit(__("Water supply", props.language), __(propsData.water_supply), false) }}
+        {{ summaryListHelperWithoutEdit(__("Water supply", props.language), __(propsData.water_supply, props.language), false) }}
       {% endif %}
     {% endif %}
     <h2 id="activity-details" class="govuk-heading-m">{{ __("Activities", props.language) }}</h2>
     {% if propsData.applicationCompletePage == null %}
       {% if validatorErrors.customer_type or propsData.customer_type %}
-        {{ summaryListHelperWithoutEdit(__("Customers", props.language), __(propsData.customer_type), false) }}
+        {{ summaryListHelperWithoutEdit(__("Customers", props.language), __(propsData.customer_type, props.language), false) }}
       {% endif %}
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
       {% if validatorErrors.business_type or propsData.business_type %}
-        {{ summaryListHelperWithoutEdit(__("Business type", props.language), __(propsData.business_type), false) }}
+        {{ summaryListHelperWithoutEdit(__("Business type", props.language), __(propsData.business_type, props.language), false) }}
       {% endif %}
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
       {% if validatorErrors.import_export_activities or propsData.import_export_activities %}
-        {{ summaryListHelperWithoutEdit(__("Import and export", props.language), __(propsData.import_export_activities), false) }}
+        {{ summaryListHelperWithoutEdit(__("Import and export", props.language), __(propsData.import_export_activities, props.language), false) }}
       {% endif %}
     {% endif %}
     {% if propsData.applicationCompletePage == null %}

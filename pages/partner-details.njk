@@ -26,12 +26,12 @@
             value: props.cumulativeFullAnswers.partners[
             props.cumulativeFullAnswers.targetPartner
             ],
-            "errorMessage": { "text": __(props.validatorErrors.partner_name) } if props.validatorErrors.partner_name
+            "errorMessage": { "text": __(props.validatorErrors.partner_name, props.language) } if props.validatorErrors.partner_name
         }) }}
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <button class="govuk-button" type="submit" data-module="govuk-button" id="continue-button">
-            {{ __(("Save " if props.cumulativeFullAnswers.partners[props.cumulativeFullAnswers.targetPartner] else "Add ") + "partner") }}
+            {{ __(("Save " if props.cumulativeFullAnswers.partners[props.cumulativeFullAnswers.targetPartner] else "Add ", props.language) + "partner") }}
           </button>
         </div>
         <div class="govuk-grid-column-one-quarter" style="float:right; text-align: right">

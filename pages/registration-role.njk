@@ -39,7 +39,7 @@
         }
       ],
       errorMessage: {
-            text: __(props.validatorErrors.registration_role)} if props.validatorErrors.registration_role
+            text: __(props.validatorErrors.registration_role, props.language)} if props.validatorErrors.registration_role
           }) }}
       {{ govukButton({
         text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)

@@ -9,7 +9,7 @@
     <div id="autocompleteContainer" name="business_type" style="margin-top: 1em; margin-bottom: 2em;">
       {% if props.validatorErrors.business_type %}
         <span id="business_type-error" class="govuk-error-message">
-          {{ __(props.validatorErrors.business_type) }}
+          {{ __(props.validatorErrors.business_type, props.language) }}
         </span>
       {% else %}
         {{ null }}
@@ -20,7 +20,7 @@
 {% macro businessTypeSelect(props) %}
   {% set businessTypesArray = [] %}
   {% for businessType in props.businessTypes %}
-    {% set businessTypesArray = (businessTypesArray.push({value: __(businessType), text: __(businessType)}), businessTypesArray) %}
+    {% set businessTypesArray = (businessTypesArray.push({value: __(businessType, props.language), text: __(businessType, props.language)}), businessTypesArray) %}
   {% endfor %}
   {{ govukDataList({
       id: "businessTypeLookup",

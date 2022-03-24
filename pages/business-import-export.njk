@@ -45,7 +45,7 @@
                     checked: props.cumulativeFullAnswers.no_import_export
                     }
                 ],
-                errorMessage: { text: __(props.validatorErrors.import_export_activities) } if (props.validatorErrors.import_export_activities) 
+                errorMessage: { text: __(props.validatorErrors.import_export_activities, props.language) } if (props.validatorErrors.import_export_activities) 
             }) }}
       {% set busImpExpLink = __("import/export-link", props.language) %}
       {% set busImpExpText = __("If a food business is directly importing or exporting food outside of the UK, there are some extra requirements for the business to follow.", props.language) %}

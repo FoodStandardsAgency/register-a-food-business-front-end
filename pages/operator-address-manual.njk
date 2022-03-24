@@ -40,7 +40,7 @@
             }) %}
         {% endcall %}
         {% call govukInsetText({
-                    text: __('Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company.'),
+                    text: __('Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company.', props.language),
                     classes: "govuk-fieldset__legend--l"
                 }) %}
         {% endcall %}
@@ -54,7 +54,7 @@
               "classes": "govuk-label--l",
               "autoComplete": "address-line1",
               "value": props.cumulativeFullAnswers.operator_address_line_1,
-               "errorMessage": { "text": __(props.validatorErrors.operator_address_line_1) } if props.validatorErrors.operator_address_line_1
+               "errorMessage": { "text": __(props.validatorErrors.operator_address_line_1, props.language) } if props.validatorErrors.operator_address_line_1
               
           }) }}
       {{ govukInput({
@@ -66,7 +66,7 @@
               "classes": "govuk-label--l",
               "autoComplete": "address-line2",
               "value": props.cumulativeFullAnswers.operator_address_line_2,
-              "errorMessage": { "text": __(props.validatorErrors.operator_address_line_2) } if props.validatorErrors.operator_address_line_2
+              "errorMessage": { "text": __(props.validatorErrors.operator_address_line_2, props.language) } if props.validatorErrors.operator_address_line_2
           }) }}
       {{ govukInput({
               "label": {
@@ -77,7 +77,7 @@
               "classes": "govuk-label--l",
               "autoComplete": "address-line3",
               "value": props.cumulativeFullAnswers.operator_address_line_3,
-              "errorMessage": { "text": __(props.validatorErrors.operator_address_line_3) } if props.validatorErrors.operator_address_line_3
+              "errorMessage": { "text": __(props.validatorErrors.operator_address_line_3, props.language) } if props.validatorErrors.operator_address_line_3
           }) }}
       {{ govukInput({
               "label": {
@@ -88,7 +88,7 @@
               "classes": "govuk-label--l",
               "autoComplete": "locality",
               "value": props.cumulativeFullAnswers.operator_town,
-              "errorMessage": { "text": __(props.validatorErrors.operator_town) } if props.validatorErrors.operator_town
+              "errorMessage": { "text": __(props.validatorErrors.operator_town, props.language) } if props.validatorErrors.operator_town
           }) }}
       {{ govukInput({
               "label": {
@@ -99,7 +99,7 @@
               "classes": "govuk-label--l",
               "autoComplete": "postal-code",
               "value": props.cumulativeFullAnswers.operator_postcode,
-              "errorMessage": { "text": __(props.validatorErrors.operator_postcode) } if props.validatorErrors.operator_postcode
+              "errorMessage": { "text": __(props.validatorErrors.operator_postcode, props.language) } if props.validatorErrors.operator_postcode
           }) }}
       {{ govukButton({
             text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)

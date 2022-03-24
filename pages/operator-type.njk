@@ -51,7 +51,7 @@
           }
         ],
         errorMessage: {
-      text: __(props.validatorErrors.operator_type)} if props.validatorErrors.operator_type
+      text: __(props.validatorErrors.operator_type, props.language)} if props.validatorErrors.operator_type
       }) }}
       {%- endcall %}
       {{ govukButton({

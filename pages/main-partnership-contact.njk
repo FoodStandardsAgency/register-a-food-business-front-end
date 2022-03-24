@@ -31,7 +31,7 @@
           <div class="govuk-radios" data-module="govuk-radios">
             {% if props.validatorErrors.partner_is_primary %}
               <span id="partner-error" class="govuk-error-message">
-                {{ __(props.validatorErrors.partner_is_primary) }}
+                {{ __(props.validatorErrors.partner_is_primary, props.language) }}
               </span>
             {% endif %}
             {% set count = 0 %}
