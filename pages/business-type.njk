@@ -59,6 +59,7 @@
                 {% endfor %}
               </ul>
             {% endfor %}
+            <span class="govuk-label govuk-!-margin-top-5">{{ __("Select business type") }}</span>
             {{ businessTypeSelect(props) if props.browser === "IE" else businessTypeAutoComplete() }}
           </div>
           <script>
