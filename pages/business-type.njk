@@ -5,7 +5,7 @@
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% macro businessTypeAutoComplete() %}
-  <label for="my-autocomplete">
+  <label for="my-autocomplete" class="govuk-label govuk-!-margin-top-5">{{ __("Select business type") }}
     <div id="autocompleteContainer" name="business_type" style="margin-top: 1em; margin-bottom: 2em;">
       {% if props.validatorErrors.business_type %}
         <span id="business_type-error" class="govuk-error-message">
@@ -59,7 +59,6 @@
                 {% endfor %}
               </ul>
             {% endfor %}
-            <span class="govuk-label govuk-!-margin-top-5">{{ __("Select business type") }}</span>
             {{ businessTypeSelect(props) if props.browser === "IE" else businessTypeAutoComplete() }}
           </div>
           <script>
