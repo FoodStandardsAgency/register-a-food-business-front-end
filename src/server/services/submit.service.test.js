@@ -1,5 +1,6 @@
-const { submit } = require("./submit.service");
 jest.mock("../connectors/registration/registration.connector");
+
+const { submit } = require("./submit.service");
 const {
   sendRequest
 } = require("../connectors/registration/registration.connector");

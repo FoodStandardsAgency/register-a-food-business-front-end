@@ -1,0 +1,33 @@
+{% from "BackButton.njk" import backButton %}
+{% macro backAndLanguageBar(props) %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ backButton(props) }}
+    </div>
+    <div class="govuk-grid-column-one-quarter" style="float:right">
+      <p style="text-align: right">
+        <a
+          href="?lang=en"
+          class="govuk-link"
+          id="languageEnHeader"
+          rel="noopener noreferrer"
+          aria-label="Change the language to English"
+          style='cursor:{{ __("enLangLink-cursor", props.language) }}; text-decoration:{{ __("enLangLink-underline",
+            props.language) }}; font-weight:{{ __("enLangLink-fontWeight", props.language) }};'>
+          English
+        </a>
+        |
+        <a
+          href="?lang=cy"
+          class="govuk-link"
+          id="languageCyHeader"
+          rel="noopener noreferrer"
+          aria-label="Newid yr iaith i'r Gymraeg"
+          style='cursor:{{ __("cyLangLink-cursor", props.language) }}; text-decoration:{{ __("cyLangLink-underline",
+            props.language) }}; font-weight:{{ __("cyLangLink-fontWeight", props.language) }};'>
+          Cymraeg
+        </a>
+      </p>
+    </div>
+  </div>
+{% endmacro %}

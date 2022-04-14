@@ -1,125 +1,86 @@
-import OperatorCharityDetails from "../pages/operator-charity-details";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers")
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: {operator_charity_name: "default", operator_charity_number: "default"  },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
 
-const testSwitches = {};
-
-describe("<OperatorCharityDetails />", () => {
+describe("operator-charity-details", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<OperatorCharityDetails />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("operator-charity-details", props);
+    
+    const $mainHeading = getPageDetails.getMainHeading($)
+    expect($mainHeading.text().trim()).toEqual('Details of the operating charity, organisation or trust')
   });
 
-  describe("charity name input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorCharityDetails
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const operatorCharityName = wrapper.find(
-        "InputField#operator_charity_name"
-      );
-      expect(operatorCharityName.length).toBe(1);
-    });
+  it('passes accessibility tests', async () => {
+    const $ = renderPage('operator-charity-details', props)
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_charity_name: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorCharityDetails
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const operatorCharityName = wrapper.find(
-        "InputField#operator_charity_name"
-      );
-      expect(operatorCharityName.props().meta.error).toBe("test error");
+    const results = await axe($.html())
+    expect(results).toHaveNoViolations()
+  })
+
+  describe("operator charity details input field", () => {
+    it('renders', async () => {
+      const $ = renderPage('operator-charity-details', props)
+      const $inputBox = $('#operator_charity_name')
+      expect($inputBox.length).toBe(1)
     });
 
     it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_charity_name: "default"
-      };
-      const wrapper = mount(
-        <OperatorCharityDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
+      const $ = renderPage('operator-charity-details', props)
+      
+      const $inputBox = $('#operator_charity_name')
+      expect($inputBox.get(0).attribs.value).toBe(
+        "default"
       );
-      const operatorCharityName = wrapper.find(
-        "InputField#operator_charity_name"
-      );
-      expect(operatorCharityName.props().input.defaultValue).toBe("default");
+      });
+
+      describe("establishment trading name input field", () => {
+        it('renders', async () => {
+          const $ = renderPage('operator-charity-details', props)
+          const $inputBox = $('#operator_charity_number')
+          expect($inputBox.length).toBe(1)
+        });
+    
+        it("gets given the correct default value", () => {
+          const $ = renderPage('operator-charity-details', props)
+          
+          const $inputBox = $('#operator_charity_number')
+          expect($inputBox.get(0).attribs.value).toBe(
+            "default"
+          );
+          });
+
+    describe("Error messages displayed", () => {
+      it("renders the correct summary error", async () => {
+        const $ = renderPage("operator-charity-details", {
+          language: "cy",
+          validatorErrors: {
+            operator_charity_name: "test error"
+          }
+        });
+
+        const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+        expect($pageErrors.length).toBe(1);
+        expect($pageErrors.contents().get(0).data).toBe("test error");
+      });
+
+      it("renders the correct error", async () => {
+        const $ = renderPage("operator-charity-details", {
+          language: "cy",
+          validatorErrors: {
+            operator_charity_number: "test error"
+          }
+        });
+
+        const $inputError = $("#operator_charity_number-error");
+        expect($inputError.length).toBe(1);
+        expect($inputError.contents().get(2).data.trim()).toBe("test error");
+      });
     });
   });
-
-  describe("charity reference number input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <OperatorCharityDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorCharityNumber = wrapper.find(
-        "InputField#operator_charity_number"
-      );
-      expect(operatorCharityNumber.length).toBe(1);
-    });
-
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_charity_number: "test error"
-      };
-      const wrapper = mount(
-        <OperatorCharityDetails
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorCharityNumber = wrapper.find(
-        "InputField#operator_charity_number"
-      );
-      expect(operatorCharityNumber.props().meta.error).toBe("test error");
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_charity_number: "default"
-      };
-      const wrapper = mount(
-        <OperatorCharityDetails
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorCharityNumber = wrapper.find(
-        "InputField#operator_charity_number"
-      );
-      expect(operatorCharityNumber.props().input.defaultValue).toBe("default");
-    });
-  });
-});
+})
+})

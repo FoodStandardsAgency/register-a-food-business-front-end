@@ -1,0 +1,84 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% extends "layout.njk" %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {{ govukCheckboxes({
+        idPrefix: "declaration",
+        name: "declaration",
+        fieldset: {
+            legend: {
+            text: __("Declaration", props.language),
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+            }
+        },
+        hint: {
+            text: __("Review these statements and tick all three boxes to agree.", props.language)
+        },
+        errorMessage: {
+             text: __(props.validatorErrors.declaration1 or props.validatorErrors.declaration2 or props.validatorErrors.declaration3, props.language) } if props.validatorErrors.declaration1 or props.validatorErrors.declaration2 or props.validatorErrors.declaration3,
+        items: [
+            {
+            id: "declaration_1",
+            name: "declaration1",
+            value: "I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief.",
+            text: __("I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief.", props.language),
+            checked: props.cumulativeFullAnswers.declaration1
+            },
+            {
+            id: "declaration_2",
+            name: "declaration2",
+            value: "The operator will notify their local council of any significant changes to the business activity, including closure, within 28 days of the change happening.",
+            text: __("The operator will notify their local council of any significant changes to the business activity, including closure, within 28 days of the change happening.", props.language),
+            checked: props.cumulativeFullAnswers.declaration2
+            },
+            {
+            id: "declaration_3",
+            name: "declaration3",
+            value: "The operator understands they are legally responsible for the safety and authenticity of the food being produced or served at this establishment.",
+            text: __("The operator understands they are legally responsible for the safety and authenticity of the food being produced or served at this establishment.", props.language),
+            checked: props.cumulativeFullAnswers.declaration3
+            }
+        ]
+        }) }}
+      <div>
+        {{ govukCheckboxes({
+        idPrefix: "feedback",
+        name: "feedback",
+        fieldset: {
+            legend: {
+            text: __("Feedback", props.language),
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--l"
+            }
+        },
+        hint: {
+            text: __("Congratulations, you've almost finished. We want to provide you with the best experience possible and value your feedback.", props.language)
+        },
+        items: [
+            {
+            id: "feedback_1",
+            name: "feedback1",
+            value: "I agree to be contacted to provide feedback to help develop this service",
+            text: __("I agree to be contacted to provide feedback to help develop this service (optional)", props.language),
+            checked: props.cumulativeFullAnswers.feedback1
+            }
+        ]
+        }) }}
+        <a href='{{ __("DeclarationLink", props.language) }}' target="_blank" style="font-size: 19px" rel="noopener noreferrer" id="changed-name-hint" class="govuk-link">
+          {{ __("How we will use your data (opens in new window)", props.language) }}
+        </a>
+      </div>
+      <br/> <br/> {{ govukButton({
+            text: __("Submit", props.language)
+        }) }}
+      {% endcall %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% from "../components/EstablishmentDetails.njk" import establishmentHiddenDetails %}
+{% extends "layout.njk" %}
+{% if props.switches["/establishment-address-none-found"] %}
+  {% set backlink = "/new/" + props.council + "/establishment-address" %}
+{% else %}
+  {% set backlink = "/new/" + props.council + "/establishment-address-select" %}
+{% endif %}
+{% set props = mergeObjects(props, { backHref: backlink }) %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {% call govukFieldset({
+        legend: {
+        text: __("What is the establishment's address?", props.language),
+        classes: "govuk-fieldset__legend--l",
+        isPageHeading: true
+                }
+        }) %}
+      {% endcall %}
+      {{ establishmentHiddenDetails(props) }}
+      {{ govukInput({
+            "label": {
+            "text": __("Address line 1", props.language)
+            },
+            "id": "establishment_address_line_1",
+            "name": "establishment_address_line_1",
+            "classes": "govuk-label--l",
+            "autoComplete": "address-line1",
+            "value":  props.cumulativeFullAnswers.establishment_address_line_1,
+            "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_1, props.language) } if props.validatorErrors.establishment_address_line_1
+        }) }}
+      {{ govukInput({
+            "label": {
+            "text": __("Address line 2 (optional)", props.language)
+            },
+            "id": "establishment_address_line_2",
+            "name": "establishment_address_line_2",
+            "classes": "govuk-label--l",
+            "autoComplete": "address-line2",
+            "value": props.cumulativeFullAnswers.establishment_address_line_2,
+            "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_2, props.language) } if props.validatorErrors.establishment_address_line_2
+        }) }}
+      {{ govukInput({
+            "label": {
+            "text": __("Address line 3 (optional)", props.language)
+            },
+            "id": "establishment_address_line_3",
+            "name": "establishment_address_line_3",
+            "classes": "govuk-label--l",
+            "autoComplete": "address-line3",
+            "value": props.cumulativeFullAnswers.establishment_address_line_3,
+            "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_3, props.language) } if props.validatorErrors.establishment_address_line_3
+        }) }}
+      {{ govukInput({
+            "label": {
+            "text": __("Town or city", props.language)
+            },
+            "id": "establishment_town",
+            "name": "establishment_town",
+            "classes": "govuk-label--l",
+            "autoComplete": "locality",
+            "value": props.cumulativeFullAnswers.establishment_town,
+            "errorMessage": { "text": __(props.validatorErrors.establishment_town, props.language) } if props.validatorErrors.establishment_town
+        }) }}
+      {{ govukInput({
+            "label": {
+            "text": __("Postcode", props.language)
+            },
+            "id": "establishment_postcode",
+            "name": "establishment_postcode",
+            "classes": "govuk-label--l",
+            "autoComplete": "postal-code",
+            "value": props.cumulativeFullAnswers.establishment_postcode,
+            "errorMessage": { "text": __(props.validatorErrors.establishment_postcode, props.language) } if props.validatorErrors.establishment_postcode
+        }) }}
+      {{ govukButton({
+            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
+          }) }}
+      {% endcall %}
+    </div>
+  </div>
+{% endblock %}

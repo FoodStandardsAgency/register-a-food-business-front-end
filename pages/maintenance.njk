@@ -1,0 +1,14 @@
+{% from "../components/PostForm.njk" import postForm %}
+{% extends "layout.njk" %}
+{% set props = mergeObjects(props, {hideback: true}) %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 id="main-heading" class="govuk-heading-xl">
+        {{ __("Register a food business", props.language) }}</h1>
+      <p class="govuk-body">
+        {{ __("This service is currently undergoing maintenance.  Please try again later.", props.language) }}
+      </p>
+    </div>
+  </div>
+{% endblock %}

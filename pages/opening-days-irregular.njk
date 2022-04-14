@@ -1,0 +1,48 @@
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% extends "layout.njk" %}
+{% block content %}
+  {{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {% call govukFieldset({
+      describedBy: "opening_days_irregular",
+        legend: {
+          text: __("Opening periods", props.language),
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+        }
+        }) %}
+      {% set html %}
+      <p class="govuk-body">{{ __("When will this establishment be open and serving or preparing food?", props.language) }}</p>
+      <div class="govuk-label">
+        <label class="govuk-hint">
+          {{ __("For example", props.language) }}
+        </label>
+        <ul style="margin-block-start: 0; margin-block-end: 1em">
+          <li>{{ __("only serving food during December at Christmas markets", props.language) }}</li>
+          <li>{{ __("open at weekends in June and August between 10:00 and 19:00", props.language) }}</li>
+        </ul>
+      </div>
+      {% endset %}
+      {{ govukTextarea({
+        "label": { "html": html },
+        "id": "opening_days_irregular",
+        "value": props.cumulativeFullAnswers.opening_days_irregular,
+        "name": "opening_days_irregular",
+        "errorMessage": {
+        "text": __(props.validatorErrors.opening_days_irregular, props.language)} if props.validatorErrors.opening_days_irregular
+        }) }}
+      {% endcall %}
+      {{ govukButton({
+              text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
+            }) }}
+      {%- endcall %}
+    </div>
+  </div>
+{% endblock %}

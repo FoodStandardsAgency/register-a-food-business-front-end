@@ -1,113 +1,55 @@
-import OperatorName from "../pages/operator-name";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: {
+    operator_first_name: "test name",
+    operator_last_name: "test lastname"
+  },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
+describe("Operator-Name", () => {
+  it("It should pass accessibility tests", async () => {
+    const $ = renderPage("operator-name", props);
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
 
-const testSwitches = {};
-
-describe("<OperatorName />", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<OperatorName />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("operator-name", props);
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual("What is the operator's name?");
   });
 
-  describe("operator first name input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorName
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const operatorFirstName = wrapper.find("InputField#operator_first_name");
-      expect(operatorFirstName.length).toBe(1);
+  describe("It should have correct input fields and value", () => {
+    it("renders operator first name correctly", () => {
+      const $ = renderPage("operator-name", props);
+      const $firstname = $("#operator_first_name");
+      expect($firstname.get(0).attribs.name).toBe("operator_first_name");
+      expect($firstname.get(0).attribs.value).toBe("test name");
     });
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_first_name: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorName
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const operatorFirstName = wrapper.find("InputField#operator_first_name");
-      expect(operatorFirstName.props().meta.error).toBe("test error");
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_first_name: "default"
-      };
-      const wrapper = mount(
-        <OperatorName
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorFirstName = wrapper.find("InputField#operator_first_name");
-      expect(operatorFirstName.props().input.defaultValue).toBe("default");
+    it("renders operator last name correctly", () => {
+      const $ = renderPage("operator-name", props);
+      const $lastname = $("#operator_last_name");
+      expect($lastname.get(0).attribs.name).toBe("operator_last_name");
+      expect($lastname.get(0).attribs.value).toBe("test lastname");
     });
   });
 
-  describe("operator last name input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <OperatorName
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorLastName = wrapper.find("InputField#operator_last_name");
-      expect(operatorLastName.length).toBe(1);
+  it("renders the correct error", async () => {
+    const $ = renderPage("operator-name", {
+      language: "en",
+      validatorErrors: {
+        operator_first_name: "Enter a valid first name",
+        operator_last_name: "Enter a valid last name"
+      }
     });
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_last_name: "test error"
-      };
-      const wrapper = mount(
-        <OperatorName
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorLastName = wrapper.find("InputField#operator_last_name");
-      expect(operatorLastName.props().meta.error).toBe("test error");
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_last_name: "default"
-      };
-      const wrapper = mount(
-        <OperatorName
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorLastName = wrapper.find("InputField#operator_last_name");
-      expect(operatorLastName.props().input.defaultValue).toBe("default");
-    });
+    const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+    expect($pageErrors.length).toBe(2);
+    expect($pageErrors.contents().get(0).data).toBe("Enter a valid first name");
+    expect($pageErrors.contents().get(1).data).toBe("Enter a valid last name");
   });
 });

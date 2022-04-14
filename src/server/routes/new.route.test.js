@@ -13,7 +13,6 @@ jest.mock("../server", () => ({
 jest.mock("../connectors/config-db/config-db.connector");
 jest.mock("../services/browser-support.service");
 
-const { app } = require("../server");
 const { newRouter } = require("./new.route");
 const {
   transformAnswersForSummary
@@ -63,13 +62,18 @@ describe("New route: ", () => {
             lc: "purbeck",
             page: "operator-type"
           },
+          csrfToken: jest.fn(),
+          url: "test/test",
           headers: {
             "user-agent":
               "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
           }
         };
 
-        res = "res";
+        res = {
+          redirect: jest.fn(),
+          render: jest.fn()
+        };
 
         await handler(req, res);
       });
@@ -92,8 +96,8 @@ describe("New route: ", () => {
         expect(req.session.lcName).toEqual("Belfast Council");
       });
 
-      it("Should call app.render", () => {
-        expect(app.render).toBeCalled();
+      it("Should call res.render", () => {
+        expect(res.render).toBeCalled();
       });
     });
 
@@ -111,22 +115,26 @@ describe("New route: ", () => {
             }
           },
           params: {
-            page: "new page",
+            page: "/new page",
             lc: "purbeck"
           },
+          csrfToken: jest.fn(),
+          url: "test/test",
           headers: {
             "user-agent":
               "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
           }
         };
 
-        res = "res";
+        res = {
+          render: jest.fn()
+        };
 
         handler(req, res);
       });
 
-      it("Should call app.render with page", () => {
-        expect(app.render).toBeCalledWith(req, res, "/new page");
+      it("Should call res.render with page", () => {
+        expect(res.render).toBeCalledWith("/new page", expect.anything());
       });
 
       it("Should not change the path", () => {
@@ -148,13 +156,18 @@ describe("New route: ", () => {
               page: "index",
               lc: "purbeck"
             },
+            csrfToken: jest.fn(),
+            url: "test/test",
             headers: {
               "user-agent":
                 "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
             }
           };
 
-          res = "res";
+          res = {
+            redirect: jest.fn(),
+            render: jest.fn()
+          };
 
           await handler(req, res);
         });
@@ -183,22 +196,26 @@ describe("New route: ", () => {
               page: "registration-summary",
               lc: "purbeck"
             },
+            csrfToken: jest.fn(),
+            url: "test/test",
             headers: {
               "user-agent":
                 "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
             }
           };
 
-          res = "res";
+          res = {
+            redirect: jest.fn(),
+            render: jest.fn()
+          };
 
           await handler(req, res);
         });
 
-        it("Should call app.render with page", () => {
-          expect(app.render).toBeCalledWith(
-            expect.anything(),
-            res,
-            "/registration-summary"
+        it("Should call res.render with page", () => {
+          expect(res.render).toBeCalledWith(
+            "registration-summary",
+            expect.anything()
           );
         });
 
@@ -224,19 +241,24 @@ describe("New route: ", () => {
           params: {
             lc: "purbeck"
           },
+          csrfToken: jest.fn(),
+          url: "test/test",
           headers: {
             "user-agent":
               "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
           }
         };
 
-        res = "res";
+        res = {
+          redirect: jest.fn(),
+          render: jest.fn()
+        };
 
         await handler(req, res);
       });
 
-      it("Should call app.render with index", () => {
-        expect(app.render).toBeCalledWith(req, res, "/index");
+      it("Should call res.render with index", () => {
+        expect(res.render).toBeCalledWith("index", expect.anything());
       });
 
       it("Should set req.session.country", () => {
@@ -263,19 +285,24 @@ describe("New route: ", () => {
           params: {
             lc: "not a supported council"
           },
+          csrfToken: jest.fn(),
+          url: "test/test",
           headers: {
             "user-agent":
               "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
           }
         };
 
-        res = "res";
+        res = {
+          redirect: jest.fn(),
+          render: jest.fn()
+        };
 
         handler(req, res);
       });
 
-      it("Should call app.render with unsupported-council", () => {
-        expect(app.render).toBeCalledWith(req, res, "/unsupported-council");
+      it("Should call res.render with unsupported-council", () => {
+        expect(res.render).toBeCalledWith("unsupported-council");
       });
     });
   });

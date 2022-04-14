@@ -1,0 +1,9 @@
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% macro processedErrorSummary(validatorErrors, language) %}
+  {% if validatorErrors | length %}
+    {{ govukErrorSummary({
+        titleText: __("There is a problem", language),
+        errorList: validatorErrors | selectValidationErrors(language)
+    }) }}
+  {% endif %}
+{% endmacro %}

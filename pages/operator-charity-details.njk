@@ -1,0 +1,74 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% from "../components/PostForm.njk" import postForm %}
+{% macro hiddenTextCharityNumbers() %}
+  <span>
+    {{ __(
+              "Charities that are registered with the Charities Commission will have a charity reference number. You can find your charity reference number by visiting the"
+            ) }}{{ " " }}
+    <a
+      href="http://apps.charitycommission.gov.uk/Showcharity/RegisterOfCharities/registerhomepage.aspx"
+      target="_blank"
+      class="govuk-link"
+      rel="noopener noreferrer"
+      id="link-charity-commission">
+      {{ __("Charity Commission website (opens in new window)", props.language) }}
+    </a>
+    .
+  </span>
+{% endmacro %}
+{% extends "layout.njk" %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {% call govukFieldset({
+        legend: {
+          text: __("Details of the operating charity, organisation or trust", props.language),
+          classes: "govuk-fieldset__legend--l",
+          id: "main-heading",
+          isPageHeading: true
+        }
+      }) %}
+      {{ govukDetails({
+        summaryText: __("What is a food business operator?", props.language),
+        id:"hiddenTextFBO",
+        text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.", props.language)
+      }) }}
+      {{ govukInput({
+        "label": {
+          "text": __("Charity, organisation or trust name", props.language)
+        },
+        "id": "operator_charity_name",
+        "name": "operator_charity_name",
+        "value":  props.cumulativeFullAnswers.operator_charity_name,
+        "errorMessage": { "text": __(props.validatorErrors.operator_charity_name, props.language)} if props.validatorErrors.operator_charity_name
+        
+      }) }}
+      {{ govukInput({
+        "label": {
+          "text": __("Charity reference number (optional)", props.language)
+        },
+        "id": "operator_charity_number",
+        "name": "operator_charity_number",
+        "value": props.cumulativeFullAnswers.operator_charity_number,
+        "errorMessage": { "text": __(props.validatorErrors.operator_charity_number, props.language)} if props.validatorErrors.operator_charity_number
+        
+      }) }}
+      {{ govukDetails({
+        summaryText: __("Questions about charity reference numbers", props.language),
+        id:"hiddenTextCharityNumbers",
+        html: hiddenTextCharityNumbers()
+      }) }}
+      {% endcall %}
+      {{ govukButton({
+            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
+          }) }}
+      {%- endcall %}
+    </div>
+  </div>
+{% endblock %}

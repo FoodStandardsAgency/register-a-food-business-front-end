@@ -1,8 +1,8 @@
-import {
+const {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
   cleanSwitches
-} from "./session-management.service";
+} = require("./session-management.service");
 
 const pathObject = {
   "/index": {

@@ -1,13 +1,13 @@
 module.exports = {
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
-  setupFiles: ["<rootDir>/jest.setup.js"],
+  moduleFileExtensions: ['njk', 'ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   reporters: [
     "default",
     ["jest-junit", { outputName: `./reports/TEST-${process.env.TEST_TYPE}.xml` }]
   ],
   coverageReporters: ["cobertura", "lcov", "json", "text"],
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
+  testMatch: [ "**/?(*.)+(spec|test).[tj]s?(x)", "**/?(*.)+(spec|test).njk"],
   moduleNameMapper: {
     "\\.(css)$": "<rootDir>/src/__mocks__/styleMock.js",
     "schema.js": "<rootDir>/src/__mocks__/schemaMock.js",
@@ -35,5 +35,16 @@ module.exports = {
     "!tests/**/*.js",
     "!src/server/routes/*.route.js"
   ],
-  testURL: "http://localhost/"
+  testURL: "http://localhost/",
+  globals: {
+    "nunjucks": {
+      "config": {
+        "throwOnUndefined": true,
+        "trimBlocks": true
+      }
+    }
+  },
+  transform: {
+    "^.+\\.njk$": "jest-nunjucks"
+  }
 };

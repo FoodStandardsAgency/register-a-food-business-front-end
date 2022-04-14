@@ -1,0 +1,44 @@
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% macro partnersTable(props) %}
+  <div>
+    {{ partnersRows }}
+  </div>
+  {% set partnerDetailsUrlContainsQuestionMark = false %}
+  {% for character in props.partnerDetailsUrl %}
+    {% if character==='?' %}
+      {% set partnerDetailsUrlContainsQuestionMark = true if props.partnerDetailsUrl %}
+    {% endif %}
+  {% endfor %}
+  {% set hasGETParams = true if (props.partnerDetailsUrl and partnerDetailsUrlContainsQuestionMark) else false %}
+  {{ changeLink }}
+  {% set count = 0 %}
+  {{ ID }}
+  <table class="govuk-table">
+    <caption class="govuk-table__caption govuk-table__caption--m">{{ __("Partners", props.language) }}</caption>
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">{{ __("Partner name", props.language) }}</th>
+        <th scope="col" class="govuk-table__header">{{ __("Edit", props.language) }}</th>
+        <th scope="col" class="govuk-table__header">{{ __("Remove", props.language) }}</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      {% for partner in props.cumulativeFullAnswers.partners %}
+        {% set ID = "partner" + count + "RowChange" %}
+        {% set changeLink = (props.partnerDetailsUrl + "&id=" + count) if hasGETParams else (props.partnerDetailsUrl + "?id=" + count) %}
+        <tr class="govuk-table__row" id="partnerRow{{ count }}" key="partnerRow{{ count }}">
+          <td class="govuk-table__cell" id="partner{{ count }}">{{ partner }}</td>
+          <td class="govuk-table__cell">
+            <a id="{{ ID }}" class="govuk-link" href="{{ changeLink }}" aria-label="{{ __('Change partner name', props.language) }}">{{ __('Change', props.language) }}</a>
+          </td>
+          <td class="govuk-table__cell">
+            <button class="govuk-button" data-module="govuk-button" type="submit" name="index" value="{{ count }}" id="deletePartnerButton{{ count }}">
+              {{ __("Delete partner", props.language) }}
+            </button>
+          </td>
+        </tr>
+        {% set count = count + 1 %}
+      {% endfor %}
+    </tbody>
+  </table>
+{% endmacro %}

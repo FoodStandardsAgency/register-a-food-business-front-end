@@ -45,6 +45,7 @@ const errorMessages = {
   establishment_primary_number: "Enter a valid establishment phone number",
   establishment_secondary_number: "Enter a valid establishment phone number",
   establishment_email: "Enter a valid establishment email address",
+  establishment_web_address: "Enter a valid establishment web address",
   establishment_type:
     "You must select an establishment address type before continuing",
   establishment_town: "Enter a valid town name",
@@ -238,6 +239,12 @@ const revalidateAllAnswers = (pages, cumulativeFullAnswers) => {
       if (answersToValidate["establishment_secondary_number"] == null) {
         Object.assign(result.errors, validate(page, answersToValidate).errors);
         delete result.errors.establishment_secondary_number;
+      } else {
+        Object.assign(result.errors, validate(page, answersToValidate).errors);
+      }
+      if (answersToValidate["establishment_web_address"] == null) {
+        Object.assign(result.errors, validate(page, answersToValidate).errors);
+        delete result.errors.establishment_web_address;
       } else {
         Object.assign(result.errors, validate(page, answersToValidate).errors);
       }

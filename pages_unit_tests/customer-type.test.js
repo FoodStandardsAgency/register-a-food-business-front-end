@@ -1,94 +1,79 @@
-import CustomerType from "../pages/customer-type";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: { supply_directly: "END_CONSUMER" },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-
-const testSwitches = {};
-
-describe("<CustomerType />", () => {
+describe("customer-type", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<CustomerType />);
-    expect(wrapper.length).toBe(1);
+    const $ = renderPage("customer-type", props);
+
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual(
+      "Who will this establishment supply food to?"
+    );
   });
 
-  describe("renders 2 checkboxes with correct error props and default values", () => {
-    it("renders 2 checkboxes", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <CustomerType
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const customerTypeCheckBox = wrapper.find("Checkbox");
-      expect(customerTypeCheckBox.length).toBe(2);
-    });
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("customer-type", props);
 
-    it("supply_directly checkbox gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        supply_directly: "default"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <CustomerType
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const customerTypeCheckBox = wrapper.find(
-        "Checkbox#customer_type_supply_directly"
-      );
-      expect(customerTypeCheckBox.props().defaultChecked).toBe("default");
-    });
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
 
-    it("supply_other checkbox gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        supply_other: "default"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <CustomerType
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeFullAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const customerTypeCheckBox = wrapper.find(
-        "Checkbox#customer_type_supply_other"
-      );
-      expect(customerTypeCheckBox.props().defaultChecked).toBe("default");
+  it("renders 2 checkboxes buttons", async () => {
+    const $ = renderPage("customer-type", props);
+
+    const $customerTypeCheck = getPageDetails.getCheckboxes($);
+    expect($customerTypeCheck.length).toBe(2);
+  });
+
+  describe("Checkboxes have correct value", () => {
+    it("renders the other businesses check button with the correct value", () => {
+      const $ = renderPage("customer-type", props);
+      const $mainHeadingOtherBusiness = $("#customer_type_supply_other"); 
+      expect($mainHeadingOtherBusiness.get(0).attribs.value).toBe("OTHER_BUSINESSES");
+    });
+    it("renders the end consumer check button with the correct value", () => {
+      const $ = renderPage("customer-type", props);
+      const $mainHeadingEndConsumer = $("#customer_type_supply_directly");
+      expect($mainHeadingEndConsumer.get(0).attribs.value).toBe("END_CONSUMER");
+    });
+   
+    it("select the correct checkboxes button based on session data", () => {
+      const $ = renderPage("customer-type", props);
+      const $selected = $("input:checked");
+      expect($selected.get(0).attribs.value).toBe("END_CONSUMER");
     });
   });
 
-  describe("top-level MultiChoice element", () => {
-    it("renders the correct error", () => {
-      const validatorErrors = {
-        customer_type: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <CustomerType
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const customerType = wrapper.find("MultiChoice");
-      expect(customerType.props().meta.error).toBe("test error");
+  describe("Error messages displayed", () => {
+    it("renders the correct summary error", async () => {
+      const $ = renderPage("customer-type", {
+        language: "cy",
+        validatorErrors: {
+          customer_type: "test error"
+        }
+      });
+
+      const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+      expect($pageErrors.length).toBe(1);
+      expect($pageErrors.contents().get(0).data).toBe("test error");
+    });
+
+    it("renders the correct error", async () => {
+      const $ = renderPage("customer-type", {
+        language: "cy",
+        validatorErrors: {
+          customer_type: "test error"
+        }
+      });
+
+      const $radioError = $("#customer_type-error");
+      expect($radioError.length).toBe(1);
+      expect($radioError.contents().get(2).data.trim()).toBe("test error");
     });
   });
 });

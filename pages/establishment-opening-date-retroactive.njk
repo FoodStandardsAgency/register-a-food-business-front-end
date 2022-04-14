@@ -1,0 +1,12 @@
+{% extends "../components/OpeningDate.njk" %}
+{% set regExp = r/^.*edit\=establishment\-opening\-status.*/g %}
+{% if regExp.test(props.fullCurrentPage) %}
+    {% set backlink = "/new/" + props.council + "/establishment-opening-status?edit=establishment-opening-status" %}
+{% else %}
+    {% set backlink = null %}
+    {% endif%}
+    {% set props = mergeObjects(props, {
+        hideback: false,
+        editModeFirstPage: false,
+        backHref: backlink
+    }) %}

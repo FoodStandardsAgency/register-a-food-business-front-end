@@ -1,3 +1,7 @@
+jest.mock("mongodb");
+jest.mock("./config-db.double");
+jest.mock("../../services/statusEmitter.service");
+
 const mongodb = require("mongodb");
 const {
   getPathConfigByVersion,
@@ -8,10 +12,6 @@ const {
 const { clearCosmosConnection } = require("../cosmos.client");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
 const { configVersionCollectionDouble } = require("./config-db.double");
-
-jest.mock("mongodb");
-jest.mock("./config-db.double");
-jest.mock("../../services/statusEmitter.service");
 
 describe("Function: getPathConfigByVersion", () => {
   let result;

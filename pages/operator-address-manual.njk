@@ -1,0 +1,110 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% extends "layout.njk" %}
+{% if props.switches["/operator-address-none-found"] %}
+  {% set backlink = "/new/" + props.council + "/operator-address" %}
+{% else %}
+  {% set backlink = "/new/" + props.council + "/operator-address-select" %}
+{% endif %}
+{% set props = mergeObjects(props, { backHref: backlink }) %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+        {% call govukFieldset({
+          legend: {
+            text: __("What is the partnership contact's address?", props.language),
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+                  }
+          }) %}
+        {% endcall %}
+        {% call govukInsetText({
+              text:  __("Partnership address is the contact address for the partner who is the main point of contact.", props.language),
+              classes: "govuk-fieldset__legend--l"
+          }) %}
+        {% endcall %}
+      {% else %}
+        {% call govukFieldset({
+            legend: {
+            text: __("What is the operator's address?", props.language),
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+                  }
+            }) %}
+        {% endcall %}
+        {% call govukInsetText({
+                    text: __('Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company.', props.language),
+                    classes: "govuk-fieldset__legend--l"
+                }) %}
+        {% endcall %}
+      {% endif %}
+      {{ govukInput({
+              "label": {
+                "text": __("Address line 1", props.language)
+              },
+              "id": "operator_address_line_1",
+              "name": "operator_address_line_1",
+              "classes": "govuk-label--l",
+              "autoComplete": "address-line1",
+              "value": props.cumulativeFullAnswers.operator_address_line_1,
+               "errorMessage": { "text": __(props.validatorErrors.operator_address_line_1, props.language) } if props.validatorErrors.operator_address_line_1
+              
+          }) }}
+      {{ govukInput({
+              "label": {
+                "text": __("Address line 2 (optional)", props.language)
+              },
+              "id": "operator_address_line_2",
+              "name": "operator_address_line_2",
+              "classes": "govuk-label--l",
+              "autoComplete": "address-line2",
+              "value": props.cumulativeFullAnswers.operator_address_line_2,
+              "errorMessage": { "text": __(props.validatorErrors.operator_address_line_2, props.language) } if props.validatorErrors.operator_address_line_2
+          }) }}
+      {{ govukInput({
+              "label": {
+                "text": __("Address line 3 (optional)", props.language)
+              },
+              "id": "operator_address_line_3",
+              "name": "operator_address_line_3",
+              "classes": "govuk-label--l",
+              "autoComplete": "address-line3",
+              "value": props.cumulativeFullAnswers.operator_address_line_3,
+              "errorMessage": { "text": __(props.validatorErrors.operator_address_line_3, props.language) } if props.validatorErrors.operator_address_line_3
+          }) }}
+      {{ govukInput({
+              "label": {
+                "text": __("Town or city", props.language)
+              },
+              "id": "operator_town",
+              "name": "operator_town",
+              "classes": "govuk-label--l",
+              "autoComplete": "locality",
+              "value": props.cumulativeFullAnswers.operator_town,
+              "errorMessage": { "text": __(props.validatorErrors.operator_town, props.language) } if props.validatorErrors.operator_town
+          }) }}
+      {{ govukInput({
+              "label": {
+                "text": __("Postcode", props.language)
+              },
+              "id": "operator_postcode",
+              "name": "operator_postcode",
+              "classes": "govuk-label--l",
+              "autoComplete": "postal-code",
+              "value": props.cumulativeFullAnswers.operator_postcode,
+              "errorMessage": { "text": __(props.validatorErrors.operator_postcode, props.language) } if props.validatorErrors.operator_postcode
+          }) }}
+      {{ govukButton({
+            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
+          }) }}
+      {% endcall %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,9 +1,9 @@
+jest.mock("./data-transform.service");
 const { validate } = require("./validation.service");
 const {
   combineDate,
   separateBracketsFromBusinessType
 } = require("./data-transform.service");
-jest.mock("./data-transform.service");
 
 separateBracketsFromBusinessType.mockImplementation(() => ({
   business_type: "Example",

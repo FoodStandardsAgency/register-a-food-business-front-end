@@ -1,83 +1,81 @@
-import OpeningDaysStart from "../pages/opening-days-start";
-import { shallow, mount } from "enzyme";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: { opening_days_start: "Irregular days" },
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
-
-const testSwitches = {};
-
-describe("<OpeningDaysStart />", () => {
+describe("opening-days-start", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<OpeningDaysStart />);
-    expect(wrapper.length).toBe(1);
-  });
-
-  it("renders 3 radio buttons with correct error props and default values", () => {
-    const wrapper = mount(
-      <I18nextProvider i18n={i18n}>
-        <OpeningDaysStart
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      </I18nextProvider>
+    const $ = renderPage("opening-days-start", props);
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual(
+      "What days will this establishment be open and producing or serving food?"
     );
-    const openingDaysStartRadio = wrapper.find("Radio");
-    expect(openingDaysStartRadio.length).toBe(3);
   });
 
-  describe("top-level MultiChoice element", () => {
-    it("renders the correct error", () => {
-      const validatorErrors = {
-        opening_days_start: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OpeningDaysStart
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const openingDaysStart = wrapper.find("MultiChoice");
-      expect(openingDaysStart.props().meta.error).toBe("test error");
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("opening-days-start", props);
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
+
+  it("renders 3 radio buttons", async () => {
+    const $ = renderPage("opening-days-start", props);
+    const $opening_days_startRadios = getPageDetails.getRadioButtons($);
+    expect($opening_days_startRadios.length).toBe(3);
+  });
+
+  describe("Radio boxes have correct value", () => {
+    it("renders the Every day radio button with the correct value", () => {
+      const $ = renderPage("opening-days-start", props);
+      const $mainHeadingMobile = $("#opening_days_start_everyday");
+      expect($mainHeadingMobile.get(0).attribs.value).toBe("Every day");
+    });
+    
+    it("renders the Some days radio button with the correct value", () => {
+      const $ = renderPage("opening-days-start", props);
+      const $mainHeadingDomestic = $("#opening_days_start_some_days");
+      expect($mainHeadingDomestic.get(0).attribs.value).toBe("Some days");
+    });
+    it("renders the Irregular days radio button with the correct value", () => {
+      const $ = renderPage("opening-days-start", props);
+      const $mainHeadingCommercial = $("#opening_days_start_irregular_days");
+      expect($mainHeadingCommercial.get(0).attribs.value).toBe("Irregular days");
+    });
+    it("select the Irregular days radio button based on session data", () => {
+      const $ = renderPage("opening-days-start", props);
+      const $selected = $("input:checked");
+      expect($selected.get(0).attribs.value).toBe("Irregular days");
     });
   });
 
-  describe("all Radio buttons", () => {
-    it("can be selected by default", () => {
-      const radioButtonIdsAndValues = {
-        opening_days_start_everyday: "Every day",
-        opening_days_start_some_days: "Some days",
-        opening_days_start_irregular_days: "Irregular days"
-      };
+  describe("Error messages displayed", () => {
+    it("renders the correct summary error", async () => {
+      const $ = renderPage("opening-days-start", {
+        language: "cy",
+        validatorErrors: {
+          opening_days_start: "test error"
+        }
+      });
 
-      for (let radioButtonId in radioButtonIdsAndValues) {
-        const cumulativeFullAnswers = {
-          opening_days_start: radioButtonIdsAndValues[radioButtonId]
-        };
+      const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+      expect($pageErrors.length).toBe(1);
+      expect($pageErrors.contents().get(0).data).toBe("test error");
+    });
 
-        const wrapper = mount(
-          <I18nextProvider i18n={i18n}>
-            <OpeningDaysStart
-              validatorErrors={testValidatorErrors}
-              cumulativeFullAnswers={cumulativeFullAnswers}
-              switches={testSwitches}
-            />
-          </I18nextProvider>
-        );
+    it("renders the correct error", async () => {
+      const $ = renderPage("opening-days-start", {
+        language: "cy",
+        validatorErrors: {
+          opening_days_start: "test error"
+        }
+      });
 
-        const openingDaysStartRadio = wrapper.find(`Radio#${radioButtonId}`);
-        expect(openingDaysStartRadio.props().defaultChecked).toBe(true);
-      }
+      const $radioError = $("#opening_days_start-error");
+      expect($radioError.length).toBe(1);
+      expect($radioError.contents().get(2).data.trim()).toBe("test error");
     });
   });
 });

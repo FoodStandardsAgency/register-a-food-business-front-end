@@ -1,306 +1,135 @@
-import OperatorAddress from "../pages/operator-address-manual";
-import { mount, shallow } from "enzyme";
-import { HintText, Heading, Paragraph } from "@slice-and-dice/govuk-react";
-import { I18nextProvider } from "react-i18next";
-import i18n from "../i18nForTests";
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
-const testValidatorErrors = {
-  example: "test error"
+const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: {
+    registration_role: "PARTNERSHIP",
+    operator_address_line_1: "Test Add1",
+    operator_town: "Test Town",
+    operator_postcode: "SE1 9AS",
+    establishment_postcode_find: "SE1 9AS"
+  },
+  council: "cardiff",
+  language: "en"
 };
 
-const testCumulativeAnswers = {
-  example: "test answer"
-};
+const $ = renderPage("operator-address-manual", props);
 
-const testSwitches = {};
+describe("operator-address-manual", () => {
+  it("It should pass accessibility tests", async () => {
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
 
-describe("<OperatorAddress />", () => {
+  it("renders correct backlink href when truthy switch of /operator-address-none-found", async () => {
+    const $ = renderPage("operator-address-manual", {
+      switches: { "/operator-address-none-found": true },
+      council: "cardiff"
+    });
+    const $backlink = getPageDetails.getBacklinkHref($);
+    expect($backlink).toEqual("/new/cardiff/operator-address");
+  });
+
+  it("renders correct backlink href when falsy switch of /operator-address-none-found", async () => {
+    const $ = renderPage("operator-address-manual", {
+      switches: { "/operator-address-none-found": false },
+      council: "cardiff"
+    });
+    const $backlink = getPageDetails.getBacklinkHref($);
+    expect($backlink).toEqual("/new/cardiff/operator-address-select");
+  });
+
   it("renders without crashing", () => {
-    const wrapper = shallow(<OperatorAddress />);
-    expect(wrapper.length).toBe(1);
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual(
+      "What is the partnership contact's address?"
+    );
   });
-  describe("when registration role is partnership", () => {
-    let wrapper;
-    beforeEach(() => {
-      const cumulativeAnswers = { registration_role: "PARTNERSHIP" };
-      wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorAddress
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
+
+  it("renders correct inset text", () => {
+    const $insetText = getPageDetails.getInsetText($);
+    expect($insetText).toEqual(
+      "Partnership address is the contact address for the partner who is the main point of contact."
+    );
+  });
+
+  describe("It should have correct label together with input field and value", () => {
+    it("renders operator manual address fields correctly", () => {
+      const $postcode = $("#operator_postcode");
+      expect($postcode.get(0).attribs.name).toBe("operator_postcode");
+      expect($postcode.get(0).attribs.value).toBe("SE1 9AS");
+
+      const $town = $("#operator_town");
+      expect($town.get(0).attribs.name).toBe("operator_town");
+      expect($town.get(0).attribs.value).toBe("Test Town");
+
+      const $address1 = $("#operator_address_line_1");
+      expect($address1.get(0).attribs.name).toBe("operator_address_line_1");
+      expect($address1.get(0).attribs.value).toBe("Test Add1");
     });
 
-    it("renders correct header", () => {
-      const header = wrapper.find(Heading);
-      expect(header.at(1).props().children).toBe("What is the partnership contact's address?");
-    });
+    it("renders operator manual address labels correctly", () => {
+      const $inputLabelTextAdd1 = getPageDetails.getInputLabelText($, 0);
+      expect($inputLabelTextAdd1).toEqual("Address line 1");
 
-    it("renders correct hint text", () => {
-      const hintText = wrapper.find(HintText);
-      expect(hintText.first().props().children).toBe(
-        "Partnership address is the contact address for the partner who is the main point of contact."
-      );
+      const $inputLabelTextAdd2 = getPageDetails.getInputLabelText($, 1);
+      expect($inputLabelTextAdd2).toEqual("Address line 2 (optional)");
+
+      const $inputLabelTextAdd3 = getPageDetails.getInputLabelText($, 2);
+      expect($inputLabelTextAdd3).toEqual("Address line 3 (optional)");
+
+      const $inputLabelTextTown = getPageDetails.getInputLabelText($, 3);
+      expect($inputLabelTextTown).toEqual("Town or city");
+
+      const $inputLabelTextPostcode = getPageDetails.getInputLabelText($, 4);
+      expect($inputLabelTextPostcode).toEqual("Postcode");
     });
   });
-  describe("when registration role is not partnership", () => {
-    let wrapper;
-    beforeEach(() => {
-      const cumulativeAnswers = { registration_role: "TEST" };
-      wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorAddress
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={cumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
+
+  describe("when registration role is not a partnership", () => {
+    it("renders correct header", () => {
+      const $ = renderPage("operator-address-manual", {
+        language: "en",
+        cumulativeFullAnswers: {
+          registration_role: "Test"
+        }
+      });
+      const $mainHeading = getPageDetails.getMainHeading($);
+      expect($mainHeading.text().trim()).toEqual(
+        "What is the operator's address?"
       );
     });
 
-    it("renders correct header", () => {
-      const header = wrapper.find(Heading);
-      expect(header.at(1).props().children).toBe("What is the operator's address?");
-    });
-
-    it("renders correct hint text", () => {
-      const hintText = wrapper.find(HintText);
-      expect(hintText.first().props().children).toBe(
+    it("renders correct insetText", () => {
+      const $ = renderPage("operator-address-manual", {
+        language: "en",
+        cumulativeFullAnswers: {
+          registration_role: "Test"
+        }
+      });
+      const $insetText = getPageDetails.getInsetText($);
+      expect($insetText).toEqual(
         "Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company."
       );
     });
   });
 
-  describe("Operator first line input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorAddress
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const operator_address_line_1 = wrapper.find(
-        "InputField#operator_address_line_1"
-      );
-      expect(operator_address_line_1.length).toBe(1);
+  it("renders the correct errors", async () => {
+    const $ = renderPage("operator-address-manual", {
+      language: "en",
+      validatorErrors: {
+        operator_address_line_1: "Enter a valid first line of address",
+        operator_town: "Enter a valid town name",
+        operator_postcode: "Not a valid postcode"
+      }
     });
 
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_address_line_1: "test error"
-      };
-      const wrapper = mount(
-        <I18nextProvider i18n={i18n}>
-          <OperatorAddress
-            validatorErrors={validatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            switches={testSwitches}
-          />
-        </I18nextProvider>
-      );
-      const operatorFirstLine = wrapper.find(
-        "InputField#operator_address_line_1"
-      );
-      expect(operatorFirstLine.props().meta.error).toBe("test error");
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_address_line_1: "default"
-      };
-      const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorFirstLine = wrapper.find(
-        "InputField#operator_address_line_1"
-      );
-      expect(operatorFirstLine.props().input.defaultValue).toBe("default");
-    });
-  });
-
-  describe("Operator address line 2 input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operator_address_line_2 = wrapper.find(
-        "InputField#operator_address_line_2"
-      );
-      expect(operator_address_line_2.length).toBe(1);
-    });
-
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_address_line_2: "test error"
-      };
-      const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operator_address_line_2 = wrapper.find(
-        "InputField#operator_address_line_2"
-      );
-      expect(operator_address_line_2.props().meta.error).toBe("test error");
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_address_line_2: "default"
-      };
-      const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operator_address_line_2 = wrapper.find(
-        "InputField#operator_address_line_2"
-      );
-      expect(operator_address_line_2.props().input.defaultValue).toBe(
-        "default"
-      );
-    });
-  });
-
-  describe("Operator town input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorTown = wrapper.find("InputField#operator_town");
-      expect(operatorTown.length).toBe(1);
-    });
-
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_town: "test error"
-      };
-      const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorTown = wrapper.find("InputField#operator_town");
-      expect(operatorTown.props().meta.error).toBe("test error");
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_town: "default"
-      };
-      const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorTown = wrapper.find("InputField#operator_town");
-      expect(operatorTown.props().input.defaultValue).toBe("default");
-    });
-  });
-
-  describe("Operator postcode input field", () => {
-    it("renders", () => {
-      const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorPostcode = wrapper.find("InputField#operator_postcode");
-      expect(operatorPostcode.length).toBe(1);
-    });
-
-    it("gets given the correct error prop", () => {
-      const validatorErrors = {
-        operator_postcode: "test error"
-      };
-      const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={validatorErrors}
-          cumulativeFullAnswers={testCumulativeAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorPostcode = wrapper.find("InputField#operator_postcode");
-      expect(operatorPostcode.props().meta.error).toBe("test error");
-    });
-
-    it("gets given the correct default value", () => {
-      const cumulativeFullAnswers = {
-        operator_postcode: "default"
-      };
-      const wrapper = mount(
-        <OperatorAddress
-          validatorErrors={testValidatorErrors}
-          cumulativeFullAnswers={cumulativeFullAnswers}
-          switches={testSwitches}
-        />
-      );
-      const operatorPostcode = wrapper.find("InputField#operator_postcode");
-      expect(operatorPostcode.props().input.defaultValue).toBe("default");
-    });
-  });
-
-  describe("back button", () => {
-    describe("given a truthy switch of '/operator-address-none-found'", () => {
-      it("passes council info to href and has href of '/operator-address'", () => {
-        const wrapper = mount(
-          <OperatorAddress
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            council="cardiff"
-            switches={{ "/operator-address-none-found": true }}
-          />
-        );
-        const operatorBackButton = wrapper.find("a#back-link");
-        expect(operatorBackButton.props().href).toBe(
-          "/new/cardiff/operator-address"
-        );
-      });
-    });
-
-    describe("given a falsy switch of '/operator-address-none-found'", () => {
-      it("passes council info to href and has href of '/operator-address-select'", () => {
-        const wrapper = mount(
-          <OperatorAddress
-            validatorErrors={testValidatorErrors}
-            cumulativeFullAnswers={testCumulativeAnswers}
-            council="cardiff"
-            switches={{ "/operator-address-none-found": false }}
-          />
-        );
-        const operatorBackButton = wrapper.find("a#back-link");
-        expect(operatorBackButton.props().href).toBe(
-          "/new/cardiff/operator-address-select"
-        );
-      });
-    });
+    const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+    expect($pageErrors.length).toBe(3);
+    expect($pageErrors.contents().get(0).data).toBe(
+      "Enter a valid first line of address"
+    );
+    expect($pageErrors.contents().get(1).data).toBe("Enter a valid town name");
+    expect($pageErrors.contents().get(2).data).toBe("Not a valid postcode");
   });
 });
