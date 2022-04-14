@@ -48,10 +48,10 @@
         tag: {
           text: "beta"
         },
-        html: __('This is a new service') + ' – ' + '<a class="govuk-link"  target="_blank" rel="noopener noreferrer" aria-label="' + 
-          __('your feedback (opens in new window)') + '"' + 
-          'href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform">' +
-          __('your feedback') + '</a> ' + __('will help us improve it') + '.'
+        html: __('This is a new service', props.language) + ' – ' + '<a class="govuk-link"  target="_blank" rel="noopener noreferrer" aria-label="' + 
+          __('your feedback (opens in new window)', props.language) + 
+          '" href="https://docs.google.com/forms/d/e/1FAIpQLSd78otan9gVxW-tIO6DDdqPdmKvm29Ssi9nWLkOOx1g8ddQjw/viewform">' +
+          __('your feedback', props.language) + '</a> ' + __('will help us improve it', props.language) + '.'
       }) }}
       {{ backAndLanguageBar(props) }}
     {% endblock %}
@@ -81,8 +81,8 @@
                 attributes: { target:"_blank", rel:"noopener noreferrer" }   
               },
               {
-                href: __('change-language'),
-                text: __('Change Language')
+                href: __('change-language', props.language),
+                text: __('Change Language', props.language)
               }
               
             ]

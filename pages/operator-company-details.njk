@@ -46,7 +46,7 @@
         "hint": {
             "text": __("The name of the registered company that is acting as the operator of this food business.", props.language)
         },
-        "errorMessage": { "text": __(props.validatorErrors.operator_company_name)} if props.validatorErrors.operator_company_name
+        "errorMessage": { "text": __(props.validatorErrors.operator_company_name, props.language)} if props.validatorErrors.operator_company_name
         
       }) }}
       {{ govukInput({
@@ -59,7 +59,7 @@
         "hint": {
             "text": __("Every registered company will have a Companies House reference number which will usually be either eight numbers (e.g. 12345678) or two letters followed by six numbers (e.g. AB123456)", props.language)
         },
-        "errorMessage": { "text": __(props.validatorErrors.operator_companies_house_number)} if props.validatorErrors.operator_companies_house_number
+        "errorMessage": { "text": __(props.validatorErrors.operator_companies_house_number, props.language)} if props.validatorErrors.operator_companies_house_number
         
       }) }}
       {{ govukDetails({

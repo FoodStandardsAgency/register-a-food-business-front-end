@@ -48,7 +48,7 @@
                 }
             ],
             errorMessage: {
-                text: __(props.validatorErrors.water_supply)} if props.validatorErrors.water_supply
+                text: __(props.validatorErrors.water_supply, props.language)} if props.validatorErrors.water_supply
             }) }}
       {{ govukDetails({
             summaryText: __("I don't know if I have a private water supply", props.language),

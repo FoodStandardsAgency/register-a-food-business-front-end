@@ -35,7 +35,7 @@
                 "classes": "govuk-label--l",
                 "autoComplete": "off",
                 "value": props.cumulativeFullAnswers.contact_representative_name,
-              "errorMessage": { "text": __(props.validatorErrors.contact_representative_name) } if props.validatorErrors.contact_representative_name
+              "errorMessage": { "text": __(props.validatorErrors.contact_representative_name, props.language) } if props.validatorErrors.contact_representative_name
       }) }}
       {{ govukInput({
                 "label": {
@@ -46,7 +46,7 @@
                 "classes": "govuk-label--l",
                 "autoComplete": "off",
                 "value": props.cumulativeFullAnswers.contact_representative_role,
-                "errorMessage": { "text": __(props.validatorErrors.contact_representative_role) } if props.validatorErrors.contact_representative_role
+                "errorMessage": { "text": __(props.validatorErrors.contact_representative_role, props.language) } if props.validatorErrors.contact_representative_role
       }) }}
       {{ govukInput({
                 "label": {
@@ -58,7 +58,7 @@
                 "classes": "govuk-label--l",
                 "autoComplete": "tel",
                 "errorMessage": {
-                "text":  __(props.validatorErrors.contact_representative_number) } if props.validatorErrors.contact_representative_number       
+                "text":  __(props.validatorErrors.contact_representative_number, props.language) } if props.validatorErrors.contact_representative_number       
       }) }}
       {{ govukInput({
                 "label": {
@@ -73,7 +73,7 @@
                 "classes": "govuk-label--l",
                 "autoComplete": "email",
                 "errorMessage": {
-                "text": __(props.validatorErrors.contact_representative_email) } if props.validatorErrors.contact_representative_email
+                "text": __(props.validatorErrors.contact_representative_email, props.language) } if props.validatorErrors.contact_representative_email
       }) }}
       {% endcall %}
       {{ govukButton({

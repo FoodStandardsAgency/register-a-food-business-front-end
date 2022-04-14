@@ -77,7 +77,7 @@
         "id": "establishment_primary_number",
         "name": "establishment_primary_number",
         "value": (props.cumulativeFullAnswers.operator_primary_number) or (props.cumulativeFullAnswers.contact_representative_number) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_primary_number),
-        "errorMessage": { "text": __(props.validatorErrors.establishment_primary_number)} if props.validatorErrors.establishment_primary_number
+        "errorMessage": { "text": __(props.validatorErrors.establishment_primary_number, props.language)} if props.validatorErrors.establishment_primary_number
         
       }) }}
       {{ govukInput({
@@ -87,7 +87,7 @@
         "id": "establishment_secondary_number",
         "name": "establishment_secondary_number",
         "value": (props.cumulativeFullAnswers.operator_secondary_number) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_secondary_number),
-        "errorMessage": { "text": __(props.validatorErrors.establishment_secondary_number)} if props.validatorErrors.establishment_secondary_number
+        "errorMessage": { "text": __(props.validatorErrors.establishment_secondary_number, props.language)} if props.validatorErrors.establishment_secondary_number
       }) }}
       {{ govukInput({
         "label": {
@@ -97,7 +97,7 @@
         "name": "establishment_email",
         "value": (props.cumulativeFullAnswers.operator_email) or (props.cumulativeFullAnswers.contact_representative_email) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_email),
         "errorMessage": {
-        "text": __(props.validatorErrors.establishment_email)} if props.validatorErrors.establishment_email
+        "text": __(props.validatorErrors.establishment_email, props.language)} if props.validatorErrors.establishment_email
       }) }}
       {{ govukInput({
         "label": {
@@ -107,7 +107,7 @@
         "name": "establishment_web_address",
         "value": (props.cumulativeFullAnswers.establishment_web_address),
         "errorMessage": {
-        "text": __(props.validatorErrors.establishment_web_address)} if props.validatorErrors.establishment_web_address
+        "text": __(props.validatorErrors.establishment_web_address, props.language)} if props.validatorErrors.establishment_web_address
         }) }}
       {% endcall %}
       {{ govukButton({

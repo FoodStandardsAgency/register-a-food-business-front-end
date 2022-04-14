@@ -43,7 +43,7 @@
       "classes": "govuk-label--l",
       "autoComplete": "tel",
        "errorMessage": {
-      "text":  __(props.validatorErrors.operator_primary_number) } if props.validatorErrors.operator_primary_number       
+      "text":  __(props.validatorErrors.operator_primary_number, props.language) } if props.validatorErrors.operator_primary_number       
    }) }}
       {{ govukInput({
       "label": {
@@ -55,7 +55,7 @@
       "classes": "govuk-label--l",
       "autoComplete": "off",
       "errorMessage": {
-      "text":  __(props.validatorErrors.operator_secondary_number) } if props.validatorErrors.operator_secondary_number 
+      "text":  __(props.validatorErrors.operator_secondary_number, props.language) } if props.validatorErrors.operator_secondary_number 
   }) }}
       {{ govukInput({
       "label": {
@@ -70,7 +70,7 @@
       "classes": "govuk-label--l",
       "autoComplete": "email",
       "errorMessage": {
-      "text": __(props.validatorErrors.operator_email) } if props.validatorErrors.operator_email
+      "text": __(props.validatorErrors.operator_email, props.language) } if props.validatorErrors.operator_email
   }) }}
       {{ govukButton({
         text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)

@@ -11,7 +11,7 @@
   id: "opening_hours_monday",
   name: "opening_hours_monday",
   value: props.cumulativeFullAnswers.opening_hours_monday,
-  errorMessage: { text: __(props.validatorErrors.opening_hours_monday) } if props.validatorErrors.opening_hours_monday
+  errorMessage: { text: __(props.validatorErrors.opening_hours_monday, props.language) } if props.validatorErrors.opening_hours_monday
 }) }}
 {% endmacro %}
 {% macro openHoursTuesday() %}
@@ -22,7 +22,7 @@
   id: "opening_hours_tuesday",
   name: "opening_hours_tuesday",
   value: props.cumulativeFullAnswers.opening_hours_tuesday,
-  errorMessage: { text: __(props.validatorErrors.opening_hours_tuesday) } if props.validatorErrors.opening_hours_tuesday
+  errorMessage: { text: __(props.validatorErrors.opening_hours_tuesday, props.language) } if props.validatorErrors.opening_hours_tuesday
 }) }}
 {% endmacro %}
 {% macro openHoursWednesday() %}
@@ -33,7 +33,7 @@
   id: "opening_hours_wednesday",
   name: "opening_hours_wednesday",
   value: props.cumulativeFullAnswers.opening_hours_wednesday,
-  errorMessage: { text: __(props.validatorErrors.opening_hours_wednesday) } if props.validatorErrors.opening_hours_wednesday
+  errorMessage: { text: __(props.validatorErrors.opening_hours_wednesday, props.language) } if props.validatorErrors.opening_hours_wednesday
 }) }}
 {% endmacro %}
 {% macro openHoursThursday() %}
@@ -44,7 +44,7 @@
   id: "opening_hours_thursday",
   name: "opening_hours_thursday",
   value: props.cumulativeFullAnswers.opening_hours_thursday,
-  errorMessage: { text: __(props.validatorErrors.opening_hours_thursday) } if props.validatorErrors.opening_hours_thursday
+  errorMessage: { text: __(props.validatorErrors.opening_hours_thursday, props.language) } if props.validatorErrors.opening_hours_thursday
 }) }}
 {% endmacro %}
 {% macro openHoursFriday() %}
@@ -55,7 +55,7 @@
   id: "opening_hours_friday",
   name: "opening_hours_friday",
   value: props.cumulativeFullAnswers.opening_hours_friday,
-  errorMessage: { text: __(props.validatorErrors.opening_hours_friday) } if props.validatorErrors.opening_hours_friday
+  errorMessage: { text: __(props.validatorErrors.opening_hours_friday, props.language) } if props.validatorErrors.opening_hours_friday
 }) }}
 {% endmacro %}
 {% macro openHoursSaturday() %}
@@ -66,7 +66,7 @@
   id: "opening_hours_saturday",
   name: "opening_hours_saturday",
   value: props.cumulativeFullAnswers.opening_hours_saturday,
-  errorMessage: { text: __(props.validatorErrors.opening_hours_saturday) } if props.validatorErrors.opening_hours_saturday
+  errorMessage: { text: __(props.validatorErrors.opening_hours_saturday, props.language) } if props.validatorErrors.opening_hours_saturday
 }) }}
 {% endmacro %}
 {% macro openHoursSunday() %}
@@ -77,7 +77,7 @@
   id: "opening_hours_sunday",
   name: "opening_hours_sunday",
   value: props.cumulativeFullAnswers.opening_hours_sunday,
-  errorMessage: { text: __(props.validatorErrors.opening_hours_sunday) } if props.validatorErrors.opening_hours_sunday
+  errorMessage: { text: __(props.validatorErrors.opening_hours_sunday, props.language) } if props.validatorErrors.opening_hours_sunday
 }) }}
 {% endmacro %}
 {% extends "layout.njk" %}

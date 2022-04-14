@@ -22,7 +22,7 @@
             text: __("Review these statements and tick all three boxes to agree.", props.language)
         },
         errorMessage: {
-             text: __(props.validatorErrors.declaration1 or props.validatorErrors.declaration2 or props.validatorErrors.declaration3) } if props.validatorErrors.declaration1 or props.validatorErrors.declaration2 or props.validatorErrors.declaration3,
+             text: __(props.validatorErrors.declaration1 or props.validatorErrors.declaration2 or props.validatorErrors.declaration3, props.language) } if props.validatorErrors.declaration1 or props.validatorErrors.declaration2 or props.validatorErrors.declaration3,
         items: [
             {
             id: "declaration_1",

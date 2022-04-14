@@ -32,7 +32,7 @@
                     "classes": "govuk-input--width-10",
                     "autoComplete": "postal-code",
                     "value": props.cumulativeFullAnswers.establishment_postcode_find,
-                    "errorMessage":  { "text": __(props.validatorErrors.establishment_postcode_find) } if props.validatorErrors.establishment_postcode_find
+                    "errorMessage":  { "text": __(props.validatorErrors.establishment_postcode_find, props.language) } if props.validatorErrors.establishment_postcode_find
                 }) }}
       {{ govukButton({
             text: __("Find address", props.language)

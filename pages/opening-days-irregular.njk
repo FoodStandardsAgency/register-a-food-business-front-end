@@ -36,7 +36,7 @@
         "value": props.cumulativeFullAnswers.opening_days_irregular,
         "name": "opening_days_irregular",
         "errorMessage": {
-        "text": __(props.validatorErrors.opening_days_irregular)} if props.validatorErrors.opening_days_irregular
+        "text": __(props.validatorErrors.opening_days_irregular, props.language)} if props.validatorErrors.opening_days_irregular
         }) }}
       {% endcall %}
       {{ govukButton({

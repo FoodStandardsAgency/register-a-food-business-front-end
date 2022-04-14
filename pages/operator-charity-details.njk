@@ -46,7 +46,7 @@
         "id": "operator_charity_name",
         "name": "operator_charity_name",
         "value":  props.cumulativeFullAnswers.operator_charity_name,
-        "errorMessage": { "text": __(props.validatorErrors.operator_charity_name)} if props.validatorErrors.operator_charity_name
+        "errorMessage": { "text": __(props.validatorErrors.operator_charity_name, props.language)} if props.validatorErrors.operator_charity_name
         
       }) }}
       {{ govukInput({
@@ -56,7 +56,7 @@
         "id": "operator_charity_number",
         "name": "operator_charity_number",
         "value": props.cumulativeFullAnswers.operator_charity_number,
-        "errorMessage": { "text": __(props.validatorErrors.operator_charity_number)} if props.validatorErrors.operator_charity_number
+        "errorMessage": { "text": __(props.validatorErrors.operator_charity_number, props.language)} if props.validatorErrors.operator_charity_number
         
       }) }}
       {{ govukDetails({

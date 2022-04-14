@@ -35,7 +35,7 @@
             "classes": "govuk-label--l",
             "autoComplete": "address-line1",
             "value":  props.cumulativeFullAnswers.establishment_address_line_1,
-            "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_1) } if props.validatorErrors.establishment_address_line_1
+            "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_1, props.language) } if props.validatorErrors.establishment_address_line_1
         }) }}
       {{ govukInput({
             "label": {
@@ -46,7 +46,7 @@
             "classes": "govuk-label--l",
             "autoComplete": "address-line2",
             "value": props.cumulativeFullAnswers.establishment_address_line_2,
-            "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_2) } if props.validatorErrors.establishment_address_line_2
+            "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_2, props.language) } if props.validatorErrors.establishment_address_line_2
         }) }}
       {{ govukInput({
             "label": {
@@ -57,7 +57,7 @@
             "classes": "govuk-label--l",
             "autoComplete": "address-line3",
             "value": props.cumulativeFullAnswers.establishment_address_line_3,
-            "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_3) } if props.validatorErrors.establishment_address_line_3
+            "errorMessage": { "text": __(props.validatorErrors.establishment_address_line_3, props.language) } if props.validatorErrors.establishment_address_line_3
         }) }}
       {{ govukInput({
             "label": {
@@ -68,7 +68,7 @@
             "classes": "govuk-label--l",
             "autoComplete": "locality",
             "value": props.cumulativeFullAnswers.establishment_town,
-            "errorMessage": { "text": __(props.validatorErrors.establishment_town) } if props.validatorErrors.establishment_town
+            "errorMessage": { "text": __(props.validatorErrors.establishment_town, props.language) } if props.validatorErrors.establishment_town
         }) }}
       {{ govukInput({
             "label": {
@@ -79,7 +79,7 @@
             "classes": "govuk-label--l",
             "autoComplete": "postal-code",
             "value": props.cumulativeFullAnswers.establishment_postcode,
-            "errorMessage": { "text": __(props.validatorErrors.establishment_postcode) } if props.validatorErrors.establishment_postcode
+            "errorMessage": { "text": __(props.validatorErrors.establishment_postcode, props.language) } if props.validatorErrors.establishment_postcode
         }) }}
       {{ govukButton({
             text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)

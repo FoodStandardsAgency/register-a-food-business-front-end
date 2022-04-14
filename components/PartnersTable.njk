@@ -29,7 +29,7 @@
         <tr class="govuk-table__row" id="partnerRow{{ count }}" key="partnerRow{{ count }}">
           <td class="govuk-table__cell" id="partner{{ count }}">{{ partner }}</td>
           <td class="govuk-table__cell">
-            <a id="{{ ID }}" class="govuk-link" href="{{ changeLink }}" aria-label="{{ __('Change partner name') }}">{{ __('Change') }}</a>
+            <a id="{{ ID }}" class="govuk-link" href="{{ changeLink }}" aria-label="{{ __('Change partner name', props.language) }}">{{ __('Change', props.language) }}</a>
           </td>
           <td class="govuk-table__cell">
             <button class="govuk-button" data-module="govuk-button" type="submit" name="index" value="{{ count }}" id="deletePartnerButton{{ count }}">
