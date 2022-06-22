@@ -115,7 +115,7 @@
       "jest",
       "mongodb",
       "connect-mongo",
-      "node-fetch"      
+      "node-fetch"
     ]
   },
   "prettier": {
@@ -124,13 +124,10 @@
     "semi": true
   },
   "eslintConfig": {
-    "extends": "react-app",
+    "env": {
+      "es2022": true
+    },
     "rules": {
-      "emotion/jsx-import": "error",
-      "emotion/no-vanilla": "error",
-      "emotion/import-from-emotion": "error",
-      "emotion/styled-import": "error",
-      "react/react-in-jsx-scope": "off",
       "prettier/prettier": "warn",
       "no-param-reassign": [
         2,
@@ -143,7 +140,6 @@
       ]
     },
     "plugins": [
-      "emotion",
       "prettier"
     ]
   },
