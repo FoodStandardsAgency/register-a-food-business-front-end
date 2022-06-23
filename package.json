@@ -33,9 +33,6 @@
     "updateBusinessTypes": "node ./src/components/update-business-types.js && yarn format",
     "prepublish": "browserify src/server/static/auto-complete/BusinessTypeLookupFunctions.js src/server/static/auto-complete/main.js > src/server/static/auto-complete/bundle.js"
   },
-  "resolutions": {
-    "styled-components": "^5.1.0"
-  },
   "dependencies": {
     "@ons/design-system": "^32.2.2-census",
     "@slice-and-dice/register-a-food-business-validation": "^1.22.5",
@@ -76,7 +73,8 @@
     "nunjucks": "^3.2.3",
     "nunjucks-date-filter": "^0.1.1",
     "prop-types": "^15.8.1",
-    "sass": "^1.52.3",
+    "sass": "^1.53.0",
+    "snyk": "^1.956.0",
     "stem-porter": "^0.0.1",
     "uuid": "^8.3.2",
     "validator": "^13.7.0",
@@ -86,6 +84,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.5",
     "@babel/plugin-transform-runtime": "^7.18.5",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
@@ -94,10 +93,9 @@
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "browserify": "^17.0.0",
     "eslint": "^8.18.0",
-    "eslint-loader": "^4.0.2",
-    "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-webpack-plugin": "^3.1.1",
     "jest": "^24.9.0",
     "jest-axe": "^6.0.0",
     "jest-nunjucks": "^1.0.0",
