@@ -42,7 +42,7 @@
     "browserify": "^17.0.0",
     "cheerio": "^1.0.0-rc.11",
     "cls-hooked": "^4.2.2",
-    "connect-mongo": "^3.2.0",
+    "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "cross-env": "^7.0.3",
     "csurf": "^1.11.0",
@@ -62,7 +62,7 @@
     "jest-junit": "^13.2.0",
     "jsonschema": "^1.4.1",
     "moment": "^2.29.3",
-    "mongodb": "^3.6.6",
+    "mongodb": "^4.7.0",
     "morgan": "^1.10.0",
     "node-cache": "^5.1.2",
     "node-fetch": "^2.6.1",
@@ -103,8 +103,6 @@
   },
   "yarn-upgrade-all": {
     "ignore": [
-      "mongodb",
-      "connect-mongo",
       "node-fetch"
     ]
   },
