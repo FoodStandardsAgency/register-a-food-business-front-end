@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
@@ -8,7 +12,6 @@ const props = {
   },
   language: "en"
 };
-
 
 const $ = renderPage("operator-address", props);
 

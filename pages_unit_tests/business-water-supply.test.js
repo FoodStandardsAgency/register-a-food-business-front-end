@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
@@ -33,7 +37,7 @@ describe("business-water-supply", () => {
   describe("Radio boxes have correct value", () => {
     it("renders the Soletrader radio button with the correct value", () => {
       const $ = renderPage("business-water-supply", props);
-      const $radioPublic = $("#water_supply_public"); 
+      const $radioPublic = $("#water_supply_public");
       expect($radioPublic.get(0).attribs.value).toBe("PUBLIC");
     });
     it("renders the Partnership radio button with the correct value", () => {

@@ -1,10 +1,14 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
-  cumulativeFullAnswers: { },
+  cumulativeFullAnswers: {},
   language: "en",
-  council:"council"
+  council: "council"
 };
 
 describe("internal-server-error", () => {
@@ -25,18 +29,18 @@ describe("internal-server-error", () => {
   });
 
   it("has a back to start button with correct link when council set", () => {
-    const $ = renderPage("internal-server-error", props)
+    const $ = renderPage("internal-server-error", props);
 
     const $backLink = $(".govuk-back-link");
-    expect($backLink.get(0).attribs.href).toBe(
-      "/new/council")
+    expect($backLink.get(0).attribs.href).toBe("/new/council");
   });
 
   it("has a back to start button with correct link when council set", () => {
-    const $ = renderPage("internal-server-error", props)
+    const $ = renderPage("internal-server-error", props);
 
     const $returnButton = $("#server-error-form");
     expect($returnButton.get(0).attribs.href).toBe(
-      "https://www.food.gov.uk/business-guidance/register-a-food-business")
+      "https://www.food.gov.uk/business-guidance/register-a-food-business"
+    );
   });
 });
