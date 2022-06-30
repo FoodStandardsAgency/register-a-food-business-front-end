@@ -1,8 +1,12 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
-  cumulativeFullAnswers: { },
+  cumulativeFullAnswers: {},
   language: "en"
 };
 
@@ -23,9 +27,7 @@ describe("partner-name", () => {
     const $ = renderPage("partner-name", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "What are the partners' names?"
-    );
+    expect($mainHeading.text().trim()).toEqual("What are the partners' names?");
   });
 
   it("passes accessibility tests", async () => {
@@ -40,15 +42,14 @@ describe("partner-name", () => {
       let $answer;
       const $ = renderPage("partner-name", props);
 
-      $answer = $(".govuk-table"); 
+      $answer = $(".govuk-table");
       expect($answer.length).toBe(0);
 
-      $answer = $(".govuk-table__body"); 
+      $answer = $(".govuk-table__body");
       expect($answer.length).toBe(0);
 
-      $answer = $("#addPartnerButton"); 
+      $answer = $("#addPartnerButton");
       expect($answer.length).toBe(1);
-
     });
   });
 
@@ -57,15 +58,14 @@ describe("partner-name", () => {
       let $answer;
       const $ = renderPage("partner-name", propsWith5PartnersArray);
 
-      $answer = $(".govuk-table"); 
+      $answer = $(".govuk-table");
       expect($answer.length).toBe(1);
 
-      $answer = $(".govuk-table__body"); 
+      $answer = $(".govuk-table__body");
       expect($answer.length).toBe(1);
 
-      $answer = $("#addPartnerButton"); 
+      $answer = $("#addPartnerButton");
       expect($answer.length).toBe(0);
-      
     });
   });
 
@@ -74,15 +74,14 @@ describe("partner-name", () => {
       let $answer;
       const $ = renderPage("partner-name", propsWith2PartnersArray);
 
-      $answer = $(".govuk-table"); 
+      $answer = $(".govuk-table");
       expect($answer.length).toBe(1);
 
-      $answer = $(".govuk-table__body"); 
+      $answer = $(".govuk-table__body");
       expect($answer.length).toBe(1);
 
-      $answer = $("#addPartnerButton"); 
+      $answer = $("#addPartnerButton");
       expect($answer.length).toBe(1);
-      
     });
   });
 });

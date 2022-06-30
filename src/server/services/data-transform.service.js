@@ -469,9 +469,10 @@ const transformAnswersForSummary = (
     summaryData.business_type = transformBusinessTypeForSummary(
       summaryData.business_type
     );
-    summaryData.import_export_activities = transformBusinessImportExportForSummary(
-      summaryData.import_export_activities
-    );
+    summaryData.import_export_activities =
+      transformBusinessImportExportForSummary(
+        summaryData.import_export_activities
+      );
     summaryData.water_supply = transformWaterSupplyForSummary(
       summaryData.water_supply
     );

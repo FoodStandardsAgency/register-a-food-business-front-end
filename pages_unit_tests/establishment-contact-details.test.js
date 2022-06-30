@@ -1,4 +1,8 @@
-const { axe, renderPage, getPageDetails } = require("../testHelpers")
+/**
+ * @jest-environment jsdom
+ */
+
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const cumulativeFullAnswers = {
   operator_primary_number: "operator primary number",
@@ -15,30 +19,27 @@ const props = {
 describe("Establishment-Contact-Details", () => {
   it("renders without crashing", () => {
     const $ = renderPage("establishment-contact-details", props);
-    
+
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "Establishment contact details"
-    );
+    expect($mainHeading.text().trim()).toEqual("Establishment contact details");
   });
 
-  it('passes accessibility tests', async () => {
-    const $ = renderPage('establishment-contact-details', props)
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("establishment-contact-details", props);
 
-    const results = await axe($.html())
-    expect(results).toHaveNoViolations()
-  })
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
 
   describe("establishment primary phone number input field", () => {
     it("renders", () => {
-      const $ = renderPage('establishment-contact-details', props)
+      const $ = renderPage("establishment-contact-details", props);
 
-      const $establishmentPrimaryContact = $('#establishment_primary_number')
+      const $establishmentPrimaryContact = $("#establishment_primary_number");
       expect($establishmentPrimaryContact.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
-
       const $ = renderPage("establishment-contact-details", {
         language: "cy",
         validatorErrors: {
@@ -46,13 +47,16 @@ describe("Establishment-Contact-Details", () => {
         }
       });
 
-      const $establishmentPrimaryContactError = $("#establishment_primary_number-error");
+      const $establishmentPrimaryContactError = $(
+        "#establishment_primary_number-error"
+      );
       expect($establishmentPrimaryContactError.length).toBe(1);
-      expect($establishmentPrimaryContactError.contents().get(2).data.trim()).toBe("test error");
+      expect(
+        $establishmentPrimaryContactError.contents().get(2).data.trim()
+      ).toBe("test error");
     });
 
     it("gets given the correct default value when reuseOperatorContactDetails switch is true ", () => {
-      
       const $ = renderPage("establishment-contact-details", {
         language: "cy",
         validatorErrors: {
@@ -68,9 +72,12 @@ describe("Establishment-Contact-Details", () => {
         }
       });
 
-      const $establishmentPrimaryContactInput = $('#establishment_primary_number')
+      const $establishmentPrimaryContactInput = $(
+        "#establishment_primary_number"
+      );
       expect($establishmentPrimaryContactInput.get(0).attribs.value).toBe(
-        "operator primary number")
+        "operator primary number"
+      );
     });
 
     it("gets given the correct default value reuseOperatorContactDetails switch is false", () => {
@@ -89,24 +96,26 @@ describe("Establishment-Contact-Details", () => {
         }
       });
 
-      const $establishmentPrimaryContactInput = $('#establishment_primary_number')
+      const $establishmentPrimaryContactInput = $(
+        "#establishment_primary_number"
+      );
       expect($establishmentPrimaryContactInput.get(0).attribs.value).toBe(
-        "establishment primary number")
+        "establishment primary number"
+      );
     });
   });
 
-
   describe("establishment secondary contact details input field", () => {
-
     it("renders", () => {
-      const $ = renderPage('establishment-contact-details', props)
+      const $ = renderPage("establishment-contact-details", props);
 
-      const $establishmentSecondaryContact = $('#establishment_secondary_number')
+      const $establishmentSecondaryContact = $(
+        "#establishment_secondary_number"
+      );
       expect($establishmentSecondaryContact.length).toBe(1);
     });
 
     it("gets given the correct default value when reuseOperatorContactDetails switch is true ", () => {
-      
       const $ = renderPage("establishment-contact-details", {
         language: "cy",
         validatorErrors: {
@@ -122,9 +131,12 @@ describe("Establishment-Contact-Details", () => {
         }
       });
 
-      const $establishmentSecondaryContactInput = $('#establishment_secondary_number')
+      const $establishmentSecondaryContactInput = $(
+        "#establishment_secondary_number"
+      );
       expect($establishmentSecondaryContactInput.get(0).attribs.value).toBe(
-        "operator secondary number")
+        "operator secondary number"
+      );
     });
 
     it("gets given the correct default value reuseOperatorContactDetails switch is false", () => {
@@ -143,22 +155,24 @@ describe("Establishment-Contact-Details", () => {
         }
       });
 
-      const $establishmentSecondaryContactInput = $('#establishment_secondary_number')
+      const $establishmentSecondaryContactInput = $(
+        "#establishment_secondary_number"
+      );
       expect($establishmentSecondaryContactInput.get(0).attribs.value).toBe(
-        "establishment secondary number")
+        "establishment secondary number"
+      );
     });
   });
 
   describe("establishment email input field", () => {
     it("renders", () => {
-      const $ = renderPage('establishment-contact-details', props)
+      const $ = renderPage("establishment-contact-details", props);
 
-      const $establishmentEmail = $('#establishment_email')
+      const $establishmentEmail = $("#establishment_email");
       expect($establishmentEmail.length).toBe(1);
     });
 
     it("gets given the correct error prop", () => {
-
       const $ = renderPage("establishment-contact-details", {
         language: "cy",
         validatorErrors: {
@@ -168,11 +182,12 @@ describe("Establishment-Contact-Details", () => {
 
       const $establishmentEmailError = $("#establishment_email-error");
       expect($establishmentEmailError.length).toBe(1);
-      expect($establishmentEmailError.contents().get(2).data.trim()).toBe("test error");
+      expect($establishmentEmailError.contents().get(2).data.trim()).toBe(
+        "test error"
+      );
     });
 
     it("gets given the correct default value when reuseOperatorContactDetails switch is true ", () => {
-      
       const $ = renderPage("establishment-contact-details", {
         language: "cy",
         validatorErrors: {
@@ -188,9 +203,10 @@ describe("Establishment-Contact-Details", () => {
         }
       });
 
-      const $establishmentEmailInput = $('#establishment_email')
+      const $establishmentEmailInput = $("#establishment_email");
       expect($establishmentEmailInput.get(0).attribs.value).toBe(
-        "operator email")
+        "operator email"
+      );
     });
 
     it("gets given the correct default value reuseOperatorContactDetails switch is false", () => {
@@ -209,17 +225,18 @@ describe("Establishment-Contact-Details", () => {
         }
       });
 
-      const $establishmentEmailInput = $('#establishment_email')
+      const $establishmentEmailInput = $("#establishment_email");
       expect($establishmentEmailInput.get(0).attribs.value).toBe(
-        "establishment email")
+        "establishment email"
+      );
     });
   });
 
   describe("establishment web address input field", () => {
     it("renders", () => {
-      const $ = renderPage('establishment-contact-details', props)
+      const $ = renderPage("establishment-contact-details", props);
 
-      const $establishmentEmail = $('#establishment_web_address')
+      const $establishmentEmail = $("#establishment_web_address");
       expect($establishmentEmail.length).toBe(1);
     });
   });
@@ -240,6 +257,4 @@ describe("Establishment-Contact-Details", () => {
       expect($pageErrors.contents().get(1).data).toBe("test error 2");
     });
   });
-})
-
-
+});

@@ -300,7 +300,9 @@ describe("Function: getLocalCouncils", () => {
 
     it("should throw mongoConnectionError error", () => {
       expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe("Cannot read property 'length' of null");
+      expect(result.message).toBe(
+        "Cannot read properties of null (reading 'length')"
+      );
     });
   });
 

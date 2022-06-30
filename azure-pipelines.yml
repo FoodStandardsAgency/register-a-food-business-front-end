@@ -9,8 +9,8 @@ pool:
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: '12.14'
-    
+      versionSpec: "16.15"
+
   - script: npm -v
     displayName: "Npm version"
 
@@ -52,13 +52,13 @@ steps:
 
   - task: SonarCloudPrepare@1
     inputs:
-      SonarCloud: 'Sonarcloud'
-      organization: 'fsa'
-      scannerMode: 'CLI'
-      configMode: 'file'
-      
+      SonarCloud: "Sonarcloud"
+      organization: "fsa"
+      scannerMode: "CLI"
+      configMode: "file"
+
   - task: SonarCloudAnalyze@1
-  
+
   - script: yarn --production
     displayName: Prune dev dependencies
 

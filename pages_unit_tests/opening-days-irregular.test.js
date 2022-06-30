@@ -1,4 +1,8 @@
-const { axe, renderPage, getPageDetails } = require("../testHelpers")
+/**
+ * @jest-environment jsdom
+ */
+
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
@@ -9,30 +13,30 @@ const props = {
 describe("opening-days-irregular", () => {
   it("renders without crashing", () => {
     const $ = renderPage("opening-days-irregular", props);
-    
-    const $mainHeading = getPageDetails.getMainHeading($)
-    expect($mainHeading.text().trim()).toEqual('Opening periods')
+
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual("Opening periods");
   });
 
-  it('passes accessibility tests', async () => {
-    const $ = renderPage('opening-days-irregular', props)
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("opening-days-irregular", props);
 
-    const results = await axe($.html())
-    expect(results).toHaveNoViolations()
-  })
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
 
   describe("opening days irregular input field", () => {
     it("renders", async () => {
-      const $ = renderPage('opening-days-irregular', props);
-      const $textArea = $('#opening_days_irregular');
+      const $ = renderPage("opening-days-irregular", props);
+      const $textArea = $("#opening_days_irregular");
       expect($textArea.length).toBe(1);
     });
 
     it("gets given the correct default value", () => {
-      const $ = renderPage('opening-days-irregular', props);
-      const $textArea = $('#opening_days_irregular');
+      const $ = renderPage("opening-days-irregular", props);
+      const $textArea = $("#opening_days_irregular");
       expect($textArea.get(0).children[0].data).toBe("default");
-      });
+    });
 
     describe("Error messages displayed", () => {
       it("renders the correct summary error", async () => {
@@ -62,4 +66,4 @@ describe("opening-days-irregular", () => {
       });
     });
   });
-})
+});

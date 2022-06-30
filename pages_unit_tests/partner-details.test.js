@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const propsWithTwoPartnersArray = {
@@ -11,9 +15,7 @@ describe("partner-details", () => {
     const $ = renderPage("partner-details", propsWithTwoPartnersArray);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "Edit partner's name"
-    );
+    expect($mainHeading.text().trim()).toEqual("Edit partner's name");
   });
 
   it("passes accessibility tests", async () => {
@@ -27,16 +29,15 @@ describe("partner-details", () => {
     const $ = renderPage("partner-details", propsWithTwoPartnersArray);
     it("renders partner name details fields correctly", () => {
       const $partnerName = $("#partner_name");
-      expect($partnerName.get(0).attribs.name).toBe(
-        "partner_name"
-      );
+      expect($partnerName.get(0).attribs.name).toBe("partner_name");
       expect($partnerName.get(0).attribs.value).toBe("one");
-
     });
 
     it("renders partner-name hint labels correctly", () => {
       const $inputLabelTextPartnerName = $("#partner_name-hint");
-      expect($inputLabelTextPartnerName.get(0).children[0].data.trim()).toEqual("Full name");
+      expect($inputLabelTextPartnerName.get(0).children[0].data.trim()).toEqual(
+        "Full name"
+      );
     });
   });
 
@@ -69,5 +70,4 @@ describe("partner-details", () => {
       expect($insertError.contents().get(2).data.trim()).toBe("test error");
     });
   });
-
 });

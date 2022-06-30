@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
@@ -26,9 +30,7 @@ describe("operator-company-details", () => {
   describe("It should have correct label together with input field and value", () => {
     it("renders operator company details fields correctly", () => {
       const $companyName = $("#operator_company_name");
-      expect($companyName.get(0).attribs.name).toBe(
-        "operator_company_name"
-      );
+      expect($companyName.get(0).attribs.name).toBe("operator_company_name");
       expect($companyName.get(0).attribs.value).toBe("Test");
 
       const $companiesHouseNumber = $("#operator_companies_house_number");
@@ -42,10 +44,8 @@ describe("operator-company-details", () => {
       const $inputLabelTextcompanyName = getPageDetails.getInputLabelText($, 0);
       expect($inputLabelTextcompanyName).toEqual("Registered company name");
 
-      const $inputLabelTextcompaniesHouseNumber = getPageDetails.getInputLabelText(
-        $,
-        1
-      );
+      const $inputLabelTextcompaniesHouseNumber =
+        getPageDetails.getInputLabelText($, 1);
       expect($inputLabelTextcompaniesHouseNumber).toEqual(
         "Companies House number"
       );
@@ -63,9 +63,7 @@ describe("operator-company-details", () => {
 
     const $pageErrors = getPageDetails.getErrorSummaryLinks($);
     expect($pageErrors.length).toBe(2);
-    expect($pageErrors.contents().get(0).data).toBe(
-      "Test"
-    );
+    expect($pageErrors.contents().get(0).data).toBe("Test");
     expect($pageErrors.contents().get(1).data).toBe("Test1");
   });
 });

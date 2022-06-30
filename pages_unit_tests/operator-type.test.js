@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
@@ -11,9 +15,7 @@ describe("operator-type", () => {
     const $ = renderPage("operator-type", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "Who operates this business?"
-    );
+    expect($mainHeading.text().trim()).toEqual("Who operates this business?");
   });
 
   it("passes accessibility tests", async () => {
@@ -33,7 +35,7 @@ describe("operator-type", () => {
   describe("Radio boxes have correct value", () => {
     it("renders the Person radio button with the correct value", () => {
       const $ = renderPage("operator-type", props);
-      const $mainHeadingPerson = $("#operator_type_person"); 
+      const $mainHeadingPerson = $("#operator_type_person");
       expect($mainHeadingPerson.get(0).attribs.value).toBe("PERSON");
     });
     it("renders the Company radio button with the correct value", () => {

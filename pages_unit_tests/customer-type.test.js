@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
@@ -33,15 +37,17 @@ describe("customer-type", () => {
   describe("Checkboxes have correct value", () => {
     it("renders the other businesses check button with the correct value", () => {
       const $ = renderPage("customer-type", props);
-      const $mainHeadingOtherBusiness = $("#customer_type_supply_other"); 
-      expect($mainHeadingOtherBusiness.get(0).attribs.value).toBe("OTHER_BUSINESSES");
+      const $mainHeadingOtherBusiness = $("#customer_type_supply_other");
+      expect($mainHeadingOtherBusiness.get(0).attribs.value).toBe(
+        "OTHER_BUSINESSES"
+      );
     });
     it("renders the end consumer check button with the correct value", () => {
       const $ = renderPage("customer-type", props);
       const $mainHeadingEndConsumer = $("#customer_type_supply_directly");
       expect($mainHeadingEndConsumer.get(0).attribs.value).toBe("END_CONSUMER");
     });
-   
+
     it("select the correct checkboxes button based on session data", () => {
       const $ = renderPage("customer-type", props);
       const $selected = $("input:checked");

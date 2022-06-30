@@ -139,16 +139,16 @@ const partnerDetailsSave = (
       // if there are errors, redirect back to the current page
       controllerResponse.redirectRoute = `/partnership${currentPage}`;
       if (newAnswers.index !== undefined) {
-        controllerResponse.redirectRoute = controllerResponse.redirectRoute.concat(
-          `?id=${newAnswers.index}`
-        );
+        controllerResponse.redirectRoute =
+          controllerResponse.redirectRoute.concat(`?id=${newAnswers.index}`);
       }
       if (edit) {
         const separator =
           controllerResponse.redirectRoute.indexOf("?") > 0 ? "&" : "?";
-        controllerResponse.redirectRoute = controllerResponse.redirectRoute.concat(
-          `${separator}edit=partner-name`
-        );
+        controllerResponse.redirectRoute =
+          controllerResponse.redirectRoute.concat(
+            `${separator}edit=partner-name`
+          );
       }
       logEmitter.emit(
         "functionSuccessWith",
@@ -176,9 +176,8 @@ const partnerDetailsSave = (
     }
 
     if (edit) {
-      controllerResponse.redirectRoute = controllerResponse.redirectRoute.concat(
-        "?edit=partner-name"
-      );
+      controllerResponse.redirectRoute =
+        controllerResponse.redirectRoute.concat("?edit=partner-name");
     }
     controllerResponse.cumulativeFullAnswers.partners = partners;
     delete controllerResponse.cumulativeFullAnswers.targetPartner;
@@ -236,9 +235,8 @@ const partnerDetailsDelete = (previousAnswers, newAnswers, council, edit) => {
     }
 
     if (edit) {
-      controllerResponse.redirectRoute = controllerResponse.redirectRoute.concat(
-        "?edit=partner-name"
-      );
+      controllerResponse.redirectRoute =
+        controllerResponse.redirectRoute.concat("?edit=partner-name");
     }
     controllerResponse.cumulativeFullAnswers.partners = partners;
     delete controllerResponse.cumulativeFullAnswers.targetPartner;

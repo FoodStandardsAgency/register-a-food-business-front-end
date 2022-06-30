@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
@@ -33,7 +37,7 @@ describe("registration-role", () => {
   describe("Radio boxes have correct value", () => {
     it("renders the Soletrader radio button with the correct value", () => {
       const $ = renderPage("registration-role", props);
-      const $mainHeadingSoletrader = $("#registration_role_sole_trader"); 
+      const $mainHeadingSoletrader = $("#registration_role_sole_trader");
       expect($mainHeadingSoletrader.get(0).attribs.value).toBe("SOLETRADER");
     });
     it("renders the Partnership radio button with the correct value", () => {
@@ -44,7 +48,9 @@ describe("registration-role", () => {
     it("renders the Representative radio button with the correct value", () => {
       const $ = renderPage("registration-role", props);
       const $mainHeadingRepresentative = $("#registration_role_representative");
-      expect($mainHeadingRepresentative.get(0).attribs.value).toBe("Representative");
+      expect($mainHeadingRepresentative.get(0).attribs.value).toBe(
+        "Representative"
+      );
     });
     it("select the correct radio button based on session data", () => {
       const $ = renderPage("registration-role", props);

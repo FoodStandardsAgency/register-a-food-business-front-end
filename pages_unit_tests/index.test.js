@@ -1,8 +1,12 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
-  cumulativeFullAnswers: { },
+  cumulativeFullAnswers: {},
   language: "en"
 };
 
@@ -11,9 +15,7 @@ describe("Index", () => {
     const $ = renderPage("index", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "Register a Food Business"
-    );
+    expect($mainHeading.text().trim()).toEqual("Register a Food Business");
   });
 
   it("passes accessibility tests", async () => {
