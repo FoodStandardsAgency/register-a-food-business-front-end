@@ -41,7 +41,7 @@ const dev = process.env.NODE_ENV !== "production";
 
 const express = require("express");
 const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
+const MongoStore = require("connect-mongo");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
@@ -84,8 +84,8 @@ const clsMiddleware = (req, res, next) => {
 let store = null;
 if (COSMOSDB_URL) {
   logger.info("Server: setting session cache to database");
-  store = new MongoStore({
-    url: COSMOSDB_URL,
+  store = MongoStore.create({
+    mongoUrl: COSMOSDB_URL,
     dbName: "front-end-cache",
     autoRemove: "interval",
     autoRemoveInterval: 1440 // In minutes

@@ -1,4 +1,8 @@
-const { axe, renderPage, getPageDetails } = require("../testHelpers")
+/**
+ * @jest-environment jsdom
+ */
+
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const cumulativeFullAnswers = {
   declaration_1: "default"
@@ -13,34 +17,33 @@ const props = {
 describe("declaration", () => {
   it("renders without crashing", () => {
     const $ = renderPage("declaration", props);
-    
+
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "Declaration"
-    );
+    expect($mainHeading.text().trim()).toEqual("Declaration");
   });
 
-  it('passes accessibility tests', async () => {
-    const $ = renderPage("declaration", props)
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("declaration", props);
 
-    const results = await axe($.html())
-    expect(results).toHaveNoViolations()
-  })
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
 
   describe("renders 7 checkboxes with correct error props and default values", () => {
     it("renders 4 checkboxes", () => {
-      const $ = renderPage("declaration", props)
+      const $ = renderPage("declaration", props);
 
       const checkboxList = getPageDetails.getCheckboxes($);
       expect(checkboxList.length).toBe(4);
     });
 
     it("Declaration 1 checkbox gets given the correct default value", () => {
-      const $ = renderPage("declaration", props)
+      const $ = renderPage("declaration", props);
 
       const $declarationOneCheckBox = $("#declaration_1");
       expect($declarationOneCheckBox.get(0).attribs.value).toBe(
-        "I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief.")
+        "I declare that the information I have given on this form is correct and complete to the best of my knowledge and belief."
+      );
     });
 
     it("Declaration 2 checkbox gets given the correct default value", () => {
@@ -53,7 +56,8 @@ describe("declaration", () => {
 
       const $declarationTwoCheckBox = $("#declaration_2");
       expect($declarationTwoCheckBox.get(0).attribs.value).toBe(
-        "The operator will notify their local council of any significant changes to the business activity, including closure, within 28 days of the change happening.")
+        "The operator will notify their local council of any significant changes to the business activity, including closure, within 28 days of the change happening."
+      );
     });
 
     it("Declaration 3 checkbox gets given the correct default value", () => {
@@ -66,7 +70,8 @@ describe("declaration", () => {
 
       const $declarationThreeCheckBox = $("#declaration_3");
       expect($declarationThreeCheckBox.get(0).attribs.value).toBe(
-        "The operator understands they are legally responsible for the safety and authenticity of the food being produced or served at this establishment.")
+        "The operator understands they are legally responsible for the safety and authenticity of the food being produced or served at this establishment."
+      );
     });
 
     it("Thursday checkbox gets given the correct default value", () => {
@@ -79,9 +84,10 @@ describe("declaration", () => {
 
       const $feedbackOneCheckBox = $("#feedback_1");
       expect($feedbackOneCheckBox.get(0).attribs.value).toBe(
-        "I agree to be contacted to provide feedback to help develop this service")
+        "I agree to be contacted to provide feedback to help develop this service"
+      );
     });
-  })
+  });
 
   describe("Error messages displayed", () => {
     it("renders the correct summary error", async () => {
@@ -110,4 +116,4 @@ describe("declaration", () => {
       expect($checkboxError.contents().get(2).data.trim()).toBe("test error");
     });
   });
-})
+});

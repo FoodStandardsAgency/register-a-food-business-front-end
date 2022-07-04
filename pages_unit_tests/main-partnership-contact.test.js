@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const propsWithThreePartnersArray = {

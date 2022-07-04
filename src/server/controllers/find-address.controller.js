@@ -63,9 +63,8 @@ const findAddressController = async (
     const searchPostcode = newAnswers[searchPostcodeFieldName];
     const addressesForPostcode = await getUkAddressesByPostcode(searchPostcode);
 
-    controllerResponse.addressLookups[
-      searchPostcodeFieldName
-    ] = addressesForPostcode;
+    controllerResponse.addressLookups[searchPostcodeFieldName] =
+      addressesForPostcode;
 
     if (addressesForPostcode.length > 0) {
       controllerResponse.switches[`${currentPage}-none-found`] = false;

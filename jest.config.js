@@ -1,18 +1,20 @@
 module.exports = {
-  moduleFileExtensions: ['njk', 'ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  moduleFileExtensions: ["njk", "ts", "tsx", "js", "jsx", "json", "node"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   reporters: [
     "default",
-    ["jest-junit", { outputName: `./reports/TEST-${process.env.TEST_TYPE}.xml` }]
+    [
+      "jest-junit",
+      { outputName: `./reports/TEST-${process.env.TEST_TYPE}.xml` }
+    ]
   ],
   coverageReporters: ["cobertura", "lcov", "json", "text"],
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
-  testMatch: [ "**/?(*.)+(spec|test).[tj]s?(x)", "**/?(*.)+(spec|test).njk"],
+  testMatch: ["**/?(*.)+(spec|test).[tj]s?(x)", "**/?(*.)+(spec|test).njk"],
   moduleNameMapper: {
     "\\.(css)$": "<rootDir>/src/__mocks__/styleMock.js",
     "schema.js": "<rootDir>/src/__mocks__/schemaMock.js",
-    winston: "<rootDir>/src/__mocks__/winston.js",
-    events: "<rootDir>/src/__mocks__/events.js"
+    winston: "<rootDir>/src/__mocks__/winston.js"
   },
   collectCoverageFrom: [
     "src/**/*.js",
@@ -35,12 +37,14 @@ module.exports = {
     "!tests/**/*.js",
     "!src/server/routes/*.route.js"
   ],
-  testURL: "http://localhost/",
+  testEnvironmentOptions: {
+    url: "http://localhost/"
+  },
   globals: {
-    "nunjucks": {
-      "config": {
-        "throwOnUndefined": true,
-        "trimBlocks": true
+    nunjucks: {
+      config: {
+        throwOnUndefined: true,
+        trimBlocks: true
       }
     }
   },

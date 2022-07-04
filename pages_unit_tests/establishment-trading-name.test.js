@@ -1,4 +1,8 @@
-const { axe, renderPage, getPageDetails } = require("../testHelpers")
+/**
+ * @jest-environment jsdom
+ */
+
+const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
@@ -9,33 +13,31 @@ const props = {
 describe("Establishment-Trading-Name", () => {
   it("renders without crashing", () => {
     const $ = renderPage("establishment-trading-name", props);
-    
-    const $mainHeading = getPageDetails.getMainHeading($)
-    expect($mainHeading.text().trim()).toEqual('Trading name')
+
+    const $mainHeading = getPageDetails.getMainHeading($);
+    expect($mainHeading.text().trim()).toEqual("Trading name");
   });
 
-  it('passes accessibility tests', async () => {
-    const $ = renderPage('establishment-trading-name', props)
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("establishment-trading-name", props);
 
-    const results = await axe($.html())
-    expect(results).toHaveNoViolations()
-  })
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
 
   describe("establishment trading name input field", () => {
-    it('renders', async () => {
-      const $ = renderPage('establishment-trading-name', props)
-      const $inputBox = $('#establishment_trading_name')
-      expect($inputBox.length).toBe(1)
+    it("renders", async () => {
+      const $ = renderPage("establishment-trading-name", props);
+      const $inputBox = $("#establishment_trading_name");
+      expect($inputBox.length).toBe(1);
     });
 
     it("gets given the correct default value", () => {
-      const $ = renderPage('establishment-trading-name', props)
-      
-      const $inputBox = $('#establishment_trading_name')
-      expect($inputBox.get(0).attribs.value).toBe(
-        "default"
-      );
-      });
+      const $ = renderPage("establishment-trading-name", props);
+
+      const $inputBox = $("#establishment_trading_name");
+      expect($inputBox.get(0).attribs.value).toBe("default");
+    });
 
     describe("Error messages displayed", () => {
       it("renders the correct summary error", async () => {
@@ -65,7 +67,4 @@ describe("Establishment-Trading-Name", () => {
       });
     });
   });
-})
-
-
-
+});

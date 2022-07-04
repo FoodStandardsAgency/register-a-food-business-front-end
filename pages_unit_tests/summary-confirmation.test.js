@@ -1,8 +1,12 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
-  transformedData: {establishment_address_line_1: "Example address line 1"},
+  transformedData: { establishment_address_line_1: "Example address line 1" },
   language: "en"
 };
 
@@ -53,14 +57,11 @@ const lcConfigSplitNoNumber = {
   }
 };
 
-
 describe("summary-confirmation", () => {
   it("renders without crashing", () => {
     const $ = renderPage("summary-confirmation", props);
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "Submission complete"
-    );
+    expect($mainHeading.text().trim()).toEqual("Submission complete");
   });
 
   it("passes accessibility tests", async () => {
@@ -78,7 +79,7 @@ describe("summary-confirmation", () => {
       lcConfig: lcConfigCombined,
       transformedData: transformedData
     });
-    const $answer = $(".govuk-fieldset" ); 
+    const $answer = $(".govuk-fieldset");
     expect($answer.length).toBe(1);
   });
 
@@ -169,7 +170,9 @@ describe("summary-confirmation", () => {
           transformedData: transformedDataRepresentative
         });
         const $panel = $("#receiveConfirmationEmail-id");
-        expect($panel.get(0).children[1].children[0].data.trim()).toBe("A copy of this registration has been sent to rep@email.com");
+        expect($panel.get(0).children[1].children[0].data.trim()).toBe(
+          "A copy of this registration has been sent to rep@email.com"
+        );
       });
     });
 
@@ -183,7 +186,7 @@ describe("summary-confirmation", () => {
           lcConfig: lcConfigCombinedNoNumber,
           transformedData: transformedData
         });
-  
+
         const $hygieneAndStandardsNumber = $("#hygieneAndStandardsNumber");
         expect($hygieneAndStandardsNumber.length).toBe(0);
       });
@@ -230,7 +233,7 @@ describe("summary-confirmation", () => {
           transformedData: transformedData
         });
         const $mainHeading = getPageDetails.getMainHeading($);
-        expect($mainHeading.text().trim()).toEqual("Submission complete")
+        expect($mainHeading.text().trim()).toEqual("Submission complete");
       });
     });
 
@@ -242,9 +245,9 @@ describe("summary-confirmation", () => {
           applicationCompletePage: true,
           lcConfig: lcConfigCombined,
           transformedData: transformedData,
-          country:"wales"
+          country: "wales"
         });
-  
+
         const $businessGuidanceLink = $("#businessGuidanceLink");
         expect($businessGuidanceLink.length).toBe(1);
         expect($businessGuidanceLink.get(0).children[0].data.trim()).toBe(
@@ -261,9 +264,9 @@ describe("summary-confirmation", () => {
           applicationCompletePage: true,
           lcConfig: lcConfigCombined,
           transformedData: transformedData,
-          country:"northern-ireland"
+          country: "northern-ireland"
         });
-  
+
         const $businessGuidanceLink = $("#businessGuidanceLink");
         expect($businessGuidanceLink.length).toBe(1);
         expect($businessGuidanceLink.get(0).children[0].data.trim()).toBe(
@@ -280,9 +283,9 @@ describe("summary-confirmation", () => {
           applicationCompletePage: true,
           lcConfig: lcConfigCombined,
           transformedData: transformedData,
-          country:"england"
+          country: "england"
         });
-  
+
         const $businessGuidanceLink = $("#businessSupportHelplineEnglishLink");
         expect($businessGuidanceLink.length).toBe(1);
         expect($businessGuidanceLink.get(0).children[0].data.trim()).toBe(
@@ -291,6 +294,4 @@ describe("summary-confirmation", () => {
       });
     });
   });
-
-
 });
