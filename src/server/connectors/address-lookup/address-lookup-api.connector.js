@@ -13,8 +13,8 @@ const {
 const { logEmitter } = require("../../services/logging.service");
 const { addressLookupDouble } = require("./address-lookup-api.double");
 const {
-  organisationRemovalFromLookup
-} = require("./organisationRemovalFromLookup");
+  removeOrganisationFromAddressLookup
+} = require("./removeOrganisationFromAddressLookup");
 
 /**
  * Fetches addresses from the address lookup API for the given postcode
@@ -62,7 +62,7 @@ const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
     "address-lookup-api.connector",
     "getAddressByPostcode"
   );
-  return organisationRemovalFromLookup(firstJson);
+  return removeOrganisationFromAddressLookup(firstJson);
 };
 
 /**

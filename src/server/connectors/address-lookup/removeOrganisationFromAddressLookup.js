@@ -6,61 +6,58 @@ const { logEmitter } = require("../../services/logging.service");
  *
  * @returns {array} A list of addresses without organization
  */
-const organisationRemovalFromLookup = (addressList) => {
+const removeOrganisationFromAddressLookup = (addressList) => {
   logEmitter.emit(
     "functionCall",
-    "organisationRemovalFromLookup",
-    "organisationRemovalFromLookup"
+    "removeOrganisationFromAddressLookup",
+    "removeOrganisationFromAddressLookup"
   );
+
   if (addressList.length === 0) {
     return addressList;
   }
+
   const addressListWithoutOrganisation = addressList.map((a) => {
     var address = a;
+
     if (address.hasOwnProperty("organisation")) {
-      // removes organisation from summaryline
       if (
         isString(address.organisation) &&
         address.summaryline.startsWith(address.organisation + ", ")
       ) {
+        // removes organisation from summaryline
         address.summaryline = address.summaryline.substring(
           address.organisation.length + 2
         );
       }
+
       // removes organisation key
       delete address.organisation;
     }
-    logEmitter.emit(
-      "functionSuccess",
-      "organisationRemovalFromLookup",
-      "organisationRemovalFromLookup"
-    );
     return address;
   });
-  return removeDuplicateObjectFromArray(
-    addressListWithoutOrganisation,
-    "summaryline"
+
+  logEmitter.emit(
+    "functionSuccess",
+    "removeOrganisationFromAddressLookup",
+    "removeOrganisationFromAddressLookup"
   );
+
+  return removeDuplicates(addressListWithoutOrganisation, "summaryline");
 };
 
 /**
- * Removes duplicate objects from array by key
+ * Removes duplicate objects from array by key using a Set() Method:
+ * This method sets a new object type with ES6 (ES2015) that allows you to create collections of unique values.
  *
- * @param {array} array of objects
+ * @param {arr} array of objects
  * @param {key} object key to be compared
  *
- * @returns {array} array of objects without duplicates
+ * @returns array of objects without duplicates
  */
-const removeDuplicateObjectFromArray = (array, key) => {
-  let check = {};
-  let res = [];
-  for (let i = 0; i < array.length; i++) {
-    if (!check[array[i][key]]) {
-      check[array[i][key]] = true;
-      res.push(array[i]);
-    }
-  }
-  return res;
+const removeDuplicates = (array, key) => {
+  var check = new Set();
+  return array.filter((obj) => !check.has(obj[key]) && check.add(obj[key]));
 };
 
 /**
@@ -72,4 +69,4 @@ const removeDuplicateObjectFromArray = (array, key) => {
  */
 const isString = (x) => typeof x === "string" || x instanceof String;
 
-module.exports = { organisationRemovalFromLookup };
+module.exports = { removeOrganisationFromAddressLookup };
