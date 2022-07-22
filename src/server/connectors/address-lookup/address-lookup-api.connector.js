@@ -12,7 +12,9 @@ const {
 } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { addressLookupDouble } = require("./address-lookup-api.double");
-const { organisationRemovalFromLookup } = require("./organisationRemovalFromLookup");
+const {
+  organisationRemovalFromLookup
+} = require("./organisationRemovalFromLookup");
 
 /**
  * Fetches addresses from the address lookup API for the given postcode
