@@ -16,7 +16,7 @@ module.exports = {
     (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
     "/address",
   ADDRESS_API_URL_QUERY_STANDARD:
-    "format=json&lines=3&addtags=uprn&exclude=organisation",
+    "format=json&lines=3&exclude=organisation",
   API_SECRET: process.env.API_SECRET,
   CLIENT_NAME: process.env.CLIENT_NAME,
   COSMOSDB_URL: process.env.COSMOSDB_URL,
