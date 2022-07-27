@@ -329,18 +329,18 @@ const registrationDouble = (body) => {
     let lcEmail;
 
     if (
-      objectBody.local_council_url === "cardiff" ||
-      objectBody.local_council_url === "mid-and-east-antrim" ||
-      objectBody.local_council_url === "purbeck"
+      body.local_council_url === "cardiff" ||
+      body.local_council_url === "mid-and-east-antrim" ||
+      body.local_council_url === "purbeck"
     ) {
       lcConfig = lcConfigCombined;
       lcEmail = lcEmailCombined;
-    } else if (objectBody.local_council_url === "west-dorset") {
+    } else if (body.local_council_url === "west-dorset") {
       lcConfig = lcConfigSplit;
       lcEmail = lcEmailSplit;
     } else {
       throw new Error(
-        `registration.double: the council "${objectBody.local_council_url}" is not supported by the double.`
+        `registration.double: the council "${body.local_council_url}" is not supported by the double.`
       );
     }
 
