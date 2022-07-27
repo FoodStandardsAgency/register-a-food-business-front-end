@@ -261,15 +261,14 @@ const schema = {
 };
 
 const registrationDouble = (body) => {
-  const objectBody = JSON.parse(body);
   const validatorResult = validator.validate(
-    objectBody.registration,
+    body.registration,
     schema.registration
   );
   if (validatorResult.errors.length) {
     return {
       status: 400,
-      json: () => ({
+      data: {
         errorCode: "3",
         developerMessage:
           "Validation error, check request body vs validation schema",
@@ -280,7 +279,7 @@ const registrationDouble = (body) => {
             message: "Invalid operator email"
           }
         ]
-      })
+      }
     };
   } else {
     const lcConfigCombined = {
@@ -346,7 +345,7 @@ const registrationDouble = (body) => {
     }
 
     return {
-      json: () => ({
+      data: {
         regId: 1,
         establishmentId: 1,
         operatorId: 1,
@@ -365,7 +364,7 @@ const registrationDouble = (body) => {
         },
         email_lc: lcEmail,
         lcConfig: lcConfig
-      }),
+      },
       status: 200
     };
   }
