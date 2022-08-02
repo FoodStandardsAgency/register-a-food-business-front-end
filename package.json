@@ -62,7 +62,7 @@
     "jest-environment-jsdom": "^28.1.1",
     "jest-junit": "^13.2.0",
     "jsonschema": "^1.4.1",
-    "moment": "^2.29.3",
+    "moment": "^2.29.4",
     "mongodb": "^4.7.0",
     "morgan": "^1.10.0",
     "node-cache": "^5.1.2",
