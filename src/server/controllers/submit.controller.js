@@ -55,7 +55,7 @@ const submitController = async (
       );
       const response = await submit(transformedData, regDataVersion, sessionId);
       if (response.status) {
-        const res = await response.json();
+        const res = await response.data;
         if (response.status === 200 && res["fsa-rn"]) {
           controllerResponse.redirectRoute = "/summary-confirmation";
           controllerResponse.submissionDate = res.reg_submission_date;

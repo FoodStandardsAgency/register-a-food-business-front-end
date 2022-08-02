@@ -11,21 +11,21 @@ describe("Function: submit", () => {
   describe("When sendRequest succeeds", () => {
     beforeEach(async () => {
       sendRequest.mockImplementation(() => {
-        return { json: jest.fn() };
+        return { data: {} };
       });
       result = await submit({ data: "data" }, "1.0.0", "s3s51onI6");
     });
 
-    it("Should call sendRequest with stringified data and path config", () => {
+    it("Should call sendRequest with data and path config", () => {
       expect(sendRequest).toBeCalledWith(
-        '{"data":"data"}',
+        { data: "data" },
         "1.0.0",
         "s3s51onI6"
       );
     });
 
     it("Should return the response", () => {
-      expect(result.json).toBeDefined();
+      expect(result.data).toBeDefined();
     });
   });
 

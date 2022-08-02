@@ -2,7 +2,7 @@
  * @module connectors/registration
  */
 
-const fetch = require("node-fetch");
+const axios = require("axios");
 const { SUBMIT_URL, API_SECRET, CLIENT_NAME } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { registrationDouble } = require("./registration.double");
@@ -36,10 +36,10 @@ const sendRequest = async (submissionData, regDataVersion, sessionId) => {
         "registration-data-version": regDataVersion,
         "front-end-session-id": sessionId
       };
-      res = await fetch(SUBMIT_URL, {
+      res = await axios(SUBMIT_URL, {
         method: "POST",
         headers,
-        body: submissionData
+        data: submissionData
       });
     }
     logEmitter.emit("functionSuccess", "registration.connector", "sendRequest");

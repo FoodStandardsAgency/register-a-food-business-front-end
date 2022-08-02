@@ -90,7 +90,7 @@ describe("Function: submitController: ", () => {
       submit.mockImplementation(() => ({
         status: 500,
         statusText: "internal-server-error",
-        json: () => ({ reg_submission_date: "10 Jul 2018" })
+        data: { reg_submission_date: "10 Jul 2018" }
       }));
       response = await submitController(...submitArgs);
     });
@@ -109,7 +109,7 @@ describe("Function: submitController: ", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({
         status: 400,
-        json: () => ({ userMessages: [{ message: "Error 123" }] })
+        data: { userMessages: [{ message: "Error 123" }] }
       }));
       response = await submitController(...submitArgs);
     });
@@ -142,7 +142,7 @@ describe("Function: submitController: ", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({
         status: 200,
-        json: () => ({})
+        data: {}
       }));
       response = await submitController(...submitArgs);
     });
@@ -156,7 +156,7 @@ describe("Function: submitController: ", () => {
     beforeEach(async () => {
       submit.mockImplementation(() => ({
         status: 200,
-        json: () => ({
+        data: {
           reg_submission_date: "10 Jul 2018",
           "fsa-rn": "D9YC4B-KFK5JE-PKR7VX",
           email_fbo: {
@@ -164,7 +164,7 @@ describe("Function: submitController: ", () => {
             recipient: "fbo@example.com"
           },
           lc_config: { example: "data" }
-        })
+        }
       }));
       response = await submitController(...submitArgs);
     });
