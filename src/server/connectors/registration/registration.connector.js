@@ -3,6 +3,7 @@
  */
 
 const axios = require("axios");
+axios.defaults.validateStatus = () => true;
 const { SUBMIT_URL, API_SECRET, CLIENT_NAME } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { registrationDouble } = require("./registration.double");

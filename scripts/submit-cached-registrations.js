@@ -3,6 +3,7 @@ const {
   closeCosmosConnection
 } = require("../src/server/connectors/cosmos.client");
 const axios = require("axios").default;
+axios.defaults.validateStatus = () => true;
 const { logEmitter } = require("../src/server/services/logging.service");
 const {
   transformAnswersForSubmit
