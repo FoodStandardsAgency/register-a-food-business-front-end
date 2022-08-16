@@ -3,6 +3,7 @@
  */
 
 const axios = require("axios").default;
+axios.defaults.validateStatus = () => true;
 const HttpsProxyAgent = require("https-proxy-agent");
 const {
   ADDRESS_API_URL_BASE,

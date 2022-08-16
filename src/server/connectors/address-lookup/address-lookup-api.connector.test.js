@@ -4,6 +4,7 @@ jest.mock("./address-lookup-api.double");
 const { Validator } = require("jsonschema");
 const { getAddressesByPostcode } = require("./address-lookup-api.connector");
 const axios = require("axios");
+axios.defaults.validateStatus = () => true;
 const smallAddressResponseJSON = require("./smallAddressResponseMock.json");
 const regularIntegrationResponse = require("./regularIntegrationResponse.json");
 const addressSchema = require("./addressSchema");

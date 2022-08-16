@@ -2,6 +2,7 @@ jest.mock("axios");
 jest.mock("./registration.double");
 
 const axios = require("axios");
+axios.defaults.validateStatus = () => true;
 const { sendRequest } = require("./registration.connector");
 const { registrationDouble } = require("./registration.double");
 
