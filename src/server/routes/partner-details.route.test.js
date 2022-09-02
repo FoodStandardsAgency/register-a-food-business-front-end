@@ -666,7 +666,8 @@ describe("Partner Details Route: ", () => {
     });
 
     describe("When an error is thrown", () => {
-      let response;
+      let response, next;
+      next = jest.fn();
       beforeEach(async () => {
         partnerDetailsContinue.mockImplementation(() => ({
           validationErrors: {},
@@ -706,14 +707,54 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
         try {
-          await handler(req, res);
+          await handler(req, res, next);
         } catch (err) {
           response = err;
         }
       });
 
       it("Should throw an error", () => {
-        expect(response).toBe("Error saving session");
+        expect(next).toBeCalledWith("Error saving session");
+      });
+    });
+
+    describe("when an error is thrown", () => {
+      let next;
+      beforeEach(async () => {
+        partnerDetailsContinue.mockImplementation(() => {
+          throw new Error("error");
+        });
+        next = jest.fn();
+        handler = router.post.mock.calls[2][1];
+
+        req = {
+          session: {
+            council: "council",
+            cumulativeFullAnswers: {
+              partners: ["One First", "Two Second"]
+            }
+          },
+          csrfToken: jest.fn(),
+          url: "test/test",
+          get: () => "www.test.com/new/thepage?display=true",
+          body: {
+            example: "property"
+          },
+          header: {
+            Referrer: "www.address.com/new/council/thispage?blah=hello"
+          },
+          query: {}
+        };
+
+        res = {
+          redirect: jest.fn(),
+          render: jest.fn()
+        };
+
+        handler(req, res, next);
+      });
+      it("should call next with error", () => {
+        expect(next).toBeCalledWith(new Error("error"));
       });
     });
   });

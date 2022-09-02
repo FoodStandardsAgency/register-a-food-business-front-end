@@ -63,5 +63,29 @@ describe("PDF Route: ", () => {
         expect(res.sendFile).toHaveBeenCalledWith(file);
       });
     });
+
+    describe("when an error is thrown", () => {
+      let next;
+      beforeEach(async () => {
+        next = jest.fn();
+        handler = router.get.mock.calls[0][1];
+
+        req = {
+          query: {
+            language: "cy"
+          }
+        };
+        res = {
+          sendFile: jest.fn(() => {
+            throw new Error("error");
+          })
+        };
+
+        handler(req, res, next);
+      });
+      it("should call next with error", () => {
+        expect(next).toBeCalledWith(new Error("error"));
+      });
+    });
   });
 });

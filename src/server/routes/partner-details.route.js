@@ -149,43 +149,52 @@ const partnerDetailsRouter = () => {
     });
   });
 
-  router.post("/continue", async (req, res) => {
+  router.post("/continue", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/partnership/continue route");
+    try {
+      const originator = getOriginator(req.get("Referrer"));
 
-    const originator = getOriginator(req.get("Referrer"));
+      req.session.cumulativeFullAnswers.partners = initializePartners(
+        req.session
+      );
 
-    req.session.cumulativeFullAnswers.partners = initializePartners(
-      req.session
-    );
+      const response = partnerDetailsContinue(
+        originator,
+        req.session.cumulativeFullAnswers,
+        req.session.council,
+        isEditMode(req.query),
+        req.session.allValidationErrors
+      );
 
-    const response = partnerDetailsContinue(
-      originator,
-      req.session.cumulativeFullAnswers,
-      req.session.council,
-      isEditMode(req.query),
-      req.session.allValidationErrors
-    );
+      req.session.validatorErrors = response.validatorErrors;
+      req.session.allValidationErrors = response.allValidationErrors;
 
-    req.session.validatorErrors = response.validatorErrors;
-    req.session.allValidationErrors = response.allValidationErrors;
-
-    logEmitter.emit(
-      "functionSuccess",
-      "Routes",
-      "/partner-details/continue route"
-    );
-    req.session.save((err) => {
-      if (err) {
-        logEmitter.emit(
-          "functionFail",
-          "Routes",
-          "/partner-details/continue route",
-          err
-        );
-        throw err;
-      }
-      res.redirect(response.redirectRoute);
-    });
+      logEmitter.emit(
+        "functionSuccess",
+        "Routes",
+        "/partner-details/continue route"
+      );
+      req.session.save((err) => {
+        if (err) {
+          logEmitter.emit(
+            "functionFail",
+            "Routes",
+            "/partner-details/continue route",
+            err
+          );
+          throw err;
+        }
+        res.redirect(response.redirectRoute);
+      });
+    } catch (err) {
+      logEmitter.emit(
+        "functionFail",
+        "Routes",
+        "/partnership/continue route",
+        err
+      );
+      next(err);
+    }
   });
 
   router.get("/back", (req, res) => {

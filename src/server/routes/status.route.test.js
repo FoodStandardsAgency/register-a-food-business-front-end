@@ -77,4 +77,48 @@ describe("status route: ", () => {
       );
     });
   });
+
+  describe("when an error is thrown to /status/all", () => {
+    let next;
+    beforeEach(async () => {
+      getStatus.mockImplementation(() => {
+        throw new Error("error");
+      });
+      next = jest.fn();
+      handler = router.get.mock.calls[0][1];
+      req = {};
+      res = {
+        send: jest.fn()
+      };
+
+      handler(req, res, next);
+    });
+    it("should call next with error", () => {
+      expect(next).toBeCalledWith(new Error("error"));
+    });
+  });
+
+  describe("when an error is thrown to /name/:statusName", () => {
+    let next;
+    beforeEach(async () => {
+      getStatus.mockImplementation(() => {
+        throw new Error("error");
+      });
+      next = jest.fn();
+      handler = router.get.mock.calls[2][1];
+      req = {
+        params: {
+          statusName: "exampleStatus"
+        }
+      };
+      res = {
+        send: jest.fn()
+      };
+
+      handler(req, res, next);
+    });
+    it("should call next with error", () => {
+      expect(next).toBeCalledWith(new Error("error"));
+    });
+  });
 });
