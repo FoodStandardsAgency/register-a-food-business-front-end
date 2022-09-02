@@ -29,46 +29,55 @@ const PropsGenerator = require("../propsGenerator");
 const partnerDetailsRouter = () => {
   const router = Router();
 
-  router.post("/save", async (req, res) => {
+  router.post("/save", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/partnership/save route");
+    try {
+      const originator = getOriginator(req.get("Referrer"));
 
-    const originator = getOriginator(req.get("Referrer"));
+      const data =
+        req.session.cumulativeFullAnswers.targetPartner !== undefined
+          ? Object.assign({}, req.body, {
+              index: req.session.cumulativeFullAnswers.targetPartner
+            })
+          : req.body;
 
-    const data =
-      req.session.cumulativeFullAnswers.targetPartner !== undefined
-        ? Object.assign({}, req.body, {
-            index: req.session.cumulativeFullAnswers.targetPartner
-          })
-        : req.body;
+      req.session.cumulativeFullAnswers.partners = initializePartners(
+        req.session
+      );
 
-    req.session.cumulativeFullAnswers.partners = initializePartners(
-      req.session
-    );
+      const response = partnerDetailsSave(
+        originator,
+        req.session.cumulativeFullAnswers,
+        data,
+        req.session.council,
+        isEditMode(req.query)
+      );
 
-    const response = partnerDetailsSave(
-      originator,
-      req.session.cumulativeFullAnswers,
-      data,
-      req.session.council,
-      isEditMode(req.query)
-    );
+      req.session.validatorErrors = response.validatorErrors;
+      req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
 
-    req.session.validatorErrors = response.validatorErrors;
-    req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
-
-    logEmitter.emit("functionSuccess", "Routes", "/partnership/save route");
-    req.session.save((err) => {
-      if (err) {
-        logEmitter.emit(
-          "functionFail",
-          "Routes",
-          "/partnership/save route",
-          err
-        );
-        throw err;
-      }
-      res.redirect(response.redirectRoute);
-    });
+      logEmitter.emit("functionSuccess", "Routes", "/partnership/save route");
+      req.session.save((err) => {
+        if (err) {
+          logEmitter.emit(
+            "functionFail",
+            "Routes",
+            "/partnership/save route",
+            err
+          );
+          throw err;
+        }
+        res.redirect(response.redirectRoute);
+      });
+    } catch (err) {
+      logEmitter.emit(
+        "functionFail",
+        "Routes",
+        "//partnership/save route",
+        err
+      );
+      next(err);
+    }
   });
 
   router.get("/partner-details", (req, res) => {
@@ -109,44 +118,53 @@ const partnerDetailsRouter = () => {
     });
   });
 
-  router.post("/delete-partner", async (req, res) => {
+  router.post("/delete-partner", async (req, res, next) => {
     logEmitter.emit(
       "functionCall",
       "Routes",
       "/partnership/delete-partner route"
     );
+    try {
+      req.session.cumulativeFullAnswers.partners = initializePartners(
+        req.session
+      );
 
-    req.session.cumulativeFullAnswers.partners = initializePartners(
-      req.session
-    );
+      const response = partnerDetailsDelete(
+        req.session.cumulativeFullAnswers,
+        req.body,
+        req.session.council,
+        isEditMode(req.query)
+      );
 
-    const response = partnerDetailsDelete(
-      req.session.cumulativeFullAnswers,
-      req.body,
-      req.session.council,
-      isEditMode(req.query)
-    );
+      req.session.validatorErrors = response.validatorErrors;
+      req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
 
-    req.session.validatorErrors = response.validatorErrors;
-    req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
-
-    logEmitter.emit(
-      "functionSuccess",
-      "Routes",
-      "/partner-details/delete route"
-    );
-    req.session.save((err) => {
-      if (err) {
-        logEmitter.emit(
-          "functionFail",
-          "Routes",
-          "/partner-details route",
-          err
-        );
-        throw err;
-      }
-      res.redirect(response.redirectRoute);
-    });
+      logEmitter.emit(
+        "functionSuccess",
+        "Routes",
+        "/partner-details/delete route"
+      );
+      req.session.save((err) => {
+        if (err) {
+          logEmitter.emit(
+            "functionFail",
+            "Routes",
+            "/partner-details route",
+            err
+          );
+          throw err;
+        }
+        res.redirect(response.redirectRoute);
+      });
+    } catch (err) {
+      logEmitter.emit(
+        "functionFail",
+        "Routes",
+        "/partnership/delete-partner route",
+        err
+      );
+      next(err);
+    }
   });
 
   router.post("/continue", async (req, res, next) => {

@@ -78,7 +78,7 @@ describe("status route: ", () => {
     });
   });
 
-  describe("when an error is thrown to /status/all", () => {
+  describe("when an error is thrown at /status/all", () => {
     let next;
     beforeEach(async () => {
       getStatus.mockImplementation(() => {
@@ -98,7 +98,7 @@ describe("status route: ", () => {
     });
   });
 
-  describe("when an error is thrown to /name/:statusName", () => {
+  describe("when an error is thrown at /name/:statusName", () => {
     let next;
     beforeEach(async () => {
       getStatus.mockImplementation(() => {

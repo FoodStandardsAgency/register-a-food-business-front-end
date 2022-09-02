@@ -143,7 +143,7 @@ describe("Submit route: ", () => {
     });
 
     describe("When session.save throws an error", () => {
-      let response, res, req, next;
+      let res, req, next;
       next = jest.fn();
 
       beforeEach(async () => {
@@ -174,11 +174,7 @@ describe("Submit route: ", () => {
         res = {
           redirect: jest.fn()
         };
-        try {
-          await handler(req, res, next);
-        } catch (err) {
-          response = err;
-        }
+        await handler(req, res, next);
       });
 
       it("should throw a session save error", () => {
