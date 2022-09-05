@@ -305,5 +305,44 @@ describe("New route: ", () => {
         expect(res.render).toBeCalledWith("unsupported-council");
       });
     });
+
+    describe("when an error is thrown", () => {
+      let next;
+      beforeEach(async () => {
+        transformAnswersForSummary.mockImplementation(() => {
+          throw new Error("error");
+        });
+        next = jest.fn();
+        handler = router.get.mock.calls[0][1];
+        req = {
+          session: {
+            council: "purbeck",
+            save: (cb) => {
+              cb();
+            }
+          },
+          params: {
+            page: "registration-summary",
+            lc: "purbeck"
+          },
+          csrfToken: jest.fn(),
+          url: "test/test",
+          headers: {
+            "user-agent":
+              "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
+          }
+        };
+
+        res = {
+          redirect: jest.fn(),
+          render: jest.fn()
+        };
+
+        handler(req, res, next);
+      });
+      it("should call next with error", () => {
+        expect(next).toBeCalledWith(new Error("error"));
+      });
+    });
   });
 });

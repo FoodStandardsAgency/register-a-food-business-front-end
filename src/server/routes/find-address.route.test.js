@@ -70,7 +70,8 @@ describe("findAddress route: ", () => {
     });
 
     describe("When session.save throws an error", () => {
-      let response;
+      let response, next;
+      next = jest.fn();
       const req = {
         session: {
           cumulativeFullAnswers: {},
@@ -99,14 +100,45 @@ describe("findAddress route: ", () => {
         }));
         handler = router.post.mock.calls[0][1];
         try {
-          await handler(req, res);
+          await handler(req, res, next);
         } catch (err) {
           response = err;
         }
       });
 
       it("Should throw an error", () => {
-        expect(response).toBe("session save error");
+        expect(next).toBeCalledWith("session save error");
+      });
+    });
+
+    describe("when an error is thrown", () => {
+      let next;
+      beforeEach(async () => {
+        findAddressController.mockImplementation(() => {
+          throw new Error("error");
+        });
+        next = jest.fn();
+        handler = router.post.mock.calls[0][1];
+        req = {
+          session: {
+            cumulativeFullAnswers: {},
+            addressLookups: { some_page: [] },
+            council: "council"
+          },
+          body: "body",
+          params: {
+            originator: "/some-page"
+          }
+        };
+
+        res = {
+          redirect: jest.fn()
+        };
+
+        handler(req, res, next);
+      });
+      it("should call next with error", () => {
+        expect(next).toBeCalledWith(new Error("error"));
       });
     });
   });

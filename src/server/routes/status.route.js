@@ -11,11 +11,16 @@ const { getStatus } = require("../services/status.service");
 const statusRouter = () => {
   const router = Router();
 
-  router.get("/all", async (req, res) => {
+  router.get("/all", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/status/all route");
-    const status = await getStatus();
-    logEmitter.emit("functionSuccess", "Routes", "/status/all route");
-    res.send(JSON.stringify(status));
+    try {
+      const status = await getStatus();
+      logEmitter.emit("functionSuccess", "Routes", "/status/all route");
+      res.send(JSON.stringify(status));
+    } catch (err) {
+      logEmitter.emit("functionFail", "Routes", "/status/all route", err);
+      next(err);
+    }
   });
 
   router.get("/healthcheck", (req, res) => {
@@ -24,16 +29,26 @@ const statusRouter = () => {
     res.send("FRONT END healthcheck PASSED");
   });
 
-  router.get("/name/:statusName", async (req, res) => {
+  router.get("/name/:statusName", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/status/name/:statusName route");
-    const statusName = req.params.statusName;
-    const status = await getStatus(statusName);
-    logEmitter.emit(
-      "functionSuccess",
-      "Routes",
-      "/status/name/:statusName route"
-    );
-    res.send(JSON.stringify(status));
+    try {
+      const statusName = req.params.statusName;
+      const status = await getStatus(statusName);
+      logEmitter.emit(
+        "functionSuccess",
+        "Routes",
+        "/status/name/:statusName route"
+      );
+      res.send(JSON.stringify(status));
+    } catch (err) {
+      logEmitter.emit(
+        "functionFail",
+        "Routes",
+        "/status/name/:statusName route",
+        err
+      );
+      next(err);
+    }
   });
 
   return router;
