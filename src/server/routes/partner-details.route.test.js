@@ -131,15 +131,16 @@ describe("Partner Details Route: ", () => {
         expect(res.redirect).toHaveBeenCalledWith("/new/council/page");
       });
     });
-    describe("Partner details throws error", () => {
-      let response;
+    describe("When session.save throws an error at /partnership/save", () => {
+      let response, next;
+      next = jest.fn();
       const req = {
         session: {
           cumulativeFullAnswers: {},
           council: "council",
           pathConfig: { path: "existing path from session" },
           save: (cb) => {
-            cb("save error");
+            cb("Error saving session");
           }
         },
         csrfToken: jest.fn(),
@@ -173,14 +174,14 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
         try {
-          await handler(req, res);
+          await handler(req, res, next);
         } catch (err) {
           response = err;
         }
       });
 
       it("Shold throw an error", () => {
-        expect(response).toBe("save error");
+        expect(next).toBeCalledWith("Error saving session");
       });
     });
 
@@ -500,8 +501,9 @@ describe("Partner Details Route: ", () => {
       });
     });
 
-    describe("When an error is thrown", () => {
-      let response;
+    describe("When session.save throws an error at /partnership/delete-partner", () => {
+      let response, next;
+      next = jest.fn();
       beforeEach(async () => {
         partnerDetailsDelete.mockImplementation(() => ({
           validationErrors: {},
@@ -541,14 +543,14 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
         try {
-          await handler(req, res);
+          await handler(req, res, next);
         } catch (err) {
           response = err;
         }
       });
 
       it("Should throw an error", () => {
-        expect(response).toBe("Error saving session");
+        expect(next).toBeCalledWith("Error saving session");
       });
     });
   });
@@ -665,8 +667,9 @@ describe("Partner Details Route: ", () => {
       });
     });
 
-    describe("When an error is thrown", () => {
-      let response;
+    describe("When session.save throws an error at /partnership/continue", () => {
+      let response, next;
+      next = jest.fn();
       beforeEach(async () => {
         partnerDetailsContinue.mockImplementation(() => ({
           validationErrors: {},
@@ -706,14 +709,134 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
         try {
-          await handler(req, res);
+          await handler(req, res, next);
         } catch (err) {
           response = err;
         }
       });
 
       it("Should throw an error", () => {
-        expect(response).toBe("Error saving session");
+        expect(next).toBeCalledWith("Error saving session");
+      });
+    });
+
+    describe("when an error is thrown at /partnership/save", () => {
+      let next;
+      beforeEach(async () => {
+        partnerDetailsSave.mockImplementation(() => {
+          throw new Error("error");
+        });
+        next = jest.fn();
+        handler = router.post.mock.calls[0][1];
+
+        req = {
+          session: {
+            cumulativeFullAnswers: {
+              partners: ["One First", "Second Two"]
+            },
+            switches: {},
+            council: "council",
+            pathConfig: { path: "existing path from session" },
+            save: (cb) => {
+              cb();
+            }
+          },
+          csrfToken: jest.fn(),
+          url: "test/test",
+          get: (value) => "www.test.com/new/thepage?display=true",
+          body: "body",
+          query: {}
+        };
+
+        res = {
+          redirect: jest.fn(),
+          render: jest.fn()
+        };
+
+        handler(req, res, next);
+      });
+      it("should call next with error", () => {
+        expect(next).toBeCalledWith(new Error("error"));
+      });
+    });
+    describe("when an error is thrown at /partnership/delete-partner", () => {
+      let next;
+      beforeEach(async () => {
+        partnerDetailsDelete.mockImplementation(() => {
+          throw new Error("error");
+        });
+        next = jest.fn();
+        handler = router.post.mock.calls[1][1];
+
+        req = {
+          session: {
+            council: "council",
+            cumulativeFullAnswers: {
+              partners: ["One First", "Two Second"]
+            },
+            save: (cb) => {
+              cb();
+            }
+          },
+          csrfToken: jest.fn(),
+          url: "test/test",
+          get: (value) => "www.test.com/new/thepage?display=true",
+          body: {
+            example: "property"
+          },
+          header: {
+            Referrer: "www.address.com/new/council/thispage?blah=hello"
+          },
+          query: {}
+        };
+
+        res = {
+          redirect: jest.fn(),
+          render: jest.fn()
+        };
+
+        handler(req, res, next);
+      });
+      it("should call next with error", () => {
+        expect(next).toBeCalledWith(new Error("error"));
+      });
+    });
+    describe("when an error is thrown at /partnership/continue", () => {
+      let next;
+      beforeEach(async () => {
+        partnerDetailsContinue.mockImplementation(() => {
+          throw new Error("error");
+        });
+        next = jest.fn();
+        handler = router.post.mock.calls[2][1];
+
+        req = {
+          session: {
+            council: "council",
+            cumulativeFullAnswers: {
+              partners: ["One First", "Two Second"]
+            }
+          },
+          csrfToken: jest.fn(),
+          url: "test/test",
+          get: () => "www.test.com/new/thepage?display=true",
+          body: {
+            example: "property"
+          },
+          header: {
+            Referrer: "www.address.com/new/council/thispage?blah=hello"
+          },
+          query: {}
+        };
+
+        res = {
+          redirect: jest.fn(),
+          render: jest.fn()
+        };
+        handler(req, res, next);
+      });
+      it("should call next with error", () => {
+        expect(next).toBeCalledWith(new Error("error"));
       });
     });
   });

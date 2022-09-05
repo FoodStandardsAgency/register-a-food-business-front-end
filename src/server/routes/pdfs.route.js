@@ -10,17 +10,22 @@ const path = require("path");
 const pdfsRouter = () => {
   const router = Router();
 
-  router.get("/feedback", async (req, res) => {
+  router.get("/feedback", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/pdfs/feedback");
-    let file = path.join(
-      __dirname,
-      "..",
-      req.query.language === "cy"
-        ? "/static/pdfs/RAFB-Privacy-Notice-Cymraeg.pdf"
-        : "/static/pdfs/feedback-declaration.pdf"
-    );
-    res.sendFile(file);
-    logEmitter.emit("functionSuccessWith", "Routes", "/pdfs/feedback", file);
+    try {
+      let file = path.join(
+        __dirname,
+        "..",
+        req.query.language === "cy"
+          ? "/static/pdfs/RAFB-Privacy-Notice-Cymraeg.pdf"
+          : "/static/pdfs/feedback-declaration.pdf"
+      );
+      res.sendFile(file);
+      logEmitter.emit("functionSuccessWith", "Routes", "/pdfs/feedback", file);
+    } catch (err) {
+      logEmitter.emit("functionFail", "Routes", "/pdfs/feedback", err);
+      next(err);
+    }
   });
 
   return router;

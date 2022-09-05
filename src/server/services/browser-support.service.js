@@ -31,35 +31,43 @@ const getBrowserInfo = (userAgentHeader) => {
   const response = {
     browser: "",
     browserVersion: "",
-    isBrowserSupported: false,
-    isBrowserVersionVerified: true
+    isBrowserSupported: false
   };
-  const ua = useragent.parse(userAgentHeader);
-  response.browser = ua.browser;
-  response.browserVersion = ua.version;
-  const version = parseFloat(ua.version);
+  if (userAgentHeader) {
+    const ua = useragent.parse(userAgentHeader);
+    response.browser = ua.browser;
+    response.browserVersion = ua.version;
+    const version = parseFloat(ua.version);
 
-  if (ua.isChrome) {
-    response.isBrowserSupported = version >= CHROME_SUPPORTED_SINCE;
-  } else if (ua.isFirefox) {
-    response.isBrowserSupported = version >= FIREFOX_SUPPORTED_SINCE;
-  } else if (ua.isEdge) {
-    response.isBrowserSupported = version >= EDGE_SUPPORTED_SINCE;
-  } else if (ua.isIE) {
-    response.isBrowserSupported = version >= IE_SUPPORTED_SINCE;
-  } else if (ua.isSafari) {
-    if (ua.isMobile) {
-      response.isBrowserSupported = version >= IOS_SAFARI_SUPPORTED_SINCE;
-    } else {
-      response.isBrowserSupported = version >= MAC_SAFARI_SUPPORTED_SINCE;
+    if (ua.isChrome) {
+      response.isBrowserSupported = version >= CHROME_SUPPORTED_SINCE;
+    } else if (ua.isFirefox) {
+      response.isBrowserSupported = version >= FIREFOX_SUPPORTED_SINCE;
+    } else if (ua.isEdge) {
+      response.isBrowserSupported = version >= EDGE_SUPPORTED_SINCE;
+    } else if (ua.isIE) {
+      response.isBrowserSupported = version >= IE_SUPPORTED_SINCE;
+    } else if (ua.isSafari) {
+      if (ua.isMobile) {
+        response.isBrowserSupported = version >= IOS_SAFARI_SUPPORTED_SINCE;
+      } else {
+        response.isBrowserSupported = version >= MAC_SAFARI_SUPPORTED_SINCE;
+      }
     }
+    logEmitter.emit(
+      "functionSuccessWith",
+      "browser-support.service",
+      "getBrowserInfo",
+      JSON.stringify(response)
+    );
+  } else {
+    logEmitter.emit(
+      "functionFail",
+      "browser-support.service",
+      "getBrowserInfo",
+      "userAgentUndefined"
+    );
   }
-  logEmitter.emit(
-    "functionSuccessWith",
-    "browser-support.service",
-    "getBrowserInfo",
-    JSON.stringify(response)
-  );
   return response;
 };
 
