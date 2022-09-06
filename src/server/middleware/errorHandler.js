@@ -2,6 +2,9 @@ const { error } = require("winston");
 const PropsGenerator = require("../propsGenerator");
 
 const errorHandler = (err, req, res, next) => {
+  if (res.headersSent) {
+    return next(err);
+  }
   error(err);
   error(`statusCode: ${res ? res.statusCode : err ? err.statusCode : null}`);
   var props = {
