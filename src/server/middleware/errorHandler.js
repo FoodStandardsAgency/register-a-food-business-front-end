@@ -1,12 +1,14 @@
-const { error } = require("winston");
+const { logger } = require("../services/winston");
 const PropsGenerator = require("../propsGenerator");
 
 const errorHandler = (err, req, res, next) => {
+  logger.error(err.message);
   if (res.headersSent) {
     return next(err);
   }
-  error(err);
-  error(`statusCode: ${res ? res.statusCode : err ? err.statusCode : null}`);
+  logger.error(
+    `statusCode: ${res ? res.statusCode : err ? err.statusCode : null}`
+  );
   var props = {
     statusCode: res ? res.statusCode : err ? err.statusCode : "500",
     err: err ? err : "An error occurred.",
