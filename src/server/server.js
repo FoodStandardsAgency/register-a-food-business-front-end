@@ -87,8 +87,7 @@ if (COSMOSDB_URL) {
   store = MongoStore.create({
     mongoUrl: COSMOSDB_URL,
     dbName: "front-end-cache",
-    autoRemove: "interval",
-    autoRemoveInterval: 1440 // In minutes
+    autoRemove: "disabled"
   });
   logger.info("Server: successfully set up database connection");
 } else {
