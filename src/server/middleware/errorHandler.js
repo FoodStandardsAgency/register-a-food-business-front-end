@@ -12,7 +12,9 @@ const errorHandler = (err, req, res, next) => {
   var props = {
     statusCode: res ? res.statusCode : err ? err.statusCode : "500",
     err: err ? err : "An error occurred.",
-    ...PropsGenerator(req)
+    ...(err.stack && err.stack.toString().includes("propsGenerator")
+      ? {}
+      : PropsGenerator(req))
   };
   if (err.message.match("template not found")) {
     res.render("page-not-found", { props });
