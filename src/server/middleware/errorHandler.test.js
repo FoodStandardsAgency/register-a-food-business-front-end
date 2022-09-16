@@ -54,4 +54,17 @@ describe("errorHandler", () => {
       expect(next).toBeCalledWith({ message: "error" });
     });
   });
+
+  describe("when error thrown inside PropsGenerator", () => {
+    it("should not call PropsGenerator", () => {
+      let err = { message: "error", stack: "propsGenerator", statusCode: 500 };
+      let req = { csrfToken: csrfToken, url: url };
+      let res = { render: jest.fn() };
+      let next = jest.fn();
+      errorHandler(err, req, res, next);
+      expect(res.render).toHaveBeenCalledWith("internal-server-error", {
+        props: { err }
+      });
+    });
+  });
 });
