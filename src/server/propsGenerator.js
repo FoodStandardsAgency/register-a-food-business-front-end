@@ -26,7 +26,7 @@ module.exports = (req) => {
       ? req.cookies.acceptAllCookies
       : undefined;
 
-  const csrfToken = req.csrfToken();
+  const csrfToken = req && req.csrfToken && req.csrfToken();
 
   const cumulativeFullAnswers =
     req && req.session && req.session.cumulativeFullAnswers
@@ -149,10 +149,6 @@ module.exports = (req) => {
       req && req.session && req.session.browserVersion
         ? req.session.browserVersion
         : "",
-    isBrowserVersionVerified:
-      req && req.session && req.session.isBrowserVersionVerified
-        ? req.session.isBrowserVersionVerified
-        : false,
     country:
       req && req.session && req.session.country ? req.session.country : "",
     lcName: req && req.session && req.session.lcName ? req.session.lcName : ""

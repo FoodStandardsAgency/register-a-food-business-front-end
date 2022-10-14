@@ -143,7 +143,8 @@ describe("Submit route: ", () => {
     });
 
     describe("When session.save throws an error", () => {
-      let response, res, req;
+      let res, req, next;
+      next = jest.fn();
 
       beforeEach(async () => {
         submitController.mockImplementation(() => ({
@@ -173,15 +174,42 @@ describe("Submit route: ", () => {
         res = {
           redirect: jest.fn()
         };
-        try {
-          await handler(req, res);
-        } catch (err) {
-          response = err;
-        }
+        await handler(req, res, next);
       });
 
       it("should throw a session save error", () => {
-        expect(response).toBe("session save error");
+        expect(next).toBeCalledWith("session save error");
+      });
+    });
+
+    describe("when an error is thrown", () => {
+      let next;
+      beforeEach(async () => {
+        submitController.mockImplementation(() => {
+          throw new Error("error");
+        });
+        next = jest.fn();
+        handler = router.get.mock.calls[0][1];
+        req = {
+          session: {
+            cumulativeFullAnswers: {
+              some: "answers"
+            },
+            language: "en",
+            council: "cardiff",
+            addressLookups: ["1"],
+            pathConfig: { _id: "1.0.0" },
+            save: () => {}
+          }
+        };
+        res = {
+          redirect: jest.fn()
+        };
+
+        handler(req, res, next);
+      });
+      it("should call next with error", () => {
+        expect(next).toBeCalledWith(new Error("error"));
       });
     });
   });
