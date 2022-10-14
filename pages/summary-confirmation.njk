@@ -9,25 +9,41 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ __("Submission complete", props.language) }}</h1>
       <p class="govuk-body">{{ __("Thank you for submitting your food business registration.", props.language) }}</p>
-      {% set html %}
-      {% if props.fsaRegistrationNumber %}
-        <span id="fsa-rn" style="line-height: 0.9">
-          {{ props.fsaRegistrationNumber.split("-").join(" - ") }}
-        </span>
-      {% else %}
-        <span id="panelWithText">
+      {% if props.fsaRegistrationNumber and props
+        .fsaRegistrationNumber
+        .startsWith("tmp_") %}
+        {% set html %}
+        <span style="line-height: 1" id="panelWithText">
           {{ __("Awaiting registration application reference", props.language) }}
         </span>
+        {% endset %}
+        {{ govukPanel({
+          headingLevel: 2,
+          titleText: __("Registration submitted", props.language),
+          html: html
+        }) }}
+
+      {% else %}
+        {% set html %}
+        {% if props.fsaRegistrationNumber %}
+          <span id="fsa-rn" style="line-height: 0.9">
+            {{ props.fsaRegistrationNumber.split("-").join(" - ") }}
+          </span>
+        {% else %}
+          <span style="line-height: 1" id="panelWithText">
+            {{ __("Awaiting registration application reference", props.language) }}
+          </span>
+        {% endif %}
+        {% endset %}
+        {{ govukPanel({
+          headingLevel: 2,
+          titleText: __("Your unique food business registration application reference is", props.language) if props.fsaRegistrationNumber else __("Registration submitted", props.language),
+          html: html
+        }) }}
+        {{ govukInsetText({
+          text: __("Please keep note of this registration application reference for your records.", props.language)
+        }) }}
       {% endif %}
-      {% endset %}
-      {{ govukPanel({
-        headingLevel: 2,
-        titleText: __("Your unique food business registration application reference is", props.language) if props.fsaRegistrationNumber else __("Registration submitted", props.language),
-        html: html
-      }) }}
-      {{ govukInsetText({
-        text: __("Please keep note of this registration application reference for your records.", props.language)
-      }) }}
       <div id="sentToCouncilsSection">
         <p class="govuk-body" style="margin-bottom:-0px">{{ __("Your registration has been sent to", props.language) }}</p>
         {% if props.lcConfig.hygieneAndStandards %}
@@ -99,79 +115,79 @@
             rel="noopener noreferrer">{{ __("Guidance for new food businesses", props.language) }}
           </a>
           <br>
-            <br>
-              <a
+          <br>
+          <a
                 class="govuk-link"
                 id="fhrsScoreLink"
                 href="https://www.food.gov.uk/business-guidance/food-hygiene-ratings-for-businesses"
                 target="_blank"
                 rel="noopener noreferrer">{{ __("How to achieve a high food hygiene rating (FHRS score)", props.language) }}
-              </a>
-            </p>
-            {% if props.country === "northern-ireland" %}
-              <p>
-                <a
+          </a>
+        </p>
+        {% if props.country === "northern-ireland" %}
+          <p>
+            <a
                   class="govuk-link"
                   id="safeCateringLink"
                   href="https://www.food.gov.uk/business-guidance/safe-catering"
                   target="_blank"
                   rel="noopener noreferrer">{{ __("Safe catering", props.language) }}
-                </a>
-              </p>
-            {% else %}
-            <p>
-              <a
+            </a>
+          </p>
+        {% else %}
+          <p>
+            <a
                 class="govuk-link"
                 id="safetyManagementLink"
                 href="https://www.food.gov.uk/business-guidance/safer-food-better-business"
                 target="_blank"
                 rel="noopener noreferrer">{{ __("Information on the food safety management system safer food, better business", props.language) }}
-              </a>
-            </p>
-            {% endif %}
-            <p>
-              <a
+            </a>
+          </p>
+        {% endif %}
+        <p>
+          <a
                 class="govuk-link"
                 id="foodLabellingLink"
                 href="https://www.food.gov.uk/business-guidance/industry-specific-advice/labelling-and-allergens"
                 target="_blank"
                 rel="noopener noreferrer">{{ __("Food labelling and allergens guidance", props.language) }}
-              </a>
-            </p>
-          {% endif %}
-          {% if props.country === "wales" %}
-            <p>
-              <a
+          </a>
+        </p>
+      {% endif %}
+      {% if props.country === "wales" %}
+        <p>
+          <a
                 class="govuk-link"
                 id="businessGuidanceLink"
                 href="https://www.businesswales.gov.wales/starting-up"
                 target="_blank"
                 rel="noopener noreferrer">{{ __("Business support Wales", props.language) }}
-              </a>
-            </p>
-          {% endif %}
-          {% if props.country === "northern-ireland" and props.language === "en" %}
-            <p>
-              <a
+          </a>
+        </p>
+      {% endif %}
+      {% if props.country === "northern-ireland" and props.language === "en" %}
+        <p>
+          <a
                 class="govuk-link"
                 id="businessGuidanceLink"
                 href="https://www.nibusinessinfo.co.uk/"
                 target="_blank"
                 rel="noopener noreferrer">{{ __("Business support Northern Ireland", props.language) }}
-              </a>
-            </p>
-          {% else %}
-            {% if props.country === "england" and props.language === "en" %}
-              <p>
-                <a
+          </a>
+        </p>
+      {% else %}
+        {% if props.country === "england" and props.language === "en" %}
+          <p>
+            <a
                   class="govuk-link"
                   id="businessSupportHelplineEnglishLink"
                   href="https://www.gov.uk/business-support-helpline"
                   target="_blank"
                   rel="noopener noreferrer">{{ __("Business support & helpline", props.language) }}
-                </a>
-                <span class="govuk-body-s govuk-!-padding-left-1">or contact the Business Support Helpline on 0800 998 1098<span>
-              </p>
+            </a>
+            <span class="govuk-body-s govuk-!-padding-left-1">or contact the Business Support Helpline on 0800 998 1098<span>
+            </p>
             {% endif %}
           {% endif %}
           {% if props.language === "cy" %}
