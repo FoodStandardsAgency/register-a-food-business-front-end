@@ -1,31 +1,48 @@
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% extends "layout.njk" %}
 {% block content %}
+{{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
-      {{ govukTextarea({
-            name: "business_other_details",
-            id: "business_other_details",
-            value: props.cumulativeFullAnswers.business_other_details,
-            "errorMessage": { "text": __(props.validatorErrors.business_other_details, props.language) } if props.validatorErrors.business_other_details,
-            label: {
-                text: __("Other details", props.language),
-                classes: "govuk-label--l",
-                isPageHeading: true
-            },
-            hint: {
-                text: __("Is there anything else you need to tell us about this establishment for example what type of food you are planning to sell and what food handling or processing methods you plan to use (optional)", props.language)
-            }
-        }) }}
-      {{ govukButton({
-            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
+	    {% call govukFieldset({
+      describedBy: "business_other_details",
+        legend: {
+          text: __("Other details", props.language),
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+        }
+        }) %}
+      {% set html %}
+      <p class="govuk-body">{{ __("Tell us more about your food business, for example:", props.language) }}</p>
+      <div class="govuk-label">
+        <ul style="margin-block-start: 0; margin-block-end: 1em">
+          <li>{{ __("The type of food you are planning to sell", props.language) }}</li>
+          <li>{{ __("Is this a new food business or one you are taking over?", props.language) }}</li>
+          <li>{{ __("Food handling/processing methods you plan to use", props.language) }}</li>
+          <li>{{ __("Number of staff", props.language) }}</li>
+          <li>{{ __("Anything else", props.language) }}</li>
+        </ul>
+      </div>
+      {% endset %}
+		  {{ govukTextarea({
+        "label": { "html": html },
+        "id": "business_other_details",
+        "value": props.cumulativeFullAnswers.business_other_details,
+        "name": "business_other_details",
+        "errorMessage": {
+        "text": __(props.validatorErrors.business_other_details, props.language)} if props.validatorErrors.business_other_details
         }) }}
       {% endcall %}
+	    {{ govukButton({
+            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
+        }) }}
+      {%- endcall %}
     </div>
   </div>
 {% endblock %}
