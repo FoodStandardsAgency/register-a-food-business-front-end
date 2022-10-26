@@ -490,7 +490,7 @@
   "accessibility-link": "https://www.food.gov.uk/cy/arall/datganiad-hygyrchedd-ar-gyfer-y-gwasanaeth-cofrestru-busnesau-bwyd",
   "cookies-link": "https://www.food.gov.uk/cy/polisi-cwcis",
   "privacy-link": "https://www.food.gov.uk/cy/amdanom-ni/hysbysiad-preifatrwydd-cofrestru-busnes-bwyd",
-  "feedback-form": "https://forms.office.com/r/6YcpamaMnL",
+  "feedback-form": "https://forms.office.com/r/k8E8Yz2w5t",
   "import/export-link": "https://www.food.gov.uk/cy/canllawiau-busnes/mewnforion-allforion",
   "change-language": "?lang=en",
   "Change Language": "English",
@@ -619,5 +619,11 @@
   "Remove": "Tynnu",
   "For example, SW1H 9EX": "Er enghraifft, SW1H 9EX",
   "open at weekends in June and August between 10:00 and 19:00": "ar agor ar benwythnosau ym mis Mehefin a mis Awst rhwng 10:00 a 19:00",
-  "home caterer": "arlwywr cartref"
+  "home caterer": "arlwywr cartref",
+  "Tell us more about your food business, for example:":"Rhowch ragor o wybodaeth i ni am eich busnes bwyd, er enghraifft:",
+  "The type of food you are planning to sell":"Y math o fwyd rydych yn bwriadu ei werthu",
+  "Is this a new food business or one you are taking over?":"Ai busnes bwyd newydd yw hwn neu ydych yn cymryd yr awenau mewn busnes bwyd sydd eisoes yn bodoli?",
+  "Food handling/processing methods you plan to use":"Dulliau trin/prosesu bwyd rydych yn bwriadu eu defnyddio",
+  "Number of staff":"Nifer y staff",
+  "Anything else":"Unrhyw beth arall"
 }
