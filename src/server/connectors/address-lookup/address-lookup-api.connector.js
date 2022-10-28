@@ -2,7 +2,7 @@
  * @module connectors/address-lookup-api
  */
 
-const axios = require("axios").default;
+const axios = require("axios");
 axios.defaults.validateStatus = () => true;
 const HttpsProxyAgent = require("https-proxy-agent");
 const {
