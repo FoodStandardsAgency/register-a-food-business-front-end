@@ -2,7 +2,7 @@ const {
   establishConnectionToCosmos,
   closeCosmosConnection
 } = require("../src/server/connectors/cosmos.client");
-const axios = require("axios").default;
+const axios = require("axios");
 axios.defaults.validateStatus = () => true;
 const { logEmitter } = require("../src/server/services/logging.service");
 const {
