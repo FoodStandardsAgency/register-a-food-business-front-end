@@ -55,18 +55,18 @@ describe("Registration service", () => {
   describe("When given a valid request", () => {
     it("should return 200 response", async () => {
       validBody.local_council_url = "cardiff";
-      const result = await sendRequest(JSON.stringify(validBody));
+      const result = await sendRequest(validBody);
 
       expect(result.status).toBe(200);
     });
 
     describe("given a local council that manages hygiene and standards", () => {
-      it("should return a json function with the required data", async () => {
+      it("should return a data object with the required data", async () => {
         validBody.local_council_url = "cardiff";
-        const result = await sendRequest(JSON.stringify(validBody));
+        const result = await sendRequest(validBody);
 
-        expect(result.json).toBeDefined();
-        const resultJson = result.json();
+        expect(result.data).toBeDefined();
+        const resultJson = result.data;
         expect(resultJson.regId).toBeDefined();
         expect(resultJson["fsa-rn"]).toBeDefined();
         expect(resultJson.tascomiResponse.id).toBeDefined();
@@ -84,12 +84,12 @@ describe("Registration service", () => {
     });
 
     describe("given a local council that has a separate council for standards", () => {
-      it("should return a json function with the required data", async () => {
+      it("should return a data object with the required data", async () => {
         validBody.local_council_url = "west-dorset";
-        const result = await sendRequest(JSON.stringify(validBody));
+        const result = await sendRequest(validBody);
 
-        expect(result.json).toBeDefined();
-        const resultJson = result.json();
+        expect(result.data).toBeDefined();
+        const resultJson = result.data;
         expect(resultJson.regId).toBeDefined();
         expect(resultJson["fsa-rn"]).toBeDefined();
         expect(resultJson.tascomiResponse.id).toBeDefined();
@@ -108,13 +108,13 @@ describe("Registration service", () => {
 
   describe("When given an invalid request", () => {
     it("should return 500 response", async () => {
-      const result = await sendRequest(JSON.stringify({ registration: {} }));
+      const result = await sendRequest({ registration: {} });
       expect(result.status).toBe(400);
     });
 
-    it("should return json function with errorCode", async () => {
-      const result = await sendRequest(JSON.stringify({ registration: {} }));
-      expect(result.json().errorCode).toBeDefined();
+    it("should return data object with errorCode", async () => {
+      const result = await sendRequest({ registration: {} });
+      expect(result.data.errorCode).toBeDefined();
     });
   });
 });

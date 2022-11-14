@@ -2,7 +2,8 @@
  * @module connectors/address-lookup-api
  */
 
-const fetch = require("node-fetch");
+const axios = require("axios");
+axios.defaults.validateStatus = () => true;
 const HttpsProxyAgent = require("https-proxy-agent");
 const {
   ADDRESS_API_URL_BASE,
@@ -12,6 +13,9 @@ const {
 } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 const { addressLookupDouble } = require("./address-lookup-api.double");
+const {
+  removeOrganisationFromAddressLookup
+} = require("./removeOrganisationFromAddressLookup");
 
 /**
  * Fetches addresses from the address lookup API for the given postcode
@@ -35,7 +39,7 @@ const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
   if (DOUBLE_MODE === "true") {
     const firstRes = addressLookupDouble(postcode, ADDRESS_API_URL_QUERY);
     if (firstRes.status === 200) {
-      firstJson = firstRes.json();
+      firstJson = firstRes.data;
     } else {
       logEmitter.emit(
         "functionFail",
@@ -59,7 +63,7 @@ const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
     "address-lookup-api.connector",
     "getAddressByPostcode"
   );
-  return firstJson;
+  return removeOrganisationFromAddressLookup(firstJson);
 };
 
 /**
@@ -70,31 +74,42 @@ const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
  * @returns {object} API response object
  */
 const fetchUsingPostcoderPremium = async (postcode) => {
-  logEmitter.emit(
-    "functionCall",
-    "address-lookup-api.connector",
-    "fetchUsingPostcoderPremium",
-    postcode
-  );
+  try {
+    logEmitter.emit(
+      "functionCall",
+      "address-lookup-api.connector",
+      "fetchUsingPostcoderPremium",
+      postcode
+    );
 
-  const options = { method: "GET" };
-  if (process.env.HTTP_PROXY) {
-    options.agent = new HttpsProxyAgent(process.env.HTTP_PROXY);
-  }
-  const response = await fetch(
-    `${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`,
-    options
-  );
-
-  if (response.status === 200) {
-    return response.json();
-  } else {
+    const options = { method: "GET" };
+    if (process.env.HTTP_PROXY) {
+      options.httpsAgent = new HttpsProxyAgent(process.env.HTTP_PROXY);
+      // https://github.com/axios/axios/issues/2072#issuecomment-609650888
+      options.proxy = false;
+    }
+    const response = await axios(
+      `${ADDRESS_API_URL_BASE}/${postcode}?${ADDRESS_API_URL_QUERY}`,
+      options
+    );
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      logEmitter.emit(
+        "functionFail",
+        "address-lookup-api.connector",
+        "fetchUsingPostcoderPremium",
+        `Address lookup API responded with non-200 status: ${response.status} - ${response.statusText}`
+      );
+    }
+  } catch (err) {
     logEmitter.emit(
       "functionFail",
       "address-lookup-api.connector",
       "fetchUsingPostcoderPremium",
-      `Address lookup API responded with non-200 status: ${response.status} - ${response.statusText}`
+      err
     );
+    return [];
   }
 };
 
@@ -114,15 +129,17 @@ const fetchUsingPostcoderStandard = async (postcode) => {
   );
   const options = { method: "GET" };
   if (process.env.HTTP_PROXY) {
-    options.agent = new HttpsProxyAgent(process.env.HTTP_PROXY);
+    options.httpsAgent = new HttpsProxyAgent(process.env.HTTP_PROXY);
+    // https://github.com/axios/axios/issues/2072#issuecomment-609650888
+    options.proxy = false;
   }
 
-  const response = await fetch(
+  const response = await axios(
     `${ADDRESS_API_URL_BASE_STANDARD}/uk/${postcode}?${ADDRESS_API_URL_QUERY_STANDARD}`,
     options
   );
   if (response.status === 200) {
-    return response.json();
+    return response.data;
   } else {
     logEmitter.emit(
       "functionFail",

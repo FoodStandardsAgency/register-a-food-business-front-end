@@ -26,7 +26,7 @@ module.exports = (req) => {
       ? req.cookies.acceptAllCookies
       : undefined;
 
-  const csrfToken = req.csrfToken();
+  const csrfToken = req && req.csrfToken && req.csrfToken();
 
   const cumulativeFullAnswers =
     req && req.session && req.session.cumulativeFullAnswers

@@ -61,35 +61,44 @@ const newRouter = () => {
         // (This wipes the user's data, allowing for a clean slate in the new registration)
         if (page === "index") {
           req.session.regenerate(async () => {
-            req.session.council = req.params.lc;
-            req.session.pathConfig = await getPathConfigByVersion(
-              REGISTRATION_DATA_VERSION
-            );
-            const browserInfo = getBrowserInfo(req.headers["user-agent"]);
-            Object.assign(req.session, req.session, { ...browserInfo });
-            const { country, local_council } = await getCouncilData(
-              req.params.lc
-            );
-            Object.assign(req.session, { country }, { lcName: local_council });
-
-            if (MAINTENANCE_MODE_BLOCK_NEW === "true") {
-              logEmitter.emit(
-                "functionSuccessWith",
-                "Routes",
-                "/new route",
-                "Maintenance Mode (Block New Users) Active. Rendering page: /maintenance"
+            try {
+              req.session.council = req.params.lc;
+              req.session.pathConfig = await getPathConfigByVersion(
+                REGISTRATION_DATA_VERSION
               );
-              res.render("maintenance");
-            } else {
-              logEmitter.emit(
-                "functionSuccessWith",
-                "Routes",
-                "/new route",
-                "Session regenerated. Rendering page: /index"
+              const browserInfo = getBrowserInfo(req.headers["user-agent"]);
+              Object.assign(req.session, req.session, { ...browserInfo });
+              const { country, local_council } = await getCouncilData(
+                req.params.lc
+              );
+              Object.assign(
+                req.session,
+                { country },
+                { lcName: local_council }
               );
 
-              var props = PropsGenerator(req);
-              res.render("index", { props });
+              if (MAINTENANCE_MODE_BLOCK_NEW === "true") {
+                logEmitter.emit(
+                  "functionSuccessWith",
+                  "Routes",
+                  "/new route",
+                  "Maintenance Mode (Block New Users) Active. Rendering page: /maintenance"
+                );
+                res.render("maintenance");
+              } else {
+                logEmitter.emit(
+                  "functionSuccessWith",
+                  "Routes",
+                  "/new route",
+                  "Session regenerated. Rendering page: /index"
+                );
+
+                var props = PropsGenerator(req);
+                res.render("index", { props });
+              }
+            } catch (err) {
+              logEmitter.emit("functionFail", "Routes", "/new route", err);
+              next(err);
             }
           });
         } else {

@@ -2,7 +2,8 @@ const {
   establishConnectionToCosmos,
   closeCosmosConnection
 } = require("../src/server/connectors/cosmos.client");
-const fetch = require("node-fetch");
+const axios = require("axios");
+axios.defaults.validateStatus = () => true;
 const { logEmitter } = require("../src/server/services/logging.service");
 const {
   transformAnswersForSubmit
@@ -23,20 +24,20 @@ const {
 
 /* Re-submission request to the registration service, doesn't include session _id as there will be no session in 
   the dataabase for the registration service to update anymore.*/
-const sendRequest = async (body) => {
+const sendRequest = async (data) => {
   const headers = {
     "Content-Type": "application/json",
     "api-secret": API_SECRET,
     "client-name": CLIENT_NAME,
     "registration-data-version": REGISTRATION_DATA_VERSION
   };
-  const res = await fetch(SUBMIT_URL, {
+  const res = await axios(SUBMIT_URL, {
     method: "POST",
     headers,
-    body: JSON.stringify(body)
+    data
   });
 
-  return res.json();
+  return res.data;
 };
 
 // Filter sessions for those that were 'successfully. submitted but never saved to back-end cache.
