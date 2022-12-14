@@ -10,13 +10,13 @@
       <h1 id="main-heading" class="govuk-heading-l">{{ __("This service is currently unavailable", props.language) }}</h1>
       <p class="govuk-body">{{ __("Sorry about that, we seem to be experiencing some difficulties.", props.language) }}</p>
       <p class="govuk-body">{{ __("Please try again later.", props.language) }}</p>
-      <button
+      <a
         class="govuk-button"
         data-module="govuk-button"
         href="https://www.food.gov.uk/business-guidance/register-a-food-business"
         id="server-error-form">
         {{ __("Return to food.gov.uk", props.language) }}
-      </button>
+      </a>
     </div>
   </div>
 {% endblock %}
