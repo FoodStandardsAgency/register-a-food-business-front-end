@@ -9,7 +9,12 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% call postForm("/findaddress" + props.currentPage, props.csrfToken, props.language) -%}
+
+      {% set editMode = "/continue" + props.currentPage %}
+      {% if props.editModeFirstPage or props.cumulativeFullAnswers.establishment_type %}
+        {% set editMode = "/findaddress" + props.currentPage %}
+      {% endif %}
+      {% call postForm(editMode, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
       {% call govukFieldset({
                 legend: {
@@ -35,7 +40,7 @@
                     "errorMessage":  { "text": __(props.validatorErrors.establishment_postcode_find, props.language) } if props.validatorErrors.establishment_postcode_find
                 }) }}
       {{ govukButton({
-            text: __("Find address", props.language)
+            text: __("Find LA", props.language)
         }) }}
       {% endcall %}
     </div>
