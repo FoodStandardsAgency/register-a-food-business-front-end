@@ -74,11 +74,12 @@
             "label": {
             "text": __("Postcode", props.language)
             },
+            "attributes": {"readonly": "readonly"},
             "id": "establishment_postcode",
             "name": "establishment_postcode",
             "classes": "govuk-label--l",
             "autoComplete": "postal-code",
-            "value": props.cumulativeFullAnswers.establishment_postcode,
+            "value": props.cumulativeFullAnswers.establishment_postcode_find,
             "errorMessage": { "text": __(props.validatorErrors.establishment_postcode, props.language) } if props.validatorErrors.establishment_postcode
         }) }}
       {{ govukButton({
