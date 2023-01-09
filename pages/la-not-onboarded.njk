@@ -1,0 +1,20 @@
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% extends "layout.njk" %}
+{% set props = mergeObjects(props, {backToStart: true}) %}
+{% block content %}
+  {{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 id="main-heading" class="govuk-heading-l">{{ __("LA not onboarded", props.language) }}</h1>
+      <a
+        class="govuk-button"
+        data-module="govuk-button"
+        href="https://www.gov.uk/food-business-registration"
+        id="server-error-form">
+        {{ __("Food business registration - gov.uk", props.language) }}
+      </a>
+    </div>
+  </div>
+{% endblock %}

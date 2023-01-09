@@ -1,0 +1,29 @@
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+{% from "govuk/components/skip-link/macro.njk" import govukSkipLink %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/footer/macro.njk" import govukFooter %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% extends "layout.njk" %}
+{% set props = mergeObjects(props, {hideback: true}) %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-m">{{ __("Registering Local Authority", props.language) }}</h2>
+      <p class="govuk-body">
+        <p class="govuk-body">
+          <b>{{ props.lcName }}</b>
+          {{ __("is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this ", props.language) }}
+          <a class="govuk-link" href="https://www.gov.uk/food-business-registration">{{ __("Food Business Registration", props.language) }}</a>
+          {{ __(" link to check using the location or site of your food business.", props.language) }}</p>
+        {% call postForm("/continue/la-established", props.csrfToken, props.language) -%}
+        {{ govukButton({
+        text:  __("Continue", props.language)
+      }) }}
+        {%- endcall %}
+      </div>
+    </div>
+  {% endblock %}
