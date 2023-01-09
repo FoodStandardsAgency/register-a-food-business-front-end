@@ -26,10 +26,8 @@
       <h2 class="govuk-heading-m">{{ __("Registering Local Authority", props.language) }}</h2>
       <p class="govuk-body">
         <p class="govuk-body">
-          <b>{{ props.lcName }}</b>
-          {{ __("is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this ", props.language) }}
-          <a class="govuk-link" href="https://www.gov.uk/food-business-registration">{{ __("Food Business Registration", props.language) }}</a>
-          {{ __(" link to check using the location or site of your food business.", props.language) }}</p>
+          {{ __("Is the local authority your registration will be sent to.", props.language) }}
+        </p>
         {% call postForm("/continue/index", props.csrfToken, props.language) -%}
         {{ govukButton({
         text:  __("Begin registration", props.language),
