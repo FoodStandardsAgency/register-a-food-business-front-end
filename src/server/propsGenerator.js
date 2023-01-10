@@ -36,7 +36,7 @@ module.exports = (req) => {
   const language = i18n.getLocale(req);
   // req && req.body && req.body.language ? req.body.language : "en"; //  Is this even required anymore?
 
-  const currentPageWithQuery = `/${req.url.split("/")[2]}`;
+  const currentPageWithQuery = `/${req.url.split("/")[1]}`;
 
   const fullCurrentPage = req.url;
 

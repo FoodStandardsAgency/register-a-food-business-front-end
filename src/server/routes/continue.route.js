@@ -16,7 +16,7 @@ const continueRouter = () => {
       "functionCallWith",
       "Routes",
       "/continue route",
-      `Originator: ${req.session.council}/${req.params.originator}`
+      `Originator: ${req.params.originator}`
     );
 
     const response = continueController(
@@ -48,7 +48,7 @@ const continueRouter = () => {
       if (response.redirectRoute === "/submit") {
         res.redirect("/submit");
       } else {
-        res.redirect(`/new/${req.session.council}${response.redirectRoute}`);
+        res.redirect(`/new${response.redirectRoute}`);
       }
     });
   });

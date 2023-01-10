@@ -218,8 +218,8 @@ const partnerDetailsRouter = () => {
   router.get("/back", (req, res) => {
     logEmitter.emit("functionCall", "Routes", "partnership/back route");
     const redirectUrl = isEditMode(req.query)
-      ? `/new/${req.session.council}/partner-name?edit=partner-name`
-      : `/new/${req.session.council}/partner-name`;
+      ? `/new/partner-name?edit=partner-name`
+      : `/new/partner-name`;
     logEmitter.emit(
       "functionSuccessWith",
       "Routes",

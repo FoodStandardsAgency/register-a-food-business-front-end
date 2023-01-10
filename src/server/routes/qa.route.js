@@ -1,6 +1,6 @@
 /**
  * The qa router adds POST body data to the user's session and redirects to a specified page.
- * Routes: /qa/:lc/:target
+ * Routes: /qa/:target
  * @module routers/qa
  */
 
@@ -11,8 +11,8 @@ const { QA_KEY } = require("../config");
 const qaRouter = () => {
   const router = Router();
 
-  router.get("/:lc/:target", (req, res) => {
-    logEmitter.emit("functionCall", "Routes", "/qa/:lc/:target route");
+  router.get("/:target", (req, res) => {
+    logEmitter.emit("functionCall", "Routes", "/qa/:target route");
     if (req.query.QA_KEY && req.query.QA_KEY === QA_KEY) {
       req.session.council = req.params.lc;
       const target = req.params.target;
@@ -21,17 +21,17 @@ const qaRouter = () => {
       logEmitter.emit(
         "functionSuccessWith",
         "Routes",
-        "/qa/:lc/:target route",
+        "/qa/:target route",
         target
       );
       req.session.save(() => {
-        res.redirect(`/new/${req.session.council}/${target}`);
+        res.redirect(`/new/${target}`);
       });
     } else {
       logEmitter.emit(
         "functionFail",
         "Routes",
-        "/qa/:lc/:target route",
+        "/qa/:target route",
         "403 not permitted"
       );
       res.status(403);

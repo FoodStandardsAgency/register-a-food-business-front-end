@@ -21,7 +21,7 @@ const submitRouter = () => {
           "/submit route",
           "/summary-confirmation"
         );
-        res.redirect(`/new/${req.session.council}/summary-confirmation`);
+        res.redirect(`/new/summary-confirmation`);
       } else {
         if (!req.session.submissionPending) {
           req.session.submissionPending = true;
@@ -66,9 +66,7 @@ const submitRouter = () => {
                 logEmitter.emit("functionFail", "Routes", "/submit route", err);
                 throw err;
               }
-              res.redirect(
-                `/new/${req.session.council}${controllerResponse.redirectRoute}`
-              );
+              res.redirect(`/new${controllerResponse.redirectRoute}`);
             });
           } else {
             req.session.submissionError = controllerResponse.submissionError;
@@ -77,9 +75,7 @@ const submitRouter = () => {
                 logEmitter.emit("functionFail", "Routes", "/submit route", err);
                 throw err;
               }
-              res.redirect(
-                `/new/${req.session.council}${controllerResponse.redirectRoute}`
-              );
+              res.redirect(`/new${controllerResponse.redirectRoute}`);
             });
           }
         }

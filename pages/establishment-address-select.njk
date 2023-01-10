@@ -22,9 +22,9 @@
       {% endcall %}
       {{ establishmentHiddenDetails(props) }}
       {% if props.editModeFirstPage %}
-        {% set editModeFirstPage = "/new/" + props.council + "/establishment-address?edit=establishment-address" %}
+        {% set editModeFirstPage = "/new/establishment-address?edit=establishment-address" %}
       {% else %}
-        {% set editModeFirstPage = "/new/" + props.council + "/establishment-address" %}
+        {% set editModeFirstPage = "/new/establishment-address" %}
       {% endif %}
       {{ govukSummaryList({
         classes: 'govuk-summary-list--no-border',
@@ -56,9 +56,9 @@
         items: props.addressLookups.establishment_postcode_find | addressSelectItems
       }) }}
       {% if props.editModeFirstPage %}
-        {% set editModeFirstPage = "/new/" + props.council + "/establishment-address-manual?edit=establishment-address-manual" %}
+        {% set editModeFirstPage = "/new/establishment-address-manual?edit=establishment-address-manual" %}
       {% else %}
-        {% set editModeFirstPage = "/new/" + props.council + "/establishment-address-manual" %}
+        {% set editModeFirstPage = "/new/establishment-address-manual" %}
       {% endif %}
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
@@ -67,14 +67,14 @@
         </div>
       </div>
       <br>
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-full">
-            {{ govukButton({
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+          {{ govukButton({
               text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
           }) }}
-          </div>
         </div>
-        {% endcall %}
       </div>
+      {% endcall %}
     </div>
-  {% endblock %}
+  </div>
+{% endblock %}

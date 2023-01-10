@@ -37,10 +37,10 @@ const editRouter = () => {
         throw err;
       }
       if (controllerResponse.redirectRoute === "/registration-summary") {
-        res.redirect(`/new/${req.session.council}/registration-summary`);
+        res.redirect(`/new/registration-summary`);
       } else {
         res.redirect(
-          `/new/${req.session.council}${controllerResponse.redirectRoute}?edit=${req.query.edit}`
+          `/new${controllerResponse.redirectRoute}?edit=${req.query.edit}`
         );
       }
     });
@@ -55,9 +55,7 @@ const editRouter = () => {
       req.session.cumulativeEditAnswers
     );
 
-    res.redirect(
-      `/new/${req.session.council}${controllerResponse}?edit=${req.query.edit}`
-    );
+    res.redirect(`/new${controllerResponse}?edit=${req.query.edit}`);
   });
 
   router.get("/:target", (req, res) => {
@@ -66,7 +64,7 @@ const editRouter = () => {
     const target = req.params.target;
 
     logEmitter.emit("functionSuccess", "Routes", "/edit/:target route");
-    res.redirect(`/new/${req.session.council}/${target}?edit=${target}`);
+    res.redirect(`/new/${target}?edit=${target}`);
   });
 
   return router;

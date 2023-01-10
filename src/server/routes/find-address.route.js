@@ -50,9 +50,7 @@ const findAddressRouter = () => {
           ? `?edit=${response.redirectRoute.substring(1)}`
           : "";
 
-        res.redirect(
-          `/new/${req.session.council}${response.redirectRoute}${query}`
-        );
+        res.redirect(`/new${response.redirectRoute}${query}`);
       });
     } catch (err) {
       logEmitter.emit(

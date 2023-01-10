@@ -24,15 +24,6 @@ const { Cache } = require("../services/cache.service");
 const { getBrowserInfo } = require("../services/browser-support.service");
 const PropsGenerator = require("../propsGenerator");
 
-let allowedCouncils = null;
-
-const allowedCouncilsCache = Cache(
-  LC_CACHE_TIME_TO_LIVE,
-  false,
-  true,
-  getLocalCouncils
-);
-
 const newRouter = () => {
   const router = Router();
 
@@ -48,104 +39,70 @@ const newRouter = () => {
     });
   }
 
-  router.get("/:lc/:page?", async (req, res, next) => {
+  router.get("/:page?", async (req, res, next) => {
+    console.log(PropsGenerator(req));
     logEmitter.emit("functionCall", "Routes", "/new route");
     try {
-      allowedCouncils = await allowedCouncilsCache.get();
+      const page = req.params.page || "index";
 
-      // Check that the council is supported
-      if (allowedCouncils.includes(req.params.lc)) {
-        const page = req.params.page || "index";
-
-        // If the requested page is the homepage, regenerate the session before rendering.
-        // (This wipes the user's data, allowing for a clean slate in the new registration)
-        if (page === "index") {
-          req.session.regenerate(async () => {
-            try {
-              req.session.council = req.params.lc;
-              req.session.pathConfig = await getPathConfigByVersion(
-                REGISTRATION_DATA_VERSION
-              );
-              const browserInfo = getBrowserInfo(req.headers["user-agent"]);
-              Object.assign(req.session, req.session, { ...browserInfo });
-              const { country, local_council } = await getCouncilData(
-                req.params.lc
-              );
-              Object.assign(
-                req.session,
-                { country },
-                { lcName: local_council }
-              );
-
-              if (MAINTENANCE_MODE_BLOCK_NEW === "true") {
-                logEmitter.emit(
-                  "functionSuccessWith",
-                  "Routes",
-                  "/new route",
-                  "Maintenance Mode (Block New Users) Active. Rendering page: /maintenance"
-                );
-                res.render("maintenance");
-              } else {
-                logEmitter.emit(
-                  "functionSuccessWith",
-                  "Routes",
-                  "/new route",
-                  "Session regenerated. Rendering page: /index"
-                );
-
-                var props = PropsGenerator(req);
-                res.render("index", { props });
-              }
-            } catch (err) {
-              logEmitter.emit("functionFail", "Routes", "/new route", err);
-              next(err);
-            }
-          });
-        } else {
-          // Save council to session if not yet there
-          if (!req.session.council) {
-            req.session.council = req.params.lc;
-          }
-          // Save the path config to the session if not yet there
-          if (!req.session.pathConfig) {
+      // If the requested page is the homepage, regenerate the session before rendering.
+      // (This wipes the user's data, allowing for a clean slate in the new registration)
+      if (page === "index") {
+        req.session.regenerate(async () => {
+          try {
             req.session.pathConfig = await getPathConfigByVersion(
               REGISTRATION_DATA_VERSION
             );
-          }
-          // Save the browser support to the session if not there yet
-          if (!req.session.isBrowserSupported) {
             const browserInfo = getBrowserInfo(req.headers["user-agent"]);
             Object.assign(req.session, req.session, { ...browserInfo });
-          }
-          // Save the country and council name to session if not yet there
-          if (!req.session.country) {
-            const { country, local_council } = await getCouncilData(
-              req.params.lc
-            );
-            Object.assign(req.session, { country }, { lcName: local_council });
-          }
-          // Transform the data into summary format on pages where it is required and save to session
-          if (
-            page === "registration-summary" ||
-            page === "summary-confirmation"
-          ) {
-            req.session.transformedData = transformAnswersForSummary(
-              req.session.cumulativeFullAnswers,
-              req.session.addressLookups
-            );
 
-            req.session.save(() => {
+            if (MAINTENANCE_MODE_BLOCK_NEW === "true") {
               logEmitter.emit(
                 "functionSuccessWith",
                 "Routes",
                 "/new route",
-                `Rendering page: ${page}`
+                "Maintenance Mode (Block New Users) Active. Rendering page: /maintenance"
+              );
+              res.render("maintenance");
+            } else {
+              logEmitter.emit(
+                "functionSuccessWith",
+                "Routes",
+                "/new route",
+                "Session regenerated. Rendering page: /index"
               );
 
-              res.render(`${page}`, { props: PropsGenerator(req) });
-            });
-            // For all other scenarios, render the requested page.
-          } else {
+              var props = PropsGenerator(req);
+              res.render("index", { props });
+            }
+          } catch (err) {
+            logEmitter.emit("functionFail", "Routes", "/new route", err);
+            next(err);
+          }
+        });
+      } else {
+        // Save the path config to the session if not yet there
+        if (!req.session.pathConfig) {
+          req.session.pathConfig = await getPathConfigByVersion(
+            REGISTRATION_DATA_VERSION
+          );
+        }
+        // Save the browser support to the session if not there yet
+        if (!req.session.isBrowserSupported) {
+          const browserInfo = getBrowserInfo(req.headers["user-agent"]);
+          Object.assign(req.session, req.session, { ...browserInfo });
+        }
+        // Transform the data into summary format on pages where it is required and save to session
+        if (
+          page === "registration-summary" ||
+          page === "summary-confirmation"
+        ) {
+          req.session.transformedData = transformAnswersForSummary(
+            req.session.cumulativeFullAnswers,
+            req.session.addressLookups
+          );
+
+          req.session.save(() => {
             logEmitter.emit(
               "functionSuccessWith",
               "Routes",
@@ -154,16 +111,18 @@ const newRouter = () => {
             );
 
             res.render(`${page}`, { props: PropsGenerator(req) });
-          }
+          });
+          // For all other scenarios, render the requested page.
+        } else {
+          logEmitter.emit(
+            "functionSuccessWith",
+            "Routes",
+            "/new route",
+            `Rendering page: ${page}`
+          );
+
+          res.render(`${page}`, { props: PropsGenerator(req) });
         }
-      } else {
-        logEmitter.emit(
-          "functionSuccessWith",
-          "Routes",
-          "/new route",
-          `Unsupported council: "${req.params.lc}". Rendering error page.`
-        );
-        res.render("unsupported-council");
       }
     } catch (err) {
       logEmitter.emit("functionFail", "Routes", "/new route", err);
