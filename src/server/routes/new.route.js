@@ -132,7 +132,6 @@ const newRouter = () => {
             props["localAuthorities"] = await localAuthoritiesCache.get();
           }
           res.render(`${page}`, { props: props });
-          console.log(props); // REMOVE
         }
       }
     } catch (err) {

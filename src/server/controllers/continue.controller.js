@@ -45,16 +45,24 @@ const continueController = (
     allValidationErrors: {},
     redirectRoute: null,
     cumulativeFullAnswers: {},
-    switches: {},
-    localAuthorityID: null,
-    localAuthorityName: ""
+    switches: {}
   };
 
   try {
     if (currentPage === "/index") {
       statusEmitter.emit("incrementCount", "registrationsStarted");
     }
+
     const trimmedNewAnswers = JSON.parse(JSON.stringify(newAnswers));
+
+    // If page is Local authority selector, so assing Local authoritu ID and name
+    if (currentPage === "/la-selector") {
+      const localAuthority = trimmedNewAnswers.local_authority.split(","); // Split by coma
+      trimmedNewAnswers["local_authority_id"] = localAuthority[0]; // Extract ID
+      localAuthority.shift(); // Remove ID from array
+      trimmedNewAnswers["local_authority_name"] = localAuthority.join(); // Join array to string, in case Local authority name had coma
+      delete trimmedNewAnswers["local_authority"];
+    }
 
     for (let answer in trimmedNewAnswers) {
       trimmedNewAnswers[answer] = trimmedNewAnswers[answer].trim();
@@ -62,38 +70,30 @@ const continueController = (
 
     const trimmedNewAnswersArray = Object.values(trimmedNewAnswers);
 
-    // If page is Local authority selector, so assing Local authoritu ID and name
-    if (currentPage === "/la-selector") {
-      const localAuthority = trimmedNewAnswersArray[0].split(","); // Split by coma
-      controllerResponse.localAuthorityID = localAuthority[0]; // Extract ID
-      localAuthority.shift(); // Remove ID from array
-      controllerResponse.localAuthorityName = localAuthority.join(); // Join array to string, in case Local authority name had coma
-    } else {
-      let cleanedPreviousAnswers = Object.assign({}, previousAnswers);
+    let cleanedPreviousAnswers = Object.assign({}, previousAnswers);
 
-      // remove any answers that were previously given a truthy value but have since been emptied
-      cleanedPreviousAnswers = cleanEmptiedAnswers(
-        previousAnswers,
-        trimmedNewAnswersArray,
-        currentPage
-      );
+    // remove any answers that were previously given a truthy value but have since been emptied
+    cleanedPreviousAnswers = cleanEmptiedAnswers(
+      previousAnswers,
+      trimmedNewAnswersArray,
+      currentPage
+    );
 
-      controllerResponse.cumulativeFullAnswers = Object.assign(
-        {},
-        cleanedPreviousAnswers,
-        trimmedNewAnswers
-      );
+    controllerResponse.cumulativeFullAnswers = Object.assign(
+      {},
+      cleanedPreviousAnswers,
+      trimmedNewAnswers
+    );
 
-      controllerResponse.switches = Object.assign(
-        {},
-        cleanSwitches(controllerResponse.cumulativeFullAnswers, switches)
-      );
+    controllerResponse.switches = Object.assign(
+      {},
+      cleanSwitches(controllerResponse.cumulativeFullAnswers, switches)
+    );
 
-      controllerResponse.validatorErrors = Object.assign(
-        {},
-        validate(currentPage, trimmedNewAnswers).errors
-      );
-    }
+    controllerResponse.validatorErrors = Object.assign(
+      {},
+      validate(currentPage, trimmedNewAnswers).errors
+    );
 
     if (Object.keys(controllerResponse.validatorErrors).length > 0) {
       // if there are errors, redirect back to the current page
