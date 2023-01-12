@@ -139,6 +139,14 @@ module.exports = (req) => {
         : {},
     council:
       req && req.session && req.session.council ? req.session.council : "",
+    localAuthorityID:
+      req && req.session && req.session.localAuthorityID
+        ? req.session.localAuthorityID
+        : null,
+    localAuthorityName:
+      req && req.session && req.session.localAuthorityName
+        ? req.session.localAuthorityName
+        : "",
     isBrowserSupported:
       req && req.session && req.session.isBrowserSupported
         ? req.session.isBrowserSupported
@@ -155,5 +163,6 @@ module.exports = (req) => {
   };
 
   // The getInitialProps function (a method of the 'wrapper' function) returns the initialProps object
+  console.log(initialProps); // remove log
   return initialProps;
 };

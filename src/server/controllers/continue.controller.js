@@ -45,14 +45,15 @@ const continueController = (
     allValidationErrors: {},
     redirectRoute: null,
     cumulativeFullAnswers: {},
-    switches: {}
+    switches: {},
+    localAuthorityID: null,
+    localAuthorityName: ""
   };
 
   try {
     if (currentPage === "/index") {
       statusEmitter.emit("incrementCount", "registrationsStarted");
     }
-
     const trimmedNewAnswers = JSON.parse(JSON.stringify(newAnswers));
 
     for (let answer in trimmedNewAnswers) {
@@ -61,30 +62,38 @@ const continueController = (
 
     const trimmedNewAnswersArray = Object.values(trimmedNewAnswers);
 
-    let cleanedPreviousAnswers = Object.assign({}, previousAnswers);
+    // If page is Local authority selector, so assing Local authoritu ID and name
+    if (currentPage === "/la-selector") {
+      const localAuthority = trimmedNewAnswersArray[0].split(","); // Split by coma
+      controllerResponse.localAuthorityID = localAuthority[0]; // Extract ID
+      localAuthority.shift(); // Remove ID from array
+      controllerResponse.localAuthorityName = localAuthority.join(); // Join array to string, in case Local authority name had coma
+    } else {
+      let cleanedPreviousAnswers = Object.assign({}, previousAnswers);
 
-    // remove any answers that were previously given a truthy value but have since been emptied
-    cleanedPreviousAnswers = cleanEmptiedAnswers(
-      previousAnswers,
-      trimmedNewAnswersArray,
-      currentPage
-    );
+      // remove any answers that were previously given a truthy value but have since been emptied
+      cleanedPreviousAnswers = cleanEmptiedAnswers(
+        previousAnswers,
+        trimmedNewAnswersArray,
+        currentPage
+      );
 
-    controllerResponse.cumulativeFullAnswers = Object.assign(
-      {},
-      cleanedPreviousAnswers,
-      trimmedNewAnswers
-    );
+      controllerResponse.cumulativeFullAnswers = Object.assign(
+        {},
+        cleanedPreviousAnswers,
+        trimmedNewAnswers
+      );
 
-    controllerResponse.switches = Object.assign(
-      {},
-      cleanSwitches(controllerResponse.cumulativeFullAnswers, switches)
-    );
+      controllerResponse.switches = Object.assign(
+        {},
+        cleanSwitches(controllerResponse.cumulativeFullAnswers, switches)
+      );
 
-    controllerResponse.validatorErrors = Object.assign(
-      {},
-      validate(currentPage, trimmedNewAnswers).errors
-    );
+      controllerResponse.validatorErrors = Object.assign(
+        {},
+        validate(currentPage, trimmedNewAnswers).errors
+      );
+    }
 
     if (Object.keys(controllerResponse.validatorErrors).length > 0) {
       // if there are errors, redirect back to the current page

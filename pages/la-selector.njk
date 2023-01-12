@@ -16,60 +16,32 @@
                   }
             }) %}
             {% endcall %}
-            {% call postForm(props.partnerDetailsSaveFormAction, props.csrfToken, props.language) -%}
+            {% call postForm(props.formAction, props.csrfToken, props.language) -%}
             {{ processedErrorSummary(props.validatorErrors, props.language) }}
+            {% set localAuthoritiesArray = [
+                {
+                    text: ""
+                }
+            ] %}
+            {% for localAuthority in props.localAuthorities %}
+                {% set localAuthoritiesArray = (localAuthoritiesArray.push({
+                    value: [
+                        localAuthority._id, localAuthority.local_council
+                    ],
+                    selected: props.localAuthorityID == localAuthority._id,
+                    text: localAuthority.local_council
+                }), localAuthoritiesArray) %}
+            {% endfor %}
             {{ govukSelect({
-                id: "local-authority",
-                name: "local-authority",
+                id: "local_authority",
+                name: "local_authority",
                 label: {
                     text: "Choose local authority"
                 },
                     hint: {
                     text: "This is some hint"
                 },
-                items: [
-                    {
-                    value: "choose",
-                    text: "Choose location",
-                    selected: true
-                    },
-                    {
-                    value: "eastmidlands",
-                    text: "East Midlands"
-                    },
-                    {
-                    value: "eastofengland",
-                    text: "East of England"
-                    },
-                    {
-                    value: "london",
-                    text: "London"
-                    },
-                    {
-                    value: "northeast",
-                    text: "North East"
-                    },
-                    {
-                    value: "northwest",
-                    text: "North West"
-                    },
-                    {
-                    value: "southeast",
-                    text: "South East"
-                    },
-                    {
-                    value: "southwest",
-                    text: "South West"
-                    },
-                    {
-                    value: "westmidlands",
-                    text: "West Midlands"
-                    },
-                    {
-                    value: "yorkshire",
-                    text: "Yorkshire and the Humber"
-                    }
-                ]
+                items: localAuthoritiesArray
                 }) }}
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-full">

@@ -108,7 +108,7 @@ const getLocalCouncils = async () => {
           { local_council_url: { $ne: null } }
         ]
       })
-      .project({ local_council_url: 1, _id: 0 })
+      .project({ local_council: 1, _id: 1 })
       .toArray();
 
     if (localCouncilUrls.length < 1) {
@@ -119,7 +119,7 @@ const getLocalCouncils = async () => {
         false
       );
     } else {
-      localCouncilUrls = localCouncilUrls.map((res) => res.local_council_url);
+      // localCouncilUrls = localCouncilUrls.map((res) => res.local_council_url);
       statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
       statusEmitter.emit(
         "setStatus",

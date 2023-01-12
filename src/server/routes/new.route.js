@@ -24,6 +24,13 @@ const { Cache } = require("../services/cache.service");
 const { getBrowserInfo } = require("../services/browser-support.service");
 const PropsGenerator = require("../propsGenerator");
 
+const localAuthoritiesCache = Cache(
+  LC_CACHE_TIME_TO_LIVE,
+  false,
+  true,
+  getLocalCouncils
+);
+
 const newRouter = () => {
   const router = Router();
 
@@ -40,7 +47,6 @@ const newRouter = () => {
   }
 
   router.get("/:page?", async (req, res, next) => {
-    console.log(PropsGenerator(req));
     logEmitter.emit("functionCall", "Routes", "/new route");
     try {
       const page = req.params.page || "index";
@@ -121,7 +127,12 @@ const newRouter = () => {
             `Rendering page: ${page}`
           );
 
-          res.render(`${page}`, { props: PropsGenerator(req) });
+          const props = PropsGenerator(req);
+          if (page === "la-selector") {
+            props["localAuthorities"] = await localAuthoritiesCache.get();
+          }
+          res.render(`${page}`, { props: props });
+          console.log(props); // REMOVE
         }
       }
     } catch (err) {
