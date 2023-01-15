@@ -9,7 +9,8 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ __("Submission complete", props.language) }}</h1>
       <p class="govuk-body">{{ __("Thank you for submitting your food business registration.", props.language) }}</p>
-      {% if props.fsaRegistrationNumber and props
+      {% if props
+        .fsaRegistrationNumber and props
         .fsaRegistrationNumber
         .startsWith("tmp_") %}
         {% set html %}
@@ -46,28 +47,28 @@
       {% endif %}
       <div id="sentToCouncilsSection">
         <p class="govuk-body" style="margin-bottom:-0px">{{ __("Your registration has been sent to", props.language) }}</p>
-        {% if props.lcConfig.hygieneAndStandards %}
-          <h2 class="govuk-heading-m" id="hygieneAndStandardsCouncil">{{ props.lcConfig.hygieneAndStandards.local_council }}</h2>
+        {% if props.laConfig.hygieneAndStandards %}
+          <h2 class="govuk-heading-m" id="hygieneAndStandardsCouncil">{{ props.laConfig.hygieneAndStandards.local_council }}</h2>
           <p class="govuk-body">{{ __("Email address", props.language) + ": " }}
-            {{ props.lcConfig.hygieneAndStandards.local_council_email }}</p>
-          {% if props.lcConfig.hygieneAndStandards.local_council_phone_number %}
-            <p class="govuk-body" id="hygieneAndStandardsNumber">{{ __("Phone number", props.language) + ": " + props.lcConfig.hygieneAndStandards.local_council_phone_number }}</p>
+            {{ props.laConfig.hygieneAndStandards.local_council_email }}</p>
+          {% if props.laConfig.hygieneAndStandards.local_council_phone_number %}
+            <p class="govuk-body" id="hygieneAndStandardsNumber">{{ __("Phone number", props.language) + ": " + props.laConfig.hygieneAndStandards.local_council_phone_number }}</p>
           {% endif %}
         {% else %}
-          {% if props.lcConfig.hygiene and props.lcConfig.standards %}
+          {% if props.laConfig.hygiene and props.laConfig.standards %}
             <div>
-              <h2 class="govuk-heading-m" id="hygieneCouncil">{{ props.lcConfig.hygiene.local_council }}</h2>
+              <h2 class="govuk-heading-m" id="hygieneCouncil">{{ props.laConfig.hygiene.local_council }}</h2>
               <p class="govuk-body">{{ __("Email address", props.language) + ": " }}
-                {{ props.lcConfig.hygiene.local_council_email }}</p>
-              {% if props.lcConfig.hygiene.local_council_phone_number %}
-                <p class="govuk-body" id="hygieneNumber">{{ __("Phone number", props.language) + ": " + props.lcConfig.hygiene.local_council_phone_number }}</p>
+                {{ props.laConfig.hygiene.local_council_email }}</p>
+              {% if props.laConfig.hygiene.local_council_phone_number %}
+                <p class="govuk-body" id="hygieneNumber">{{ __("Phone number", props.language) + ": " + props.laConfig.hygiene.local_council_phone_number }}</p>
               {% endif %}
               <p class="govuk-body">{{ __("Responsible local council for food hygiene", props.language) }}</p>
-              <h2 class="govuk-heading-m" id="standardsCouncil">{{ props.lcConfig.standards.local_council }}</h2>
+              <h2 class="govuk-heading-m" id="standardsCouncil">{{ props.laConfig.standards.local_council }}</h2>
               <p class="govuk-body">{{ __("Email address", props.language) + ": " }}
-                {{ props.lcConfig.standards.local_council_email }}</p>
-              {% if props.lcConfig.standards.local_council_phone_number %}
-                <p class="govuk-body" id="standardsNumber">{{ __("Phone number", props.language) + ": " + props.lcConfig.standards.local_council_phone_number }}</p>
+                {{ props.laConfig.standards.local_council_email }}</p>
+              {% if props.laConfig.standards.local_council_phone_number %}
+                <p class="govuk-body" id="standardsNumber">{{ __("Phone number", props.language) + ": " + props.laConfig.standards.local_council_phone_number }}</p>
               {% endif %}
               <p class="govuk-body">{{ __("Responsible local council for food standards", props.language) }}</p>
             </div>
@@ -186,8 +187,7 @@
                   target="_blank"
                   rel="noopener noreferrer">{{ __("Business support & helpline", props.language) }}
             </a>
-            <span class="govuk-body-s govuk-!-padding-left-1">or contact the Business Support Helpline on 0800 998 1098<span>
-            </p>
+            <span class="govuk-body-s govuk-!-padding-left-1">or contact the Business Support Helpline on 0800 998 1098<span></p>
             {% endif %}
           {% endif %}
           {% if props.language === "cy" %}

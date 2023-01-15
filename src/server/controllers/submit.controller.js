@@ -24,7 +24,6 @@ const { revalidateAllAnswers } = require("../services/validation.service");
  * @returns {object} Values for the router to store/update in the session and the page to redirect to.
  */
 const submitController = async (
-  lcUrl,
   submissionData,
   addressLookups,
   regDataVersion,
@@ -37,7 +36,7 @@ const submitController = async (
     submissionDate: "",
     fsaRegistrationNumber: "",
     emailFbo: {},
-    lc_details: {},
+    laConfig: {},
     submissionSucceeded: null
   };
   logEmitter.emit("functionCall", "submit.controller", "submitController");
@@ -51,7 +50,7 @@ const submitController = async (
         submissionData,
         language,
         addressLookups,
-        lcUrl
+        submissionData.local_authority_url
       );
       const response = await submit(transformedData, regDataVersion, sessionId);
       if (response.status) {
@@ -61,7 +60,7 @@ const submitController = async (
           controllerResponse.submissionDate = res.reg_submission_date;
           controllerResponse.fsaRegistrationNumber = res["fsa-rn"];
           controllerResponse.emailFbo = res.email_fbo;
-          controllerResponse.lcConfig = res.lc_config;
+          controllerResponse.laConfig = res.lc_config;
           controllerResponse.submissionSucceeded = true;
           statusEmitter.emit("incrementCount", "submissionsSucceeded");
           statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
@@ -135,7 +134,7 @@ const submitController = async (
       redirectRoute: ${controllerResponse.redirectRoute}.
       submissionDate: ${controllerResponse.submissionDate}.
       fsa-rn: ${controllerResponse.fsaRegistrationNumber}.
-      lcConfig: ${controllerResponse.lcConfig}.
+      laConfig: ${controllerResponse.laConfig}.
       submissionSucceeded: ${controllerResponse.submissionSucceeded}.
       `
     );

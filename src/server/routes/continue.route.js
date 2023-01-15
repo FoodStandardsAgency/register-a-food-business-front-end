@@ -31,8 +31,6 @@ const continueRouter = () => {
     req.session.validatorErrors = response.validatorErrors;
     req.session.allValidationErrors = response.allValidationErrors;
     req.session.switches = response.switches;
-    req.session.localAuthorityID = response.localAuthorityID;
-    req.session.localAuthorityName = response.localAuthorityName;
     req.session.submissionError = [];
     req.session.language = req.body.language;
 

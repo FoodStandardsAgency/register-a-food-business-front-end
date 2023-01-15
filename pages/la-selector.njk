@@ -26,9 +26,9 @@
             {% for localAuthority in props.localAuthorities %}
                 {% set localAuthoritiesArray = (localAuthoritiesArray.push({
                     value: [
-                        localAuthority._id, localAuthority.local_council
+                        localAuthority.local_council_url, localAuthority.local_council
                     ],
-                    selected: props.localAuthorityID == localAuthority._id,
+                    selected: props.cumulativeFullAnswers.local_authority_url == localAuthority.local_council_url,
                     text: localAuthority.local_council
                 }), localAuthoritiesArray) %}
             {% endfor %}

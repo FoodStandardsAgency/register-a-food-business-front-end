@@ -108,7 +108,7 @@ const getLocalCouncils = async () => {
           { local_council_url: { $ne: null } }
         ]
       })
-      .project({ local_council: 1, _id: 1 })
+      .project({ local_council: 1, local_council_url: 1, _id: 0 })
       .toArray();
 
     if (localCouncilUrls.length < 1) {

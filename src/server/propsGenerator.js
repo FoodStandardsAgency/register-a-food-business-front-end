@@ -131,8 +131,8 @@ module.exports = (req) => {
         : [],
     emailFbo:
       req && req.session && req.session.emailFbo ? req.session.emailFbo : {},
-    lcConfig:
-      req && req.session && req.session.lcConfig ? req.session.lcConfig : {},
+    laConfig:
+      req && req.session && req.session.laConfig ? req.session.laConfig : {},
     addressLookups:
       req && req.session && req.session.addressLookups
         ? req.session.addressLookups

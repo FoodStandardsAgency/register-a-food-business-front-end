@@ -33,7 +33,6 @@ const submitRouter = () => {
           });
 
           const controllerResponse = await submitController(
-            req.session.council,
             req.session.cumulativeFullAnswers,
             req.session.addressLookups,
             req.session.pathConfig._id,
@@ -46,7 +45,7 @@ const submitRouter = () => {
           req.session.fsaRegistrationNumber =
             controllerResponse.fsaRegistrationNumber;
           req.session.emailFbo = controllerResponse.emailFbo;
-          req.session.lcConfig = controllerResponse.lcConfig;
+          req.session.laConfig = controllerResponse.laConfig;
           req.session.submissionSucceeded =
             controllerResponse.submissionSucceeded;
           req.session.submissionPending = false;

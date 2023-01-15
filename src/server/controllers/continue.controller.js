@@ -58,7 +58,7 @@ const continueController = (
     // If page is Local authority selector, so assing Local authoritu ID and name
     if (currentPage === "/la-selector") {
       const localAuthority = trimmedNewAnswers.local_authority.split(","); // Split by coma
-      trimmedNewAnswers["local_authority_id"] = localAuthority[0]; // Extract ID
+      trimmedNewAnswers["local_authority_url"] = localAuthority[0]; // Extract ID
       localAuthority.shift(); // Remove ID from array
       trimmedNewAnswers["local_authority_name"] = localAuthority.join(); // Join array to string, in case Local authority name had coma
       delete trimmedNewAnswers["local_authority"];
