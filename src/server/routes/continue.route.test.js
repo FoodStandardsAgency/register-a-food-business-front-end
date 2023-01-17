@@ -69,7 +69,7 @@ describe("Continue route: ", () => {
     });
 
     it("Should redirect to next page", () => {
-      expect(res.redirect).toBeCalledWith("/new/council/newPage");
+      expect(res.redirect).toBeCalledWith("/new/newPage");
     });
 
     describe("given that the controller response redirects to submit", () => {

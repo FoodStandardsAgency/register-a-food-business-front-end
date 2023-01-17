@@ -30,7 +30,7 @@ describe("operator-address-manual", () => {
       council: "cardiff"
     });
     const $backlink = getPageDetails.getBacklinkHref($);
-    expect($backlink).toEqual("/new/cardiff/establishment-address");
+    expect($backlink).toEqual("/new/establishment-address");
   });
 
   it("renders correct backlink href when falsy switch of /establishment-address-none-found", async () => {
@@ -39,7 +39,7 @@ describe("operator-address-manual", () => {
       council: "cardiff"
     });
     const $backlink = getPageDetails.getBacklinkHref($);
-    expect($backlink).toEqual("/new/cardiff/establishment-address-select");
+    expect($backlink).toEqual("/new/establishment-address-select");
   });
 
   it("renders without crashing", () => {

@@ -54,7 +54,7 @@ describe("findAddress route: ", () => {
         handler(req, res);
       });
       it("Should redirect to the redirectRoute page", () => {
-        expect(res.redirect).toBeCalledWith("/new/council/another-page");
+        expect(res.redirect).toBeCalledWith("/new/another-page");
       });
 
       it("Should update session without overwriting existing addressLookups values", () => {

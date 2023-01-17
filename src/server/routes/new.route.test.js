@@ -46,7 +46,7 @@ describe("New route: ", () => {
     }));
   });
 
-  describe("GET to /new/:lc/page", () => {
+  describe("GET to /new/page", () => {
     describe("When req.session.council and req.session.pathConfig are both undefined and page is not index", () => {
       let req, res;
 
@@ -267,42 +267,6 @@ describe("New route: ", () => {
 
       it("Should set req.session.lcName", () => {
         expect(req.session.lcName).toEqual("Belfast Council");
-      });
-    });
-
-    describe("When req.params.lc is not allowed", () => {
-      let req, res;
-
-      beforeEach(() => {
-        handler = router.get.mock.calls[0][1];
-        req = {
-          session: {
-            council: "not a supported council",
-            regenerate: (cb) => {
-              cb();
-            }
-          },
-          params: {
-            lc: "not a supported council"
-          },
-          csrfToken: jest.fn(),
-          url: "test/test",
-          headers: {
-            "user-agent":
-              "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
-          }
-        };
-
-        res = {
-          redirect: jest.fn(),
-          render: jest.fn()
-        };
-
-        handler(req, res);
-      });
-
-      it("Should call res.render with unsupported-council", () => {
-        expect(res.render).toBeCalledWith("unsupported-council");
       });
     });
 

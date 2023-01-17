@@ -82,7 +82,7 @@ describe("establishment-address-select", () => {
         .get(0)
         .attribs.href.trim();
       expect($postCodeEnteredlink).toEqual(
-        "/new/cardiff/establishment-address?edit=establishment-address"
+        "/new/establishment-address?edit=establishment-address"
       );
     });
 
@@ -95,9 +95,7 @@ describe("establishment-address-select", () => {
       const $postCodeEnteredlink = $(".govuk-summary-list__actions a")
         .get(0)
         .attribs.href.trim();
-      expect($postCodeEnteredlink).toEqual(
-        "/new/cardiff/establishment-address"
-      );
+      expect($postCodeEnteredlink).toEqual("/new/establishment-address");
     });
 
     it("renders correct href link when 'I can't find my address in the list' is truthy and switch off props.editModeFirstPage", async () => {
@@ -110,7 +108,7 @@ describe("establishment-address-select", () => {
         .get(0)
         .attribs.href.trim();
       expect($postCodeNotFindlink).toEqual(
-        "/new/cardiff/establishment-address-manual?edit=establishment-address-manual"
+        "/new/establishment-address-manual?edit=establishment-address-manual"
       );
     });
 
@@ -123,9 +121,7 @@ describe("establishment-address-select", () => {
       const $postCodeNotFindlink = $(".govuk-grid-column-full a")
         .get(0)
         .attribs.href.trim();
-      expect($postCodeNotFindlink).toEqual(
-        "/new/cardiff/establishment-address-manual"
-      );
+      expect($postCodeNotFindlink).toEqual("/new/establishment-address-manual");
     });
 
     it("renders the select dropdown according to the addressLookups object for postcode entered", () => {

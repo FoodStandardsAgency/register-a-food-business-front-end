@@ -53,9 +53,7 @@ describe("QA Route: ", () => {
       });
 
       it("Should redirect to registration summary page", () => {
-        expect(res.redirect).toBeCalledWith(
-          "/new/cardiff/registration-summary"
-        );
+        expect(res.redirect).toBeCalledWith("/new/registration-summary");
       });
     });
 

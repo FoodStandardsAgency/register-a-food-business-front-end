@@ -9,7 +9,7 @@ const submitController = require("../controllers/submit.controller");
 const { submitRouter } = require("./submit.route");
 
 describe("Submit route: ", () => {
-  const lcConfig = {
+  const laConfig = {
     hygiene: {
       code: 4221,
       local_council: "District Council",
@@ -38,7 +38,7 @@ describe("Submit route: ", () => {
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
           emailFbo: { recipient: "fbo@example.com", success: true },
-          lcConfig: lcConfig,
+          laConfig: laConfig,
           allValidationErrors: {
             some: "error"
           }
@@ -69,7 +69,6 @@ describe("Submit route: ", () => {
 
       it("Should call submitController with the correct args", () => {
         expect(submitController).toHaveBeenCalledWith(
-          "cardiff",
           {
             some: "answers"
           },
@@ -88,13 +87,11 @@ describe("Submit route: ", () => {
         expect(req.session.fsaRegistrationNumber).toEqual("12345678");
         expect(req.session.emailFbo.recipient).toEqual("fbo@example.com");
         expect(req.session.emailFbo.success).toEqual(true);
-        expect(req.session.lcConfig).toEqual(lcConfig);
+        expect(req.session.laConfig).toEqual(laConfig);
       });
 
       it("Should set redirect to response", () => {
-        expect(res.redirect).toBeCalledWith(
-          "/new/cardiff/summary-confirmation"
-        );
+        expect(res.redirect).toBeCalledWith("/new/summary-confirmation");
       });
     });
 
@@ -136,9 +133,7 @@ describe("Submit route: ", () => {
       });
 
       it("Should set redirect to response", () => {
-        expect(res.redirect).toBeCalledWith(
-          "/new/cardiff/registration-summary"
-        );
+        expect(res.redirect).toBeCalledWith("/new/registration-summary");
       });
     });
 
@@ -152,7 +147,7 @@ describe("Submit route: ", () => {
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
           emailFbo: { recipient: "fbo@example.com", success: true },
-          lcConfig: lcConfig
+          laConfig: laConfig
         }));
 
         handler = router.get.mock.calls[0][1];
