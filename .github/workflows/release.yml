@@ -2,10 +2,10 @@ name: Release
 run-name: Release (${{ github.ref_name  }})
 on:
   workflow_dispatch:
-#     pull_request:
-#         branches:
-#         - 'release/**'
-#         - 'hotfix/**'
+  push:
+    branches:
+      - "release/**"
+      - "hotfix/**"
 jobs:
   build_and_test:
     name: Build & test
