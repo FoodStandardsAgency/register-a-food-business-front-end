@@ -76,7 +76,7 @@ describe("summary-confirmation", () => {
       cumulativeFullAnswers: cumulativeFullAnswers,
       applicationCompletePage: true,
       fsaRegistrationNumber: "12345",
-      lcConfig: lcConfigCombined,
+      laConfig: lcConfigCombined,
       transformedData: transformedData
     });
     const $answer = $(".govuk-fieldset");
@@ -90,7 +90,7 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: "12345",
-        lcConfig: lcConfigCombined,
+        laConfig: lcConfigCombined,
         transformedData: transformedData
       });
       const $panel = $("#fsa-rn");
@@ -102,7 +102,7 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: undefined,
-        lcConfig: lcConfigCombined,
+        laConfig: lcConfigCombined,
         transformedData: transformedData
       });
       const $panel = $("#panelWithText");
@@ -117,7 +117,7 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: undefined,
-        lcConfig: lcConfigCombined,
+        laConfig: lcConfigCombined,
         transformedData: transformedData
       });
 
@@ -133,7 +133,7 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: undefined,
-        lcConfig: lcConfigSplit,
+        laConfig: lcConfigSplit,
         transformedData: transformedData
       });
       const $hygienesNumber = $("#hygieneNumber");
@@ -148,7 +148,7 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: undefined,
-        lcConfig: lcConfigSplit,
+        laConfig: lcConfigSplit,
         transformedData: transformedData
       });
       const $standardsNumber = $("#standardsNumber");
@@ -166,7 +166,7 @@ describe("summary-confirmation", () => {
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: "12345",
-          lcConfig: lcConfigSplit,
+          laConfig: lcConfigSplit,
           transformedData: transformedDataRepresentative
         });
         const $panel = $("#receiveConfirmationEmail-id");
@@ -183,7 +183,7 @@ describe("summary-confirmation", () => {
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: undefined,
-          lcConfig: lcConfigCombinedNoNumber,
+          laConfig: lcConfigCombinedNoNumber,
           transformedData: transformedData
         });
 
@@ -199,7 +199,7 @@ describe("summary-confirmation", () => {
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: undefined,
-          lcConfig: lcConfigSplitNoNumber,
+          laConfig: lcConfigSplitNoNumber,
           transformedData: transformedData
         });
         const $hygienesNumber = $("#hygieneNumber");
@@ -214,7 +214,7 @@ describe("summary-confirmation", () => {
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: undefined,
-          lcConfig: lcConfigSplitNoNumber,
+          laConfig: lcConfigSplitNoNumber,
           transformedData: transformedData
         });
         const $standardsNumber = $("#standardsNumber");
@@ -229,7 +229,7 @@ describe("summary-confirmation", () => {
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: undefined,
-          lcConfig: {},
+          laConfig: {},
           transformedData: transformedData
         });
         const $mainHeading = getPageDetails.getMainHeading($);
@@ -243,7 +243,7 @@ describe("summary-confirmation", () => {
           language: "cy",
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
-          lcConfig: lcConfigCombined,
+          laConfig: lcConfigCombined,
           transformedData: transformedData,
           country: "wales"
         });
@@ -262,7 +262,7 @@ describe("summary-confirmation", () => {
           language: "en",
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
-          lcConfig: lcConfigCombined,
+          laConfig: lcConfigCombined,
           transformedData: transformedData,
           country: "northern-ireland"
         });
@@ -281,7 +281,7 @@ describe("summary-confirmation", () => {
           language: "en",
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
-          lcConfig: lcConfigCombined,
+          laConfig: lcConfigCombined,
           transformedData: transformedData,
           country: "england"
         });

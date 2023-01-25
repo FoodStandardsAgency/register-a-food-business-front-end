@@ -308,11 +308,20 @@ describe("Function: getLocalCouncils", () => {
 
   describe("given the request is successful", () => {
     const localCouncilsObjs = [
-      { local_council_url: "cardiff" },
-      { local_council_url: "the-vale-of-glamorgan" }
+      { local_council_url: "cardiff", local_council: "Fakes cardiff council" },
+      {
+        local_council_url: "the-vale-of-glamorgan",
+        local_council: "Fakes vale of G council"
+      }
     ];
 
-    const localCouncilsMock = ["cardiff", "the-vale-of-glamorgan"];
+    const localCouncilsMock = [
+      { local_council_url: "cardiff", local_council: "Fakes cardiff council" },
+      {
+        local_council_url: "the-vale-of-glamorgan",
+        local_council: "Fakes vale of G council"
+      }
+    ];
 
     const mongoCursor = {
       project: () => {
