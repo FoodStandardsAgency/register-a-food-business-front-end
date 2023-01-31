@@ -9,18 +9,14 @@
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {% call govukFieldset({
         legend: {
-          text: __("Registering Local Authority", props.language),
+          text: __("You are registering with "+ props.cumulativeFullAnswers.local_authority_name , props.language),
+          
           classes: "govuk-fieldset__legend--l",
           isPageHeading: true
         }
         }) %}
 
       <p class="govuk-body">
-        <p class="govuk-body">
-          <b>{{ props.cumulativeFullAnswers.local_authority_name }}</b>
-          {{ __("is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this ", props.language) }}
-          <a class="govuk-link" href="https://www.gov.uk/food-business-registration">{{ __("Food Business Registration", props.language) }}</a>
-          {{ __(" link to check using the location or site of your food business.", props.language) }}</p>
         {% endcall %}
         {{ govukButton({
         text:  __("Continue", props.language)
