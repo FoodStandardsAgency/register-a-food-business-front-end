@@ -7,39 +7,37 @@
 {% extends "layout.njk" %}
 {% block head %}
     <link href="/css/app.css" rel="stylesheet" type="text/css">
-        <link href="/auto-complete/accessible-autocomplete.min.css" rel="stylesheet" type="text/css">
-        {% endblock %}
-        {% block content %}
-            {{ props.currentPageWithQuery }}
-            <div class="govuk-grid-row" style='font-family:"GDS Transport";'>
-                <div class="govuk-grid-column-two-thirds">
-                    {% call govukFieldset({
+    <link href="/auto-complete/accessible-autocomplete.min.css" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block content %}
+    {{ props.currentPageWithQuery }}
+    <div class="govuk-grid-row" style='font-family:"GDS Transport";'>
+        <div class="govuk-grid-column-two-thirds">
+            {% call govukFieldset({
           legend: {
             text: "We couldn't find your Local Authority ",
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
                   }
             }) %}
-                    <p class="govuk-body">{{ __("The postcode you entered has not been recognised", props.language) }}</p>
-                    <p class="govuk-body">{{ __("Type the name of your local authority in the box below and then select the most fitting local authority from the suggestions", props.language) }}</p>
-                    {% endcall %}
-                    {% call postForm(props.formAction, props.csrfToken, props.language) -%}
-                    {{ processedErrorSummary(props.validatorErrors, props.language) }}
-                    {% set localAuthoritiesArray = [
+            <p class="govuk-body">{{ __("The postcode you entered has not been recognised.", props.language) }}</p>
+            <p class="govuk-body">{{ __("Type the name of your local authority in the box below and then select the most fitting local authority from the suggestions", props.language) }}</p>
+            {% endcall %}
+            {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+            {{ processedErrorSummary(props.validatorErrors, props.language) }}
+            {% set localAuthoritiesArray = [
                 {
                     text: ""
                 }
             ] %}
-                    {% for localAuthority in props.localAuthorities %}
-                        {% set localAuthoritiesArray = (localAuthoritiesArray.push({
-                    value: [
-                        localAuthority.local_council_url, localAuthority.local_council
-                    ],
+            {% for localAuthority in props.localAuthorities %}
+                {% set localAuthoritiesArray = (localAuthoritiesArray.push({
+                    value: localAuthority.local_council_url,
                     selected: props.cumulativeFullAnswers.local_authority_url == localAuthority.local_council_url,
                     text: localAuthority.local_council
                 }), localAuthoritiesArray) %}
-                    {% endfor %}
-                    {{ govukSelect({
+            {% endfor %}
+            {{ govukSelect({
                 id: "local_authority",
                 name: "local_authority",
                 label: {
@@ -47,29 +45,48 @@
                 },
                 items: localAuthoritiesArray
                 }) }}
-                    {{ govukRadios({
+            {{ govukRadios({
+                    id: "local_authority_not_found",
+                    name: "local_authority_not_found",
                     classes: "govuk-radios--inline",
-                    name: "",
   
                     items: [
                             {
                              value: "yes",
-                             text: "I cant find my local authority"
+                             text: "I can`t find my local authority"
                              }
                                 ]
                                 }) }}
-                    <div class="govuk-grid-row">
-                        <div class="govuk-grid-column-full">
-                            {{ govukButton({
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    {{ govukButton({
               text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
           }) }}
-                        </div>
-                    </div>
-                    {%- endcall %}
                 </div>
             </div>
-            <script src="/auto-complete/accessible-autocomplete.min.js"></script>
-            <script>
-                accessibleAutocomplete.enhanceSelectElement({selectElement: document.querySelector('#local_authority')})
-            </script>
-        {% endblock %}
+            {%- endcall %}
+        </div>
+    </div>
+    <script src="/auto-complete/accessible-autocomplete.min.js"></script>
+    <script>
+        accessibleAutocomplete.enhanceSelectElement({selectElement: document.querySelector('#local_authority')})
+        document
+            .getElementById("local_authority")
+            .addEventListener("click", function () {
+                document
+                    .getElementById("local_authority_not_found")
+                    .checked = false;
+            });
+
+        document
+            .getElementById("local_authority_not_found")
+            .addEventListener("click", function () {
+                document
+                    .getElementById("local_authority-select")
+                    .selectedIndex = 0;
+                document
+                    .getElementById("local_authority")
+                    .value = "";
+            });
+    </script>
+{% endblock %}

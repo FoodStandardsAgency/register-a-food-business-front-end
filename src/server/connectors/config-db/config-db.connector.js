@@ -154,14 +154,14 @@ const getLocalCouncils = async () => {
 };
 
 /**
- * Retrieves council-specific details
+ * Retrieves council-specific details by url
  *
- * @param {string} council Name of the council
+ * @param {string} councilURL URL of the council
  *
  * @returns {Object} Object with council data
  */
-const getCouncilData = async (council) => {
-  logEmitter.emit("functionCall", "config-db.connector", "getCouncilData");
+const getCouncilDataByURL = async (councilURL) => {
+  logEmitter.emit("functionCall", "config-db.connector", "getCouncilDataByURL");
 
   let councilRecord = null;
   try {
@@ -171,35 +171,39 @@ const getCouncilData = async (council) => {
     );
 
     councilRecord = await lcConfigCollection.findOne({
-      local_council_url: council
+      local_council_url: councilURL
     });
 
     if (councilRecord === null) {
-      statusEmitter.emit("incrementCount", "getCouncilDataFailed");
-      statusEmitter.emit(
-        "setStatus",
-        "mostRecentGetCouncilDataSucceeded",
-        false
-      );
+      // statusEmitter.emit("incrementCount", "getCouncilDataByURLFailed");
+      // statusEmitter.emit(
+      //   "setStatus",
+      //   "mostRecentgetCouncilDataByURLSucceeded",
+      //   false
+      // );
       const newError = new Error();
       newError.name = "mongoConnectionError";
-      newError.message = "getCouncilData retrieved null";
+      newError.message = "getCouncilDataByURL retrieved null";
       throw newError;
     } else {
-      statusEmitter.emit("incrementCount", "getCouncilDataSucceeded");
-      statusEmitter.emit(
-        "setStatus",
-        "mostRecentGetCouncilDataSucceeded",
-        true
-      );
+      // statusEmitter.emit("incrementCount", "getCouncilDataByURLSucceeded");
+      // statusEmitter.emit(
+      //   "setStatus",
+      //   "mostRecentgetCouncilDataByURLSucceeded",
+      //   true
+      // );
     }
   } catch (err) {
-    statusEmitter.emit("incrementCount", "getCouncilDataFailed");
-    statusEmitter.emit("setStatus", "mostRecentGetCouncilDataSucceeded", false);
+    // statusEmitter.emit("incrementCount", "getCouncilDataByURLFailed");
+    // statusEmitter.emit(
+    //   "setStatus",
+    //   "mostRecentgetCouncilDataByURLSucceeded",
+    //   false
+    // );
     logEmitter.emit(
       "functionFail",
       "config-db.connector",
-      "getCouncilData",
+      "getCouncilDataByURL",
       err
     );
 
@@ -210,7 +214,151 @@ const getCouncilData = async (council) => {
     throw newError;
   }
 
-  logEmitter.emit("functionSuccess", "config-db.connector", "getCouncilData");
+  logEmitter.emit(
+    "functionSuccess",
+    "config-db.connector",
+    "getCouncilDataByURL"
+  );
+
+  return councilRecord;
+};
+
+/**
+ * Retrieves council-specific details by ID
+ *
+ * @param {string} councilID ID of the council
+ *
+ * @returns {Object} Object with council data
+ */
+const getCouncilDatabyID = async (councilID) => {
+  logEmitter.emit("functionCall", "config-db.connector", "getCouncilDatabyID");
+
+  let councilRecord = null;
+  try {
+    lcConfigCollection = await establishConnectionToCosmos(
+      "config",
+      "localAuthorities"
+    );
+
+    councilRecord = await lcConfigCollection.findOne({
+      _id: councilID
+    });
+
+    if (councilRecord === null) {
+      // statusEmitter.emit("incrementCount", "getCouncilDatabyIDFailed");
+      // statusEmitter.emit(
+      //   "setStatus",
+      //   "mostRecentgetCouncilDatabyIDSucceeded",
+      //   false
+      // );
+      const newError = new Error();
+      newError.name = "mongoConnectionError";
+      newError.message = "getCouncilDatabyID retrieved null";
+      throw newError;
+    } else {
+      // statusEmitter.emit("incrementCount", "getCouncilDatabyIDSucceeded");
+      // statusEmitter.emit(
+      //   "setStatus",
+      //   "mostRecentgetCouncilDatabyIDSucceeded",
+      //   true
+      // );
+    }
+  } catch (err) {
+    // statusEmitter.emit("incrementCount", "getCouncilDatabyIDFailed");
+    // statusEmitter.emit(
+    //   "setStatus",
+    //   "mostRecentgetCouncilDatabyIDSucceeded",
+    //   false
+    // );
+    logEmitter.emit(
+      "functionFail",
+      "config-db.connector",
+      "getCouncilDatabyID",
+      err
+    );
+
+    const newError = new Error();
+    newError.name = "mongoConnectionError";
+    newError.message = err.message;
+
+    throw newError;
+  }
+
+  logEmitter.emit(
+    "functionSuccess",
+    "config-db.connector",
+    "getCouncilDatabyID"
+  );
+
+  return councilRecord;
+};
+
+/**
+ * Retrieves council-specific details by MapIt ID
+ *
+ * @param {string} councilMapitID MapIt ID of the council
+ *
+ * @returns {Object} Object with council data
+ */
+const getCouncilDataByMapitID = async (councilMapitID) => {
+  logEmitter.emit(
+    "functionCall",
+    "config-db.connector",
+    "getCouncilDataByMapitID"
+  );
+
+  let councilRecord = null;
+  try {
+    lcConfigCollection = await establishConnectionToCosmos(
+      "config",
+      "localAuthorities"
+    );
+
+    councilRecord = await lcConfigCollection.findOne({
+      mapit_id: councilMapitID
+    });
+
+    if (councilRecord === null) {
+      // statusEmitter.emit("incrementCount", "getCouncilDataByMapitIDFailed");
+      // statusEmitter.emit(
+      //   "setStatus",
+      //   "mostRecentgetCouncilDataByMapitIDSucceeded",
+      //   false
+      // );
+      const newError = new Error();
+      newError.name = "mongoConnectionError";
+      newError.message = "getCouncilDataByMapitID retrieved null";
+      throw newError;
+    } else {
+      // statusEmitter.emit("incrementCount", "getCouncilDataByMapitIDSucceeded");
+      // statusEmitter.emit(
+      //   "setStatus",
+      //   "mostRecentgetCouncilDataByMapitIDSucceeded",
+      //   true
+      // );
+    }
+  } catch (err) {
+    // statusEmitter.emit("incrementCount", "getCouncilDataByMapitIDFailed");
+    // statusEmitter.emit(
+    //   "setStatus",
+    //   "mostRecentgetCouncilDataByMapitIDSucceeded",
+    //   false
+    // );
+    logEmitter.emit(
+      "functionFail",
+      "config-db.connector",
+      "getCouncilDataByMapitID",
+      err
+    );
+
+    return false;
+  }
+
+  logEmitter.emit(
+    "functionSuccess",
+    "config-db.connector",
+    "getCouncilDataByMapitID"
+  );
 
   return councilRecord;
 };
@@ -229,5 +377,7 @@ module.exports = {
   getPathConfigByVersion,
   clearPathConfigCache,
   getLocalCouncils,
-  getCouncilData
+  getCouncilDataByURL,
+  getCouncilDatabyID,
+  getCouncilDataByMapitID
 };

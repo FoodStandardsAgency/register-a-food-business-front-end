@@ -7,50 +7,69 @@
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const continueController = require("../controllers/continue.controller");
+const {
+  getCouncilDataByURL
+} = require("../connectors/config-db/config-db.connector");
 
 const continueRouter = () => {
   const router = Router();
 
-  router.post("/:originator", (req, res) => {
+  router.post("/:originator", async (req, res, next) => {
     logEmitter.emit(
       "functionCallWith",
       "Routes",
       "/continue route",
       `Originator: ${req.params.originator}`
     );
+    try {
+      const response = continueController(
+        `/${req.params.originator}`,
+        req.session.cumulativeFullAnswers,
+        req.body,
+        req.session.switches,
+        req.session.pathConfig.path
+      );
 
-    const response = continueController(
-      `/${req.params.originator}`,
-      req.session.cumulativeFullAnswers,
-      req.body,
-      req.session.switches,
-      req.session.pathConfig.path
-    );
+      req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
+      req.session.validatorErrors = response.validatorErrors;
+      req.session.allValidationErrors = response.allValidationErrors;
+      req.session.switches = response.switches;
+      req.session.submissionError = [];
+      req.session.language = req.body.language;
 
-    req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
-    req.session.validatorErrors = response.validatorErrors;
-    req.session.allValidationErrors = response.allValidationErrors;
-    req.session.switches = response.switches;
-    req.session.submissionError = [];
-    req.session.language = req.body.language;
-
-    logEmitter.emit(
-      "functionSuccessWith",
-      "Routes",
-      "/continue route",
-      response.redirectRoute
-    );
-    req.session.save((err) => {
-      if (err) {
-        logEmitter.emit("functionFail", "Routes", "/continue route", err);
-        throw err;
+      if (req.params.originator === "la-selector") {
+        req.session.localAuthority = await getCouncilDataByURL(
+          req.body.local_authority
+        );
       }
-      if (response.redirectRoute === "/submit") {
-        res.redirect("/submit");
-      } else {
-        res.redirect(`/new${response.redirectRoute}`);
-      }
-    });
+
+      logEmitter.emit(
+        "functionSuccessWith",
+        "Routes",
+        "/continue route",
+        response.redirectRoute
+      );
+      req.session.save((err) => {
+        if (err) {
+          logEmitter.emit("functionFail", "Routes", "/continue route", err);
+          throw err;
+        }
+        if (response.redirectRoute === "/submit") {
+          res.redirect("/submit");
+        } else {
+          res.redirect(`/new${response.redirectRoute}`);
+        }
+      });
+    } catch (err) {
+      logEmitter.emit(
+        "functionFail",
+        "Routes",
+        "/continue route",
+        `Originator: ${req.params.originator}`,
+        err
+      );
+      next(err);
+    }
   });
 
   return router;

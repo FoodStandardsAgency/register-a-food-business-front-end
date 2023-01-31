@@ -3,6 +3,7 @@ const { cleansessionRouter } = require("./cleansession.route");
 const { continueRouter } = require("./continue.route");
 const { editRouter } = require("./edit.route");
 const { findAddressRouter } = require("./find-address.route");
+const { findLocalAuthorityRouter } = require("./find-local-authority.route");
 const { newRouter } = require("./new.route");
 const { qaRouter } = require("./qa.route");
 const { submitRouter } = require("./submit.route");
@@ -18,6 +19,7 @@ module.exports = {
   continueRouter,
   editRouter,
   findAddressRouter,
+  findLocalAuthorityRouter,
   newRouter,
   qaRouter,
   submitRouter,
