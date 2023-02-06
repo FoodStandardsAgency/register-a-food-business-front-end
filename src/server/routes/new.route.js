@@ -127,6 +127,14 @@ const newRouter = () => {
             `Rendering page: ${page}`
           );
 
+          if (
+            req &&
+            req.query &&
+            req.query.edit &&
+            req.query.edit === "post-code"
+          ) {
+            req.session["changePostcode"] = true;
+          }
           const props = PropsGenerator(req);
           if (page === "la-selector") {
             props["localAuthorities"] = await localAuthoritiesCache.get();
