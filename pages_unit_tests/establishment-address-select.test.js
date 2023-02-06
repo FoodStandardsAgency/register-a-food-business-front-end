@@ -67,7 +67,7 @@ describe("establishment-address-select", () => {
   it("renders correct inset text", () => {
     const $detailsText = getPageDetails.getDetailsText($);
     expect($detailsText).toEqual(
-      "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight."
+      "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight. If the bussiness is operating from a home address, enter that postcode."
     );
   });
 
@@ -75,7 +75,6 @@ describe("establishment-address-select", () => {
     it("renders correct post code entered link href when truthy switch of props.editModeFirstPage", async () => {
       const $ = renderPage("establishment-address-select", {
         editModeFirstPage: true,
-        council: "cardiff",
         addressLookups: exampleAddressLookup
       });
       const $postCodeEnteredlink = $(".govuk-summary-list__actions a")
@@ -89,19 +88,19 @@ describe("establishment-address-select", () => {
     it("renders correct post code entered link href when falsy switch of props.editModeFirstPage", async () => {
       const $ = renderPage("establishment-address-select", {
         editModeFirstPage: false,
-        council: "cardiff",
         addressLookups: exampleAddressLookup
       });
       const $postCodeEnteredlink = $(".govuk-summary-list__actions a")
         .get(0)
         .attribs.href.trim();
-      expect($postCodeEnteredlink).toEqual("/new/establishment-address");
+      expect($postCodeEnteredlink).toEqual(
+        "/new/establishment-address?edit=post-code"
+      );
     });
 
     it("renders correct href link when 'I can't find my address in the list' is truthy and switch off props.editModeFirstPage", async () => {
       const $ = renderPage("establishment-address-select", {
         editModeFirstPage: true,
-        council: "cardiff",
         addressLookups: exampleAddressLookup
       });
       const $postCodeNotFindlink = $(".govuk-grid-column-full a")
@@ -115,7 +114,6 @@ describe("establishment-address-select", () => {
     it("renders correct href link when 'I can't find my address in the list' is falsy and switch of props.editModeFirstPage", async () => {
       const $ = renderPage("establishment-address-select", {
         editModeFirstPage: false,
-        council: "cardiff",
         addressLookups: exampleAddressLookup
       });
       const $postCodeNotFindlink = $(".govuk-grid-column-full a")

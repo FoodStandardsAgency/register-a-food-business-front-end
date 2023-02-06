@@ -18,9 +18,7 @@ const {
   transformAnswersForSummary
 } = require("../services/data-transform.service");
 const {
-  getPathConfigByVersion,
-  getLocalCouncils,
-  getCouncilData
+  getPathConfigByVersion
 } = require("../connectors/config-db/config-db.connector");
 const { getBrowserInfo } = require("../services/browser-support.service");
 
@@ -32,7 +30,6 @@ describe("New route: ", () => {
     getPathConfigByVersion.mockImplementation(
       () => "fetched path from either cache or DB"
     );
-    getLocalCouncils.mockImplementation(() => Promise.resolve(["purbeck"]));
     getBrowserInfo.mockImplementation((req) => () => {
       return {
         browser: "chrome",
@@ -40,10 +37,6 @@ describe("New route: ", () => {
         isSupported: true
       };
     });
-    getCouncilData.mockImplementation(() => ({
-      country: "northern-ireland",
-      local_council: "Belfast Council"
-    }));
   });
 
   describe("GET to /new/page", () => {
@@ -59,7 +52,6 @@ describe("New route: ", () => {
             }
           },
           params: {
-            lc: "purbeck",
             page: "operator-type"
           },
           csrfToken: jest.fn(),
@@ -78,22 +70,10 @@ describe("New route: ", () => {
         await handler(req, res);
       });
 
-      it("Should set req.session.council", () => {
-        expect(req.session.council).toEqual("purbeck");
-      });
-
       it("Should set req.session.pathConfig", () => {
         expect(req.session.pathConfig).toBe(
           "fetched path from either cache or DB"
         );
-      });
-
-      it("Should set req.session.country", () => {
-        expect(req.session.country).toEqual("northern-ireland");
-      });
-
-      it("Should set req.session.lcName", () => {
-        expect(req.session.lcName).toEqual("Belfast Council");
       });
 
       it("Should call res.render", () => {
@@ -108,15 +88,13 @@ describe("New route: ", () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
-            council: "purbeck",
             pathConfig: "existing path from session",
             regenerate: (cb) => {
               cb();
             }
           },
           params: {
-            page: "/new page",
-            lc: "purbeck"
+            page: "/new page"
           },
           csrfToken: jest.fn(),
           url: "test/test",
@@ -146,15 +124,13 @@ describe("New route: ", () => {
           handler = router.get.mock.calls[0][1];
           req = {
             session: {
-              council: "purbeck",
               pathConfig: "existing path from session",
               regenerate: (cb) => {
                 cb();
               }
             },
             params: {
-              page: "index",
-              lc: "purbeck"
+              page: "index"
             },
             csrfToken: jest.fn(),
             url: "test/test",
@@ -187,14 +163,12 @@ describe("New route: ", () => {
           handler = router.get.mock.calls[0][1];
           req = {
             session: {
-              council: "purbeck",
               save: (cb) => {
                 cb();
               }
             },
             params: {
-              page: "registration-summary",
-              lc: "purbeck"
+              page: "registration-summary"
             },
             csrfToken: jest.fn(),
             url: "test/test",
@@ -233,14 +207,11 @@ describe("New route: ", () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
-            council: "purbeck",
             regenerate: (cb) => {
               cb();
             }
           },
-          params: {
-            lc: "purbeck"
-          },
+          params: {},
           csrfToken: jest.fn(),
           url: "test/test",
           headers: {
@@ -260,14 +231,6 @@ describe("New route: ", () => {
       it("Should call res.render with index", () => {
         expect(res.render).toBeCalledWith("index", expect.anything());
       });
-
-      it("Should set req.session.country", () => {
-        expect(req.session.country).toEqual("northern-ireland");
-      });
-
-      it("Should set req.session.lcName", () => {
-        expect(req.session.lcName).toEqual("Belfast Council");
-      });
     });
 
     describe("when an error is thrown", () => {
@@ -280,14 +243,12 @@ describe("New route: ", () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
-            council: "purbeck",
             save: (cb) => {
               cb();
             }
           },
           params: {
-            page: "registration-summary",
-            lc: "purbeck"
+            page: "registration-summary"
           },
           csrfToken: jest.fn(),
           url: "test/test",

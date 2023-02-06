@@ -7,7 +7,7 @@ const {
   getPathConfigByVersion,
   getLocalCouncils,
   clearPathConfigCache,
-  getCouncilData
+  getCouncilDataByURL
 } = require("./config-db.connector");
 const { clearCosmosConnection } = require("../cosmos.client");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
@@ -378,7 +378,7 @@ describe("Function: getLocalCouncils", () => {
   });
 });
 
-describe("Function: getCouncilData", () => {
+describe("Function: getCouncilDataByURL", () => {
   let result;
   beforeEach(async () => {
     clearCosmosConnection();
@@ -390,7 +390,7 @@ describe("Function: getCouncilData", () => {
       });
 
       try {
-        await getCouncilData("cardiff");
+        await getCouncilDataByURL("cardiff");
       } catch (err) {
         result = err;
       }
@@ -412,7 +412,7 @@ describe("Function: getCouncilData", () => {
       }));
 
       try {
-        await getCouncilData("cardiff");
+        await getCouncilDataByURL("cardiff");
       } catch (err) {
         result = err;
       }
@@ -420,7 +420,7 @@ describe("Function: getCouncilData", () => {
 
     it("should throw mongoConnectionError error with custom message", () => {
       expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe("getCouncilData retrieved null");
+      expect(result.message).toBe("getCouncilDataByURL retrieved null");
     });
   });
   describe("given the request is successful", () => {
@@ -441,7 +441,9 @@ describe("Function: getCouncilData", () => {
     });
 
     it("returns the correct value", async () => {
-      await expect(getCouncilData("cardiff")).resolves.toEqual(exampleResult);
+      await expect(getCouncilDataByURL("cardiff")).resolves.toEqual(
+        exampleResult
+      );
     });
   });
 });
