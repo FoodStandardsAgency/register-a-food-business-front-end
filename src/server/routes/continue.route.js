@@ -38,9 +38,16 @@ const continueRouter = () => {
       req.session.language = req.body.language;
 
       if (req.params.originator === "la-selector") {
-        req.session.localAuthority = await getCouncilDataByURL(
-          req.body.local_authority
-        );
+        if (
+          req.body.local_authority_not_found === "yes" ||
+          req.body.local_authority === ""
+        ) {
+          response.redirectRoute = "/la-not-onboarded";
+        } else {
+          req.session.localAuthority = await getCouncilDataByURL(
+            req.body.local_authority
+          );
+        }
       }
 
       logEmitter.emit(

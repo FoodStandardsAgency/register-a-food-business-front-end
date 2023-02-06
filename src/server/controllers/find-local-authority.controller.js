@@ -70,6 +70,7 @@ const findLocalAuthorityController = async (
       controllerResponse.redirectRoute = "/la-selector";
     } else {
       controllerResponse.redirectRoute = "/la-established";
+      delete controllerResponse.cumulativeFullAnswers.local_authority;
     }
     logEmitter.emit(
       "functionSuccessWith",
