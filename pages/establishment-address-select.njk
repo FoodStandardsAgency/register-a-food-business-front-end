@@ -24,7 +24,7 @@
       {% if props.editModeFirstPage %}
         {% set editModeFirstPage = "/new/establishment-address?edit=establishment-address" %}
       {% else %}
-        {% set editModeFirstPage = "/new/establishment-address" %}
+        {% set editModeFirstPage = "/new/establishment-address?edit=post-code" %}
       {% endif %}
       {{ govukSummaryList({
         classes: 'govuk-summary-list--no-border',

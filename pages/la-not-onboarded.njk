@@ -7,13 +7,16 @@
   {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 id="main-heading" class="govuk-heading-l">{{ __("LA not onboarded", props.language) }}</h1>
+      <h1 id="main-heading" class="govuk-heading-l">{{ __("Unfortunately, you cannot use this service", props.language) }}</h1>
+      <p class="govuk-body">{{ __("We can't identify the local authority to direct your registration to. Please
+contact your local authority directly for more details on how to register in
+your area.", props.language) }}</p>
       <a
         class="govuk-button"
         data-module="govuk-button"
         href="https://www.gov.uk/food-business-registration"
         id="server-error-form">
-        {{ __("Food business registration - gov.uk", props.language) }}
+        {{ __("Contact your Local Authority", props.language) }}
       </a>
     </div>
   </div>
