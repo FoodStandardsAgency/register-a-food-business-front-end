@@ -33,7 +33,7 @@
             {% for localAuthority in props.localAuthorities %}
                 {% set localAuthoritiesArray = (localAuthoritiesArray.push({
                     value: localAuthority.local_council_url,
-                    selected: props.cumulativeFullAnswers.local_authority_url == localAuthority.local_council_url,
+                    selected: props.cumulativeFullAnswers.local_authority == localAuthority.local_council_url,
                     text: localAuthority.local_council
                 }), localAuthoritiesArray) %}
             {% endfor %}
@@ -69,7 +69,8 @@
     </div>
     <script src="/auto-complete/accessible-autocomplete.min.js"></script>
     <script>
-        accessibleAutocomplete.enhanceSelectElement({selectElement: document.querySelector('#local_authority')})
+        accessibleAutocomplete.enhanceSelectElement({selectElement: document.querySelector('#local_authority')});
+
         document
             .getElementById("local_authority")
             .addEventListener("click", function () {
@@ -77,6 +78,17 @@
                     .getElementById("local_authority_not_found")
                     .checked = false;
             });
+
+        document
+            .getElementById("local_authority")
+            .value = document
+            .getElementById("local_authority-select")
+            .options[
+                document
+                    .getElementById("local_authority-select")
+                    .selectedIndex
+            ]
+            .text;
 
         document
             .getElementById("local_authority_not_found")

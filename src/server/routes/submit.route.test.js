@@ -52,7 +52,9 @@ describe("Submit route: ", () => {
               some: "answers"
             },
             language: "en",
-            council: "cardiff",
+            localAuthority: {
+              local_council_url: "cardiff"
+            },
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0", path: { some: "path" } },
             id: "S3S510NI6",
@@ -78,7 +80,8 @@ describe("Submit route: ", () => {
           "en",
           {
             some: "path"
-          }
+          },
+          "cardiff"
         );
       });
 
@@ -113,7 +116,9 @@ describe("Submit route: ", () => {
               some: "answers"
             },
             language: "en",
-            council: "cardiff",
+            localAuthority: {
+              local_council_url: "cardiff"
+            },
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0", path: { some: "path" } },
             save: (cb) => {
@@ -158,7 +163,9 @@ describe("Submit route: ", () => {
               some: "answers"
             },
             language: "en",
-            council: "cardiff",
+            localAuthority: {
+              local_council_url: "cardiff"
+            },
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },
             save: (cb) => {
@@ -191,7 +198,9 @@ describe("Submit route: ", () => {
               some: "answers"
             },
             language: "en",
-            council: "cardiff",
+            localAuthority: {
+              local_council_url: "cardiff"
+            },
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },
             save: () => {}

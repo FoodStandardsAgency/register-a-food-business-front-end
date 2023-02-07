@@ -32,7 +32,6 @@ describe("Continue route: ", () => {
         session: {
           cumulativeFullAnswers: {},
           switches: {},
-          council: "council",
           pathConfig: { path: "existing path from session" },
           save: (cb) => {
             cb();
@@ -91,7 +90,6 @@ describe("Continue route: ", () => {
           session: {
             cumulativeFullAnswers: {},
             switches: {},
-            council: "council",
             pathConfig: { path: "existing path from session" },
             save: (cb) => {
               cb();
@@ -116,7 +114,7 @@ describe("Continue route: ", () => {
     });
 
     describe("given that req.session.save throws an error", () => {
-      let req, res, response;
+      let req, res, next;
       beforeEach(() => {
         continueController.mockImplementation(() => ({
           validatorErrors: {},
@@ -127,13 +125,13 @@ describe("Continue route: ", () => {
           switches: { exampleSwitch: true }
         }));
 
+        next = jest.fn();
         handler = router.post.mock.calls[0][1];
 
         req = {
           session: {
             cumulativeFullAnswers: {},
             switches: {},
-            council: "council",
             pathConfig: { path: "existing path from session" },
             save: (cb) => {
               cb("session save error");
@@ -148,15 +146,12 @@ describe("Continue route: ", () => {
         res = {
           redirect: jest.fn()
         };
-        try {
-          handler(req, res);
-        } catch (err) {
-          response = err;
-        }
+
+        handler(req, res, next);
       });
 
       it("Should throw an error", () => {
-        expect(response).toBe("session save error");
+        expect(next).toBeCalledWith("session save error");
       });
     });
   });

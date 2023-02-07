@@ -29,7 +29,8 @@ const submitController = async (
   regDataVersion,
   sessionId,
   language,
-  pathFromSession
+  pathFromSession,
+  lcUrl
 ) => {
   const controllerResponse = {
     redirectRoute: null,
@@ -50,7 +51,7 @@ const submitController = async (
         submissionData,
         language,
         addressLookups,
-        submissionData.local_authority_url
+        lcUrl
       );
       const response = await submit(transformedData, regDataVersion, sessionId);
       if (response.status) {

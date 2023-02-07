@@ -38,7 +38,8 @@ const submitRouter = () => {
             req.session.pathConfig._id,
             req.session.id,
             req.session.language,
-            req.session.pathConfig.path
+            req.session.pathConfig.path,
+            req.session.localAuthority.local_council_url
           );
 
           req.session.submissionDate = controllerResponse.submissionDate;
