@@ -26,15 +26,30 @@ const getLocalAuthorityByPostcode = async (postcode) => {
     "local-authority.service",
     "getLocalAuthorityByPostcode"
   );
+  let localAuthorityMapitID, councilRecord;
 
-  const localAuthorityMapitID = await getLocalAuthorityIDByPostcode(postcode);
+  localAuthorityMapitID = await getLocalAuthorityIDByPostcode(postcode);
   if (!localAuthorityMapitID) {
     return false;
   }
 
-  const councilRecord = await getCouncilDataByMapitID(localAuthorityMapitID);
+  councilRecord = await getCouncilDataByMapitID(localAuthorityMapitID);
   if (!councilRecord) {
     return false;
+  }
+
+  if (councilRecord.mapit_generation) {
+    localAuthorityMapitID = await getLocalAuthorityIDByPostcode(
+      postcode,
+      councilRecord.mapit_generation
+    );
+    if (!localAuthorityMapitID) {
+      return false;
+    }
+    councilRecord = await getCouncilDataByMapitID(localAuthorityMapitID);
+    if (!councilRecord) {
+      return false;
+    }
   }
 
   statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", true);
