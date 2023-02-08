@@ -92,7 +92,7 @@ const getPathConfigByVersion = async (version) => {
  * @returns {Array} An array containing shortened local council names
  */
 const getLocalCouncils = async () => {
-  let localCouncilUrls = null;
+  let localCouncils = null;
   logEmitter.emit("functionCall", "config-db.connector", "getLocalCouncils");
 
   try {
@@ -101,17 +101,17 @@ const getLocalCouncils = async () => {
       "localAuthorities"
     );
 
-    localCouncilUrls = await lcConfigCollection
+    localCouncils = await lcConfigCollection
       .find({
         $and: [
           { local_council_url: { $ne: "" } },
           { local_council_url: { $ne: null } }
         ]
       })
-      .project({ local_council: 1, local_council_url: 1, _id: 0 })
+      .project({ local_council: 1, _id: 1 })
       .toArray();
 
-    if (localCouncilUrls.length < 1) {
+    if (localCouncils.length < 1) {
       statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
       statusEmitter.emit(
         "setStatus",
@@ -119,7 +119,7 @@ const getLocalCouncils = async () => {
         false
       );
     } else {
-      // localCouncilUrls = localCouncilUrls.map((res) => res.local_council_url);
+      // localCouncils = localCouncils.map((res) => res.local_council_url);
       statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
       statusEmitter.emit(
         "setStatus",
@@ -150,77 +150,7 @@ const getLocalCouncils = async () => {
 
   logEmitter.emit("functionSuccess", "config-db.connector", "getLocalCouncils");
 
-  return localCouncilUrls;
-};
-
-/**
- * Retrieves council-specific details by url
- *
- * @param {string} councilURL URL of the council
- *
- * @returns {Object} Object with council data
- */
-const getCouncilDataByURL = async (councilURL) => {
-  logEmitter.emit("functionCall", "config-db.connector", "getCouncilDataByURL");
-
-  let councilRecord = null;
-  try {
-    lcConfigCollection = await establishConnectionToCosmos(
-      "config",
-      "localAuthorities"
-    );
-
-    councilRecord = await lcConfigCollection.findOne({
-      local_council_url: councilURL
-    });
-
-    if (councilRecord === null) {
-      // statusEmitter.emit("incrementCount", "getCouncilDataByURLFailed");
-      // statusEmitter.emit(
-      //   "setStatus",
-      //   "mostRecentgetCouncilDataByURLSucceeded",
-      //   false
-      // );
-      const newError = new Error();
-      newError.name = "mongoConnectionError";
-      newError.message = "getCouncilDataByURL retrieved null";
-      throw newError;
-    } else {
-      // statusEmitter.emit("incrementCount", "getCouncilDataByURLSucceeded");
-      // statusEmitter.emit(
-      //   "setStatus",
-      //   "mostRecentgetCouncilDataByURLSucceeded",
-      //   true
-      // );
-    }
-  } catch (err) {
-    // statusEmitter.emit("incrementCount", "getCouncilDataByURLFailed");
-    // statusEmitter.emit(
-    //   "setStatus",
-    //   "mostRecentgetCouncilDataByURLSucceeded",
-    //   false
-    // );
-    logEmitter.emit(
-      "functionFail",
-      "config-db.connector",
-      "getCouncilDataByURL",
-      err
-    );
-
-    const newError = new Error();
-    newError.name = "mongoConnectionError";
-    newError.message = err.message;
-
-    throw newError;
-  }
-
-  logEmitter.emit(
-    "functionSuccess",
-    "config-db.connector",
-    "getCouncilDataByURL"
-  );
-
-  return councilRecord;
+  return localCouncils;
 };
 
 /**
@@ -230,8 +160,8 @@ const getCouncilDataByURL = async (councilURL) => {
  *
  * @returns {Object} Object with council data
  */
-const getCouncilDatabyID = async (councilID) => {
-  logEmitter.emit("functionCall", "config-db.connector", "getCouncilDatabyID");
+const getCouncilDataByID = async (councilID) => {
+  logEmitter.emit("functionCall", "config-db.connector", "getCouncilDataByID");
 
   let councilRecord = null;
   try {
@@ -245,35 +175,35 @@ const getCouncilDatabyID = async (councilID) => {
     });
 
     if (councilRecord === null) {
-      // statusEmitter.emit("incrementCount", "getCouncilDatabyIDFailed");
+      // statusEmitter.emit("incrementCount", "getCouncilDataByIDFailed");
       // statusEmitter.emit(
       //   "setStatus",
-      //   "mostRecentgetCouncilDatabyIDSucceeded",
+      //   "mostRecentgetCouncilDataByIDSucceeded",
       //   false
       // );
       const newError = new Error();
       newError.name = "mongoConnectionError";
-      newError.message = "getCouncilDatabyID retrieved null";
+      newError.message = "getCouncilDataByID retrieved null";
       throw newError;
     } else {
-      // statusEmitter.emit("incrementCount", "getCouncilDatabyIDSucceeded");
+      // statusEmitter.emit("incrementCount", "getCouncilDataByIDSucceeded");
       // statusEmitter.emit(
       //   "setStatus",
-      //   "mostRecentgetCouncilDatabyIDSucceeded",
+      //   "mostRecentgetCouncilDataByIDSucceeded",
       //   true
       // );
     }
   } catch (err) {
-    // statusEmitter.emit("incrementCount", "getCouncilDatabyIDFailed");
+    // statusEmitter.emit("incrementCount", "getCouncilDataByIDFailed");
     // statusEmitter.emit(
     //   "setStatus",
-    //   "mostRecentgetCouncilDatabyIDSucceeded",
+    //   "mostRecentgetCouncilDataByIDSucceeded",
     //   false
     // );
     logEmitter.emit(
       "functionFail",
       "config-db.connector",
-      "getCouncilDatabyID",
+      "getCouncilDataByID",
       err
     );
 
@@ -287,7 +217,7 @@ const getCouncilDatabyID = async (councilID) => {
   logEmitter.emit(
     "functionSuccess",
     "config-db.connector",
-    "getCouncilDatabyID"
+    "getCouncilDataByID"
   );
 
   return councilRecord;
@@ -377,7 +307,6 @@ module.exports = {
   getPathConfigByVersion,
   clearPathConfigCache,
   getLocalCouncils,
-  getCouncilDataByURL,
-  getCouncilDatabyID,
+  getCouncilDataByID,
   getCouncilDataByMapitID
 };

@@ -8,7 +8,7 @@ const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const editController = require("../controllers/edit.controller");
 const {
-  getCouncilDataByURL
+  getCouncilDataByID
 } = require("../connectors/config-db/config-db.connector");
 
 const editRouter = () => {
@@ -54,8 +54,8 @@ const editRouter = () => {
           ) {
             res.redirect("/new/la-not-onboarded");
           } else {
-            req.session.localAuthority = await getCouncilDataByURL(
-              req.body.local_authority
+            req.session.localAuthority = await getCouncilDataByID(
+              +req.body.local_authority
             );
             res.redirect(
               "/new/la-established?edit=establishment-address-select"

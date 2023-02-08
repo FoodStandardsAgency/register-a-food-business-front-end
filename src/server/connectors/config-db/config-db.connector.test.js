@@ -7,7 +7,8 @@ const {
   getPathConfigByVersion,
   getLocalCouncils,
   clearPathConfigCache,
-  getCouncilDataByURL
+  getCouncilDataByURL,
+  getCouncilDataByID
 } = require("./config-db.connector");
 const { clearCosmosConnection } = require("../cosmos.client");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
@@ -390,7 +391,7 @@ describe("Function: getCouncilDataByURL", () => {
       });
 
       try {
-        await getCouncilDataByURL("cardiff");
+        await getCouncilDataByID(8015);
       } catch (err) {
         result = err;
       }
@@ -412,7 +413,7 @@ describe("Function: getCouncilDataByURL", () => {
       }));
 
       try {
-        await getCouncilDataByURL("cardiff");
+        await getCouncilDataByID(8015);
       } catch (err) {
         result = err;
       }
@@ -420,12 +421,12 @@ describe("Function: getCouncilDataByURL", () => {
 
     it("should throw mongoConnectionError error with custom message", () => {
       expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe("getCouncilDataByURL retrieved null");
+      expect(result.message).toBe("getCouncilDataByID retrieved null");
     });
   });
   describe("given the request is successful", () => {
     const exampleResult = {
-      local_council_url: "cardiff",
+      _id: 8015,
       country: "wales",
       local_council: "Cardiff Council"
     };
@@ -441,9 +442,7 @@ describe("Function: getCouncilDataByURL", () => {
     });
 
     it("returns the correct value", async () => {
-      await expect(getCouncilDataByURL("cardiff")).resolves.toEqual(
-        exampleResult
-      );
+      await expect(getCouncilDataByID(8015)).resolves.toEqual(exampleResult);
     });
   });
 });

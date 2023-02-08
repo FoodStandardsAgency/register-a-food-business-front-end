@@ -9,7 +9,6 @@ const {
 const { statusEmitter } = require("../services/statusEmitter.service");
 const { logEmitter } = require("./logging.service");
 const {
-  getCouncilDatabyID,
   getCouncilDataByMapitID
 } = require("../connectors/config-db/config-db.connector");
 

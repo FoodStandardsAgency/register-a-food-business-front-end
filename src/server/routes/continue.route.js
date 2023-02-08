@@ -8,7 +8,7 @@ const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const continueController = require("../controllers/continue.controller");
 const {
-  getCouncilDataByURL
+  getCouncilDataByID
 } = require("../connectors/config-db/config-db.connector");
 
 const continueRouter = () => {
@@ -44,8 +44,8 @@ const continueRouter = () => {
         ) {
           response.redirectRoute = "/la-not-onboarded";
         } else {
-          req.session.localAuthority = await getCouncilDataByURL(
-            req.body.local_authority
+          req.session.localAuthority = await getCouncilDataByID(
+            +req.body.local_authority
           );
         }
       }

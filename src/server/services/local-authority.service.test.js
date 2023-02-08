@@ -21,7 +21,7 @@ const {
 } = require("../connectors/local-authority-lookup/local-authority-lookup-api.connector");
 const { getLocalAuthorityByPostcode } = require("./local-authority.service");
 const {
-  getCouncilDatabyID,
+  getCouncilDataByID,
   getCouncilDataByMapitID
 } = require("../connectors/config-db/config-db.connector");
 const { statusEmitter } = require("../services/statusEmitter.service");
