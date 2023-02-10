@@ -53,10 +53,11 @@ const newRouter = () => {
 
       const localAuthorities = await localAuthoritiesCache.get();
 
-      console.log(localAuthorities);
-
       // If it is legacy request to /new/local-authority, redirect to /new
-      if (localAuthorities.map((i) => i.local_council_url).includes(page)) {
+      if (
+        localAuthorities &&
+        localAuthorities.map((i) => i.local_council_url).includes(page)
+      ) {
         logEmitter.emit(
           "functionSuccessWith",
           "Routes",
