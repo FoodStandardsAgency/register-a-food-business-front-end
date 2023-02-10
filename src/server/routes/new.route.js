@@ -51,6 +51,21 @@ const newRouter = () => {
     try {
       const page = req.params.page || "index";
 
+      const localAuthorities = await localAuthoritiesCache.get();
+
+      console.log(localAuthorities);
+
+      // If it is legacy request to /new/local-authority, redirect to /new
+      if (localAuthorities.map((i) => i.local_council_url).includes(page)) {
+        logEmitter.emit(
+          "functionSuccessWith",
+          "Routes",
+          `/new/${page} route`,
+          "Redirect to /new"
+        );
+        res.redirect("/new");
+      }
+
       // If the requested page is the homepage, regenerate the session before rendering.
       // (This wipes the user's data, allowing for a clean slate in the new registration)
       if (page === "index") {
@@ -137,7 +152,7 @@ const newRouter = () => {
           }
           const props = PropsGenerator(req);
           if (page === "la-selector") {
-            props["localAuthorities"] = await localAuthoritiesCache.get();
+            props["localAuthorities"] = localAuthorities;
           }
           res.render(`${page}`, { props: props });
         }
