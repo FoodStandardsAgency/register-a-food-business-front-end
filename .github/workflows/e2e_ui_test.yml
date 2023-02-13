@@ -22,7 +22,7 @@ on:
 jobs:
   e2e_ui_test:
     name: E2E, UI Test
-    environment: staging
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     env:
       RELEASE_RELEASENAME: Release-${{ github.run_number }}
