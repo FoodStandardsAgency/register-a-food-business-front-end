@@ -29,11 +29,38 @@ const getLocalAuthorityByPostcode = async (postcode) => {
 
   localAuthorityMapitID = await getLocalAuthorityIDByPostcode(postcode);
   if (!localAuthorityMapitID) {
+    logEmitter.emit(
+      "functionFail",
+      "local-authority.service",
+      "getLocalAuthorityByPostcode",
+      `getLocalAuthorityIDByPostcode(${postcode}) failed`
+    );
     return false;
   }
 
   councilRecord = await getCouncilDataByMapitID(localAuthorityMapitID);
   if (!councilRecord) {
+    logEmitter.emit(
+      "functionFail",
+      "local-authority.service",
+      "getLocalAuthorityByPostcode",
+      `getCouncilDataByMapitID(${localAuthorityMapitID}) failed`
+    );
+    return false;
+  }
+  if (
+    councilRecord &&
+    !councilRecord.mapit_generation &&
+    (!councilRecord.local_council_url ||
+      (councilRecord.local_council_url &&
+        councilRecord.local_council_url === ""))
+  ) {
+    logEmitter.emit(
+      "functionFail",
+      "local-authority.service",
+      "getLocalAuthorityByPostcode",
+      `getCouncilDataByMapitID(${localAuthorityMapitID}) councilRecord.local_council_url is empty`
+    );
     return false;
   }
 
@@ -43,15 +70,41 @@ const getLocalAuthorityByPostcode = async (postcode) => {
       councilRecord.mapit_generation
     );
     if (!localAuthorityMapitID) {
+      logEmitter.emit(
+        "functionFail",
+        "local-authority.service",
+        "getLocalAuthorityByPostcode",
+        `getLocalAuthorityIDByPostcode(${postcode}) failed`
+      );
       return false;
     }
+    const localCouncilName = councilRecord.local_council;
     councilRecord = await getCouncilDataByMapitID(localAuthorityMapitID);
     if (!councilRecord) {
+      logEmitter.emit(
+        "functionFail",
+        "local-authority.service",
+        "getLocalAuthorityByPostcode",
+        `getCouncilDataByMapitID(${localAuthorityMapitID}) failed`
+      );
       return false;
     }
+    if (
+      councilRecord &&
+      (!councilRecord.local_council_url ||
+        (councilRecord.local_council_url &&
+          councilRecord.local_council_url === ""))
+    ) {
+      logEmitter.emit(
+        "functionFail",
+        "local-authority.service",
+        "getLocalAuthorityByPostcode",
+        `getCouncilDataByMapitID(${localAuthorityMapitID}) councilRecord.local_council_url is empty`
+      );
+      return false;
+    }
+    councilRecord.local_council = localCouncilName;
   }
-
-  statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", true);
   logEmitter.emit(
     "functionSuccess",
     "local-authority.service",
