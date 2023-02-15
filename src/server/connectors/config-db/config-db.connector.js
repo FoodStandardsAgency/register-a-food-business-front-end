@@ -175,31 +175,25 @@ const getCouncilDataByID = async (councilID) => {
     });
 
     if (councilRecord === null) {
-      // statusEmitter.emit("incrementCount", "getCouncilDataByIDFailed");
-      // statusEmitter.emit(
-      //   "setStatus",
-      //   "mostRecentgetCouncilDataByIDSucceeded",
-      //   false
-      // );
       const newError = new Error();
       newError.name = "mongoConnectionError";
       newError.message = "getCouncilDataByID retrieved null";
       throw newError;
     } else {
-      // statusEmitter.emit("incrementCount", "getCouncilDataByIDSucceeded");
-      // statusEmitter.emit(
-      //   "setStatus",
-      //   "mostRecentgetCouncilDataByIDSucceeded",
-      //   true
-      // );
+      statusEmitter.emit("incrementCount", "getCouncilDataByIDSucceeded");
+      statusEmitter.emit(
+        "setStatus",
+        "mostRecentgetCouncilDataByIDSucceeded",
+        true
+      );
     }
   } catch (err) {
-    // statusEmitter.emit("incrementCount", "getCouncilDataByIDFailed");
-    // statusEmitter.emit(
-    //   "setStatus",
-    //   "mostRecentgetCouncilDataByIDSucceeded",
-    //   false
-    // );
+    statusEmitter.emit("incrementCount", "getCouncilDataByIDFailed");
+    statusEmitter.emit(
+      "setStatus",
+      "mostRecentgetCouncilDataByIDSucceeded",
+      false
+    );
     logEmitter.emit(
       "functionFail",
       "config-db.connector",
@@ -249,31 +243,25 @@ const getCouncilDataByMapitID = async (councilMapitID) => {
     });
 
     if (councilRecord === null) {
-      // statusEmitter.emit("incrementCount", "getCouncilDataByMapitIDFailed");
-      // statusEmitter.emit(
-      //   "setStatus",
-      //   "mostRecentgetCouncilDataByMapitIDSucceeded",
-      //   false
-      // );
       const newError = new Error();
       newError.name = "mongoConnectionError";
       newError.message = "getCouncilDataByMapitID retrieved null";
       throw newError;
     } else {
-      // statusEmitter.emit("incrementCount", "getCouncilDataByMapitIDSucceeded");
-      // statusEmitter.emit(
-      //   "setStatus",
-      //   "mostRecentgetCouncilDataByMapitIDSucceeded",
-      //   true
-      // );
+      statusEmitter.emit("incrementCount", "getCouncilDataByMapitIDSucceeded");
+      statusEmitter.emit(
+        "setStatus",
+        "mostRecentgetCouncilDataByMapitIDSucceeded",
+        true
+      );
     }
   } catch (err) {
-    // statusEmitter.emit("incrementCount", "getCouncilDataByMapitIDFailed");
-    // statusEmitter.emit(
-    //   "setStatus",
-    //   "mostRecentgetCouncilDataByMapitIDSucceeded",
-    //   false
-    // );
+    statusEmitter.emit("incrementCount", "getCouncilDataByMapitIDFailed");
+    statusEmitter.emit(
+      "setStatus",
+      "mostRecentgetCouncilDataByMapitIDSucceeded",
+      false
+    );
     logEmitter.emit(
       "functionFail",
       "config-db.connector",
