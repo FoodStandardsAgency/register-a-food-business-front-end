@@ -62,17 +62,17 @@ const continueRouter = () => {
         }
       }
 
-      logEmitter.emit(
-        "functionSuccessWith",
-        "Routes",
-        "/continue route",
-        response.redirectRoute
-      );
       req.session.save((err) => {
         if (err) {
           logEmitter.emit("functionFail", "Routes", "/continue route", err);
           throw err;
         }
+        logEmitter.emit(
+          "functionSuccessWith",
+          "Routes",
+          "/continue route",
+          response.redirectRoute
+        );
         if (response.redirectRoute === "/submit") {
           res.redirect("/submit");
         } else {
