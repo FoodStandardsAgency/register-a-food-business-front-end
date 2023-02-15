@@ -78,7 +78,6 @@ const getLocalAuthorityByPostcode = async (postcode) => {
       );
       return false;
     }
-    const localCouncilName = councilRecord.local_council;
     councilRecord = await getCouncilDataByMapitID(localAuthorityMapitID);
     if (!councilRecord) {
       logEmitter.emit(
@@ -103,7 +102,6 @@ const getLocalAuthorityByPostcode = async (postcode) => {
       );
       return false;
     }
-    councilRecord.local_council = localCouncilName;
   }
   logEmitter.emit(
     "functionSuccess",

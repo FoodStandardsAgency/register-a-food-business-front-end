@@ -9,7 +9,7 @@
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {% call govukFieldset({
         legend: {
-          text: __("You are registering with ", props.language) + props.localAuthority.local_council,
+          text: __("You are registering with ", props.language) + (props.localAuthority.new_authority_name or props.localAuthority.local_council),
           
           classes: "govuk-fieldset__legend--l",
           isPageHeading: true
