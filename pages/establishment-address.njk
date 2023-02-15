@@ -5,6 +5,7 @@
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% from "../components/EstablishmentDetails.njk" import establishmentHiddenDetails %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
 {% extends "layout.njk" %}
 {% block content %}
   <div class="govuk-grid-row">
@@ -21,6 +22,10 @@
                 }) %}
       {% endcall %}
       {{ establishmentHiddenDetails(props) }}
+      {{ govukDetails({
+      summaryText: __("Why we ask for establishment's postcode?", props.language),
+      text: __("The postcode of your establishment will help to direct the registration to the correct food safety team.", props.language)
+      }) }}
       {{ govukInput({
                     "label": {
                     "text": __("Postcode", props.language)
