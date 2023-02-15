@@ -137,15 +137,15 @@ describe("Registration contract", () => {
           typeof doubleJsonResponse.email_lc.hygieneAndStandards.recipient
         );
         expect(
-          typeof realJsonResponse.lcConfig.hygieneAndStandards.local_council
+          typeof realJsonResponse.laConfig.hygieneAndStandards.local_council
         ).toEqual(
-          typeof doubleJsonResponse.lcConfig.hygieneAndStandards.local_council
+          typeof doubleJsonResponse.laConfig.hygieneAndStandards.local_council
         );
         expect(
-          typeof realJsonResponse.lcConfig.hygieneAndStandards
+          typeof realJsonResponse.laConfig.hygieneAndStandards
             .local_council_email
         ).toEqual(
-          typeof doubleJsonResponse.lcConfig.hygieneAndStandards
+          typeof doubleJsonResponse.laConfig.hygieneAndStandards
             .local_council_email
         );
       });
@@ -167,24 +167,24 @@ describe("Registration contract", () => {
         expect(typeof realJsonResponse.email_lc.hygiene.recipient).toEqual(
           typeof doubleJsonResponse.email_lc.hygiene.recipient
         );
-        expect(typeof realJsonResponse.lcConfig.hygiene.local_council).toEqual(
-          typeof doubleJsonResponse.lcConfig.hygiene.local_council
+        expect(typeof realJsonResponse.laConfig.hygiene.local_council).toEqual(
+          typeof doubleJsonResponse.laConfig.hygiene.local_council
         );
         expect(
-          typeof realJsonResponse.lcConfig.hygiene.local_council_email
+          typeof realJsonResponse.laConfig.hygiene.local_council_email
         ).toEqual(
-          typeof doubleJsonResponse.lcConfig.hygiene.local_council_email
+          typeof doubleJsonResponse.laConfig.hygiene.local_council_email
         );
         expect(typeof realJsonResponse.email_lc.standards.recipient).toEqual(
           typeof doubleJsonResponse.email_lc.standards.recipient
         );
         expect(
-          typeof realJsonResponse.lcConfig.standards.local_council
-        ).toEqual(typeof doubleJsonResponse.lcConfig.standards.local_council);
+          typeof realJsonResponse.laConfig.standards.local_council
+        ).toEqual(typeof doubleJsonResponse.laConfig.standards.local_council);
         expect(
-          typeof realJsonResponse.lcConfig.standards.local_council_email
+          typeof realJsonResponse.laConfig.standards.local_council_email
         ).toEqual(
-          typeof doubleJsonResponse.lcConfig.standards.local_council_email
+          typeof doubleJsonResponse.laConfig.standards.local_council_email
         );
       });
     });

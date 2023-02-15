@@ -6,7 +6,7 @@ const { statusEmitter } = require("../../services/statusEmitter.service");
 const { establishConnectionToCosmos } = require("../cosmos.client");
 
 let configVersionCollection;
-let lcConfigCollection;
+let laConfigCollection;
 
 let pathConfig = null;
 
@@ -96,12 +96,12 @@ const getLocalCouncils = async () => {
   logEmitter.emit("functionCall", "config-db.connector", "getLocalCouncils");
 
   try {
-    lcConfigCollection = await establishConnectionToCosmos(
+    laConfigCollection = await establishConnectionToCosmos(
       "config",
       "localAuthorities"
     );
 
-    localCouncils = await lcConfigCollection
+    localCouncils = await laConfigCollection
       .find({
         $and: [
           { local_council_url: { $ne: "" } },
@@ -165,12 +165,12 @@ const getCouncilDataByID = async (councilID) => {
 
   let councilRecord = null;
   try {
-    lcConfigCollection = await establishConnectionToCosmos(
+    laConfigCollection = await establishConnectionToCosmos(
       "config",
       "localAuthorities"
     );
 
-    councilRecord = await lcConfigCollection.findOne({
+    councilRecord = await laConfigCollection.findOne({
       _id: councilID
     });
 
@@ -239,12 +239,12 @@ const getCouncilDataByMapitID = async (councilMapitID) => {
 
   let councilRecord = null;
   try {
-    lcConfigCollection = await establishConnectionToCosmos(
+    laConfigCollection = await establishConnectionToCosmos(
       "config",
       "localAuthorities"
     );
 
-    councilRecord = await lcConfigCollection.findOne({
+    councilRecord = await laConfigCollection.findOne({
       mapit_id: councilMapitID
     });
 
