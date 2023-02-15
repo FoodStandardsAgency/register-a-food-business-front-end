@@ -28,26 +28,46 @@ const getLocalAuthorityIDByPostcode = async (postcode, generation) => {
 
   responseJSON = await fetchUsingMapItApi(postcode, generation);
 
-  logEmitter.emit(
-    "functionSuccess",
-    "local-authority-lookup-api.connector",
-    "getLocalAuthorityIDByPostcode"
-  );
-
-  if (responseJSON.shortcuts && responseJSON.shortcuts.council) {
+  if (
+    responseJSON &&
+    responseJSON.shortcuts &&
+    responseJSON.shortcuts.council
+  ) {
     if (Number.isInteger(responseJSON.shortcuts.council)) {
+      logEmitter.emit(
+        "functionSuccess",
+        "local-authority-lookup-api.connector",
+        "getLocalAuthorityIDByPostcode"
+      );
       return responseJSON.shortcuts.council;
     } else {
       if (
         responseJSON.shortcuts.council.district &&
         Number.isInteger(responseJSON.shortcuts.council.district)
       ) {
+        logEmitter.emit(
+          "functionSuccess",
+          "local-authority-lookup-api.connector",
+          "getLocalAuthorityIDByPostcode"
+        );
         return responseJSON.shortcuts.council.district;
       } else {
+        logEmitter.emit(
+          "functionFail",
+          "local-authority-lookup-api.connector",
+          "getLocalAuthorityIDByPostcode",
+          "fetchUsingMapItApi response .shortcuts.council.district is empty or not number"
+        );
         return false;
       }
     }
   } else {
+    logEmitter.emit(
+      "functionFail",
+      "local-authority-lookup-api.connector",
+      "getLocalAuthorityIDByPostcode",
+      "fetchUsingMapItApi response is empty"
+    );
     return false;
   }
 };
