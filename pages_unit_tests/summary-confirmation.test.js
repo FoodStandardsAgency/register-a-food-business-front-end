@@ -245,7 +245,7 @@ describe("summary-confirmation", () => {
           applicationCompletePage: true,
           laConfig: laConfigCombined,
           transformedData: transformedData,
-          country: "wales"
+          localAuthority: { country: "wales" }
         });
 
         const $businessGuidanceLink = $("#businessGuidanceLink");
@@ -264,7 +264,7 @@ describe("summary-confirmation", () => {
           applicationCompletePage: true,
           laConfig: laConfigCombined,
           transformedData: transformedData,
-          country: "northern-ireland"
+          localAuthority: { country: "northern-ireland" }
         });
 
         const $businessGuidanceLink = $("#businessGuidanceLink");
@@ -283,7 +283,7 @@ describe("summary-confirmation", () => {
           applicationCompletePage: true,
           laConfig: laConfigCombined,
           transformedData: transformedData,
-          country: "england"
+          localAuthority: { country: "england" }
         });
 
         const $businessGuidanceLink = $("#businessSupportHelplineEnglishLink");

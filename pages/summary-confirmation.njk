@@ -125,7 +125,7 @@
                 rel="noopener noreferrer">{{ __("How to achieve a high food hygiene rating (FHRS score)", props.language) }}
           </a>
         </p>
-        {% if props.country === "northern-ireland" %}
+        {% if props.localAuthority.country === "northern-ireland" %}
           <p>
             <a
                   class="govuk-link"
@@ -156,7 +156,7 @@
           </a>
         </p>
       {% endif %}
-      {% if props.country === "wales" %}
+      {% if props.localAuthority.country === "wales" %}
         <p>
           <a
                 class="govuk-link"
@@ -167,7 +167,7 @@
           </a>
         </p>
       {% endif %}
-      {% if props.country === "northern-ireland" and props.language === "en" %}
+      {% if props.localAuthority.country === "northern-ireland" and props.language === "en" %}
         <p>
           <a
                 class="govuk-link"
@@ -178,7 +178,7 @@
           </a>
         </p>
       {% else %}
-        {% if props.country === "england" and props.language === "en" %}
+        {% if props.localAuthority.country === "england" and props.language === "en" %}
           <p>
             <a
                   class="govuk-link"
