@@ -119,7 +119,6 @@ const getLocalCouncils = async () => {
         false
       );
     } else {
-      // localCouncils = localCouncils.map((res) => res.local_council_url);
       statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
       statusEmitter.emit(
         "setStatus",
