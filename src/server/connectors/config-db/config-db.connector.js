@@ -161,9 +161,16 @@ const getLocalCouncils = async () => {
  */
 const getCouncilDataByID = async (councilID) => {
   logEmitter.emit("functionCall", "config-db.connector", "getCouncilDataByID");
-
   let councilRecord = null;
+
   try {
+    if (isNaN(councilID)) {
+      const newError = new Error();
+      newError.name = "getCouncilDataByIDError";
+      newError.message = "councilID is not a number";
+      throw newError;
+    }
+
     laConfigCollection = await establishConnectionToCosmos(
       "config",
       "localAuthorities"
