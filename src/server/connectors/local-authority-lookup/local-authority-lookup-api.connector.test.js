@@ -1,102 +1,116 @@
 jest.mock("axios");
-jest.mock("./local-authority-lookup-api.connector");
-jest.mock("./local-authority-lookup-api.connector", () => ({
-  getLocalAuthorityIDByPostcode: jest.fn(),
-  getCouncilDataByMapitID: jest.fn(),
-  fetchUsingMapItApi: jest.fn()
-}));
-
-const { Validator } = require("jsonschema");
-const axios = require("axios");
-axios.defaults.validateStatus = () => true;
+const connector = require("./local-authority-lookup-api.connector");
+const mockAxios = require("axios");
 const {
   getLocalAuthorityIDByPostcode
 } = require("./local-authority-lookup-api.connector");
 const {
   fetchUsingMapItApi
 } = require("./local-authority-lookup-api.connector");
-const addressSchema = require("../address-lookup/addressSchema");
-const smallAddressResponseJSON = require("../address-lookup/smallAddressResponseMock.json");
-const v = new Validator();
 
-const testPostcode = "NR14 7PZ";
-
-let responseJSON;
+const testPostcode = "NR147PZ";
 let res;
 
 describe("Local Authority Lookup API Connector", () => {
-  describe("Given a valid UK postcode:", () => {
-    beforeEach(async () => {
-      axios.mockResolvedValue({
-        data: smallAddressResponseJSON,
-        status: 200
-      });
-      responseJSON = await getLocalAuthorityIDByPostcode(testPostcode);
-    });
-    it("is in a valid format", () => {
-      expect(v.validate(responseJSON, addressSchema).errors.length).toBe(0);
-    });
-    afterEach(() => {
-      jest.clearAllMocks();
-    });
+  it("should return local authority id when response status is 200", async () => {
+    const mockResponse = {
+      data: { shortcuts: { council: 123 } },
+      status: 200
+    };
+    mockAxios.mockResolvedValue(mockResponse);
+
+    const localAuthorityID = await connector.getLocalAuthorityIDByPostcode(
+      testPostcode
+    );
+
+    expect(localAuthorityID).toEqual(123);
+    expect(mockResponse.status).toBe(200);
   });
 
-  describe("Given a valid UK postcode:", () => {
-    beforeEach(async () => {
-      fetchUsingMapItApi.mockResolvedValue({
-        data: testPostcode,
+  describe("getLocalAuthorityIDByPostcode", () => {
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
+    it("returns the local authority id when the API response is valid", async () => {
+      const mockResponse = {
+        data: { shortcuts: { council: { district: 123 } } },
         status: 200
+      };
+      mockAxios.mockResolvedValue(mockResponse);
+
+      const localAuthorityID = await connector.getLocalAuthorityIDByPostcode(
+        testPostcode
+      );
+      //console.log(localAuthorityID);
+      expect(localAuthorityID).toEqual(123);
+    });
+
+    it("returns false when the API response is missing the local authority id when council is empty", async () => {
+      const mockResponse = {
+        shortcuts: {
+          council: {}
+        }
+      };
+      mockAxios.mockResolvedValueOnce(mockResponse);
+
+      const result = await fetchUsingMapItApi("AB12 3CD");
+
+      expect(result).toBeFalsy();
+    });
+    it("returns false when the API response is missing the local authority id when district is empty", async () => {
+      const nAn = "not a number";
+      const mockResponse = {
+        shortcuts: {
+          council: { district: { nAn } }
+        }
+      };
+      mockAxios.mockResolvedValueOnce(mockResponse);
+
+      const result = await fetchUsingMapItApi("AB12 3CD");
+
+      expect(result).toBeFalsy();
+    });
+
+    it("returns false when the API response is empty", async () => {
+      // Set up the mock API response
+      mockAxios.mockResolvedValueOnce(null);
+
+      // Call the function
+      const result = await getLocalAuthorityIDByPostcode("AB12 3CD", 1);
+
+      // Assert that the result is false
+      expect(result).toBeFalsy();
+    });
+
+    it("returns false when the API call fails", async () => {
+      // Set up the mock API response
+      mockAxios.mockRejectedValueOnce(new Error("API error"));
+
+      // Call the function
+      const result = await getLocalAuthorityIDByPostcode("AB12 3CD", 1);
+
+      // Assert that the result is false
+      expect(result).toBeFalsy();
+      expect.hasAssertions();
+    });
+    describe("Given Invalid inputs:", () => {
+      it("given a 500 should return false", async () => {
+        const mockResponse = {
+          data: {
+            postcode: testPostcode,
+            status: 500
+          }
+        };
+        mockAxios.mockResolvedValue(mockResponse);
+
+        res = await connector.fetchUsingMapItApi(testPostcode);
+
+        expect(res).toEqual(false);
       });
-
-      res = await fetchUsingMapItApi(testPostcode);
-    });
-    it("is returning an correct api response", () => {
-      expect(res.data).toBe(testPostcode);
-    });
-    it("is returning a correct api response status code", () => {
-      expect(res.status).toBe(200);
-    });
-    afterEach(() => {
-      jest.clearAllMocks();
-    });
-  });
-
-  /*
-  describe("When given a non-200 response from the API", () => {
-    let result;
-    beforeEach(async () => {
-      axios.mockResolvedValue({
-        status: 500
+      afterEach(() => {
+        jest.clearAllMocks();
       });
-      result = await fetchUsingMapItApi(testPostcode);
-    });
-
-    it("should throw an error", async () => {
-      expect(result).toBe("MapIt API responded with non-200 status: 500");
-    });
-    afterEach(() => {
-      jest.clearAllMocks();
-    });
-  });
-  */
-  describe("Given the return value of getLocalAuthorityIDByPostcode", () => {
-    beforeEach(async () => {
-      fetchUsingMapItApi.mockResolvedValue({
-        data: testPostcode,
-        status: 200
-      });
-
-      res = getLocalAuthorityIDByPostcode(testPostcode);
-    });
-
-    it("it returns the local authority id", () => {
-      expect(res)
-        .toBe //local authoriy id);
-        ();
-    });
-
-    afterEach(() => {
-      jest.clearAllMocks();
     });
   });
 });

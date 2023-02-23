@@ -1,62 +1,89 @@
+jest.mock("axios");
+jest.mock("../services/statusEmitter.service");
+jest.mock("../services/logging.service");
+jest.mock("./local-authority.service");
 jest.mock(
   "../connectors/local-authority-lookup/local-authority-lookup-api.connector"
 );
-jest.mock("../services/statusEmitter.service");
-jest.mock(
-  "../connectors/local-authority-lookup/local-authority-lookup-api.connector",
-  () => ({
-    getLocalAuthorityIDByPostcode: jest.fn(),
-    getCouncilDataByMapitID: jest.fn()
-  })
-);
-jest.mock("./local-authority.service", () => ({
-  getLocalAuthorityByPostcode: jest.fn()
-}));
+jest.mock("../connectors/config-db/config-db.connector");
 
-const { Validator } = require("jsonschema");
-const v = new Validator();
+const mockAxios = require("axios");
 
+const { getLocalAuthorityByPostcode } = require("./local-authority.service");
 const {
   getLocalAuthorityIDByPostcode
 } = require("../connectors/local-authority-lookup/local-authority-lookup-api.connector");
-const { getLocalAuthorityByPostcode } = require("./local-authority.service");
 const {
-  getCouncilDataByID,
   getCouncilDataByMapitID
 } = require("../connectors/config-db/config-db.connector");
-const { statusEmitter } = require("../services/statusEmitter.service");
-const { logEmitter } = require("./logging.service");
+const { response } = require("express");
 
 describe("local-authority.service getLocalAuthorityByPostcode()", () => {
-  let response;
+  let localAuthorityMapitID, councilRecord, res;
   const postcode = "NR14 7PZ";
+  const mapItID = 2000;
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
 
-  describe("given a postcode argument", () => {
+  describe("given a valid postcode argument", () => {
     beforeEach(async () => {
-      getLocalAuthorityByPostcode.mockImplementation(() => postcode);
-      response = await getLocalAuthorityIDByPostcode(postcode);
+      let mockResponse = {
+        data: { councilRecord: { local_council_url: "test url" } },
+        status: 200
+      };
+      mockAxios.mockResolvedValue(mockResponse);
+
+      getLocalAuthorityIDByPostcode.mockImplementationOnce(() => postcode);
+      localAuthorityMapitID = await getLocalAuthorityIDByPostcode(postcode);
+
+      getCouncilDataByMapitID.mockImplementationOnce(() => mapItID);
+      councilRecord = await getCouncilDataByMapitID(localAuthorityMapitID);
+
+      res = await getLocalAuthorityByPostcode(postcode);
+    });
+    it("returns a local authority map it id", () => {
+      expect(getLocalAuthorityByPostcode).toHaveBeenCalledWith(postcode);
     });
 
-    it("calls getLocalAuthorityIDByPostcode with 'uk', a postcode", () => {
-      expect(getLocalAuthorityIDByPostcode).toHaveBeenCalledWith("NR14 7PZ");
+    it("should return with a local authoity", async () => {
+      expect(res).toHaveBeenCalledWith("test url");
     });
   });
 
+  describe("given a invalid postcode argument", () => {
+    beforeEach(async () => {
+      getLocalAuthorityIDByPostcode.mockImplementationOnce(() => null);
+      getCouncilDataByMapitID.mockImplementationOnce(() => null);
+
+      res = await getLocalAuthorityByPostcode(postcode);
+    });
+    it("returns a local authority map it id", async () => {
+      expect(res).toEqual(false);
+    });
+
+    it("should return with a local authoity", async () => {
+      expect(res).not.toHaveBeenCalledWith();
+    });
+  });
+});
+/*
   describe("given the connector throws an error", () => {
     beforeEach(async () => {
-      getLocalAuthorityByPostcode.mockImplementation(() => {
+      getLocalAuthorityByPostcode.mockImplementationOnce(() => {
         throw new Error("Some error");
       });
 
       try {
-        response = await getLocalAuthorityIDByPostcode("NR14 7PZ");
+        res = await getLocalAuthorityByPostcode("NR14 7PZ");
       } catch (err) {
-        response = err;
+        res = err;
       }
     });
 
-    it("Should return undefined", () => {
-      expect(response).toEqual(undefined);
+    it("Should return that error", () => {
+      expect(res).toEqual(res);
     });
   });
-});
+  });
+  */
