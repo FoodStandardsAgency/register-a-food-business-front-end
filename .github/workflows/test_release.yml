@@ -1,0 +1,34 @@
+name: Release to Test
+run-name: Release to Test (${{ github.ref_name  }})
+on:
+  workflow_dispatch:
+    inputs:
+      skip_ui_tests:
+        description: "Skip UI tests"
+        type: boolean
+        default: true
+
+  push:
+    branches:
+      - "develop"
+jobs:
+  build_and_test:
+    name: Build & test
+    uses: ./.github/workflows/build_and_test.yml
+
+  deploy_to_test:
+    name: Deploy to Test
+    needs: build_and_test
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: test
+    secrets: inherit
+
+  e2e_ui_test:
+    if: ${{ !inputs.skip_ui_tests }}
+    name: E2E, UI Test
+    needs: deploy_to_test
+    uses: ./.github/workflows/e2e_ui_test.yml
+    with:
+      environment: test
+    secrets: inherit

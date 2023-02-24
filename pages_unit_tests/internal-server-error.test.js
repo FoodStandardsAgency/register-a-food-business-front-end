@@ -40,7 +40,7 @@ describe("internal-server-error", () => {
 
     const $returnButton = $("#server-error-form");
     expect($returnButton.get(0).attribs.href).toBe(
-      "https://www.food.gov.uk/business-guidance/register-a-food-business"
+      "https://www.food.gov.uk/business-guidance/getting-ready-to-start-your-food-business"
     );
   });
 });
