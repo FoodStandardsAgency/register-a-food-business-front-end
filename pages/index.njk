@@ -22,7 +22,7 @@
       <h2 class="govuk-heading-m">{{ __("Food business operator", props.language) }}</h2>
       <p class="govuk-body">{{ __("The operator is the person, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.", props.language) }}</p>
       <h2 class="govuk-heading-m">{{ __("Establishment", props.language) }}</h2>
-      <p class="govuk-body">{{ __("The establishment is the location or site of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.", props.language) }}</p>
+      <p class="govuk-body">{{ __("The establishment is the location or site of your food business. If it is a mobile food business, please use the location where it is normally stored overnight. If the business is operating from a home address, enter that postcode.", props.language) }}</p>
       {% call postForm("/continue/index", props.csrfToken, props.language) -%}
       {{ govukButton({
         text:  __("Begin registration", props.language),
