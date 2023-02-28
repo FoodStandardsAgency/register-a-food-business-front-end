@@ -638,5 +638,11 @@
   "You are registering with ": "Rydych chi'n cofrestru gyda ",
   "We couldn't find your Local Authority": "Ni allem ddod o hyd i'ch awdurdod lleol",
   "I can't find my Local Authority": "Ni allaf ddod o hyd i'm awdurdod lleol ",
-  "Select Local Authority": "Dewiswch awdurdod lleol"
+  "Select Local Authority": "Dewiswch awdurdod lleol",
+  "Register a Food Business - You are registering with ": "Cofrestru Busnesau Bwyd - Rydych chi'n cofrestru gyda",
+  "Error Register a Food Business - You are registering with ": "Gwall: Cofrestru Busnesau Bwyd - Rydych chi'n cofrestru gyda",
+  "Register a Food Business - We couldn't find your Local Authority": "Cofrestru Busnesau Bwyd - Ni allem ddod o hyd i'ch awdurdod lleol",
+  "Error Register a Food Business - We couldn't find your Local Authority": "Gwall: Cofrestru Busnesau Bwyd - Ni allem ddod o hyd i'ch awdurdod lleol",
+  "Register a Food Business - Unfortunately, you cannot use this service": "Cofrestru Busnesau Bwyd - Yn anffodus, ni allwch ddefnyddio'r gwasanaeth hwn",
+  "Error Register a Food Business - Unfortunately, you cannot use this service": "Gwall: Cofrestru Busnesau Bwyd - Yn anffodus, ni allwch ddefnyddio'r gwasanaeth hwn"
 }
