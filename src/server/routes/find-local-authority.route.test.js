@@ -24,7 +24,6 @@ describe("findLocalAuthority route: ", () => {
       const req = {
         session: {
           cumulativeFullAnswers: {},
-          council: "council",
           save: (cb) => {
             cb();
           }
@@ -55,29 +54,7 @@ describe("findLocalAuthority route: ", () => {
         expect(res.redirect).toBeCalledWith("/new/another-page");
       });
 
-      it("Should update session without overwriting existing addressLookups values", () => {
-        expect(req.session.cumulativeFullAnswers).toEqual({
-          example: "answer"
-        });
-        expect(req.session.validatorErrors).toEqual({});
-        expect(req.session.localAuthority).toEqual("Cardiff");
-      });
-
-      beforeEach(() => {
-        findLocalAuthorityController.mockImplementation(() => ({
-          cumulativeFullAnswers: { example: "answer" },
-          validatorErrors: {},
-          localAuthority: "Cardiff",
-          redirectRoute: "/another-page"
-        }));
-        handler = router.post.mock.calls[0][1];
-        handler(req, res);
-      });
-      it("Should redirect to the redirectRoute page", () => {
-        expect(res.redirect).toBeCalledWith("/new/another-page");
-      });
-
-      it("Should update session without overwriting existing postcode Lookups values", () => {
+      it("Should update session", () => {
         expect(req.session.cumulativeFullAnswers).toEqual({
           example: "answer"
         });
