@@ -69,7 +69,6 @@ describe("findLocalAuthority route: ", () => {
       const req = {
         session: {
           cumulativeFullAnswers: {},
-          council: "council",
           save: (cb) => {
             cb("session save error");
           }
@@ -114,8 +113,7 @@ describe("findLocalAuthority route: ", () => {
         req = {
           session: {
             cumulativeFullAnswers: {},
-            localAuthority: "Cardiff",
-            council: "council"
+            localAuthority: "Cardiff"
           },
           body: "body",
           params: {
