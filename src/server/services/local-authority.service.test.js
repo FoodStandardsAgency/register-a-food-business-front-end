@@ -16,6 +16,7 @@ const {
 const { response } = require("express");
 
 describe("local-authority.service getLocalAuthorityByPostcode()", () => {
+  let res;
   afterEach(() => {
     jest.clearAllMocks();
   });
