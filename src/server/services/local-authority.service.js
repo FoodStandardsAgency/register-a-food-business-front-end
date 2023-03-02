@@ -4,12 +4,12 @@
  */
 
 const {
-  getLocalAuthorityIDByPostcode,
+  getLocalAuthorityIDByPostcode
 } = require("../connectors/local-authority-lookup/local-authority-lookup-api.connector");
 const { statusEmitter } = require("../services/statusEmitter.service");
 const { logEmitter } = require("./logging.service");
 const {
-  getCouncilDataByMapitID,
+  getCouncilDataByMapitID
 } = require("../connectors/config-db/config-db.connector");
 
 /**
