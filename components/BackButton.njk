@@ -6,9 +6,14 @@
               href: props.href if props.href else "/new",
               text: __("Back to start", props.language)
           }) }}
-    {% elif props.fullCurrentPage == "/partner-details" %}
+    {% elif props.currentPage == "/partner-details" %}
       {{ govukBackLink({
               href: props.partnerDetailsBackUrl,
+              text: __("Back", props.language)
+          }) }}
+    {% elif props.currentPage == "/la-selector" %}
+      {{ govukBackLink({
+              href: "/new/establishment-address",
               text: __("Back", props.language)
           }) }}
     {% else %}

@@ -44,18 +44,6 @@ const continueRouter = () => {
         ) {
           response.redirectRoute = "/la-not-onboarded";
         } else {
-          if (isNaN(req.body.local_authority)) {
-            const newError = new Error();
-            newError.name = "continueControllerError";
-            newError.message = "req.body.local_authority is not a number";
-            logEmitter.emit(
-              "functionFail",
-              "Routes",
-              "/continue route",
-              newError
-            );
-            throw newError;
-          }
           req.session.localAuthority = await getCouncilDataByID(
             +req.body.local_authority
           );

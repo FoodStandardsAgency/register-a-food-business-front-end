@@ -44,7 +44,12 @@ const editRouter = () => {
 
       req.session.save(async (err) => {
         if (err) {
-          logEmitter.emit("functionFail", "Routes", "/continue route", err);
+          logEmitter.emit(
+            "functionFail",
+            "Routes",
+            "/edit/continue route",
+            err
+          );
           throw err;
         }
         if (req.params.originator === "la-selector") {
@@ -61,9 +66,10 @@ const editRouter = () => {
               "/new/la-established?edit=establishment-address-select"
             );
           }
+          // In the case that we are in editing mode and we are on the "la-established" page, then the next page will be "establishment-address-select".
         } else if (req.params.originator === "la-established") {
           if (req.session.changePostcode) {
-            req.session["changePostcode"] = false;
+            req.session.changePostcode = false;
             res.redirect("/new/establishment-address-select");
           }
         } else if (

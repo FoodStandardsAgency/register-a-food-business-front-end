@@ -1,15 +1,15 @@
 /**
- * Functions for fetching addresses in a specific country
- * @module services/address
+ * Functions for fetching Local Authority for provided potcode
+ * @module services/local_authority
  */
 
 const {
-  getLocalAuthorityIDByPostcode
+  getLocalAuthorityIDByPostcode,
 } = require("../connectors/local-authority-lookup/local-authority-lookup-api.connector");
 const { statusEmitter } = require("../services/statusEmitter.service");
 const { logEmitter } = require("./logging.service");
 const {
-  getCouncilDataByMapitID
+  getCouncilDataByMapitID,
 } = require("../connectors/config-db/config-db.connector");
 
 /**
@@ -26,7 +26,9 @@ const getLocalAuthorityByPostcode = async (postcode) => {
     "getLocalAuthorityByPostcode"
   );
   let localAuthorityMapitID, councilRecord;
+
   try {
+    // Get the mapIt ID based on the postcode
     localAuthorityMapitID = await getLocalAuthorityIDByPostcode(postcode);
     if (!localAuthorityMapitID) {
       logEmitter.emit(
@@ -38,6 +40,7 @@ const getLocalAuthorityByPostcode = async (postcode) => {
       return false;
     }
 
+    // Get the LA from the mapIt ID
     councilRecord = await getCouncilDataByMapitID(localAuthorityMapitID);
     if (!councilRecord) {
       logEmitter.emit(
@@ -64,7 +67,9 @@ const getLocalAuthorityByPostcode = async (postcode) => {
       return false;
     }
 
+    // Check if a different generation of LA is required
     if (councilRecord.mapit_generation) {
+      // Obtain the mapIt ID based on the postcode and generation ID (SECOND REQUEST)
       localAuthorityMapitID = await getLocalAuthorityIDByPostcode(
         postcode,
         councilRecord.mapit_generation
@@ -78,6 +83,7 @@ const getLocalAuthorityByPostcode = async (postcode) => {
         );
         return false;
       }
+      // Get the LA from the mapIt ID (SECOND REQUEST)
       councilRecord = await getCouncilDataByMapitID(localAuthorityMapitID);
       if (!councilRecord) {
         logEmitter.emit(

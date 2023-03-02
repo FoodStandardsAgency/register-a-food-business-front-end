@@ -56,7 +56,7 @@ const newRouter = () => {
       // If it is legacy request to /new/local-authority, redirect to /new
       if (
         localAuthorities &&
-        localAuthorities.map((i) => i.local_council_url).includes(page)
+        localAuthorities.find((i) => i.local_council_url === page)
       ) {
         logEmitter.emit(
           "functionSuccessWith",
