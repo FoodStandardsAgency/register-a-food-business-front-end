@@ -123,4 +123,4 @@ const fetchUsingMapItApi = async (postcode, generation) => {
   }
 };
 
-module.exports = { getLocalAuthorityIDByPostcode };
+module.exports = { getLocalAuthorityIDByPostcode, fetchUsingMapItApi };

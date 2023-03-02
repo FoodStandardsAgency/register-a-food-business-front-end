@@ -1,62 +1,134 @@
-jest.mock(
-  "../connectors/local-authority-lookup/local-authority-lookup-api.connector"
-);
-jest.mock("../services/statusEmitter.service");
-jest.mock(
-  "../connectors/local-authority-lookup/local-authority-lookup-api.connector",
-  () => ({
-    getLocalAuthorityIDByPostcode: jest.fn(),
-    getCouncilDataByMapitID: jest.fn()
-  })
-);
-jest.mock("./local-authority.service", () => ({
-  getLocalAuthorityByPostcode: jest.fn()
-}));
+jest.mock("axios");
 
-const { Validator } = require("jsonschema");
-const v = new Validator();
+jest.mock("../connectors/config-db/config-db.connector");
 
+const axios = require("axios");
+
+const { logEmitter } = require("./logging.service");
+
+const { getLocalAuthorityByPostcode } = require("./local-authority.service");
 const {
   getLocalAuthorityIDByPostcode
 } = require("../connectors/local-authority-lookup/local-authority-lookup-api.connector");
-const { getLocalAuthorityByPostcode } = require("./local-authority.service");
 const {
-  getCouncilDataByID,
   getCouncilDataByMapitID
 } = require("../connectors/config-db/config-db.connector");
-const { statusEmitter } = require("../services/statusEmitter.service");
-const { logEmitter } = require("./logging.service");
+const { response } = require("express");
 
 describe("local-authority.service getLocalAuthorityByPostcode()", () => {
-  let response;
-  const postcode = "NR14 7PZ";
-
-  describe("given a postcode argument", () => {
+  let res;
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+  describe("given a valid postcode", () => {
     beforeEach(async () => {
-      getLocalAuthorityByPostcode.mockImplementation(() => postcode);
-      response = await getLocalAuthorityIDByPostcode(postcode);
+      getCouncilDataByMapitID.mockResolvedValue({
+        local_council: "Test council",
+        local_council_url: "test-council"
+      });
+      axios.mockResolvedValue({
+        data: { shortcuts: { council: 2350 } },
+        status: 200
+      });
+      res = await getLocalAuthorityByPostcode("NR14 7PZ");
     });
 
-    it("calls getLocalAuthorityIDByPostcode with 'uk', a postcode", () => {
-      expect(getLocalAuthorityIDByPostcode).toHaveBeenCalledWith("NR14 7PZ");
+    it("have been called with map it id", () => {
+      expect(getCouncilDataByMapitID).toHaveBeenCalledWith(2350);
+    });
+    it("response have been defined", () => {
+      expect(res).toBeDefined();
+    });
+    it("returns a local authority", () => {
+      expect(getCouncilDataByMapitID).toHaveBeenCalledWith(2350);
+      expect(res.local_council_url).toBe("test-council");
+    });
+  });
+
+  describe("given that local council have generation ID", () => {
+    beforeEach(async () => {
+      getCouncilDataByMapitID.mockResolvedValue({
+        local_council: "Test council",
+        local_council_url: "test-council",
+        mapit_generation: 34
+      });
+      axios.mockResolvedValue({
+        data: { shortcuts: { council: 2350 } },
+        status: 200
+      });
+
+      res = await getLocalAuthorityByPostcode("NR14 7PZ");
+    });
+
+    it("getCouncilDataByMapitID have been called twice", () => {
+      expect(getCouncilDataByMapitID).toHaveBeenCalledTimes(2);
+    });
+    it("have been called with map it id", () => {
+      expect(getCouncilDataByMapitID).toHaveBeenCalledWith(2350);
+    });
+    it("response have been defined", () => {
+      expect(res).toBeDefined();
+    });
+    it("returns a local authority", () => {
+      expect(getCouncilDataByMapitID).toHaveBeenCalledWith(2350);
+      expect(res.local_council_url).toBe("test-council");
+    });
+  });
+
+  describe("given a invalid postcode", () => {
+    beforeEach(async () => {
+      getCouncilDataByMapitID.mockResolvedValue({
+        local_council: "Test council",
+        local_council_url: "test-council",
+        mapit_generation: 34
+      });
+      axios.mockResolvedValue({
+        status: 500
+      });
+
+      res = await getLocalAuthorityByPostcode("NR14 7PZ");
+    });
+
+    it("getCouncilDataByMapitID have not been called", () => {
+      expect(getCouncilDataByMapitID).toHaveBeenCalledTimes(0);
+    });
+    it("response have been defined", () => {
+      expect(res).toBeDefined();
+    });
+    it("returns false", () => {
+      expect(res).toBe(false);
     });
   });
 
   describe("given the connector throws an error", () => {
+    let spy;
     beforeEach(async () => {
-      getLocalAuthorityByPostcode.mockImplementation(() => {
+      getCouncilDataByMapitID.mockImplementationOnce(() => {
         throw new Error("Some error");
       });
+      axios.mockResolvedValue({
+        data: { shortcuts: { council: 2350 } },
+        status: 200
+      });
 
-      try {
-        response = await getLocalAuthorityIDByPostcode("NR14 7PZ");
-      } catch (err) {
-        response = err;
-      }
+      spy = jest.spyOn(logEmitter, "emit");
+
+      res = await getLocalAuthorityByPostcode("NR14 7PZ");
     });
 
-    it("Should return undefined", () => {
-      expect(response).toEqual(undefined);
+    it("has catch and log error", () => {
+      expect(spy).toHaveBeenLastCalledWith(
+        "functionFail",
+        "local-authority.service",
+        "getLocalAuthorityByPostcode",
+        new Error("Some error")
+      );
+    });
+    it("response have been defined", () => {
+      expect(res).toBeDefined();
+    });
+    it("returns false", () => {
+      expect(res).toBe(false);
     });
   });
 });
