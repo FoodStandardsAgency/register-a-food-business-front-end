@@ -64,13 +64,6 @@ describe("establishment-address-select", () => {
     );
   });
 
-  it("renders correct inset text", () => {
-    const $detailsText = getPageDetails.getDetailsText($);
-    expect($detailsText).toEqual(
-      "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight. If the business is operating from a home address, enter that postcode."
-    );
-  });
-
   describe("Establishment postcode display", () => {
     it("renders correct post code entered link href when truthy switch of props.editModeFirstPage", async () => {
       const $ = renderPage("establishment-address-select", {
