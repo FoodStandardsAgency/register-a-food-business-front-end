@@ -105,7 +105,8 @@ const getLocalCouncils = async () => {
       .find({
         $and: [
           { local_council_url: { $ne: "" } },
-          { local_council_url: { $ne: null } }
+          { local_council_url: { $ne: null } },
+          { deleted: { $ne: true } }
         ]
       })
       .project({ local_council: 1, local_council_url: 1, _id: 1 })

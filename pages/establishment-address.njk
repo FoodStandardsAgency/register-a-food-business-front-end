@@ -20,12 +20,9 @@
                     isPageHeading: true
                 }
                 }) %}
-      {% endcall %}
       {{ establishmentHiddenDetails(props) }}
-      {{ govukDetails({
-      summaryText: __("Why we ask for establishment's postcode?", props.language),
-      text: __("The postcode of your establishment will help to direct the registration to the correct food safety team.", props.language)
-      }) }}
+      <p id="changed-name-hint" class="govuk-hint">{{ __("The postcode of your establishment will help to direct the registration to the correct food safety team.", props.language) }}</p>
+      {% endcall %}
       {{ govukInput({
                     "label": {
                     "text": __("Postcode", props.language)

@@ -3,7 +3,6 @@
 {% from "govuk/components/select/macro.njk" import govukSelect %}
 {% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-{% from "../components/EstablishmentDetails.njk" import establishmentHiddenDetails %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% extends "layout.njk" %}
@@ -20,7 +19,6 @@
                   }
             }) %}
       {% endcall %}
-      {{ establishmentHiddenDetails(props) }}
       {% if props.editModeFirstPage %}
         {% set editModeFirstPage = "/new/establishment-address?edit=establishment-address" %}
       {% else %}
