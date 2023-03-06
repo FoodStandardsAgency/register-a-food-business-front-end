@@ -44,7 +44,11 @@ describe("findLocalAuthority route: ", () => {
         findLocalAuthorityController.mockImplementation(() => ({
           cumulativeFullAnswers: { example: "answer" },
           validatorErrors: {},
-          localAuthority: "Cardiff",
+          localAuthority: {
+            local_council: "City of Cardiff Council",
+            local_council_url: "cardiff",
+            country: "wales"
+          },
           redirectRoute: "/another-page"
         }));
         handler = router.post.mock.calls[0][1];
@@ -54,12 +58,25 @@ describe("findLocalAuthority route: ", () => {
         expect(res.redirect).toBeCalledWith("/new/another-page");
       });
 
+      it("Should set req.session.localAuthority.local_council_url", () => {
+        expect(req.session.localAuthority.local_council_url).toEqual("cardiff");
+      });
+
+      it("Should set req.session.localAuthority.country", () => {
+        expect(req.session.localAuthority.country).toEqual("wales");
+      });
+
+      it("Should set req.session.localAuthority.local_council", () => {
+        expect(req.session.localAuthority.local_council).toEqual(
+          "City of Cardiff Council"
+        );
+      });
+
       it("Should update session", () => {
         expect(req.session.cumulativeFullAnswers).toEqual({
           example: "answer"
         });
         expect(req.session.validatorErrors).toEqual({});
-        expect(req.session.localAuthority).toEqual("Cardiff");
       });
     });
 
