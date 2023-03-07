@@ -97,7 +97,7 @@
     "prettier": "^2.7.1",
     "regenerator-runtime": "^0.13.10",
     "sass": "^1.55.0",
-    "snyk": "^1.1044.0",
+    "snyk": "^1.1064.0",
     "source-map-resolve": "^0.6.0",
     "yarn-upgrade-all": "^0.7.1"
   },
