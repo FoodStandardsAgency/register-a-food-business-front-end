@@ -18,9 +18,9 @@ const qaRouter = () => {
     logEmitter.emit("functionCall", "Routes", "/qa/:target route");
     try {
       if (req.query.QA_KEY && req.query.QA_KEY === QA_KEY) {
-        if (req.query.la_id && !isNaN(req.query.la_id)) {
+        if (req.query.la_id) {
           req.session.localAuthority = await getCouncilDataByID(
-            +req.query.la_id
+            req.query.la_id
           );
         }
         const target = req.params.target;
