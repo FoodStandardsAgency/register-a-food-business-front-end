@@ -160,6 +160,5 @@ module.exports = (req) => {
   };
 
   // The getInitialProps function (a method of the 'wrapper' function) returns the initialProps object
-  console.log(initialProps); // remove log
   return initialProps;
 };
