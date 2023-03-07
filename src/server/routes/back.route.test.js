@@ -48,7 +48,7 @@ describe("Back route: ", () => {
     });
 
     it("Should redirect to previous page", () => {
-      expect(res.redirect).toBeCalledWith("/new/council/previousPage");
+      expect(res.redirect).toBeCalledWith("/new/previousPage");
     });
   });
 });

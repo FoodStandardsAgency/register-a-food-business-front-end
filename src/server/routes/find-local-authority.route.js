@@ -1,20 +1,24 @@
 /**
- * The find-address router stores address lookup results in the user's session and redirects the user to the next page in the path.
- * Routes: /find-address/:originator
- * @module routers/find-address
+ * Find-local-authority router searches the local authority by postcode and redirects to next step or manual authority selector if no authority is found.
+ * Routes: /findlocalauthority/:originator
+ * @module routers/find-local-authority
  */
 
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
-const findAddressController = require("../controllers/find-address.controller");
+const findLocalAuthorityController = require("../controllers/find-local-authority.controller");
 
-const findAddressRouter = () => {
+const findLocalAuthorityRouter = () => {
   const router = Router();
 
   router.post("/:originator", async (req, res, next) => {
-    logEmitter.emit("functionCall", "Routes", "/findaddress/:originator route");
+    logEmitter.emit(
+      "functionCall",
+      "Routes",
+      "/findlocalauthority/:originator route"
+    );
     try {
-      const response = await findAddressController(
+      const response = await findLocalAuthorityController(
         `/${req.params.originator}`,
         req.session.cumulativeFullAnswers,
         req.body
@@ -23,26 +27,21 @@ const findAddressRouter = () => {
       req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
       req.session.validatorErrors = response.validatorErrors;
 
-      req.session.addressLookups = Object.assign(
-        {},
-        req.session.addressLookups,
-        response.addressLookups
-      );
-
-      req.session.switches = Object.assign(
-        {},
-        req.session.switches,
-        response.switches
-      );
+      req.session.localAuthority = response.localAuthority;
 
       logEmitter.emit(
         "functionSuccess",
         "Routes",
-        "/findaddress/:originator route"
+        "/findlocalauthority/:originator route"
       );
       req.session.save((err) => {
         if (err) {
-          logEmitter.emit("functionFail", "Routes", "/find-address route", err);
+          logEmitter.emit(
+            "functionFail",
+            "Routes",
+            "/findlocalauthority route",
+            err
+          );
           throw err;
         }
 
@@ -56,7 +55,7 @@ const findAddressRouter = () => {
       logEmitter.emit(
         "functionFail",
         "Routes",
-        "/findaddress/:originator route",
+        "/findlocalauthority/:originator route",
         err
       );
       next(err);
@@ -66,4 +65,4 @@ const findAddressRouter = () => {
   return router;
 };
 
-module.exports = { findAddressRouter };
+module.exports = { findLocalAuthorityRouter };

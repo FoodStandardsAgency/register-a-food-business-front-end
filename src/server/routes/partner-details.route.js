@@ -49,7 +49,6 @@ const partnerDetailsRouter = () => {
         originator,
         req.session.cumulativeFullAnswers,
         data,
-        req.session.council,
         isEditMode(req.query)
       );
 
@@ -132,7 +131,6 @@ const partnerDetailsRouter = () => {
       const response = partnerDetailsDelete(
         req.session.cumulativeFullAnswers,
         req.body,
-        req.session.council,
         isEditMode(req.query)
       );
 
@@ -179,7 +177,6 @@ const partnerDetailsRouter = () => {
       const response = partnerDetailsContinue(
         originator,
         req.session.cumulativeFullAnswers,
-        req.session.council,
         isEditMode(req.query),
         req.session.allValidationErrors
       );
@@ -218,8 +215,8 @@ const partnerDetailsRouter = () => {
   router.get("/back", (req, res) => {
     logEmitter.emit("functionCall", "Routes", "partnership/back route");
     const redirectUrl = isEditMode(req.query)
-      ? `/new/${req.session.council}/partner-name?edit=partner-name`
-      : `/new/${req.session.council}/partner-name`;
+      ? `/new/partner-name?edit=partner-name`
+      : `/new/partner-name`;
     logEmitter.emit(
       "functionSuccessWith",
       "Routes",

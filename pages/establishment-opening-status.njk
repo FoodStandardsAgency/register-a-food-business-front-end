@@ -4,7 +4,6 @@
 {% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
-{% from "../components/EstablishmentDetails.njk" import establishmentHiddenDetails %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% extends "layout.njk" %}
 {% block content %}
@@ -21,7 +20,6 @@
                     }
             }) %}
       <p id="changed-name-hint" class="govuk-hint">{{ __("It is trading if it is already producing or serving food, or if the new operator has already taken control", props.language) }}</p>
-      {{ establishmentHiddenDetails(props) }}
       {{ govukRadios({
     idPrefix: "establishment_opening_status",
     name: "establishment_opening_status",

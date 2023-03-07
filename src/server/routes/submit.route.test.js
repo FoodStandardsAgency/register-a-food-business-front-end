@@ -9,7 +9,7 @@ const submitController = require("../controllers/submit.controller");
 const { submitRouter } = require("./submit.route");
 
 describe("Submit route: ", () => {
-  const lcConfig = {
+  const laConfig = {
     hygiene: {
       code: 4221,
       local_council: "District Council",
@@ -38,7 +38,7 @@ describe("Submit route: ", () => {
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
           emailFbo: { recipient: "fbo@example.com", success: true },
-          lcConfig: lcConfig,
+          laConfig: laConfig,
           allValidationErrors: {
             some: "error"
           }
@@ -52,7 +52,9 @@ describe("Submit route: ", () => {
               some: "answers"
             },
             language: "en",
-            council: "cardiff",
+            localAuthority: {
+              local_council_url: "cardiff"
+            },
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0", path: { some: "path" } },
             id: "S3S510NI6",
@@ -69,7 +71,6 @@ describe("Submit route: ", () => {
 
       it("Should call submitController with the correct args", () => {
         expect(submitController).toHaveBeenCalledWith(
-          "cardiff",
           {
             some: "answers"
           },
@@ -79,7 +80,8 @@ describe("Submit route: ", () => {
           "en",
           {
             some: "path"
-          }
+          },
+          "cardiff"
         );
       });
 
@@ -88,13 +90,11 @@ describe("Submit route: ", () => {
         expect(req.session.fsaRegistrationNumber).toEqual("12345678");
         expect(req.session.emailFbo.recipient).toEqual("fbo@example.com");
         expect(req.session.emailFbo.success).toEqual(true);
-        expect(req.session.lcConfig).toEqual(lcConfig);
+        expect(req.session.laConfig).toEqual(laConfig);
       });
 
       it("Should set redirect to response", () => {
-        expect(res.redirect).toBeCalledWith(
-          "/new/cardiff/summary-confirmation"
-        );
+        expect(res.redirect).toBeCalledWith("/new/summary-confirmation");
       });
     });
 
@@ -116,7 +116,9 @@ describe("Submit route: ", () => {
               some: "answers"
             },
             language: "en",
-            council: "cardiff",
+            localAuthority: {
+              local_council_url: "cardiff"
+            },
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0", path: { some: "path" } },
             save: (cb) => {
@@ -136,9 +138,7 @@ describe("Submit route: ", () => {
       });
 
       it("Should set redirect to response", () => {
-        expect(res.redirect).toBeCalledWith(
-          "/new/cardiff/registration-summary"
-        );
+        expect(res.redirect).toBeCalledWith("/new/registration-summary");
       });
     });
 
@@ -152,7 +152,7 @@ describe("Submit route: ", () => {
           submissionDate: "date",
           fsaRegistrationNumber: "12345678",
           emailFbo: { recipient: "fbo@example.com", success: true },
-          lcConfig: lcConfig
+          laConfig: laConfig
         }));
 
         handler = router.get.mock.calls[0][1];
@@ -163,7 +163,9 @@ describe("Submit route: ", () => {
               some: "answers"
             },
             language: "en",
-            council: "cardiff",
+            localAuthority: {
+              local_council_url: "cardiff"
+            },
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },
             save: (cb) => {
@@ -196,7 +198,9 @@ describe("Submit route: ", () => {
               some: "answers"
             },
             language: "en",
-            council: "cardiff",
+            localAuthority: {
+              local_council_url: "cardiff"
+            },
             addressLookups: ["1"],
             pathConfig: { _id: "1.0.0" },
             save: () => {}

@@ -141,11 +141,11 @@ const getPageDetails = {
     const errorLinks = $(".govuk-error-summary__list a");
     return errorLinks;
   },
-  getCheckboxes: function($){
+  getCheckboxes: function ($) {
     const checkboxList = $(":checkbox");
     return checkboxList;
   },
-  getSelectionBox: function($){
+  getSelectionBox: function ($) {
     const selected = $(":selected");
     return selected;
   },

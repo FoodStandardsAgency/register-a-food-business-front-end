@@ -18,7 +18,7 @@ const transformedData = {
   operator_email: "email@email.com"
 };
 
-const lcConfigCombined = {
+const laConfigCombined = {
   hygieneAndStandards: {
     local_council: "Council name",
     local_council_email: "council@example.com",
@@ -26,14 +26,14 @@ const lcConfigCombined = {
   }
 };
 
-const lcConfigCombinedNoNumber = {
+const laConfigCombinedNoNumber = {
   hygieneAndStandards: {
     local_council: "Council name",
     local_council_email: "council@example.com"
   }
 };
 
-const lcConfigSplit = {
+const laConfigSplit = {
   hygiene: {
     local_council: "Hygiene council name",
     local_council_email: "hygiene@example.com",
@@ -46,7 +46,7 @@ const lcConfigSplit = {
   }
 };
 
-const lcConfigSplitNoNumber = {
+const laConfigSplitNoNumber = {
   hygiene: {
     local_council: "Hygiene council name",
     local_council_email: "hygiene@example.com"
@@ -76,7 +76,7 @@ describe("summary-confirmation", () => {
       cumulativeFullAnswers: cumulativeFullAnswers,
       applicationCompletePage: true,
       fsaRegistrationNumber: "12345",
-      lcConfig: lcConfigCombined,
+      laConfig: laConfigCombined,
       transformedData: transformedData
     });
     const $answer = $(".govuk-fieldset");
@@ -90,7 +90,7 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: "12345",
-        lcConfig: lcConfigCombined,
+        laConfig: laConfigCombined,
         transformedData: transformedData
       });
       const $panel = $("#fsa-rn");
@@ -102,7 +102,7 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: undefined,
-        lcConfig: lcConfigCombined,
+        laConfig: laConfigCombined,
         transformedData: transformedData
       });
       const $panel = $("#panelWithText");
@@ -117,7 +117,7 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: undefined,
-        lcConfig: lcConfigCombined,
+        laConfig: laConfigCombined,
         transformedData: transformedData
       });
 
@@ -133,7 +133,7 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: undefined,
-        lcConfig: lcConfigSplit,
+        laConfig: laConfigSplit,
         transformedData: transformedData
       });
       const $hygienesNumber = $("#hygieneNumber");
@@ -148,7 +148,7 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: undefined,
-        lcConfig: lcConfigSplit,
+        laConfig: laConfigSplit,
         transformedData: transformedData
       });
       const $standardsNumber = $("#standardsNumber");
@@ -166,7 +166,7 @@ describe("summary-confirmation", () => {
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: "12345",
-          lcConfig: lcConfigSplit,
+          laConfig: laConfigSplit,
           transformedData: transformedDataRepresentative
         });
         const $panel = $("#receiveConfirmationEmail-id");
@@ -183,7 +183,7 @@ describe("summary-confirmation", () => {
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: undefined,
-          lcConfig: lcConfigCombinedNoNumber,
+          laConfig: laConfigCombinedNoNumber,
           transformedData: transformedData
         });
 
@@ -199,7 +199,7 @@ describe("summary-confirmation", () => {
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: undefined,
-          lcConfig: lcConfigSplitNoNumber,
+          laConfig: laConfigSplitNoNumber,
           transformedData: transformedData
         });
         const $hygienesNumber = $("#hygieneNumber");
@@ -214,7 +214,7 @@ describe("summary-confirmation", () => {
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: undefined,
-          lcConfig: lcConfigSplitNoNumber,
+          laConfig: laConfigSplitNoNumber,
           transformedData: transformedData
         });
         const $standardsNumber = $("#standardsNumber");
@@ -222,14 +222,14 @@ describe("summary-confirmation", () => {
       });
     });
 
-    describe("When given no lcConfig", () => {
+    describe("When given no laConfig", () => {
       it("The page still renders", () => {
         const $ = renderPage("summary-confirmation", {
           language: "cy",
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: undefined,
-          lcConfig: {},
+          laConfig: {},
           transformedData: transformedData
         });
         const $mainHeading = getPageDetails.getMainHeading($);
@@ -243,9 +243,9 @@ describe("summary-confirmation", () => {
           language: "cy",
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
-          lcConfig: lcConfigCombined,
+          laConfig: laConfigCombined,
           transformedData: transformedData,
-          country: "wales"
+          localAuthority: { country: "wales" }
         });
 
         const $businessGuidanceLink = $("#businessGuidanceLink");
@@ -262,9 +262,9 @@ describe("summary-confirmation", () => {
           language: "en",
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
-          lcConfig: lcConfigCombined,
+          laConfig: laConfigCombined,
           transformedData: transformedData,
-          country: "northern-ireland"
+          localAuthority: { country: "northern-ireland" }
         });
 
         const $businessGuidanceLink = $("#businessGuidanceLink");
@@ -281,9 +281,9 @@ describe("summary-confirmation", () => {
           language: "en",
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
-          lcConfig: lcConfigCombined,
+          laConfig: laConfigCombined,
           transformedData: transformedData,
-          country: "england"
+          localAuthority: { country: "england" }
         });
 
         const $businessGuidanceLink = $("#businessSupportHelplineEnglishLink");

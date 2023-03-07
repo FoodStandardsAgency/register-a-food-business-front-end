@@ -75,10 +75,10 @@ describe("Registration service", () => {
         expect(resultJson.emailFbo.recipient).toBeDefined();
         expect(resultJson.email_lc.hygieneAndStandards.recipient).toBeDefined();
         expect(
-          resultJson.lcConfig.hygieneAndStandards.local_council
+          resultJson.laConfig.hygieneAndStandards.local_council
         ).toBeDefined();
         expect(
-          resultJson.lcConfig.hygieneAndStandards.local_council_email
+          resultJson.laConfig.hygieneAndStandards.local_council_email
         ).toBeDefined();
       });
     });
@@ -97,11 +97,11 @@ describe("Registration service", () => {
         expect(resultJson.reg_submission_date).toBeDefined();
         expect(resultJson.emailFbo.recipient).toBeDefined();
         expect(resultJson.email_lc.hygiene.recipient).toBeDefined();
-        expect(resultJson.lcConfig.hygiene.local_council).toBeDefined();
-        expect(resultJson.lcConfig.hygiene.local_council_email).toBeDefined();
+        expect(resultJson.laConfig.hygiene.local_council).toBeDefined();
+        expect(resultJson.laConfig.hygiene.local_council_email).toBeDefined();
         expect(resultJson.email_lc.standards.recipient).toBeDefined();
-        expect(resultJson.lcConfig.standards.local_council).toBeDefined();
-        expect(resultJson.lcConfig.standards.local_council_email).toBeDefined();
+        expect(resultJson.laConfig.standards.local_council).toBeDefined();
+        expect(resultJson.laConfig.standards.local_council_email).toBeDefined();
       });
     });
   });

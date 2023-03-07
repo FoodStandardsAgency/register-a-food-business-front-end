@@ -282,7 +282,7 @@ const registrationDouble = (body) => {
       }
     };
   } else {
-    const lcConfigCombined = {
+    const laConfigCombined = {
       hygieneAndStandards: {
         _id: 8015,
         local_council: "City of Cardiff Council",
@@ -292,7 +292,7 @@ const registrationDouble = (body) => {
       }
     };
 
-    const lcConfigSplit = {
+    const laConfigSplit = {
       hygiene: {
         code: 4221,
         local_council: "West Dorset District Council",
@@ -325,7 +325,7 @@ const registrationDouble = (body) => {
       }
     };
 
-    let lcConfig;
+    let laConfig;
     let lcEmail;
 
     if (
@@ -333,10 +333,10 @@ const registrationDouble = (body) => {
       body.local_council_url === "mid-and-east-antrim" ||
       body.local_council_url === "purbeck"
     ) {
-      lcConfig = lcConfigCombined;
+      laConfig = laConfigCombined;
       lcEmail = lcEmailCombined;
     } else if (body.local_council_url === "west-dorset") {
-      lcConfig = lcConfigSplit;
+      laConfig = laConfigSplit;
       lcEmail = lcEmailSplit;
     } else {
       throw new Error(
@@ -363,7 +363,7 @@ const registrationDouble = (body) => {
           recipient: "fsatestemail.valid@gmail.com"
         },
         email_lc: lcEmail,
-        lcConfig: lcConfig
+        laConfig: laConfig
       },
       status: 200
     };

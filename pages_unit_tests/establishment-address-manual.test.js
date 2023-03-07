@@ -30,7 +30,7 @@ describe("operator-address-manual", () => {
       council: "cardiff"
     });
     const $backlink = getPageDetails.getBacklinkHref($);
-    expect($backlink).toEqual("/new/cardiff/establishment-address");
+    expect($backlink).toEqual("/new/establishment-address");
   });
 
   it("renders correct backlink href when falsy switch of /establishment-address-none-found", async () => {
@@ -39,7 +39,7 @@ describe("operator-address-manual", () => {
       council: "cardiff"
     });
     const $backlink = getPageDetails.getBacklinkHref($);
-    expect($backlink).toEqual("/new/cardiff/establishment-address-select");
+    expect($backlink).toEqual("/new/establishment-address-select");
   });
 
   it("renders without crashing", () => {
@@ -52,7 +52,7 @@ describe("operator-address-manual", () => {
   it("renders correct inset text", () => {
     const $detailsText = getPageDetails.getDetailsText($);
     expect($detailsText).toEqual(
-      "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight."
+      "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight. If the business is operating from a home address, enter that postcode."
     );
   });
 

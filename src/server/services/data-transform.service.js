@@ -129,10 +129,15 @@ const transformAnswersForSubmit = (
       declaration: {}
     },
     local_council_url: lcUrl,
-    submission_language: language
+    submission_language: language,
+    manual_local_authority: false
   };
 
   const data = Object.assign({}, cumulativeFullAnswers);
+
+  if (data.local_authority) {
+    submitObject.manual_local_authority = true;
+  }
 
   delete data.operator_postcode_find;
   delete data.establishment_postcode_find;

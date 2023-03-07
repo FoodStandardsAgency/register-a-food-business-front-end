@@ -32,7 +32,7 @@ describe("internal-server-error", () => {
     const $ = renderPage("internal-server-error", props);
 
     const $backLink = $(".govuk-back-link");
-    expect($backLink.get(0).attribs.href).toBe("/new/council");
+    expect($backLink.get(0).attribs.href).toBe("/new");
   });
 
   it("has a back to start button with correct link when council set", () => {
