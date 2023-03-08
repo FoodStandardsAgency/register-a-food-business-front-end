@@ -48,7 +48,7 @@
       <div id="sentToCouncilsSection">
         <p class="govuk-body" style="margin-bottom:-0px">{{ __("Your registration has been sent to", props.language) }}</p>
         {% if props.laConfig.hygieneAndStandards %}
-          <h2 class="govuk-heading-m" id="hygieneAndStandardsCouncil">{{ props.laConfig.hygieneAndStandards.local_council }}</h2>
+          <h2 class="govuk-heading-m" id="hygieneAndStandardsCouncil">{{ props.laConfig.hygieneAndStandards.new_authority_name or props.laConfig.hygieneAndStandards.local_council }}</h2>
           <p class="govuk-body">{{ __("Email address", props.language) + ": " }}
             {{ props.laConfig.hygieneAndStandards.local_council_email }}</p>
           {% if props.laConfig.hygieneAndStandards.local_council_phone_number %}
@@ -57,14 +57,14 @@
         {% else %}
           {% if props.laConfig.hygiene and props.laConfig.standards %}
             <div>
-              <h2 class="govuk-heading-m" id="hygieneCouncil">{{ props.laConfig.hygiene.local_council }}</h2>
+              <h2 class="govuk-heading-m" id="hygieneCouncil">{{ props.laConfig.hygiene.new_authority_name or props.laConfig.hygiene.local_council }}</h2>
               <p class="govuk-body">{{ __("Email address", props.language) + ": " }}
                 {{ props.laConfig.hygiene.local_council_email }}</p>
               {% if props.laConfig.hygiene.local_council_phone_number %}
                 <p class="govuk-body" id="hygieneNumber">{{ __("Phone number", props.language) + ": " + props.laConfig.hygiene.local_council_phone_number }}</p>
               {% endif %}
               <p class="govuk-body">{{ __("Responsible local council for food hygiene", props.language) }}</p>
-              <h2 class="govuk-heading-m" id="standardsCouncil">{{ props.laConfig.standards.local_council }}</h2>
+              <h2 class="govuk-heading-m" id="standardsCouncil">{{ props.laConfig.standards.new_authority_name or props.laConfig.standards.local_council }}</h2>
               <p class="govuk-body">{{ __("Email address", props.language) + ": " }}
                 {{ props.laConfig.standards.local_council_email }}</p>
               {% if props.laConfig.standards.local_council_phone_number %}
