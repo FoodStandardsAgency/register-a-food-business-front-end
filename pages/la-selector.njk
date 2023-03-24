@@ -45,18 +45,6 @@
                 },
                 items: localAuthoritiesArray
                 }) }}
-            {{ govukRadios({
-                    id: "local_authority_not_found",
-                    name: "local_authority_not_found",
-                    classes: "govuk-radios--inline",
-  
-                    items: [
-                            {
-                             value: "yes",
-                             text: __("I can't find my Local Authority", props.language)
-                             }
-                                ]
-                                }) }}
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-full">
                     {{ govukButton({
@@ -73,14 +61,6 @@
 
         document
             .getElementById("local_authority")
-            .addEventListener("click", function () {
-                document
-                    .getElementById("local_authority_not_found")
-                    .checked = false;
-            });
-
-        document
-            .getElementById("local_authority")
             .value = document
             .getElementById("local_authority-select")
             .options[
@@ -89,16 +69,5 @@
                     .selectedIndex
             ]
             .text;
-
-        document
-            .getElementById("local_authority_not_found")
-            .addEventListener("click", function () {
-                document
-                    .getElementById("local_authority-select")
-                    .selectedIndex = 0;
-                document
-                    .getElementById("local_authority")
-                    .value = "";
-            });
     </script>
 {% endblock %}

@@ -37,17 +37,17 @@ const continueRouter = () => {
       req.session.submissionError = [];
       req.session.language = req.body.language;
 
-      if (req.params.originator === "la-selector") {
-        if (
-          req.body.local_authority_not_found === "yes" ||
-          req.body.local_authority === ""
-        ) {
-          response.redirectRoute = "/la-not-onboarded";
-        } else {
-          req.session.localAuthority = await getCouncilDataByID(
-            +req.body.local_authority
-          );
-        }
+      if (
+        req.params.originator === "la-selector" &&
+        Object.keys(response.validatorErrors).length === 0
+      ) {
+        req.session.localAuthority = await getCouncilDataByID(
+          +req.body.local_authority
+        );
+        // TO-DO Check if is not onboarded and if yes redirect to LA website or PDF form page
+        // res.redirect("https://google.com");
+        // return;
+        // web_form & pdf_form
       }
 
       req.session.save((err) => {

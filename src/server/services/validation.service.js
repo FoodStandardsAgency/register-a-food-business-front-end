@@ -16,6 +16,7 @@ const {
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const errorMessages = {
+  local_authority: "You must select a local authority before continuing",
   declaration1: "You must tick all the declarations before continuing",
   declaration2: "You must tick all the declarations before continuing",
   declaration3: "You must tick all the declarations before continuing",
