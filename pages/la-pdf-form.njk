@@ -1,0 +1,47 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% extends "layout.njk" %}
+{% set props = mergeObjects(props, {backToStart: true}) %}
+{% block content %}
+  {{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 id="main-heading" class="govuk-heading-l">{{ __("Complete the application form", props.language) }}</h1>
+      <h2 class="govuk-heading-m">
+        {{ __("First, download the form", props.language) }}
+      </h2>
+      {{ govukInsetText({html: __("Right-click the link below and select the 'Save' option", props.language) +  ' <a  class="govuk-link" href="' + "https://www.gov.uk/food-business-registration" + '">' + __("Download the application form (PDF)", props.language) + "</a>"}) }}
+      <h2 class="govuk-heading-m">
+        {{ __("Next, fill in the application form on your computer", props.language) }}
+      </h2>
+      <p class="govuk-body">
+        {{ __("To edit the form you'll need a recent version of", props.language) }} <a class="govuk-link" href="https://get.adobe.com/uk/reader/">Adobe Reader</a>.
+      </p>
+      <p class="govuk-body">
+        {{ __("Open the form using Adobe Reader instead of your web browser.", props.language) }}
+      </p>
+      <h2 class="govuk-heading-m">
+        {{ __("Then, submit your application", props.language) }}
+      </h2>
+      <p class="govuk-body">
+        {{ __("Once you're ready, use the details below to submit your application to the local authority.", props.language) }}
+      </p>
+      <ul class="govuk-list govuk-list--spaced">
+        <li><b>{{ __("Email:", props.language) }}</b> email@email.com</li>
+        <li><b>{{ __("Tel:", props.language) }}</b> +44 (0) 1111 000000</li>
+        <li><b>{{ __("Address:", props.language) }}</b> LA address</li>
+      </ul>
+      <h2 class="govuk-heading-m">
+        {{ __("What happens next", props.language) }}
+      </h2>
+      <p class="govuk-body">
+        {{ __("Assuming the form is valid local authority will contact you with a decision within the next 14 calendar days. If you haven't had a decision by then you can assume it's been approved as tacit consent applies.", props.language) }}
+      </p>
+      <p class="govuk-body">
+        {{ __("If you have any other questions about your application, please contact the local authority directly.", props.language) }}
+      </p>
+    </div>
+  </div>
+{% endblock %}
+
+<a href="https://www.gov.uk/food-business-registration">{{ __("https://www.gov.uk/food-business-registration", props.language) }}</a>

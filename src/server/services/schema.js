@@ -45,13 +45,18 @@ const schema = {
   },
   "/la-selector": {
     type: "object",
-    properties: {}
+    properties: {
+      local_authority: {
+        type: "string",
+        validation: validateMandatoryString
+      }
+    }
   },
   "/la-established": {
     type: "object",
     properties: {}
   },
-  "/la-not-onboarded": {
+  "/la-pdf-form": {
     type: "object",
     properties: {}
   },
