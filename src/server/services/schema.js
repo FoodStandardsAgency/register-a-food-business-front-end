@@ -56,10 +56,6 @@ const schema = {
     type: "object",
     properties: {}
   },
-  "/la-pdf-form": {
-    type: "object",
-    properties: {}
-  },
   "/operator-type": {
     type: "object",
     properties: {
