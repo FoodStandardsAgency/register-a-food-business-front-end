@@ -44,10 +44,15 @@ const continueRouter = () => {
         req.session.localAuthority = await getCouncilDataByID(
           +req.body.local_authority
         );
-        // TO-DO Check if is not onboarded and if yes redirect to LA website or PDF form page
-        // res.redirect("https://google.com");
-        // return;
-        // web_form & pdf_form
+        // If the local authority not onboarded and has a registration form URL, redirect to it instead of the normal path
+        if (
+          req.session.localAuthority &&
+          req.session.localAuthority.reg_form_url &&
+          req.session.localAuthority.reg_form_url !== ""
+        ) {
+          res.redirect(req.session.localAuthority.reg_form_url);
+          return;
+        }
       }
 
       req.session.save((err) => {

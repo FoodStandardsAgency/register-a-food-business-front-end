@@ -23,6 +23,15 @@ const findLocalAuthorityRouter = () => {
         req.session.cumulativeFullAnswers,
         req.body
       );
+      // If the local authority not onboarded and has a registration form URL, redirect to it instead of the normal path
+      if (
+        response.localAuthority &&
+        response.localAuthority.reg_form_url &&
+        response.localAuthority.reg_form_url !== ""
+      ) {
+        res.redirect(response.localAuthority.reg_form_url);
+        return;
+      }
 
       req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
       req.session.validatorErrors = response.validatorErrors;
