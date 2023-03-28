@@ -37,16 +37,23 @@ const continueRouter = () => {
       req.session.submissionError = [];
       req.session.language = req.body.language;
 
-      if (req.params.originator === "la-selector") {
+      if (
+        // If the originator is the "la-selector" thats mean LA not found by postcode lookup and need manual selection
+        req.params.originator === "la-selector" &&
+        Object.keys(response.validatorErrors).length === 0
+      ) {
+        // Get the local authority data from the config DB
+        req.session.localAuthority = await getCouncilDataByID(
+          +req.body.local_authority
+        );
+        // If the local authority not onboarded and has a registration form URL, redirect to it instead of the normal path
         if (
-          req.body.local_authority_not_found === "yes" ||
-          req.body.local_authority === ""
+          req.session.localAuthority &&
+          req.session.localAuthority.reg_form_url &&
+          req.session.localAuthority.reg_form_url !== ""
         ) {
-          response.redirectRoute = "/la-not-onboarded";
-        } else {
-          req.session.localAuthority = await getCouncilDataByID(
-            +req.body.local_authority
-          );
+          res.redirect(req.session.localAuthority.reg_form_url);
+          return;
         }
       }
 

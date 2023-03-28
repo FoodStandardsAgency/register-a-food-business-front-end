@@ -5,8 +5,12 @@ jest.mock("express", () => ({
   }))
 }));
 jest.mock("../controllers/continue.controller");
+jest.mock("../connectors/config-db/config-db.connector");
 const continueController = require("../controllers/continue.controller");
 const { continueRouter } = require("./continue.route");
+const {
+  getCouncilDataByID
+} = require("../connectors/config-db/config-db.connector");
 
 describe("Continue route: ", () => {
   let router, handler;
@@ -110,6 +114,63 @@ describe("Continue route: ", () => {
 
       it("Should call redirect", () => {
         expect(res.redirect).toBeCalledWith("/submit");
+      });
+    });
+
+    describe("When local authority not onboarded", () => {
+      let req, res;
+
+      beforeEach(() => {
+        continueController.mockImplementation(() => ({
+          validatorErrors: {},
+          redirectRoute: "/newPage",
+          cumulativeFullAnswers: {
+            new: "answers"
+          },
+          switches: { exampleSwitch: true },
+          localAuthority: {
+            local_council: "City of Cardiff Council",
+            local_council_url: "cardiff",
+            country: "wales",
+            reg_form_url: "https://www.test.com"
+          }
+        }));
+
+        getCouncilDataByID.mockImplementation(() => ({
+          local_council: "City of Cardiff Council",
+          local_council_url: "cardiff",
+          country: "wales",
+          reg_form_url: "https://www.test.com"
+        }));
+
+        handler = router.post.mock.calls[0][1];
+
+        req = {
+          session: {
+            cumulativeFullAnswers: {},
+            switches: {},
+            pathConfig: { path: "existing path from session" },
+            save: (cb) => {
+              cb();
+            }
+          },
+          body: "body",
+          params: {
+            originator: "la-selector"
+          }
+        };
+
+        res = {
+          redirect: jest.fn()
+        };
+
+        next = jest.fn();
+
+        handler(req, res, next);
+      });
+
+      it("Should call redirect", () => {
+        expect(res.redirect).toBeCalledWith("https://www.test.com");
       });
     });
 

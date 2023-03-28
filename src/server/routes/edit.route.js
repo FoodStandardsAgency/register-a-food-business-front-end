@@ -52,25 +52,35 @@ const editRouter = () => {
           );
           throw err;
         }
-        if (req.params.originator === "la-selector") {
+        // If the originator is the "la-selector" thats mean LA not found by postcode lookup and need manual selection
+        if (
+          req.params.originator === "la-selector" &&
+          Object.keys(response.validatorErrors).length === 0
+        ) {
+          // Get the local authority data from the config DB
+          req.session.localAuthority = await getCouncilDataByID(
+            +req.body.local_authority
+          );
+          // If the local authority not onboarded and has a registration form URL, redirect to it instead of the normal path
           if (
-            req.body.local_authority_not_found === "yes" ||
-            req.body.local_authority === ""
+            req.session.localAuthority &&
+            req.session.localAuthority.reg_form_url &&
+            req.session.localAuthority.reg_form_url !== ""
           ) {
-            res.redirect("/new/la-not-onboarded");
-          } else {
-            req.session.localAuthority = await getCouncilDataByID(
-              +req.body.local_authority
-            );
-            res.redirect(
-              "/new/la-established?edit=establishment-address-select"
-            );
+            res.redirect(req.session.localAuthority.reg_form_url);
+            return;
           }
+          res.redirect("/new/la-established?edit=establishment-address-select");
+
           // In the case that we are in editing mode and we are on the "la-established" page, then the next page will be "establishment-address-type".
         } else if (req.params.originator === "la-established") {
           if (req.session.changePostcode) {
             req.session.changePostcode = false;
             res.redirect("/new/establishment-address-type");
+          } else {
+            res.redirect(
+              `/new/establishment-address-type?edit=${req.query.edit}`
+            );
           }
         } else if (
           controllerResponse.redirectRoute === "/registration-summary"

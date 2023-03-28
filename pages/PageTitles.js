@@ -8,7 +8,7 @@ const PageTitles = {
   pageTitles: {
     "la-established": () => "You are registering with",
     "la-selector": () => "We couldn't find your Local Authority",
-    "la-not-onboarded": () => "Unfortunately, you cannot use this service",
+    "la-pdf-form": () => "Complete the application form",
     "business-import-export": () =>
       "Will this food business import or export any food from outside the UK?",
     "business-other-details": () => "Other details",
