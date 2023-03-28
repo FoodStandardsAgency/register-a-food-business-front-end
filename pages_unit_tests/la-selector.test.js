@@ -41,9 +41,19 @@ describe("la-selector", () => {
     expect($selected.contents().get(0).data).toBe("Cardiff");
   });
 
-  it("renders the local_authority_not_found radio button with the correct value", () => {
-    const $ = renderPage("la-selector", props);
-    const $radio = $("#local_authority_not_found");
-    expect($radio.get(0).attribs.value).toBe("yes");
+  describe("Error messages displayed", () => {
+    it("renders the correct summary error", async () => {
+      const $ = renderPage("la-selector", {
+        language: "cy",
+        validatorErrors: {
+          local_authority: "test error"
+        }
+      });
+
+      const $pageErrors = getPageDetails.getErrorSummaryLinks($);
+      expect($pageErrors.length).toBe(1);
+      expect($pageErrors.contents().get(0).data).toBe("test error");
+      expect($pageErrors.get(0).attribs.href).toBe("#local_authority");
+    });
   });
 });
