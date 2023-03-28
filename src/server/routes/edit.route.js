@@ -75,6 +75,10 @@ const editRouter = () => {
           if (req.session.changePostcode) {
             req.session.changePostcode = false;
             res.redirect("/new/establishment-address-type");
+          } else {
+            res.redirect(
+              `/new/establishment-address-type?edit=${req.query.edit}`
+            );
           }
         } else if (
           controllerResponse.redirectRoute === "/registration-summary"
