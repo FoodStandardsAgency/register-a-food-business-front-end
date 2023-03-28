@@ -5,42 +5,45 @@
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
+  validatorErrors: {},
+  cumulativeFullAnswers: {
+    local_authority: "8015"
+  },
   localAuthorities: [
     {
-      _id: 1111,
-      local_council: "Test Council",
-      local_council_url: "test"
-    },
-    {
-      _id: 2222,
-      local_council: "Test Council 2",
-      local_council_url: "test2"
+      _id: 8015,
+      local_council: "Cardiff"
     }
-  ]
+  ],
+  language: "en"
 };
 
-const $ = renderPage("la-selector", props);
-
 describe("la-selector", () => {
-  it("It should pass accessibility tests", async () => {
-    const results = await axe($.html());
-    expect(results).toHaveNoViolations();
-  });
-
   it("renders without crashing", () => {
+    const $ = renderPage("la-selector", props);
+
     const $mainHeading = getPageDetails.getMainHeading($);
     expect($mainHeading.text().trim()).toEqual(
       "We couldn't find your Local Authority"
     );
   });
 
-  it("renders the select dropdown", () => {
-    const $localAuthorities = $("#local_authority");
-    const $localAuthoritiesItems = $("#local_authority option");
-    expect($localAuthoritiesItems.length).toBe(3);
-    expect($localAuthorities.length).toBe(1);
-    expect($localAuthoritiesItems.contents().get(0).data.trim()).toEqual(
-      "Test Council"
-    );
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("la-selector", props);
+
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
+  });
+
+  it("select the correct dropdown item based on session data", () => {
+    const $ = renderPage("la-selector", props);
+    const $selected = $(":selected");
+    expect($selected.contents().get(0).data).toBe("Cardiff");
+  });
+
+  it("renders the local_authority_not_found radio button with the correct value", () => {
+    const $ = renderPage("la-selector", props);
+    const $radio = $("#local_authority_not_found");
+    expect($radio.get(0).attribs.value).toBe("yes");
   });
 });

@@ -5,27 +5,23 @@
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
-
   validatorErrors: {},
   cumulativeFullAnswers: {},
-  language: "en",
-  localAuthority: {
-    local_council: "Cardiff"
-  }
+  language: "en"
 };
 
-describe("la-established", () => {
+describe("la-not-onboarded", () => {
   it("renders without crashing", () => {
-    const $ = renderPage("la-established", props);
+    const $ = renderPage("la-not-onboarded", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
     expect($mainHeading.text().trim()).toEqual(
-      "You are registering with Cardiff"
+      "Unfortunately, you cannot use this service"
     );
   });
 
   it("passes accessibility tests", async () => {
-    const $ = renderPage("la-established", props);
+    const $ = renderPage("la-not-onboarded", props);
 
     const results = await axe($.html());
     expect(results).toHaveNoViolations();
