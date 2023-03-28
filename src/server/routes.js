@@ -22,7 +22,8 @@ module.exports = () => {
 
   if (process.env.NODE_ENV === "production") {
     router.get("/", (req, res) => {
-      res.redirect("https://www.gov.uk/food-business-registration");
+      res.redirect("/new");
+      return;
     });
   }
 
