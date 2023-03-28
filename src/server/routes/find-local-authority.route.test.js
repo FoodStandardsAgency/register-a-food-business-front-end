@@ -80,6 +80,46 @@ describe("findLocalAuthority route: ", () => {
       });
     });
 
+    describe("When local authority not onboarded", () => {
+      const req = {
+        session: {
+          cumulativeFullAnswers: {},
+          save: (cb) => {
+            cb();
+          }
+        },
+        body: "body",
+        params: {
+          originator: "/some-page"
+        },
+        headers: {
+          referer: ""
+        }
+      };
+      const res = {
+        redirect: jest.fn()
+      };
+
+      beforeEach(() => {
+        findLocalAuthorityController.mockImplementation(() => ({
+          cumulativeFullAnswers: { example: "answer" },
+          validatorErrors: {},
+          localAuthority: {
+            local_council: "City of Cardiff Council",
+            local_council_url: "cardiff",
+            country: "wales",
+            reg_form_url: "https://www.test.com"
+          },
+          redirectRoute: "/another-page"
+        }));
+        handler = router.post.mock.calls[0][1];
+        handler(req, res);
+      });
+      it("Should call redirect", () => {
+        expect(res.redirect).toBeCalledWith("https://www.test.com");
+      });
+    });
+
     describe("When session.save throws an error", () => {
       let response, next;
       next = jest.fn();

@@ -66,11 +66,12 @@ const findLocalAuthorityController = async (
 
     controllerResponse.localAuthority = localAuthority;
 
+    delete controllerResponse.cumulativeFullAnswers.local_authority;
+
     if (!localAuthority) {
       controllerResponse.redirectRoute = "/la-selector";
     } else {
       controllerResponse.redirectRoute = "/la-established";
-      delete controllerResponse.cumulativeFullAnswers.local_authority;
     }
     logEmitter.emit(
       "functionSuccessWith",
