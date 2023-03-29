@@ -21,7 +21,6 @@
                   }
             }) %}
             <p class="govuk-body">{{ __("The postcode you entered has not been recognised.", props.language) }}</p>
-            <p class="govuk-body">{{ __("Type the name of your local authority in the box below and then select the most fitting local authority from the suggestions", props.language) }}</p>
             {% endcall %}
             {% call postForm(props.formAction, props.csrfToken, props.language) -%}
             {{ processedErrorSummary(props.validatorErrors, props.language) }}
@@ -41,7 +40,7 @@
                 id: "local_authority",
                 name: "local_authority",
                 label: {
-                    text: __("Select Local Authority", props.language)
+                    text: __("Type the name of your local authority in the box below and then select the most fitting local authority from the suggestions", props.language)
                 },
                 items: localAuthoritiesArray
                 }) }}
