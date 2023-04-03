@@ -65,6 +65,7 @@ const newRouter = () => {
           "Redirect to /new"
         );
         res.redirect("/new");
+        return;
       }
 
       // If the requested page is the homepage, regenerate the session before rendering.

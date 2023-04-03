@@ -178,7 +178,7 @@ const getCouncilDataByID = async (councilID) => {
     );
 
     councilRecord = await laConfigCollection.findOne({
-      _id: councilID
+      _id: +councilID
     });
 
     if (councilRecord === null) {

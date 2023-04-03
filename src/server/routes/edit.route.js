@@ -55,7 +55,7 @@ const editRouter = () => {
         // If the originator is the "la-selector" thats mean LA not found by postcode lookup and need manual selection
         if (
           req.params.originator === "la-selector" &&
-          Object.keys(response.validatorErrors).length === 0
+          Object.keys(controllerResponse.validatorErrors).length === 0
         ) {
           // Get the local authority data from the config DB
           req.session.localAuthority = await getCouncilDataByID(
