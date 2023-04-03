@@ -7,7 +7,8 @@ const {
   getPathConfigByVersion,
   getLocalCouncils,
   clearPathConfigCache,
-  getCouncilData
+  getCouncilDataByURL,
+  getCouncilDataByID
 } = require("./config-db.connector");
 const { clearCosmosConnection } = require("../cosmos.client");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
@@ -308,11 +309,20 @@ describe("Function: getLocalCouncils", () => {
 
   describe("given the request is successful", () => {
     const localCouncilsObjs = [
-      { local_council_url: "cardiff" },
-      { local_council_url: "the-vale-of-glamorgan" }
+      { local_council_url: "cardiff", local_council: "Fakes cardiff council" },
+      {
+        local_council_url: "the-vale-of-glamorgan",
+        local_council: "Fakes vale of G council"
+      }
     ];
 
-    const localCouncilsMock = ["cardiff", "the-vale-of-glamorgan"];
+    const localCouncilsMock = [
+      { local_council_url: "cardiff", local_council: "Fakes cardiff council" },
+      {
+        local_council_url: "the-vale-of-glamorgan",
+        local_council: "Fakes vale of G council"
+      }
+    ];
 
     const mongoCursor = {
       project: () => {
@@ -369,7 +379,7 @@ describe("Function: getLocalCouncils", () => {
   });
 });
 
-describe("Function: getCouncilData", () => {
+describe("Function: getCouncilDataByURL", () => {
   let result;
   beforeEach(async () => {
     clearCosmosConnection();
@@ -381,7 +391,7 @@ describe("Function: getCouncilData", () => {
       });
 
       try {
-        await getCouncilData("cardiff");
+        await getCouncilDataByID(8015);
       } catch (err) {
         result = err;
       }
@@ -403,7 +413,7 @@ describe("Function: getCouncilData", () => {
       }));
 
       try {
-        await getCouncilData("cardiff");
+        await getCouncilDataByID(8015);
       } catch (err) {
         result = err;
       }
@@ -411,12 +421,12 @@ describe("Function: getCouncilData", () => {
 
     it("should throw mongoConnectionError error with custom message", () => {
       expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe("getCouncilData retrieved null");
+      expect(result.message).toBe("getCouncilDataByID retrieved null");
     });
   });
   describe("given the request is successful", () => {
     const exampleResult = {
-      local_council_url: "cardiff",
+      _id: 8015,
       country: "wales",
       local_council: "Cardiff Council"
     };
@@ -432,7 +442,7 @@ describe("Function: getCouncilData", () => {
     });
 
     it("returns the correct value", async () => {
-      await expect(getCouncilData("cardiff")).resolves.toEqual(exampleResult);
+      await expect(getCouncilDataByID(8015)).resolves.toEqual(exampleResult);
     });
   });
 });

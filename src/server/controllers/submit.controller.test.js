@@ -31,7 +31,6 @@ const testPathFromSession = {
 };
 
 const submitArgs = [
-  testLcUrl,
   testSubmissionData,
   testAddressLookups,
   testRegDataVersion,
@@ -53,7 +52,6 @@ describe("Function: submitController: ", () => {
     beforeEach(async () => {
       try {
         response = await submitController(
-          testLcUrl,
           {},
           testAddressLookups,
           testRegDataVersion,
@@ -190,8 +188,8 @@ describe("Function: submitController: ", () => {
     it("Should should return emailFbo", () => {
       expect(response.emailFbo.recipient).toBe("fbo@example.com");
     });
-    it("Should should return lcConfig", () => {
-      expect(response.lcConfig.example).toBe("data");
+    it("Should should return laConfig", () => {
+      expect(response.laConfig.example).toBe("data");
     });
   });
 });

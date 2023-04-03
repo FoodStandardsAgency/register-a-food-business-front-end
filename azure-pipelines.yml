@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 pool:
-  vmImage: "ubuntu-18.04"
+  vmImage: "ubuntu-latest"
 
 steps:
   - task: NodeTool@0

@@ -6,7 +6,7 @@ const { statusEmitter } = require("../../services/statusEmitter.service");
 const { establishConnectionToCosmos } = require("../cosmos.client");
 
 let configVersionCollection;
-let lcConfigCollection;
+let laConfigCollection;
 
 let pathConfig = null;
 
@@ -92,26 +92,27 @@ const getPathConfigByVersion = async (version) => {
  * @returns {Array} An array containing shortened local council names
  */
 const getLocalCouncils = async () => {
-  let localCouncilUrls = null;
+  let localCouncils = null;
   logEmitter.emit("functionCall", "config-db.connector", "getLocalCouncils");
 
   try {
-    lcConfigCollection = await establishConnectionToCosmos(
+    laConfigCollection = await establishConnectionToCosmos(
       "config",
       "localAuthorities"
     );
 
-    localCouncilUrls = await lcConfigCollection
+    localCouncils = await laConfigCollection
       .find({
         $and: [
           { local_council_url: { $ne: "" } },
-          { local_council_url: { $ne: null } }
+          { local_council_url: { $ne: null } },
+          { deleted: { $ne: true } }
         ]
       })
-      .project({ local_council_url: 1, _id: 0 })
+      .project({ local_council: 1, local_council_url: 1, _id: 1 })
       .toArray();
 
-    if (localCouncilUrls.length < 1) {
+    if (localCouncils.length < 1) {
       statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
       statusEmitter.emit(
         "setStatus",
@@ -119,7 +120,6 @@ const getLocalCouncils = async () => {
         false
       );
     } else {
-      localCouncilUrls = localCouncilUrls.map((res) => res.local_council_url);
       statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
       statusEmitter.emit(
         "setStatus",
@@ -150,56 +150,61 @@ const getLocalCouncils = async () => {
 
   logEmitter.emit("functionSuccess", "config-db.connector", "getLocalCouncils");
 
-  return localCouncilUrls;
+  return localCouncils;
 };
 
 /**
- * Retrieves council-specific details
+ * Retrieves council-specific details by ID
  *
- * @param {string} council Name of the council
+ * @param {string} councilID ID of the council
  *
  * @returns {Object} Object with council data
  */
-const getCouncilData = async (council) => {
-  logEmitter.emit("functionCall", "config-db.connector", "getCouncilData");
-
+const getCouncilDataByID = async (councilID) => {
+  logEmitter.emit("functionCall", "config-db.connector", "getCouncilDataByID");
   let councilRecord = null;
+
   try {
-    lcConfigCollection = await establishConnectionToCosmos(
+    if (isNaN(councilID)) {
+      const newError = new Error();
+      newError.name = "getCouncilDataByIDError";
+      newError.message = "councilID is not a number";
+      throw newError;
+    }
+
+    laConfigCollection = await establishConnectionToCosmos(
       "config",
       "localAuthorities"
     );
 
-    councilRecord = await lcConfigCollection.findOne({
-      local_council_url: council
+    councilRecord = await laConfigCollection.findOne({
+      _id: +councilID
     });
 
     if (councilRecord === null) {
-      statusEmitter.emit("incrementCount", "getCouncilDataFailed");
-      statusEmitter.emit(
-        "setStatus",
-        "mostRecentGetCouncilDataSucceeded",
-        false
-      );
       const newError = new Error();
       newError.name = "mongoConnectionError";
-      newError.message = "getCouncilData retrieved null";
+      newError.message = "getCouncilDataByID retrieved null";
       throw newError;
     } else {
-      statusEmitter.emit("incrementCount", "getCouncilDataSucceeded");
+      statusEmitter.emit("incrementCount", "getCouncilDataByIDSucceeded");
       statusEmitter.emit(
         "setStatus",
-        "mostRecentGetCouncilDataSucceeded",
+        "mostRecentgetCouncilDataByIDSucceeded",
         true
       );
     }
   } catch (err) {
-    statusEmitter.emit("incrementCount", "getCouncilDataFailed");
-    statusEmitter.emit("setStatus", "mostRecentGetCouncilDataSucceeded", false);
+    statusEmitter.emit("incrementCount", "getCouncilDataByIDFailed");
+    statusEmitter.emit(
+      "setStatus",
+      "mostRecentgetCouncilDataByIDSucceeded",
+      false
+    );
     logEmitter.emit(
       "functionFail",
       "config-db.connector",
-      "getCouncilData",
+      "getCouncilDataByID",
       err
     );
 
@@ -210,7 +215,75 @@ const getCouncilData = async (council) => {
     throw newError;
   }
 
-  logEmitter.emit("functionSuccess", "config-db.connector", "getCouncilData");
+  logEmitter.emit(
+    "functionSuccess",
+    "config-db.connector",
+    "getCouncilDataByID"
+  );
+
+  return councilRecord;
+};
+
+/**
+ * Retrieves council-specific details by MapIt ID
+ *
+ * @param {string} councilMapitID MapIt ID of the council
+ *
+ * @returns {Object} Object with council data
+ */
+const getCouncilDataByMapitID = async (councilMapitID) => {
+  logEmitter.emit(
+    "functionCall",
+    "config-db.connector",
+    "getCouncilDataByMapitID"
+  );
+
+  let councilRecord = null;
+  try {
+    laConfigCollection = await establishConnectionToCosmos(
+      "config",
+      "localAuthorities"
+    );
+
+    councilRecord = await laConfigCollection.findOne({
+      mapit_id: councilMapitID
+    });
+
+    if (councilRecord === null) {
+      const newError = new Error();
+      newError.name = "mongoConnectionError";
+      newError.message = "getCouncilDataByMapitID retrieved null";
+      throw newError;
+    } else {
+      statusEmitter.emit("incrementCount", "getCouncilDataByMapitIDSucceeded");
+      statusEmitter.emit(
+        "setStatus",
+        "mostRecentgetCouncilDataByMapitIDSucceeded",
+        true
+      );
+    }
+  } catch (err) {
+    statusEmitter.emit("incrementCount", "getCouncilDataByMapitIDFailed");
+    statusEmitter.emit(
+      "setStatus",
+      "mostRecentgetCouncilDataByMapitIDSucceeded",
+      false
+    );
+    logEmitter.emit(
+      "functionFail",
+      "config-db.connector",
+      "getCouncilDataByMapitID",
+      err
+    );
+
+    return false;
+  }
+
+  logEmitter.emit(
+    "functionSuccess",
+    "config-db.connector",
+    "getCouncilDataByMapitID"
+  );
 
   return councilRecord;
 };
@@ -229,5 +302,6 @@ module.exports = {
   getPathConfigByVersion,
   clearPathConfigCache,
   getLocalCouncils,
-  getCouncilData
+  getCouncilDataByID,
+  getCouncilDataByMapitID
 };

@@ -43,6 +43,19 @@ const schema = {
       }
     }
   },
+  "/la-selector": {
+    type: "object",
+    properties: {
+      local_authority: {
+        type: "string",
+        validation: validateMandatoryString
+      }
+    }
+  },
+  "/la-established": {
+    type: "object",
+    properties: {}
+  },
   "/operator-type": {
     type: "object",
     properties: {

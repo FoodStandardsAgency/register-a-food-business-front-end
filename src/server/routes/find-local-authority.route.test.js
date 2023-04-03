@@ -5,27 +5,25 @@ jest.mock("express", () => ({
   }))
 }));
 
-jest.mock("../controllers/find-address.controller");
-const findAddressController = require("../controllers/find-address.controller");
-const { findAddressRouter } = require("./find-address.route");
+jest.mock("../controllers/find-local-authority.controller");
+const findLocalAuthorityController = require("../controllers/find-local-authority.controller");
+const { findLocalAuthorityRouter } = require("./find-local-authority.route.js");
 
-describe("findAddress route: ", () => {
+describe("findLocalAuthority route: ", () => {
   let router, handler;
   beforeEach(() => {
-    router = findAddressRouter();
+    router = findLocalAuthorityRouter();
   });
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  describe("POST to /findaddress/:originator", () => {
+  describe("POST to /findlocalauthority/:originator", () => {
     describe("When session.save works", () => {
       const req = {
         session: {
           cumulativeFullAnswers: {},
-          addressLookups: { some_page: [] },
-          council: "council",
           save: (cb) => {
             cb();
           }
@@ -38,16 +36,19 @@ describe("findAddress route: ", () => {
           referer: ""
         }
       };
-
       const res = {
         redirect: jest.fn()
       };
 
       beforeEach(() => {
-        findAddressController.mockImplementation(() => ({
+        findLocalAuthorityController.mockImplementation(() => ({
           cumulativeFullAnswers: { example: "answer" },
           validatorErrors: {},
-          addressLookups: { example: [] },
+          localAuthority: {
+            local_council: "City of Cardiff Council",
+            local_council_url: "cardiff",
+            country: "wales"
+          },
           redirectRoute: "/another-page"
         }));
         handler = router.post.mock.calls[0][1];
@@ -57,15 +58,65 @@ describe("findAddress route: ", () => {
         expect(res.redirect).toBeCalledWith("/new/another-page");
       });
 
-      it("Should update session without overwriting existing addressLookups values", () => {
+      it("Should set req.session.localAuthority.local_council_url", () => {
+        expect(req.session.localAuthority.local_council_url).toEqual("cardiff");
+      });
+
+      it("Should set req.session.localAuthority.country", () => {
+        expect(req.session.localAuthority.country).toEqual("wales");
+      });
+
+      it("Should set req.session.localAuthority.local_council", () => {
+        expect(req.session.localAuthority.local_council).toEqual(
+          "City of Cardiff Council"
+        );
+      });
+
+      it("Should update session", () => {
         expect(req.session.cumulativeFullAnswers).toEqual({
           example: "answer"
         });
         expect(req.session.validatorErrors).toEqual({});
-        expect(req.session.addressLookups).toEqual({
-          some_page: [],
-          example: []
-        });
+      });
+    });
+
+    describe("When local authority not onboarded", () => {
+      const req = {
+        session: {
+          cumulativeFullAnswers: {},
+          save: (cb) => {
+            cb();
+          }
+        },
+        body: "body",
+        params: {
+          originator: "/some-page"
+        },
+        headers: {
+          referer: ""
+        }
+      };
+      const res = {
+        redirect: jest.fn()
+      };
+
+      beforeEach(() => {
+        findLocalAuthorityController.mockImplementation(() => ({
+          cumulativeFullAnswers: { example: "answer" },
+          validatorErrors: {},
+          localAuthority: {
+            local_council: "City of Cardiff Council",
+            local_council_url: "cardiff",
+            country: "wales",
+            reg_form_url: "https://www.test.com"
+          },
+          redirectRoute: "/another-page"
+        }));
+        handler = router.post.mock.calls[0][1];
+        handler(req, res);
+      });
+      it("Should call redirect", () => {
+        expect(res.redirect).toBeCalledWith("https://www.test.com");
       });
     });
 
@@ -75,8 +126,6 @@ describe("findAddress route: ", () => {
       const req = {
         session: {
           cumulativeFullAnswers: {},
-          addressLookups: { some_page: [] },
-          council: "council",
           save: (cb) => {
             cb("session save error");
           }
@@ -86,16 +135,15 @@ describe("findAddress route: ", () => {
           originator: "/some-page"
         }
       };
-
       const res = {
         redirect: jest.fn()
       };
 
       beforeEach(async () => {
-        findAddressController.mockImplementation(() => ({
+        findLocalAuthorityController.mockImplementation(() => ({
           cumulativeFullAnswers: { example: "answer" },
           validatorErrors: {},
-          addressLookups: { example: [] },
+          localAuthority: "Cardiff",
           redirectRoute: "/another-page"
         }));
         handler = router.post.mock.calls[0][1];
@@ -114,7 +162,7 @@ describe("findAddress route: ", () => {
     describe("when an error is thrown", () => {
       let next;
       beforeEach(async () => {
-        findAddressController.mockImplementation(() => {
+        findLocalAuthorityController.mockImplementation(() => {
           throw new Error("error");
         });
         next = jest.fn();
@@ -122,8 +170,7 @@ describe("findAddress route: ", () => {
         req = {
           session: {
             cumulativeFullAnswers: {},
-            addressLookups: { some_page: [] },
-            council: "council"
+            localAuthority: "Cardiff"
           },
           body: "body",
           params: {

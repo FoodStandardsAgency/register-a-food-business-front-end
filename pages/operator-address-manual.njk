@@ -6,11 +6,11 @@
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% extends "layout.njk" %}
 {% if props.switches["/operator-address-none-found"] %}
-  {% set backlink = "/new/" + props.council + "/operator-address" %}
+  {% set backlink = "/new/operator-address" %}
 {% else %}
-  {% set backlink = "/new/" + props.council + "/operator-address-select" %}
+  {% set backlink = "/new/operator-address-select" %}
 {% endif %}
-{% set props = mergeObjects(props, { backHref: backlink }) %}
+{% set props = mergeObjects(props, {backHref: backlink}) %}
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">

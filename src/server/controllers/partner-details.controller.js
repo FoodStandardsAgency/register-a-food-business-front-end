@@ -12,7 +12,6 @@ const { MAX_PARTNERS } = require("../config");
  *
  * @param {string} currentPage The 'originator' page that the user has come from
  * @param {object} previousAnswers An object containing every past answer that has been given by the user
- * @param {string} council local_council_url allowing to put the user back on the path by redirecting to /new/council
  * @param {boolean} edit Flag indicating if request was submitted in edit mode
  * @param {object} allValidationErrors An object containing validation errors collected from all active pages
  *
@@ -21,7 +20,6 @@ const { MAX_PARTNERS } = require("../config");
 const partnerDetailsContinue = (
   currentPage,
   previousAnswers,
-  council,
   edit,
   allValidationErrors
 ) => {
@@ -51,7 +49,7 @@ const partnerDetailsContinue = (
     );
     if (validationErrorsKeys.length > 0) {
       // if there are errors, redirect back to the current page
-      controllerResponse.redirectRoute = `/new/${council}${currentPage}`;
+      controllerResponse.redirectRoute = `/new${currentPage}`;
       logEmitter.emit(
         "functionSuccessWith",
         "partner-details.controller",
@@ -62,7 +60,7 @@ const partnerDetailsContinue = (
       );
       return controllerResponse;
     }
-    controllerResponse.redirectRoute = `/new/${council}/main-partnership-contact`;
+    controllerResponse.redirectRoute = `/new/main-partnership-contact`;
 
     if (edit) {
       delete controllerResponse.allValidationErrors["partners"];
@@ -71,9 +69,9 @@ const partnerDetailsContinue = (
           return partnerName === previousAnswers.main_partnership_contact;
         }) !== undefined
       ) {
-        controllerResponse.redirectRoute = `/new/${council}/registration-summary`;
+        controllerResponse.redirectRoute = `/new/registration-summary`;
       } else {
-        controllerResponse.redirectRoute = `/new/${council}/main-partnership-contact?edit=main-partnership-contact`;
+        controllerResponse.redirectRoute = `/new/main-partnership-contact?edit=main-partnership-contact`;
       }
     }
 
@@ -101,18 +99,11 @@ const partnerDetailsContinue = (
  * @param {string} currentPage The 'originator' page that the user has come from
  * @param {object} previousAnswers An object containing every past answer that has been given by the user
  * @param {object} newAnswers An object containing new answers from the current page
- * @param {string} council local_council_url allowing to put the user back on the path by redirecting to /new/council
  * @param {boolean} edit Flag indicating if request was submitted in edit mode
  *
  * @returns {object} Values for the router to store/update in the session and the page to redirect to.
  */
-const partnerDetailsSave = (
-  currentPage,
-  previousAnswers,
-  newAnswers,
-  council,
-  edit
-) => {
+const partnerDetailsSave = (currentPage, previousAnswers, newAnswers, edit) => {
   const controllerResponse = {
     validatorErrors: {},
     redirectRoute: null,
@@ -165,7 +156,7 @@ const partnerDetailsSave = (
 
     const partnerName = newAnswers["partner_name"].trim();
     const partnerIndex = newAnswers["index"];
-    controllerResponse.redirectRoute = `/new/${council}/partner-name`;
+    controllerResponse.redirectRoute = `/new/partner-name`;
 
     if (partners[partnerIndex]) {
       partners[partnerIndex] = partnerName;
@@ -205,12 +196,11 @@ const partnerDetailsSave = (
  *
  * @param {object} previousAnswers An object containing every past answer that has been given by the user
  * @param {object} newAnswers An object containing new answers from the current page
- * @param {string} council local_council_url allowing to put the user back on the path by redirecting to /new/council
  * @param {boolean} edit Flag indicating if request was submitted in edit mode
  *
  * @returns {object} Values for the router to store/update in the session and the page to redirect to.
  */
-const partnerDetailsDelete = (previousAnswers, newAnswers, council, edit) => {
+const partnerDetailsDelete = (previousAnswers, newAnswers, edit) => {
   const controllerResponse = {
     validatorErrors: {},
     redirectRoute: null,
@@ -229,7 +219,7 @@ const partnerDetailsDelete = (previousAnswers, newAnswers, council, edit) => {
     const partners = controllerResponse.cumulativeFullAnswers.partners;
     const partnerIndex = newAnswers["index"];
 
-    controllerResponse.redirectRoute = `/new/${council}/partner-name`;
+    controllerResponse.redirectRoute = `/new/partner-name`;
     if (partners[partnerIndex]) {
       partners.splice(partnerIndex, 1);
     }

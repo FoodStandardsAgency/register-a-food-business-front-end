@@ -1,20 +1,26 @@
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% macro backButton(props) %}
-  {% if props.hideback or props.editModeFirstPage or not props.council %}
-    {% elif props.backToStart %}
+  {% if not(props.hideback or props.editModeFirstPage) %}
+    {% if props.backToStart %}
       {{ govukBackLink({
-            href: props.href if props.href else "/new/" + props.council,
-            text: __("Back to start", props.language)
-        }) }}
-    {% elif props.fullCurrentPage == "/partner-details" %}
+              href: props.href if props.href else "/new",
+              text: __("Back to start", props.language)
+          }) }}
+    {% elif props.currentPage == "/partner-details" %}
       {{ govukBackLink({
-            href: props.partnerDetailsBackUrl,
-            text: __("Back", props.language)
-        }) }}
+              href: props.partnerDetailsBackUrl,
+              text: __("Back", props.language)
+          }) }}
+    {% elif props.currentPage == "/la-selector" %}
+      {{ govukBackLink({
+              href: "/new/establishment-address",
+              text: __("Back", props.language)
+          }) }}
     {% else %}
       {{ govukBackLink({
-            href: props.backHref if props.backHref else ("/back" + props.currentPage),
-            text: __("Back", props.language)
-        }) }}
+              href: props.backHref if props.backHref else ("/back" + props.currentPage),
+              text: __("Back", props.language)
+          }) }}
+    {% endif %}
   {% endif %}
 {% endmacro %}

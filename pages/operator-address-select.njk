@@ -41,9 +41,9 @@
         {% endcall %}
       {% endif %}
       {% if props.editModeFirstPage %}
-        {% set editModeFirstPage = "/new/" + props.council + "/operator-address?edit=operator-address" %}
+        {% set editModeFirstPage = "/new/operator-address?edit=operator-address" %}
       {% else %}
-        {% set editModeFirstPage = "/new/" + props.council + "/operator-address" %}
+        {% set editModeFirstPage = "/new/operator-address" %}
       {% endif %}
       {{ govukSummaryList({
         classes: 'govuk-summary-list--no-border',
@@ -75,9 +75,9 @@
         items: props.addressLookups.operator_postcode_find | addressSelectItems
       }) }}
       {% if props.editModeFirstPage %}
-        {% set editModeFirstPage = "/new/" + props.council + "/operator-address-manual?edit=operator-address-manual" %}
+        {% set editModeFirstPage = "/new/operator-address-manual?edit=operator-address-manual" %}
       {% else %}
-        {% set editModeFirstPage = "/new/" + props.council + "/operator-address-manual" %}
+        {% set editModeFirstPage = "/new/operator-address-manual" %}
       {% endif %}
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
@@ -86,14 +86,14 @@
         </div>
       </div>
       <br>
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-full">
-            {{ govukButton({
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+          {{ govukButton({
               text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
           }) }}
-          </div>
         </div>
-        {% endcall %}
       </div>
+      {% endcall %}
     </div>
-  {% endblock %}
+  </div>
+{% endblock %}

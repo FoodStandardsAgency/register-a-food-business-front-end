@@ -23,9 +23,9 @@ const backRouter = () => {
       "functionSuccessWith",
       "Routes",
       "/back route",
-      `Redirecting to: /new/${req.session.council}${response}`
+      `Redirecting to: /new${response}`
     );
-    res.redirect(`/new/${req.session.council}${response}`);
+    res.redirect(`/new${response}`);
   });
 
   return router;

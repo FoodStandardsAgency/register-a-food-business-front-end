@@ -6,6 +6,7 @@ const {
   continueRouter,
   editRouter,
   findAddressRouter,
+  findLocalAuthorityRouter,
   newRouter,
   qaRouter,
   submitRouter,
@@ -21,7 +22,8 @@ module.exports = () => {
 
   if (process.env.NODE_ENV === "production") {
     router.get("/", (req, res) => {
-      res.redirect("https://www.gov.uk/food-business-registration");
+      res.redirect("/new");
+      return;
     });
   }
 
@@ -30,6 +32,7 @@ module.exports = () => {
   router.use("/continue", continueRouter());
   router.use("/edit", editRouter());
   router.use("/findaddress", findAddressRouter());
+  router.use("/findlocalauthority", findLocalAuthorityRouter());
   router.use("/new", newRouter());
   router.use("/qa", qaRouter());
   router.use("/submit", submitRouter());

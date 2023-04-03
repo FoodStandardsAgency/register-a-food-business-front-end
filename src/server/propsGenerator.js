@@ -36,7 +36,7 @@ module.exports = (req) => {
   const language = i18n.getLocale(req);
   // req && req.body && req.body.language ? req.body.language : "en"; //  Is this even required anymore?
 
-  const currentPageWithQuery = `/${req.url.split("/")[2]}`;
+  const currentPageWithQuery = `/${req.url.split("/")[1]}`;
 
   const fullCurrentPage = req.url;
 
@@ -131,8 +131,16 @@ module.exports = (req) => {
         : [],
     emailFbo:
       req && req.session && req.session.emailFbo ? req.session.emailFbo : {},
-    lcConfig:
-      req && req.session && req.session.lcConfig ? req.session.lcConfig : {},
+    laConfig:
+      req && req.session && req.session.laConfig ? req.session.laConfig : {},
+    localAuthority:
+      req && req.session && req.session.localAuthority
+        ? req.session.localAuthority
+        : {},
+    changePostcode:
+      req && req.session && req.session.changePostcode
+        ? req.session.changePostcode
+        : false,
     addressLookups:
       req && req.session && req.session.addressLookups
         ? req.session.addressLookups
@@ -148,10 +156,7 @@ module.exports = (req) => {
     browserVersion:
       req && req.session && req.session.browserVersion
         ? req.session.browserVersion
-        : "",
-    country:
-      req && req.session && req.session.country ? req.session.country : "",
-    lcName: req && req.session && req.session.lcName ? req.session.lcName : ""
+        : ""
   };
 
   // The getInitialProps function (a method of the 'wrapper' function) returns the initialProps object
