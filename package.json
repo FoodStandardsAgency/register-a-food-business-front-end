@@ -67,7 +67,7 @@
     "node-sass": "^7.0.3",
     "node-sass-middleware": "^1.0.1",
     "nodemon": "^2.0.20",
-    "nunjucks": "^3.2.3",
+    "nunjucks": "^3.2.4",
     "nunjucks-date-filter": "^0.1.1",
     "prop-types": "^15.8.1",
     "stem-porter": "^0.0.1",
