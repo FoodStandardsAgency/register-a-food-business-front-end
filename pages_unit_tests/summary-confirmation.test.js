@@ -289,7 +289,7 @@ describe("summary-confirmation", () => {
         const $businessGuidanceLink = $("#businessSupportHelplineEnglishLink");
         expect($businessGuidanceLink.length).toBe(1);
         expect($businessGuidanceLink.get(0).children[0].data.trim()).toBe(
-          "Business support & helpline"
+          "For general business guidance contact the national Business Support Helpline"
         );
       });
     });
