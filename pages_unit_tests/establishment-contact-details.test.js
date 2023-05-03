@@ -27,7 +27,13 @@ describe("Establishment-Contact-Details", () => {
   it("passes accessibility tests", async () => {
     const $ = renderPage("establishment-contact-details", props);
 
-    const results = await axe($.html());
+    // Suppress empty table header rule as second column needs no heading
+    const results = await axe($.html(), {
+      rules: {
+        "empty-table-header": { enabled: false }
+      }
+    });
+
     expect(results).toHaveNoViolations();
   });
 
