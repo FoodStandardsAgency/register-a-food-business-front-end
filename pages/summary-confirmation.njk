@@ -49,8 +49,32 @@
         <p class="govuk-body" style="margin-bottom:-0px">{{ __("Your registration has been sent to", props.language) }}</p>
         {% if props.laConfig.hygieneAndStandards %}
           <h2 class="govuk-heading-m" id="hygieneAndStandardsCouncil">{{ props.laConfig.hygieneAndStandards.new_authority_name or props.laConfig.hygieneAndStandards.local_council }}</h2>
+           {% if props.laConfig.hygieneAndStandards.local_council_email %}
           <p class="govuk-body">{{ __("Email address", props.language) + ": " }}
             {{ props.laConfig.hygieneAndStandards.local_council_email }}</p>
+           {% endif %}
+
+          {% if props.laConfig.hygieneAndStandards.local_council_guidance_link %}
+            <p>
+              <a
+                class="govuk-link"
+                id="localGuidanceLink"
+                target="_blank"
+                href="{{ props.laConfig.hygieneAndStandards.local_council_guidance_link }}"
+                rel="noopener noreferrer">{{ __("Guidance for local authority", props.language) }}
+              </a>
+            </p>
+          {% endif %}
+          {%else%}
+            {% if props.laConfig.hygiene.local_council_guidance_link %}
+                <p class="govuk-body" id="hygieneGuidance">{{ __("Guidance Link", props.language) + ": " + props.laConfig.hygiene.local_council_guidance_link }}</p>
+            {% endif %}
+            {% if props.laConfig.standards.local_council_guidance_link %}
+                <p class="govuk-body" id="standardsGuidance">{{ __("Guidance Link", props.language) + ": " + props.laConfig.standards.local_council_guidance_link }}</p>
+            {% endif %}
+          {% endif %}
+          
+          
           {% if props.laConfig.hygieneAndStandards.local_council_phone_number %}
             <p class="govuk-body" id="hygieneAndStandardsNumber">{{ __("Phone number", props.language) + ": " + props.laConfig.hygieneAndStandards.local_council_phone_number }}</p>
           {% endif %}

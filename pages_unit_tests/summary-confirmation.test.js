@@ -126,6 +126,22 @@ describe("summary-confirmation", () => {
     });
   });
 
+  describe("When given a hygieneAndStandards local guidance link", () => {
+    it("The paragraph renders displaying it", () => {
+      const $ = renderPage("summary-confirmation", {
+        language: "cy",
+        cumulativeFullAnswers: cumulativeFullAnswers,
+        applicationCompletePage: true,
+        fsaRegistrationNumber: undefined,
+        laConfig: laConfigCombined,
+        transformedData: transformedData
+      });
+
+      const $localGuidanceLink = $("#localGuidanceLink");
+      expect($localGuidanceLink.length).toBe(1);
+    });
+  });
+
   describe("When given a hygiene phone number", () => {
     it("The paragraph renders displaying it", () => {
       const $ = renderPage("summary-confirmation", {
