@@ -49,35 +49,26 @@
         <p class="govuk-body" style="margin-bottom:-0px">{{ __("Your registration has been sent to", props.language) }}</p>
         {% if props.laConfig.hygieneAndStandards %}
           <h2 class="govuk-heading-m" id="hygieneAndStandardsCouncil">{{ props.laConfig.hygieneAndStandards.new_authority_name or props.laConfig.hygieneAndStandards.local_council }}</h2>
-           {% if props.laConfig.hygieneAndStandards.local_council_email %}
-          <p class="govuk-body">{{ __("Email address", props.language) + ": " }}
-            {{ props.laConfig.hygieneAndStandards.local_council_email }}</p>
-           {% endif %}
+          {% if props.laConfig.hygieneAndStandards.local_council_email %}
+            <p class="govuk-body">{{ __("Email address", props.language) + ": " }}
+              {{ props.laConfig.hygieneAndStandards.local_council_email }}</p>
+          {% endif %}
+          {% if props.laConfig.hygieneAndStandards.local_council_phone_number %}
+            <p class="govuk-body" id="hygieneAndStandardsNumber">{{ __("Phone number", props.language) + ": " + props.laConfig.hygieneAndStandards.local_council_phone_number }}</p>
+          {% endif %}
 
           {% if props.laConfig.hygieneAndStandards.local_council_guidance_link %}
-            <p>
+            <p class="govuk-body">
               <a
                 class="govuk-link"
-                id="localGuidanceLink"
+                id="localGuidanceLink_hygieneAndStandards"
                 target="_blank"
                 href="{{ props.laConfig.hygieneAndStandards.local_council_guidance_link }}"
                 rel="noopener noreferrer">{{ __("Guidance for local authority", props.language) }}
               </a>
             </p>
           {% endif %}
-          {%else%}
-            {% if props.laConfig.hygiene.local_council_guidance_link %}
-                <p class="govuk-body" id="hygieneGuidance">{{ __("Guidance Link", props.language) + ": " + props.laConfig.hygiene.local_council_guidance_link }}</p>
-            {% endif %}
-            {% if props.laConfig.standards.local_council_guidance_link %}
-                <p class="govuk-body" id="standardsGuidance">{{ __("Guidance Link", props.language) + ": " + props.laConfig.standards.local_council_guidance_link }}</p>
-            {% endif %}
-          {% endif %}
-          
-          
-          {% if props.laConfig.hygieneAndStandards.local_council_phone_number %}
-            <p class="govuk-body" id="hygieneAndStandardsNumber">{{ __("Phone number", props.language) + ": " + props.laConfig.hygieneAndStandards.local_council_phone_number }}</p>
-          {% endif %}
+
         {% else %}
           {% if props.laConfig.hygiene and props.laConfig.standards %}
             <div>
@@ -87,12 +78,34 @@
               {% if props.laConfig.hygiene.local_council_phone_number %}
                 <p class="govuk-body" id="hygieneNumber">{{ __("Phone number", props.language) + ": " + props.laConfig.hygiene.local_council_phone_number }}</p>
               {% endif %}
+              {% if props.laConfig.hygiene.local_council_guidance_link %}
+                <p class="govuk-body">
+                  <a
+                class="govuk-link"
+                id="localGuidanceLink_hygiene"
+                target="_blank"
+                href="{{ props.laConfig.hygiene.local_council_guidance_link }}"
+                rel="noopener noreferrer">{{ __("Guidance for local authority", props.language) }}
+                  </a>
+                </p>
+              {% endif %}
               <p class="govuk-body">{{ __("Responsible local council for food hygiene", props.language) }}</p>
               <h2 class="govuk-heading-m" id="standardsCouncil">{{ props.laConfig.standards.new_authority_name or props.laConfig.standards.local_council }}</h2>
               <p class="govuk-body">{{ __("Email address", props.language) + ": " }}
                 {{ props.laConfig.standards.local_council_email }}</p>
               {% if props.laConfig.standards.local_council_phone_number %}
                 <p class="govuk-body" id="standardsNumber">{{ __("Phone number", props.language) + ": " + props.laConfig.standards.local_council_phone_number }}</p>
+              {% endif %}
+              {% if props.laConfig.standards.local_council_guidance_link %}
+                <p class="govuk-body">
+                  <a
+                class="govuk-link"
+                id="localGuidanceLink_standards"
+                target="_blank"
+                href="{{ props.laConfig.standards.local_council_guidance_link }}"
+                rel="noopener noreferrer">{{ __("Guidance for local authority", props.language) }}
+                  </a>
+                </p>
               {% endif %}
               <p class="govuk-body">{{ __("Responsible local council for food standards", props.language) }}</p>
             </div>
