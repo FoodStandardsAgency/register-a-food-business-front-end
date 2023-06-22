@@ -20,11 +20,10 @@
                   }
           }) %}
         {% endcall %}
-        {% call govukInsetText({
+        {{ govukInsetText({
           text: __("Partnership address is the contact address for the partner who is the main point of contact.", props.language),
           classes: "govuk-fieldset__legend--l"
-        }) %}
-        {% endcall %}
+        }) }}
       {% else %}
         {% call govukFieldset({
           legend: {
@@ -34,11 +33,10 @@
                   }
           }) %}
         {% endcall %}
-        {% call govukInsetText({
+        {{ govukInsetText({
             text: __('Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company.', props.language),
             classes: "govuk-fieldset__legend--l"
-        }) %}
-        {% endcall %}
+        }) }}
       {% endif %}
       {% if props.editModeFirstPage %}
         {% set editModeFirstPage = "/new/operator-address?edit=operator-address" %}
