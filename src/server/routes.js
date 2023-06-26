@@ -20,12 +20,10 @@ const {
 module.exports = () => {
   const router = Router();
 
-  if (process.env.NODE_ENV === "production") {
-    router.get("/", (req, res) => {
-      res.redirect("/new");
-      return;
-    });
-  }
+  router.get("/", (req, res) => {
+    res.redirect("/new");
+    return;
+  });
 
   router.use("/back", backRouter());
   router.use("/cleansession", cleansessionRouter());
