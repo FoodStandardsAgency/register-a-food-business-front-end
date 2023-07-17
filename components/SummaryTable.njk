@@ -43,7 +43,7 @@
       {% if validatorErrors.operator_address_line_1 or validatorErrors.operator_address_line_2 or validatorErrors.operator_address_line_3 or 
                     validatorErrors.operator.operator_town or validatorErrors.operator.operator_postcode or validatorErrors.operator_postcode_find or 
                     propsData.operator_address_line_1 or propsData.operator_address_line_2 or propsData.operator_address_line_3 or propsData.operator_town or propsData.operator_postcode or propsData.operator_postcode_find %}
-        {% set htmlValue = (propsData.operator_address_line_1 + "<br>" + if propsData.operator_address_line_1) + (propsData.operator_address_line_2 + "<br>" + if propsData.operator_address_line_2) + (propsData.operator_address_line_3 + "<br>" + if propsData.operator_address_line_3)+ propsData.operator_town + "<br>" + propsData.operator_postcode %}
+        {% set htmlValue = (propsData.operator_address_line_1 + "<br>" if propsData.operator_address_line_1) + (propsData.operator_address_line_2 + "<br>" if propsData.operator_address_line_2) + (propsData.operator_address_line_3 + "<br>" if propsData.operator_address_line_3) + propsData.operator_town + "<br>" + propsData.operator_postcode %}
         {{ summaryListHelperHtmlWithoutEdit(__("Partnership contact address", props.language) if  propsData.operator_type === "PARTNERSHIP" else __("Operator address", props.language), htmlValue, false) }}
       {% endif %}
     {% endif %}
