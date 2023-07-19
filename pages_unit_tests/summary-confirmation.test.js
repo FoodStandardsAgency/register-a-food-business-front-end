@@ -22,7 +22,8 @@ const laConfigCombined = {
   hygieneAndStandards: {
     local_council: "Council name",
     local_council_email: "council@example.com",
-    local_council_phone_number: "123456789"
+    local_council_phone_number: "123456789",
+    local_council_guidance_link: "hygieneAndStandards"
   }
 };
 
@@ -37,12 +38,14 @@ const laConfigSplit = {
   hygiene: {
     local_council: "Hygiene council name",
     local_council_email: "hygiene@example.com",
-    local_council_phone_number: "123456789"
+    local_council_phone_number: "123456789",
+    local_council_guidance_link: "hygiene"
   },
   standards: {
     local_council: "Standards council name",
     local_council_email: "standards@example.com",
-    local_council_phone_number: "123456789"
+    local_council_phone_number: "123456789",
+    local_council_guidance_link: "standards"
   }
 };
 
@@ -126,6 +129,23 @@ describe("summary-confirmation", () => {
     });
   });
 
+  describe("When given a hygieneAndStandards local guidance link", () => {
+    it("The paragraph renders displaying it", () => {
+      const $ = renderPage("summary-confirmation", {
+        language: "cy",
+        cumulativeFullAnswers: cumulativeFullAnswers,
+        applicationCompletePage: true,
+        fsaRegistrationNumber: undefined,
+        laConfig: laConfigCombined,
+        transformedData: transformedData
+      });
+
+      const $localGuidanceLink = $("#localGuidanceLink_hygieneAndStandards");
+      expect($localGuidanceLink.length).toBe(1);
+      expect($localGuidanceLink.attr("href")).toBe("hygieneAndStandards");
+    });
+  });
+
   describe("When given a hygiene phone number", () => {
     it("The paragraph renders displaying it", () => {
       const $ = renderPage("summary-confirmation", {
@@ -141,6 +161,23 @@ describe("summary-confirmation", () => {
     });
   });
 
+  describe("When given a hygiene local guidance link", () => {
+    it("The paragraph renders displaying it", () => {
+      const $ = renderPage("summary-confirmation", {
+        language: "cy",
+        cumulativeFullAnswers: cumulativeFullAnswers,
+        applicationCompletePage: true,
+        fsaRegistrationNumber: undefined,
+        laConfig: laConfigSplit,
+        transformedData: transformedData
+      });
+
+      const $localGuidanceLink = $("#localGuidanceLink_hygiene");
+      expect($localGuidanceLink.length).toBe(1);
+      expect($localGuidanceLink.attr("href")).toBe("hygiene");
+    });
+  });
+
   describe("When given a standards phone number", () => {
     it("The paragraph renders displaying it", () => {
       const $ = renderPage("summary-confirmation", {
@@ -153,6 +190,23 @@ describe("summary-confirmation", () => {
       });
       const $standardsNumber = $("#standardsNumber");
       expect($standardsNumber.length).toBe(1);
+    });
+
+    describe("When given a standards local guidance link", () => {
+      it("The paragraph renders displaying it", () => {
+        const $ = renderPage("summary-confirmation", {
+          language: "cy",
+          cumulativeFullAnswers: cumulativeFullAnswers,
+          applicationCompletePage: true,
+          fsaRegistrationNumber: undefined,
+          laConfig: laConfigSplit,
+          transformedData: transformedData
+        });
+
+        const $localGuidanceLink = $("#localGuidanceLink_standards");
+        expect($localGuidanceLink.length).toBe(1);
+        expect($localGuidanceLink.attr("href")).toBe("standards");
+      });
     });
 
     describe("When given a contact representative email", () => {
@@ -248,10 +302,10 @@ describe("summary-confirmation", () => {
           localAuthority: { country: "wales" }
         });
 
-        const $businessGuidanceLink = $("#businessGuidanceLink");
+        const $businessGuidanceLink = $("#businessGuidanceWelshLink");
         expect($businessGuidanceLink.length).toBe(1);
         expect($businessGuidanceLink.get(0).children[0].data.trim()).toBe(
-          "Business support Wales"
+          "I gael cyngor cyffredinol ar hylendid bwyd a sut i redeg busnes bwyd diogel"
         );
       });
     });
@@ -289,7 +343,7 @@ describe("summary-confirmation", () => {
         const $businessGuidanceLink = $("#businessSupportHelplineEnglishLink");
         expect($businessGuidanceLink.length).toBe(1);
         expect($businessGuidanceLink.get(0).children[0].data.trim()).toBe(
-          "Business support & helpline"
+          "For general business guidance contact the national Business Support Helpline"
         );
       });
     });
