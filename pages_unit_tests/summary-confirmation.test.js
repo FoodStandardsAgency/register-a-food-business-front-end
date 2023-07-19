@@ -302,10 +302,10 @@ describe("summary-confirmation", () => {
           localAuthority: { country: "wales" }
         });
 
-        const $businessGuidanceLink = $("#businessGuidanceLink");
+        const $businessGuidanceLink = $("#businessGuidanceWelshLink");
         expect($businessGuidanceLink.length).toBe(1);
         expect($businessGuidanceLink.get(0).children[0].data.trim()).toBe(
-          "Business support Wales"
+          "I gael cyngor cyffredinol ar hylendid bwyd a sut i redeg busnes bwyd diogel"
         );
       });
     });
