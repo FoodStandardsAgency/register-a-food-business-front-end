@@ -5,10 +5,7 @@ const {
   establishConnectionToCosmos,
   clearCosmosConnection
 } = require("./cosmos.client");
-const {
-  configVersionCollectionDouble
-} = require("./config-db/config-db.double");
-const { statusCollectionDouble } = require("./status-db/status-db.double");
+
 
 describe("Function: establishConnectionToCosmos", () => {
   let result;
@@ -31,7 +28,6 @@ describe("Function: establishConnectionToCosmos", () => {
   });
   describe("given the request throws an error", () => {
     beforeEach(async () => {
-      process.env.DOUBLE_MODE = false;
       mongodb.MongoClient.connect.mockImplementation(() => {
         throw new Error("example mongo error");
       });
@@ -53,7 +49,6 @@ describe("Function: establishConnectionToCosmos", () => {
 
   describe("given the request returns null", () => {
     beforeEach(async () => {
-      process.env.DOUBLE_MODE = false;
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => null
@@ -120,29 +115,10 @@ describe("Function: establishConnectionToCosmos", () => {
     });
   });
 
-  describe("when running in double mode", () => {
-    beforeEach(() => {
-      process.env.DOUBLE_MODE = true;
-    });
-
-    it("should resolve with the correct double data for each db callled", async () => {
-      await expect(
-        establishConnectionToCosmos("config", "collection")
-      ).resolves.toEqual(configVersionCollectionDouble);
-      await expect(
-        establishConnectionToCosmos("status", "collection")
-      ).resolves.toEqual(statusCollectionDouble);
-      await expect(
-        establishConnectionToCosmos("dbName", "collection")
-      ).resolves.toEqual({});
-    });
-  });
-
   describe("When: two db calls are made", () => {
     const closeConnection = jest.fn();
     let result1, result2;
     beforeEach(async () => {
-      process.env.DOUBLE_MODE = false;
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({ key: "value" })

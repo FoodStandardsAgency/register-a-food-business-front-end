@@ -1,5 +1,4 @@
 jest.mock("mongodb");
-jest.mock("./config-db.double");
 jest.mock("../../services/statusEmitter.service");
 
 const mongodb = require("mongodb");
@@ -12,7 +11,6 @@ const {
 } = require("./config-db.connector");
 const { clearCosmosConnection } = require("../cosmos.client");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
-const { configVersionCollectionDouble } = require("./config-db.double");
 
 describe("Function: getPathConfigByVersion", () => {
   let result;
@@ -39,7 +37,6 @@ describe("Function: getPathConfigByVersion", () => {
     });
     describe("given the request throws an error", () => {
       beforeEach(async () => {
-        process.env.DOUBLE_MODE = false;
         mongodb.MongoClient.connect.mockImplementation(() => {
           throw new Error("example mongo error");
         });
@@ -61,7 +58,6 @@ describe("Function: getPathConfigByVersion", () => {
 
     describe("given the request returns null", () => {
       beforeEach(async () => {
-        process.env.DOUBLE_MODE = false;
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
@@ -80,7 +76,6 @@ describe("Function: getPathConfigByVersion", () => {
 
     describe("given the request is successful", () => {
       beforeEach(() => {
-        process.env.DOUBLE_MODE = false;
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
@@ -155,26 +150,10 @@ describe("Function: getPathConfigByVersion", () => {
       });
     });
 
-    describe("when running in double mode", () => {
-      beforeEach(() => {
-        process.env.DOUBLE_MODE = true;
-        configVersionCollectionDouble.findOne.mockImplementation(
-          () => pathConfigMock
-        );
-      });
-
-      it("should resolve with the data from the double's findOne() response", async () => {
-        await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-          pathConfigMock
-        );
-      });
-    });
-
     describe("When: two db calls are made", () => {
       const closeConnection = jest.fn();
       let result1, result2;
       beforeEach(async () => {
-        process.env.DOUBLE_MODE = false;
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
@@ -204,7 +183,6 @@ describe("Function: getPathConfigByVersion", () => {
 
   describe("given the request is run more than once during this process (populated cache)", () => {
     beforeEach(() => {
-      process.env.DOUBLE_MODE = false;
       mongodb.MongoClient.connect.mockClear();
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({

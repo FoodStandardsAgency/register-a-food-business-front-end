@@ -1,4 +1,3 @@
-jest.mock("./status-db.double");
 jest.mock("mongodb");
 
 const {
@@ -8,7 +7,6 @@ const {
 const { clearCosmosConnection } = require("../cosmos.client");
 const storedStatusMock = require("../../../__mocks__/storedStatusMock.json");
 const mongodb = require("mongodb");
-const { statusCollectionDouble } = require("./status-db.double");
 
 describe("Function: getStoredStatus", () => {
   let result;
@@ -31,7 +29,6 @@ describe("Function: getStoredStatus", () => {
 
   describe("Given: the request throws an error", () => {
     beforeEach(async () => {
-      process.env.DOUBLE_MODE = false;
       mongodb.MongoClient.connect.mockImplementation(() => {
         throw new Error("example mongo error");
       });
@@ -105,22 +102,10 @@ describe("Function: getStoredStatus", () => {
     });
   });
 
-  describe("when running in double mode", () => {
-    beforeEach(() => {
-      process.env.DOUBLE_MODE = true;
-      statusCollectionDouble.findOne.mockImplementation(() => storedStatusMock);
-    });
-
-    it("should resolve with the data from the double's findOne() response", async () => {
-      await expect(getStoredStatus()).resolves.toEqual(storedStatusMock);
-    });
-  });
-
   describe("When: two db calls are made", () => {
     const closeConnection = jest.fn();
     let result1, result2;
     beforeEach(async () => {
-      process.env.DOUBLE_MODE = false;
       clearCosmosConnection();
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
@@ -170,7 +155,6 @@ describe("Function: updateStoredStatus", () => {
 
   describe("Given: the request throws an error", () => {
     beforeEach(async () => {
-      process.env.DOUBLE_MODE = false;
       mongodb.MongoClient.connect.mockImplementation(() => {
         throw new Error("example mongo error");
       });
