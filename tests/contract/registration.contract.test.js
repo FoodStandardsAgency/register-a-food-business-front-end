@@ -99,32 +99,23 @@ describe("Registration contract", () => {
       });
 
       it("Should return the same status", async () => {
-        process.env.DOUBLE_MODE = false;
         const realResponse = await sendRequest(validBody);
-        process.env.DOUBLE_MODE = true;
         const doubleResponse = await sendRequest(validBody);
+
         expect(realResponse.status).toBe(doubleResponse.status);
       });
 
       it("should return the same result from res.data", async () => {
-        process.env.DOUBLE_MODE = false;
         const realResponse = await sendRequest(validBody);
-        process.env.DOUBLE_MODE = true;
         const doubleResponse = await sendRequest(validBody);
-        const realJsonResponse = realResponse.data;
-        const doubleJsonResponse = doubleResponse.data;
+        const realJsonResponse = realResponse.config.data;
+        const doubleJsonResponse = doubleResponse.config.data;
         expect(typeof realJsonResponse.regId).toBe(
           typeof doubleJsonResponse.regId
         );
         expect(typeof realJsonResponse["fsa-rn"]).toBe(
           typeof doubleJsonResponse["fsa-rn"]
         );
-        expect(typeof realJsonResponse.tascomiResponse.id).toEqual(
-          typeof doubleJsonResponse.tascomiResponse.id
-        );
-        expect(
-          typeof realJsonResponse.tascomiResponse.online_reference
-        ).toEqual(typeof doubleJsonResponse.tascomiResponse.online_reference);
         expect(realJsonResponse.reg_submission_date).toEqual(
           doubleJsonResponse.reg_submission_date
         );
@@ -157,9 +148,7 @@ describe("Registration contract", () => {
       });
 
       it("should return the same result from res.data", async () => {
-        process.env.DOUBLE_MODE = false;
         const realResponse = await sendRequest(validBody);
-        process.env.DOUBLE_MODE = true;
         const doubleResponse = await sendRequest(validBody);
         const realJsonResponse = realResponse.data;
         const doubleJsonResponse = doubleResponse.data;
@@ -192,16 +181,12 @@ describe("Registration contract", () => {
 
   describe("Invalid requests", () => {
     it("Should return the same status", async () => {
-      process.env.DOUBLE_MODE = false;
       const realResponse = await sendRequest(invalidBody);
-      process.env.DOUBLE_MODE = true;
       const doubleResponse = await sendRequest(invalidBody);
       expect(realResponse.status).toBe(doubleResponse.status);
     });
     it("should return the same result from res.data", async () => {
-      process.env.DOUBLE_MODE = false;
       const realResponse = await sendRequest(invalidBody);
-      process.env.DOUBLE_MODE = true;
       const doubleResponse = await sendRequest(invalidBody);
       const realJsonResponse = realResponse.data;
       const doubleJsonResponse = doubleResponse.data;

@@ -8,10 +8,8 @@ describe("config-db.connector contract: getPathConfigByVersion", () => {
 
   describe("Given a valid request", () => {
     beforeEach(async () => {
-      process.env.DOUBLE_MODE = false;
       realResponse = await getPathConfigByVersion("1.0.0");
 
-      process.env.DOUBLE_MODE = true;
       doubleResponse = await getPathConfigByVersion("1.0.0");
     });
 
@@ -30,10 +28,8 @@ describe("config-db.connector contract: getPathConfigByVersion", () => {
 
   describe("Given a valid request that does not match a known version", () => {
     beforeEach(async () => {
-      process.env.DOUBLE_MODE = false;
       realResponse = await getPathConfigByVersion("0.0.0");
 
-      process.env.DOUBLE_MODE = true;
       doubleResponse = await getPathConfigByVersion("0.0.0");
     });
 

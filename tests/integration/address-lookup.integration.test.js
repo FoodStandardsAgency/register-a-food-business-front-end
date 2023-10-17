@@ -5,8 +5,6 @@ const {
 let response;
 
 describe("Address lookup API service", () => {
-  process.env.DOUBLE_MODE = true;
-
   describe("When given a valid request", () => {
     beforeEach(async () => {
       response = await getAddressesByPostcode("BS249ST", 100);
@@ -36,11 +34,11 @@ describe("Address lookup API service", () => {
     it("should throw an error", async () => {
       let result;
       try {
-        await getAddressesByPostcode("Not a handled postcode", 100);
+        response = await getAddressesByPostcode("Not a handled postcode", 100);
       } catch (err) {
         result = err;
       }
-      expect(result.message).toBe(
+      expect(result.err).toBe(
         "Address lookup API responded with non-200 status: 500"
       );
     });

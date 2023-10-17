@@ -7,7 +7,6 @@ let response;
 
 describe("config-db.connector integration: getPathConfigByVersion", () => {
   beforeEach(() => {
-    process.env.DOUBLE_MODE = true;
     clearPathConfigCache();
   });
 

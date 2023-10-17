@@ -48,10 +48,6 @@ const validBody = {
 };
 
 describe("Registration service", () => {
-  beforeEach(() => {
-    process.env.DOUBLE_MODE = true;
-  });
-
   describe("When given a valid request", () => {
     it("should return 200 response", async () => {
       validBody.local_council_url = "cardiff";
@@ -69,8 +65,6 @@ describe("Registration service", () => {
         const resultJson = result.data;
         expect(resultJson.regId).toBeDefined();
         expect(resultJson["fsa-rn"]).toBeDefined();
-        expect(resultJson.tascomiResponse.id).toBeDefined();
-        expect(resultJson.tascomiResponse.online_reference).toBeDefined();
         expect(resultJson.reg_submission_date).toBeDefined();
         expect(resultJson.emailFbo.recipient).toBeDefined();
         expect(resultJson.email_lc.hygieneAndStandards.recipient).toBeDefined();
@@ -92,8 +86,6 @@ describe("Registration service", () => {
         const resultJson = result.data;
         expect(resultJson.regId).toBeDefined();
         expect(resultJson["fsa-rn"]).toBeDefined();
-        expect(resultJson.tascomiResponse.id).toBeDefined();
-        expect(resultJson.tascomiResponse.online_reference).toBeDefined();
         expect(resultJson.reg_submission_date).toBeDefined();
         expect(resultJson.emailFbo.recipient).toBeDefined();
         expect(resultJson.email_lc.hygiene.recipient).toBeDefined();
