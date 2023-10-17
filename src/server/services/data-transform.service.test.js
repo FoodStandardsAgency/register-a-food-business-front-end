@@ -642,481 +642,253 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         }
       ]
     };
-    describe("when populating tascomi address fields", () => {
-      describe("when operator premise does not exist", () => {
-        const testAddressLookupsNoPremise = {
-          operator_postcode_find: [
-            {
-              addressline1: "Allies Computing Ltd",
-              addressline2: "Manor Farm Barns",
-              addressline3: "Fox Road",
-              addressline4: "Framingham Pigot",
-              summaryline:
-                "Allies Computing Ltd, Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
-              organisation: "Allies Computing Ltd",
-              buildingname: "Manor Farm Barns",
-              street: "Fox Road",
-              dependentlocality: "Framingham Pigot",
-              posttown: "Norwich",
-              county: "Norfolk",
-              postcode: "NR14 7PZ"
-            }
-          ],
-          establishment_postcode_find: [
-            {
-              addressline1: "Example",
-              addressline2: "Example line 2",
-              addressline3: "Gibbet Hill Road",
-              summaryline:
-                "Room 36, Block 1 Arthur Vick, Gibbet Hill Road, Coventry, West Midlands, CV4 7AL",
-              subbuildingname: "Room 36",
-              buildingname: "Block 1 Arthur Vick",
-              street: "Example street",
-              posttown: "Example town",
-              county: "Norfolk",
-              postcode: "AA11 1AA"
-            }
-          ]
-        };
 
-        const correctResponse = {
-          operator_first_line: "Allies Computing Ltd",
-          operator_street: "Fox Road",
-          operator_town: "Norwich",
-          operator_postcode: "NR14 7PZ"
-        };
-
-        const cumulativeAnswersOpAddSelected = {
-          operator_address_selected: "0"
-        };
-
-        it("uses addressLine1 instead of premise as operator_first_line", () => {
-          const response = transformAnswersForSubmit(
-            cumulativeAnswersOpAddSelected,
-            testLanguage,
-            testAddressLookupsNoPremise
-          );
-          expect(
-            response.registration.establishment.operator.operator_first_line
-          ).toBe(correctResponse.operator_first_line);
-        });
-      });
-
-      describe("when establishment premise does not exist", () => {
-        const testAddressLookupsNoPremise = {
-          operator_postcode_find: [
-            {
-              addressline1: "Allies Computing Ltd",
-              addressline2: "Manor Farm Barns",
-              addressline3: "Fox Road",
-              addressline4: "Framingham Pigot",
-              summaryline:
-                "Allies Computing Ltd, Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
-              organisation: "Allies Computing Ltd",
-              buildingname: "Manor Farm Barns",
-              street: "Fox Road",
-              dependentlocality: "Framingham Pigot",
-              posttown: "Norwich",
-              county: "Norfolk",
-              postcode: "NR14 7PZ"
-            }
-          ],
-          establishment_postcode_find: [
-            {
-              addressline1: "Example",
-              addressline2: "Example line 2",
-              addressline3: "Gibbet Hill Road",
-              summaryline:
-                "Room 36, Block 1 Arthur Vick, Gibbet Hill Road, Coventry, West Midlands, CV4 7AL",
-              subbuildingname: "Room 36",
-              buildingname: "Block 1 Arthur Vick",
-              street: "Example street",
-              posttown: "Example town",
-              county: "Norfolk",
-              postcode: "AA11 1AA"
-            }
-          ]
-        };
-
-        const correctResponse = {
-          establishment_first_line: "Example",
-          establishment_street: "Fox Road",
-          establishment_town: "Norwich",
-          establishment_postcode: "NR14 7PZ"
-        };
-
-        const cumulativeAnswersEstAddSelected = {
-          establishment_address_selected: "0"
-        };
-
-        it("uses addressLine1 instead of premise as establishment_address_line_1", () => {
-          const response = transformAnswersForSubmit(
-            cumulativeAnswersEstAddSelected,
-            testLanguage,
-            testAddressLookupsNoPremise
-          );
-          expect(
-            response.registration.establishment.premise.establishment_first_line
-          ).toBe(correctResponse.establishment_first_line);
-        });
-      });
-    });
-
-    describe("given operator_address_selected is in cumulativeFullAnswers with a value of 1", () => {
-      const cumulativeAnswersOpAddSelected = {
-        operator_address_selected: "1"
+    describe("when establishment premise does not exist", () => {
+      const testAddressLookupsNoPremise = {
+        operator_postcode_find: [
+          {
+            addressline1: "Allies Computing Ltd",
+            addressline2: "Manor Farm Barns",
+            addressline3: "Fox Road",
+            addressline4: "Framingham Pigot",
+            summaryline:
+              "Allies Computing Ltd, Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
+            organisation: "Allies Computing Ltd",
+            buildingname: "Manor Farm Barns",
+            street: "Fox Road",
+            dependentlocality: "Framingham Pigot",
+            posttown: "Norwich",
+            county: "Norfolk",
+            postcode: "NR14 7PZ"
+          }
+        ],
+        establishment_postcode_find: [
+          {
+            addressline1: "Example",
+            addressline2: "Example line 2",
+            addressline3: "Gibbet Hill Road",
+            summaryline:
+              "Room 36, Block 1 Arthur Vick, Gibbet Hill Road, Coventry, West Midlands, CV4 7AL",
+            subbuildingname: "Room 36",
+            buildingname: "Block 1 Arthur Vick",
+            street: "Example street",
+            posttown: "Example town",
+            county: "Norfolk",
+            postcode: "AA11 1AA"
+          }
+        ]
       };
 
       const correctResponse = {
-        operator_address_line_1: "Room 36",
-        operator_address_line_2: "Block 1 Arthur Vick",
-        operator_address_line_3: "Gibbet Hill Road",
-        operator_town: "Coventry",
-        operator_postcode: "CV4 7AL"
+        establishment_first_line: "Example",
+        establishment_street: "Fox Road",
+        establishment_town: "Norwich",
+        establishment_postcode: "NR14 7PZ"
       };
 
-      it("returns correctly formatted operator address fields that match the second entry in the address lookup results", () => {
+      const cumulativeAnswersEstAddSelected = {
+        establishment_address_selected: "0"
+      };
+
+      it("uses addressLine1 instead of premise as establishment_address_line_1", () => {
         const response = transformAnswersForSubmit(
-          cumulativeAnswersOpAddSelected,
+          cumulativeAnswersEstAddSelected,
+          testLanguage,
+          testAddressLookupsNoPremise
+        );
+        expect(
+          response.registration.establishment.premise.establishment_first_line
+        ).toBe(correctResponse.establishment_first_line);
+      });
+    });
+  });
+
+  describe("given operator_address_selected is in cumulativeFullAnswers with a value of 1", () => {
+    const cumulativeAnswersOpAddSelected = {
+      operator_address_selected: "1"
+    };
+
+    const correctResponse = {
+      operator_address_line_1: "Room 36",
+      operator_address_line_2: "Block 1 Arthur Vick",
+      operator_address_line_3: "Gibbet Hill Road",
+      operator_town: "Coventry",
+      operator_postcode: "CV4 7AL"
+    };
+
+    it("returns correctly formatted operator address fields that match the second entry in the address lookup results", () => {
+      const response = transformAnswersForSubmit(
+        cumulativeAnswersOpAddSelected,
+        testLanguage,
+        testAddressLookups
+      );
+      expect(response.registration.establishment.operator).toMatchObject(
+        correctResponse
+      );
+    });
+
+    describe("given that operator_address_line_1 already exists (showing that the manual address page has been filled out)", () => {
+      const cumulativeAnswersOpAddSelectedWithManual = {
+        operator_address_selected: "1",
+        operator_address_line_1: "Room 36, Block 1 Arthur Vick",
+        operator_postcode: "NR14 7PZ"
+      };
+
+      const manualAddressDataOnly = {
+        operator_address_line_1: "Room 36, Block 1 Arthur Vick",
+        operator_postcode: "NR14 7PZ"
+      };
+
+      it("returns the original manual address data and deletes the operator_address_selected value", () => {
+        const response = transformAnswersForSubmit(
+          cumulativeAnswersOpAddSelectedWithManual,
           testLanguage,
           testAddressLookups
         );
         expect(response.registration.establishment.operator).toMatchObject(
-          correctResponse
+          manualAddressDataOnly
         );
       });
+    });
+  });
 
-      describe("given that operator_address_line_1 already exists (showing that the manual address page has been filled out)", () => {
-        const cumulativeAnswersOpAddSelectedWithManual = {
-          operator_address_selected: "1",
-          operator_address_line_1: "Room 36, Block 1 Arthur Vick",
-          operator_postcode: "NR14 7PZ"
-        };
+  describe("given establishment_address_selected is in cumulativeFullAnswers with a value of 0", () => {
+    const cumulativeAnswersEstAddSelected = {
+      establishment_address_selected: "0"
+    };
 
-        const manualAddressDataOnly = {
-          operator_address_line_1: "Room 36, Block 1 Arthur Vick",
-          operator_postcode: "NR14 7PZ"
-        };
+    const correctResponse = {
+      establishment_address_line_1: "Example",
+      establishment_address_line_2: "Example line 2",
+      establishment_address_line_3: "Gibbet Hill Road",
+      establishment_town: "Example town",
+      establishment_postcode: "AA11 1AA"
+    };
 
-        it("returns the original manual address data and deletes the operator_address_selected value", () => {
-          const response = transformAnswersForSubmit(
-            cumulativeAnswersOpAddSelectedWithManual,
-            testLanguage,
-            testAddressLookups
-          );
-          expect(response.registration.establishment.operator).toMatchObject(
-            manualAddressDataOnly
-          );
-        });
-      });
+    it("returns correctly formatted establishment address fields that match the first entry in the address lookup results", () => {
+      const response = transformAnswersForSubmit(
+        cumulativeAnswersEstAddSelected,
+        testLanguage,
+        testAddressLookups
+      );
+      expect(response.registration.establishment.premise).toMatchObject(
+        correctResponse
+      );
     });
 
-    describe("given establishment_address_selected is in cumulativeFullAnswers with a value of 0", () => {
-      const cumulativeAnswersEstAddSelected = {
-        establishment_address_selected: "0"
-      };
-
-      const correctResponse = {
-        establishment_address_line_1: "Example",
-        establishment_address_line_2: "Example line 2",
-        establishment_address_line_3: "Gibbet Hill Road",
-        establishment_town: "Example town",
+    describe("given that establishment_address_line_1 already exists (showing that the manual address page has been filled out)", () => {
+      const cumulativeAnswersEstAddSelectedWithManual = {
+        establishment_address_selected: "0",
+        establishment_address_line_1: "Example premise line",
         establishment_postcode: "AA11 1AA"
       };
 
-      it("returns correctly formatted establishment address fields that match the first entry in the address lookup results", () => {
+      const manualAddressDataOnly = {
+        establishment_address_line_1: "Example premise line",
+        establishment_postcode: "AA11 1AA"
+      };
+
+      it("returns the original manual address data and deletes the establishment_address_selected value", () => {
         const response = transformAnswersForSubmit(
-          cumulativeAnswersEstAddSelected,
+          cumulativeAnswersEstAddSelectedWithManual,
           testLanguage,
           testAddressLookups
         );
         expect(response.registration.establishment.premise).toMatchObject(
-          correctResponse
+          manualAddressDataOnly
         );
       });
-
-      describe("given that establishment_address_line_1 already exists (showing that the manual address page has been filled out)", () => {
-        const cumulativeAnswersEstAddSelectedWithManual = {
-          establishment_address_selected: "0",
-          establishment_address_line_1: "Example premise line",
-          establishment_postcode: "AA11 1AA"
-        };
-
-        const manualAddressDataOnly = {
-          establishment_address_line_1: "Example premise line",
-          establishment_postcode: "AA11 1AA"
-        };
-
-        it("returns the original manual address data and deletes the establishment_address_selected value", () => {
-          const response = transformAnswersForSubmit(
-            cumulativeAnswersEstAddSelectedWithManual,
-            testLanguage,
-            testAddressLookups
-          );
-          expect(response.registration.establishment.premise).toMatchObject(
-            manualAddressDataOnly
-          );
-        });
-      });
     });
+  });
 
-    describe("when operator address line 1 is the street", () => {
-      describe("operator address line 3 is null", () => {
-        const cumulativeAnswersEstAddSelected = {
-          operator_address_selected: "0"
-        };
-
-        const testAddressLookupData = {
-          operator_postcode_find: [
-            {
-              addressline1: "Example Street",
-              addressline2: "Example Dependant Locality",
-              addressline3: "",
-              organisation: "The Organisation",
-              street: "Example Street"
-            }
-          ]
-        };
-        const correctResponse = {
-          operator_address_line_1: "The Organisation",
-          operator_address_line_2: "Example Street",
-          operator_address_line_3: "Example Dependant Locality"
-        };
-
-        it("returns the response with the organisation included as address line 1", () => {
-          const response = transformAnswersForSubmit(
-            cumulativeAnswersEstAddSelected,
-            testLanguage,
-            testAddressLookupData
-          );
-          expect(
-            response.registration.establishment.operator.operator_address_line_1
-          ).toBe(correctResponse.operator_address_line_1);
-          expect(
-            response.registration.establishment.operator.operator_address_line_2
-          ).toBe(correctResponse.operator_address_line_2);
-          expect(
-            response.registration.establishment.operator.operator_address_line_3
-          ).toBe(correctResponse.operator_address_line_3);
-        });
-      });
-
-      describe("operator address line 3 is not null and organisation has a value", () => {
-        const cumulativeAnswersEstAddSelected = {
-          operator_address_selected: "0"
-        };
-
-        const testAddressLookupData = {
-          operator_postcode_find: [
-            {
-              addressline1: "Example Street",
-              addressline2: "Example District",
-              addressline3: "Example Dependant Locality",
-              organisation: "The Organisation",
-              street: "Example Street"
-            }
-          ]
-        };
-        const correctResponse = {
-          operator_address_line_1: "The Organisation, Example Street",
-          operator_address_line_2: "Example District",
-          operator_address_line_3: "Example Dependant Locality"
-        };
-
-        it("returns the response with the organisation included in address line 1", () => {
-          const response = transformAnswersForSubmit(
-            cumulativeAnswersEstAddSelected,
-            testLanguage,
-            testAddressLookupData
-          );
-          expect(
-            response.registration.establishment.operator.operator_address_line_1
-          ).toBe(correctResponse.operator_address_line_1);
-          expect(
-            response.registration.establishment.operator.operator_address_line_2
-          ).toBe(correctResponse.operator_address_line_2);
-          expect(
-            response.registration.establishment.operator.operator_address_line_3
-          ).toBe(correctResponse.operator_address_line_3);
-        });
-      });
-
-      describe("operator address line 1 is equal to street but organisation is not present", () => {
-        const cumulativeAnswersEstAddSelected = {
-          operator_address_selected: "0"
-        };
-
-        const testAddressLookupData = {
-          operator_postcode_find: [
-            {
-              addressline1: "Example Street",
-              addressline2: "Example Town",
-              addressline3: "Example Dependant Locality",
-              organisation: "",
-              street: "Example Street"
-            }
-          ]
-        };
-        const correctResponse = {
-          operator_address_line_1: "Example Street",
-          operator_address_line_2: "Example Town",
-          operator_address_line_3: "Example Dependant Locality"
-        };
-
-        it("returns the response with the no changes to the address lines", () => {
-          const response = transformAnswersForSubmit(
-            cumulativeAnswersEstAddSelected,
-            testLanguage,
-            testAddressLookupData
-          );
-          expect(
-            response.registration.establishment.operator.operator_address_line_1
-          ).toBe(correctResponse.operator_address_line_1);
-          expect(
-            response.registration.establishment.operator.operator_address_line_2
-          ).toBe(correctResponse.operator_address_line_2);
-          expect(
-            response.registration.establishment.operator.operator_address_line_3
-          ).toBe(correctResponse.operator_address_line_3);
-        });
-      });
-
-      describe("operator address line 1 is not equal to street but organisation is present", () => {
-        const cumulativeAnswersEstAddSelected = {
-          operator_address_selected: "0"
-        };
-
-        const testAddressLookupData = {
-          operator_postcode_find: [
-            {
-              addressline1: "Example House",
-              addressline2: "Example Street",
-              addressline3: "Example Dependant Locality",
-              organisation: "The Organisation",
-              street: "Example Street"
-            }
-          ]
-        };
-        const correctResponse = {
-          operator_address_line_1: "Example House",
-          operator_address_line_2: "Example Street",
-          operator_address_line_3: "Example Dependant Locality"
-        };
-
-        it("returns the response with the no changes to the address lines", () => {
-          const response = transformAnswersForSubmit(
-            cumulativeAnswersEstAddSelected,
-            testLanguage,
-            testAddressLookupData
-          );
-          expect(
-            response.registration.establishment.operator.operator_address_line_1
-          ).toBe(correctResponse.operator_address_line_1);
-          expect(
-            response.registration.establishment.operator.operator_address_line_2
-          ).toBe(correctResponse.operator_address_line_2);
-          expect(
-            response.registration.establishment.operator.operator_address_line_3
-          ).toBe(correctResponse.operator_address_line_3);
-        });
-      });
-    });
-
-    describe("when establishment address line 1 is the street", () => {
-      describe("establishment address line 3 is null", () => {
-        const cumulativeAnswersEstAddSelected = {
-          establishment_address_selected: "0"
-        };
-
-        const testAddressLookupData = {
-          establishment_postcode_find: [
-            {
-              addressline1: "Example Street",
-              addressline2: "Example Dependant Locality",
-              addressline3: "",
-              organisation: "The Organisation",
-              street: "Example Street"
-            }
-          ]
-        };
-        const correctResponse = {
-          establishment_address_line_1: "The Organisation",
-          establishment_address_line_2: "Example Street",
-          establishment_address_line_3: "Example Dependant Locality"
-        };
-
-        it("returns the response with the organisation included as address line 1", () => {
-          const response = transformAnswersForSubmit(
-            cumulativeAnswersEstAddSelected,
-            testLanguage,
-            testAddressLookupData
-          );
-          expect(
-            response.registration.establishment.premise
-              .establishment_address_line_1
-          ).toBe(correctResponse.establishment_address_line_1);
-          expect(
-            response.registration.establishment.premise
-              .establishment_address_line_2
-          ).toBe(correctResponse.establishment_address_line_2);
-          expect(
-            response.registration.establishment.premise
-              .establishment_address_line_3
-          ).toBe(correctResponse.establishment_address_line_3);
-        });
-      });
-
-      describe("establishment address line 3 is not null", () => {
-        const cumulativeAnswersEstAddSelected = {
-          establishment_address_selected: "0"
-        };
-
-        const testAddressLookupData = {
-          establishment_postcode_find: [
-            {
-              addressline1: "Example Street",
-              addressline2: "Example District",
-              addressline3: "Example Dependant Locality",
-              organisation: "The Organisation",
-              street: "Example Street"
-            }
-          ]
-        };
-        const correctResponse = {
-          establishment_address_line_1: "The Organisation, Example Street",
-          establishment_address_line_2: "Example District",
-          establishment_address_line_3: "Example Dependant Locality"
-        };
-
-        it("returns the response with the organisation included in address line 1", () => {
-          const response = transformAnswersForSubmit(
-            cumulativeAnswersEstAddSelected,
-            testLanguage,
-            testAddressLookupData
-          );
-          expect(
-            response.registration.establishment.premise
-              .establishment_address_line_1
-          ).toBe(correctResponse.establishment_address_line_1);
-          expect(
-            response.registration.establishment.premise
-              .establishment_address_line_2
-          ).toBe(correctResponse.establishment_address_line_2);
-          expect(
-            response.registration.establishment.premise
-              .establishment_address_line_3
-          ).toBe(correctResponse.establishment_address_line_3);
-        });
-      });
-    });
-
-    describe("establishment address line 1 is equal to street but organisation is not present", () => {
+  describe("when operator address line 1 is the street", () => {
+    describe("operator address line 3 is null", () => {
       const cumulativeAnswersEstAddSelected = {
-        establishment_address_selected: "0"
+        operator_address_selected: "0"
       };
 
       const testAddressLookupData = {
-        establishment_postcode_find: [
+        operator_postcode_find: [
+          {
+            addressline1: "Example Street",
+            addressline2: "Example Dependant Locality",
+            addressline3: "",
+            organisation: "The Organisation",
+            street: "Example Street"
+          }
+        ]
+      };
+      const correctResponse = {
+        operator_address_line_1: "The Organisation",
+        operator_address_line_2: "Example Street",
+        operator_address_line_3: "Example Dependant Locality"
+      };
+
+      it("returns the response with the organisation included as address line 1", () => {
+        const response = transformAnswersForSubmit(
+          cumulativeAnswersEstAddSelected,
+          testLanguage,
+          testAddressLookupData
+        );
+        expect(
+          response.registration.establishment.operator.operator_address_line_1
+        ).toBe(correctResponse.operator_address_line_1);
+        expect(
+          response.registration.establishment.operator.operator_address_line_2
+        ).toBe(correctResponse.operator_address_line_2);
+        expect(
+          response.registration.establishment.operator.operator_address_line_3
+        ).toBe(correctResponse.operator_address_line_3);
+      });
+    });
+
+    describe("operator address line 3 is not null and organisation has a value", () => {
+      const cumulativeAnswersEstAddSelected = {
+        operator_address_selected: "0"
+      };
+
+      const testAddressLookupData = {
+        operator_postcode_find: [
+          {
+            addressline1: "Example Street",
+            addressline2: "Example District",
+            addressline3: "Example Dependant Locality",
+            organisation: "The Organisation",
+            street: "Example Street"
+          }
+        ]
+      };
+      const correctResponse = {
+        operator_address_line_1: "The Organisation, Example Street",
+        operator_address_line_2: "Example District",
+        operator_address_line_3: "Example Dependant Locality"
+      };
+
+      it("returns the response with the organisation included in address line 1", () => {
+        const response = transformAnswersForSubmit(
+          cumulativeAnswersEstAddSelected,
+          testLanguage,
+          testAddressLookupData
+        );
+        expect(
+          response.registration.establishment.operator.operator_address_line_1
+        ).toBe(correctResponse.operator_address_line_1);
+        expect(
+          response.registration.establishment.operator.operator_address_line_2
+        ).toBe(correctResponse.operator_address_line_2);
+        expect(
+          response.registration.establishment.operator.operator_address_line_3
+        ).toBe(correctResponse.operator_address_line_3);
+      });
+    });
+
+    describe("operator address line 1 is equal to street but organisation is not present", () => {
+      const cumulativeAnswersEstAddSelected = {
+        operator_address_selected: "0"
+      };
+
+      const testAddressLookupData = {
+        operator_postcode_find: [
           {
             addressline1: "Example Street",
             addressline2: "Example Town",
@@ -1127,9 +899,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         ]
       };
       const correctResponse = {
-        establishment_address_line_1: "Example Street",
-        establishment_address_line_2: "Example Town",
-        establishment_address_line_3: "Example Dependant Locality"
+        operator_address_line_1: "Example Street",
+        operator_address_line_2: "Example Town",
+        operator_address_line_3: "Example Dependant Locality"
       };
 
       it("returns the response with the no changes to the address lines", () => {
@@ -1139,27 +911,24 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
           testAddressLookupData
         );
         expect(
-          response.registration.establishment.premise
-            .establishment_address_line_1
-        ).toBe(correctResponse.establishment_address_line_1);
+          response.registration.establishment.operator.operator_address_line_1
+        ).toBe(correctResponse.operator_address_line_1);
         expect(
-          response.registration.establishment.premise
-            .establishment_address_line_2
-        ).toBe(correctResponse.establishment_address_line_2);
+          response.registration.establishment.operator.operator_address_line_2
+        ).toBe(correctResponse.operator_address_line_2);
         expect(
-          response.registration.establishment.premise
-            .establishment_address_line_3
-        ).toBe(correctResponse.establishment_address_line_3);
+          response.registration.establishment.operator.operator_address_line_3
+        ).toBe(correctResponse.operator_address_line_3);
       });
     });
 
-    describe("establishment address line 1 is not equal to street but organisation is present", () => {
+    describe("operator address line 1 is not equal to street but organisation is present", () => {
       const cumulativeAnswersEstAddSelected = {
-        establishment_address_selected: "0"
+        operator_address_selected: "0"
       };
 
       const testAddressLookupData = {
-        establishment_postcode_find: [
+        operator_postcode_find: [
           {
             addressline1: "Example House",
             addressline2: "Example Street",
@@ -1170,12 +939,97 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         ]
       };
       const correctResponse = {
-        establishment_address_line_1: "Example House",
+        operator_address_line_1: "Example House",
+        operator_address_line_2: "Example Street",
+        operator_address_line_3: "Example Dependant Locality"
+      };
+
+      it("returns the response with the no changes to the address lines", () => {
+        const response = transformAnswersForSubmit(
+          cumulativeAnswersEstAddSelected,
+          testLanguage,
+          testAddressLookupData
+        );
+        expect(
+          response.registration.establishment.operator.operator_address_line_1
+        ).toBe(correctResponse.operator_address_line_1);
+        expect(
+          response.registration.establishment.operator.operator_address_line_2
+        ).toBe(correctResponse.operator_address_line_2);
+        expect(
+          response.registration.establishment.operator.operator_address_line_3
+        ).toBe(correctResponse.operator_address_line_3);
+      });
+    });
+  });
+
+  describe("when establishment address line 1 is the street", () => {
+    describe("establishment address line 3 is null", () => {
+      const cumulativeAnswersEstAddSelected = {
+        establishment_address_selected: "0"
+      };
+
+      const testAddressLookupData = {
+        establishment_postcode_find: [
+          {
+            addressline1: "Example Street",
+            addressline2: "Example Dependant Locality",
+            addressline3: "",
+            organisation: "The Organisation",
+            street: "Example Street"
+          }
+        ]
+      };
+      const correctResponse = {
+        establishment_address_line_1: "The Organisation",
         establishment_address_line_2: "Example Street",
         establishment_address_line_3: "Example Dependant Locality"
       };
 
-      it("returns the response with the no changes to the address lines", () => {
+      it("returns the response with the organisation included as address line 1", () => {
+        const response = transformAnswersForSubmit(
+          cumulativeAnswersEstAddSelected,
+          testLanguage,
+          testAddressLookupData
+        );
+        expect(
+          response.registration.establishment.premise
+            .establishment_address_line_1
+        ).toBe(correctResponse.establishment_address_line_1);
+        expect(
+          response.registration.establishment.premise
+            .establishment_address_line_2
+        ).toBe(correctResponse.establishment_address_line_2);
+        expect(
+          response.registration.establishment.premise
+            .establishment_address_line_3
+        ).toBe(correctResponse.establishment_address_line_3);
+      });
+    });
+
+    describe("establishment address line 3 is not null", () => {
+      const cumulativeAnswersEstAddSelected = {
+        establishment_address_selected: "0"
+      };
+
+      const testAddressLookupData = {
+        establishment_postcode_find: [
+          {
+            addressline1: "Example Street",
+            addressline2: "Example District",
+            addressline3: "Example Dependant Locality",
+            organisation: "The Organisation",
+            street: "Example Street"
+          }
+        ]
+      };
+      const correctResponse = {
+        establishment_address_line_1: "The Organisation, Example Street",
+        establishment_address_line_2: "Example District",
+        establishment_address_line_3: "Example Dependant Locality"
+      };
+
+      it("returns the response with the organisation included in address line 1", () => {
         const response = transformAnswersForSubmit(
           cumulativeAnswersEstAddSelected,
           testLanguage,
@@ -1197,43 +1051,123 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
     });
   });
 
-  it("should only add the data fields it is given", () => {
-    result = transformAnswersForSubmit(
-      testLcUrl,
-      testLanguage,
-      testCumulativeAnswers,
-      testAddressLookups
-    );
-    expect(
-      result.registration.establishment.operator.operator_company_name
-    ).not.toBeDefined();
+  describe("establishment address line 1 is equal to street but organisation is not present", () => {
+    const cumulativeAnswersEstAddSelected = {
+      establishment_address_selected: "0"
+    };
+
+    const testAddressLookupData = {
+      establishment_postcode_find: [
+        {
+          addressline1: "Example Street",
+          addressline2: "Example Town",
+          addressline3: "Example Dependant Locality",
+          organisation: "",
+          street: "Example Street"
+        }
+      ]
+    };
+    const correctResponse = {
+      establishment_address_line_1: "Example Street",
+      establishment_address_line_2: "Example Town",
+      establishment_address_line_3: "Example Dependant Locality"
+    };
+
+    it("returns the response with the no changes to the address lines", () => {
+      const response = transformAnswersForSubmit(
+        cumulativeAnswersEstAddSelected,
+        testLanguage,
+        testAddressLookupData
+      );
+      expect(
+        response.registration.establishment.premise.establishment_address_line_1
+      ).toBe(correctResponse.establishment_address_line_1);
+      expect(
+        response.registration.establishment.premise.establishment_address_line_2
+      ).toBe(correctResponse.establishment_address_line_2);
+      expect(
+        response.registration.establishment.premise.establishment_address_line_3
+      ).toBe(correctResponse.establishment_address_line_3);
+    });
   });
 
-  it("should set primary contact for partners", () => {
-    result = transformAnswersForSubmit(
-      testCumulativeAnswers,
-      testLanguage,
-      testAddressLookups,
-      testLcUrl
-    );
-    expect(result.registration.establishment.operator.partners).toHaveLength(2);
-    expect(result.registration.establishment.operator.partners).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          partner_name: "John",
-          partner_is_primary_contact: true
-        })
-      ])
-    );
-    expect(result.registration.establishment.operator.partners).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          partner_name: "Doe",
-          partner_is_primary_contact: false
-        })
-      ])
-    );
+  describe("establishment address line 1 is not equal to street but organisation is present", () => {
+    const cumulativeAnswersEstAddSelected = {
+      establishment_address_selected: "0"
+    };
+
+    const testAddressLookupData = {
+      establishment_postcode_find: [
+        {
+          addressline1: "Example House",
+          addressline2: "Example Street",
+          addressline3: "Example Dependant Locality",
+          organisation: "The Organisation",
+          street: "Example Street"
+        }
+      ]
+    };
+    const correctResponse = {
+      establishment_address_line_1: "Example House",
+      establishment_address_line_2: "Example Street",
+      establishment_address_line_3: "Example Dependant Locality"
+    };
+
+    it("returns the response with the no changes to the address lines", () => {
+      const response = transformAnswersForSubmit(
+        cumulativeAnswersEstAddSelected,
+        testLanguage,
+        testAddressLookupData
+      );
+      expect(
+        response.registration.establishment.premise.establishment_address_line_1
+      ).toBe(correctResponse.establishment_address_line_1);
+      expect(
+        response.registration.establishment.premise.establishment_address_line_2
+      ).toBe(correctResponse.establishment_address_line_2);
+      expect(
+        response.registration.establishment.premise.establishment_address_line_3
+      ).toBe(correctResponse.establishment_address_line_3);
+    });
   });
+});
+
+it("should only add the data fields it is given", () => {
+  result = transformAnswersForSubmit(
+    testLcUrl,
+    testLanguage,
+    testCumulativeAnswers,
+    testAddressLookups
+  );
+  expect(
+    result.registration.establishment.operator.operator_company_name
+  ).not.toBeDefined();
+});
+
+it("should set primary contact for partners", () => {
+  result = transformAnswersForSubmit(
+    testCumulativeAnswers,
+    testLanguage,
+    testAddressLookups,
+    testLcUrl
+  );
+  expect(result.registration.establishment.operator.partners).toHaveLength(2);
+  expect(result.registration.establishment.operator.partners).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        partner_name: "John",
+        partner_is_primary_contact: true
+      })
+    ])
+  );
+  expect(result.registration.establishment.operator.partners).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        partner_name: "Doe",
+        partner_is_primary_contact: false
+      })
+    ])
+  );
 });
 
 describe("data-transform.service trimUprn()", () => {
