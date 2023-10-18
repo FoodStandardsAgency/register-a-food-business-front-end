@@ -196,6 +196,9 @@ const transformAnswersForSubmit = (
     delete data.year;
     delete data.establishment_opening_status;
 
+    data.operator_first_line = data.operator_address_line_1;
+    data.operator_street = data.operator_address_line_2;
+
     if (data.operator_address_selected) {
       if (data.operator_address_line_1) {
         delete data.operator_address_selected;
@@ -245,6 +248,9 @@ const transformAnswersForSubmit = (
         delete data.operator_address_selected;
       }
     }
+
+    data.establishment_first_line = data.establishment_address_line_1;
+    data.establishment_street = data.establishment_address_line_2;
 
     if (data.establishment_address_selected) {
       if (data.establishment_address_line_1) {
