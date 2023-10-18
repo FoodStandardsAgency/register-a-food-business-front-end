@@ -2,7 +2,6 @@ const mongodb = require("mongodb");
 const { COSMOSDB_URL } = require("../config");
 const { logEmitter } = require("../services/logging.service");
 
-
 let client = undefined;
 let DB;
 
@@ -42,7 +41,6 @@ const establishConnectionToCosmos = async (dbName, collectionName) => {
   );
   return collection;
 };
-
 
 const clearCosmosConnection = () => {
   client = undefined;

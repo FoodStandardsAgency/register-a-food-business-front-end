@@ -1,6 +1,5 @@
 jest.mock("axios");
 
-
 const axios = require("axios");
 axios.defaults.validateStatus = () => true;
 const { sendRequest } = require("./registration.connector");

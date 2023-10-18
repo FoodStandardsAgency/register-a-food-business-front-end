@@ -6,7 +6,6 @@ const {
   clearCosmosConnection
 } = require("./cosmos.client");
 
-
 describe("Function: establishConnectionToCosmos", () => {
   let result;
   beforeEach(async () => {

@@ -7,7 +7,6 @@ axios.defaults.validateStatus = () => true;
 const { SUBMIT_URL, API_SECRET, CLIENT_NAME } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 
-
 /**
  * Sends a new registration to the back-end service
  *

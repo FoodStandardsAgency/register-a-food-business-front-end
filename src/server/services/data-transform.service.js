@@ -246,7 +246,6 @@ const transformAnswersForSubmit = (
       }
     }
 
-
     if (data.establishment_address_selected) {
       if (data.establishment_address_line_1) {
         delete data.establishment_address_selected;
