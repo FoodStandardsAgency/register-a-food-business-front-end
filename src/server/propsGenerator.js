@@ -94,7 +94,8 @@ module.exports = (req) => {
     E.g. inside the 'business-type.js' page, you can access 'props.cumulativeFullAnswers'.
     ************************************************************************************/
   const initialProps = {
-    laLookupNotice: process.env.LA_LOOKUP_NOTICE,
+    laLookupNote: process.env.LA_LOOKUP_NOTE,
+    laSelectorNote: process.env.LA_SELECTOR_NOTE,
     acceptAllCookies,
     businessTypes,
     editModeFirstPage,

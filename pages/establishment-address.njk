@@ -22,8 +22,8 @@
                 }) %}
       {{ establishmentHiddenDetails(props) }}
       <p id="changed-name-hint" class="govuk-hint">{{ __("The postcode of your establishment will help to direct the registration to the correct food safety team.", props.language) }}</p>
-      {% if props.laLookupNotice %}
-        <p class="govuk-hint" style="border-style: solid; border-color: red; font-weight: bold; padding: 10px">{{ props.laLookupNotice }}</p>
+      {% if props.laLookupNote %}
+        <p class="govuk-hint" style="border-style: solid; border-color: red; font-weight: bold; padding: 10px">{{ props.laLookupNote }}</p>
       {% endif %}
       {% endcall %}
       {{ govukInput({
