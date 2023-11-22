@@ -20,8 +20,6 @@
     "test:ci": "export TEST_TYPE=unit && jest ./src ./pages --coverage --maxWorkers=4",
     "test:watch": "jest ./src --watch",
     "test:debug": "node --inspect=127.0.0.1:9225 node_modules/.bin/jest --runInBand",
-    "test:integration": "export TEST_TYPE=integration && jest tests/integration/*.js",
-    "test:contract": "jest tests/contract/*.js",
     "test:securityallWizard": "snyk wizard",
     "test:securityWizard": "snyk wizard --severity-threshold=medium",
     "test:security": "snyk auth && snyk test --severity-threshold=medium",
