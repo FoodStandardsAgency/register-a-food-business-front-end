@@ -25,8 +25,8 @@
     "test:security": "snyk auth && snyk test --severity-threshold=medium",
     "lint": "eslint --ext .njk,.js ./src ./pages_unit_tests ./tests",
     "lint:fix": "eslint --fix ./src ./pages_unit_tests ./tests",
-    "format:verify": "prettier --list-different src/ docs/ tests/ '!./src/__tests__/__snapshots__/**/*' '!./**/*.pdf'",
-    "format": "prettier --write './src/**/*' './public/static/locales/**/*' './docs/**/*' './tests/**/*' '!./**/*.pdf' '!./src/__tests__/__snapshots__/**/*'",
+    "format:verify": "prettier --list-different src/ docs/ '!./src/__tests__/__snapshots__/**/*' '!./**/*.pdf'",
+    "format": "prettier --write './src/**/*' './public/static/locales/**/*' './docs/**/*' '!./**/*.pdf' '!./src/__tests__/__snapshots__/**/*'",
     "jsdoc": "rm -rf ./docs/jsdoc && jsdoc -r ./src -d ./docs/jsdoc",
     "updateBusinessTypes": "node ./src/components/update-business-types.js && yarn format",
     "prepublish": "browserify src/server/static/auto-complete/BusinessTypeLookupFunctions.js src/server/static/auto-complete/main.js > src/server/static/auto-complete/bundle.js"
