@@ -19,7 +19,6 @@ const {
   FUNCTION_SUCCESS,
   FUNCTION_SUCCESS_WITH,
   FUNCTION_FAIL,
-  DOUBLE_MODE,
   INFO,
   ERROR,
   DEBUG,
@@ -116,20 +115,6 @@ describe("logEmitter", () => {
       await logEmitter.emit(message, moduleMessage, funcMessage, err);
 
       await expect(logger.error).toBeCalledWith(expected, noSession);
-    });
-  });
-
-  describe("on doubleMode event", () => {
-    it("should call winston info", async () => {
-      let message = DOUBLE_MODE;
-      let moduleMessage = "someModule";
-      let funcMessage = "someFunction";
-      let expected = `${moduleMessage}: ${funcMessage}: running in double mode`;
-      logger.info.mockImplementation(() => {});
-
-      await logEmitter.emit(message, moduleMessage, funcMessage);
-
-      await expect(logger.info).toBeCalledWith(expected, noSession);
     });
   });
 

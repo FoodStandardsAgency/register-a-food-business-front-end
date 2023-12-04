@@ -642,7 +642,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         }
       ]
     };
-    describe("when populating tascomi address fields", () => {
+    describe("when populating address fields", () => {
       describe("when operator premise does not exist", () => {
         const testAddressLookupsNoPremise = {
           operator_postcode_find: [

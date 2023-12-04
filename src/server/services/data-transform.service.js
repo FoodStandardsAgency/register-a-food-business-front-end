@@ -196,7 +196,6 @@ const transformAnswersForSubmit = (
     delete data.year;
     delete data.establishment_opening_status;
 
-    // Populate tascomi fields for manual address entry
     data.operator_first_line = data.operator_address_line_1;
     data.operator_street = data.operator_address_line_2;
 
@@ -250,7 +249,6 @@ const transformAnswersForSubmit = (
       }
     }
 
-    // Populate tascomi fields for manual address entry
     data.establishment_first_line = data.establishment_address_line_1;
     data.establishment_street = data.establishment_address_line_2;
 
