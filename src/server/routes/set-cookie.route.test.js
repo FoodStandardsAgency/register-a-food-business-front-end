@@ -36,13 +36,9 @@ describe("Set Cookie route: ", () => {
 
         it("should call res.cookie once with 'acceptAllCookies', the new value, a max age of 25 days", () => {
           expect(res.cookie).toHaveBeenCalledTimes(1);
-          expect(res.cookie).toHaveBeenLastCalledWith(
-            "acceptAllCookies",
-            "true",
-            {
-              maxAge: 2160000000
-            }
-          );
+          expect(res.cookie).toHaveBeenLastCalledWith("acceptAllCookies", "true", {
+            maxAge: 2160000000
+          });
         });
 
         it("should call res.redirect with 'back'", () => {

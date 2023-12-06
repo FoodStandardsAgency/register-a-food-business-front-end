@@ -8,9 +8,7 @@ const {
 } = require("../connectors/local-authority-lookup/local-authority-lookup-api.connector");
 const { statusEmitter } = require("../services/statusEmitter.service");
 const { logEmitter } = require("./logging.service");
-const {
-  getCouncilDataByMapitID
-} = require("../connectors/config-db/config-db.connector");
+const { getCouncilDataByMapitID } = require("../connectors/config-db/config-db.connector");
 
 /**
  * Fetches local authority for UK postcode
@@ -20,11 +18,7 @@ const {
  * @returns {object} Local authority
  */
 const getLocalAuthorityByPostcode = async (postcode) => {
-  logEmitter.emit(
-    "functionCall",
-    "local-authority.service",
-    "getLocalAuthorityByPostcode"
-  );
+  logEmitter.emit("functionCall", "local-authority.service", "getLocalAuthorityByPostcode");
   let localAuthorityMapitID, councilRecord;
 
   try {
@@ -55,8 +49,7 @@ const getLocalAuthorityByPostcode = async (postcode) => {
       councilRecord &&
       !councilRecord.mapit_generation &&
       (!councilRecord.local_council_url ||
-        (councilRecord.local_council_url &&
-          councilRecord.local_council_url === ""))
+        (councilRecord.local_council_url && councilRecord.local_council_url === ""))
     ) {
       logEmitter.emit(
         "functionFail",
@@ -97,8 +90,7 @@ const getLocalAuthorityByPostcode = async (postcode) => {
       if (
         councilRecord &&
         (!councilRecord.local_council_url ||
-          (councilRecord.local_council_url &&
-            councilRecord.local_council_url === ""))
+          (councilRecord.local_council_url && councilRecord.local_council_url === ""))
       ) {
         logEmitter.emit(
           "functionFail",
@@ -109,11 +101,7 @@ const getLocalAuthorityByPostcode = async (postcode) => {
         return false;
       }
     }
-    logEmitter.emit(
-      "functionSuccess",
-      "local-authority.service",
-      "getLocalAuthorityByPostcode"
-    );
+    logEmitter.emit("functionSuccess", "local-authority.service", "getLocalAuthorityByPostcode");
     return councilRecord;
   } catch (error) {
     logEmitter.emit(

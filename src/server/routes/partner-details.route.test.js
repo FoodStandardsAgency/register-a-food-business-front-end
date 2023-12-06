@@ -273,10 +273,7 @@ describe("Partner Details Route: ", () => {
         expect(req.session.cumulativeFullAnswers.targetPartner).toBe(1);
       });
       it("Should have partners", () => {
-        expect(req.session.cumulativeFullAnswers.partners).toEqual([
-          "First One",
-          "Second Two"
-        ]);
+        expect(req.session.cumulativeFullAnswers.partners).toEqual(["First One", "Second Two"]);
       });
       it("Should call res.render", () => {
         expect(res.render).toBeCalled();

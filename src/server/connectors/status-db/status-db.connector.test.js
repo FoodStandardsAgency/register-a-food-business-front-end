@@ -1,9 +1,6 @@
 jest.mock("mongodb");
 
-const {
-  getStoredStatus,
-  updateStoredStatus
-} = require("./status-db.connector");
+const { getStoredStatus, updateStoredStatus } = require("./status-db.connector");
 const { clearCosmosConnection } = require("../cosmos.client");
 const storedStatusMock = require("../../../__mocks__/storedStatusMock.json");
 const mongodb = require("mongodb");

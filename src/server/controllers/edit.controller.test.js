@@ -1,6 +1,4 @@
-const {
-  operatorTypeEnum
-} = require("@slice-and-dice/register-a-food-business-validation");
+const { operatorTypeEnum } = require("@slice-and-dice/register-a-food-business-validation");
 const editController = require("./edit.controller");
 
 const testPath = {

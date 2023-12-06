@@ -74,15 +74,10 @@ logEmitter.on(FUNCTION_SUCCESS_WITH, (module, functionName, data) => {
   logStuff(message);
 });
 
-logEmitter.on(
-  FUNCTION_FAIL,
-  (module, functionName, err = { message: null }) => {
-    const message = `${module}: ${functionName} failed with: ${
-      err.message || err
-    }`;
-    logStuff(message, {}, "error");
-  }
-);
+logEmitter.on(FUNCTION_FAIL, (module, functionName, err = { message: null }) => {
+  const message = `${module}: ${functionName} failed with: ${err.message || err}`;
+  logStuff(message, {}, "error");
+});
 
 logEmitter.on(INFO, (message) => {
   logStuff(message);

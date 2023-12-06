@@ -84,12 +84,7 @@ const incrementStatusCount = async (statusName) => {
   try {
     status = await getStoredStatus();
   } catch (err) {
-    logEmitter.emit(
-      "functionFail",
-      "status.service",
-      "incrementStatusCount",
-      err
-    );
+    logEmitter.emit("functionFail", "status.service", "incrementStatusCount", err);
     return;
   }
   const currentValue = status[statusName];
@@ -108,22 +103,12 @@ const incrementStatusCount = async (statusName) => {
       );
       return updatedStatusValue;
     } catch (err) {
-      logEmitter.emit(
-        "functionFail",
-        "status.service",
-        "incrementStatusCount",
-        err
-      );
+      logEmitter.emit("functionFail", "status.service", "incrementStatusCount", err);
     }
   } else {
     const message = `Status name "${statusName}" is not an integer. Unable to increment.`;
 
-    logEmitter.emit(
-      "functionFail",
-      "status.service",
-      "incrementStatusCount",
-      message
-    );
+    logEmitter.emit("functionFail", "status.service", "incrementStatusCount", message);
 
     throw new Error(message);
   }

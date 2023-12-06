@@ -1,6 +1,4 @@
-const {
-  removeOrganisationFromAddressLookup
-} = require("./removeOrganisationFromAddressLookup");
+const { removeOrganisationFromAddressLookup } = require("./removeOrganisationFromAddressLookup");
 
 describe("Function: removeOrganisationFromAddressLookup", () => {
   describe("when address list has organisation", () => {
@@ -27,8 +25,7 @@ describe("Function: removeOrganisationFromAddressLookup", () => {
           addressline1: "Manor Farm Barns",
           addressline2: "Fox Road",
           addressline3: "Framingham Pigot",
-          summaryline:
-            "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
+          summaryline: "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
           buildingname: "Manor Farm Barns",
           premise: "Manor Farm Barns",
           street: "Fox Road",
@@ -119,16 +116,14 @@ describe("Function: removeOrganisationFromAddressLookup", () => {
   describe("when address list has organisation as empty string", () => {
     const addressLookup = removeOrganisationFromAddressLookup([
       {
-        summaryline:
-          ", Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
+        summaryline: ", Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
         organisation: ""
       }
     ]);
     it("should return address list without organisation", () => {
       expect(addressLookup).toEqual([
         {
-          summaryline:
-            "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
+          summaryline: "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
         }
       ]);
     });
@@ -147,23 +142,19 @@ describe("Function: removeOrganisationFromAddressLookup", () => {
         organisation: "Org2"
       },
       {
-        summaryline:
-          "3Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
+        summaryline: "3Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
       }
     ]);
     it("should return address list of 3 without organisation", () => {
       expect(addressLookup).toEqual([
         {
-          summaryline:
-            "1Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
+          summaryline: "1Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
         },
         {
-          summaryline:
-            "2Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
+          summaryline: "2Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
         },
         {
-          summaryline:
-            "3Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
+          summaryline: "3Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
         }
       ]);
     });
@@ -172,42 +163,36 @@ describe("Function: removeOrganisationFromAddressLookup", () => {
   describe("when address list has organisation key and it is not string", () => {
     asUndefined = removeOrganisationFromAddressLookup([
       {
-        summaryline:
-          "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
+        summaryline: "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
         organisation: undefined
       }
     ]);
     asNull = removeOrganisationFromAddressLookup([
       {
-        summaryline:
-          "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
+        summaryline: "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
         organisation: null
       }
     ]);
     asBoolean = removeOrganisationFromAddressLookup([
       {
-        summaryline:
-          "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
+        summaryline: "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
         organisation: true
       }
     ]);
     it("should return address list without organisation key", () => {
       expect(asUndefined).toEqual([
         {
-          summaryline:
-            "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
+          summaryline: "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
         }
       ]);
       expect(asNull).toEqual([
         {
-          summaryline:
-            "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
+          summaryline: "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
         }
       ]);
       expect(asBoolean).toEqual([
         {
-          summaryline:
-            "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
+          summaryline: "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
         }
       ]);
     });
@@ -264,8 +249,7 @@ describe("Function: removeOrganisationFromAddressLookup", () => {
         addressline1: "1 Penns Cottages",
         addressline2: "Fox Road",
         addressline3: "Framingham Pigot",
-        summaryline:
-          "1 Penns Cottages, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
+        summaryline: "1 Penns Cottages, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
         buildingname: "1 Penns Cottages",
         premise: "1 Penns Cottages",
         street: "Fox Road",
@@ -281,8 +265,7 @@ describe("Function: removeOrganisationFromAddressLookup", () => {
           addressline1: "Manor Farm Barns",
           addressline2: "Fox Road",
           addressline3: "Framingham Pigot",
-          summaryline:
-            "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
+          summaryline: "Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
           buildingname: "Manor Farm Barns",
           premise: "Manor Farm Barns",
           street: "Fox Road",
@@ -295,8 +278,7 @@ describe("Function: removeOrganisationFromAddressLookup", () => {
           addressline1: "1 Penns Cottages",
           addressline2: "Fox Road",
           addressline3: "Framingham Pigot",
-          summaryline:
-            "1 Penns Cottages, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
+          summaryline: "1 Penns Cottages, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ",
           buildingname: "1 Penns Cottages",
           premise: "1 Penns Cottages",
           street: "Fox Road",

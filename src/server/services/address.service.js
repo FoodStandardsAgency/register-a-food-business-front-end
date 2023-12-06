@@ -17,31 +17,18 @@ const { logEmitter } = require("./logging.service");
  * @returns {array} A list of addresses
  */
 const getUkAddressesByPostcode = async (postcode) => {
-  logEmitter.emit(
-    "functionCall",
-    "address.service",
-    "getUkAddressesByPostcode"
-  );
+  logEmitter.emit("functionCall", "address.service", "getUkAddressesByPostcode");
 
   try {
     const addressLookupResponse = await getAddressesByPostcode(postcode, 500);
 
     statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", true);
-    logEmitter.emit(
-      "functionSuccess",
-      "address.service",
-      "getUkAddressesByPostcode"
-    );
+    logEmitter.emit("functionSuccess", "address.service", "getUkAddressesByPostcode");
     return addressLookupResponse;
   } catch (err) {
     statusEmitter.emit("incrementCount", "addressLookupsFailed");
     statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", false);
-    logEmitter.emit(
-      "functionFail",
-      "address.service",
-      "getUkAddressesByPostcode",
-      err
-    );
+    logEmitter.emit("functionFail", "address.service", "getUkAddressesByPostcode", err);
     return [];
   }
 };

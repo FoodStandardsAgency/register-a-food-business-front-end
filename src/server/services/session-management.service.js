@@ -15,11 +15,7 @@ const { logEmitter } = require("./logging.service");
  * @returns {object} An answers object with all inactive path answers removed
  */
 const cleanInactivePathAnswers = (cumulativeFullAnswers, path) => {
-  logEmitter.emit(
-    "functionCall",
-    "session-management.service",
-    "cleanInactivePathAnswers"
-  );
+  logEmitter.emit("functionCall", "session-management.service", "cleanInactivePathAnswers");
 
   const cleanedAnswers = Object.assign({}, cumulativeFullAnswers);
 
@@ -43,11 +39,7 @@ const cleanInactivePathAnswers = (cumulativeFullAnswers, path) => {
     }
   }
 
-  logEmitter.emit(
-    "functionSuccess",
-    "session-management.service",
-    "cleanInactivePathAnswers"
-  );
+  logEmitter.emit("functionSuccess", "session-management.service", "cleanInactivePathAnswers");
   return cleanedAnswers;
 };
 
@@ -60,16 +52,8 @@ const cleanInactivePathAnswers = (cumulativeFullAnswers, path) => {
  *
  * @returns {object} An answers object with all emptied answers removed
  */
-const cleanEmptiedAnswers = (
-  cumulativeFullAnswers,
-  newAnswersArray,
-  currentPage
-) => {
-  logEmitter.emit(
-    "functionCall",
-    "session-management.service",
-    "cleanEmptiedAnswers"
-  );
+const cleanEmptiedAnswers = (cumulativeFullAnswers, newAnswersArray, currentPage) => {
+  logEmitter.emit("functionCall", "session-management.service", "cleanEmptiedAnswers");
   const cleanedAnswers = Object.assign({}, cumulativeFullAnswers);
 
   for (let schemaDefinedAnswer in schema[currentPage].properties) {
@@ -85,11 +69,7 @@ const cleanEmptiedAnswers = (
     }
   }
 
-  logEmitter.emit(
-    "functionSuccess",
-    "session-management.service",
-    "cleanEmptiedAnswers"
-  );
+  logEmitter.emit("functionSuccess", "session-management.service", "cleanEmptiedAnswers");
   return cleanedAnswers;
 };
 
@@ -102,11 +82,7 @@ const cleanEmptiedAnswers = (
  * @returns {object} The edited switches object
  */
 const cleanSwitches = (cumulativeFullAnswers, switches) => {
-  logEmitter.emit(
-    "functionCall",
-    "session-management.service",
-    "cleanSwitches"
-  );
+  logEmitter.emit("functionCall", "session-management.service", "cleanSwitches");
 
   const cleanedSwitches = Object.assign({}, switches);
 
@@ -125,8 +101,7 @@ const cleanSwitches = (cumulativeFullAnswers, switches) => {
       ];
 
       const operatorEstablishmentDetailsAreDifferent =
-        JSON.stringify(operatorContactDetails) !==
-        JSON.stringify(establishmentContactDetails);
+        JSON.stringify(operatorContactDetails) !== JSON.stringify(establishmentContactDetails);
 
       if (operatorEstablishmentDetailsAreDifferent) {
         cleanedSwitches.reuseOperatorContactDetails = false;
@@ -138,11 +113,7 @@ const cleanSwitches = (cumulativeFullAnswers, switches) => {
     }
   }
 
-  logEmitter.emit(
-    "functionSuccess",
-    "session-management.service",
-    "cleanSwitches"
-  );
+  logEmitter.emit("functionSuccess", "session-management.service", "cleanSwitches");
   return cleanedSwitches;
 };
 

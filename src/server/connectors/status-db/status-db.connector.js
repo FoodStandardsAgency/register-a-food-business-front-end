@@ -19,20 +19,11 @@ const getStoredStatus = async () => {
     const storedStatus = await statusCollection.findOne({
       _id: "frontEndStatus"
     });
-    logEmitter.emit(
-      "functionSuccess",
-      "status-db.connector",
-      "getStoredStatus"
-    );
+    logEmitter.emit("functionSuccess", "status-db.connector", "getStoredStatus");
 
     return storedStatus;
   } catch (err) {
-    logEmitter.emit(
-      "functionFail",
-      "status-db.connector",
-      "getStoredStatus",
-      err
-    );
+    logEmitter.emit("functionFail", "status-db.connector", "getStoredStatus", err);
     const newError = new Error();
     newError.name = "mongoConnectionError";
     newError.message = err.message;
@@ -58,19 +49,10 @@ const updateStoredStatus = async (statusName, newStatus) => {
       { $set: { [statusName]: newStatus } }
     );
 
-    logEmitter.emit(
-      "functionsuccess",
-      "status-db.connector",
-      "updateStoredStatus"
-    );
+    logEmitter.emit("functionsuccess", "status-db.connector", "updateStoredStatus");
     return newStatus;
   } catch (err) {
-    logEmitter.emit(
-      "functionFail",
-      "status-db.connector",
-      "updateStoredStatus",
-      err
-    );
+    logEmitter.emit("functionFail", "status-db.connector", "updateStoredStatus", err);
 
     const newError = new Error();
     newError.name = "mongoConnectionError";

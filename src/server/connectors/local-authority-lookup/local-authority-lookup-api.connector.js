@@ -28,11 +28,7 @@ const getLocalAuthorityIDByPostcode = async (postcode, generation) => {
 
   responseJSON = await fetchUsingMapItApi(postcode, generation);
 
-  if (
-    responseJSON &&
-    responseJSON.shortcuts &&
-    responseJSON.shortcuts.council
-  ) {
+  if (responseJSON && responseJSON.shortcuts && responseJSON.shortcuts.council) {
     if (Number.isInteger(responseJSON.shortcuts.council)) {
       logEmitter.emit(
         "functionSuccess",

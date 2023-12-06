@@ -86,9 +86,7 @@ describe("Function: getPathConfigByVersion", () => {
       });
 
       it("should return the data from the findOne() response", async () => {
-        await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-          pathConfigMock
-        );
+        await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(pathConfigMock);
       });
     });
 
@@ -201,14 +199,10 @@ describe("Function: getPathConfigByVersion", () => {
       clearPathConfigCache();
 
       // run one request
-      await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-        pathConfigMock
-      );
+      await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(pathConfigMock);
 
       // run a second request without clearing the cache
-      await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-        pathConfigMock
-      );
+      await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(pathConfigMock);
     });
 
     it("does not call the mongo connection function on the second function call", async () => {
@@ -279,9 +273,7 @@ describe("Function: getLocalCouncils", () => {
 
     it("should throw mongoConnectionError error", () => {
       expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe(
-        "Cannot read properties of null (reading 'length')"
-      );
+      expect(result.message).toBe("Cannot read properties of null (reading 'length')");
     });
   });
 

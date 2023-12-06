@@ -2,9 +2,7 @@
  * @module controllers/find-local-authority
  */
 
-const {
-  getLocalAuthorityByPostcode
-} = require("../services/local-authority.service");
+const { getLocalAuthorityByPostcode } = require("../services/local-authority.service");
 const { validate } = require("../services/validation.service");
 const { logEmitter } = require("../services/logging.service");
 const { statusEmitter } = require("../services/statusEmitter.service");
@@ -19,11 +17,7 @@ const { statusEmitter } = require("../services/statusEmitter.service");
  *
  * @returns {object} Values for the router to store/update in the session and the page to redirect to.
  */
-const findLocalAuthorityController = async (
-  currentPage,
-  previousAnswers,
-  newAnswers
-) => {
+const findLocalAuthorityController = async (currentPage, previousAnswers, newAnswers) => {
   const controllerResponse = {
     validatorErrors: {},
     redirectRoute: null,
@@ -37,11 +31,7 @@ const findLocalAuthorityController = async (
   );
   let searchPostcodeFieldName = "";
   try {
-    controllerResponse.cumulativeFullAnswers = Object.assign(
-      {},
-      previousAnswers,
-      newAnswers
-    );
+    controllerResponse.cumulativeFullAnswers = Object.assign({}, previousAnswers, newAnswers);
 
     controllerResponse.validatorErrors = Object.assign(
       {},

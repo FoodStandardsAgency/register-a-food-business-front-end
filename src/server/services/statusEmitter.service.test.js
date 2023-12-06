@@ -6,19 +6,14 @@ describe("statusEmitter", () => {
   describe("on incrementCount event", () => {
     it("should call incrementStatusCount", () => {
       statusEmitter.emit("incrementCount", "exampleCounterName");
-      expect(incrementStatusCount).toHaveBeenLastCalledWith(
-        "exampleCounterName"
-      );
+      expect(incrementStatusCount).toHaveBeenLastCalledWith("exampleCounterName");
     });
   });
 
   describe("on setStatus event", () => {
     it("should call setStatus", () => {
       statusEmitter.emit("setStatus", "exampleStatusName", "new value");
-      expect(setStatus).toHaveBeenLastCalledWith(
-        "exampleStatusName",
-        "new value"
-      );
+      expect(setStatus).toHaveBeenLastCalledWith("exampleStatusName", "new value");
     });
   });
 });

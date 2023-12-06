@@ -34,19 +34,10 @@ const statusRouter = () => {
     try {
       const statusName = req.params.statusName;
       const status = await getStatus(statusName);
-      logEmitter.emit(
-        "functionSuccess",
-        "Routes",
-        "/status/name/:statusName route"
-      );
+      logEmitter.emit("functionSuccess", "Routes", "/status/name/:statusName route");
       res.send(JSON.stringify(status));
     } catch (err) {
-      logEmitter.emit(
-        "functionFail",
-        "Routes",
-        "/status/name/:statusName route",
-        err
-      );
+      logEmitter.emit("functionFail", "Routes", "/status/name/:statusName route", err);
       next(err);
     }
   });

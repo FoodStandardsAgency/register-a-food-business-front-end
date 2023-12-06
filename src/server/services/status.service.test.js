@@ -1,10 +1,6 @@
 jest.mock("../connectors/status-db/status-db.connector");
 
-const {
-  getStatus,
-  setStatus,
-  incrementStatusCount
-} = require("./status.service");
+const { getStatus, setStatus, incrementStatusCount } = require("./status.service");
 
 const {
   getStoredStatus,

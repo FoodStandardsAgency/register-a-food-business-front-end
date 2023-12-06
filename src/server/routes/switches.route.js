@@ -11,11 +11,7 @@ const switchesController = require("../controllers/switches.controller");
 const switchesRouter = () => {
   const router = Router();
   router.post("/:switchName/:action/:originator", (req, res) => {
-    logEmitter.emit(
-      "functionCall",
-      "Routes",
-      "/switches/:switchName/:action route"
-    );
+    logEmitter.emit("functionCall", "Routes", "/switches/:switchName/:action route");
 
     if (!req.session.switches) {
       req.session.switches = {};
@@ -37,11 +33,7 @@ const switchesRouter = () => {
 
     req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
 
-    logEmitter.emit(
-      "functionSuccess",
-      "Routes",
-      "/switches/:switchName/:action/:originator route"
-    );
+    logEmitter.emit("functionSuccess", "Routes", "/switches/:switchName/:action/:originator route");
     req.session.save((err) => {
       if (err) {
         logEmitter.emit("functionFail", "Routes", "/switches route", err);

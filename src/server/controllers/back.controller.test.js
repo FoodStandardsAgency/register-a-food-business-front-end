@@ -31,11 +31,7 @@ describe("Function: backController: ", () => {
     });
 
     it("Should call editPath with the three required args", () => {
-      expect(editPath).toHaveBeenLastCalledWith(
-        {},
-        "/current-page",
-        pathConfigMock
-      );
+      expect(editPath).toHaveBeenLastCalledWith({}, "/current-page", pathConfigMock);
     });
 
     describe("When previousAnswers is undefined", () => {

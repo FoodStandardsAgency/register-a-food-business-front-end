@@ -5,9 +5,7 @@
 const { submit } = require("../services/submit.service");
 const { logEmitter } = require("../services/logging.service");
 const { statusEmitter } = require("../services/statusEmitter.service");
-const {
-  transformAnswersForSubmit
-} = require("../services/data-transform.service");
+const { transformAnswersForSubmit } = require("../services/data-transform.service");
 const { editPath } = require("../services/path.service");
 const { revalidateAllAnswers } = require("../services/validation.service");
 
@@ -43,10 +41,7 @@ const submitController = async (
   logEmitter.emit("functionCall", "submit.controller", "submitController");
 
   try {
-    if (
-      submissionData &&
-      Object.getOwnPropertyNames(submissionData).length > 0
-    ) {
+    if (submissionData && Object.getOwnPropertyNames(submissionData).length > 0) {
       const transformedData = transformAnswersForSubmit(
         submissionData,
         language,
@@ -93,15 +88,11 @@ const submitController = async (
             );
           }
           if (controllerResponse.submissionError.length < 1) {
-            controllerResponse.submissionError.push(
-              response.status + ": " + response.statusText
-            );
+            controllerResponse.submissionError.push(response.status + ": " + response.statusText);
             controllerResponse.redirectRoute = "/internal-server-error";
             logEmitter.emit(
               "error",
-              `Registration submission failed - ${
-                response.status + ": " + response.statusText
-              }`
+              `Registration submission failed - ${response.status + ": " + response.statusText}`
             );
           }
 
@@ -114,17 +105,13 @@ const submitController = async (
         controllerResponse.submissionSucceeded = false;
         logEmitter.emit(
           "error",
-          `Registration submission failed - no status code returned - ${JSON.stringify(
-            response
-          )}`
+          `Registration submission failed - no status code returned - ${JSON.stringify(response)}`
         );
         statusEmitter.emit("incrementCount", "submissionsFailed");
         statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
       }
     } else {
-      throw new Error(
-        "/submit route was called with an empty submission data object"
-      );
+      throw new Error("/submit route was called with an empty submission data object");
     }
 
     logEmitter.emit(
@@ -141,12 +128,7 @@ const submitController = async (
     );
     return controllerResponse;
   } catch (err) {
-    logEmitter.emit(
-      "functionFail",
-      "submit.controller",
-      "submitController",
-      err
-    );
+    logEmitter.emit("functionFail", "submit.controller", "submitController", err);
     throw err;
   }
 };

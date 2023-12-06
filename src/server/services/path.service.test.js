@@ -1,6 +1,4 @@
-const {
-  operatorTypeEnum
-} = require("@slice-and-dice/register-a-food-business-validation");
+const { operatorTypeEnum } = require("@slice-and-dice/register-a-food-business-validation");
 const {
   editPath,
   editPathInEditMode,
@@ -350,8 +348,7 @@ describe("path.service getPathPagesToSwitch()", () => {
     it("edits the path if the value is truthy", () => {
       const result = getPathPagesToSwitch(
         {
-          answer_name_that_affects_path:
-            "the value is truthy but not used to calculate the path"
+          answer_name_that_affects_path: "the value is truthy but not used to calculate the path"
         },
         "/index",
         pathMock
@@ -373,12 +370,8 @@ describe("path.service getPathPagesToSwitch()", () => {
 
   describe("Given invalid input", () => {
     it("throws an error if an answer object is not provided", () => {
-      expect(() => getPathPagesToSwitch(null, "/index", pathMock)).toThrow(
-        Error
-      );
-      expect(() => getPathPagesToSwitch(true, "/index", pathMock)).toThrow(
-        Error
-      );
+      expect(() => getPathPagesToSwitch(null, "/index", pathMock)).toThrow(Error);
+      expect(() => getPathPagesToSwitch(true, "/index", pathMock)).toThrow(Error);
     });
   });
 });
@@ -397,10 +390,7 @@ describe("path.service switchOffManualAddressInput()", () => {
 
   describe("given a path and '/establishment-address-select'", () => {
     it("returns the original path with '/establishment-address-manual' switched off", () => {
-      const result = switchOffManualAddressInput(
-        examplePath,
-        "/establishment-address-select"
-      );
+      const result = switchOffManualAddressInput(examplePath, "/establishment-address-select");
       expect(result["/establishment-address-manual"].on).toBe(false);
       expect(result["/operator-address-manual"].on).toBe(true);
     });
@@ -408,10 +398,7 @@ describe("path.service switchOffManualAddressInput()", () => {
 
   describe("given a path and '/operator-address-select'", () => {
     it("returns the original path with '/operator-address-manual' switched off", () => {
-      const result = switchOffManualAddressInput(
-        examplePath,
-        "/operator-address-select"
-      );
+      const result = switchOffManualAddressInput(examplePath, "/operator-address-select");
       expect(result["/operator-address-manual"].on).toBe(false);
       expect(result["/establishment-address-manual"].on).toBe(true);
     });
@@ -419,10 +406,7 @@ describe("path.service switchOffManualAddressInput()", () => {
 
   describe("given a path and a currentPage argument that is not used for editing", () => {
     it("returns a path that is identical to the original path", () => {
-      const result = switchOffManualAddressInput(
-        examplePath,
-        "/some-page-not-used-for-editing"
-      );
+      const result = switchOffManualAddressInput(examplePath, "/some-page-not-used-for-editing");
       expect(result).toEqual(examplePath);
     });
   });

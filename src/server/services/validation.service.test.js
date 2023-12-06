@@ -1,9 +1,6 @@
 jest.mock("./data-transform.service");
 const { validate } = require("./validation.service");
-const {
-  combineDate,
-  separateBracketsFromBusinessType
-} = require("./data-transform.service");
+const { combineDate, separateBracketsFromBusinessType } = require("./data-transform.service");
 
 separateBracketsFromBusinessType.mockImplementation(() => ({
   business_type: "Example",
@@ -48,9 +45,7 @@ describe("validator.service validate()", () => {
       }
 
       // Assert
-      expect(result.message).toBe(
-        "Could not find schema for page: /random-page"
-      );
+      expect(result.message).toBe("Could not find schema for page: /random-page");
     });
   });
 
@@ -76,9 +71,7 @@ describe("validator.service validate()", () => {
         supply_directly: undefined
       });
 
-      expect(result.errors.customer_type).toBe(
-        "You must select a customer type before continuing"
-      );
+      expect(result.errors.customer_type).toBe("You must select a customer type before continuing");
     });
   });
 
@@ -144,12 +137,8 @@ describe("validator.service validate()", () => {
         no_import_export: undefined
       });
 
-      expect(result_import_selected.errors.import_export_activities).toBe(
-        undefined
-      );
-      expect(result_export_selected.errors.import_export_activities).toBe(
-        undefined
-      );
+      expect(result_import_selected.errors.import_export_activities).toBe(undefined);
+      expect(result_export_selected.errors.import_export_activities).toBe(undefined);
     });
     it("should not return an error if both 'directly import' and 'directly export' are selected", () => {
       const result = validate("/business-import-export", {

@@ -4,9 +4,7 @@ jest.mock("../services/statusEmitter.service");
 jest.mock("../services/path.service");
 jest.mock("../services/validation.service");
 
-const {
-  transformAnswersForSubmit
-} = require("../services/data-transform.service");
+const { transformAnswersForSubmit } = require("../services/data-transform.service");
 const { submit } = require("../services/submit.service");
 const { editPath } = require("../services/path.service");
 const { revalidateAllAnswers } = require("../services/validation.service");

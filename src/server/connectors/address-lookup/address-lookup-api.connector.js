@@ -12,9 +12,7 @@ const {
   ADDRESS_API_URL_QUERY_STANDARD
 } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
-const {
-  removeOrganisationFromAddressLookup
-} = require("./removeOrganisationFromAddressLookup");
+const { removeOrganisationFromAddressLookup } = require("./removeOrganisationFromAddressLookup");
 
 /**
  * Fetches addresses from the address lookup API for the given postcode
@@ -39,11 +37,7 @@ const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
     firstJson = await fetchUsingPostcoderStandard(postcode);
   }
 
-  logEmitter.emit(
-    "functionSuccess",
-    "address-lookup-api.connector",
-    "getAddressByPostcode"
-  );
+  logEmitter.emit("functionSuccess", "address-lookup-api.connector", "getAddressByPostcode");
   return removeOrganisationFromAddressLookup(firstJson);
 };
 
@@ -128,9 +122,7 @@ const fetchUsingPostcoderStandard = async (postcode) => {
       "fetchUsingPostcoderStandard",
       `Address lookup API responded with non-200 status: ${response.status} - ${response.statusText}`
     );
-    throw new Error(
-      `Address lookup API responded with non-200 status: ${response.status}`
-    );
+    throw new Error(`Address lookup API responded with non-200 status: ${response.status}`);
   }
 };
 
