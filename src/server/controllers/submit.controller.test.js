@@ -1,6 +1,5 @@
 jest.mock("../services/data-transform.service");
 jest.mock("../services/submit.service");
-jest.mock("../services/statusEmitter.service");
 jest.mock("../services/path.service");
 jest.mock("../services/validation.service");
 

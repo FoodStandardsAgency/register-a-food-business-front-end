@@ -2,7 +2,6 @@
  * @module connectors/config-db
  */
 const { logEmitter } = require("../../services/logging.service");
-const { statusEmitter } = require("../../services/statusEmitter.service");
 const { establishConnectionToCosmos } = require("../cosmos.client");
 const CONFIG_DATA_LOOKUP_FAILURE = "Configuration data lookup failure";
 

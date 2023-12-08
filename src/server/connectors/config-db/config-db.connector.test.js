@@ -1,5 +1,4 @@
 jest.mock("mongodb");
-jest.mock("../../services/statusEmitter.service");
 
 const mongodb = require("mongodb");
 const {

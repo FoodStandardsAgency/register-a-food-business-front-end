@@ -1,7 +1,6 @@
 jest.mock("../services/path.service");
 jest.mock("../services/validation.service");
 jest.mock("../services/session-management.service");
-jest.mock("../services/statusEmitter.service");
 
 const {
   moveAlongPath,

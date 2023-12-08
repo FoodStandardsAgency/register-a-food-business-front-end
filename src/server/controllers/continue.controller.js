@@ -10,7 +10,6 @@ const {
 } = require("../services/path.service");
 const { validate, revalidateAllAnswers } = require("../services/validation.service");
 const { logEmitter } = require("../services/logging.service");
-const { statusEmitter } = require("../services/statusEmitter.service");
 const {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,

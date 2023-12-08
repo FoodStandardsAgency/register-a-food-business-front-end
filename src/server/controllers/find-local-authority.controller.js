@@ -5,7 +5,6 @@
 const { getLocalAuthorityByPostcode } = require("../services/local-authority.service");
 const { validate } = require("../services/validation.service");
 const { logEmitter } = require("../services/logging.service");
-const { statusEmitter } = require("../services/statusEmitter.service");
 
 /**
  * Returns an object containing local authority search by postcode results, validator errors (if present), the redirect route (e.g. the next page),

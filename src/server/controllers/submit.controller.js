@@ -4,7 +4,6 @@
 
 const { submit } = require("../services/submit.service");
 const { logEmitter } = require("../services/logging.service");
-const { statusEmitter } = require("../services/statusEmitter.service");
 const { transformAnswersForSubmit } = require("../services/data-transform.service");
 const { editPath } = require("../services/path.service");
 const { revalidateAllAnswers } = require("../services/validation.service");

@@ -6,7 +6,6 @@
 const {
   getAddressesByPostcode
 } = require("../connectors/address-lookup/address-lookup-api.connector");
-const { statusEmitter } = require("../services/statusEmitter.service");
 const { logEmitter } = require("./logging.service");
 
 /**
