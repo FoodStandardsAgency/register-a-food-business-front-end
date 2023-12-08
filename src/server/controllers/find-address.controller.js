@@ -56,11 +56,9 @@ const findAddressController = async (currentPage, previousAnswers, newAnswers) =
     if (addressesForPostcode.length > 0) {
       controllerResponse.switches[`${currentPage}-none-found`] = false;
       controllerResponse.redirectRoute = `${currentPage}-select`;
-      statusEmitter.emit("incrementCount", "addressLookupsSucceeded");
     } else {
       controllerResponse.switches[`${currentPage}-none-found`] = true;
       controllerResponse.redirectRoute = `${currentPage}-manual`;
-      statusEmitter.emit("incrementCount", "addressLookupsReturnedZero");
     }
     logEmitter.emit(
       "functionSuccessWith",

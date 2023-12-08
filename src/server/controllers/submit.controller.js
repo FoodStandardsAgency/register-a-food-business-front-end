@@ -58,8 +58,6 @@ const submitController = async (
           controllerResponse.emailFbo = res.email_fbo;
           controllerResponse.laConfig = res.lc_config;
           controllerResponse.submissionSucceeded = true;
-          statusEmitter.emit("incrementCount", "submissionsSucceeded");
-          statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
         } else {
           controllerResponse.submissionError = [];
           if (response.status === 400) {
@@ -85,7 +83,7 @@ const submitController = async (
               `Registration submission failed - validation error - ${
                 response.status + ": " + response.statusText
               }`
-            );
+            ); // Used for Azure alerts
           }
           if (controllerResponse.submissionError.length < 1) {
             controllerResponse.submissionError.push(response.status + ": " + response.statusText);
@@ -93,12 +91,10 @@ const submitController = async (
             logEmitter.emit(
               "error",
               `Registration submission failed - ${response.status + ": " + response.statusText}`
-            );
+            ); // Used for Azure alerts
           }
 
           controllerResponse.submissionSucceeded = false;
-          statusEmitter.emit("incrementCount", "submissionsFailed");
-          statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
         }
       } else {
         controllerResponse.redirectRoute = "/internal-server-error";
@@ -106,9 +102,7 @@ const submitController = async (
         logEmitter.emit(
           "error",
           `Registration submission failed - no status code returned - ${JSON.stringify(response)}`
-        );
-        statusEmitter.emit("incrementCount", "submissionsFailed");
-        statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
+        ); // Used for Azure alerts
       }
     } else {
       throw new Error("/submit route was called with an empty submission data object");

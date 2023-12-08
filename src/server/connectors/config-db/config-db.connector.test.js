@@ -35,7 +35,7 @@ describe("Function: getPathConfigByVersion", () => {
         expect(typeof result).toBe("object");
       });
     });
-    describe("given the request throws an error", () => {
+    describe("given the connection request throws an error", () => {
       beforeEach(async () => {
         mongodb.MongoClient.connect.mockImplementation(() => {
           throw new Error("example mongo error");
@@ -48,11 +48,8 @@ describe("Function: getPathConfigByVersion", () => {
         }
       });
 
-      describe("when the error shows that the connection has failed", () => {
-        it("should throw mongoConnectionError error", () => {
-          expect(result.name).toBe("mongoConnectionError");
-          expect(result.message).toBe("example mongo error");
-        });
+      it("should throw mongo error", () => {
+        expect(result.message).toBe("example mongo error");
       });
     });
 
@@ -66,11 +63,15 @@ describe("Function: getPathConfigByVersion", () => {
           })
         }));
 
-        result = await getPathConfigByVersion("1.0.0");
+        try {
+          await getPathConfigByVersion("1.0.0");
+        } catch (err) {
+          result = err;
+        }
       });
 
-      it("should return null", () => {
-        expect(result).toBe(null);
+      it("should throw config version error", () => {
+        expect(result.message).toBe("Path config version not found (v1.0.0)");
       });
     });
 
@@ -225,7 +226,7 @@ describe("Function: getLocalCouncils", () => {
   beforeEach(async () => {
     clearCosmosConnection();
   });
-  describe("given the request throws an error", () => {
+  describe("given the connection request throws an error", () => {
     beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => {
         throw new Error("example mongo error");
@@ -238,15 +239,12 @@ describe("Function: getLocalCouncils", () => {
       }
     });
 
-    describe("when the error shows that the connection has failed", () => {
-      it("should throw mongoConnectionError error", () => {
-        expect(result.name).toBe("mongoConnectionError");
-        expect(result.message).toBe("example mongo error");
-      });
+    it("should throw mongoConnectionError error", () => {
+      expect(result.message).toBe("example mongo error");
     });
   });
 
-  describe("given the request returns null", () => {
+  describe("given the collection request returns null", () => {
     beforeEach(async () => {
       const mongoCursor = {
         project: () => {
@@ -271,8 +269,7 @@ describe("Function: getLocalCouncils", () => {
       }
     });
 
-    it("should throw mongoConnectionError error", () => {
-      expect(result.name).toBe("mongoConnectionError");
+    it("should throw null collection error", () => {
       expect(result.message).toBe("Cannot read properties of null (reading 'length')");
     });
   });
@@ -333,7 +330,7 @@ describe("Function: getLocalCouncils", () => {
       }
     };
 
-    beforeEach(() => {
+    beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
@@ -341,20 +338,26 @@ describe("Function: getLocalCouncils", () => {
           })
         })
       }));
+
+      try {
+        await getLocalCouncils();
+      } catch (err) {
+        result = err;
+      }
     });
 
-    it("should return an empty array and not throw an exception", async () => {
-      await expect(getLocalCouncils()).resolves.toEqual(localCouncilsMock);
+    it("should throw missing LA error", () => {
+      expect(result.message).toBe("Local Authorities not found");
     });
   });
 });
 
-describe("Function: getCouncilDataByURL", () => {
+describe("Function: getCouncilDataByID", () => {
   let result;
   beforeEach(async () => {
     clearCosmosConnection();
   });
-  describe("given the request throws an error", () => {
+  describe("given the connection request throws an error", () => {
     beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => {
         throw new Error("example mongo error");
@@ -367,12 +370,11 @@ describe("Function: getCouncilDataByURL", () => {
       }
     });
 
-    it("should throw mongoConnectionError error", () => {
-      expect(result.name).toBe("mongoConnectionError");
+    it("should throw mongo connection error", () => {
       expect(result.message).toBe("example mongo error");
     });
   });
-  describe("given the request returns null", () => {
+  describe("given the LA request returns null", () => {
     beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
@@ -389,9 +391,8 @@ describe("Function: getCouncilDataByURL", () => {
       }
     });
 
-    it("should throw mongoConnectionError error with custom message", () => {
-      expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe("getCouncilDataByID retrieved null");
+    it("should throw error with appropriate message", () => {
+      expect(result.message).toBe("LA not found (8015)");
     });
   });
   describe("given the request is successful", () => {

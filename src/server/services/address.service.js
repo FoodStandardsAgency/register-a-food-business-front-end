@@ -22,12 +22,10 @@ const getUkAddressesByPostcode = async (postcode) => {
   try {
     const addressLookupResponse = await getAddressesByPostcode(postcode, 500);
 
-    statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", true);
     logEmitter.emit("functionSuccess", "address.service", "getUkAddressesByPostcode");
     return addressLookupResponse;
   } catch (err) {
-    statusEmitter.emit("incrementCount", "addressLookupsFailed");
-    statusEmitter.emit("setStatus", "mostRecentAddressLookupSucceeded", false);
+    logEmitter.emit("warning", "Postcoder address lookup failure"); // Used for Azure alerts
     logEmitter.emit("functionFail", "address.service", "getUkAddressesByPostcode", err);
     return [];
   }

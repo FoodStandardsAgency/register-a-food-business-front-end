@@ -46,10 +46,6 @@ const continueController = (
   };
 
   try {
-    if (currentPage === "/index") {
-      statusEmitter.emit("incrementCount", "registrationsStarted");
-    }
-
     const trimmedNewAnswers = JSON.parse(JSON.stringify(newAnswers));
 
     for (let answer in trimmedNewAnswers) {

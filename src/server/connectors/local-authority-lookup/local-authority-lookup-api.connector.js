@@ -79,7 +79,7 @@ const getLocalAuthorityIDByPostcode = async (postcode, generation) => {
 const fetchUsingMapItApi = async (postcode, generation) => {
   try {
     logEmitter.emit(
-      "functionCall",
+      "functionCallWith",
       "local-authority-lookup-api.connector",
       "fetchUsingMapItApi",
       postcode
@@ -100,6 +100,7 @@ const fetchUsingMapItApi = async (postcode, generation) => {
     if (response.status === 200) {
       return response.data;
     } else {
+      response.status == 404 || logEmitter.emit("warning", "MapIt LA lookup failure"); // Used for Azure alerts
       logEmitter.emit(
         "functionFail",
         "local-authority-lookup-api.connector",
