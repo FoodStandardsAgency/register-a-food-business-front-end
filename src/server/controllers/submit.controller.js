@@ -57,6 +57,7 @@ const submitController = async (
           controllerResponse.emailFbo = res.email_fbo;
           controllerResponse.laConfig = res.lc_config;
           controllerResponse.submissionSucceeded = true;
+          logEmitter.emit("info", "Registration submission succeeded");
         } else {
           controllerResponse.submissionError = [];
           if (response.status === 400) {
@@ -104,7 +105,9 @@ const submitController = async (
         ); // Used for Azure alerts
       }
     } else {
-      throw new Error("/submit route was called with an empty submission data object");
+      throw new Error(
+        "Registration submission failed - /submit route was called with an empty submission data object" // Used for Azure alerts
+      );
     }
 
     logEmitter.emit(

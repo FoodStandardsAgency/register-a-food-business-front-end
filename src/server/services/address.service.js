@@ -20,7 +20,7 @@ const getUkAddressesByPostcode = async (postcode) => {
 
   try {
     const addressLookupResponse = await getAddressesByPostcode(postcode, 500);
-
+    logEmitter.emit("info", "Postcoder address lookup success"); // Used for Azure alerts
     logEmitter.emit("functionSuccess", "address.service", "getUkAddressesByPostcode");
     return addressLookupResponse;
   } catch (err) {

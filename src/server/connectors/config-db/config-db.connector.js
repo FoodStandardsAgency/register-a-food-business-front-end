@@ -4,6 +4,7 @@
 const { logEmitter } = require("../../services/logging.service");
 const { establishConnectionToCosmos } = require("../cosmos.client");
 const CONFIG_DATA_LOOKUP_FAILURE = "Configuration data lookup failure";
+const CONFIG_DATA_LOOKUP_SUCCESS = "Configuration data lookup success";
 
 let configVersionCollection;
 let laConfigCollection;
@@ -43,6 +44,7 @@ const getPathConfigByVersion = async (version) => {
     }
   }
 
+  logEmitter.emit("info", CONFIG_DATA_LOOKUP_SUCCESS); // Used for Azure alerts
   logEmitter.emit("functionSuccess", "config-db.connector", "getPathConfigByVersion");
 
   return pathConfig;
@@ -80,6 +82,7 @@ const getLocalCouncils = async () => {
     throw err;
   }
 
+  logEmitter.emit("info", CONFIG_DATA_LOOKUP_SUCCESS); // Used for Azure alerts
   logEmitter.emit("functionSuccess", "config-db.connector", "getLocalCouncils");
 
   return localCouncils;
@@ -116,6 +119,7 @@ const getCouncilDataByID = async (councilID) => {
     throw err;
   }
 
+  logEmitter.emit("info", CONFIG_DATA_LOOKUP_SUCCESS); // Used for Azure alerts
   logEmitter.emit("functionSuccess", "config-db.connector", "getCouncilDataByID");
 
   return councilRecord;
@@ -150,6 +154,7 @@ const getCouncilDataByMapitID = async (councilMapitID) => {
     return false;
   }
 
+  logEmitter.emit("info", CONFIG_DATA_LOOKUP_SUCCESS); // Used for Azure alerts
   logEmitter.emit("functionSuccess", "config-db.connector", "getCouncilDataByMapitID");
 
   return councilRecord;

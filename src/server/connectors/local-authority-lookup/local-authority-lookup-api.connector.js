@@ -98,6 +98,7 @@ const fetchUsingMapItApi = async (postcode, generation) => {
       options
     );
     if (response.status === 200) {
+      logEmitter.emit("info", "MapIt LA lookup success"); // Used for Azure alerts
       return response.data;
     } else {
       response.status == 404 || logEmitter.emit("warning", "MapIt LA lookup failure"); // Used for Azure alerts

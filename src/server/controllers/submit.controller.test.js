@@ -62,7 +62,7 @@ describe("Function: submitController: ", () => {
 
     it("it should throw an error", () => {
       expect(response.message).toBe(
-        "/submit route was called with an empty submission data object"
+        "Registration submission failed - /submit route was called with an empty submission data object"
       );
     });
   });
