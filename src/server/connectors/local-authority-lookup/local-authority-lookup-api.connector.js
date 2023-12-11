@@ -98,6 +98,9 @@ const fetchUsingMapItApi = async (postcode, generation) => {
       options
     );
     if (response.status === 200) {
+      if (!response.data || Object.keys(response.data).length === 0) {
+        throw new Error("Response data is empty");
+      }
       logEmitter.emit("info", "MapIt LA lookup success"); // Used for Azure alerts
       return response.data;
     } else {
