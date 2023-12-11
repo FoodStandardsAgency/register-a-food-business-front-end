@@ -117,6 +117,7 @@ const fetchUsingMapItApi = async (postcode, generation) => {
       "fetchUsingMapItApi",
       err
     );
+    logEmitter.emit("warning", "MapIt LA lookup failure"); // Used for Azure alerts
     return false;
   }
 };
