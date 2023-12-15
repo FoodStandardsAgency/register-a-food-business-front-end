@@ -109,7 +109,7 @@ const submitController = async (
         "Registration submission failed - /submit route was called with an empty submission data object" // Used for Azure alerts
       );
     }
-
+    logEmitter.emit("info", "Registration submission succeeded"); // Used for Azure alerts
     logEmitter.emit(
       "functionSuccessWith",
       "submit.controller",
@@ -124,6 +124,7 @@ const submitController = async (
     );
     return controllerResponse;
   } catch (err) {
+    logEmitter.emit("error", `Registration submission failed - ${err.message}`); // Used for Azure alerts
     logEmitter.emit("functionFail", "submit.controller", "submitController", err);
     throw err;
   }
