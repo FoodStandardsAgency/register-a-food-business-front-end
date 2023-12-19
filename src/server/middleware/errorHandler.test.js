@@ -27,8 +27,9 @@ describe("errorHandler", () => {
       let err = { message: "no error" };
       errorHandler(err, req, res);
 
-      expect(logger.error).toHaveBeenNthCalledWith(3, "no error");
-      expect(logger.error).toHaveBeenNthCalledWith(2, "statusCode: undefined");
+      expect(logger.error).toHaveBeenNthCalledWith(5, "no error");
+      expect(logger.error).toHaveBeenNthCalledWith(4, "Application error handled...");
+      expect(logger.error).toHaveBeenNthCalledWith(3, "statusCode: undefined");
       logger.error.mockReset();
     });
   });
@@ -40,7 +41,7 @@ describe("errorHandler", () => {
       let req = { csrfToken: csrfToken, url: url };
       let res = { statusCode: 4, render: jest.fn() };
       errorHandler(err, req, res);
-      expect(logger.error).toHaveBeenNthCalledWith(2, "statusCode: 4");
+      expect(logger.error).toHaveBeenNthCalledWith(3, "statusCode: 4");
     });
   });
 
