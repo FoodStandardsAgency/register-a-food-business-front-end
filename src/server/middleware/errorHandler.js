@@ -2,6 +2,7 @@ const { logger } = require("../services/winston");
 const PropsGenerator = require("../propsGenerator");
 
 const errorHandler = (err, req, res, next) => {
+  logger.error(`Application error handled...`); // Used for Azure alerts
   logger.error(err.message);
   if (res.headersSent) {
     return next(err);
