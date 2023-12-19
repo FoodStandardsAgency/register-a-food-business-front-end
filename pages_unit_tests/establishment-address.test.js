@@ -22,9 +22,7 @@ describe("establishment-address", () => {
 
   it("renders without crashing", () => {
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "What is the establishment's postcode?"
-    );
+    expect($mainHeading.text().trim()).toEqual("What is the establishment's postcode?");
   });
 
   it("renders correct details text", () => {

@@ -44,9 +44,7 @@ describe("operator-address-manual", () => {
 
   it("renders without crashing", () => {
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "What is the establishment's address?"
-    );
+    expect($mainHeading.text().trim()).toEqual("What is the establishment's address?");
   });
 
   it("renders correct inset text", () => {
@@ -67,9 +65,7 @@ describe("operator-address-manual", () => {
       expect($town.get(0).attribs.value).toBe("Test Town");
 
       const $address1 = $("#establishment_address_line_1");
-      expect($address1.get(0).attribs.name).toBe(
-        "establishment_address_line_1"
-      );
+      expect($address1.get(0).attribs.name).toBe("establishment_address_line_1");
       expect($address1.get(0).attribs.value).toBe("Test Add1");
     });
 
@@ -103,9 +99,7 @@ describe("operator-address-manual", () => {
 
     const $pageErrors = getPageDetails.getErrorSummaryLinks($);
     expect($pageErrors.length).toBe(3);
-    expect($pageErrors.contents().get(0).data).toBe(
-      "Enter a valid first line of address"
-    );
+    expect($pageErrors.contents().get(0).data).toBe("Enter a valid first line of address");
     expect($pageErrors.contents().get(1).data).toBe("Enter a valid town name");
     expect($pageErrors.contents().get(2).data).toBe("Not a valid postcode");
   });

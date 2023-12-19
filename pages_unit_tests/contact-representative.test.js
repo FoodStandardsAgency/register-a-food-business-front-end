@@ -20,9 +20,7 @@ describe("contact-representative", () => {
     const $ = renderPage("contact-representative", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "Contact representative details"
-    );
+    expect($mainHeading.text().trim()).toEqual("Contact representative details");
   });
 
   it("passes accessibility tests", async () => {

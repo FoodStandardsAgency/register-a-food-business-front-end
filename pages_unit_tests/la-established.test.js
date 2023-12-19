@@ -18,9 +18,7 @@ describe("la-established", () => {
     const $ = renderPage("la-established", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "You are registering with Cardiff"
-    );
+    expect($mainHeading.text().trim()).toEqual("You are registering with Cardiff");
   });
 
   it("passes accessibility tests", async () => {
