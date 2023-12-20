@@ -1,4 +1,4 @@
-{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/details/macro.njk" import govukDetails %}
 {% macro establishmentHiddenDetails(props) %}
     {{ govukDetails({
     summaryText: __("What is an establishment?", props.language),

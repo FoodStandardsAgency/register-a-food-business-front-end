@@ -1,5 +1,5 @@
 {% from "../components/CustomFsaHeader.njk" import govukCustomHeader %}
-{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
 {% macro fsaHeader(props) %}
   {% if props.acceptAllCookies !== "true" and props.acceptAllCookies !== "false" %}
     {% set html %}
