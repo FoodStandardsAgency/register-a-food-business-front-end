@@ -20,9 +20,8 @@ describe("Function: continueController: ", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     cleanInactivePathAnswers.mockImplementation((input) => input);
-    cleanEmptiedAnswers.mockImplementation(
-      (previousAnswers, newAnswersArray) =>
-        newAnswersArray.length > 0 ? previousAnswers : null
+    cleanEmptiedAnswers.mockImplementation((previousAnswers, newAnswersArray) =>
+      newAnswersArray.length > 0 ? previousAnswers : null
     );
     cleanSwitches.mockImplementation(() => ({}));
     editPath.mockImplementation(() => ({
