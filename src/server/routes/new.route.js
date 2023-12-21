@@ -7,9 +7,7 @@ const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 
 const { LC_CACHE_TIME_TO_LIVE } = require("../config");
-const {
-  transformAnswersForSummary
-} = require("../services/data-transform.service");
+const { transformAnswersForSummary } = require("../services/data-transform.service");
 const {
   getPathConfigByVersion,
   getLocalCouncils,
@@ -24,12 +22,7 @@ const { Cache } = require("../services/cache.service");
 const { getBrowserInfo } = require("../services/browser-support.service");
 const PropsGenerator = require("../propsGenerator");
 
-const localAuthoritiesCache = Cache(
-  LC_CACHE_TIME_TO_LIVE,
-  false,
-  true,
-  getLocalCouncils
-);
+const localAuthoritiesCache = Cache(LC_CACHE_TIME_TO_LIVE, false, true, getLocalCouncils);
 
 const newRouter = () => {
   const router = Router();
@@ -54,16 +47,8 @@ const newRouter = () => {
       const localAuthorities = await localAuthoritiesCache.get();
 
       // If it is legacy request to /new/local-authority, redirect to /new
-      if (
-        localAuthorities &&
-        localAuthorities.find((i) => i.local_council_url === page)
-      ) {
-        logEmitter.emit(
-          "functionSuccessWith",
-          "Routes",
-          `/new/${page} route`,
-          "Redirect to /new"
-        );
+      if (localAuthorities && localAuthorities.find((i) => i.local_council_url === page)) {
+        logEmitter.emit("functionSuccessWith", "Routes", `/new/${page} route`, "Redirect to /new");
         res.redirect("/new");
         return;
       }
@@ -73,9 +58,7 @@ const newRouter = () => {
       if (page === "index") {
         req.session.regenerate(async () => {
           try {
-            req.session.pathConfig = await getPathConfigByVersion(
-              REGISTRATION_DATA_VERSION
-            );
+            req.session.pathConfig = await getPathConfigByVersion(REGISTRATION_DATA_VERSION);
             const browserInfo = getBrowserInfo(req.headers["user-agent"]);
             Object.assign(req.session, req.session, { ...browserInfo });
 
@@ -106,9 +89,7 @@ const newRouter = () => {
       } else {
         // Save the path config to the session if not yet there
         if (!req.session.pathConfig) {
-          req.session.pathConfig = await getPathConfigByVersion(
-            REGISTRATION_DATA_VERSION
-          );
+          req.session.pathConfig = await getPathConfigByVersion(REGISTRATION_DATA_VERSION);
         }
         // Save the browser support to the session if not there yet
         if (!req.session.isBrowserSupported) {
@@ -116,10 +97,7 @@ const newRouter = () => {
           Object.assign(req.session, req.session, { ...browserInfo });
         }
         // Transform the data into summary format on pages where it is required and save to session
-        if (
-          page === "registration-summary" ||
-          page === "summary-confirmation"
-        ) {
+        if (page === "registration-summary" || page === "summary-confirmation") {
           req.session.transformedData = transformAnswersForSummary(
             req.session.cumulativeFullAnswers,
             req.session.addressLookups
@@ -137,19 +115,9 @@ const newRouter = () => {
           });
           // For all other scenarios, render the requested page.
         } else {
-          logEmitter.emit(
-            "functionSuccessWith",
-            "Routes",
-            "/new route",
-            `Rendering page: ${page}`
-          );
+          logEmitter.emit("functionSuccessWith", "Routes", "/new route", `Rendering page: ${page}`);
 
-          if (
-            req &&
-            req.query &&
-            req.query.edit &&
-            req.query.edit === "post-code"
-          ) {
+          if (req && req.query && req.query.edit && req.query.edit === "post-code") {
             req.session["changePostcode"] = true;
           }
           const props = PropsGenerator(req);

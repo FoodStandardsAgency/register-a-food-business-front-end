@@ -26,9 +26,7 @@ const removeOrganisationFromAddressLookup = (addressList) => {
         address.summaryline.startsWith(address.organisation + ", ")
       ) {
         // removes organisation from summaryline
-        address.summaryline = address.summaryline.substring(
-          address.organisation.length + 2
-        );
+        address.summaryline = address.summaryline.substring(address.organisation.length + 2);
       }
 
       // removes organisation key

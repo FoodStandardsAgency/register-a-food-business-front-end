@@ -41,9 +41,7 @@ const partnerDetailsRouter = () => {
             })
           : req.body;
 
-      req.session.cumulativeFullAnswers.partners = initializePartners(
-        req.session
-      );
+      req.session.cumulativeFullAnswers.partners = initializePartners(req.session);
 
       const response = partnerDetailsSave(
         originator,
@@ -58,37 +56,21 @@ const partnerDetailsRouter = () => {
       logEmitter.emit("functionSuccess", "Routes", "/partnership/save route");
       req.session.save((err) => {
         if (err) {
-          logEmitter.emit(
-            "functionFail",
-            "Routes",
-            "/partnership/save route",
-            err
-          );
+          logEmitter.emit("functionFail", "Routes", "/partnership/save route", err);
           throw err;
         }
         res.redirect(response.redirectRoute);
       });
     } catch (err) {
-      logEmitter.emit(
-        "functionFail",
-        "Routes",
-        "//partnership/save route",
-        err
-      );
+      logEmitter.emit("functionFail", "Routes", "//partnership/save route", err);
       next(err);
     }
   });
 
   router.get("/partner-details", (req, res) => {
-    logEmitter.emit(
-      "functionCall",
-      "Routes",
-      "/partnership/partner-details route"
-    );
+    logEmitter.emit("functionCall", "Routes", "/partnership/partner-details route");
 
-    req.session.cumulativeFullAnswers.partners = initializePartners(
-      req.session
-    );
+    req.session.cumulativeFullAnswers.partners = initializePartners(req.session);
 
     const targetPartner = parseInt(req.query.id, 10);
     if (!isNaN(targetPartner)) {
@@ -97,19 +79,10 @@ const partnerDetailsRouter = () => {
       delete req.session.cumulativeFullAnswers.targetPartner;
     }
 
-    logEmitter.emit(
-      "functionSuccess",
-      "Routes",
-      "/partnership/partner-details route"
-    );
+    logEmitter.emit("functionSuccess", "Routes", "/partnership/partner-details route");
     req.session.save((err) => {
       if (err) {
-        logEmitter.emit(
-          "functionFail",
-          "Routes",
-          "/partnership/partner-details route",
-          err
-        );
+        logEmitter.emit("functionFail", "Routes", "/partnership/partner-details route", err);
         throw err;
       }
       var props = PropsGenerator(req);
@@ -118,15 +91,9 @@ const partnerDetailsRouter = () => {
   });
 
   router.post("/delete-partner", async (req, res, next) => {
-    logEmitter.emit(
-      "functionCall",
-      "Routes",
-      "/partnership/delete-partner route"
-    );
+    logEmitter.emit("functionCall", "Routes", "/partnership/delete-partner route");
     try {
-      req.session.cumulativeFullAnswers.partners = initializePartners(
-        req.session
-      );
+      req.session.cumulativeFullAnswers.partners = initializePartners(req.session);
 
       const response = partnerDetailsDelete(
         req.session.cumulativeFullAnswers,
@@ -137,30 +104,16 @@ const partnerDetailsRouter = () => {
       req.session.validatorErrors = response.validatorErrors;
       req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;
 
-      logEmitter.emit(
-        "functionSuccess",
-        "Routes",
-        "/partner-details/delete route"
-      );
+      logEmitter.emit("functionSuccess", "Routes", "/partner-details/delete route");
       req.session.save((err) => {
         if (err) {
-          logEmitter.emit(
-            "functionFail",
-            "Routes",
-            "/partner-details route",
-            err
-          );
+          logEmitter.emit("functionFail", "Routes", "/partner-details route", err);
           throw err;
         }
         res.redirect(response.redirectRoute);
       });
     } catch (err) {
-      logEmitter.emit(
-        "functionFail",
-        "Routes",
-        "/partnership/delete-partner route",
-        err
-      );
+      logEmitter.emit("functionFail", "Routes", "/partnership/delete-partner route", err);
       next(err);
     }
   });
@@ -170,9 +123,7 @@ const partnerDetailsRouter = () => {
     try {
       const originator = getOriginator(req.get("Referrer"));
 
-      req.session.cumulativeFullAnswers.partners = initializePartners(
-        req.session
-      );
+      req.session.cumulativeFullAnswers.partners = initializePartners(req.session);
 
       const response = partnerDetailsContinue(
         originator,
@@ -184,30 +135,16 @@ const partnerDetailsRouter = () => {
       req.session.validatorErrors = response.validatorErrors;
       req.session.allValidationErrors = response.allValidationErrors;
 
-      logEmitter.emit(
-        "functionSuccess",
-        "Routes",
-        "/partner-details/continue route"
-      );
+      logEmitter.emit("functionSuccess", "Routes", "/partner-details/continue route");
       req.session.save((err) => {
         if (err) {
-          logEmitter.emit(
-            "functionFail",
-            "Routes",
-            "/partner-details/continue route",
-            err
-          );
+          logEmitter.emit("functionFail", "Routes", "/partner-details/continue route", err);
           throw err;
         }
         res.redirect(response.redirectRoute);
       });
     } catch (err) {
-      logEmitter.emit(
-        "functionFail",
-        "Routes",
-        "/partnership/continue route",
-        err
-      );
+      logEmitter.emit("functionFail", "Routes", "/partnership/continue route", err);
       next(err);
     }
   });

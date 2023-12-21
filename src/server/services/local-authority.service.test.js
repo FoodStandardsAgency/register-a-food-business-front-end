@@ -10,9 +10,7 @@ const { getLocalAuthorityByPostcode } = require("./local-authority.service");
 const {
   getLocalAuthorityIDByPostcode
 } = require("../connectors/local-authority-lookup/local-authority-lookup-api.connector");
-const {
-  getCouncilDataByMapitID
-} = require("../connectors/config-db/config-db.connector");
+const { getCouncilDataByMapitID } = require("../connectors/config-db/config-db.connector");
 const { response } = require("express");
 
 describe("local-authority.service getLocalAuthorityByPostcode()", () => {

@@ -1,9 +1,7 @@
 jest.mock("../connectors/registration/registration.connector");
 
 const { submit } = require("./submit.service");
-const {
-  sendRequest
-} = require("../connectors/registration/registration.connector");
+const { sendRequest } = require("../connectors/registration/registration.connector");
 
 describe("Function: submit", () => {
   let result;
@@ -17,11 +15,7 @@ describe("Function: submit", () => {
     });
 
     it("Should call sendRequest with data and path config", () => {
-      expect(sendRequest).toBeCalledWith(
-        { data: "data" },
-        "1.0.0",
-        "s3s51onI6"
-      );
+      expect(sendRequest).toBeCalledWith({ data: "data" }, "1.0.0", "s3s51onI6");
     });
 
     it("Should return the response", () => {

@@ -184,11 +184,7 @@ const moveAlongEditPath = (editModePath, currentPage, movement) => {
  *
  * @returns {array} The pages that should be enabled
  */
-const getPathPagesToSwitch = (
-  cumulativeFullAnswers,
-  currentPage,
-  pathFromSession
-) => {
+const getPathPagesToSwitch = (cumulativeFullAnswers, currentPage, pathFromSession) => {
   logEmitter.emit("functionCall", "path.service", "getPathPagesToSwitch");
 
   try {
@@ -221,10 +217,7 @@ const getPathPagesToSwitch = (
 
     // I'm really not clear what impact sorting has here
     answerValuesAndTruthyKeys.sort((a, b) => {
-      return (
-        Object.keys(allSwitches).indexOf(a) -
-        Object.keys(allSwitches).indexOf(b)
-      );
+      return Object.keys(allSwitches).indexOf(a) - Object.keys(allSwitches).indexOf(b);
     });
 
     let pagesToSwitch = [];
@@ -241,12 +234,7 @@ const getPathPagesToSwitch = (
     logEmitter.emit("functionSuccess", "path.service", "getPathPagesToSwitch");
     return pagesToSwitch;
   } catch (err) {
-    logEmitter.emit(
-      "functionFail",
-      "path.service",
-      "getPathPagesToSwitch",
-      err
-    );
+    logEmitter.emit("functionFail", "path.service", "getPathPagesToSwitch", err);
     throw err;
   }
 };
@@ -260,11 +248,7 @@ const getPathPagesToSwitch = (
  * @returns {object} The edited path
  */
 const switchOffManualAddressInput = (newPath, currentPage) => {
-  logEmitter.emit(
-    "functionCall",
-    "path.service",
-    "switchOffManualAddressInput"
-  );
+  logEmitter.emit("functionCall", "path.service", "switchOffManualAddressInput");
 
   const manualAddressSwitchedPath = JSON.parse(JSON.stringify(newPath));
 
@@ -276,11 +260,7 @@ const switchOffManualAddressInput = (newPath, currentPage) => {
     manualAddressSwitchedPath["/operator-address-manual"].on = false;
   }
 
-  logEmitter.emit(
-    "functionSuccess",
-    "path.service",
-    "switchOffManualAddressInput"
-  );
+  logEmitter.emit("functionSuccess", "path.service", "switchOffManualAddressInput");
   return manualAddressSwitchedPath;
 };
 
@@ -294,27 +274,16 @@ const switchOffManualAddressInput = (newPath, currentPage) => {
  * @returns {object} The edited path
  */
 const switchOffCompanyAndCharityDetails = (newAnswers, newPath) => {
-  logEmitter.emit(
-    "functionCall",
-    "path.service",
-    "switchOffCompanyAndCharityDetails"
-  );
+  logEmitter.emit("functionCall", "path.service", "switchOffCompanyAndCharityDetails");
 
   const companyAndCharitySwitchedPath = JSON.parse(JSON.stringify(newPath));
 
-  if (
-    newAnswers.registration_role &&
-    newAnswers.registration_role !== "Representative"
-  ) {
+  if (newAnswers.registration_role && newAnswers.registration_role !== "Representative") {
     companyAndCharitySwitchedPath["/operator-charity-details"].on = false;
     companyAndCharitySwitchedPath["/operator-company-details"].on = false;
   }
 
-  logEmitter.emit(
-    "functionSuccess",
-    "path.service",
-    "switchOffCompanyAndCharityDetails"
-  );
+  logEmitter.emit("functionSuccess", "path.service", "switchOffCompanyAndCharityDetails");
   return companyAndCharitySwitchedPath;
 };
 

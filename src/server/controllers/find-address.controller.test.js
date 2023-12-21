@@ -1,7 +1,6 @@
 jest.mock("../services/validation.service");
 jest.mock("../services/session-management.service");
 jest.mock("../services/address.service");
-jest.mock("../services/statusEmitter.service");
 
 const { getUkAddressesByPostcode } = require("../services/address.service");
 const { validate } = require("../services/validation.service");
@@ -31,9 +30,7 @@ describe("Function: findAddressController: ", () => {
 
     describe("given that at least one address is returned", () => {
       beforeEach(async () => {
-        getUkAddressesByPostcode.mockImplementation(
-          () => smallAddressResponseJSON
-        );
+        getUkAddressesByPostcode.mockImplementation(() => smallAddressResponseJSON);
 
         response = await findAddressController(
           "/establishment-address",
@@ -88,9 +85,7 @@ describe("Function: findAddressController: ", () => {
       });
 
       it("Should return addressLookups containing the empty array under the correct key", () => {
-        expect(response.addressLookups.establishment_postcode_find).toEqual(
-          testEmptyAddressArray
-        );
+        expect(response.addressLookups.establishment_postcode_find).toEqual(testEmptyAddressArray);
       });
 
       it("Should return empty validatorErrors", () => {
@@ -100,9 +95,7 @@ describe("Function: findAddressController: ", () => {
 
     describe("given that no addresses are returned", () => {
       beforeEach(async () => {
-        getUkAddressesByPostcode.mockImplementation(
-          () => testEmptyAddressArray
-        );
+        getUkAddressesByPostcode.mockImplementation(() => testEmptyAddressArray);
 
         response = await findAddressController(
           "/establishment-address",
@@ -123,9 +116,7 @@ describe("Function: findAddressController: ", () => {
       });
 
       it("Should return addressLookups containing the empty array under the correct key", () => {
-        expect(response.addressLookups.establishment_postcode_find).toEqual(
-          testEmptyAddressArray
-        );
+        expect(response.addressLookups.establishment_postcode_find).toEqual(testEmptyAddressArray);
       });
 
       it("Should return empty validatorErrors", () => {
@@ -140,13 +131,9 @@ describe("Function: findAddressController: ", () => {
         errors: { example: "error" }
       }));
 
-      response = await findAddressController(
-        "/establishment-address",
-        testPreviousAnswers,
-        {
-          establishment_postcode_find: "not a valid postcode"
-        }
-      );
+      response = await findAddressController("/establishment-address", testPreviousAnswers, {
+        establishment_postcode_find: "not a valid postcode"
+      });
     });
 
     it("Should return a redirectRoute of the current page", () => {

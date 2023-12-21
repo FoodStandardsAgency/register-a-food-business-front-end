@@ -41,9 +41,7 @@ describe("Connector: lookupAPI: ", () => {
         } catch (err) {
           result = err;
         }
-        expect(result.message).toBe(
-          "Address lookup API responded with non-200 status: 500"
-        );
+        expect(result.message).toBe("Address lookup API responded with non-200 status: 500");
       });
     });
     describe("When premium service returns no addresses but standard service returns some addresses", () => {
@@ -81,9 +79,7 @@ describe("Connector: lookupAPI: ", () => {
         } catch (err) {
           result = err;
         }
-        expect(result.message).toBe(
-          "Address lookup API responded with non-200 status: 500"
-        );
+        expect(result.message).toBe("Address lookup API responded with non-200 status: 500");
       });
     });
   });

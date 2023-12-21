@@ -2,12 +2,8 @@ jest.mock("axios");
 const { logEmitter } = require("../../services/logging.service");
 const connector = require("./local-authority-lookup-api.connector");
 const mockAxios = require("axios");
-const {
-  getLocalAuthorityIDByPostcode
-} = require("./local-authority-lookup-api.connector");
-const {
-  fetchUsingMapItApi
-} = require("./local-authority-lookup-api.connector");
+const { getLocalAuthorityIDByPostcode } = require("./local-authority-lookup-api.connector");
+const { fetchUsingMapItApi } = require("./local-authority-lookup-api.connector");
 
 const testPostcode = "NR147PZ";
 

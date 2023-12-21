@@ -34,9 +34,7 @@ describe("operator-company-details", () => {
       expect($companyName.get(0).attribs.value).toBe("Test");
 
       const $companiesHouseNumber = $("#operator_companies_house_number");
-      expect($companiesHouseNumber.get(0).attribs.name).toBe(
-        "operator_companies_house_number"
-      );
+      expect($companiesHouseNumber.get(0).attribs.name).toBe("operator_companies_house_number");
       expect($companiesHouseNumber.get(0).attribs.value).toBe("12345678");
     });
 
@@ -44,11 +42,8 @@ describe("operator-company-details", () => {
       const $inputLabelTextcompanyName = getPageDetails.getInputLabelText($, 0);
       expect($inputLabelTextcompanyName).toEqual("Registered company name");
 
-      const $inputLabelTextcompaniesHouseNumber =
-        getPageDetails.getInputLabelText($, 1);
-      expect($inputLabelTextcompaniesHouseNumber).toEqual(
-        "Companies House number"
-      );
+      const $inputLabelTextcompaniesHouseNumber = getPageDetails.getInputLabelText($, 1);
+      expect($inputLabelTextcompaniesHouseNumber).toEqual("Companies House number");
     });
   });
 

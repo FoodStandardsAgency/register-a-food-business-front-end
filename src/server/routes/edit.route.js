@@ -7,9 +7,7 @@
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const editController = require("../controllers/edit.controller");
-const {
-  getCouncilDataByID
-} = require("../connectors/config-db/config-db.connector");
+const { getCouncilDataByID } = require("../connectors/config-db/config-db.connector");
 
 const editRouter = () => {
   const router = Router();
@@ -33,23 +31,15 @@ const editRouter = () => {
         req.session.allValidationErrors
       );
 
-      req.session.cumulativeFullAnswers =
-        controllerResponse.cumulativeFullAnswers;
-      req.session.cumulativeEditAnswers =
-        controllerResponse.cumulativeEditAnswers;
+      req.session.cumulativeFullAnswers = controllerResponse.cumulativeFullAnswers;
+      req.session.cumulativeEditAnswers = controllerResponse.cumulativeEditAnswers;
       req.session.validatorErrors = controllerResponse.validatorErrors;
-      req.session.allValidationErrors =
-        controllerResponse.newAllValidationErrors;
+      req.session.allValidationErrors = controllerResponse.newAllValidationErrors;
       req.session.switches = controllerResponse.switches;
 
       req.session.save(async (err) => {
         if (err) {
-          logEmitter.emit(
-            "functionFail",
-            "Routes",
-            "/edit/continue route",
-            err
-          );
+          logEmitter.emit("functionFail", "Routes", "/edit/continue route", err);
           throw err;
         }
         // If the originator is the "la-selector" thats mean LA not found by postcode lookup and need manual selection
@@ -58,9 +48,7 @@ const editRouter = () => {
           Object.keys(controllerResponse.validatorErrors).length === 0
         ) {
           // Get the local authority data from the config DB
-          req.session.localAuthority = await getCouncilDataByID(
-            +req.body.local_authority
-          );
+          req.session.localAuthority = await getCouncilDataByID(+req.body.local_authority);
           // If the local authority not onboarded and has a registration form URL, redirect to it instead of the normal path
           if (
             req.session.localAuthority &&
@@ -78,18 +66,12 @@ const editRouter = () => {
             req.session.changePostcode = false;
             res.redirect("/new/establishment-address-type");
           } else {
-            res.redirect(
-              `/new/establishment-address-type?edit=${req.query.edit}`
-            );
+            res.redirect(`/new/establishment-address-type?edit=${req.query.edit}`);
           }
-        } else if (
-          controllerResponse.redirectRoute === "/registration-summary"
-        ) {
+        } else if (controllerResponse.redirectRoute === "/registration-summary") {
           res.redirect(`/new/registration-summary`);
         } else {
-          res.redirect(
-            `/new${controllerResponse.redirectRoute}?edit=${req.query.edit}`
-          );
+          res.redirect(`/new${controllerResponse.redirectRoute}?edit=${req.query.edit}`);
         }
       });
     } catch (err) {

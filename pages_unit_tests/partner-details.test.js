@@ -35,9 +35,7 @@ describe("partner-details", () => {
 
     it("renders partner-name hint labels correctly", () => {
       const $inputLabelTextPartnerName = $("#partner_name-hint");
-      expect($inputLabelTextPartnerName.get(0).children[0].data.trim()).toEqual(
-        "Full name"
-      );
+      expect($inputLabelTextPartnerName.get(0).children[0].data.trim()).toEqual("Full name");
     });
   });
 

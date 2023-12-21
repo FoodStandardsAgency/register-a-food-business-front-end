@@ -1,10 +1,7 @@
 jest.mock("mongodb");
 
 const mongodb = require("mongodb");
-const {
-  establishConnectionToCosmos,
-  clearCosmosConnection
-} = require("./cosmos.client");
+const { establishConnectionToCosmos, clearCosmosConnection } = require("./cosmos.client");
 
 describe("Function: establishConnectionToCosmos", () => {
   let result;

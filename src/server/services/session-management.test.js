@@ -69,39 +69,27 @@ const testSessionAnswers_MoreThanNeeded = Object.assign(
 describe("session-management.service cleanInactivePathAnswers()", () => {
   describe("given a path/data match", () => {
     it("returns the same data object as it was passed", () => {
-      const result = cleanInactivePathAnswers(
-        testSessionAnswers_Correct,
-        pathObject
-      );
+      const result = cleanInactivePathAnswers(testSessionAnswers_Correct, pathObject);
       expect(result).toEqual(testSessionAnswers_Correct);
     });
 
     describe("when an answer does not exist in the schema", () => {
       it("returns the same data object as it was passed", () => {
-        const result = cleanInactivePathAnswers(
-          testSessionAnswers_Invalid,
-          pathObject
-        );
+        const result = cleanInactivePathAnswers(testSessionAnswers_Invalid, pathObject);
         expect(result).toEqual(testSessionAnswers_Invalid);
       });
     });
 
     describe("when the page of an answer does not exist in the path", () => {
       it("returns the same data object as it was passed", () => {
-        const result = cleanInactivePathAnswers(
-          testSessionAnswers_Valid,
-          pathObject
-        );
+        const result = cleanInactivePathAnswers(testSessionAnswers_Valid, pathObject);
         expect(result).toEqual(testSessionAnswers_Valid);
       });
     });
   });
 
   describe("given a path/data mismatch", () => {
-    const result = cleanInactivePathAnswers(
-      testSessionAnswers_MoreThanNeeded,
-      pathObject
-    );
+    const result = cleanInactivePathAnswers(testSessionAnswers_MoreThanNeeded, pathObject);
 
     it("returns an object", () => {
       expect(typeof result).toBe("object");
@@ -131,11 +119,7 @@ describe("session-management.service cleanEmptiedAnswers()", () => {
 
     const currentPage = "/declaration";
 
-    const result = cleanEmptiedAnswers(
-      someExistingAnswers,
-      oneDeclarationCheckbox,
-      currentPage
-    );
+    const result = cleanEmptiedAnswers(someExistingAnswers, oneDeclarationCheckbox, currentPage);
 
     it("does not return the previously entered value", () => {
       expect(result.declaration2).toBe(undefined);

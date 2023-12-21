@@ -18,12 +18,7 @@ const { logEmitter } = require("../../services/logging.service");
 const sendRequest = async (submissionData, regDataVersion, sessionId) => {
   try {
     let res;
-    logEmitter.emit(
-      "functionCallWith",
-      "registration.connector",
-      "sendRequest",
-      SUBMIT_URL
-    );
+    logEmitter.emit("functionCallWith", "registration.connector", "sendRequest", SUBMIT_URL);
     const headers = {
       "Content-Type": "application/json",
       "api-secret": API_SECRET,
@@ -39,12 +34,7 @@ const sendRequest = async (submissionData, regDataVersion, sessionId) => {
     logEmitter.emit("functionSuccess", "registration.connector", "sendRequest");
     return res;
   } catch (err) {
-    logEmitter.emit(
-      "functionFail",
-      "registration.connector",
-      "sendRequest",
-      err
-    );
+    logEmitter.emit("functionFail", "registration.connector", "sendRequest", err);
     return err;
   }
 };

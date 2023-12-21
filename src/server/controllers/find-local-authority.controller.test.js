@@ -2,9 +2,7 @@ jest.mock("../services/validation.service");
 jest.mock("../services/local-authority.service");
 
 const { logEmitter } = require("../services/logging.service");
-const {
-  getLocalAuthorityByPostcode
-} = require("../services/local-authority.service");
+const { getLocalAuthorityByPostcode } = require("../services/local-authority.service");
 const { validate } = require("../services/validation.service");
 
 const findLocalAuthorityController = require("./find-local-authority.controller");

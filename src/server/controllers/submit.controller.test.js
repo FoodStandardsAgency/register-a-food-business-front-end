@@ -1,12 +1,9 @@
 jest.mock("../services/data-transform.service");
 jest.mock("../services/submit.service");
-jest.mock("../services/statusEmitter.service");
 jest.mock("../services/path.service");
 jest.mock("../services/validation.service");
 
-const {
-  transformAnswersForSubmit
-} = require("../services/data-transform.service");
+const { transformAnswersForSubmit } = require("../services/data-transform.service");
 const { submit } = require("../services/submit.service");
 const { editPath } = require("../services/path.service");
 const { revalidateAllAnswers } = require("../services/validation.service");
@@ -65,7 +62,7 @@ describe("Function: submitController: ", () => {
 
     it("it should throw an error", () => {
       expect(response.message).toBe(
-        "/submit route was called with an empty submission data object"
+        "Registration submission failed - /submit route was called with an empty submission data object"
       );
     });
   });

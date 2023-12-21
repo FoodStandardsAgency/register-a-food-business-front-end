@@ -23,8 +23,8 @@ const setCookieRouter = () => {
 
       if (newValue === "false") {
         // remove the content of optional cookies and set immediate expiration
-        const googleCookieNames = Object.keys(req.cookies).filter(
-          (cookieName) => cookieName.startsWith("_g")
+        const googleCookieNames = Object.keys(req.cookies).filter((cookieName) =>
+          cookieName.startsWith("_g")
         );
 
         googleCookieNames.forEach((cookieName) => {

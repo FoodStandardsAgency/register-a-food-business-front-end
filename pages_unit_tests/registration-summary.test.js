@@ -44,9 +44,7 @@ describe("registration-summary", () => {
   it("gets given props", () => {
     const $ = renderPage("registration-summary", props);
     const $answer = $("#establishment_address_line_1");
-    expect($answer.get(0).children[0].data.trim()).toBe(
-      "Example address line 1"
-    );
+    expect($answer.get(0).children[0].data.trim()).toBe("Example address line 1");
   });
 
   describe("Error messages displayed", () => {

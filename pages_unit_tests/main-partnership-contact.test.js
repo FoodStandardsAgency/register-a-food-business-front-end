@@ -12,32 +12,21 @@ const propsWithThreePartnersArray = {
 
 describe("main-partnership-contact", () => {
   it("renders without crashing", () => {
-    const $ = renderPage(
-      "main-partnership-contact",
-      propsWithThreePartnersArray
-    );
+    const $ = renderPage("main-partnership-contact", propsWithThreePartnersArray);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "Who is the main point of contact?"
-    );
+    expect($mainHeading.text().trim()).toEqual("Who is the main point of contact?");
   });
 
   it("passes accessibility tests", async () => {
-    const $ = renderPage(
-      "main-partnership-contact",
-      propsWithThreePartnersArray
-    );
+    const $ = renderPage("main-partnership-contact", propsWithThreePartnersArray);
 
     const results = await axe($.html());
     expect(results).toHaveNoViolations();
   });
 
   it("renders 3 radio buttons", async () => {
-    const $ = renderPage(
-      "main-partnership-contact",
-      propsWithThreePartnersArray
-    );
+    const $ = renderPage("main-partnership-contact", propsWithThreePartnersArray);
 
     const $registrationRoleRadios = getPageDetails.getRadioButtons($);
     expect($registrationRoleRadios.length).toBe(3);
@@ -45,26 +34,17 @@ describe("main-partnership-contact", () => {
 
   describe("Radio boxes have correct value", () => {
     it("renders the first person with the correct value", () => {
-      const $ = renderPage(
-        "main-partnership-contact",
-        propsWithThreePartnersArray
-      );
+      const $ = renderPage("main-partnership-contact", propsWithThreePartnersArray);
       const $mainHeadingPerson = $("#partner-0");
       expect($mainHeadingPerson.get(0).attribs.value).toBe("One");
     });
     it("renders the second person with the correct value", () => {
-      const $ = renderPage(
-        "main-partnership-contact",
-        propsWithThreePartnersArray
-      );
+      const $ = renderPage("main-partnership-contact", propsWithThreePartnersArray);
       const $mainHeadingCompany = $("#partner-1");
       expect($mainHeadingCompany.get(0).attribs.value).toBe("Two");
     });
     it("renders the third person with the correct value", () => {
-      const $ = renderPage(
-        "main-partnership-contact",
-        propsWithThreePartnersArray
-      );
+      const $ = renderPage("main-partnership-contact", propsWithThreePartnersArray);
       const $mainHeadingCharity = $("#partner-2");
       expect($mainHeadingCharity.get(0).attribs.value).toBe("Three");
     });

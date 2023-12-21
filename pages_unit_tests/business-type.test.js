@@ -15,9 +15,7 @@ describe("business-type", () => {
     const $ = renderPage("business-type", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "What kind of food business are you registering?"
-    );
+    expect($mainHeading.text().trim()).toEqual("What kind of food business are you registering?");
   });
 
   it("passes accessibility tests", async () => {

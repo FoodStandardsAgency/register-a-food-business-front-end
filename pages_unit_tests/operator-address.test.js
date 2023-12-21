@@ -23,9 +23,7 @@ describe("Operator-address", () => {
 
   it("renders without crashing", () => {
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "What is the partnership contact's postcode?"
-    );
+    expect($mainHeading.text().trim()).toEqual("What is the partnership contact's postcode?");
   });
 
   it("renders correct Inset text", () => {
@@ -52,9 +50,7 @@ describe("Operator-address", () => {
         }
       });
       const $mainHeading = getPageDetails.getMainHeading($);
-      expect($mainHeading.text().trim()).toEqual(
-        "What is the operator's postcode?"
-      );
+      expect($mainHeading.text().trim()).toEqual("What is the operator's postcode?");
     });
   });
 

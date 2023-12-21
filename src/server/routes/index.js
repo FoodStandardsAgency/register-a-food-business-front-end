@@ -9,7 +9,6 @@ const { qaRouter } = require("./qa.route");
 const { submitRouter } = require("./submit.route");
 const { switchesRouter } = require("./switches.route");
 const { setCookieRouter } = require("./set-cookie.route");
-const { statusRouter } = require("./status.route");
 const { partnerDetailsRouter } = require("./partner-details.route");
 const { pdfsRouter } = require("./pdfs.route");
 
@@ -25,7 +24,6 @@ module.exports = {
   submitRouter,
   switchesRouter,
   setCookieRouter,
-  statusRouter,
   partnerDetailsRouter,
   pdfsRouter
 };

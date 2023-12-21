@@ -15,9 +15,7 @@ describe("Establishment-Address-Type", () => {
     const $ = renderPage("establishment-address-type", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "Where is this establishment located?"
-    );
+    expect($mainHeading.text().trim()).toEqual("Where is this establishment located?");
   });
 
   it("passes accessibility tests", async () => {
@@ -47,9 +45,7 @@ describe("Establishment-Address-Type", () => {
     });
     it("renders the Commercial radio button with the correct value", () => {
       const $ = renderPage("establishment-address-type", props);
-      const $mainHeadingCommercial = $(
-        "#establishment_type_business_commercial"
-      );
+      const $mainHeadingCommercial = $("#establishment_type_business_commercial");
       expect($mainHeadingCommercial.get(0).attribs.value).toBe("COMMERCIAL");
     });
     it("select the correct radio button based on session data", () => {

@@ -16,9 +16,7 @@ describe("internal-server-error", () => {
     const $ = renderPage("internal-server-error", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "This service is currently unavailable"
-    );
+    expect($mainHeading.text().trim()).toEqual("This service is currently unavailable");
   });
 
   it("passes accessibility tests", async () => {

@@ -3,14 +3,12 @@ require("dotenv").config();
 module.exports = {
   QA_KEY: process.env.QA_KEY,
   SUBMIT_URL:
-    process.env.SUBMIT_URL ||
-    "http://localhost:4000/api/registration/createNewRegistration",
+    process.env.SUBMIT_URL || "http://localhost:4000/api/registration/createNewRegistration",
   ADDRESS_API_URL_BASE:
     "https://ws.postcoder.com/pcw/" +
     (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
     "/pafaddressbase",
-  ADDRESS_API_URL_QUERY:
-    "format=json&lines=3&addtags=uprn&exclude=organisation",
+  ADDRESS_API_URL_QUERY: "format=json&lines=3&addtags=uprn&exclude=organisation",
   ADDRESS_API_URL_BASE_STANDARD:
     "https://ws.postcoder.com/pcw/" +
     (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
