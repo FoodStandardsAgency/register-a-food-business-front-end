@@ -150,7 +150,7 @@ app.use(i18n.init);
 
 // configure nunjucks environment
 const env = nunjucks.configure(
-  ["node_modules/govuk-frontend/", "node_modules/@ons/design-system/", "pages", "components"],
+  ["node_modules/govuk-frontend/dist", "node_modules/@ons/design-system/", "pages", "components"],
   {
     express: app //integrate nunjucks into express
   }
@@ -199,7 +199,7 @@ app.use(
 
 app.use(
   "/assets",
-  express.static(path.join(__dirname, "/../../node_modules/govuk-frontend/govuk/assets"))
+  express.static(path.join(__dirname, "/../../node_modules/govuk-frontend/dist/govuk/assets"))
 );
 app.use("/pdfs", express.static(__dirname + "/static/pdfs"));
 app.use("/auto-complete", express.static(__dirname + "/static/auto-complete"));
