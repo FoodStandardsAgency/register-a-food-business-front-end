@@ -1,4 +1,4 @@
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/back-link/macro.njk" import govukBackLink %}
 {% macro backButton(props) %}
   {% if not(props.hideback or props.editModeFirstPage) %}
     {% if props.backToStart %}
