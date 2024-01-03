@@ -100,7 +100,7 @@ const fetchUsingMapItApi = async (postcode, generation) => {
     if (response.status === 200) {
       logEmitter.emit("info", "MapIt LA response" + response.data);
       if (!response.data || Object.keys(response.data).length === 0) {
-        logEmitter.emit("warning", "MapIt LA lookup failure - empty"); // Used for Azure alerts
+        logEmitter.emit("warning", "MapIt LA lookup failure"); // Used for Azure alerts
         throw new Error("Response data is empty");
       }
       logEmitter.emit("info", "MapIt LA lookup success"); // Used for Azure alerts
