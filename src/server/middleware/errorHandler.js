@@ -1,13 +1,12 @@
-const { logger } = require("../services/winston");
+const { logEmitter } = require("../services/logging.service");
 const PropsGenerator = require("../propsGenerator");
 
 const errorHandler = (err, req, res, next) => {
-  logger.error(`Application error handled...`); // Used for Azure alerts
-  logger.error(err.message);
+  logEmitter.emit("error", `Application error handled - ${err && err.message}`); // Used for Azure alerts
   if (res.headersSent) {
     return next(err);
   }
-  logger.error(`statusCode: ${res ? res.statusCode : err ? err.statusCode : null}`);
+  logEmitter.emit("error", `statusCode: ${res ? res.statusCode : err ? err.statusCode : null}`);
   var props = {
     statusCode: res ? res.statusCode : err ? err.statusCode : "500",
     err: err ? err : "An error occurred.",
