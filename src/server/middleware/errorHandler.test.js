@@ -1,11 +1,11 @@
-jest.mock("../services/winston", () => ({
-  logger: {
-    error: jest.fn()
+jest.mock("../services/logging.service", () => ({
+  logEmitter: {
+    emit: jest.fn()
   }
 }));
 
 const { errorHandler } = require("../middleware/errorHandler");
-const { logger } = require("../services/winston");
+const { logEmitter } = require("../services/logging.service");
 const url = "test/test";
 const csrfToken = jest.fn();
 
@@ -17,31 +17,37 @@ describe("errorHandler", () => {
     errorHandler(err, req, res);
 
     expect(res.render).toHaveBeenCalled();
+    logEmitter.emit.mockReset();
   });
 
   describe("when status code is not defined", () => {
-    logger.error.mockImplementation();
-    it("should emit statusCode: null", () => {
+    expect(logEmitter).toBeTruthy();
+    logEmitter.emit.mockImplementation();
+    it("should emit statusCode: undefined", () => {
       let res = { render: jest.fn() };
       let req = { csrfToken: csrfToken, url: url };
       let err = { message: "no error" };
       errorHandler(err, req, res);
 
-      expect(logger.error).toHaveBeenNthCalledWith(5, "no error");
-      expect(logger.error).toHaveBeenNthCalledWith(4, "Application error handled...");
-      expect(logger.error).toHaveBeenNthCalledWith(3, "statusCode: undefined");
-      logger.error.mockReset();
+      expect(logEmitter.emit).toHaveBeenNthCalledWith(
+        1,
+        "error",
+        "Application error handled - no error"
+      );
+      expect(logEmitter.emit).toHaveBeenNthCalledWith(2, "error", "statusCode: undefined");
+
+      logEmitter.emit.mockReset();
     });
   });
 
   describe("when res and the statusCode are defined", () => {
-    logger.error.mockImplementation();
+    logEmitter.emit.mockImplementation();
     it("should emit res.statusCode", () => {
       let err = { message: "" };
       let req = { csrfToken: csrfToken, url: url };
       let res = { statusCode: 4, render: jest.fn() };
       errorHandler(err, req, res);
-      expect(logger.error).toHaveBeenNthCalledWith(3, "statusCode: 4");
+      expect(logEmitter.emit).toHaveBeenNthCalledWith(2, "error", "statusCode: 4");
     });
   });
 
