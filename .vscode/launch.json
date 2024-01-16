@@ -7,9 +7,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch via Yarn (develop mode)",
-      "runtimeExecutable": "yarn",
-      "runtimeArgs": ["local:debug:prod"],
+      "name": "Launch via NPM (develop mode)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run-script", "local:debug:prod"],
       "port": 9229,
       "skipFiles": [
         "${workspaceFolder}/node_modules/**/*.js",
