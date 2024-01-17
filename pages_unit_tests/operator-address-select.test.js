@@ -82,9 +82,7 @@ describe("operator-address-select", () => {
         addressLookups: exampleAddressLookup
       });
       const $mainHeading = getPageDetails.getMainHeading($);
-      expect($mainHeading.text().trim()).toEqual(
-        "Which is the operator's address from the list?"
-      );
+      expect($mainHeading.text().trim()).toEqual("Which is the operator's address from the list?");
     });
 
     it("renders correct insetText", () => {
@@ -109,12 +107,8 @@ describe("operator-address-select", () => {
         council: "cardiff",
         addressLookups: exampleAddressLookup
       });
-      const $postCodeEnteredlink = $(".govuk-summary-list__actions a")
-        .get(0)
-        .attribs.href.trim();
-      expect($postCodeEnteredlink).toEqual(
-        "/new/cardiff/operator-address?edit=operator-address"
-      );
+      const $postCodeEnteredlink = $(".govuk-summary-list__actions a").get(0).attribs.href.trim();
+      expect($postCodeEnteredlink).toEqual("/new/operator-address?edit=operator-address");
     });
 
     it("renders correct post code entered link href when falsy switch of props.editModeFirstPage", async () => {
@@ -123,10 +117,8 @@ describe("operator-address-select", () => {
         council: "cardiff",
         addressLookups: exampleAddressLookup
       });
-      const $postCodeEnteredlink = $(".govuk-summary-list__actions a")
-        .get(0)
-        .attribs.href.trim();
-      expect($postCodeEnteredlink).toEqual("/new/cardiff/operator-address");
+      const $postCodeEnteredlink = $(".govuk-summary-list__actions a").get(0).attribs.href.trim();
+      expect($postCodeEnteredlink).toEqual("/new/operator-address");
     });
 
     it("renders correct href link when 'I can't find my address in the list' is truthy and switch of props.editModeFirstPage", async () => {
@@ -135,11 +127,9 @@ describe("operator-address-select", () => {
         council: "cardiff",
         addressLookups: exampleAddressLookup
       });
-      const $postCodeNotFindlink = $(".govuk-grid-column-full a")
-        .get(0)
-        .attribs.href.trim();
+      const $postCodeNotFindlink = $(".govuk-grid-column-full a").get(0).attribs.href.trim();
       expect($postCodeNotFindlink).toEqual(
-        "/new/cardiff/operator-address-manual?edit=operator-address-manual"
+        "/new/operator-address-manual?edit=operator-address-manual"
       );
     });
 
@@ -149,12 +139,8 @@ describe("operator-address-select", () => {
         council: "cardiff",
         addressLookups: exampleAddressLookup
       });
-      const $postCodeNotFindlink = $(".govuk-grid-column-full a")
-        .get(0)
-        .attribs.href.trim();
-      expect($postCodeNotFindlink).toEqual(
-        "/new/cardiff/operator-address-manual"
-      );
+      const $postCodeNotFindlink = $(".govuk-grid-column-full a").get(0).attribs.href.trim();
+      expect($postCodeNotFindlink).toEqual("/new/operator-address-manual");
     });
 
     it("renders the select dropdown according to the addressLookups object for postcode entered", () => {

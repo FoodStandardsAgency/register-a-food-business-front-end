@@ -39,15 +39,11 @@ describe("operator-contact-details", () => {
   describe("It should have correct label together with input field and value", () => {
     it("renders operator contact details fields correctly", () => {
       const $primaryNumber = $("#operator_primary_number");
-      expect($primaryNumber.get(0).attribs.name).toBe(
-        "operator_primary_number"
-      );
+      expect($primaryNumber.get(0).attribs.name).toBe("operator_primary_number");
       expect($primaryNumber.get(0).attribs.value).toBe("12345678978");
 
       const $secondaryNumber = $("#operator_secondary_number");
-      expect($secondaryNumber.get(0).attribs.name).toBe(
-        "operator_secondary_number"
-      );
+      expect($secondaryNumber.get(0).attribs.name).toBe("operator_secondary_number");
       expect($secondaryNumber.get(0).attribs.value).toBe("999999999123");
 
       const $email = $("#operator_email");
@@ -59,13 +55,8 @@ describe("operator-contact-details", () => {
       const $inputLabelTextMainNumber = getPageDetails.getInputLabelText($, 0);
       expect($inputLabelTextMainNumber).toEqual("Main phone number");
 
-      const $inputLabelTextSecondaryNumber = getPageDetails.getInputLabelText(
-        $,
-        1
-      );
-      expect($inputLabelTextSecondaryNumber).toEqual(
-        "Secondary phone number (optional)"
-      );
+      const $inputLabelTextSecondaryNumber = getPageDetails.getInputLabelText($, 1);
+      expect($inputLabelTextSecondaryNumber).toEqual("Secondary phone number (optional)");
 
       const $inputLabelTextEmail = getPageDetails.getInputLabelText($, 2);
       expect($inputLabelTextEmail).toEqual("Email address");
@@ -96,9 +87,7 @@ describe("operator-contact-details", () => {
 
     const $pageErrors = getPageDetails.getErrorSummaryLinks($);
     expect($pageErrors.length).toBe(2);
-    expect($pageErrors.contents().get(0).data).toBe(
-      "Enter a valid primary number"
-    );
+    expect($pageErrors.contents().get(0).data).toBe("Enter a valid primary number");
     expect($pageErrors.contents().get(1).data).toBe("Enter a valid email");
   });
 });

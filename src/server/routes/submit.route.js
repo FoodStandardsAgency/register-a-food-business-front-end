@@ -15,13 +15,8 @@ const submitRouter = () => {
     logEmitter.emit("functionCall", "Routes", "/submit route");
     try {
       if (req.session.submissionSucceeded) {
-        logEmitter.emit(
-          "functionSuccessWith",
-          "Routes",
-          "/submit route",
-          "/summary-confirmation"
-        );
-        res.redirect(`/new/${req.session.council}/summary-confirmation`);
+        logEmitter.emit("functionSuccessWith", "Routes", "/submit route", "/summary-confirmation");
+        res.redirect(`/new/summary-confirmation`);
       } else {
         if (!req.session.submissionPending) {
           req.session.submissionPending = true;
@@ -33,22 +28,20 @@ const submitRouter = () => {
           });
 
           const controllerResponse = await submitController(
-            req.session.council,
             req.session.cumulativeFullAnswers,
             req.session.addressLookups,
             req.session.pathConfig._id,
             req.session.id,
             req.session.language,
-            req.session.pathConfig.path
+            req.session.pathConfig.path,
+            req.session.localAuthority.local_council_url
           );
 
           req.session.submissionDate = controllerResponse.submissionDate;
-          req.session.fsaRegistrationNumber =
-            controllerResponse.fsaRegistrationNumber;
+          req.session.fsaRegistrationNumber = controllerResponse.fsaRegistrationNumber;
           req.session.emailFbo = controllerResponse.emailFbo;
-          req.session.lcConfig = controllerResponse.lcConfig;
-          req.session.submissionSucceeded =
-            controllerResponse.submissionSucceeded;
+          req.session.laConfig = controllerResponse.laConfig;
+          req.session.submissionSucceeded = controllerResponse.submissionSucceeded;
           req.session.submissionPending = false;
 
           logEmitter.emit(
@@ -59,16 +52,13 @@ const submitRouter = () => {
           );
           if (controllerResponse.redirectRoute === "/registration-summary") {
             req.session.submissionError = controllerResponse.submissionError;
-            req.session.allValidationErrors =
-              controllerResponse.allValidationErrors;
+            req.session.allValidationErrors = controllerResponse.allValidationErrors;
             req.session.save((err) => {
               if (err) {
                 logEmitter.emit("functionFail", "Routes", "/submit route", err);
                 throw err;
               }
-              res.redirect(
-                `/new/${req.session.council}${controllerResponse.redirectRoute}`
-              );
+              res.redirect(`/new${controllerResponse.redirectRoute}`);
             });
           } else {
             req.session.submissionError = controllerResponse.submissionError;
@@ -77,9 +67,7 @@ const submitRouter = () => {
                 logEmitter.emit("functionFail", "Routes", "/submit route", err);
                 throw err;
               }
-              res.redirect(
-                `/new/${req.session.council}${controllerResponse.redirectRoute}`
-              );
+              res.redirect(`/new${controllerResponse.redirectRoute}`);
             });
           }
         }

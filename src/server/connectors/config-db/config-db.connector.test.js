@@ -1,17 +1,15 @@
 jest.mock("mongodb");
-jest.mock("./config-db.double");
-jest.mock("../../services/statusEmitter.service");
 
 const mongodb = require("mongodb");
 const {
   getPathConfigByVersion,
   getLocalCouncils,
   clearPathConfigCache,
-  getCouncilData
+  getCouncilDataByURL,
+  getCouncilDataByID
 } = require("./config-db.connector");
 const { clearCosmosConnection } = require("../cosmos.client");
 const pathConfigMock = require("../../../__mocks__/pathConfigMock.json");
-const { configVersionCollectionDouble } = require("./config-db.double");
 
 describe("Function: getPathConfigByVersion", () => {
   let result;
@@ -36,9 +34,8 @@ describe("Function: getPathConfigByVersion", () => {
         expect(typeof result).toBe("object");
       });
     });
-    describe("given the request throws an error", () => {
+    describe("given the connection request throws an error", () => {
       beforeEach(async () => {
-        process.env.DOUBLE_MODE = false;
         mongodb.MongoClient.connect.mockImplementation(() => {
           throw new Error("example mongo error");
         });
@@ -50,17 +47,13 @@ describe("Function: getPathConfigByVersion", () => {
         }
       });
 
-      describe("when the error shows that the connection has failed", () => {
-        it("should throw mongoConnectionError error", () => {
-          expect(result.name).toBe("mongoConnectionError");
-          expect(result.message).toBe("example mongo error");
-        });
+      it("should throw mongo error", () => {
+        expect(result.message).toBe("example mongo error");
       });
     });
 
     describe("given the request returns null", () => {
       beforeEach(async () => {
-        process.env.DOUBLE_MODE = false;
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
@@ -69,17 +62,20 @@ describe("Function: getPathConfigByVersion", () => {
           })
         }));
 
-        result = await getPathConfigByVersion("1.0.0");
+        try {
+          await getPathConfigByVersion("1.0.0");
+        } catch (err) {
+          result = err;
+        }
       });
 
-      it("should return null", () => {
-        expect(result).toBe(null);
+      it("should throw config version error", () => {
+        expect(result.message).toBe("Path config version not found (v1.0.0)");
       });
     });
 
     describe("given the request is successful", () => {
       beforeEach(() => {
-        process.env.DOUBLE_MODE = false;
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
@@ -90,9 +86,7 @@ describe("Function: getPathConfigByVersion", () => {
       });
 
       it("should return the data from the findOne() response", async () => {
-        await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-          pathConfigMock
-        );
+        await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(pathConfigMock);
       });
     });
 
@@ -154,26 +148,10 @@ describe("Function: getPathConfigByVersion", () => {
       });
     });
 
-    describe("when running in double mode", () => {
-      beforeEach(() => {
-        process.env.DOUBLE_MODE = true;
-        configVersionCollectionDouble.findOne.mockImplementation(
-          () => pathConfigMock
-        );
-      });
-
-      it("should resolve with the data from the double's findOne() response", async () => {
-        await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-          pathConfigMock
-        );
-      });
-    });
-
     describe("When: two db calls are made", () => {
       const closeConnection = jest.fn();
       let result1, result2;
       beforeEach(async () => {
-        process.env.DOUBLE_MODE = false;
         mongodb.MongoClient.connect.mockImplementation(() => ({
           db: () => ({
             collection: () => ({
@@ -203,7 +181,6 @@ describe("Function: getPathConfigByVersion", () => {
 
   describe("given the request is run more than once during this process (populated cache)", () => {
     beforeEach(() => {
-      process.env.DOUBLE_MODE = false;
       mongodb.MongoClient.connect.mockClear();
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
@@ -222,14 +199,10 @@ describe("Function: getPathConfigByVersion", () => {
       clearPathConfigCache();
 
       // run one request
-      await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-        pathConfigMock
-      );
+      await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(pathConfigMock);
 
       // run a second request without clearing the cache
-      await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(
-        pathConfigMock
-      );
+      await expect(getPathConfigByVersion("1.0.0")).resolves.toEqual(pathConfigMock);
     });
 
     it("does not call the mongo connection function on the second function call", async () => {
@@ -252,7 +225,7 @@ describe("Function: getLocalCouncils", () => {
   beforeEach(async () => {
     clearCosmosConnection();
   });
-  describe("given the request throws an error", () => {
+  describe("given the connection request throws an error", () => {
     beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => {
         throw new Error("example mongo error");
@@ -265,15 +238,12 @@ describe("Function: getLocalCouncils", () => {
       }
     });
 
-    describe("when the error shows that the connection has failed", () => {
-      it("should throw mongoConnectionError error", () => {
-        expect(result.name).toBe("mongoConnectionError");
-        expect(result.message).toBe("example mongo error");
-      });
+    it("should throw mongoConnectionError error", () => {
+      expect(result.message).toBe("example mongo error");
     });
   });
 
-  describe("given the request returns null", () => {
+  describe("given the collection request returns null", () => {
     beforeEach(async () => {
       const mongoCursor = {
         project: () => {
@@ -298,21 +268,27 @@ describe("Function: getLocalCouncils", () => {
       }
     });
 
-    it("should throw mongoConnectionError error", () => {
-      expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe(
-        "Cannot read properties of null (reading 'length')"
-      );
+    it("should throw null collection error", () => {
+      expect(result.message).toBe("Cannot read properties of null (reading 'length')");
     });
   });
 
   describe("given the request is successful", () => {
     const localCouncilsObjs = [
-      { local_council_url: "cardiff" },
-      { local_council_url: "the-vale-of-glamorgan" }
+      { local_council_url: "cardiff", local_council: "Fakes cardiff council" },
+      {
+        local_council_url: "the-vale-of-glamorgan",
+        local_council: "Fakes vale of G council"
+      }
     ];
 
-    const localCouncilsMock = ["cardiff", "the-vale-of-glamorgan"];
+    const localCouncilsMock = [
+      { local_council_url: "cardiff", local_council: "Fakes cardiff council" },
+      {
+        local_council_url: "the-vale-of-glamorgan",
+        local_council: "Fakes vale of G council"
+      }
+    ];
 
     const mongoCursor = {
       project: () => {
@@ -353,7 +329,7 @@ describe("Function: getLocalCouncils", () => {
       }
     };
 
-    beforeEach(() => {
+    beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
           collection: () => ({
@@ -361,38 +337,43 @@ describe("Function: getLocalCouncils", () => {
           })
         })
       }));
+
+      try {
+        await getLocalCouncils();
+      } catch (err) {
+        result = err;
+      }
     });
 
-    it("should return an empty array and not throw an exception", async () => {
-      await expect(getLocalCouncils()).resolves.toEqual(localCouncilsMock);
+    it("should throw missing LA error", () => {
+      expect(result.message).toBe("Local Authorities not found");
     });
   });
 });
 
-describe("Function: getCouncilData", () => {
+describe("Function: getCouncilDataByID", () => {
   let result;
   beforeEach(async () => {
     clearCosmosConnection();
   });
-  describe("given the request throws an error", () => {
+  describe("given the connection request throws an error", () => {
     beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => {
         throw new Error("example mongo error");
       });
 
       try {
-        await getCouncilData("cardiff");
+        await getCouncilDataByID(8015);
       } catch (err) {
         result = err;
       }
     });
 
-    it("should throw mongoConnectionError error", () => {
-      expect(result.name).toBe("mongoConnectionError");
+    it("should throw mongo connection error", () => {
       expect(result.message).toBe("example mongo error");
     });
   });
-  describe("given the request returns null", () => {
+  describe("given the LA request returns null", () => {
     beforeEach(async () => {
       mongodb.MongoClient.connect.mockImplementation(() => ({
         db: () => ({
@@ -403,20 +384,19 @@ describe("Function: getCouncilData", () => {
       }));
 
       try {
-        await getCouncilData("cardiff");
+        await getCouncilDataByID(8015);
       } catch (err) {
         result = err;
       }
     });
 
-    it("should throw mongoConnectionError error with custom message", () => {
-      expect(result.name).toBe("mongoConnectionError");
-      expect(result.message).toBe("getCouncilData retrieved null");
+    it("should throw error with appropriate message", () => {
+      expect(result.message).toBe("LA not found (8015)");
     });
   });
   describe("given the request is successful", () => {
     const exampleResult = {
-      local_council_url: "cardiff",
+      _id: 8015,
       country: "wales",
       local_council: "Cardiff Council"
     };
@@ -432,7 +412,7 @@ describe("Function: getCouncilData", () => {
     });
 
     it("returns the correct value", async () => {
-      await expect(getCouncilData("cardiff")).resolves.toEqual(exampleResult);
+      await expect(getCouncilDataByID(8015)).resolves.toEqual(exampleResult);
     });
   });
 });

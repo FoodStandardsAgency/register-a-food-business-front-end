@@ -29,11 +29,7 @@ describe("PDF Route: ", () => {
       });
 
       it("Should return english file", () => {
-        let file = path.join(
-          __dirname,
-          "..",
-          "/static/pdfs/feedback-declaration.pdf"
-        );
+        let file = path.join(__dirname, "..", "/static/pdfs/feedback-declaration.pdf");
         expect(res.sendFile).toHaveBeenCalledWith(file);
       });
     });
@@ -55,11 +51,7 @@ describe("PDF Route: ", () => {
       });
 
       it("Should return welsh file", () => {
-        let file = path.join(
-          __dirname,
-          "..",
-          "/static/pdfs/RAFB-Privacy-Notice-Cymraeg.pdf"
-        );
+        let file = path.join(__dirname, "..", "/static/pdfs/RAFB-Privacy-Notice-Cymraeg.pdf");
         expect(res.sendFile).toHaveBeenCalledWith(file);
       });
     });

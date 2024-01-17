@@ -68,7 +68,6 @@ describe("Partner Details Route: ", () => {
             partners: ["One First", "Second Two"]
           },
           "body",
-          "council",
           false
         );
       });
@@ -122,7 +121,7 @@ describe("Partner Details Route: ", () => {
           "/thepage",
           { targetPartner: "Brian May", partners: [] },
           { index: "Brian May" },
-          "council",
+
           false
         );
       });
@@ -233,7 +232,7 @@ describe("Partner Details Route: ", () => {
             partners: []
           },
           "body",
-          "council",
+
           false
         );
       });
@@ -274,10 +273,7 @@ describe("Partner Details Route: ", () => {
         expect(req.session.cumulativeFullAnswers.targetPartner).toBe(1);
       });
       it("Should have partners", () => {
-        expect(req.session.cumulativeFullAnswers.partners).toEqual([
-          "First One",
-          "Second Two"
-        ]);
+        expect(req.session.cumulativeFullAnswers.partners).toEqual(["First One", "Second Two"]);
       });
       it("Should call res.render", () => {
         expect(res.render).toBeCalled();
@@ -442,7 +438,7 @@ describe("Partner Details Route: ", () => {
         expect(partnerDetailsDelete).toHaveBeenCalledWith(
           { partners: ["One First", "Two Second"] },
           { example: "property" },
-          "council",
+
           false
         );
       });
@@ -492,7 +488,7 @@ describe("Partner Details Route: ", () => {
         expect(partnerDetailsDelete).toHaveBeenCalledWith(
           { partners: [] },
           { example: "property" },
-          "council",
+
           false
         );
       });
@@ -604,7 +600,6 @@ describe("Partner Details Route: ", () => {
           "/thepage",
           { partners: ["One First", "Two Second"] },
 
-          "council",
           false,
           []
         );
@@ -657,7 +652,6 @@ describe("Partner Details Route: ", () => {
           "/thepage",
           { partners: [] },
 
-          "council",
           false,
           []
         );

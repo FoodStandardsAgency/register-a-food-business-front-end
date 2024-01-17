@@ -46,9 +46,7 @@ describe("opening-days-start", () => {
     it("renders the Irregular days radio button with the correct value", () => {
       const $ = renderPage("opening-days-start", props);
       const $mainHeadingCommercial = $("#opening_days_start_irregular_days");
-      expect($mainHeadingCommercial.get(0).attribs.value).toBe(
-        "Irregular days"
-      );
+      expect($mainHeadingCommercial.get(0).attribs.value).toBe("Irregular days");
     });
     it("select the Irregular days radio button based on session data", () => {
       const $ = renderPage("opening-days-start", props);

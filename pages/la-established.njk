@@ -1,0 +1,27 @@
+{% from "../node_modules/govuk-frontend/dist/govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% extends "layout.njk" %}
+{% block content %}
+  {{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {% call govukFieldset({
+        legend: {
+          text: __("You are registering with ", props.language) + (props.localAuthority.new_authority_name or props.localAuthority.local_council),
+          
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+        }
+        }) %}
+
+      <p class="govuk-body">
+        {% endcall %}
+        {{ govukButton({
+        text:  __("Continue", props.language)
+      }) }}
+        {%- endcall %}
+      </div>
+    </div>
+  {% endblock %}

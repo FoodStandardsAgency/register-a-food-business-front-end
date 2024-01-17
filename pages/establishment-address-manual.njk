@@ -1,17 +1,17 @@
-{% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
-{% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/input/macro.njk" import govukInput %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/details/macro.njk" import govukDetails %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% from "../components/EstablishmentDetails.njk" import establishmentHiddenDetails %}
 {% extends "layout.njk" %}
 {% if props.switches["/establishment-address-none-found"] %}
-  {% set backlink = "/new/" + props.council + "/establishment-address" %}
+  {% set backlink = "/new/establishment-address" %}
 {% else %}
-  {% set backlink = "/new/" + props.council + "/establishment-address-select" %}
+  {% set backlink = "/new/establishment-address-select" %}
 {% endif %}
-{% set props = mergeObjects(props, { backHref: backlink }) %}
+{% set props = mergeObjects(props, {backHref: backlink}) %}
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -74,11 +74,12 @@
             "label": {
             "text": __("Postcode", props.language)
             },
+            "attributes": {"readonly": "readonly"},
             "id": "establishment_postcode",
             "name": "establishment_postcode",
             "classes": "govuk-label--l",
             "autoComplete": "postal-code",
-            "value": props.cumulativeFullAnswers.establishment_postcode,
+            "value": props.cumulativeFullAnswers.establishment_postcode_find,
             "errorMessage": { "text": __(props.validatorErrors.establishment_postcode, props.language) } if props.validatorErrors.establishment_postcode
         }) }}
       {{ govukButton({

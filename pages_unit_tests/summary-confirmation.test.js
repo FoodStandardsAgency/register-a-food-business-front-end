@@ -18,35 +18,38 @@ const transformedData = {
   operator_email: "email@email.com"
 };
 
-const lcConfigCombined = {
+const laConfigCombined = {
   hygieneAndStandards: {
     local_council: "Council name",
     local_council_email: "council@example.com",
-    local_council_phone_number: "123456789"
+    local_council_phone_number: "123456789",
+    local_council_guidance_link: "hygieneAndStandards"
   }
 };
 
-const lcConfigCombinedNoNumber = {
+const laConfigCombinedNoNumber = {
   hygieneAndStandards: {
     local_council: "Council name",
     local_council_email: "council@example.com"
   }
 };
 
-const lcConfigSplit = {
+const laConfigSplit = {
   hygiene: {
     local_council: "Hygiene council name",
     local_council_email: "hygiene@example.com",
-    local_council_phone_number: "123456789"
+    local_council_phone_number: "123456789",
+    local_council_guidance_link: "hygiene"
   },
   standards: {
     local_council: "Standards council name",
     local_council_email: "standards@example.com",
-    local_council_phone_number: "123456789"
+    local_council_phone_number: "123456789",
+    local_council_guidance_link: "standards"
   }
 };
 
-const lcConfigSplitNoNumber = {
+const laConfigSplitNoNumber = {
   hygiene: {
     local_council: "Hygiene council name",
     local_council_email: "hygiene@example.com"
@@ -76,7 +79,7 @@ describe("summary-confirmation", () => {
       cumulativeFullAnswers: cumulativeFullAnswers,
       applicationCompletePage: true,
       fsaRegistrationNumber: "12345",
-      lcConfig: lcConfigCombined,
+      laConfig: laConfigCombined,
       transformedData: transformedData
     });
     const $answer = $(".govuk-fieldset");
@@ -90,7 +93,7 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: "12345",
-        lcConfig: lcConfigCombined,
+        laConfig: laConfigCombined,
         transformedData: transformedData
       });
       const $panel = $("#fsa-rn");
@@ -102,7 +105,7 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: undefined,
-        lcConfig: lcConfigCombined,
+        laConfig: laConfigCombined,
         transformedData: transformedData
       });
       const $panel = $("#panelWithText");
@@ -117,12 +120,29 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: undefined,
-        lcConfig: lcConfigCombined,
+        laConfig: laConfigCombined,
         transformedData: transformedData
       });
 
       const $hygieneAndStandardsNumber = $("#hygieneAndStandardsNumber");
       expect($hygieneAndStandardsNumber.length).toBe(1);
+    });
+  });
+
+  describe("When given a hygieneAndStandards local guidance link", () => {
+    it("The paragraph renders displaying it", () => {
+      const $ = renderPage("summary-confirmation", {
+        language: "cy",
+        cumulativeFullAnswers: cumulativeFullAnswers,
+        applicationCompletePage: true,
+        fsaRegistrationNumber: undefined,
+        laConfig: laConfigCombined,
+        transformedData: transformedData
+      });
+
+      const $localGuidanceLink = $("#localGuidanceLink_hygieneAndStandards");
+      expect($localGuidanceLink.length).toBe(1);
+      expect($localGuidanceLink.attr("href")).toBe("hygieneAndStandards");
     });
   });
 
@@ -133,11 +153,28 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: undefined,
-        lcConfig: lcConfigSplit,
+        laConfig: laConfigSplit,
         transformedData: transformedData
       });
       const $hygienesNumber = $("#hygieneNumber");
       expect($hygienesNumber.length).toBe(1);
+    });
+  });
+
+  describe("When given a hygiene local guidance link", () => {
+    it("The paragraph renders displaying it", () => {
+      const $ = renderPage("summary-confirmation", {
+        language: "cy",
+        cumulativeFullAnswers: cumulativeFullAnswers,
+        applicationCompletePage: true,
+        fsaRegistrationNumber: undefined,
+        laConfig: laConfigSplit,
+        transformedData: transformedData
+      });
+
+      const $localGuidanceLink = $("#localGuidanceLink_hygiene");
+      expect($localGuidanceLink.length).toBe(1);
+      expect($localGuidanceLink.attr("href")).toBe("hygiene");
     });
   });
 
@@ -148,11 +185,28 @@ describe("summary-confirmation", () => {
         cumulativeFullAnswers: cumulativeFullAnswers,
         applicationCompletePage: true,
         fsaRegistrationNumber: undefined,
-        lcConfig: lcConfigSplit,
+        laConfig: laConfigSplit,
         transformedData: transformedData
       });
       const $standardsNumber = $("#standardsNumber");
       expect($standardsNumber.length).toBe(1);
+    });
+
+    describe("When given a standards local guidance link", () => {
+      it("The paragraph renders displaying it", () => {
+        const $ = renderPage("summary-confirmation", {
+          language: "cy",
+          cumulativeFullAnswers: cumulativeFullAnswers,
+          applicationCompletePage: true,
+          fsaRegistrationNumber: undefined,
+          laConfig: laConfigSplit,
+          transformedData: transformedData
+        });
+
+        const $localGuidanceLink = $("#localGuidanceLink_standards");
+        expect($localGuidanceLink.length).toBe(1);
+        expect($localGuidanceLink.attr("href")).toBe("standards");
+      });
     });
 
     describe("When given a contact representative email", () => {
@@ -166,7 +220,7 @@ describe("summary-confirmation", () => {
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: "12345",
-          lcConfig: lcConfigSplit,
+          laConfig: laConfigSplit,
           transformedData: transformedDataRepresentative
         });
         const $panel = $("#receiveConfirmationEmail-id");
@@ -183,7 +237,7 @@ describe("summary-confirmation", () => {
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: undefined,
-          lcConfig: lcConfigCombinedNoNumber,
+          laConfig: laConfigCombinedNoNumber,
           transformedData: transformedData
         });
 
@@ -199,7 +253,7 @@ describe("summary-confirmation", () => {
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: undefined,
-          lcConfig: lcConfigSplitNoNumber,
+          laConfig: laConfigSplitNoNumber,
           transformedData: transformedData
         });
         const $hygienesNumber = $("#hygieneNumber");
@@ -214,7 +268,7 @@ describe("summary-confirmation", () => {
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: undefined,
-          lcConfig: lcConfigSplitNoNumber,
+          laConfig: laConfigSplitNoNumber,
           transformedData: transformedData
         });
         const $standardsNumber = $("#standardsNumber");
@@ -222,14 +276,14 @@ describe("summary-confirmation", () => {
       });
     });
 
-    describe("When given no lcConfig", () => {
+    describe("When given no laConfig", () => {
       it("The page still renders", () => {
         const $ = renderPage("summary-confirmation", {
           language: "cy",
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: undefined,
-          lcConfig: {},
+          laConfig: {},
           transformedData: transformedData
         });
         const $mainHeading = getPageDetails.getMainHeading($);
@@ -243,15 +297,15 @@ describe("summary-confirmation", () => {
           language: "cy",
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
-          lcConfig: lcConfigCombined,
+          laConfig: laConfigCombined,
           transformedData: transformedData,
-          country: "wales"
+          localAuthority: { country: "wales" }
         });
 
-        const $businessGuidanceLink = $("#businessGuidanceLink");
+        const $businessGuidanceLink = $("#businessGuidanceWelshLink");
         expect($businessGuidanceLink.length).toBe(1);
         expect($businessGuidanceLink.get(0).children[0].data.trim()).toBe(
-          "Business support Wales"
+          "I gael cyngor cyffredinol ar hylendid bwyd a sut i redeg busnes bwyd diogel"
         );
       });
     });
@@ -262,9 +316,9 @@ describe("summary-confirmation", () => {
           language: "en",
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
-          lcConfig: lcConfigCombined,
+          laConfig: laConfigCombined,
           transformedData: transformedData,
-          country: "northern-ireland"
+          localAuthority: { country: "northern-ireland" }
         });
 
         const $businessGuidanceLink = $("#businessGuidanceLink");
@@ -281,15 +335,15 @@ describe("summary-confirmation", () => {
           language: "en",
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
-          lcConfig: lcConfigCombined,
+          laConfig: laConfigCombined,
           transformedData: transformedData,
-          country: "england"
+          localAuthority: { country: "england" }
         });
 
         const $businessGuidanceLink = $("#businessSupportHelplineEnglishLink");
         expect($businessGuidanceLink.length).toBe(1);
         expect($businessGuidanceLink.get(0).children[0].data.trim()).toBe(
-          "Business support & helpline"
+          "For general business guidance contact the national Business Support Helpline"
         );
       });
     });

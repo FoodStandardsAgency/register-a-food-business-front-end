@@ -2,9 +2,7 @@
  * @module controllers/switches
  */
 
-const {
-  cleanEmptiedAnswers
-} = require("../services/session-management.service");
+const { cleanEmptiedAnswers } = require("../services/session-management.service");
 const { changeSwitch } = require("../services/switches.service");
 const { logEmitter } = require("../services/logging.service");
 
@@ -44,11 +42,7 @@ const switchesController = (
 
     if (newAnswersArray.length > 0) {
       // remove any answers that were previously given a truthy value but have since been emptied
-      cleanedPreviousAnswers = cleanEmptiedAnswers(
-        previousAnswers,
-        newAnswersArray,
-        currentPage
-      );
+      cleanedPreviousAnswers = cleanEmptiedAnswers(previousAnswers, newAnswersArray, currentPage);
     }
 
     controllerResponse.cumulativeFullAnswers = Object.assign(
@@ -57,19 +51,10 @@ const switchesController = (
       newAnswers
     );
 
-    logEmitter.emit(
-      "functionSuccess",
-      "switches.controller",
-      "switchesController"
-    );
+    logEmitter.emit("functionSuccess", "switches.controller", "switchesController");
     return controllerResponse;
   } catch (err) {
-    logEmitter.emit(
-      "functionFail",
-      "switches.controller",
-      "switchesController",
-      err
-    );
+    logEmitter.emit("functionFail", "switches.controller", "switchesController", err);
     throw err;
   }
 };

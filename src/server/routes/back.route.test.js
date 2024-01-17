@@ -40,15 +40,11 @@ describe("Back route: ", () => {
     });
 
     it("Should call backController with currentPage, cumulativeFullAnswers, and the path", () => {
-      expect(backController).toHaveBeenCalledWith(
-        "/originator",
-        {},
-        "existing path from session"
-      );
+      expect(backController).toHaveBeenCalledWith("/originator", {}, "existing path from session");
     });
 
     it("Should redirect to previous page", () => {
-      expect(res.redirect).toBeCalledWith("/new/council/previousPage");
+      expect(res.redirect).toBeCalledWith("/new/previousPage");
     });
   });
 });

@@ -15,9 +15,7 @@ describe("customer-type", () => {
     const $ = renderPage("customer-type", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "Who will this establishment supply food to?"
-    );
+    expect($mainHeading.text().trim()).toEqual("Who will this establishment supply food to?");
   });
 
   it("passes accessibility tests", async () => {
@@ -38,9 +36,7 @@ describe("customer-type", () => {
     it("renders the other businesses check button with the correct value", () => {
       const $ = renderPage("customer-type", props);
       const $mainHeadingOtherBusiness = $("#customer_type_supply_other");
-      expect($mainHeadingOtherBusiness.get(0).attribs.value).toBe(
-        "OTHER_BUSINESSES"
-      );
+      expect($mainHeadingOtherBusiness.get(0).attribs.value).toBe("OTHER_BUSINESSES");
     });
     it("renders the end consumer check button with the correct value", () => {
       const $ = renderPage("customer-type", props);

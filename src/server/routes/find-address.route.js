@@ -29,17 +29,9 @@ const findAddressRouter = () => {
         response.addressLookups
       );
 
-      req.session.switches = Object.assign(
-        {},
-        req.session.switches,
-        response.switches
-      );
+      req.session.switches = Object.assign({}, req.session.switches, response.switches);
 
-      logEmitter.emit(
-        "functionSuccess",
-        "Routes",
-        "/findaddress/:originator route"
-      );
+      logEmitter.emit("functionSuccess", "Routes", "/findaddress/:originator route");
       req.session.save((err) => {
         if (err) {
           logEmitter.emit("functionFail", "Routes", "/find-address route", err);
@@ -50,17 +42,10 @@ const findAddressRouter = () => {
           ? `?edit=${response.redirectRoute.substring(1)}`
           : "";
 
-        res.redirect(
-          `/new/${req.session.council}${response.redirectRoute}${query}`
-        );
+        res.redirect(`/new${response.redirectRoute}${query}`);
       });
     } catch (err) {
-      logEmitter.emit(
-        "functionFail",
-        "Routes",
-        "/findaddress/:originator route",
-        err
-      );
+      logEmitter.emit("functionFail", "Routes", "/findaddress/:originator route", err);
       next(err);
     }
   });

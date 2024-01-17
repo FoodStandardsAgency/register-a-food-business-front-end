@@ -1,12 +1,9 @@
 jest.mock("../services/data-transform.service");
 jest.mock("../services/submit.service");
-jest.mock("../services/statusEmitter.service");
 jest.mock("../services/path.service");
 jest.mock("../services/validation.service");
 
-const {
-  transformAnswersForSubmit
-} = require("../services/data-transform.service");
+const { transformAnswersForSubmit } = require("../services/data-transform.service");
 const { submit } = require("../services/submit.service");
 const { editPath } = require("../services/path.service");
 const { revalidateAllAnswers } = require("../services/validation.service");
@@ -31,7 +28,6 @@ const testPathFromSession = {
 };
 
 const submitArgs = [
-  testLcUrl,
   testSubmissionData,
   testAddressLookups,
   testRegDataVersion,
@@ -53,7 +49,6 @@ describe("Function: submitController: ", () => {
     beforeEach(async () => {
       try {
         response = await submitController(
-          testLcUrl,
           {},
           testAddressLookups,
           testRegDataVersion,
@@ -67,7 +62,7 @@ describe("Function: submitController: ", () => {
 
     it("it should throw an error", () => {
       expect(response.message).toBe(
-        "/submit route was called with an empty submission data object"
+        "Registration submission failed - /submit route was called with an empty submission data object"
       );
     });
   });
@@ -190,8 +185,8 @@ describe("Function: submitController: ", () => {
     it("Should should return emailFbo", () => {
       expect(response.emailFbo.recipient).toBe("fbo@example.com");
     });
-    it("Should should return lcConfig", () => {
-      expect(response.lcConfig.example).toBe("data");
+    it("Should should return laConfig", () => {
+      expect(response.laConfig.example).toBe("data");
     });
   });
 });

@@ -1,5 +1,5 @@
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% from "../components/SummaryListHelper.njk" import summaryListHelperWithoutEdit, summaryListHelperHtmlWithoutEdit, summaryListDeclarationHelper %}
@@ -43,7 +43,7 @@
       {% if validatorErrors.operator_address_line_1 or validatorErrors.operator_address_line_2 or validatorErrors.operator_address_line_3 or 
                     validatorErrors.operator.operator_town or validatorErrors.operator.operator_postcode or validatorErrors.operator_postcode_find or 
                     propsData.operator_address_line_1 or propsData.operator_address_line_2 or propsData.operator_address_line_3 or propsData.operator_town or propsData.operator_postcode or propsData.operator_postcode_find %}
-        {% set htmlValue = propsData.operator_address_line_1 + "<br>" + propsData.operator_address_line_2 + "<br>" + propsData.operator_address_line_3 + "<br>" + propsData.operator_town + "<br>" + propsData.operator_postcode %}
+        {% set htmlValue = (propsData.operator_address_line_1 + "<br>" if propsData.operator_address_line_1) + (propsData.operator_address_line_2 + "<br>" if propsData.operator_address_line_2) + (propsData.operator_address_line_3 + "<br>" if propsData.operator_address_line_3) + propsData.operator_town + "<br>" + propsData.operator_postcode %}
         {{ summaryListHelperHtmlWithoutEdit(__("Partnership contact address", props.language) if  propsData.operator_type === "PARTNERSHIP" else __("Operator address", props.language), htmlValue, false) }}
       {% endif %}
     {% endif %}
@@ -87,7 +87,7 @@
     {% if propsData.applicationCompletePage == null %}
       {% if propsData.establishment_address_line_1 or propsData.establishment_postcode_find or validatorErrors.establishment_address_line_1 or validatorErrors.establishment_address_line_2 
                     or  validatorErrors.establishment_address_line_3 or validatorErrors.establishment_town or  validatorErrors.establishment_postcode or validatorErrors.establishment_postcode_find %}
-        {% set htmlValue = propsData.establishment_address_line_1 + "<br>" + propsData.establishment_address_line_2 + "<br>" + propsData.establishment_address_line_3 + "<br>" + propsData.establishment_town + "<br>" + propsData.establishment_postcode %}
+        {% set htmlValue = (propsData.establishment_address_line_1 + "<br>" if propsData.establishment_address_line_1) + (propsData.establishment_address_line_2 + "<br>" if propsData.establishment_address_line_2) + (propsData.establishment_address_line_3 + "<br>" if propsData.establishment_address_line_3) + propsData.establishment_town + "<br>" + propsData.establishment_postcode %}
         {{ summaryListHelperHtmlWithoutEdit(__("Establishment address", props.language), htmlValue, false ) }}
       {% endif %}
     {% endif %}

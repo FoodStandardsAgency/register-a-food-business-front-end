@@ -31,7 +31,7 @@ describe("operator-address-manual", () => {
       council: "cardiff"
     });
     const $backlink = getPageDetails.getBacklinkHref($);
-    expect($backlink).toEqual("/new/cardiff/operator-address");
+    expect($backlink).toEqual("/new/operator-address");
   });
 
   it("renders correct backlink href when falsy switch of /operator-address-none-found", async () => {
@@ -40,14 +40,12 @@ describe("operator-address-manual", () => {
       council: "cardiff"
     });
     const $backlink = getPageDetails.getBacklinkHref($);
-    expect($backlink).toEqual("/new/cardiff/operator-address-select");
+    expect($backlink).toEqual("/new/operator-address-select");
   });
 
   it("renders without crashing", () => {
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "What is the partnership contact's address?"
-    );
+    expect($mainHeading.text().trim()).toEqual("What is the partnership contact's address?");
   });
 
   it("renders correct inset text", () => {
@@ -99,9 +97,7 @@ describe("operator-address-manual", () => {
         }
       });
       const $mainHeading = getPageDetails.getMainHeading($);
-      expect($mainHeading.text().trim()).toEqual(
-        "What is the operator's address?"
-      );
+      expect($mainHeading.text().trim()).toEqual("What is the operator's address?");
     });
 
     it("renders correct insetText", () => {
@@ -130,9 +126,7 @@ describe("operator-address-manual", () => {
 
     const $pageErrors = getPageDetails.getErrorSummaryLinks($);
     expect($pageErrors.length).toBe(3);
-    expect($pageErrors.contents().get(0).data).toBe(
-      "Enter a valid first line of address"
-    );
+    expect($pageErrors.contents().get(0).data).toBe("Enter a valid first line of address");
     expect($pageErrors.contents().get(1).data).toBe("Enter a valid town name");
     expect($pageErrors.contents().get(2).data).toBe("Not a valid postcode");
   });

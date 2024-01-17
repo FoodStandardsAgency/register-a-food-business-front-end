@@ -194,9 +194,7 @@ describe("opening-hours", () => {
 
       const $pageErrors = getPageDetails.getErrorSummaryLinks($);
       expect($pageErrors.length).toBe(1);
-      expect($pageErrors.contents().get(0).data).toBe(
-        "invalid opening hours on monday"
-      );
+      expect($pageErrors.contents().get(0).data).toBe("invalid opening hours on monday");
     });
 
     it("renders correct error message for Monday field", () => {

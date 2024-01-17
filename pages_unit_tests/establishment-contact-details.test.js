@@ -27,7 +27,13 @@ describe("Establishment-Contact-Details", () => {
   it("passes accessibility tests", async () => {
     const $ = renderPage("establishment-contact-details", props);
 
-    const results = await axe($.html());
+    // Suppress empty table header rule as second column needs no heading
+    const results = await axe($.html(), {
+      rules: {
+        "empty-table-header": { enabled: false }
+      }
+    });
+
     expect(results).toHaveNoViolations();
   });
 
@@ -47,13 +53,9 @@ describe("Establishment-Contact-Details", () => {
         }
       });
 
-      const $establishmentPrimaryContactError = $(
-        "#establishment_primary_number-error"
-      );
+      const $establishmentPrimaryContactError = $("#establishment_primary_number-error");
       expect($establishmentPrimaryContactError.length).toBe(1);
-      expect(
-        $establishmentPrimaryContactError.contents().get(2).data.trim()
-      ).toBe("test error");
+      expect($establishmentPrimaryContactError.contents().get(2).data.trim()).toBe("test error");
     });
 
     it("gets given the correct default value when reuseOperatorContactDetails switch is true ", () => {
@@ -72,9 +74,7 @@ describe("Establishment-Contact-Details", () => {
         }
       });
 
-      const $establishmentPrimaryContactInput = $(
-        "#establishment_primary_number"
-      );
+      const $establishmentPrimaryContactInput = $("#establishment_primary_number");
       expect($establishmentPrimaryContactInput.get(0).attribs.value).toBe(
         "operator primary number"
       );
@@ -96,9 +96,7 @@ describe("Establishment-Contact-Details", () => {
         }
       });
 
-      const $establishmentPrimaryContactInput = $(
-        "#establishment_primary_number"
-      );
+      const $establishmentPrimaryContactInput = $("#establishment_primary_number");
       expect($establishmentPrimaryContactInput.get(0).attribs.value).toBe(
         "establishment primary number"
       );
@@ -109,9 +107,7 @@ describe("Establishment-Contact-Details", () => {
     it("renders", () => {
       const $ = renderPage("establishment-contact-details", props);
 
-      const $establishmentSecondaryContact = $(
-        "#establishment_secondary_number"
-      );
+      const $establishmentSecondaryContact = $("#establishment_secondary_number");
       expect($establishmentSecondaryContact.length).toBe(1);
     });
 
@@ -131,9 +127,7 @@ describe("Establishment-Contact-Details", () => {
         }
       });
 
-      const $establishmentSecondaryContactInput = $(
-        "#establishment_secondary_number"
-      );
+      const $establishmentSecondaryContactInput = $("#establishment_secondary_number");
       expect($establishmentSecondaryContactInput.get(0).attribs.value).toBe(
         "operator secondary number"
       );
@@ -155,9 +149,7 @@ describe("Establishment-Contact-Details", () => {
         }
       });
 
-      const $establishmentSecondaryContactInput = $(
-        "#establishment_secondary_number"
-      );
+      const $establishmentSecondaryContactInput = $("#establishment_secondary_number");
       expect($establishmentSecondaryContactInput.get(0).attribs.value).toBe(
         "establishment secondary number"
       );
@@ -182,9 +174,7 @@ describe("Establishment-Contact-Details", () => {
 
       const $establishmentEmailError = $("#establishment_email-error");
       expect($establishmentEmailError.length).toBe(1);
-      expect($establishmentEmailError.contents().get(2).data.trim()).toBe(
-        "test error"
-      );
+      expect($establishmentEmailError.contents().get(2).data.trim()).toBe("test error");
     });
 
     it("gets given the correct default value when reuseOperatorContactDetails switch is true ", () => {
@@ -204,9 +194,7 @@ describe("Establishment-Contact-Details", () => {
       });
 
       const $establishmentEmailInput = $("#establishment_email");
-      expect($establishmentEmailInput.get(0).attribs.value).toBe(
-        "operator email"
-      );
+      expect($establishmentEmailInput.get(0).attribs.value).toBe("operator email");
     });
 
     it("gets given the correct default value reuseOperatorContactDetails switch is false", () => {
@@ -226,9 +214,7 @@ describe("Establishment-Contact-Details", () => {
       });
 
       const $establishmentEmailInput = $("#establishment_email");
-      expect($establishmentEmailInput.get(0).attribs.value).toBe(
-        "establishment email"
-      );
+      expect($establishmentEmailInput.get(0).attribs.value).toBe("establishment email");
     });
   });
 

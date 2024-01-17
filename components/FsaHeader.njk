@@ -1,5 +1,5 @@
 {% from "../components/CustomFsaHeader.njk" import govukCustomHeader %}
-{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
 {% macro fsaHeader(props) %}
   {% if props.acceptAllCookies !== "true" and props.acceptAllCookies !== "false" %}
     {% set html %}
@@ -7,11 +7,16 @@
     <p class="govuk-body">{{ __('We do not share any information with advertisers or social media platforms. We do not store any information about you in the cookie.', props.language) }}</p>
     {% endset %}
     {{ govukCookieBanner({
+    
         ariaLabel: __("Cookies on RAFB", props.language),
+        attributes: {
+            id: "cookieBanner"
+                },
         messages: [
             {
             headingText: __("Cookies on RAFB", props.language),
             html: html,
+        
             actions: [
                 {
                     text: __("I accept cookies", props.language),

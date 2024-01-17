@@ -35,7 +35,7 @@ module.exports = {
     "!src/components/update-business-types.js",
     "!src/**/*.double.js",
     "!tests/**/*.js",
-    "!src/server/routes/*.route.js"
+    "src/server/routes/*.route.js"
   ],
   testEnvironmentOptions: {
     url: "http://localhost/"

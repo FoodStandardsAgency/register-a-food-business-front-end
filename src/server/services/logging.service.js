@@ -12,7 +12,6 @@ const FUNCTION_SUCCESS_WITH = "functionSuccessWith";
 const FUNCTION_CALL = "functionCall";
 const FUNCTION_SUCCESS = "functionSuccess";
 const FUNCTION_FAIL = "functionFail";
-const DOUBLE_MODE = "doubleMode";
 
 const logEmitter = new LogEmitter();
 
@@ -75,19 +74,9 @@ logEmitter.on(FUNCTION_SUCCESS_WITH, (module, functionName, data) => {
   logStuff(message);
 });
 
-logEmitter.on(
-  FUNCTION_FAIL,
-  (module, functionName, err = { message: null }) => {
-    const message = `${module}: ${functionName} failed with: ${
-      err.message || err
-    }`;
-    logStuff(message, {}, "error");
-  }
-);
-
-logEmitter.on(DOUBLE_MODE, (module, functionName) => {
-  const message = `${module}: ${functionName}: running in double mode`;
-  logStuff(message);
+logEmitter.on(FUNCTION_FAIL, (module, functionName, err = { message: null }) => {
+  const message = `${module}: ${functionName} failed with: ${err.message || err}`;
+  logStuff(message, {}, "error");
 });
 
 logEmitter.on(INFO, (message) => {
@@ -113,7 +102,6 @@ module.exports = {
   FUNCTION_FAIL,
   FUNCTION_SUCCESS,
   FUNCTION_SUCCESS_WITH,
-  DOUBLE_MODE,
   INFO,
   ERROR,
   DEBUG,

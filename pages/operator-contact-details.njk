@@ -1,7 +1,7 @@
-{% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
-{% from "govuk/components/details/macro.njk" import govukDetails %}
-{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/details/macro.njk" import govukDetails %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/input/macro.njk" import govukInput %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% extends "layout.njk" %}
@@ -62,7 +62,7 @@
         "text": __("Email address", props.language)
       },
       "hint": {
-      "text": __("We will use your email to keep you informed of any policy or legal changes that could affect your food business.", props.language)
+      "text": __("We will use your email address to send a copy of your registration details. The food safety team at your local authority may contact you with additional guidance and support and to obtain further information if required.", props.language)
       },
       "id": "operator_email",
       "name": "operator_email",

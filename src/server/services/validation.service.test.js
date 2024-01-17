@@ -54,9 +54,7 @@ describe("validator.service validate()", () => {
       }
 
       // Assert
-      expect(result.message).toBe(
-        "Could not find schema for page: /random-page"
-      );
+      expect(result.message).toBe("Could not find schema for page: /random-page");
     });
   });
 
@@ -82,9 +80,7 @@ describe("validator.service validate()", () => {
         supply_directly: undefined
       });
 
-      expect(result.errors.customer_type).toBe(
-        "You must select a customer type before continuing"
-      );
+      expect(result.errors.customer_type).toBe("You must select a customer type before continuing");
     });
   });
 
@@ -150,12 +146,8 @@ describe("validator.service validate()", () => {
         no_import_export: undefined
       });
 
-      expect(result_import_selected.errors.import_export_activities).toBe(
-        undefined
-      );
-      expect(result_export_selected.errors.import_export_activities).toBe(
-        undefined
-      );
+      expect(result_import_selected.errors.import_export_activities).toBe(undefined);
+      expect(result_export_selected.errors.import_export_activities).toBe(undefined);
     });
     it("should not return an error if both 'directly import' and 'directly export' are selected", () => {
       const result = validate("/business-import-export", {
@@ -203,9 +195,7 @@ describe("validator.service validate()", () => {
       const result = validate("/business-type", {
         business_type: undefined
       });
-      expect(result.errors.business_type).toBe(
-        "You must select a business type before continuing"
-      );
+      expect(result.errors.business_type).toBe("You must select a business type before continuing");
     });
     it("should not return a error when business type is populated", () => {
       const result = validate("/business-type", {
@@ -264,9 +254,7 @@ describe("validator.service validate()", () => {
       const result = validate("/operator-contact-details", {
         operator_secondary_number: undefined
       });
-      expect(result.errors.operator_secondary_number).toBe(
-        "Enter a valid operator phone number"
-      );
+      expect(result.errors.operator_secondary_number).toBe("Enter a valid operator phone number");
     });
     it("should not return an error when operational secondary number is input", () => {
       const result = validate("/operator-contact-details", {

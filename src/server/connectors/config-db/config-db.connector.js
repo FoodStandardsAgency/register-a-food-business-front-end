@@ -2,11 +2,12 @@
  * @module connectors/config-db
  */
 const { logEmitter } = require("../../services/logging.service");
-const { statusEmitter } = require("../../services/statusEmitter.service");
 const { establishConnectionToCosmos } = require("../cosmos.client");
+const CONFIG_DATA_LOOKUP_FAILURE = "Configuration data lookup failure";
+const CONFIG_DATA_LOOKUP_SUCCESS = "Configuration data lookup success";
 
 let configVersionCollection;
-let lcConfigCollection;
+let laConfigCollection;
 
 let pathConfig = null;
 
@@ -18,70 +19,33 @@ let pathConfig = null;
  * @returns {object} An object containing the _id and path fields of the config database data for the given config version
  */
 const getPathConfigByVersion = async (version) => {
-  logEmitter.emit(
-    "functionCall",
-    "config-db.connector",
-    "getPathConfigByVersion"
-  );
+  logEmitter.emit("functionCall", "config-db.connector", "getPathConfigByVersion");
 
   if (pathConfig === null) {
     try {
-      configVersionCollection = await establishConnectionToCosmos(
-        "config",
-        "configVersion"
-      );
+      configVersionCollection = await establishConnectionToCosmos("config", "configVersion");
 
       const configVersionRecord = await configVersionCollection.findOne({
         _id: version
       });
 
       if (configVersionRecord === null) {
-        pathConfig = null;
-        statusEmitter.emit("incrementCount", "getPathConfigFailed");
-        statusEmitter.emit(
-          "setStatus",
-          "mostRecentGetPathConfigSucceeded",
-          false
-        );
+        throw new Error(`Path config version not found (v${version})`);
       } else {
         pathConfig = {
           _id: configVersionRecord._id,
           path: configVersionRecord.path
         };
-        statusEmitter.emit("incrementCount", "getPathConfigSucceeded");
-        statusEmitter.emit(
-          "setStatus",
-          "mostRecentGetPathConfigSucceeded",
-          true
-        );
       }
     } catch (err) {
-      statusEmitter.emit("incrementCount", "getPathConfigFailed");
-      statusEmitter.emit(
-        "setStatus",
-        "mostRecentGetPathConfigSucceeded",
-        false
-      );
-      logEmitter.emit(
-        "functionFail",
-        "config-db.connector",
-        "getPathConfigByVersion",
-        err
-      );
-
-      const newError = new Error();
-      newError.name = "mongoConnectionError";
-      newError.message = err.message;
-
-      throw newError;
+      logEmitter.emit("warning", CONFIG_DATA_LOOKUP_FAILURE); // Used for Azure alerts
+      logEmitter.emit("functionFail", "config-db.connector", "getPathConfigByVersion", err);
+      throw err;
     }
   }
 
-  logEmitter.emit(
-    "functionSuccess",
-    "config-db.connector",
-    "getPathConfigByVersion"
-  );
+  logEmitter.emit("info", CONFIG_DATA_LOOKUP_SUCCESS); // Used for Azure alerts
+  logEmitter.emit("functionSuccess", "config-db.connector", "getPathConfigByVersion");
 
   return pathConfig;
 };
@@ -92,125 +56,106 @@ const getPathConfigByVersion = async (version) => {
  * @returns {Array} An array containing shortened local council names
  */
 const getLocalCouncils = async () => {
-  let localCouncilUrls = null;
+  let localCouncils = null;
   logEmitter.emit("functionCall", "config-db.connector", "getLocalCouncils");
 
   try {
-    lcConfigCollection = await establishConnectionToCosmos(
-      "config",
-      "localAuthorities"
-    );
+    laConfigCollection = await establishConnectionToCosmos("config", "localAuthorities");
 
-    localCouncilUrls = await lcConfigCollection
+    localCouncils = await laConfigCollection
       .find({
         $and: [
           { local_council_url: { $ne: "" } },
-          { local_council_url: { $ne: null } }
+          { local_council_url: { $ne: null } },
+          { deleted: { $ne: true } }
         ]
       })
-      .project({ local_council_url: 1, _id: 0 })
+      .project({ local_council: 1, local_council_url: 1, _id: 1 })
       .toArray();
 
-    if (localCouncilUrls.length < 1) {
-      statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
-      statusEmitter.emit(
-        "setStatus",
-        "mostRecentGetLocalCouncilsSucceeded",
-        false
-      );
-    } else {
-      localCouncilUrls = localCouncilUrls.map((res) => res.local_council_url);
-      statusEmitter.emit("incrementCount", "getLocalCouncilsSucceeded");
-      statusEmitter.emit(
-        "setStatus",
-        "mostRecentGetLocalCouncilsSucceeded",
-        true
-      );
+    if (localCouncils.length < 1) {
+      throw new Error("Local Authorities not found");
     }
   } catch (err) {
-    statusEmitter.emit("incrementCount", "getLocalCouncilsFailed");
-    statusEmitter.emit(
-      "setStatus",
-      "mostRecentGetLocalCouncilsSucceeded",
-      false
-    );
-    logEmitter.emit(
-      "functionFail",
-      "config-db.connector",
-      "getLocalCouncils",
-      err
-    );
-
-    const newError = new Error();
-    newError.name = "mongoConnectionError";
-    newError.message = err.message;
-
-    throw newError;
+    logEmitter.emit("warning", CONFIG_DATA_LOOKUP_FAILURE); // Used for Azure alerts
+    logEmitter.emit("functionFail", "config-db.connector", "getLocalCouncils", err);
+    throw err;
   }
 
+  logEmitter.emit("info", CONFIG_DATA_LOOKUP_SUCCESS); // Used for Azure alerts
   logEmitter.emit("functionSuccess", "config-db.connector", "getLocalCouncils");
 
-  return localCouncilUrls;
+  return localCouncils;
 };
 
 /**
- * Retrieves council-specific details
+ * Retrieves council-specific details by ID
  *
- * @param {string} council Name of the council
+ * @param {string} councilID ID of the council
  *
  * @returns {Object} Object with council data
  */
-const getCouncilData = async (council) => {
-  logEmitter.emit("functionCall", "config-db.connector", "getCouncilData");
-
+const getCouncilDataByID = async (councilID) => {
+  logEmitter.emit("functionCall", "config-db.connector", "getCouncilDataByID");
   let councilRecord = null;
-  try {
-    lcConfigCollection = await establishConnectionToCosmos(
-      "config",
-      "localAuthorities"
-    );
 
-    councilRecord = await lcConfigCollection.findOne({
-      local_council_url: council
+  try {
+    if (isNaN(councilID)) {
+      throw new Error("councilID is not a number");
+    }
+
+    laConfigCollection = await establishConnectionToCosmos("config", "localAuthorities");
+
+    councilRecord = await laConfigCollection.findOne({
+      _id: +councilID
     });
 
     if (councilRecord === null) {
-      statusEmitter.emit("incrementCount", "getCouncilDataFailed");
-      statusEmitter.emit(
-        "setStatus",
-        "mostRecentGetCouncilDataSucceeded",
-        false
-      );
-      const newError = new Error();
-      newError.name = "mongoConnectionError";
-      newError.message = "getCouncilData retrieved null";
-      throw newError;
-    } else {
-      statusEmitter.emit("incrementCount", "getCouncilDataSucceeded");
-      statusEmitter.emit(
-        "setStatus",
-        "mostRecentGetCouncilDataSucceeded",
-        true
-      );
+      throw new Error(`LA not found (${councilID})`);
     }
   } catch (err) {
-    statusEmitter.emit("incrementCount", "getCouncilDataFailed");
-    statusEmitter.emit("setStatus", "mostRecentGetCouncilDataSucceeded", false);
-    logEmitter.emit(
-      "functionFail",
-      "config-db.connector",
-      "getCouncilData",
-      err
-    );
-
-    const newError = new Error();
-    newError.name = "mongoConnectionError";
-    newError.message = err.message;
-
-    throw newError;
+    logEmitter.emit("warning", CONFIG_DATA_LOOKUP_FAILURE); // Used for Azure alerts
+    logEmitter.emit("functionFail", "config-db.connector", "getCouncilDataByID", err);
+    throw err;
   }
 
-  logEmitter.emit("functionSuccess", "config-db.connector", "getCouncilData");
+  logEmitter.emit("info", CONFIG_DATA_LOOKUP_SUCCESS); // Used for Azure alerts
+  logEmitter.emit("functionSuccess", "config-db.connector", "getCouncilDataByID");
+
+  return councilRecord;
+};
+
+/**
+ * Retrieves council-specific details by MapIt ID
+ *
+ * @param {string} councilMapitID MapIt ID of the council
+ *
+ * @returns {Object} Object with council data
+ */
+const getCouncilDataByMapitID = async (councilMapitID) => {
+  logEmitter.emit("functionCall", "config-db.connector", "getCouncilDataByMapitID");
+
+  let councilRecord = null;
+  try {
+    laConfigCollection = await establishConnectionToCosmos("config", "localAuthorities");
+
+    councilRecord = await laConfigCollection.findOne({
+      mapit_id: councilMapitID
+    });
+  } catch (err) {
+    logEmitter.emit("warning", CONFIG_DATA_LOOKUP_FAILURE); // Used for Azure alerts
+    logEmitter.emit("functionFail", "config-db.connector", "getCouncilDataByMapitID", err);
+    throw err;
+  }
+
+  if (councilRecord === null) {
+    const error = new Error("getCouncilDataByMapitID retrieved null");
+    logEmitter.emit("functionFail", "config-db.connector", "getCouncilDataByMapitID", error);
+    return false;
+  }
+
+  logEmitter.emit("info", CONFIG_DATA_LOOKUP_SUCCESS); // Used for Azure alerts
+  logEmitter.emit("functionSuccess", "config-db.connector", "getCouncilDataByMapitID");
 
   return councilRecord;
 };
@@ -229,5 +174,6 @@ module.exports = {
   getPathConfigByVersion,
   clearPathConfigCache,
   getLocalCouncils,
-  getCouncilData
+  getCouncilDataByID,
+  getCouncilDataByMapitID
 };

@@ -39,7 +39,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
 
       it("Should set redirectRoute back to partner-name", () => {
-        expect(response.redirectRoute).toBe("/new/cardiff/partner-name");
+        expect(response.redirectRoute).toBe("/new/partner-name?edit=partner-name");
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
@@ -72,7 +72,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
 
       it("Should set redirectRoute back to partner-name", () => {
-        expect(response.redirectRoute).toBe("/new/cardiff/partner-name");
+        expect(response.redirectRoute).toBe("/new/partner-name?edit=partner-name");
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
@@ -96,13 +96,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
           response = await partnerDetailsSave(
             currentPage,
             {
-              partners: [
-                "partner 1",
-                "partner 2",
-                "partner 3",
-                "partner 4",
-                "partner 5"
-              ]
+              partners: ["partner 1", "partner 2", "partner 3", "partner 4", "partner 5"]
             },
             { partner_name: "partner 6" },
             council,
@@ -114,17 +108,11 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
 
       it("Should set redirectRoute back to partner-name", () => {
-        expect(response.redirectRoute).toBe("/new/cardiff/partner-name");
+        expect(response.redirectRoute).toBe("/new/partner-name?edit=partner-name");
       });
       it("Should return cumulativeFullAnswers including the previous answers without the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: [
-            "partner 1",
-            "partner 2",
-            "partner 3",
-            "partner 4",
-            "partner 5"
-          ]
+          partners: ["partner 1", "partner 2", "partner 3", "partner 4", "partner 5"]
         });
       });
 
@@ -154,7 +142,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
 
       it("Should set redirectRoute back to the same page", () => {
-        expect(response.redirectRoute).toBe("/partnership/current");
+        expect(response.redirectRoute).toBe("/partnership/current?edit=partner-name");
       });
 
       it("Should return non empty validatorErrors", () => {
@@ -188,7 +176,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
 
       it("Should set redirectRoute back to the same page", () => {
-        expect(response.redirectRoute).toBe("/partnership/current?id=0");
+        expect(response.redirectRoute).toBe("/partnership/current?id=0&edit=partner-name");
       });
 
       it("Should return non empty validatorErrors", () => {
@@ -222,7 +210,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
 
       it("Should set redirectRoute back to partner-name", () => {
-        expect(response.redirectRoute).toBe("/new/cardiff/partner-name");
+        expect(response.redirectRoute).toBe("/new/partner-name?edit=partner-name");
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner without additional whitespace", () => {
         expect(response.cumulativeFullAnswers).toEqual({
@@ -287,9 +275,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
 
       it("Should set redirectRoute back to partner-name in edit mode", () => {
-        expect(response.redirectRoute).toBe(
-          "/new/cardiff/partner-name?edit=partner-name"
-        );
+        expect(response.redirectRoute).toBe("/new/partner-name?edit=partner-name");
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
@@ -322,9 +308,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
 
       it("Should set redirectRoute back to partner-name in edit mode", () => {
-        expect(response.redirectRoute).toBe(
-          "/new/cardiff/partner-name?edit=partner-name"
-        );
+        expect(response.redirectRoute).toBe("/new/partner-name?edit=partner-name");
       });
       it("Should return cumulativeFullAnswers including the previous answers and the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
@@ -348,13 +332,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
           response = await partnerDetailsSave(
             currentPage,
             {
-              partners: [
-                "partner 1",
-                "partner 2",
-                "partner 3",
-                "partner 4",
-                "partner 5"
-              ]
+              partners: ["partner 1", "partner 2", "partner 3", "partner 4", "partner 5"]
             },
             { partner_name: "partner 6" },
             council,
@@ -366,19 +344,11 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
 
       it("Should set redirectRoute back to partner-name in edit mode", () => {
-        expect(response.redirectRoute).toBe(
-          "/new/cardiff/partner-name?edit=partner-name"
-        );
+        expect(response.redirectRoute).toBe("/new/partner-name?edit=partner-name");
       });
       it("Should return cumulativeFullAnswers including the previous answers without the new partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
-          partners: [
-            "partner 1",
-            "partner 2",
-            "partner 3",
-            "partner 4",
-            "partner 5"
-          ]
+          partners: ["partner 1", "partner 2", "partner 3", "partner 4", "partner 5"]
         });
       });
 
@@ -408,9 +378,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
 
       it("Should set redirectRoute back to the same page in edit mode", () => {
-        expect(response.redirectRoute).toBe(
-          "/partnership/current?edit=partner-name"
-        );
+        expect(response.redirectRoute).toBe("/partnership/current?edit=partner-name");
       });
 
       it("Should return non empty validatorErrors", () => {
@@ -445,9 +413,7 @@ describe("Partner-details controller: partnerDetailsSave()", () => {
       });
 
       it("Should set redirectRoute back to the same page", () => {
-        expect(response.redirectRoute).toBe(
-          "/partnership/current?id=0&edit=partner-name"
-        );
+        expect(response.redirectRoute).toBe("/partnership/current?id=0&edit=partner-name");
       });
 
       it("Should return non empty validatorErrors", () => {
@@ -516,7 +482,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
 
       it("Should set redirectRoute to partner-name page", () => {
-        expect(response.redirectRoute).toBe("/new/cardiff/partner-name");
+        expect(response.redirectRoute).toBe("/new/partner-name?edit=partner-name");
       });
       it("Should return cumulativeFullAnswers including the previous answers without the deleted partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
@@ -547,7 +513,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
 
       it("Should set redirectRoute to partner-name page", () => {
-        expect(response.redirectRoute).toBe("/new/cardiff/partner-name");
+        expect(response.redirectRoute).toBe("/new/partner-name?edit=partner-name");
       });
       it("Should return cumulativeFullAnswers including the previous answers wwith no changes", () => {
         expect(response.cumulativeFullAnswers).toEqual({
@@ -564,19 +530,14 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       let response;
       beforeEach(async () => {
         try {
-          response = await partnerDetailsDelete(
-            { partners: [] },
-            { index: 0 },
-            council,
-            editMode
-          );
+          response = await partnerDetailsDelete({ partners: [] }, { index: 0 }, council, editMode);
         } catch (err) {
           response = err;
         }
       });
 
       it("Should set redirectRoute to partner-name page", () => {
-        expect(response.redirectRoute).toBe("/new/cardiff/partner-name");
+        expect(response.redirectRoute).toBe("/new/partner-name?edit=partner-name");
       });
       it("Should return cumulativeFullAnswers still with the empty array", () => {
         expect(response.cumulativeFullAnswers).toEqual({
@@ -630,9 +591,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
 
       it("Should set redirectRoute to partner-name in edit mode", () => {
-        expect(response.redirectRoute).toBe(
-          "/new/cardiff/partner-name?edit=partner-name"
-        );
+        expect(response.redirectRoute).toBe("/new/partner-name?edit=partner-name");
       });
       it("Should return cumulativeFullAnswers including the previous answers without the deleted partner", () => {
         expect(response.cumulativeFullAnswers).toEqual({
@@ -663,9 +622,7 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
       });
 
       it("Should set redirectRoute to partner-name page in edit mode", () => {
-        expect(response.redirectRoute).toBe(
-          "/new/cardiff/partner-name?edit=partner-name"
-        );
+        expect(response.redirectRoute).toBe("/new/partner-name?edit=partner-name");
       });
       it("Should return cumulativeFullAnswers including the previous answers with no changes", () => {
         expect(response.cumulativeFullAnswers).toEqual({
@@ -686,21 +643,14 @@ describe("Partner-details controller: partnerDetailsDelete()", () => {
         }));
 
         try {
-          response = await partnerDetailsDelete(
-            { partners: [] },
-            { index: 0 },
-            council,
-            editMode
-          );
+          response = await partnerDetailsDelete({ partners: [] }, { index: 0 }, council, editMode);
         } catch (err) {
           response = err;
         }
       });
 
       it("Should set redirectRoute to the partner-name page in edit mode", () => {
-        expect(response.redirectRoute).toBe(
-          "/new/cardiff/partner-name?edit=partner-name"
-        );
+        expect(response.redirectRoute).toBe("/new/partner-name?edit=partner-name");
       });
       it("Should return cumulativeFullAnswers still with the empty array", () => {
         expect(response.cumulativeFullAnswers).toEqual({
@@ -743,7 +693,7 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
 
       it("Should set redirectRoute back to the main partnerhsip contact page", () => {
         expect(response.redirectRoute).toBe(
-          "/new/cardiff/main-partnership-contact"
+          "/new/main-partnership-contact?edit=main-partnership-contact"
         );
       });
 
@@ -768,7 +718,7 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
       });
 
       it("Should set redirectRoute back to the main partnerhsip contact page", () => {
-        expect(response.redirectRoute).toBe("/new/cardiff/current");
+        expect(response.redirectRoute).toBe("/new/current");
       });
 
       it("Should return empty validatorErrors", () => {
@@ -833,9 +783,7 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
       });
 
       it("Should set redirectRoute to the registration summary page", () => {
-        expect(response.redirectRoute).toBe(
-          "/new/cardiff/registration-summary"
-        );
+        expect(response.redirectRoute).toBe("/new/registration-summary");
       });
       it("Should return empty validatorErrors", () => {
         expect(response.validatorErrors).toEqual({});
@@ -862,7 +810,7 @@ describe("Partner-details controller: partnerDetailsContinue()", () => {
 
       it("Should set redirectRoute to the main partnerhsip contact page in edit mode", () => {
         expect(response.redirectRoute).toBe(
-          "/new/cardiff/main-partnership-contact?edit=main-partnership-contact"
+          "/new/main-partnership-contact?edit=main-partnership-contact"
         );
       });
     });

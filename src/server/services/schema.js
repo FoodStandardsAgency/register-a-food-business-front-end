@@ -43,6 +43,19 @@ const schema = {
       }
     }
   },
+  "/la-selector": {
+    type: "object",
+    properties: {
+      local_authority: {
+        type: "string",
+        validation: validateMandatoryString
+      }
+    }
+  },
+  "/la-established": {
+    type: "object",
+    properties: {}
+  },
   "/operator-type": {
     type: "object",
     properties: {
@@ -443,10 +456,7 @@ const schema = {
     },
     oneOf: [
       {
-        anyOf: [
-          { required: ["directly_import"] },
-          { required: ["directly_export"] }
-        ]
+        anyOf: [{ required: ["directly_import"] }, { required: ["directly_export"] }]
       },
       { required: ["no_import_export"] }
     ]

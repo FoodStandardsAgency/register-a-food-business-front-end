@@ -1,19 +1,13 @@
 jest.mock("axios");
-jest.mock("./registration.double");
 
 const axios = require("axios");
 axios.defaults.validateStatus = () => true;
 const { sendRequest } = require("./registration.connector");
-const { registrationDouble } = require("./registration.double");
 
 const testSubmissionData = { example: "value" };
 const testRegDataVersion = "1.0.0";
 
 describe("Function: sendRequest", () => {
-  beforeEach(() => {
-    process.env.DOUBLE_MODE = "false";
-  });
-
   let result;
 
   describe("When request succeeds", () => {
@@ -47,24 +41,6 @@ describe("Function: sendRequest", () => {
 
     it("Should catch the error", () => {
       expect(result.message).toBe("request error");
-    });
-  });
-
-  describe("When DOUBLE_MODE is set", () => {
-    beforeEach(async () => {
-      process.env.DOUBLE_MODE = true;
-      registrationDouble.mockImplementation(() => {
-        return "double response";
-      });
-      result = await sendRequest(testSubmissionData, testRegDataVersion);
-    });
-
-    afterEach(() => {
-      process.env.DOUBLE_MODE = false;
-    });
-
-    it("should return double response", () => {
-      expect(result).toBe("double response");
     });
   });
 });

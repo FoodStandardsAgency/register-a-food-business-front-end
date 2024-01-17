@@ -79,9 +79,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         testAddressLookups,
         testLcUrl
       );
-      expect(
-        result.registration.establishment.operator.operator_first_name
-      ).toBeDefined();
+      expect(result.registration.establishment.operator.operator_first_name).toBeDefined();
 
       expect(result.local_council_url).toBe(testLcUrl);
     });
@@ -100,9 +98,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.operator.operator_type
-          ).toEqual(
+          expect(result.registration.establishment.operator.operator_type).toEqual(
             operatorTypeEnum[registrationRoleOnly.registration_role].key
           );
         });
@@ -114,9 +110,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.operator.registration_role
-          ).toBe(undefined);
+          expect(result.registration.establishment.operator.registration_role).toBe(undefined);
         });
       });
 
@@ -134,9 +128,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.operator.operator_type
-          ).toEqual(
+          expect(result.registration.establishment.operator.operator_type).toEqual(
             operatorTypeEnum[registrationRoleAndOperatorType.operator_type].key
           );
         });
@@ -150,12 +142,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
 
         it("throws an error", () => {
           expect(() =>
-            transformAnswersForSubmit(
-              data,
-              testLanguage,
-              testAddressLookups,
-              testLcUrl
-            )
+            transformAnswersForSubmit(data, testLanguage, testAddressLookups, testLcUrl)
           ).toThrow(Error);
         });
       });
@@ -166,18 +153,11 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         business_type: "Food ordering service (process)"
       };
       it("should assign business_type enum key and business_type_search_term to the result", () => {
-        result = transformAnswersForSubmit(
-          answers,
-          testLanguage,
-          testAddressLookups,
-          testLcUrl
+        result = transformAnswersForSubmit(answers, testLanguage, testAddressLookups, testLcUrl);
+        expect(result.registration.establishment.activities.business_type).toBe("030");
+        expect(result.registration.establishment.activities.business_type_search_term).toBe(
+          "Process"
         );
-        expect(result.registration.establishment.activities.business_type).toBe(
-          "030"
-        );
-        expect(
-          result.registration.establishment.activities.business_type_search_term
-        ).toBe("Process");
       });
 
       describe("given that business_type is not a defined enum", () => {
@@ -185,15 +165,8 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
           business_type: "Undefined business type"
         };
         it("should assign an empty string to the result", () => {
-          result = transformAnswersForSubmit(
-            answers,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(
-            result.registration.establishment.activities.business_type
-          ).toBe("");
+          result = transformAnswersForSubmit(answers, testLanguage, testAddressLookups, testLcUrl);
+          expect(result.registration.establishment.activities.business_type).toBe("");
         });
       });
     });
@@ -211,9 +184,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.activities.customer_type
-          ).toBe(customerTypeEnum.BOTH.key);
+          expect(result.registration.establishment.activities.customer_type).toBe(
+            customerTypeEnum.BOTH.key
+          );
         });
       });
 
@@ -228,9 +201,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.activities.customer_type
-          ).toBe(customerTypeEnum.OTHER_BUSINESSES.key);
+          expect(result.registration.establishment.activities.customer_type).toBe(
+            customerTypeEnum.OTHER_BUSINESSES.key
+          );
         });
       });
 
@@ -246,9 +219,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.activities.customer_type
-          ).toBe(customerTypeEnum.END_CONSUMER.key);
+          expect(result.registration.establishment.activities.customer_type).toBe(
+            customerTypeEnum.END_CONSUMER.key
+          );
         });
       });
 
@@ -261,9 +234,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.activities.customer_type
-          ).toBe(null);
+          expect(result.registration.establishment.activities.customer_type).toBe(null);
         });
       });
     });
@@ -284,10 +255,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.activities
-              .import_export_activities
-          ).toBe(importExportEnum.BOTH.key);
+          expect(result.registration.establishment.activities.import_export_activities).toBe(
+            importExportEnum.BOTH.key
+          );
         });
       });
       describe("given directly_import and directly_export are true", () => {
@@ -302,10 +272,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.activities
-              .import_export_activities
-          ).toBe(importExportEnum.BOTH.key);
+          expect(result.registration.establishment.activities.import_export_activities).toBe(
+            importExportEnum.BOTH.key
+          );
         });
       });
       describe("given directly_import and no_import_export are true", () => {
@@ -320,10 +289,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.activities
-              .import_export_activities
-          ).toBe(importExportEnum.IMPORT.key);
+          expect(result.registration.establishment.activities.import_export_activities).toBe(
+            importExportEnum.IMPORT.key
+          );
         });
       });
       describe("given directly_export and no_import_export are true", () => {
@@ -338,10 +306,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.activities
-              .import_export_activities
-          ).toBe(importExportEnum.EXPORT.key);
+          expect(result.registration.establishment.activities.import_export_activities).toBe(
+            importExportEnum.EXPORT.key
+          );
         });
       });
       describe("given only directly_export is true", () => {
@@ -355,10 +322,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.activities
-              .import_export_activities
-          ).toBe(importExportEnum.EXPORT.key);
+          expect(result.registration.establishment.activities.import_export_activities).toBe(
+            importExportEnum.EXPORT.key
+          );
         });
       });
       describe("given only directly_import is true", () => {
@@ -372,10 +338,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.activities
-              .import_export_activities
-          ).toBe(importExportEnum.IMPORT.key);
+          expect(result.registration.establishment.activities.import_export_activities).toBe(
+            importExportEnum.IMPORT.key
+          );
         });
       });
       describe("given only no_import_export is true", () => {
@@ -389,10 +354,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.activities
-              .import_export_activities
-          ).toBe(importExportEnum.NONE.key);
+          expect(result.registration.establishment.activities.import_export_activities).toBe(
+            importExportEnum.NONE.key
+          );
         });
       });
       describe("given all import export options are false", () => {
@@ -408,10 +372,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testAddressLookups,
             testLcUrl
           );
-          expect(
-            result.registration.establishment.activities
-              .import_export_activities
-          ).toBe(null);
+          expect(result.registration.establishment.activities.import_export_activities).toBe(null);
         });
       });
     });
@@ -422,33 +383,14 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
           opening_days_start: "Every day"
         };
         it("should set every day to true", () => {
-          result = transformAnswersForSubmit(
-            everyDay,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(
-            result.registration.establishment.activities.opening_day_monday
-          ).toBe(true);
-          expect(
-            result.registration.establishment.activities.opening_day_tuesday
-          ).toBe(true);
-          expect(
-            result.registration.establishment.activities.opening_day_wednesday
-          ).toBe(true);
-          expect(
-            result.registration.establishment.activities.opening_day_thursday
-          ).toBe(true);
-          expect(
-            result.registration.establishment.activities.opening_day_friday
-          ).toBe(true);
-          expect(
-            result.registration.establishment.activities.opening_day_saturday
-          ).toBe(true);
-          expect(
-            result.registration.establishment.activities.opening_day_sunday
-          ).toBe(true);
+          result = transformAnswersForSubmit(everyDay, testLanguage, testAddressLookups, testLcUrl);
+          expect(result.registration.establishment.activities.opening_day_monday).toBe(true);
+          expect(result.registration.establishment.activities.opening_day_tuesday).toBe(true);
+          expect(result.registration.establishment.activities.opening_day_wednesday).toBe(true);
+          expect(result.registration.establishment.activities.opening_day_thursday).toBe(true);
+          expect(result.registration.establishment.activities.opening_day_friday).toBe(true);
+          expect(result.registration.establishment.activities.opening_day_saturday).toBe(true);
+          expect(result.registration.establishment.activities.opening_day_sunday).toBe(true);
         });
       });
 
@@ -459,33 +401,14 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
           opening_day_wednesday: "Wednesday"
         };
         it("should set any day passed through to true and the rest to false", () => {
-          result = transformAnswersForSubmit(
-            someDays,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(
-            result.registration.establishment.activities.opening_day_monday
-          ).toBe(true);
-          expect(
-            result.registration.establishment.activities.opening_day_tuesday
-          ).toBe(true);
-          expect(
-            result.registration.establishment.activities.opening_day_wednesday
-          ).toBe(true);
-          expect(
-            result.registration.establishment.activities.opening_day_thursday
-          ).toBe(false);
-          expect(
-            result.registration.establishment.activities.opening_day_friday
-          ).toBe(false);
-          expect(
-            result.registration.establishment.activities.opening_day_saturday
-          ).toBe(false);
-          expect(
-            result.registration.establishment.activities.opening_day_sunday
-          ).toBe(false);
+          result = transformAnswersForSubmit(someDays, testLanguage, testAddressLookups, testLcUrl);
+          expect(result.registration.establishment.activities.opening_day_monday).toBe(true);
+          expect(result.registration.establishment.activities.opening_day_tuesday).toBe(true);
+          expect(result.registration.establishment.activities.opening_day_wednesday).toBe(true);
+          expect(result.registration.establishment.activities.opening_day_thursday).toBe(false);
+          expect(result.registration.establishment.activities.opening_day_friday).toBe(false);
+          expect(result.registration.establishment.activities.opening_day_saturday).toBe(false);
+          expect(result.registration.establishment.activities.opening_day_sunday).toBe(false);
         });
       });
     });
@@ -503,33 +426,16 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         opening_hours_sunday: ""
       };
       it("sets them to undefined", () => {
-        result = transformAnswersForSubmit(
-          emptyHours,
-          testLanguage,
-          testAddressLookups,
-          testLcUrl
+        result = transformAnswersForSubmit(emptyHours, testLanguage, testAddressLookups, testLcUrl);
+        expect(result.registration.establishment.activities.opening_hours_monday).toBe(undefined);
+        expect(result.registration.establishment.activities.opening_hours_tuesday).toBe(undefined);
+        expect(result.registration.establishment.activities.opening_hours_wednesday).toBe(
+          undefined
         );
-        expect(
-          result.registration.establishment.activities.opening_hours_monday
-        ).toBe(undefined);
-        expect(
-          result.registration.establishment.activities.opening_hours_tuesday
-        ).toBe(undefined);
-        expect(
-          result.registration.establishment.activities.opening_hours_wednesday
-        ).toBe(undefined);
-        expect(
-          result.registration.establishment.activities.opening_hours_thursday
-        ).toBe(undefined);
-        expect(
-          result.registration.establishment.activities.opening_hours_friday
-        ).toBe(undefined);
-        expect(
-          result.registration.establishment.activities.opening_hours_saturday
-        ).toBe(undefined);
-        expect(
-          result.registration.establishment.activities.opening_hours_sunday
-        ).toBe(undefined);
+        expect(result.registration.establishment.activities.opening_hours_thursday).toBe(undefined);
+        expect(result.registration.establishment.activities.opening_hours_friday).toBe(undefined);
+        expect(result.registration.establishment.activities.opening_hours_saturday).toBe(undefined);
+        expect(result.registration.establishment.activities.opening_hours_sunday).toBe(undefined);
       });
     });
 
@@ -552,27 +458,21 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
           testAddressLookups,
           testLcUrl
         );
-        expect(
-          result.registration.establishment.activities.opening_hours_monday
-        ).toEqual("monday");
-        expect(
-          result.registration.establishment.activities.opening_hours_tuesday
-        ).toEqual("tuesday");
-        expect(
-          result.registration.establishment.activities.opening_hours_wednesday
-        ).toEqual("wednesday");
-        expect(
-          result.registration.establishment.activities.opening_hours_thursday
-        ).toEqual("thursday");
-        expect(
-          result.registration.establishment.activities.opening_hours_friday
-        ).toEqual("friday");
-        expect(
-          result.registration.establishment.activities.opening_hours_saturday
-        ).toEqual("saturday");
-        expect(
-          result.registration.establishment.activities.opening_hours_sunday
-        ).toEqual("sunday");
+        expect(result.registration.establishment.activities.opening_hours_monday).toEqual("monday");
+        expect(result.registration.establishment.activities.opening_hours_tuesday).toEqual(
+          "tuesday"
+        );
+        expect(result.registration.establishment.activities.opening_hours_wednesday).toEqual(
+          "wednesday"
+        );
+        expect(result.registration.establishment.activities.opening_hours_thursday).toEqual(
+          "thursday"
+        );
+        expect(result.registration.establishment.activities.opening_hours_friday).toEqual("friday");
+        expect(result.registration.establishment.activities.opening_hours_saturday).toEqual(
+          "saturday"
+        );
+        expect(result.registration.establishment.activities.opening_hours_sunday).toEqual("sunday");
       });
     });
   });
@@ -642,7 +542,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         }
       ]
     };
-    describe("when populating tascomi address fields", () => {
+    describe("when populating address fields", () => {
       describe("when operator premise does not exist", () => {
         const testAddressLookupsNoPremise = {
           operator_postcode_find: [
@@ -696,9 +596,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testLanguage,
             testAddressLookupsNoPremise
           );
-          expect(
-            response.registration.establishment.operator.operator_first_line
-          ).toBe(correctResponse.operator_first_line);
+          expect(response.registration.establishment.operator.operator_first_line).toBe(
+            correctResponse.operator_first_line
+          );
         });
       });
 
@@ -755,9 +655,9 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testLanguage,
             testAddressLookupsNoPremise
           );
-          expect(
-            response.registration.establishment.premise.establishment_first_line
-          ).toBe(correctResponse.establishment_first_line);
+          expect(response.registration.establishment.premise.establishment_first_line).toBe(
+            correctResponse.establishment_first_line
+          );
         });
       });
     });
@@ -781,9 +681,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
           testLanguage,
           testAddressLookups
         );
-        expect(response.registration.establishment.operator).toMatchObject(
-          correctResponse
-        );
+        expect(response.registration.establishment.operator).toMatchObject(correctResponse);
       });
 
       describe("given that operator_address_line_1 already exists (showing that the manual address page has been filled out)", () => {
@@ -804,9 +702,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testLanguage,
             testAddressLookups
           );
-          expect(response.registration.establishment.operator).toMatchObject(
-            manualAddressDataOnly
-          );
+          expect(response.registration.establishment.operator).toMatchObject(manualAddressDataOnly);
         });
       });
     });
@@ -830,9 +726,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
           testLanguage,
           testAddressLookups
         );
-        expect(response.registration.establishment.premise).toMatchObject(
-          correctResponse
-        );
+        expect(response.registration.establishment.premise).toMatchObject(correctResponse);
       });
 
       describe("given that establishment_address_line_1 already exists (showing that the manual address page has been filled out)", () => {
@@ -853,9 +747,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testLanguage,
             testAddressLookups
           );
-          expect(response.registration.establishment.premise).toMatchObject(
-            manualAddressDataOnly
-          );
+          expect(response.registration.establishment.premise).toMatchObject(manualAddressDataOnly);
         });
       });
     });
@@ -889,15 +781,15 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testLanguage,
             testAddressLookupData
           );
-          expect(
-            response.registration.establishment.operator.operator_address_line_1
-          ).toBe(correctResponse.operator_address_line_1);
-          expect(
-            response.registration.establishment.operator.operator_address_line_2
-          ).toBe(correctResponse.operator_address_line_2);
-          expect(
-            response.registration.establishment.operator.operator_address_line_3
-          ).toBe(correctResponse.operator_address_line_3);
+          expect(response.registration.establishment.operator.operator_address_line_1).toBe(
+            correctResponse.operator_address_line_1
+          );
+          expect(response.registration.establishment.operator.operator_address_line_2).toBe(
+            correctResponse.operator_address_line_2
+          );
+          expect(response.registration.establishment.operator.operator_address_line_3).toBe(
+            correctResponse.operator_address_line_3
+          );
         });
       });
 
@@ -929,15 +821,15 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testLanguage,
             testAddressLookupData
           );
-          expect(
-            response.registration.establishment.operator.operator_address_line_1
-          ).toBe(correctResponse.operator_address_line_1);
-          expect(
-            response.registration.establishment.operator.operator_address_line_2
-          ).toBe(correctResponse.operator_address_line_2);
-          expect(
-            response.registration.establishment.operator.operator_address_line_3
-          ).toBe(correctResponse.operator_address_line_3);
+          expect(response.registration.establishment.operator.operator_address_line_1).toBe(
+            correctResponse.operator_address_line_1
+          );
+          expect(response.registration.establishment.operator.operator_address_line_2).toBe(
+            correctResponse.operator_address_line_2
+          );
+          expect(response.registration.establishment.operator.operator_address_line_3).toBe(
+            correctResponse.operator_address_line_3
+          );
         });
       });
 
@@ -969,15 +861,15 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testLanguage,
             testAddressLookupData
           );
-          expect(
-            response.registration.establishment.operator.operator_address_line_1
-          ).toBe(correctResponse.operator_address_line_1);
-          expect(
-            response.registration.establishment.operator.operator_address_line_2
-          ).toBe(correctResponse.operator_address_line_2);
-          expect(
-            response.registration.establishment.operator.operator_address_line_3
-          ).toBe(correctResponse.operator_address_line_3);
+          expect(response.registration.establishment.operator.operator_address_line_1).toBe(
+            correctResponse.operator_address_line_1
+          );
+          expect(response.registration.establishment.operator.operator_address_line_2).toBe(
+            correctResponse.operator_address_line_2
+          );
+          expect(response.registration.establishment.operator.operator_address_line_3).toBe(
+            correctResponse.operator_address_line_3
+          );
         });
       });
 
@@ -1009,15 +901,15 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testLanguage,
             testAddressLookupData
           );
-          expect(
-            response.registration.establishment.operator.operator_address_line_1
-          ).toBe(correctResponse.operator_address_line_1);
-          expect(
-            response.registration.establishment.operator.operator_address_line_2
-          ).toBe(correctResponse.operator_address_line_2);
-          expect(
-            response.registration.establishment.operator.operator_address_line_3
-          ).toBe(correctResponse.operator_address_line_3);
+          expect(response.registration.establishment.operator.operator_address_line_1).toBe(
+            correctResponse.operator_address_line_1
+          );
+          expect(response.registration.establishment.operator.operator_address_line_2).toBe(
+            correctResponse.operator_address_line_2
+          );
+          expect(response.registration.establishment.operator.operator_address_line_3).toBe(
+            correctResponse.operator_address_line_3
+          );
         });
       });
     });
@@ -1051,18 +943,15 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testLanguage,
             testAddressLookupData
           );
-          expect(
-            response.registration.establishment.premise
-              .establishment_address_line_1
-          ).toBe(correctResponse.establishment_address_line_1);
-          expect(
-            response.registration.establishment.premise
-              .establishment_address_line_2
-          ).toBe(correctResponse.establishment_address_line_2);
-          expect(
-            response.registration.establishment.premise
-              .establishment_address_line_3
-          ).toBe(correctResponse.establishment_address_line_3);
+          expect(response.registration.establishment.premise.establishment_address_line_1).toBe(
+            correctResponse.establishment_address_line_1
+          );
+          expect(response.registration.establishment.premise.establishment_address_line_2).toBe(
+            correctResponse.establishment_address_line_2
+          );
+          expect(response.registration.establishment.premise.establishment_address_line_3).toBe(
+            correctResponse.establishment_address_line_3
+          );
         });
       });
 
@@ -1094,18 +983,15 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
             testLanguage,
             testAddressLookupData
           );
-          expect(
-            response.registration.establishment.premise
-              .establishment_address_line_1
-          ).toBe(correctResponse.establishment_address_line_1);
-          expect(
-            response.registration.establishment.premise
-              .establishment_address_line_2
-          ).toBe(correctResponse.establishment_address_line_2);
-          expect(
-            response.registration.establishment.premise
-              .establishment_address_line_3
-          ).toBe(correctResponse.establishment_address_line_3);
+          expect(response.registration.establishment.premise.establishment_address_line_1).toBe(
+            correctResponse.establishment_address_line_1
+          );
+          expect(response.registration.establishment.premise.establishment_address_line_2).toBe(
+            correctResponse.establishment_address_line_2
+          );
+          expect(response.registration.establishment.premise.establishment_address_line_3).toBe(
+            correctResponse.establishment_address_line_3
+          );
         });
       });
     });
@@ -1138,18 +1024,15 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
           testLanguage,
           testAddressLookupData
         );
-        expect(
-          response.registration.establishment.premise
-            .establishment_address_line_1
-        ).toBe(correctResponse.establishment_address_line_1);
-        expect(
-          response.registration.establishment.premise
-            .establishment_address_line_2
-        ).toBe(correctResponse.establishment_address_line_2);
-        expect(
-          response.registration.establishment.premise
-            .establishment_address_line_3
-        ).toBe(correctResponse.establishment_address_line_3);
+        expect(response.registration.establishment.premise.establishment_address_line_1).toBe(
+          correctResponse.establishment_address_line_1
+        );
+        expect(response.registration.establishment.premise.establishment_address_line_2).toBe(
+          correctResponse.establishment_address_line_2
+        );
+        expect(response.registration.establishment.premise.establishment_address_line_3).toBe(
+          correctResponse.establishment_address_line_3
+        );
       });
     });
 
@@ -1181,18 +1064,15 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
           testLanguage,
           testAddressLookupData
         );
-        expect(
-          response.registration.establishment.premise
-            .establishment_address_line_1
-        ).toBe(correctResponse.establishment_address_line_1);
-        expect(
-          response.registration.establishment.premise
-            .establishment_address_line_2
-        ).toBe(correctResponse.establishment_address_line_2);
-        expect(
-          response.registration.establishment.premise
-            .establishment_address_line_3
-        ).toBe(correctResponse.establishment_address_line_3);
+        expect(response.registration.establishment.premise.establishment_address_line_1).toBe(
+          correctResponse.establishment_address_line_1
+        );
+        expect(response.registration.establishment.premise.establishment_address_line_2).toBe(
+          correctResponse.establishment_address_line_2
+        );
+        expect(response.registration.establishment.premise.establishment_address_line_3).toBe(
+          correctResponse.establishment_address_line_3
+        );
       });
     });
   });
@@ -1204,9 +1084,7 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
       testCumulativeAnswers,
       testAddressLookups
     );
-    expect(
-      result.registration.establishment.operator.operator_company_name
-    ).not.toBeDefined();
+    expect(result.registration.establishment.operator.operator_company_name).not.toBeDefined();
   });
 
   it("should set primary contact for partners", () => {
@@ -1320,8 +1198,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         it("the result contains a field called operator_type that equals the operatorTypeEnum value using the passed operator_type as the key", () => {
           result = transformAnswersForSummary(registrationRoleAndOperatorType);
           expect(result.operator_type).toEqual(
-            operatorTypeEnum[registrationRoleAndOperatorType.operator_type]
-              .value.en
+            operatorTypeEnum[registrationRoleAndOperatorType.operator_type].value.en
           );
         });
 
@@ -1337,12 +1214,8 @@ describe("data-transform.service transformAnswersForSummary()", () => {
 
             result = transformAnswersForSummary(data);
 
-            expect(result.operator_type).toBe(
-              operatorTypeEnum[operatorType].value.en
-            );
-            expect(result.operator_type).toContain(
-              "(registered by a representative)"
-            );
+            expect(result.operator_type).toBe(operatorTypeEnum[operatorType].value.en);
+            expect(result.operator_type).toContain("(registered by a representative)");
           });
         });
       });
@@ -1397,9 +1270,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
         it("should return customerTypeEnum key: Other businesses", () => {
           result = transformAnswersForSummary(supplyDirectlyOnly);
-          expect(result.customer_type).toBe(
-            customerTypeEnum.OTHER_BUSINESSES.value.en
-          );
+          expect(result.customer_type).toBe(customerTypeEnum.OTHER_BUSINESSES.value.en);
         });
       });
 
@@ -1410,9 +1281,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
 
         it("should return customerTypeEnum key: End consumer", () => {
           result = transformAnswersForSummary(supplyDirectlyOnly);
-          expect(result.customer_type).toBe(
-            customerTypeEnum.END_CONSUMER.value.en
-          );
+          expect(result.customer_type).toBe(customerTypeEnum.END_CONSUMER.value.en);
         });
       });
 
@@ -1436,9 +1305,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
         it("should set import_export_activities to the importExportEnum value: Directly import and export", () => {
           result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(
-            importExportEnum.BOTH.value.en
-          );
+          expect(result.import_export_activities).toBe(importExportEnum.BOTH.value.en);
         });
       });
       describe("given directly_import and directly_export are true", () => {
@@ -1448,9 +1315,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
         it("should set import_export_activities to the importExportEnum key: Directly import and export", () => {
           result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(
-            importExportEnum.BOTH.value.en
-          );
+          expect(result.import_export_activities).toBe(importExportEnum.BOTH.value.en);
         });
       });
       describe("given directly_import and no_import_export are true", () => {
@@ -1460,9 +1325,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
         it("should set import_export_activities to the importExportEnum key: Directly import", () => {
           result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(
-            importExportEnum.IMPORT.value.en
-          );
+          expect(result.import_export_activities).toBe(importExportEnum.IMPORT.value.en);
         });
       });
       describe("given directly_export and no_import_export are true", () => {
@@ -1472,9 +1335,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
         it("should set import_export_activities to the importExportEnum key: Directly export", () => {
           result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(
-            importExportEnum.EXPORT.value.en
-          );
+          expect(result.import_export_activities).toBe(importExportEnum.EXPORT.value.en);
         });
       });
       describe("given only directly_export is true", () => {
@@ -1483,9 +1344,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
         it("should set import_export_activities to the importExportEnum key: Directly export", () => {
           result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(
-            importExportEnum.EXPORT.value.en
-          );
+          expect(result.import_export_activities).toBe(importExportEnum.EXPORT.value.en);
         });
       });
       describe("given only directly_import is true", () => {
@@ -1494,9 +1353,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
         it("should set import_export_activities to the importExportEnum key: Directly import", () => {
           result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(
-            importExportEnum.IMPORT.value.en
-          );
+          expect(result.import_export_activities).toBe(importExportEnum.IMPORT.value.en);
         });
       });
       describe("given only no_import_export is true", () => {
@@ -1505,9 +1362,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
         it("should set import_export_activities to the importExportEnum key: None", () => {
           result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(
-            importExportEnum.NONE.value.en
-          );
+          expect(result.import_export_activities).toBe(importExportEnum.NONE.value.en);
         });
       });
       describe("given all import export options are false", () => {
@@ -1612,9 +1467,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
         it("should return the establishmentTypeEnum value", () => {
           result = transformAnswersForSummary(establishmentType);
-          expect(result.establishment_type).toBe(
-            establishmentTypeEnum.COMMERCIAL.value.en
-          );
+          expect(result.establishment_type).toBe(establishmentTypeEnum.COMMERCIAL.value.en);
         });
       });
 
@@ -1656,9 +1509,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         it("should return them unchanged", () => {
           result = transformAnswersForSummary(partners);
           expect(result.partners).toStrictEqual(partners.partners);
-          expect(result.main_partnership_contact).toBe(
-            partners.main_partnership_contact
-          );
+          expect(result.main_partnership_contact).toBe(partners.main_partnership_contact);
         });
       });
     });
@@ -1687,11 +1538,7 @@ describe("data-transform.service separateBracketsFromBusinessType()", () => {
   describe("given a valid input without brackets", () => {
     it("should return the original input text but without any excess spaces", () => {
       // Arrange
-      const goodTypes = [
-        "Butcher",
-        "Fruit and vegetable farm",
-        "Example with space at end  "
-      ];
+      const goodTypes = ["Butcher", "Fruit and vegetable farm", "Example with space at end  "];
       //Act
       goodTypes.forEach((text) => {
         result = separateBracketsFromBusinessType(text);
@@ -1704,13 +1551,9 @@ describe("data-transform.service separateBracketsFromBusinessType()", () => {
   describe("given a valid input with brackets", () => {
     it("should return the input text but without the exact section contained in brackets", () => {
       //Act
-      result = separateBracketsFromBusinessType(
-        "Butcher (example search term with space after) "
-      );
+      result = separateBracketsFromBusinessType("Butcher (example search term with space after) ");
       expect(result.business_type).toBe("Butcher");
-      expect(result.business_type_search_term).toBe(
-        "Example search term with space after"
-      );
+      expect(result.business_type_search_term).toBe("Example search term with space after");
     });
   });
 

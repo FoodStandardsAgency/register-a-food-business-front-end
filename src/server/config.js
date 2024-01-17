@@ -3,14 +3,12 @@ require("dotenv").config();
 module.exports = {
   QA_KEY: process.env.QA_KEY,
   SUBMIT_URL:
-    process.env.SUBMIT_URL ||
-    "http://localhost:4000/api/registration/createNewRegistration",
+    process.env.SUBMIT_URL || "http://localhost:4000/api/registration/createNewRegistration",
   ADDRESS_API_URL_BASE:
     "https://ws.postcoder.com/pcw/" +
     (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
     "/pafaddressbase",
-  ADDRESS_API_URL_QUERY:
-    "format=json&lines=3&addtags=uprn&exclude=organisation",
+  ADDRESS_API_URL_QUERY: "format=json&lines=3&addtags=uprn&exclude=organisation",
   ADDRESS_API_URL_BASE_STANDARD:
     "https://ws.postcoder.com/pcw/" +
     (process.env.ADDRESS_API_KEY || "PCW45-12345-12345-1234X") +
@@ -29,5 +27,7 @@ module.exports = {
   EDGE_SUPPORTED_SINCE: process.env.EDGE_SUPPORTED_SINCE || 16,
   IE_SUPPORTED_SINCE: process.env.IE_SUPPORTED_SINCE || 11,
   MAC_SAFARI_SUPPORTED_SINCE: process.env.MACSAFARI_SUPPORTED_SINCE || 9,
-  IOS_SAFARI_SUPPORTED_SINCE: process.env.IOSSAFARI_SUPPORTED_SINCE || 9.2
+  IOS_SAFARI_SUPPORTED_SINCE: process.env.IOSSAFARI_SUPPORTED_SINCE || 9.2,
+  MAPIT_API: process.env.MAPIT_API,
+  MAPIT_API_KEY: process.env.MAPIT_API_KEY
 };

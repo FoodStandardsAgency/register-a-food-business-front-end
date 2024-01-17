@@ -10,10 +10,7 @@ const {
 } = require("../services/session-management.service");
 const { validate } = require("../services/validation.service");
 const { trimAnswers } = require("../services/data-transform.service");
-const {
-  editPathInEditMode,
-  moveAlongEditPath
-} = require("../services/path.service");
+const { editPathInEditMode, moveAlongEditPath } = require("../services/path.service");
 
 /**
  * Returns the previous page in the edit-mode path
@@ -54,8 +51,7 @@ const editBack = (
   return previousPage;
 };
 
-const checkIfValid = (validatorErrors) =>
-  Object.keys(validatorErrors).length === 0;
+const checkIfValid = (validatorErrors) => Object.keys(validatorErrors).length === 0;
 
 /**
  * Returns an object containing validator errors (if present), the redirect route (e.g. the next page in the edit-mode path),
@@ -128,17 +124,10 @@ const editContinue = (
     ) {
       transformedNewAnswers.import_export_activities = "validated";
     }
-    if (
-      transformedNewAnswers.supply_directly ||
-      transformedNewAnswers.supply_other
-    ) {
+    if (transformedNewAnswers.supply_directly || transformedNewAnswers.supply_other) {
       transformedNewAnswers.customer_type = "validated";
     }
-    if (
-      transformedNewAnswers.day &&
-      transformedNewAnswers.month &&
-      transformedNewAnswers.year
-    ) {
+    if (transformedNewAnswers.day && transformedNewAnswers.month && transformedNewAnswers.year) {
       transformedNewAnswers.establishment_opening_date = "validated";
     }
     if (
@@ -186,14 +175,12 @@ const editContinue = (
   let cumulativeEditAnswersToReturn;
   let cumulativeFullAnswersToReturn;
 
-  cumulativeFullAnswersToReturn =
-    cleanedInactiveFullAnswers || newCumulativeFullAnswers;
+  cumulativeFullAnswersToReturn = cleanedInactiveFullAnswers || newCumulativeFullAnswers;
 
   if (redirectRoute === "/registration-summary") {
     cumulativeEditAnswersToReturn = {};
   } else {
-    cumulativeEditAnswersToReturn =
-      cleanedInactiveEditAnswers || newCumulativeEditAnswers;
+    cumulativeEditAnswersToReturn = cleanedInactiveEditAnswers || newCumulativeEditAnswers;
   }
   const controllerResponse = {
     cumulativeFullAnswers: cumulativeFullAnswersToReturn,

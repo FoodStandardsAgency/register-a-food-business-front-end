@@ -1,16 +1,16 @@
-{% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
-{% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/input/macro.njk" import govukInput %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% extends "layout.njk" %}
 {% if props.switches["/operator-address-none-found"] %}
-  {% set backlink = "/new/" + props.council + "/operator-address" %}
+  {% set backlink = "/new/operator-address" %}
 {% else %}
-  {% set backlink = "/new/" + props.council + "/operator-address-select" %}
+  {% set backlink = "/new/operator-address-select" %}
 {% endif %}
-{% set props = mergeObjects(props, { backHref: backlink }) %}
+{% set props = mergeObjects(props, {backHref: backlink}) %}
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -25,11 +25,9 @@
                   }
           }) %}
         {% endcall %}
-        {% call govukInsetText({
-              text:  __("Partnership address is the contact address for the partner who is the main point of contact.", props.language),
-              classes: "govuk-fieldset__legend--l"
-          }) %}
-        {% endcall %}
+        {{ govukInsetText({
+              text:  __("Partnership address is the contact address for the partner who is the main point of contact.", props.language)
+        }) }}
       {% else %}
         {% call govukFieldset({
             legend: {
@@ -39,11 +37,9 @@
                   }
             }) %}
         {% endcall %}
-        {% call govukInsetText({
-                    text: __('Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company.', props.language),
-                    classes: "govuk-fieldset__legend--l"
-                }) %}
-        {% endcall %}
+        {{ govukInsetText({
+              text: __('Operator address is the contact address for the operator. For example home address for a sole trader or headquarters address for a limited company.', props.language)
+        }) }}
       {% endif %}
       {{ govukInput({
               "label": {

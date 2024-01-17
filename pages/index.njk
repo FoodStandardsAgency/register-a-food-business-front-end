@@ -1,11 +1,11 @@
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
-{% from "govuk/components/skip-link/macro.njk" import govukSkipLink %}
-{% from "govuk/components/header/macro.njk" import govukHeader %}
-{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
-{% from "govuk/components/footer/macro.njk" import govukFooter %}
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/skip-link/macro.njk" import govukSkipLink %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/header/macro.njk" import govukHeader %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/footer/macro.njk" import govukFooter %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
 {% from "../components/PostForm.njk" import postForm %}
 {% extends "layout.njk" %}
 {% set props = mergeObjects(props, {hideback: true}) %}
@@ -22,20 +22,13 @@
       <h2 class="govuk-heading-m">{{ __("Food business operator", props.language) }}</h2>
       <p class="govuk-body">{{ __("The operator is the person, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.", props.language) }}</p>
       <h2 class="govuk-heading-m">{{ __("Establishment", props.language) }}</h2>
-      <p class="govuk-body">{{ __("The establishment is the location or site of your food business. If it is a mobile food business, please use the location where it is normally stored overnight.", props.language) }}</p>
-      <h2 class="govuk-heading-m">{{ __("Registering Local Authority", props.language) }}</h2>
-      <p class="govuk-body">
-        <p class="govuk-body">
-          <b>{{ props.lcName }}</b>
-          {{ __("is the local authority your registration will be sent to. Is this the correct local authority for your business? If unsure please use this ", props.language) }}
-          <a class="govuk-link" href="https://www.gov.uk/food-business-registration">{{ __("Food Business Registration", props.language) }}</a>
-          {{ __(" link to check using the location or site of your food business.", props.language) }}</p>
-        {% call postForm("/continue/index", props.csrfToken, props.language) -%}
-        {{ govukButton({
+      <p class="govuk-body">{{ __("The establishment is the location or site of your food business. If it is a mobile food business, please use the location where it is normally stored overnight. If the business is operating from a home address, enter that postcode.", props.language) }}</p>
+      {% call postForm("/continue/index", props.csrfToken, props.language) -%}
+      {{ govukButton({
         text:  __("Begin registration", props.language),
         isStartButton: true
       }) }}
-        {%- endcall %}
-      </div>
+      {%- endcall %}
     </div>
-  {% endblock %}
+  </div>
+{% endblock %}

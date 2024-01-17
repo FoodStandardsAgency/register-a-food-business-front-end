@@ -150,12 +150,7 @@ app.use(i18n.init);
 
 // configure nunjucks environment
 const env = nunjucks.configure(
-  [
-    "node_modules/govuk-frontend/",
-    "node_modules/@ons/design-system/",
-    "pages",
-    "components"
-  ],
+  ["node_modules/govuk-frontend/dist", "node_modules/@ons/design-system/", "pages", "components"],
   {
     express: app //integrate nunjucks into express
   }
@@ -204,9 +199,7 @@ app.use(
 
 app.use(
   "/assets",
-  express.static(
-    path.join(__dirname, "/../../node_modules/govuk-frontend/govuk/assets")
-  )
+  express.static(path.join(__dirname, "/../../node_modules/govuk-frontend/dist/govuk/assets"))
 );
 app.use("/pdfs", express.static(__dirname + "/static/pdfs"));
 app.use("/auto-complete", express.static(__dirname + "/static/auto-complete"));
@@ -219,8 +212,22 @@ app.use("/data", express.static(__dirname + "/data"), function (req, res) {
   res.json({ error: { code: 404 } });
 });
 
+const { logEmitter } = require("./services/logging.service");
 // Set language cookie - TODO: Does i18next do this for you?  Need to check user accepted cookies?
 app.all("*", (req, res, next) => {
+  logEmitter.emit(
+    "functionCall",
+    "each-request-log",
+    JSON.stringify({
+      Method: req.method,
+      Host: req.hostname,
+      Url: req.originalUrl,
+      Headers: req.headers,
+      Body: req.body,
+      Cookies: req.cookies,
+      Session: req.session
+    })
+  );
   if (req && req.query && req.query.lang) {
     res.cookie("lang", req.query.lang);
   }
