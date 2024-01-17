@@ -78,6 +78,10 @@
 
   Prettier is a tool that checks and corrects the formatting of code, such as line indentations and semicolons. This file defines the files that are ignored by Prettier.
 
+* `.github/wprkflows`
+
+    Github runs pipelines that build, test and release the code in this repository. This file defines the steps for the build pipelines in Github. For more information about configuring Github build pipelines, see https://github.blog/2022-02-02-build-ci-cd-pipeline-github-actions-four-steps/.
+
 ## `/pages`
 
 The `/pages` directory contains all website pages that can be rendered by Next.js and viewed by users. Next.js looks for this root `/pages` directory automatically, a behaviour that cannot be changed. Next.js also automatically makes each page available at a route, with an identical name to the file. For example, the file `/pages/business-type.js` is available at the URL `/new/council-name/business-type`. For more information about the relationship between Next.js and Express and how URL routes are defined, see [The tech stack](./the-tech-stack.md).
@@ -117,6 +121,7 @@ The `/pages_unit_tests` directory contains the unit tests for the `/pages` files
   * `config.js`
 
     Defines server-side configuration and provides default values for some environment variables.
+
 
 ## `/tests`
 

@@ -27,9 +27,9 @@
 These characteristics make `DEVELOPMENT` mode suited to multiple trial-and-error visual changes to a small number of pages.
 
 ### Steps:
-
-1.  Run `yarn dev`
-2.  Open `http://localhost:3000/new/<local-council-url>` in a browser
+1.  Ensure docker has started and the container "cosmos-db-1" is running
+2.  Run `yarn dev`
+3.  Open `http://localhost:3000/new/ in a browser
 
 ## Building and starting the application in `PRODUCTION` mode
 
@@ -53,11 +53,11 @@ These characteristics make `PRODUCTION` mode suited to:
 
 1.  Run `yarn build`
 2.  Run `yarn start`
-3.  Open `http://localhost:3000/new/<local-council-url>` in a browser
+3.  Open `http://localhost:3000/new/` in a browser
 
 ## Testing the application
 
-The `/package.json` file contains a number of scripts that are used in the Azure devOps pipelines to test the code in this repository. These scripts can also be run locally to prevent unnecessary pipeline builds, using the following commands:
+The `/package.json` file contains a number of scripts that are used in the GitHub Actions pipelines to test the code in this repository. These scripts can also be run locally to prevent unnecessary pipeline builds, using the following commands:
 
 * `yarn test`
 
