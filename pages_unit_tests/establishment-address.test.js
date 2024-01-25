@@ -26,7 +26,7 @@ describe("establishment-address", () => {
   });
 
   it("renders correct details text", () => {
-    const $detailText = getPageDetails.getDetailsText($);
+    const $detailText = getPageDetails.getHintText($);
     expect($detailText).toEqual(
       "An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight. If the business is operating from a home address, enter that postcode."
     );
