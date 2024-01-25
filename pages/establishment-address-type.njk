@@ -20,7 +20,7 @@
               isPageHeading: true
                     }
             }) %}
-      <p id="establishment_type_hint" class="govuk-hint">{{ __("An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight. If the business is operating from a home address, enter that postcode.", props.language) }}</p>
+            {{ establishmentHiddenDetails(props) }}
       <input type="hidden" value="{{ props.cumulativeFullAnswers.establishment_postcode_find }}" name="establishment_postcode_find">
       {{ govukRadios({
       idPrefix: "establishment_type",
