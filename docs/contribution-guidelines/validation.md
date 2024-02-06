@@ -11,4 +11,4 @@ The front end application uses a custom validation npm package. To add new valid
 
 ## Related information
 
-* For more information about the validation package, see the [npm package](https://www.npmjs.com/package/@slice-and-dice/register-a-food-business-validation) and the [Github repositary](https://github.com/FoodStandardsAgency/register-a-food-business-validation).
+* For more information about the validation package, see the [npm package](https://www.npmjs.com/package/@slice-and-dice/register-a-food-business-validation) and the [Github repository](https://github.com/FoodStandardsAgency/register-a-food-business-validation).

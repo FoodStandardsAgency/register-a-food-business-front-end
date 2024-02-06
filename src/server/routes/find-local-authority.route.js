@@ -12,11 +12,7 @@ const findLocalAuthorityRouter = () => {
   const router = Router();
 
   router.post("/:originator", async (req, res, next) => {
-    logEmitter.emit(
-      "functionCall",
-      "Routes",
-      "/findlocalauthority/:originator route"
-    );
+    logEmitter.emit("functionCall", "Routes", "/findlocalauthority/:originator route");
     try {
       const response = await findLocalAuthorityController(
         `/${req.params.originator}`,
@@ -38,19 +34,10 @@ const findLocalAuthorityRouter = () => {
 
       req.session.localAuthority = response.localAuthority;
 
-      logEmitter.emit(
-        "functionSuccess",
-        "Routes",
-        "/findlocalauthority/:originator route"
-      );
+      logEmitter.emit("functionSuccess", "Routes", "/findlocalauthority/:originator route");
       req.session.save((err) => {
         if (err) {
-          logEmitter.emit(
-            "functionFail",
-            "Routes",
-            "/findlocalauthority route",
-            err
-          );
+          logEmitter.emit("functionFail", "Routes", "/findlocalauthority route", err);
           throw err;
         }
 
@@ -61,12 +48,7 @@ const findLocalAuthorityRouter = () => {
         res.redirect(`/new${response.redirectRoute}${query}`);
       });
     } catch (err) {
-      logEmitter.emit(
-        "functionFail",
-        "Routes",
-        "/findlocalauthority/:originator route",
-        err
-      );
+      logEmitter.emit("functionFail", "Routes", "/findlocalauthority/:originator route", err);
       next(err);
     }
   });

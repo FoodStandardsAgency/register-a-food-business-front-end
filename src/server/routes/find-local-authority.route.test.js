@@ -67,9 +67,7 @@ describe("findLocalAuthority route: ", () => {
       });
 
       it("Should set req.session.localAuthority.local_council", () => {
-        expect(req.session.localAuthority.local_council).toEqual(
-          "City of Cardiff Council"
-        );
+        expect(req.session.localAuthority.local_council).toEqual("City of Cardiff Council");
       });
 
       it("Should update session", () => {

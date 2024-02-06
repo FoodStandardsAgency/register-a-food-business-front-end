@@ -70,12 +70,8 @@ describe("establishment-address-select", () => {
         editModeFirstPage: true,
         addressLookups: exampleAddressLookup
       });
-      const $postCodeEnteredlink = $(".govuk-summary-list__actions a")
-        .get(0)
-        .attribs.href.trim();
-      expect($postCodeEnteredlink).toEqual(
-        "/new/establishment-address?edit=establishment-address"
-      );
+      const $postCodeEnteredlink = $(".govuk-summary-list__actions a").get(0).attribs.href.trim();
+      expect($postCodeEnteredlink).toEqual("/new/establishment-address?edit=establishment-address");
     });
 
     it("renders correct post code entered link href when falsy switch of props.editModeFirstPage", async () => {
@@ -83,12 +79,8 @@ describe("establishment-address-select", () => {
         editModeFirstPage: false,
         addressLookups: exampleAddressLookup
       });
-      const $postCodeEnteredlink = $(".govuk-summary-list__actions a")
-        .get(0)
-        .attribs.href.trim();
-      expect($postCodeEnteredlink).toEqual(
-        "/new/establishment-address?edit=post-code"
-      );
+      const $postCodeEnteredlink = $(".govuk-summary-list__actions a").get(0).attribs.href.trim();
+      expect($postCodeEnteredlink).toEqual("/new/establishment-address?edit=post-code");
     });
 
     it("renders correct href link when 'I can't find my address in the list' is truthy and switch off props.editModeFirstPage", async () => {
@@ -96,9 +88,7 @@ describe("establishment-address-select", () => {
         editModeFirstPage: true,
         addressLookups: exampleAddressLookup
       });
-      const $postCodeNotFindlink = $(".govuk-grid-column-full a")
-        .get(0)
-        .attribs.href.trim();
+      const $postCodeNotFindlink = $(".govuk-grid-column-full a").get(0).attribs.href.trim();
       expect($postCodeNotFindlink).toEqual(
         "/new/establishment-address-manual?edit=establishment-address-manual"
       );
@@ -109,9 +99,7 @@ describe("establishment-address-select", () => {
         editModeFirstPage: false,
         addressLookups: exampleAddressLookup
       });
-      const $postCodeNotFindlink = $(".govuk-grid-column-full a")
-        .get(0)
-        .attribs.href.trim();
+      const $postCodeNotFindlink = $(".govuk-grid-column-full a").get(0).attribs.href.trim();
       expect($postCodeNotFindlink).toEqual("/new/establishment-address-manual");
     });
 
@@ -124,14 +112,10 @@ describe("establishment-address-select", () => {
       });
 
       const $establishmentAddressSelected = $("#establishmentAddressDropdown");
-      const $establishmentAddressSelectedItems = $(
-        "#establishmentAddressDropdown option"
-      );
+      const $establishmentAddressSelectedItems = $("#establishmentAddressDropdown option");
       expect($establishmentAddressSelectedItems.length).toBe(2);
       expect($establishmentAddressSelected.length).toBe(1);
-      expect(
-        $establishmentAddressSelectedItems.contents().get(0).data.trim()
-      ).toEqual(
+      expect($establishmentAddressSelectedItems.contents().get(0).data.trim()).toEqual(
         "Allies Computing Ltd, Manor Farm Barns, Fox Road, Framingham Pigot, Norwich, Norfolk, NR14 7PZ"
       );
     });

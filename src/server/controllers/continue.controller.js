@@ -8,12 +8,8 @@ const {
   switchOffManualAddressInput,
   switchOffCompanyAndCharityDetails
 } = require("../services/path.service");
-const {
-  validate,
-  revalidateAllAnswers
-} = require("../services/validation.service");
+const { validate, revalidateAllAnswers } = require("../services/validation.service");
 const { logEmitter } = require("../services/logging.service");
-const { statusEmitter } = require("../services/statusEmitter.service");
 const {
   cleanInactivePathAnswers,
   cleanEmptiedAnswers,
@@ -49,10 +45,6 @@ const continueController = (
   };
 
   try {
-    if (currentPage === "/index") {
-      statusEmitter.emit("incrementCount", "registrationsStarted");
-    }
-
     const trimmedNewAnswers = JSON.parse(JSON.stringify(newAnswers));
 
     for (let answer in trimmedNewAnswers) {
@@ -94,9 +86,9 @@ const continueController = (
         "functionSuccessWith",
         "continue.controller",
         "continueController",
-        `validatorErrors: ${JSON.stringify(
-          controllerResponse.validatorErrors
-        )}. redirectRoute: ${controllerResponse.redirectRoute}`
+        `validatorErrors: ${JSON.stringify(controllerResponse.validatorErrors)}. redirectRoute: ${
+          controllerResponse.redirectRoute
+        }`
       );
       return controllerResponse;
     }
@@ -125,10 +117,7 @@ const continueController = (
     }
 
     // update the new path to switch off manual address input pages if the originator (currentPage) is one of the address select pagees
-    const updatedNewPathManual = switchOffManualAddressInput(
-      newPath,
-      currentPage
-    );
+    const updatedNewPathManual = switchOffManualAddressInput(newPath, currentPage);
 
     // update the new path to switch off representative registration role path when changed to Sole trader
     const updatedNewPath = switchOffCompanyAndCharityDetails(
@@ -149,10 +138,7 @@ const continueController = (
     if (nextPage === "/registration-summary") {
       Object.assign(
         controllerResponse.allValidationErrors,
-        revalidateAllAnswers(
-          activePath,
-          controllerResponse.cumulativeFullAnswers
-        ).errors
+        revalidateAllAnswers(activePath, controllerResponse.cumulativeFullAnswers).errors
       );
     }
 
@@ -164,12 +150,7 @@ const continueController = (
     );
     return controllerResponse;
   } catch (err) {
-    logEmitter.emit(
-      "functionFail",
-      "continue.controller",
-      "continueController",
-      err
-    );
+    logEmitter.emit("functionFail", "continue.controller", "continueController", err);
     throw err;
   }
 };

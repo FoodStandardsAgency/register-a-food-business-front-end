@@ -1,7 +1,6 @@
 jest.mock("../services/path.service");
 jest.mock("../services/validation.service");
 jest.mock("../services/session-management.service");
-jest.mock("../services/statusEmitter.service");
 
 const {
   moveAlongPath,
@@ -151,13 +150,7 @@ describe("Function: continueController: ", () => {
           errors: {}
         }));
         moveAlongPath.mockImplementation(() => "/nextPage");
-        response = continueController(
-          "/index",
-          {},
-          exampleAnswers,
-          undefined,
-          pathConfigMock
-        );
+        response = continueController("/index", {}, exampleAnswers, undefined, pathConfigMock);
       });
 
       it("Should return a redirect route", () => {
@@ -187,11 +180,7 @@ describe("Function: continueController: ", () => {
       });
 
       it("Should use cumulativePathAnswers and the path from session to create the newPath", () => {
-        expect(editPath).toHaveBeenLastCalledWith(
-          exampleAnswers,
-          "/some-page",
-          pathConfigMock
-        );
+        expect(editPath).toHaveBeenLastCalledWith(exampleAnswers, "/some-page", pathConfigMock);
       });
 
       it("Should set the redirectRoute to the response of moveAlongPath", () => {

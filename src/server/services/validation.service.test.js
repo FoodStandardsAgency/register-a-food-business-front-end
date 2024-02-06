@@ -2,13 +2,19 @@ jest.mock("./data-transform.service");
 const { validate } = require("./validation.service");
 const {
   combineDate,
-  separateBracketsFromBusinessType
+  separateBracketsFromBusinessType,
+  trimAnswers,
+  transformBusinessTypeForSubmit
 } = require("./data-transform.service");
 
 separateBracketsFromBusinessType.mockImplementation(() => ({
   business_type: "Example",
   business_type_search_term: "test"
 }));
+
+transformBusinessTypeForSubmit.mockImplementation((businessType) =>
+  businessType ? "001" : undefined
+);
 
 describe("validator.service validate()", () => {
   describe("Given a correctly formatted input", () => {
@@ -48,9 +54,7 @@ describe("validator.service validate()", () => {
       }
 
       // Assert
-      expect(result.message).toBe(
-        "Could not find schema for page: /random-page"
-      );
+      expect(result.message).toBe("Could not find schema for page: /random-page");
     });
   });
 
@@ -76,9 +80,7 @@ describe("validator.service validate()", () => {
         supply_directly: undefined
       });
 
-      expect(result.errors.customer_type).toBe(
-        "You must select a customer type before continuing"
-      );
+      expect(result.errors.customer_type).toBe("You must select a customer type before continuing");
     });
   });
 
@@ -144,12 +146,8 @@ describe("validator.service validate()", () => {
         no_import_export: undefined
       });
 
-      expect(result_import_selected.errors.import_export_activities).toBe(
-        undefined
-      );
-      expect(result_export_selected.errors.import_export_activities).toBe(
-        undefined
-      );
+      expect(result_import_selected.errors.import_export_activities).toBe(undefined);
+      expect(result_export_selected.errors.import_export_activities).toBe(undefined);
     });
     it("should not return an error if both 'directly import' and 'directly export' are selected", () => {
       const result = validate("/business-import-export", {
@@ -193,6 +191,18 @@ describe("validator.service validate()", () => {
       });
       expect(separateBracketsFromBusinessType).toHaveBeenCalled();
     });
+    it("should return a error when business type is empty", () => {
+      const result = validate("/business-type", {
+        business_type: undefined
+      });
+      expect(result.errors.business_type).toBe("You must select a business type before continuing");
+    });
+    it("should not return a error when business type is populated", () => {
+      const result = validate("/business-type", {
+        business_type: "Example (Test)"
+      });
+      expect(result.errors.business_type).toBe(undefined);
+    });
   });
 
   describe("When given the opening hours page", () => {
@@ -206,6 +216,97 @@ describe("validator.service validate()", () => {
         "Enter the establishment opening hours for Tuesday using 24 hour clocks"
       );
       expect(Object.keys(result.errors).length).toBe(1);
+    });
+    it("should not give error for correct opening hours", () => {
+      const result = validate("/opening-hours", {
+        opening_hours_monday: "09:00-17:00",
+        opening_hours_tuesday: undefined,
+        opening_day_friday: "yes"
+      });
+      expect(result.errors.opening_hours_monday).toBe(undefined);
+    });
+  });
+  describe("When inputting a partners information", () => {
+    it("should return an error when the parners name isnt included", () => {
+      const result = validate("/partner-name", {
+        partners: undefined
+      });
+      expect(result.errors.partners).toBe(
+        "You have entered an invalid number of partners or a duplicate partner name. Please define between 2-5 partners, using initials or middle name to ensure that each entry is unique."
+      );
+    });
+    it("should not return an error when partner name is correctly input", () => {
+      const result = validate("/partner-name", {
+        partners: "John Blogg",
+        partners: "Jane Doe"
+      });
+      expect(result.errors.partner_name).toBe(undefined);
+    });
+    it("shoudld not return an error when main partnership contact is input correctly", () => {
+      const result = validate("/partner-name", {
+        main_partnership_contact: ""
+      });
+      expect(result.errors.main_partnership_contact).toBe(undefined);
+    });
+  });
+  describe("When inputting a operational secondary number", () => {
+    it("should return an error when operational secondary number is not input", () => {
+      const result = validate("/operator-contact-details", {
+        operator_secondary_number: undefined
+      });
+      expect(result.errors.operator_secondary_number).toBe("Enter a valid operator phone number");
+    });
+    it("should not return an error when operational secondary number is input", () => {
+      const result = validate("/operator-contact-details", {
+        operator_secondary_number: "0123456789"
+      });
+      expect(result.errors.operator_secondary_number).toBe(undefined);
+    });
+  });
+  describe("When inputting a establishment information", () => {
+    it("should return an error when establishment secondary number is not input", () => {
+      const result = validate("/establishment-contact-details", {
+        establishment_secondary_number: undefined
+      });
+      expect(result.errors.establishment_secondary_number).toBe(
+        "Enter a valid establishment phone number"
+      );
+    });
+    it("should not return an error when establishment secondary number is input", () => {
+      const result = validate("/establishment-contact-details", {
+        establishment_secondary_number: "0123456789"
+      });
+      expect(result.errors.establishment_secondary_number).toBe(undefined);
+    });
+    it("should not return an error when establishment web address is input", () => {
+      const result = validate("/establishment-contact-details", {
+        establishment_web_address: "test.com"
+      });
+      expect(result.errors.establishment_web_address).toBe(undefined);
+    });
+    it("should an error when establishment web address is incorect", () => {
+      const result = validate("/establishment-contact-details", {
+        establishment_web_address: "not a web address"
+      });
+      expect(result.errors.establishment_web_address).toBe(
+        "Enter a valid establishment web address"
+      );
+    });
+  });
+  describe("When given the business other details page", () => {
+    it("should not return an error when business other details is under 1500 chars", () => {
+      const result = validate("/business-other-details", {
+        business_other_details: "normal text"
+      });
+      expect(result.errors.business_other_details).toBe(undefined);
+    });
+    it("should return an error when business other details is over 1500 chars", () => {
+      const result = validate("/business-other-details", {
+        business_other_details: "s".repeat(1501)
+      });
+      expect(result.errors.business_other_details).toBe(
+        "Your message is too long. Please shorten it to less than 1500 characters"
+      );
     });
   });
 });

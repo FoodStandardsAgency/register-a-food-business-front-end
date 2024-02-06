@@ -7,9 +7,7 @@
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 const continueController = require("../controllers/continue.controller");
-const {
-  getCouncilDataByID
-} = require("../connectors/config-db/config-db.connector");
+const { getCouncilDataByID } = require("../connectors/config-db/config-db.connector");
 
 const continueRouter = () => {
   const router = Router();
@@ -43,9 +41,7 @@ const continueRouter = () => {
         Object.keys(response.validatorErrors).length === 0
       ) {
         // Get the local authority data from the config DB
-        req.session.localAuthority = await getCouncilDataByID(
-          +req.body.local_authority
-        );
+        req.session.localAuthority = await getCouncilDataByID(+req.body.local_authority);
         // If the local authority not onboarded and has a registration form URL, redirect to it instead of the normal path
         if (
           req.session.localAuthority &&
@@ -62,12 +58,7 @@ const continueRouter = () => {
           logEmitter.emit("functionFail", "Routes", "/continue route", err);
           throw err;
         }
-        logEmitter.emit(
-          "functionSuccessWith",
-          "Routes",
-          "/continue route",
-          response.redirectRoute
-        );
+        logEmitter.emit("functionSuccessWith", "Routes", "/continue route", response.redirectRoute);
         if (response.redirectRoute === "/submit") {
           res.redirect("/submit");
         } else {

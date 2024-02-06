@@ -1,11 +1,11 @@
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
-{% from "govuk/components/skip-link/macro.njk" import govukSkipLink %}
-{% from "govuk/components/header/macro.njk" import govukHeader %}
-{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
-{% from "govuk/components/footer/macro.njk" import govukFooter %}
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/skip-link/macro.njk" import govukSkipLink %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/header/macro.njk" import govukHeader %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/footer/macro.njk" import govukFooter %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
 {% from "../components/PostForm.njk" import postForm %}
 {% extends "layout.njk" %}
 {% set props = mergeObjects(props, {hideback: true}) %}

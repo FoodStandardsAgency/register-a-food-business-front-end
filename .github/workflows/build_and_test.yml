@@ -42,7 +42,7 @@ jobs:
         run: npm run lint
 
       - name: Unit tests
-        run: yarn test:ci
+        run: npm run test:ci
 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
@@ -50,16 +50,6 @@ jobs:
         with:
           junit_files: ./reports/TEST-unit.xml
           check_name: "Unit Test Results"
-
-      - name: Integration tests
-        run: yarn test:integration
-
-      - name: Publish Integration Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
-        with:
-          junit_files: ./reports/TEST-integration.xml
-          check_name: "Integration Test Results"
 
       - name: Generate Coverage Summary
         uses: irongut/CodeCoverageSummary@v1.3.0

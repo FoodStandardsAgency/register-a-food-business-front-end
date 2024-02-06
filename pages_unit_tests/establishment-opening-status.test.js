@@ -17,9 +17,7 @@ describe("Establishment-Opening-Status", () => {
     const $ = renderPage("establishment-opening-status", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "Is this establishment already trading?"
-    );
+    expect($mainHeading.text().trim()).toEqual("Is this establishment already trading?");
   });
 
   it("passes accessibility tests", async () => {
@@ -39,28 +37,18 @@ describe("Establishment-Opening-Status", () => {
   describe("Radio boxes have correct value", () => {
     it("renders the Establishment is already trading radio button with the correct value", () => {
       const $ = renderPage("establishment-opening-status", props);
-      const $mainHeadingMobile = $(
-        "#establishment_opening_status_already_trading"
-      );
-      expect($mainHeadingMobile.get(0).attribs.value).toBe(
-        "Establishment is already trading"
-      );
+      const $mainHeadingMobile = $("#establishment_opening_status_already_trading");
+      expect($mainHeadingMobile.get(0).attribs.value).toBe("Establishment is already trading");
     });
     it("renders the Establishment due to trade radio button with the correct value", () => {
       const $ = renderPage("establishment-opening-status", props);
-      const $mainHeadingDomestic = $(
-        "#establishment_opening_status_not_trading"
-      );
-      expect($mainHeadingDomestic.get(0).attribs.value).toBe(
-        "Establishment due to trade"
-      );
+      const $mainHeadingDomestic = $("#establishment_opening_status_not_trading");
+      expect($mainHeadingDomestic.get(0).attribs.value).toBe("Establishment due to trade");
     });
     it("select the correct radio button based on session data", () => {
       const $ = renderPage("establishment-opening-status", props);
       const $selected = $("input:checked");
-      expect($selected.get(0).attribs.value).toBe(
-        "Establishment is already trading"
-      );
+      expect($selected.get(0).attribs.value).toBe("Establishment is already trading");
     });
   });
 

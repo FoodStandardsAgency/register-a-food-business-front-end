@@ -12,7 +12,6 @@ const {
   submitRouter,
   switchesRouter,
   setCookieRouter,
-  statusRouter,
   partnerDetailsRouter,
   pdfsRouter
 } = require("./routes/index");
@@ -36,7 +35,6 @@ module.exports = () => {
   router.use("/submit", submitRouter());
   router.use("/switches", switchesRouter());
   router.use("/setcookie", setCookieRouter());
-  router.use("/status", statusRouter());
   router.use("/partnership", partnerDetailsRouter());
   router.use("/pdfs", pdfsRouter());
 

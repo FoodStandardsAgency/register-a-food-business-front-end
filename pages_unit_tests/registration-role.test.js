@@ -15,9 +15,7 @@ describe("registration-role", () => {
     const $ = renderPage("registration-role", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "What is your role in this food business?"
-    );
+    expect($mainHeading.text().trim()).toEqual("What is your role in this food business?");
   });
 
   it("passes accessibility tests", async () => {
@@ -48,9 +46,7 @@ describe("registration-role", () => {
     it("renders the Representative radio button with the correct value", () => {
       const $ = renderPage("registration-role", props);
       const $mainHeadingRepresentative = $("#registration_role_representative");
-      expect($mainHeadingRepresentative.get(0).attribs.value).toBe(
-        "Representative"
-      );
+      expect($mainHeadingRepresentative.get(0).attribs.value).toBe("Representative");
     });
     it("select the correct radio button based on session data", () => {
       const $ = renderPage("registration-role", props);

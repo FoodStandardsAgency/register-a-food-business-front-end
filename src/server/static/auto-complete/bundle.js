@@ -3219,7 +3219,7 @@ module.exports = validateWebAddress;
 
 },{"validator":45}],41:[function(require,module,exports){
 //! moment.js
-//! version : 2.29.4
+//! version : 2.30.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
@@ -3375,24 +3375,25 @@ module.exports = validateWebAddress;
     }
 
     function isValid(m) {
-        if (m._isValid == null) {
-            var flags = getParsingFlags(m),
-                parsedParts = some.call(flags.parsedDateParts, function (i) {
-                    return i != null;
-                }),
-                isNowValid =
-                    !isNaN(m._d.getTime()) &&
-                    flags.overflow < 0 &&
-                    !flags.empty &&
-                    !flags.invalidEra &&
-                    !flags.invalidMonth &&
-                    !flags.invalidWeekday &&
-                    !flags.weekdayMismatch &&
-                    !flags.nullInput &&
-                    !flags.invalidFormat &&
-                    !flags.userInvalidated &&
-                    (!flags.meridiem || (flags.meridiem && parsedParts));
-
+        var flags = null,
+            parsedParts = false,
+            isNowValid = m._d && !isNaN(m._d.getTime());
+        if (isNowValid) {
+            flags = getParsingFlags(m);
+            parsedParts = some.call(flags.parsedDateParts, function (i) {
+                return i != null;
+            });
+            isNowValid =
+                flags.overflow < 0 &&
+                !flags.empty &&
+                !flags.invalidEra &&
+                !flags.invalidMonth &&
+                !flags.invalidWeekday &&
+                !flags.weekdayMismatch &&
+                !flags.nullInput &&
+                !flags.invalidFormat &&
+                !flags.userInvalidated &&
+                (!flags.meridiem || (flags.meridiem && parsedParts));
             if (m._strict) {
                 isNowValid =
                     isNowValid &&
@@ -3400,12 +3401,11 @@ module.exports = validateWebAddress;
                     flags.unusedTokens.length === 0 &&
                     flags.bigHour === undefined;
             }
-
-            if (Object.isFrozen == null || !Object.isFrozen(m)) {
-                m._isValid = isNowValid;
-            } else {
-                return isNowValid;
-            }
+        }
+        if (Object.isFrozen == null || !Object.isFrozen(m)) {
+            m._isValid = isNowValid;
+        } else {
+            return isNowValid;
         }
         return m._isValid;
     }
@@ -3850,12 +3850,56 @@ module.exports = validateWebAddress;
         return isFunction(format) ? format(output) : format.replace(/%s/i, output);
     }
 
-    var aliases = {};
-
-    function addUnitAlias(unit, shorthand) {
-        var lowerCase = unit.toLowerCase();
-        aliases[lowerCase] = aliases[lowerCase + 's'] = aliases[shorthand] = unit;
-    }
+    var aliases = {
+        D: 'date',
+        dates: 'date',
+        date: 'date',
+        d: 'day',
+        days: 'day',
+        day: 'day',
+        e: 'weekday',
+        weekdays: 'weekday',
+        weekday: 'weekday',
+        E: 'isoWeekday',
+        isoweekdays: 'isoWeekday',
+        isoweekday: 'isoWeekday',
+        DDD: 'dayOfYear',
+        dayofyears: 'dayOfYear',
+        dayofyear: 'dayOfYear',
+        h: 'hour',
+        hours: 'hour',
+        hour: 'hour',
+        ms: 'millisecond',
+        milliseconds: 'millisecond',
+        millisecond: 'millisecond',
+        m: 'minute',
+        minutes: 'minute',
+        minute: 'minute',
+        M: 'month',
+        months: 'month',
+        month: 'month',
+        Q: 'quarter',
+        quarters: 'quarter',
+        quarter: 'quarter',
+        s: 'second',
+        seconds: 'second',
+        second: 'second',
+        gg: 'weekYear',
+        weekyears: 'weekYear',
+        weekyear: 'weekYear',
+        GG: 'isoWeekYear',
+        isoweekyears: 'isoWeekYear',
+        isoweekyear: 'isoWeekYear',
+        w: 'week',
+        weeks: 'week',
+        week: 'week',
+        W: 'isoWeek',
+        isoweeks: 'isoWeek',
+        isoweek: 'isoWeek',
+        y: 'year',
+        years: 'year',
+        year: 'year',
+    };
 
     function normalizeUnits(units) {
         return typeof units === 'string'
@@ -3880,11 +3924,24 @@ module.exports = validateWebAddress;
         return normalizedInput;
     }
 
-    var priorities = {};
-
-    function addUnitPriority(unit, priority) {
-        priorities[unit] = priority;
-    }
+    var priorities = {
+        date: 9,
+        day: 11,
+        weekday: 11,
+        isoWeekday: 11,
+        dayOfYear: 4,
+        hour: 13,
+        millisecond: 16,
+        minute: 14,
+        month: 8,
+        quarter: 7,
+        second: 15,
+        weekYear: 1,
+        isoWeekYear: 1,
+        week: 5,
+        isoWeek: 5,
+        year: 1,
+    };
 
     function getPrioritizedUnits(unitsObj) {
         var units = [],
@@ -3898,96 +3955,6 @@ module.exports = validateWebAddress;
             return a.priority - b.priority;
         });
         return units;
-    }
-
-    function isLeapYear(year) {
-        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-    }
-
-    function absFloor(number) {
-        if (number < 0) {
-            // -0 -> 0
-            return Math.ceil(number) || 0;
-        } else {
-            return Math.floor(number);
-        }
-    }
-
-    function toInt(argumentForCoercion) {
-        var coercedNumber = +argumentForCoercion,
-            value = 0;
-
-        if (coercedNumber !== 0 && isFinite(coercedNumber)) {
-            value = absFloor(coercedNumber);
-        }
-
-        return value;
-    }
-
-    function makeGetSet(unit, keepTime) {
-        return function (value) {
-            if (value != null) {
-                set$1(this, unit, value);
-                hooks.updateOffset(this, keepTime);
-                return this;
-            } else {
-                return get(this, unit);
-            }
-        };
-    }
-
-    function get(mom, unit) {
-        return mom.isValid()
-            ? mom._d['get' + (mom._isUTC ? 'UTC' : '') + unit]()
-            : NaN;
-    }
-
-    function set$1(mom, unit, value) {
-        if (mom.isValid() && !isNaN(value)) {
-            if (
-                unit === 'FullYear' &&
-                isLeapYear(mom.year()) &&
-                mom.month() === 1 &&
-                mom.date() === 29
-            ) {
-                value = toInt(value);
-                mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](
-                    value,
-                    mom.month(),
-                    daysInMonth(value, mom.month())
-                );
-            } else {
-                mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value);
-            }
-        }
-    }
-
-    // MOMENTS
-
-    function stringGet(units) {
-        units = normalizeUnits(units);
-        if (isFunction(this[units])) {
-            return this[units]();
-        }
-        return this;
-    }
-
-    function stringSet(units, value) {
-        if (typeof units === 'object') {
-            units = normalizeObjectUnits(units);
-            var prioritized = getPrioritizedUnits(units),
-                i,
-                prioritizedLen = prioritized.length;
-            for (i = 0; i < prioritizedLen; i++) {
-                this[prioritized[i].unit](units[prioritized[i].unit]);
-            }
-        } else {
-            units = normalizeUnits(units);
-            if (isFunction(this[units])) {
-                return this[units](value);
-            }
-        }
-        return this;
     }
 
     var match1 = /\d/, //       0 - 9
@@ -4010,6 +3977,8 @@ module.exports = validateWebAddress;
         // includes scottish gaelic two word and hyphenated months
         matchWord =
             /[0-9]{0,256}['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFF07\uFF10-\uFFEF]{1,256}|[\u0600-\u06FF\/]{1,256}(\s*?[\u0600-\u06FF]{1,256}){1,2}/i,
+        match1to2NoLeadingZero = /^[1-9]\d?/, //         1-99
+        match1to2HasZero = /^([1-9]\d|\d)/, //           0-99
         regexes;
 
     regexes = {};
@@ -4048,6 +4017,26 @@ module.exports = validateWebAddress;
         return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     }
 
+    function absFloor(number) {
+        if (number < 0) {
+            // -0 -> 0
+            return Math.ceil(number) || 0;
+        } else {
+            return Math.floor(number);
+        }
+    }
+
+    function toInt(argumentForCoercion) {
+        var coercedNumber = +argumentForCoercion,
+            value = 0;
+
+        if (coercedNumber !== 0 && isFinite(coercedNumber)) {
+            value = absFloor(coercedNumber);
+        }
+
+        return value;
+    }
+
     var tokens = {};
 
     function addParseToken(token, callback) {
@@ -4081,6 +4070,10 @@ module.exports = validateWebAddress;
         }
     }
 
+    function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    }
+
     var YEAR = 0,
         MONTH = 1,
         DATE = 2,
@@ -4090,6 +4083,173 @@ module.exports = validateWebAddress;
         MILLISECOND = 6,
         WEEK = 7,
         WEEKDAY = 8;
+
+    // FORMATTING
+
+    addFormatToken('Y', 0, 0, function () {
+        var y = this.year();
+        return y <= 9999 ? zeroFill(y, 4) : '+' + y;
+    });
+
+    addFormatToken(0, ['YY', 2], 0, function () {
+        return this.year() % 100;
+    });
+
+    addFormatToken(0, ['YYYY', 4], 0, 'year');
+    addFormatToken(0, ['YYYYY', 5], 0, 'year');
+    addFormatToken(0, ['YYYYYY', 6, true], 0, 'year');
+
+    // PARSING
+
+    addRegexToken('Y', matchSigned);
+    addRegexToken('YY', match1to2, match2);
+    addRegexToken('YYYY', match1to4, match4);
+    addRegexToken('YYYYY', match1to6, match6);
+    addRegexToken('YYYYYY', match1to6, match6);
+
+    addParseToken(['YYYYY', 'YYYYYY'], YEAR);
+    addParseToken('YYYY', function (input, array) {
+        array[YEAR] =
+            input.length === 2 ? hooks.parseTwoDigitYear(input) : toInt(input);
+    });
+    addParseToken('YY', function (input, array) {
+        array[YEAR] = hooks.parseTwoDigitYear(input);
+    });
+    addParseToken('Y', function (input, array) {
+        array[YEAR] = parseInt(input, 10);
+    });
+
+    // HELPERS
+
+    function daysInYear(year) {
+        return isLeapYear(year) ? 366 : 365;
+    }
+
+    // HOOKS
+
+    hooks.parseTwoDigitYear = function (input) {
+        return toInt(input) + (toInt(input) > 68 ? 1900 : 2000);
+    };
+
+    // MOMENTS
+
+    var getSetYear = makeGetSet('FullYear', true);
+
+    function getIsLeapYear() {
+        return isLeapYear(this.year());
+    }
+
+    function makeGetSet(unit, keepTime) {
+        return function (value) {
+            if (value != null) {
+                set$1(this, unit, value);
+                hooks.updateOffset(this, keepTime);
+                return this;
+            } else {
+                return get(this, unit);
+            }
+        };
+    }
+
+    function get(mom, unit) {
+        if (!mom.isValid()) {
+            return NaN;
+        }
+
+        var d = mom._d,
+            isUTC = mom._isUTC;
+
+        switch (unit) {
+            case 'Milliseconds':
+                return isUTC ? d.getUTCMilliseconds() : d.getMilliseconds();
+            case 'Seconds':
+                return isUTC ? d.getUTCSeconds() : d.getSeconds();
+            case 'Minutes':
+                return isUTC ? d.getUTCMinutes() : d.getMinutes();
+            case 'Hours':
+                return isUTC ? d.getUTCHours() : d.getHours();
+            case 'Date':
+                return isUTC ? d.getUTCDate() : d.getDate();
+            case 'Day':
+                return isUTC ? d.getUTCDay() : d.getDay();
+            case 'Month':
+                return isUTC ? d.getUTCMonth() : d.getMonth();
+            case 'FullYear':
+                return isUTC ? d.getUTCFullYear() : d.getFullYear();
+            default:
+                return NaN; // Just in case
+        }
+    }
+
+    function set$1(mom, unit, value) {
+        var d, isUTC, year, month, date;
+
+        if (!mom.isValid() || isNaN(value)) {
+            return;
+        }
+
+        d = mom._d;
+        isUTC = mom._isUTC;
+
+        switch (unit) {
+            case 'Milliseconds':
+                return void (isUTC
+                    ? d.setUTCMilliseconds(value)
+                    : d.setMilliseconds(value));
+            case 'Seconds':
+                return void (isUTC ? d.setUTCSeconds(value) : d.setSeconds(value));
+            case 'Minutes':
+                return void (isUTC ? d.setUTCMinutes(value) : d.setMinutes(value));
+            case 'Hours':
+                return void (isUTC ? d.setUTCHours(value) : d.setHours(value));
+            case 'Date':
+                return void (isUTC ? d.setUTCDate(value) : d.setDate(value));
+            // case 'Day': // Not real
+            //    return void (isUTC ? d.setUTCDay(value) : d.setDay(value));
+            // case 'Month': // Not used because we need to pass two variables
+            //     return void (isUTC ? d.setUTCMonth(value) : d.setMonth(value));
+            case 'FullYear':
+                break; // See below ...
+            default:
+                return; // Just in case
+        }
+
+        year = value;
+        month = mom.month();
+        date = mom.date();
+        date = date === 29 && month === 1 && !isLeapYear(year) ? 28 : date;
+        void (isUTC
+            ? d.setUTCFullYear(year, month, date)
+            : d.setFullYear(year, month, date));
+    }
+
+    // MOMENTS
+
+    function stringGet(units) {
+        units = normalizeUnits(units);
+        if (isFunction(this[units])) {
+            return this[units]();
+        }
+        return this;
+    }
+
+    function stringSet(units, value) {
+        if (typeof units === 'object') {
+            units = normalizeObjectUnits(units);
+            var prioritized = getPrioritizedUnits(units),
+                i,
+                prioritizedLen = prioritized.length;
+            for (i = 0; i < prioritizedLen; i++) {
+                this[prioritized[i].unit](units[prioritized[i].unit]);
+            }
+        } else {
+            units = normalizeUnits(units);
+            if (isFunction(this[units])) {
+                return this[units](value);
+            }
+        }
+        return this;
+    }
 
     function mod(n, x) {
         return ((n % x) + x) % x;
@@ -4139,17 +4299,9 @@ module.exports = validateWebAddress;
         return this.localeData().months(this, format);
     });
 
-    // ALIASES
-
-    addUnitAlias('month', 'M');
-
-    // PRIORITY
-
-    addUnitPriority('month', 8);
-
     // PARSING
 
-    addRegexToken('M', match1to2);
+    addRegexToken('M', match1to2, match1to2NoLeadingZero);
     addRegexToken('MM', match1to2, match2);
     addRegexToken('MMM', function (isStrict, locale) {
         return locale.monthsShortRegex(isStrict);
@@ -4315,8 +4467,6 @@ module.exports = validateWebAddress;
     // MOMENTS
 
     function setMonth(mom, value) {
-        var dayOfMonth;
-
         if (!mom.isValid()) {
             // No op
             return mom;
@@ -4334,8 +4484,13 @@ module.exports = validateWebAddress;
             }
         }
 
-        dayOfMonth = Math.min(mom.date(), daysInMonth(mom.year(), value));
-        mom._d['set' + (mom._isUTC ? 'UTC' : '') + 'Month'](value, dayOfMonth);
+        var month = value,
+            date = mom.date();
+
+        date = date < 29 ? date : Math.min(date, daysInMonth(mom.year(), month));
+        void (mom._isUTC
+            ? mom._d.setUTCMonth(month, date)
+            : mom._d.setMonth(month, date));
         return mom;
     }
 
@@ -4402,27 +4557,24 @@ module.exports = validateWebAddress;
             longPieces = [],
             mixedPieces = [],
             i,
-            mom;
+            mom,
+            shortP,
+            longP;
         for (i = 0; i < 12; i++) {
             // make the regex if we don't have it already
             mom = createUTC([2000, i]);
-            shortPieces.push(this.monthsShort(mom, ''));
-            longPieces.push(this.months(mom, ''));
-            mixedPieces.push(this.months(mom, ''));
-            mixedPieces.push(this.monthsShort(mom, ''));
+            shortP = regexEscape(this.monthsShort(mom, ''));
+            longP = regexEscape(this.months(mom, ''));
+            shortPieces.push(shortP);
+            longPieces.push(longP);
+            mixedPieces.push(longP);
+            mixedPieces.push(shortP);
         }
         // Sorting makes sure if one month (or abbr) is a prefix of another it
         // will match the longer piece.
         shortPieces.sort(cmpLenRev);
         longPieces.sort(cmpLenRev);
         mixedPieces.sort(cmpLenRev);
-        for (i = 0; i < 12; i++) {
-            shortPieces[i] = regexEscape(shortPieces[i]);
-            longPieces[i] = regexEscape(longPieces[i]);
-        }
-        for (i = 0; i < 24; i++) {
-            mixedPieces[i] = regexEscape(mixedPieces[i]);
-        }
 
         this._monthsRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
         this._monthsShortRegex = this._monthsRegex;
@@ -4434,69 +4586,6 @@ module.exports = validateWebAddress;
             '^(' + shortPieces.join('|') + ')',
             'i'
         );
-    }
-
-    // FORMATTING
-
-    addFormatToken('Y', 0, 0, function () {
-        var y = this.year();
-        return y <= 9999 ? zeroFill(y, 4) : '+' + y;
-    });
-
-    addFormatToken(0, ['YY', 2], 0, function () {
-        return this.year() % 100;
-    });
-
-    addFormatToken(0, ['YYYY', 4], 0, 'year');
-    addFormatToken(0, ['YYYYY', 5], 0, 'year');
-    addFormatToken(0, ['YYYYYY', 6, true], 0, 'year');
-
-    // ALIASES
-
-    addUnitAlias('year', 'y');
-
-    // PRIORITIES
-
-    addUnitPriority('year', 1);
-
-    // PARSING
-
-    addRegexToken('Y', matchSigned);
-    addRegexToken('YY', match1to2, match2);
-    addRegexToken('YYYY', match1to4, match4);
-    addRegexToken('YYYYY', match1to6, match6);
-    addRegexToken('YYYYYY', match1to6, match6);
-
-    addParseToken(['YYYYY', 'YYYYYY'], YEAR);
-    addParseToken('YYYY', function (input, array) {
-        array[YEAR] =
-            input.length === 2 ? hooks.parseTwoDigitYear(input) : toInt(input);
-    });
-    addParseToken('YY', function (input, array) {
-        array[YEAR] = hooks.parseTwoDigitYear(input);
-    });
-    addParseToken('Y', function (input, array) {
-        array[YEAR] = parseInt(input, 10);
-    });
-
-    // HELPERS
-
-    function daysInYear(year) {
-        return isLeapYear(year) ? 366 : 365;
-    }
-
-    // HOOKS
-
-    hooks.parseTwoDigitYear = function (input) {
-        return toInt(input) + (toInt(input) > 68 ? 1900 : 2000);
-    };
-
-    // MOMENTS
-
-    var getSetYear = makeGetSet('FullYear', true);
-
-    function getIsLeapYear() {
-        return isLeapYear(this.year());
     }
 
     function createDate(y, m, d, h, M, s, ms) {
@@ -4604,21 +4693,11 @@ module.exports = validateWebAddress;
     addFormatToken('w', ['ww', 2], 'wo', 'week');
     addFormatToken('W', ['WW', 2], 'Wo', 'isoWeek');
 
-    // ALIASES
-
-    addUnitAlias('week', 'w');
-    addUnitAlias('isoWeek', 'W');
-
-    // PRIORITIES
-
-    addUnitPriority('week', 5);
-    addUnitPriority('isoWeek', 5);
-
     // PARSING
 
-    addRegexToken('w', match1to2);
+    addRegexToken('w', match1to2, match1to2NoLeadingZero);
     addRegexToken('ww', match1to2, match2);
-    addRegexToken('W', match1to2);
+    addRegexToken('W', match1to2, match1to2NoLeadingZero);
     addRegexToken('WW', match1to2, match2);
 
     addWeekParseToken(
@@ -4679,17 +4758,6 @@ module.exports = validateWebAddress;
 
     addFormatToken('e', 0, 0, 'weekday');
     addFormatToken('E', 0, 0, 'isoWeekday');
-
-    // ALIASES
-
-    addUnitAlias('day', 'd');
-    addUnitAlias('weekday', 'e');
-    addUnitAlias('isoWeekday', 'E');
-
-    // PRIORITY
-    addUnitPriority('day', 11);
-    addUnitPriority('weekday', 11);
-    addUnitPriority('isoWeekday', 11);
 
     // PARSING
 
@@ -4770,24 +4838,24 @@ module.exports = validateWebAddress;
         return m === true
             ? shiftWeekdays(weekdays, this._week.dow)
             : m
-            ? weekdays[m.day()]
-            : weekdays;
+              ? weekdays[m.day()]
+              : weekdays;
     }
 
     function localeWeekdaysShort(m) {
         return m === true
             ? shiftWeekdays(this._weekdaysShort, this._week.dow)
             : m
-            ? this._weekdaysShort[m.day()]
-            : this._weekdaysShort;
+              ? this._weekdaysShort[m.day()]
+              : this._weekdaysShort;
     }
 
     function localeWeekdaysMin(m) {
         return m === true
             ? shiftWeekdays(this._weekdaysMin, this._week.dow)
             : m
-            ? this._weekdaysMin[m.day()]
-            : this._weekdaysMin;
+              ? this._weekdaysMin[m.day()]
+              : this._weekdaysMin;
     }
 
     function handleStrictParse$1(weekdayName, format, strict) {
@@ -4936,7 +5004,8 @@ module.exports = validateWebAddress;
         if (!this.isValid()) {
             return input != null ? this : NaN;
         }
-        var day = this._isUTC ? this._d.getUTCDay() : this._d.getDay();
+
+        var day = get(this, 'Day');
         if (input != null) {
             input = parseWeekday(input, this.localeData());
             return this.add(input - day, 'd');
@@ -5135,13 +5204,6 @@ module.exports = validateWebAddress;
     meridiem('a', true);
     meridiem('A', false);
 
-    // ALIASES
-
-    addUnitAlias('hour', 'h');
-
-    // PRIORITY
-    addUnitPriority('hour', 13);
-
     // PARSING
 
     function matchMeridiem(isStrict, locale) {
@@ -5150,9 +5212,9 @@ module.exports = validateWebAddress;
 
     addRegexToken('a', matchMeridiem);
     addRegexToken('A', matchMeridiem);
-    addRegexToken('H', match1to2);
-    addRegexToken('h', match1to2);
-    addRegexToken('k', match1to2);
+    addRegexToken('H', match1to2, match1to2HasZero);
+    addRegexToken('h', match1to2, match1to2NoLeadingZero);
+    addRegexToken('k', match1to2, match1to2NoLeadingZero);
     addRegexToken('HH', match1to2, match2);
     addRegexToken('hh', match1to2, match2);
     addRegexToken('kk', match1to2, match2);
@@ -5302,7 +5364,8 @@ module.exports = validateWebAddress;
 
     function isLocaleNameSane(name) {
         // Prevent names that look like filesystem paths, i.e contain '/' or '\'
-        return name.match('^[^/\\\\]*$') != null;
+        // Ensure name is available and function returns boolean
+        return !!(name && name.match('^[^/\\\\]*$'));
     }
 
     function loadLocale(name) {
@@ -5494,21 +5557,21 @@ module.exports = validateWebAddress;
                 a[MONTH] < 0 || a[MONTH] > 11
                     ? MONTH
                     : a[DATE] < 1 || a[DATE] > daysInMonth(a[YEAR], a[MONTH])
-                    ? DATE
-                    : a[HOUR] < 0 ||
-                      a[HOUR] > 24 ||
-                      (a[HOUR] === 24 &&
-                          (a[MINUTE] !== 0 ||
-                              a[SECOND] !== 0 ||
-                              a[MILLISECOND] !== 0))
-                    ? HOUR
-                    : a[MINUTE] < 0 || a[MINUTE] > 59
-                    ? MINUTE
-                    : a[SECOND] < 0 || a[SECOND] > 59
-                    ? SECOND
-                    : a[MILLISECOND] < 0 || a[MILLISECOND] > 999
-                    ? MILLISECOND
-                    : -1;
+                      ? DATE
+                      : a[HOUR] < 0 ||
+                          a[HOUR] > 24 ||
+                          (a[HOUR] === 24 &&
+                              (a[MINUTE] !== 0 ||
+                                  a[SECOND] !== 0 ||
+                                  a[MILLISECOND] !== 0))
+                        ? HOUR
+                        : a[MINUTE] < 0 || a[MINUTE] > 59
+                          ? MINUTE
+                          : a[SECOND] < 0 || a[SECOND] > 59
+                            ? SECOND
+                            : a[MILLISECOND] < 0 || a[MILLISECOND] > 999
+                              ? MILLISECOND
+                              : -1;
 
             if (
                 getParsingFlags(m)._overflowDayOfYear &&
@@ -6949,16 +7012,16 @@ module.exports = validateWebAddress;
         return diff < -6
             ? 'sameElse'
             : diff < -1
-            ? 'lastWeek'
-            : diff < 0
-            ? 'lastDay'
-            : diff < 1
-            ? 'sameDay'
-            : diff < 2
-            ? 'nextDay'
-            : diff < 7
-            ? 'nextWeek'
-            : 'sameElse';
+              ? 'lastWeek'
+              : diff < 0
+                ? 'lastDay'
+                : diff < 1
+                  ? 'sameDay'
+                  : diff < 2
+                    ? 'nextDay'
+                    : diff < 7
+                      ? 'nextWeek'
+                      : 'sameElse';
     }
 
     function calendar$1(time, formats) {
@@ -7766,16 +7829,22 @@ module.exports = validateWebAddress;
             mixedPieces = [],
             i,
             l,
+            erasName,
+            erasAbbr,
+            erasNarrow,
             eras = this.eras();
 
         for (i = 0, l = eras.length; i < l; ++i) {
-            namePieces.push(regexEscape(eras[i].name));
-            abbrPieces.push(regexEscape(eras[i].abbr));
-            narrowPieces.push(regexEscape(eras[i].narrow));
+            erasName = regexEscape(eras[i].name);
+            erasAbbr = regexEscape(eras[i].abbr);
+            erasNarrow = regexEscape(eras[i].narrow);
 
-            mixedPieces.push(regexEscape(eras[i].name));
-            mixedPieces.push(regexEscape(eras[i].abbr));
-            mixedPieces.push(regexEscape(eras[i].narrow));
+            namePieces.push(erasName);
+            abbrPieces.push(erasAbbr);
+            narrowPieces.push(erasNarrow);
+            mixedPieces.push(erasName);
+            mixedPieces.push(erasAbbr);
+            mixedPieces.push(erasNarrow);
         }
 
         this._erasRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
@@ -7808,14 +7877,6 @@ module.exports = validateWebAddress;
 
     // ALIASES
 
-    addUnitAlias('weekYear', 'gg');
-    addUnitAlias('isoWeekYear', 'GG');
-
-    // PRIORITY
-
-    addUnitPriority('weekYear', 1);
-    addUnitPriority('isoWeekYear', 1);
-
     // PARSING
 
     addRegexToken('G', matchSigned);
@@ -7845,7 +7906,7 @@ module.exports = validateWebAddress;
             this,
             input,
             this.week(),
-            this.weekday(),
+            this.weekday() + this.localeData()._week.dow,
             this.localeData()._week.dow,
             this.localeData()._week.doy
         );
@@ -7907,14 +7968,6 @@ module.exports = validateWebAddress;
 
     addFormatToken('Q', 0, 'Qo', 'quarter');
 
-    // ALIASES
-
-    addUnitAlias('quarter', 'Q');
-
-    // PRIORITY
-
-    addUnitPriority('quarter', 7);
-
     // PARSING
 
     addRegexToken('Q', match1);
@@ -7934,16 +7987,9 @@ module.exports = validateWebAddress;
 
     addFormatToken('D', ['DD', 2], 'Do', 'date');
 
-    // ALIASES
-
-    addUnitAlias('date', 'D');
-
-    // PRIORITY
-    addUnitPriority('date', 9);
-
     // PARSING
 
-    addRegexToken('D', match1to2);
+    addRegexToken('D', match1to2, match1to2NoLeadingZero);
     addRegexToken('DD', match1to2, match2);
     addRegexToken('Do', function (isStrict, locale) {
         // TODO: Remove "ordinalParse" fallback in next major release.
@@ -7964,13 +8010,6 @@ module.exports = validateWebAddress;
     // FORMATTING
 
     addFormatToken('DDD', ['DDDD', 3], 'DDDo', 'dayOfYear');
-
-    // ALIASES
-
-    addUnitAlias('dayOfYear', 'DDD');
-
-    // PRIORITY
-    addUnitPriority('dayOfYear', 4);
 
     // PARSING
 
@@ -7996,17 +8035,9 @@ module.exports = validateWebAddress;
 
     addFormatToken('m', ['mm', 2], 0, 'minute');
 
-    // ALIASES
-
-    addUnitAlias('minute', 'm');
-
-    // PRIORITY
-
-    addUnitPriority('minute', 14);
-
     // PARSING
 
-    addRegexToken('m', match1to2);
+    addRegexToken('m', match1to2, match1to2HasZero);
     addRegexToken('mm', match1to2, match2);
     addParseToken(['m', 'mm'], MINUTE);
 
@@ -8018,17 +8049,9 @@ module.exports = validateWebAddress;
 
     addFormatToken('s', ['ss', 2], 0, 'second');
 
-    // ALIASES
-
-    addUnitAlias('second', 's');
-
-    // PRIORITY
-
-    addUnitPriority('second', 15);
-
     // PARSING
 
-    addRegexToken('s', match1to2);
+    addRegexToken('s', match1to2, match1to2HasZero);
     addRegexToken('ss', match1to2, match2);
     addParseToken(['s', 'ss'], SECOND);
 
@@ -8065,14 +8088,6 @@ module.exports = validateWebAddress;
     addFormatToken(0, ['SSSSSSSSS', 9], 0, function () {
         return this.millisecond() * 1000000;
     });
-
-    // ALIASES
-
-    addUnitAlias('millisecond', 'ms');
-
-    // PRIORITY
-
-    addUnitPriority('millisecond', 16);
 
     // PARSING
 
@@ -8381,12 +8396,12 @@ module.exports = validateWebAddress;
                     toInt((number % 100) / 10) === 1
                         ? 'th'
                         : b === 1
-                        ? 'st'
-                        : b === 2
-                        ? 'nd'
-                        : b === 3
-                        ? 'rd'
-                        : 'th';
+                          ? 'st'
+                          : b === 2
+                            ? 'nd'
+                            : b === 3
+                              ? 'rd'
+                              : 'th';
             return number + output;
         },
     });
@@ -8559,19 +8574,6 @@ module.exports = validateWebAddress;
         }
     }
 
-    // TODO: Use this.as('ms')?
-    function valueOf$1() {
-        if (!this.isValid()) {
-            return NaN;
-        }
-        return (
-            this._milliseconds +
-            this._days * 864e5 +
-            (this._months % 12) * 2592e6 +
-            toInt(this._months / 12) * 31536e6
-        );
-    }
-
     function makeAs(alias) {
         return function () {
             return this.as(alias);
@@ -8586,7 +8588,8 @@ module.exports = validateWebAddress;
         asWeeks = makeAs('w'),
         asMonths = makeAs('M'),
         asQuarters = makeAs('Q'),
-        asYears = makeAs('y');
+        asYears = makeAs('y'),
+        valueOf$1 = asMilliseconds;
 
     function clone$1() {
         return createDuration(this);
@@ -8855,7 +8858,7 @@ module.exports = validateWebAddress;
 
     //! moment.js
 
-    hooks.version = '2.29.4';
+    hooks.version = '2.30.1';
 
     setHookCallback(createLocal);
 
@@ -9303,9 +9306,11 @@ var _isCurrency = _interopRequireDefault(require("./lib/isCurrency"));
 
 var _isBtcAddress = _interopRequireDefault(require("./lib/isBtcAddress"));
 
-var _isISO = _interopRequireDefault(require("./lib/isISO6391"));
+var _isISO = require("./lib/isISO6346");
 
-var _isISO2 = _interopRequireDefault(require("./lib/isISO8601"));
+var _isISO2 = _interopRequireDefault(require("./lib/isISO6391"));
+
+var _isISO3 = _interopRequireDefault(require("./lib/isISO8601"));
 
 var _isRFC = _interopRequireDefault(require("./lib/isRFC3339"));
 
@@ -9313,7 +9318,7 @@ var _isISO31661Alpha = _interopRequireDefault(require("./lib/isISO31661Alpha2"))
 
 var _isISO31661Alpha2 = _interopRequireDefault(require("./lib/isISO31661Alpha3"));
 
-var _isISO3 = _interopRequireDefault(require("./lib/isISO4217"));
+var _isISO4 = _interopRequireDefault(require("./lib/isISO4217"));
 
 var _isBase = _interopRequireDefault(require("./lib/isBase32"));
 
@@ -9324,6 +9329,8 @@ var _isBase3 = _interopRequireDefault(require("./lib/isBase64"));
 var _isDataURI = _interopRequireDefault(require("./lib/isDataURI"));
 
 var _isMagnetURI = _interopRequireDefault(require("./lib/isMagnetURI"));
+
+var _isMailtoURI = _interopRequireDefault(require("./lib/isMailtoURI"));
 
 var _isMimeType = _interopRequireDefault(require("./lib/isMimeType"));
 
@@ -9365,7 +9372,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var version = '13.9.0';
+var version = '13.11.0';
 var validator = {
   version: version,
   toDate: _toDate.default,
@@ -9439,17 +9446,20 @@ var validator = {
   isEthereumAddress: _isEthereumAddress.default,
   isCurrency: _isCurrency.default,
   isBtcAddress: _isBtcAddress.default,
-  isISO6391: _isISO.default,
-  isISO8601: _isISO2.default,
+  isISO6346: _isISO.isISO6346,
+  isFreightContainerID: _isISO.isFreightContainerID,
+  isISO6391: _isISO2.default,
+  isISO8601: _isISO3.default,
   isRFC3339: _isRFC.default,
   isISO31661Alpha2: _isISO31661Alpha.default,
   isISO31661Alpha3: _isISO31661Alpha2.default,
-  isISO4217: _isISO3.default,
+  isISO4217: _isISO4.default,
   isBase32: _isBase.default,
   isBase58: _isBase2.default,
   isBase64: _isBase3.default,
   isDataURI: _isDataURI.default,
   isMagnetURI: _isMagnetURI.default,
+  isMailtoURI: _isMailtoURI.default,
   isMimeType: _isMimeType.default,
   isLatLong: _isLatLong.default,
   ltrim: _ltrim.default,
@@ -9476,7 +9486,7 @@ var _default = validator;
 exports.default = _default;
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./lib/blacklist":47,"./lib/contains":48,"./lib/equals":49,"./lib/escape":50,"./lib/isAfter":51,"./lib/isAlpha":52,"./lib/isAlphanumeric":53,"./lib/isAscii":54,"./lib/isBIC":55,"./lib/isBase32":56,"./lib/isBase58":57,"./lib/isBase64":58,"./lib/isBefore":59,"./lib/isBoolean":60,"./lib/isBtcAddress":61,"./lib/isByteLength":62,"./lib/isCreditCard":63,"./lib/isCurrency":64,"./lib/isDataURI":65,"./lib/isDate":66,"./lib/isDecimal":67,"./lib/isDivisibleBy":68,"./lib/isEAN":69,"./lib/isEmail":70,"./lib/isEmpty":71,"./lib/isEthereumAddress":72,"./lib/isFQDN":73,"./lib/isFloat":74,"./lib/isFullWidth":75,"./lib/isHSL":76,"./lib/isHalfWidth":77,"./lib/isHash":78,"./lib/isHexColor":79,"./lib/isHexadecimal":80,"./lib/isIBAN":81,"./lib/isIMEI":82,"./lib/isIP":83,"./lib/isIPRange":84,"./lib/isISBN":85,"./lib/isISIN":86,"./lib/isISO31661Alpha2":87,"./lib/isISO31661Alpha3":88,"./lib/isISO4217":89,"./lib/isISO6391":90,"./lib/isISO8601":91,"./lib/isISRC":92,"./lib/isISSN":93,"./lib/isIdentityCard":94,"./lib/isIn":95,"./lib/isInt":96,"./lib/isJSON":97,"./lib/isJWT":98,"./lib/isLatLong":99,"./lib/isLength":100,"./lib/isLicensePlate":101,"./lib/isLocale":102,"./lib/isLowercase":103,"./lib/isLuhnNumber":104,"./lib/isMACAddress":105,"./lib/isMD5":106,"./lib/isMagnetURI":107,"./lib/isMimeType":108,"./lib/isMobilePhone":109,"./lib/isMongoId":110,"./lib/isMultibyte":111,"./lib/isNumeric":112,"./lib/isOctal":113,"./lib/isPassportNumber":114,"./lib/isPort":115,"./lib/isPostalCode":116,"./lib/isRFC3339":117,"./lib/isRgbColor":118,"./lib/isSemVer":119,"./lib/isSlug":120,"./lib/isStrongPassword":121,"./lib/isSurrogatePair":122,"./lib/isTaxID":123,"./lib/isTime":124,"./lib/isURL":125,"./lib/isUUID":126,"./lib/isUppercase":127,"./lib/isVAT":128,"./lib/isVariableWidth":129,"./lib/isWhitelisted":130,"./lib/ltrim":131,"./lib/matches":132,"./lib/normalizeEmail":133,"./lib/rtrim":134,"./lib/stripLow":135,"./lib/toBoolean":136,"./lib/toDate":137,"./lib/toFloat":138,"./lib/toInt":139,"./lib/trim":140,"./lib/unescape":141,"./lib/whitelist":148}],46:[function(require,module,exports){
+},{"./lib/blacklist":47,"./lib/contains":48,"./lib/equals":49,"./lib/escape":50,"./lib/isAfter":51,"./lib/isAlpha":52,"./lib/isAlphanumeric":53,"./lib/isAscii":54,"./lib/isBIC":55,"./lib/isBase32":56,"./lib/isBase58":57,"./lib/isBase64":58,"./lib/isBefore":59,"./lib/isBoolean":60,"./lib/isBtcAddress":61,"./lib/isByteLength":62,"./lib/isCreditCard":63,"./lib/isCurrency":64,"./lib/isDataURI":65,"./lib/isDate":66,"./lib/isDecimal":67,"./lib/isDivisibleBy":68,"./lib/isEAN":69,"./lib/isEmail":70,"./lib/isEmpty":71,"./lib/isEthereumAddress":72,"./lib/isFQDN":73,"./lib/isFloat":74,"./lib/isFullWidth":75,"./lib/isHSL":76,"./lib/isHalfWidth":77,"./lib/isHash":78,"./lib/isHexColor":79,"./lib/isHexadecimal":80,"./lib/isIBAN":81,"./lib/isIMEI":82,"./lib/isIP":83,"./lib/isIPRange":84,"./lib/isISBN":85,"./lib/isISIN":86,"./lib/isISO31661Alpha2":87,"./lib/isISO31661Alpha3":88,"./lib/isISO4217":89,"./lib/isISO6346":90,"./lib/isISO6391":91,"./lib/isISO8601":92,"./lib/isISRC":93,"./lib/isISSN":94,"./lib/isIdentityCard":95,"./lib/isIn":96,"./lib/isInt":97,"./lib/isJSON":98,"./lib/isJWT":99,"./lib/isLatLong":100,"./lib/isLength":101,"./lib/isLicensePlate":102,"./lib/isLocale":103,"./lib/isLowercase":104,"./lib/isLuhnNumber":105,"./lib/isMACAddress":106,"./lib/isMD5":107,"./lib/isMagnetURI":108,"./lib/isMailtoURI":109,"./lib/isMimeType":110,"./lib/isMobilePhone":111,"./lib/isMongoId":112,"./lib/isMultibyte":113,"./lib/isNumeric":114,"./lib/isOctal":115,"./lib/isPassportNumber":116,"./lib/isPort":117,"./lib/isPostalCode":118,"./lib/isRFC3339":119,"./lib/isRgbColor":120,"./lib/isSemVer":121,"./lib/isSlug":122,"./lib/isStrongPassword":123,"./lib/isSurrogatePair":124,"./lib/isTaxID":125,"./lib/isTime":126,"./lib/isURL":127,"./lib/isUUID":128,"./lib/isUppercase":129,"./lib/isVAT":130,"./lib/isVariableWidth":131,"./lib/isWhitelisted":132,"./lib/ltrim":133,"./lib/matches":134,"./lib/normalizeEmail":135,"./lib/rtrim":136,"./lib/stripLow":137,"./lib/toBoolean":138,"./lib/toDate":139,"./lib/toFloat":140,"./lib/toInt":141,"./lib/trim":142,"./lib/unescape":143,"./lib/whitelist":150}],46:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9504,6 +9514,7 @@ var alpha = {
   'pl-PL': /^[A-ZĄĆĘŚŁŃÓŻŹ]+$/i,
   'pt-PT': /^[A-ZÃÁÀÂÄÇÉÊËÍÏÕÓÔÖÚÜ]+$/i,
   'ru-RU': /^[А-ЯЁ]+$/i,
+  'kk-KZ': /^[А-ЯЁ\u04D8\u04B0\u0406\u04A2\u0492\u04AE\u049A\u04E8\u04BA]+$/i,
   'sl-SI': /^[A-ZČĆĐŠŽ]+$/i,
   'sk-SK': /^[A-ZÁČĎÉÍŇÓŠŤÚÝŽĹŔĽÄÔ]+$/i,
   'sr-RS@latin': /^[A-ZČĆŽŠĐ]+$/i,
@@ -9543,6 +9554,7 @@ var alphanumeric = {
   'pl-PL': /^[0-9A-ZĄĆĘŚŁŃÓŻŹ]+$/i,
   'pt-PT': /^[0-9A-ZÃÁÀÂÄÇÉÊËÍÏÕÓÔÖÚÜ]+$/i,
   'ru-RU': /^[0-9А-ЯЁ]+$/i,
+  'kk-KZ': /^[0-9А-ЯЁ\u04D8\u04B0\u0406\u04A2\u0492\u04AE\u049A\u04E8\u04BA]+$/i,
   'sl-SI': /^[0-9A-ZČĆĐŠŽ]+$/i,
   'sk-SK': /^[0-9A-ZÁČĎÉÍŇÓŠŤÚÝŽĹŔĽÄÔ]+$/i,
   'sr-RS@latin': /^[0-9A-ZČĆŽŠĐ]+$/i,
@@ -9610,7 +9622,7 @@ for (var _locale3, _i3 = 0; _i3 < bengaliLocales.length; _i3++) {
 
 var dotDecimal = ['ar-EG', 'ar-LB', 'ar-LY'];
 exports.dotDecimal = dotDecimal;
-var commaDecimal = ['bg-BG', 'cs-CZ', 'da-DK', 'de-DE', 'el-GR', 'en-ZM', 'es-ES', 'fr-CA', 'fr-FR', 'id-ID', 'it-IT', 'ku-IQ', 'hi-IN', 'hu-HU', 'nb-NO', 'nn-NO', 'nl-NL', 'pl-PL', 'pt-PT', 'ru-RU', 'si-LK', 'sl-SI', 'sr-RS@latin', 'sr-RS', 'sv-SE', 'tr-TR', 'uk-UA', 'vi-VN'];
+var commaDecimal = ['bg-BG', 'cs-CZ', 'da-DK', 'de-DE', 'el-GR', 'en-ZM', 'es-ES', 'fr-CA', 'fr-FR', 'id-ID', 'it-IT', 'ku-IQ', 'hi-IN', 'hu-HU', 'nb-NO', 'nn-NO', 'nl-NL', 'pl-PL', 'pt-PT', 'ru-RU', 'kk-KZ', 'si-LK', 'sl-SI', 'sr-RS@latin', 'sr-RS', 'sv-SE', 'tr-TR', 'uk-UA', 'vi-VN'];
 exports.commaDecimal = commaDecimal;
 
 for (var _i4 = 0; _i4 < dotDecimal.length; _i4++) {
@@ -9651,7 +9663,7 @@ function blacklist(str, chars) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],48:[function(require,module,exports){
+},{"./util/assertString":145}],48:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9685,7 +9697,7 @@ function contains(str, elem, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143,"./util/merge":145,"./util/toString":147}],49:[function(require,module,exports){
+},{"./util/assertString":145,"./util/merge":147,"./util/toString":149}],49:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9704,7 +9716,7 @@ function equals(str, comparison) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],50:[function(require,module,exports){
+},{"./util/assertString":145}],50:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9723,7 +9735,7 @@ function escape(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],51:[function(require,module,exports){
+},{"./util/assertString":145}],51:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9746,7 +9758,7 @@ function isAfter(date, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./toDate":137}],52:[function(require,module,exports){
+},{"./toDate":139}],52:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9787,7 +9799,7 @@ function isAlpha(_str) {
 
 var locales = Object.keys(_alpha.alpha);
 exports.locales = locales;
-},{"./alpha":46,"./util/assertString":143}],53:[function(require,module,exports){
+},{"./alpha":46,"./util/assertString":145}],53:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9828,7 +9840,7 @@ function isAlphanumeric(_str) {
 
 var locales = Object.keys(_alpha.alphanumeric);
 exports.locales = locales;
-},{"./alpha":46,"./util/assertString":143}],54:[function(require,module,exports){
+},{"./alpha":46,"./util/assertString":145}],54:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9851,7 +9863,7 @@ function isAscii(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],55:[function(require,module,exports){
+},{"./util/assertString":145}],55:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9883,7 +9895,7 @@ function isBIC(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./isISO31661Alpha2":87,"./util/assertString":143}],56:[function(require,module,exports){
+},{"./isISO31661Alpha2":87,"./util/assertString":145}],56:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9922,7 +9934,7 @@ function isBase32(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143,"./util/merge":145}],57:[function(require,module,exports){
+},{"./util/assertString":145,"./util/merge":147}],57:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9949,7 +9961,7 @@ function isBase58(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],58:[function(require,module,exports){
+},{"./util/assertString":145}],58:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9988,7 +10000,7 @@ function isBase64(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143,"./util/merge":145}],59:[function(require,module,exports){
+},{"./util/assertString":145,"./util/merge":147}],59:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10012,7 +10024,7 @@ function isBefore(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./toDate":137,"./util/assertString":143}],60:[function(require,module,exports){
+},{"./toDate":139,"./util/assertString":145}],60:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10043,7 +10055,7 @@ function isBoolean(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],61:[function(require,module,exports){
+},{"./util/assertString":145}],61:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10065,7 +10077,7 @@ function isBtcAddress(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],62:[function(require,module,exports){
+},{"./util/assertString":145}],62:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10100,7 +10112,7 @@ function isByteLength(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],63:[function(require,module,exports){
+},{"./util/assertString":145}],63:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10124,10 +10136,19 @@ var cards = {
   unionpay: /^(6[27][0-9]{14}|^(81[0-9]{14,17}))$/,
   visa: /^(?:4[0-9]{12})(?:[0-9]{3,6})?$/
 };
-/* eslint-disable max-len */
 
-var allCards = /^(?:4[0-9]{12}(?:[0-9]{3,6})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12,15}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11}|6[27][0-9]{14}|^(81[0-9]{14,17}))$/;
-/* eslint-enable max-len */
+var allCards = function () {
+  var tmpCardsArray = [];
+
+  for (var cardProvider in cards) {
+    // istanbul ignore else
+    if (cards.hasOwnProperty(cardProvider)) {
+      tmpCardsArray.push(cards[cardProvider]);
+    }
+  }
+
+  return tmpCardsArray;
+}();
 
 function isCreditCard(card) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -10143,7 +10164,9 @@ function isCreditCard(card) {
   } else if (provider && !(provider.toLowerCase() in cards)) {
     /* specific provider not in the list */
     throw new Error("".concat(provider, " is not a valid credit card provider."));
-  } else if (!allCards.test(sanitized)) {
+  } else if (!allCards.some(function (cardProvider) {
+    return cardProvider.test(sanitized);
+  })) {
     // no specific provider
     return false;
   }
@@ -10153,7 +10176,7 @@ function isCreditCard(card) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./isLuhnNumber":104,"./util/assertString":143}],64:[function(require,module,exports){
+},{"./isLuhnNumber":105,"./util/assertString":145}],64:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10245,7 +10268,7 @@ function isCurrency(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143,"./util/merge":145}],65:[function(require,module,exports){
+},{"./util/assertString":145,"./util/merge":147}],65:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10299,7 +10322,7 @@ function isDataURI(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],66:[function(require,module,exports){
+},{"./util/assertString":145}],66:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10387,7 +10410,25 @@ function isDate(input, options) {
       _iterator.f();
     }
 
-    return new Date("".concat(dateObj.m, "/").concat(dateObj.d, "/").concat(dateObj.y)).getDate() === +dateObj.d;
+    var fullYear = dateObj.y;
+
+    if (dateObj.y.length === 2) {
+      var parsedYear = parseInt(dateObj.y, 10);
+
+      if (isNaN(parsedYear)) {
+        return false;
+      }
+
+      var currentYearLastTwoDigits = new Date().getFullYear() % 100;
+
+      if (parsedYear < currentYearLastTwoDigits) {
+        fullYear = "20".concat(dateObj.y);
+      } else {
+        fullYear = "19".concat(dateObj.y);
+      }
+    }
+
+    return new Date("".concat(fullYear, "-").concat(dateObj.m, "-").concat(dateObj.d)).getDate() === +dateObj.d;
   }
 
   if (!options.strictMode) {
@@ -10399,7 +10440,7 @@ function isDate(input, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/merge":145}],67:[function(require,module,exports){
+},{"./util/merge":147}],67:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10442,7 +10483,7 @@ function isDecimal(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./alpha":46,"./util/assertString":143,"./util/includes":144,"./util/merge":145}],68:[function(require,module,exports){
+},{"./alpha":46,"./util/assertString":145,"./util/includes":146,"./util/merge":147}],68:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10463,7 +10504,7 @@ function isDivisibleBy(str, num) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./toFloat":138,"./util/assertString":143}],69:[function(require,module,exports){
+},{"./toFloat":140,"./util/assertString":145}],69:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10549,7 +10590,7 @@ function isEAN(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],70:[function(require,module,exports){
+},{"./util/assertString":145}],70:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10559,18 +10600,19 @@ exports.default = isEmail;
 
 var _assertString = _interopRequireDefault(require("./util/assertString"));
 
-var _merge = _interopRequireDefault(require("./util/merge"));
-
 var _isByteLength = _interopRequireDefault(require("./isByteLength"));
 
 var _isFQDN = _interopRequireDefault(require("./isFQDN"));
 
 var _isIP = _interopRequireDefault(require("./isIP"));
 
+var _merge = _interopRequireDefault(require("./util/merge"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var default_email_options = {
   allow_display_name: false,
+  allow_underscores: false,
   require_display_name: false,
   allow_utf8_local_part: true,
   require_tld: true,
@@ -10587,7 +10629,7 @@ var splitNameAddress = /^([^\x00-\x1F\x7F-\x9F\cX]+)</i;
 var emailUserPart = /^[a-z\d!#\$%&'\*\+\-\/=\?\^_`{\|}~]+$/i;
 var gmailUserPart = /^[a-z\d]+$/;
 var quotedEmailUser = /^([\s\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e]|(\\[\x01-\x09\x0b\x0c\x0d-\x7f]))*$/i;
-var emailUserUtf8Part = /^[a-z\d!#\$%&'\*\+\-\/=\?\^_`{\|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+$/i;
+var emailUserUtf8Part = /^[a-z\d!#\$%&'\*\+\-\/=\?\^_`{\|}~\u00A1-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+$/i;
 var quotedEmailUserUtf8 = /^([\s\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|(\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*$/i;
 var defaultMaxEmailLength = 254;
 /* eslint-enable max-len */
@@ -10711,7 +10753,8 @@ function isEmail(str, options) {
 
   if (!(0, _isFQDN.default)(domain, {
     require_tld: options.require_tld,
-    ignore_max_length: options.ignore_max_length
+    ignore_max_length: options.ignore_max_length,
+    allow_underscores: options.allow_underscores
   })) {
     if (!options.allow_ip_domain) {
       return false;
@@ -10753,7 +10796,7 @@ function isEmail(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./isByteLength":62,"./isFQDN":73,"./isIP":83,"./util/assertString":143,"./util/merge":145}],71:[function(require,module,exports){
+},{"./isByteLength":62,"./isFQDN":73,"./isIP":83,"./util/assertString":145,"./util/merge":147}],71:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10779,7 +10822,7 @@ function isEmpty(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143,"./util/merge":145}],72:[function(require,module,exports){
+},{"./util/assertString":145,"./util/merge":147}],72:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10800,7 +10843,7 @@ function isEthereumAddress(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],73:[function(require,module,exports){
+},{"./util/assertString":145}],73:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10891,7 +10934,7 @@ function isFQDN(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143,"./util/merge":145}],74:[function(require,module,exports){
+},{"./util/assertString":145,"./util/merge":147}],74:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10921,7 +10964,7 @@ function isFloat(str, options) {
 
 var locales = Object.keys(_alpha.decimal);
 exports.locales = locales;
-},{"./alpha":46,"./util/assertString":143}],75:[function(require,module,exports){
+},{"./alpha":46,"./util/assertString":145}],75:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10941,7 +10984,7 @@ function isFullWidth(str) {
   (0, _assertString.default)(str);
   return fullWidth.test(str);
 }
-},{"./util/assertString":143}],76:[function(require,module,exports){
+},{"./util/assertString":145}],76:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10970,7 +11013,7 @@ function isHSL(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],77:[function(require,module,exports){
+},{"./util/assertString":145}],77:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10990,7 +11033,7 @@ function isHalfWidth(str) {
   (0, _assertString.default)(str);
   return halfWidth.test(str);
 }
-},{"./util/assertString":143}],78:[function(require,module,exports){
+},{"./util/assertString":145}],78:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11026,7 +11069,7 @@ function isHash(str, algorithm) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],79:[function(require,module,exports){
+},{"./util/assertString":145}],79:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11047,7 +11090,7 @@ function isHexColor(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],80:[function(require,module,exports){
+},{"./util/assertString":145}],80:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11068,7 +11111,7 @@ function isHexadecimal(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],81:[function(require,module,exports){
+},{"./util/assertString":145}],81:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11134,6 +11177,7 @@ var ibanRegexThroughCountryCode = {
   LT: /^(LT[0-9]{2})\d{16}$/,
   LU: /^(LU[0-9]{2})\d{3}[A-Z0-9]{13}$/,
   LV: /^(LV[0-9]{2})[A-Z]{4}[A-Z0-9]{13}$/,
+  MA: /^(MA[0-9]{26})$/,
   MC: /^(MC[0-9]{2})\d{10}[A-Z0-9]{11}\d{2}$/,
   MD: /^(MD[0-9]{2})[A-Z0-9]{20}$/,
   ME: /^(ME[0-9]{2})\d{18}$/,
@@ -11167,6 +11211,25 @@ var ibanRegexThroughCountryCode = {
   XK: /^(XK[0-9]{2})\d{16}$/
 };
 /**
+ * Check if the country codes passed are valid using the
+ * ibanRegexThroughCountryCode as a reference
+ *
+ * @param {array} countryCodeArray
+ * @return {boolean}
+ */
+
+function hasOnlyValidCountryCodes(countryCodeArray) {
+  var countryCodeArrayFilteredWithObjectIbanCode = countryCodeArray.filter(function (countryCode) {
+    return !(countryCode in ibanRegexThroughCountryCode);
+  });
+
+  if (countryCodeArrayFilteredWithObjectIbanCode.length > 0) {
+    return false;
+  }
+
+  return true;
+}
+/**
  * Check whether string has correct universal IBAN format
  * The IBAN consists of up to 34 alphanumeric characters, as follows:
  * Country Code using ISO 3166-1 alpha-2, two letters
@@ -11175,14 +11238,38 @@ var ibanRegexThroughCountryCode = {
  * NOTE: Permitted IBAN characters are: digits [0-9] and the 26 latin alphabetic [A-Z]
  *
  * @param {string} str - string under validation
+ * @param {object} options - object to pass the countries to be either whitelisted or blacklisted
  * @return {boolean}
  */
 
-function hasValidIbanFormat(str) {
+
+function hasValidIbanFormat(str, options) {
   // Strip white spaces and hyphens
   var strippedStr = str.replace(/[\s\-]+/gi, '').toUpperCase();
   var isoCountryCode = strippedStr.slice(0, 2).toUpperCase();
-  return isoCountryCode in ibanRegexThroughCountryCode && ibanRegexThroughCountryCode[isoCountryCode].test(strippedStr);
+  var isoCountryCodeInIbanRegexCodeObject = (isoCountryCode in ibanRegexThroughCountryCode);
+
+  if (options.whitelist) {
+    if (!hasOnlyValidCountryCodes(options.whitelist)) {
+      return false;
+    }
+
+    var isoCountryCodeInWhiteList = options.whitelist.includes(isoCountryCode);
+
+    if (!isoCountryCodeInWhiteList) {
+      return false;
+    }
+  }
+
+  if (options.blacklist) {
+    var isoCountryCodeInBlackList = options.blacklist.includes(isoCountryCode);
+
+    if (isoCountryCodeInBlackList) {
+      return false;
+    }
+  }
+
+  return isoCountryCodeInIbanRegexCodeObject && ibanRegexThroughCountryCode[isoCountryCode].test(strippedStr);
 }
 /**
    * Check whether string has valid IBAN Checksum
@@ -11213,13 +11300,14 @@ function hasValidIbanChecksum(str) {
 }
 
 function isIBAN(str) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   (0, _assertString.default)(str);
-  return hasValidIbanFormat(str) && hasValidIbanChecksum(str);
+  return hasValidIbanFormat(str, options) && hasValidIbanChecksum(str);
 }
 
 var locales = Object.keys(ibanRegexThroughCountryCode);
 exports.locales = locales;
-},{"./util/assertString":143}],82:[function(require,module,exports){
+},{"./util/assertString":145}],82:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11281,7 +11369,7 @@ function isIMEI(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],83:[function(require,module,exports){
+},{"./util/assertString":145}],83:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11350,7 +11438,7 @@ function isIP(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],84:[function(require,module,exports){
+},{"./util/assertString":145}],84:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11413,7 +11501,7 @@ function isIPRange(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./isIP":83,"./util/assertString":143}],85:[function(require,module,exports){
+},{"./isIP":83,"./util/assertString":145}],85:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11483,7 +11571,7 @@ function isISBN(isbn, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],86:[function(require,module,exports){
+},{"./util/assertString":145}],86:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11557,7 +11645,7 @@ function isISIN(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],87:[function(require,module,exports){
+},{"./util/assertString":145}],87:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11580,7 +11668,7 @@ function isISO31661Alpha2(str) {
 
 var CountryCodes = validISO31661Alpha2CountriesCodes;
 exports.CountryCodes = CountryCodes;
-},{"./util/assertString":143}],88:[function(require,module,exports){
+},{"./util/assertString":145}],88:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11602,7 +11690,7 @@ function isISO31661Alpha3(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],89:[function(require,module,exports){
+},{"./util/assertString":145}],89:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11625,7 +11713,52 @@ function isISO4217(str) {
 
 var CurrencyCodes = validISO4217CurrencyCodes;
 exports.CurrencyCodes = CurrencyCodes;
-},{"./util/assertString":143}],90:[function(require,module,exports){
+},{"./util/assertString":145}],90:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isISO6346 = isISO6346;
+exports.isFreightContainerID = void 0;
+
+var _assertString = _interopRequireDefault(require("./util/assertString"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// https://en.wikipedia.org/wiki/ISO_6346
+// according to ISO6346 standard, checksum digit is mandatory for freight container but recommended
+// for other container types (J and Z)
+var isISO6346Str = /^[A-Z]{3}(U[0-9]{7})|([J,Z][0-9]{6,7})$/;
+var isDigit = /^[0-9]$/;
+
+function isISO6346(str) {
+  (0, _assertString.default)(str);
+  str = str.toUpperCase();
+  if (!isISO6346Str.test(str)) return false;
+
+  if (str.length === 11) {
+    var sum = 0;
+
+    for (var i = 0; i < str.length - 1; i++) {
+      if (!isDigit.test(str[i])) {
+        var convertedCode = void 0;
+        var letterCode = str.charCodeAt(i) - 55;
+        if (letterCode < 11) convertedCode = letterCode;else if (letterCode >= 11 && letterCode <= 20) convertedCode = 12 + letterCode % 11;else if (letterCode >= 21 && letterCode <= 30) convertedCode = 23 + letterCode % 21;else convertedCode = 34 + letterCode % 31;
+        sum += convertedCode * Math.pow(2, i);
+      } else sum += str[i] * Math.pow(2, i);
+    }
+
+    var checkSumDigit = sum % 11;
+    return Number(str[str.length - 1]) === checkSumDigit;
+  }
+
+  return true;
+}
+
+var isFreightContainerID = isISO6346;
+exports.isFreightContainerID = isFreightContainerID;
+},{"./util/assertString":145}],91:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11646,7 +11779,7 @@ function isISO6391(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],91:[function(require,module,exports){
+},{"./util/assertString":145}],92:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11706,7 +11839,7 @@ function isISO8601(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],92:[function(require,module,exports){
+},{"./util/assertString":145}],93:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11728,7 +11861,7 @@ function isISRC(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],93:[function(require,module,exports){
+},{"./util/assertString":145}],94:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11766,7 +11899,7 @@ function isISSN(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],94:[function(require,module,exports){
+},{"./util/assertString":145}],95:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12177,7 +12310,7 @@ function isIdentityCard(str, locale) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./isInt":96,"./util/assertString":143}],95:[function(require,module,exports){
+},{"./isInt":97,"./util/assertString":145}],96:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12220,7 +12353,7 @@ function isIn(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143,"./util/toString":147}],96:[function(require,module,exports){
+},{"./util/assertString":145,"./util/toString":149}],97:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12251,7 +12384,7 @@ function isInt(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],97:[function(require,module,exports){
+},{"./util/assertString":145}],98:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12293,7 +12426,7 @@ function isJSON(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143,"./util/merge":145}],98:[function(require,module,exports){
+},{"./util/assertString":145,"./util/merge":147}],99:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12312,7 +12445,7 @@ function isJWT(str) {
   var dotSplit = str.split('.');
   var len = dotSplit.length;
 
-  if (len > 3 || len < 2) {
+  if (len !== 3) {
     return false;
   }
 
@@ -12325,7 +12458,7 @@ function isJWT(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./isBase64":58,"./util/assertString":143}],99:[function(require,module,exports){
+},{"./isBase64":58,"./util/assertString":145}],100:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12363,7 +12496,7 @@ function isLatLong(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143,"./util/merge":145}],100:[function(require,module,exports){
+},{"./util/assertString":145,"./util/merge":147}],101:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12400,7 +12533,7 @@ function isLength(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],101:[function(require,module,exports){
+},{"./util/assertString":145}],102:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12471,7 +12604,7 @@ function isLicensePlate(str, locale) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],102:[function(require,module,exports){
+},{"./util/assertString":145}],103:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12483,21 +12616,112 @@ var _assertString = _interopRequireDefault(require("./util/assertString"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var localeReg = /^[A-Za-z]{2,4}([_-]([A-Za-z]{4}|[\d]{3}))?([_-]([A-Za-z]{2}|[\d]{3}))?$/;
+/*
+  = 3ALPHA              ; selected ISO 639 codes
+    *2("-" 3ALPHA)      ; permanently reserved
+ */
+var extlang = '([A-Za-z]{3}(-[A-Za-z]{3}){0,2})';
+/*
+  = 2*3ALPHA            ; shortest ISO 639 code
+    ["-" extlang]       ; sometimes followed by
+                        ; extended language subtags
+  / 4ALPHA              ; or reserved for future use
+  / 5*8ALPHA            ; or registered language subtag
+ */
+
+var language = "(([a-zA-Z]{2,3}(-".concat(extlang, ")?)|([a-zA-Z]{5,8}))");
+/*
+  = 4ALPHA              ; ISO 15924 code
+ */
+
+var script = '([A-Za-z]{4})';
+/*
+  = 2ALPHA              ; ISO 3166-1 code
+  / 3DIGIT              ; UN M.49 code
+ */
+
+var region = '([A-Za-z]{2}|\\d{3})';
+/*
+  = 5*8alphanum         ; registered variants
+  / (DIGIT 3alphanum)
+ */
+
+var variant = '([A-Za-z0-9]{5,8}|(\\d[A-Z-a-z0-9]{3}))';
+/*
+  = DIGIT               ; 0 - 9
+  / %x41-57             ; A - W
+  / %x59-5A             ; Y - Z
+  / %x61-77             ; a - w
+  / %x79-7A             ; y - z
+ */
+
+var singleton = '(\\d|[A-W]|[Y-Z]|[a-w]|[y-z])';
+/*
+  = singleton 1*("-" (2*8alphanum))
+                        ; Single alphanumerics
+                        ; "x" reserved for private use
+ */
+
+var extension = "(".concat(singleton, "(-[A-Za-z0-9]{2,8})+)");
+/*
+  = "x" 1*("-" (1*8alphanum))
+ */
+
+var privateuse = '(x(-[A-Za-z0-9]{1,8})+)'; // irregular tags do not match the 'langtag' production and would not
+// otherwise be considered 'well-formed'. These tags are all valid, but
+// most are deprecated in favor of more modern subtags or subtag combination
+
+var irregular = '((en-GB-oed)|(i-ami)|(i-bnn)|(i-default)|(i-enochian)|' + '(i-hak)|(i-klingon)|(i-lux)|(i-mingo)|(i-navajo)|(i-pwn)|(i-tao)|' + '(i-tay)|(i-tsu)|(sgn-BE-FR)|(sgn-BE-NL)|(sgn-CH-DE))'; // regular tags match the 'langtag' production, but their subtags are not
+// extended language or variant subtags: their meaning is defined by
+// their registration and all of these are deprecated in favor of a more
+// modern subtag or sequence of subtags
+
+var regular = '((art-lojban)|(cel-gaulish)|(no-bok)|(no-nyn)|(zh-guoyu)|' + '(zh-hakka)|(zh-min)|(zh-min-nan)|(zh-xiang))';
+/*
+  = irregular           ; non-redundant tags registered
+  / regular             ; during the RFC 3066 era
+
+ */
+
+var grandfathered = "(".concat(irregular, "|").concat(regular, ")");
+/*
+  RFC 5646 defines delimitation of subtags via a hyphen:
+
+      "Subtag" refers to a specific section of a tag, delimited by a
+      hyphen, such as the subtags 'zh', 'Hant', and 'CN' in the tag "zh-
+      Hant-CN".  Examples of subtags in this document are enclosed in
+      single quotes ('Hant')
+
+  However, we need to add "_" to maintain the existing behaviour.
+ */
+
+var delimiter = '(-|_)';
+/*
+  = language
+    ["-" script]
+    ["-" region]
+    *("-" variant)
+    *("-" extension)
+    ["-" privateuse]
+ */
+
+var langtag = "".concat(language, "(").concat(delimiter).concat(script, ")?(").concat(delimiter).concat(region, ")?(").concat(delimiter).concat(variant, ")*(").concat(delimiter).concat(extension, ")*(").concat(delimiter).concat(privateuse, ")?");
+/*
+  Regex implementation based on BCP RFC 5646
+  Tags for Identifying Languages
+  https://www.rfc-editor.org/rfc/rfc5646.html
+ */
+
+var languageTagRegex = new RegExp("(^".concat(privateuse, "$)|(^").concat(grandfathered, "$)|(^").concat(langtag, "$)"));
 
 function isLocale(str) {
   (0, _assertString.default)(str);
-
-  if (str === 'en_US_POSIX' || str === 'ca_ES_VALENCIA') {
-    return true;
-  }
-
-  return localeReg.test(str);
+  return languageTagRegex.test(str);
 }
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],103:[function(require,module,exports){
+},{"./util/assertString":145}],104:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12516,7 +12740,7 @@ function isLowercase(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],104:[function(require,module,exports){
+},{"./util/assertString":145}],105:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12560,7 +12784,7 @@ function isLuhnNumber(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],105:[function(require,module,exports){
+},{"./util/assertString":145}],106:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12619,7 +12843,7 @@ function isMACAddress(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],106:[function(require,module,exports){
+},{"./util/assertString":145}],107:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12640,7 +12864,7 @@ function isMD5(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],107:[function(require,module,exports){
+},{"./util/assertString":145}],108:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12666,7 +12890,122 @@ function isMagnetURI(url) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],108:[function(require,module,exports){
+},{"./util/assertString":145}],109:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = isMailtoURI;
+
+var _trim = _interopRequireDefault(require("./trim"));
+
+var _isEmail = _interopRequireDefault(require("./isEmail"));
+
+var _assertString = _interopRequireDefault(require("./util/assertString"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function parseMailtoQueryString(queryString) {
+  var allowedParams = new Set(['subject', 'body', 'cc', 'bcc']),
+      query = {
+    cc: '',
+    bcc: ''
+  };
+  var isParseFailed = false;
+  var queryParams = queryString.split('&');
+
+  if (queryParams.length > 4) {
+    return false;
+  }
+
+  var _iterator = _createForOfIteratorHelper(queryParams),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var q = _step.value;
+
+      var _q$split = q.split('='),
+          _q$split2 = _slicedToArray(_q$split, 2),
+          key = _q$split2[0],
+          value = _q$split2[1]; // checked for invalid and duplicated query params
+
+
+      if (key && !allowedParams.has(key)) {
+        isParseFailed = true;
+        break;
+      }
+
+      if (value && (key === 'cc' || key === 'bcc')) {
+        query[key] = value;
+      }
+
+      if (key) {
+        allowedParams.delete(key);
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  return isParseFailed ? false : query;
+}
+
+function isMailtoURI(url, options) {
+  (0, _assertString.default)(url);
+
+  if (url.indexOf('mailto:') !== 0) {
+    return false;
+  }
+
+  var _url$replace$split = url.replace('mailto:', '').split('?'),
+      _url$replace$split2 = _slicedToArray(_url$replace$split, 2),
+      _url$replace$split2$ = _url$replace$split2[0],
+      to = _url$replace$split2$ === void 0 ? '' : _url$replace$split2$,
+      _url$replace$split2$2 = _url$replace$split2[1],
+      queryString = _url$replace$split2$2 === void 0 ? '' : _url$replace$split2$2;
+
+  if (!to && !queryString) {
+    return true;
+  }
+
+  var query = parseMailtoQueryString(queryString);
+
+  if (!query) {
+    return false;
+  }
+
+  return "".concat(to, ",").concat(query.cc, ",").concat(query.bcc).split(',').every(function (email) {
+    email = (0, _trim.default)(email, ' ');
+
+    if (email) {
+      return (0, _isEmail.default)(email, options);
+    }
+
+    return true;
+  });
+}
+
+module.exports = exports.default;
+module.exports.default = exports.default;
+},{"./isEmail":70,"./trim":142,"./util/assertString":145}],110:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12718,7 +13057,7 @@ function isMimeType(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],109:[function(require,module,exports){
+},{"./util/assertString":145}],111:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12747,6 +13086,7 @@ var phones = {
   'ar-OM': /^((\+|00)968)?(9[1-9])\d{6}$/,
   'ar-PS': /^(\+?970|0)5[6|9](\d{7})$/,
   'ar-SA': /^(!?(\+?966)|0)?5\d{8}$/,
+  'ar-SD': /^((\+?249)|0)?(9[012369]|1[012])\d{7}$/,
   'ar-SY': /^(!?(\+?963)|0)?9\d{8}$/,
   'ar-TN': /^(\+?216)?[2459]\d{7}$/,
   'az-AZ': /^(\+994|0)(10|5[015]|7[07]|99)\d{7}$/,
@@ -12779,6 +13119,7 @@ var phones = {
   'en-IN': /^(\+?91|0)?[6789]\d{9}$/,
   'en-JM': /^(\+?876)?\d{7}$/,
   'en-KE': /^(\+?254|0)(7|1)\d{8}$/,
+  'fr-CF': /^(\+?236| ?)(70|75|77|72|21|22)\d{6}$/,
   'en-SS': /^(\+?211|0)(9[1257])\d{7}$/,
   'en-KI': /^((\+686|686)?)?( )?((6|7)(2|3|8)[0-9]{6})$/,
   'en-KN': /^(?:\+1|1)869(?:46\d|48[89]|55[6-8]|66\d|76[02-7])\d{4}$/,
@@ -12806,7 +13147,7 @@ var phones = {
   'es-CO': /^(\+?57)?3(0(0|1|2|4|5)|1\d|2[0-4]|5(0|1))\d{7}$/,
   'es-CL': /^(\+?56|0)[2-9]\d{1}\d{7}$/,
   'es-CR': /^(\+506)?[2-8]\d{7}$/,
-  'es-CU': /^(\+53|0053)?5\d{7}/,
+  'es-CU': /^(\+53|0053)?5\d{7}$/,
   'es-DO': /^(\+?1)?8[024]9\d{7}$/,
   'es-HN': /^(\+?504)?[9|8|3|2]\d{7}$/,
   'es-EC': /^(\+?593|0)([2-7]|9[2-9])\d{7}$/,
@@ -12834,6 +13175,7 @@ var phones = {
   'fr-MQ': /^(\+?596|0|00596)[67]\d{8}$/,
   'fr-PF': /^(\+?689)?8[789]\d{6}$/,
   'fr-RE': /^(\+?262|0|00262)[67]\d{8}$/,
+  'fr-WF': /^(\+681)?\d{6}$/,
   'he-IL': /^(\+972|0)([23489]|5[012345689]|77)[1-9]\d{6}$/,
   'hu-HU': /^(\+?36|06)(20|30|31|50|70)\d{7}$/,
   'id-ID': /^(\+?62|0)8(1[123456789]|2[1238]|3[1238]|5[12356789]|7[78]|9[56789]|8[123456789])([\s?|\d]{5,11})$/,
@@ -12859,7 +13201,7 @@ var phones = {
   'nl-NL': /^(((\+|00)?31\(0\))|((\+|00)?31)|0)6{1}\d{8}$/,
   'nl-AW': /^(\+)?297(56|59|64|73|74|99)\d{5}$/,
   'nn-NO': /^(\+?47)?[49]\d{7}$/,
-  'pl-PL': /^(\+?48)? ?[5-8]\d ?\d{3} ?\d{2} ?\d{2}$/,
+  'pl-PL': /^(\+?48)? ?([5-8]\d|45) ?\d{3} ?\d{2} ?\d{2}$/,
   'pt-BR': /^((\+?55\ ?[1-9]{2}\ ?)|(\+?55\ ?\([1-9]{2}\)\ ?)|(0[1-9]{2}\ ?)|(\([1-9]{2}\)\ ?)|([1-9]{2}\ ?))((\d{4}\-?\d{4})|(9[1-9]{1}\d{3}\-?\d{4}))$/,
   'pt-PT': /^(\+?351)?9[1236]\d{7}$/,
   'pt-AO': /^(\+244)\d{9}$/,
@@ -12869,6 +13211,7 @@ var phones = {
   'si-LK': /^(?:0|94|\+94)?(7(0|1|2|4|5|6|7|8)( |-)?)\d{7}$/,
   'sl-SI': /^(\+386\s?|0)(\d{1}\s?\d{3}\s?\d{2}\s?\d{2}|\d{2}\s?\d{3}\s?\d{3})$/,
   'sk-SK': /^(\+?421)? ?[1-9][0-9]{2} ?[0-9]{3} ?[0-9]{3}$/,
+  'so-SO': /^(\+?252|0)((6[0-9])\d{7}|(7[1-9])\d{7})$/,
   'sq-AL': /^(\+355|0)6[789]\d{6}$/,
   'sr-RS': /^(\+3816|06)[- \d]{5,9}$/,
   'sv-SE': /^(\+?46|0)[\s\-]?7[\s\-]?[02369]([\s\-]?\d){7}$/,
@@ -12941,7 +13284,7 @@ function isMobilePhone(str, locale, options) {
 
 var locales = Object.keys(phones);
 exports.locales = locales;
-},{"./util/assertString":143}],110:[function(require,module,exports){
+},{"./util/assertString":145}],112:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12962,7 +13305,7 @@ function isMongoId(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./isHexadecimal":80,"./util/assertString":143}],111:[function(require,module,exports){
+},{"./isHexadecimal":80,"./util/assertString":145}],113:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12985,7 +13328,7 @@ function isMultibyte(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],112:[function(require,module,exports){
+},{"./util/assertString":145}],114:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13013,7 +13356,7 @@ function isNumeric(str, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./alpha":46,"./util/assertString":143}],113:[function(require,module,exports){
+},{"./alpha":46,"./util/assertString":145}],115:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13034,7 +13377,7 @@ function isOctal(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],114:[function(require,module,exports){
+},{"./util/assertString":145}],116:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13191,7 +13534,7 @@ function isPassportNumber(str, countryCode) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],115:[function(require,module,exports){
+},{"./util/assertString":145}],117:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13212,7 +13555,7 @@ function isPort(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./isInt":96}],116:[function(require,module,exports){
+},{"./isInt":97}],118:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13324,7 +13667,7 @@ function isPostalCode(str, locale) {
 
   throw new Error("Invalid locale '".concat(locale, "'"));
 }
-},{"./util/assertString":143}],117:[function(require,module,exports){
+},{"./util/assertString":145}],119:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13358,7 +13701,7 @@ function isRFC3339(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],118:[function(require,module,exports){
+},{"./util/assertString":145}],120:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13388,7 +13731,7 @@ function isRgbColor(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],119:[function(require,module,exports){
+},{"./util/assertString":145}],121:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13417,7 +13760,7 @@ function isSemVer(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143,"./util/multilineRegex":146}],120:[function(require,module,exports){
+},{"./util/assertString":145,"./util/multilineRegex":148}],122:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13438,7 +13781,7 @@ function isSlug(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],121:[function(require,module,exports){
+},{"./util/assertString":145}],123:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13554,7 +13897,7 @@ function isStrongPassword(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143,"./util/merge":145}],122:[function(require,module,exports){
+},{"./util/assertString":145,"./util/merge":147}],124:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13575,7 +13918,7 @@ function isSurrogatePair(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],123:[function(require,module,exports){
+},{"./util/assertString":145}],125:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -15139,7 +15482,7 @@ function isTaxID(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./isDate":66,"./util/algorithms":142,"./util/assertString":143}],124:[function(require,module,exports){
+},{"./isDate":66,"./util/algorithms":144,"./util/assertString":145}],126:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15174,7 +15517,7 @@ function isTime(input, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/merge":145}],125:[function(require,module,exports){
+},{"./util/merge":147}],127:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15387,7 +15730,7 @@ function isURL(url, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./isFQDN":73,"./isIP":83,"./util/assertString":143,"./util/merge":145}],126:[function(require,module,exports){
+},{"./isFQDN":73,"./isIP":83,"./util/assertString":145,"./util/merge":147}],128:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15416,7 +15759,7 @@ function isUUID(str, version) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],127:[function(require,module,exports){
+},{"./util/assertString":145}],129:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15435,7 +15778,7 @@ function isUppercase(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],128:[function(require,module,exports){
+},{"./util/assertString":145}],130:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -15455,6 +15798,24 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CH = function CH(str) {
+  // @see {@link https://www.ech.ch/de/ech/ech-0097/5.2.0}
+  var hasValidCheckNumber = function hasValidCheckNumber(digits) {
+    var lastDigit = digits.pop(); // used as check number
+
+    var weights = [5, 4, 3, 2, 7, 6, 5, 4];
+    var calculatedCheckNumber = (11 - digits.reduce(function (acc, el, idx) {
+      return acc + el * weights[idx];
+    }, 0) % 11) % 11;
+    return lastDigit === calculatedCheckNumber;
+  }; // @see {@link https://www.estv.admin.ch/estv/de/home/mehrwertsteuer/uid/mwst-uid-nummer.html}
+
+
+  return /^(CHE[- ]?)?(\d{9}|(\d{3}\.\d{3}\.\d{3})|(\d{3} \d{3} \d{3})) ?(TVA|MWST|IVA)?$/.test(str) && hasValidCheckNumber(str.match(/\d/g).map(function (el) {
+    return +el;
+  }));
+};
 
 var PT = function PT(str) {
   var match = str.match(/^(PT)?(\d{9})$/);
@@ -15616,9 +15977,7 @@ var vatMatchers = {
   RS: function RS(str) {
     return /^(RS)?\d{9}$/.test(str);
   },
-  CH: function CH(str) {
-    return /^(CH)?(\d{6}|\d{9}|(\d{3}.\d{3})|(\d{3}.\d{3}.\d{3}))(TVA|MWST|IVA)$/.test(str);
-  },
+  CH: CH,
   TR: function TR(str) {
     return /^(TR)?\d{10}$/.test(str);
   },
@@ -15702,7 +16061,7 @@ function isVAT(str, countryCode) {
 
   throw new Error("Invalid country code: '".concat(countryCode, "'"));
 }
-},{"./util/algorithms":142,"./util/assertString":143}],129:[function(require,module,exports){
+},{"./util/algorithms":144,"./util/assertString":145}],131:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15725,7 +16084,7 @@ function isVariableWidth(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./isFullWidth":75,"./isHalfWidth":77,"./util/assertString":143}],130:[function(require,module,exports){
+},{"./isFullWidth":75,"./isHalfWidth":77,"./util/assertString":145}],132:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15751,7 +16110,7 @@ function isWhitelisted(str, chars) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],131:[function(require,module,exports){
+},{"./util/assertString":145}],133:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15772,7 +16131,7 @@ function ltrim(str, chars) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],132:[function(require,module,exports){
+},{"./util/assertString":145}],134:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15796,7 +16155,7 @@ function matches(str, pattern, modifiers) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],133:[function(require,module,exports){
+},{"./util/assertString":145}],135:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15948,7 +16307,7 @@ function normalizeEmail(email, options) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/merge":145}],134:[function(require,module,exports){
+},{"./util/merge":147}],136:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15981,7 +16340,7 @@ function rtrim(str, chars) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],135:[function(require,module,exports){
+},{"./util/assertString":145}],137:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16003,7 +16362,7 @@ function stripLow(str, keep_new_lines) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./blacklist":47,"./util/assertString":143}],136:[function(require,module,exports){
+},{"./blacklist":47,"./util/assertString":145}],138:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16027,7 +16386,7 @@ function toBoolean(str, strict) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],137:[function(require,module,exports){
+},{"./util/assertString":145}],139:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16047,7 +16406,7 @@ function toDate(date) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],138:[function(require,module,exports){
+},{"./util/assertString":145}],140:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16066,7 +16425,7 @@ function toFloat(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./isFloat":74}],139:[function(require,module,exports){
+},{"./isFloat":74}],141:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16085,7 +16444,7 @@ function toInt(str, radix) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],140:[function(require,module,exports){
+},{"./util/assertString":145}],142:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16105,7 +16464,7 @@ function trim(str, chars) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./ltrim":131,"./rtrim":134}],141:[function(require,module,exports){
+},{"./ltrim":133,"./rtrim":136}],143:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16126,7 +16485,7 @@ function unescape(str) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],142:[function(require,module,exports){
+},{"./util/assertString":145}],144:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16228,7 +16587,7 @@ function verhoeffCheck(str) {
 
   return checksum === 0;
 }
-},{}],143:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16251,7 +16610,7 @@ function assertString(input) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{}],144:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16269,7 +16628,7 @@ var _default = includes;
 exports.default = _default;
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{}],145:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16292,7 +16651,7 @@ function merge() {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{}],146:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16315,7 +16674,7 @@ function multilineRegexp(parts, flags) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{}],147:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16341,7 +16700,7 @@ function toString(input) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{}],148:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -16360,7 +16719,7 @@ function whitelist(str, chars) {
 
 module.exports = exports.default;
 module.exports.default = exports.default;
-},{"./util/assertString":143}],149:[function(require,module,exports){
+},{"./util/assertString":145}],151:[function(require,module,exports){
 var stemmer = require("stem-porter");
 
 var businessTypeEnum = require("@slice-and-dice/register-a-food-business-validation");
@@ -16456,7 +16815,7 @@ const businessTypeFunctions = {
 
 module.exports = { businessTypeFunctions };
 
-},{"@slice-and-dice/register-a-food-business-validation":7,"stem-porter":42}],150:[function(require,module,exports){
+},{"@slice-and-dice/register-a-food-business-validation":7,"stem-porter":42}],152:[function(require,module,exports){
 (function webpackUniversalModuleDefinition(e, t) {
   "object" == typeof exports && "object" == typeof module
     ? (module.exports = t())
@@ -18607,7 +18966,7 @@ module.exports = { businessTypeFunctions };
 });
 
 
-},{}],151:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 var businessTypeFunctions = require("./BusinessTypeLookupFunctions.js");
 
 var accessibleAutocomplete = require("./accessible-autocomplete.min.js");
@@ -18627,4 +18986,4 @@ accessibleAutocomplete({
   defaultValue: window.business_type_default
 });
 
-},{"./BusinessTypeLookupFunctions.js":149,"./accessible-autocomplete.min.js":150}]},{},[149,151]);
+},{"./BusinessTypeLookupFunctions.js":151,"./accessible-autocomplete.min.js":152}]},{},[151,153]);

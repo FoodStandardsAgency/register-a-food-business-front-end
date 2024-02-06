@@ -4,10 +4,7 @@
 
 const { submit } = require("../services/submit.service");
 const { logEmitter } = require("../services/logging.service");
-const { statusEmitter } = require("../services/statusEmitter.service");
-const {
-  transformAnswersForSubmit
-} = require("../services/data-transform.service");
+const { transformAnswersForSubmit } = require("../services/data-transform.service");
 const { editPath } = require("../services/path.service");
 const { revalidateAllAnswers } = require("../services/validation.service");
 
@@ -43,10 +40,7 @@ const submitController = async (
   logEmitter.emit("functionCall", "submit.controller", "submitController");
 
   try {
-    if (
-      submissionData &&
-      Object.getOwnPropertyNames(submissionData).length > 0
-    ) {
+    if (submissionData && Object.getOwnPropertyNames(submissionData).length > 0) {
       const transformedData = transformAnswersForSubmit(
         submissionData,
         language,
@@ -63,8 +57,7 @@ const submitController = async (
           controllerResponse.emailFbo = res.email_fbo;
           controllerResponse.laConfig = res.lc_config;
           controllerResponse.submissionSucceeded = true;
-          statusEmitter.emit("incrementCount", "submissionsSucceeded");
-          statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", true);
+          logEmitter.emit("info", "Registration submission succeeded");
         } else {
           controllerResponse.submissionError = [];
           if (response.status === 400) {
@@ -90,43 +83,33 @@ const submitController = async (
               `Registration submission failed - validation error - ${
                 response.status + ": " + response.statusText
               }`
-            );
+            ); // Used for Azure alerts
           }
           if (controllerResponse.submissionError.length < 1) {
-            controllerResponse.submissionError.push(
-              response.status + ": " + response.statusText
-            );
+            controllerResponse.submissionError.push(response.status + ": " + response.statusText);
             controllerResponse.redirectRoute = "/internal-server-error";
             logEmitter.emit(
               "error",
-              `Registration submission failed - ${
-                response.status + ": " + response.statusText
-              }`
-            );
+              `Registration submission failed - ${response.status + ": " + response.statusText}`
+            ); // Used for Azure alerts
           }
 
           controllerResponse.submissionSucceeded = false;
-          statusEmitter.emit("incrementCount", "submissionsFailed");
-          statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
         }
       } else {
         controllerResponse.redirectRoute = "/internal-server-error";
         controllerResponse.submissionSucceeded = false;
         logEmitter.emit(
           "error",
-          `Registration submission failed - no status code returned - ${JSON.stringify(
-            response
-          )}`
-        );
-        statusEmitter.emit("incrementCount", "submissionsFailed");
-        statusEmitter.emit("setStatus", "mostRecentSubmitSucceeded", false);
+          `Registration submission failed - no status code returned - ${JSON.stringify(response)}`
+        ); // Used for Azure alerts
       }
     } else {
       throw new Error(
-        "/submit route was called with an empty submission data object"
+        "Registration submission failed - /submit route was called with an empty submission data object" // Used for Azure alerts
       );
     }
-
+    logEmitter.emit("info", "Registration submission succeeded"); // Used for Azure alerts
     logEmitter.emit(
       "functionSuccessWith",
       "submit.controller",
@@ -141,12 +124,8 @@ const submitController = async (
     );
     return controllerResponse;
   } catch (err) {
-    logEmitter.emit(
-      "functionFail",
-      "submit.controller",
-      "submitController",
-      err
-    );
+    logEmitter.emit("error", `Registration submission failed - ${err.message}`); // Used for Azure alerts
+    logEmitter.emit("functionFail", "submit.controller", "submitController", err);
     throw err;
   }
 };

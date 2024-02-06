@@ -1,6 +1,6 @@
-{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/panel/macro.njk" import govukPanel %}
 {% from "../components/PostForm.njk" import postForm %}
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "../components/SummaryTable.njk" import summaryTable %}
 {% extends "layout.njk" %}
 {% set props = mergeObjects(props, {hideback: true}) %}

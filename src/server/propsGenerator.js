@@ -1,19 +1,14 @@
 const { PageTitles } = require("../../pages/PageTitles");
 const i18n = require("i18n");
-const {
-  businessTypeEnum
-} = require("@slice-and-dice/register-a-food-business-validation");
+const { businessTypeEnum } = require("@slice-and-dice/register-a-food-business-validation");
 
 module.exports = (req) => {
   /************************************************************************************
     Declaration of variables that require more extensive configuration or logic
     ************************************************************************************/
-  const editModeFirstPage =
-    req && req.query && req.query.edit ? `/${req.query.edit}` : undefined;
+  const editModeFirstPage = req && req.query && req.query.edit ? `/${req.query.edit}` : undefined;
 
-  const businessTypes = Object.keys(businessTypeEnum).map(
-    (bt) => businessTypeEnum[bt].value.en
-  );
+  const businessTypes = Object.keys(businessTypeEnum).map((bt) => businessTypeEnum[bt].value.en);
 
   const editModePartnerDetails =
     req &&
@@ -22,9 +17,7 @@ module.exports = (req) => {
     (req.query.edit === "partner-name" || "registration-role");
 
   const acceptAllCookies =
-    req && req.cookies && req.cookies.acceptAllCookies
-      ? req.cookies.acceptAllCookies
-      : undefined;
+    req && req.cookies && req.cookies.acceptAllCookies ? req.cookies.acceptAllCookies : undefined;
 
   const csrfToken = req && req.csrfToken && req.csrfToken();
 
@@ -67,9 +60,7 @@ module.exports = (req) => {
     : "/partnership/back";
 
   const validatorErrorsCleaned =
-    req && req.session && req.session.validatorErrors
-      ? { ...req.session.validatorErrors }
-      : {};
+    req && req.session && req.session.validatorErrors ? { ...req.session.validatorErrors } : {};
 
   delete validatorErrorsCleaned["undefined"];
 
@@ -110,53 +101,32 @@ module.exports = (req) => {
     currentPageTitle,
     cumulativeFullAnswers,
     transformedData:
-      req && req.session && req.session.transformedData
-        ? req.session.transformedData
-        : {},
+      req && req.session && req.session.transformedData ? req.session.transformedData : {},
     validatorErrors: validatorErrorsCleaned,
     allValidationErrors: allValidationErrorsCleaned,
-    switches:
-      req && req.session && req.session.switches ? req.session.switches : {},
+    switches: req && req.session && req.session.switches ? req.session.switches : {},
     fsaRegistrationNumber:
       req && req.session && req.session.fsaRegistrationNumber
         ? req.session.fsaRegistrationNumber
         : "",
     submissionDate:
-      req && req.session && req.session.submissionDate
-        ? req.session.submissionDate
-        : "",
+      req && req.session && req.session.submissionDate ? req.session.submissionDate : "",
     submissionError:
-      req && req.session && req.session.submissionError
-        ? req.session.submissionError
-        : [],
-    emailFbo:
-      req && req.session && req.session.emailFbo ? req.session.emailFbo : {},
-    laConfig:
-      req && req.session && req.session.laConfig ? req.session.laConfig : {},
+      req && req.session && req.session.submissionError ? req.session.submissionError : [],
+    emailFbo: req && req.session && req.session.emailFbo ? req.session.emailFbo : {},
+    laConfig: req && req.session && req.session.laConfig ? req.session.laConfig : {},
     localAuthority:
-      req && req.session && req.session.localAuthority
-        ? req.session.localAuthority
-        : {},
+      req && req.session && req.session.localAuthority ? req.session.localAuthority : {},
     changePostcode:
-      req && req.session && req.session.changePostcode
-        ? req.session.changePostcode
-        : false,
+      req && req.session && req.session.changePostcode ? req.session.changePostcode : false,
     addressLookups:
-      req && req.session && req.session.addressLookups
-        ? req.session.addressLookups
-        : {},
-    council:
-      req && req.session && req.session.council ? req.session.council : "",
+      req && req.session && req.session.addressLookups ? req.session.addressLookups : {},
+    council: req && req.session && req.session.council ? req.session.council : "",
     isBrowserSupported:
-      req && req.session && req.session.isBrowserSupported
-        ? req.session.isBrowserSupported
-        : false,
-    browser:
-      req && req.session && req.session.browser ? req.session.browser : "",
+      req && req.session && req.session.isBrowserSupported ? req.session.isBrowserSupported : false,
+    browser: req && req.session && req.session.browser ? req.session.browser : "",
     browserVersion:
-      req && req.session && req.session.browserVersion
-        ? req.session.browserVersion
-        : ""
+      req && req.session && req.session.browserVersion ? req.session.browserVersion : ""
   };
 
   // The getInitialProps function (a method of the 'wrapper' function) returns the initialProps object

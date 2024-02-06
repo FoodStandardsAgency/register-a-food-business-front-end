@@ -1,5 +1,4 @@
 jest.mock("../connectors/address-lookup/address-lookup-api.connector");
-jest.mock("../services/statusEmitter.service");
 
 const { Validator } = require("jsonschema");
 const { getUkAddressesByPostcode } = require("./address.service");

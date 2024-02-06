@@ -14,12 +14,8 @@ jest.mock("../connectors/config-db/config-db.connector");
 jest.mock("../services/browser-support.service");
 
 const { newRouter } = require("./new.route");
-const {
-  transformAnswersForSummary
-} = require("../services/data-transform.service");
-const {
-  getPathConfigByVersion
-} = require("../connectors/config-db/config-db.connector");
+const { transformAnswersForSummary } = require("../services/data-transform.service");
+const { getPathConfigByVersion } = require("../connectors/config-db/config-db.connector");
 const { getBrowserInfo } = require("../services/browser-support.service");
 
 describe("New route: ", () => {
@@ -27,9 +23,7 @@ describe("New route: ", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     router = newRouter();
-    getPathConfigByVersion.mockImplementation(
-      () => "fetched path from either cache or DB"
-    );
+    getPathConfigByVersion.mockImplementation(() => "fetched path from either cache or DB");
     getBrowserInfo.mockImplementation((req) => () => {
       return {
         browser: "chrome",
@@ -71,9 +65,7 @@ describe("New route: ", () => {
       });
 
       it("Should set req.session.pathConfig", () => {
-        expect(req.session.pathConfig).toBe(
-          "fetched path from either cache or DB"
-        );
+        expect(req.session.pathConfig).toBe("fetched path from either cache or DB");
       });
 
       it("Should call res.render", () => {
@@ -149,9 +141,7 @@ describe("New route: ", () => {
         });
 
         it("Should fetch a new version of the path", () => {
-          expect(req.session.pathConfig).toBe(
-            "fetched path from either cache or DB"
-          );
+          expect(req.session.pathConfig).toBe("fetched path from either cache or DB");
         });
       });
 
@@ -187,10 +177,7 @@ describe("New route: ", () => {
         });
 
         it("Should call res.render with page", () => {
-          expect(res.render).toBeCalledWith(
-            "registration-summary",
-            expect.anything()
-          );
+          expect(res.render).toBeCalledWith("registration-summary", expect.anything());
         });
 
         it("Should set session.transformedData", () => {

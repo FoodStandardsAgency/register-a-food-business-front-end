@@ -28,11 +28,7 @@ const getLocalAuthorityIDByPostcode = async (postcode, generation) => {
 
   responseJSON = await fetchUsingMapItApi(postcode, generation);
 
-  if (
-    responseJSON &&
-    responseJSON.shortcuts &&
-    responseJSON.shortcuts.council
-  ) {
+  if (responseJSON && responseJSON.shortcuts && responseJSON.shortcuts.council) {
     if (Number.isInteger(responseJSON.shortcuts.council)) {
       logEmitter.emit(
         "functionSuccess",
@@ -83,7 +79,7 @@ const getLocalAuthorityIDByPostcode = async (postcode, generation) => {
 const fetchUsingMapItApi = async (postcode, generation) => {
   try {
     logEmitter.emit(
-      "functionCall",
+      "functionCallWith",
       "local-authority-lookup-api.connector",
       "fetchUsingMapItApi",
       postcode
@@ -102,8 +98,15 @@ const fetchUsingMapItApi = async (postcode, generation) => {
       options
     );
     if (response.status === 200) {
+      logEmitter.emit("info", "MapIt LA response" + response.data);
+      if (!response.data || Object.keys(response.data).length === 0) {
+        logEmitter.emit("warning", "MapIt LA lookup failure"); // Used for Azure alerts
+        throw new Error("Response data is empty");
+      }
+      logEmitter.emit("info", "MapIt LA lookup success"); // Used for Azure alerts
       return response.data;
     } else {
+      response.status == 404 || logEmitter.emit("warning", "MapIt LA lookup failure"); // Used for Azure alerts
       logEmitter.emit(
         "functionFail",
         "local-authority-lookup-api.connector",
@@ -119,6 +122,7 @@ const fetchUsingMapItApi = async (postcode, generation) => {
       "fetchUsingMapItApi",
       err
     );
+    logEmitter.emit("warning", "MapIt LA lookup failure"); // Used for Azure alerts
     return false;
   }
 };

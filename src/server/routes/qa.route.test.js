@@ -9,9 +9,7 @@ jest.mock("../config", () => ({
 }));
 jest.mock("../connectors/config-db/config-db.connector");
 const { qaRouter } = require("./qa.route");
-const {
-  getCouncilDataByID
-} = require("../connectors/config-db/config-db.connector");
+const { getCouncilDataByID } = require("../connectors/config-db/config-db.connector");
 
 describe("QA Route: ", () => {
   let router, handler;

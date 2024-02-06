@@ -3,9 +3,7 @@ jest.mock("../services/switches.service");
 
 const switchesController = require("./switches.controller");
 const { changeSwitch } = require("../services/switches.service");
-const {
-  cleanEmptiedAnswers
-} = require("../services/session-management.service");
+const { cleanEmptiedAnswers } = require("../services/session-management.service");
 
 const examplePreviousAnswers = {
   answer: "answer-pathAnswer"
@@ -17,22 +15,14 @@ describe("Function: switchController: ", () => {
   let result;
   beforeEach(() => {
     cleanEmptiedAnswers.mockImplementation((previousAnswers, newAnswersArray) =>
-      newAnswersArray.length > 0
-        ? Object.assign({}, previousAnswers, newAnswersArray)
-        : null
+      newAnswersArray.length > 0 ? Object.assign({}, previousAnswers, newAnswersArray) : null
     );
 
     changeSwitch.mockImplementation(() => true);
   });
 
   it("Should return a newSwitchState value", () => {
-    result = switchesController(
-      false,
-      "on",
-      examplePreviousAnswers,
-      undefined,
-      exampleCurrentPage
-    );
+    result = switchesController(false, "on", examplePreviousAnswers, undefined, exampleCurrentPage);
     expect(result.newSwitchState).toEqual(true);
   });
 

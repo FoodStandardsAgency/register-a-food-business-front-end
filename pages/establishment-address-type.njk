@@ -1,9 +1,9 @@
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
-{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/radios/macro.njk" import govukRadios %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
 {% from "../components/PostForm.njk" import postForm %}
-{% from "govuk/components/details/macro.njk" import govukDetails %}
-{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
-{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/details/macro.njk" import govukDetails %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "../components/EstablishmentDetails.njk" import establishmentHiddenDetails %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% extends "layout.njk" %}
@@ -20,7 +20,7 @@
               isPageHeading: true
                     }
             }) %}
-      {{ establishmentHiddenDetails(props) }}
+            {{ establishmentHiddenDetails(props) }}
       <input type="hidden" value="{{ props.cumulativeFullAnswers.establishment_postcode_find }}" name="establishment_postcode_find">
       {{ govukRadios({
       idPrefix: "establishment_type",

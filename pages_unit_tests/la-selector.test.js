@@ -23,9 +23,7 @@ describe("la-selector", () => {
     const $ = renderPage("la-selector", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual(
-      "We couldn't find your Local Authority"
-    );
+    expect($mainHeading.text().trim()).toEqual("We couldn't find your Local Authority");
   });
 
   it("passes accessibility tests", async () => {

@@ -8,9 +8,7 @@ jest.mock("../controllers/continue.controller");
 jest.mock("../connectors/config-db/config-db.connector");
 const continueController = require("../controllers/continue.controller");
 const { continueRouter } = require("./continue.route");
-const {
-  getCouncilDataByID
-} = require("../connectors/config-db/config-db.connector");
+const { getCouncilDataByID } = require("../connectors/config-db/config-db.connector");
 
 describe("Continue route: ", () => {
   let router, handler;
