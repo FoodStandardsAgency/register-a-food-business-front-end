@@ -18,10 +18,12 @@
         
       <p class="govuk-body">
         {% endcall %}
-          {{ govukButton({
-            text:  __("This is not my LA", props.language),
-            href: "/new/la-selector"
-          }) }}
+        <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+       <a href={{"/new/la-selector?back=/wrong-la"}} style="font-size: 19px" class="govuk-link" id="cantFindLA">{{ __("This is not my LA", props.language) }}
+      </a>
+        </div>
+      </div>
       <br>
         {{ govukButton({
         text:  __("Continue", props.language)
