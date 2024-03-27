@@ -30,15 +30,27 @@ const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
     postcode
   );
 
-  let firstJson;
+  try {
+    let firstJson;
 
-  firstJson = await fetchUsingPostcoderPremium(postcode);
-  if (!firstJson || firstJson.length === 0) {
-    firstJson = await fetchUsingPostcoderStandard(postcode);
+    firstJson = await fetchUsingPostcoderPremium(postcode);
+    if (!firstJson || firstJson.length === 0) {
+      firstJson = await fetchUsingPostcoderStandard(postcode);
+    }
+    if (!firstJson || firstJson.length === 0) {
+      throw new Error("fetch using postcoder failed");
+    }
+    logEmitter.emit("functionSuccess", "address-lookup-api.connector", "getAddressByPostcode");
+    return removeOrganisationFromAddressLookup(firstJson);
+  } catch(err) {
+    logEmitter.emit(
+      "functionFail",
+      "address-lookup-api.connector",
+      "getAddressByPostcode",
+      err
+    );
+    throw err;
   }
-
-  logEmitter.emit("functionSuccess", "address-lookup-api.connector", "getAddressByPostcode");
-  return removeOrganisationFromAddressLookup(firstJson);
 };
 
 /**
