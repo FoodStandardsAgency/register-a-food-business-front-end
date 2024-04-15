@@ -42,13 +42,8 @@ const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
     }
     logEmitter.emit("functionSuccess", "address-lookup-api.connector", "getAddressByPostcode");
     return removeOrganisationFromAddressLookup(firstJson);
-  } catch(err) {
-    logEmitter.emit(
-      "functionFail",
-      "address-lookup-api.connector",
-      "getAddressByPostcode",
-      err
-    );
+  } catch (err) {
+    logEmitter.emit("functionFail", "address-lookup-api.connector", "getAddressByPostcode", err);
     throw err;
   }
 };
