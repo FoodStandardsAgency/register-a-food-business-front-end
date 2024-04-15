@@ -38,7 +38,7 @@ const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
       firstJson = await fetchUsingPostcoderStandard(postcode);
     }
     if (!firstJson || firstJson.length === 0) {
-      throw new Error("fetch using postcoder failed");
+      throw new Error("Postcoder returned no data");
     }
     logEmitter.emit("functionSuccess", "address-lookup-api.connector", "getAddressByPostcode");
     return removeOrganisationFromAddressLookup(firstJson);

@@ -9,7 +9,7 @@ const errorHandler = (err, req, res, next) => {
     err.message == "invalid csrf token" ||
     err.message.includes("Cannot read properties of undefined") ||
     err.message.includes("template not found") ||
-    err.message.includes("fetch using postcoder failed")
+    err.message.includes("Postcoder returned no data")
   ) {
     logEmitter.emit("error", `Application error: ${err && err.message}`); // Does not trigger Azure alert
   } else {
