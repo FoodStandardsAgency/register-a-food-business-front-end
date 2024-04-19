@@ -21,6 +21,9 @@
                   }
             }) %}
             <p class="govuk-body">{{ __("The postcode you entered has not been recognised.", props.language) }}</p>
+            {% if props.laSelectorNote %}
+                <p class="govuk-hint" style="border-style: solid; border-color: red; font-weight: bold; padding: 10px">{{ props.laSelectorNote }}</p>
+            {% endif %}
             {% endcall %}
             {% call postForm(props.formAction, props.csrfToken, props.language) -%}
             {{ processedErrorSummary(props.validatorErrors, props.language) }}
