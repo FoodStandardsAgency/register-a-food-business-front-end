@@ -7,36 +7,37 @@
 {% extends "layout.njk" %}
 {% block head %}
     <link href="/css/app.css" rel="stylesheet" type="text/css">
-    <link href="/auto-complete/accessible-autocomplete.min.css" rel="stylesheet" type="text/css">
-{% endblock %}
-{% block content %}
-
-    <div class="govuk-grid-row" style='font-family:"GDS Transport";'>
-        <div class="govuk-grid-column-two-thirds">
-            {% call govukFieldset({
+        <link href="/auto-complete/accessible-autocomplete.min.css" rel="stylesheet" type="text/css">
+        {% endblock %}
+        {% block content %}
+            <div class="govuk-grid-row" style='font-family:"GDS Transport";'>
+                <div class="govuk-grid-column-two-thirds">
+                    {% call govukFieldset({
           legend: {
             text: __("We couldn't find your Local Authority", props.language),
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
                   }
             }) %}
-            <p class="govuk-body">{{ __("The postcode you entered has not been recognised.", props.language) }}</p>
-            {% endcall %}
-            {% call postForm(props.formAction, props.csrfToken, props.language) -%}
-            {{ processedErrorSummary(props.validatorErrors, props.language) }}
-            {% set localAuthoritiesArray = [
+                    <p class="govuk-body">
+                        {{ "" if props.fullCurrentPage === "/la-selector?back=/wrong-la" else "The postcode you entered has not been recognised." }}
+                    </p>
+                    {% endcall %}
+                    {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+                    {{ processedErrorSummary(props.validatorErrors, props.language) }}
+                    {% set localAuthoritiesArray = [
                 {
                     text: ""
                 }
             ] %}
-            {% for localAuthority in props.localAuthorities %}
-                {% set localAuthoritiesArray = (localAuthoritiesArray.push({
+                    {% for localAuthority in props.localAuthorities %}
+                        {% set localAuthoritiesArray = (localAuthoritiesArray.push({
                     value: localAuthority._id,
                     selected: props.cumulativeFullAnswers.local_authority == localAuthority._id,
                     text: localAuthority.local_council
                 }), localAuthoritiesArray) %}
-            {% endfor %}
-            {{ govukSelect({
+                    {% endfor %}
+                    {{ govukSelect({
                 id: "local_authority",
                 name: "local_authority",
                 label: {
@@ -44,29 +45,22 @@
                 },
                 items: localAuthoritiesArray
                 }) }}
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-full">
-                    {{ govukButton({
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-full">
+                            {{ govukButton({
               text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
           }) }}
+                        </div>
+                    </div>
+                    {%- endcall %}
                 </div>
             </div>
-            {%- endcall %}
-        </div>
-    </div>
-    <script src="/auto-complete/accessible-autocomplete.min.js"></script>
-    <script>
-        accessibleAutocomplete.enhanceSelectElement({selectElement: document.querySelector('#local_authority')});
-
-        document
-            .getElementById("local_authority")
-            .value = document
-            .getElementById("local_authority-select")
-            .options[
-                document
+            <script src="/auto-complete/accessible-autocomplete.min.js"></script>
+            <script>
+                accessibleAutocomplete.enhanceSelectElement({selectElement: document.querySelector('#local_authority')});
+                document.getElementById("local_authority").value = document
                     .getElementById("local_authority-select")
-                    .selectedIndex
-            ]
-            .text;
-    </script>
-{% endblock %}
+                    .options[document.getElementById("local_authority-select").selectedIndex]
+                    .text;
+            </script>
+        {% endblock %}
