@@ -22,6 +22,9 @@
                 }) %}
       <p id="establishment_type_hint" class="govuk-hint">{{ __("An establishment is the location of your food business. If it is a mobile food business, please use the location where it is normally stored overnight. If the business is operating from a home address, enter that postcode.", props.language) }}</p>
       <p id="changed-name-hint" class="govuk-hint">{{ __("The postcode of your establishment will help to direct the registration to the correct food safety team.", props.language) }}</p>
+      {% if props.laLookupNote %}
+        <p class="govuk-hint" style="border-style: solid; border-color: red; font-weight: bold; padding: 10px">{{ props.laLookupNote }}</p>
+      {% endif %}
       {% endcall %}
       {{ govukInput({
                     "label": {
