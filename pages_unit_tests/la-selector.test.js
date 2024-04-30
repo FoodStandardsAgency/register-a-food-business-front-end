@@ -32,6 +32,16 @@ describe("la-selector", () => {
     const results = await axe($.html());
     expect(results).toHaveNoViolations();
   });
+  it("shows the correct back link after wrong LA button is pressed on la-established page", async () => {
+    const props = {
+      currentPage: "/la-selector",
+      fullCurrentPage: "/la-selector?back=/wrong-la"
+    };
+    const $ = renderPage("la-selector", props);
+
+    const $backlink = getPageDetails.getBacklinkHref($);
+    expect($backlink).toEqual("/new/la-established");
+  });
 
   it("select the correct dropdown item based on session data", () => {
     const $ = renderPage("la-selector", props);

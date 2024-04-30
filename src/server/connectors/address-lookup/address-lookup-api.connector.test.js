@@ -90,12 +90,16 @@ describe("Connector: lookupAPI: ", () => {
         data: [],
         status: 200
       });
-
-      responseJSON = await getAddressesByPostcode("invalid postcode");
     });
 
-    it("should return an empty array", () => {
-      expect(responseJSON).toEqual([]);
+    it("should throw an error", async () => {
+      let result;
+      try {
+        await getAddressesByPostcode("BS249ST", 100);
+      } catch (err) {
+        result = err;
+      }
+      expect(result.message).toBe("Postcoder returned no data");
     });
   });
 });
