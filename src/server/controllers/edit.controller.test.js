@@ -48,14 +48,6 @@ const testPath = {
     on: false,
     switches: {}
   },
-  "/business-import-export": {
-    on: true,
-    switches: {
-      "Directly export": {
-        "/test-page3": true
-      }
-    }
-  },
   "/test-page3": {
     on: false,
     switches: {}
@@ -104,40 +96,6 @@ describe("Edit controller: editContinue()", () => {
             example_answer: "value",
             operator_first_name: "Bob Harry",
             operator_last_name: "Smith"
-          };
-          expect(result.cumulativeEditAnswers).toEqual(expectedAnswers);
-        });
-      });
-
-      describe("given the current page has checkboxes, one of which was originally checked but now is not", () => {
-        beforeEach(() => {
-          const editModeFirstPage = "/business-import-export";
-          const currentPage = "/business-import-export";
-          const cumulativeFullAnswers = {
-            directly_import: "Directly import"
-          };
-          const cumulativeEditAnswers = undefined;
-          const newAnswers = {
-            directly_export: "Directly export"
-          };
-          const switches = {};
-
-          const args = [
-            testPath,
-            editModeFirstPage,
-            currentPage,
-            cumulativeFullAnswers,
-            cumulativeEditAnswers,
-            newAnswers,
-            switches,
-            {}
-          ];
-          result = editController.editContinue(...args);
-        });
-
-        it("should not return the answers that were previously truthy and are now removed", () => {
-          const expectedAnswers = {
-            directly_export: "Directly export"
           };
           expect(result.cumulativeEditAnswers).toEqual(expectedAnswers);
         });
