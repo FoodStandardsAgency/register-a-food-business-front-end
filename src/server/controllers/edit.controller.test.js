@@ -102,6 +102,40 @@ describe("Edit controller: editContinue()", () => {
       });
     });
 
+    describe("given the current page has checkboxes, one of which was originally checked but now is not", () => {
+      beforeEach(() => {
+        const editModeFirstPage = "/opening-days-some";
+        const currentPage = "/opening-days-some";
+        const cumulativeFullAnswers = {
+          opening_day_monday: "opening_day_monday"
+        };
+        const cumulativeEditAnswers = undefined;
+        const newAnswers = {
+          opening_day_saturday: "opening_day_saturday"
+        };
+        const switches = {};
+
+        const args = [
+          testPath,
+          editModeFirstPage,
+          currentPage,
+          cumulativeFullAnswers,
+          cumulativeEditAnswers,
+          newAnswers,
+          switches,
+          {}
+        ];
+        result = editController.editContinue(...args);
+      });
+
+      it("should not return the answers that were previously truthy and are now removed", () => {
+        const expectedAnswers = {
+          opening_day_saturday: "opening_day_saturday"
+        };
+        expect(result.cumulativeEditAnswers).toEqual(expectedAnswers);
+      });
+    });
+
     describe("given that there are validation errors", () => {
       beforeEach(() => {
         const editModeFirstPage = "/registration-role";
