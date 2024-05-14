@@ -26,7 +26,7 @@ describe("operator-contact-details", () => {
 
   it("renders without crashing", () => {
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual("Partnership details");
+    expect($mainHeading.text().trim()).toEqual("Partnership contact details");
   });
 
   it("renders correct inset text", () => {
@@ -52,13 +52,13 @@ describe("operator-contact-details", () => {
     });
 
     it("renders operator contact detail labels correctly", () => {
-      const $inputLabelTextMainNumber = getPageDetails.getInputLabelText($, 3);
+      const $inputLabelTextMainNumber = getPageDetails.getInputLabelText($, 0);
       expect($inputLabelTextMainNumber).toEqual("Main phone number");
 
-      const $inputLabelTextSecondaryNumber = getPageDetails.getInputLabelText($, 4);
+      const $inputLabelTextSecondaryNumber = getPageDetails.getInputLabelText($, 1);
       expect($inputLabelTextSecondaryNumber).toEqual("Secondary phone number (optional)");
 
-      const $inputLabelTextEmail = getPageDetails.getInputLabelText($, 5);
+      const $inputLabelTextEmail = getPageDetails.getInputLabelText($, 2);
       expect($inputLabelTextEmail).toEqual("Email address");
     });
   });

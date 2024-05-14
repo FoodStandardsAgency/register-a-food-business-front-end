@@ -36,6 +36,14 @@ const testPath = {
     on: true,
     switches: {}
   },
+  "/opening-days-some": {
+    on: true,
+    switches: {
+      opening_day_saturday: {
+        "/test-page3": true
+      }
+    }
+  },
   "/operator-charity-details": {
     on: false,
     switches: {}
