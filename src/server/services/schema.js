@@ -334,18 +334,6 @@ const schema = {
       }
     }
   },
-  "/customer-type": {
-    type: "object",
-    properties: {
-      supply_other: {
-        type: "string"
-      },
-      supply_directly: {
-        type: "string"
-      }
-    },
-    anyOf: [{ required: ["supply_other"] }, { required: ["supply_directly"] }]
-  },
   "/opening-days-some": {
     type: "object",
     properties: {
@@ -440,26 +428,6 @@ const schema = {
         validation: validateBusinessType
       }
     }
-  },
-  "/business-import-export": {
-    type: "object",
-    properties: {
-      directly_import: {
-        type: "string"
-      },
-      directly_export: {
-        type: "string"
-      },
-      no_import_export: {
-        type: "string"
-      }
-    },
-    oneOf: [
-      {
-        anyOf: [{ required: ["directly_import"] }, { required: ["directly_export"] }]
-      },
-      { required: ["no_import_export"] }
-    ]
   },
   "/business-other-details": {
     type: "object",

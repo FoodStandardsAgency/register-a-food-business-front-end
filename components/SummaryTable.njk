@@ -161,18 +161,8 @@
     {% endif %}
     <h2 id="activity-details" class="govuk-heading-m">{{ __("Activities", props.language) }}</h2>
     {% if propsData.applicationCompletePage == null %}
-      {% if validatorErrors.customer_type or propsData.customer_type %}
-        {{ summaryListHelperWithoutEdit(__("Customers", props.language), __(propsData.customer_type, props.language), false) }}
-      {% endif %}
-    {% endif %}
-    {% if propsData.applicationCompletePage == null %}
       {% if validatorErrors.business_type or propsData.business_type %}
         {{ summaryListHelperWithoutEdit(__("Business type", props.language), __(propsData.business_type, props.language), false) }}
-      {% endif %}
-    {% endif %}
-    {% if propsData.applicationCompletePage == null %}
-      {% if validatorErrors.import_export_activities or propsData.import_export_activities %}
-        {{ summaryListHelperWithoutEdit(__("Import and export", props.language), __(propsData.import_export_activities, props.language), false) }}
       {% endif %}
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
