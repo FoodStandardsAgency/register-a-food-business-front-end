@@ -121,6 +121,13 @@ const editContinue = (
       transformedNewAnswers.establishment_opening_date = "validated";
     }
     if (
+      transformedNewAnswers.operator_birthdate_day &&
+      transformedNewAnswers.operator_birthdate_month &&
+      transformedNewAnswers.operator_birthdate_year
+    ) {
+      transformedNewAnswers.operator_birthdate = "validated";
+    }
+    if (
       transformedNewAnswers.operator_postcode ||
       transformedNewAnswers.operator_address_selected
     ) {

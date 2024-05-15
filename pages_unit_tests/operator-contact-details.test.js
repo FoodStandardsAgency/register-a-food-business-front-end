@@ -52,14 +52,14 @@ describe("operator-contact-details", () => {
     });
 
     it("renders operator contact date of birth labels correctly", () => {
-      const $inputLabelTextMainNumber = getPageDetails.getInputLabelText($, 0);
-      expect($inputLabelTextMainNumber).toEqual("Day");
+      const $inputLabelTextDay = getPageDetails.getInputLabelText($, 0);
+      expect($inputLabelTextDay).toEqual("Day");
 
-      const $inputLabelTextSecondaryNumber = getPageDetails.getInputLabelText($, 1);
-      expect($inputLabelTextSecondaryNumber).toEqual("Month");
+      const $inputLabelTextMonth = getPageDetails.getInputLabelText($, 1);
+      expect($inputLabelTextMonth).toEqual("Month");
 
-      const $inputLabelTextEmail = getPageDetails.getInputLabelText($, 2);
-      expect($inputLabelTextEmail).toEqual("Year");
+      const $inputLabelTextYear = getPageDetails.getInputLabelText($, 2);
+      expect($inputLabelTextYear).toEqual("Year");
     });
 
     it("renders operator contact detail labels correctly", () => {

@@ -44,6 +44,7 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
   const operator_keys = [
     "operator_first_name",
     "operator_last_name",
+    "operator_birthdate",
     "operator_address_line_1",
     "operator_address_line_2",
     "operator_address_line_3",
@@ -148,6 +149,15 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
       data.opening_hours_saturday,
       data.opening_hours_sunday
     );
+
+    data.operator_birthdate = combineDate(
+      data.operator_birthdate_day,
+      data.operator_birthdate_month,
+      data.operator_birthdate_year
+    );
+    delete data.operator_birthdate_day;
+    delete data.operator_birthdate_month;
+    delete data.operator_birthdate_year;
 
     data.establishment_opening_date = combineDate(data.day, data.month, data.year);
     delete data.day;
