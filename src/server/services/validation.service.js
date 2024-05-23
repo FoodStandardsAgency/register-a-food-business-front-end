@@ -22,6 +22,7 @@ const errorMessages = {
   operator_type: "You must select an operator type before continuing",
   operator_first_name: "Enter a valid first name",
   operator_last_name: "Enter a valid last name",
+  operator_birthdate: "Enter a valid birth date",
   operator_town: "Enter a valid town name",
   operator_address_line_1: "Enter a valid first line of address",
   operator_address_line_2: "Enter a valid second line of address",
@@ -110,6 +111,13 @@ const validate = (page, answers) => {
           answers.day,
           answers.month,
           answers.year
+        );
+      }
+      if (page === "/operator-name" || page === "/operator-contact-details") {
+        answersToValidate.operator_birthdate = combineDate(
+          answers.operator_birthdate_day,
+          answers.operator_birthdate_month,
+          answers.operator_birthdate_year
         );
       }
 
