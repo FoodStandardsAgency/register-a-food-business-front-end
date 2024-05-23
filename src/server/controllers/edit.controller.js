@@ -128,6 +128,41 @@ const editContinue = (
       transformedNewAnswers.operator_birthdate = "validated";
     }
     if (
+      transformedNewAnswers.LOCAL ||
+      transformedNewAnswers.NATIONAL ||
+      transformedNewAnswers.EXPORT ||
+      transformedNewAnswers.ONLINE ||
+      transformedNewAnswers.FBO ||
+      transformedNewAnswers.SENIOR_YOUTH ||
+      transformedNewAnswers.HEALTHCARE ||
+      transformedNewAnswers.NONE ||
+      transformedNewAnswers.DONT_KNOW
+    ) {
+      transformedNewAnswers.operator_birthdate = "validated";
+    }
+    if (
+      transformedNewAnswers.RAW_MEAT ||
+      transformedNewAnswers.READY_TO_EAT ||
+      transformedNewAnswers.COOKED_OR_REHEATED ||
+      transformedNewAnswers.IMPORTED ||
+      transformedNewAnswers.NONE ||
+      transformedNewAnswers.DONT_KNOW
+    ) {
+      transformedNewAnswers.operator_birthdate = "validated";
+    }
+    if (
+      transformedNewAnswers.VACUUM_PACKING ||
+      transformedNewAnswers.SOUS_VIDE ||
+      transformedNewAnswers.FERMENTING_OR_CURING ||
+      transformedNewAnswers.PASTEURISING ||
+      transformedNewAnswers.ANIMAL_UNCOOKED ||
+      transformedNewAnswers.REWRAPPING_OR_RELABELLING ||
+      transformedNewAnswers.NONE ||
+      transformedNewAnswers.DONT_KNOW
+    ) {
+      transformedNewAnswers.operator_birthdate = "validated";
+    }
+    if (
       transformedNewAnswers.operator_postcode ||
       transformedNewAnswers.operator_address_selected
     ) {

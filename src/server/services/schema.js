@@ -176,6 +176,28 @@ const schema = {
       }
     }
   },
+  //this is to ensure that if a FBO selects partnership or soletrader, we still have a main contact birthdate as these inputs can show up in different places
+  "/operator-contact-details(PARTNER)": {
+    type: "object",
+    properties: {
+      operator_primary_number: {
+        type: "string",
+        validation: validatePhoneNumber
+      },
+      operator_secondary_number: {
+        type: "string",
+        validation: validatePhoneNumberOptional
+      },
+      operator_email: {
+        type: "string",
+        validation: validateEmail
+      },
+      operator_birthdate: {
+        type: "string",
+        validation: validatePastDate
+      }
+    }
+  },
   "/contact-representative": {
     type: "object",
     properties: {
@@ -323,6 +345,24 @@ const schema = {
         type: "string",
         validation: validatePastDate
       }
+    }
+  },
+  "/business-scale": {
+    type: "object",
+    properties: {
+      type: "string"
+    }
+  },
+  "/food-type": {
+    type: "object",
+    properties: {
+      type: "string"
+    }
+  },
+  "/processing-activities": {
+    type: "object",
+    properties: {
+      type: "string"
     }
   },
   "/business-water-supply": {

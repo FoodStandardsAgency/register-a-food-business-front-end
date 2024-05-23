@@ -113,7 +113,9 @@ const validate = (page, answers) => {
           answers.year
         );
       }
-      if (page === "/operator-name" || page === "/operator-contact-details") {
+
+      //this is to ensure that if a FBO selects partnership or soletrader, we still have a main contact birthdate as these inputs can show up in different places
+      if (page === "/operator-name" || page === "/operator-contact-details(PARTNER)") {
         answersToValidate.operator_birthdate = combineDate(
           answers.operator_birthdate_day,
           answers.operator_birthdate_month,

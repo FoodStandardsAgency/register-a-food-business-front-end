@@ -73,9 +73,23 @@ const continueController = (
       cleanSwitches(controllerResponse.cumulativeFullAnswers, switches)
     );
 
+    // logEmitter.emit(
+    //   "functionSuccessWith",
+    //   "continue.controller",
+    //   "continueController",
+    //   `JOSEPH!!!: ${JSON.stringify(controllerResponse.cumulativeFullAnswers)}`
+    // );
+
+    //this is to ensure that if a FBO selects partnership or soletrader, we still have a main contact birthdate as these inputs can show up in different places
+    const validationPage =
+      currentPage == "/operator-contact-details" &&
+      controllerResponse.cumulativeFullAnswers.registration_role == "PARTNERSHIP"
+        ? "/operator-contact-details(PARTNER)"
+        : currentPage;
+
     controllerResponse.validatorErrors = Object.assign(
       {},
-      validate(currentPage, trimmedNewAnswers).errors
+      validate(validationPage, trimmedNewAnswers).errors
     );
 
     if (Object.keys(controllerResponse.validatorErrors).length > 0) {

@@ -129,8 +129,6 @@ app.engine("html", nunjucks.render);
 app.set("view engine", "njk");
 
 const sixtyDaysInSeconds = 5184000;
-app.set("trust proxy", 1);
-app.enable("trust proxy");
 app.use(clsMiddleware);
 app.use(forceDomainOrSchema);
 app.use(limiter);
@@ -215,19 +213,19 @@ app.use("/data", express.static(__dirname + "/data"), function (req, res) {
 const { logEmitter } = require("./services/logging.service");
 // Set language cookie - TODO: Does i18next do this for you?  Need to check user accepted cookies?
 app.all("*", (req, res, next) => {
-  logEmitter.emit(
-    "functionCall",
-    "each-request-log",
-    JSON.stringify({
-      Method: req.method,
-      Host: req.hostname,
-      Url: req.originalUrl,
-      Headers: req.headers,
-      Body: req.body,
-      Cookies: req.cookies,
-      Session: req.session
-    })
-  );
+  //   logEmitter.emit(
+  //     "functionCall",
+  //     "each-request-log",
+  //     JSON.stringify({
+  //       Method: req.method,
+  //       Host: req.hostname,
+  //       Url: req.originalUrl,
+  //       Headers: req.headers,
+  //       Body: req.body,
+  //       Cookies: req.cookies,
+  //       Session: req.session
+  //     })
+  //   );
   if (req && req.query && req.query.lang) {
     res.cookie("lang", req.query.lang);
   }
