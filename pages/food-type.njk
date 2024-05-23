@@ -1,0 +1,68 @@
+{% from "../node_modules/govuk-frontend/dist/govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% extends "layout.njk" %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+            {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {{ govukCheckboxes({
+      idPrefix: "food_type",
+      name: "food_type",
+      fieldset: {
+        legend: {
+          text: __("Who do you intend to provide food to?", props.language),
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+items: [
+            {
+            value: "RAW_MEAT",
+            id: "RAW_MEAT",
+            name: "RAW_MEAT",
+            text: __("To local customers (who live or work in the local area)", props.language)
+            },
+            {
+            value: "READY_TO_EAT",
+            id: "READY_TO_EAT",
+            name: "READY_TO_EAT",
+            text: __("To national customers (who live or work across the UK)", props.language)
+            },
+            {
+            value: "COOKED_OR_REHEATED",
+            id: "COOKED_OR_REHEATED",
+            name: "COOKED_OR_REHEATED",
+            text: __("To those outside of the UK (for export)", props.language)
+            },
+            {
+            value: "IMPORTED",
+            id: "IMPORTED",
+            name: "IMPORTED",
+            text: __("To provide food online", props.language)
+            },
+            {
+            value: "NONE",
+            id: "NONE",
+            name: "NONE",
+            text: __("None of these", props.language)
+            },
+            {
+            value: "DONT_KNOW",
+            id: "DONT_KNOW",
+            name: "DONT_KNOW",
+            text: __("Don't know", props.language)
+            }
+        ],
+      errorMessage: {
+            text: __(props.validatorErrors.food_type, props.language)} if props.validatorErrors.food_type
+          }) }}
+      {{ govukButton({
+        text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
+      }) }}
+      {%- endcall %}
+    </div>
+  </div>
+{% endblock %}

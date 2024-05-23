@@ -1,0 +1,80 @@
+{% from "../node_modules/govuk-frontend/dist/govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% extends "layout.njk" %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+            {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {{ govukCheckboxes({
+      idPrefix: "processing_activities",
+      name: "processing_activities",
+      fieldset: {
+        legend: {
+          text: __("What food processing activities do you intend to carry out in your food business?", props.language),
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+items: [
+            {
+            value: "VACUUM_PACKING",
+            id: "VACUUM_PACKING",
+            name: "VACUUM_PACKING",
+            text: __("Vacuum packing", props.language)
+            },
+            {
+            value: "SOUS_VIDE",
+            id: "SOUS_VIDE",
+            name: "SOUS_VIDE",
+            text: __("Sous vide", props.language)
+            },
+            {
+            value: "FERMENTING_OR_CURING",
+            id: "FERMENTING_OR_CURING",
+            name: "FERMENTING_OR_CURING",
+            text: __("Fermenting and or curing of meat and fish", props.language)
+            },
+            {
+            value: "PASTEURISING",
+            id: "PASTEURISING",
+            name: "PASTEURISING",
+            text: __("Pasteurisation", props.language)
+            },
+            {
+            value: "ANIMAL_UNCOOKED",
+            id: "ANIMAL_UNCOOKED",
+            name: "ANIMAL_UNCOOKED",
+            text: __("Production of foods of animal origin that are not thoroughly cooked (for example steak tartare, ceviche, carpaccio)", props.language)
+            },
+            {
+            value: "REWRAPPING_OR_RELABELLING",
+            id: "REWRAPPING_OR_RELABELLING",
+            name: "REWRAPPING_OR_RELABELLING",
+            text: __("Rewrapping and relabelling previously wrapped food", props.language)
+            },
+            {
+            value: "NONE",
+            id: "NONE",
+            name: "NONE",
+            text: __("None of these", props.language)
+            },
+            {
+            value: "DONT_KNOW",
+            id: "DONT_KNOW",
+            name: "DONT_KNOW",
+            text: __("Don't know", props.language)
+            }
+        ],
+      errorMessage: {
+            text: __(props.validatorErrors.processing_activities, props.language)} if props.validatorErrors.processing_activitiesb
+          }) }}
+      {{ govukButton({
+        text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
+      }) }}
+      {%- endcall %}
+    </div>
+  </div>
+{% endblock %}

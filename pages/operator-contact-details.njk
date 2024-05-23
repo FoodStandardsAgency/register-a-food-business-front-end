@@ -2,6 +2,7 @@
 {% from "../node_modules/govuk-frontend/dist/govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "../node_modules/govuk-frontend/dist/govuk/components/details/macro.njk" import govukDetails %}
 {% from "../node_modules/govuk-frontend/dist/govuk/components/input/macro.njk" import govukInput %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/date-input/macro.njk" import govukDateInput %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% extends "layout.njk" %}
@@ -13,7 +14,7 @@
       {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
         {% call govukFieldset({
       legend: {
-        text: __("Partnership contact details", props.language),
+        text: __("Partnership details", props.language),
         classes: "govuk-fieldset__legend--l",
         isPageHeading: true
               }
@@ -33,6 +34,48 @@
     summaryText: __("What is a food business operator?", props.language),
     text: __("The operator is the person or people, charity or company who makes the decisions about the food business. They decide what it serves and how it operates.", props.language)
   }) }}
+  {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+        {% call govukDateInput({
+                  id: "operator_birthdate",
+                  namePrefix: "operator_birthdate",
+                  fieldset: {
+                    legend: {
+                      text: __("What is the main partners birthdate?", props.language),
+                      classes: "govuk-label--s"
+                    }
+                  },
+                  hint: {
+                     text: __("For example, 31 03 1980", props.language)
+                   },
+                  items: [
+                    {
+                      id: "operator_birthdate_day",
+                      name: "operator_birthdate_day",
+                      label: __('Day', props.language),
+                      classes: "govuk-input--width-2",
+                      value: props.cumulativeFullAnswers.operator_birthdate_day
+                    },
+                    {
+                     id: "operator_birthdate_month",
+                      name: "operator_birthdate_month",
+                      label: __('Month', props.language),
+                      classes: "govuk-input--width-2",
+                      value: props.cumulativeFullAnswers.operator_birthdate_month
+                    },
+                    {
+                     id: "operator_birthdate_year",
+                      name: "operator_birthdate_year",
+                      label: __('Year', props.language),
+                      classes: "govuk-input--width-4",
+                      value: props.cumulativeFullAnswers.operator_birthdate_year
+                    }
+                  ],
+                  errorMessage: { 
+                    text: __(props.validatorErrors.operator_birthdate, props.language) 
+                  } if props.validatorErrors.operator_birthdate
+                }) %}
+        {% endcall %}
+        {% endif %}
       {{ govukInput({
       "label": {
         "text": __("Main phone number", props.language)
