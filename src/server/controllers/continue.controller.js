@@ -47,8 +47,12 @@ const continueController = (
   try {
     const trimmedNewAnswers = JSON.parse(JSON.stringify(newAnswers));
 
+    initialiseArrays(trimmedNewAnswers);
+
     for (let answer in trimmedNewAnswers) {
-      trimmedNewAnswers[answer] = trimmedNewAnswers[answer].trim();
+      if (typeof trimmedNewAnswers[answer] === "string") {
+        trimmedNewAnswers[answer] = trimmedNewAnswers[answer].trim();
+      }
     }
 
     const trimmedNewAnswersArray = Object.values(trimmedNewAnswers);
@@ -153,6 +157,27 @@ const continueController = (
     logEmitter.emit("functionFail", "continue.controller", "continueController", err);
     throw err;
   }
+};
+
+/**
+ * Initializes arrays for specific keys in the answers object.
+ * If the answer is not a string, it makes it an array of 0 length.
+ * If the key is one of business-scale, food-type, or processing-activities, groups the strings into an array.
+ * If it's already an array, it does nothing.
+ *
+ * @param {object} answers The answers object to be initialized
+ */
+
+const initialiseArrays = (answers) => {
+  const keysToConvert = ["business_scale", "food_type", "processing_activities"];
+
+  keysToConvert.forEach((key) => {
+    if (!answers[key]) {
+      answers[key] = [];
+    } else if (typeof answers[key] === "string") {
+      answers[key] = [answers[key]];
+    }
+  });
 };
 
 module.exports = continueController;

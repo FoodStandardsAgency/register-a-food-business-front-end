@@ -20,6 +20,9 @@ const {
   validatePastDate,
   validateFutureDate,
   validateBusinessType,
+  validateBusinessScale,
+  validateFoodType,
+  validateProcessingActivities,
   validateBusinessOtherDetails,
   validateOpeningDaysIrregular,
   validatePartners,
@@ -441,25 +444,32 @@ const schema = {
       }
     }
   },
-  "/business-import-export": {
+  "/business-scale": {
     type: "object",
     properties: {
-      directly_import: {
-        type: "string"
-      },
-      directly_export: {
-        type: "string"
-      },
-      no_import_export: {
-        type: "string"
+      business_scale: {
+        type: "array",
+        validation: validateBusinessScale
       }
-    },
-    oneOf: [
-      {
-        anyOf: [{ required: ["directly_import"] }, { required: ["directly_export"] }]
-      },
-      { required: ["no_import_export"] }
-    ]
+    }
+  },
+  "/food-type": {
+    type: "object",
+    properties: {
+      food_type: {
+        type: "array",
+        validation: validateFoodType
+      }
+    }
+  },
+  "/processing-activities": {
+    type: "object",
+    properties: {
+      processing_activities: {
+        type: "array",
+        validation: validateProcessingActivities
+      }
+    }
   },
   "/business-other-details": {
     type: "object",

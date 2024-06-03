@@ -10,7 +10,7 @@
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
       {{ govukCheckboxes({
       idPrefix: "business_scale",
-      name: "business_scale",
+      name: "business_scale_checkboxes",
       fieldset: {
         legend: {
           text: __("Who do you intend to provide food to?", props.language),
@@ -22,55 +22,55 @@
             {
             value: "LOCAL",
             id: "LOCAL",
-            name: "LOCAL",
+            name: "business_scale",
             text: __("To local customers (who live or work in the local area)", props.language)
             },
             {
             value: "NATIONAL",
             id: "NATIONAL",
-            name: "NATIONAL",
+            name: "business_scale",
             text: __("To national customers (who live or work across the UK)", props.language)
             },
             {
             value: "EXPORT",
             id: "EXPORT",
-            name: "EXPORT",
+            name: "business_scale",
             text: __("To those outside of the UK (for export)", props.language)
             },
             {
             value: "ONLINE",
             id: "ONLINE",
-            name: "ONLINE",
+            name: "business_scale",
             text: __("To provide food online", props.language)
             },
             {
             value: "FBO",
             id: "FBO",
-            name: "FBO",
+            name: "business_scale",
             text: __("To provide food directly to other businesses", props.language)
             },
             {
             value: "SENIOR_YOUTH",
             id: "SENIOR_YOUTH",
-            name: "SENIOR_YOUTH",
+            name: "business_scale",
             text: __("To those under 5 years old or over 65 years old", props.language)
             },
             {
             value: "HEALTHCARE",
             id: "HEALTHCARE",
-            name: "HEALTHCARE",
+            name: "business_scale",
             text: __("To residents in a healthcare setting(for example in a hospital, nursing home or similar)", props.language)
             },
             {
             value: "NONE",
             id: "NONE",
-            name: "NONE",
+            name: "business_scale",
             text: __("None of these", props.language)
             },
             {
             value: "DONT_KNOW",
             id: "DONT_KNOW",
-            name: "DONT_KNOW",
+            name: "business_scale",
             text: __("Don't know", props.language)
             }
         ],
