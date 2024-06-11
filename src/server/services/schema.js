@@ -20,6 +20,9 @@ const {
   validatePastDate,
   validateFutureDate,
   validateBusinessType,
+  validateBusinessScale,
+  validateFoodType,
+  validateProcessingActivities,
   validateBusinessOtherDetails,
   validateOpeningDaysIrregular,
   validatePartners,
@@ -426,6 +429,33 @@ const schema = {
       business_type: {
         type: "string",
         validation: validateBusinessType
+      }
+    }
+  },
+  "/business-scale": {
+    type: "object",
+    properties: {
+      business_scale: {
+        type: "array",
+        validation: validateBusinessScale
+      }
+    }
+  },
+  "/food-type": {
+    type: "object",
+    properties: {
+      food_type: {
+        type: "array",
+        validation: validateFoodType
+      }
+    }
+  },
+  "/processing-activities": {
+    type: "object",
+    properties: {
+      processing_activities: {
+        type: "array",
+        validation: validateProcessingActivities
       }
     }
   },

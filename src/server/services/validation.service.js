@@ -55,6 +55,9 @@ const errorMessages = {
   establishment_opening_status: "You must select a trading status before continuing",
   establishment_opening_date: "Enter a valid opening date",
   business_type: "You must select a business type before continuing",
+  business_scale: "Please select all options that apply to your business",
+  food_type: "Please select all options that apply to your business",
+  processing_activities: "Please select all options that apply to your business",
   water_supply: "You must select a water supply type before continuing",
   business_other_details:
     "Your message is too long. Please shorten it to less than 1500 characters",

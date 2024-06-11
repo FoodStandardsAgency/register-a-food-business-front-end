@@ -60,6 +60,12 @@ summaryListDeclarationHelper %}
           {{ summaryListHelper(__("Main partnership contact", props.language), propsData.main_partnership_contact, "/edit/main-partnership-contact", propsData.main_partnership_contact, "main_partnership_contact", props) }}
         {% endif %}
       {% endif %}
+      {% if props.cumulativeFullAnswers.registration_role === "SOLETRADER" %}
+          {{ summaryListHelper(__("Operators birthdate", props.language), propsData.operator_birthdate, props) }}
+      {% endif %}
+      {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+          {{ summaryListHelper(__("Operators birthdate", props.language), propsData.operator_birthdate, props) }}
+      {% endif %}
       {% if propsData.applicationCompletePage == null %}
         {% set html %}
         <div>
@@ -195,6 +201,15 @@ summaryListDeclarationHelper %}
       <h2 class="govuk-heading-m">{{ __("Activities", props.language) }}</h2>
       {% if propsData.applicationCompletePage == null %}
         {{ summaryListHelper(__("Business type", props.language), __(propsData.business_type, props.language) if propsData.business_type, "/edit/business-type", propsData.business_type, "business_type", props) }}
+      {% endif %}
+      {% if propsData.applicationCompletePage == null %}
+        {{ summaryListHelper(__("Business Scale", props.language), __(propsData.business_scale, props.language) if propsData.business_scale, "/edit/business-scale", propsData.business_scale, "business_scale", props) }}
+      {% endif %}
+      {% if propsData.applicationCompletePage == null %}
+        {{ summaryListHelper(__("Food type", props.language), __(propsData.food_type, props.language) if propsData.food_type, "/edit/food-type", propsData.food_type, "food_type", props) }}
+      {% endif %}
+            {% if propsData.applicationCompletePage == null %}
+        {{ summaryListHelper(__("Processing Activities", props.language), __(propsData.processing_activities, props.language) if propsData.processing_activities, "/edit/pr-activities", propsData.processing_activities, "processing_activities", props) }}
       {% endif %}
       {% if propsData.applicationCompletePage == null %}
         {% if propsData.business_other_details %}
