@@ -200,9 +200,6 @@ summaryListDeclarationHelper %}
       {% endif %}
       <h2 class="govuk-heading-m">{{ __("Activities", props.language) }}</h2>
       {% if propsData.applicationCompletePage == null %}
-        {{ summaryListHelper(__("Customers", props.language), __(propsData.customer_type, props.language) if propsData.customer_type, "/edit/customer-type", propsData.customer_type, "customer_type", props) }}
-      {% endif %}
-      {% if propsData.applicationCompletePage == null %}
         {{ summaryListHelper(__("Business type", props.language), __(propsData.business_type, props.language) if propsData.business_type, "/edit/business-type", propsData.business_type, "business_type", props) }}
       {% endif %}
       {% if propsData.applicationCompletePage == null %}

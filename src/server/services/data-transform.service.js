@@ -7,8 +7,6 @@ const { logEmitter } = require("./logging.service");
 const {
   operatorTypeEnum,
   establishmentTypeEnum,
-  customerTypeEnum,
-  importExportEnum,
   waterSupplyEnum,
   businessTypeEnum
 } = require("@slice-and-dice/register-a-food-business-validation");
@@ -46,6 +44,7 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
   const operator_keys = [
     "operator_first_name",
     "operator_last_name",
+    "operator_birthdate",
     "operator_address_line_1",
     "operator_address_line_2",
     "operator_address_line_3",
@@ -79,10 +78,8 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
     "establishment_uprn"
   ];
   const activities_keys = [
-    "customer_type",
     "business_type",
     "business_type_search_term",
-    "import_export_activities",
     "opening_days_irregular",
     "water_supply",
     "business_other_details",
@@ -132,10 +129,6 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
     data.operator_type = combineOperatorTypes(data.operator_type, data.registration_role);
     delete data.registration_role;
 
-    data.customer_type = tranformCustomerTypeForSubmit(data.supply_directly, data.supply_other);
-    delete data.supply_directly;
-    delete data.supply_other;
-
     const openingDays = transformOpeningDaysForSubmit(
       data.opening_days_start,
       data.opening_day_monday,
@@ -157,14 +150,14 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
       data.opening_hours_sunday
     );
 
-    data.import_export_activities = transformBusinessImportExportForSubmit(
-      data.directly_import,
-      data.directly_export,
-      data.no_import_export
+    data.operator_birthdate = combineDate(
+      data.operator_birthdate_day,
+      data.operator_birthdate_month,
+      data.operator_birthdate_year
     );
-    delete data.directly_import;
-    delete data.directly_export;
-    delete data.no_import_export;
+    delete data.operator_birthdate_day;
+    delete data.operator_birthdate_month;
+    delete data.operator_birthdate_year;
 
     data.establishment_opening_date = combineDate(data.day, data.month, data.year);
     delete data.day;
@@ -392,11 +385,7 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups, lcUrl
     summaryData.establishment_type = transformEstablishmentTypeForSummary(
       summaryData.establishment_type
     );
-    summaryData.customer_type = transformCustomerTypeForSummary(summaryData.customer_type);
     summaryData.business_type = transformBusinessTypeForSummary(summaryData.business_type);
-    summaryData.import_export_activities = transformBusinessImportExportForSummary(
-      summaryData.import_export_activities
-    );
     summaryData.water_supply = transformWaterSupplyForSummary(summaryData.water_supply);
 
     logEmitter.emit("functionSuccess", "data-transform.service", "transformAnswersForSummary");
@@ -420,32 +409,6 @@ const transformPartnersForSummary = (partnersObjects) => {
     }
   }
   return partnersData;
-};
-/**
- * Combines the answers submitted for the import/export activities to ignore the "no import or export" option when it is selected with one of the other options
- *
- * @param {string} directly_import String submitted to cumulative answers when user selects directly imports
- * @param {string} directly_export String submitted to cumulative answers when user selects directly exports
- * @param {string} no_import_export String submitted to cumulative answers when user selects no imports or exports
- *
- * @returns {string} A string displaying the correct answer for import/export activities for the summary page
- */
-const transformBusinessImportExportForSubmit = (directlyImport, directlyExport, noImportExport) => {
-  if (directlyImport && directlyExport) {
-    return importExportEnum.BOTH.key;
-  } else if (directlyImport) {
-    return importExportEnum.IMPORT.key;
-  } else if (directlyExport) {
-    return importExportEnum.EXPORT.key;
-  } else if (noImportExport) {
-    return importExportEnum.NONE.key;
-  } else {
-    return null;
-  }
-};
-
-const transformBusinessImportExportForSummary = (importExportActivities) => {
-  return importExportActivities ? importExportEnum[importExportActivities].value.en : null;
 };
 
 /**
@@ -582,30 +545,6 @@ const transformOpeningHoursForSubmit = (
     opening_hours_saturday: opening_hours_saturday ? opening_hours_saturday : undefined,
     opening_hours_sunday: opening_hours_sunday ? opening_hours_sunday : undefined
   };
-};
-
-const tranformCustomerTypeForSubmit = (supplyDirectly, supplyOther) => {
-  if (supplyDirectly && supplyOther) {
-    return customerTypeEnum.BOTH.key;
-  } else if (supplyDirectly) {
-    return customerTypeEnum.END_CONSUMER.key;
-  } else if (supplyOther) {
-    return customerTypeEnum.OTHER_BUSINESSES.key;
-  } else {
-    return null;
-  }
-};
-
-/**
- * Sets the display text on the summary table for when the user selects whether they supply_directly or supply_other or both
- * @param {string} supply_directly String submitted to cumulative answers when user selects supply directly
- * @param {string} supply_other String submitted to cumulative answers when user selects supply other
- *
- *
- * @returns {string} A string with the text to be displayed on the summary table
- */
-const transformCustomerTypeForSummary = (customerType) => {
-  return customerType ? customerTypeEnum[customerType].value.en : null;
 };
 
 /**

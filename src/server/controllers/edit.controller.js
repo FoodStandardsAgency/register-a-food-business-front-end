@@ -117,18 +117,15 @@ const editContinue = (
   if (valid) {
     // Account for difference in field names and their transform property names
     // to allow for validation message deletion
-    if (
-      transformedNewAnswers.directly_import ||
-      transformedNewAnswers.directly_export ||
-      transformedNewAnswers.no_import_export
-    ) {
-      transformedNewAnswers.import_export_activities = "validated";
-    }
-    if (transformedNewAnswers.supply_directly || transformedNewAnswers.supply_other) {
-      transformedNewAnswers.customer_type = "validated";
-    }
     if (transformedNewAnswers.day && transformedNewAnswers.month && transformedNewAnswers.year) {
       transformedNewAnswers.establishment_opening_date = "validated";
+    }
+    if (
+      transformedNewAnswers.operator_birthdate_day &&
+      transformedNewAnswers.operator_birthdate_month &&
+      transformedNewAnswers.operator_birthdate_year
+    ) {
+      transformedNewAnswers.operator_birthdate = "validated";
     }
     if (
       transformedNewAnswers.operator_postcode ||

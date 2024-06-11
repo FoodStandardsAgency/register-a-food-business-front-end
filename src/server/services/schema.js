@@ -337,18 +337,6 @@ const schema = {
       }
     }
   },
-  "/customer-type": {
-    type: "object",
-    properties: {
-      supply_other: {
-        type: "string"
-      },
-      supply_directly: {
-        type: "string"
-      }
-    },
-    anyOf: [{ required: ["supply_other"] }, { required: ["supply_directly"] }]
-  },
   "/opening-days-some": {
     type: "object",
     properties: {
