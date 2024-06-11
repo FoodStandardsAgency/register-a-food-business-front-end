@@ -47,11 +47,15 @@ const continueController = (
   try {
     const trimmedNewAnswers = JSON.parse(JSON.stringify(newAnswers));
 
-    for (let answer in trimmedNewAnswers) {
-      trimmedNewAnswers[answer] = trimmedNewAnswers[answer].trim();
+    const updatedNewAnswers = initialiseArrays(trimmedNewAnswers);
+
+    for (let answer in updatedNewAnswers) {
+      if (typeof updatedNewAnswers[answer] === "string") {
+        updatedNewAnswers[answer] = updatedNewAnswers[answer].trim();
+      }
     }
 
-    const trimmedNewAnswersArray = Object.values(trimmedNewAnswers);
+    const trimmedNewAnswersArray = Object.values(updatedNewAnswers);
 
     let cleanedPreviousAnswers = Object.assign({}, previousAnswers);
 
@@ -65,7 +69,7 @@ const continueController = (
     controllerResponse.cumulativeFullAnswers = Object.assign(
       {},
       cleanedPreviousAnswers,
-      trimmedNewAnswers
+      updatedNewAnswers
     );
 
     controllerResponse.switches = Object.assign(
@@ -75,7 +79,7 @@ const continueController = (
 
     controllerResponse.validatorErrors = Object.assign(
       {},
-      validate(currentPage, trimmedNewAnswers).errors
+      validate(currentPage, updatedNewAnswers).errors
     );
 
     if (Object.keys(controllerResponse.validatorErrors).length > 0) {
@@ -121,7 +125,7 @@ const continueController = (
 
     // update the new path to switch off representative registration role path when changed to Sole trader
     const updatedNewPath = switchOffCompanyAndCharityDetails(
-      trimmedNewAnswers,
+      updatedNewAnswers,
       updatedNewPathManual
     );
 
@@ -153,6 +157,30 @@ const continueController = (
     logEmitter.emit("functionFail", "continue.controller", "continueController", err);
     throw err;
   }
+};
+
+/**
+ * Initializes arrays for specific keys in the answers object.
+ * If the answer is not a string, it makes it an array of 0 length.
+ * If the key is one of business-scale, food-type, or processing-activities, groups the strings into an array.
+ * If it's already an array, it does nothing.
+ *
+ * @param {object} answers The answers object to be initialized
+ */
+
+const initialiseArrays = (answers) => {
+  const updatedAnswers = { ...answers };
+  const keysToConvert = ["business_scale", "food_type", "processing_activities"];
+
+  keysToConvert.forEach((key) => {
+    if (!updatedAnswers[key]) {
+      updatedAnswers[key] = [];
+    } else if (typeof updatedAnswers[key] === "string") {
+      updatedAnswers[key] = [updatedAnswers[key]];
+    }
+  });
+
+  return updatedAnswers;
 };
 
 module.exports = continueController;

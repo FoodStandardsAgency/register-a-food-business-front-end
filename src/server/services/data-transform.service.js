@@ -7,8 +7,12 @@ const { logEmitter } = require("./logging.service");
 const {
   operatorTypeEnum,
   establishmentTypeEnum,
+  customerTypeEnum,
   waterSupplyEnum,
-  businessTypeEnum
+  businessTypeEnum,
+  businessScaleEnum,
+  foodTypeEnum,
+  processingActivitiesEnum
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const trimAnswers = (cumulativeFullAnswers) => {
@@ -44,7 +48,6 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
   const operator_keys = [
     "operator_first_name",
     "operator_last_name",
-    "operator_birthdate",
     "operator_address_line_1",
     "operator_address_line_2",
     "operator_address_line_3",
@@ -79,6 +82,9 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
   ];
   const activities_keys = [
     "business_type",
+    "business_scale",
+    "food_type",
+    "processing_activities",
     "business_type_search_term",
     "opening_days_irregular",
     "water_supply",
@@ -129,6 +135,10 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
     data.operator_type = combineOperatorTypes(data.operator_type, data.registration_role);
     delete data.registration_role;
 
+    data.customer_type = tranformCustomerTypeForSubmit(data.supply_directly, data.supply_other);
+    delete data.supply_directly;
+    delete data.supply_other;
+
     const openingDays = transformOpeningDaysForSubmit(
       data.opening_days_start,
       data.opening_day_monday,
@@ -150,14 +160,37 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
       data.opening_hours_sunday
     );
 
-    data.operator_birthdate = combineDate(
-      data.operator_birthdate_day,
-      data.operator_birthdate_month,
-      data.operator_birthdate_year
+    data.business_scale = transformBusinessScaleForSubmit(
+      data.LOCAL,
+      data.NATIONAL,
+      data.EXPORT,
+      data.ONLINE,
+      data.FBO,
+      data.SENIOR_YOUTH,
+      data.HEALTHCARE,
+      data.NONE,
+      data.DONT_KNOW
     );
-    delete data.operator_birthdate_day;
-    delete data.operator_birthdate_month;
-    delete data.operator_birthdate_year;
+
+    data.food_type = transformFoodTypeForSubmit(
+      data.RAW_MEAT_FISH_SHELLFISH,
+      data.READY_TO_EAT,
+      data.COOKED_OR_REHEATED,
+      data.IMPORTED,
+      data.NONE,
+      data.DONT_KNOW
+    );
+
+    data.processing_activities = transformProcessingActivitiesForSubmit(
+      data.VACUUM_PACKING,
+      data.SOUS_VIDE,
+      data.FERMENTING_OR_CURING,
+      data.PASTEURISING,
+      data.ANIMAL_UNCOOKED,
+      data.REWRAPPING_OR_RELABELLING,
+      data.NONE,
+      data.DONT_KNOW
+    );
 
     data.establishment_opening_date = combineDate(data.day, data.month, data.year);
     delete data.day;
@@ -385,7 +418,13 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups, lcUrl
     summaryData.establishment_type = transformEstablishmentTypeForSummary(
       summaryData.establishment_type
     );
+    summaryData.customer_type = transformCustomerTypeForSummary(summaryData.customer_type);
     summaryData.business_type = transformBusinessTypeForSummary(summaryData.business_type);
+    summaryData.business_scale = transformBusinessScaleForSummary(summaryData.business_scale);
+    summaryData.food_type = transformFoodTypeForSummary(summaryData.food_type);
+    summaryData.processing_activities = transformProcessingActivitiesForSummary(
+      summaryData.processing_activities
+    );
     summaryData.water_supply = transformWaterSupplyForSummary(summaryData.water_supply);
 
     logEmitter.emit("functionSuccess", "data-transform.service", "transformAnswersForSummary");
@@ -411,6 +450,37 @@ const transformPartnersForSummary = (partnersObjects) => {
   return partnersData;
 };
 
+const transformBusinessScaleForSummary = (businessScaleArray) => {
+  if (!Array.isArray(businessScaleArray)) return null; // Check if input is an array
+
+  return businessScaleArray
+    .map((business_scale) => {
+      return businessScaleEnum[business_scale] ? businessScaleEnum[business_scale].value.en : null;
+    })
+    .filter((value) => value !== null); // Filter out any null values
+};
+
+const transformFoodTypeForSummary = (foodTypeArray) => {
+  if (!Array.isArray(foodTypeArray)) return null; // Check if input is an array
+
+  return foodTypeArray
+    .map((food_type) => {
+      return foodTypeEnum[food_type] ? foodTypeEnum[food_type].value.en : null;
+    })
+    .filter((value) => value !== null); // Filter out any null values
+};
+
+const transformProcessingActivitiesForSummary = (processingActivitiesArray) => {
+  if (!Array.isArray(processingActivitiesArray)) return null; // Check if input is an array
+
+  return processingActivitiesArray
+    .map((processing_activities) => {
+      return processingActivitiesEnum[processing_activities]
+        ? processingActivitiesEnum[processing_activities].value.en
+        : null;
+    })
+    .filter((value) => value !== null); // Filter out any null values
+};
 /**
  * Sets the opening days when the user selects monday - sunday on the "open some days" path
  *
@@ -545,6 +615,30 @@ const transformOpeningHoursForSubmit = (
     opening_hours_saturday: opening_hours_saturday ? opening_hours_saturday : undefined,
     opening_hours_sunday: opening_hours_sunday ? opening_hours_sunday : undefined
   };
+};
+
+const tranformCustomerTypeForSubmit = (supplyDirectly, supplyOther) => {
+  if (supplyDirectly && supplyOther) {
+    return customerTypeEnum.BOTH.key;
+  } else if (supplyDirectly) {
+    return customerTypeEnum.END_CONSUMER.key;
+  } else if (supplyOther) {
+    return customerTypeEnum.OTHER_BUSINESSES.key;
+  } else {
+    return null;
+  }
+};
+
+/**
+ * Sets the display text on the summary table for when the user selects whether they supply_directly or supply_other or both
+ * @param {string} supply_directly String submitted to cumulative answers when user selects supply directly
+ * @param {string} supply_other String submitted to cumulative answers when user selects supply other
+ *
+ *
+ * @returns {string} A string with the text to be displayed on the summary table
+ */
+const transformCustomerTypeForSummary = (customerType) => {
+  return customerType ? customerTypeEnum[customerType].value.en : null;
 };
 
 /**

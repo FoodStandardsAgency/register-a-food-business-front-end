@@ -4,6 +4,7 @@
  */
 
 const {
+  validateAdultBirthdate,
   validateDeclaration,
   validatePostCode,
   validateOptionalString,
@@ -20,6 +21,9 @@ const {
   validatePastDate,
   validateFutureDate,
   validateBusinessType,
+  validateBusinessScale,
+  validateFoodType,
+  validateProcessingActivities,
   validateBusinessOtherDetails,
   validateOpeningDaysIrregular,
   validatePartners,
@@ -84,6 +88,10 @@ const schema = {
       operator_last_name: {
         type: "string",
         validation: validateName
+      },
+      operator_birthdate: {
+        type: "string",
+        validation: validateAdultBirthdate
       }
     }
   },
@@ -173,6 +181,10 @@ const schema = {
       operator_email: {
         type: "string",
         validation: validateEmail
+      },
+      operator_birthdate: {
+        type: "string",
+        validation: validateAdultBirthdate
       }
     }
   },
@@ -426,6 +438,33 @@ const schema = {
       business_type: {
         type: "string",
         validation: validateBusinessType
+      }
+    }
+  },
+  "/business-scale": {
+    type: "object",
+    properties: {
+      food_type: {
+        type: "array",
+        validation: validateBusinessScale
+      }
+    }
+  },
+  "/food-type": {
+    type: "object",
+    properties: {
+      food_type: {
+        type: "array",
+        validation: validateFoodType
+      }
+    }
+  },
+  "/processing-activities": {
+    type: "object",
+    properties: {
+      processing_activities: {
+        type: "array",
+        validation: validateProcessingActivities
       }
     }
   },

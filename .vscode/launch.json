@@ -12,7 +12,7 @@
       "runtimeArgs": ["run-script", "local:debug:prod"],
       "port": 9229,
       "skipFiles": [
-        "${workspaceFolder}/node_modules/**/*.js",
+        //"${workspaceFolder}/node_modules/**/*.js",
         "${workspaceFolder}/lib/**/*.js",
         "<node_internals>/**/*.js",
         "**/async_hooks.js"
