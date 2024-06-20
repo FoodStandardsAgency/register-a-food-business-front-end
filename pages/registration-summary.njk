@@ -46,6 +46,9 @@ summaryListDeclarationHelper %}
           <span id="operator_last_name">{{ (propsData.operator_last_name if propsData.operator_last_name else "") }}</span>
         </div>
         {% endset %}
+          {% if propsData.applicationCompletePage == null %}
+            {{ summaryListHelper(__("Operators Birthdate", props.language), propsData.operator_birthdate, "/edit/operator-birthdate", propsData.operator_birthdate, "operator_birthdate", props) }}
+        {% endif %}
         {% if props.cumulativeFullAnswers.registration_role === "SOLETRADER" or props.cumulativeFullAnswers.operator_type === "PERSON" %}
           {{ summaryListHelperHtml(__("Name", props.language), html, "/edit/operator-name", propsData.operator_first_name and propsData.operator_last_name, "operator-name", props ) }}
         {% endif %}
