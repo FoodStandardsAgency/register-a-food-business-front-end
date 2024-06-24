@@ -116,7 +116,7 @@ const validate = (page, answers) => {
           answers.year
         );
       }
-      if (page === "/operator-name" || page === "/operator-contact-details") {
+      if (page === "/operator-name" || page === "/partnership-contact-details") {
         answersToValidate.operator_birthdate = combineDate(
           answers.operator_birthdate_day,
           answers.operator_birthdate_month,

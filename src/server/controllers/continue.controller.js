@@ -170,14 +170,17 @@ const continueController = (
 
 const initialiseArrays = (answers) => {
   const keysToConvert = ["business_scale", "food_type", "processing_activities"];
-
   keysToConvert.forEach((key) => {
-    if (!answers[key]) {
-      answers[key] = [];
-    } else if (typeof answers[key] === "string") {
-      answers[key] = [answers[key]];
+    if (answers.hasOwnProperty(key)) {
+      if (!answers[key]) {
+        answers[key] = [];
+      } else if (typeof answers[key] === "string") {
+        answers[key] = [answers[key]];
+      }
     }
   });
+
+  return answers;
 };
 
 module.exports = continueController;
