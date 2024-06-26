@@ -15,6 +15,7 @@ const {
   cleanEmptiedAnswers,
   cleanSwitches
 } = require("../services/session-management.service");
+const { initialiseArray } = require("../services/data-transform.service");
 
 /**
  * Returns an object containing validator errors (if present), the redirect route (e.g. the next page),
@@ -47,7 +48,9 @@ const continueController = (
   try {
     const trimmedNewAnswers = JSON.parse(JSON.stringify(newAnswers));
 
-    initialiseArrays(trimmedNewAnswers);
+    initialiseArray(trimmedNewAnswers, "business_scale");
+    initialiseArray(trimmedNewAnswers, "food_type");
+    initialiseArray(trimmedNewAnswers, "processing_activities");
 
     for (let answer in trimmedNewAnswers) {
       if (typeof trimmedNewAnswers[answer] === "string") {
@@ -157,32 +160,6 @@ const continueController = (
     logEmitter.emit("functionFail", "continue.controller", "continueController", err);
     throw err;
   }
-};
-
-/**
- * Initializes arrays for specific keys in the answers object.
- * If the answer is not a string, it makes it an array of 0 length.
- * If the key is one of business-scale, food-type, or processing-activities, groups the strings into an array.
- * If it's already an array, it does nothing.
- *
- * @param {object} answers The answers object to be initialized
- */
-
-const initialiseArrays = (answers) => {
-  const keysToConvert = ["business_scale", "food_type", "processing_activities"];
-
-  let updatedAnswers = { ...answers };
-  keysToConvert.forEach((key) => {
-    if (updatedAnswers.hasOwnProperty(key)) {
-      if (!updatedAnswers[key]) {
-        updatedAnswers[key] = [];
-      } else if (typeof updatedAnswers[key] === "string") {
-        updatedAnswers[key] = [updatedAnswers[key]];
-      }
-    }
-  });
-
-  return updatedAnswers;
 };
 
 module.exports = continueController;

@@ -666,6 +666,28 @@ const transformProcessingActivitiesForSummary = (ids) => {
   );
 };
 
+/**
+ * Intialises array for specific key in the answers object. Due to form checkbox data being submitted as string if there is only value selected,
+ * this function will convert the string to an array if the key is present in the answers object, or an empty array if no value was entered.
+ * @param {object} answers Cumulative answers object that requires array to be initialised
+ * @param {string} propertyName The name of the property that requires initialisation
+ * @param {boolean} createMissingProperty Create the property if it doesn't already exist?
+ *
+ * @returns {string} The cumulative answers object with the property initialised to an array
+ */
+
+const initialiseArray = (answers, propertyName, createMissingProperty) => {
+  if (answers.hasOwnProperty(propertyName)) {
+    if (!answers[propertyName]) {
+      answers[propertyName] = [];
+    } else if (typeof answers[propertyName] === "string") {
+      answers[propertyName] = [answers[propertyName]];
+    }
+  } else if (createMissingProperty) {
+    answers[propertyName] = [];
+  }
+};
+
 module.exports = {
   transformAnswersForSummary,
   transformAnswersForSubmit,
@@ -673,5 +695,6 @@ module.exports = {
   combineDate,
   separateBracketsFromBusinessType,
   trimUprn,
-  trimAnswers
+  trimAnswers,
+  initialiseArray
 };
