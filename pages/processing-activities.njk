@@ -6,7 +6,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-            {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
       {{ govukCheckboxes({
       idPrefix: "processing_activities",
@@ -23,49 +23,57 @@ items: [
             value: "VACUUM_PACKING",
             id: "VACUUM_PACKING",
             name: "processing_activities",
-            text: __("Vacuum packing", props.language)
+            text: __("Vacuum packing", props.language),
+            checked: exists(props.cumulativeFullAnswers.processing_activities, "VACUUM_PACKING")
             },
             {
             value: "SOUS_VIDE",
             id: "SOUS_VIDE",
             name: "processing_activities",
-            text: __("Sous vide", props.language)
+            text: __("Sous vide", props.language),
+            checked: exists(props.cumulativeFullAnswers.processing_activities, "SOUS_VIDE")
             },
             {
             value: "FERMENTING_OR_CURING",
             id: "FERMENTING_OR_CURING",
             name: "processing_activities",
-            text: __("Fermenting and/or curing of meat and fish", props.language)
+            text: __("Fermenting and/or curing of meat and fish", props.language),
+            checked: exists(props.cumulativeFullAnswers.processing_activities, "FERMENTING_OR_CURING")
             },
             {
             value: "PASTEURISING",
             id: "PASTEURISING",
             name: "processing_activities",
-            text: __("Pasteurisation", props.language)
+            text: __("Pasteurisation", props.language),
+            checked: exists(props.cumulativeFullAnswers.processing_activities, "PASTEURISING")
             },
             {
             value: "ANIMAL_UNCOOKED",
             id: "ANIMAL_UNCOOKED",
             name: "processing_activities",
-            text: __("Production of foods of animal origin that are not thoroughly cooked (for example steak tartare, ceviche, carpaccio)", props.language)
+            text: __("Production of foods of animal origin that are not thoroughly cooked (for example steak tartare, ceviche, carpaccio)", props.language),
+            checked: exists(props.cumulativeFullAnswers.processing_activities, "ANIMAL_UNCOOKED")
             },
             {
             value: "REWRAPPING_OR_RELABELLING",
             id: "REWRAPPING_OR_RELABELLING",
             name: "processing_activities",
-            text: __("Rewrapping and relabelling previously wrapped food", props.language)
+            text: __("Rewrapping and relabelling previously wrapped food", props.language),
+            checked: exists(props.cumulativeFullAnswers.processing_activities, "REWRAPPING_OR_RELABELLING")
             },
             {
             value: "NONE",
             id: "NONE",
             name: "processing_activities",
-            text: __("None of these", props.language)
+            text: __("None of these", props.language),
+            checked: exists(props.cumulativeFullAnswers.processing_activities, "NONE")
             },
             {
             value: "DONT_KNOW",
             id: "DONT_KNOW",
             name: "processing_activities",
-            text: __("Don't know", props.language)
+            text: __("Don't know", props.language),
+            checked: exists(props.cumulativeFullAnswers.processing_activities, "DONT_KNOW")
             }
         ],
       errorMessage: {

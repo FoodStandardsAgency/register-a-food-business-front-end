@@ -173,6 +173,7 @@ env.addGlobal("mergeObjects", (orig, additionalProps) => ({
   ...orig,
   ...additionalProps
 }));
+env.addGlobal("exists", (list, item) => (list || []).includes(item));
 
 const setLanguage = function (req, res, next) {
   if (req.body && req.body.language) {
