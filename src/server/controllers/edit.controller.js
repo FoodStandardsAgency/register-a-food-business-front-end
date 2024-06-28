@@ -11,6 +11,7 @@ const {
 const { validate } = require("../services/validation.service");
 const { trimAnswers } = require("../services/data-transform.service");
 const { editPathInEditMode, moveAlongEditPath } = require("../services/path.service");
+const { initialiseArray } = require("../services/data-transform.service");
 
 /**
  * Returns the previous page in the edit-mode path
@@ -82,17 +83,20 @@ const editContinue = (
 
   const truthyCumulativeFullAnswers = cleanEmptiedAnswers(
     { ...cumulativeFullAnswers },
-    Object.values(newAnswers),
+    Object.keys(newAnswers),
     currentPage
   );
 
   const truthyCumulativeEditAnswers = cleanEmptiedAnswers(
     { ...cumulativeEditAnswers },
-    Object.values(newAnswers),
+    Object.keys(newAnswers),
     currentPage
   );
 
   const trimmedNewAnswers = trimAnswers(newAnswers);
+  initialiseArray(trimmedNewAnswers, "business_scale");
+  initialiseArray(trimmedNewAnswers, "food_type");
+  initialiseArray(trimmedNewAnswers, "processing_activities");
 
   const newCumulativeFullAnswers = {
     ...truthyCumulativeFullAnswers,

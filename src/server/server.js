@@ -129,8 +129,6 @@ app.engine("html", nunjucks.render);
 app.set("view engine", "njk");
 
 const sixtyDaysInSeconds = 5184000;
-app.set("trust proxy", 1);
-app.enable("trust proxy");
 app.use(clsMiddleware);
 app.use(forceDomainOrSchema);
 app.use(limiter);
@@ -175,6 +173,38 @@ env.addGlobal("mergeObjects", (orig, additionalProps) => ({
   ...orig,
   ...additionalProps
 }));
+env.addGlobal("exists", (list, item) => (list || []).includes(item));
+env.addGlobal("getEstablishmentPrimaryNumber", (answers, switches) => {
+  if (switches && switches.reuseOperatorContactDetails) {
+    if (answers.registration_role === "SOLETRADER") {
+      return answers.operator_primary_number;
+    } else if (answers.registration_role === "PARTNERSHIP") {
+      return answers.main_partner_primary_number;
+    } else {
+      return answers.contact_representative_number;
+    }
+  }
+});
+env.addGlobal("getEstablishmentSecondaryNumber", (answers, switches) => {
+  if (switches && switches.reuseOperatorContactDetails) {
+    if (answers.registration_role === "SOLETRADER") {
+      return answers.operator_secondary_number;
+    } else if (answers.registration_role === "PARTNERSHIP") {
+      return answers.main_partner_secondary_number;
+    }
+  }
+});
+env.addGlobal("getEstablishmentEmail", (answers, switches) => {
+  if (switches && switches.reuseOperatorContactDetails) {
+    if (answers.registration_role === "SOLETRADER") {
+      return answers.operator_email;
+    } else if (answers.registration_role === "PARTNERSHIP") {
+      return answers.main_partner_email;
+    } else {
+      return answers.contact_representative_email;
+    }
+  }
+});
 
 const setLanguage = function (req, res, next) {
   if (req.body && req.body.language) {

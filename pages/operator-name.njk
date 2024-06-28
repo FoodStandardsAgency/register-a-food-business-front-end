@@ -47,7 +47,6 @@
             }) }}
       {{ govukDateInput({
                   id: "operator_birthdate",
-                  namePrefix: "operator_birthdate",
                   fieldset: {
                     legend: {
                       text: __("What is the operator's birthdate?", props.language),
@@ -59,22 +58,22 @@
                    },
                   items: [
                     {
-                      id: "day",
-                      name: "day",
+                      id: "operator_birthdate_day",
+                      name: "operator_birthdate_day",
                       label: __('Day', props.language),
                       classes: "govuk-input--width-2",
                       value: props.cumulativeFullAnswers.operator_birthdate_day
                     },
                     {
-                     id: "month",
-                      name: "month",
+                     id: "operator_birthdate_month",
+                      name: "operator_birthdate_month",
                       label: __('Month', props.language),
                       classes: "govuk-input--width-2",
                       value: props.cumulativeFullAnswers.operator_birthdate_month
                     },
                     {
-                     id: "year",
-                      name: "year",
+                     id: "operator_birthdate_year",
+                      name: "operator_birthdate_year",
                       label: __('Year', props.language),
                       classes: "govuk-input--width-4",
                       value: props.cumulativeFullAnswers.operator_birthdate_year
