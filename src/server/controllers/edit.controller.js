@@ -83,13 +83,13 @@ const editContinue = (
 
   const truthyCumulativeFullAnswers = cleanEmptiedAnswers(
     { ...cumulativeFullAnswers },
-    Object.values(newAnswers),
+    Object.keys(newAnswers),
     currentPage
   );
 
   const truthyCumulativeEditAnswers = cleanEmptiedAnswers(
     { ...cumulativeEditAnswers },
-    Object.values(newAnswers),
+    Object.keys(newAnswers),
     currentPage
   );
 

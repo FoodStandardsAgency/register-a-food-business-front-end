@@ -60,6 +60,9 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
     "operator_uprn",
     "operator_primary_number",
     "operator_secondary_number",
+    "main_partner_primary_number",
+    "main_partner_secondary_number",
+    "main_partner_email",
     "operator_email",
     "contact_representative_name",
     "contact_representative_role",
@@ -678,13 +681,15 @@ const transformProcessingActivitiesForSummary = (ids) => {
 
 const initialiseArray = (answers, propertyName, createMissingProperty) => {
   if (answers.hasOwnProperty(propertyName)) {
-    if (!answers[propertyName]) {
-      answers[propertyName] = [];
-    } else if (typeof answers[propertyName] === "string") {
-      answers[propertyName] = [answers[propertyName]];
+    let copyAnswers = { ...answers };
+
+    if (!copyAnswers[propertyName]) {
+      copyAnswers[propertyName] = [];
+    } else if (typeof copyAnswers[propertyName] === "string") {
+      copyAnswers[propertyName] = [copyAnswers[propertyName]];
     }
   } else if (createMissingProperty) {
-    answers[propertyName] = [];
+    copyAnswers[propertyName] = [];
   }
 };
 

@@ -186,15 +186,15 @@ const schema = {
   "/partnership-contact-details": {
     type: "object",
     properties: {
-      operator_primary_number: {
+      main_partner_primary_number: {
         type: "string",
         validation: validatePhoneNumber
       },
-      operator_secondary_number: {
+      main_partner_secondary_number: {
         type: "string",
         validation: validatePhoneNumberOptional
       },
-      operator_email: {
+      main_partner_email: {
         type: "string",
         validation: validateEmail
       },

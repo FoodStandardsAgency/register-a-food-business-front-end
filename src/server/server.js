@@ -174,6 +174,37 @@ env.addGlobal("mergeObjects", (orig, additionalProps) => ({
   ...additionalProps
 }));
 env.addGlobal("exists", (list, item) => (list || []).includes(item));
+env.addGlobal("getEstablishmentPrimaryNumber", (answers, switches) => {
+  if (switches && switches.reuseOperatorContactDetails) {
+    if (answers.registration_role === "SOLETRADER") {
+      return answers.operator_primary_number;
+    } else if (answers.registration_role === "PARTNERSHIP") {
+      return answers.main_partner_primary_number;
+    } else {
+      return answers.contact_representative_number;
+    }
+  }
+});
+env.addGlobal("getEstablishmentSecondaryNumber", (answers, switches) => {
+  if (switches && switches.reuseOperatorContactDetails) {
+    if (answers.registration_role === "SOLETRADER") {
+      return answers.operator_secondary_number;
+    } else if (answers.registration_role === "PARTNERSHIP") {
+      return answers.main_partner_secondary_number;
+    }
+  }
+});
+env.addGlobal("getEstablishmentEmail", (answers, switches) => {
+  if (switches && switches.reuseOperatorContactDetails) {
+    if (answers.registration_role === "SOLETRADER") {
+      return answers.operator_email;
+    } else if (answers.registration_role === "PARTNERSHIP") {
+      return answers.main_partner_email;
+    } else {
+      return answers.contact_representative_email;
+    }
+  }
+});
 
 const setLanguage = function (req, res, next) {
   if (req.body && req.body.language) {

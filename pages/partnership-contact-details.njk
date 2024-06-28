@@ -68,25 +68,25 @@
       "label": {
         "text": __("Main phone number", props.language)
       },
-      "id": "operator_primary_number",
-      "name": "operator_primary_number",
-      "value": props.cumulativeFullAnswers.operator_primary_number,
+      "id": "main_partner_primary_number",
+      "name": "main_partner_primary_number",
+      "value": props.cumulativeFullAnswers.main_partner_primary_number,
       "classes": "govuk-label--l",
       "autoComplete": "tel",
        "errorMessage": {
-      "text":  __(props.validatorErrors.operator_primary_number, props.language) } if props.validatorErrors.operator_primary_number       
+      "text":  __(props.validatorErrors.main_partner_primary_number, props.language) } if props.validatorErrors.main_partner_primary_number       
    }) }}
       {{ govukInput({
       "label": {
         "text": __("Secondary phone number (optional)", props.language)
       },
-      "id": "operator_secondary_number",
-      "name": "operator_secondary_number",
-      "value": props.cumulativeFullAnswers.operator_secondary_number,
+      "id": "main_partner_secondary_number",
+      "name": "main_partner_secondary_number",
+      "value": props.cumulativeFullAnswers.main_partner_secondary_number,
       "classes": "govuk-label--l",
       "autoComplete": "off",
       "errorMessage": {
-      "text":  __(props.validatorErrors.operator_secondary_number, props.language) } if props.validatorErrors.operator_secondary_number 
+      "text":  __(props.validatorErrors.main_partner_secondary_number, props.language) } if props.validatorErrors.main_partner_secondary_number 
   }) }}
       {{ govukInput({
       "label": {
@@ -95,13 +95,13 @@
       "hint": {
       "text": __("We will use your email address to send a copy of your registration details. The food safety team at your local authority may contact you with additional guidance and support and to obtain further information if required.", props.language)
       },
-      "id": "operator_email",
-      "name": "operator_email",
-      "value": props.cumulativeFullAnswers.operator_email,
+      "id": "main_partner_email",
+      "name": "main_partner_email",
+      "value": props.cumulativeFullAnswers.main_partner_email,
       "classes": "govuk-label--l",
       "autoComplete": "email",
       "errorMessage": {
-      "text": __(props.validatorErrors.operator_email, props.language) } if props.validatorErrors.operator_email
+      "text": __(props.validatorErrors.main_partner_email, props.language) } if props.validatorErrors.main_partner_email
   }) }}
       {{ govukButton({
         text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)

@@ -25,7 +25,11 @@
         text: __("Main phone number", props.language)
       },
       {
-        text: props.cumulativeFullAnswers.operator_primary_number if props.cumulativeFullAnswers.operator_primary_number else props.cumulativeFullAnswers.contact_representative_number
+        text: props.cumulativeFullAnswers.main_partner_primary_number 
+        if props.cumulativeFullAnswers.main_partner_primary_number 
+          else (props.cumulativeFullAnswers.operator_primary_number 
+        if props.cumulativeFullAnswers.operator_primary_number 
+          else props.cumulativeFullAnswers.contact_representative_number)
       }
     ],
     [
@@ -33,15 +37,15 @@
         text: __("Secondary phone number", props.language)
       },
       {
-        text: props.cumulativeFullAnswers.operator_secondary_number 
+        text: props.cumulativeFullAnswers.main_partner_secondary_number if props.cumulativeFullAnswers.main_partner_secondary_number else props.cumulativeFullAnswers.operator_secondary_number
       }
-    ] if props.cumulativeFullAnswers.operator_secondary_number,
+    ] if props.cumulativeFullAnswers.main_partner_secondary_number or props.cumulativeFullAnswers.operator_secondary_number,
     [
       {
         text: __("Email address", props.language)
       },
       {
-        text: props.cumulativeFullAnswers.operator_email if props.cumulativeFullAnswers.operator_email else props.cumulativeFullAnswers.contact_representative_email
+        text: props.cumulativeFullAnswers.main_partner_email if props.cumulativeFullAnswers.main_partner_email else (props.cumulativeFullAnswers.operator_email if props.cumulativeFullAnswers.operator_email else props.cumulativeFullAnswers.contact_representative_email)
       }
     ]
   ]
@@ -75,7 +79,7 @@
         },
         "id": "establishment_primary_number",
         "name": "establishment_primary_number",
-        "value": (props.cumulativeFullAnswers.operator_primary_number) or (props.cumulativeFullAnswers.contact_representative_number) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_primary_number),
+        "value": getEstablishmentPrimaryNumber(props.cumulativeFullAnswers, props.switches),
         "errorMessage": { "text": __(props.validatorErrors.establishment_primary_number, props.language)} if props.validatorErrors.establishment_primary_number
         
       }) }}
@@ -85,7 +89,7 @@
         },
         "id": "establishment_secondary_number",
         "name": "establishment_secondary_number",
-        "value": (props.cumulativeFullAnswers.operator_secondary_number) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_secondary_number),
+        "value": getEstablishmentSecondaryNumber(props.cumulativeFullAnswers, props.switches),
         "errorMessage": { "text": __(props.validatorErrors.establishment_secondary_number, props.language)} if props.validatorErrors.establishment_secondary_number
       }) }}
       {{ govukInput({
@@ -94,7 +98,7 @@
         },
         "id": "establishment_email",
         "name": "establishment_email",
-        "value": (props.cumulativeFullAnswers.operator_email) or (props.cumulativeFullAnswers.contact_representative_email) if props.switches.reuseOperatorContactDetails else (props.cumulativeFullAnswers.establishment_email),
+        "value": getEstablishmentEmail(props.cumulativeFullAnswers, props.switches),
         "errorMessage": {
         "text": __(props.validatorErrors.establishment_email, props.language)} if props.validatorErrors.establishment_email
       }) }}
