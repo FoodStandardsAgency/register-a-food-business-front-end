@@ -23,9 +23,21 @@ const qaRouter = () => {
         const target = req.params.target;
         delete req.query.QA_KEY;
         req.session.cumulativeFullAnswers = req.query;
-        initialiseArray(req.session.cumulativeFullAnswers, "business_scale", true);
-        initialiseArray(req.session.cumulativeFullAnswers, "food_type", true);
-        initialiseArray(req.session.cumulativeFullAnswers, "processing_activities", true);
+        req.session.cumulativeFullAnswers = initialiseArray(
+          req.session.cumulativeFullAnswers,
+          "business_scale",
+          true
+        );
+        req.session.cumulativeFullAnswers = initialiseArray(
+          req.session.cumulativeFullAnswers,
+          "food_type",
+          true
+        );
+        req.session.cumulativeFullAnswers = initialiseArray(
+          req.session.cumulativeFullAnswers,
+          "processing_activities",
+          true
+        );
         logEmitter.emit("functionSuccessWith", "Routes", "/qa/:target route", target);
         req.session.save(() => {
           res.redirect(`/new/${target}`);

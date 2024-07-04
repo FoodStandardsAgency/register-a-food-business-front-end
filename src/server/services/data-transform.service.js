@@ -680,9 +680,8 @@ const transformProcessingActivitiesForSummary = (ids) => {
  */
 
 const initialiseArray = (answers, propertyName, createMissingProperty) => {
+  let copyAnswers = { ...answers };
   if (answers.hasOwnProperty(propertyName)) {
-    let copyAnswers = { ...answers };
-
     if (!copyAnswers[propertyName]) {
       copyAnswers[propertyName] = [];
     } else if (typeof copyAnswers[propertyName] === "string") {
@@ -691,6 +690,8 @@ const initialiseArray = (answers, propertyName, createMissingProperty) => {
   } else if (createMissingProperty) {
     copyAnswers[propertyName] = [];
   }
+
+  return copyAnswers;
 };
 
 module.exports = {

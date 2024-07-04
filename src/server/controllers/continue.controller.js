@@ -48,9 +48,9 @@ const continueController = (
   try {
     const trimmedNewAnswers = JSON.parse(JSON.stringify(newAnswers));
 
-    initialiseArray(trimmedNewAnswers, "business_scale");
-    initialiseArray(trimmedNewAnswers, "food_type");
-    initialiseArray(trimmedNewAnswers, "processing_activities");
+    trimmedNewAnswers = initialiseArray(trimmedNewAnswers, "business_scale");
+    trimmedNewAnswers = initialiseArray(trimmedNewAnswers, "food_type");
+    trimmedNewAnswers = initialiseArray(trimmedNewAnswers, "processing_activities");
 
     for (let answer in trimmedNewAnswers) {
       if (typeof trimmedNewAnswers[answer] === "string") {
