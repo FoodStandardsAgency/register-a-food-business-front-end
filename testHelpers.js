@@ -24,13 +24,10 @@ i18n.configure({
   directory: __dirname + "/public/static/locales"
 });
 
-const env = nunjucks.configure(
-  ["node_modules/govuk-frontend/", "pages", "components"],
-  {
-    trimBlocks: true,
-    lstripBlocks: true
-  }
-);
+const env = nunjucks.configure(["node_modules/govuk-frontend/", "pages", "components"], {
+  trimBlocks: true,
+  lstripBlocks: true
+});
 env.addGlobal("__", i18n.__);
 env.addFilter("t", i18n.__);
 
@@ -55,6 +52,39 @@ env.addGlobal("mergeObjects", (orig, additionalProps) => ({
   ...additionalProps
 }));
 
+env.addGlobal("exists", (list, item) => (list || []).includes(item));
+env.addGlobal("getEstablishmentPrimaryNumber", (answers, switches) => {
+  if (switches && switches.reuseOperatorContactDetails) {
+    if (answers.registration_role === "SOLETRADER") {
+      return answers.operator_primary_number;
+    } else if (answers.registration_role === "PARTNERSHIP") {
+      return answers.main_partner_primary_number;
+    } else {
+      return answers.contact_representative_number;
+    }
+  }
+});
+env.addGlobal("getEstablishmentSecondaryNumber", (answers, switches) => {
+  if (switches && switches.reuseOperatorContactDetails) {
+    if (answers.registration_role === "SOLETRADER") {
+      return answers.operator_secondary_number;
+    } else if (answers.registration_role === "PARTNERSHIP") {
+      return answers.main_partner_secondary_number;
+    }
+  }
+});
+env.addGlobal("getEstablishmentEmail", (answers, switches) => {
+  if (switches && switches.reuseOperatorContactDetails) {
+    if (answers.registration_role === "SOLETRADER") {
+      return answers.operator_email;
+    } else if (answers.registration_role === "PARTNERSHIP") {
+      return answers.main_partner_email;
+    } else {
+      return answers.contact_representative_email;
+    }
+  }
+});
+
 /**
  * Render a page for testing
  * @param {string} pageName
@@ -63,9 +93,7 @@ env.addGlobal("mergeObjects", (orig, additionalProps) => ({
  */
 function renderPage(pageName, params) {
   if (typeof params === "undefined") {
-    throw new Error(
-      "Parameters passed to `render` should be an object but are undefined"
-    );
+    throw new Error("Parameters passed to `render` should be an object but are undefined");
   }
 
   const output = nunjucks.render(pageName + ".njk", { props: params });
@@ -81,9 +109,7 @@ function renderPage(pageName, params) {
  */
 function renderComponent(pageName, params, children = false) {
   if (typeof params === "undefined") {
-    throw new Error(
-      "Parameters passed to `render` should be an object but are undefined"
-    );
+    throw new Error("Parameters passed to `render` should be an object but are undefined");
   }
 
   const macroParams = JSON.stringify(params, null, 2);

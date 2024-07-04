@@ -69,6 +69,7 @@ describe("Establishment-Contact-Details", () => {
         },
         cumulativeFullAnswers: {
           operator_primary_number: "operator primary number",
+          main_partner_primary_number: "main partner primary number",
           establishment_primary_number: "establishment primary number",
           registration_role: "PARTNERSHIP"
         }
@@ -76,7 +77,7 @@ describe("Establishment-Contact-Details", () => {
 
       const $establishmentPrimaryContactInput = $("#establishment_primary_number");
       expect($establishmentPrimaryContactInput.get(0).attribs.value).toBe(
-        "operator primary number"
+        "main partner primary number"
       );
     });
 

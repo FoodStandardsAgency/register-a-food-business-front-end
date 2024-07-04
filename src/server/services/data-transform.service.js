@@ -656,42 +656,34 @@ const transformBusinessTypeForSummary = (id) => {
 };
 
 const transformBusinessScaleForSummary = (ids) => {
-  return ids.map((id) => businessScaleEnum[id].value.en);
+  return ids?.map((id) => businessScaleEnum[id].value.en);
 };
 
 const transformFoodTypeForSummary = (ids) => {
-  return ids.map((id) => (foodTypeEnum[id] ? foodTypeEnum[id].value.en : ""));
+  return ids?.map((id) => (foodTypeEnum[id] ? foodTypeEnum[id].value.en : ""));
 };
 
 const transformProcessingActivitiesForSummary = (ids) => {
-  return ids.map((id) =>
+  return ids?.map((id) =>
     processingActivitiesEnum[id] ? processingActivitiesEnum[id].value.en : ""
   );
 };
 
 /**
- * Intialises array for specific key in the answers object. Due to form checkbox data being submitted as string if there is only value selected,
- * this function will convert the string to an array if the key is present in the answers object, or an empty array if no value was entered.
- * @param {object} answers Cumulative answers object that requires array to be initialised
- * @param {string} propertyName The name of the property that requires initialisation
- * @param {boolean} createMissingProperty Create the property if it doesn't already exist?
+ * Intialises array from string value. Due to form checkbox data being submitted as string if there is only one value selected,
+ * this function will convert the string to an array.
+ * @param {any} answer Answer - could be undefined, string or array
  *
- * @returns {string} The cumulative answers object with the property initialised to an array
+ * @returns {string} The new value initialised to an array, it was previously a string
  */
 
-const initialiseArray = (answers, propertyName, createMissingProperty) => {
-  let copyAnswers = { ...answers };
-  if (answers.hasOwnProperty(propertyName)) {
-    if (!copyAnswers[propertyName]) {
-      copyAnswers[propertyName] = [];
-    } else if (typeof copyAnswers[propertyName] === "string") {
-      copyAnswers[propertyName] = [copyAnswers[propertyName]];
-    }
-  } else if (createMissingProperty) {
-    copyAnswers[propertyName] = [];
+const initialiseArray = (answer) => {
+  let newAnswer = answer;
+  if (answer && typeof answer === "string") {
+    newAnswer = [answer];
   }
 
-  return copyAnswers;
+  return newAnswer;
 };
 
 module.exports = {

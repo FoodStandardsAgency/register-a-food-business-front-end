@@ -94,9 +94,17 @@ const editContinue = (
   );
 
   const trimmedNewAnswers = trimAnswers(newAnswers);
-  trimmedNewAnswers = initialiseArray(trimmedNewAnswers, "business_scale");
-  trimmedNewAnswers = initialiseArray(trimmedNewAnswers, "food_type");
-  trimmedNewAnswers = initialiseArray(trimmedNewAnswers, "processing_activities");
+  if (trimmedNewAnswers.business_scale) {
+    trimmedNewAnswers.business_scale = initialiseArray(trimmedNewAnswers.business_scale);
+  }
+  if (trimmedNewAnswers.food_type) {
+    trimmedNewAnswers.food_type = initialiseArray(trimmedNewAnswers.food_type);
+  }
+  if (trimmedNewAnswers.processing_activities) {
+    trimmedNewAnswers.processing_activities = initialiseArray(
+      trimmedNewAnswers.processing_activities
+    );
+  }
 
   const newCumulativeFullAnswers = {
     ...truthyCumulativeFullAnswers,
