@@ -62,8 +62,6 @@ describe("processing-activities", () => {
           }
         });
 
-        console.log($.html());
-
         const $inputError = $("#processing_activities-error");
         expect($inputError.length).toBe(1);
         expect($inputError.contents().get(2).data.trim()).toBe("test error");
