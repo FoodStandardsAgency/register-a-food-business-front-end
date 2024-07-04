@@ -2,7 +2,7 @@ const cheerio = require("cheerio");
 const nunjucks = require("nunjucks");
 const i18n = require("i18n");
 const { configureAxe } = require("jest-axe");
-const dateFilter = require("nunjucks-date-filter");
+const { initialiseNunjucksEnvironment } = require("./src/server/nunjucksFunctions");
 
 // For accessibility testing
 const axe = configureAxe({
@@ -28,62 +28,8 @@ const env = nunjucks.configure(["node_modules/govuk-frontend/", "pages", "compon
   trimBlocks: true,
   lstripBlocks: true
 });
-env.addGlobal("__", i18n.__);
 env.addFilter("t", i18n.__);
-
-env.addFilter("selectValidationErrors", (validationErrors, language) =>
-  Object.entries(validationErrors).map(([k, v]) => ({
-    text: i18n.__({ phrase: v, locale: language }),
-    href: "#" + k
-  }))
-);
-
-env.addFilter("addressSelectItems", (findResults) =>
-  findResults.map((address, index) => ({
-    value: index,
-    text: address.summaryline
-  }))
-);
-
-env.addFilter("date", dateFilter);
-
-env.addGlobal("mergeObjects", (orig, additionalProps) => ({
-  ...orig,
-  ...additionalProps
-}));
-
-env.addGlobal("exists", (list, item) => (list || []).includes(item));
-env.addGlobal("getEstablishmentPrimaryNumber", (answers, switches) => {
-  if (switches && switches.reuseOperatorContactDetails) {
-    if (answers.registration_role === "SOLETRADER") {
-      return answers.operator_primary_number;
-    } else if (answers.registration_role === "PARTNERSHIP") {
-      return answers.main_partner_primary_number;
-    } else {
-      return answers.contact_representative_number;
-    }
-  }
-});
-env.addGlobal("getEstablishmentSecondaryNumber", (answers, switches) => {
-  if (switches && switches.reuseOperatorContactDetails) {
-    if (answers.registration_role === "SOLETRADER") {
-      return answers.operator_secondary_number;
-    } else if (answers.registration_role === "PARTNERSHIP") {
-      return answers.main_partner_secondary_number;
-    }
-  }
-});
-env.addGlobal("getEstablishmentEmail", (answers, switches) => {
-  if (switches && switches.reuseOperatorContactDetails) {
-    if (answers.registration_role === "SOLETRADER") {
-      return answers.operator_email;
-    } else if (answers.registration_role === "PARTNERSHIP") {
-      return answers.main_partner_email;
-    } else {
-      return answers.contact_representative_email;
-    }
-  }
-});
+initialiseNunjucksEnvironment(env, i18n);
 
 /**
  * Render a page for testing
