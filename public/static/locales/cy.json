@@ -682,5 +682,11 @@
   "How many people are employed?": "Faint o bobl sy’n cael eu cyflogi?",
   "Do you use a vehicle for your food business for deliveries or events? – does it have a registration mark?": "Ydych chi’n defnyddio cerbyd ar gyfer eich busnes bwyd, er enghraifft ar gyfer digwyddiadau neu gludo nwyddau? A oes ganddo nod cofrestru?",
   "Are you a member of a trade body or primary authority? ": "Ydych chi’n aelod o gorff masnach neu awdurdod sylfaenol?",
-  "Please select all options that apply to your business": "Dewiswch bob opsiwn sy’n berthnasol i’ch busnes"
+  "Please select all options that apply to your business": "Dewiswch bob opsiwn sy’n berthnasol i’ch busnes",
+  "business scale": "graddfa busnes",
+  "food type": "math o fwyd",
+  "processing activities": "gweithgareddau prosesu",
+  "Business scale": "Graddfa busnes",
+  "Food type": "Math o fwyd",
+  "Processing Activities": "Weithgareddau prosesu"
 }
