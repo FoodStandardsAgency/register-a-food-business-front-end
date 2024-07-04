@@ -62,7 +62,9 @@ describe("food-type", () => {
 
         const $inputError = $("#food_type-error");
         expect($inputError.length).toBe(1);
-        expect($inputError.contents().get(2).data.trim()).toBe("test error");
+        expect($inputError.contents().get(2).data.trim()).toBe(
+          "Please select all options that apply to your business"
+        );
       });
     });
   });
