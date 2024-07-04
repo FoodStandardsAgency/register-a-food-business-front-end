@@ -48,6 +48,13 @@ describe("Establishment-Contact-Details", () => {
     it("gets given the correct error prop", () => {
       const $ = renderPage("establishment-contact-details", {
         language: "cy",
+        cumulativeFullAnswers: {
+          establishment_primary_number: "",
+          registration_role: "SOLETRADER"
+        },
+        switches: {
+          reuseOperatorContactDetails: false
+        },
         validatorErrors: {
           establishment_primary_number: "test error"
         }
@@ -124,7 +131,7 @@ describe("Establishment-Contact-Details", () => {
         cumulativeFullAnswers: {
           operator_secondary_number: "operator secondary number",
           establishment_secondary_number: "establishment 7secondary number",
-          registration_role: "PARTNERSHIP"
+          registration_role: "SOLETRADER"
         }
       });
 
@@ -168,6 +175,13 @@ describe("Establishment-Contact-Details", () => {
     it("gets given the correct error prop", () => {
       const $ = renderPage("establishment-contact-details", {
         language: "cy",
+        cumulativeFullAnswers: {
+          establishment_email: "",
+          registration_role: "SOLETRADER"
+        },
+        switches: {
+          reuseOperatorContactDetails: false
+        },
         validatorErrors: {
           establishment_email: "test error"
         }
@@ -190,7 +204,7 @@ describe("Establishment-Contact-Details", () => {
         cumulativeFullAnswers: {
           establishment_email: "establishment email",
           operator_email: "operator email",
-          registration_role: "PARTNERSHIP"
+          registration_role: "SOLETRADER"
         }
       });
 
@@ -210,6 +224,7 @@ describe("Establishment-Contact-Details", () => {
         cumulativeFullAnswers: {
           establishment_email: "establishment email",
           operator_email: "operator email",
+          main_partner_email: "main partner email",
           registration_role: "PARTNERSHIP"
         }
       });
@@ -232,6 +247,14 @@ describe("Establishment-Contact-Details", () => {
     it("renders the correct summary error", async () => {
       const $ = renderPage("establishment-contact-details", {
         language: "cy",
+        cumulativeFullAnswers: {
+          establishment_email: "",
+          establishment_primary_number: "",
+          registration_role: "SOLETRADER"
+        },
+        switches: {
+          reuseOperatorContactDetails: false
+        },
         validatorErrors: {
           establishment_primary_number: "test error",
           establishment_email: "test error 2"
