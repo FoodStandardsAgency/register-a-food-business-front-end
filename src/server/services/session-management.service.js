@@ -116,7 +116,7 @@ const cleanSwitches = (cumulativeFullAnswers, switches) => {
           JSON.stringify(operatorContactDetails) !== JSON.stringify(establishmentContactDetails);
       }
 
-      if (!detailsAreDifferent) {
+      if (detailsAreDifferent) {
         cleanedSwitches.reuseOperatorContactDetails = false;
         logEmitter.emit(
           "info",
