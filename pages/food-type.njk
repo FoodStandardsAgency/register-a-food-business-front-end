@@ -6,7 +6,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-            {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
       {{ govukCheckboxes({
       idPrefix: "food_type",
@@ -23,37 +23,43 @@ items: [
             value: "RAW_MEAT_FISH_SHELLFISH",
             id: "RAW_MEAT_FISH_SHELLFISH",
             name: "food_type",
-            text: __("Raw unwrapped meat, fish and shellfish", props.language)
+            text: __("Raw unwrapped meat, fish and shellfish", props.language),
+            checked: exists(props.cumulativeFullAnswers.food_type, "RAW_MEAT_FISH_SHELLFISH")
             },
             {
             value: "READY_TO_EAT",
             id: "READY_TO_EAT",
             name: "food_type",
-            text: __("Ready to eat food (food that will not be cooked or reheated before serving)", props.language)
+            text: __("Ready to eat food (food that will not be cooked or reheated before serving)", props.language),
+            checked: exists(props.cumulativeFullAnswers.food_type, "READY_TO_EAT")
             },
             {
             value: "COOKED_OR_REHEATED",
             id: "COOKED_OR_REHEATED",
             name: "food_type",
-            text: __("Food that has been cooked and/or reheated in the establishment", props.language)
+            text: __("Food that has been cooked and/or reheated in the establishment", props.language),
+            checked: exists(props.cumulativeFullAnswers.food_type, "COOKED_OR_REHEATED")
             },
             {
             value: "IMPORTED",
             id: "IMPORTED",
             name: "food_type",
-            text: __("Food that your business has imported (from outside the UK)", props.language)
+            text: __("Food that your business has imported (from outside the UK)", props.language),
+            checked: exists(props.cumulativeFullAnswers.food_type, "IMPORTED")
             },
             {
             value: "NONE",
             id: "NONE",
             name: "food_type",
-            text: __("None of these", props.language)
+            text: __("None of these", props.language),
+            checked: exists(props.cumulativeFullAnswers.food_type, "NONE")
             },
             {
             value: "DONT_KNOW",
             id: "DONT_KNOW",
             name: "food_type",
-            text: __("Don't know", props.language)
+            text: __("Don't know", props.language),
+            checked: exists(props.cumulativeFullAnswers.food_type, "DONT_KNOW")
             }
         ],
       errorMessage: {

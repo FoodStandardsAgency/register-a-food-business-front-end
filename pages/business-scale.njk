@@ -23,55 +23,64 @@
             value: "LOCAL",
             id: "LOCAL",
             name: "business_scale",
-            text: __("To local customers (who live or work in the local area)", props.language)
+            text: __("To local customers (who live or work in the local area)", props.language),
+            checked: exists(props.cumulativeFullAnswers.business_scale, "LOCAL")
             },
             {
             value: "NATIONAL",
             id: "NATIONAL",
             name: "business_scale",
-            text: __("To national customers (who live or work across the UK)", props.language)
+            text: __("To national customers (who live or work across the UK)", props.language),
+            checked: exists(props.cumulativeFullAnswers.business_scale, "NATIONAL")
             },
             {
             value: "EXPORT",
             id: "EXPORT",
             name: "business_scale",
-            text: __("To those outside of the UK (for export)", props.language)
+            text: __("To those outside of the UK (for export)", props.language),
+            checked: exists(props.cumulativeFullAnswers.business_scale, "EXPORT")
             },
             {
             value: "ONLINE",
             id: "ONLINE",
             name: "business_scale",
-            text: __("To provide food online", props.language)
+            text: __("To provide food online", props.language),
+            checked: exists(props.cumulativeFullAnswers.business_scale, "ONLINE")
             },
             {
             value: "FBO",
             id: "FBO",
             name: "business_scale",
-            text: __("To provide food directly to other businesses", props.language)
+            text: __("To provide food directly to other businesses", props.language),
+            checked: exists(props.cumulativeFullAnswers.business_scale, "FBO")
             },
             {
             value: "SENIOR_YOUTH",
             id: "SENIOR_YOUTH",
             name: "business_scale",
-            text: __("To those under 5 years old or over 65 years old", props.language)
+            text: __("To those under 5 years old or over 65 years old", props.language),
+            checked: exists(props.cumulativeFullAnswers.business_scale, "SENIOR_YOUTH")
             },
             {
             value: "HEALTHCARE",
             id: "HEALTHCARE",
             name: "business_scale",
-            text: __("To residents in a healthcare setting (for example in a hospital, nursing home or similar)", props.language)
+            text: __("To residents in a healthcare setting (for example in a hospital, nursing home or similar)", props.language),
+            checked: exists(props.cumulativeFullAnswers.business_scale, "HEALTHCARE")
             },
             {
             value: "NONE",
             id: "NONE",
             name: "business_scale",
-            text: __("None of these", props.language)
+            text: __("None of these", props.language),
+            checked: exists(props.cumulativeFullAnswers.business_scale, "NONE")
             },
             {
             value: "DONT_KNOW",
             id: "DONT_KNOW",
             name: "business_scale",
-            text: __("Don't know", props.language)
+            text: __("Don't know", props.language),
+            checked: exists(props.cumulativeFullAnswers.business_scale, "DONT_KNOW")
             }
         ],
       errorMessage: {
