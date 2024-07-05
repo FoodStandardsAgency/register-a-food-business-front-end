@@ -1,0 +1,44 @@
+{% macro checkboxScript() %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Get references to all checkboxes
+      const checkboxes = document.querySelectorAll(".govuk-checkboxes input[type='checkbox']");
+      const noneCheckbox = document.getElementById("NONE");
+      const dontKnowCheckbox = document.getElementById("DONT_KNOW");
+
+      // Function to uncheck other checkboxes
+      function uncheckOthers() {
+        if (noneCheckbox.checked || dontKnowCheckbox.checked) {
+          checkboxes.forEach(checkbox => {
+            if (checkbox !== noneCheckbox && checkbox !== dontKnowCheckbox) {
+              checkbox.checked = false;
+            }
+          });
+        }
+      }
+
+      // Function to uncheck 'None' and 'Don't know'
+      function uncheckNoneAndDontKnow() {
+      if (this !== noneCheckbox) noneCheckbox.checked = false;
+      if (this !== dontKnowCheckbox) dontKnowCheckbox.checked = false;
+      }
+
+      // Attach change event listeners
+        noneCheckbox.addEventListener("change", function () {
+        uncheckOthers();
+        if (noneCheckbox.checked) dontKnowCheckbox.checked = false;
+        });
+
+        dontKnowCheckbox.addEventListener("change", function () {
+        uncheckOthers();
+        if (dontKnowCheckbox.checked) noneCheckbox.checked = false;
+        });
+
+      checkboxes.forEach(checkbox => {
+        if (checkbox !== noneCheckbox && checkbox !== dontKnowCheckbox) {
+          checkbox.addEventListener("change", uncheckNoneAndDontKnow);
+        }
+      });
+    });
+  </script>
+  {% endmacro %}
