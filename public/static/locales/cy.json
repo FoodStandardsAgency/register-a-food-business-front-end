@@ -681,8 +681,8 @@
   "Day Month Year": "Diwrnod Mis Blwyddyn",
   "Describe your food business": "Disgrifiwch eich busnes bwyd",
   "How many people are employed?": "Faint o bobl sy’n cael eu cyflogi?",
-  "Do you use a vehicle for your food business for deliveries or events? – does it have a registration mark?": "Ydych chi’n defnyddio cerbyd ar gyfer eich busnes bwyd, er enghraifft ar gyfer digwyddiadau neu gludo nwyddau? A oes ganddo nod cofrestru?",
-  "Are you a member of a trade body or primary authority? ": "Ydych chi’n aelod o gorff masnach neu awdurdod sylfaenol?",
+  "Do you use a vehicle for your food business for deliveries or events - does it have a registration mark?": "Ydych chi’n defnyddio cerbyd ar gyfer eich busnes bwyd, er enghraifft ar gyfer digwyddiadau neu gludo nwyddau? A oes ganddo nod cofrestru?",
+  "Are you a member of a trade body or a primary authority?": "Ydych chi’n aelod o gorff masnach neu awdurdod sylfaenol?",
   "Please select all options that apply to your business": "Dewiswch bob opsiwn sy’n berthnasol i’ch busnes",
   "business scale": "Graddfa'r Busnes",
   "food type": "math o fwyd",
@@ -690,7 +690,6 @@
   "Business scale": "Graddfa'r Busnes",
   "Food type": "Math o fwyd",
   "Processing Activities": "Gweithgareddau Prosesu",
-  "How many people are employed": "How many people are employed",
-  "Do you use a vehicle for your food business for deliveries or events - does it have a registration mark?": "Do you use a vehicle for your food business for deliveries or events - does it have a registration mark?",
-  "Are you a member of a trade body or a Primary Authority?": "Are you a member of a trade body or a Primary Authority?"
+  "Enter a valid birth date": "Nodwch ddyddiad geni dilys",
+  "What is the operator's birthdate?": "Beth yw dyddiad geni'r gweithredwr?"
 }
