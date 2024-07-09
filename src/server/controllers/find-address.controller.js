@@ -58,7 +58,6 @@ const findAddressController = async (currentPage, previousAnswers, newAnswers) =
       addressType = "/establishment-address";
     }
 
-    //the below used to take the current page and add the suffix '-select- or '-manual', this is because the establishment address type page was incorrectly appearing as establishment-address and thus skipping the page validation, the below removes the -type and keeps the path as expected
     if (addressesForPostcode.length > 0) {
       controllerResponse.switches[`${addressType}-none-found`] = false;
       controllerResponse.redirectRoute = `${addressType}-select`;
