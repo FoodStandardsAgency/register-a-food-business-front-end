@@ -35,7 +35,10 @@ describe("QA Route: ", () => {
             QA_KEY: "abcd",
             la_id: "8015",
             registration_role: "Representative",
-            operator_type: "A company"
+            operator_type: "A company",
+            business_scale: ["DONT_KNOW"],
+            food_type: ["DONT_KNOW"],
+            processing_activities: ["DONT_KNOW"]
           },
           params: {
             target: "registration-summary"

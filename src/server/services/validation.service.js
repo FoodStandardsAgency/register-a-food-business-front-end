@@ -32,7 +32,10 @@ const errorMessages = {
   establishment_trading_name: "Enter a valid establishment trading name",
   operator_primary_number: "Enter a valid operator phone number",
   operator_secondary_number: "Enter a valid operator phone number",
+  main_partner_primary_number: "Enter a valid operator phone number",
+  main_partner_secondary_number: "Enter a valid operator phone number",
   operator_email: "Enter a valid operator email address",
+  main_partner_email: "Enter a valid operator email address",
   contact_representative_name: "Enter a valid representative name",
   contact_representative_role: "Enter a valid representative role",
   contact_representative_number: "Enter a valid representative phone number",
@@ -55,6 +58,9 @@ const errorMessages = {
   establishment_opening_status: "You must select a trading status before continuing",
   establishment_opening_date: "Enter a valid opening date",
   business_type: "You must select a business type before continuing",
+  business_scale: "Please select all options that apply to your business",
+  food_type: "Please select all options that apply to your business",
+  processing_activities: "Please select all options that apply to your business",
   water_supply: "You must select a water supply type before continuing",
   business_other_details:
     "Your message is too long. Please shorten it to less than 1500 characters",
@@ -113,7 +119,7 @@ const validate = (page, answers) => {
           answers.year
         );
       }
-      if (page === "/operator-name" || page === "/operator-contact-details") {
+      if (page === "/operator-name" || page === "/partnership-contact-details") {
         answersToValidate.operator_birthdate = combineDate(
           answers.operator_birthdate_day,
           answers.operator_birthdate_month,

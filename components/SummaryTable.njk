@@ -40,6 +40,12 @@
       {% endif %}
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
+    {% set formattedDate = (propsData.operator_birthdate | date(props.language, "DD MMM YYYY")) if propsData.operator_birthdate %}
+      {% if validatorErrors.operator_birthdate or formattedDate %}
+        {{ summaryListHelperWithoutEdit(__("Operator Birthdate", props.language), formattedDate, false) }}
+      {% endif %}
+    {% endif %}
+    {% if propsData.applicationCompletePage == null %}
       {% if validatorErrors.operator_address_line_1 or validatorErrors.operator_address_line_2 or validatorErrors.operator_address_line_3 or 
                     validatorErrors.operator.operator_town or validatorErrors.operator.operator_postcode or validatorErrors.operator_postcode_find or 
                     propsData.operator_address_line_1 or propsData.operator_address_line_2 or propsData.operator_address_line_3 or propsData.operator_town or propsData.operator_postcode or propsData.operator_postcode_find %}
@@ -163,6 +169,45 @@
     {% if propsData.applicationCompletePage == null %}
       {% if validatorErrors.business_type or propsData.business_type %}
         {{ summaryListHelperWithoutEdit(__("Business type", props.language), __(propsData.business_type, props.language), false) }}
+      {% endif %}
+    {% endif %}
+    {% if propsData.applicationCompletePage == null %}
+      {% if validatorErrors.business_scale or propsData.business_scale %}
+          {% set html %}
+            <div>
+              {% for value in propsData.business_scale %}
+                {{__(value, props.language)}}
+                {% if not loop.last %}<br>{% endif %}
+              {% endfor %}
+            </div>
+          {% endset %}
+        {{ summaryListHelperHtmlWithoutEdit(__("Business scale", props.language), html, false) }}
+      {% endif %}
+      {% endif %}
+      {% if propsData.applicationCompletePage == null %}
+        {% if validatorErrors.food_type or propsData.food_type %}
+          {% set html %}
+            <div>
+              {% for value in propsData.food_type %}
+                {{__(value, props.language)}}
+                {% if not loop.last %}<br>{% endif %}
+              {% endfor %}
+            </div>
+          {% endset %}
+        {{ summaryListHelperHtmlWithoutEdit(__("Food type", props.language), html, false) }}
+      {% endif %}
+      {% endif %}
+      {% if propsData.applicationCompletePage == null %}
+       {% if validatorErrors.processing_activities or propsData.processing_activities %}  
+          {% set html %}
+            <div>
+              {% for value in propsData.processing_activities %}
+                {{__(value, props.language)}}
+                {% if not loop.last %}<br>{% endif %}
+              {% endfor %}
+            </div>
+          {% endset %}
+       {{ summaryListHelperHtmlWithoutEdit(__("Processing Activities", props.language), html, false) }}
       {% endif %}
     {% endif %}
     {% if propsData.applicationCompletePage == null %}

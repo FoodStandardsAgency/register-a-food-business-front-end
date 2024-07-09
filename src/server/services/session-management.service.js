@@ -94,16 +94,29 @@ const cleanSwitches = (cumulativeFullAnswers, switches) => {
         cumulativeFullAnswers.operator_email
       ];
 
+      const partnerContactDetails = [
+        cumulativeFullAnswers.main_partner_primary_number,
+        cumulativeFullAnswers.main_partner_secondary_number,
+        cumulativeFullAnswers.main_partner_email
+      ];
+
       const establishmentContactDetails = [
         cumulativeFullAnswers.establishment_primary_number,
         cumulativeFullAnswers.establishment_secondary_number,
         cumulativeFullAnswers.establishment_email
       ];
 
-      const operatorEstablishmentDetailsAreDifferent =
-        JSON.stringify(operatorContactDetails) !== JSON.stringify(establishmentContactDetails);
+      let detailsAreDifferent;
 
-      if (operatorEstablishmentDetailsAreDifferent) {
+      if (cumulativeFullAnswers.registration_role === "PARTNERSHIP") {
+        detailsAreDifferent =
+          JSON.stringify(partnerContactDetails) !== JSON.stringify(establishmentContactDetails);
+      } else {
+        detailsAreDifferent =
+          JSON.stringify(operatorContactDetails) !== JSON.stringify(establishmentContactDetails);
+      }
+
+      if (detailsAreDifferent) {
         cleanedSwitches.reuseOperatorContactDetails = false;
         logEmitter.emit(
           "info",
