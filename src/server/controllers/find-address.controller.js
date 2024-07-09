@@ -52,13 +52,19 @@ const findAddressController = async (currentPage, previousAnswers, newAnswers) =
 
     controllerResponse.addressLookups[searchPostcodeFieldName] = addressesForPostcode;
 
+    let addressType = currentPage;
+    if (currentPage == "/establishment-address-type") {
+      // find-address for establishments is triggered by the establishment-address-type page
+      addressType = "/establishment-address";
+    }
+
     //the below used to take the current page and add the suffix '-select- or '-manual', this is because the establishment address type page was incorrectly appearing as establishment-address and thus skipping the page validation, the below removes the -type and keeps the path as expected
     if (addressesForPostcode.length > 0) {
-      controllerResponse.switches[`${currentPage.replace("-type", "")}-none-found`] = false;
-      controllerResponse.redirectRoute = `${currentPage.replace("-type", "")}-select`;
+      controllerResponse.switches[`${addressType}-none-found`] = false;
+      controllerResponse.redirectRoute = `${addressType}-select`;
     } else {
-      controllerResponse.switches[`${currentPage.replace("-type", "")}-none-found`] = true;
-      controllerResponse.redirectRoute = `${currentPage.replace("-type", "")}-manual`;
+      controllerResponse.switches[`${addressType}-none-found`] = true;
+      controllerResponse.redirectRoute = `${addressType}-manual`;
     }
     logEmitter.emit(
       "functionSuccessWith",
