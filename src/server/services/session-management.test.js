@@ -146,7 +146,8 @@ describe("session-management.service cleanSwitches()", () => {
         operator_primary_number: "01234567890",
         operator_email: "email@email.com",
         establishment_primary_number: "01234567890",
-        establishment_email: "email@email.com"
+        establishment_email: "email@email.com",
+        registration_role: "SOLETRADER"
       };
 
       it("does not modify the switch state", () => {

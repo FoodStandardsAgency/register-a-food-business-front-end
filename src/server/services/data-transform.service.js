@@ -8,14 +8,19 @@ const {
   operatorTypeEnum,
   establishmentTypeEnum,
   waterSupplyEnum,
-  businessTypeEnum
+  businessTypeEnum,
+  businessScaleEnum,
+  foodTypeEnum,
+  processingActivitiesEnum
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const trimAnswers = (cumulativeFullAnswers) => {
   const trimmedAnswers = JSON.parse(JSON.stringify(cumulativeFullAnswers));
 
   for (let answer in trimmedAnswers) {
-    trimmedAnswers[answer] = trimmedAnswers[answer].trim();
+    if (typeof trimmedAnswers[answer] === "string") {
+      trimmedAnswers[answer] = trimmedAnswers[answer].trim();
+    }
   }
   return trimmedAnswers;
 };
@@ -55,6 +60,9 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
     "operator_uprn",
     "operator_primary_number",
     "operator_secondary_number",
+    "main_partner_primary_number",
+    "main_partner_secondary_number",
+    "main_partner_email",
     "operator_email",
     "contact_representative_name",
     "contact_representative_role",
@@ -78,6 +86,9 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
     "establishment_uprn"
   ];
   const activities_keys = [
+    "business_scale",
+    "food_type",
+    "processing_activities",
     "business_type",
     "business_type_search_term",
     "opening_days_irregular",
@@ -386,6 +397,11 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups, lcUrl
       summaryData.establishment_type
     );
     summaryData.business_type = transformBusinessTypeForSummary(summaryData.business_type);
+    summaryData.business_scale = transformBusinessScaleForSummary(summaryData.business_scale);
+    summaryData.food_type = transformFoodTypeForSummary(summaryData.food_type);
+    summaryData.processing_activities = transformProcessingActivitiesForSummary(
+      summaryData.processing_activities
+    );
     summaryData.water_supply = transformWaterSupplyForSummary(summaryData.water_supply);
 
     logEmitter.emit("functionSuccess", "data-transform.service", "transformAnswersForSummary");
@@ -639,6 +655,37 @@ const transformBusinessTypeForSummary = (id) => {
   return businessTypeEnum[id] ? businessTypeEnum[id].value.en : "";
 };
 
+const transformBusinessScaleForSummary = (ids) => {
+  return ids?.map((id) => businessScaleEnum[id].value.en);
+};
+
+const transformFoodTypeForSummary = (ids) => {
+  return ids?.map((id) => (foodTypeEnum[id] ? foodTypeEnum[id].value.en : ""));
+};
+
+const transformProcessingActivitiesForSummary = (ids) => {
+  return ids?.map((id) =>
+    processingActivitiesEnum[id] ? processingActivitiesEnum[id].value.en : ""
+  );
+};
+
+/**
+ * Intialises array from string value. Due to form checkbox data being submitted as string if there is only one value selected,
+ * this function will convert the string to an array.
+ * @param {any} answer Answer - could be undefined, string or array
+ *
+ * @returns {string} The new value initialised to an array, it was previously a string
+ */
+
+const initialiseArray = (answer) => {
+  let newAnswer = answer;
+  if (answer && typeof answer === "string") {
+    newAnswer = [answer];
+  }
+
+  return newAnswer;
+};
+
 module.exports = {
   transformAnswersForSummary,
   transformAnswersForSubmit,
@@ -646,5 +693,6 @@ module.exports = {
   combineDate,
   separateBracketsFromBusinessType,
   trimUprn,
-  trimAnswers
+  trimAnswers,
+  initialiseArray
 };

@@ -15,6 +15,7 @@ const {
   cleanEmptiedAnswers,
   cleanSwitches
 } = require("../services/session-management.service");
+const { initialiseArray } = require("../services/data-transform.service");
 
 /**
  * Returns an object containing validator errors (if present), the redirect route (e.g. the next page),
@@ -47,8 +48,22 @@ const continueController = (
   try {
     const trimmedNewAnswers = JSON.parse(JSON.stringify(newAnswers));
 
+    if (trimmedNewAnswers.business_scale) {
+      trimmedNewAnswers.business_scale = initialiseArray(trimmedNewAnswers.business_scale);
+    }
+    if (trimmedNewAnswers.food_type) {
+      trimmedNewAnswers.food_type = initialiseArray(trimmedNewAnswers.food_type);
+    }
+    if (trimmedNewAnswers.processing_activities) {
+      trimmedNewAnswers.processing_activities = initialiseArray(
+        trimmedNewAnswers.processing_activities
+      );
+    }
+
     for (let answer in trimmedNewAnswers) {
-      trimmedNewAnswers[answer] = trimmedNewAnswers[answer].trim();
+      if (typeof trimmedNewAnswers[answer] === "string") {
+        trimmedNewAnswers[answer] = trimmedNewAnswers[answer].trim();
+      }
     }
 
     const trimmedNewAnswersArray = Object.values(trimmedNewAnswers);

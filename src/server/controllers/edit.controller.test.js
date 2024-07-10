@@ -231,7 +231,10 @@ describe("Edit controller: editContinue()", () => {
           const cumulativeEditAnswers = {};
           const newAnswers = {
             operator_first_name: "John",
-            operator_last_name: "McNugget"
+            operator_last_name: "McNugget",
+            operator_birthdate_day: "01",
+            operator_birthdate_month: "01",
+            operator_birthdate_year: "2000"
           };
           const switches = {};
 
