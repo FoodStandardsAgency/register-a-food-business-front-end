@@ -51,25 +51,14 @@ describe("operator-contact-details", () => {
       expect($email.get(0).attribs.value).toBe("test123@123.com");
     });
 
-    it("renders operator contact date of birth labels correctly", () => {
-      const $inputLabelTextDay = getPageDetails.getInputLabelText($, 0);
-      expect($inputLabelTextDay).toEqual("Day");
-
-      const $inputLabelTextMonth = getPageDetails.getInputLabelText($, 1);
-      expect($inputLabelTextMonth).toEqual("Month");
-
-      const $inputLabelTextYear = getPageDetails.getInputLabelText($, 2);
-      expect($inputLabelTextYear).toEqual("Year");
-    });
-
     it("renders operator contact detail labels correctly", () => {
-      const $inputLabelTextMainNumber = getPageDetails.getInputLabelText($, 3);
+      const $inputLabelTextMainNumber = getPageDetails.getInputLabelText($, 0);
       expect($inputLabelTextMainNumber).toEqual("Main phone number");
 
-      const $inputLabelTextSecondaryNumber = getPageDetails.getInputLabelText($, 4);
+      const $inputLabelTextSecondaryNumber = getPageDetails.getInputLabelText($, 1);
       expect($inputLabelTextSecondaryNumber).toEqual("Secondary phone number (optional)");
 
-      const $inputLabelTextEmail = getPageDetails.getInputLabelText($, 5);
+      const $inputLabelTextEmail = getPageDetails.getInputLabelText($, 2);
       expect($inputLabelTextEmail).toEqual("Email address");
     });
   });

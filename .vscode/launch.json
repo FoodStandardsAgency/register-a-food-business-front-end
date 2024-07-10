@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "Launch via NPM (develop mode)",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run-script", "local:debug:prod"],
+      "runtimeArgs": ["run-script", "local:debug"],
       "port": 9229,
       "skipFiles": [
         "${workspaceFolder}/node_modules/**/*.js",

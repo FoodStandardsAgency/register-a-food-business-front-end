@@ -2,7 +2,7 @@ const cheerio = require("cheerio");
 const nunjucks = require("nunjucks");
 const i18n = require("i18n");
 const { configureAxe } = require("jest-axe");
-const dateFilter = require("nunjucks-date-filter");
+const { initialiseNunjucksEnvironment } = require("./src/server/nunjucksFunctions");
 
 // For accessibility testing
 const axe = configureAxe({
@@ -24,36 +24,12 @@ i18n.configure({
   directory: __dirname + "/public/static/locales"
 });
 
-const env = nunjucks.configure(
-  ["node_modules/govuk-frontend/", "pages", "components"],
-  {
-    trimBlocks: true,
-    lstripBlocks: true
-  }
-);
-env.addGlobal("__", i18n.__);
+const env = nunjucks.configure(["node_modules/govuk-frontend/", "pages", "components"], {
+  trimBlocks: true,
+  lstripBlocks: true
+});
 env.addFilter("t", i18n.__);
-
-env.addFilter("selectValidationErrors", (validationErrors, language) =>
-  Object.entries(validationErrors).map(([k, v]) => ({
-    text: i18n.__({ phrase: v, locale: language }),
-    href: "#" + k
-  }))
-);
-
-env.addFilter("addressSelectItems", (findResults) =>
-  findResults.map((address, index) => ({
-    value: index,
-    text: address.summaryline
-  }))
-);
-
-env.addFilter("date", dateFilter);
-
-env.addGlobal("mergeObjects", (orig, additionalProps) => ({
-  ...orig,
-  ...additionalProps
-}));
+initialiseNunjucksEnvironment(env, i18n);
 
 /**
  * Render a page for testing
@@ -63,9 +39,7 @@ env.addGlobal("mergeObjects", (orig, additionalProps) => ({
  */
 function renderPage(pageName, params) {
   if (typeof params === "undefined") {
-    throw new Error(
-      "Parameters passed to `render` should be an object but are undefined"
-    );
+    throw new Error("Parameters passed to `render` should be an object but are undefined");
   }
 
   const output = nunjucks.render(pageName + ".njk", { props: params });
@@ -81,9 +55,7 @@ function renderPage(pageName, params) {
  */
 function renderComponent(pageName, params, children = false) {
   if (typeof params === "undefined") {
-    throw new Error(
-      "Parameters passed to `render` should be an object but are undefined"
-    );
+    throw new Error("Parameters passed to `render` should be an object but are undefined");
   }
 
   const macroParams = JSON.stringify(params, null, 2);
