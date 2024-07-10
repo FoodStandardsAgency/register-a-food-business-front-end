@@ -132,6 +132,36 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         });
       });
 
+      describe("given the operator_type is Partnership and main partner contact details are passed", () => {
+        const partnershipContactDetails = {
+          registration_role: "PARTNERSHIP",
+          main_partner_primary_number: "example",
+          main_partner_secondary_number: "example",
+          main_partner_email: "example"
+        };
+
+        it("the result contains the main partner contact details transformed into operator contact details", () => {
+          result = transformAnswersForSubmit(
+            partnershipContactDetails,
+            testLanguage,
+            testAddressLookups,
+            testLcUrl
+          );
+          expect(result.registration.establishment.operator.operator_type).toEqual(
+            operatorTypeEnum[partnershipContactDetails.registration_role].key
+          );
+          expect(result.registration.establishment.operator.operator_primary_number).toEqual(
+            partnershipContactDetails.main_partner_primary_number
+          );
+          expect(result.registration.establishment.operator.operator_secondary_number).toEqual(
+            partnershipContactDetails.main_partner_secondary_number
+          );
+          expect(result.registration.establishment.operator.operator_email).toEqual(
+            partnershipContactDetails.main_partner_email
+          );
+        });
+      });
+
       describe("given that registration_role is Representative but operator_type is not passed", () => {
         const data = {
           registration_role: "Representative",
