@@ -68,7 +68,9 @@ summaryListDeclarationHelper %}
         {% if props.cumulativeFullAnswers.registration_role == 'PARTNERSHIP' %}
           {% set regroleBirthdateUrl = "/edit/partnership-contact-details" %}
         {% endif %}
-        {{ summaryListHelper(__("Operator Birthdate", props.language), htmlValue, regroleBirthdateUrl, formattedDate if propsData.operator_birthdate, "operator_birthdate", props ) }}
+        {% if props.cumulativeFullAnswers.registration_role === props.enums.operatorType.SOLETRADER.key or props.cumulativeFullAnswers.operator_type === props.enums.operatorType.PERSON.key or props.cumulativeFullAnswers.registration_role == props.enums.operatorType.PARTNERSHIP.key %}
+          {{ summaryListHelper(__("Operator Birthdate", props.language), htmlValue, regroleBirthdateUrl, formattedDate if propsData.operator_birthdate, "operator_birthdate", props ) }}
+        {% endif %}
       {% endif %}
       {% if propsData.applicationCompletePage == null %}
         {% set html %}
