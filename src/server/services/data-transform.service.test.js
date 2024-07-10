@@ -1196,6 +1196,30 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       });
     });
 
+    describe("operator_birthdate", () => {
+      describe("operator_birthdate is defined", () => {
+        const birthDate = {
+          operator_birthdate_day: 1,
+          operator_birthdate_month: 2,
+          operator_birthdate_year: 2024
+        };
+        it("should return the operator birthdate value", () => {
+          result = transformAnswersForSummary(birthDate);
+          expect(result.operator_birthdate).toBe(
+            `${birthDate.operator_birthdate_year}-${birthDate.operator_birthdate_month}-${birthDate.operator_birthdate_day}`
+          );
+        });
+      });
+
+      describe("operator_birthdate is not defined", () => {
+        const birthDate = {};
+        it("should return undefined for operator_birthdate", () => {
+          result = transformAnswersForSummary(birthDate);
+          expect(result.operator_birthdate).toBe(undefined);
+        });
+      });
+    });
+
     describe("partners", () => {
       describe("given partners and main_partnership_contact", () => {
         const partners = {

@@ -164,11 +164,13 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
       data.opening_hours_sunday
     );
 
-    data.operator_birthdate = combineDate(
-      data.operator_birthdate_day,
-      data.operator_birthdate_month,
-      data.operator_birthdate_year
-    );
+    if (data.operator_birthdate_day !== undefined) {
+      data.operator_birthdate = combineDate(
+        data.operator_birthdate_day,
+        data.operator_birthdate_month,
+        data.operator_birthdate_year
+      );
+    }
     delete data.operator_birthdate_day;
     delete data.operator_birthdate_month;
     delete data.operator_birthdate_year;
