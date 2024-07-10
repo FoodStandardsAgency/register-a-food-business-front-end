@@ -21,60 +21,60 @@
       },
 items: [
             {
-            value: "VACUUM_PACKING",
-            id: "VACUUM_PACKING",
+            value: props.enums.processingActivities.VACUUM_PACKING.key,
+            id: props.enums.processingActivities.VACUUM_PACKING.key,
             name: "processing_activities",
-            text: __("Vacuum packing", props.language),
-            checked: exists(props.cumulativeFullAnswers.processing_activities, "VACUUM_PACKING")
+            text: props.enums.processingActivities.VACUUM_PACKING.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.VACUUM_PACKING.key)
             },
             {
-            value: "SOUS_VIDE",
-            id: "SOUS_VIDE",
+            value: props.enums.processingActivities.SOUS_VIDE.key,
+            id: props.enums.processingActivities.SOUS_VIDE.key,
             name: "processing_activities",
-            text: __("Sous vide", props.language),
-            checked: exists(props.cumulativeFullAnswers.processing_activities, "SOUS_VIDE")
+            text: props.enums.processingActivities.SOUS_VIDE.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.SOUS_VIDE.key)
             },
             {
-            value: "FERMENTING_OR_CURING",
-            id: "FERMENTING_OR_CURING",
+            value: props.enums.processingActivities.FERMENTING_OR_CURING.key,
+            id: props.enums.processingActivities.FERMENTING_OR_CURING.key,
             name: "processing_activities",
-            text: __("Fermenting and/or curing of meat and fish", props.language),
-            checked: exists(props.cumulativeFullAnswers.processing_activities, "FERMENTING_OR_CURING")
+            text: props.enums.processingActivities.FERMENTING_OR_CURING.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.FERMENTING_OR_CURING.key)
             },
             {
-            value: "PASTEURISING",
-            id: "PASTEURISING",
+            value: props.enums.processingActivities.PASTEURISING.key,
+            id: props.enums.processingActivities.PASTEURISING.key,
             name: "processing_activities",
-            text: __("Pasteurisation", props.language),
-            checked: exists(props.cumulativeFullAnswers.processing_activities, "PASTEURISING")
+            text: props.enums.processingActivities.PASTEURISING.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.PASTEURISING.key)
             },
             {
-            value: "ANIMAL_UNCOOKED",
-            id: "ANIMAL_UNCOOKED",
+            value: props.enums.processingActivities.ANIMAL_UNCOOKED.key,
+            id: props.enums.processingActivities.ANIMAL_UNCOOKED.key,
             name: "processing_activities",
-            text: __("Production of foods of animal origin that are not thoroughly cooked (for example steak tartare, ceviche, carpaccio)", props.language),
-            checked: exists(props.cumulativeFullAnswers.processing_activities, "ANIMAL_UNCOOKED")
+            text: props.enums.processingActivities.ANIMAL_UNCOOKED.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.ANIMAL_UNCOOKED.key)
             },
             {
-            value: "REWRAPPING_OR_RELABELLING",
-            id: "REWRAPPING_OR_RELABELLING",
+            value: props.enums.processingActivities.REWRAPPING_OR_RELABELLING.key,
+            id: props.enums.processingActivities.REWRAPPING_OR_RELABELLING.key,
             name: "processing_activities",
-            text: __("Rewrapping and relabelling previously wrapped food", props.language),
-            checked: exists(props.cumulativeFullAnswers.processing_activities, "REWRAPPING_OR_RELABELLING")
+            text: props.enums.processingActivities.REWRAPPING_OR_RELABELLING.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.REWRAPPING_OR_RELABELLING.key)
             },
             {
-            value: "NONE",
-            id: "NONE",
+            value: props.enums.processingActivities.NONE.key,
+            id: props.enums.processingActivities.NONE.key,
             name: "processing_activities",
-            text: __("None of these", props.language),
-            checked: exists(props.cumulativeFullAnswers.processing_activities, "NONE")
+            text: props.enums.processingActivities.NONE.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.NONE.key)
             },
             {
-            value: "DONT_KNOW",
-            id: "DONT_KNOW",
+            value: props.enums.processingActivities.DONT_KNOW.key,
+            id: props.enums.processingActivities.DONT_KNOW.key,
             name: "processing_activities",
-            text: __("Don't know", props.language),
-            checked: exists(props.cumulativeFullAnswers.processing_activities, "DONT_KNOW")
+            text: props.enums.processingActivities.DONT_KNOW.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.DONT_KNOW.key)
             }
         ],
       errorMessage: {

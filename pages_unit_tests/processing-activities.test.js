@@ -3,6 +3,7 @@
  */
 
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
+const { processingActivitiesEnum } = require("@slice-and-dice/register-a-food-business-validation");
 
 const props = {
   validatorErrors: {},
@@ -37,7 +38,7 @@ describe("processing-activities", () => {
       const $ = renderPage("processing-activities", props);
       const $checkboxes = $("input[type='checkbox']");
       const firstCheckbox = $checkboxes.first();
-      expect(firstCheckbox.val()).toBe("VACUUM_PACKING");
+      expect(firstCheckbox.val()).toBe(processingActivitiesEnum.VACUUM_PACKING.key);
     });
 
     describe("Error messages displayed", () => {

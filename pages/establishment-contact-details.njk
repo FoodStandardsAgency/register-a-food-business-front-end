@@ -13,7 +13,7 @@
   captionClasses: "govuk-table__caption--l",
   head: [
       {
-        text: __("Partnership contact details", props.language) if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" else __("Operator contact details", props.language)
+        text: __("Partnership contact details", props.language) if props.cumulativeFullAnswers.registration_role === props.enums.operatorType.PARTNERSHIP.key else __("Operator contact details", props.language)
       },
       {
         text: ""
@@ -51,7 +51,7 @@
   ]
 }) }}
   {{ govukButton({
-      text: __("Re-use partnership contact details", props.language) if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" else __("Re-use operator contact details", props.language),
+      text: __("Re-use partnership contact details", props.language) if props.cumulativeFullAnswers.registration_role === props.enums.operatorType.PARTNERSHIP.key else __("Re-use operator contact details", props.language),
       attributes: {formAction: "/switches/reuseOperatorContactDetails/on/establishment-contact-details#establishment_primary_number"},
       id: "reuseButton"
     }) }}

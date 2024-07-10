@@ -21,46 +21,46 @@
       },
 items: [
             {
-            value: "RAW_MEAT_FISH_SHELLFISH",
-            id: "RAW_MEAT_FISH_SHELLFISH",
+            value: props.enums.foodType.RAW_MEAT_FISH_SHELLFISH.key,
+            id: props.enums.foodType.RAW_MEAT_FISH_SHELLFISH.key,
             name: "food_type",
-            text: __("Raw unwrapped meat, fish and shellfish", props.language),
-            checked: exists(props.cumulativeFullAnswers.food_type, "RAW_MEAT_FISH_SHELLFISH")
+            text: props.enums.foodType.RAW_MEAT_FISH_SHELLFISH.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.RAW_MEAT_FISH_SHELLFISH.key)
             },
             {
-            value: "READY_TO_EAT",
-            id: "READY_TO_EAT",
+            value: props.enums.foodType.READY_TO_EAT.key,
+            id: props.enums.foodType.READY_TO_EAT.key,
             name: "food_type",
-            text: __("Ready to eat food (food that will not be cooked or reheated before serving)", props.language),
-            checked: exists(props.cumulativeFullAnswers.food_type, "READY_TO_EAT")
+            text: props.enums.foodType.READY_TO_EAT.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.READY_TO_EAT.key)
             },
             {
-            value: "COOKED_OR_REHEATED",
-            id: "COOKED_OR_REHEATED",
+            value: props.enums.foodType.COOKED_OR_REHEATED.key,
+            id: props.enums.foodType.COOKED_OR_REHEATED.key,
             name: "food_type",
-            text: __("Food that has been cooked and/or reheated in the establishment", props.language),
-            checked: exists(props.cumulativeFullAnswers.food_type, "COOKED_OR_REHEATED")
+            text: props.enums.foodType.COOKED_OR_REHEATED.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.COOKED_OR_REHEATED.key)
             },
             {
-            value: "IMPORTED",
-            id: "IMPORTED",
+            value: props.enums.foodType.IMPORTED.key,
+            id: props.enums.foodType.IMPORTED.key,
             name: "food_type",
-            text: __("Food that your business has imported (from outside the UK)", props.language),
-            checked: exists(props.cumulativeFullAnswers.food_type, "IMPORTED")
+            text: props.enums.foodType.IMPORTED.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.IMPORTED.key)
             },
             {
-            value: "NONE",
-            id: "NONE",
+            value: props.enums.foodType.NONE.key,
+            id: props.enums.foodType.NONE.key,
             name: "food_type",
-            text: __("None of these", props.language),
-            checked: exists(props.cumulativeFullAnswers.food_type, "NONE")
+            text: props.enums.foodType.NONE.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.NONE.key)
             },
             {
-            value: "DONT_KNOW",
-            id: "DONT_KNOW",
+            value: props.enums.foodType.DONT_KNOW.key,
+            id: props.enums.foodType.DONT_KNOW.key,
             name: "food_type",
-            text: __("Don't know", props.language),
-            checked: exists(props.cumulativeFullAnswers.food_type, "DONT_KNOW")
+            text: props.enums.foodType.DONT_KNOW.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.DONT_KNOW.key)
             }
         ],
       errorMessage: {

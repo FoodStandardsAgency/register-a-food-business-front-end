@@ -11,7 +11,7 @@
     <h2 id="operator-details" class="govuk-heading-m">{{ __("Operator details", props.language) }}</h2>
     {% if propsData.applicationCompletePage == null %}
       {% if validatorErrors.operator_type or propsData.operator_type %}
-        {{ summaryListHelperWithoutEdit(__("Operator type", props.language), __(propsData.operator_type, props.language), false) }}
+        {{ summaryListHelperWithoutEdit(__("Operator type", props.language), propsData.operator_type[props.language], false) }}
       {% endif %}
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
@@ -50,7 +50,7 @@
                     validatorErrors.operator.operator_town or validatorErrors.operator.operator_postcode or validatorErrors.operator_postcode_find or 
                     propsData.operator_address_line_1 or propsData.operator_address_line_2 or propsData.operator_address_line_3 or propsData.operator_town or propsData.operator_postcode or propsData.operator_postcode_find %}
         {% set htmlValue = (propsData.operator_address_line_1 + "<br>" if propsData.operator_address_line_1) + (propsData.operator_address_line_2 + "<br>" if propsData.operator_address_line_2) + (propsData.operator_address_line_3 + "<br>" if propsData.operator_address_line_3) + propsData.operator_town + "<br>" + propsData.operator_postcode %}
-        {{ summaryListHelperHtmlWithoutEdit(__("Partnership contact address", props.language) if  propsData.operator_type === "PARTNERSHIP" else __("Operator address", props.language), htmlValue, false) }}
+        {{ summaryListHelperHtmlWithoutEdit(__("Partnership contact address", props.language) if  propsData.operator_type === props.enums.operatorType.PARTNERSHIP.key else __("Operator address", props.language), htmlValue, false) }}
       {% endif %}
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
@@ -99,7 +99,7 @@
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
       {% if validatorErrors.establishment_type or propsData.establishment_type %}
-        {{ summaryListHelperWithoutEdit(__("Address type", props.language), __(propsData.establishment_type, props.language), false) }}
+        {{ summaryListHelperWithoutEdit(__("Address type", props.language), propsData.establishment_type[props.language], false) }}
       {% endif %}
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
@@ -162,13 +162,13 @@
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
       {% if validatorErrors.water_supply or propsData.water_supply %}
-        {{ summaryListHelperWithoutEdit(__("Water supply", props.language), __(propsData.water_supply, props.language), false) }}
+        {{ summaryListHelperWithoutEdit(__("Water supply", props.language), propsData.water_supply[props.language], false) }}
       {% endif %}
     {% endif %}
     <h2 id="activity-details" class="govuk-heading-m">{{ __("Activities", props.language) }}</h2>
     {% if propsData.applicationCompletePage == null %}
       {% if validatorErrors.business_type or propsData.business_type %}
-        {{ summaryListHelperWithoutEdit(__("Business type", props.language), __(propsData.business_type, props.language), false) }}
+        {{ summaryListHelperWithoutEdit(__("Business type", props.language), propsData.business_type[props.language], false) }}
       {% endif %}
     {% endif %}
     {% if propsData.applicationCompletePage == null %}
@@ -176,7 +176,7 @@
           {% set html %}
             <div>
               {% for value in propsData.business_scale %}
-                {{__(value, props.language)}}
+                {{value[props.language]}}
                 {% if not loop.last %}<br>{% endif %}
               {% endfor %}
             </div>
@@ -189,7 +189,7 @@
           {% set html %}
             <div>
               {% for value in propsData.food_type %}
-                {{__(value, props.language)}}
+                {{value[props.language]}}
                 {% if not loop.last %}<br>{% endif %}
               {% endfor %}
             </div>
@@ -202,7 +202,7 @@
           {% set html %}
             <div>
               {% for value in propsData.processing_activities %}
-                {{__(value, props.language)}}
+                {{value[props.language]}}
                 {% if not loop.last %}<br>{% endif %}
               {% endfor %}
             </div>

@@ -594,15 +594,15 @@ const combineOperatorTypes = (operatorType, registrationRole) => {
 };
 
 const transformEstablishmentTypeForSummary = (establishmentType) => {
-  return establishmentType ? establishmentTypeEnum[establishmentType].value.en : null;
+  return establishmentType ? establishmentTypeEnum[establishmentType].value : null;
 };
 
 const transformOperatorTypeForSummary = (operatorType) => {
-  return operatorType ? operatorTypeEnum[operatorType].value.en : null;
+  return operatorType ? operatorTypeEnum[operatorType].value : null;
 };
 
 const transformWaterSupplyForSummary = (waterSupply) => {
-  return waterSupply ? waterSupplyEnum[waterSupply].value.en : null;
+  return waterSupply ? waterSupplyEnum[waterSupply].value : null;
 };
 //Combines the date to be in the correct format to display on summary table
 const combineDate = (day, month, year) => {
@@ -652,21 +652,19 @@ const transformBusinessTypeForSubmit = (displayName) => {
 };
 
 const transformBusinessTypeForSummary = (id) => {
-  return businessTypeEnum[id] ? businessTypeEnum[id].value.en : "";
+  return businessTypeEnum[id] ? businessTypeEnum[id].value : "";
 };
 
 const transformBusinessScaleForSummary = (ids) => {
-  return ids?.map((id) => businessScaleEnum[id].value.en);
+  return ids?.map((id) => (businessScaleEnum[id] ? businessScaleEnum[id].value : ""));
 };
 
 const transformFoodTypeForSummary = (ids) => {
-  return ids?.map((id) => (foodTypeEnum[id] ? foodTypeEnum[id].value.en : ""));
+  return ids?.map((id) => (foodTypeEnum[id] ? foodTypeEnum[id].value : ""));
 };
 
 const transformProcessingActivitiesForSummary = (ids) => {
-  return ids?.map((id) =>
-    processingActivitiesEnum[id] ? processingActivitiesEnum[id].value.en : ""
-  );
+  return ids?.map((id) => (processingActivitiesEnum[id] ? processingActivitiesEnum[id].value : ""));
 };
 
 /**

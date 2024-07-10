@@ -21,67 +21,67 @@
       },
       items: [
             {
-            value: "LOCAL",
-            id: "LOCAL",
+            value: props.enums.businessScale.LOCAL.key,
+            id: props.enums.businessScale.LOCAL.key,
             name: "business_scale",
-            text: __("To local customers (who live or work in the local area)", props.language),
-            checked: exists(props.cumulativeFullAnswers.business_scale, "LOCAL")
+            text: props.enums.businessScale.LOCAL.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.LOCAL.key)
             },
             {
-            value: "NATIONAL",
-            id: "NATIONAL",
+            value: props.enums.businessScale.NATIONAL.key,
+            id: props.enums.businessScale.NATIONAL.key,
             name: "business_scale",
-            text: __("To national customers (who live or work across the UK)", props.language),
-            checked: exists(props.cumulativeFullAnswers.business_scale, "NATIONAL")
+            text: props.enums.businessScale.NATIONAL.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.NATIONAL.key)
             },
             {
-            value: "EXPORT",
-            id: "EXPORT",
+            value: props.enums.businessScale.EXPORT.key,
+            id: props.enums.businessScale.EXPORT.key,
             name: "business_scale",
-            text: __("To those outside of the UK (for export)", props.language),
-            checked: exists(props.cumulativeFullAnswers.business_scale, "EXPORT")
+            text: props.enums.businessScale.EXPORT.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.EXPORT.key)
             },
             {
-            value: "ONLINE",
-            id: "ONLINE",
+            value: props.enums.businessScale.ONLINE.key,
+            id: props.enums.businessScale.ONLINE.key,
             name: "business_scale",
-            text: __("To provide food online", props.language),
-            checked: exists(props.cumulativeFullAnswers.business_scale, "ONLINE")
+            text: props.enums.businessScale.ONLINE.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.ONLINE.key)
             },
             {
-            value: "FBO",
-            id: "FBO",
+            value: props.enums.businessScale.FBO.key,
+            id: props.enums.businessScale.FBO.key,
             name: "business_scale",
-            text: __("To provide food directly to other businesses", props.language),
-            checked: exists(props.cumulativeFullAnswers.business_scale, "FBO")
+            text: props.enums.businessScale.FBO.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.FBO.key)
             },
             {
-            value: "SENIOR_YOUTH",
-            id: "SENIOR_YOUTH",
+            value: props.enums.businessScale.SENIOR_YOUTH.key,
+            id: props.enums.businessScale.SENIOR_YOUTH.key,
             name: "business_scale",
-            text: __("To those under 5 years old or over 65 years old", props.language),
-            checked: exists(props.cumulativeFullAnswers.business_scale, "SENIOR_YOUTH")
+            text: props.enums.businessScale.SENIOR_YOUTH.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.SENIOR_YOUTH.key)
             },
             {
-            value: "HEALTHCARE",
-            id: "HEALTHCARE",
+            value: props.enums.businessScale.HEALTHCARE.key,
+            id: props.enums.businessScale.HEALTHCARE.key,
             name: "business_scale",
-            text: __("To residents in a healthcare setting (for example in a hospital, nursing home or similar)", props.language),
-            checked: exists(props.cumulativeFullAnswers.business_scale, "HEALTHCARE")
+            text: props.enums.businessScale.HEALTHCARE.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.HEALTHCARE.key)
             },
             {
-            value: "NONE",
-            id: "NONE",
+            value: props.enums.businessScale.NONE.key,
+            id: props.enums.businessScale.NONE.key,
             name: "business_scale",
-            text: __("None of these", props.language),
-            checked: exists(props.cumulativeFullAnswers.business_scale, "NONE")
+            text: props.enums.businessScale.NONE.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.NONE.key)
             },
             {
-            value: "DONT_KNOW",
-            id: "DONT_KNOW",
+            value: props.enums.businessScale.DONT_KNOW.key,
+            id: props.enums.businessScale.DONT_KNOW.key,
             name: "business_scale",
-            text: __("Don't know", props.language),
-            checked: exists(props.cumulativeFullAnswers.business_scale, "DONT_KNOW")
+            text: props.enums.businessScale.DONT_KNOW.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.DONT_KNOW.key)
             }
         ],
       errorMessage: {

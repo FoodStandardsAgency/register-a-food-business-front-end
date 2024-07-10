@@ -21,15 +21,15 @@
       items: [
         {
           id:"registration_role_sole_trader",
-          value: "SOLETRADER",
+          value: props.enums.operatorType.SOLETRADER.key,
           text: __("I operate it as a sole trader", props.language),
-          checked: props.cumulativeFullAnswers.registration_role === "SOLETRADER"
+          checked: props.cumulativeFullAnswers.registration_role === props.enums.operatorType.SOLETRADER.key
         },
         {
           id:"registration_role_partnership",
-          value: "PARTNERSHIP",
+          value: props.enums.operatorType.PARTNERSHIP.key,
           text: __("I operate it in a partnership", props.language),
-          checked: props.cumulativeFullAnswers.registration_role === "PARTNERSHIP"
+          checked: props.cumulativeFullAnswers.registration_role === props.enums.operatorType.PARTNERSHIP.key
         },
         {
           id:"registration_role_representative",

@@ -29,25 +29,25 @@
         name: "operator_type",
         items: [
           {
-            value: "PERSON",
+            value: props.enums.operatorType.PERSON.key,
             name: "operator_type",
             text: __("The food business is owned or operated by a person", props.language),
             id: "operator_type_person",
-            checked: props.cumulativeFullAnswers.operator_type === "PERSON"
+            checked: props.cumulativeFullAnswers.operator_type === props.enums.operatorType.PERSON.key
           },
           {
-            value: "COMPANY",
+            value: props.enums.operatorType.COMPANY.key,
             name: "operator_type",
             text: __("The food business is owned or operated by a limited company", props.language),
             id: "operator_type_company",
-            checked: props.cumulativeFullAnswers.operator_type === "COMPANY"
+            checked: props.cumulativeFullAnswers.operator_type === props.enums.operatorType.COMPANY.key
           },
           {
-            value: "CHARITY",
+            value: props.enums.operatorType.CHARITY.key,
             name: "operator_type",
             text: __("The food business is owned or operated by a charity, organisation or trust", props.language),
             id: "operator_type_charity",
-            checked: props.cumulativeFullAnswers.operator_type === "CHARITY"
+            checked: props.cumulativeFullAnswers.operator_type === props.enums.operatorType.CHARITY.key
           }
         ],
         errorMessage: {

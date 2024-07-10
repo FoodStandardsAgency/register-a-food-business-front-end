@@ -3,6 +3,7 @@
  */
 
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
+const { foodTypeEnum } = require("@slice-and-dice/register-a-food-business-validation");
 
 const props = {
   validatorErrors: {},
@@ -35,7 +36,7 @@ describe("food-type", () => {
       const $ = renderPage("food-type", props);
       const $checkboxes = $("input[type='checkbox']");
       const firstCheckbox = $checkboxes.first();
-      expect(firstCheckbox.val()).toBe("RAW_MEAT_FISH_SHELLFISH");
+      expect(firstCheckbox.val()).toBe(foodTypeEnum.RAW_MEAT_FISH_SHELLFISH.key);
     });
 
     describe("Error messages displayed", () => {

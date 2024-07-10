@@ -28,7 +28,6 @@
     "format:verify": "prettier --list-different src/ docs/ '!./src/__tests__/__snapshots__/**/*' '!./**/*.pdf'",
     "format": "prettier --write './src/**/*' './public/static/locales/**/*' './docs/**/*' '!./**/*.pdf' '!./src/__tests__/__snapshots__/**/*'",
     "jsdoc": "rm -rf ./docs/jsdoc && jsdoc -r ./src -d ./docs/jsdoc",
-    "updateBusinessTypes": "node ./src/components/update-business-types.js && npm run format",
     "prepublish": "browserify src/server/static/auto-complete/BusinessTypeLookupFunctions.js src/server/static/auto-complete/main.js > src/server/static/auto-complete/bundle.js"
   },
   "dependencies": {
