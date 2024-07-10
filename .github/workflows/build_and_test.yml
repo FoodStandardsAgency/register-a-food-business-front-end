@@ -2,6 +2,7 @@ name: Build & Test
 permissions:
   checks: write
   contents: read
+  issues: write
 on:
   workflow_call:
   workflow_dispatch:
