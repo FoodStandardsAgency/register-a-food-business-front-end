@@ -1,4 +1,6 @@
 name: Build & Test
+permissions:
+  security-events: write
 on:
   workflow_call:
   workflow_dispatch:
