@@ -3,12 +3,16 @@
  */
 
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
+const { operatorTypeEnum } = require("@slice-and-dice/register-a-food-business-validation");
 
 const props = {
   validatorErrors: {},
   cumulativeFullAnswers: {
     operator_postcode_find: "SE1 9AS",
     registration_role: "PARTNERSHIP"
+  },
+  enums: {
+    operatorType: operatorTypeEnum
   },
   language: "en"
 };

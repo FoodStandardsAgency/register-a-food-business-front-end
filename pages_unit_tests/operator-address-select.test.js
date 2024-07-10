@@ -3,6 +3,7 @@
  */
 
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
+const { operatorTypeEnum } = require("@slice-and-dice/register-a-food-business-validation");
 
 const exampleAddressLookup = {
   operator_postcode_find: [
@@ -44,6 +45,9 @@ const props = {
   cumulativeFullAnswers: {
     registration_role: "PARTNERSHIP",
     operator_postcode_find: "NR14 7PZ"
+  },
+  enums: {
+    operatorType: operatorTypeEnum
   },
   council: "cardiff",
   language: "en",

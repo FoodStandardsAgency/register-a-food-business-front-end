@@ -8,6 +8,9 @@ const { businessScaleEnum } = require("@slice-and-dice/register-a-food-business-
 const props = {
   validatorErrors: {},
   cumulativeFullAnswers: { business_scale: "default" },
+  enums: {
+    businessScale: businessScaleEnum
+  },
   language: "en"
 };
 

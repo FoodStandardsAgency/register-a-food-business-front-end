@@ -2,11 +2,15 @@
  * @jest-environment jsdom
  */
 
+const { establishmentTypeEnum } = require("@slice-and-dice/register-a-food-business-validation");
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
   cumulativeFullAnswers: { establishment_type: "DOMESTIC" },
+  enums: {
+    establishmentType: establishmentTypeEnum
+  },
   language: "en"
 };
 

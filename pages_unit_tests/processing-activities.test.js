@@ -8,6 +8,9 @@ const { processingActivitiesEnum } = require("@slice-and-dice/register-a-food-bu
 const props = {
   validatorErrors: {},
   cumulativeFullAnswers: { processing_activities: "default" },
+  enums: {
+    processingActivities: processingActivitiesEnum
+  },
   language: "en"
 };
 

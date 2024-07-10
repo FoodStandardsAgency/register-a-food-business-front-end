@@ -8,6 +8,9 @@ const { foodTypeEnum } = require("@slice-and-dice/register-a-food-business-valid
 const props = {
   validatorErrors: {},
   cumulativeFullAnswers: { food_type: "default" },
+  enums: {
+    foodType: foodTypeEnum
+  },
   language: "en"
 };
 
