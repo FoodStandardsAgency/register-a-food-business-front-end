@@ -1,6 +1,7 @@
 name: Build & Test
 permissions:
-  security-events: write
+  checks: write
+  contents: read
 on:
   workflow_call:
   workflow_dispatch:
