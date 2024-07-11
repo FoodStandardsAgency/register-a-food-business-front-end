@@ -135,6 +135,36 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         });
       });
 
+      describe("given the operator_type is Partnership and main partner contact details are passed", () => {
+        const partnershipContactDetails = {
+          registration_role: "PARTNERSHIP",
+          main_partner_primary_number: "example",
+          main_partner_secondary_number: "example",
+          main_partner_email: "example"
+        };
+
+        it("the result contains the main partner contact details transformed into operator contact details", () => {
+          result = transformAnswersForSubmit(
+            partnershipContactDetails,
+            testLanguage,
+            testAddressLookups,
+            testLcUrl
+          );
+          expect(result.registration.establishment.operator.operator_type).toEqual(
+            operatorTypeEnum[partnershipContactDetails.registration_role].key
+          );
+          expect(result.registration.establishment.operator.operator_primary_number).toEqual(
+            partnershipContactDetails.main_partner_primary_number
+          );
+          expect(result.registration.establishment.operator.operator_secondary_number).toEqual(
+            partnershipContactDetails.main_partner_secondary_number
+          );
+          expect(result.registration.establishment.operator.operator_email).toEqual(
+            partnershipContactDetails.main_partner_email
+          );
+        });
+      });
+
       describe("given that registration_role is Representative but operator_type is not passed", () => {
         const data = {
           registration_role: "Representative",
@@ -1165,6 +1195,30 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         it("should return null for water_supply", () => {
           result = transformAnswersForSummary(waterSupply);
           expect(result.water_supply).toBe(null);
+        });
+      });
+    });
+
+    describe("operator_birthdate", () => {
+      describe("operator_birthdate is defined", () => {
+        const birthDate = {
+          operator_birthdate_day: 1,
+          operator_birthdate_month: 2,
+          operator_birthdate_year: 2024
+        };
+        it("should return the operator birthdate value", () => {
+          result = transformAnswersForSummary(birthDate);
+          expect(result.operator_birthdate).toBe(
+            `${birthDate.operator_birthdate_year}-${birthDate.operator_birthdate_month}-${birthDate.operator_birthdate_day}`
+          );
+        });
+      });
+
+      describe("operator_birthdate is not defined", () => {
+        const birthDate = {};
+        it("should return undefined for operator_birthdate", () => {
+          result = transformAnswersForSummary(birthDate);
+          expect(result.operator_birthdate).toBe(undefined);
         });
       });
     });

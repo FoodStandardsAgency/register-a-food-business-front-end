@@ -60,9 +60,6 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
     "operator_uprn",
     "operator_primary_number",
     "operator_secondary_number",
-    "main_partner_primary_number",
-    "main_partner_secondary_number",
-    "main_partner_email",
     "operator_email",
     "contact_representative_name",
     "contact_representative_role",
@@ -140,6 +137,12 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
     data.operator_type = combineOperatorTypes(data.operator_type, data.registration_role);
     delete data.registration_role;
 
+    if (data.operator_type == operatorTypeEnum.PARTNERSHIP.key) {
+      data.operator_primary_number = data.main_partner_primary_number;
+      data.operator_secondary_number = data.main_partner_secondary_number;
+      data.operator_email = data.main_partner_email;
+    }
+
     const openingDays = transformOpeningDaysForSubmit(
       data.opening_days_start,
       data.opening_day_monday,
@@ -161,11 +164,13 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
       data.opening_hours_sunday
     );
 
-    data.operator_birthdate = combineDate(
-      data.operator_birthdate_day,
-      data.operator_birthdate_month,
-      data.operator_birthdate_year
-    );
+    if (data.operator_birthdate_day !== undefined) {
+      data.operator_birthdate = combineDate(
+        data.operator_birthdate_day,
+        data.operator_birthdate_month,
+        data.operator_birthdate_year
+      );
+    }
     delete data.operator_birthdate_day;
     delete data.operator_birthdate_month;
     delete data.operator_birthdate_year;
