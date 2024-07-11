@@ -3,10 +3,14 @@
  */
 
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
+const { businessScaleEnum } = require("@slice-and-dice/register-a-food-business-validation");
 
 const props = {
   validatorErrors: {},
   cumulativeFullAnswers: { business_scale: "default" },
+  enums: {
+    businessScale: businessScaleEnum
+  },
   language: "en"
 };
 
@@ -35,7 +39,7 @@ describe("business-scale", () => {
       const $ = renderPage("business-scale", props);
       const $checkboxes = $("input[type='checkbox']");
       const firstCheckbox = $checkboxes.first();
-      expect(firstCheckbox.val()).toBe("LOCAL");
+      expect(firstCheckbox.val()).toBe(businessScaleEnum.LOCAL.key);
     });
 
     describe("Error messages displayed", () => {

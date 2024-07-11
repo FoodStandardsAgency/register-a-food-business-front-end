@@ -1,6 +1,14 @@
 const { PageTitles } = require("../../pages/PageTitles");
 const i18n = require("i18n");
-const { businessTypeEnum } = require("@slice-and-dice/register-a-food-business-validation");
+const {
+  businessTypeEnum,
+  foodTypeEnum,
+  processingActivitiesEnum,
+  businessScaleEnum,
+  waterSupplyEnum,
+  operatorTypeEnum,
+  establishmentTypeEnum
+} = require("@slice-and-dice/register-a-food-business-validation");
 
 module.exports = (req) => {
   /************************************************************************************
@@ -9,6 +17,16 @@ module.exports = (req) => {
   const editModeFirstPage = req && req.query && req.query.edit ? `/${req.query.edit}` : undefined;
 
   const businessTypes = Object.keys(businessTypeEnum).map((bt) => businessTypeEnum[bt].value.en);
+
+  const enums = {
+    foodType: foodTypeEnum,
+    processingActivities: processingActivitiesEnum,
+    businessScale: businessScaleEnum,
+    waterSupply: waterSupplyEnum,
+    operatorType: operatorTypeEnum,
+    establishmentType: establishmentTypeEnum,
+    businessType: businessTypeEnum
+  };
 
   const editModePartnerDetails =
     req &&
@@ -89,6 +107,7 @@ module.exports = (req) => {
     laSelectorNote: process.env.LA_SELECTOR_NOTE,
     acceptAllCookies,
     businessTypes,
+    enums,
     editModeFirstPage,
     formAction,
     csrfToken,

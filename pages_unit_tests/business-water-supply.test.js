@@ -2,11 +2,15 @@
  * @jest-environment jsdom
  */
 
+const { waterSupplyEnum } = require("@slice-and-dice/register-a-food-business-validation");
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
   cumulativeFullAnswers: { water_supply: "PRIVATE" },
+  enums: {
+    waterSupply: waterSupplyEnum
+  },
   language: "en"
 };
 

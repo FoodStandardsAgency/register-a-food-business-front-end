@@ -2,11 +2,15 @@
  * @jest-environment jsdom
  */
 
+const { operatorTypeEnum } = require("@slice-and-dice/register-a-food-business-validation");
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
   cumulativeFullAnswers: { registration_role: "PARTNERSHIP" },
+  enums: {
+    operatorType: operatorTypeEnum
+  },
   language: "en"
 };
 

@@ -11,7 +11,10 @@ const {
   operatorTypeEnum,
   establishmentTypeEnum,
   waterSupplyEnum,
-  businessTypeEnum
+  businessTypeEnum,
+  businessScaleEnum,
+  foodTypeEnum,
+  processingActivitiesEnum
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 describe("data-transform.service trimAnswers()", () => {
@@ -1000,7 +1003,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         it("the transformed data contains a field called operator_type that equals the passed registration_role enum value", () => {
           result = transformAnswersForSummary(registrationRoleOnly);
           expect(result.operator_type).toEqual(
-            operatorTypeEnum[registrationRoleOnly.registration_role].value.en
+            operatorTypeEnum[registrationRoleOnly.registration_role].value
           );
         });
 
@@ -1020,7 +1023,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         it("the result contains a field called operator_type that equals the operatorTypeEnum value using the passed operator_type as the key", () => {
           result = transformAnswersForSummary(registrationRoleAndOperatorType);
           expect(result.operator_type).toEqual(
-            operatorTypeEnum[registrationRoleAndOperatorType.operator_type].value.en
+            operatorTypeEnum[registrationRoleAndOperatorType.operator_type].value
           );
         });
 
@@ -1036,8 +1039,8 @@ describe("data-transform.service transformAnswersForSummary()", () => {
 
             result = transformAnswersForSummary(data);
 
-            expect(result.operator_type).toBe(operatorTypeEnum[operatorType].value.en);
-            expect(result.operator_type).toContain("(registered by a representative)");
+            expect(result.operator_type).toBe(operatorTypeEnum[operatorType].value);
+            expect(result.operator_type["en"]).toContain("(registered by a representative)");
           });
         });
       });
@@ -1060,7 +1063,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       };
       it("should assign the business_type enum value to the result only", () => {
         result = transformAnswersForSummary(answers);
-        expect(result.business_type).toBe(businessTypeEnum["030"].value.en);
+        expect(result.business_type).toBe(businessTypeEnum["030"].value);
       });
 
       describe("given that business_type is not a defined enum", () => {
@@ -1163,7 +1166,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
         it("should return the establishmentTypeEnum value", () => {
           result = transformAnswersForSummary(establishmentType);
-          expect(result.establishment_type).toBe(establishmentTypeEnum.COMMERCIAL.value.en);
+          expect(result.establishment_type).toBe(establishmentTypeEnum.COMMERCIAL.value);
         });
       });
 
@@ -1183,7 +1186,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
         it("should return the waterSupplyEnum value", () => {
           result = transformAnswersForSummary(waterSupply);
-          expect(result.water_supply).toBe(waterSupplyEnum.PUBLIC.value.en);
+          expect(result.water_supply).toBe(waterSupplyEnum.PUBLIC.value);
         });
       });
 
@@ -1216,6 +1219,54 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         it("should return undefined for operator_birthdate", () => {
           result = transformAnswersForSummary(birthDate);
           expect(result.operator_birthdate).toBe(undefined);
+        });
+      });
+    });
+
+    describe("business_scale", () => {
+      describe("business_scale is defined", () => {
+        const businessScale = {
+          business_scale: [businessScaleEnum.NATIONAL.key, businessScaleEnum.HEALTHCARE.key]
+        };
+        it("should return the businessScaleEnum value", () => {
+          result = transformAnswersForSummary(businessScale);
+          expect(result.business_scale).toEqual([
+            businessScaleEnum.NATIONAL.value,
+            businessScaleEnum.HEALTHCARE.value
+          ]);
+        });
+      });
+    });
+
+    describe("food_type", () => {
+      describe("food_type is defined", () => {
+        const foodType = {
+          food_type: [foodTypeEnum.READY_TO_EAT.key, foodTypeEnum.COOKED_OR_REHEATED.key]
+        };
+        it("should return the foodTypeEnum value", () => {
+          result = transformAnswersForSummary(foodType);
+          expect(result.food_type).toEqual([
+            foodTypeEnum.READY_TO_EAT.value,
+            foodTypeEnum.COOKED_OR_REHEATED.value
+          ]);
+        });
+      });
+    });
+
+    describe("processing_activities", () => {
+      describe("processing_activities is defined", () => {
+        const processingActivities = {
+          processing_activities: [
+            processingActivitiesEnum.PASTEURISING.key,
+            processingActivitiesEnum.VACUUM_PACKING.key
+          ]
+        };
+        it("should return the processingActivitiesEnum value", () => {
+          result = transformAnswersForSummary(processingActivities);
+          expect(result.processing_activities).toEqual([
+            processingActivitiesEnum.PASTEURISING.value,
+            processingActivitiesEnum.VACUUM_PACKING.value
+          ]);
         });
       });
     });
