@@ -97,11 +97,11 @@ summaryListDeclarationHelper %}
           {%elif props.cumulativeFullAnswers.registration_role === props.enums.operatorType.PARTNERSHIP.key %}
           {% set html %}
           <div>
-            <div id="main_partner_primary_number">{{ propsData.main_partner_primary_number if propsData.main_partner_primary_number else "" }}</div>
-            <div id="main_partner_secondary_number">{{ propsData.main_partner_secondary_number if propsData.main_partner_secondary_number else "" }}</div>
+            <div id="operator_primary_number">{{ propsData.operator_primary_number if propsData.operator_primary_number else "" }}</div>
+            <div id="operator_secondary_number">{{ propsData.operator_secondary_number if propsData.operator_secondary_number else "" }}</div>
           </div>
           {% endset %}
-            {{ summaryListHelperHtml(__("Phone number", props.language), html, "/edit/partnership-contact-details", propsData.main_partner_primary_number, props ) }}
+            {{ summaryListHelperHtml(__("Phone number", props.language), html, "/edit/partnership-contact-details", propsData.operator_primary_number, props ) }}
         {% endif %}
       {% endif %}
      {% if propsData.applicationCompletePage == null %}
@@ -115,10 +115,10 @@ summaryListDeclarationHelper %}
               {%elif props.cumulativeFullAnswers.registration_role === props.enums.operatorType.PARTNERSHIP.key %}
           {% set html %}
           <div>
-              <div id="main_partner_email">{{ propsData.main_partner_email if propsData.main_partner_email else "" }}</div>
+              <div id="operator_email">{{ propsData.operator_email if propsData.operator_email else "" }}</div>
           </div>
           {% endset %}
-            {{ summaryListHelperHtml(__("Email address", props.language), html, "/edit/partnership-contact-details", propsData.main_partner_email, props) }}
+            {{ summaryListHelperHtml(__("Email address", props.language), html, "/edit/partnership-contact-details", propsData.operator_email, props) }}
         {% endif %}
       {% endif %}        
       {% if propsData.applicationCompletePage == null %}
