@@ -256,7 +256,7 @@ summaryListDeclarationHelper %}
               {% endfor %}
             </div>
           {% endset %}
-        {{ summaryListHelperHtml(__("Processing Activities", props.language), html, "/edit/processing-activities", propsData.processing_activities, props) }}
+        {{ summaryListHelperHtml(__("Processing activities", props.language), html, "/edit/processing-activities", propsData.processing_activities, props) }}
       {% endif %}
       {% if propsData.applicationCompletePage == null %}
         {% if propsData.business_other_details %}

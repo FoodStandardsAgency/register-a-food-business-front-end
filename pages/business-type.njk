@@ -19,10 +19,10 @@
 {% endmacro %}
 {% macro businessTypeSelect(props) %}
   {% set businessTypesArray = [] %}
-  {% for businessType in props.businessTypes %}
+  {% for businessType in props.enums.businessType %}
     {% set businessTypesArray = (businessTypesArray.push({
-      value: __(businessType, props.language),
-      text: __(businessType, props.language)
+      value: businessType.value[props.language],
+      text: businessType.value[props.language]
     }), businessTypesArray) %}
   {% endfor %}
   {{ govukDataList({
