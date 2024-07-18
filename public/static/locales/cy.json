@@ -567,7 +567,13 @@
   "Please select all options that apply to your business": "Dewiswch bob opsiwn sy’n berthnasol i’ch busnes",
   "Business scale": "Graddfa'r Busnes",
   "Food type": "Math o fwyd",
-  "Processing Activities": "Gweithgareddau Prosesu",
+  "Processing activities": "Gweithgareddau prosesu",
   "Enter a valid birth date": "Nodwch ddyddiad geni dilys",
-  "What is the operator's birthdate?": "Beth yw dyddiad geni'r gweithredwr?"
+  "What is the operator's birthdate?": "Beth yw dyddiad geni'r gweithredwr?",
+  "Register a Food Business - What food processing activities do you intend to carry out in your food business?": "Cofrestru Busnesau Bwyd - Pa weithgareddau prosesu bwyd rydych chi’n bwriadu eu cynnal yn eich busnes bwyd?",
+  "Error Register a Food Business - What food processing activities do you intend to carry out in your food business?": "Gwall: Cofrestru Busnesau Bwyd - Pa weithgareddau prosesu bwyd rydych chi’n bwriadu eu cynnal yn eich busnes bwyd?",
+  "Register a Food Business - What type of food do you intend do handle?": "Cofrestru Busnesau Bwyd - Pa fath o fwyd rydych chi’n bwriadu ei drin?",
+  "Error Register a Food Business - What type of food do you intend do handle?": "Gwall: Cofrestru Busnesau Bwyd - Pa fath o fwyd rydych chi’n bwriadu ei drin?",
+  "Register a Food Business - Who do you intend to provide food to?": "Cofrestru Busnesau Bwyd - I bwy rydych chi’n bwriadu darparu bwyd?",
+  "Error Register a Food Business - Who do you intend to provide food to?": "Gwall: Cofrestru Busnesau Bwyd - I bwy rydych chi’n bwriadu darparu bwyd?"
 }

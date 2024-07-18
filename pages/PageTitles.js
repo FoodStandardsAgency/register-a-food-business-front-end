@@ -9,6 +9,10 @@ const PageTitles = {
     "la-pdf-form": () => "Complete the application form",
     "business-other-details": () => "Other details",
     "business-type": () => "What kind of food business are you registering?",
+    "business-scale": () => "Who do you intend to provide food to?",
+    "food-type": () => "What type of food do you intend do handle?",
+    "processing-activities": () =>
+      "What food processing activities do you intend to carry out in your food business?",
     "business-water-supply": () => "What type of water supply does this establishment use?",
     "contact-representative": () => "Contact representative details",
     declaration: () => "Declaration",
