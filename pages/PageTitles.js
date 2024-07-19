@@ -53,6 +53,7 @@ const PageTitles = {
     "operator-type": () => "Who operates this business?",
     "partner-details": () => "Partner details",
     "partner-name": () => "What are the partners' names?",
+    "partnership-contact-details": () => "Partnership details",
     "registration-role": () => "What is your role in this food business?",
     "registration-summary": () => "Check your answers",
     "summary-confirmation": () => "Submission complete"
