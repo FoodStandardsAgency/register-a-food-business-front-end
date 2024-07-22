@@ -19,7 +19,7 @@
 {% endmacro %}
 {% macro businessTypeSelect(props) %}
   {% set businessTypesArray = [] %}
-  {% for businessType in props.enums.businessType %}
+  {% for businessTypeKey, businessType in props.enums.businessType %}
     {% set businessTypesArray = (businessTypesArray.push({
       value: businessType.value[props.language],
       text: businessType.value[props.language]
