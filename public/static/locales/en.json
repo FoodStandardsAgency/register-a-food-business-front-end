@@ -555,13 +555,13 @@
   "This is not my Local Authority": "This is not my Local Authority",
   "Who do you intend to provide food to?": "Who do you intend to provide food to?",
   "What is the operator's birthdate?": "What is the operator's birthdate?",
-  "What type of food do you intend do handle?": "What type of food do you intend do handle?",
+  "What type of food do you intend to handle?": "What type of food do you intend to handle?",
   "What food processing activities do you intend to carry out in your food business?": "What food processing activities do you intend to carry out in your food business?",
   "Describe your food business": "Describe your food business",
   "How many people are employed?": "How many people are employed?",
   "Do you use a vehicle for your food business for deliveries or events - does it have a registration mark?": "Do you use a vehicle for your food business for deliveries or events - does it have a registration mark?",
   "Are you a member of a trade body or a primary authority?": "Are you a member of a trade body or a primary authority?",
-  "Operator Birthdate": "Operator Birthdate",
+  "Operator birthdate": "Operator birthdate",
   "Business scale": "Business scale",
   "Food type": "Food type",
   "Processing activities": "Processing activities",
@@ -576,5 +576,6 @@
   "Error Register a Food Business - Who do you intend to provide food to?": "Error Register a Food Business - Who do you intend to provide food to?",
   "Error Register a Food Business - What food processing activities do you intend to carry out in your food business?": "Error Register a Food Business - What food processing activities do you intend to carry out in your food business?",
   "Register a Food Business - Partnership details?": "Register a Food Business - Partnership details?",
-  "Error Register a Food Business - Partnership details?": "Error Register a Food Business - Partnership details?"
+  "Error Register a Food Business - Partnership details?": "Error Register a Food Business - Partnership details?",
+  "Enter a valid birthdate": "Enter a valid birthdate"
 }
