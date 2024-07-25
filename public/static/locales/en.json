@@ -560,7 +560,6 @@
   "Describe your food business": "Describe your food business",
   "How many people are employed?": "How many people are employed?",
   "Do you use a vehicle for your food business for deliveries or events - does it have a registration mark?": "Do you use a vehicle for your food business for deliveries or events - does it have a registration mark?",
-  "Are you a member of a trade body or a primary authority?": "Are you a member of a trade body or a primary authority?",
   "Operator birthdate": "Operator birthdate",
   "Business scale": "Business scale",
   "Food type": "Food type",
@@ -570,12 +569,15 @@
   "For example, 31 03 1980": "For example, 31 03 1980",
   "Please select all options that apply to your business": "Please select all options that apply to your business",
   "Register a Food Business - Who do you intend to provide food to?": "Register a Food Business - Who do you intend to provide food to?",
-  "Register a Food Business - What type of food do you intend do handle?": "Register a Food Business - What type of food do you intend do handle?",
-  "Error Register a Food Business - What type of food do you intend do handle?": "Error Register a Food Business - What type of food do you intend do handle?",
+  "Register a Food Business - What type of food do you intend to handle?": "Register a Food Business - What type of food do you intend to handle?",
+  "Error Register a Food Business - What type of food do you intend to handle?": "Error Register a Food Business - What type of food do you intend to handle?",
   "Register a Food Business - What food processing activities do you intend to carry out in your food business?": "Register a Food Business - What food processing activities do you intend to carry out in your food business?",
   "Error Register a Food Business - Who do you intend to provide food to?": "Error Register a Food Business - Who do you intend to provide food to?",
   "Error Register a Food Business - What food processing activities do you intend to carry out in your food business?": "Error Register a Food Business - What food processing activities do you intend to carry out in your food business?",
   "Register a Food Business - Partnership details?": "Register a Food Business - Partnership details?",
   "Error Register a Food Business - Partnership details?": "Error Register a Food Business - Partnership details?",
-  "Enter a valid birthdate": "Enter a valid birthdate"
+  "Enter a valid birthdate": "Enter a valid birthdate",
+  "For businesses in Northern Ireland, only select if you move food from Great Britain (GB) or from outside of the European Union (EU) into Northern Ireland": "For businesses in Northern Ireland, only select if you move food from Great Britain (GB) or from outside of the European Union (EU) into Northern Ireland",
+  "For businesses based in Northern Ireland, only select this option for movements outside of the United Kingdom (UK) or European Union (EU)": "For businesses based in Northern Ireland, only select this option for movements outside of the United Kingdom (UK) or European Union (EU)",
+  "Are you a member of a trade body or a Primary Authority?": "Are you a member of a trade body or a Primary Authority?"
 }
