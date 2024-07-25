@@ -19,7 +19,7 @@ describe("food-type", () => {
     const $ = renderPage("food-type", props);
 
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual("What type of food do you intend do handle?");
+    expect($mainHeading.text().trim()).toEqual("What type of food do you intend to handle?");
   });
 
   it("passes accessibility tests", async () => {
