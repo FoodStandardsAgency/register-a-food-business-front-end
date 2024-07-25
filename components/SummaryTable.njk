@@ -42,7 +42,7 @@
     {% if propsData.applicationCompletePage == null %}
     {% set formattedDate = (propsData.operator_birthdate | date(props.language, "DD MMM YYYY")) if propsData.operator_birthdate %}
       {% if validatorErrors.operator_birthdate or formattedDate %}
-        {{ summaryListHelperWithoutEdit(__("Operator Birthdate", props.language), formattedDate, false) }}
+        {{ summaryListHelperWithoutEdit(__("Operator birthdate", props.language), formattedDate, false) }}
       {% endif %}
     {% endif %}
     {% if propsData.applicationCompletePage == null %}

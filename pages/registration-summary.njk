@@ -69,7 +69,7 @@ summaryListDeclarationHelper %}
           {% set regroleBirthdateUrl = "/edit/partnership-contact-details" %}
         {% endif %}
         {% if props.cumulativeFullAnswers.registration_role === props.enums.operatorType.SOLETRADER.key or props.cumulativeFullAnswers.operator_type === props.enums.operatorType.PERSON.key or props.cumulativeFullAnswers.registration_role == props.enums.operatorType.PARTNERSHIP.key %}
-          {{ summaryListHelper(__("Operator Birthdate", props.language), htmlValue, regroleBirthdateUrl, formattedDate if propsData.operator_birthdate, "operator_birthdate", props ) }}
+          {{ summaryListHelper(__("Operator birthdate", props.language), htmlValue, regroleBirthdateUrl, formattedDate if propsData.operator_birthdate, "operator_birthdate", props ) }}
         {% endif %}
       {% endif %}
       {% if propsData.applicationCompletePage == null %}
