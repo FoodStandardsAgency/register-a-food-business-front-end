@@ -20,17 +20,26 @@ const cleanInactivePathAnswers = (cumulativeFullAnswers, path) => {
   const cleanedAnswers = Object.assign({}, cumulativeFullAnswers);
 
   for (let answer in cleanedAnswers) {
+    let schemaAnswer = answer;
+    if (schemaAnswer.includes("operator_birthdate")) {
+      // operator_birthdate_day ,operator_birthdate_month, operator_birthdate_year
+      schemaAnswer = "operator_birthdate";
+    }
+
     // find the page that this answer is from
-    let pageOfAnswer;
+    let pagesOfAnswer = [];
 
     for (let page in schema) {
-      if (schema[page].properties[answer]) {
-        pageOfAnswer = page;
+      if (schema[page].properties[schemaAnswer]) {
+        pagesOfAnswer.push(page);
       }
     }
 
-    // if that page is off in the given path, delete the answer
-    if (path[pageOfAnswer] && path[pageOfAnswer].on === false) {
+    // if all pages containing the answer are off in the given path, delete the answer
+    if (
+      pagesOfAnswer.length > 0 &&
+      pagesOfAnswer.every((page) => path[page] && path[page].on === false)
+    ) {
       delete cleanedAnswers[answer];
       logEmitter.emit(
         "info",

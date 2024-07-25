@@ -25,6 +25,10 @@ const pathObject = {
     on: false,
     switches: {}
   },
+  "/partnership-contact-details": {
+    on: false,
+    switches: {}
+  },
   "/registration-summary": {
     on: true,
     switches: {}
@@ -43,6 +47,29 @@ const testSessionAnswers_Invalid = {
 const testSessionAnswers_Valid = {
   example_exists_in_schema_but_not_in_path: "Example",
   operator_first_name: "John"
+};
+
+const testSessionAnswers_MultiplePageAnswers = {
+  operator_birthdate: "Example",
+  operator_first_name: "John",
+  main_partner_primary_number: "01234567890",
+  establishment_trading_name: "John's Apples"
+};
+
+const testSessionAnswers_MultiplePageAnswers_OperatorOnly = {
+  operator_birthdate: "Example",
+  operator_first_name: "John",
+  establishment_trading_name: "John's Apples"
+};
+
+const testSessionAnswers_MultiplePageAnswers_PartnerOnly = {
+  operator_birthdate: "Example",
+  main_partner_primary_number: "01234567890",
+  establishment_trading_name: "John's Apples"
+};
+
+const testSessionAnswers_MultiplePageAnswers_NotOperatorOrPartner = {
+  establishment_trading_name: "John's Apples"
 };
 
 const testSessionAnswers_Correct = {
@@ -66,6 +93,12 @@ const testSessionAnswers_MoreThanNeeded = Object.assign(
   answersBelongingToInactivePage
 );
 
+const testSessionAnswers_AdditionalFieldsNotInSchema = {
+  day: "1",
+  month: "2",
+  year: "2010"
+};
+
 describe("session-management.service cleanInactivePathAnswers()", () => {
   describe("given a path/data match", () => {
     it("returns the same data object as it was passed", () => {
@@ -86,6 +119,71 @@ describe("session-management.service cleanInactivePathAnswers()", () => {
         expect(result).toEqual(testSessionAnswers_Valid);
       });
     });
+
+    describe("when an answer appears in multiple pages (operator_birthdate)", () => {
+      describe("when one page (partner) is switched off and one page (operator) is on", () => {
+        it("returns data object with data for the page that is on", () => {
+          const path = {
+            "/operator-name": {
+              on: true,
+              switches: {}
+            },
+            "/establishment-trading-name": {
+              on: true,
+              switches: {}
+            },
+            "/partnership-contact-details": {
+              on: false,
+              switches: {}
+            }
+          };
+          const result = cleanInactivePathAnswers(testSessionAnswers_MultiplePageAnswers, path);
+          expect(result).toEqual(testSessionAnswers_MultiplePageAnswers_OperatorOnly);
+        });
+      });
+
+      describe("when one page (operator) is switched off and one page (partner) is on", () => {
+        it("returns data object with data for the page that is on", () => {
+          const path = {
+            "/operator-name": {
+              on: false,
+              switches: {}
+            },
+            "/establishment-trading-name": {
+              on: true,
+              switches: {}
+            },
+            "/partnership-contact-details": {
+              on: true,
+              switches: {}
+            }
+          };
+          const result = cleanInactivePathAnswers(testSessionAnswers_MultiplePageAnswers, path);
+          expect(result).toEqual(testSessionAnswers_MultiplePageAnswers_PartnerOnly);
+        });
+      });
+
+      describe("when both pages are off", () => {
+        it("does not return data for the pages that are off", () => {
+          const path = {
+            "/operator-name": {
+              on: false,
+              switches: {}
+            },
+            "/establishment-trading-name": {
+              on: true,
+              switches: {}
+            },
+            "/partnership-contact-details": {
+              on: false,
+              switches: {}
+            }
+          };
+          const result = cleanInactivePathAnswers(testSessionAnswers_MultiplePageAnswers, path);
+          expect(result).toEqual(testSessionAnswers_MultiplePageAnswers_NotOperatorOrPartner);
+        });
+      });
+    });
   });
 
   describe("given a path/data mismatch", () => {
@@ -103,6 +201,17 @@ describe("session-management.service cleanInactivePathAnswers()", () => {
       for (let answer in answersBelongingToInactivePage) {
         expect(result[answer]).toBe(undefined);
       }
+    });
+  });
+
+  describe("given data that is not specified in the schema (e.g. establishment_opening_date fields: day, month, year)", () => {
+    const result = cleanInactivePathAnswers(
+      testSessionAnswers_AdditionalFieldsNotInSchema,
+      pathObject
+    );
+
+    it("does not clean any data not listed in the schema", () => {
+      expect(result).toEqual(testSessionAnswers_AdditionalFieldsNotInSchema);
     });
   });
 });
