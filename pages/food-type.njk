@@ -14,11 +14,14 @@
       name: "food_type",
       fieldset: {
         legend: {
-          text: __("What type of food do you intend do handle?", props.language),
+          text: __("What type of food do you intend to handle?", props.language),
           isPageHeading: true,
           classes: "govuk-fieldset__legend--l"
         }
       },
+                  "hint": {
+            "text": __("Select all that apply", props.language)
+            },
 items: [
             {
             value: props.enums.foodType.RAW_MEAT_FISH_SHELLFISH.key,
@@ -46,7 +49,10 @@ items: [
             id: props.enums.foodType.IMPORTED.key,
             name: "food_type",
             text: props.enums.foodType.IMPORTED.value[props.language],
-            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.IMPORTED.key)
+            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.IMPORTED.key),
+            hint: {
+            text: __("For businesses in Northern Ireland, only select if you move food from Great Britain (GB) or from outside of the European Union (EU) into Northern Ireland", props.language)
+            }
             },
             {
             value: props.enums.foodType.NONE.key,

@@ -19,6 +19,9 @@
           classes: "govuk-fieldset__legend--l"
         }
       },
+                  "hint": {
+            "text": __("Select all that apply", props.language)
+            },
       items: [
             {
             value: props.enums.businessScale.LOCAL.key,
@@ -39,7 +42,10 @@
             id: props.enums.businessScale.EXPORT.key,
             name: "business_scale",
             text: props.enums.businessScale.EXPORT.value[props.language],
-            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.EXPORT.key)
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.EXPORT.key),
+            hint: {
+            text: __("For businesses based in Northern Ireland, only select this option for movements outside of the United Kingdom (UK) or European Union (EU)", props.language)
+            }
             },
             {
             value: props.enums.businessScale.ONLINE.key,
