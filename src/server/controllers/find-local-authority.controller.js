@@ -49,8 +49,7 @@ const findLocalAuthorityController = async (currentPage, previousAnswers, newAns
       return controllerResponse;
     }
 
-    searchPostcodeFieldName = Object.keys(newAnswers)[0];
-    const searchPostcode = newAnswers[searchPostcodeFieldName];
+    const searchPostcode = previousAnswers.establishment_postcode_find;
     const localAuthority = await getLocalAuthorityByPostcode(searchPostcode);
 
     controllerResponse.localAuthority = localAuthority;

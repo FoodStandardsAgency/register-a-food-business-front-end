@@ -11,7 +11,7 @@
   {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% call postForm("/findaddress" + "/establishment-address-type", props.csrfToken, props.language) -%}
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
       {% call govukFieldset({
             legend: {

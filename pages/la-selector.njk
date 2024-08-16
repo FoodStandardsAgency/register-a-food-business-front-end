@@ -20,7 +20,7 @@
                   }
             }) %}
             <p class="govuk-body">
-                {{ "" if props.fullCurrentPage === "/la-selector?back=/wrong-la" else "The postcode you entered has not been recognised." }}
+                {{ "" if "/la-selector?back=wrong-la" in props.fullCurrentPage else "The postcode you entered has not been recognised." }}
             </p>
             {% if props.laSelectorNote %}
                 <p class="govuk-hint" style="border-style: solid; border-color: red; font-weight: bold; padding: 10px">{{ props.laSelectorNote }}</p>

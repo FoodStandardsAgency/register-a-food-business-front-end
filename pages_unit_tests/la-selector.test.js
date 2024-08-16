@@ -35,7 +35,7 @@ describe("la-selector", () => {
   it("shows the correct back link after wrong LA button is pressed on la-established page", async () => {
     const props = {
       currentPage: "/la-selector",
-      fullCurrentPage: "/la-selector?back=/wrong-la"
+      fullCurrentPage: "/la-selector?back=wrong-la"
     };
     const $ = renderPage("la-selector", props);
 

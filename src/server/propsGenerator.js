@@ -138,8 +138,6 @@ module.exports = (req) => {
     laConfig: req && req.session && req.session.laConfig ? req.session.laConfig : {},
     localAuthority:
       req && req.session && req.session.localAuthority ? req.session.localAuthority : {},
-    changePostcode:
-      req && req.session && req.session.changePostcode ? req.session.changePostcode : false,
     addressLookups:
       req && req.session && req.session.addressLookups ? req.session.addressLookups : {},
     council: req && req.session && req.session.council ? req.session.council : "",
@@ -151,5 +149,6 @@ module.exports = (req) => {
   };
 
   // The getInitialProps function (a method of the 'wrapper' function) returns the initialProps object
+  console.log(initialProps);
   return initialProps;
 };

@@ -60,14 +60,9 @@ const editRouter = () => {
           }
           res.redirect("/new/la-established?edit=establishment-address-select");
 
-          // In the case that we are in editing mode and we are on the "la-established" page, then the next page will be "establishment-address-type".
+          // In the case that we are in editing mode and we are on the "la-established" page, then we finish address change and redirect back to /registration-summary.
         } else if (req.params.originator === "la-established") {
-          if (req.session.changePostcode) {
-            req.session.changePostcode = false;
-            res.redirect("/new/establishment-address-type");
-          } else {
-            res.redirect(`/new/establishment-address-type?edit=${req.query.edit}`);
-          }
+          res.redirect(`/new/registration-summary`);
         } else if (controllerResponse.redirectRoute === "/registration-summary") {
           res.redirect(`/new/registration-summary`);
         } else {
