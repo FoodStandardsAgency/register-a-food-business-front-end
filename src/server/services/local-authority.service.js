@@ -4,7 +4,8 @@
  */
 
 const {
-  getLocalAuthorityIDByPostcode
+  getLocalAuthorityIDByPostcode,
+  getLocalAuthorityIDByPoint
 } = require("../connectors/local-authority-lookup/local-authority-lookup-api.connector");
 const { logEmitter } = require("./logging.service");
 const { getCouncilDataByMapitID } = require("../connectors/config-db/config-db.connector");
@@ -112,5 +113,97 @@ const getLocalAuthorityByPostcode = async (postcode) => {
     return false;
   }
 };
+const getLocalAuthorityByPoint = async (grideasting, gridnorthing) => {
+  logEmitter.emit("functionCall", "local-authority.service", "getLocalAuthorityByPoint");
+  let localAuthorityMapitID, councilRecord;
 
-module.exports = { getLocalAuthorityByPostcode };
+  try {
+    // Get the mapIt ID based on the postcode
+    localAuthorityMapitID = await getLocalAuthorityIDByPoint(grideasting, gridnorthing);
+    if (!localAuthorityMapitID) {
+      logEmitter.emit(
+        "functionFail",
+        "local-authority.service",
+        "getLocalAuthorityByPoint",
+        `getLocalAuthorityIDByPoint(${grideasting},${gridnorthing}) failed`
+      );
+      return false;
+    }
+
+    // Get the LA from the mapIt ID
+    councilRecord = await getCouncilDataByMapitID(localAuthorityMapitID);
+    if (!councilRecord) {
+      logEmitter.emit(
+        "functionFail",
+        "local-authority.service",
+        "getLocalAuthorityByPoint",
+        `getCouncilDataByMapitID(${localAuthorityMapitID}) failed`
+      );
+      return false;
+    }
+    if (
+      councilRecord &&
+      !councilRecord.mapit_generation &&
+      (!councilRecord.local_council_url ||
+        (councilRecord.local_council_url && councilRecord.local_council_url === ""))
+    ) {
+      logEmitter.emit(
+        "functionFail",
+        "local-authority.service",
+        "getLocalAuthorityByPoint",
+        `getCouncilDataByMapitID(${localAuthorityMapitID}) councilRecord.local_council_url is empty`
+      );
+      return false;
+    }
+
+    // Check if a different generation of LA is required
+    if (councilRecord.mapit_generation) {
+      // Obtain the mapIt ID based on the point and generation ID (SECOND REQUEST)
+      localAuthorityMapitID = await getLocalAuthorityIDByPoint(
+        grideasting,
+        gridnorthing,
+        councilRecord.mapit_generation
+      );
+      if (!localAuthorityMapitID) {
+        logEmitter.emit(
+          "functionFail",
+          "local-authority.service",
+          "getLocalAuthorityByPoint",
+          `getLocalAuthorityIDByPoint(${postcode}) failed`
+        );
+        return false;
+      }
+      // Get the LA from the mapIt ID (SECOND REQUEST)
+      councilRecord = await getCouncilDataByMapitID(localAuthorityMapitID);
+      if (!councilRecord) {
+        logEmitter.emit(
+          "functionFail",
+          "local-authority.service",
+          "getLocalAuthorityByPoint",
+          `getCouncilDataByMapitID(${localAuthorityMapitID}) failed`
+        );
+        return false;
+      }
+      if (
+        councilRecord &&
+        (!councilRecord.local_council_url ||
+          (councilRecord.local_council_url && councilRecord.local_council_url === ""))
+      ) {
+        logEmitter.emit(
+          "functionFail",
+          "local-authority.service",
+          "getLocalAuthorityByPoint",
+          `getCouncilDataByMapitID(${localAuthorityMapitID}) councilRecord.local_council_url is empty`
+        );
+        return false;
+      }
+    }
+    logEmitter.emit("functionSuccess", "local-authority.service", "getLocalAuthorityByPoint");
+    return councilRecord;
+  } catch (error) {
+    logEmitter.emit("functionFail", "local-authority.service", "getLocalAuthorityByPoint", error);
+    return false;
+  }
+};
+
+module.exports = { getLocalAuthorityByPostcode, getLocalAuthorityByPoint };

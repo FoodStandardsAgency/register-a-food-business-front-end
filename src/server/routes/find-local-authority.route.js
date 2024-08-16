@@ -17,7 +17,8 @@ const findLocalAuthorityRouter = () => {
       const response = await findLocalAuthorityController(
         `/${req.params.originator}`,
         req.session.cumulativeFullAnswers,
-        req.body
+        req.body,
+        req.session.addressLookups.establishment_postcode_find
       );
       // If the local authority not onboarded and has a registration form URL, redirect to it instead of the normal path
       if (

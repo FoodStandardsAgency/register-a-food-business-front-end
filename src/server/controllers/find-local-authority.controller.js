@@ -2,7 +2,10 @@
  * @module controllers/find-local-authority
  */
 
-const { getLocalAuthorityByPostcode } = require("../services/local-authority.service");
+const {
+  getLocalAuthorityByPostcode,
+  getLocalAuthorityByPoint
+} = require("../services/local-authority.service");
 const { validate } = require("../services/validation.service");
 const { logEmitter } = require("../services/logging.service");
 
@@ -16,7 +19,12 @@ const { logEmitter } = require("../services/logging.service");
  *
  * @returns {object} Values for the router to store/update in the session and the page to redirect to.
  */
-const findLocalAuthorityController = async (currentPage, previousAnswers, newAnswers) => {
+const findLocalAuthorityController = async (
+  currentPage,
+  previousAnswers,
+  newAnswers,
+  establishmentPostcodeFind
+) => {
   const controllerResponse = {
     validatorErrors: {},
     redirectRoute: null,
@@ -28,7 +36,7 @@ const findLocalAuthorityController = async (currentPage, previousAnswers, newAns
     "find-local-authority.controller",
     "findLocalAuthorityController"
   );
-  let searchPostcodeFieldName = "";
+  let localAuthority;
   try {
     controllerResponse.cumulativeFullAnswers = Object.assign({}, previousAnswers, newAnswers);
 
@@ -49,8 +57,18 @@ const findLocalAuthorityController = async (currentPage, previousAnswers, newAns
       return controllerResponse;
     }
 
+    if (newAnswers.establishment_address_selected) {
+      const address = establishmentPostcodeFind[+newAnswers.establishment_address_selected];
+
+      if (address.grideasting && address.gridnorthing) {
+        localAuthority = await getLocalAuthorityByPoint(address.grideasting, address.gridnorthing);
+      }
+    }
+
     const searchPostcode = previousAnswers.establishment_postcode_find;
-    const localAuthority = await getLocalAuthorityByPostcode(searchPostcode);
+    if (!localAuthority) {
+      localAuthority = await getLocalAuthorityByPostcode(searchPostcode);
+    }
 
     controllerResponse.localAuthority = localAuthority;
 

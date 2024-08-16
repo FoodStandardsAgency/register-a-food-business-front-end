@@ -69,6 +69,66 @@ const getLocalAuthorityIDByPostcode = async (postcode, generation) => {
 };
 
 /**
+ * Fetches Local authority id from the local authority lookup API for the given grideasting and gridnorthing point
+ * @param {string} grideasting The easting to search by
+ * @param {string} gridnorthing The northing to search by
+ * @param {integer} generation The generayion number (optional)
+ * @returns {integer} Local authority id
+ */
+const getLocalAuthorityIDByPoint = async (grideasting, gridnorthing, generation) => {
+  logEmitter.emit(
+    "functionCallWith",
+    "local-authority-lookup-api.connector",
+    "getLocalAuthorityIDByPoint",
+    `${grideasting},${gridnorthing}`
+  );
+
+  let responseJSON;
+  let localAuthority;
+
+  responseJSON = await fetchUsingMapItPointApi(grideasting, gridnorthing, generation);
+
+  if (responseJSON && Object.keys(responseJSON).length > 0) {
+    // check if any object has one of this type 'MTD', 'DIS','UTA', 'CTY','LGD', 'LBO','COI' and return id
+    // DIS and CTY can be in the same response
+    const validTypes = ["MTD", "DIS", "UTA", "LGD", "LBO", "COI"];
+    for (const key in responseJSON) {
+      if (responseJSON.hasOwnProperty(key)) {
+        const element = responseJSON[key];
+        if (validTypes.includes(element.type)) {
+          localAuthority = element.id;
+          break;
+        }
+      }
+    }
+    if (localAuthority) {
+      logEmitter.emit(
+        "functionSuccess",
+        "local-authority-lookup-api.connector",
+        "getLocalAuthorityIDByPoint"
+      );
+      return localAuthority;
+    } else {
+      logEmitter.emit(
+        "functionFail",
+        "local-authority-lookup-api.connector",
+        "getLocalAuthorityIDByPoint",
+        "fetchUsingMapItApi response has no local authority"
+      );
+      return false;
+    }
+  } else {
+    logEmitter.emit(
+      "functionFail",
+      "local-authority-lookup-api.connector",
+      "getLocalAuthorityIDByPoint",
+      "fetchUsingMapItApi response is empty"
+    );
+    return false;
+  }
+};
+
+/**
  * Fetches local authority using MapIt service
  *
  * @param {string} postcode The postcode to search by
@@ -127,4 +187,68 @@ const fetchUsingMapItApi = async (postcode, generation) => {
   }
 };
 
-module.exports = { getLocalAuthorityIDByPostcode, fetchUsingMapItApi };
+/**
+ * Fetches local authority using MapIt Point service
+ * @param {string} grideasting The easting to search by
+ * @param {string} gridnorthing The northing to search by
+ * @param {integer} generation The generayion number (optional)
+ * @returns {object} API response object
+ */
+const fetchUsingMapItPointApi = async (grideasting, gridnorthing, generation) => {
+  try {
+    logEmitter.emit(
+      "functionCallWith",
+      "local-authority-lookup-api.connector",
+      "fetchUsingMapItPointApi",
+      `${grideasting},${gridnorthing}`
+    );
+
+    let mapitGeneration = generation ? `&generation=${generation}` : "";
+
+    const options = { method: "GET" };
+    if (process.env.HTTP_PROXY) {
+      options.httpsAgent = new HttpsProxyAgent(process.env.HTTP_PROXY);
+      // https://github.com/axios/axios/issues/2072#issuecomment-609650888
+      options.proxy = false;
+    }
+    const response = await axios(
+      `${MAPIT_API}/point/27700/${grideasting},${gridnorthing}?api_key=${MAPIT_API_KEY}${mapitGeneration}`,
+      options
+    );
+
+    if (response.status === 200) {
+      logEmitter.emit("info", "MapIt LA response" + response.data);
+      if (!response.data || Object.keys(response.data).length === 0) {
+        logEmitter.emit("warning", "MapIt LA lookup failure"); // Used for Azure alerts
+        throw new Error("Response data is empty");
+      }
+      logEmitter.emit("info", "MapIt LA lookup success"); // Used for Azure alerts
+      return response.data;
+    } else {
+      response.status == 404 || logEmitter.emit("warning", "MapIt LA lookup failure"); // Used for Azure alerts
+      logEmitter.emit(
+        "functionFail",
+        "local-authority-lookup-api.connector",
+        "fetchUsingMapItPointApi",
+        `MapIt API responded with non-200 status: ${response.status} - ${response.statusText}`
+      );
+      return false;
+    }
+  } catch (err) {
+    logEmitter.emit(
+      "functionFail",
+      "local-authority-lookup-api.connector",
+      "fetchUsingMapItPointApi",
+      err
+    );
+    logEmitter.emit("warning", "MapIt LA lookup failure"); // Used for Azure alerts
+    return false;
+  }
+};
+
+module.exports = {
+  getLocalAuthorityIDByPostcode,
+  getLocalAuthorityIDByPoint,
+  fetchUsingMapItApi,
+  fetchUsingMapItPointApi
+};
