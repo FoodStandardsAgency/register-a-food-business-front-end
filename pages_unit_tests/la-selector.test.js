@@ -1,3 +1,9 @@
+describe("Sanity check", () => {
+  it("should pass if 1 equals 1", () => {
+    expect(1).toBe(1);
+  });
+});
+
 // /**
 //  * @jest-environment jsdom
 //  */
