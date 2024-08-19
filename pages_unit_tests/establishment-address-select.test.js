@@ -80,7 +80,7 @@ describe("establishment-address-select", () => {
         addressLookups: exampleAddressLookup
       });
       const $postCodeEnteredlink = $(".govuk-summary-list__actions a").get(0).attribs.href.trim();
-      expect($postCodeEnteredlink).toEqual("/new/establishment-address?edit=post-code");
+      expect($postCodeEnteredlink).toEqual("/new/establishment-address");
     });
 
     it("renders correct href link when 'I can't find my address in the list' is truthy and switch off props.editModeFirstPage", async () => {
