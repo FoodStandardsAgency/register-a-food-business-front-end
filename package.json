@@ -1,6 +1,6 @@
 {
   "name": "register_a_food_business_front_end",
-  "version": "16.0.1",
+  "version": "16.1.0",
   "engines": {
     "node": ">=18.16.0"
   },
