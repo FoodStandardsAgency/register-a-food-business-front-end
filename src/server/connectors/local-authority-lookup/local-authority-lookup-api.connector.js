@@ -89,8 +89,7 @@ const getLocalAuthorityIDByPoint = async (grideasting, gridnorthing, generation)
   responseJSON = await fetchUsingMapItPointApi(grideasting, gridnorthing, generation);
 
   if (responseJSON && Object.keys(responseJSON).length > 0) {
-    // check if any object has one of this type 'MTD', 'DIS','UTA', 'CTY','LGD', 'LBO','COI' and return id
-    // DIS and CTY can be in the same response
+    // check if any object has one of the relevent area types 'MTD', 'DIS', 'UTA', 'LGD', 'LBO', 'COI' and return id
     const validTypes = ["MTD", "DIS", "UTA", "LGD", "LBO", "COI"];
     for (const key in responseJSON) {
       if (responseJSON.hasOwnProperty(key)) {
