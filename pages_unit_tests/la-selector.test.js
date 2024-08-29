@@ -15,6 +15,7 @@ const props = {
       local_council: "Cardiff"
     }
   ],
+  fullCurrentPage: "",
   language: "en"
 };
 
@@ -35,7 +36,7 @@ describe("la-selector", () => {
   it("shows the correct back link after wrong LA button is pressed on la-established page", async () => {
     const props = {
       currentPage: "/la-selector",
-      fullCurrentPage: "/la-selector?back=/wrong-la"
+      fullCurrentPage: "/la-selector?back=wrong-la"
     };
     const $ = renderPage("la-selector", props);
 
@@ -55,7 +56,8 @@ describe("la-selector", () => {
         language: "cy",
         validatorErrors: {
           local_authority: "test error"
-        }
+        },
+        fullCurrentPage: ""
       });
 
       const $pageErrors = getPageDetails.getErrorSummaryLinks($);

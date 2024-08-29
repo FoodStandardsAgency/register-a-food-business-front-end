@@ -2,6 +2,7 @@
 {% from "../node_modules/govuk-frontend/dist/govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "../node_modules/govuk-frontend/dist/govuk/components/details/macro.njk" import govukDetails %}
 {% from "../node_modules/govuk-frontend/dist/govuk/components/input/macro.njk" import govukInput %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/date-input/macro.njk" import govukDateInput %}
 {% from "../components/PostForm.njk" import postForm %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% extends "layout.njk" %}
@@ -10,10 +11,10 @@
     <div class="govuk-grid-column-two-thirds">
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
-      {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+      {% if props.cumulativeFullAnswers.registration_role === props.enums.operatorType.PARTNERSHIP.key %}
         {% call govukFieldset({
       legend: {
-        text: __("Partnership contact details", props.language),
+        text: __("Partnership details", props.language),
         classes: "govuk-fieldset__legend--l",
         isPageHeading: true
               }

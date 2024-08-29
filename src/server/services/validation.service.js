@@ -22,6 +22,7 @@ const errorMessages = {
   operator_type: "You must select an operator type before continuing",
   operator_first_name: "Enter a valid first name",
   operator_last_name: "Enter a valid last name",
+  operator_birthdate: "Enter a valid birthdate",
   operator_town: "Enter a valid town name",
   operator_address_line_1: "Enter a valid first line of address",
   operator_address_line_2: "Enter a valid second line of address",
@@ -31,7 +32,10 @@ const errorMessages = {
   establishment_trading_name: "Enter a valid establishment trading name",
   operator_primary_number: "Enter a valid operator phone number",
   operator_secondary_number: "Enter a valid operator phone number",
+  main_partner_primary_number: "Enter a valid operator phone number",
+  main_partner_secondary_number: "Enter a valid operator phone number",
   operator_email: "Enter a valid operator email address",
+  main_partner_email: "Enter a valid operator email address",
   contact_representative_name: "Enter a valid representative name",
   contact_representative_role: "Enter a valid representative role",
   contact_representative_number: "Enter a valid representative phone number",
@@ -53,9 +57,10 @@ const errorMessages = {
   establishment_postcode_find: "Not a valid postcode",
   establishment_opening_status: "You must select a trading status before continuing",
   establishment_opening_date: "Enter a valid opening date",
-  customer_type: "You must select a customer type before continuing",
-  import_export_activities: "You must select a valid import or export option(s) before continuing",
   business_type: "You must select a business type before continuing",
+  business_scale: "Please select all options that apply to your business",
+  food_type: "Please select all options that apply to your business",
+  processing_activities: "Please select all options that apply to your business",
   water_supply: "You must select a water supply type before continuing",
   business_other_details:
     "Your message is too long. Please shorten it to less than 1500 characters",
@@ -114,6 +119,13 @@ const validate = (page, answers) => {
           answers.year
         );
       }
+      if (page === "/operator-name" || page === "/partnership-contact-details") {
+        answersToValidate.operator_birthdate = combineDate(
+          answers.operator_birthdate_day,
+          answers.operator_birthdate_month,
+          answers.operator_birthdate_year
+        );
+      }
 
       if (page === "/business-type") {
         if (answers.business_type) {
@@ -134,14 +146,6 @@ const validate = (page, answers) => {
           Object.keys(answersToValidate).includes(error.property.split(".")[1])
         );
       }
-
-      if (validatorResult.schema.properties.directly_import && validatorResult.errors.length > 0) {
-        result.errors.import_export_activities = errorMessages.import_export_activities;
-      }
-      if (validatorResult.schema.properties.supply_other && validatorResult.errors.length > 0) {
-        result.errors.customer_type = errorMessages.customer_type;
-      }
-
       if (
         validatorResult.schema.properties.opening_day_monday &&
         validatorResult.errors.length > 0

@@ -7,7 +7,7 @@ const nunjucks = require("nunjucks");
 var sassMiddleware = require("node-sass-middleware");
 var path = require("path");
 const getRandomValues = require("get-random-values");
-const dateFilter = require("./filters/nunjucks-moment-date-filter.js");
+const { initialiseNunjucksEnvironment } = require("./nunjucksFunctions");
 
 if (
   "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
@@ -155,26 +155,7 @@ const env = nunjucks.configure(
     express: app //integrate nunjucks into express
   }
 );
-env.addFilter("date", dateFilter);
-env.addGlobal("__", (phrase, locale) => {
-  return i18n.__({ phrase, locale });
-});
-env.addFilter("addressSelectItems", (findResults) =>
-  findResults.map((address, index) => ({
-    value: index,
-    text: address.summaryline
-  }))
-);
-env.addFilter("selectValidationErrors", (validationErrors, language) =>
-  Object.entries(validationErrors).map(([k, v]) => ({
-    text: i18n.__({ phrase: v, locale: language }),
-    href: "#" + k
-  }))
-);
-env.addGlobal("mergeObjects", (orig, additionalProps) => ({
-  ...orig,
-  ...additionalProps
-}));
+initialiseNunjucksEnvironment(env, i18n);
 
 const setLanguage = function (req, res, next) {
   if (req.body && req.body.language) {

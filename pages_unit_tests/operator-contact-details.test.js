@@ -3,6 +3,7 @@
  */
 
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
+const { operatorTypeEnum } = require("@slice-and-dice/register-a-food-business-validation");
 
 const props = {
   validatorErrors: {},
@@ -11,6 +12,9 @@ const props = {
     operator_primary_number: "12345678978",
     operator_secondary_number: "999999999123",
     operator_email: "test123@123.com"
+  },
+  enums: {
+    operatorType: operatorTypeEnum
   },
   council: "cardiff",
   language: "en"
@@ -26,7 +30,7 @@ describe("operator-contact-details", () => {
 
   it("renders without crashing", () => {
     const $mainHeading = getPageDetails.getMainHeading($);
-    expect($mainHeading.text().trim()).toEqual("Partnership contact details");
+    expect($mainHeading.text().trim()).toEqual("Partnership details");
   });
 
   it("renders correct inset text", () => {

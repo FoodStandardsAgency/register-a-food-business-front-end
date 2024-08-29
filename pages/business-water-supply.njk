@@ -30,21 +30,21 @@
             [
                 {
                 id: "water_supply_public",
-                value: "PUBLIC",
+                value: props.enums.waterSupply.PUBLIC.key,
                 text: __("Mains water supply (most common supply)", props.language),
-                checked: props.cumulativeFullAnswers.water_supply === "PUBLIC"
+                checked: props.cumulativeFullAnswers.water_supply === props.enums.waterSupply.PUBLIC.key
                 },
                 {
                 id: "water_supply_private",
-                value: "PRIVATE",
+                value: props.enums.waterSupply.PRIVATE.key,
                 text: __("Private water supply", props.language),
-                checked: props.cumulativeFullAnswers.water_supply=== "PRIVATE"
+                checked: props.cumulativeFullAnswers.water_supply === props.enums.waterSupply.PRIVATE.key
                 },
                 {
                 id: "water_supply_both",
-                value: "BOTH",
+                value: props.enums.waterSupply.BOTH.key,
                 text: __("Both mains and private water supplies", props.language),
-                checked: props.cumulativeFullAnswers.water_supply === "BOTH"
+                checked: props.cumulativeFullAnswers.water_supply === props.enums.waterSupply.BOTH.key
                 }
             ],
             errorMessage: {

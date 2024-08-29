@@ -6,6 +6,7 @@ jest.mock("express", () => ({
 }));
 
 jest.mock("../controllers/find-local-authority.controller");
+const { fn } = require("moment");
 const findLocalAuthorityController = require("../controllers/find-local-authority.controller");
 const { findLocalAuthorityRouter } = require("./find-local-authority.route.js");
 
@@ -24,6 +25,9 @@ describe("findLocalAuthority route: ", () => {
       const req = {
         session: {
           cumulativeFullAnswers: {},
+          addressLookups: {
+            establishment_postcode_find: []
+          },
           save: (cb) => {
             cb();
           }
@@ -36,6 +40,7 @@ describe("findLocalAuthority route: ", () => {
           referer: ""
         }
       };
+      const next = jest.fn();
       const res = {
         redirect: jest.fn()
       };
@@ -52,7 +57,7 @@ describe("findLocalAuthority route: ", () => {
           redirectRoute: "/another-page"
         }));
         handler = router.post.mock.calls[0][1];
-        handler(req, res);
+        handler(req, res, next);
       });
       it("Should redirect to the redirectRoute page", () => {
         expect(res.redirect).toBeCalledWith("/new/another-page");
@@ -82,6 +87,9 @@ describe("findLocalAuthority route: ", () => {
       const req = {
         session: {
           cumulativeFullAnswers: {},
+          addressLookups: {
+            establishment_postcode_find: []
+          },
           save: (cb) => {
             cb();
           }
@@ -94,6 +102,7 @@ describe("findLocalAuthority route: ", () => {
           referer: ""
         }
       };
+      const next = jest.fn();
       const res = {
         redirect: jest.fn()
       };
@@ -111,7 +120,7 @@ describe("findLocalAuthority route: ", () => {
           redirectRoute: "/another-page"
         }));
         handler = router.post.mock.calls[0][1];
-        handler(req, res);
+        handler(req, res, next);
       });
       it("Should call redirect", () => {
         expect(res.redirect).toBeCalledWith("https://www.test.com");
@@ -124,6 +133,9 @@ describe("findLocalAuthority route: ", () => {
       const req = {
         session: {
           cumulativeFullAnswers: {},
+          addressLookups: {
+            establishment_postcode_find: []
+          },
           save: (cb) => {
             cb("session save error");
           }
@@ -167,6 +179,9 @@ describe("findLocalAuthority route: ", () => {
         handler = router.post.mock.calls[0][1];
         req = {
           session: {
+            addressLookups: {
+              establishment_postcode_find: []
+            },
             cumulativeFullAnswers: {},
             localAuthority: "Cardiff"
           },

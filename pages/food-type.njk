@@ -1,0 +1,82 @@
+{% from "../node_modules/govuk-frontend/dist/govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/CheckboxScript.njk" import checkboxScript %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% extends "layout.njk" %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {{ govukCheckboxes({
+      idPrefix: "food_type",
+      name: "food_type",
+      fieldset: {
+        legend: {
+          text: __("What type of food do you intend to handle?", props.language),
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+                  "hint": {
+            "text": __("Select all that apply", props.language)
+            },
+items: [
+            {
+            value: props.enums.foodType.RAW_MEAT_FISH_SHELLFISH.key,
+            id: props.enums.foodType.RAW_MEAT_FISH_SHELLFISH.key,
+            name: "food_type",
+            text: props.enums.foodType.RAW_MEAT_FISH_SHELLFISH.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.RAW_MEAT_FISH_SHELLFISH.key)
+            },
+            {
+            value: props.enums.foodType.READY_TO_EAT.key,
+            id: props.enums.foodType.READY_TO_EAT.key,
+            name: "food_type",
+            text: props.enums.foodType.READY_TO_EAT.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.READY_TO_EAT.key)
+            },
+            {
+            value: props.enums.foodType.COOKED_OR_REHEATED.key,
+            id: props.enums.foodType.COOKED_OR_REHEATED.key,
+            name: "food_type",
+            text: props.enums.foodType.COOKED_OR_REHEATED.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.COOKED_OR_REHEATED.key)
+            },
+            {
+            value: props.enums.foodType.IMPORTED.key,
+            id: props.enums.foodType.IMPORTED.key,
+            name: "food_type",
+            text: props.enums.foodType.IMPORTED.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.IMPORTED.key),
+            hint: {
+            text: __("For businesses in Northern Ireland, only select if you move food from Great Britain (GB) or from outside of the European Union (EU) into Northern Ireland", props.language)
+            }
+            },
+            {
+            value: props.enums.foodType.NONE.key,
+            id: props.enums.foodType.NONE.key,
+            name: "food_type",
+            text: props.enums.foodType.NONE.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.NONE.key)
+            },
+            {
+            value: props.enums.foodType.DONT_KNOW.key,
+            id: props.enums.foodType.DONT_KNOW.key,
+            name: "food_type",
+            text: props.enums.foodType.DONT_KNOW.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.food_type, props.enums.foodType.DONT_KNOW.key)
+            }
+        ],
+      errorMessage: {
+            text: __(props.validatorErrors.food_type, props.language)} if props.validatorErrors.food_type
+          }) }}
+      {{ govukButton({
+        text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
+      }) }}
+      {%- endcall %}
+    </div>
+  </div>
+   {{ checkboxScript() }}
+{% endblock %}

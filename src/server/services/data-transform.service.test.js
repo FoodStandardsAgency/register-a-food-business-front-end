@@ -10,10 +10,11 @@ const {
 const {
   operatorTypeEnum,
   establishmentTypeEnum,
-  customerTypeEnum,
-  importExportEnum,
   waterSupplyEnum,
-  businessTypeEnum
+  businessTypeEnum,
+  businessScaleEnum,
+  foodTypeEnum,
+  processingActivitiesEnum
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 describe("data-transform.service trimAnswers()", () => {
@@ -134,6 +135,36 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         });
       });
 
+      describe("given the operator_type is Partnership and main partner contact details are passed", () => {
+        const partnershipContactDetails = {
+          registration_role: "PARTNERSHIP",
+          main_partner_primary_number: "example",
+          main_partner_secondary_number: "example",
+          main_partner_email: "example"
+        };
+
+        it("the result contains the main partner contact details transformed into operator contact details", () => {
+          result = transformAnswersForSubmit(
+            partnershipContactDetails,
+            testLanguage,
+            testAddressLookups,
+            testLcUrl
+          );
+          expect(result.registration.establishment.operator.operator_type).toEqual(
+            operatorTypeEnum[partnershipContactDetails.registration_role].key
+          );
+          expect(result.registration.establishment.operator.operator_primary_number).toEqual(
+            partnershipContactDetails.main_partner_primary_number
+          );
+          expect(result.registration.establishment.operator.operator_secondary_number).toEqual(
+            partnershipContactDetails.main_partner_secondary_number
+          );
+          expect(result.registration.establishment.operator.operator_email).toEqual(
+            partnershipContactDetails.main_partner_email
+          );
+        });
+      });
+
       describe("given that registration_role is Representative but operator_type is not passed", () => {
         const data = {
           registration_role: "Representative",
@@ -167,212 +198,6 @@ describe("data-transform.service transformAnswersForSubmit()", () => {
         it("should assign an empty string to the result", () => {
           result = transformAnswersForSubmit(answers, testLanguage, testAddressLookups, testLcUrl);
           expect(result.registration.establishment.activities.business_type).toBe("");
-        });
-      });
-    });
-
-    describe("customer_type", () => {
-      describe("given supply_other and supply_directly are true", () => {
-        const supplyBoth = {
-          supply_other: true,
-          supply_directly: true
-        };
-        it("should return customerTypeEnum key: BOTH", () => {
-          result = transformAnswersForSubmit(
-            supplyBoth,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(result.registration.establishment.activities.customer_type).toBe(
-            customerTypeEnum.BOTH.key
-          );
-        });
-      });
-
-      describe("given only supply_other is true", () => {
-        const supplyDirectlyOnly = {
-          supply_other: true
-        };
-        it("should return customerTypeEnum key: OTHER_BUSINESSES", () => {
-          result = transformAnswersForSubmit(
-            supplyDirectlyOnly,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(result.registration.establishment.activities.customer_type).toBe(
-            customerTypeEnum.OTHER_BUSINESSES.key
-          );
-        });
-      });
-
-      describe("given only supply_directly is true", () => {
-        const supplyDirectlyOnly = {
-          supply_directly: true
-        };
-
-        it("should return customerTypeEnum key: END_CONSUMER", () => {
-          result = transformAnswersForSubmit(
-            supplyDirectlyOnly,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(result.registration.establishment.activities.customer_type).toBe(
-            customerTypeEnum.END_CONSUMER.key
-          );
-        });
-      });
-
-      describe("given no customer_type is supplied", () => {
-        const noCustomerType = {};
-        it("should return customer_type: null", () => {
-          result = transformAnswersForSubmit(
-            noCustomerType,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(result.registration.establishment.activities.customer_type).toBe(null);
-        });
-      });
-    });
-
-    describe("import_export_activities", () => {
-      let result;
-
-      describe("given directly_import, directly_export and no_import_export are true", () => {
-        const cumulativeFullAnswers = {
-          directly_import: true,
-          directly_export: true,
-          no_import_export: true
-        };
-        it("should set import_export_activities to the importExportEnum key: BOTH", () => {
-          result = transformAnswersForSubmit(
-            cumulativeFullAnswers,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(result.registration.establishment.activities.import_export_activities).toBe(
-            importExportEnum.BOTH.key
-          );
-        });
-      });
-      describe("given directly_import and directly_export are true", () => {
-        const cumulativeFullAnswers = {
-          directly_import: true,
-          directly_export: true
-        };
-        it("should set import_export_activities to the importExportEnum key: BOTH", () => {
-          result = transformAnswersForSubmit(
-            cumulativeFullAnswers,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(result.registration.establishment.activities.import_export_activities).toBe(
-            importExportEnum.BOTH.key
-          );
-        });
-      });
-      describe("given directly_import and no_import_export are true", () => {
-        const cumulativeFullAnswers = {
-          directly_import: true,
-          no_import_export: true
-        };
-        it("should set import_export_activities to the importExportEnum key: IMPORT", () => {
-          result = transformAnswersForSubmit(
-            cumulativeFullAnswers,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(result.registration.establishment.activities.import_export_activities).toBe(
-            importExportEnum.IMPORT.key
-          );
-        });
-      });
-      describe("given directly_export and no_import_export are true", () => {
-        const cumulativeFullAnswers = {
-          directly_export: true,
-          no_import_export: true
-        };
-        it("should set import_export_activities to the importExportEnum key: EXPORT", () => {
-          result = transformAnswersForSubmit(
-            cumulativeFullAnswers,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(result.registration.establishment.activities.import_export_activities).toBe(
-            importExportEnum.EXPORT.key
-          );
-        });
-      });
-      describe("given only directly_export is true", () => {
-        const cumulativeFullAnswers = {
-          directly_export: true
-        };
-        it("should set import_export_activities to the importExportEnum key: EXPORT", () => {
-          result = transformAnswersForSubmit(
-            cumulativeFullAnswers,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(result.registration.establishment.activities.import_export_activities).toBe(
-            importExportEnum.EXPORT.key
-          );
-        });
-      });
-      describe("given only directly_import is true", () => {
-        const cumulativeFullAnswers = {
-          directly_import: true
-        };
-        it("should set import_export_activities to the importExportEnum key: IMPORT", () => {
-          result = transformAnswersForSubmit(
-            cumulativeFullAnswers,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(result.registration.establishment.activities.import_export_activities).toBe(
-            importExportEnum.IMPORT.key
-          );
-        });
-      });
-      describe("given only no_import_export is true", () => {
-        const cumulativeFullAnswers = {
-          no_import_export: true
-        };
-        it("should set import_export_activities to the importExportEnum key: NONE", () => {
-          result = transformAnswersForSubmit(
-            cumulativeFullAnswers,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(result.registration.establishment.activities.import_export_activities).toBe(
-            importExportEnum.NONE.key
-          );
-        });
-      });
-      describe("given all import export options are false", () => {
-        const cumulativeFullAnswers = {
-          directly_import: false,
-          directly_export: false,
-          no_import_export: false
-        };
-        it("should return a import_export_activities value of null", () => {
-          result = transformAnswersForSubmit(
-            cumulativeFullAnswers,
-            testLanguage,
-            testAddressLookups,
-            testLcUrl
-          );
-          expect(result.registration.establishment.activities.import_export_activities).toBe(null);
         });
       });
     });
@@ -1178,7 +1003,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         it("the transformed data contains a field called operator_type that equals the passed registration_role enum value", () => {
           result = transformAnswersForSummary(registrationRoleOnly);
           expect(result.operator_type).toEqual(
-            operatorTypeEnum[registrationRoleOnly.registration_role].value.en
+            operatorTypeEnum[registrationRoleOnly.registration_role].value
           );
         });
 
@@ -1198,7 +1023,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         it("the result contains a field called operator_type that equals the operatorTypeEnum value using the passed operator_type as the key", () => {
           result = transformAnswersForSummary(registrationRoleAndOperatorType);
           expect(result.operator_type).toEqual(
-            operatorTypeEnum[registrationRoleAndOperatorType.operator_type].value.en
+            operatorTypeEnum[registrationRoleAndOperatorType.operator_type].value
           );
         });
 
@@ -1214,8 +1039,8 @@ describe("data-transform.service transformAnswersForSummary()", () => {
 
             result = transformAnswersForSummary(data);
 
-            expect(result.operator_type).toBe(operatorTypeEnum[operatorType].value.en);
-            expect(result.operator_type).toContain("(registered by a representative)");
+            expect(result.operator_type).toBe(operatorTypeEnum[operatorType].value);
+            expect(result.operator_type["en"]).toContain("(registered by a representative)");
           });
         });
       });
@@ -1238,7 +1063,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
       };
       it("should assign the business_type enum value to the result only", () => {
         result = transformAnswersForSummary(answers);
-        expect(result.business_type).toBe(businessTypeEnum["030"].value.en);
+        expect(result.business_type).toBe(businessTypeEnum["030"].value);
       });
 
       describe("given that business_type is not a defined enum", () => {
@@ -1248,132 +1073,6 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         it("should assign an empty string to the result", () => {
           result = transformAnswersForSummary(answers);
           expect(result.business_type).toBe("");
-        });
-      });
-    });
-
-    describe("customer_type", () => {
-      describe("given supply_other and supply_directly are true", () => {
-        const supplyBoth = {
-          supply_other: true,
-          supply_directly: true
-        };
-        it("should return customerTypeEnum value: End consumer and other businesses", () => {
-          result = transformAnswersForSummary(supplyBoth);
-          expect(result.customer_type).toBe(customerTypeEnum.BOTH.value.en);
-        });
-      });
-
-      describe("given only supply_other is true", () => {
-        const supplyDirectlyOnly = {
-          supply_other: true
-        };
-        it("should return customerTypeEnum key: Other businesses", () => {
-          result = transformAnswersForSummary(supplyDirectlyOnly);
-          expect(result.customer_type).toBe(customerTypeEnum.OTHER_BUSINESSES.value.en);
-        });
-      });
-
-      describe("given only supply_directly is true", () => {
-        const supplyDirectlyOnly = {
-          supply_directly: true
-        };
-
-        it("should return customerTypeEnum key: End consumer", () => {
-          result = transformAnswersForSummary(supplyDirectlyOnly);
-          expect(result.customer_type).toBe(customerTypeEnum.END_CONSUMER.value.en);
-        });
-      });
-
-      describe("given no customer_type is supplied", () => {
-        const noCustomerType = {};
-        it("should return customer_type: null", () => {
-          result = transformAnswersForSummary(noCustomerType);
-          expect(result.customer_type).toBe(null);
-        });
-      });
-    });
-
-    describe("import_export_activities", () => {
-      let result;
-
-      describe("given directly_import, directly_export and no_import_export are true", () => {
-        const cumulativeFullAnswers = {
-          directly_import: true,
-          directly_export: true,
-          no_import_export: true
-        };
-        it("should set import_export_activities to the importExportEnum value: Directly import and export", () => {
-          result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(importExportEnum.BOTH.value.en);
-        });
-      });
-      describe("given directly_import and directly_export are true", () => {
-        const cumulativeFullAnswers = {
-          directly_import: true,
-          directly_export: true
-        };
-        it("should set import_export_activities to the importExportEnum key: Directly import and export", () => {
-          result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(importExportEnum.BOTH.value.en);
-        });
-      });
-      describe("given directly_import and no_import_export are true", () => {
-        const cumulativeFullAnswers = {
-          directly_import: true,
-          no_import_export: true
-        };
-        it("should set import_export_activities to the importExportEnum key: Directly import", () => {
-          result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(importExportEnum.IMPORT.value.en);
-        });
-      });
-      describe("given directly_export and no_import_export are true", () => {
-        const cumulativeFullAnswers = {
-          directly_export: true,
-          no_import_export: true
-        };
-        it("should set import_export_activities to the importExportEnum key: Directly export", () => {
-          result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(importExportEnum.EXPORT.value.en);
-        });
-      });
-      describe("given only directly_export is true", () => {
-        const cumulativeFullAnswers = {
-          directly_export: true
-        };
-        it("should set import_export_activities to the importExportEnum key: Directly export", () => {
-          result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(importExportEnum.EXPORT.value.en);
-        });
-      });
-      describe("given only directly_import is true", () => {
-        const cumulativeFullAnswers = {
-          directly_import: true
-        };
-        it("should set import_export_activities to the importExportEnum key: Directly import", () => {
-          result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(importExportEnum.IMPORT.value.en);
-        });
-      });
-      describe("given only no_import_export is true", () => {
-        const cumulativeFullAnswers = {
-          no_import_export: true
-        };
-        it("should set import_export_activities to the importExportEnum key: None", () => {
-          result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(importExportEnum.NONE.value.en);
-        });
-      });
-      describe("given all import export options are false", () => {
-        const cumulativeFullAnswers = {
-          directly_import: false,
-          directly_export: false,
-          no_import_export: false
-        };
-        it("should return a import_export_activities value of null", () => {
-          result = transformAnswersForSummary(cumulativeFullAnswers);
-          expect(result.import_export_activities).toBe(null);
         });
       });
     });
@@ -1467,7 +1166,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
         it("should return the establishmentTypeEnum value", () => {
           result = transformAnswersForSummary(establishmentType);
-          expect(result.establishment_type).toBe(establishmentTypeEnum.COMMERCIAL.value.en);
+          expect(result.establishment_type).toBe(establishmentTypeEnum.COMMERCIAL.value);
         });
       });
 
@@ -1487,7 +1186,7 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         };
         it("should return the waterSupplyEnum value", () => {
           result = transformAnswersForSummary(waterSupply);
-          expect(result.water_supply).toBe(waterSupplyEnum.PUBLIC.value.en);
+          expect(result.water_supply).toBe(waterSupplyEnum.PUBLIC.value);
         });
       });
 
@@ -1496,6 +1195,78 @@ describe("data-transform.service transformAnswersForSummary()", () => {
         it("should return null for water_supply", () => {
           result = transformAnswersForSummary(waterSupply);
           expect(result.water_supply).toBe(null);
+        });
+      });
+    });
+
+    describe("operator_birthdate", () => {
+      describe("operator_birthdate is defined", () => {
+        const birthDate = {
+          operator_birthdate_day: 1,
+          operator_birthdate_month: 2,
+          operator_birthdate_year: 2024
+        };
+        it("should return the operator birthdate value", () => {
+          result = transformAnswersForSummary(birthDate);
+          expect(result.operator_birthdate).toBe(
+            `${birthDate.operator_birthdate_year}-${birthDate.operator_birthdate_month}-${birthDate.operator_birthdate_day}`
+          );
+        });
+      });
+
+      describe("operator_birthdate is not defined", () => {
+        const birthDate = {};
+        it("should return undefined for operator_birthdate", () => {
+          result = transformAnswersForSummary(birthDate);
+          expect(result.operator_birthdate).toBe(undefined);
+        });
+      });
+    });
+
+    describe("business_scale", () => {
+      describe("business_scale is defined", () => {
+        const businessScale = {
+          business_scale: [businessScaleEnum.NATIONAL.key, businessScaleEnum.HEALTHCARE.key]
+        };
+        it("should return the businessScaleEnum value", () => {
+          result = transformAnswersForSummary(businessScale);
+          expect(result.business_scale).toEqual([
+            businessScaleEnum.NATIONAL.value,
+            businessScaleEnum.HEALTHCARE.value
+          ]);
+        });
+      });
+    });
+
+    describe("food_type", () => {
+      describe("food_type is defined", () => {
+        const foodType = {
+          food_type: [foodTypeEnum.READY_TO_EAT.key, foodTypeEnum.COOKED_OR_REHEATED.key]
+        };
+        it("should return the foodTypeEnum value", () => {
+          result = transformAnswersForSummary(foodType);
+          expect(result.food_type).toEqual([
+            foodTypeEnum.READY_TO_EAT.value,
+            foodTypeEnum.COOKED_OR_REHEATED.value
+          ]);
+        });
+      });
+    });
+
+    describe("processing_activities", () => {
+      describe("processing_activities is defined", () => {
+        const processingActivities = {
+          processing_activities: [
+            processingActivitiesEnum.PASTEURISING.key,
+            processingActivitiesEnum.VACUUM_PACKING.key
+          ]
+        };
+        it("should return the processingActivitiesEnum value", () => {
+          result = transformAnswersForSummary(processingActivities);
+          expect(result.processing_activities).toEqual([
+            processingActivitiesEnum.PASTEURISING.value,
+            processingActivitiesEnum.VACUUM_PACKING.value
+          ]);
         });
       });
     });

@@ -52,12 +52,18 @@ const findAddressController = async (currentPage, previousAnswers, newAnswers) =
 
     controllerResponse.addressLookups[searchPostcodeFieldName] = addressesForPostcode;
 
+    let addressType = currentPage;
+    if (currentPage == "/establishment-address-type") {
+      // find-address for establishments is triggered by the establishment-address-type page
+      addressType = "/establishment-address";
+    }
+
     if (addressesForPostcode.length > 0) {
-      controllerResponse.switches[`${currentPage}-none-found`] = false;
-      controllerResponse.redirectRoute = `${currentPage}-select`;
+      controllerResponse.switches[`${addressType}-none-found`] = false;
+      controllerResponse.redirectRoute = `${addressType}-select`;
     } else {
-      controllerResponse.switches[`${currentPage}-none-found`] = true;
-      controllerResponse.redirectRoute = `${currentPage}-manual`;
+      controllerResponse.switches[`${addressType}-none-found`] = true;
+      controllerResponse.redirectRoute = `${addressType}-manual`;
     }
     logEmitter.emit(
       "functionSuccessWith",

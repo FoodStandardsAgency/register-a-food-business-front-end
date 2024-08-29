@@ -7,17 +7,20 @@ const { logEmitter } = require("./logging.service");
 const {
   operatorTypeEnum,
   establishmentTypeEnum,
-  customerTypeEnum,
-  importExportEnum,
   waterSupplyEnum,
-  businessTypeEnum
+  businessTypeEnum,
+  businessScaleEnum,
+  foodTypeEnum,
+  processingActivitiesEnum
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const trimAnswers = (cumulativeFullAnswers) => {
   const trimmedAnswers = JSON.parse(JSON.stringify(cumulativeFullAnswers));
 
   for (let answer in trimmedAnswers) {
-    trimmedAnswers[answer] = trimmedAnswers[answer].trim();
+    if (typeof trimmedAnswers[answer] === "string") {
+      trimmedAnswers[answer] = trimmedAnswers[answer].trim();
+    }
   }
   return trimmedAnswers;
 };
@@ -46,6 +49,7 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
   const operator_keys = [
     "operator_first_name",
     "operator_last_name",
+    "operator_birthdate",
     "operator_address_line_1",
     "operator_address_line_2",
     "operator_address_line_3",
@@ -79,10 +83,11 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
     "establishment_uprn"
   ];
   const activities_keys = [
-    "customer_type",
+    "business_scale",
+    "food_type",
+    "processing_activities",
     "business_type",
     "business_type_search_term",
-    "import_export_activities",
     "opening_days_irregular",
     "water_supply",
     "business_other_details",
@@ -132,9 +137,11 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
     data.operator_type = combineOperatorTypes(data.operator_type, data.registration_role);
     delete data.registration_role;
 
-    data.customer_type = tranformCustomerTypeForSubmit(data.supply_directly, data.supply_other);
-    delete data.supply_directly;
-    delete data.supply_other;
+    if (data.operator_type == operatorTypeEnum.PARTNERSHIP.key) {
+      data.operator_primary_number = data.main_partner_primary_number;
+      data.operator_secondary_number = data.main_partner_secondary_number;
+      data.operator_email = data.main_partner_email;
+    }
 
     const openingDays = transformOpeningDaysForSubmit(
       data.opening_days_start,
@@ -157,14 +164,16 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
       data.opening_hours_sunday
     );
 
-    data.import_export_activities = transformBusinessImportExportForSubmit(
-      data.directly_import,
-      data.directly_export,
-      data.no_import_export
-    );
-    delete data.directly_import;
-    delete data.directly_export;
-    delete data.no_import_export;
+    if (data.operator_birthdate_day !== undefined) {
+      data.operator_birthdate = combineDate(
+        data.operator_birthdate_day,
+        data.operator_birthdate_month,
+        data.operator_birthdate_year
+      );
+    }
+    delete data.operator_birthdate_day;
+    delete data.operator_birthdate_month;
+    delete data.operator_birthdate_year;
 
     data.establishment_opening_date = combineDate(data.day, data.month, data.year);
     delete data.day;
@@ -392,10 +401,11 @@ const transformAnswersForSummary = (cumulativeFullAnswers, addressLookups, lcUrl
     summaryData.establishment_type = transformEstablishmentTypeForSummary(
       summaryData.establishment_type
     );
-    summaryData.customer_type = transformCustomerTypeForSummary(summaryData.customer_type);
     summaryData.business_type = transformBusinessTypeForSummary(summaryData.business_type);
-    summaryData.import_export_activities = transformBusinessImportExportForSummary(
-      summaryData.import_export_activities
+    summaryData.business_scale = transformBusinessScaleForSummary(summaryData.business_scale);
+    summaryData.food_type = transformFoodTypeForSummary(summaryData.food_type);
+    summaryData.processing_activities = transformProcessingActivitiesForSummary(
+      summaryData.processing_activities
     );
     summaryData.water_supply = transformWaterSupplyForSummary(summaryData.water_supply);
 
@@ -420,32 +430,6 @@ const transformPartnersForSummary = (partnersObjects) => {
     }
   }
   return partnersData;
-};
-/**
- * Combines the answers submitted for the import/export activities to ignore the "no import or export" option when it is selected with one of the other options
- *
- * @param {string} directly_import String submitted to cumulative answers when user selects directly imports
- * @param {string} directly_export String submitted to cumulative answers when user selects directly exports
- * @param {string} no_import_export String submitted to cumulative answers when user selects no imports or exports
- *
- * @returns {string} A string displaying the correct answer for import/export activities for the summary page
- */
-const transformBusinessImportExportForSubmit = (directlyImport, directlyExport, noImportExport) => {
-  if (directlyImport && directlyExport) {
-    return importExportEnum.BOTH.key;
-  } else if (directlyImport) {
-    return importExportEnum.IMPORT.key;
-  } else if (directlyExport) {
-    return importExportEnum.EXPORT.key;
-  } else if (noImportExport) {
-    return importExportEnum.NONE.key;
-  } else {
-    return null;
-  }
-};
-
-const transformBusinessImportExportForSummary = (importExportActivities) => {
-  return importExportActivities ? importExportEnum[importExportActivities].value.en : null;
 };
 
 /**
@@ -584,30 +568,6 @@ const transformOpeningHoursForSubmit = (
   };
 };
 
-const tranformCustomerTypeForSubmit = (supplyDirectly, supplyOther) => {
-  if (supplyDirectly && supplyOther) {
-    return customerTypeEnum.BOTH.key;
-  } else if (supplyDirectly) {
-    return customerTypeEnum.END_CONSUMER.key;
-  } else if (supplyOther) {
-    return customerTypeEnum.OTHER_BUSINESSES.key;
-  } else {
-    return null;
-  }
-};
-
-/**
- * Sets the display text on the summary table for when the user selects whether they supply_directly or supply_other or both
- * @param {string} supply_directly String submitted to cumulative answers when user selects supply directly
- * @param {string} supply_other String submitted to cumulative answers when user selects supply other
- *
- *
- * @returns {string} A string with the text to be displayed on the summary table
- */
-const transformCustomerTypeForSummary = (customerType) => {
-  return customerType ? customerTypeEnum[customerType].value.en : null;
-};
-
 /**
  * Sets the display text on the summary table in the correct format for when the business is registered by a representative
  * @param {string} operator_type String submitted to cumulative answers when user selects operator can be either person/company/charity
@@ -639,15 +599,15 @@ const combineOperatorTypes = (operatorType, registrationRole) => {
 };
 
 const transformEstablishmentTypeForSummary = (establishmentType) => {
-  return establishmentType ? establishmentTypeEnum[establishmentType].value.en : null;
+  return establishmentType ? establishmentTypeEnum[establishmentType].value : null;
 };
 
 const transformOperatorTypeForSummary = (operatorType) => {
-  return operatorType ? operatorTypeEnum[operatorType].value.en : null;
+  return operatorType ? operatorTypeEnum[operatorType].value : null;
 };
 
 const transformWaterSupplyForSummary = (waterSupply) => {
-  return waterSupply ? waterSupplyEnum[waterSupply].value.en : null;
+  return waterSupply ? waterSupplyEnum[waterSupply].value : null;
 };
 //Combines the date to be in the correct format to display on summary table
 const combineDate = (day, month, year) => {
@@ -697,7 +657,36 @@ const transformBusinessTypeForSubmit = (displayName) => {
 };
 
 const transformBusinessTypeForSummary = (id) => {
-  return businessTypeEnum[id] ? businessTypeEnum[id].value.en : "";
+  return businessTypeEnum[id] ? businessTypeEnum[id].value : "";
+};
+
+const transformBusinessScaleForSummary = (ids) => {
+  return ids?.map((id) => (businessScaleEnum[id] ? businessScaleEnum[id].value : ""));
+};
+
+const transformFoodTypeForSummary = (ids) => {
+  return ids?.map((id) => (foodTypeEnum[id] ? foodTypeEnum[id].value : ""));
+};
+
+const transformProcessingActivitiesForSummary = (ids) => {
+  return ids?.map((id) => (processingActivitiesEnum[id] ? processingActivitiesEnum[id].value : ""));
+};
+
+/**
+ * Intialises array from string value. Due to form checkbox data being submitted as string if there is only one value selected,
+ * this function will convert the string to an array.
+ * @param {any} answer Answer - could be undefined, string or array
+ *
+ * @returns {string} The new value initialised to an array, it was previously a string
+ */
+
+const initialiseArray = (answer) => {
+  let newAnswer = answer;
+  if (answer && typeof answer === "string") {
+    newAnswer = [answer];
+  }
+
+  return newAnswer;
 };
 
 module.exports = {
@@ -707,5 +696,6 @@ module.exports = {
   combineDate,
   separateBracketsFromBusinessType,
   trimUprn,
-  trimAnswers
+  trimAnswers,
+  initialiseArray
 };

@@ -5,6 +5,7 @@
 {% from "../node_modules/govuk-frontend/dist/govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "../node_modules/govuk-frontend/dist/govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "../node_modules/govuk-frontend/dist/govuk/components/details/macro.njk" import govukDetails %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/date-input/macro.njk" import govukDateInput %}
 {% extends "layout.njk" %}
 {% block content %}
   <div class="govuk-grid-row">
@@ -44,6 +45,44 @@
                 "value": props.cumulativeFullAnswers.operator_last_name,
                 "errorMessage": { "text": __(props.validatorErrors.operator_last_name, props.language) } if props.validatorErrors.operator_last_name
             }) }}
+      {{ govukDateInput({
+                  id: "operator_birthdate",
+                  fieldset: {
+                    legend: {
+                      text: __("What is the operator's birthdate?", props.language),
+                      classes: "govuk-fieldset__legend--l"
+                    }
+                  },
+                  hint: {
+                     text: __("For example", props.language)+ ": 31 03 1980"
+                   },
+                  items: [
+                    {
+                      id: "operator_birthdate_day",
+                      name: "operator_birthdate_day",
+                      label: __('Day', props.language),
+                      classes: "govuk-input--width-2",
+                      value: props.cumulativeFullAnswers.operator_birthdate_day
+                    },
+                    {
+                     id: "operator_birthdate_month",
+                      name: "operator_birthdate_month",
+                      label: __('Month', props.language),
+                      classes: "govuk-input--width-2",
+                      value: props.cumulativeFullAnswers.operator_birthdate_month
+                    },
+                    {
+                     id: "operator_birthdate_year",
+                      name: "operator_birthdate_year",
+                      label: __('Year', props.language),
+                      classes: "govuk-input--width-4",
+                      value: props.cumulativeFullAnswers.operator_birthdate_year
+                    }
+                  ],
+                  errorMessage: { 
+                    text: __(props.validatorErrors.operator_birthdate, props.language) 
+                  } if props.validatorErrors.operator_birthdate
+                }) }}
       {% endcall %}
       {{ govukButton({
             text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)

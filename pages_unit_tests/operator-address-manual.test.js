@@ -3,6 +3,7 @@
  */
 
 const { axe, renderPage, getPageDetails } = require("../testHelpers");
+const { operatorTypeEnum } = require("@slice-and-dice/register-a-food-business-validation");
 
 const props = {
   validatorErrors: {},
@@ -12,6 +13,9 @@ const props = {
     operator_town: "Test Town",
     operator_postcode: "SE1 9AS",
     establishment_postcode_find: "SE1 9AS"
+  },
+  enums: {
+    operatorType: operatorTypeEnum
   },
   council: "cardiff",
   language: "en"

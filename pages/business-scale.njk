@@ -1,0 +1,103 @@
+{% from "../node_modules/govuk-frontend/dist/govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/CheckboxScript.njk" import checkboxScript %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% extends "layout.njk" %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {{ govukCheckboxes({
+      idPrefix: "business_scale",
+      name: "business_scale_checkboxes",
+      fieldset: {
+        legend: {
+          text: __("Who do you intend to provide food to?", props.language),
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+                  "hint": {
+            "text": __("Select all that apply", props.language)
+            },
+      items: [
+            {
+            value: props.enums.businessScale.LOCAL.key,
+            id: props.enums.businessScale.LOCAL.key,
+            name: "business_scale",
+            text: props.enums.businessScale.LOCAL.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.LOCAL.key)
+            },
+            {
+            value: props.enums.businessScale.NATIONAL.key,
+            id: props.enums.businessScale.NATIONAL.key,
+            name: "business_scale",
+            text: props.enums.businessScale.NATIONAL.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.NATIONAL.key)
+            },
+            {
+            value: props.enums.businessScale.EXPORT.key,
+            id: props.enums.businessScale.EXPORT.key,
+            name: "business_scale",
+            text: props.enums.businessScale.EXPORT.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.EXPORT.key),
+            hint: {
+            text: __("For businesses based in Northern Ireland, only select this option for movements outside of the United Kingdom (UK) or European Union (EU)", props.language)
+            }
+            },
+            {
+            value: props.enums.businessScale.ONLINE.key,
+            id: props.enums.businessScale.ONLINE.key,
+            name: "business_scale",
+            text: props.enums.businessScale.ONLINE.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.ONLINE.key)
+            },
+            {
+            value: props.enums.businessScale.FBO.key,
+            id: props.enums.businessScale.FBO.key,
+            name: "business_scale",
+            text: props.enums.businessScale.FBO.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.FBO.key)
+            },
+            {
+            value: props.enums.businessScale.SENIOR_YOUTH.key,
+            id: props.enums.businessScale.SENIOR_YOUTH.key,
+            name: "business_scale",
+            text: props.enums.businessScale.SENIOR_YOUTH.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.SENIOR_YOUTH.key)
+            },
+            {
+            value: props.enums.businessScale.HEALTHCARE.key,
+            id: props.enums.businessScale.HEALTHCARE.key,
+            name: "business_scale",
+            text: props.enums.businessScale.HEALTHCARE.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.HEALTHCARE.key)
+            },
+            {
+            value: props.enums.businessScale.NONE.key,
+            id: props.enums.businessScale.NONE.key,
+            name: "business_scale",
+            text: props.enums.businessScale.NONE.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.NONE.key)
+            },
+            {
+            value: props.enums.businessScale.DONT_KNOW.key,
+            id: props.enums.businessScale.DONT_KNOW.key,
+            name: "business_scale",
+            text: props.enums.businessScale.DONT_KNOW.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.business_scale, props.enums.businessScale.DONT_KNOW.key)
+            }
+        ],
+      errorMessage: {
+            text: __(props.validatorErrors.business_scale, props.language)} if props.validatorErrors.business_scale
+          }) }}
+      {{ govukButton({
+        text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
+      }) }}
+      {%- endcall %}
+    </div>
+  </div>
+ {{ checkboxScript() }}
+{% endblock %}

@@ -36,6 +36,14 @@ const testPath = {
     on: true,
     switches: {}
   },
+  "/opening-days-some": {
+    on: true,
+    switches: {
+      opening_day_saturday: {
+        "/test-page3": true
+      }
+    }
+  },
   "/operator-charity-details": {
     on: false,
     switches: {}
@@ -47,14 +55,6 @@ const testPath = {
   "/contact-representative": {
     on: false,
     switches: {}
-  },
-  "/business-import-export": {
-    on: true,
-    switches: {
-      "Directly export": {
-        "/test-page3": true
-      }
-    }
   },
   "/test-page3": {
     on: false,
@@ -108,39 +108,39 @@ describe("Edit controller: editContinue()", () => {
           expect(result.cumulativeEditAnswers).toEqual(expectedAnswers);
         });
       });
+    });
 
-      describe("given the current page has checkboxes, one of which was originally checked but now is not", () => {
-        beforeEach(() => {
-          const editModeFirstPage = "/business-import-export";
-          const currentPage = "/business-import-export";
-          const cumulativeFullAnswers = {
-            directly_import: "Directly import"
-          };
-          const cumulativeEditAnswers = undefined;
-          const newAnswers = {
-            directly_export: "Directly export"
-          };
-          const switches = {};
+    describe("given the current page has checkboxes, one of which was originally checked but now is not", () => {
+      beforeEach(() => {
+        const editModeFirstPage = "/opening-days-some";
+        const currentPage = "/opening-days-some";
+        const cumulativeFullAnswers = {
+          opening_day_monday: "opening_day_monday"
+        };
+        const cumulativeEditAnswers = undefined;
+        const newAnswers = {
+          opening_day_saturday: "opening_day_saturday"
+        };
+        const switches = {};
 
-          const args = [
-            testPath,
-            editModeFirstPage,
-            currentPage,
-            cumulativeFullAnswers,
-            cumulativeEditAnswers,
-            newAnswers,
-            switches,
-            {}
-          ];
-          result = editController.editContinue(...args);
-        });
+        const args = [
+          testPath,
+          editModeFirstPage,
+          currentPage,
+          cumulativeFullAnswers,
+          cumulativeEditAnswers,
+          newAnswers,
+          switches,
+          {}
+        ];
+        result = editController.editContinue(...args);
+      });
 
-        it("should not return the answers that were previously truthy and are now removed", () => {
-          const expectedAnswers = {
-            directly_export: "Directly export"
-          };
-          expect(result.cumulativeEditAnswers).toEqual(expectedAnswers);
-        });
+      it("should not return the answers that were previously truthy and are now removed", () => {
+        const expectedAnswers = {
+          opening_day_saturday: "opening_day_saturday"
+        };
+        expect(result.cumulativeEditAnswers).toEqual(expectedAnswers);
       });
     });
 
@@ -231,7 +231,10 @@ describe("Edit controller: editContinue()", () => {
           const cumulativeEditAnswers = {};
           const newAnswers = {
             operator_first_name: "John",
-            operator_last_name: "McNugget"
+            operator_last_name: "McNugget",
+            operator_birthdate_day: "01",
+            operator_birthdate_month: "01",
+            operator_birthdate_year: "2000"
           };
           const switches = {};
 

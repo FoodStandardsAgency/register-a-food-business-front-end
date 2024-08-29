@@ -1,0 +1,93 @@
+{% from "../node_modules/govuk-frontend/dist/govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/CheckboxScript.njk" import checkboxScript %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% extends "layout.njk" %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {{ govukCheckboxes({
+      idPrefix: "processing_activities",
+      name: "processing_activities",
+      fieldset: {
+        legend: {
+          text: __("What food processing activities do you intend to carry out in your food business?", props.language),
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+                  "hint": {
+            "text": __("Select all that apply", props.language)
+            },
+items: [
+            {
+            value: props.enums.processingActivities.VACUUM_PACKING.key,
+            id: props.enums.processingActivities.VACUUM_PACKING.key,
+            name: "processing_activities",
+            text: props.enums.processingActivities.VACUUM_PACKING.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.VACUUM_PACKING.key)
+            },
+            {
+            value: props.enums.processingActivities.SOUS_VIDE.key,
+            id: props.enums.processingActivities.SOUS_VIDE.key,
+            name: "processing_activities",
+            text: props.enums.processingActivities.SOUS_VIDE.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.SOUS_VIDE.key)
+            },
+            {
+            value: props.enums.processingActivities.FERMENTING_OR_CURING.key,
+            id: props.enums.processingActivities.FERMENTING_OR_CURING.key,
+            name: "processing_activities",
+            text: props.enums.processingActivities.FERMENTING_OR_CURING.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.FERMENTING_OR_CURING.key)
+            },
+            {
+            value: props.enums.processingActivities.PASTEURISING.key,
+            id: props.enums.processingActivities.PASTEURISING.key,
+            name: "processing_activities",
+            text: props.enums.processingActivities.PASTEURISING.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.PASTEURISING.key)
+            },
+            {
+            value: props.enums.processingActivities.ANIMAL_UNCOOKED.key,
+            id: props.enums.processingActivities.ANIMAL_UNCOOKED.key,
+            name: "processing_activities",
+            text: props.enums.processingActivities.ANIMAL_UNCOOKED.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.ANIMAL_UNCOOKED.key)
+            },
+            {
+            value: props.enums.processingActivities.REWRAPPING_OR_RELABELLING.key,
+            id: props.enums.processingActivities.REWRAPPING_OR_RELABELLING.key,
+            name: "processing_activities",
+            text: props.enums.processingActivities.REWRAPPING_OR_RELABELLING.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.REWRAPPING_OR_RELABELLING.key)
+            },
+            {
+            value: props.enums.processingActivities.NONE.key,
+            id: props.enums.processingActivities.NONE.key,
+            name: "processing_activities",
+            text: props.enums.processingActivities.NONE.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.NONE.key)
+            },
+            {
+            value: props.enums.processingActivities.DONT_KNOW.key,
+            id: props.enums.processingActivities.DONT_KNOW.key,
+            name: "processing_activities",
+            text: props.enums.processingActivities.DONT_KNOW.value[props.language],
+            checked: exists(props.cumulativeFullAnswers.processing_activities, props.enums.processingActivities.DONT_KNOW.key)
+            }
+        ],
+      errorMessage: {
+            text: __(props.validatorErrors.processing_activities, props.language)} if props.validatorErrors.processing_activities
+          }) }}
+      {{ govukButton({
+        text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
+      }) }}
+      {%- endcall %}
+    </div>
+  </div>
+   {{ checkboxScript() }}
+{% endblock %}

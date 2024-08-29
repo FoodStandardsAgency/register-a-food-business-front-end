@@ -12,7 +12,7 @@
               text: __("Back", props.language)
           }) }}
     {% elif props.currentPage == "/la-selector" %}
-      {% if props.fullCurrentPage === "/la-selector?back=/wrong-la" %}
+      {% if props.fullCurrentPage === "/la-selector?back=wrong-la" %}
         {{ govukBackLink({
               href: "/new/la-established",
               text: __("Back", props.language)

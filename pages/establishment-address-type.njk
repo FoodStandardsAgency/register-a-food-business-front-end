@@ -11,7 +11,7 @@
   {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% call postForm("/findaddress" + "/establishment-address", props.csrfToken, props.language) -%}
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
       {% call govukFieldset({
             legend: {
@@ -27,22 +27,22 @@
       name: "establishment_type",
       items: [
         {
-          value: "MOBILE",
+          value: props.enums.establishmentType.MOBILE.key,
           text: __("In a mobile or moveable premises", props.language),
           id: "establishment_type_mobile_moveable",
-          checked: props.cumulativeFullAnswers.establishment_type === "MOBILE"
+          checked: props.cumulativeFullAnswers.establishment_type === props.enums.establishmentType.MOBILE.key
         },
         {
-          value: "DOMESTIC",
+          value: props.enums.establishmentType.DOMESTIC.key,
           text: __("In a home or domestic premises", props.language),
           id: "establishment_type_home_domestic",
-          checked: props.cumulativeFullAnswers.establishment_type === "DOMESTIC"
+          checked: props.cumulativeFullAnswers.establishment_type === props.enums.establishmentType.DOMESTIC.key
         },
         {
-          value: "COMMERCIAL",
+          value: props.enums.establishmentType.COMMERCIAL.key,
           text: __("In a commercial or public premises", props.language),
           id: "establishment_type_business_commercial",
-          checked: props.cumulativeFullAnswers.establishment_type ==="COMMERCIAL"
+          checked: props.cumulativeFullAnswers.establishment_type === props.enums.establishmentType.COMMERCIAL.key
         }
       ],
       errorMessage: {

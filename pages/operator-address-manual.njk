@@ -16,7 +16,7 @@
     <div class="govuk-grid-column-two-thirds">
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
-      {% if props.cumulativeFullAnswers.registration_role === "PARTNERSHIP" %}
+      {% if props.cumulativeFullAnswers.registration_role === props.enums.operatorType.PARTNERSHIP.key %}
         {% call govukFieldset({
           legend: {
             text: __("What is the partnership contact's address?", props.language),

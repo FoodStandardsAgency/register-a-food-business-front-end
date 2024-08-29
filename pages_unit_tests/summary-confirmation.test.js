@@ -216,7 +216,7 @@ describe("summary-confirmation", () => {
           validatorErrors: {}
         };
         const $ = renderPage("summary-confirmation", {
-          language: "cy",
+          language: "en",
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: "12345",
@@ -279,7 +279,7 @@ describe("summary-confirmation", () => {
     describe("When given no laConfig", () => {
       it("The page still renders", () => {
         const $ = renderPage("summary-confirmation", {
-          language: "cy",
+          language: "en",
           cumulativeFullAnswers: cumulativeFullAnswers,
           applicationCompletePage: true,
           fsaRegistrationNumber: undefined,

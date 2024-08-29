@@ -32,6 +32,6 @@ describe("la-established", () => {
       council: "cardiff"
     });
     const $wrongLAlink = $(".govuk-grid-column-full a").get(0).attribs.href.trim();
-    expect($wrongLAlink).toEqual("/new/la-selector?back=/wrong-la");
+    expect($wrongLAlink).toEqual("/new/la-selector?back=wrong-la");
   });
 });

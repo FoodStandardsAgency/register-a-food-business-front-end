@@ -20,6 +20,9 @@ const {
   validatePastDate,
   validateFutureDate,
   validateBusinessType,
+  validateBusinessScale,
+  validateFoodType,
+  validateProcessingActivities,
   validateBusinessOtherDetails,
   validateOpeningDaysIrregular,
   validatePartners,
@@ -84,6 +87,10 @@ const schema = {
       operator_last_name: {
         type: "string",
         validation: validateName
+      },
+      operator_birthdate: {
+        type: "string",
+        validation: validatePastDate
       }
     }
   },
@@ -173,6 +180,27 @@ const schema = {
       operator_email: {
         type: "string",
         validation: validateEmail
+      }
+    }
+  },
+  "/partnership-contact-details": {
+    type: "object",
+    properties: {
+      main_partner_primary_number: {
+        type: "string",
+        validation: validatePhoneNumber
+      },
+      main_partner_secondary_number: {
+        type: "string",
+        validation: validatePhoneNumberOptional
+      },
+      main_partner_email: {
+        type: "string",
+        validation: validateEmail
+      },
+      operator_birthdate: {
+        type: "string",
+        validation: validatePastDate
       }
     }
   },
@@ -334,18 +362,6 @@ const schema = {
       }
     }
   },
-  "/customer-type": {
-    type: "object",
-    properties: {
-      supply_other: {
-        type: "string"
-      },
-      supply_directly: {
-        type: "string"
-      }
-    },
-    anyOf: [{ required: ["supply_other"] }, { required: ["supply_directly"] }]
-  },
   "/opening-days-some": {
     type: "object",
     properties: {
@@ -441,25 +457,32 @@ const schema = {
       }
     }
   },
-  "/business-import-export": {
+  "/business-scale": {
     type: "object",
     properties: {
-      directly_import: {
-        type: "string"
-      },
-      directly_export: {
-        type: "string"
-      },
-      no_import_export: {
-        type: "string"
+      business_scale: {
+        type: "array",
+        validation: validateBusinessScale
       }
-    },
-    oneOf: [
-      {
-        anyOf: [{ required: ["directly_import"] }, { required: ["directly_export"] }]
-      },
-      { required: ["no_import_export"] }
-    ]
+    }
+  },
+  "/food-type": {
+    type: "object",
+    properties: {
+      food_type: {
+        type: "array",
+        validation: validateFoodType
+      }
+    }
+  },
+  "/processing-activities": {
+    type: "object",
+    properties: {
+      processing_activities: {
+        type: "array",
+        validation: validateProcessingActivities
+      }
+    }
   },
   "/business-other-details": {
     type: "object",

@@ -116,10 +116,6 @@ const newRouter = () => {
           // For all other scenarios, render the requested page.
         } else {
           logEmitter.emit("functionSuccessWith", "Routes", "/new route", `Rendering page: ${page}`);
-
-          if (req && req.query && req.query.edit && req.query.edit === "post-code") {
-            req.session["changePostcode"] = true;
-          }
           const props = PropsGenerator(req);
           if (page === "la-selector") {
             props["localAuthorities"] = localAuthorities;
