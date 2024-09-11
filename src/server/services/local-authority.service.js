@@ -113,19 +113,19 @@ const getLocalAuthorityByPostcode = async (postcode) => {
     return false;
   }
 };
-const getLocalAuthorityByPoint = async (grideasting, gridnorthing) => {
+const getLocalAuthorityByPoint = async (longitude, latitude) => {
   logEmitter.emit("functionCall", "local-authority.service", "getLocalAuthorityByPoint");
   let localAuthorityMapitID, councilRecord;
 
   try {
     // Get the mapIt ID based on the postcode
-    localAuthorityMapitID = await getLocalAuthorityIDByPoint(grideasting, gridnorthing);
+    localAuthorityMapitID = await getLocalAuthorityIDByPoint(longitude, latitude);
     if (!localAuthorityMapitID) {
       logEmitter.emit(
         "functionFail",
         "local-authority.service",
         "getLocalAuthorityByPoint",
-        `getLocalAuthorityIDByPoint(${grideasting},${gridnorthing}) failed`
+        `getLocalAuthorityIDByPoint(${longitude},${latitude}) failed`
       );
       return false;
     }
@@ -160,8 +160,8 @@ const getLocalAuthorityByPoint = async (grideasting, gridnorthing) => {
     if (councilRecord.mapit_generation) {
       // Obtain the mapIt ID based on the point and generation ID (SECOND REQUEST)
       localAuthorityMapitID = await getLocalAuthorityIDByPoint(
-        grideasting,
-        gridnorthing,
+        longitude,
+        latitude,
         councilRecord.mapit_generation
       );
       if (!localAuthorityMapitID) {
@@ -169,7 +169,7 @@ const getLocalAuthorityByPoint = async (grideasting, gridnorthing) => {
           "functionFail",
           "local-authority.service",
           "getLocalAuthorityByPoint",
-          `getLocalAuthorityIDByPoint(${postcode}) failed`
+          `getLocalAuthorityIDByPoint(${longitude},${latitude}) failed`
         );
         return false;
       }

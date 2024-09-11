@@ -69,28 +69,27 @@ const getLocalAuthorityIDByPostcode = async (postcode, generation) => {
 };
 
 /**
- * Fetches Local authority id from the local authority lookup API for the given grideasting and gridnorthing point
- * @param {string} grideasting The easting to search by
- * @param {string} gridnorthing The northing to search by
+ * Fetches Local authority id from the local authority lookup API for the given longitude and latitude point
+ * @param {string} longitude The longitude to search by
+ * @param {string} latitude The latitude to search by
  * @param {integer} generation The generayion number (optional)
  * @returns {integer} Local authority id
  */
-const getLocalAuthorityIDByPoint = async (grideasting, gridnorthing, generation) => {
+const getLocalAuthorityIDByPoint = async (longitude, latitude, generation) => {
   logEmitter.emit(
     "functionCallWith",
     "local-authority-lookup-api.connector",
     "getLocalAuthorityIDByPoint",
-    `${grideasting},${gridnorthing}`
+    `${longitude},${latitude}`
   );
 
   let responseJSON;
   let localAuthority;
 
-  responseJSON = await fetchUsingMapItPointApi(grideasting, gridnorthing, generation);
+  responseJSON = await fetchUsingMapItPointApi(longitude, latitude, generation);
 
   if (responseJSON && Object.keys(responseJSON).length > 0) {
-    // check if any object has one of this type 'MTD', 'DIS','UTA', 'CTY','LGD', 'LBO','COI' and return id
-    // DIS and CTY can be in the same response
+    // check if any object has one of this type 'MTD', 'DIS','UTA','LGD', 'LBO','COI' and return id
     const validTypes = ["MTD", "DIS", "UTA", "LGD", "LBO", "COI"];
     for (const key in responseJSON) {
       if (responseJSON.hasOwnProperty(key)) {
@@ -189,18 +188,18 @@ const fetchUsingMapItApi = async (postcode, generation) => {
 
 /**
  * Fetches local authority using MapIt Point service
- * @param {string} grideasting The easting to search by
- * @param {string} gridnorthing The northing to search by
+ * @param {string} longitude The longitude to search by
+ * @param {string} latitude The northing to search by
  * @param {integer} generation The generayion number (optional)
  * @returns {object} API response object
  */
-const fetchUsingMapItPointApi = async (grideasting, gridnorthing, generation) => {
+const fetchUsingMapItPointApi = async (longitude, latitude, generation) => {
   try {
     logEmitter.emit(
       "functionCallWith",
       "local-authority-lookup-api.connector",
       "fetchUsingMapItPointApi",
-      `${grideasting},${gridnorthing}`
+      `${longitude},${latitude}`
     );
 
     let mapitGeneration = generation ? `&generation=${generation}` : "";
@@ -212,7 +211,7 @@ const fetchUsingMapItPointApi = async (grideasting, gridnorthing, generation) =>
       options.proxy = false;
     }
     const response = await axios(
-      `${MAPIT_API}/point/27700/${grideasting},${gridnorthing}?api_key=${MAPIT_API_KEY}${mapitGeneration}`,
+      `${MAPIT_API}/point/4326/${longitude},${latitude}?api_key=${MAPIT_API_KEY}${mapitGeneration}`,
       options
     );
 
