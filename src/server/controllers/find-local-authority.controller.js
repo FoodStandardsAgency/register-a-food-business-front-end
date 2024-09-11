@@ -60,8 +60,8 @@ const findLocalAuthorityController = async (
     if (newAnswers.establishment_address_selected) {
       const address = establishmentPostcodeFind[+newAnswers.establishment_address_selected];
 
-      if (address.grideasting && address.gridnorthing) {
-        localAuthority = await getLocalAuthorityByPoint(address.grideasting, address.gridnorthing);
+      if (address.longitude && address.latitude) {
+        localAuthority = await getLocalAuthorityByPoint(address.longitude, address.latitude);
       }
     }
 
