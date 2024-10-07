@@ -43,7 +43,6 @@ const getPresentContext = () => {
   return context;
 };
 
-/* eslint-disable */
 const logStuff = (message, data = {}, method = "info") => {
   if (!logger) {
     //create a logger now... its probably a test - enable below if you want debug
@@ -52,7 +51,6 @@ const logStuff = (message, data = {}, method = "info") => {
     logger[method](message, getPresentContext());
   }
 };
-/* eslint-enable */
 
 logEmitter.on(FUNCTION_CALL_WITH, (module, functionName, data = {}) => {
   const message = `${module}: ${functionName} called with: ${data}`;
