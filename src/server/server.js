@@ -8,20 +8,15 @@ var sassMiddleware = require("node-sass-middleware");
 var path = require("path");
 const getRandomValues = require("get-random-values");
 const { initialiseNunjucksEnvironment } = require("./nunjucksFunctions");
-
-if (
-  "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
-  process.env["APPINSIGHTS_INSTRUMENTATIONKEY"] !== ""
-) {
+require("dotenv").config();
+if (process.env.APPINSIGHTS_CONNECTION_STRING) {
   console.log(`Setting up application insights modules`);
-  appInsights.setup().start();
-  appInsights.defaultClient.addTelemetryProcessor((envelope) => {
-    envelope.tags["ai.cloud.role"] = packageJson.name; // eslint-disable-line no-param-reassign
-  });
+  // applicationinsights sdk v3 not support setting cloud role name, so we setting directly to the open telemetry env variable
+  process.env["OTEL_SERVICE_NAME"] = packageJson.name;
+  appInsights.setup(process.env.APPINSIGHTS_CONNECTION_STRING);
+  appInsights.start();
 }
 const { logger } = require("./services/winston");
-
-require("dotenv").config();
 
 const { COSMOSDB_URL } = require("./config");
 
