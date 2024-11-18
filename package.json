@@ -68,7 +68,7 @@
     "nunjucks-date-filter": "^0.1.1",
     "prop-types": "^15.8.1",
     "stem-porter": "^0.0.1",
-    "uuid": "10.0.0",
+    "uuid": "11.0.3",
     "validator": "^13.12.0",
     "winston": "^3.15.0",
     "winston-azure-application-insights": "^4.0.0",
