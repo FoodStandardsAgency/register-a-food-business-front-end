@@ -9,12 +9,15 @@ var path = require("path");
 const getRandomValues = require("get-random-values");
 const { initialiseNunjucksEnvironment } = require("./nunjucksFunctions");
 require("dotenv").config();
-if (process.env.APPINSIGHTS_CONNECTION_STRING) {
+if (
+  "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
+  process.env["APPINSIGHTS_INSTRUMENTATIONKEY"] !== ""
+) {
   console.log(`Setting up application insights modules`);
-  // applicationinsights sdk v3 not support setting cloud role name, so we setting directly to the open telemetry env variable
-  process.env["OTEL_SERVICE_NAME"] = packageJson.name;
-  appInsights.setup(process.env.APPINSIGHTS_CONNECTION_STRING);
-  appInsights.start();
+  appInsights.setup().start();
+  appInsights.defaultClient.addTelemetryProcessor((envelope) => {
+    envelope.tags["ai.cloud.role"] = packageJson.name; // eslint-disable-line no-param-reassign
+  });
 }
 const { logger } = require("./services/winston");
 
