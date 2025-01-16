@@ -44,10 +44,16 @@
   errorMessage: {
     text: __(props.validatorErrors.establishment_opening_date, props.language)} if props.validatorErrors.establishment_opening_date
 }) }}
-  {{ govukDetails({
-    summaryText: __("I don't know when this establishment will begin trading", props.language),
-    text: __("Food businesses are required to register at least 28 days before they begin trading, that includes food or drink sold online. If you are not sure when this business will open, it may be too early to register. You can also use an estimated date.", props.language)
-    }) }}
+  {% call govukDetails({
+    summaryText: __("I don't know when this establishment will begin trading", props.language)
+  }) %}
+    <p class="govuk-body">
+      {{ __("Food businesses are required to register at least 28 days before they begin trading, that includes food or drink sold online. If you are not sure when this business will open, it may be too early to register. You can also use an estimated date.", props.language) }}
+    </p>
+    <p class="govuk-body">
+      {{ __("Do not register too early, if your food business is not ready to start trading, wait until nearer the time that operations are due to begin.", props.language) }}
+    </p>
+  {% endcall %}
 {% endmacro %}
 {% macro establishmentTrading() %}
   {{ govukDateInput({
@@ -93,7 +99,7 @@
     }) }}
 {% endmacro %}
 {% extends "layout.njk" %}
-{% block content %}
+{% block content %} 
   {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">

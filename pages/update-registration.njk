@@ -1,0 +1,31 @@
+{% from "../node_modules/govuk-frontend/dist/govuk/components/radios/macro.njk" import govukRadios %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% extends "layout.njk" %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+     <p class="govuk-body">
+        <strong>{{ __("Your local authority is", props.language) }}</strong>
+        {{ props.localAuthority.new_authority_name or props.localAuthority.local_council }}
+      </p>
+      <p class="govuk-body">
+        <strong>{{ __("Email:", props.language) }}</strong> 
+        <a href="mailto:{{ props.localAuthority.email }}">{{ props.localAuthority.email }}</a>
+      </p>
+      <p class="govuk-body">
+        <strong>{{ __("Phone number:", props.language) }}</strong> 
+        {{ props.localAuthority.phoneNumber }}
+      </p>
+              <p class="govuk-body">
+        {{ __("You do not need to complete a new registration. Contact your local authority directly to tell them of any changes to your food business.", props.language) }}
+      </p>
+      <div class="govuk-hint">
+        {{ __("For example, to add an additional trading name, advise of a new process or let them know you have closed your business.", props.language) }}
+      </div>
+      {%- endcall %}
+    </div>
+  </div>
+{% endblock %}
