@@ -13,10 +13,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 id="main-heading" class="govuk-heading-l">{{ __("Register a Food Business", props.language) }}</h1>
-      <p class="govuk-body">{{ __("When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least", props.language) }}
+      <p class="govuk-body">
+        {{ __("When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least", props.language) }}
         <b>{{ __("28 days", props.language) }}</b>
         {{ __("before trading or before food operations start.", props.language) }}
-      <b>{{ __("Do not register too early, if your food business is not ready to start trading, wait until nearer the time that operations are due to begin", props.language) }}</b></p>
+      </p>
+      <p class="govuk-body">
+        <b>{{ __("Do not register too early, if your food business is not ready to start trading, wait until nearer the time that operations are due to begin.", props.language) }}</b>
+      </p>
       <b>{{ govukInsetText({
       text: __("During this registration, you may come across a few specialist terms, which we have described below", props.language) + ":"
       }) }}</b>
