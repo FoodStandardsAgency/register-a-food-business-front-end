@@ -6,15 +6,14 @@
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% from "../components/PostForm.njk" import postForm %}
 {% extends "layout.njk" %}
-{% set props = mergeObjects(props, {hideback: true}) %}
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% call postForm(props.formAction, props.csrfToken, props.language) -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
       {{ govukRadios({
-        idPrefix: "new_or_existing_registration",
-        name: "new_or_existing_registration",
+        idPrefix: "new_or_update_registration",
+        name: "new_or_update_registration",
         fieldset: {
           legend: {
             text: __("What do you want to do today?", props.language),
@@ -24,27 +23,29 @@
         },
         items: [
           {
-            value: "New Registration",
+            value: "NEW_REGISTRATION",
+            name: "new_or_update_registration",
             text: __("Register a new food business or a change of ownership of an existing business", props.language),
             id: "new_registration",
-            checked: props.cumulativeFullAnswers.new_or_existing_registration === "New Registration"
+            checked: props.cumulativeFullAnswers.new_or_update_registration === "NEW_REGISTRATION"
           },
           {
-            value: "Existing Registration",
+            value: "UPDATE_REGISTRATION",
+            name: "new_or_update_registration",
             text: __("Update details for an existing food business where you are already the registered Food Business Operator", props.language),
-            id: "existing_registration",
-            checked: props.cumulativeFullAnswers.new_or_existing_registration === "Existing Registration",
+            id: "update_registration",
+            checked: props.cumulativeFullAnswers.new_or_update_registration === "UPDATE_REGISTRATION",
             hint: {
             text: __("For example, add an additional trading name, advise of a new process or that your business has closed.", props.language)
             }
           }
         ],
         errorMessage: {
-      text: __(props.validatorErrors.new_or_existing_registration, props.language)} if props.validatorErrors.new_or_existing_registration
+      text: __(props.validatorErrors.new_or_update_registration, props.language)} if props.validatorErrors.new_or_update_registration
       }) }}
 
       {{ govukButton({
-            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
+            text: __("Continue", props.language)
           }) }}
       {%- endcall %}
     </div>
