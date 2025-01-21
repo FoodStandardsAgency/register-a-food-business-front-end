@@ -12,7 +12,7 @@
           }) %}
     {% endcall %}
       <p class="govuk-body">
-        <strong>{{ __("Email", props.language) }}:</strong>
+        <strong>{{ __("Email address:", props.language) }}:</strong>
         <a href="mailto:{{ props.localAuthority.local_council_email }}">{{ props.localAuthority.local_council_email }}</a>
       </p>
       <p class="govuk-body">
@@ -23,7 +23,7 @@
         {{ __("You do not need to complete a new registration. Contact your local authority directly to tell them of any changes to your food business.", props.language) }}
       </p>
       <div class="govuk-hint">
-        {{ __("For example, to add an additional trading name, advise of a new process or let them know you have closed your business.", props.language) }}
+        {{ __("For example, add an additional trading name, advise of a new process or that your business has closed.", props.language) }}
       </div>
     </div>
   </div>
