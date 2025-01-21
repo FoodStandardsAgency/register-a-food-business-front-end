@@ -11,14 +11,18 @@
             }  
           }) %}
     {% endcall %}
+      {% if props.localAuthority.local_council_email %}
       <p class="govuk-body">
-        <strong>{{ __("Email address:", props.language) }}:</strong>
+        <strong>{{ __("Email address", props.language) }}:</strong>
         <a href="mailto:{{ props.localAuthority.local_council_email }}">{{ props.localAuthority.local_council_email }}</a>
       </p>
+      {% endif %}
+      {% if props.localAuthority.local_council_phone_number %}
       <p class="govuk-body">
         <strong>{{ __("Phone number", props.language) }}:</strong> 
         {{ props.localAuthority.local_council_phone_number }}
       </p>
+      {% endif %}
       <p class="govuk-body">
         {{ __("You do not need to complete a new registration. Contact your local authority directly to tell them of any changes to your food business.", props.language) }}
       </p>
