@@ -4,9 +4,57 @@
 {% from "../node_modules/govuk-frontend/dist/govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "../node_modules/govuk-frontend/dist/govuk/components/textarea/macro.njk" import govukTextarea %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% from "../components/TradingNamesTable.njk" import tradingNameTable %}
 {% from "../components/PostForm.njk" import postForm %}
 {% extends "layout.njk" %}
 {% block content %}
+{% macro tradingNamesButton(props) %}
+  <a id="addTradingNamesLink" href={{ props.tradingNamesDetailsUrl }} class="govuk-link">
+    <button class="govuk-button" type="submit" data-module="govuk-button" id="addTradingNamesButton">
+      {{ __("Add additional trading name", props.language) }}
+    </button>
+  </a>
+  <p class="govuk-hint">{{ __("Please use initials or middle names as necessary to ensure each partner name is unique.", props.language) }}</p>
+{% endmacro %}
+{% macro continueButton(props) %}
+  {% call postForm(props.tradingNamesDetailsContinueFormAction, props.csrfToken, props.language) -%}
+  {{ govukButton({
+      text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language), classes: "continue", id: "continue-button"
+    }) }}
+  {%- endcall %}
+{% endmacro %}
+{% macro tradingNames(props) %}
+  {{ tradingNamesButton(props) if (not props.cumulativeFullAnswers.tradingNames or
+    (props.cumulativeFullAnswers.tradingNames | length) < 5) else null }}
+  {{ continueButton(props) if (props.cumulativeFullAnswers.tradingNames or
+    (props.cumulativeFullAnswers.tradingNames | length) >= 2)else null }}
+{% endmacro %}
+
+{% extends "layout.njk" %}
+{% block content %}
+  {{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {% call govukFieldset({
+        legend: {
+          text: __("What is the trading name of this establishment?", props.language),
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+        }
+      }) %}
+      <p id="changed-name-hint" class="govuk-hint">{{ __("A trading name is what your customers will call your business", props.language) }}</p>
+
+      {% call postForm(props.tradingNamesDeleteFormAction, props.csrfToken, props.language) -%}
+      {{ tradingNamesTable(props) if (props.cumulativeFullAnswers.tradingNames and (props.cumulativeFullAnswers.tradingNames | length > 0)) }}
+      {%- endcall %}
+      {{ tradingNames(props) }}
+      {% endcall %}
+    </div>
+  </div>
+{% endblock %}
+
+
   {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -31,14 +79,6 @@
         "value": props.cumulativeFullAnswers.establishment_trading_name,
         "name": "establishment_trading_name",
         "errorMessage":  { "text": __(props.validatorErrors.establishment_trading_name, props.language) } if props.validatorErrors.establishment_trading_name
-      }) }}
-      {{ govukTextarea({
-        "label": {
-          "text": __("If your business uses more than one trading name, for example if you trade on a delivery platform, you only need to complete ONE registration. Add all the names in the box below, for example: Lisa's Bakery shop, Lisa Treats, Lisa's Cakes.", props.language)
-        },
-        "id": "establishment_multiple_trading_names",
-        "value": props.cumulativeFullAnswers.establishment_multiple_trading_names,
-        "name": "establishment_multiple_trading_names"
       }) }}
       {% endcall %}
       {{ govukButton({

@@ -1,0 +1,55 @@
+{% from "../node_modules/govuk-frontend/dist/govuk/components/radios/macro.njk" import govukRadios %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/details/macro.njk" import govukDetails %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% from "../components/PartnersTable.njk" import partnersTable %}
+{% macro partnerNameButton(props) %}
+  <a id="addPartnerLink" href={{ props.partnerDetailsUrl }} class="govuk-link">
+    <button class="govuk-button" type="submit" data-module="govuk-button" id="addPartnerButton">
+      {{ __("Add partner", props.language) }}
+    </button>
+  </a>
+  <p class="govuk-hint">{{ __("Please use initials or middle names as necessary to ensure each partner name is unique.", props.language) }}</p>
+{% endmacro %}
+{% macro continueButton(props) %}
+  {% call postForm(props.partnerDetailsContinueFormAction, props.csrfToken, props.language) -%}
+  {{ govukButton({
+      text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language), classes: "continue", id: "continue-button"
+    }) }}
+  {%- endcall %}
+{% endmacro %}
+{% macro partnerName(props) %}
+  {{ partnerNameButton(props) if (not props.cumulativeFullAnswers.partners or
+    (props.cumulativeFullAnswers.partners | length) < 5) else null }}
+  {{ continueButton(props) if (props.cumulativeFullAnswers.partners or
+    (props.cumulativeFullAnswers.partners | length) >= 2)else null }}
+{% endmacro %}
+{% extends "layout.njk" %}
+{% block content %}
+  {{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {% call govukFieldset({
+        legend: {
+          text: __("What are the partners' names?", props.language),
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+        }
+      }) %}
+      <p id="changed-name-hint" class="govuk-hint">{{ __("Please advise your local authority directly if more than 5 partners are responsible for this food business", props.language) }}</p>
+      {{ govukDetails({
+        summaryText: __("What is a partnership?", props.language),
+        href: "#",
+        text: __("In a partnership, you and your partner (or partners) personally share responsibility for your food business", props.language)
+      }) }}
+      {% call postForm(props.partnerDetailsDeleteFormAction, props.csrfToken, props.language) -%}
+      {{ partnersTable(props) if (props.cumulativeFullAnswers.partners and (props.cumulativeFullAnswers.partners | length > 0)) }}
+      {%- endcall %}
+      {{ partnerName(props) }}
+      {% endcall %}
+    </div>
+  </div>
+{% endblock %}

@@ -34,6 +34,9 @@ module.exports = (req) => {
     req.query.edit &&
     (req.query.edit === "partner-name" || "registration-role");
 
+  const editModeTradingNameDetails =
+    req && req.query && req.query.edit && req.query.edit === "establishment-trading-name";
+
   const acceptAllCookies =
     req && req.cookies && req.cookies.acceptAllCookies ? req.cookies.acceptAllCookies : undefined;
 
@@ -77,6 +80,26 @@ module.exports = (req) => {
     ? "/partnership/back?edit=partner-name"
     : "/partnership/back";
 
+  const tradingNamesDetailsUrl = editModeTradingNamesDetails
+    ? "/tradingNames/trading-name-details?edit=establishment-trading-name"
+    : "/tradingNames/trading-name-details";
+
+  const tradingNamesDetailsDeleteFormAction = editModeTradingNamesDetails
+    ? "/tradingNames/delete-trading-name?edit=establishment-trading-name"
+    : "/tradingNames/delete-trading-name";
+
+  const tradingNamesDetailsContinueFormAction = editModeTradingNamesDetails
+    ? "/tradingNames/continue?edit=establishment-trading-name"
+    : "/tradingNames/continue";
+
+  const tradingNamesDetailsSaveFormAction = editModeTradingNamesDetails
+    ? "/tradingNames/save?edit=establishment-trading-name"
+    : "/tradingNames/save";
+
+  const tradingNamesDetailsBackUrl = editModeTradingNamesDetails
+    ? "/tradingNames/back?edit=establishment-trading-name"
+    : "/tradingNames/back";
+
   const validatorErrorsCleaned =
     req && req.session && req.session.validatorErrors ? { ...req.session.validatorErrors } : {};
 
@@ -117,6 +140,11 @@ module.exports = (req) => {
     partnerDetailsContinueFormAction,
     partnerDetailsSaveFormAction,
     partnerDetailsBackUrl,
+    tradingNamesDetailsUrl,
+    tradingNamesDetailsDeleteFormAction,
+    tradingNamesDetailsContinueFormAction,
+    tradingNamesDetailsSaveFormAction,
+    tradingNamesDetailsBackUrl,
     fullCurrentPage,
     currentPage,
     currentPageTitle,
