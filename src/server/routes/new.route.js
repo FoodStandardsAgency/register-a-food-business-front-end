@@ -6,13 +6,9 @@
 const { Router } = require("express");
 const { logEmitter } = require("../services/logging.service");
 
-const { LC_CACHE_TIME_TO_LIVE } = require("../config");
+const { LC_CACHE_TIME_TO_LIVE, pathConfig } = require("../config");
 const { transformAnswersForSummary } = require("../services/data-transform.service");
-const {
-  getPathConfigByVersion,
-  getLocalCouncils,
-  getCouncilData
-} = require("../connectors/config-db/config-db.connector");
+const { getLocalCouncils, getCouncilData } = require("../connectors/config-db/config-db.connector");
 const {
   REGISTRATION_DATA_VERSION,
   MAINTENANCE_MODE_BLOCK_NEW,
@@ -58,7 +54,7 @@ const newRouter = () => {
       if (page === "index") {
         req.session.regenerate(async () => {
           try {
-            req.session.pathConfig = await getPathConfigByVersion(REGISTRATION_DATA_VERSION);
+            req.session.pathConfig = pathConfig;
             const browserInfo = getBrowserInfo(req.headers["user-agent"]);
             Object.assign(req.session, req.session, { ...browserInfo });
 
@@ -89,7 +85,7 @@ const newRouter = () => {
       } else {
         // Save the path config to the session if not yet there
         if (!req.session.pathConfig) {
-          req.session.pathConfig = await getPathConfigByVersion(REGISTRATION_DATA_VERSION);
+          req.session.pathConfig = pathConfig;
         }
         // Save the browser support to the session if not there yet
         if (!req.session.isBrowserSupported) {

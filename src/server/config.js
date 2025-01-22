@@ -1,4 +1,222 @@
 require("dotenv").config();
+const pathConfig = {
+  "/index": {
+    on: true,
+    switches: {}
+  },
+  "/establishment-address": {
+    on: true,
+    switches: {}
+  },
+  "/establishment-address-select": {
+    on: true,
+    switches: {}
+  },
+  "/establishment-address-manual": {
+    on: false,
+    switches: {
+      establishment_address_line_1: {
+        "/establishment-address-manual": true
+      }
+    }
+  },
+  "/la-selector": {
+    on: false,
+    switches: {
+      local_authority: {
+        "/la-selector": true
+      }
+    }
+  },
+  "/la-established": {
+    on: true,
+    switches: {}
+  },
+  "/new-or-update-registration": {
+    on: true,
+    switches: {
+      UPDATE_REGISTRATION: {
+        "/update-registration": true
+      }
+    }
+  },
+  "/update-registration": {
+    on: false,
+    switches: {}
+  },
+  "/registration-role": {
+    on: true,
+    switches: {
+      SOLETRADER: {
+        "/operator-name": true,
+        "/operator-contact-details": true
+      },
+      PARTNERSHIP: {
+        "/partner-name": true,
+        "/main-partnership-contact": true,
+        "/partnership-contact-details": true
+      },
+      Representative: {
+        "/operator-type": true
+      }
+    }
+  },
+  "/operator-type": {
+    on: false,
+    switches: {
+      PERSON: {
+        "/operator-name": true,
+        "/operator-contact-details": true
+      },
+      COMPANY: {
+        "/operator-company-details": true,
+        "/contact-representative": true
+      },
+      CHARITY: {
+        "/operator-charity-details": true,
+        "/contact-representative": true
+      }
+    }
+  },
+  "/operator-company-details": {
+    on: false,
+    switches: {}
+  },
+  "/operator-charity-details": {
+    on: false,
+    switches: {}
+  },
+  "/operator-name": {
+    on: false,
+    switches: {}
+  },
+  "/partner-name": {
+    on: false,
+    switches: {}
+  },
+  "/main-partnership-contact": {
+    on: false,
+    switches: {}
+  },
+  "/operator-address": {
+    on: true,
+    switches: {}
+  },
+  "/operator-address-select": {
+    on: true,
+    switches: {}
+  },
+  "/operator-address-manual": {
+    on: false,
+    switches: {
+      operator_address_line_1: {
+        "/operator-address-manual": true
+      }
+    }
+  },
+  "/operator-contact-details": {
+    on: false,
+    switches: {}
+  },
+  "/partnership-contact-details": {
+    on: false,
+    switches: {}
+  },
+  "/contact-representative": {
+    on: false,
+    switches: {}
+  },
+  "/establishment-trading-name": {
+    on: true,
+    switches: {}
+  },
+  "/establishment-address-type": {
+    on: true,
+    switches: {}
+  },
+  "/establishment-contact-details": {
+    on: true,
+    switches: {}
+  },
+  "/establishment-opening-status": {
+    on: true,
+    switches: {
+      "Establishment is already trading": {
+        "/establishment-opening-date-retroactive": true
+      },
+      "Establishment due to trade": {
+        "/establishment-opening-date-proactive": true
+      }
+    }
+  },
+  "/establishment-opening-date-proactive": {
+    on: false,
+    switches: {}
+  },
+  "/establishment-opening-date-retroactive": {
+    on: false,
+    switches: {}
+  },
+  "/opening-days-start": {
+    on: true,
+    switches: {
+      "Every day": {
+        "/opening-hours": true
+      },
+      "Some days": {
+        "/opening-days-some": true,
+        "/opening-hours": true
+      },
+      "Irregular days": {
+        "/opening-days-irregular": true
+      }
+    }
+  },
+  "/opening-days-some": {
+    on: false,
+    switches: {}
+  },
+  "/opening-days-irregular": {
+    on: false,
+    switches: {}
+  },
+  "/opening-hours": {
+    on: false,
+    switches: {}
+  },
+  "/business-type": {
+    on: true,
+    switches: {}
+  },
+  "/business-scale": {
+    on: true,
+    switches: {}
+  },
+  "/food-type": {
+    on: true,
+    switches: {}
+  },
+  "/processing-activities": {
+    on: true,
+    switches: {}
+  },
+  "/business-water-supply": {
+    on: true,
+    switches: {}
+  },
+  "/business-other-details": {
+    on: true,
+    switches: {}
+  },
+  "/registration-summary": {
+    on: true,
+    switches: {}
+  },
+  "/declaration": {
+    on: true,
+    switches: {}
+  }
+};
 
 module.exports = {
   QA_KEY: process.env.QA_KEY,
@@ -29,5 +247,7 @@ module.exports = {
   MAC_SAFARI_SUPPORTED_SINCE: process.env.MACSAFARI_SUPPORTED_SINCE || 9,
   IOS_SAFARI_SUPPORTED_SINCE: process.env.IOSSAFARI_SUPPORTED_SINCE || 9.2,
   MAPIT_API: process.env.MAPIT_API,
-  MAPIT_API_KEY: process.env.MAPIT_API_KEY
+  MAPIT_API_KEY: process.env.MAPIT_API_KEY,
+  FUTURE_DELIVERY_EMAIL: "fsatestemail.valid@gmail.com",
+  pathConfig: pathConfig
 };

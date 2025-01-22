@@ -30,10 +30,10 @@ const submitRouter = () => {
           const controllerResponse = await submitController(
             req.session.cumulativeFullAnswers,
             req.session.addressLookups,
-            req.session.pathConfig._id,
+            process.env.npm_package_version,
             req.session.id,
             req.session.language,
-            req.session.pathConfig.path,
+            req.session.pathConfig,
             req.session.localAuthority.local_council_url
           );
 
