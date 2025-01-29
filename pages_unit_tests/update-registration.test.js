@@ -27,12 +27,12 @@ describe("Update Registration", () => {
     const $ = renderPage("la-established", {
       council: "cardiff"
     });
+  });
 
-    it("passes accessibility tests", async () => {
-      const $ = renderPage("update-registration", props);
+  it("passes accessibility tests", async () => {
+    const $ = renderPage("update-registration", props);
 
-      const results = await axe($.html());
-      expect(results).toHaveNoViolations();
-    });
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
   });
 });
