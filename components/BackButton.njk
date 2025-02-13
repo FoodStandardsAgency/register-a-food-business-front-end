@@ -11,6 +11,11 @@
               href: props.partnerDetailsBackUrl,
               text: __("Back", props.language)
           }) }}
+    {% elif props.currentPage == "/establishment-trading-name-details" %}
+      {{ govukBackLink({
+              href: "/tradingname/back",
+              text: __("Back", props.language)
+          }) }}
     {% elif props.currentPage == "/la-selector" %}
       {% if props.fullCurrentPage === "/la-selector?back=wrong-la" %}
         {{ govukBackLink({
@@ -23,7 +28,7 @@
               text: __("Back", props.language)
           }) }}
       {% endif %}
-      
+
     {% else %}
       {{ govukBackLink({
               href: props.backHref if props.backHref else ("/back" + props.currentPage),

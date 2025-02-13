@@ -5,12 +5,20 @@
 {% from "../node_modules/govuk-frontend/dist/govuk/components/textarea/macro.njk" import govukTextarea %}
 {% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
 {% from "../components/PostForm.njk" import postForm %}
+{% from "../components/TradingNamesTable.njk" import tradingNamesTable %}
 {% extends "layout.njk" %}
+
+{% macro tradingNameButton(props) %}
+  <a id="addTradingNameLink" href={{ props.tradingNameDetailsUrl }} class="govuk-button">
+    {{ __("Add another trading name", props.language) }}
+  </a>
+{% endmacro %}
+
 {% block content %}
   {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% call postForm(props.formAction, props.csrfToken, props.language) -%}
+      {% call postForm(props.tradingNameDetailsContinueFormAction, props.csrfToken, props.language, "establishment_trading_name_form") -%}
       {{ processedErrorSummary(props.validatorErrors, props.language) }}
       {% call govukFieldset({
               describedBy: "establishment_trading_name",
@@ -21,30 +29,58 @@
                 }  
               }) %}
       {{ govukInput({
-        "label": {
-          "text": __("What is the trading name of this establishment?", props.language)
-        },
-        "hint": {
-          "text": __("A trading name is what your customers will call your business.", props.language)
-        },
-        "id": "establishment_trading_name",
-        "value": props.cumulativeFullAnswers.establishment_trading_name,
-        "name": "establishment_trading_name",
-        "errorMessage":  { "text": __(props.validatorErrors.establishment_trading_name, props.language) } if props.validatorErrors.establishment_trading_name
-      }) }}
-      {{ govukTextarea({
-        "label": {
-          "text": __("If your business uses more than one trading name, for example if you trade on a delivery platform, you only need to complete ONE registration. Add all the names in the box below, for example: Lisa's Bakery shop, Lisa Treats, Lisa's Cakes.", props.language)
-        },
-        "id": "establishment_multiple_trading_names",
-        "value": props.cumulativeFullAnswers.establishment_multiple_trading_names,
-        "name": "establishment_multiple_trading_names"
-      }) }}
+          "label": {
+            "text": __("What is the trading name of this establishment?", props.language)
+          },
+          "hint": {
+            "text": __("A trading name is what your customers will call your business.", props.language)
+          },
+          "id": "establishment_trading_name",
+          "value": props.cumulativeFullAnswers.establishment_trading_name,
+          "name": "establishment_trading_name",
+          "errorMessage":  { "text": __(props.validatorErrors.establishment_trading_name, props.language) } if props.validatorErrors.establishment_trading_name
+        }) }}
+      <p class="govuk-hint">{{ __("If your business uses more than one trading name, for example if you trade on a delivery platform, you only need to complete ONE registration.", props.language) }}</p>
       {% endcall %}
+      {%- endcall %}
+
+      {% call postForm(props.tradingNameDetailsDeleteFormAction, props.csrfToken, props.language) -%}
+      {{ tradingNamesTable(props) if (props.cumulativeFullAnswers.establishment_additional_trading_names and (props.cumulativeFullAnswers.establishment_additional_trading_names | length > 0)) }}
+      {%- endcall %}
+
+      {{ tradingNameButton(props) if (not props.cumulativeFullAnswers.establishment_additional_trading_names or (props.cumulativeFullAnswers.establishment_additional_trading_names | length) < 10) else null }}
+      <p class="govuk-hint">{{ __("If you add more trading names later, please contact your local authority directly to advise them of the additional trading names.", props.language) }}</p>
       {{ govukButton({
-            text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language)
-          }) }}
-      {% endcall %}
+          text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language),
+          classes: "continue",
+          id: "continue-button",
+          attributes:{ form: "establishment_trading_name_form" }
+        }) }}
     </div>
   </div>
+
+  <script>
+    const addTradingNameLink = function (event) {
+      var trading_name = document
+        .getElementById("establishment_trading_name")
+        .value;
+      if (trading_name) {
+        event.preventDefault();
+        // Add the trading name to the URL take into considoration if it already have query string
+        var url = new URL(event.target.href);
+        url
+          .searchParams
+          .set("trading_name", trading_name);
+        window.location.href = url.href;
+      }
+    }
+    document
+      .querySelectorAll(`[id$="RowChange"]`)
+      .forEach(function (element) {
+        element.addEventListener("click", addTradingNameLink);
+      });
+    document
+      .getElementById("addTradingNameLink")
+      .addEventListener("click", addTradingNameLink);
+  </script>
 {% endblock %}
