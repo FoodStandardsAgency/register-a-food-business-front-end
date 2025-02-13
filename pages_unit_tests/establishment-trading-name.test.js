@@ -6,7 +6,10 @@ const { axe, renderPage, getPageDetails } = require("../testHelpers");
 
 const props = {
   validatorErrors: {},
-  cumulativeFullAnswers: { establishment_trading_name: "default" },
+  cumulativeFullAnswers: {
+    establishment_trading_name: "default",
+    establishment_additional_trading_names: ["one", "two"]
+  },
   language: "en"
 };
 
@@ -23,6 +26,16 @@ describe("Establishment-Trading-Name", () => {
 
     const results = await axe($.html());
     expect(results).toHaveNoViolations();
+  });
+
+  describe("additional-trading-names", () => {
+    it("renders additional trading names details fields correctly", () => {
+      const $ = renderPage("establishment-trading-name", props);
+      const $tradingName1 = $("#tradingName0");
+      expect($tradingName1.text()).toBe("one");
+      const $tradingName2 = $("#tradingName1");
+      expect($tradingName2.text()).toBe("two");
+    });
   });
 
   describe("establishment trading name input field", () => {
