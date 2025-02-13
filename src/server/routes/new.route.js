@@ -92,6 +92,9 @@ const newRouter = () => {
           const browserInfo = getBrowserInfo(req.headers["user-agent"]);
           Object.assign(req.session, req.session, { ...browserInfo });
         }
+        if (page === "establishment-trading-name") {
+          delete req.session.validatorErrors["trading_name"];
+        }
         // Transform the data into summary format on pages where it is required and save to session
         if (page === "registration-summary" || page === "summary-confirmation") {
           req.session.transformedData = transformAnswersForSummary(
