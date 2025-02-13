@@ -85,36 +85,36 @@ summaryListDeclarationHelper %}
         {{ summaryListHelperHtml(__("Partnership contact address", props.language) if propsData.operator_type === props.enums.operatorType.PARTNERSHIP.key else __("Operator address", props.language), html, "/edit/operator-address", propsData.operator_address_line_1 and propsData.operator_town and propsData.operator_postcode, props ) }}
       {% endif %}
       {% if propsData.applicationCompletePage == null %}
-          {% set html %}
-          <div>
-            <div id="operator_primary_number">{{ propsData.operator_primary_number if propsData.operator_primary_number else "" }}</div>
-            <div id="operator_secondary_number">{{ propsData.operator_secondary_number if propsData.operator_secondary_number else "" }}</div>
-          </div>
-          {% endset %}
+        {% set html %}
+        <div>
+          <div id="operator_primary_number">{{ propsData.operator_primary_number if propsData.operator_primary_number else "" }}</div>
+          <div id="operator_secondary_number">{{ propsData.operator_secondary_number if propsData.operator_secondary_number else "" }}</div>
+        </div>
+        {% endset %}
         {% if props.cumulativeFullAnswers.registration_role === props.enums.operatorType.SOLETRADER.key
         or props.cumulativeFullAnswers.operator_type === props.enums.operatorType.PERSON.key %}
           {{ summaryListHelperHtml(__("Phone number", props.language), html, "/edit/operator-contact-details", propsData.operator_primary_number, props ) }}
-          {%elif props.cumulativeFullAnswers.registration_role === props.enums.operatorType.PARTNERSHIP.key %}
-            {{ summaryListHelperHtml(__("Phone number", props.language), html, "/edit/partnership-contact-details", propsData.operator_primary_number, props ) }}
+        {%elif props.cumulativeFullAnswers.registration_role === props.enums.operatorType.PARTNERSHIP.key %}
+          {{ summaryListHelperHtml(__("Phone number", props.language), html, "/edit/partnership-contact-details", propsData.operator_primary_number, props ) }}
         {% endif %}
       {% endif %}
-     {% if propsData.applicationCompletePage == null %}
+      {% if propsData.applicationCompletePage == null %}
         {% if props.cumulativeFullAnswers.registration_role == props.enums.operatorType.SOLETRADER.key or props.cumulativeFullAnswers.operator_type == props.enums.operatorType.PERSON.key %}
           {% set html %}
           <div>
-             <div id="operator_email">{{ propsData.operator_email if propsData.operator_email else "" }}</div>
+            <div id="operator_email">{{ propsData.operator_email if propsData.operator_email else "" }}</div>
           </div>
           {% endset %}
-            {{ summaryListHelperHtml(__("Email address", props.language), html, "/edit/operator-contact-details", propsData.operator_email, props) }}
-              {%elif props.cumulativeFullAnswers.registration_role === props.enums.operatorType.PARTNERSHIP.key %}
+          {{ summaryListHelperHtml(__("Email address", props.language), html, "/edit/operator-contact-details", propsData.operator_email, props) }}
+        {%elif props.cumulativeFullAnswers.registration_role === props.enums.operatorType.PARTNERSHIP.key %}
           {% set html %}
           <div>
-              <div id="operator_email">{{ propsData.operator_email if propsData.operator_email else "" }}</div>
+            <div id="operator_email">{{ propsData.operator_email if propsData.operator_email else "" }}</div>
           </div>
           {% endset %}
-            {{ summaryListHelperHtml(__("Email address", props.language), html, "/edit/partnership-contact-details", propsData.operator_email, props) }}
+          {{ summaryListHelperHtml(__("Email address", props.language), html, "/edit/partnership-contact-details", propsData.operator_email, props) }}
         {% endif %}
-      {% endif %}        
+      {% endif %}
       {% if propsData.applicationCompletePage == null %}
         {% if props.cumulativeFullAnswers.operator_type === "COMPANY" or props.cumulativeFullAnswers.operator_type === "CHARITY" %}
           {% set contactRepRole = propsData.contact_representative_role if propsData.contact_representative_role else 
@@ -134,6 +134,11 @@ summaryListDeclarationHelper %}
       <h2 class="govuk-heading-m">{{ __("Establishment details", props.language) }}</h2>
       {% if propsData.applicationCompletePage == null %}
         {{ summaryListHelper(__("Trading name", props.language), propsData.establishment_trading_name, "/edit/establishment-trading-name", propsData.establishment_trading_name, "establishment_trading_name", props ) }}
+      {% endif %}
+      {% if propsData.applicationCompletePage == null %}
+        {% if propsData.establishment_additional_trading_names | length %}
+          {{ summaryListHelper(__("Additional trading names", props.language), propsData.establishment_additional_trading_names | join(", "), "/edit/establishment-trading-name", propsData.establishment_additional_trading_names, "establishment_additional_trading_names", props) }}
+        {% endif %}
       {% endif %}
       {% if propsData.applicationCompletePage == null %}
         {% set html %}
@@ -220,36 +225,36 @@ summaryListDeclarationHelper %}
         {{ summaryListHelper(__("Business type", props.language), propsData.business_type[props.language] if propsData.business_type, "/edit/business-type", propsData.business_type, "business_type", props) }}
       {% endif %}
       {% if propsData.applicationCompletePage == null %}
-         {% set html %}
-            <div>
-              {% for value in propsData.business_scale %}
-                {{value[props.language]}}
-                {% if not loop.last %}<br>{% endif %}
-              {% endfor %}
-            </div>
-          {% endset %}
+        {% set html %}
+        <div>
+          {% for value in propsData.business_scale %}
+            {{value[props.language]}}
+            {% if not loop.last %}<br>{% endif %}
+          {% endfor %}
+        </div>
+        {% endset %}
         {{ summaryListHelperHtml(__("Business scale", props.language), html, "/edit/business-scale", propsData.business_scale, props) }}
       {% endif %}
       {% if propsData.applicationCompletePage == null %}
-         {% set html %}
-            <div>
-              {% for value in propsData.food_type %}
-                {{value[props.language]}}
-                {% if not loop.last %}<br>{% endif %}
-              {% endfor %}
-            </div>
-          {% endset %}
+        {% set html %}
+        <div>
+          {% for value in propsData.food_type %}
+            {{value[props.language]}}
+            {% if not loop.last %}<br>{% endif %}
+          {% endfor %}
+        </div>
+        {% endset %}
         {{ summaryListHelperHtml(__("Food type", props.language), html, "/edit/food-type", propsData.food_type, props) }}
       {% endif %}
       {% if propsData.applicationCompletePage == null %}
-         {% set html %}
-            <div>
-              {% for value in propsData.processing_activities %}
-                {{value[props.language]}}
-                {% if not loop.last %}<br>{% endif %}
-              {% endfor %}
-            </div>
-          {% endset %}
+        {% set html %}
+        <div>
+          {% for value in propsData.processing_activities %}
+            {{value[props.language]}}
+            {% if not loop.last %}<br>{% endif %}
+          {% endfor %}
+        </div>
+        {% endset %}
         {{ summaryListHelperHtml(__("Processing activities", props.language), html, "/edit/processing-activities", propsData.processing_activities, props) }}
       {% endif %}
       {% if propsData.applicationCompletePage == null %}
