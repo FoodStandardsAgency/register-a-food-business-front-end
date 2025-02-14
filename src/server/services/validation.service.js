@@ -78,7 +78,8 @@ const errorMessages = {
   opening_hours_thursday: "Enter the establishment opening hours for Thursday using 24 hour clocks",
   opening_hours_friday: "Enter the establishment opening hours for Friday using 24 hour clocks",
   opening_hours_saturday: "Enter the establishment opening hours for Saturday using 24 hour clocks",
-  opening_hours_sunday: "Enter the establishment opening hours for Sunday using 24 hour clocks"
+  opening_hours_sunday: "Enter the establishment opening hours for Sunday using 24 hour clocks",
+  new_or_update_registration: "You must select an option before continuing"
 };
 
 const validator = new Validator();
