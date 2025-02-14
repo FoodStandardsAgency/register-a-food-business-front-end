@@ -13,6 +13,7 @@ const {
   switchesRouter,
   setCookieRouter,
   partnerDetailsRouter,
+  tradingNameDetailsRouter,
   pdfsRouter
 } = require("./routes/index");
 
@@ -36,6 +37,7 @@ module.exports = () => {
   router.use("/switches", switchesRouter());
   router.use("/setcookie", setCookieRouter());
   router.use("/partnership", partnerDetailsRouter());
+  router.use("/tradingname", tradingNameDetailsRouter());
   router.use("/pdfs", pdfsRouter());
 
   return router;
