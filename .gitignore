@@ -31,3 +31,4 @@ junit.xml
 
 # generated
 /src/server/css/app.css
+/src/server/css/app.css.map
