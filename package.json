@@ -7,7 +7,7 @@
   "module": "es2022",
   "scripts": {
     "dev": "npm run sass-dev && node ./src/server/server.js",
-    "start": "npm run sass-prod && NODE_ENV=production node ./src/server/server.js",
+    "start": "NODE_ENV=production node ./src/server/server.js",
     "debug": "npm run sass-dev && node --inspect src/server/server.js",
     "debug:prod": "npm run sass-dev && NODE_ENV=production node --inspect src/server/server.js",
     "local:dev": "npm run sass-dev && nodemon ./src/server/server.js",

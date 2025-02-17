@@ -40,6 +40,9 @@ jobs:
       - name: Install
         run: npm install
 
+      - name: Compile css for production
+        run: npm run sass-prod
+
       - name: Format
         run: npm run format:verify
 
