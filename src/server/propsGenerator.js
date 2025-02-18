@@ -61,21 +61,46 @@ module.exports = (req) => {
     ? "/partnership/partner-details?edit=partner-name"
     : "/partnership/partner-details";
 
+  const tradingNameDetailsUrl =
+    req && req.query && req.query.edit
+      ? "/tradingname/establishment-trading-name-details?edit=establishment-trading-name"
+      : "/tradingname/establishment-trading-name-details";
+
   const partnerDetailsDeleteFormAction = editModePartnerDetails
     ? "/partnership/delete-partner?edit=partner-name"
     : "/partnership/delete-partner";
+
+  const tradingNameDetailsDeleteFormAction =
+    req && req.query && req.query.edit
+      ? "/tradingname/delete-trading-name?edit=establishment-trading-name"
+      : "/tradingname/delete-trading-name";
 
   const partnerDetailsContinueFormAction = editModePartnerDetails
     ? "/partnership/continue?edit=partner-name"
     : "/partnership/continue";
 
+  const tradingNameDetailsContinueFormAction =
+    req && req.query && req.query.edit
+      ? "/tradingname/continue?edit=establishment-trading-name"
+      : "/tradingname/continue";
+
   const partnerDetailsSaveFormAction = editModePartnerDetails
     ? "/partnership/save?edit=partner-name"
     : "/partnership/save";
 
+  const tradingNameDetailsSaveFormAction =
+    req && req.query && req.query.edit
+      ? "/tradingname/save?edit=establishment-trading-name"
+      : "/tradingname/save";
+
   const partnerDetailsBackUrl = editModePartnerDetails
     ? "/partnership/back?edit=partner-name"
     : "/partnership/back";
+
+  const tradingNameDetailsBackUrl =
+    req && req.query && req.query.edit
+      ? "/tradingname/back?edit=establishment-trading-name"
+      : "/tradingname/back";
 
   const validatorErrorsCleaned =
     req && req.session && req.session.validatorErrors ? { ...req.session.validatorErrors } : {};
@@ -113,10 +138,15 @@ module.exports = (req) => {
     csrfToken,
     language,
     partnerDetailsUrl,
+    tradingNameDetailsUrl,
     partnerDetailsDeleteFormAction,
+    tradingNameDetailsDeleteFormAction,
     partnerDetailsContinueFormAction,
+    tradingNameDetailsContinueFormAction,
     partnerDetailsSaveFormAction,
+    tradingNameDetailsSaveFormAction,
     partnerDetailsBackUrl,
+    tradingNameDetailsBackUrl,
     fullCurrentPage,
     currentPage,
     currentPageTitle,
@@ -149,5 +179,6 @@ module.exports = (req) => {
   };
 
   // The getInitialProps function (a method of the 'wrapper' function) returns the initialProps object
+  // console.log("initialProps", initialProps);
   return initialProps;
 };

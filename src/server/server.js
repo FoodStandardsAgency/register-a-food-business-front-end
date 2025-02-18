@@ -4,17 +4,19 @@ const morgan = require("morgan");
 const packageJson = require("../../package.json");
 const i18n = require("i18n");
 const nunjucks = require("nunjucks");
-var sassMiddleware = require("node-sass-middleware");
 var path = require("path");
 const getRandomValues = require("get-random-values");
 const { initialiseNunjucksEnvironment } = require("./nunjucksFunctions");
 require("dotenv").config();
-if (process.env.APPINSIGHTS_CONNECTION_STRING) {
+if (
+  "APPINSIGHTS_INSTRUMENTATIONKEY" in process.env &&
+  process.env["APPINSIGHTS_INSTRUMENTATIONKEY"] !== ""
+) {
   console.log(`Setting up application insights modules`);
-  // applicationinsights sdk v3 not support setting cloud role name, so we setting directly to the open telemetry env variable
-  process.env["OTEL_SERVICE_NAME"] = packageJson.name;
-  appInsights.setup(process.env.APPINSIGHTS_CONNECTION_STRING);
-  appInsights.start();
+  appInsights.setup().start();
+  appInsights.defaultClient.addTelemetryProcessor((envelope) => {
+    envelope.tags["ai.cloud.role"] = packageJson.name; // eslint-disable-line no-param-reassign
+  });
 }
 const { logger } = require("./services/winston");
 
@@ -166,14 +168,6 @@ app.use(setLanguage);
 app.use(morgan("combined", { stream: logger.stream }));
 
 app.use(
-  sassMiddleware({
-    src: __dirname, //where the sass files are
-    dest: __dirname, //where css should go
-    debug: true
-  })
-);
-
-app.use(
   "/assets",
   express.static(path.join(__dirname, "/../../node_modules/govuk-frontend/dist/govuk/assets"))
 );
@@ -191,19 +185,6 @@ app.use("/data", express.static(__dirname + "/data"), function (req, res) {
 const { logEmitter } = require("./services/logging.service");
 // Set language cookie - TODO: Does i18next do this for you?  Need to check user accepted cookies?
 app.all("*", (req, res, next) => {
-  logEmitter.emit(
-    "functionCall",
-    "each-request-log",
-    JSON.stringify({
-      Method: req.method,
-      Host: req.hostname,
-      Url: req.originalUrl,
-      Headers: req.headers,
-      Body: req.body,
-      Cookies: req.cookies,
-      Session: req.session
-    })
-  );
   if (req && req.query && req.query.lang) {
     res.cookie("lang", req.query.lang);
   }

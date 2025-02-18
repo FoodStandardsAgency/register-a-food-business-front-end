@@ -21,7 +21,7 @@ const editRouter = () => {
     );
     try {
       const controllerResponse = editController.editContinue(
-        req.session.pathConfig.path,
+        req.session.pathConfig,
         `/${req.query.edit}`,
         `/${req.params.originator}`,
         req.session.cumulativeFullAnswers,
@@ -83,7 +83,7 @@ const editRouter = () => {
 
   router.get("/back/:originator", (req, res) => {
     const controllerResponse = editController.editBack(
-      req.session.pathConfig.path,
+      req.session.pathConfig,
       `/${req.query.edit}`,
       `/${req.params.originator}`,
       req.session.cumulativeFullAnswers,

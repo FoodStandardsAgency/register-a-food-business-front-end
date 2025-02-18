@@ -25,7 +25,7 @@ describe("Back route: ", () => {
         session: {
           cumulativeFullAnswers: {},
           council: "council",
-          pathConfig: { path: "existing path from session" }
+          pathConfig: "existing path from session"
         },
         params: {
           originator: "originator"

@@ -9,7 +9,7 @@ const {
   switchOffCompanyAndCharityDetails
 } = require("./path.service");
 const pathConfigMock = require("../../__mocks__/pathConfigMock.json");
-const pathMock = pathConfigMock.path;
+const pathMock = pathConfigMock;
 
 describe("path.service editPath()", () => {
   let result;
