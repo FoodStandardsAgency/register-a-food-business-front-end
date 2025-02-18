@@ -44,7 +44,8 @@ const transformAnswersForSubmit = (cumulativeFullAnswers, language, addressLooku
     "establishment_secondary_number",
     "establishment_email",
     "establishment_web_address",
-    "establishment_opening_date"
+    "establishment_opening_date",
+    "establishment_additional_trading_names"
   ];
   const operator_keys = [
     "operator_first_name",

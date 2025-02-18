@@ -1,0 +1,48 @@
+{% from "../node_modules/govuk-frontend/dist/govuk/components/button/macro.njk" import govukButton %}
+{% from "../components/PostForm.njk" import postForm %}
+{% from "../components/ProcessedErrorSummary.njk" import processedErrorSummary %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/input/macro.njk" import govukInput %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "../node_modules/govuk-frontend/dist/govuk/components/details/macro.njk" import govukDetails %}
+{% extends "layout.njk" %}
+{% block content %}
+  {{ props.currentPageWithQuery }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% call postForm(props.tradingNameDetailsSaveFormAction, props.csrfToken, props.language) -%}
+      {{ processedErrorSummary(props.validatorErrors, props.language) }}
+      {{ govukInput({ 
+            label: {
+            text: __("Edit additional trading name", props.language) if props.cumulativeFullAnswers.establishment_additional_trading_names[props.cumulativeFullAnswers.targetTradingName] else __("Add additional trading name", props.language),
+            classes: "govuk-label--l",
+            isPageHeading: true
+                  },
+            id: "trading_name",
+            name: "trading_name",
+            hint: {
+                text: __("Trading name", props.language)
+             },
+            value: props.cumulativeFullAnswers.establishment_additional_trading_names[
+            props.cumulativeFullAnswers.targetTradingName
+            ],
+            "errorMessage": { "text": __(props.validatorErrors.trading_name, props.language) } if props.validatorErrors.trading_name
+        }) }}
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <button class="govuk-button" type="submit" data-module="govuk-button" id="continue-button">
+            {{ __(("Save " if props.cumulativeFullAnswers.establishment_additional_trading_names[props.cumulativeFullAnswers.targetTradingName] else "Add ") + "trading name", props.language) }}
+          </button>
+        </div>
+        <div class="govuk-grid-column-one-quarter" style="float:right; text-align: right">
+          <a href={{ props.tradingNameDetailsBackUrl }} class="govuk-link">
+            <button class="govuk-button" type="button" data-module="govuk-button" id="cancelButton">
+              {{ __("Cancel", props.language) }}
+            </button>
+          </a>
+        </div>
+      </div>
+      {%- endcall %}
+    </div>
+  </div>
+{% endblock %}
