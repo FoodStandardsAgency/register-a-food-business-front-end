@@ -45,15 +45,17 @@
     text: __(props.validatorErrors.establishment_opening_date, props.language)} if props.validatorErrors.establishment_opening_date
 }) }}
 
-{% set html %}
+  {% set html %}
   <p>
     {{ __("When you start a new food business or take over an existing business, you must register with your local authority. You should do this at least", props.language) }}
     <b>{{ __("28 days", props.language) }}</b>
     {{ __("before trading or before food operations start.", props.language) }}
   </p>
-  <p><b>{{ __("Do not register too early, if your food business is not ready to start trading, wait until nearer the time that operations are due to begin.", props.language)}}</b></p>
-{% endset %}
-{{ govukDetails({
+  <p>
+    <b>{{ __("Do not register too early. If your food business is not ready to start trading, wait until nearer the time that operations are due to begin.", props.language)}}</b>
+  </p>
+  {% endset %}
+  {{ govukDetails({
   summaryText: __("I don't know when this establishment will begin trading", props.language),
   html: html
   }) 
@@ -104,7 +106,7 @@
     }) }}
 {% endmacro %}
 {% extends "layout.njk" %}
-{% block content %} 
+{% block content %}
   {{ props.currentPageWithQuery }}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
