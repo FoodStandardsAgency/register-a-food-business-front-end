@@ -37,6 +37,15 @@ const schema = {
     type: "object",
     properties: {}
   },
+  "/new-or-update-registration": {
+    type: "object",
+    properties: {
+      new_or_update_registration: {
+        type: "string",
+        validation: validateRadioButtons
+      }
+    }
+  },
   "/registration-role": {
     type: "object",
     properties: {
