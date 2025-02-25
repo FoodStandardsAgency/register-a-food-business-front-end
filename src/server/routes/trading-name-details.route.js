@@ -75,6 +75,7 @@ const tradingNameDetailsRouter = () => {
       "/tradingname/establishment-trading-name-details route"
     );
 
+    req.session.cumulativeFullAnswers = req.session.cumulativeFullAnswers || {};
     req.session.cumulativeFullAnswers.targetTradingName = null;
 
     if (req.query.trading_name) {
@@ -88,8 +89,10 @@ const tradingNameDetailsRouter = () => {
     req.session.cumulativeFullAnswers.establishment_additional_trading_names =
       initializeTradingNames(req.session);
 
-    delete req.session.validatorErrors["establishment_trading_name"];
-    delete req.session.validatorErrors["establishment_additional_trading_names"];
+    if (req.session.validatorErrors) {
+      delete req.session.validatorErrors["establishment_trading_name"];
+      delete req.session.validatorErrors["establishment_additional_trading_names"];
+    }
 
     logEmitter.emit(
       "functionSuccess",
