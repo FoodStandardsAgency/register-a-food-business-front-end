@@ -68,7 +68,9 @@ const tradingNameDetailsContinue = (
     controllerResponse.redirectRoute = `/new/establishment-address-type`;
 
     if (edit) {
-      delete controllerResponse.allValidationErrors["establishment_additional_trading_names"];
+      if (controllerResponse.allValidationErrors) {
+        delete controllerResponse.allValidationErrors["establishment_additional_trading_names"];
+      }
       controllerResponse.redirectRoute = `/new/registration-summary`;
     }
 
