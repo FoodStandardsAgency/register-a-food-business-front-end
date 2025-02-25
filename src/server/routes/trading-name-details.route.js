@@ -146,6 +146,7 @@ const tradingNameDetailsRouter = () => {
     try {
       const originator = getOriginator(req.get("Referrer"));
 
+      req.session.cumulativeFullAnswers = req.session.cumulativeFullAnswers || {};
       req.session.cumulativeFullAnswers.establishment_additional_trading_names =
         initializeTradingNames(req.session);
 
