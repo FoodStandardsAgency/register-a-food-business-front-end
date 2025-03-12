@@ -137,7 +137,14 @@ summaryListDeclarationHelper %}
       {% endif %}
       {% if propsData.applicationCompletePage == null %}
         {% if propsData.establishment_additional_trading_names | length %}
-          {{ summaryListHelper(__("Additional trading names", props.language), propsData.establishment_additional_trading_names | join(", "), "/edit/establishment-trading-name", propsData.establishment_additional_trading_names, "establishment_additional_trading_names", props) }}
+          {% set html %}
+          <ul class="govuk-list govuk-list--bullet">
+            {% for value in propsData.establishment_additional_trading_names %}
+              <li>{{value}}</li>
+            {% endfor %}
+          </ul>
+          {% endset %}
+          {{ summaryListHelperHtml(__("Additional trading names", props.language), html, "/edit/establishment-trading-name", propsData.establishment_additional_trading_names, props) }}
         {% endif %}
       {% endif %}
       {% if propsData.applicationCompletePage == null %}
