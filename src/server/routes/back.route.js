@@ -16,7 +16,7 @@ const backRouter = () => {
     const response = backController(
       `/${req.params.originator}`,
       req.session.cumulativeFullAnswers,
-      req.session.pathConfig.path
+      req.session.pathConfig
     );
     req.session.validatorErrors = [];
     logEmitter.emit(

@@ -6,49 +6,7 @@ const { establishConnectionToCosmos } = require("../cosmos.client");
 const CONFIG_DATA_LOOKUP_FAILURE = "Configuration data lookup failure";
 const CONFIG_DATA_LOOKUP_SUCCESS = "Configuration data lookup success";
 
-let configVersionCollection;
 let laConfigCollection;
-
-let pathConfig = null;
-
-/**
- * Fetches the path configuration (including pages, switches etc) from the config database
- *
- * @param {string} version The data version of this registration, corresponding to an entry in the config database
- *
- * @returns {object} An object containing the _id and path fields of the config database data for the given config version
- */
-const getPathConfigByVersion = async (version) => {
-  logEmitter.emit("functionCall", "config-db.connector", "getPathConfigByVersion");
-
-  if (pathConfig === null) {
-    try {
-      configVersionCollection = await establishConnectionToCosmos("config", "configVersion");
-
-      const configVersionRecord = await configVersionCollection.findOne({
-        _id: version
-      });
-
-      if (configVersionRecord === null) {
-        throw new Error(`Path config version not found (v${version})`);
-      } else {
-        pathConfig = {
-          _id: configVersionRecord._id,
-          path: configVersionRecord.path
-        };
-      }
-    } catch (err) {
-      logEmitter.emit("warning", CONFIG_DATA_LOOKUP_FAILURE); // Used for Azure alerts
-      logEmitter.emit("functionFail", "config-db.connector", "getPathConfigByVersion", err);
-      throw err;
-    }
-  }
-
-  logEmitter.emit("info", CONFIG_DATA_LOOKUP_SUCCESS); // Used for Azure alerts
-  logEmitter.emit("functionSuccess", "config-db.connector", "getPathConfigByVersion");
-
-  return pathConfig;
-};
 
 /**
  * Fetches the list of allowed local councils from the config database
@@ -160,19 +118,7 @@ const getCouncilDataByMapitID = async (councilMapitID) => {
   return councilRecord;
 };
 
-/**
- * Resets the in-memory path config. Primarily for testing purposes.
- *
- * @returns {any} The cleared in-memory path config
- */
-const clearPathConfigCache = () => {
-  pathConfig = null;
-  return pathConfig;
-};
-
 module.exports = {
-  getPathConfigByVersion,
-  clearPathConfigCache,
   getLocalCouncils,
   getCouncilDataByID,
   getCouncilDataByMapitID

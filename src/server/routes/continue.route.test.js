@@ -34,7 +34,7 @@ describe("Continue route: ", () => {
         session: {
           cumulativeFullAnswers: {},
           switches: {},
-          pathConfig: { path: "existing path from session" },
+          pathConfig: "existing path from session",
           save: (cb) => {
             cb();
           }
@@ -92,7 +92,7 @@ describe("Continue route: ", () => {
           session: {
             cumulativeFullAnswers: {},
             switches: {},
-            pathConfig: { path: "existing path from session" },
+            pathConfig: "existing path from session",
             save: (cb) => {
               cb();
             }
@@ -147,7 +147,7 @@ describe("Continue route: ", () => {
           session: {
             cumulativeFullAnswers: {},
             switches: {},
-            pathConfig: { path: "existing path from session" },
+            pathConfig: "existing path from session",
             save: (cb) => {
               cb();
             }

@@ -25,7 +25,7 @@ const continueRouter = () => {
         req.session.cumulativeFullAnswers,
         req.body,
         req.session.switches,
-        req.session.pathConfig.path
+        req.session.pathConfig
       );
 
       req.session.cumulativeFullAnswers = response.cumulativeFullAnswers;

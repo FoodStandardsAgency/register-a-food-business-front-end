@@ -29,13 +29,23 @@ const {
   validatePartnerName,
   validateOpeningHours,
   validateMandatoryString,
-  validateWebAddress
+  validateWebAddress,
+  validateTradingNames
 } = require("@slice-and-dice/register-a-food-business-validation");
 
 const schema = {
   "/index": {
     type: "object",
     properties: {}
+  },
+  "/new-or-update-registration": {
+    type: "object",
+    properties: {
+      new_or_update_registration: {
+        type: "string",
+        validation: validateRadioButtons
+      }
+    }
   },
   "/registration-role": {
     type: "object",
@@ -255,6 +265,19 @@ const schema = {
     type: "object",
     properties: {
       establishment_trading_name: {
+        type: "string",
+        validation: validateEstablishmentTradingName
+      },
+      establishment_additional_trading_names: {
+        type: "array",
+        validation: validateTradingNames
+      }
+    }
+  },
+  "/establishment-trading-name-details": {
+    type: "object",
+    properties: {
+      trading_name: {
         type: "string",
         validation: validateEstablishmentTradingName
       }

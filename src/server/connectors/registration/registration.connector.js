@@ -16,6 +16,7 @@ const { logEmitter } = require("../../services/logging.service");
  * @returns {object} The back-end service response
  */
 const sendRequest = async (submissionData, regDataVersion, sessionId) => {
+  console.log(JSON.stringify(submissionData));
   try {
     let res;
     logEmitter.emit("functionCallWith", "registration.connector", "sendRequest", SUBMIT_URL);

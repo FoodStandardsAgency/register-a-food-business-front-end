@@ -33,6 +33,7 @@ describe("Submit route: ", () => {
       let res, req;
 
       beforeEach(() => {
+        process.env.npm_package_version = "1.0.0";
         submitController.mockImplementation(() => ({
           redirectRoute: "/summary-confirmation",
           submissionDate: "date",
@@ -56,7 +57,7 @@ describe("Submit route: ", () => {
               local_council_url: "cardiff"
             },
             addressLookups: ["1"],
-            pathConfig: { _id: "1.0.0", path: { some: "path" } },
+            pathConfig: { some: "path" },
             id: "S3S510NI6",
             save: (cb) => {
               cb();
@@ -120,7 +121,7 @@ describe("Submit route: ", () => {
               local_council_url: "cardiff"
             },
             addressLookups: ["1"],
-            pathConfig: { _id: "1.0.0", path: { some: "path" } },
+            pathConfig: { some: "path" },
             save: (cb) => {
               cb();
             }
@@ -167,7 +168,6 @@ describe("Submit route: ", () => {
               local_council_url: "cardiff"
             },
             addressLookups: ["1"],
-            pathConfig: { _id: "1.0.0" },
             save: (cb) => {
               cb("session save error");
             }
@@ -202,7 +202,6 @@ describe("Submit route: ", () => {
               local_council_url: "cardiff"
             },
             addressLookups: ["1"],
-            pathConfig: { _id: "1.0.0" },
             save: () => {}
           }
         };
