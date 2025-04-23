@@ -1,5 +1,5 @@
 # specify the node base image with your desired version node:<version>
-FROM node:18.16
+FROM node:22.14
 ARG NPM_TOKEN
 ARG http_proxy
 ARG https_proxy
