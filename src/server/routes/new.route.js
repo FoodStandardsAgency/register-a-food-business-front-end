@@ -35,7 +35,43 @@ const newRouter = () => {
     });
   }
 
-  router.get("/:page?", async (req, res, next) => {
+  // new route needed for index page
+  router.get("/", async (req, res, next) => {
+    logEmitter.emit("functionCall", "Routes", "/new (root route)");
+
+    req.session.regenerate(async () => {
+      try {
+        req.session.pathConfig = pathConfig;
+        const browserInfo = getBrowserInfo(req.headers["user-agent"]);
+        Object.assign(req.session, req.session, { ...browserInfo });
+
+        if (MAINTENANCE_MODE_BLOCK_NEW === "true") {
+          logEmitter.emit(
+            "functionSuccessWith",
+            "Routes",
+            "/new route",
+            "Maintenance Mode (Block New Users) Active. Rendering page: /maintenance"
+          );
+          res.render("maintenance");
+        } else {
+          logEmitter.emit(
+            "functionSuccessWith",
+            "Routes",
+            "/new route",
+            "Session regenerated. Rendering page: /index"
+          );
+
+          var props = PropsGenerator(req);
+          res.render("index", { props });
+        }
+      } catch (err) {
+        logEmitter.emit("functionFail", "Routes", "/new route", err);
+        next(err);
+      }
+    });
+  });
+
+  router.get("/:page{}", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/new route");
     try {
       const page = req.params.page || "index";

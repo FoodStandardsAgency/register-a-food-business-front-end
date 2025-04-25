@@ -36,13 +36,11 @@ describe("New route: ", () => {
       let req, res;
 
       beforeEach(async () => {
-        handler = router.get.mock.calls[0][1];
+        handler = router.get.mock.calls[1][1];
         req = {
           session: {
-            pathConfig: "fetched path from either cache or DB",
-            regenerate: (cb) => {
-              cb();
-            }
+            regenerate: jest.fn((cb) => cb()),
+            pathConfig: "fetched path from either cache or DB"
           },
           params: {
             page: "operator-type"
@@ -77,13 +75,11 @@ describe("New route: ", () => {
       let req, res;
 
       beforeEach(() => {
-        handler = router.get.mock.calls[0][1];
+        handler = router.get.mock.calls[1][1];
         req = {
           session: {
-            pathConfig: "existing path from session",
-            regenerate: (cb) => {
-              cb();
-            }
+            regenerate: jest.fn((cb) => cb()),
+            pathConfig: "existing path from session"
           },
           params: {
             page: "/new page"
@@ -117,9 +113,10 @@ describe("New route: ", () => {
           transformAnswersForSummary.mockImplementation(() => ({
             example: "data"
           }));
-          handler = router.get.mock.calls[0][1];
+          handler = router.get.mock.calls[1][1];
           req = {
             session: {
+              regenerate: jest.fn((cb) => cb()),
               save: (cb) => {
                 cb();
               }
@@ -158,12 +155,10 @@ describe("New route: ", () => {
     describe("When req.params.page is not defined", () => {
       let req, res;
       beforeEach(async () => {
-        handler = router.get.mock.calls[0][1];
+        handler = router.get.mock.calls[1][1];
         req = {
           session: {
-            regenerate: (cb) => {
-              cb();
-            }
+            regenerate: jest.fn((cb) => cb())
           },
           params: {},
           csrfToken: jest.fn(),
@@ -194,9 +189,10 @@ describe("New route: ", () => {
           throw new Error("error");
         });
         next = jest.fn();
-        handler = router.get.mock.calls[0][1];
+        handler = router.get.mock.calls[1][1];
         req = {
           session: {
+            regenerate: jest.fn((cb) => cb()),
             save: (cb) => {
               cb();
             }
