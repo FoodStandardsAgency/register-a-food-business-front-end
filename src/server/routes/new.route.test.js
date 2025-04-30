@@ -36,7 +36,7 @@ describe("New route: ", () => {
       let req, res;
 
       beforeEach(async () => {
-        handler = router.get.mock.calls[1][1];
+        handler = router.get.mock.calls[0][1];
         req = {
           session: {
             regenerate: jest.fn((cb) => cb()),
@@ -75,7 +75,7 @@ describe("New route: ", () => {
       let req, res;
 
       beforeEach(() => {
-        handler = router.get.mock.calls[1][1];
+        handler = router.get.mock.calls[0][1];
         req = {
           session: {
             regenerate: jest.fn((cb) => cb()),
@@ -113,7 +113,7 @@ describe("New route: ", () => {
           transformAnswersForSummary.mockImplementation(() => ({
             example: "data"
           }));
-          handler = router.get.mock.calls[1][1];
+          handler = router.get.mock.calls[0][1];
           req = {
             session: {
               regenerate: jest.fn((cb) => cb()),
@@ -155,7 +155,7 @@ describe("New route: ", () => {
     describe("When req.params.page is not defined", () => {
       let req, res;
       beforeEach(async () => {
-        handler = router.get.mock.calls[1][1];
+        handler = router.get.mock.calls[0][1];
         req = {
           session: {
             regenerate: jest.fn((cb) => cb())
@@ -189,7 +189,7 @@ describe("New route: ", () => {
           throw new Error("error");
         });
         next = jest.fn();
-        handler = router.get.mock.calls[1][1];
+        handler = router.get.mock.calls[0][1];
         req = {
           session: {
             regenerate: jest.fn((cb) => cb()),
