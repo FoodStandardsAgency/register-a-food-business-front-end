@@ -36,7 +36,7 @@ const setCookieRouter = () => {
     }
 
     logEmitter.emit("functionSuccess", "Routes", "/cookie/:cookieName route");
-    res.redirect("back");
+    res.redirect(req.get("Referrer") || "/");
   });
 
   return router;

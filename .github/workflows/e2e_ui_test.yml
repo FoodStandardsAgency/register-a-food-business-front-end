@@ -39,10 +39,10 @@ jobs:
           repository: FoodStandardsAgency/register-a-food-business-UI-tests
           ref: ${{ vars.UI_TESTS_BRANCH }}
 
-      - name: Use Node.js 18
+      - name: Use Node.js 22.14
         uses: actions/setup-node@v1
         with:
-          node-version: 18
+          node-version: 22.14
 
       - name: Npm version
         run: npm -v
