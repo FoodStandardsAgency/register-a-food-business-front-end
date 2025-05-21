@@ -12,11 +12,11 @@ describe("Function: tradingStatus", () => {
       sendTradingStatus.mockImplementation(() => {
         return { status: 200 };
       });
-      result = await tradingStatus(testFsaId, true);
+      result = await tradingStatus(testFsaId, "test", true);
     });
 
     it("Should call sendTradingStatus with fsaId", () => {
-      expect(sendTradingStatus).toBeCalledWith(testFsaId, true);
+      expect(sendTradingStatus).toBeCalledWith(testFsaId, "test", true);
     });
 
     it("Should return the response", () => {

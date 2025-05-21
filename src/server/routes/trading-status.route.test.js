@@ -26,20 +26,23 @@ describe("Trading Status route: ", () => {
         }));
 
         handler = router.get.mock.calls[0][1];
-
+        next = jest.fn();
         req = {
           params: {
             fsaid: testFsaId
+          },
+          query: {
+            token: "encryptedId"
           }
         };
         res = {
           render: jest.fn()
         };
-        handler(req, res);
+        handler(req, res, next);
       });
 
       it("Should call tradingStatusService with the correct args", () => {
-        expect(tradingStatus).toHaveBeenCalledWith(testFsaId, true);
+        expect(tradingStatus).toHaveBeenCalledWith(testFsaId, "encryptedId", true);
       });
 
       it("Should render the page", () => {
@@ -58,6 +61,9 @@ describe("Trading Status route: ", () => {
         req = {
           params: {
             fsaid: testFsaId
+          },
+          query: {
+            token: "encryptedId"
           }
         };
         res = {};
@@ -80,20 +86,23 @@ describe("Trading Status route: ", () => {
         }));
 
         handler = router.get.mock.calls[1][1];
-
+        next = jest.fn();
         req = {
           params: {
             fsaid: testFsaId
+          },
+          query: {
+            token: "encryptedId"
           }
         };
         res = {
           render: jest.fn()
         };
-        handler(req, res);
+        handler(req, res, next);
       });
 
       it("Should call tradingStatusService with the correct args", () => {
-        expect(tradingStatus).toHaveBeenCalledWith(testFsaId, false);
+        expect(tradingStatus).toHaveBeenCalledWith(testFsaId, "encryptedId", false);
       });
 
       it("Should render the page", () => {
@@ -112,6 +121,9 @@ describe("Trading Status route: ", () => {
         req = {
           params: {
             fsaid: testFsaId
+          },
+          query: {
+            token: "encryptedId"
           }
         };
         res = {};

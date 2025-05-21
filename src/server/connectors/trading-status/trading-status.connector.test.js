@@ -13,7 +13,7 @@ describe("Function: sendTradingStatus", () => {
   describe("When confirmed trading request succeeds", () => {
     beforeEach(async () => {
       axios.mockResolvedValue("response");
-      result = await sendTradingStatus(testFsaId, true);
+      result = await sendTradingStatus(testFsaId, "test", true);
     });
 
     it("Should return res", () => {
@@ -21,7 +21,7 @@ describe("Function: sendTradingStatus", () => {
     });
 
     it("Should call axios with the correct args", () => {
-      expect(axios).toHaveBeenLastCalledWith(`${CONFIRMED_TRADING_API_URL}/${testFsaId}`, {
+      expect(axios).toHaveBeenLastCalledWith(`${CONFIRMED_TRADING_API_URL}/${testFsaId}?id=test`, {
         headers: expect.anything(),
         method: "POST"
       });
@@ -31,7 +31,7 @@ describe("Function: sendTradingStatus", () => {
   describe("When stopped trading request succeeds", () => {
     beforeEach(async () => {
       axios.mockResolvedValue("response");
-      result = await sendTradingStatus(testFsaId, false);
+      result = await sendTradingStatus(testFsaId, "test", false);
     });
 
     it("Should return res", () => {
@@ -39,7 +39,7 @@ describe("Function: sendTradingStatus", () => {
     });
 
     it("Should call axios with the correct args", () => {
-      expect(axios).toHaveBeenLastCalledWith(`${STOPPED_TRADING_API_URL}/${testFsaId}`, {
+      expect(axios).toHaveBeenLastCalledWith(`${STOPPED_TRADING_API_URL}/${testFsaId}?id=test`, {
         headers: expect.anything(),
         method: "POST"
       });

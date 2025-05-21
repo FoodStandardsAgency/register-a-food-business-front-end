@@ -18,7 +18,8 @@ const tradingStatusRouter = () => {
     logEmitter.emit("functionCall", "Routes", "/tradingstatus/stilltrading/:fsaid route");
     try {
       const fsaId = req.params.fsaid;
-      let result = await tradingStatus(fsaId, true);
+      const encryptedId = req.query.token;
+      let result = await tradingStatus(fsaId, encryptedId, true);
       if (result.status && result.status === 200) {
         res.render("trading-status-still-trading");
       } else {
@@ -34,7 +35,8 @@ const tradingStatusRouter = () => {
     logEmitter.emit("functionCall", "Routes", "/tradingstatus/nolongertrading/:fsaid route");
     try {
       const fsaId = req.params.fsaid;
-      let result = await tradingStatus(fsaId, false);
+      const encryptedId = req.query.token;
+      let result = await tradingStatus(fsaId, encryptedId, false);
       if (result.status && result.status === 200) {
         res.render("trading-status-no-longer-trading");
       } else {

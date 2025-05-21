@@ -16,11 +16,12 @@ const { logEmitter } = require("../../services/logging.service");
  * Calls the confirmed-trading or stopped-trading APIs on the back-end service
  *
  * @param {string} fsaid The FSA ID of the registration
+ * @param {string} encryptedId The encrypted record ID of the registration
  * @param {boolean} confirmedTrading True if the business is still trading, false if it is no longer trading
  *
  * @returns {object} The back-end service response
  */
-const sendTradingStatus = async (fsaId, confirmedTrading) => {
+const sendTradingStatus = async (fsaId, encryptedId, confirmedTrading) => {
   try {
     let res;
     logEmitter.emit("functionCallWith", "trading-status.connector", "sendTradingStatus", fsaId);
@@ -31,7 +32,7 @@ const sendTradingStatus = async (fsaId, confirmedTrading) => {
       "api-secret": API_SECRET,
       "client-name": CLIENT_NAME
     };
-    res = await axios(`${apiUrl}/${fsaId}`, {
+    res = await axios(`${apiUrl}/${fsaId}?id=${encryptedId}`, {
       method: "POST",
       headers
     });
