@@ -39,10 +39,8 @@ describe("New route: ", () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
-            pathConfig: "fetched path from either cache or DB",
-            regenerate: (cb) => {
-              cb();
-            }
+            regenerate: jest.fn((cb) => cb()),
+            pathConfig: "fetched path from either cache or DB"
           },
           params: {
             page: "operator-type"
@@ -80,10 +78,8 @@ describe("New route: ", () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
-            pathConfig: "existing path from session",
-            regenerate: (cb) => {
-              cb();
-            }
+            regenerate: jest.fn((cb) => cb()),
+            pathConfig: "existing path from session"
           },
           params: {
             page: "/new page"
@@ -120,6 +116,7 @@ describe("New route: ", () => {
           handler = router.get.mock.calls[0][1];
           req = {
             session: {
+              regenerate: jest.fn((cb) => cb()),
               save: (cb) => {
                 cb();
               }
@@ -161,9 +158,7 @@ describe("New route: ", () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
-            regenerate: (cb) => {
-              cb();
-            }
+            regenerate: jest.fn((cb) => cb())
           },
           params: {},
           csrfToken: jest.fn(),
@@ -197,6 +192,7 @@ describe("New route: ", () => {
         handler = router.get.mock.calls[0][1];
         req = {
           session: {
+            regenerate: jest.fn((cb) => cb()),
             save: (cb) => {
               cb();
             }

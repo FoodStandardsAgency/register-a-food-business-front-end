@@ -35,7 +35,7 @@ const newRouter = () => {
     });
   }
 
-  router.get("/:page?", async (req, res, next) => {
+  router.get("/{:page}", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/new route");
     try {
       const page = req.params.page || "index";

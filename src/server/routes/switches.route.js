@@ -39,7 +39,7 @@ const switchesRouter = () => {
         logEmitter.emit("functionFail", "Routes", "/switches route", err);
         throw err;
       }
-      res.redirect("back");
+      res.redirect(req.get("Referrer") || "/");
     });
   });
 

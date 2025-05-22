@@ -23,7 +23,8 @@ describe("Set Cookie route: ", () => {
             params: {
               cookieName: "acceptAllCookies",
               newValue: "true"
-            }
+            },
+            get: () => "Referrer"
           };
           res = {
             redirect: jest.fn(),
@@ -41,8 +42,8 @@ describe("Set Cookie route: ", () => {
           });
         });
 
-        it("should call res.redirect with 'back'", () => {
-          expect(res.redirect).toHaveBeenCalledWith("back");
+        it("should call res.redirect with 'Referrer'", () => {
+          expect(res.redirect).toHaveBeenCalledWith("Referrer");
         });
       });
 
@@ -61,7 +62,8 @@ describe("Set Cookie route: ", () => {
               _ga: "thisShouldBeDeleted",
               _gid: "thisShouldBeDeleted",
               some_cookie: "thisShouldBePersisted"
-            }
+            },
+            get: () => "Referrer"
           };
           res = {
             redirect: jest.fn(),
@@ -88,8 +90,8 @@ describe("Set Cookie route: ", () => {
           });
         });
 
-        it("should call res.redirect with 'back'", () => {
-          expect(res.redirect).toHaveBeenCalledWith("back");
+        it("should call res.redirect with 'Referrer'", () => {
+          expect(res.redirect).toHaveBeenCalledWith("Referrer");
         });
       });
     });
@@ -100,7 +102,8 @@ describe("Set Cookie route: ", () => {
       beforeEach(() => {
         handler = router.get.mock.calls[0][1];
         req = {
-          params: { cookieName: "notRecognised", newValue: "true" }
+          params: { cookieName: "notRecognised", newValue: "true" },
+          get: () => "Referrer"
         };
         res = {
           redirect: jest.fn(),
@@ -115,8 +118,8 @@ describe("Set Cookie route: ", () => {
         expect(res.cookie).toHaveBeenCalledTimes(0);
       });
 
-      it("should call res.redirect with 'back'", () => {
-        expect(res.redirect).toHaveBeenCalledWith("back");
+      it("should call res.redirect with 'Referrer'", () => {
+        expect(res.redirect).toHaveBeenCalledWith("Referrer");
       });
     });
   });
