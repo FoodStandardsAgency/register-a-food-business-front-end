@@ -4,12 +4,7 @@
 
 const axios = require("axios");
 axios.defaults.validateStatus = () => true;
-const {
-  CONFIRMED_TRADING_API_URL,
-  STOPPED_TRADING_API_URL,
-  API_SECRET,
-  CLIENT_NAME
-} = require("../../config");
+const { TRADING_STATUS_API_URL, API_SECRET, CLIENT_NAME } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
 
 /**
@@ -25,7 +20,7 @@ const sendTradingStatus = async (fsaId, encryptedId, confirmedTrading) => {
   try {
     let res;
     logEmitter.emit("functionCallWith", "trading-status.connector", "sendTradingStatus", fsaId);
-    let apiUrl = confirmedTrading ? CONFIRMED_TRADING_API_URL : STOPPED_TRADING_API_URL;
+    let apiUrl = `${TRADING_STATUS_API_URL}/${confirmedTrading ? "confirmed-trading" : "stopped-trading"}`;
     logEmitter.emit("info", "trading-status.connector", "sendTradingStatus", `API URL: ${apiUrl}`);
     const headers = {
       "Content-Type": "application/json",

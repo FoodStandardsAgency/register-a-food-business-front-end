@@ -26,7 +26,12 @@ const tradingStatusRouter = () => {
         throw new Error(`Trading Status API returned unexpected response status ${result.status}`);
       }
     } catch (err) {
-      logEmitter.emit("functionFail", "Routes", "/tradingstatus/stilltrading/:fsaid route");
+      logEmitter.emit(
+        "functionFail",
+        "Routes",
+        "/tradingstatus/stilltrading/:fsaid route",
+        err.message
+      );
       next(err);
     }
   });
@@ -43,7 +48,12 @@ const tradingStatusRouter = () => {
         throw new Error(`Trading Status API returned unexpected response status ${result.status}`);
       }
     } catch (err) {
-      logEmitter.emit("functionFail", "Routes", "/tradingstatus/nolongertrading/:fsaid route");
+      logEmitter.emit(
+        "functionFail",
+        "Routes",
+        "/tradingstatus/nolongertrading/:fsaid",
+        err.message
+      );
       next(err);
     }
   });

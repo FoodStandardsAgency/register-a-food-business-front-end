@@ -1,7 +1,7 @@
 jest.mock("axios");
 
 const axios = require("axios");
-const { CONFIRMED_TRADING_API_URL, STOPPED_TRADING_API_URL } = require("../../config");
+const { TRADING_STATUS_API_URL } = require("../../config");
 axios.defaults.validateStatus = () => true;
 const { sendTradingStatus } = require("./trading-status.connector");
 
@@ -21,10 +21,13 @@ describe("Function: sendTradingStatus", () => {
     });
 
     it("Should call axios with the correct args", () => {
-      expect(axios).toHaveBeenLastCalledWith(`${CONFIRMED_TRADING_API_URL}/${testFsaId}?id=test`, {
-        headers: expect.anything(),
-        method: "POST"
-      });
+      expect(axios).toHaveBeenLastCalledWith(
+        `${TRADING_STATUS_API_URL}/confirmed-trading/${testFsaId}?id=test`,
+        {
+          headers: expect.anything(),
+          method: "POST"
+        }
+      );
     });
   });
 
@@ -39,10 +42,13 @@ describe("Function: sendTradingStatus", () => {
     });
 
     it("Should call axios with the correct args", () => {
-      expect(axios).toHaveBeenLastCalledWith(`${STOPPED_TRADING_API_URL}/${testFsaId}?id=test`, {
-        headers: expect.anything(),
-        method: "POST"
-      });
+      expect(axios).toHaveBeenLastCalledWith(
+        `${TRADING_STATUS_API_URL}/stopped-trading/${testFsaId}?id=test`,
+        {
+          headers: expect.anything(),
+          method: "POST"
+        }
+      );
     });
   });
 
