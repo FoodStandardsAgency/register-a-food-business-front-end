@@ -40,7 +40,7 @@
           "name": "establishment_trading_name",
           "errorMessage":  { "text": __(props.validatorErrors.establishment_trading_name, props.language) } if props.validatorErrors.establishment_trading_name
         }) }}
-      <p class="govuk-hint">{{ __("If your business uses more than one trading name, for example if you trade on a delivery platform, you only need to complete ONE registration.", props.language) }}</p>
+      <p class="govuk-hint">{{ __("If your business uses more than one trading name, for example if you trade on a food delivery platform, you only need to complete ONE registration.", props.language) }}</p>
       {% endcall %}
       {%- endcall %}
 
@@ -49,7 +49,7 @@
       {%- endcall %}
 
       {{ tradingNameButton(props) if (not props.cumulativeFullAnswers.establishment_additional_trading_names or (props.cumulativeFullAnswers.establishment_additional_trading_names | length) < 10) else null }}
-      <p class="govuk-hint">{{ __("If you add more trading names later, please contact your local authority directly to advise them of the additional trading names.", props.language) }}</p>
+      <p class="govuk-hint">{{ __("If you add more trading names at a later date, contact your local authority directly to advise them of the additional trading names.", props.language) }}</p>
       {{ govukButton({
           text: __("Save and continue", props.language) if props.editModeFirstPage else __("Continue", props.language),
           classes: "continue",
