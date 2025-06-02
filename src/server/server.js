@@ -184,7 +184,7 @@ app.use("/data", express.static(__dirname + "/data"), function (req, res) {
 
 const { logEmitter } = require("./services/logging.service");
 // Set language cookie - TODO: Does i18next do this for you?  Need to check user accepted cookies?
-app.all("*", (req, res, next) => {
+app.all("/*splat", (req, res, next) => {
   if (req && req.query && req.query.lang) {
     res.cookie("lang", req.query.lang);
   }

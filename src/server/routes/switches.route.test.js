@@ -27,7 +27,8 @@ describe("Switches route: ", () => {
         switchName: "exampleSwitch",
         action: "on",
         originator: "/mock-page-1"
-      }
+      },
+      get: () => "Referrer"
     };
     const res = {
       redirect: jest.fn()
@@ -43,7 +44,7 @@ describe("Switches route: ", () => {
     });
 
     it("Should redirect to the previous page", () => {
-      expect(res.redirect).toBeCalledWith("back");
+      expect(res.redirect).toBeCalledWith("Referrer");
     });
 
     it("Should update session", () => {
@@ -60,7 +61,7 @@ describe("Switches route: ", () => {
       });
 
       it("Should redirect to the previous page", () => {
-        expect(res.redirect).toBeCalledWith("back");
+        expect(res.redirect).toBeCalledWith("Referrer");
       });
     });
 
