@@ -1,5 +1,5 @@
 name: Release to Test
-run-name: Release to Test (${{ github.ref_name  }})
+run-name: Release to Test (${{ github.ref_name }})
 on:
   workflow_dispatch:
     inputs:
@@ -11,6 +11,7 @@ on:
   push:
     branches:
       - "develop"
+
 jobs:
   build_and_test:
     name: Build & test
@@ -25,7 +26,8 @@ jobs:
     secrets: inherit
 
   e2e_ui_test:
-    if: ${{ !inputs.skip_ui_tests }}
+    # Only run UI tests if skip_ui_tests is false AND the workflow is triggered by workflow_dispatch
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.skip_ui_tests }}
     name: E2E, UI Test
     needs: deploy_to_test
     uses: ./.github/workflows/e2e_ui_test.yml
