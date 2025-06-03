@@ -33,6 +33,8 @@ const backController = (currentPage, previousAnswers = {}, pathFromSession) => {
     return previousPage;
   } catch (err) {
     logEmitter.emit("functionFail", "back.controller", "backController", err);
+    logEmitter.emit("info", `Previous answers: ${previousAnswers}`);Add commentMore actions
+    logEmitter.emit("info", `PathFromSession: ${pathFromSession}`);
     throw err;
   }
 };
