@@ -249,7 +249,6 @@ module.exports = {
   IOS_SAFARI_SUPPORTED_SINCE: process.env.IOSSAFARI_SUPPORTED_SINCE || 9.2,
   MAPIT_API: process.env.MAPIT_API,
   MAPIT_API_KEY: process.env.MAPIT_API_KEY,
-  TRADING_STATUS_API_URL: process.env.TRADING_STATUS_API_URL,
   FUTURE_DELIVERY_EMAIL: "fsatestemail.valid@gmail.com",
   pathConfig: pathConfig
 };

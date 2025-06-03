@@ -126,6 +126,8 @@ app.engine("html", nunjucks.render);
 app.set("view engine", "njk");
 
 const sixtyDaysInSeconds = 5184000;
+app.set("trust proxy", 1);
+app.enable("trust proxy");
 app.use(clsMiddleware);
 app.use(forceDomainOrSchema);
 app.use(limiter);

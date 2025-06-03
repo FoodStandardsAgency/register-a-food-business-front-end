@@ -10,7 +10,6 @@
       "name": "Launch via NPM (develop mode)",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run-script", "local:debug"],
-      "console": "integratedTerminal",
       "port": 9229,
       "skipFiles": [
         "${workspaceFolder}/node_modules/**/*.js",

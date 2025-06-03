@@ -22,8 +22,7 @@ const {
   newRouter,
   qaRouter,
   submitRouter,
-  switchesRouter,
-  tradingStatusRouter
+  switchesRouter
 } = require("./routes/index");
 
 const routes = require("./routes");
@@ -52,6 +51,5 @@ describe("Function: routes", () => {
     expect(qaRouter).toBeCalled();
     expect(submitRouter).toBeCalled();
     expect(switchesRouter).toBeCalled();
-    expect(tradingStatusRouter).toBeCalled();
   });
 });
