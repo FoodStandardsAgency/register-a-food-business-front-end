@@ -14,6 +14,7 @@ const {
   setCookieRouter,
   partnerDetailsRouter,
   tradingNameDetailsRouter,
+  tradingStatusRouter,
   pdfsRouter
 } = require("./routes/index");
 
@@ -38,6 +39,7 @@ module.exports = () => {
   router.use("/setcookie", setCookieRouter());
   router.use("/partnership", partnerDetailsRouter());
   router.use("/tradingname", tradingNameDetailsRouter());
+  router.use("/tradingstatus", tradingStatusRouter());
   router.use("/pdfs", pdfsRouter());
 
   return router;
