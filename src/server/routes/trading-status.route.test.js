@@ -32,7 +32,8 @@ describe("Trading Status route: ", () => {
             fsaid: testFsaId
           },
           query: {
-            token: "encryptedId"
+            token: "encryptedId",
+            lang: "en"
           }
         };
         res = {
@@ -46,7 +47,7 @@ describe("Trading Status route: ", () => {
       });
 
       it("Should render the page", () => {
-        expect(res.render).toHaveBeenCalledWith("trading-status-still-trading");
+        expect(res.render).toHaveBeenCalledWith("trading-status-still-trading", { language: "en" });
       });
     });
 
@@ -92,7 +93,8 @@ describe("Trading Status route: ", () => {
             fsaid: testFsaId
           },
           query: {
-            token: "encryptedId"
+            token: "encryptedId",
+            lang: "cy"
           }
         };
         res = {
@@ -106,7 +108,9 @@ describe("Trading Status route: ", () => {
       });
 
       it("Should render the page", () => {
-        expect(res.render).toHaveBeenCalledWith("trading-status-no-longer-trading");
+        expect(res.render).toHaveBeenCalledWith("trading-status-no-longer-trading", {
+          language: "cy"
+        });
       });
     });
 
