@@ -30,6 +30,7 @@ jobs:
       BROWSERSTACK_USER: ${{ secrets.BROWSERSTACK_USER }}
       BROWSERSTACK_KEY: ${{ secrets.BROWSERSTACK_KEY }}
       QA_KEY: ${{ secrets.QA_KEY }}
+      BASE_ADMIN: https://test-rafb-admin-portal-age9h5efbfafhway.uksouth-01.azurewebsites.net/
 
     steps:
       - run: echo 'e2e, ui test'
