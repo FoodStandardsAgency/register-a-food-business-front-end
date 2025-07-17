@@ -51,17 +51,33 @@ jobs:
         run: npm install
 
       - name: E2E Test
+        if: inputs.environment == 'staging'
         run: npm run test:browserstack:e2e
 
       - name: Publish E2E Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
+        if: always() && inputs.environment == 'staging'
         with:
           junit_files: ./reports/WDIO*.xml
           check_name: "E2E Test Results"
 
       - name: Remove E2E Test Results
+        if: inputs.environment == 'staging'
+        run: rm -rf ./reports/WDIO*.xml
 
+      - name: Admin Portal Test
+        if: inputs.environment == 'test'
+        run: npm run test:browserstack:adminportal
+
+      - name: Publish Admin Portal Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always() && inputs.environment == 'test'
+        with:
+          junit_files: ./reports/WDIO*.xml
+          check_name: "Admin Portal Test Results"
+
+      - name: Remove Admin Portal Test Results
+        if: inputs.environment == 'test'
         run: rm -rf ./reports/WDIO*.xml
 
       - name: UI Test
