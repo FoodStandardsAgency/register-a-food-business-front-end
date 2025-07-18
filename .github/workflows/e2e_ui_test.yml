@@ -82,6 +82,10 @@ jobs:
         run: rm -rf ./reports/WDIO*.xml
 
       - name: UI Test
+        if: inputs.environment == 'test'
+        run: npm run remote:browserstack:ui:test-env
+      - name: UI Test (staging)
+        if: inputs.environment != 'test'
         run: npm run test:browserstack:ui
 
       - name: Publish UI Test Results
