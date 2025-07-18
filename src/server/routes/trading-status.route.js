@@ -19,9 +19,10 @@ const tradingStatusRouter = () => {
     try {
       const fsaId = req.params.fsaid;
       const encryptedId = req.query.token;
+      const language = req.query.lang;
       let result = await tradingStatus(fsaId, encryptedId, true);
       if (result.status && result.status === 200) {
-        res.render("trading-status-still-trading");
+        res.render("trading-status-still-trading", { language });
       } else {
         throw new Error(`Trading Status API returned unexpected response status ${result.status}`);
       }
@@ -41,9 +42,10 @@ const tradingStatusRouter = () => {
     try {
       const fsaId = req.params.fsaid;
       const encryptedId = req.query.token;
+      const language = req.query.lang;
       let result = await tradingStatus(fsaId, encryptedId, false);
       if (result.status && result.status === 200) {
-        res.render("trading-status-no-longer-trading");
+        res.render("trading-status-no-longer-trading", { language });
       } else {
         throw new Error(`Trading Status API returned unexpected response status ${result.status}`);
       }
