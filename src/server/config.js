@@ -31,7 +31,7 @@ const pathConfig = {
   "/la-established": {
     on: true,
     switches: {}
-  },
+  } /*
   "/new-or-update-registration": {
     on: true,
     switches: {
@@ -43,7 +43,7 @@ const pathConfig = {
   "/update-registration": {
     on: false,
     switches: {}
-  },
+  },*/,
   "/registration-role": {
     on: true,
     switches: {

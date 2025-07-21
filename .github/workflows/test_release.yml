@@ -26,8 +26,7 @@ jobs:
     secrets: inherit
 
   e2e_ui_test:
-    # Only run UI tests if skip_ui_tests is false AND the workflow is triggered by workflow_dispatch
-    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.skip_ui_tests }}
+    if: ${{ !inputs.skip_ui_tests }}
     name: E2E, UI Test
     needs: deploy_to_test
     uses: ./.github/workflows/e2e_ui_test.yml
