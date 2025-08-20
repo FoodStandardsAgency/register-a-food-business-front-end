@@ -44,7 +44,7 @@ describe("Switches route: ", () => {
     });
 
     it("Should redirect to the previous page", () => {
-      expect(res.redirect).toBeCalledWith("Referrer");
+      expect(res.redirect).toHaveBeenCalledWith("Referrer");
     });
 
     it("Should update session", () => {
@@ -61,7 +61,7 @@ describe("Switches route: ", () => {
       });
 
       it("Should redirect to the previous page", () => {
-        expect(res.redirect).toBeCalledWith("Referrer");
+        expect(res.redirect).toHaveBeenCalledWith("Referrer");
       });
     });
 

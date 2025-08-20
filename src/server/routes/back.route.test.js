@@ -44,7 +44,7 @@ describe("Back route: ", () => {
     });
 
     it("Should redirect to previous page", () => {
-      expect(res.redirect).toBeCalledWith("/new/previousPage");
+      expect(res.redirect).toHaveBeenCalledWith("/new/previousPage");
     });
   });
 });
