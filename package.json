@@ -95,7 +95,7 @@
     "prettier": "^3.5.3",
     "regenerator-runtime": "^0.14.1",
     "sass": "^1.87.0",
-    "snyk": "^1.1296.2",
+    "snyk": "^1.1298.3",
     "source-map-resolve": "^0.6.0"
   },
   "prettier": {
