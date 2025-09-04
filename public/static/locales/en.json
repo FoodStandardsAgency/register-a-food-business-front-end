@@ -597,5 +597,15 @@
   "Edit additional trading name": "Edit additional trading name",
   "Save trading name": "Save trading name",
   "You have entered an invalid number of additional trading names or a duplicate trading name. Please define up to 10 additional trading names and ensure that each entry is unique.": "You have entered an invalid number of additional trading names or a duplicate trading name. Please define up to 10 additional trading names and ensure that each entry is unique.",
-  "Additional trading names": "Additional trading names"
+  "Additional trading names": "Additional trading names",
+  "Confirmed still trading": "Confirmed still trading",
+  "Confirmed no longer trading": "Confirmed no longer trading",
+  "Thank you for confirming your trading status.": "Thank you for confirming your trading status",
+  "You can now close this window.": "You can now close this window",
+  "Guidance for local authority": "Guidance for local authority",
+  "Enter a valid primary number": "Enter a valid primary number",
+  "Enter a valid email": "Enter a valid email",
+  "test error": "test error",
+  "Test": "Test",
+  "Test1": "Test1"
 }

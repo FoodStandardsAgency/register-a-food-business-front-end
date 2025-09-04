@@ -21,6 +21,10 @@ const backController = (currentPage, previousAnswers = {}, pathFromSession) => {
   let newPath;
 
   try {
+    if (!pathFromSession) {
+      throw new Error("Invalid session: Path from session is missing");
+    }
+
     newPath = editPath(previousAnswers, currentPage, pathFromSession);
     previousPage = moveAlongPath(newPath, currentPage, -1);
 

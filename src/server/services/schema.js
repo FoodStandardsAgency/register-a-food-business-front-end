@@ -37,7 +37,7 @@ const schema = {
   "/index": {
     type: "object",
     properties: {}
-  },
+  } /*
   "/new-or-update-registration": {
     type: "object",
     properties: {
@@ -46,7 +46,7 @@ const schema = {
         validation: validateRadioButtons
       }
     }
-  },
+  },  */,
   "/registration-role": {
     type: "object",
     properties: {

@@ -1,5 +1,5 @@
 name: Release to Test
-run-name: Release to Test (${{ github.ref_name  }})
+run-name: Release to Test (${{ github.ref_name }})
 on:
   workflow_dispatch:
     inputs:
@@ -11,6 +11,7 @@ on:
   push:
     branches:
       - "develop"
+
 jobs:
   build_and_test:
     name: Build & test
