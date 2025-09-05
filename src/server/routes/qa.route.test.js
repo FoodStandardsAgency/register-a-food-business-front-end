@@ -63,7 +63,7 @@ describe("QA Route: ", () => {
       });
 
       it("Should redirect to registration summary page", () => {
-        expect(res.redirect).toBeCalledWith("/new/registration-summary");
+        expect(res.redirect).toHaveBeenCalledWith("/new/registration-summary");
       });
     });
 
@@ -95,7 +95,7 @@ describe("QA Route: ", () => {
       });
 
       it("Should return a 403 status", () => {
-        expect(res.status).toBeCalledWith(403);
+        expect(res.status).toHaveBeenCalledWith(403);
       });
     });
   });

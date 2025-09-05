@@ -73,7 +73,7 @@ describe("Partner Details Route: ", () => {
       });
 
       it("Should redirector to next page", () => {
-        expect(res.redirect).toBeCalledWith("/page");
+        expect(res.redirect).toHaveBeenCalledWith("/page");
       });
     });
     describe("Update partner", () => {
@@ -180,7 +180,7 @@ describe("Partner Details Route: ", () => {
       });
 
       it("Shold throw an error", () => {
-        expect(next).toBeCalledWith("Error saving session");
+        expect(next).toHaveBeenCalledWith("Error saving session");
       });
     });
 
@@ -226,7 +226,7 @@ describe("Partner Details Route: ", () => {
       });
 
       it("Should have response contain partners set as empty array", () => {
-        expect(partnerDetailsSave).toBeCalledWith(
+        expect(partnerDetailsSave).toHaveBeenCalledWith(
           "/thepage",
           {
             partners: []
@@ -276,7 +276,7 @@ describe("Partner Details Route: ", () => {
         expect(req.session.cumulativeFullAnswers.partners).toEqual(["First One", "Second Two"]);
       });
       it("Should call res.render", () => {
-        expect(res.render).toBeCalled();
+        expect(res.render).toHaveBeenCalled();
       });
     });
 
@@ -312,7 +312,7 @@ describe("Partner Details Route: ", () => {
         expect(req.session.cumulativeFullAnswers.partners).toEqual([]);
       });
       it("Should call res.render", () => {
-        expect(res.render).toBeCalled();
+        expect(res.render).toHaveBeenCalled();
       });
     });
 
@@ -347,7 +347,7 @@ describe("Partner Details Route: ", () => {
         expect(req.session.cumulativeFullAnswers.targetPartner).toBe(undefined);
       });
       it("Should call res.render", () => {
-        expect(res.render).toBeCalled();
+        expect(res.render).toHaveBeenCalled();
       });
     });
 
@@ -546,7 +546,7 @@ describe("Partner Details Route: ", () => {
       });
 
       it("Should throw an error", () => {
-        expect(next).toBeCalledWith("Error saving session");
+        expect(next).toHaveBeenCalledWith("Error saving session");
       });
     });
   });
@@ -710,7 +710,7 @@ describe("Partner Details Route: ", () => {
       });
 
       it("Should throw an error", () => {
-        expect(next).toBeCalledWith("Error saving session");
+        expect(next).toHaveBeenCalledWith("Error saving session");
       });
     });
 
@@ -750,7 +750,7 @@ describe("Partner Details Route: ", () => {
         handler(req, res, next);
       });
       it("should call next with error", () => {
-        expect(next).toBeCalledWith(new Error("error"));
+        expect(next).toHaveBeenCalledWith(new Error("error"));
       });
     });
     describe("when an error is thrown at /partnership/delete-partner", () => {
@@ -792,7 +792,7 @@ describe("Partner Details Route: ", () => {
         handler(req, res, next);
       });
       it("should call next with error", () => {
-        expect(next).toBeCalledWith(new Error("error"));
+        expect(next).toHaveBeenCalledWith(new Error("error"));
       });
     });
     describe("when an error is thrown at /partnership/continue", () => {
@@ -830,7 +830,7 @@ describe("Partner Details Route: ", () => {
         handler(req, res, next);
       });
       it("should call next with error", () => {
-        expect(next).toBeCalledWith(new Error("error"));
+        expect(next).toHaveBeenCalledWith(new Error("error"));
       });
     });
   });

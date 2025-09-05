@@ -16,7 +16,7 @@ describe("Function: tradingStatus", () => {
     });
 
     it("Should call sendTradingStatus with fsaId", () => {
-      expect(sendTradingStatus).toBeCalledWith(testFsaId, "test", true);
+      expect(sendTradingStatus).toHaveBeenCalledWith(testFsaId, "test", true);
     });
 
     it("Should return the response", () => {

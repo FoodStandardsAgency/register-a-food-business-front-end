@@ -60,7 +60,7 @@ describe("findLocalAuthority route: ", () => {
         handler(req, res, next);
       });
       it("Should redirect to the redirectRoute page", () => {
-        expect(res.redirect).toBeCalledWith("/new/another-page");
+        expect(res.redirect).toHaveBeenCalledWith("/new/another-page");
       });
 
       it("Should set req.session.localAuthority.local_council_url", () => {
@@ -123,7 +123,7 @@ describe("findLocalAuthority route: ", () => {
         handler(req, res, next);
       });
       it("Should call redirect", () => {
-        expect(res.redirect).toBeCalledWith("https://www.test.com");
+        expect(res.redirect).toHaveBeenCalledWith("https://www.test.com");
       });
     });
 
@@ -165,7 +165,7 @@ describe("findLocalAuthority route: ", () => {
       });
 
       it("Should throw an error", () => {
-        expect(next).toBeCalledWith("session save error");
+        expect(next).toHaveBeenCalledWith("session save error");
       });
     });
 
@@ -198,7 +198,7 @@ describe("findLocalAuthority route: ", () => {
         handler(req, res, next);
       });
       it("should call next with error", () => {
-        expect(next).toBeCalledWith(new Error("error"));
+        expect(next).toHaveBeenCalledWith(new Error("error"));
       });
     });
   });

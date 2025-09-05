@@ -76,7 +76,7 @@ describe("PDF Route: ", () => {
         handler(req, res, next);
       });
       it("should call next with error", () => {
-        expect(next).toBeCalledWith(new Error("error"));
+        expect(next).toHaveBeenCalledWith(new Error("error"));
       });
     });
   });
