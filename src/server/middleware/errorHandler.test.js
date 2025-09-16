@@ -58,7 +58,7 @@ describe("errorHandler", () => {
       let res = { headersSent: true };
       let next = jest.fn();
       errorHandler(err, req, res, next);
-      expect(next).toBeCalledWith({ message: "error" });
+      expect(next).toHaveBeenCalledWith({ message: "error" });
     });
   });
 

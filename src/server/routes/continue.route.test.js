@@ -70,7 +70,7 @@ describe("Continue route: ", () => {
     });
 
     it("Should redirect to next page", () => {
-      expect(res.redirect).toBeCalledWith("/new/newPage");
+      expect(res.redirect).toHaveBeenCalledWith("/new/newPage");
     });
 
     describe("given that the controller response redirects to submit", () => {
@@ -111,7 +111,7 @@ describe("Continue route: ", () => {
       });
 
       it("Should call redirect", () => {
-        expect(res.redirect).toBeCalledWith("/submit");
+        expect(res.redirect).toHaveBeenCalledWith("/submit");
       });
     });
 
@@ -168,7 +168,7 @@ describe("Continue route: ", () => {
       });
 
       it("Should call redirect", () => {
-        expect(res.redirect).toBeCalledWith("https://www.test.com");
+        expect(res.redirect).toHaveBeenCalledWith("https://www.test.com");
       });
     });
 
@@ -210,7 +210,7 @@ describe("Continue route: ", () => {
       });
 
       it("Should throw an error", () => {
-        expect(next).toBeCalledWith("session save error");
+        expect(next).toHaveBeenCalledWith("session save error");
       });
     });
   });
