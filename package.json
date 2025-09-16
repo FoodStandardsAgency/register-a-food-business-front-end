@@ -34,7 +34,7 @@
     "sass-prod": "sass --no-source-map --style=compressed src/server/css:src/server/css"
   },
   "dependencies": {
-    "@ons/design-system": "^72.10.3",
+    "@ons/design-system": "^73.0.0",
     "@slice-and-dice/register-a-food-business-validation": "^1.30.2",
     "accessible-autocomplete": "3.0.1",
     "applicationinsights": "2.9.6",
