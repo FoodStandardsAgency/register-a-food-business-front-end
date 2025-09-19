@@ -84,7 +84,8 @@ if (COSMOSDB_URL) {
   store = MongoStore.create({
     mongoUrl: COSMOSDB_URL,
     dbName: "front-end-cache",
-    autoRemove: "disabled"
+    autoRemove: "disabled",
+    touchAfter: 24 * 3600 // time period in seconds
   });
   logger.info("Server: successfully set up database connection");
 } else {
@@ -105,18 +106,20 @@ const forceDomainOrSchema = (req, res, next) => {
 
 let sessionOptions = {
   secret: process.env.COOKIE_SECRET ? process.env.COOKIE_SECRET : generateId(),
-  resave: true,
+  resave: false,
   saveUninitialized: false,
   cookie: {
     // Session cookie set to expire after 24 hours
     maxAge: 86400000,
-    httpOnly: true
+    httpOnly: true,
+    samesite: "lax" // Will break in-app browsers so set to 'none' where secure below
   },
   store: store
 };
 
 if (process.env.COOKIE_SECURE === "true") {
-  sessionOptions.cookie.secure = true;
+  sessionOptions.cookie.samesite = "none"; // In-app browsers require 'none' to work
+  sessionOptions.cookie.secure = true; // Serve secure cookies, i.e. only over https
 }
 let limiter = rateLimit({
   max: process.env.RATE_LIMIT // limit each IP to x requests per minute
