@@ -38,7 +38,7 @@ jobs:
         run: npm -v
 
       - name: Install
-        run: npm install
+        run: npm ci
 
       - name: Compile css for production
         run: npm run sass-prod
