@@ -16,11 +16,8 @@ const errorHandler = (err, req, res, next) => {
     logEmitter.emit("error", `Application error handled - ${err && err.message}`); // Used for Azure alerts
   }
 
-  logEmitter.emit(
-    "error",
-    `Additional info (status code): ${res ? res.statusCode : err ? err.statusCode : null}`
-  );
-  logEmitter.emit("error", `Additional info (stack trace) - ${err.stack}`);
+  logEmitter.emit("error", `Additional info (status code): ${res?.statusCode || err?.statusCode}`);
+  logEmitter.emit("error", `Additional info (stack trace) - ${err?.stack}`);
 
   // Strip out sensitive info and boring stuff from session before logging
   const { addressLookups, initialProps, pathConfig, switches, srfToken, ...sanitizedSession } =
