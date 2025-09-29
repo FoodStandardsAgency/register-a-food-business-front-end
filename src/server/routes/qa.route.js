@@ -23,6 +23,10 @@ const qaRouter = () => {
         const target = req.params.target;
         delete req.query.QA_KEY;
         req.session.cumulativeFullAnswers = req.query;
+        req.session.cumulativeFullAnswers.establishment_additional_trading_names =
+          initialiseArray(
+            req.session.cumulativeFullAnswers.establishment_additional_trading_names
+          ) ?? [];
         req.session.cumulativeFullAnswers.business_scale = initialiseArray(
           req.session.cumulativeFullAnswers.business_scale
         ) ?? ["DONT_KNOW"];
