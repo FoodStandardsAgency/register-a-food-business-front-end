@@ -12,7 +12,7 @@ summaryListDeclarationHelper %}
       {% set propsData = props.transformedData %}
       {% set validatorErrors = props.allValidationErrors %}
       {% call postForm("/continue/registration-summary", props.csrfToken, props.language) -%}
-      {{ processedErrorSummary(validatorErrors, language) }}
+      {{ processedErrorSummary(validatorErrors, props.language) }}
       <h1 class="govuk-heading-l">{{ __("Check your answers", props.language) }}</h1>
       <p id="changed-name-hint" class="govuk-hint">{{ __("You must check your answers before you continue", props.language) }}</p>
       <h2 class="govuk-heading-m">{{ __("Operator details", props.language) }}</h2>
