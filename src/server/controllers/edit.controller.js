@@ -156,6 +156,29 @@ const editContinue = (
       delete newAllValidationErrors[validAnswerKey];
     });
     // TODO JMB: Merge switchOffManualAddressInput into editPathInEditMode
+
+    // If we're coming from the opening-days-some page, remove any opening_hours_{day}
+    // entries for days that are no longer selected in the edited answers.
+    if (currentPage === "/opening-days-some") {
+      const DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+      const cumulFull = newCumulativeFullAnswers;
+      const cumulEdit = newCumulativeEditAnswers;
+
+      DAYS.forEach((day) => {
+        const selected = cumulFull[`opening_day_${day}`];
+
+        const key = `opening_hours_${day}`;
+        if (!selected) {
+          if (Object.prototype.hasOwnProperty.call(cumulFull, key)) {
+            delete cumulFull[key];
+          }
+          if (Object.prototype.hasOwnProperty.call(cumulEdit, key)) {
+            delete cumulEdit[key];
+          }
+        }
+      });
+    }
+
     const newEditModePath = editPathInEditMode(
       newCumulativeFullAnswers,
       newCumulativeEditAnswers,
