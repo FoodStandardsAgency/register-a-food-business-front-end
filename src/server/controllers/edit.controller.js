@@ -160,15 +160,7 @@ const editContinue = (
     // If we're coming from the opening-days-some page, remove any opening_hours_{day}
     // entries for days that are no longer selected in the edited answers.
     if (currentPage === "/opening-days-some") {
-      const DAYS = [
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday",
-        "sunday"
-      ];
+      const DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
       const cumulFull = newCumulativeFullAnswers;
       const cumulEdit = newCumulativeEditAnswers;
 
