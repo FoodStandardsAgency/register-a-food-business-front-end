@@ -14,10 +14,7 @@ const establishConnectionToCosmos = async (dbName, collectionName) => {
       if (client && client.topology !== undefined) {
         client.close();
       }
-      client = await mongodb.MongoClient.connect(COSMOSDB_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-      });
+      client = await mongodb.MongoClient.connect(COSMOSDB_URL);
     } catch (err) {
       logEmitter.emit("functionFail", "cosmos.client.js", "establishConnectionToCosmos", err);
       throw err;
