@@ -38,7 +38,7 @@ const dev = process.env.NODE_ENV !== "production";
 
 const express = require("express");
 const session = require("express-session");
-const MongoStore = require("connect-mongo");
+const { MongoStore } = require("connect-mongo");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
