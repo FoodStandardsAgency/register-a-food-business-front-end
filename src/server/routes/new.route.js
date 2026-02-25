@@ -34,7 +34,7 @@ const newRouter = () => {
       res.render("maintenance");
     });
   }
-  //Move to a better area
+  //Move to a better area?
   router.get("/cookie-policy", (req, res) => {
     res.render("cookie-policy", { props: { language: "en" } });
   });
