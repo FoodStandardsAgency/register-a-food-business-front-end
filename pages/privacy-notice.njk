@@ -1,0 +1,241 @@
+{% extends "layout.njk" %}
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">Register a food business privacy notice</h1>
+            <p class="govuk-body-l">Information on our Register a food business privacy notice, why we require data, what we do with
+                the data and your rights.</p>
+        </div>
+    </div>
+    <div
+        class="govuk-grid-row">
+        {# ── Sidebar TOC ──────────────────────────────────────────────────── #}
+        <div class="govuk-grid-column-one-third">
+            <nav aria-label="On this page" style="position:sticky; top:1.5rem;">
+                <p
+                    class="govuk-body-s"
+                    style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.75rem;">On this page</p>
+                <ol class="govuk-list" style="border-left:4px solid #b1b4b6; padding-left:1rem;">
+                    <li style="margin-bottom:0.5rem;">
+                        <a class="govuk-link" href="#what-personal-information-will-be-collected">What personal information will be collected?</a>
+                    </li>
+                    <li style="margin-bottom:0.5rem;">
+                        <a class="govuk-link" href="#purpose-and-lawful-basis-for-processing">Purpose and lawful basis for processing</a>
+                    </li>
+                    <li style="margin-bottom:0.5rem;">
+                        <a class="govuk-link" href="#what-we-need-and-how-we-use-it">What we need and how we use it</a>
+                    </li>
+                    <li style="margin-bottom:0.5rem;">
+                        <a class="govuk-link" href="#how-and-where-we-store-your-data-and-who-we-may-share-it-with">How and where we store your
+                            data and who we may share it with</a>
+                    </li>
+                    <li style="margin-bottom:0.5rem;">
+                        <a class="govuk-link" href="#international-transfers">International transfers</a>
+                    </li>
+                    <li style="margin-bottom:0.5rem;">
+                        <a class="govuk-link" href="#eu-citizens">EU citizens</a>
+                    </li>
+                    <li style="margin-bottom:0.5rem;">
+                        <a class="govuk-link" href="#your-rights">Your rights</a>
+                    </li>
+                    <li style="margin-bottom:0.5rem;">
+                        <a class="govuk-link" href="#contact-us">Contact us</a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+        {# ── Main content ─────────────────────────────────────────────────── #}
+        <div
+            class="govuk-grid-column-two-thirds">
+            {# Toolbar #}
+            <div style="display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #b1b4b6;
+                    padding-bottom:1rem; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+                <div>
+                    <p class="govuk-body-s govuk-!-margin-bottom-0">Last updated: 14 October 2024</p>
+                    <a class="govuk-link govuk-body-s" href="#revision-log">See all updates</a>
+                </div>
+                <div style="display:flex; gap:1rem; align-items:center;">
+                    <a
+                        href="/new/privacy-notice?format=pdf"
+                        style="display:flex; align-items:center; gap:0.5rem; font-weight:700; text-decoration:none; color:#007c75;
+                            font-family:inherit; font-size:1rem;"
+                        target="_blank"
+                        rel="noopener">
+                        <span style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%;
+                                background:#007c75; flex-shrink:0;">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#fff"
+                                stroke-width="2.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/> </svg>
+                        </span>
+                        View as PDF
+                    </a>
+                    <button
+                        onclick="window.print()"
+                        style="display:flex; align-items:center; gap:0.5rem; font-weight:700; background:none; border:none; cursor:pointer;
+                            color:#007c75; font-size:1rem; font-family:inherit; padding:0; text-decoration:underline;">
+                        <span style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%;
+                                background:#007c75; flex-shrink:0;">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#fff"
+                                stroke-width="2.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/> </svg>
+                        </span>
+                        Print this page
+                    </button>
+                </div>
+            </div>
+            <p class="govuk-body">The Food Standards Agency will be what is known as the 'Data Controller' of the personal data
+                provided to us.</p>
+            <h2 class="govuk-heading-l" id="what-personal-information-will-be-collected">What personal information will be
+                collected?</h2>
+            <p class="govuk-body">Personal identifying data collected as part of the Register a Food Business service may include:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>name</li>
+                <li>date of birth</li>
+                <li>address</li>
+                <li>email address</li>
+                <li>business name</li>
+                <li>business address</li>
+                <li>phone number</li>
+            </ul>
+            <h2 class="govuk-heading-l" id="purpose-and-lawful-basis-for-processing">Purpose and lawful basis for processing</h2>
+            <p class="govuk-body">We need to collect this information for the purposes of fulfilling our statutory obligations,
+                under Article 113 of the Official Controls Regulation (EU) 2017/625, and as retained in UK legislation, on official
+                controls to make details of food businesses available to persons enquiring about the registration and/or approval status
+                of food business operators.</p>
+            <p class="govuk-body">We do this in line with the exercise of official authority vested in us and the performance of a
+                task carried out in the public interest. We will not collect any personal data from you which we do not need.</p>
+            <p class="govuk-body">We may want to contact you to invite you to provide feedback on the service. We will only do this
+                with your consent.</p>
+            <h2 class="govuk-heading-l" id="what-we-need-and-how-we-use-it">What we need and how we use it</h2>
+            <p class="govuk-body">The details of approved food business establishments are published on the FSA website. The list of
+                registered food business establishments is published by the relevant local authority.</p>
+            <p class="govuk-body">We may also analyse this information along with other information we hold about you and
+                information we have obtained from public and/or private sources for the purpose of helping us evaluate risk. We do this
+                in line with the exercise of official authority vested in us under the Food Standards Act and the performance of a task
+                carried out in the public interest.</p>
+            <p class="govuk-body">Where you provide your email address on the feedback form during your registration or agree to
+                being contacted to provide feedback on the service at the end of the registration process, the FSA, or one of our
+                research partners working on our behalf, may contact you for this purpose. You can withdraw your consent at any time by
+                contacting
+                <a class="govuk-link" href="mailto:registration@food.gov.uk">registration@food.gov.uk</a>.</p>
+            <h2 class="govuk-heading-l" id="how-and-where-we-store-your-data-and-who-we-may-share-it-with">How and where we store
+                your data and who we may share it with</h2>
+            <p class="govuk-body">We retain personal information only for as long as necessary to carry out these functions, and in
+                line with our retention policy. This means this information will be retained for as long as a business remains
+                registered and/or approved as a food business operator. Historical lists of registered and/or approved businesses are
+                retained for 10 years.</p>
+            <p class="govuk-body">No third parties have access to your personal data unless the law allows them to do so. In line
+                with this commitment your information will be passed to the relevant local authority with responsibility for inspection
+                of food businesses. The Food Standards Agency will sometimes share data with other government departments, public
+                bodies, organisations which perform public functions to assist them in the performance of their statutory duties, and
+                with these and other private organisations and persons, such as food business operators, when it is in the public
+                interest. We may also share the data as part of risk evaluation and analysis with public bodies or other organisations,
+                such as Trading Standards and Port Health Authorities, for the same reasons.</p>
+            <p class="govuk-body">For more general information, please see the
+                <a
+                    class="govuk-link"
+                    href="https://www.food.gov.uk/about-us/personal-information-charter#how-and-where-do-we-store-your-data-and-who-may-we-share-it-with"
+                    target="_blank"
+                    rel="noopener">How and where we store your data and who we may share it with section in our Personal Information Charter
+                    (opens in a new tab)</a>.</p>
+            <h2 class="govuk-heading-l" id="international-transfers">International transfers</h2>
+            <p class="govuk-body">For more information on international transfers, please see the
+                <a
+                    class="govuk-link"
+                    href="https://www.food.gov.uk/about-us/personal-information-charter#international-transfers"
+                    target="_blank"
+                    rel="noopener">International transfers section in our Personal Information Charter (opens in a new tab)</a>.</p>
+            <h2 class="govuk-heading-l" id="eu-citizens">EU citizens</h2>
+            <p class="govuk-body">For more information on EU Citizens Privacy Notice, please see the
+                <a
+                    class="govuk-link"
+                    href="https://www.food.gov.uk/about-us/personal-information-charter#eu-citizens"
+                    target="_blank"
+                    rel="noopener">EU citizens section in our Personal Information Charter (opens in a new tab)</a>.</p>
+            <h2 class="govuk-heading-l" id="your-rights">Your rights</h2>
+            <p class="govuk-body">For more information on your rights, please see the
+                <a
+                    class="govuk-link"
+                    href="https://www.food.gov.uk/about-us/personal-information-charter#your-rights"
+                    target="_blank"
+                    rel="noopener">Your rights section in our Personal Information Charter (opens in a new tab)</a>.</p>
+            <h2 class="govuk-heading-l" id="contact-us">Contact us</h2>
+            <p class="govuk-body">If you have any queries concerning this Privacy Notice, your personal information or any questions
+                on our use of the information, please email our Data Protection Officer in the FSA, who is the Information Management
+                and Security Team Leader using the address below.</p>
+            <p class="govuk-body">
+                <strong>Information Knowledge Management</strong>
+                <br>
+                    <a class="govuk-link" href="mailto:information.governance@food.gov.uk">information.governance@food.gov.uk</a>
+                </p>
+                {# ── Revision log ───────────────────────────────────────────────── #}
+                <div id="revision-log" style="margin-top:2.5rem; border-top:2px solid #b1b4b6; padding-top:1rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                        <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Revision log</h2>
+                        <button
+                            onclick="toggleRevisions()"
+                            id="revision-toggle"
+                            style="background:none; border:none; cursor:pointer; font-size:1rem; font-family:inherit; padding:0; color:#1d70b8;
+                                text-decoration:underline;">
+                        Show all updates</button>
+                    </div>
+                    <p class="govuk-body-s govuk-!-margin-bottom-0">Published: 22 January 2019</p>
+                    <p class="govuk-body-s">Last updated: 14 October 2024</p>
+                    <ul class="govuk-list" id="revision-list" style="display:none; margin-top:0.75rem;">
+                        <li style="padding:0.5rem 0; border-top:1px solid #b1b4b6; display:flex; gap:1.5rem;">
+                            <strong style="min-width:160px; flex-shrink:0;">14 October 2024</strong>
+                            <span>New 1st Section: 'What personal information will be collected'</span>
+                        </li>
+                        <li style="padding:0.5rem 0; border-top:1px solid #b1b4b6; display:flex; gap:1.5rem;">
+                            <strong style="min-width:160px; flex-shrink:0;">14 October 2024</strong>
+                            <span>Added new section at beginning: 'What personal information will be collected'</span>
+                        </li>
+                        <li style="padding:0.5rem 0; border-top:1px solid #b1b4b6; display:flex; gap:1.5rem;">
+                            <strong style="min-width:160px; flex-shrink:0;">26 September 2024</strong>
+                            <span>Retention period changed from 6 to 10 years</span>
+                        </li>
+                        <li style="padding:0.5rem 0; border-top:1px solid #b1b4b6; display:flex; gap:1.5rem;">
+                            <strong style="min-width:160px; flex-shrink:0;">26 September 2024</strong>
+                            <span>In 'How and where we store your data and who we may share it with' the retention period is changed from 6 to 10 years.</span>
+                        </li>
+                        <li style="padding:0.5rem 0; border-top:1px solid #b1b4b6; display:flex; gap:1.5rem;">
+                            <strong style="min-width:160px; flex-shrink:0;">14 March 2024</strong>
+                            <span>Amended email address</span>
+                        </li>
+                    </ul>
+                </div>
+                <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid #b1b4b6;">
+                    <a href="#" class="govuk-link govuk-body-s">Back to top</a>
+                </div>
+            </div>
+        </div>
+        <script>
+            function toggleRevisions() {
+                var list = document.getElementById('revision-list');
+                var btn = document.getElementById('revision-toggle');
+                if (list.style.display === 'none') {
+                    list.style.display = 'block';
+                    btn.textContent = 'Hide all updates';
+                } else {
+                    list.style.display = 'none';
+                    btn.textContent = 'Show all updates';
+                }
+            }
+        </script>
+    {% endblock %}
