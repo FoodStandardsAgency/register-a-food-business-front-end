@@ -3,8 +3,10 @@ jest.mock("../connectors/address-lookup/address-lookup-api.connector");
 const { Validator } = require("jsonschema");
 const { getUkAddressesByPostcode } = require("./address.service");
 const {
-  getAddressesByPostcode
+  fetchUsingPostcoderPremium,
+  fetchUsingPostcoderStandard
 } = require("../connectors/address-lookup/address-lookup-api.connector");
+
 const smallAddressResponseJSON = require("../connectors/address-lookup/smallAddressResponseMock.json");
 const addressSchema = require("../connectors/address-lookup/addressSchema.js");
 
@@ -15,7 +17,8 @@ describe("address.service getUkAddressesByPostcode()", () => {
 
   describe("given a postcode argument", () => {
     beforeEach(async () => {
-      getAddressesByPostcode.mockImplementation(() => smallAddressResponseJSON);
+      fetchUsingPostcoderPremium.mockResolvedValue(smallAddressResponseJSON);
+      fetchUsingPostcoderStandard.mockResolvedValue([]);
 
       response = await getUkAddressesByPostcode("NR14 7PZ");
     });
@@ -32,14 +35,15 @@ describe("address.service getUkAddressesByPostcode()", () => {
       expect(response.length).toEqual(smallAddressResponseJSON.length);
     });
 
-    it("calls getAddressesByPostcode with 'uk', a postcode, and a address limit of 500", () => {
-      expect(getAddressesByPostcode).toHaveBeenCalledWith("NR14 7PZ", 500);
+    it("calls fetchUsingPostcoderPremium with a valid postcode", () => {
+      expect(fetchUsingPostcoderPremium).toHaveBeenCalledWith("NR14 7PZ");
     });
   });
 
   describe("given the connector throws an error", () => {
     beforeEach(async () => {
-      getAddressesByPostcode.mockImplementation(() => {
+      fetchUsingPostcoderPremium.mockResolvedValue([]);
+      fetchUsingPostcoderStandard.mockImplementation(() => {
         throw new Error("Some error");
       });
 
