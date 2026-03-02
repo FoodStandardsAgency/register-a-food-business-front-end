@@ -15,13 +15,17 @@ const {
 /**
  * Filters out addresses that are missing either addressline1 or posttown
  *
- * @param {string} addresses The addresses returned from fetchUsingPostcoderPremium/Standard
+ * @param {array} addresses The addresses returned from fetchUsingPostcoderPremium/Standard are an Array with addressLine1 and posttown included
  *
- * @returns {boolean} A true or false value if addressline1 or posttown exists/doesnt exists
+ * @returns {array} A true or false value if addressline1 or posttown exists/doesnt exists
  */
 function filterOutIncompleteAddresses(addresses) {
   return addresses.filter(
-    (address) => typeof address.addressline1 === "string" && typeof address.posttown === "string"
+    (address) =>
+      typeof address.addressline1 === "string" &&
+      address.addressline1.trim().length > 0 &&
+      typeof address.posttown === "string" &&
+      address.posttown.trim().length > 0
   );
 }
 
@@ -36,34 +40,32 @@ const getUkAddressesByPostcode = async (postcode) => {
   logEmitter.emit("functionCall", "address.service", "getUkAddressesByPostcode");
 
   try {
-    let firstJson = await fetchUsingPostcoderPremium(postcode);
-    if (!firstJson || firstJson.length === 0) {
-      firstJson = await fetchUsingPostcoderStandard(postcode);
+    let addresses = await fetchUsingPostcoderPremium(postcode);
+    if (!addresses || addresses.length === 0) {
+      addresses = await fetchUsingPostcoderStandard(postcode);
     }
 
-    if (!firstJson) {
+    if (!addresses) {
       throw Error("Postcoder returned no data");
     }
 
-    let filtered = filterOutIncompleteAddresses(firstJson);
+    const filtered = filterOutIncompleteAddresses(addresses);
 
-    if (firstJson.length === 0) {
+    if (addresses.length === 0) {
       logEmitter.emit("info", "Postcoder returned no addresses", {
         postcode
       });
-    }
-
-    if (filtered.length === 0) {
+    } else if (filtered.length === 0) {
       logEmitter.emit("info", "Postcoder returned no complete addresses", {
         postcode
       });
     }
 
-    filtered = removeOrganisationFromAddressLookup(filtered);
+    const cleaned = removeOrganisationFromAddressLookup(filtered);
 
     logEmitter.emit("info", "Postcoder address lookup success"); // Used for Azure alerts
     logEmitter.emit("functionSuccess", "address.service", "getUkAddressesByPostcode");
-    return filtered;
+    return cleaned;
   } catch (err) {
     logEmitter.emit("warning", "Postcoder address lookup failure"); // Used for Azure alerts
     logEmitter.emit("functionFail", "address.service", "getUkAddressesByPostcode", err);
@@ -71,4 +73,4 @@ const getUkAddressesByPostcode = async (postcode) => {
   }
 };
 
-module.exports = { getUkAddressesByPostcode };
+module.exports = { getUkAddressesByPostcode, filterOutIncompleteAddresses };
