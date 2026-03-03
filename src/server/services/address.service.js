@@ -17,7 +17,7 @@ const {
  *
  * @param {array} addresses The addresses returned from fetchUsingPostcoderPremium/Standard are an Array with addressLine1 and posttown included
  *
- * @returns {array} A true or false value if addressline1 or posttown exists/doesnt exists
+ * @returns {array} An array containing only addresses where `addressline1` and `posttown`are not empty strings.
  */
 function filterOutIncompleteAddresses(addresses) {
   return addresses.filter(
