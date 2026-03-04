@@ -12,41 +12,6 @@ const {
   ADDRESS_API_URL_QUERY_STANDARD
 } = require("../../config");
 const { logEmitter } = require("../../services/logging.service");
-const { removeOrganisationFromAddressLookup } = require("./removeOrganisationFromAddressLookup");
-
-/**
- * Fetches addresses from the address lookup API for the given postcode
- *
- * @param {string} postcode The postcode to search by
- * @param {number} addressCountLimit CURRENTLY OBSOLETE
- *
- * @returns {array} A list of addresses
- */
-const getAddressesByPostcode = async (postcode, addressCountLimit = 100) => {
-  logEmitter.emit(
-    "functionCallWith",
-    "address-lookup-api.connector",
-    "getAddressByPostcode",
-    postcode
-  );
-
-  try {
-    let firstJson;
-
-    firstJson = await fetchUsingPostcoderPremium(postcode);
-    if (!firstJson || firstJson.length === 0) {
-      firstJson = await fetchUsingPostcoderStandard(postcode);
-    }
-    if (!firstJson || firstJson.length === 0) {
-      throw new Error("Postcoder returned no data");
-    }
-    logEmitter.emit("functionSuccess", "address-lookup-api.connector", "getAddressByPostcode");
-    return removeOrganisationFromAddressLookup(firstJson);
-  } catch (err) {
-    logEmitter.emit("functionFail", "address-lookup-api.connector", "getAddressByPostcode", err);
-    throw err;
-  }
-};
 
 /**
  * Fetches addresses using Postcoder Premium service
@@ -91,7 +56,7 @@ const fetchUsingPostcoderPremium = async (postcode) => {
       "fetchUsingPostcoderPremium",
       err
     );
-    return [];
+    return null;
   }
 };
 
@@ -133,4 +98,7 @@ const fetchUsingPostcoderStandard = async (postcode) => {
   }
 };
 
-module.exports = { getAddressesByPostcode };
+module.exports = {
+  fetchUsingPostcoderPremium,
+  fetchUsingPostcoderStandard
+};
