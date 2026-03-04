@@ -174,6 +174,10 @@ app.use(
   "/assets",
   express.static(path.join(__dirname, "/../../node_modules/govuk-frontend/dist/govuk/assets"))
 );
+app.use(
+  "/govuk-frontend",
+  express.static(path.join(__dirname, "/../../node_modules/govuk-frontend/dist/govuk"))
+);
 app.use("/pdfs", express.static(__dirname + "/static/pdfs"));
 app.use("/auto-complete", express.static(__dirname + "/static/auto-complete"));
 app.use("/css", express.static(__dirname + "/css"));
