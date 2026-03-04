@@ -95,7 +95,7 @@ describe("Submit route: ", () => {
       });
 
       it("Should set redirect to response", () => {
-        expect(res.redirect).toBeCalledWith("/new/summary-confirmation");
+        expect(res.redirect).toHaveBeenCalledWith("/new/summary-confirmation");
       });
     });
 
@@ -139,7 +139,7 @@ describe("Submit route: ", () => {
       });
 
       it("Should set redirect to response", () => {
-        expect(res.redirect).toBeCalledWith("/new/registration-summary");
+        expect(res.redirect).toHaveBeenCalledWith("/new/registration-summary");
       });
     });
 
@@ -180,7 +180,7 @@ describe("Submit route: ", () => {
       });
 
       it("should throw a session save error", () => {
-        expect(next).toBeCalledWith("session save error");
+        expect(next).toHaveBeenCalledWith("session save error");
       });
     });
 
@@ -212,7 +212,7 @@ describe("Submit route: ", () => {
         handler(req, res, next);
       });
       it("should call next with error", () => {
-        expect(next).toBeCalledWith(new Error("error"));
+        expect(next).toHaveBeenCalledWith(new Error("error"));
       });
     });
   });

@@ -39,19 +39,19 @@ describe("Function: routes", () => {
   });
 
   it("Should call use", () => {
-    expect(result.use).toBeCalled();
+    expect(result.use).toHaveBeenCalled();
   });
 
   it("Should call the routers", () => {
-    expect(backRouter).toBeCalled();
-    expect(cleansessionRouter).toBeCalled();
-    expect(continueRouter).toBeCalled();
-    expect(editRouter).toBeCalled();
-    expect(findAddressRouter).toBeCalled();
-    expect(newRouter).toBeCalled();
-    expect(qaRouter).toBeCalled();
-    expect(submitRouter).toBeCalled();
-    expect(switchesRouter).toBeCalled();
-    expect(tradingStatusRouter).toBeCalled();
+    expect(backRouter).toHaveBeenCalled();
+    expect(cleansessionRouter).toHaveBeenCalled();
+    expect(continueRouter).toHaveBeenCalled();
+    expect(editRouter).toHaveBeenCalled();
+    expect(findAddressRouter).toHaveBeenCalled();
+    expect(newRouter).toHaveBeenCalled();
+    expect(qaRouter).toHaveBeenCalled();
+    expect(submitRouter).toHaveBeenCalled();
+    expect(switchesRouter).toHaveBeenCalled();
+    expect(tradingStatusRouter).toHaveBeenCalled();
   });
 });

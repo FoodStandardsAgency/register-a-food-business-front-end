@@ -67,7 +67,7 @@ describe("New route: ", () => {
       });
 
       it("Should call res.render", () => {
-        expect(res.render).toBeCalled();
+        expect(res.render).toHaveBeenCalled();
       });
     });
 
@@ -101,7 +101,7 @@ describe("New route: ", () => {
       });
 
       it("Should call res.render with page", () => {
-        expect(res.render).toBeCalledWith("/new page", expect.anything());
+        expect(res.render).toHaveBeenCalledWith("/new page", expect.anything());
       });
 
       it("Should not change the path", () => {
@@ -141,7 +141,7 @@ describe("New route: ", () => {
         });
 
         it("Should call res.render with page", () => {
-          expect(res.render).toBeCalledWith("registration-summary", expect.anything());
+          expect(res.render).toHaveBeenCalledWith("registration-summary", expect.anything());
         });
 
         it("Should set session.transformedData", () => {
@@ -178,7 +178,7 @@ describe("New route: ", () => {
       });
 
       it("Should call res.render with index", () => {
-        expect(res.render).toBeCalledWith("index", expect.anything());
+        expect(res.render).toHaveBeenCalledWith("index", expect.anything());
       });
     });
 
@@ -216,7 +216,7 @@ describe("New route: ", () => {
         handler(req, res, next);
       });
       it("should call next with error", () => {
-        expect(next).toBeCalledWith(new Error("error"));
+        expect(next).toHaveBeenCalledWith(new Error("error"));
       });
     });
   });
