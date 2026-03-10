@@ -21,6 +21,7 @@ describe("Partner Details Route: ", () => {
 
   describe("POST to /save", () => {
     let req, res;
+    let next = jest.fn();
     describe("Add new partner", () => {
       beforeEach(() => {
         partnerDetailsSave.mockImplementation(() => ({
@@ -46,6 +47,9 @@ describe("Partner Details Route: ", () => {
               cb();
             }
           },
+          params: {
+            originator: "thepage"
+          },
           csrfToken: jest.fn(),
           url: "test/test",
           get: (value) => "www.test.com/new/thepage?display=true",
@@ -58,7 +62,7 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
 
-        handler(req, res);
+        handler(req, res, next);
       });
 
       it("Should return the correct response", () => {
@@ -88,7 +92,7 @@ describe("Partner Details Route: ", () => {
         }));
 
         handler = router.post.mock.calls[0][1];
-
+        let next = jest.fn();
         req = {
           session: {
             cumulativeFullAnswers: { targetPartner: "Brian May" },
@@ -105,6 +109,9 @@ describe("Partner Details Route: ", () => {
           header: {
             Referrer: "www.test.com/new/thepage?display=true"
           },
+          params: {
+            originator: "thepage"
+          },
           query: {}
         };
 
@@ -113,7 +120,7 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
 
-        handler(req, res);
+        handler(req, res, next);
       });
 
       it("Should return the correct response", () => {
@@ -196,7 +203,7 @@ describe("Partner Details Route: ", () => {
         }));
 
         handler = router.post.mock.calls[0][1];
-
+        let next = jest.fn();
         req = {
           session: {
             cumulativeFullAnswers: {},
@@ -213,6 +220,9 @@ describe("Partner Details Route: ", () => {
           header: {
             Referrer: "www.test.com/new/thepage?display=true"
           },
+          params: {
+            originator: "thepage"
+          },
           body: "body",
           query: {}
         };
@@ -222,7 +232,7 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
 
-        handler(req, res);
+        handler(req, res, next);
       });
 
       it("Should have response contain partners set as empty array", () => {
@@ -244,7 +254,7 @@ describe("Partner Details Route: ", () => {
       let res, req;
       beforeEach(() => {
         handler = router.get.mock.calls[0][1];
-
+        let next = jest.fn();
         req = {
           session: {
             cumulativeFullAnswers: {
@@ -266,7 +276,7 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
 
-        handler(req, res);
+        handler(req, res, next);
       });
 
       it("Should set target partner to have a value", () => {
@@ -284,7 +294,7 @@ describe("Partner Details Route: ", () => {
       let res, req;
       beforeEach(() => {
         handler = router.get.mock.calls[0][1];
-
+        let next = jest.fn();
         req = {
           session: {
             cumulativeFullAnswers: {},
@@ -302,7 +312,7 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
 
-        handler(req, res);
+        handler(req, res, next);
       });
 
       it("Should delete target partner", () => {
@@ -320,7 +330,7 @@ describe("Partner Details Route: ", () => {
       let res, req;
       beforeEach(() => {
         handler = router.get.mock.calls[0][1];
-
+        let next = jest.fn();
         req = {
           session: {
             cumulativeFullAnswers: {
@@ -341,7 +351,7 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
 
-        handler(req, res);
+        handler(req, res, next);
       });
       it("Should delete target partner", () => {
         expect(req.session.cumulativeFullAnswers.targetPartner).toBe(undefined);
@@ -355,7 +365,7 @@ describe("Partner Details Route: ", () => {
       let res, req, response;
       beforeEach(() => {
         handler = router.get.mock.calls[0][1];
-
+        let next = jest.fn();
         req = {
           session: {
             cumulativeFullAnswers: {
@@ -378,7 +388,7 @@ describe("Partner Details Route: ", () => {
         };
 
         try {
-          handler(req, res);
+          handler(req, res, next);
         } catch (err) {
           response = err;
         }
@@ -404,7 +414,7 @@ describe("Partner Details Route: ", () => {
         }));
 
         handler = router.post.mock.calls[1][1];
-
+        let next = jest.fn();
         req = {
           session: {
             council: "council",
@@ -432,7 +442,7 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
 
-        handler(req, res);
+        handler(req, res, next);
       });
       it("Should call the partner details controller correctly", () => {
         expect(partnerDetailsDelete).toHaveBeenCalledWith(
@@ -456,7 +466,7 @@ describe("Partner Details Route: ", () => {
         }));
 
         handler = router.post.mock.calls[1][1];
-
+        let next = jest.fn();
         req = {
           session: {
             council: "council",
@@ -482,7 +492,7 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
 
-        handler(req, res);
+        handler(req, res, next);
       });
       it("Should call the partner details controller correctly", () => {
         expect(partnerDetailsDelete).toHaveBeenCalledWith(
@@ -531,6 +541,9 @@ describe("Partner Details Route: ", () => {
           header: {
             Referrer: "www.address.com/new/council/thispage?blah=hello"
           },
+          params: {
+            originator: "thepage"
+          },
           query: {}
         };
 
@@ -565,7 +578,7 @@ describe("Partner Details Route: ", () => {
         }));
 
         handler = router.post.mock.calls[2][1];
-
+        let next = jest.fn();
         req = {
           session: {
             council: "council",
@@ -583,6 +596,9 @@ describe("Partner Details Route: ", () => {
           body: {
             example: "property to ignore"
           },
+          params: {
+            originator: "thepage"
+          },
           header: {
             Referrer: "www.address.com/new/council/thispage?blah=hello"
           },
@@ -593,7 +609,7 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
 
-        handler(req, res);
+        handler(req, res, next);
       });
       it("Should call the partnerDetailsContinue correctly", () => {
         expect(partnerDetailsContinue).toHaveBeenCalledWith(
@@ -618,7 +634,7 @@ describe("Partner Details Route: ", () => {
         }));
 
         handler = router.post.mock.calls[2][1];
-
+        let next = jest.fn();
         req = {
           session: {
             council: "council",
@@ -634,6 +650,9 @@ describe("Partner Details Route: ", () => {
           body: {
             example: "property"
           },
+          params: {
+            originator: "thepage"
+          },
           header: {
             Referrer: "www.address.com/new/council/thispage?blah=hello"
           },
@@ -645,7 +664,7 @@ describe("Partner Details Route: ", () => {
           render: jest.fn()
         };
 
-        handler(req, res);
+        handler(req, res, next);
       });
       it("Should call the partnerDetailsContinue correctly", () => {
         expect(partnerDetailsContinue).toHaveBeenCalledWith(
@@ -692,6 +711,9 @@ describe("Partner Details Route: ", () => {
           body: {
             example: "property"
           },
+          params: {
+            originator: "thepage"
+          },
           header: {
             Referrer: "www.address.com/new/council/thispage?blah=hello"
           },
@@ -734,6 +756,9 @@ describe("Partner Details Route: ", () => {
             save: (cb) => {
               cb();
             }
+          },
+          params: {
+            originator: "thepage"
           },
           csrfToken: jest.fn(),
           url: "test/test",
@@ -816,6 +841,9 @@ describe("Partner Details Route: ", () => {
           get: () => "www.test.com/new/thepage?display=true",
           body: {
             example: "property"
+          },
+          params: {
+            originator: "thepage"
           },
           header: {
             Referrer: "www.address.com/new/council/thispage?blah=hello"
