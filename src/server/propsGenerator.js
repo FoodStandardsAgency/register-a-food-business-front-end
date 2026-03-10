@@ -85,13 +85,13 @@ module.exports = (req) => {
       : "/tradingname/continue/establishment-trading-name";
 
   const partnerDetailsSaveFormAction = editModePartnerDetails
-    ? "/partnership/save/partner-name?edit=partner-name"
-    : "/partnership/save/partner-name";
+    ? "/partnership/save/partner-details?edit=partner-name"
+    : "/partnership/save/partner-details";
 
   const tradingNameDetailsSaveFormAction =
     req && req.query && req.query.edit
-      ? "/tradingname/save/establishment-trading-name?edit=establishment-trading-name"
-      : "/tradingname/save/establishment-trading-name";
+      ? "/tradingname/save/establishment-trading-name-details?edit=establishment-trading-name"
+      : "/tradingname/save/establishment-trading-name-details";
 
   const partnerDetailsBackUrl = editModePartnerDetails
     ? "/partnership/back?edit=partner-name"
