@@ -12,10 +12,6 @@ const {
   partnerDetailsDelete
 } = require("../controllers/partner-details.controller");
 
-const getOriginator = (referrerUrl) => {
-  return referrerUrl.substr(referrerUrl.lastIndexOf("/")).split("?")[0];
-};
-
 const isEditMode = (reqQuery) => {
   return reqQuery.edit === "partner-name";
 };
@@ -29,10 +25,10 @@ const PropsGenerator = require("../propsGenerator");
 const partnerDetailsRouter = () => {
   const router = Router();
 
-  router.post("/save", async (req, res, next) => {
+  router.post("/save/:originator", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/partnership/save route");
     try {
-      const originator = getOriginator(req.get("Referrer"));
+      const originator = `/${req.params.originator}`;
 
       const data =
         req.session.cumulativeFullAnswers.targetPartner !== undefined
@@ -90,7 +86,7 @@ const partnerDetailsRouter = () => {
     });
   });
 
-  router.post("/delete-partner", async (req, res, next) => {
+  router.post("/delete-partner/:originator", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/partnership/delete-partner route");
     try {
       req.session.cumulativeFullAnswers.partners = initializePartners(req.session);
@@ -118,10 +114,10 @@ const partnerDetailsRouter = () => {
     }
   });
 
-  router.post("/continue", async (req, res, next) => {
+  router.post("/continue/:originator", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/partnership/continue route");
     try {
-      const originator = getOriginator(req.get("Referrer"));
+      const originator = `/${req.params.originator}`;
 
       req.session.cumulativeFullAnswers.partners = initializePartners(req.session);
 
