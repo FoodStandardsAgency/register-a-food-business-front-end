@@ -42,6 +42,7 @@ const getUkAddressesByPostcode = async (postcode) => {
   try {
     let addresses = await fetchUsingPostcoderPremium(postcode);
     if (!addresses || addresses.length === 0) {
+      // from the logs it appears that this call is no longer needed since northern Ireland are now found in the premium dataset
       addresses = await fetchUsingPostcoderStandard(postcode);
     }
 
