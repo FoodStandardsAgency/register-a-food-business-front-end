@@ -2,7 +2,9 @@
 {% macro backAndLanguageBar(props) %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {{ backButton(props) }}
+      {% if not props.hideback %}
+        {{ backButton(props) }}
+      {% endif %}
     </div>
     <div class="govuk-grid-column-one-quarter" style="float:right">
       <p style="text-align: right">
