@@ -6,48 +6,56 @@
     - Fix font on PDF/print buttons (font-family not inheriting correctly)
     - Add back route controller
     - PDF handler not yet implemented (?format=pdf)
-    - Welsh translation needed (/new/accessibility?lang=cy or separate route)
-     - Title alignment needs to be similar of cookie-policy
+    - Title alignment needs to be similar of cookie-policy
 #}
 {% extends "layout.njk" %}
+{% extends "layout.njk" %}
+{% block beforeContent %}
+    {{ govukPhaseBanner({
+    tag: { text: "beta" },
+    html: __('This is a new service', props.language) + ' – ' + '<a class="govuk-link" target="_blank" rel="noopener noreferrer" aria-label="' + 
+      __('your feedback (opens in new window)', props.language) + 
+      '" href="'+__('feedback-form', props.language)+'">' +
+      __('your feedback', props.language) + '</a> ' + __('will help us improve it', props.language) + '.'
+  }) }}
+    <a href="#" onclick="history.back(); return false;" class="govuk-back-link">{{ __("Back", props.language) }}</a>
+{% endblock %}
 {% block content %}
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
-            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">Accessibility statement for 'Register a food business' service</h1>
-            <p class="govuk-body-l">This accessibility statement applies to the Register a food business service.</p>
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ __("Accessibility statement for 'Register a food business' service", props.language) }}</h1>
+            <p class="govuk-body-l">{{ __("This accessibility statement applies to the Register a food business service.", props.language) }}</p>
         </div>
     </div>
     <div
         class="govuk-grid-row">
         {# ── Sidebar TOC ──────────────────────────────────────────────────── #}
         <div class="govuk-grid-column-one-third">
-            <nav aria-label="On this page" style="position:sticky; top:1.5rem;">
+            <nav aria-label="{{ __('On this page', props.language) }}" style="position:sticky; top:1.5rem;">
                 <p
                     class="govuk-body-s"
-                    style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.75rem;">On this page</p>
+                    style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.75rem;">{{ __("On this page", props.language) }}</p>
                 <ol class="govuk-list" style="border-left:4px solid #b1b4b6; padding-left:1rem;">
                     <li style="margin-bottom:0.5rem;">
-                        <a class="govuk-link" href="#how-accessible-this-website-is">How accessible this website is</a>
+                        <a class="govuk-link" href="#how-accessible-this-website-is">{{ __("How accessible this website is", props.language) }}</a>
                     </li>
                     <li style="margin-bottom:0.5rem;">
-                        <a class="govuk-link" href="#feedback-and-contact-information">Feedback and contact information</a>
+                        <a class="govuk-link" href="#feedback-and-contact-information">{{ __("Feedback and contact information", props.language) }}</a>
                     </li>
                     <li style="margin-bottom:0.5rem;">
-                        <a class="govuk-link" href="#reporting-accessibility-problems-with-this-website">Reporting accessibility problems with
-                            this website</a>
+                        <a class="govuk-link" href="#reporting-accessibility-problems-with-this-website">{{ __("Reporting accessibility problems with this website", props.language) }}</a>
                     </li>
                     <li style="margin-bottom:0.5rem;">
-                        <a class="govuk-link" href="#enforcement-procedure">Enforcement procedure</a>
+                        <a class="govuk-link" href="#enforcement-procedure">{{ __("Enforcement procedure", props.language) }}</a>
                     </li>
                     <li style="margin-bottom:0.5rem;">
-                        <a class="govuk-link" href="#technical-information-about-this-website-s-accessibility">Technical information about this
-                            website's accessibility</a>
+                        <a class="govuk-link" href="#technical-information-about-this-website-s-accessibility">{{ __("Technical information about this website's accessibility", props.language) }}</a>
                     </li>
                     <li style="margin-bottom:0.5rem;">
-                        <a class="govuk-link" href="#non-accessible-content">Non-accessible content</a>
+                        <a class="govuk-link" href="#non-accessible-content">{{ __("Non-accessible content", props.language) }}</a>
                     </li>
                     <li style="margin-bottom:0.5rem;">
-                        <a class="govuk-link" href="#preparation-of-this-accessibility-statement">Preparation of this accessibility statement</a>
+                        <a class="govuk-link" href="#preparation-of-this-accessibility-statement">{{ __("Preparation of this accessibility statement", props.language) }}</a>
                     </li>
                 </ol>
             </nav>
@@ -59,15 +67,13 @@
             <div style="display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #b1b4b6;
                     padding-bottom:1rem; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
                 <div>
-                    <p class="govuk-body-s govuk-!-margin-bottom-0">Last updated: 14 July 2021</p>
+                    <p class="govuk-body-s govuk-!-margin-bottom-0">{{ __("Last updated: 14 July 2021", props.language) }}</p>
                 </div>
                 <div style="display:flex; gap:1rem; align-items:center;">
                     <a
-                        href="/new/accessibility?format=pdf"
-                        style="display:flex; align-items:center; gap:0.5rem; font-weight:700; text-decoration:none; color:#007c75;
-                            font-family:inherit; font-size:1rem;"
-                        target="_blank"
-                        rel="noopener">
+                        href="/pdfs/accessibility?language={{ props.language }}"
+                        style="display:flex; align-items:center; gap:0.5rem; font-weight:700; color:#007c75; font-size:1rem; font-family:inherit;
+                            text-decoration:underline;">
                         <span style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%;
                                 background:#007c75; flex-shrink:0;">
                             <svg
@@ -83,7 +89,7 @@
                                 aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
                             </svg>
                         </span>
-                        View as PDF
+                        {{ __("View as PDF", props.language) }}
                     </a>
                     <button
                         onclick="window.print()"
@@ -104,126 +110,92 @@
                                 aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
                             </svg>
                         </span>
-                        Print this page
+                        {{ __("Print this page", props.language) }}
                     </button>
                 </div>
             </div>
-            <p class="govuk-body">The
-                <a class="govuk-link" href="https://www.gov.uk/food-business-registration" target="_blank" rel="noopener">Register a
-                    food business service (opens in a new tab)</a>
-                is run by the Food Standards Agency. We want as many people as possible to be able to use this service. For example,
-                that means you should be able to:</p>
+            <p class="govuk-body">{{ __("The", props.language) }}
+                <a class="govuk-link" href="https://www.gov.uk/food-business-registration" target="_blank" rel="noopener">{{ __("Register a food business service (opens in a new tab)", props.language) }}</a>
+                {{ __("is run by the Food Standards Agency. We want as many people as possible to be able to use this service. For example, that means you should be able to:", props.language) }}</p>
             <ul class="govuk-list govuk-list--bullet">
-                <li>zoom in up to 300% without the text spilling off the screen</li>
-                <li>navigate most of the website using just a keyboard</li>
-                <li>navigate most of the website using speech recognition software</li>
-                <li>listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)</li>
+                <li>{{ __("zoom in up to 300% without the text spilling off the screen", props.language) }}</li>
+                <li>{{ __("navigate most of the website using just a keyboard", props.language) }}</li>
+                <li>{{ __("navigate most of the website using speech recognition software", props.language) }}</li>
+                <li>{{ __("listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)", props.language) }}</li>
             </ul>
-            <p class="govuk-body">We've also made the website text as simple as possible to understand.
-                <a class="govuk-link" href="https://mcmw.abilitynet.org.uk/" target="_blank" rel="noopener">AbilityNet (opens in a new
-                    tab)</a>
-                has advice on making your device easier to use if you have a disability.</p>
-            <h2 class="govuk-heading-l" id="how-accessible-this-website-is">How accessible this website is</h2>
-            <p class="govuk-body">We know some parts of this website are not fully accessible. You can see a full list of any issues
-                in the Non-accessible content section of this statement.</p>
-            <h2 class="govuk-heading-l" id="feedback-and-contact-information">Feedback and contact information</h2>
-            <p class="govuk-body">If you need information on this website in a different format like accessible PDF, large print,
-                easy read, audio recording or braille:</p>
+            <p class="govuk-body">{{ __("We've also made the website text as simple as possible to understand.", props.language) }}
+                <a class="govuk-link" href="https://mcmw.abilitynet.org.uk/" target="_blank" rel="noopener">{{ __("AbilityNet (opens in a new tab)", props.language) }}</a>
+                {{ __("has advice on making your device easier to use if you have a disability.", props.language) }}</p>
+            <h2 class="govuk-heading-l" id="how-accessible-this-website-is">{{ __("How accessible this website is", props.language) }}</h2>
+            <p class="govuk-body">{{ __("We know some parts of this website are not fully accessible. You can see a full list of any issues in the Non-accessible content section of this statement.", props.language) }}</p>
+            <h2 class="govuk-heading-l" id="feedback-and-contact-information">{{ __("Feedback and contact information", props.language) }}</h2>
+            <p class="govuk-body">{{ __("If you need information on this website in a different format like accessible PDF, large print, easy read, audio recording or braille:", props.language) }}</p>
             <ul class="govuk-list govuk-list--bullet">
-                <li>Email:
+                <li>{{ __("Email:", props.language) }}
                     <a class="govuk-link" href="mailto:fsa.communications@food.gov.uk">fsa.communications@food.gov.uk</a>
                 </li>
-                <li>Phone our Helpline: 0330 332 7149 (open 9.00am until 5pm, Monday to Friday)</li>
+                <li>{{ __("Phone our Helpline: 0330 332 7149 (open 9.00am until 5pm, Monday to Friday)", props.language) }}</li>
             </ul>
-            <p class="govuk-body">We will consider your request and get back to you in 10 days.</p>
-            <h2 class="govuk-heading-l" id="reporting-accessibility-problems-with-this-website">Reporting accessibility problems
-                with this website</h2>
-            <p class="govuk-body">We're always looking to improve the accessibility of this website. If you find any problems not
-                listed on this page or think we're not meeting accessibility requirements, contact:</p>
+            <p class="govuk-body">{{ __("We will consider your request and get back to you in 10 days.", props.language) }}</p>
+            <h2 class="govuk-heading-l" id="reporting-accessibility-problems-with-this-website">{{ __("Reporting accessibility problems with this website", props.language) }}</h2>
+            <p class="govuk-body">{{ __("We're always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we're not meeting accessibility requirements, contact:", props.language) }}</p>
             <ul class="govuk-list govuk-list--bullet">
-                <li>Email:
+                <li>{{ __("Email:", props.language) }}
                     <a class="govuk-link" href="mailto:fsa.communications@food.gov.uk">fsa.communications@food.gov.uk</a>
                 </li>
-                <li>Phone our Helpline: 0330 332 7149 (open 9.00am until 5pm, Monday to Friday)</li>
+                <li>{{ __("Phone our Helpline: 0330 332 7149 (open 9.00am until 5pm, Monday to Friday)", props.language) }}</li>
             </ul>
             <p class="govuk-body">
-                <a class="govuk-link" href="http://www.w3.org/WAI/users/inaccessible" target="_blank" rel="noopener">Read tips on
-                    contacting organisations about inaccessible websites (opens in a new tab)</a>
+                <a class="govuk-link" href="http://www.w3.org/WAI/users/inaccessible" target="_blank" rel="noopener">{{ __("Read tips on contacting organisations about inaccessible websites (opens in a new tab)", props.language) }}</a>
             </p>
-            <h2 class="govuk-heading-l" id="enforcement-procedure">Enforcement procedure</h2>
-            <p class="govuk-body">The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector
-                Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the 'accessibility regulations'). If
-                you're not happy with how we respond to your complaint,
-                <a class="govuk-link" href="https://www.equalityadvisoryservice.com/" target="_blank" rel="noopener">contact the
-                    Equality Advisory and Support Service (EASS) (opens in a new tab)</a>.</p>
-            <p class="govuk-body">If you are in Northern Ireland and are not happy with how we respond to your complaint you can
-                contact the
-                <a class="govuk-link" href="https://www.equalityni.org/Home" target="_blank" rel="noopener">Equalities Commission for
-                    Northern Ireland (opens in a new tab)</a>
-                who are responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility
-                Regulations 2018 (the 'accessibility regulations') in Northern Ireland.</p>
-            <h2 class="govuk-heading-l" id="technical-information-about-this-website-s-accessibility">Technical information about
-                this website's accessibility</h2>
-            <p class="govuk-body">The Food Standards Agency is committed to making its website accessible, in accordance with the
-                Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.</p>
-            <h3 class="govuk-heading-m">Compliance status</h3>
-            <p class="govuk-body">This website is partially compliant with the
-                <a class="govuk-link" href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">Web Content Accessibility
-                    Guidelines version 2.1 (opens in a new tab)</a>
-                AA standard, due to the non-compliances and exemptions listed below.</p>
-            <h2 class="govuk-heading-l" id="non-accessible-content">Non-accessible content</h2>
-            <p class="govuk-body">The content listed below is non-accessible for the following reasons.</p>
-            <h3 class="govuk-heading-m" id="non-compliance-with-the-accessibility-regulations">Non-compliance with the accessibility
-                regulations</h3>
-            <p class="govuk-body">The content that is not accessible is outlined below with details of planned dates for when issues
-                will be fixed.</p>
-            <h4 class="govuk-heading-s" id="links">Links</h4>
+            <h2 class="govuk-heading-l" id="enforcement-procedure">{{ __("Enforcement procedure", props.language) }}</h2>
+            <p class="govuk-body">{{ __("The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the 'accessibility regulations'). If you're not happy with how we respond to your complaint,", props.language) }}
+                <a class="govuk-link" href="https://www.equalityadvisoryservice.com/" target="_blank" rel="noopener">{{ __("contact the Equality Advisory and Support Service (EASS) (opens in a new tab)", props.language) }}</a>.</p>
+            <p class="govuk-body">{{ __("If you are in Northern Ireland and are not happy with how we respond to your complaint you can contact the", props.language) }}
+                <a class="govuk-link" href="https://www.equalityni.org/Home" target="_blank" rel="noopener">{{ __("Equalities Commission for Northern Ireland (opens in a new tab)", props.language) }}</a>
+                {{ __("who are responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the 'accessibility regulations') in Northern Ireland.", props.language) }}</p>
+            <h2 class="govuk-heading-l" id="technical-information-about-this-website-s-accessibility">{{ __("Technical information about this website's accessibility", props.language) }}</h2>
+            <p class="govuk-body">{{ __("The Food Standards Agency is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.", props.language) }}</p>
+            <h3 class="govuk-heading-m">{{ __("Compliance status", props.language) }}</h3>
+            <p class="govuk-body">{{ __("This website is partially compliant with the", props.language) }}
+                <a class="govuk-link" href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">{{ __("Web Content Accessibility Guidelines version 2.1 (opens in a new tab)", props.language) }}</a>
+                {{ __("AA standard, due to the non-compliances and exemptions listed below.", props.language) }}</p>
+            <h2 class="govuk-heading-l" id="non-accessible-content">{{ __("Non-accessible content", props.language) }}</h2>
+            <p class="govuk-body">{{ __("The content listed below is non-accessible for the following reasons.", props.language) }}</p>
+            <h3 class="govuk-heading-m" id="non-compliance-with-the-accessibility-regulations">{{ __("Non-compliance with the accessibility regulations", props.language) }}</h3>
+            <p class="govuk-body">{{ __("The content that is not accessible is outlined below with details of planned dates for when issues will be fixed.", props.language) }}</p>
+            <h4 class="govuk-heading-s" id="links">{{ __("Links", props.language) }}</h4>
             <ul class="govuk-list govuk-list--bullet">
-                <li>Some links do not clearly explain their purpose or specify when they open in a new window. This could be confusing
-                    for screen reader users. We are working to contextualise these links and make them clearer. (WCAG 2.1 2.4.4 Link Purpose
-                    (In Context))</li>
+                <li>{{ __("Some links do not clearly explain their purpose or specify when they open in a new window. This could be confusing for screen reader users. We are working to contextualise these links and make them clearer. (WCAG 2.1 2.4.4 Link Purpose (In Context))", props.language) }}</li>
             </ul>
-            <h4 class="govuk-heading-s" id="headings-and-page-structure">Headings and page structure</h4>
+            <h4 class="govuk-heading-s" id="headings-and-page-structure">{{ __("Headings and page structure", props.language) }}</h4>
             <ul class="govuk-list govuk-list--bullet">
-                <li>Some headings are not descriptive and do not provide a clear indication as to what the page is about. Users are
-                    encouraged to read the page contents for full details. (WCAG 2.1 1.3.1 Info and Relationships, 2.4.6 Headings and
-                    Labels)</li>
-                <li>The table summary of user details are not hidden correctly when in high contrast mode. (WCAG 2.1 1.4.8 Visual
-                    presentation)</li>
+                <li>{{ __("Some headings are not descriptive and do not provide a clear indication as to what the page is about. Users are encouraged to read the page contents for full details. (WCAG 2.1 1.3.1 Info and Relationships, 2.4.6 Headings and Labels)", props.language) }}</li>
+                <li>{{ __("The table summary of user details are not hidden correctly when in high contrast mode. (WCAG 2.1 1.4.8 Visual presentation)", props.language) }}</li>
             </ul>
-            <h4 class="govuk-heading-s" id="form-elements">Form elements</h4>
+            <h4 class="govuk-heading-s" id="form-elements">{{ __("Form elements", props.language) }}</h4>
             <ul class="govuk-list govuk-list--bullet">
-                <li>Some form fields are not grouped appropriately, require clearer field labels and group descriptions. Although, there
-                    are labels available they are not all clear enough to describe the content. This should not impact on a users ability to
-                    complete the form. (WCAG 2.1 1.3.1 Info and Relationships, 2.4.6 Headings and Labels)</li>
-                <li>Some form fields require greater context to ensure users can identify the purpose of the edit field. (WCAG 2.1 2.4.6
-                    Headings and labels)</li>
+                <li>{{ __("Some form fields are not grouped appropriately, require clearer field labels and group descriptions. Although, there are labels available they are not all clear enough to describe the content. This should not impact on a users ability to complete the form. (WCAG 2.1 1.3.1 Info and Relationships, 2.4.6 Headings and Labels)", props.language) }}</li>
+                <li>{{ __("Some form fields require greater context to ensure users can identify the purpose of the edit field. (WCAG 2.1 2.4.6 Headings and labels)", props.language) }}</li>
             </ul>
-            <h4 class="govuk-heading-s" id="help-text">Help text</h4>
+            <h4 class="govuk-heading-s" id="help-text">{{ __("Help text", props.language) }}</h4>
             <ul class="govuk-list govuk-list--bullet">
-                <li>Some help text appears on pages that do not need that information, this could confuse users. Users are encouraged to
-                    ignore help text if it appears out of context. (WCAG 2.1 1.3.1 Info and Relationships, 3.3.2 Labels or Instructions)</li>
+                <li>{{ __("Some help text appears on pages that do not need that information, this could confuse users. Users are encouraged to ignore help text if it appears out of context. (WCAG 2.1 1.3.1 Info and Relationships, 3.3.2 Labels or Instructions)", props.language) }}</li>
             </ul>
-            <h4 class="govuk-heading-s" id="navigation">Navigation</h4>
+            <h4 class="govuk-heading-s" id="navigation">{{ __("Navigation", props.language) }}</h4>
             <ul class="govuk-list govuk-list--bullet">
-                <li>Visual focus indicators do not meet the minimum required colour contrast ratio. We are working to amend this as
-                    quickly as possible. (WCAG 2.1 1.4.11 Non-text Contrast)</li>
-                <li>Some fields have drop down options that cannot be accessed when using the service with reflow options. This might
-                    inhibit a users ability to fill out the form, please try on a different device if reflow causes an issue. (WCAG 2.1
-                    1.4.10 Reflow)</li>
+                <li>{{ __("Visual focus indicators do not meet the minimum required colour contrast ratio. We are working to amend this as quickly as possible. (WCAG 2.1 1.4.11 Non-text Contrast)", props.language) }}</li>
+                <li>{{ __("Some fields have drop down options that cannot be accessed when using the service with reflow options. This might inhibit a users ability to fill out the form, please try on a different device if reflow causes an issue. (WCAG 2.1 1.4.10 Reflow)", props.language) }}</li>
             </ul>
-            <h3 class="govuk-heading-m" id="disproportionate-burden">Disproportionate burden</h3>
-            <p class="govuk-body">At this time, we have not made any disproportionate burden claims.</p>
-            <h3 class="govuk-heading-m" id="content-that-not-within-the-scope-of-the-accessibility-regulations">Content that's not
-                within the scope of the accessibility regulations</h3>
-            <p class="govuk-body">At this time, we have not identified any content that is not within the scope of the accessibility
-                regulations.</p>
-            <h2 class="govuk-heading-l" id="preparation-of-this-accessibility-statement">Preparation of this accessibility statement</h2>
-            <p class="govuk-body">This statement was prepared on 11 September 2020. It was last updated on 14 July 2021.</p>
-            <p class="govuk-body">This service was last tested on 22 April 2021. The test was carried out by Digital Accessibility
-                Centre (DAC). We will update this statement as soon as the issues have been rectified.</p>
+            <h3 class="govuk-heading-m" id="disproportionate-burden">{{ __("Disproportionate burden", props.language) }}</h3>
+            <p class="govuk-body">{{ __("At this time, we have not made any disproportionate burden claims.", props.language) }}</p>
+            <h3 class="govuk-heading-m" id="content-that-not-within-the-scope-of-the-accessibility-regulations">{{ __("Content that's not within the scope of the accessibility regulations", props.language) }}</h3>
+            <p class="govuk-body">{{ __("At this time, we have not identified any content that is not within the scope of the accessibility regulations.", props.language) }}</p>
+            <h2 class="govuk-heading-l" id="preparation-of-this-accessibility-statement">{{ __("Preparation of this accessibility statement", props.language) }}</h2>
+            <p class="govuk-body">{{ __("This statement was prepared on 11 September 2020. It was last updated on 14 July 2021.", props.language) }}</p>
+            <p class="govuk-body">{{ __("This service was last tested on 22 April 2021. The test was carried out by Digital Accessibility Centre (DAC). We will update this statement as soon as the issues have been rectified.", props.language) }}</p>
             <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid #b1b4b6;">
-                <a href="#" class="govuk-link govuk-body-s">Back to top</a>
+                <a href="#" class="govuk-link govuk-body-s">{{ __("Back to top", props.language) }}</a>
             </div>
         </div>
     </div>

@@ -34,16 +34,6 @@ const newRouter = () => {
       res.render("maintenance");
     });
   }
-  //Move to a better area?
-  router.get("/cookie-policy", (req, res) => {
-    res.render("cookie-policy", { props: { language: "en" } });
-  });
-  router.get("/privacy-notice", (req, res) => {
-    res.render("privacy-notice", { props: PropsGenerator(req) });
-  });
-  router.get("/accessibility", (req, res) => {
-    res.render("accessibility", { props: PropsGenerator(req) });
-  });
   router.get("/{:page}", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/new route");
     try {
