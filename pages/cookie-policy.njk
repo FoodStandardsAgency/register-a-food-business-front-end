@@ -1,12 +1,6 @@
 {#
-  Cookie Policy page
-  Route:      /new/cookie-policy  (src/routes/new.route.js)
-
-  TODO:
-    - Fix font on PDF/print buttons (font-family not inheriting correctly)
-    - Add back route controller
-    - Link from cookie banner "Read our cookie policy" CTA
-    - PDF handler not yet implemented (?format=pdf)
+  Cookie Policy page (RAFB service only)
+  Route:      /cookie-policy  (src/routes/static.route.js)
 #}
 {% extends "layout.njk" %}
 {% block beforeContent %}
@@ -31,7 +25,7 @@
                     aria-label="Change the language to English"
                     style='cursor:{{ __("enLangLink-cursor", props.language) }};text-decoration:{{ __("enLangLink-underline", props.language)
                         }};font-weight:{{ __("enLangLink-fontWeight", props.language) }};'>
-                    English</a>
+                English</a>
                 |
                 <a
                     href="?lang=cy"
@@ -41,99 +35,15 @@
                     aria-label="Newid yr iaith i'r Gymraeg"
                     style='cursor:{{ __("cyLangLink-cursor", props.language) }};text-decoration:{{ __("cyLangLink-underline", props.language)
                         }};font-weight:{{ __("cyLangLink-fontWeight", props.language) }};'>
-                    Cymraeg</a>
+                Cymraeg</a>
             </p>
         </div>
     </div>
 {% endblock %}
 {% block content %}
-    <div
-        class="govuk-grid-row">{# ── Page title (full width) ──────────────────────────────────────── #}
-    </div>
-    <div
-        class="govuk-grid-row">
-        {# ── Sidebar TOC ──────────────────────────────────────────────────── #}
-        <div class="govuk-grid-column-one-third">
-            <nav aria-label="{{ __('On this page', props.language) }}" style="position:sticky; top:1.5rem;">
-                <p
-                    class="govuk-body-s"
-                    style="font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.75rem;">{{ __("On this page", props.language) }}</p>
-                <ol class="govuk-list" style="border-left:4px solid #b1b4b6; padding-left:1rem;">
-                    <li style="margin-bottom:0.5rem;">
-                        <a class="govuk-link" href="#change-your-cookie-settings">{{ __("Change your cookie settings", props.language) }}</a>
-                    </li>
-                    <li style="margin-bottom:0.5rem;">
-                        <a class="govuk-link" href="#cookies-on-food-gov-uk">{{ __("Cookies on food.gov.uk and ratings.food.gov.uk", props.language) }}</a>
-                    </li>
-                    <li style="margin-bottom:0.5rem;">
-                        <a class="govuk-link" href="#cookies-on-other-fsa-websites">{{ __("Cookies on other FSA websites", props.language) }}</a>
-                    </li>
-                    <li style="margin-bottom:0.5rem;">
-                        <a class="govuk-link" href="#cookies-on-sac-sites">{{ __("Cookies on Scientific Advisory Committees sites", props.language) }}</a>
-                    </li>
-                </ol>
-            </nav>
-        </div>
-        {# ── Main content ─────────────────────────────────────────────────── #}
-        <div
-            class="govuk-grid-column-two-thirds">
-            {# Toolbar #}
-            <div class="govuk-grid-column-full;">
-                <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ __("Cookie policy", props.language) }}</h1>
-            </div>
-            <div style="display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #b1b4b6;
-                    padding-bottom:1rem; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
-                <div>
-                    <p class="govuk-body-s govuk-!-margin-bottom-0">{{ __("Last updated: 4 July 2025", props.language) }}</p>
-                    <a class="govuk-link govuk-body-s" href="#revision-log">{{ __("See all updates", props.language) }}</a>
-                </div>
-                <div style="display:flex; gap:1rem; align-items:center;">
-                    <a
-                        href="/pdfs/cookie-policy?language={{ props.language }}"
-                        style="display:flex; align-items:center; gap:0.5rem; font-weight:700; text-decoration:none; color:#007c75;
-                            font-family:inherit; font-size:1rem;"
-                        target="_blank"
-                        rel="noopener">
-                        <span style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%;
-                                background:#007c75; flex-shrink:0;">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="18"
-                                height="18"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="#fff"
-                                stroke-width="2.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-                            </svg>
-                        </span>
-                        {{ __("View as PDF", props.language) }}
-                    </a>
-                    <button
-                        onclick="window.print()"
-                        style="display:flex; align-items:center; gap:0.5rem; font-weight:700; background:none; border:none; cursor:pointer;
-                            color:#007c75; font-size:1rem; font-family:inherit; padding:0; text-decoration:underline;">
-                        <span style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%;
-                                background:#007c75; flex-shrink:0;">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="18"
-                                height="18"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="#fff"
-                                stroke-width="2.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
-                            </svg>
-                        </span>
-                        {{ __("Print this page", props.language) }}
-                    </button>
-                </div>
-            </div>
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ __("Cookie policy", props.language) }}</h1>
             <p class="govuk-body">{{ __("When we provide services, we want to make them easy, useful and reliable. Our website puts small files (known as 'cookies') onto your computer to collect information about how you browse the site.", props.language) }}</p>
             <p class="govuk-body">{{ __("Cookies are used to:", props.language) }}</p>
             <ul class="govuk-list govuk-list--bullet">
@@ -141,269 +51,43 @@
                 <li>{{ __("remember the notifications you've seen so that we don't show them to you again", props.language) }}</li>
             </ul>
             <div class="govuk-inset-text">
-                {{ __("Cookies on food.gov.uk aren't used to identify you personally.", props.language) }}
+                {{ __("Cookies on this service are not used to identify you personally.", props.language) }}
             </div>
-            <h2 class="govuk-heading-l" id="change-your-cookie-settings">{{ __("Change your cookie settings", props.language) }}</h2>
-            <p class="govuk-body">{{ __("You can change which cookies you're happy for us to use:", props.language) }}</p>
-            <ul class="govuk-list govuk-list--bullet">
-                <li>
-                    <a class="govuk-link" href="https://www.food.gov.uk/cookie-consent?dest=/cookie-policy">{{ __("change cookie settings on food.gov.uk", props.language) }}</a>
-                </li>
-                <li>
-                    <a
-                        class="govuk-link"
-                        href="https://ratings.food.gov.uk/cookie-consent?dest=/cookie-policy"
-                        target="_blank"
-                        rel="noopener">{{ __("change cookie settings on ratings.food.gov.uk", props.language) }}</a>
-                </li>
-            </ul>
-            <p class="govuk-body">
-                <a class="govuk-link" href="https://ico.org.uk/for-the-public/online/cookies/" target="_blank" rel="noopener">{{ __("Find out more about how to manage cookies.", props.language) }}</a>
-            </p>
-            <h2 class="govuk-heading-l" id="cookies-on-food-gov-uk">{{ __("Cookies on food.gov.uk and ratings.food.gov.uk", props.language) }}</h2>
-            <h3 class="govuk-heading-m">{{ __("Strictly necessary cookies", props.language) }}</h3>
-            <h4 class="govuk-heading-s">{{ __("SessionID", props.language) }}</h4>
+            <h2 class="govuk-heading-l">{{ __("Strictly necessary cookies", props.language) }}</h2>
+            <h3 class="govuk-heading-m">{{ __("Session cookie", props.language) }}</h3>
             <p class="govuk-body">
                 <strong>{{ __("Name:", props.language) }}</strong>
-                JSESSIONID and PHPSESSID<br>
+                connect.sid<br>
                     <strong>{{ __("Purpose:", props.language) }}</strong>
-                    {{ __("used to maintain an anonymous user session by the server", props.language) }}<br>
+                    {{ __("Used to persist your registration data as you progress through the service", props.language) }}<br>
                         <strong>{{ __("Expires:", props.language) }}</strong>
-                        {{ __("after the end of the user session", props.language) }}
+                        {{ __("24 hours", props.language) }}
                     </p>
-                    <h4 class="govuk-heading-s">{{ __("Cookies message", props.language) }}</h4>
+                    <h3 class="govuk-heading-m">{{ __("Cookie preferences", props.language) }}</h3>
                     <p class="govuk-body">
                         <strong>{{ __("Name:", props.language) }}</strong>
-                        cookie-preferences, cookieconsent_dismissed<br>
+                        cookie_preferences<br>
                             <strong>{{ __("Purpose:", props.language) }}</strong>
-                            {{ __("used to remember whether or not you clicked accept or don't accept for optional cookies", props.language) }}
-                        </p>
-                        <h4 class="govuk-heading-s">Cloudflare</h4>
-                        <p class="govuk-body">
-                            <strong>{{ __("Name:", props.language) }}</strong>
-                            __cfduid<br>
-                                <strong>{{ __("Purpose:", props.language) }}</strong>
-                                {{ __("set to identify trusted web traffic, it does not correspond to any user id in the web application, nor does the cookie store any personally identifiable information", props.language) }}<br>
-                                    <strong>{{ __("Expires:", props.language) }}</strong>
-                                    {{ __("5 years", props.language) }}
-                                </p>
-                                <p class="govuk-body">
-                                    <a
-                                        class="govuk-link"
-                                        href="https://support.cloudflare.com/hc/en-us/articles/200170156-What-does-the-CloudFlare-cfduid-cookie-do-"
-                                        target="_blank"
-                                        rel="noopener">{{ __("Further details on cookies set by Cloudflare.", props.language) }}</a>
-                                </p>
-                                <h3 class="govuk-heading-m">{{ __("Cookies that measure website use", props.language) }}</h3>
-                                <h4 class="govuk-heading-s">{{ __("Google Analytics", props.language) }}</h4>
-                                <p class="govuk-body">{{ __("We use Google Analytics software to collect information about how you use food.gov.uk. We do this to help make sure the site is meeting the needs of its users and to help us make improvements.", props.language) }}</p>
-                                <p class="govuk-body">{{ __("Google Analytics stores information about:", props.language) }}</p>
-                                <ul class="govuk-list govuk-list--bullet">
-                                    <li>{{ __("the pages you visit", props.language) }}</li>
-                                    <li>{{ __("how long you spend on each page", props.language) }}</li>
-                                    <li>{{ __("how you got to the site", props.language) }}</li>
-                                    <li>{{ __("what you click on while you're visiting the site", props.language) }}</li>
-                                </ul>
-                                <p class="govuk-body">{{ __("We don't allow Google to use or share our analytics data.", props.language) }}</p>
-                                <table class="govuk-table">
-                                    <thead class="govuk-table__head">
-                                        <tr class="govuk-table__row">
-                                            <th class="govuk-table__header" scope="col">{{ __("Name:", props.language) }}</th>
-                                            <th class="govuk-table__header" scope="col">{{ __("Purpose:", props.language) }}</th>
-                                            <th class="govuk-table__header" scope="col">{{ __("Expires:", props.language) }}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="govuk-table__body">
-                                        <tr class="govuk-table__row">
-                                            <td class="govuk-table__cell">_ga</td>
-                                            <td class="govuk-table__cell">{{ __("helps us count how many people visit food.gov.uk by tracking if you've visited before", props.language) }}</td>
-                                            <td class="govuk-table__cell">{{ __("2 years", props.language) }}</td>
-                                        </tr>
-                                        <tr class="govuk-table__row">
-                                            <td class="govuk-table__cell">_gid</td>
-                                            <td class="govuk-table__cell">{{ __("helps us count how many people visit food.gov.uk by tracking if you've visited before", props.language) }}</td>
-                                            <td class="govuk-table__cell">{{ __("24 hours", props.language) }}</td>
-                                        </tr>
-                                        <tr class="govuk-table__row">
-                                            <td class="govuk-table__cell">_gat</td>
-                                            <td class="govuk-table__cell">{{ __("used to manage the rate at which page view requests are made. This cookie does not store any user information", props.language) }}</td>
-                                            <td class="govuk-table__cell">{{ __("the expiry settings are set by Google", props.language) }}</td>
-                                        </tr>
-                                        <tr class="govuk-table__row">
-                                            <td class="govuk-table__cell">_utma</td>
-                                            <td class="govuk-table__cell">{{ __("lets us know if you've visited before, so we can count how many of our visitors are new to food.gov.uk or to a certain page", props.language) }}</td>
-                                            <td class="govuk-table__cell">{{ __("2 years", props.language) }}</td>
-                                        </tr>
-                                        <tr class="govuk-table__row">
-                                            <td class="govuk-table__cell">_utmb</td>
-                                            <td class="govuk-table__cell">{{ __("works with _utmc to calculate the average length of time you spend on food.gov.uk", props.language) }}</td>
-                                            <td class="govuk-table__cell">{{ __("30 minutes", props.language) }}</td>
-                                        </tr>
-                                        <tr class="govuk-table__row">
-                                            <td class="govuk-table__cell">_utmc</td>
-                                            <td class="govuk-table__cell">{{ __("works with _utmb to calculate when you close your browser", props.language) }}</td>
-                                            <td class="govuk-table__cell">{{ __("when you close your browser", props.language) }}</td>
-                                        </tr>
-                                        <tr class="govuk-table__row">
-                                            <td class="govuk-table__cell">_utmz</td>
-                                            <td class="govuk-table__cell">{{ __("tells us how you reached food.gov.uk (for example from another website or a search engine)", props.language) }}</td>
-                                            <td class="govuk-table__cell">{{ __("6 months", props.language) }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <h4 class="govuk-heading-s">SiteImprove</h4>
-                                <p class="govuk-body">
-                                    <strong>{{ __("Name:", props.language) }}</strong>
-                                    nmstat<br>
-                                        <strong>{{ __("Purpose:", props.language) }}</strong>
-                                        {{ __("statistics about site usage such as when you last visited the site", props.language) }}<br>
-                                            <strong>{{ __("Typical content:", props.language) }}</strong>
-                                            {{ __("randomly generated number", props.language) }}<br>
-                                                <strong>{{ __("Expires:", props.language) }}</strong>
-                                                {{ __("1000 days after last visit", props.language) }}
-                                            </p>
-                                            <p class="govuk-body">
-                                                <strong>{{ __("Name:", props.language) }}</strong>
-                                                AWSELB / AWSELBCOR<br>
-                                                    <strong>{{ __("Purpose:", props.language) }}</strong>
-                                                    {{ __("set by SiteImprove to determine the sequence of a user's page views to understand user journeys", props.language) }}<br>
-                                                        <strong>{{ __("Expires:", props.language) }}</strong>
-                                                        {{ __("when you exit your browser", props.language) }}
-                                                    </p>
-                                                    <h3 class="govuk-heading-m">{{ __("Cookies that help with our communications and marketing", props.language) }}</h3>
-                                                    <h4 class="govuk-heading-s">{{ __("YouTube cookies", props.language) }}</h4>
-                                                    <p class="govuk-body">{{ __("We use YouTube to provide videos on some pages of the site. YouTube sets cookies when you visit one of these pages.", props.language) }}</p>
-                                                    <table class="govuk-table">
-                                                        <thead class="govuk-table__head">
-                                                            <tr class="govuk-table__row">
-                                                                <th class="govuk-table__header" scope="col">{{ __("Name:", props.language) }}</th>
-                                                                <th class="govuk-table__header" scope="col">{{ __("Purpose:", props.language) }}</th>
-                                                                <th class="govuk-table__header" scope="col">{{ __("Expires:", props.language) }}</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody class="govuk-table__body">
-                                                            <tr class="govuk-table__row">
-                                                                <td class="govuk-table__cell">use_hitbox</td>
-                                                                <td class="govuk-table__cell">{{ __("randomly generated number that identifies your browser", props.language) }}</td>
-                                                                <td class="govuk-table__cell">{{ __("when you close your browser", props.language) }}</td>
-                                                            </tr>
-                                                            <tr class="govuk-table__row">
-                                                                <td class="govuk-table__cell">VISITOR_INFO1_LIVE</td>
-                                                                <td class="govuk-table__cell">{{ __("lets YouTube count the views of embedded YouTube videos", props.language) }}</td>
-                                                                <td class="govuk-table__cell">{{ __("9 months", props.language) }}</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <p class="govuk-body">{{ __("Please note that if you already have YouTube cookies you can't remove them by changing settings on our cookie consent page. To remove existing cookies, you will need to clear the cookies in your browser.", props.language) }}</p>
-                                                    <p class="govuk-body">
-                                                        <a class="govuk-link" href="https://www.google.co.uk/intl/en-GB/policies/privacy/" target="_blank" rel="noopener">{{ __("Further details on the cookies set by YouTube", props.language) }}</a>.
-                                                    </p>
-                                                    <h2 class="govuk-heading-l" id="cookies-on-other-fsa-websites">{{ __("Cookies on other FSA websites", props.language) }}</h2>
-                                                    <p class="govuk-body">{{ __("Cookies on other FSA websites can't be managed from the cookie consent page on food.gov.uk. You can manage cookies when you are on these websites using the browser control.", props.language) }}</p>
-                                                    <p class="govuk-body">
-                                                        <a class="govuk-link" href="https://ico.org.uk/for-the-public/online/cookies/" target="_blank" rel="noopener">{{ __("Find out more about how to manage cookies", props.language) }}</a>.
-                                                    </p>
-                                                    <h3 class="govuk-heading-m">{{ __("Food allergy and intolerance training (allergytraining.food.gov.uk)", props.language) }}</h3>
-                                                    <p class="govuk-body">
-                                                        <strong>{{ __("Name:", props.language) }}</strong>
-                                                        MoodleSession<br>
-                                                            <strong>{{ __("Purpose:", props.language) }}</strong>
-                                                            {{ __("provides continuity and maintains user login from page to page", props.language) }}<br>
-                                                                <strong>{{ __("Expires:", props.language) }}</strong>
-                                                                {{ __("when you log out or close your browser", props.language) }}
-                                                            </p>
-                                                            <p class="govuk-body">
-                                                                <strong>{{ __("Name:", props.language) }}</strong>
-                                                                MoodleID<br>
-                                                                    <strong>{{ __("Purpose:", props.language) }}</strong>
-                                                                    {{ __("records the username when you log in and allows the username field to be automatically filled in the next time you visit", props.language) }}
-                                                                </p>
-                                                                <h3 class="govuk-heading-m">{{ __("MyHACCP web tool (food.gov.uk/myhaccp)", props.language) }}</h3>
-                                                                <p class="govuk-body">
-                                                                    <strong>{{ __("Name:", props.language) }}</strong>
-                                                                    SESS[Unique ID]<br>
-                                                                        <strong>{{ __("Purpose:", props.language) }}</strong>
-                                                                        {{ __("allows logging in and interacting with the MyHACCP service; essential for MyHACCP site functionality", props.language) }}<br>
-                                                                            <strong>{{ __("Expires:", props.language) }}</strong>
-                                                                            {{ __("23 days", props.language) }}
-                                                                        </p>
-                                                                        <h3 class="govuk-heading-m">{{ __("Register a food business service", props.language) }}</h3>
-                                                                        <p class="govuk-body">
-                                                                            <strong>{{ __("Name:", props.language) }}</strong>
-                                                                            connect.sid<br>
-                                                                                <strong>{{ __("Purpose:", props.language) }}</strong>
-                                                                                {{ __("used to persist registration data", props.language) }}<br>
-                                                                                    <strong>{{ __("Expires:", props.language) }}</strong>
-                                                                                    {{ __("24 hours", props.language) }}
-                                                                                </p>
-                                                                                <p class="govuk-body">
-                                                                                    <strong>{{ __("Name:", props.language) }}</strong>
-                                                                                    _gid<br>
-                                                                                        <strong>{{ __("Purpose:", props.language) }}</strong>
-                                                                                        {{ __("helps us count how many people visit the service by tracking if you've visited before", props.language) }}<br>
-                                                                                            <strong>{{ __("Expires:", props.language) }}</strong>
-                                                                                            {{ __("3 days", props.language) }}
-                                                                                        </p>
-                                                                                        <h2 class="govuk-heading-l" id="cookies-on-sac-sites">{{ __("Cookies on Scientific Advisory Committees sites", props.language) }}</h2>
-                                                                                        <p class="govuk-body">{{ __("Scientific Advisory Committees (SAC) sites have their own cookie policy.", props.language) }}
-                                                                                            <a class="govuk-link" href="https://ico.org.uk/for-the-public/online/cookies/" target="_blank" rel="noopener">{{ __("Find out more about cookies on SAC sites.", props.language) }}</a>
-                                                                                        </p>
-                                                                                        <h3 class="govuk-heading-m">{{ __("Cookies on websites we link to", props.language) }}</h3>
-                                                                                        <p class="govuk-body">{{ __("Other websites and services we link to may set additional cookies and, if so, will have their own cookie policy. This includes other government services and social media platforms such as Facebook or Twitter.", props.language) }}</p>
-                                                                                        <h4 class="govuk-heading-s">{{ __("GovDelivery subscription service", props.language) }}</h4>
-                                                                                        <p class="govuk-body">{{ __("We use govDelivery (Granicus) communication services to issue emails to our subscribers (opens govDelivery website). Cookies and other technologies apply when you open or interact with emails delivered through the govDelivery services.", props.language) }}</p>
-                                                                                        <p class="govuk-body">
-                                                                                            <a class="govuk-link" href="https://subscriberhelp.granicus.com/s/article/Cookies" target="_blank" rel="noopener">{{ __("Read the govDelivery subscriber cookie statement", props.language) }}</a>.
-                                                                                        </p>
-                                                                                        {# ── Revision log ───────────────────────────────────────────────── #}
-                                                                                        <div id="revision-log" style="margin-top:2.5rem; border-top:2px solid #b1b4b6; padding-top:1rem;">
-                                                                                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-                                                                                                <h2 class="govuk-heading-m govuk-!-margin-bottom-0">{{ __("Revision log", props.language) }}</h2>
-                                                                                                <button
-                                                                                                    class="govuk-link"
-                                                                                                    onclick="toggleRevisions()"
-                                                                                                    id="revision-toggle"
-                                                                                                    style="background:none; border:none; cursor:pointer; font-size:1rem; font-family:inherit; padding:0;">
-                                                                                                    {{ __("Show all updates", props.language) }}
-                                                                                                </button>
-                                                                                            </div>
-                                                                                            <p class="govuk-body-s govuk-!-margin-bottom-0">Published: 19 May 2021</p>
-                                                                                            <p class="govuk-body-s">{{ __("Last updated: 4 July 2025", props.language) }}</p>
-                                                                                            <ul class="govuk-list" id="revision-list" style="display:none; margin-top:0.75rem;">
-                                                                                                <li style="padding:0.5rem 0; border-top:1px solid #b1b4b6; display:flex; gap:1rem;">
-                                                                                                    <strong style="min-width:130px;">4 July 2025</strong>
-                                                                                                    <span>ICO cookies link update x3</span>
-                                                                                                </li>
-                                                                                                <li style="padding:0.5rem 0; border-top:1px solid #b1b4b6; display:flex; gap:1rem;">
-                                                                                                    <strong style="min-width:130px;">4 July 2025</strong>
-                                                                                                    <span>Fixed broken link to ICO 'how to manage cookies'</span>
-                                                                                                </li>
-                                                                                                <li style="padding:0.5rem 0; border-top:1px solid #b1b4b6; display:flex; gap:1rem;">
-                                                                                                    <strong style="min-width:130px;">10 July 2023</strong>
-                                                                                                    <span>Edit to 'Change your cookie settings' section</span>
-                                                                                                </li>
-                                                                                                <li style="padding:0.5rem 0; border-top:1px solid #b1b4b6; display:flex; gap:1rem;">
-                                                                                                    <strong style="min-width:130px;">17 January 2022</strong>
-                                                                                                    <span>Updating links to IPO following a change of structure on their site</span>
-                                                                                                </li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                        <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid #b1b4b6;">
-                                                                                            <a href="#" class="govuk-link govuk-body-s">{{ __("Back to top", props.language) }}</a>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <script>
-                                                                                    function toggleRevisions() {
-                                                                                        var list = document.getElementById('revision-list');
-                                                                                        var btn = document.getElementById('revision-toggle');
-                                                                                        if (list.style.display === 'none') {
-                                                                                            list.style.display = 'block';
-                                                                                            btn.textContent = '{{ __("Hide all updates", props.language) }}';
-                                                                                        } else {
-                                                                                            list.style.display = 'none';
-                                                                                            btn.textContent = '{{ __("Show all updates", props.language) }}';
-                                                                                        }
-                                                                                    }
-                                                                                </script>
-                                                                            {% endblock %}
+                            {{ __("Saves your cookie consent settings", props.language) }}<br>
+                                <strong>{{ __("Expires:", props.language) }}</strong>
+                                {{ __("1 year", props.language) }}
+                            </p>
+                            <h2 class="govuk-heading-l">{{ __("Cookies that measure website use", props.language) }}</h2>
+                            <p class="govuk-body">{{ __("We use cookies to collect information about how you use this service. This helps us make sure the service is meeting your needs and helps us make improvements.", props.language) }}</p>
+                            <p class="govuk-body">
+                                <strong>{{ __("Name:", props.language) }}</strong>
+                                _gid<br>
+                                    <strong>{{ __("Purpose:", props.language) }}</strong>
+                                    {{ __("Helps us count how many people visit the service by tracking if you've visited before", props.language) }}<br>
+                                        <strong>{{ __("Expires:", props.language) }}</strong>
+                                        {{ __("3 days", props.language) }}
+                                    </p>
+                                    <h2 class="govuk-heading-l">{{ __("Change your cookie settings", props.language) }}</h2>
+                                    <p class="govuk-body">{{ __("You can change which cookies you're happy for us to use.", props.language) }}</p>
+                                    <p class="govuk-body">
+                                        {{ __("Find out more about", props.language) }}
+                                        <a class="govuk-link" href="https://ico.org.uk/for-the-public/online/cookies/" target="_blank" rel="noopener">{{ __("how to manage cookies (opens in a new tab)", props.language) }}</a>.
+                                    </p>
+                                </div>
+                            </div>
+                        {% endblock %}

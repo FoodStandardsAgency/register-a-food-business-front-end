@@ -824,5 +824,16 @@
 	"invalid opening hours on thursday": "invalid opening hours on thursday",
 	"invalid opening hours on friday": "invalid opening hours on friday",
 	"invalid opening hours on saturday": "invalid opening hours on saturday",
-	"invalid opening hours on sunday": "invalid opening hours on sunday"
+	"invalid opening hours on sunday": "invalid opening hours on sunday",
+	"Cookies on this service are not used to identify you personally.": "Cookies on this service are not used to identify you personally.",
+	"Session cookie": "Session cookie",
+	"Used to persist your registration data as you progress through the service": "Used to persist your registration data as you progress through the service",
+	"Cookie preferences": "Cookie preferences",
+	"Saves your cookie consent settings": "Saves your cookie consent settings",
+	"1 year": "1 year",
+	"We use cookies to collect information about how you use this service. This helps us make sure the service is meeting your needs and helps us make improvements.": "We use cookies to collect information about how you use this service. This helps us make sure the service is meeting your needs and helps us make improvements.",
+	"Helps us count how many people visit the service by tracking if you've visited before": "Helps us count how many people visit the service by tracking if you've visited before",
+	"You can change which cookies you're happy for us to use.": "You can change which cookies you're happy for us to use.",
+	"Find out more about": "Find out more about",
+	"how to manage cookies (opens in a new tab)": "how to manage cookies (opens in a new tab)"
 }
