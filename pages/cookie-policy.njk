@@ -1,0 +1,93 @@
+{#
+  Cookie Policy page (RAFB service only)
+  Route:      /cookie-policy  (src/routes/static.route.js)
+#}
+{% extends "layout.njk" %}
+{% block beforeContent %}
+    {{ govukPhaseBanner({
+    tag: { text: "beta" },
+    html: __('This is a new service', props.language) + ' – ' + '<a class="govuk-link" target="_blank" rel="noopener noreferrer" aria-label="' + 
+      __('your feedback (opens in new window)', props.language) + 
+      '" href="'+__('feedback-form', props.language)+'">' +
+      __('your feedback', props.language) + '</a> ' + __('will help us improve it', props.language) + '.'
+  }) }}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <a href="#" onclick="history.back(); return false;" class="govuk-back-link">{{ __("Back", props.language) }}</a>
+        </div>
+        <div class="govuk-grid-column-one-quarter" style="float:right">
+            <p style="text-align: right">
+                <a
+                    href="?lang=en"
+                    class="govuk-link"
+                    id="languageEnHeader"
+                    rel="noopener noreferrer"
+                    aria-label="Change the language to English"
+                    style='cursor:{{ __("enLangLink-cursor", props.language) }};text-decoration:{{ __("enLangLink-underline", props.language)
+                        }};font-weight:{{ __("enLangLink-fontWeight", props.language) }};'>
+                English</a>
+                |
+                <a
+                    href="?lang=cy"
+                    class="govuk-link"
+                    id="languageCyHeader"
+                    rel="noopener noreferrer"
+                    aria-label="Newid yr iaith i'r Gymraeg"
+                    style='cursor:{{ __("cyLangLink-cursor", props.language) }};text-decoration:{{ __("cyLangLink-underline", props.language)
+                        }};font-weight:{{ __("cyLangLink-fontWeight", props.language) }};'>
+                Cymraeg</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ __("Cookie policy", props.language) }}</h1>
+            <p class="govuk-body">{{ __("When we provide services, we want to make them easy, useful and reliable. Our website puts small files (known as 'cookies') onto your computer to collect information about how you browse the site.", props.language) }}</p>
+            <p class="govuk-body">{{ __("Cookies are used to:", props.language) }}</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>{{ __("measure how you use the website so it can be updated and improved based on your needs", props.language) }}</li>
+                <li>{{ __("remember the notifications you've seen so that we don't show them to you again", props.language) }}</li>
+            </ul>
+            <div class="govuk-inset-text">
+                {{ __("Cookies on this service are not used to identify you personally.", props.language) }}
+            </div>
+            <h2 class="govuk-heading-l">{{ __("Strictly necessary cookies", props.language) }}</h2>
+            <h3 class="govuk-heading-m">{{ __("Session cookie", props.language) }}</h3>
+            <p class="govuk-body">
+                <strong>{{ __("Name:", props.language) }}</strong>
+                connect.sid<br>
+                    <strong>{{ __("Purpose:", props.language) }}</strong>
+                    {{ __("Used to persist your registration data as you progress through the service", props.language) }}<br>
+                        <strong>{{ __("Expires:", props.language) }}</strong>
+                        {{ __("24 hours", props.language) }}
+                    </p>
+                    <h3 class="govuk-heading-m">{{ __("Cookie preferences", props.language) }}</h3>
+                    <p class="govuk-body">
+                        <strong>{{ __("Name:", props.language) }}</strong>
+                        cookie_preferences<br>
+                            <strong>{{ __("Purpose:", props.language) }}</strong>
+                            {{ __("Saves your cookie consent settings", props.language) }}<br>
+                                <strong>{{ __("Expires:", props.language) }}</strong>
+                                {{ __("1 year", props.language) }}
+                            </p>
+                            <h2 class="govuk-heading-l">{{ __("Cookies that measure website use", props.language) }}</h2>
+                            <p class="govuk-body">{{ __("We use cookies to collect information about how you use this service. This helps us make sure the service is meeting your needs and helps us make improvements.", props.language) }}</p>
+                            <p class="govuk-body">
+                                <strong>{{ __("Name:", props.language) }}</strong>
+                                _gid<br>
+                                    <strong>{{ __("Purpose:", props.language) }}</strong>
+                                    {{ __("Helps us count how many people visit the service by tracking if you've visited before", props.language) }}<br>
+                                        <strong>{{ __("Expires:", props.language) }}</strong>
+                                        {{ __("3 days", props.language) }}
+                                    </p>
+                                    <h2 class="govuk-heading-l">{{ __("Change your cookie settings", props.language) }}</h2>
+                                    <p class="govuk-body">{{ __("You can change which cookies you're happy for us to use.", props.language) }}</p>
+                                    <p class="govuk-body">
+                                        {{ __("Find out more about", props.language) }}
+                                        <a class="govuk-link" href="https://ico.org.uk/for-the-public/online/cookies/" target="_blank" rel="noopener">{{ __("how to manage cookies (opens in a new tab)", props.language) }}</a>.
+                                    </p>
+                                </div>
+                            </div>
+                        {% endblock %}

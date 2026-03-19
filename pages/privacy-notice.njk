@@ -1,0 +1,107 @@
+{#
+  Privacy Notice page
+  Route:      /privacy-notice  (src/routes/static.route.js)
+#}
+{% extends "layout.njk" %}
+{% block beforeContent %}
+    {{ govukPhaseBanner({
+    tag: { text: "beta" },
+    html: __('This is a new service', props.language) + ' – ' + '<a class="govuk-link" target="_blank" rel="noopener noreferrer" aria-label="' + 
+      __('your feedback (opens in new window)', props.language) + 
+      '" href="'+__('feedback-form', props.language)+'">' +
+      __('your feedback', props.language) + '</a> ' + __('will help us improve it', props.language) + '.'
+  }) }}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <a href="#" onclick="history.back(); return false;" class="govuk-back-link">{{ __("Back", props.language) }}</a>
+        </div>
+        <div class="govuk-grid-column-one-quarter" style="float:right">
+            <p style="text-align: right">
+                <a
+                    href="?lang=en"
+                    class="govuk-link"
+                    id="languageEnHeader"
+                    rel="noopener noreferrer"
+                    aria-label="Change the language to English"
+                    style='cursor:{{ __("enLangLink-cursor", props.language) }};text-decoration:{{ __("enLangLink-underline", props.language)
+                        }};font-weight:{{ __("enLangLink-fontWeight", props.language) }};'>
+                English</a>
+                |
+                <a
+                    href="?lang=cy"
+                    class="govuk-link"
+                    id="languageCyHeader"
+                    rel="noopener noreferrer"
+                    aria-label="Newid yr iaith i'r Gymraeg"
+                    style='cursor:{{ __("cyLangLink-cursor", props.language) }};text-decoration:{{ __("cyLangLink-underline", props.language)
+                        }};font-weight:{{ __("cyLangLink-fontWeight", props.language) }};'>
+                Cymraeg</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ __("Register a food business privacy notice", props.language) }}</h1>
+            <p class="govuk-body-l">{{ __("Information on our Register a food business privacy notice, why we require data, what we do with the data and your rights.", props.language) }}</p>
+            <p class="govuk-body">{{ __("The Food Standards Agency will be what is known as the 'Data Controller' of the personal data provided to us.", props.language) }}</p>
+            <h2 class="govuk-heading-l">{{ __("What personal information will be collected?", props.language) }}</h2>
+            <p class="govuk-body">{{ __("Personal identifying data collected as part of the Register a Food Business service may include:", props.language) }}</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>{{ __("name", props.language) }}</li>
+                <li>{{ __("date of birth", props.language) }}</li>
+                <li>{{ __("address", props.language) }}</li>
+                <li>{{ __("email address", props.language) }}</li>
+                <li>{{ __("business name", props.language) }}</li>
+                <li>{{ __("business address", props.language) }}</li>
+                <li>{{ __("phone number", props.language) }}</li>
+            </ul>
+            <h2 class="govuk-heading-l">{{ __("Purpose and lawful basis for processing", props.language) }}</h2>
+            <p class="govuk-body">{{ __("We need to collect this information for the purposes of fulfilling our statutory obligations, under Article 113 of the Official Controls Regulation (EU) 2017/625, and as retained in UK legislation, on official controls to make details of food businesses available to persons enquiring about the registration and/or approval status of food business operators.", props.language) }}</p>
+            <p class="govuk-body">{{ __("We do this in line with the exercise of official authority vested in us and the performance of a task carried out in the public interest. We will not collect any personal data from you which we do not need.", props.language) }}</p>
+            <p class="govuk-body">{{ __("We may want to contact you to invite you to provide feedback on the service. We will only do this with your consent.", props.language) }}</p>
+            <h2 class="govuk-heading-l">{{ __("What we need and how we use it", props.language) }}</h2>
+            <p class="govuk-body">{{ __("The details of approved food business establishments are published on the FSA website. The list of registered food business establishments is published by the relevant local authority.", props.language) }}</p>
+            <p class="govuk-body">{{ __("We may also analyse this information along with other information we hold about you and information we have obtained from public and/or private sources for the purpose of helping us evaluate risk. We do this in line with the exercise of official authority vested in us under the Food Standards Act and the performance of a task carried out in the public interest.", props.language) }}</p>
+            <p class="govuk-body">{{ __("Where you provide your email address on the feedback form during your registration or agree to being contacted to provide feedback on the service at the end of the registration process, the FSA, or one of our research partners working on our behalf, may contact you for this purpose. You can withdraw your consent at any time by contacting registration@food.gov.uk", props.language) }}</p>
+            <h2 class="govuk-heading-l">{{ __("How and where we store your data and who we may share it with", props.language) }}</h2>
+            <p class="govuk-body">{{ __("We retain personal information only for as long as necessary to carry out these functions, and in line with our retention policy. This means this information will be retained for as long as a business remains registered and/or approved as a food business operator. Historical lists of registered and/or approved businesses are retained for 10 years.", props.language) }}</p>
+            <p class="govuk-body">{{ __("No third parties have access to your personal data unless the law allows them to do so. In line with this commitment your information will be passed to the relevant local authority with responsibility for inspection of food businesses. The Food Standards Agency will sometimes share data with other government departments, public bodies, organisations which perform public functions to assist them in the performance of their statutory duties, and with these and other private organisations and persons, such as food business operators, when it is in the public interest. We may also share the data as part of risk evaluation and analysis with public bodies or other organisations, such as Trading Standards and Port Health Authorities, for the same reasons.", props.language) }}</p>
+            <p class="govuk-body">{{ __("For more general information, please see the", props.language) }}
+                <a
+                    class="govuk-link"
+                    href="https://www.food.gov.uk/about-us/personal-information-charter#how-and-where-do-we-store-your-data-and-who-may-we-share-it-with"
+                    target="_blank"
+                    rel="noopener">{{ __("How and where we store your data and who we may share it with section in our Personal Information Charter (opens in a new tab)", props.language) }}</a>.</p>
+            <h2 class="govuk-heading-l">{{ __("International transfers", props.language) }}</h2>
+            <p class="govuk-body">{{ __("For more information on international transfers, please see the", props.language) }}
+                <a
+                    class="govuk-link"
+                    href="https://www.food.gov.uk/about-us/personal-information-charter#international-transfers"
+                    target="_blank"
+                    rel="noopener">{{ __("International transfers section in our Personal Information Charter (opens in a new tab)", props.language) }}</a>.</p>
+            <h2 class="govuk-heading-l">{{ __("EU citizens", props.language) }}</h2>
+            <p class="govuk-body">{{ __("For more information on EU Citizens Privacy Notice, please see the", props.language) }}
+                <a
+                    class="govuk-link"
+                    href="https://www.food.gov.uk/about-us/personal-information-charter#eu-citizens"
+                    target="_blank"
+                    rel="noopener">{{ __("EU citizens section in our Personal Information Charter (opens in a new tab)", props.language) }}</a>.</p>
+            <h2 class="govuk-heading-l">{{ __("Your rights", props.language) }}</h2>
+            <p class="govuk-body">{{ __("For more information on your rights, please see the", props.language) }}
+                <a
+                    class="govuk-link"
+                    href="https://www.food.gov.uk/about-us/personal-information-charter#your-rights"
+                    target="_blank"
+                    rel="noopener">{{ __("Your rights section in our Personal Information Charter (opens in a new tab)", props.language) }}</a>.</p>
+            <h2 class="govuk-heading-l">{{ __("Contact us", props.language) }}</h2>
+            <p class="govuk-body">{{ __("If you have any queries concerning this Privacy Notice, your personal information or any questions on our use of the information, please email our Data Protection Officer in the FSA, who is the Information Management and Security Team Leader using the address below.", props.language) }}</p>
+            <p class="govuk-body">
+                <strong>{{ __("Information Knowledge Management", props.language) }}</strong>
+                <br>
+                    <a class="govuk-link" href="mailto:information.governance@food.gov.uk">information.governance@food.gov.uk</a>
+                </p>
+            </div>
+        </div>
+    {% endblock %}

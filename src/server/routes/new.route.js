@@ -34,11 +34,17 @@ const newRouter = () => {
       res.render("maintenance");
     });
   }
-
   router.get("/{:page}", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/new route");
     try {
       const page = req.params.page || "index";
+
+      // Static pages have their own routes — redirect to canonical URL
+      const staticPages = ["accessibility", "cookie-policy", "privacy-notice"];
+      if (staticPages.includes(page)) {
+        res.redirect(`/${page}`);
+        return;
+      }
 
       const localAuthorities = await localAuthoritiesCache.get();
 
