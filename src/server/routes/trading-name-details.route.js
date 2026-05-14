@@ -13,10 +13,6 @@ const {
   tradingNameDetailsContinue
 } = require("../controllers/trading-name-details.controller");
 
-const getOriginator = (referrerUrl) => {
-  return referrerUrl.substr(referrerUrl.lastIndexOf("/")).split("?")[0];
-};
-
 const isEditMode = (reqQuery) => {
   return reqQuery.edit === "establishment-trading-name";
 };
@@ -30,10 +26,10 @@ const PropsGenerator = require("../propsGenerator");
 const tradingNameDetailsRouter = () => {
   const router = Router();
 
-  router.post("/save", async (req, res, next) => {
+  router.post("/save/:originator", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/tradingname/save route");
     try {
-      const originator = getOriginator(req.get("Referrer"));
+      const originator = `/${req.params.originator}`;
 
       const data = req.session.cumulativeFullAnswers.targetTradingName
         ? Object.assign({}, req.body, {
@@ -115,7 +111,7 @@ const tradingNameDetailsRouter = () => {
     });
   });
 
-  router.post("/delete-trading-name", async (req, res, next) => {
+  router.post("/delete-trading-name/:originator", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/tradingname/delete-trading-name route");
     try {
       req.session.cumulativeFullAnswers.establishment_additional_trading_names =
@@ -144,10 +140,10 @@ const tradingNameDetailsRouter = () => {
     }
   });
 
-  router.post("/continue", async (req, res, next) => {
+  router.post("/continue/:originator", async (req, res, next) => {
     logEmitter.emit("functionCall", "Routes", "/tradingname/continue route");
     try {
-      const originator = getOriginator(req.get("Referrer"));
+      const originator = `/${req.params.originator}`;
 
       req.session.cumulativeFullAnswers = req.session.cumulativeFullAnswers || {};
       req.session.cumulativeFullAnswers.establishment_additional_trading_names =

@@ -67,31 +67,31 @@ module.exports = (req) => {
       : "/tradingname/establishment-trading-name-details";
 
   const partnerDetailsDeleteFormAction = editModePartnerDetails
-    ? "/partnership/delete-partner?edit=partner-name"
-    : "/partnership/delete-partner";
+    ? "/partnership/delete-partner/partner-name?edit=partner-name"
+    : "/partnership/delete-partner/partner-name";
 
   const tradingNameDetailsDeleteFormAction =
     req && req.query && req.query.edit
-      ? "/tradingname/delete-trading-name?edit=establishment-trading-name"
-      : "/tradingname/delete-trading-name";
+      ? "/tradingname/delete-trading-name/establishment-trading-name?edit=establishment-trading-name"
+      : "/tradingname/delete-trading-name/establishment-trading-name";
 
   const partnerDetailsContinueFormAction = editModePartnerDetails
-    ? "/partnership/continue?edit=partner-name"
-    : "/partnership/continue";
+    ? "/partnership/continue/partner-name?edit=partner-name"
+    : "/partnership/continue/partner-name";
 
   const tradingNameDetailsContinueFormAction =
     req && req.query && req.query.edit
-      ? "/tradingname/continue?edit=establishment-trading-name"
-      : "/tradingname/continue";
+      ? "/tradingname/continue/establishment-trading-name?edit=establishment-trading-name"
+      : "/tradingname/continue/establishment-trading-name";
 
   const partnerDetailsSaveFormAction = editModePartnerDetails
-    ? "/partnership/save?edit=partner-name"
-    : "/partnership/save";
+    ? "/partnership/save/partner-details?edit=partner-name"
+    : "/partnership/save/partner-details";
 
   const tradingNameDetailsSaveFormAction =
     req && req.query && req.query.edit
-      ? "/tradingname/save?edit=establishment-trading-name"
-      : "/tradingname/save";
+      ? "/tradingname/save/establishment-trading-name-details?edit=establishment-trading-name"
+      : "/tradingname/save/establishment-trading-name-details";
 
   const partnerDetailsBackUrl = editModePartnerDetails
     ? "/partnership/back?edit=partner-name"

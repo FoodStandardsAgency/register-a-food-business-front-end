@@ -1,4 +1,7 @@
-@import "../../../node_modules/govuk-frontend/dist/govuk/all";
+@use "../../../node_modules/govuk-frontend/dist/govuk" as *;
+.govuk-header__product-name {
+  font-weight: bold;
+}
 .govuk-panel__title {
   font-weight: normal;
   font-size: 0.8em;

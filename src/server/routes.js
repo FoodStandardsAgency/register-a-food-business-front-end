@@ -17,6 +17,7 @@ const {
   tradingStatusRouter,
   pdfsRouter
 } = require("./routes/index");
+const { staticRouter } = require("./routes/static.route");
 
 module.exports = () => {
   const router = Router();
@@ -26,6 +27,7 @@ module.exports = () => {
     return;
   });
 
+  router.use("/", staticRouter());
   router.use("/back", backRouter());
   router.use("/cleansession", cleansessionRouter());
   router.use("/continue", continueRouter());

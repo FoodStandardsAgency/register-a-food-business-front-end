@@ -38,7 +38,7 @@ const dev = process.env.NODE_ENV !== "production";
 
 const express = require("express");
 const session = require("express-session");
-const MongoStore = require("connect-mongo");
+const { MongoStore } = require("connect-mongo");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
@@ -173,6 +173,10 @@ app.use(morgan("combined", { stream: logger.stream }));
 app.use(
   "/assets",
   express.static(path.join(__dirname, "/../../node_modules/govuk-frontend/dist/govuk/assets"))
+);
+app.use(
+  "/govuk-frontend",
+  express.static(path.join(__dirname, "/../../node_modules/govuk-frontend/dist/govuk"))
 );
 app.use("/pdfs", express.static(__dirname + "/static/pdfs"));
 app.use("/auto-complete", express.static(__dirname + "/static/auto-complete"));
