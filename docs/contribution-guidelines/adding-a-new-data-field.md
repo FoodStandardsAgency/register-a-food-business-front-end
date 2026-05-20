@@ -11,6 +11,6 @@ To add a new data field you must update the UI, E2E, and unit tests, create cust
 5.  If the new data field should be displayed on the summary table:
 
     1.  If the data needs to be manipulated before it is displayed on the summary table, see [Transforming user data for the summary page](./transforming-data-summary-page.md).
-    2.  Add the data field to the [SummaryTable component](../../src/components/SummaryTable.js) and add row and data field entries to the [test arrays and objects](../../src/components/SummaryTable.test.js) where necessary.
+    2.  Add the data field to the [SummaryTable component](../../components/SummaryTable.njk) and add corresponding test entries to the matching test file in `/pages_unit_tests` where necessary.
 
 6.  Add the new data field to the submission data transformation function. For more information, see [Transforming user data for submission](./transforming-data-submission.md).
