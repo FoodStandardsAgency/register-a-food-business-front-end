@@ -2,38 +2,50 @@
 
 ## Node.js
 
-Node.js is an open-source JavaScript runtime built on Chrome's V8 JavaScript engine. For more information about Node.js, see https://nodejs.org.
+Node.js is an open-source JavaScript runtime built on Chrome's V8 JavaScript engine. This project requires Node.js `>=22.14.0`. For more information about Node.js, see https://nodejs.org.
 
 ## Express.js
 
-Express.js is an open-source library for running server-side processes that listen for HTTP requests to different routes. Express.js runs on Node.js. For more information about Express.js, see https://expressjs.com/.
+Express.js is an open-source library for running server-side processes that listen for HTTP requests to different routes. Express.js runs on Node.js and is the primary server framework for this application. For more information about Express.js, see https://expressjs.com/.
 
-## Next.js
+## Nunjucks
 
-Next.js is an open-source front-end framework, based on React, that renders HTML webpages server-side by default. Server-side rendering allows users to view a React-based website with JavaScript disabled and largely negates the need to account for differences between browsers' JavaScript engines.
+Nunjucks is a templating language for JavaScript, maintained by Mozilla. All pages and reusable components in this application are written as Nunjucks (`.njk`) templates that are rendered server-side by Express.js before being sent to the browser.
 
-Next.js also automatically splits code into small modules, rather than serving a single large module, which improves the page load time.
+Nunjucks is configured in [`src/server/server.js`](../../src/server/server.js) to look for templates in the following directories: `pages/`, `components/`, `node_modules/govuk-frontend/dist`, and `node_modules/@ons/design-system/`.
 
-For more information about Next.js, see https://nextjs.org.
+For more information about Nunjucks, see https://mozilla.github.io/nunjucks/.
 
-## GOV UK React components
+## GOV.UK Frontend
 
-`govuk-react` is an open-source library of reusable React components that implement the [GOV.UK Design System](https://design-system.service.gov.uk/) using the Emotion CSS-in-JS library. For more information about `govuk-react`, see https://github.com/UKHomeOffice/govuk-react.
+`govuk-frontend` is the official implementation of the [GOV.UK Design System](https://design-system.service.gov.uk/). It provides ready-made HTML components (as Nunjucks macros), CSS, and JavaScript for building GOV.UK-compliant services.
 
-## Emotion
+For more information about `govuk-frontend`, see https://github.com/alphagov/govuk-frontend.
 
-Emotion is an open-source CSS-in-JS library that implements the 'styled components' approach. Its features are almost identical to the [Styled Components](https://www.styled-components.com/) library. For more information about Emotion, see https://emotion.sh/.
+## ONS Design System
+
+The `@ons/design-system` package provides additional UI components from the Office for National Statistics design system, used alongside `govuk-frontend` for certain interface elements.
+
+## SASS
+
+Styling is written in SASS (`.scss` files) located under `src/server/css/`. These are compiled to CSS using the `sass` CLI. The `npm run sass-dev` script compiles SASS in expanded (development) format; `npm run sass-prod` compiles to compressed (production) format.
+
+## i18n
+
+The `i18n` package is used to support Welsh (`cy`) and English (`en`) translations. Translation strings are stored as JSON files in `public/static/locales/`. The active language is determined from the request query string, cookie, or header.
+
+## MongoDB / CosmosDB
+
+User session data is stored in a MongoDB-compatible CosmosDB database on Azure, accessed via `connect-mongo` and Express's `express-session` middleware. The database connection URL is set via the `COSMOSDB_URL` environment variable. When this variable is not set (e.g. in local development), sessions fall back to in-memory storage.
 
 ---
 
-## The relationship between Express.js and Next.js
+## The relationship between Express.js and Nunjucks
 
-Next.js is a standalone service by default, which runs its own server and handles incoming HTTP GET requests. However, much of this request handling is hidden from developers by default and cannot be overridden with Next.js alone.
+Express.js is used to run the server, catch all incoming HTTP requests, and route them to the appropriate router based on the URL path. See [`src/server/routes.js`](../../src/server/routes.js) for the full routing table.
 
-To have full control over the processing of HTTP POST and GET requests, Express.js is used in this repository to [run the server](../../src/server/index.js) and [catch all incoming requests](../../src/server/server.js). These requests are then [sent to individual routers](../../src/server/routes.js) depending on the URL path of the request.
+Most routers handle requests using Express.js and vanilla JavaScript alone, such as `continue.route.js`. These routers finish by updating session data and calling `res.redirect()`, forwarding the user to another internal route such as `/new` or `/submit`.
 
-Most of the routers handle requests using Express.js and vanilla JavaScript alone, such as `continue.route.js`. These types of router finish by updating the session data and running a `res.redirect()`. This redirect always forwards the user to another of the internal routes, such as `/new` or `/submit`.
+The `/new` router handles GET requests by calling `res.render(pageName, { props })`, which triggers Nunjucks to render the requested `.njk` template from the `pages/` directory, with session-derived `props` injected as template variables via [`PropsGenerator`](../../src/server/propsGenerator.js).
 
-One of the routers, `/new`, handles requests using a combination of Next.js, Express.js, and vanilla JavaScript. The most important part of this router is the use of the `Next.render()` function, which triggers the Next.js server-side render of the specified page and delivers it to the browser.
-
-The wildcard router, `/*`, handles requests using Next.js alone. This is a final catch-all for requests that would otherwise be unhandled. Next.js has a default 404 error page that is displayed in these instances, which [can be customised](https://nextjs.org/docs/#custom-error-handling) if required.
+Error pages (`page-not-found.njk`, `internal-server-error.njk`) are rendered by the error handler middleware in [`src/server/middleware/errorHandler.js`](../../src/server/middleware/errorHandler.js).

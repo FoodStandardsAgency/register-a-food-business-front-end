@@ -30,7 +30,7 @@ The following contribution guides are available:
 
 #### Client-side JavaScript
 
-Although vast majority of web users have JavaScript enabled by default, the application must allow for the registration process to be completed without client-side JavaScript. Where the use of JavaScript dramatically improves user experience, use "componentDidMount" to verify if it is enabled and render component requiring JavaScript - but make sure to provide a fallback component within <noscript> tag for users who have it disabled.
+Although the vast majority of web users have JavaScript enabled by default, the application must allow for the registration process to be completed without client-side JavaScript. The server-side Nunjucks rendering ensures all pages function without it. Where JavaScript is used to enhance the experience (e.g. the autocomplete component), ensure the page remains usable without it by providing a working HTML fallback.
 
 ## Running NPM Packages vulnerability scanner
 

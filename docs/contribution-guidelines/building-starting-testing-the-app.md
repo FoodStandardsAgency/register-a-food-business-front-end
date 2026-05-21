@@ -5,56 +5,50 @@
 ### Prerequisites
 
 - [Docker](https://www.docker.com/)
-- [Node.js](https://nodejs.org)
+- [Node.js](https://nodejs.org) `>=22.14.0`
 
 ### Steps
 
 1.  Follow the steps for 'Getting started' on the [`register-a-food-business-environment` repository](https://github.com/FoodStandardsAgency/register-a-food-business-environment).
-2.  Change directory to this repository (`register-a-food-business`)
-3.  Run `npm install`
+2.  Change directory to this repository.
+3.  Run `npm install`.
 4.  Populate a `.env` file. The contents of this file must be handed over from existing developers.
+5.  Compile the SASS stylesheets by running `npm run sass-dev`.
 
-## Starting the application in `DEVELOPMENT` mode
+## Starting the application in development mode
 
-`DEVELOPMENT` mode has the following characteristics:
+The `npm run dev` script compiles SASS and starts the Express.js server. The server uses `nodemon`, which watches the `pages/`, `src/`, and any `.js`, `.json`, and `.njk` files — it will automatically restart when changes are detected.
 
-- `npm run dev` starts the localhost server and points at a temporary in-memory build directory
-- Pages are automatically built on-demand (when you visit each page in a browser), which takes a few moments
-- Pages automatically rebuild and refresh in the browser when you make a change to **React** code
-- You must stop and restart the terminal process after making any changes to **non-React** code to see your changes
+### Steps
 
-These characteristics make `DEVELOPMENT` mode suited to multiple trial-and-error visual changes to a small number of pages.
-
-### Steps:
-
-1.  Ensure docker has started and the container "cosmos-db-1" is running
+1.  Ensure Docker has started and any required containers are running (see the [environment repository](https://github.com/FoodStandardsAgency/register-a-food-business-environment)).
 2.  Run `npm run dev`
-3.  Open `http://localhost:3000/new/ in a browser
+3.  Open `http://localhost:3000/new/` in a browser.
 
-### Steps:
+## Starting the application in production mode
 
-2.  Run `npm start`
-3.  Open `http://localhost:3000/new/` in a browser
+1.  Run `npm start`
+2.  Open `http://localhost:3000/new/` in a browser.
 
 ## Testing the application
 
-The `/package.json` file contains a number of scripts that are used in the GitHub Actions pipelines to test the code in this repository. These scripts can also be run locally to prevent unnecessary pipeline builds, using the following commands:
+The `package.json` file contains a number of scripts that are used in the GitHub Actions pipelines to test the code in this repository. These scripts can also be run locally to prevent unnecessary pipeline builds, using the following commands:
 
 - `npm test`
 
-  Runs all of the unit tests and provides a coverage report.
+  Runs all of the unit tests (including Nunjucks template tests) and provides a coverage report.
+
+- `npm run test:ci`
+
+  Runs all of the unit tests in CI mode with up to 4 parallel workers and outputs a JUnit XML report to `./reports/`.
 
 - `npm run test:watch`
 
   Runs all of the unit tests once, then watches for changes to any relevant files and re-runs just those tests.
 
-- `npm run test:integration`
+- `npm run test:debug`
 
-  Runs all of the integration tests between the connectors and local doubles of external services. For more information about integration tests, see https://martinfowler.com/bliki/IntegrationTest.html.
-
-- `npm run test:contract`
-
-  Runs all of the contract tests between the external services and their local doubles. For more information about contract tests, see https://martinfowler.com/bliki/ContractTest.html.
+  Starts Jest with the Node.js inspector enabled, so tests can be debugged using a tool such as `chrome://inspect`.
 
 - `npm run test:security`
 
@@ -63,6 +57,10 @@ The `/package.json` file contains a number of scripts that are used in the GitHu
 - `npm run lint`
 
   Runs the ESLint tool against the repository. For more information about ESLint, see https://eslint.org/.
+
+- `npm run lint:fix`
+
+  Runs ESLint and automatically fixes any fixable issues.
 
 - `npm run format:verify`
 
