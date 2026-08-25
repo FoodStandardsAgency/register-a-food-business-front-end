@@ -1,0 +1,50 @@
+{# Static 403 page for the App Gateway WAF custom error configuration.
+   Rendered offline by scripts/render-waf-403.js: the gateway returns the built
+   HTML as the body of a WAF-blocked 403, on the original URL, so this page is
+   never routed by the app. The rendered copy is committed and served
+   statically at /error-pages/waf-403.html for the gateway to fetch. #}
+{% extends "layout.njk" %}
+{% block head %}
+  <meta charset="utf8"/>
+  <meta name="viewport" content="width=device-width"/>
+  <meta name="google" content="notranslate">
+  {# Inlined by the render script: a frozen error page must not depend on the
+     app being able to serve its stylesheet. #}
+  <link href="/css/app.css" rel="stylesheet" type="text/css">
+{% endblock %}
+{# Native top bar. The language links are context-free ("?lang=en"/"?lang=cy" on the
+   current URL): on this page that URL is the form page the citizen POSTed to, so
+   clicking a language performs a GET of that form in that language, session intact.
+   The back link is server-computed on real pages, so here it is injected by JS
+   (history.back()) into the bar's left column; no-JS users get the sentence in the
+   body copy instead. #}
+{% from "../components/BackAndLanguageBar.njk" import backAndLanguageBar %}
+{% block beforeContent %}
+  {{ backAndLanguageBar(mergeObjects(props, {hideback: true})) }}
+  <script>
+    (function () {
+      if (window.history && window.history.length > 1) {
+        var col = document.querySelector("nav .govuk-grid-column-two-thirds");
+        if (col) {
+          var b = document.createElement("a");
+          b.href = "#";
+          b.className = "govuk-back-link";
+          b.textContent = {{ __("Back", props.language) | dump | safe }};
+          b.onclick = function (e) { e.preventDefault(); window.history.back(); };
+          col.appendChild(b);
+        }
+      }
+    })();
+  </script>
+{% endblock %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 id="main-heading" class="govuk-heading-l">{{ __("Sorry, there is a problem with the service", props.language) }}</h1>
+      <p class="govuk-body">{{ __("The security system that protects this service has blocked your submission. This sometimes happens with normal wording or punctuation.", props.language) }}</p>
+      <p class="govuk-body">{{ __("Click back to return to the form and try removing or replacing punctuation in your answers, such as semicolons (;), ampersands (&) and brackets. Then resubmit the form.", props.language) }}</p>
+      <p class="govuk-body">{{ __("Your answers from earlier pages have been saved. You may need to re-enter your most recent answers.", props.language) }}</p>
+      <p class="govuk-body">{{ __("Please contact your Local Council if you need to speak to someone about your food business registration urgently.", props.language) }}</p>
+    </div>
+  </div>
+{% endblock %}

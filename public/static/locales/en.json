@@ -726,5 +726,9 @@
 	"Change your cookie settings": "Change your cookie settings",
 	"You can change which cookies you're happy for us to use.": "You can change which cookies you're happy for us to use.",
 	"Find out more about": "Find out more about",
-	"how to manage cookies (opens in a new tab)": "how to manage cookies (opens in a new tab)"
+	"how to manage cookies (opens in a new tab)": "how to manage cookies (opens in a new tab)",
+	"Sorry, there is a problem with the service": "Sorry, there is a problem with the service",
+	"The security system that protects this service has blocked your submission. This sometimes happens with normal wording or punctuation.": "The security system that protects this service has blocked your submission. This sometimes happens with normal wording or punctuation.",
+	"Click back to return to the form and try removing or replacing punctuation in your answers, such as semicolons (;), ampersands (&) and brackets. Then resubmit the form.": "Click back to return to the form and try removing or replacing punctuation in your answers, such as semicolons (;), ampersands (&) and brackets. Then resubmit the form.",
+	"Your answers from earlier pages have been saved. You may need to re-enter your most recent answers.": "Your answers from earlier pages have been saved. You may need to re-enter your most recent answers."
 }
