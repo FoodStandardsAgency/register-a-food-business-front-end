@@ -11,9 +11,11 @@
  * branding or the page's strings change; the gateway re-fetches the page only
  * when its config is re-applied.
  *
- * A Welsh page (waf-403-cy.html) is only emitted once EVERY string on the page
- * has a real entry in public/static/locales/cy.json — no machine translation,
- * no silent English fallback in a page presented as Welsh.
+ * The page is bilingual, Welsh first when the "lang" cookie says so (Welsh
+ * Language Commissioner's technology guidance: bilingual when the preference is
+ * unknown, the stored preference when known). Nothing is emitted unless EVERY
+ * string has a real entry in public/static/locales/cy.json — no machine
+ * translation, no silent English fallback inside the Welsh block.
  */
 const path = require("path");
 const fs = require("fs");
@@ -67,26 +69,17 @@ function render(language) {
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
-const en = render("en");
-const outEn = path.join(OUT_DIR, "waf-403.html");
-fs.writeFileSync(outEn, en);
-console.log(
-  `${outEn} written — ${(Buffer.byteLength(en) / 1024).toFixed(0)} KB (App GW limit 1024 KB)`
-);
+const page = render("en");
 if (missing.en.size) {
-  console.log(`\n${missing.en.size} strings on the page are not in en.json (the literal key is used; add them):`);
+  console.log(`${missing.en.size} strings on the page are not in en.json (the literal key is used; add them):`);
   for (const s of missing.en) console.log("  - " + JSON.stringify(s));
 }
-
-// Welsh gate.
-missing.cy = new Set();
-const cy = render("cy");
 if (missing.cy.size) {
-  console.log(`\nNOT emitting waf-403-cy.html — ${missing.cy.size} strings have no Welsh entry in cy.json:`);
+  console.log(`\nNOT writing waf-403.html — ${missing.cy.size} strings have no Welsh entry in cy.json:`);
   for (const s of missing.cy) console.log("  - " + JSON.stringify(s));
   console.log("Send these through the FSA translation route, add them to cy.json, re-run.");
-} else {
-  const outCy = path.join(OUT_DIR, "waf-403-cy.html");
-  fs.writeFileSync(outCy, cy);
-  console.log(`${outCy} written — all strings translated.`);
+  process.exit(1);
 }
+const out = path.join(OUT_DIR, "waf-403.html");
+fs.writeFileSync(out, page);
+console.log(`${out} written — ${(Buffer.byteLength(page) / 1024).toFixed(0)} KB (App GW limit 1024 KB), all strings translated.`);

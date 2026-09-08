@@ -16402,13 +16402,38 @@
 
   <script>
     (function () {
+      var cy = /(?:^|;\s*)lang=cy(?:;|$)/.test(document.cookie);
+      if (cy) {
+        // The content blocks come after this script, so reorder once the document is parsed.
+        var welshFirst = function () {
+          var en = document.getElementById("waf-403-en");
+          var cyBlock = document.getElementById("waf-403-cy");
+          var br = document.getElementById("waf-403-break");
+          if (en && cyBlock && en.parentNode) {
+            en.parentNode.insertBefore(cyBlock, en);
+            if (br) en.parentNode.insertBefore(br, en);
+          }
+        };
+        if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", welshFirst);
+        else welshFirst();
+        document.documentElement.lang = "cy";
+        document.title = "Mae’n ddrwg gennym – mae problem gyda’r gwasanaeth";
+        var links = { languageEnHeader: "underline;normal;pointer", languageCyHeader: "none;bold;default" };
+        for (var id in links) {
+          var a = document.getElementById(id);
+          if (a) {
+            var v = links[id].split(";");
+            a.style.textDecoration = v[0]; a.style.fontWeight = v[1]; a.style.cursor = v[2];
+          }
+        }
+      }
       if (window.history && window.history.length > 1) {
         var col = document.querySelector("nav .govuk-grid-column-two-thirds");
         if (col) {
           var b = document.createElement("a");
           b.href = "#";
           b.className = "govuk-back-link";
-          b.textContent = "Back";
+          b.textContent = cy ? "Yn ôl" : "Back";
           b.onclick = function (e) { e.preventDefault(); window.history.back(); };
           col.appendChild(b);
         }
@@ -16418,15 +16443,29 @@
 </nav>
         <main class="govuk-main-wrapper " id="main-content" role="main" >
           
-  <div class="govuk-grid-row">
+  
+  <div class="govuk-grid-row" id="waf-403-en" lang="en">
     <div class="govuk-grid-column-two-thirds">
-      <h1 id="main-heading" class="govuk-heading-l">Sorry, there is a problem with the service</h1>
-      <p class="govuk-body">The security system that protects this service has blocked your submission. This sometimes happens with normal wording or punctuation.</p>
-      <p class="govuk-body">Click back to return to the form and try rewording your answers, for example by using simpler punctuation. Then resubmit the form.</p>
+      <h1 class="govuk-heading-l">Sorry, there is a problem with the service</h1>
+      <p class="govuk-body">The security system that protects this service has blocked your submission. This can sometimes happen, even if there is no obvious problem with the text.</p>
+      <p class="govuk-body">However, you can try rewording your answers – for example, by using simpler punctuation. Click back to return to the form, reword your answers, and then resubmit the form.</p>
       <p class="govuk-body">Your answers from earlier pages have been saved. You may need to re-enter your most recent answers.</p>
       <p class="govuk-body">Please contact your Local Council if you need to speak to someone about your food business registration urgently.</p>
     </div>
   </div>
+  <hr id="waf-403-break" class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+  
+  <div class="govuk-grid-row" id="waf-403-cy" lang="cy">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Mae’n ddrwg gennym – mae problem gyda’r gwasanaeth</h1>
+      <p class="govuk-body">Mae’r system ddiogelwch sy’n diogelu’r gwasanaeth hwn wedi rhwystro eich cyflwyniad. Mae hyn yn gallu digwydd weithiau, hyd yn oed pan nad oes problem amlwg gyda’r testun.</p>
+      <p class="govuk-body">Fodd bynnag, gallwch chi roi cynnig ar aralleirio’ch atebion – er enghraifft, trwy ddefnyddio atalnodi symlach. Cliciwch ‘Yn ôl’ i ddychwelyd i’r ffurflen, aralleirio’ch atebion, ac ailgyflwyno’r ffurflen.</p>
+      <p class="govuk-body">Mae eich atebion o dudalennau cynharach wedi’u cadw. Efallai y bydd angen i chi ailnodi eich atebion diweddaraf.</p>
+      <p class="govuk-body">Cysylltwch â&#39;ch Cyngor Lleol os oes angen i chi siarad â rhywun am eich cofrestriad busnes bwyd ar frys.</p>
+    </div>
+  </div>
+  
+  
 
         </main>
       </div>
