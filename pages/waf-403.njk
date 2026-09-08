@@ -4,10 +4,10 @@
    never routed by the app. The rendered copy is committed and served
    statically at /error-pages/waf-403.html for the gateway to fetch.
 
-   Language: both languages on one page, Welsh first when the service's existing
-   "lang" cookie says so, in line with the Welsh Language Commissioner's technology
-   guidance: bilingual when the preference is unknown, the stored preference when
-   it is known. #}
+   Language: the file carries both languages and shows the one the service's
+   existing "lang" cookie selects, English by default, in line with the Welsh
+   Language Commissioner's technology guidance that a stored language preference
+   is honoured; without scripts both languages show. #}
 {% extends "layout.njk" %}
 {% block head %}
   <meta charset="utf8"/>
@@ -29,19 +29,12 @@
   <script>
     (function () {
       var cy = /(?:^|;\s*)lang=cy(?:;|$)/.test(document.cookie);
+      // One language at a time: hide the other block (both show only without scripts).
+      var css = document.createElement("style");
+      css.setAttribute("data-waf-403-lang", cy ? "cy" : "en");
+      css.textContent = (cy ? "#waf-403-en" : "#waf-403-cy") + ", #waf-403-break { display: none; }";
+      document.head.appendChild(css);
       if (cy) {
-        // The content blocks come after this script, so reorder once the document is parsed.
-        var welshFirst = function () {
-          var en = document.getElementById("waf-403-en");
-          var cyBlock = document.getElementById("waf-403-cy");
-          var br = document.getElementById("waf-403-break");
-          if (en && cyBlock && en.parentNode) {
-            en.parentNode.insertBefore(cyBlock, en);
-            if (br) en.parentNode.insertBefore(br, en);
-          }
-        };
-        if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", welshFirst);
-        else welshFirst();
         document.documentElement.lang = "cy";
         document.title = {{ __("Sorry, there is a problem with the service", "cy") | dump | safe }};
         var links = { languageEnHeader: "underline;normal;pointer", languageCyHeader: "none;bold;default" };

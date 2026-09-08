@@ -11,9 +11,8 @@
  * branding or the page's strings change; the gateway re-fetches the page only
  * when its config is re-applied.
  *
- * The page is bilingual, Welsh first when the "lang" cookie says so (Welsh
- * Language Commissioner's technology guidance: bilingual when the preference is
- * unknown, the stored preference when known). Nothing is emitted unless EVERY
+ * The file carries both languages and shows the one the "lang" cookie selects
+ * (English by default; both without scripts). Nothing is emitted unless EVERY
  * string has a real entry in public/static/locales/cy.json — no machine
  * translation, no silent English fallback inside the Welsh block.
  */
