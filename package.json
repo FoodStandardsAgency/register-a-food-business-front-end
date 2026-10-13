@@ -10,10 +10,10 @@
     "start": "NODE_ENV=production node ./src/server/server.js",
     "debug": "npm run sass-dev && node --inspect src/server/server.js",
     "debug:prod": "npm run sass-dev && NODE_ENV=production node --inspect src/server/server.js",
-    "local:dev": "npm run sass-dev && nodemon ./src/server/server.js",
-    "local:start": "npm run sass-dev && (export $(grep -v '^#' .env | xargs -d '\n')) && cross-env NODE_ENV=production nodemon ./src/server.js",
-    "local:debug": "npm run sass-dev && nodemon --inspect src/server/server.js",
-    "local:debug:prod": "npm run sass-dev && NODE_ENV=production nodemon --inspect src/server/server.js",
+    "local:dev": "npm run sass-dev && npx --yes nodemon@3.1.14 ./src/server/server.js",
+    "local:start": "npm run sass-dev && (export $(grep -v '^#' .env | xargs -d '\n')) && cross-env NODE_ENV=production npx --yes nodemon@3.1.14 ./src/server.js",
+    "local:debug": "npm run sass-dev && npx --yes nodemon@3.1.14 --inspect src/server/server.js",
+    "local:debug:prod": "npm run sass-dev && NODE_ENV=production npx --yes nodemon@3.1.14 --inspect src/server/server.js",
     "version": "NODE_ENV=production node -v",
     "testindex": "jest index",
     "test": "jest ./src ./pages --coverage",
@@ -64,7 +64,6 @@
     "mongodb": "^7.1.1",
     "morgan": "^1.10.1",
     "node-cache": "^5.1.2",
-    "nodemon": "^3.1.14",
     "nunjucks": "^3.2.4",
     "nunjucks-date-filter": "^0.1.1",
     "prop-types": "^15.8.1",
@@ -75,7 +74,6 @@
     "winston-azure-application-insights": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.28.6",
     "@babel/core": "^7.29.0",
     "@babel/plugin-transform-runtime": "^7.29.0",
     "babel-eslint": "^10.1.0",
@@ -98,7 +96,7 @@
   },
   "overrides": {
     "applicationinsights-native-metrics": {
-      "tar": "7.5.13"
+      "tar": "7.5.22"
     },
     "csurf": {
       "cookie": "1.1.1"
