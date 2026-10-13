@@ -1,0 +1,76 @@
+{# Static 403 page for the App Gateway WAF custom error configuration.
+   Rendered offline by scripts/render-waf-403.js: the gateway returns the built
+   HTML as the body of a WAF-blocked 403, on the original URL, so this page is
+   never routed by the app. The rendered copy is committed and served
+   statically at /error-pages/waf-403.html for the gateway to fetch.
+
+   Language: the file carries both languages and shows the one the service's
+   existing "lang" cookie selects, English by default, in line with the Welsh
+   Language Commissioner's technology guidance that a stored language preference
+   is honoured; without scripts both languages show. #}
+{% extends "layout.njk" %}
+{% block head %}
+  <meta charset="utf8"/>
+  <meta name="viewport" content="width=device-width"/>
+  <meta name="google" content="notranslate">
+  {# Inlined by the render script: a frozen error page must not depend on the
+     app being able to serve its stylesheet. #}
+  <link href="/css/app.css" rel="stylesheet" type="text/css">
+{% endblock %}
+{# Native top bar. The language links are context-free ("?lang=en"/"?lang=cy" on the
+   current URL): on this page that URL is the form page the citizen POSTed to, so
+   clicking a language performs a GET of that form in that language, session intact.
+   The back link is server-computed on real pages, so here it is injected by JS
+   (history.back()) into the bar's left column; no-JS users get the sentence in the
+   body copy instead. #}
+{% from "../components/BackAndLanguageBar.njk" import backAndLanguageBar %}
+{% block beforeContent %}
+  {{ backAndLanguageBar(mergeObjects(props, {hideback: true})) }}
+  <script>
+    (function () {
+      var cy = /(?:^|;\s*)lang=cy(?:;|$)/.test(document.cookie);
+      // One language at a time: hide the other block (both show only without scripts).
+      var css = document.createElement("style");
+      css.setAttribute("data-waf-403-lang", cy ? "cy" : "en");
+      css.textContent = (cy ? "#waf-403-en" : "#waf-403-cy") + ", #waf-403-break { display: none; }";
+      document.head.appendChild(css);
+      if (cy) {
+        document.documentElement.lang = "cy";
+        document.title = {{ __("Sorry, there is a problem with the service", "cy") | dump | safe }};
+        var links = { languageEnHeader: "underline;normal;pointer", languageCyHeader: "none;bold;default" };
+        for (var id in links) {
+          var a = document.getElementById(id);
+          if (a) {
+            var v = links[id].split(";");
+            a.style.textDecoration = v[0]; a.style.fontWeight = v[1]; a.style.cursor = v[2];
+          }
+        }
+      }
+      if (window.history && window.history.length > 1) {
+        var col = document.querySelector("nav .govuk-grid-column-two-thirds");
+        if (col) {
+          var b = document.createElement("a");
+          b.href = "#";
+          b.className = "govuk-back-link";
+          b.textContent = cy ? {{ __("Back", "cy") | dump | safe }} : {{ __("Back", "en") | dump | safe }};
+          b.onclick = function (e) { e.preventDefault(); window.history.back(); };
+          col.appendChild(b);
+        }
+      }
+    })();
+  </script>
+{% endblock %}
+{% block content %}
+  {% for lang in ["en", "cy"] %}
+  <div class="govuk-grid-row" id="waf-403-{{ lang }}" lang="{{ lang }}">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ __("Sorry, there is a problem with the service", lang) }}</h1>
+      <p class="govuk-body">{{ __("The security system that protects this service has blocked your submission. This can sometimes happen, even if there is no obvious problem with the text.", lang) }}</p>
+      <p class="govuk-body">{{ __("However, you can try rewording your answers – for example, by using simpler punctuation. Click back to return to the form, reword your answers, and then resubmit the form.", lang) }}</p>
+      <p class="govuk-body">{{ __("Your answers from earlier pages have been saved. You may need to re-enter your most recent answers.", lang) }}</p>
+      <p class="govuk-body">{{ __("Please contact your Local Council if you need to speak to someone about your food business registration urgently.", lang) }}</p>
+    </div>
+  </div>
+  {% if loop.first %}<hr id="waf-403-break" class="govuk-section-break govuk-section-break--l govuk-section-break--visible">{% endif %}
+  {% endfor %}
+{% endblock %}
