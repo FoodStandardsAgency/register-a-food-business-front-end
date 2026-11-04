@@ -13,7 +13,7 @@ const crawlerPolicy = (environment) => {
 
   router.get("/robots.txt", (req, res) => {
     res
-      .set("Cache-Control","public", "max-age=3600")
+      .set("Cache-Control", "public", "max-age=3600")
       .type("text/plain")
       .send(`User-agent: *\nAllow: /\n`);
   });
