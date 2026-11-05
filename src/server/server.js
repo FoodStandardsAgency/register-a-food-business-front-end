@@ -133,7 +133,7 @@ const sixtyDaysInSeconds = 5184000;
 app.set("trust proxy", 1);
 app.enable("trust proxy");
 app.use(clsMiddleware);
-app.use(crawlerPolicy(process.env.NODE_ENV));
+app.use(crawlerPolicy(process.env.ALLOW_SEARCH_INDEXING === "true"));
 app.use(forceDomainOrSchema);
 app.use(limiter);
 app.use(session(sessionOptions));
