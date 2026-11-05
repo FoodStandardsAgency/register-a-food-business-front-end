@@ -1,8 +1,7 @@
 const { Router } = require("express");
 
-const crawlerPolicy = (environment) => {
+const crawlerPolicy = (allowIndexing) => {
   const router = Router();
-  const allowIndexing = environment === "production";
 
   router.use((req, res, next) => {
     if (!allowIndexing) {
