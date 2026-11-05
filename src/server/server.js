@@ -21,6 +21,7 @@ if (
 const { logger } = require("./services/winston");
 
 const { COSMOSDB_URL } = require("./config");
+const { crawlerPolicy } = require("./middleware/crawlerPolicy");
 
 function byteToHex(byte) {
   return ("0" + byte.toString(16)).slice(-2);
@@ -132,6 +133,7 @@ const sixtyDaysInSeconds = 5184000;
 app.set("trust proxy", 1);
 app.enable("trust proxy");
 app.use(clsMiddleware);
+app.use(crawlerPolicy(process.env.ALLOW_SEARCH_INDEXING === "true"));
 app.use(forceDomainOrSchema);
 app.use(limiter);
 app.use(session(sessionOptions));
