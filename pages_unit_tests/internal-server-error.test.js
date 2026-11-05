@@ -38,7 +38,7 @@ describe("internal-server-error", () => {
 
     const $returnButton = $("#server-error-form");
     expect($returnButton.get(0).attribs.href).toBe(
-      "https://www.food.gov.uk/business-guidance/getting-ready-to-start-your-food-business"
+      "https://www.gov.uk/guidance/starting-a-food-business#getting-ready-to-start-your-food-business"
     );
   });
 });
